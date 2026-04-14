@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a three-story apartment building with a rectangular footprint and a flat concrete roof. The exterior is clad in red brick with evenly spaced, symmetrically aligned windows on the front and side facades, each window framed with a light-colored trim. The ground floor features a large metal roll-up garage door and a single entry door, both set into the brickwork. The building lacks balconies or decorative elements, giving it a utilitarian and functional appearance. The rear and one side of the building are windowless, emphasizing privacy or adjacency to other structures. The overall design is simple and practical, suitable for dense urban environments.",
+    "description": "A three-story red brick apartment building with a flat roof, symmetrical windows, and a ground-floor garage and entry door. The design is utilitarian and lacks balconies or ornate features.",
+    "description_view_0": "Front view showing three floors, four windows per upper floor, a large garage door, and a single entry door.",
+    "description_view_1": "Side view with no windows or doors, just plain brick walls and visible floor divisions.",
+    "description_view_2": "Rear view with a completely windowless brick facade and clear horizontal floor separations.",
+    "description_view_3": "Opposite side view with four symmetrically arranged windows per upper floor and no doors.",
+    "category": "apartment building",
+    "height": 9.0,
+    "max_dimension": 12.0,
+    "materials": [
+        "brick",
+        "concrete",
+        "glass",
+        "metal",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.08,
+        0.06,
+        0.01,
+        0.05
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "garage door",
+        "windows"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 3,
+    "attribute_balcony_presence": false,
+    "attribute_window_arrangement": "Windows are symmetrically arranged in two rows on the front and one side, with four evenly spaced windows per upper floor and none on the rear or opposite side.",
+    "attribute_entrance_type": "single door",
+    "attribute_architectural_style": "Contemporary",
+    "uid": "3e51037958b64727a4679ac806e56d86",
+    "near_synsets": {
+        "apartment_building.n.01": 0.5013690432991802,
+        "railroad_flat.n.01": 0.5264314715327777,
+        "walk-up_apartment.n.01": 0.5411842252724884,
+        "walk-up.n.02": 0.5450016975780979,
+        "block.n.05": 0.5478661288612451,
+        "building.n.01": -1000.0,
+        "building.n.04": -1000.0,
+        "construction.n.07": -1000.0,
+        "apartment.n.01": -1000.0,
+        "construction.n.01": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3e51037958b64727a4679ac806e56d86",
+        "creator_username": "Elbolilloduro",
+        "creator_display_name": "Elbolillo",
+        "creator_profile_url": "https://sketchfab.com/Elbolilloduro"
+    },
+    "filename": "std_3e51037958b64727a4679ac806e56d86.glb",
+    "length": 6.324233293533325,
+    "width": 7.561859846115112
+}

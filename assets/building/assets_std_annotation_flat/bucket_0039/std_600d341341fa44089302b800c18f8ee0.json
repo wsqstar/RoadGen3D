@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a rectangular, free-standing mirror with a heavily weathered and distressed metal frame, showing significant signs of rust and wear. The reflective surface is cracked and shattered in multiple places, with spiderweb-like fracture patterns and missing glass sections, giving it a neglected, urban appearance. The frame is thick and boxy, with a slightly protruding base that provides stability. The mirror's surface is cloudy and no longer fully reflective, suggesting long-term exposure to the elements or vandalism. The overall color palette is dominated by grays and muted metallic tones, with some brownish rust visible on the base. This object would be commonly found in abandoned urban environments, alleys, or derelict public spaces.",
+    "description": "A distressed, rectangular mirror with a thick, rusted metal frame and a cracked, cloudy reflective surface. The mirror shows heavy wear and damage, evoking an abandoned urban setting.",
+    "description_view_0": "Front view showing the cracked and shattered mirror surface with spiderweb fractures and a large missing section in the lower right.",
+    "description_view_1": "Side view revealing the thickness of the frame and the weathered, rusted metal texture; no reflective surface visible.",
+    "description_view_2": "Rear or alternate front view with a different pattern of cracks and missing glass, highlighting the distressed state of the mirror.",
+    "description_view_3": "Opposite side view, again showing the frame's depth and worn metal finish, with no glass visible.",
+    "category": "mirror",
+    "height": 1.0,
+    "max_dimension": 1.0,
+    "materials": [
+        "glass",
+        "metal",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.1
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "reflective",
+        "breakable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "mirror surface",
+        "frame"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_mounting_type": "free-standing",
+    "attribute_frame_design": "Rectangular, thick, distressed metal frame with visible rust and weathering; simple, utilitarian style.",
+    "attribute_orientation": "vertical",
+    "attribute_reflective_quality": "heavily cracked, cloudy, and highly distorted with low reflectivity",
+    "attribute_placement_location": "urban exterior, alleyway, abandoned building, or garage",
+    "uid": "600d341341fa44089302b800c18f8ee0",
+    "near_synsets": {
+        "mirror.n.01": 0.5461221508900069,
+        "mirror.n.02": 0.5571344602017293,
+        "rearview_mirror.n.01": 0.5655159596021494,
+        "outside_mirror.n.01": 0.5666242122527563,
+        "car_mirror.n.01": 0.5699638602308156
+    },
+    "synset": "car_mirror.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/600d341341fa44089302b800c18f8ee0",
+        "creator_username": "jesperbj",
+        "creator_display_name": "Game Ready Art",
+        "creator_profile_url": "https://sketchfab.com/jesperbj"
+    },
+    "filename": "std_600d341341fa44089302b800c18f8ee0.glb",
+    "length": 0.13304007053375244,
+    "width": 0.7970598340034485
+}

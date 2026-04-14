@@ -1,0 +1,111 @@
+{
+    "description_long": "This object is a sleek, quadrupedal robot dog with a streamlined, mechanical body and angular features. Its head is sharply contoured, resembling a canine with a pronounced snout and pointed ears, and it appears to have a reinforced, armored exterior. The legs are jointed and segmented, suggesting high mobility and agility, with visible mechanical joints at the shoulders, hips, and knees. The torso is robust and slightly bulky, possibly housing internal electronics or power sources, and features paneling and surface details that imply advanced robotics. The tail is short and rigid, integrated into the body design, and the overall surface is dark, metallic, and uniform in color. The robot dog exudes a sense of durability and functionality, suitable for urban patrol, search and rescue, or security applications.",
+    "description": "A dark, angular robot dog with a metallic, armored body, jointed legs, and a sharply contoured head, designed for mobility and durability.",
+    "description_view_0": "Side view showing the full length of the robot dog, highlighting its streamlined body, jointed legs, and pointed head.",
+    "description_view_1": "Front view emphasizing the narrow, angular head, pointed ears, and the symmetry of the front legs.",
+    "description_view_2": "Opposite side view, mirroring the first, with clear visibility of the mechanical joints and tail.",
+    "description_view_3": "Rear view displaying the back of the head, the alignment of the hind legs, and the compact tail.",
+    "category": "robot dog",
+    "height": 0.6,
+    "max_dimension": 1.2,
+    "materials": [
+        "metal",
+        "plastic",
+        "synthetic rubber",
+        "air",
+        "glass"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 38,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "leg",
+        "head",
+        "tail",
+        "joint",
+        "sensor panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_mechanical_joints": [
+        "rotary joint",
+        "hinge joint"
+    ],
+    "attribute_visible_sensors": [
+        "camera"
+    ],
+    "attribute_led_indicators": [],
+    "attribute_articulated_limbs": [
+        "front left leg",
+        "front right leg",
+        "rear left leg",
+        "rear right leg",
+        "tail"
+    ],
+    "attribute_robotic_face": false,
+    "uid": "90e5365f635e432183029cbe5291adb2",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5422311379744291,
+        "android.n.01": 0.5696186745436634,
+        "automaton.n.02": 0.5786352484908744,
+        "animatronics.n.01": 0.5800858145018788,
+        "robotics.n.01": 0.5861438102962296,
+        "dog.n.03": -1000.0,
+        "frank.n.01": -1000.0,
+        "frump.n.01": -1000.0,
+        "andiron.n.01": -1000.0,
+        "dog.n.01": -1000.0,
+        "pawl.n.01": -1000.0,
+        "cad.n.01": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/90e5365f635e432183029cbe5291adb2",
+        "creator_username": "chaitanyak",
+        "creator_display_name": "Chaitanya Krishnan",
+        "creator_profile_url": "https://sketchfab.com/chaitanyak"
+    },
+    "filename": "std_90e5365f635e432183029cbe5291adb2.glb",
+    "length": 1.2139571905136108,
+    "width": 0.38517920672893524
+}

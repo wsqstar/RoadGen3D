@@ -1,0 +1,104 @@
+{
+    "description_long": "This object is a tall, rectangular blue police call box reminiscent of the iconic British TARDIS. The structure features a flat roof with a small, lantern-like fixture on top and prominent black signage reading 'POLICE CALL BOX' on all visible sides. The front side includes two small, multi-pane windows above a set of double doors, one of which has a white instruction panel. The sides and rear also have similar window arrangements, but lack the instruction panel. The surface is textured to resemble painted wood, with visible paneling and trim details. The overall appearance is robust and utilitarian, designed to be both weather-resistant and highly visible in an urban environment.",
+    "description": "A blue, rectangular police call box with paneled doors, multi-pane windows, and 'POLICE CALL BOX' signage on all sides. Features a lantern on top and a white instruction panel on the front.",
+    "description_view_0": "Front view showing paneled doors, two multi-pane windows, and 'POLICE CALL BOX' signage above.",
+    "description_view_1": "Front-right view highlighting the instruction panel on the left door and the lantern on the roof.",
+    "description_view_2": "Rear view with two multi-pane windows and 'POLICE CALL BOX' signage, no instruction panel.",
+    "description_view_3": "Rear-left view showing the side paneling, windows, and signage, with no instruction panel.",
+    "category": "telephone booth",
+    "height": 2.6,
+    "max_dimension": 2.6,
+    "materials": [
+        "wood",
+        "glass",
+        "metal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "mass": 420,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "signage panel",
+        "lantern"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "blue",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_enclosure_type": "fully enclosed",
+    "attribute_door_presence": true,
+    "attribute_window_configuration": "two small multi-pane windows on each side near the top",
+    "attribute_signage_or_labeling": "'POLICE CALL BOX' in white on black panels above windows on all sides; white instruction panel on front door",
+    "attribute_handset_visibility": false,
+    "uid": "9acd811d5c2844fb9a8c8566f0614ff0",
+    "near_synsets": {
+        "telephone_booth.n.01": 0.47549668558560676,
+        "pillar_box.n.01": 0.5699982374685005,
+        "telephone_bell.n.01": 0.5802537555566996,
+        "pay-phone.n.01": 0.5823973471199254,
+        "signal_box.n.01": 0.5829456793619556,
+        "telephone.n.02": -1000.0,
+        "telephone.n.01": -1000.0,
+        "booth.n.03": -1000.0,
+        "booth.n.02": -1000.0,
+        "booth.n.04": -1000.0,
+        "booth.n.01": -1000.0
+    },
+    "synset": "telephone_booth.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9acd811d5c2844fb9a8c8566f0614ff0",
+        "creator_username": "inostupid",
+        "creator_display_name": "inostupid",
+        "creator_profile_url": "https://sketchfab.com/inostupid"
+    },
+    "filename": "std_9acd811d5c2844fb9a8c8566f0614ff0.glb",
+    "length": 1.3285717964172363,
+    "width": 1.3285717368125916
+}

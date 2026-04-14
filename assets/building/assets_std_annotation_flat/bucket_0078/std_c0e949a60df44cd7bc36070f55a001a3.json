@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a military-style, single-propeller airplane with a streamlined, olive-green fuselage and broad, straight wings. The aircraft features prominent red stars on the wings and tail, as well as the number '37' painted in red on the nose, indicating Soviet-era markings. The cockpit is enclosed with a blue-tinted canopy, positioned just ahead of the wing root, and appears to be designed for a single pilot. The tail section is conventional, with a single vertical stabilizer and horizontal stabilizers extending from either side. The landing gear is partially visible, with the main gear under the wings and a smaller tail wheel. The overall design suggests a World War II-era fighter aircraft, built primarily from metal with some glass components.",
+    "description": "A Soviet-marked, olive-green single-propeller fighter airplane with red stars, an enclosed blue-tinted cockpit, and conventional tail and landing gear.",
+    "description_view_0": "Front-left view showing the propeller nose, cockpit canopy, left wing, and landing gear, with the number '37' and red star visible.",
+    "description_view_1": "Rear-left view highlighting the tail section, left wing, and both red stars on the wing and tail, with the landing gear partially visible.",
+    "description_view_2": "Rear-right view focusing on the tail, right wing, and red star insignia, with the cockpit and landing gear visible from behind.",
+    "description_view_3": "Front-right view displaying the propeller nose, cockpit, right wing, and landing gear, with the number '37' and red star on the tail visible.",
+    "category": "airplane",
+    "height": 3.5,
+    "max_dimension": 9.5,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.08,
+        0.02
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable",
+        "closable",
+        "openable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "landing gear",
+        "propeller",
+        "wheels",
+        "control stick",
+        "throttle",
+        "rudder pedals"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "red",
+        "blue",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 6.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, straight wings with no visible dihedral or anhedral angle, no winglets or swept features.",
+    "attribute_engine_type": "Single nose-mounted piston engine with a propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Taildragger configuration with two main fixed gear under the wings and a single tail wheel.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed single-seat cockpit with a blue-tinted canopy.",
+    "uid": "c0e949a60df44cd7bc36070f55a001a3",
+    "near_synsets": {
+        "aircraft.n.01": 0.5216735972619455,
+        "propeller_plane.n.01": 0.53541636177088,
+        "airplane.n.01": 0.536235463898885,
+        "combat_pilot.n.01": 0.5367796659304376,
+        "monoplane.n.01": 0.5410552458091963
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c0e949a60df44cd7bc36070f55a001a3",
+        "creator_username": "manilov.ap",
+        "creator_display_name": "manilov.ap",
+        "creator_profile_url": "https://sketchfab.com/manilov.ap"
+    },
+    "filename": "std_c0e949a60df44cd7bc36070f55a001a3.glb",
+    "length": 13.353209495544434,
+    "width": 13.329145908355713
+}

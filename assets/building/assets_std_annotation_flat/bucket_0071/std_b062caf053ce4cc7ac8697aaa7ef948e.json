@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a small utilitarian bridge constructed primarily from stone and metal, spanning a shallow depression or drainage channel. The bridge features a robust stone retaining wall on either side, supporting a metal grate deck that allows water and debris to pass through. The metal deck consists of parallel bars, providing both structural support and traction for crossing. The surrounding terrain is unpaved, with visible dirt paths leading up to the bridge and some greenery on the embankments. The bridge is designed for pedestrian or light vehicle use, with a simple, functional aesthetic and no decorative elements. The overall structure is low to the ground and blends into its natural and urban environment.",
+    "description": "A small, functional stone and metal bridge with a grated deck and stone retaining walls, spanning a shallow channel in a naturalistic setting.",
+    "description_view_0": "From this angle, the metal grate deck and the sloped approach on one side are visible, with the bridge embedded in the terrain.",
+    "description_view_1": "This view highlights the stone retaining wall and the metal grate, showing the bridge's integration with the embankment and the path leading up to it.",
+    "description_view_2": "The bridge's full span and both stone walls are visible, along with the metal grate deck and the surrounding greenery.",
+    "description_view_3": "This perspective emphasizes the front face of the bridge, with the metal grate and stone wall clearly visible, and the path leading away from the bridge.",
+    "category": "bridge",
+    "height": 1.2,
+    "max_dimension": 5.0,
+    "materials": [
+        "stone",
+        "steel",
+        "soil",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "mass": 9000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "crossable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "metal grate deck"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "bicycle"
+    ],
+    "colors": [
+        "gray",
+        "brown",
+        "green",
+        "rust"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_support_type": "beam",
+    "attribute_railing_design": "metal bars with vertical balusters",
+    "attribute_arch_presence": false,
+    "attribute_lighting_fixtures": [],
+    "attribute_architectural_style": "utilitarian",
+    "uid": "b062caf053ce4cc7ac8697aaa7ef948e",
+    "near_synsets": {
+        "bridge.n.03": 0.485546012663637,
+        "trestle_bridge.n.01": 0.5003676066025627,
+        "bridge.n.01": 0.5007300434768331,
+        "stepping_stone.n.01": 0.5096942896696951,
+        "covered_bridge.n.01": 0.5174033891220212,
+        "bridge.n.06": -1000.0,
+        "bridge.n.04": -1000.0,
+        "bridge.n.09": -1000.0,
+        "bridge.n.08": -1000.0,
+        "bridge.n.05": -1000.0,
+        "bridge.n.02": -1000.0,
+        "bridge.n.07": -1000.0
+    },
+    "synset": "bridge.n.07",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b062caf053ce4cc7ac8697aaa7ef948e",
+        "creator_username": "giorgioscioldo",
+        "creator_display_name": "Giorgio Scioldo",
+        "creator_profile_url": "https://sketchfab.com/giorgioscioldo"
+    },
+    "filename": "std_b062caf053ce4cc7ac8697aaa7ef948e.glb",
+    "length": 4.064351320266724,
+    "width": 3.7466338872909546
+}

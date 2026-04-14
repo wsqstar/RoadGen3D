@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a heavily armored main battle tank with a low, wide profile and a large, centrally mounted turret. The vehicle features a long, prominent main cannon extending from the turret, with additional smaller weapon mounts and observation equipment visible on the roof. The hull and turret are covered in thick, angular armor plating, with sloped surfaces designed to deflect incoming fire. The tank rides on a set of large, rugged tracks with multiple road wheels, providing stability and traction over rough terrain. The exterior is finished in a dark, mottled camouflage pattern, and various hatches, periscopes, and antennae are visible on the upper surfaces. No visible military insignia or numbers are present, and the vehicle is clearly designed for urban and battlefield environments.",
+    "description": "A heavily armored main battle tank with a large turret, long cannon, and rugged tracks, finished in dark camouflage. The vehicle features thick, angular armor and multiple roof-mounted components.",
+    "description_view_0": "Front view shows the wide, sloped glacis plate, central main cannon, and prominent turret with roof-mounted equipment.",
+    "description_view_1": "Left side view highlights the length of the main cannon, the full set of road wheels and tracks, and the angular side armor.",
+    "description_view_2": "Rear view displays the back of the turret, engine deck, and rear armor, with the tracks and rear hull details visible.",
+    "description_view_3": "Right side view mirrors the left, showing the main cannon, tracks, and side armor, with additional roof details visible.",
+    "category": "combat tactical  vehicle",
+    "height": 2.4,
+    "max_dimension": 9.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.08,
+        0.04,
+        0.02,
+        0.03
+    ],
+    "mass": 48000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1800000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "machine gun mount",
+        "antenna",
+        "periscope",
+        "track",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.02,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large main cannon mounted on the turret front, with at least two additional machine gun mounts visible on the turret roof.",
+    "attribute_armor_plating": "Full body coverage with thick, angular, and sloped armor plating on the hull and turret; reinforced front and side panels are visible.",
+    "attribute_camouflage_pattern": "Dark, mottled camouflage pattern with irregular patches of green, black, and gray in a blended style.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "583813ecd51949fe9297fbeadf1c73b4",
+    "near_synsets": {
+        "tank.n.01": 0.44209310520719847,
+        "armored_car.n.02": 0.49181643085060084,
+        "military_vehicle.n.01": 0.49236107458636064,
+        "assault_gun.n.02": 0.4954173185943742,
+        "armored_vehicle.n.01": 0.4980531237738569,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/583813ecd51949fe9297fbeadf1c73b4",
+        "creator_username": "lm9241221",
+        "creator_display_name": "lm9241221",
+        "creator_profile_url": "https://sketchfab.com/lm9241221"
+    },
+    "filename": "std_583813ecd51949fe9297fbeadf1c73b4.glb",
+    "length": 5.702336549758911,
+    "width": 4.456610679626465
+}

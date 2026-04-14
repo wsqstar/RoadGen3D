@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a modern, twin-engine combat aircraft with a sleek, angular design and a dark, mottled camouflage paint scheme. The fuselage is streamlined with a pointed nose cone and a red-tinted cockpit canopy, suggesting advanced avionics and pilot protection. The wings are sharply swept and equipped with multiple hardpoints, each carrying red-tipped missiles or ordnance, indicating a heavy armament load. The tail section features twin vertical stabilizers and large exhaust nozzles, hinting at powerful jet propulsion. The surface is covered in what appears to be composite armor plating, with visible panel lines and reinforced sections. Markings, including the text 'RZYAS' and 'SYIAS', are stenciled in white on the upper fuselage and wings, providing identification or unit designation.",
+    "description": "A heavily armed, twin-engine combat jet with dark camouflage, red-tipped missiles, and white stenciled markings. Features a red cockpit canopy and reinforced, angular armor plating.",
+    "description_view_0": "Front view shows the pointed nose, red cockpit canopy, and symmetrical missile loadouts under each wing.",
+    "description_view_1": "Left side view highlights the 'RZYAS' marking, wing-mounted missiles, and the jet's streamlined profile.",
+    "description_view_2": "Rear view displays twin exhaust nozzles, the 'SYIAS' marking on the upper fuselage, and the full span of the swept wings.",
+    "description_view_3": "Right side view mirrors the left, showing the missile mounts and the angular tail structure.",
+    "category": "combat tactical  vehicle",
+    "height": 4.5,
+    "max_dimension": 16.0,
+    "materials": [
+        "aluminum alloy",
+        "composite armor",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.08,
+        0.05,
+        0.02,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "missile hardpoints",
+        "landing gear",
+        "control surfaces",
+        "engine nozzles"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Eight visible missile hardpoints, four under each wing, equipped with red-tipped missiles.",
+    "attribute_armor_plating": "Full body coverage with visible composite armor plating, reinforced around the cockpit and engine areas, featuring angular, sloped panels.",
+    "attribute_camouflage_pattern": "Dark gray and black mottled camouflage pattern with irregular, angular shapes.",
+    "attribute_military_markings": "White stenciled text 'RZYAS' on the left fuselage and 'SYIAS' on the upper rear fuselage and wings.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "724dafd266b04a079a23a8cff946940e",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.5189243272107429,
+        "reconnaissance_vehicle.n.01": 0.5279063099059781,
+        "tank.n.01": 0.5391025856810051,
+        "weapons_carrier.n.01": 0.548461559614655,
+        "armored_car.n.02": 0.5517011747116276,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/724dafd266b04a079a23a8cff946940e",
+        "creator_username": "rzyas",
+        "creator_display_name": "Rzyas",
+        "creator_profile_url": "https://sketchfab.com/rzyas"
+    },
+    "filename": "std_724dafd266b04a079a23a8cff946940e.glb",
+    "length": 14.362794876098633,
+    "width": 12.910721778869629
+}

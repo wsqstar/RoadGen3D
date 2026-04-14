@@ -1,0 +1,87 @@
+{
+    "description_long": "This object is a sleek, modern airplane with a sharply pointed nose and a streamlined, angular fuselage. The wings are sharply swept back, forming a delta shape that merges smoothly with the body, giving it a stealthy, futuristic appearance. The tail features a prominent vertical stabilizer and two canted stabilizers, forming a V-tail configuration. The surface is uniformly dark, likely matte black, with no visible markings, windows, or external engines. The cockpit area is smoothly integrated into the fuselage, with no distinct canopy or window details visible. There are no visible landing gear components, suggesting they may be retracted or not modeled.",
+    "description": "A sleek, angular black airplane with swept delta wings and a V-tail, featuring a streamlined, windowless fuselage.",
+    "description_view_0": "Side view showing the sharply swept delta wing, prominent vertical stabilizer, and canted V-tail surfaces.",
+    "description_view_1": "Front view highlighting the pointed nose, wide angular wings, and the V-tail configuration extending upward and outward.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the delta wing and V-tail structure.",
+    "description_view_3": "Rear view displaying the full wingspan, V-tail, and the streamlined, tapering fuselage.",
+    "category": "airplane",
+    "height": 2.5,
+    "max_dimension": 12.0,
+    "materials": [
+        "composite",
+        "aluminum",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 63750,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "control surfaces",
+        "tail surfaces"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.3,
+    "bounciness": 0.05,
+    "recommended_clearance": 15.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, sharply swept delta wing with no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "No visible external engines; engine placement not apparent from exterior.",
+    "attribute_tail_design": "V-tail configuration with a single prominent vertical stabilizer and two canted stabilizers.",
+    "attribute_landing_gear_type": "No visible landing gear; configuration not apparent.",
+    "attribute_cockpit_placement": "Forward-mounted, smoothly integrated cockpit with no visible canopy or windows.",
+    "uid": "aa6ebdc523bd4bddb78f5dfb25b752d3",
+    "near_synsets": {
+        "aircraft.n.01": 0.48576369190602287,
+        "airplane.n.01": 0.48759284576625944,
+        "delta_wing.n.01": 0.5018936545598501,
+        "monoplane.n.01": 0.5084062117647463,
+        "vertical_tail.n.01": 0.5229766882296694
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/aa6ebdc523bd4bddb78f5dfb25b752d3",
+        "creator_username": "andre_s",
+        "creator_display_name": "Andre S.",
+        "creator_profile_url": "https://sketchfab.com/andre_s"
+    },
+    "filename": "std_aa6ebdc523bd4bddb78f5dfb25b752d3.glb",
+    "length": 8.26931381225586,
+    "width": 11.152118682861328
+}

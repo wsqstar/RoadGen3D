@@ -1,0 +1,104 @@
+{
+    "description_long": "This hamburger features a smooth, rounded plain white bun on top and bottom, enclosing a thick brown beef patty. Between the bun and patty, there are visible layers of pale yellow cheese, bright green lettuce, and slices of red tomato, all arranged in a classic stacked fashion. The lettuce is jagged and peeks out from the sides, while the cheese is square and slightly larger than the patty, with its corners extending beyond the bun. The tomato slices are centrally placed and partially visible from several angles. The bun has a matte, soft appearance with no visible sesame seeds or toppings. No packaging or additional condiments are present, and the hamburger appears fresh and ready to eat.",
+    "description": "A classic hamburger with a plain white bun, beef patty, cheese, lettuce, and tomato, all neatly stacked and visible from the sides. The bun is smooth and seedless, with no packaging present.",
+    "description_view_0": "The front view shows the smooth, rounded top bun with lettuce, cheese, and a hint of tomato peeking out beneath.",
+    "description_view_1": "This side view highlights the layered arrangement of lettuce, cheese, and a prominent slice of tomato, with the patty visible at the bottom.",
+    "description_view_2": "The back view displays the bun's smooth surface and the layered toppings, with lettuce and cheese extending outward.",
+    "description_view_3": "This angle emphasizes the overlapping lettuce and cheese, with a clear view of the tomato slice and the patty beneath.",
+    "category": "hamburger",
+    "height": 0.09,
+    "max_dimension": 0.13,
+    "materials": [
+        "bread",
+        "beef",
+        "cheese",
+        "lettuce",
+        "tomato",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.25,
+        0.15,
+        0.12,
+        0.1,
+        0.03
+    ],
+    "mass": 0.22,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 2,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "graspable",
+        "separable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "top bun",
+        "bottom bun",
+        "patty",
+        "cheese slice",
+        "lettuce leaf",
+        "tomato slice"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light brown",
+        "brown",
+        "yellow",
+        "green",
+        "red"
+    ],
+    "colors_composition": [
+        0.38,
+        0.22,
+        0.15,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "soft",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.08,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_bun_type": "plain white bun",
+    "attribute_patty_visibility": "fully visible",
+    "attribute_topping_arrangement": "Lettuce, cheese, and tomato are layered above the patty, with the cheese directly on the patty, followed by tomato and lettuce, all evenly distributed and visible from the sides.",
+    "attribute_packaging_presence": false,
+    "attribute_sesame_seed_presence": false,
+    "uid": "56c2b3420810403cb3881569f81447f4",
+    "near_synsets": {
+        "hamburger.n.01": 0.4501995373162446,
+        "hamburger_bun.n.01": 0.48135693977654426,
+        "cheeseburger.n.01": 0.5187620486680881,
+        "ground_beef.n.01": 0.5309538868866759,
+        "bacon-lettuce-tomato_sandwich.n.01": 0.5483187243866878
+    },
+    "synset": "hamburger_bun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/56c2b3420810403cb3881569f81447f4",
+        "creator_username": "YongG",
+        "creator_display_name": "YongG",
+        "creator_profile_url": "https://sketchfab.com/YongG"
+    },
+    "filename": "std_56c2b3420810403cb3881569f81447f4.glb",
+    "length": 0.18293501436710358,
+    "width": 0.1829349845647812
+}

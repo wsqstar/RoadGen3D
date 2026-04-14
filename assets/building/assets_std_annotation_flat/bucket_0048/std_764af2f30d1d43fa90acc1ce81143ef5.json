@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a large urban truck with a robust, industrial design, featuring a yellow cab and a gray cargo bed, alongside a red box-style vehicle. The truck has a prominent front grille, large side mirrors, and a high ground clearance, suitable for heavy-duty urban or construction tasks. The cargo area is spacious and open, designed for transporting bulk materials or equipment, while the adjacent red vehicle appears to be a box truck or van with a fully enclosed cargo area. The truck is equipped with multiple axles and large wheels, indicating its capacity for heavy loads. The exterior is primarily metal, with glass windows and rubber tires, and the interior likely includes seating, a dashboard, and controls. The overall build suggests durability and functionality for city logistics, waste management, or delivery services.",
+    "description": "A heavy-duty urban truck with a yellow cab, gray open cargo bed, and a red box-style vehicle, built for transporting materials or equipment in city environments.",
+    "description_view_0": "Front view showing the yellow cab, grille, windshield, and the open cargo bed, with the red box truck adjacent.",
+    "description_view_1": "Side view highlighting the length of the cargo bed, the cab profile, and the full side of the red box truck.",
+    "description_view_2": "Rear view displaying the open cargo bed, rear lights, and the back of the red box truck.",
+    "description_view_3": "Opposite side view showing the cab, cargo bed, and the side of the red box truck from the other direction.",
+    "category": "truck",
+    "height": 3.2,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.08,
+        0.05,
+        0.04
+    ],
+    "mass": 9500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "mirror",
+        "cargo bed",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "gray",
+        "red",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.18,
+        0.32,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_cab_configuration": "day cab",
+    "attribute_cargo_bed_type": "dump bed",
+    "attribute_wheelbase": 4.2,
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "764af2f30d1d43fa90acc1ce81143ef5",
+    "near_synsets": {
+        "truck.n.01": 0.46211049970731183,
+        "delivery_truck.n.01": 0.48182795436535414,
+        "van.n.05": 0.4820213601930648,
+        "lorry.n.02": 0.491420909084479,
+        "flatbed.n.02": 0.491425380310584,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/764af2f30d1d43fa90acc1ce81143ef5",
+        "creator_username": "AkaIntensity",
+        "creator_display_name": "AkaIntensity",
+        "creator_profile_url": "https://sketchfab.com/AkaIntensity"
+    },
+    "filename": "std_764af2f30d1d43fa90acc1ce81143ef5.glb",
+    "length": 9.58556604385376,
+    "width": 8.597911834716797
+}

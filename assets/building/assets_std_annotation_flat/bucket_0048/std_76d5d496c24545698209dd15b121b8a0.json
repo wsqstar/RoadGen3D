@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a large, dark-hulled ship with a flat-bottomed, rectangular displacement hull and rounded bow and stern. The vessel features a prominent central superstructure with a single tall funnel and several vertical masts, likely for communication or navigation equipment. Along the sides, there are multiple portholes and hatches, as well as visible lifeboats or storage canisters mounted on deck. The deck is equipped with railings, ladders, and various fixtures, suggesting a utilitarian or industrial function. The ship's exterior is mostly a dark color, with some lighter accents on the superstructure and deck equipment. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A large, dark-hulled ship with a central superstructure, tall funnel, and multiple deck fixtures, designed for industrial or transport use.",
+    "description_view_0": "Side view showing the full length of the ship, central superstructure, funnel, and multiple portholes and deck fixtures.",
+    "description_view_1": "Front view highlighting the rounded bow, symmetrical deck layout, and the arrangement of lifeboats or canisters on both sides.",
+    "description_view_2": "Opposite side view similar to view 0, showing the superstructure, funnel, and deck details from the other side.",
+    "description_view_3": "Rear view displaying the rounded stern, rear deck fixtures, and the alignment of the superstructure and funnel.",
+    "category": "ship",
+    "height": 8.0,
+    "max_dimension": 45.0,
+    "materials": [
+        "steel",
+        "glass",
+        "wood",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.01,
+        0.05
+    ],
+    "mass": 350000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "ladder",
+        "railing",
+        "lifeboat",
+        "funnel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark brown",
+        "black",
+        "gray",
+        "white",
+        "blue"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000.0,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a flat-bottomed, rectangular displacement type with rounded bow and stern, featuring a low freeboard and no visible keels or bulbous bows. The sides are lined with portholes and hatches, and the hull appears robust and industrial.",
+    "attribute_superstructure_layout": "The superstructure is centrally located, with a single main deckhouse, a tall funnel, and several vertical masts. There are multiple access points, ladders, and deck fixtures, with the bridge or control area integrated into the main superstructure.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "lifeboat",
+        "ladder",
+        "railing",
+        "antenna",
+        "hatch"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "76d5d496c24545698209dd15b121b8a0",
+    "near_synsets": {
+        "cargo_ship.n.01": 0.4553263026801556,
+        "ship.n.01": 0.4728556143001459,
+        "container_ship.n.01": 0.48133396013902874,
+        "abandoned_ship.n.01": 0.5004467332755481,
+        "troopship.n.01": 0.504923431375956
+    },
+    "synset": "troopship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/76d5d496c24545698209dd15b121b8a0",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_76d5d496c24545698209dd15b121b8a0.glb",
+    "length": 24.436534881591797,
+    "width": 7.653822660446167
+}

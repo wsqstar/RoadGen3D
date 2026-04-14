@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a classic steam locomotive train with a black body and red undercarriage, positioned on a section of railway track with a gravel bed. The locomotive features a prominent cylindrical boiler, a smokestack at the front, and a cab at the rear, with visible wheels and connecting rods along the sides. The train is detailed with various mechanical components, including pipes, vents, and handrails, giving it an industrial and historical appearance. The track is flanked by a textured gravel surface, simulating a realistic railway environment. The train appears to be a single locomotive unit without attached passenger or freight cars. The overall design suggests a robust, heavy-duty vehicle intended for pulling carriages or cargo.",
+    "description": "A detailed black and red steam locomotive sits on a gravel railway track, featuring a cylindrical boiler, smokestack, and visible mechanical details. The train exudes a classic, industrial look with a single locomotive unit.",
+    "description_view_0": "Side view showing the full length of the steam locomotive, highlighting the wheels, connecting rods, and detailed mechanical features.",
+    "description_view_1": "Front view displaying the smokestack, front buffer, and the narrow profile of the locomotive on the track.",
+    "description_view_2": "Opposite side view mirroring view 0, with similar visibility of wheels and mechanical components.",
+    "description_view_3": "Rear view showing the cab and back of the locomotive, with the track extending behind.",
+    "category": "train",
+    "height": 0.12,
+    "max_dimension": 0.65,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.05,
+        0.02
+    ],
+    "mass": 35000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "lever",
+        "button",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_train_type": "steam locomotive",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end",
+    "attribute_window_arrangement": "spaced rectangular windows on the cab",
+    "uid": "cdf7e415aa75441897c0b5dfb384302f",
+    "near_synsets": {
+        "steam_locomotive.n.01": 0.46094139375051335,
+        "train.n.01": 0.4933252667890412,
+        "diesel_locomotive.n.01": 0.4963011473246462,
+        "locomotive.n.01": 0.4987112689877681,
+        "train_set.n.01": 0.5064879356061421,
+        "caravan.n.01": -1000.0,
+        "gearing.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "train.n.05": -1000.0,
+        "train.n.04": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cdf7e415aa75441897c0b5dfb384302f",
+        "creator_username": "tomm8",
+        "creator_display_name": "Tom Zimmermann",
+        "creator_profile_url": "https://sketchfab.com/tomm8"
+    },
+    "filename": "std_cdf7e415aa75441897c0b5dfb384302f.glb",
+    "length": 0.9798583090305328,
+    "width": 0.271514892578125
+}

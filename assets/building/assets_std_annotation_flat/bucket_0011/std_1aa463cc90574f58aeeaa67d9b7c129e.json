@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a two-story apartment building with a flat roof and a boxy, modernist design. The exterior walls are primarily off-white with patches of weathering and discoloration, giving it a slightly aged appearance. The building features several rectangular windows with metal shutters, some of which are partially open, and a prominent central stairway leading to the main entrance. Small balconies are present on the upper floor, and the structure is surrounded by a few leafy green trees planted in reddish-brown soil beds. The roof has a raised section, possibly for utilities or access, and the overall form is simple and functional. The building sits on a rectangular plot with a paved walkway leading to the entrance.",
+    "description": "A weathered, two-story modernist apartment building with flat roof, balconies, and metal-shuttered windows, surrounded by trees and reddish soil beds.",
+    "description_view_0": "Front view showing the main facade with two windows on each floor, weathered walls, and trees flanking both sides.",
+    "description_view_1": "Central stairway and main entrance are visible, with symmetrical windows and balconies on either side, and trees lining the walkway.",
+    "description_view_2": "Rear view with more windows, a visible balcony, and trees on both sides, highlighting the building's rectangular shape.",
+    "description_view_3": "Side view showing a single door, a window, and the raised roof section, with trees and soil beds adjacent to the building.",
+    "category": "apartment building",
+    "height": 7.5,
+    "max_dimension": 16.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "wood",
+        "plaster",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.05,
+        0.02,
+        0.05
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 10,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "shutter",
+        "balcony railing",
+        "stairs"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "brown",
+        "green",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 2,
+    "attribute_balcony_presence": true,
+    "attribute_window_arrangement": "Windows are symmetrically arranged in horizontal rows on both floors, with even spacing and alignment, and some grouped near the corners.",
+    "attribute_entrance_type": "single door",
+    "attribute_architectural_style": "Modernist",
+    "uid": "1aa463cc90574f58aeeaa67d9b7c129e",
+    "near_synsets": {
+        "apartment_building.n.01": 0.5132681727889858,
+        "roof_garden.n.01": 0.5334196902264522,
+        "cold-water_flat.n.01": 0.5391647412990035,
+        "ruin.n.02": 0.5483176445266307,
+        "tenement.n.01": 0.5485961503654159,
+        "building.n.01": -1000.0,
+        "construction.n.01": -1000.0,
+        "apartment.n.01": -1000.0,
+        "building.n.04": -1000.0,
+        "construction.n.07": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1aa463cc90574f58aeeaa67d9b7c129e",
+        "creator_username": "kasym.hashim",
+        "creator_display_name": "kasym.hashim",
+        "creator_profile_url": "https://sketchfab.com/kasym.hashim"
+    },
+    "filename": "std_1aa463cc90574f58aeeaa67d9b7c129e.glb",
+    "length": 14.015787124633789,
+    "width": 10.259775638580322
+}

@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a large, multi-barreled rotary machine gun, commonly known as a minigun or Gatling-style weapon. It features six parallel barrels arranged in a circular pattern, each supported by a robust frame and connected to a central rotating mechanism. The rear section includes a prominent pistol grip with a trigger, as well as a secondary handle for stabilization, both made of a dark, textured material. The main body is constructed from heavy metal components, with visible cylindrical housings likely containing the motor and ammunition feed system. The overall finish is matte black, with some metallic highlights on the barrels and frame. The design is utilitarian and intimidating, suitable for heavy-duty use in urban defense or assault scenarios.",
+    "description": "A large, black, multi-barreled rotary machine gun with a pistol grip and robust metal frame. Features six barrels and a heavy, industrial design.",
+    "description_view_0": "Side view showing the full length of the six barrels, the main body, and the pistol grip.",
+    "description_view_1": "Front view highlighting the circular arrangement of the six barrels and the central axis.",
+    "description_view_2": "Opposite side view, mirroring view 0, with clear visibility of the handles and barrel assembly.",
+    "description_view_3": "Rear view displaying the back of the main body, the grip, and the barrel ends.",
+    "category": "rifle",
+    "height": 0.35,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "polymer",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pistol grip",
+        "trigger",
+        "barrel assembly",
+        "secondary handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray",
+        "metallic silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "pistol grip",
+    "attribute_barrel_type": "rotary multi-barrel",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "none",
+    "attribute_muzzle_device": "none",
+    "uid": "ed161043461747778061e35935a5f880",
+    "near_synsets": {
+        "gatling_gun.n.01": 0.47621452732685465,
+        "rifle.n.01": 0.49638975176988787,
+        "automatic_rifle.n.01": 0.5056852918670885,
+        "submachine_gun.n.01": 0.5060980759725013,
+        "machine_gun.n.01": 0.5102185385496913
+    },
+    "synset": "automatic_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ed161043461747778061e35935a5f880",
+        "creator_username": "ArtEast.",
+        "creator_display_name": "ArtEast.",
+        "creator_profile_url": "https://sketchfab.com/ArtEast."
+    },
+    "filename": "std_ed161043461747778061e35935a5f880.glb",
+    "length": 1.2852402329444885,
+    "width": 0.35302186012268066
+}

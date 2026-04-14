@@ -1,0 +1,101 @@
+{
+    "description_long": "This chapel features a tall, slender bell tower with a red, steeply pitched roof and a prominent golden bell visible through an open archway. The main structure is rectangular with a matching red-tiled roof and white walls, accented by three arched stained glass windows on each side, each window framed with ornate trim. The entrance is located at the base of the bell tower and is marked by a small, rectangular wooden door with a decorative arch above it. Subtle cracks and weathering are visible on the exterior, giving the building a slightly aged appearance. The overall design is simple yet elegant, with minimal ornamentation aside from the windows and roof tiles. The chapel's compact size and classic proportions make it suitable for a small urban or rural community.",
+    "description": "A small white chapel with a tall red-roofed bell tower, arched stained glass windows, and a wooden entrance door. The building features classic, simple lines and subtle decorative details.",
+    "description_view_0": "Front view showing the entrance door, the bell tower with a visible golden bell, and the red-tiled roof.",
+    "description_view_1": "Side view displaying three arched stained glass windows and the full length of the red-tiled roof.",
+    "description_view_2": "Rear view highlighting the plain back wall and the bell tower's open arch with the bell.",
+    "description_view_3": "Opposite side view with three arched stained glass windows and the bell tower's side profile.",
+    "category": "chapel",
+    "height": 10.0,
+    "max_dimension": 16.0,
+    "materials": [
+        "brick",
+        "wood",
+        "glass",
+        "metal",
+        "tile",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "ringable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "bell"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "yellow",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000.0,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Neo-Gothic Revival",
+    "attribute_religious_symbols": [],
+    "attribute_stained_glass_windows": "Yes, there are three arched stained glass windows on each side of the chapel, featuring colorful geometric and possibly religious motifs. The windows are framed with ornate trim and are a prominent decorative feature.",
+    "attribute_steeple_or_bell_tower": "Yes, the chapel has a tall, narrow bell tower with a steep red roof and an open archway housing a golden bell at the front of the building.",
+    "attribute_entrance_door_design": "The main entrance door is rectangular, made of wood, and painted brown with a decorative arch above it. It is simple in design, with minimal ornamentation and a small step leading up to it.",
+    "uid": "edc5721e11d1485f9afd3a33302ce6fe",
+    "near_synsets": {
+        "chapel.n.01": 0.4991148256577674,
+        "church_tower.n.01": 0.5019263895013673,
+        "side_chapel.n.01": 0.5254879521221305,
+        "lady_chapel.n.01": 0.5340576196402217,
+        "church_bell.n.01": 0.5363917846824382,
+        "chapel_service.n.01": -1000.0
+    },
+    "synset": "chapel_service.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/edc5721e11d1485f9afd3a33302ce6fe",
+        "creator_username": "ThomasWhalley",
+        "creator_display_name": "ThomasWhalley",
+        "creator_profile_url": "https://sketchfab.com/ThomasWhalley"
+    },
+    "filename": "std_edc5721e11d1485f9afd3a33302ce6fe.glb",
+    "length": 8.511669158935547,
+    "width": 3.642613410949707
+}

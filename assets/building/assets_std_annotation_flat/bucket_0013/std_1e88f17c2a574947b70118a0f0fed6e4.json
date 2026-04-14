@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a double-barreled shotgun with a classic break-action design, featuring two parallel barrels of equal length. The barrels are long and cylindrical, finished in a dark, matte metal, and the break-action hinge is visible near the breech. The stock is a compact pistol grip style, made of a dark, possibly wooden or synthetic material, with a smooth ergonomic curve for handling. The trigger guard is rounded and encloses a single trigger, with no visible finger grooves or reinforcement. The overall construction appears robust, with metallic components dominating the build and a minimalistic, utilitarian aesthetic. The shotgun is designed for handheld use and is typical of those found in urban or civilian settings.",
+    "description": "A double-barreled, break-action shotgun with a dark metal finish and a compact pistol grip stock. It features two parallel barrels and a rounded trigger guard.",
+    "description_view_0": "Front view showing the twin barrels aligned vertically and the narrow profile of the shotgun.",
+    "description_view_1": "Side view displaying the full length of the double barrels, the break-action hinge, and the pistol grip stock.",
+    "description_view_2": "Rear view highlighting the breech end of the barrels and the back of the pistol grip.",
+    "description_view_3": "Opposite side view showing the same features as view 1, with the trigger guard and grip more visible.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.75,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "breakable_open"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "barrel",
+        "break-action hinge",
+        "pistol grip",
+        "trigger guard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark brown"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "side-by-side double-barrel, equal length, no visible ribbing or venting",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "break-action",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized, smooth with no finger grooves or reinforcement",
+    "uid": "1e88f17c2a574947b70118a0f0fed6e4",
+    "near_synsets": {
+        "shotgun.n.01": 0.47306693829839463,
+        "sawed-off_shotgun.n.01": 0.5021888650806724,
+        "pump_action.n.01": 0.5252126605551928,
+        "pistol.n.01": 0.5358140077254057,
+        "gas_gun.n.01": 0.5472051062923243
+    },
+    "synset": "sawed-off_shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/1e88f17c2a574947b70118a0f0fed6e4",
+        "creator_username": "Carlos_ZM",
+        "creator_display_name": "Carlos_ZM",
+        "creator_profile_url": "https://sketchfab.com/Carlos_ZM"
+    },
+    "filename": "std_1e88f17c2a574947b70118a0f0fed6e4.glb",
+    "length": 0.4881756454706192,
+    "width": 0.04641908407211304
+}

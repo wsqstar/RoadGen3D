@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a large, industrial-style metal dumpster with a trapezoidal shape, wider at the top and tapering towards the base. The exterior is heavily weathered, featuring patches of rust, peeling paint, and remnants of old stickers and graffiti, primarily in shades of turquoise, brown, and black. The interior appears deep and open, designed to hold significant volumes of waste, with no visible lid or covering mechanism. The surface is rough and corroded, indicating prolonged outdoor exposure and heavy use. There are no visible handles, wheels, or other interactive components, and the base is flat, suggesting it is meant to be stationary. This type of dumpster is commonly found in alleys, construction sites, or behind commercial buildings for bulk waste collection.",
+    "description": "A large, open-topped, heavily rusted metal dumpster with turquoise and brown weathered paint, lacking a lid or wheels. Its rough, corroded surface and deep interior are designed for bulk waste collection in urban or industrial settings.",
+    "description_view_0": "Front view shows turquoise paint with rust patches, graffiti, and some remnants of stickers.",
+    "description_view_1": "Side view is mostly dark brown with heavy rust, faded stickers, and less turquoise visible.",
+    "description_view_2": "Opposite side view features a mix of turquoise and rust, with less graffiti and more weathering.",
+    "description_view_3": "Rear view displays turquoise and brown rust, with several white stickers and more pronounced corrosion.",
+    "category": "dumpster",
+    "height": 1.3,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "paint",
+        "rust",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1800,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "turquoise",
+        "brown",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "none",
+    "attribute_wheel_presence": false,
+    "attribute_handle_design": "none",
+    "attribute_warning_labels": [
+        {
+            "color": "white",
+            "shape": "rectangular",
+            "content": "faded text and symbols"
+        },
+        {
+            "color": "orange",
+            "shape": "rectangular",
+            "content": "faded text"
+        }
+    ],
+    "attribute_placement_location": "outdoor commercial area or industrial site",
+    "uid": "203455b8624149b1a8621935ac746757",
+    "near_synsets": {
+        "dumpster.n.01": 0.4407793141113787,
+        "garbage_truck.n.01": 0.5207351622745076,
+        "garbage.n.03": 0.5279127658809537,
+        "dump.n.02": 0.5343702740577664,
+        "wastepaper_basket.n.01": 0.5488752625617843
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/203455b8624149b1a8621935ac746757",
+        "creator_username": "randombug",
+        "creator_display_name": "randombug",
+        "creator_profile_url": "https://sketchfab.com/randombug"
+    },
+    "filename": "std_203455b8624149b1a8621935ac746757.glb",
+    "length": 1.4667955040931702,
+    "width": 1.4685642719268799
+}

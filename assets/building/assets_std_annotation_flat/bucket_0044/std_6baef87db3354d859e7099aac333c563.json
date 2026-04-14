@@ -1,0 +1,101 @@
+{
+    "description_long": "This vending machine consists of four identical units stacked in a 2x2 grid, each with a red top and base, and a transparent front panel displaying blue and white capsule toys inside. The front face features a coin slot, a turning knob, and a product retrieval area, all positioned below the transparent section. The sides and back are solid and light gray, with no visible openings or interactive elements. The machine's overall design is compact and modular, suitable for placement in urban environments such as sidewalks or shopping arcades. The red and white color scheme is visually striking and typical of capsule toy dispensers. The machine appears to be constructed primarily from plastic and metal, with clear acrylic or polycarbonate for the display windows.",
+    "description": "A modular, four-unit capsule toy vending machine with red and white coloring, transparent display windows, and visible coin and retrieval mechanisms on the front.",
+    "description_view_0": "Front view showing four vending units with transparent windows, coin slots, knobs, and retrieval slots clearly visible.",
+    "description_view_1": "Side view revealing the solid light gray panels and the depth of the machine, with only the edges of the transparent windows and capsules visible.",
+    "description_view_2": "Rear view displaying the plain, solid light gray backs of the four units, with no interactive features or openings.",
+    "description_view_3": "Opposite side view similar to view 1, showing the solid panels and partial visibility of the capsules through the side of the transparent front.",
+    "category": "vending machine",
+    "height": 1.2,
+    "max_dimension": 0.8,
+    "materials": [
+        "plastic",
+        "metal",
+        "acrylic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "mass": 55,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "rotatable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "coin slot",
+        "knob",
+        "retrieval slot"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "gray",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.35,
+        0.3,
+        0.25,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_display_panel": "none",
+    "attribute_payment_interface": "A single coin slot is visible on the front of each unit, located below the transparent window and above the knob; no bill acceptor or card reader is present.",
+    "attribute_product_selection_buttons": "None; product selection is implied to be random via the turning knob mechanism.",
+    "attribute_product_retrieval_slot": "A small rectangular retrieval slot is present on the lower front of each unit, directly below the knob, with a slight lip for easy access.",
+    "attribute_branding_or_signage": "Small blue and white stickers with text are visible on the front of each unit, located below the retrieval slot, but the text is not legible.",
+    "uid": "6baef87db3354d859e7099aac333c563",
+    "near_synsets": {
+        "vending_machine.n.01": 0.48818524935246455,
+        "automat.n.01": 0.534707803749454,
+        "fruit_machine.n.01": 0.5535141981547638,
+        "coin_box.n.01": 0.5609624178811995,
+        "coin_slot.n.01": 0.5728625745193303,
+        "machine.n.05": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.02": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.01": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6baef87db3354d859e7099aac333c563",
+        "creator_username": "RandySandiego",
+        "creator_display_name": "RandySandiego",
+        "creator_profile_url": "https://sketchfab.com/RandySandiego"
+    },
+    "filename": "std_6baef87db3354d859e7099aac333c563.glb",
+    "length": 0.38581085205078125,
+    "width": 0.7082290649414062
+}

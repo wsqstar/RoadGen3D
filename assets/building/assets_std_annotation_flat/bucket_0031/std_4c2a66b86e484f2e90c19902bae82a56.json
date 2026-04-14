@@ -1,0 +1,110 @@
+{
+    "description_long": "This object is a pair of vending machines situated against a brick wall in a small, urban alley or service area. The vending machines are rectangular, with one predominantly red and the other blue, both featuring glass display fronts filled with various snacks and beverages. The machines are surrounded by scattered cardboard boxes, trash bags, and litter, contributing to a gritty, realistic urban environment. The ground is paved with worn, dirty tiles, and the area is partially enclosed by brick walls and a metal fence. The vending machines have visible product selection buttons, payment interfaces, and product retrieval slots on their front panels. The overall scene is detailed, with weathered textures and signs of heavy use.",
+    "description": "A pair of red and blue vending machines with glass fronts, surrounded by trash and boxes in a gritty urban alleyway. The machines feature visible buttons, payment slots, and product displays.",
+    "description_view_0": "Front view showing the vending machines' glass display panels, product selection buttons, payment slots, and surrounding trash and boxes.",
+    "description_view_1": "Side view highlighting the depth of the vending machines, the adjacent wall, and the clutter of boxes and trash extending along the ground.",
+    "description_view_2": "Rear view dominated by the brick wall, with the tops of the vending machines barely visible behind the structure.",
+    "description_view_3": "Side/rear view showing the back and side of the vending machines, the metal fence, and additional trash bags in the corner.",
+    "category": "vending machine",
+    "height": 1.8,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "aluminum",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1800,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "display panel",
+        "payment slot",
+        "product retrieval slot",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "blue",
+        "gray",
+        "black",
+        "white",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.25,
+        0.25,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "scene",
+    "attribute_display_panel": "Rectangular glass display panels on the front of both vending machines, occupying most of the upper half, showing products inside.",
+    "attribute_payment_interface": "Coin slot and bill acceptor located on the right side of each vending machine's front panel, with visible metallic and plastic components.",
+    "attribute_product_selection_buttons": "Rows of individual rectangular buttons arranged vertically on the right side of each vending machine's front panel, each labeled for product selection.",
+    "attribute_product_retrieval_slot": "Rectangular retrieval slots located at the bottom center of each vending machine's front panel, with a small flap or door.",
+    "attribute_branding_or_signage": "Visible branding and signage on the upper front of each vending machine, including logos, product images, and text in white and colored fonts.",
+    "uid": "4c2a66b86e484f2e90c19902bae82a56",
+    "near_synsets": {
+        "vending_machine.n.01": 0.45494303522533475,
+        "automat.n.01": 0.5131414656419566,
+        "coin_box.n.01": 0.5689138775059546,
+        "automat.n.02": 0.573272019187582,
+        "fruit_machine.n.01": 0.5748830387330764,
+        "machine.n.03": -1000.0,
+        "machine.n.05": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.04": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.02": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4c2a66b86e484f2e90c19902bae82a56",
+        "creator_username": "dreamoe",
+        "creator_display_name": "dreamoe",
+        "creator_profile_url": "https://sketchfab.com/dreamoe"
+    },
+    "filename": "std_4c2a66b86e484f2e90c19902bae82a56.glb",
+    "length": 3.481980800628662,
+    "width": 3.3012434244155884
+}

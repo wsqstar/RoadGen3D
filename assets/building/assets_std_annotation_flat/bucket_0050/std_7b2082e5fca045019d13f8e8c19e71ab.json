@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a boxy, stylized ambulance vehicle with a predominantly white exterior accented by red stripes and medical symbols. The front features two large blue windows, red cross symbols, and a red stripe, while the sides display the Star of Life emblem and a blue-tinted window for the cab. The roof is marked with a large red medical cross and an emergency light bar with blue and red segments. The wheels are simple, black, and hexagonal, and the rear has two blue windows and red cross symbols, suggesting rear access doors. The overall design is geometric and simplified, with clear visual cues for emergency medical service.",
+    "description": "A white, boxy ambulance with red stripes, medical symbols, blue windows, and a roof-mounted emergency light bar.",
+    "description_view_0": "Front view showing two large blue windows, red cross symbols, and a red stripe.",
+    "description_view_1": "Left side view displaying the Star of Life emblem, blue cab window, and the emergency light bar on the roof.",
+    "description_view_2": "Rear view with two blue windows, red cross symbols, and a red stripe, indicating rear doors.",
+    "description_view_3": "Right side view similar to the left, with the Star of Life emblem and blue cab window visible.",
+    "category": "ambulance",
+    "height": 2.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "painted metal",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "emergency light bar"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "blue",
+        "black",
+        "gray",
+        "yellow",
+        "orange"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.04,
+        0.015,
+        0.01,
+        0.005
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_emergency_light_bar": true,
+    "attribute_ambulance_signage": "Red Star of Life and red cross symbols, no visible text",
+    "attribute_medical_cross_symbol": true,
+    "attribute_siren": false,
+    "attribute_rear_compartment_doors": "two hinged doors",
+    "uid": "7b2082e5fca045019d13f8e8c19e71ab",
+    "near_synsets": {
+        "ambulance.n.01": 0.48155263095300693,
+        "funny_wagon.n.01": 0.5329937888114168,
+        "paramedic.n.01": 0.5728298548444207,
+        "ladder_truck.n.01": 0.579573145175664,
+        "fire_engine.n.01": 0.5812435886903345
+    },
+    "synset": "ambulance.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7b2082e5fca045019d13f8e8c19e71ab",
+        "creator_username": "_its_sagar_bro",
+        "creator_display_name": "_its_sagar_bro",
+        "creator_profile_url": "https://sketchfab.com/_its_sagar_bro"
+    },
+    "filename": "std_7b2082e5fca045019d13f8e8c19e71ab.glb",
+    "length": 4.095155239105225,
+    "width": 1.9539209008216858
+}

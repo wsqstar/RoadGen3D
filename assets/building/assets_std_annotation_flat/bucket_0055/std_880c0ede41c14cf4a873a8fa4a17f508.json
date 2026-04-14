@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a large, industrial-looking train vehicle situated on a dirt and earth terrain, featuring a long, angular boom extending from a central cabin structure. The main body is rectangular and robust, with a pale, weathered exterior and visible metallic framework supporting the boom. The terrain around the train is heavily excavated, suggesting it is used for heavy-duty tasks such as mining or earthmoving. The boom is supported by cables and trusses, and the cabin appears to have small windows and access points. The train is surrounded by mounds of earth and a wide, cleared path, indicating its operational environment. The overall appearance is utilitarian, with minimal decorative elements and a focus on function.",
+    "description": "A large, industrial train with a long boom and a robust, rectangular cabin, set on an excavated dirt terrain. The vehicle is utilitarian, with visible metallic framework and earthmoving surroundings.",
+    "description_view_0": "Side view showing the full length of the boom, the rectangular cabin, and the excavated terrain.",
+    "description_view_1": "Front view highlighting the end of the boom, the central cabin, and the earth mound in front.",
+    "description_view_2": "Opposite side view displaying the boom's structure, the cabin, and the surrounding dirt.",
+    "description_view_3": "Rear view focusing on the back of the cabin, the boom's alignment, and the cleared path behind.",
+    "category": "train",
+    "height": 8.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 2500000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "operable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "boom",
+        "cabin controls"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "green",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.4,
+        0.2,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "scene",
+    "attribute_train_type": "freight train",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end",
+    "attribute_window_arrangement": "no visible windows",
+    "uid": "880c0ede41c14cf4a873a8fa4a17f508",
+    "near_synsets": {
+        "train.n.01": 0.5187155811047995,
+        "train_set.n.01": 0.5244942770722264,
+        "car_train.n.01": 0.5360004937413759,
+        "freight_train.n.01": 0.5475144449013796,
+        "railroad_bed.n.01": 0.5486496549850437,
+        "train.n.05": -1000.0,
+        "gearing.n.01": -1000.0,
+        "caravan.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "train.n.04": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/880c0ede41c14cf4a873a8fa4a17f508",
+        "creator_username": "neominigan",
+        "creator_display_name": "Neo_minigan",
+        "creator_profile_url": "https://sketchfab.com/neominigan"
+    },
+    "filename": "std_880c0ede41c14cf4a873a8fa4a17f508.glb",
+    "length": 36.728816986083984,
+    "width": 36.604225158691406
+}

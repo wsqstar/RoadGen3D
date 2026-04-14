@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a compact, heavily-armored tracked combat vehicle with a boxy, angular structure and a prominent forward-facing cannon mounted on its upper front. The vehicle is painted in a dark green color with visible signs of wear, scratches, and metallic rivets along its panels, suggesting rugged use. Its lower section features robust metal tracks for all-terrain mobility, and the rear is equipped with two exhaust pipes angled outward. The sides display circular access panels and a large white 'X' marking, while the front and rear are reinforced with thick armor plating. The vehicle's design is utilitarian, with minimal external ornamentation aside from a few metallic plates and bolts. The overall appearance is that of a small, tactical urban tank designed for maneuverability and protection in confined environments.",
+    "description": "A compact, green, tracked combat vehicle with a forward cannon, heavy armor, and visible wear. Features include side markings, rear exhausts, and robust metal tracks.",
+    "description_view_0": "Front view shows the large cannon, thick frontal armor, and the vehicle's wide metal tracks.",
+    "description_view_1": "Left side view highlights the cannon's barrel, side access panels, exhaust pipes, and the white 'X' marking.",
+    "description_view_2": "Rear view displays the dual exhaust pipes, flat armored back, and the continuation of the tracks.",
+    "description_view_3": "Right side view mirrors the left, showing the cannon, side panels, and the 'X' marking.",
+    "category": "combat tactical  vehicle",
+    "height": 1.8,
+    "max_dimension": 2.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.02,
+        0.07,
+        0.03,
+        0.03
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cannon",
+        "hatch",
+        "tracks",
+        "exhaust pipes",
+        "side panels"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "white",
+        "silver",
+        "gold"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted on the upper front; no other weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, riveted steel armor plating; reinforced front and rear panels; sloped upper structure.",
+    "attribute_camouflage_pattern": "Solid dark green paint with visible wear and metallic accents; no camouflage pattern.",
+    "attribute_military_markings": "Large white 'X' symbol on both sides of the upper body; no other markings visible.",
+    "attribute_tire_type": "not applicable",
+    "uid": "b6ae94e664fe46c596a414a12c0f52ab",
+    "near_synsets": {
+        "tank.n.01": 0.49846908837190834,
+        "reconnaissance_vehicle.n.01": 0.5132074915101386,
+        "military_vehicle.n.01": 0.5147041624047137,
+        "armored_car.n.02": 0.5282496469856333,
+        "weapons_carrier.n.01": 0.5350684683472176,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b6ae94e664fe46c596a414a12c0f52ab",
+        "creator_username": "cleitoneldorn",
+        "creator_display_name": "cleitoneldorn",
+        "creator_profile_url": "https://sketchfab.com/cleitoneldorn"
+    },
+    "filename": "std_b6ae94e664fe46c596a414a12c0f52ab.glb",
+    "length": 1.5167251229286194,
+    "width": 1.296915888786316
+}

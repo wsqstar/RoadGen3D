@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a dome-shaped camping tent with a two-tone color scheme of deep red and light gray, accented by black trim along the base. The tent features a large, arched front entrance with a dark interior floor and a zippered door, providing easy access. The sides and rear of the tent are solid panels, with the rear panel including a mesh window for ventilation. The tent is supported by flexible poles that create its rounded structure, and guy lines are attached at the corners for stability. The materials appear to be lightweight, weather-resistant synthetic fabric, likely polyester or nylon, with mesh for ventilation and flexible fiberglass or aluminum poles. The tent is designed for quick setup and is suitable for use in parks, urban green spaces, or temporary urban shelters.",
+    "description": "A dome-shaped, red and gray tent with a large front entrance, mesh window at the rear, and black trim, supported by flexible poles and guy lines.",
+    "description_view_0": "Front view showing the main entrance with an open zippered door and visible dark interior floor.",
+    "description_view_1": "Side view displaying the solid red and gray fabric panels and the tent's rounded profile.",
+    "description_view_2": "Rear view featuring a mesh window for ventilation set in the gray upper panel above the red lower section.",
+    "description_view_3": "Opposite side view with solid fabric panels and no visible openings or windows.",
+    "category": "tent",
+    "height": 1.3,
+    "max_dimension": 2.2,
+    "materials": [
+        "polyester",
+        "nylon",
+        "mesh",
+        "fiberglass",
+        "aluminum",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.1,
+        0.08,
+        0.05,
+        0.02,
+        0.05
+    ],
+    "mass": 4.5,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "zipperable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "zippered door",
+        "mesh window",
+        "guy lines",
+        "poles"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "red",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.45,
+        0.4,
+        0.15
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 250,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "Zippered door at the front center, arched shape, no awning or vestibule visible.",
+    "attribute_number_of_poles": 2,
+    "attribute_guy_line_configuration": "Four guy lines, one at each corner, attached to the tent base for stability.",
+    "attribute_ventilation_openings": [
+        "One mesh window at the rear panel, rectangular, upper section."
+    ],
+    "attribute_branding_or_logo": "none",
+    "uid": "0eb5c9bf756a49babb604bbeaf25d824",
+    "near_synsets": {
+        "sibley_tent.n.01": 0.45265435097490864,
+        "field_tent.n.01": 0.4637801271101373,
+        "fly_tent.n.01": 0.4770691056194768,
+        "umbrella_tent.n.01": 0.48109965970195456,
+        "pop_tent.n.01": 0.4877995577022732,
+        "tent.n.01": -1000.0,
+        "tent.n.02": -1000.0
+    },
+    "synset": "tent.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0eb5c9bf756a49babb604bbeaf25d824",
+        "creator_username": "tentacular",
+        "creator_display_name": "pushmatrix",
+        "creator_profile_url": "https://sketchfab.com/tentacular"
+    },
+    "filename": "std_0eb5c9bf756a49babb604bbeaf25d824.glb",
+    "length": 2.3740527629852295,
+    "width": 2.735245704650879
+}

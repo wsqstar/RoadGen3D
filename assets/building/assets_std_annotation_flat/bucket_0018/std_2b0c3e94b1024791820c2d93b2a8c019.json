@@ -1,0 +1,94 @@
+{
+    "description_long": "This is a large, concrete gravity dam with a broad, rectangular structure and a stepped spillway at the front. The main body is composed of thick, solid concrete walls, with vertical slots or gates visible at the center, likely for water control. On one side, there is a smaller annex structure with three prominent green cylindrical pipes or conduits, possibly penstocks or part of a hydroelectric system. The top of the dam features a flat roadway or walkway, bordered by low parapet walls. The rear side is solid and featureless, indicating the upstream face that holds back water. The overall appearance is utilitarian, with a focus on structural strength and water management.",
+    "description": "A massive concrete gravity dam with a stepped spillway, control gates, and a side annex with green pipes. The structure is robust, with a flat top and utilitarian design.",
+    "description_view_0": "The front view shows the stepped spillway, vertical control gates, and the annex with green pipes prominently.",
+    "description_view_1": "The left side view highlights the thickness of the dam wall, the annex structure, and the protruding green pipes.",
+    "description_view_2": "The rear view displays a solid, featureless concrete wall, indicating the upstream water-holding side.",
+    "description_view_3": "The right side view mirrors the left, showing the dam's thickness and the annex, but from the opposite angle.",
+    "category": "dam",
+    "height": 18.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.06,
+        0.02
+    ],
+    "mass": 2400000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "blockable",
+        "divertable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "control gate",
+        "spillway",
+        "penstock"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.2,
+    "bounciness": 0.01,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_spillway_presence": true,
+    "attribute_control_gates": [
+        "sluice gate"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_water_outflow": "none",
+    "attribute_perimeter_fencing": false,
+    "uid": "2b0c3e94b1024791820c2d93b2a8c019",
+    "near_synsets": {
+        "dam.n.01": 0.5457654096747316,
+        "weir.n.01": 0.5479101224165414,
+        "milldam.n.01": 0.5531570228706054,
+        "head_gate.n.02": 0.5558836769731779,
+        "water_tower.n.01": 0.5591767027901468,
+        "dam.n.03": -1000.0,
+        "decameter.n.01": -1000.0
+    },
+    "synset": "dam.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2b0c3e94b1024791820c2d93b2a8c019",
+        "creator_username": "artic3434434",
+        "creator_display_name": "artic3434434",
+        "creator_profile_url": "https://sketchfab.com/artic3434434"
+    },
+    "filename": "std_2b0c3e94b1024791820c2d93b2a8c019.glb",
+    "length": 35.2800350189209,
+    "width": 39.87618827819824
+}

@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a three-story urban theater building with a prominent vertical neon sign reading 'APOLLO' mounted on a metal framework above the entrance. The facade features classical architectural detailing, including decorative cornices and pilasters, and is finished in a light stone or concrete material. A large marquee sign extends over the sidewalk, displaying event information in illuminated yellow letters. The ground floor includes a recessed entrance with glass doors, a ticket booth structure, and a series of windows and doors framed in dark trim. The side walls are plain and constructed of textured brick, while the roofline is flat and bordered by ornate molding. The overall appearance is both functional and decorative, blending historic charm with urban utility.",
+    "description": "A three-story urban theater with a classical facade, vertical neon 'APOLLO' sign, and a large illuminated marquee above the entrance.",
+    "description_view_0": "Front view showing the ornate facade, main entrance, marquee, and part of the vertical 'APOLLO' sign structure.",
+    "description_view_1": "Side view highlighting the brick wall, the full height of the vertical 'APOLLO' sign, and the marquee's edge.",
+    "description_view_2": "Rear front view focusing on the marquee signage, entrance area, and the vertical sign's supporting framework.",
+    "description_view_3": "Opposite side view showing the brick wall, the vertical sign, and the side of the entrance canopy and ticket booth.",
+    "category": "theater",
+    "height": 12.0,
+    "max_dimension": 18.0,
+    "materials": [
+        "concrete",
+        "brick",
+        "glass",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.08,
+        0.1,
+        0.02,
+        0.05
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "ticket booth window",
+        "marquee sign",
+        "entrance canopy"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "yellow",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.12,
+        0.1,
+        0.08
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_marquee_signage": true,
+    "attribute_ticket_booth": true,
+    "attribute_facade_ornamentation": "The facade features decorative cornices, pilasters, and detailed molding along the roofline, lending a classical and elegant appearance. Subtle reliefs and ornamental trim accentuate the upper story windows and entryway.",
+    "attribute_entrance_canopy": true,
+    "attribute_architectural_style": "Neoclassical",
+    "uid": "c6a0a21cbd414819800df43e14c564b8",
+    "near_synsets": {
+        "theater.n.01": 0.5433034836511952,
+        "arena_theater.n.01": 0.5460644308630792,
+        "orchestra.n.02": 0.5621477713856493,
+        "cinema.n.02": 0.5630320001581893,
+        "opera.n.03": 0.564935818976476,
+        "field.n.11": -1000.0,
+        "dramaturgy.n.01": -1000.0
+    },
+    "synset": "arena_theater.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c6a0a21cbd414819800df43e14c564b8",
+        "creator_username": "UofA-CDH",
+        "creator_display_name": "The Center for Digital Humanities UArizona",
+        "creator_profile_url": "https://sketchfab.com/UofA-CDH"
+    },
+    "filename": "std_c6a0a21cbd414819800df43e14c564b8.glb",
+    "length": 8.493173122406006,
+    "width": 9.181360244750977
+}

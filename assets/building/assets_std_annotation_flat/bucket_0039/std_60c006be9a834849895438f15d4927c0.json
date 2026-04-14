@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a mid-sized urban bus with a streamlined, modern design, featuring a slightly rounded front windshield and large side windows for passenger visibility. The bus has a single main passenger door located near the front, with a low entry step for easy boarding. The roof is equipped with ventilation panels, and the sides display a series of evenly spaced rectangular windows separated by vertical pillars. The exterior is primarily a light gray color, with black trim around the windows and subtle detailing on the front and rear. The wheels are standard size for a city bus, and the rear features simple tail lights and a large rear window.",
+    "description": "A modern, mid-sized urban bus with large side windows, a single front passenger door, and a light gray exterior with black window trim.",
+    "description_view_0": "Front view showing the wide windshield, headlights, and side mirrors.",
+    "description_view_1": "Left side view displaying the main passenger door, four large rectangular windows, and the bus's length.",
+    "description_view_2": "Rear view highlighting the rear window, tail lights, and roof ventilation panels.",
+    "description_view_3": "Right side view with four large windows and no visible passenger door.",
+    "category": "bus",
+    "height": 3.0,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.07,
+        0.07,
+        0.03,
+        0.03
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 15000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "mirror",
+        "button",
+        "seat",
+        "steering_wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 1,
+    "attribute_window_arrangement": "Four large, evenly spaced rectangular passenger windows on each side, separated by vertical pillars, with consistent size and shape.",
+    "attribute_route_number_or_destination_sign": "",
+    "attribute_bus_manufacturer_logo": "",
+    "attribute_passenger_entry_step_height": 0.4,
+    "uid": "60c006be9a834849895438f15d4927c0",
+    "near_synsets": {
+        "minibus.n.01": 0.49268038153539245,
+        "bus.n.01": 0.4989221173277385,
+        "school_bus.n.01": 0.5123492450106852,
+        "bus_traffic.n.01": 0.5399070656284969,
+        "passenger_van.n.01": 0.5411291848811793,
+        "busbar.n.01": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "bus.n.04": -1000.0
+    },
+    "synset": "bus.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/60c006be9a834849895438f15d4927c0",
+        "creator_username": "nokillnando",
+        "creator_display_name": "Red Fox / nokillnando",
+        "creator_profile_url": "https://sketchfab.com/nokillnando"
+    },
+    "filename": "std_60c006be9a834849895438f15d4927c0.glb",
+    "length": 8.32945966720581,
+    "width": 2.7478785514831543
+}

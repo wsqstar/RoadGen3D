@@ -1,0 +1,92 @@
+{
+    "description_long": "This object consists of two wooden barrels and a separate circular lid, all rendered in a stylized, low-poly form. The barrels are cylindrical with slightly bulging sides, featuring vertical wooden staves and reinforced by two horizontal metal bands\u2014one near the top and one near the bottom. One barrel is shown with its top open, revealing a hollow interior, while the other is closed, and the lid is placed separately between them. The wood is a deep brown color, and the metal bands are a muted grayish-green, giving the barrels a rustic, utilitarian appearance. The barrels are of medium size, suitable for storage or transport of goods in an urban or industrial setting. No visible handles, markings, or decorative elements are present, emphasizing their functional design.",
+    "description": "A pair of medium-sized, brown wooden barrels with metal bands and a separate lid, one barrel open and one closed, designed for storage or transport.",
+    "description_view_0": "Two barrels side by side with a separate lid between them; the left barrel is closed, the right barrel is open.",
+    "description_view_1": "Both barrels are aligned front-to-back, with the open barrel in front and the closed barrel behind; the lid is not visible.",
+    "description_view_2": "Similar to view 0 but mirrored; the open barrel is on the left, the closed barrel on the right, and the lid is between them.",
+    "description_view_3": "Both barrels are aligned front-to-back, with the closed barrel in front and the open barrel behind; the lid is not visible.",
+    "category": "barrel or bucket",
+    "height": 0.7,
+    "max_dimension": 0.5,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "supportable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray-green"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "group",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "metal hoops at top and bottom",
+    "attribute_labeling_or_markings": "none",
+    "attribute_placement_location": "outdoor",
+    "uid": "7a585b3df7d74f1089b3cf3bc282d732",
+    "near_synsets": {
+        "barrel.n.02": 0.4303218799706713,
+        "barrels.n.01": 0.45143033797120596,
+        "barrel.n.03": 0.459404872169232,
+        "barrel.n.04": 0.462990645643783,
+        "beer_barrel.n.01": 0.46719469258443364,
+        "bucket.n.02": -1000.0,
+        "bucket.n.01": -1000.0,
+        "barrel.n.05": -1000.0,
+        "barrel.n.01": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7a585b3df7d74f1089b3cf3bc282d732",
+        "creator_username": "makmiles",
+        "creator_display_name": "makmiles",
+        "creator_profile_url": "https://sketchfab.com/makmiles"
+    },
+    "filename": "std_7a585b3df7d74f1089b3cf3bc282d732.glb",
+    "length": 0.7219240367412567,
+    "width": 2.471923828125
+}

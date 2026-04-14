@@ -1,0 +1,95 @@
+{
+    "description_long": "This humanoid robot features a rounded metallic torso with a smooth, reflective silver finish and a circular emblem on its chest. Its arms are robust and mechanical, ending in three-pronged hands with articulated fingers, suggesting dexterity for grasping or manipulating objects. The legs are thick and sturdy, with wide, rounded feet that provide stability and balance, and the joints are visibly reinforced for strength. The robot's design is streamlined, with minimal external detailing aside from the mechanical joints and a few small, dark accents on the hands and feet. There is no visible head or facial features, giving it a utilitarian and somewhat futuristic appearance. The overall build suggests durability and functionality, suitable for urban environments where interaction with humans and objects is required.",
+    "description": "A sleek, silver humanoid robot with a rounded torso, articulated arms and legs, and three-pronged hands, designed for urban interaction.",
+    "description_view_0": "Front view showing the rounded torso, both articulated arms with three-pronged hands, and wide, stable feet.",
+    "description_view_1": "Side view highlighting the arm's articulation, the curvature of the torso, and the depth of the feet.",
+    "description_view_2": "Rear view displaying the back of the torso, the mechanical structure of the legs, and the back of the hands and feet.",
+    "description_view_3": "Angled view focusing on the side of the torso, the articulation of the arm, and the profile of the hand and foot.",
+    "category": "humanoid robot",
+    "height": 1.4,
+    "max_dimension": 1.4,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hand",
+        "arm",
+        "leg",
+        "foot",
+        "chest emblem"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "silver",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.7,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms slightly bent at the elbows and hands open, legs straight and feet flat on the ground, torso upright.",
+    "attribute_clothing_style": "No visible clothing; the robot is covered in integrated metallic and plastic panels with a sleek, industrial design.",
+    "attribute_facial_features": "No visible head or facial features; the front of the torso is smooth with a circular emblem, lacking eyes, mouth, or nose.",
+    "attribute_limb_articulation": "Arms and legs have visible hinge and rotary joints at the shoulders, elbows, hips, and knees; hands have three articulated fingers each, suggesting a moderate range of motion.",
+    "attribute_presence_of_sensors": "None visible",
+    "uid": "395b275c151f4241b2aa7ae48270d17f",
+    "near_synsets": {
+        "android.n.01": 0.5261627575925587,
+        "cyborg.n.01": 0.5487831640431431,
+        "robotics.n.01": 0.56334781737489,
+        "automaton.n.02": 0.5651976063881696,
+        "robotics_equipment.n.01": 0.5680272557050113
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/395b275c151f4241b2aa7ae48270d17f",
+        "creator_username": "Krlts",
+        "creator_display_name": "Krlts",
+        "creator_profile_url": "https://sketchfab.com/Krlts"
+    },
+    "filename": "std_395b275c151f4241b2aa7ae48270d17f.glb",
+    "length": 1.8068222999572754,
+    "width": 3.2967640161514282
+}

@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a large, heavily armored combat vehicle resembling a World War II-era German heavy tank, likely a Tiger II (King Tiger). The vehicle features a long, prominent main cannon mounted on a rotating turret, with additional details such as hatches, vision ports, and side-mounted spare track links. The hull is angular with sloped armor plating, and the sides are equipped with protective side skirts above wide, robust tracks. The exterior is painted in a solid tan color, with no visible camouflage or military markings. The tank's design emphasizes protection and firepower, with thick armor covering the entire body and turret. The tracks and suspension system are visible beneath the side skirts, indicating its capability to traverse rough terrain.",
+    "description": "A large, tan-colored heavy tank with a long main cannon, sloped armor, and wide tracks, designed for combat and protection. The vehicle features a rotating turret, side skirts, and spare track links.",
+    "description_view_0": "Side view showing the full length of the tank, the long main cannon, side skirts, and spare track links on the turret.",
+    "description_view_1": "Front view highlighting the thick frontal armor, the main gun barrel pointing forward, and the wide tracks.",
+    "description_view_2": "Opposite side view similar to view 0, showing the turret, cannon, and side skirts, but with different details on the hull.",
+    "description_view_3": "Top-down frontal view emphasizing the turret's shape, the main gun, and the overall width of the vehicle.",
+    "category": "combat tactical  vehicle",
+    "height": 3.0,
+    "max_dimension": 10.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.01,
+        0.05,
+        0.01
+    ],
+    "mass": 69000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "hatch",
+        "cannon",
+        "track",
+        "side skirt",
+        "vision port"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted on the turret; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body and turret covered in thick, sloped armor plating; side skirts provide additional protection to the tracks.",
+    "attribute_camouflage_pattern": "Solid tan color; no camouflage pattern visible.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "0ae2c0397a60457d9f03c58b3a0bc955",
+    "near_synsets": {
+        "tank.n.01": 0.44516611344607987,
+        "military_vehicle.n.01": 0.497738605656404,
+        "assault_gun.n.02": 0.5071799332381881,
+        "armored_car.n.02": 0.5174394543461907,
+        "tank_destroyer.n.01": 0.51792056821341,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0ae2c0397a60457d9f03c58b3a0bc955",
+        "creator_username": "NickFrame",
+        "creator_display_name": "Nicola Ristagno",
+        "creator_profile_url": "https://sketchfab.com/NickFrame"
+    },
+    "filename": "std_0ae2c0397a60457d9f03c58b3a0bc955.glb",
+    "length": 7.177614450454712,
+    "width": 5.423364639282227
+}

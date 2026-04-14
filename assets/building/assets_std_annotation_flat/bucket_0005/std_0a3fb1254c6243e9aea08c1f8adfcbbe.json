@@ -1,0 +1,108 @@
+{
+    "description_long": "This is an octagonal above-ground jacuzzi with a wooden exterior frame and a bright blue interior basin filled with water. The jacuzzi features a set of metal handrails and a wooden ladder at the front for easy entry and exit. Around the perimeter, the wood paneling is reinforced with vertical supports, giving it a sturdy and robust appearance. On one side, there is an external filtration or pump unit, colored orange and black, connected to the jacuzzi for water circulation and cleaning. The water inside appears clean and nearly full, with a smooth surface. The jacuzzi is placed on a flat, light-colored base, likely for stability and protection from the ground.",
+    "description": "An octagonal wooden above-ground jacuzzi with a blue water-filled basin, metal handrails, a wooden ladder, and an external pump unit.",
+    "description_view_0": "Front view showing the wooden ladder and metal handrails leading into the blue water basin.",
+    "description_view_1": "Side view revealing the external orange and black pump unit and a partially open wooden panel.",
+    "description_view_2": "Rear view with a clear look at the pump unit and the uninterrupted wooden frame.",
+    "description_view_3": "Opposite side view showing the pump unit and another partially open wooden panel, with the ladder visible at the back.",
+    "category": "jacuzzi",
+    "height": 1.2,
+    "max_dimension": 3.0,
+    "materials": [
+        "wood",
+        "plastic",
+        "metal",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.15,
+        0.1,
+        0.2,
+        0.05
+    ],
+    "mass": 450,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "climbable",
+        "turnable_valve",
+        "adjustable_panel"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "ladder",
+        "handrail",
+        "pump unit",
+        "wooden panel",
+        "valve"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "blue",
+        "silver",
+        "orange",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_jets": [],
+    "attribute_control_panel": "none visible",
+    "attribute_water_level": "nearly full, water close to the top edge",
+    "attribute_cover": false,
+    "attribute_steps": [
+        {
+            "location": "front",
+            "number_of_steps": 3,
+            "material": "wood"
+        }
+    ],
+    "uid": "0a3fb1254c6243e9aea08c1f8adfcbbe",
+    "near_synsets": {
+        "hot_tub.n.01": 0.5258811847745133,
+        "pump_room.n.01": 0.5502798426411653,
+        "bath_water.n.01": 0.5533228191189105,
+        "bathtub.n.01": 0.572102531563157,
+        "water_chute.n.01": 0.5774408058386078
+    },
+    "synset": "hot_tub.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/0a3fb1254c6243e9aea08c1f8adfcbbe",
+        "creator_username": "trzyde.com",
+        "creator_display_name": "trzyde.com",
+        "creator_profile_url": "https://sketchfab.com/trzyde.com"
+    },
+    "filename": "std_0a3fb1254c6243e9aea08c1f8adfcbbe.glb",
+    "length": 4.522908687591553,
+    "width": 4.52290678024292
+}

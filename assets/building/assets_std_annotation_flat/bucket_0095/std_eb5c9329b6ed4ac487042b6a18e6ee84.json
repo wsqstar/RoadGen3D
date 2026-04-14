@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a large, gray and orange ship with a streamlined hull and a prominent superstructure featuring multiple decks and cabins. The ship has a flat, expansive deck with several visible fixtures, including what appear to be radar domes, antennas, and exhaust funnels. The bow is sharply pointed, while the stern is squared off, giving the vessel a robust and functional appearance. The superstructure is centrally located, with a bridge and several raised platforms, and the deck is lined with railings and small equipment. The hull sits low in the water, suggesting a displacement-type design suitable for stability and heavy loads. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A large, gray and orange ship with a pointed bow, squared stern, and a central superstructure featuring multiple decks and visible equipment.",
+    "description_view_0": "Side view showing the full length of the ship, with the superstructure and deck equipment clearly visible.",
+    "description_view_1": "Front (bow) view highlighting the pointed bow and the symmetrical arrangement of deck fixtures.",
+    "description_view_2": "Opposite side view mirroring view 0, showing the hull, superstructure, and deck details from the other side.",
+    "description_view_3": "Rear (stern) view displaying the squared stern and the arrangement of the superstructure and deck equipment from behind.",
+    "category": "ship",
+    "height": 15,
+    "max_dimension": 120,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 650000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "wheel",
+        "radar",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "orange",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 20,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a sharply pointed bow and a squared stern. The sides are straight and vertical, and the hull sits low in the water, indicating a stable, heavy-duty design. No bulbous bow or visible keels are present.",
+    "attribute_superstructure_layout": "The superstructure is centrally located and consists of multiple decks, including a bridge, raised platforms, and several cabins. There are visible towers and equipment mounted on the upper decks, with railings and walkways along the perimeter.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "radar",
+        "antenna",
+        "funnel",
+        "hatch",
+        "lifeboat"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "eb5c9329b6ed4ac487042b6a18e6ee84",
+    "near_synsets": {
+        "cargo_ship.n.01": 0.48516806564750964,
+        "capital_ship.n.01": 0.5034724776443207,
+        "ship.n.01": 0.5050783393022815,
+        "troopship.n.01": 0.5079407486977573,
+        "surface_ship.n.01": 0.5093104650938126
+    },
+    "synset": "surface_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/eb5c9329b6ed4ac487042b6a18e6ee84",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_eb5c9329b6ed4ac487042b6a18e6ee84.glb",
+    "length": 62.74656105041504,
+    "width": 7.80371356010437
+}

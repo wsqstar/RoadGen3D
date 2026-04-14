@@ -1,0 +1,107 @@
+{
+    "description_long": "This object is a tall, vertical utility structure composed primarily of a wooden or metal pole anchored to a circular base. At the top, it features a horizontal crossarm supporting multiple insulator stacks and several attached cylindrical transformers. Numerous power lines extend from the crossarm and transformers, hanging vertically and radiating outward. The structure includes visible metal brackets, insulators, and connection hardware, with the transformers mounted symmetrically on either side of the pole. The overall appearance is industrial, with a weathered finish and utilitarian design typical of urban electrical infrastructure.",
+    "description": "A tall utility pole with a crossarm, multiple insulator stacks, and cylindrical transformers, supporting several power lines. The structure is industrial and robust, with visible metal and wood components.",
+    "description_view_0": "Side view showing the pole, two cylindrical transformers, and insulator stacks, with power lines extending downward.",
+    "description_view_1": "Frontal view highlighting the symmetrical arrangement of transformers and insulator stacks on the crossarm, with power lines hanging vertically.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the pole, transformers, and insulators from the other side.",
+    "description_view_3": "Rear view displaying the back of the crossarm, transformers, and insulator stacks, with power lines visible.",
+    "category": "transformer tower",
+    "height": 8.0,
+    "max_dimension": 8.5,
+    "materials": [
+        "wood",
+        "steel",
+        "ceramic",
+        "copper",
+        "aluminum",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.1,
+        0.08,
+        0.06,
+        0.03,
+        0.03
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "conducts_electricity",
+        "supports_power_lines"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "transformer",
+        "insulator stack",
+        "crossarm",
+        "power line attachment point"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 15000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_insulator_stacks": 6,
+    "attribute_arrangement_of_crossarms": "A single horizontal crossarm is mounted at the top of the pole, supporting insulator stacks and electrical equipment in a linear configuration.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "transformer",
+        "insulator"
+    ],
+    "attribute_configuration_of_attached_power_lines": "Multiple power lines are attached in a parallel configuration, likely supporting a three-phase circuit, with lines routed vertically downward and outward from the crossarm.",
+    "uid": "8347036f1340469f861b8a5e5f9a4eb1",
+    "near_synsets": {
+        "pylon.n.02": 0.49979645773885495,
+        "telephone_pole.n.01": 0.5193944699079213,
+        "tower.n.01": 0.5583339858731993,
+        "supporting_tower.n.01": 0.563440125433943,
+        "power_line.n.01": 0.5725652580367618,
+        "tugboat.n.01": -1000.0,
+        "transformer.n.01": -1000.0,
+        "column.n.04": -1000.0
+    },
+    "synset": "pylon.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8347036f1340469f861b8a5e5f9a4eb1",
+        "creator_username": "hippostance",
+        "creator_display_name": "HippoStance",
+        "creator_profile_url": "https://sketchfab.com/hippostance"
+    },
+    "filename": "std_8347036f1340469f861b8a5e5f9a4eb1.glb",
+    "length": 2.193783760070801,
+    "width": 4.36647629737854
+}

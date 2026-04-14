@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a large, multi-masted sailing ship with a classic wooden hull, painted in a combination of yellow, black, and brown tones. The vessel features three tall masts, each rigged with multiple square sails and a complex network of ropes and rigging. The hull is adorned with rows of gunports, suggesting it is a historical warship or frigate, and the stern is ornately decorated. A prominent blue and white naval flag is displayed at the stern, and the bow is sharply pointed with a bowsprit extending forward. The deck appears to have raised sections and is equipped with various fixtures typical of period sailing ships.",
+    "description": "A large, ornate wooden sailing ship with three masts, square sails, and a decorated hull featuring gunports and a naval flag.",
+    "description_view_0": "Side view showing the full length of the ship, three masts with sails, gunports, and a blue and white flag at the stern.",
+    "description_view_1": "Front view highlighting the pointed bow, bowsprit, and the symmetrical arrangement of sails and rigging.",
+    "description_view_2": "Opposite side view similar to view 0, with clear visibility of the hull, masts, sails, and the naval flag.",
+    "description_view_3": "Rear view showing the decorated stern, the arrangement of the decks, and the flag at the back.",
+    "category": "ship",
+    "height": 32,
+    "max_dimension": 60,
+    "materials": [
+        "wood",
+        "canvas",
+        "metal",
+        "rope",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 120000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 1800000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "sails",
+        "rigging",
+        "hatches",
+        "gunports",
+        "anchor"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "yellow",
+        "white",
+        "blue"
+    ],
+    "colors_composition": [
+        0.45,
+        0.2,
+        0.15,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 10,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a classic displacement type with a pronounced, pointed bow and a rounded stern. The sides are lined with gunports, and the hull features a decorative stern gallery. No bulbous bow or visible keels are present, and the hull sits low in the water, typical of historical sailing warships.",
+    "attribute_superstructure_layout": "The superstructure consists of multiple open decks with raised sections at the bow and stern. There are no enclosed bridges or modern cabins, but the stern features an ornate gallery and the deck is equipped with fixtures such as hatches and possible gun emplacements.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "anchor",
+        "rigging",
+        "sails",
+        "flag"
+    ],
+    "attribute_registration_markings": "blue and white naval flag at the stern",
+    "uid": "2d4f0a9502a346bba2718b7c43dd43a6",
+    "near_synsets": {
+        "galleon.n.01": 0.45376868713769886,
+        "bark.n.03": 0.46594991805628627,
+        "sailing_vessel.n.01": 0.47736698454383114,
+        "windjammer.n.01": 0.4801979589343515,
+        "cargo_ship.n.01": 0.4872458078672614,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2d4f0a9502a346bba2718b7c43dd43a6",
+        "creator_username": "poison872",
+        "creator_display_name": "poison872",
+        "creator_profile_url": "https://sketchfab.com/poison872"
+    },
+    "filename": "std_2d4f0a9502a346bba2718b7c43dd43a6.glb",
+    "length": 50.22405242919922,
+    "width": 15.383779525756836
+}

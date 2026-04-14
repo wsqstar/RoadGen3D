@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a long, blue heavy-duty truck with a low-profile chassis and six wheels distributed across four axles. The cab is compact and positioned at the front, featuring a simple, angular design with visible side mirrors and a windshield. The truck's body is flat and elongated, suggesting it is designed for transporting oversized or heavy loads, possibly as a flatbed or modular transporter. The wheels are robust and evenly spaced, providing stability for carrying large cargo. Metal components and structural reinforcements are visible, indicating a strong, industrial build. The overall appearance is utilitarian, with minimal decorative elements and a focus on function.",
+    "description": "A long, blue heavy-duty flatbed truck with a compact cab and six wheels, designed for transporting large or heavy loads. The truck features a robust, utilitarian build with visible metal reinforcements.",
+    "description_view_0": "The truck is seen from a rear three-quarter angle, highlighting the length of the flatbed and the rear wheels.",
+    "description_view_1": "A side view showing the full length of the truck, the flat cargo area, and the compact cab at the front.",
+    "description_view_2": "A front three-quarter view emphasizing the cab's angular design and the alignment of the wheels along the chassis.",
+    "description_view_3": "A direct side view with the cab on the left, clearly displaying the truck's elongated flatbed and wheel arrangement.",
+    "category": "truck",
+    "height": 2.5,
+    "max_dimension": 12.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "mirror",
+        "windshield",
+        "step"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "day cab",
+    "attribute_cargo_bed_type": "flatbed",
+    "attribute_wheelbase": 8.0,
+    "attribute_number_of_axles": 4,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "ef2a62d669fb428697da3970447ac52e",
+    "near_synsets": {
+        "flatbed.n.02": 0.4211216708381784,
+        "truck.n.01": 0.4660103305913212,
+        "lorry.n.02": 0.480352360859516,
+        "truck_bed.n.01": 0.4900382724586656,
+        "transporter.n.01": 0.4976886262028165,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ef2a62d669fb428697da3970447ac52e",
+        "creator_username": "neilken",
+        "creator_display_name": "neilken",
+        "creator_profile_url": "https://sketchfab.com/neilken"
+    },
+    "filename": "std_ef2a62d669fb428697da3970447ac52e.glb",
+    "length": 17.424415588378906,
+    "width": 9.7726469039917
+}

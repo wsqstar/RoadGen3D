@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a small, detailed model of a pirate ship featuring a wooden hull with a slightly rounded bow and a flat stern. The ship is equipped with three prominent masts, each rigged with black sails, the foremost of which displays a white skull and crossbones emblem. A red flag is attached to the top of the front mast, adding a vivid accent to the otherwise dark color scheme. The rigging is represented by thin lines, and the deck is open with no visible cabins or superstructure, emphasizing the ship's classic sailing vessel design. The hull appears to be hand-painted, with some visible text or markings along the side. The overall construction suggests a handcrafted, decorative object rather than a functional vessel.",
+    "description": "A small, handcrafted pirate ship model with black sails, a skull-and-crossbones emblem, and a wooden hull. Features three masts, rigging, and a red flag.",
+    "description_view_0": "Front view showing the pointed bow, three black sails, and the skull-and-crossbones emblem on the foremost sail.",
+    "description_view_1": "Side view highlighting the full length of the hull, all three masts, the red flag, and visible text or markings on the hull.",
+    "description_view_2": "Rear view displaying the flat stern, the back of the masts, and the open deck area.",
+    "description_view_3": "Opposite side view showing the hull's curvature, the arrangement of the sails, and the rigging details.",
+    "category": "ship",
+    "height": 0.18,
+    "max_dimension": 0.28,
+    "materials": [
+        "wood",
+        "fabric",
+        "string",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.08,
+        0.04,
+        0.05
+    ],
+    "mass": 0.35,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 3,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "masts",
+        "sails",
+        "flag"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.45,
+        0.4,
+        0.05,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.4,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single-piece, displacement-type structure with a rounded bow and a flat stern. The sides are slightly curved, and the hull sits low, with no visible keel or bulbous bow. The surface is painted and appears to be made of wood.",
+    "attribute_superstructure_layout": "There is no visible superstructure; the deck is open with three masts and rigging, and no cabins, bridges, or towers are present.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [],
+    "attribute_registration_markings": "Visible text or markings on the hull and a skull-and-crossbones emblem on the sail.",
+    "uid": "cc0c7762bdd64b899a32262191945063",
+    "near_synsets": {
+        "black_flag.n.01": 0.5027447044354283,
+        "pirate.n.03": 0.5053753337788435,
+        "jack.n.08": 0.5184021589768155,
+        "skull_and_crossbones.n.01": 0.5223650733505864,
+        "figurehead.n.02": 0.5259187844339066,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cc0c7762bdd64b899a32262191945063",
+        "creator_username": "edemaistre",
+        "creator_display_name": "Emm (Scenario)",
+        "creator_profile_url": "https://sketchfab.com/edemaistre"
+    },
+    "filename": "std_cc0c7762bdd64b899a32262191945063.glb",
+    "length": 0.2185065597295761,
+    "width": 0.08920329436659813
+}

@@ -1,0 +1,91 @@
+{
+    "description_long": "This crustacean features a robust, segmented exoskeleton with a brownish, chitinous surface and a slightly glossy sheen. Its body is arched, with pronounced ridges along the back and a tapering abdomen that ends in a pointed tail. The creature has six visible legs, with the front pair modified into large, menacing claws equipped with sharp pincers. Its head is small relative to the body, with two glowing white eyes set low and forward, and several long, thin antennae or mandibles protruding from the mouth area. The legs and claws are jointed, giving the appearance of agility and strength, while the overall form suggests a predatory or scavenging lifestyle. The coloration is predominantly earthy brown with subtle reddish highlights on the claws and joints.",
+    "description": "A large, brown, segmented crustacean with prominent claws, jointed legs, and glowing white eyes. Its exoskeleton is ridged and slightly glossy, with reddish accents on the limbs.",
+    "description_view_0": "Side view showing the full length of the segmented body, large front claws, and the arched back with visible ridges.",
+    "description_view_1": "Rear view highlighting the tapering abdomen, pointed tail, and the symmetrical arrangement of the legs.",
+    "description_view_2": "Opposite side view displaying the other set of claws and legs, with the segmentation and body curvature clearly visible.",
+    "description_view_3": "Frontal view emphasizing the menacing claws, glowing eyes, and the protruding mouthparts or antennae.",
+    "category": "crustacean",
+    "height": 0.7,
+    "max_dimension": 1.4,
+    "materials": [
+        "chitin",
+        "keratin",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "claws",
+        "legs",
+        "antennae"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.56,
+    "youngs_modulus": 4000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_legs": 6,
+    "attribute_presence_of_claws": true,
+    "attribute_body_segmentation": "cephalothorax and abdomen",
+    "attribute_antennae_visibility": true,
+    "attribute_eye_placement": "sessile on head",
+    "uid": "a87b1e1468f64a7bb7b67a977988ac6c",
+    "near_synsets": {
+        "crustacean.n.01": 0.4266154990050461,
+        "crab.n.01": 0.45386856519280117,
+        "decapod_crustacean.n.01": 0.47125043950513745,
+        "true_lobster.n.01": 0.48026045334423,
+        "crayfish.n.03": 0.4810592967011207
+    },
+    "synset": "decapod_crustacean.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a87b1e1468f64a7bb7b67a977988ac6c",
+        "creator_username": "sirrandom",
+        "creator_display_name": "Harri Jokinen",
+        "creator_profile_url": "https://sketchfab.com/sirrandom"
+    },
+    "filename": "std_a87b1e1468f64a7bb7b67a977988ac6c.glb",
+    "length": 1.183441162109375,
+    "width": 0.66107177734375
+}

@@ -1,0 +1,94 @@
+{
+    "description_long": "This crane features a long, lattice-style boom supported by a series of triangular trusses and cables, giving it a robust yet lightweight appearance. At one end, a large circular component resembling a bucket wheel or rotary cutter is attached, suggesting it may be used for excavation or material handling. The central body of the crane is elevated on a sturdy support structure, with a platform and what appears to be a machinery housing or control area. The base is equipped with wide, flat feet that provide stability, and the overall structure is painted in a uniform yellow color typical of construction equipment. The boom is reinforced with diagonal braces and tension cables, ensuring structural integrity during heavy lifting operations. No operator cabin is distinctly visible, and the lifting mechanism at the boom's end is a rotary wheel rather than a traditional hook.",
+    "description": "A yellow lattice-boom crane with a rotary wheel attachment, supported by a robust truss and cable system on a stable base. The structure is industrial and designed for heavy-duty construction or excavation tasks.",
+    "description_view_0": "Side view showing the full length of the lattice boom, rotary wheel, and support cables.",
+    "description_view_1": "Front view highlighting the width of the base and the alignment of the boom and rotary wheel.",
+    "description_view_2": "Opposite side view, mirroring the boom and wheel structure, with clear visibility of the support trusses.",
+    "description_view_3": "Rear view focusing on the support structure and machinery housing, with the boom extending away.",
+    "category": "crane",
+    "height": 6.0,
+    "max_dimension": 22.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.03,
+        0.03,
+        0.02
+    ],
+    "mass": 48000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "boom",
+        "rotary wheel",
+        "support feet",
+        "machinery housing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_boom_type": "lattice boom",
+    "attribute_counterweight_presence": false,
+    "attribute_operator_cabin_visibility": false,
+    "attribute_hook_or_lifting_mechanism": "none visible",
+    "attribute_support_structure_design": "fixed base",
+    "uid": "34f215d99d5244d986eabfe60996c32e",
+    "near_synsets": {
+        "crane.n.04": 0.44982034816505934,
+        "derrick.n.02": 0.502918850508665,
+        "wheel_and_axle.n.01": 0.5392550503428462,
+        "stacker_crane.n.01": 0.5488717646257413,
+        "forklift.n.01": 0.5502791974138861,
+        "crane.n.05": -1000.0,
+        "crane.n.01": -1000.0,
+        "crane.n.02": -1000.0,
+        "grus.n.01": -1000.0
+    },
+    "synset": "crane.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/34f215d99d5244d986eabfe60996c32e",
+        "creator_username": "faqihalvaro",
+        "creator_display_name": "SMK Nurul Jadid",
+        "creator_profile_url": "https://sketchfab.com/faqihalvaro"
+    },
+    "filename": "std_34f215d99d5244d986eabfe60996c32e.glb",
+    "length": 14.526734352111816,
+    "width": 3.9146728515625
+}

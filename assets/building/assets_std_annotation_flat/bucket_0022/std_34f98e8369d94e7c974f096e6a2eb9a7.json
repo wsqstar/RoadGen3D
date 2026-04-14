@@ -1,0 +1,105 @@
+{
+    "description_long": "This combat tactical vehicle features a robust, angular chassis with a heavily armored exterior, giving it a formidable and utilitarian appearance. The body is composed of thick, segmented panels with visible seams and reinforced sections, suggesting high durability and protection. Twin forward-facing engine nacelles or weapon pods flank a central cockpit or command module, which is slightly raised and set back from the front. The surface is covered in a mottled, weathered gray paint scheme, with subtle panel lines, vents, and mechanical details adding to its realism. Circular insignias are visible on the sides, and the vehicle lacks visible wheels or tracks, indicating a possible hover or anti-gravity propulsion system. The overall design is compact yet imposing, optimized for urban combat and tactical deployment.",
+    "description": "A heavily armored, angular combat vehicle with twin forward pods, a central raised cockpit, and a weathered gray exterior featuring side insignias and detailed paneling.",
+    "description_view_0": "Front view shows the twin forward pods flanking a central cockpit, with a prominent intake or grille and angular armor.",
+    "description_view_1": "Left side view highlights the segmented armor panels, circular insignia, and the compact, blocky profile of the vehicle.",
+    "description_view_2": "Rear view reveals the back of the cockpit module and the symmetrical design of the twin pods, with visible exhausts or vents.",
+    "description_view_3": "Right side view mirrors the left, showing the same armor details and insignia, with additional mechanical features visible.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.05,
+        0.02,
+        0.08
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hatch",
+        "door",
+        "cockpit canopy",
+        "weapon mount",
+        "vent"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "dark gray",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Two visible mounts on the forward pods, likely for cannons or energy weapons; no roof or side mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, angular armor plating; reinforced sections on the front and sides; sloped and modular panels visible.",
+    "attribute_camouflage_pattern": "Mottled gray and dark gray paint with a weathered, industrial finish; no distinct camouflage pattern.",
+    "attribute_military_markings": "Circular insignias on both side panels; no numbers or additional symbols visible.",
+    "attribute_tire_type": "not applicable",
+    "uid": "34f98e8369d94e7c974f096e6a2eb9a7",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.5057674385833184,
+        "tank.n.01": 0.5098622290877655,
+        "reconnaissance_vehicle.n.01": 0.5207862466222727,
+        "assault_gun.n.02": 0.5273990522805891,
+        "armored_car.n.02": 0.531291540725976,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "fomite.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/34f98e8369d94e7c974f096e6a2eb9a7",
+        "creator_username": "zsoca-san",
+        "creator_display_name": "zsoca-san",
+        "creator_profile_url": "https://sketchfab.com/zsoca-san"
+    },
+    "filename": "std_34f98e8369d94e7c974f096e6a2eb9a7.glb",
+    "length": 8.714111328125,
+    "width": 4.207514762878418
+}

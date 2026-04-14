@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a rectangular wooden cabinet or shelf structure with a flat, broad top surface and a partially open front section. The exterior is finished in a medium brown wood grain, while the interior features a darker wood floor and a large, rough stone or rock formation occupying one side. Scattered books and small objects are visible on the floor inside, suggesting it is used for storage or display. The front has a large arched opening, possibly for easy access or as a decorative feature. The back and sides are solid wood panels, with no visible openings or handles.",
+    "description": "A rectangular wooden cabinet with a broad top, arched front opening, and a stone feature inside, used for storage or display.",
+    "description_view_0": "Front view showing the arched opening, interior stone, and scattered books on the floor.",
+    "description_view_1": "Top-down view highlighting the broad wooden surface and partial view of the interior contents.",
+    "description_view_2": "View of the arched opening with the stone feature visible inside, showing the main access point.",
+    "description_view_3": "Solid wooden back panel with no openings or features visible.",
+    "category": "cabinet or shelf",
+    "height": 0.7,
+    "max_dimension": 1.2,
+    "materials": [
+        "wood",
+        "stone",
+        "paper",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 65,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 7,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "storable",
+        "displayable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "arched opening",
+        "interior shelf/floor"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "brown",
+        "black",
+        "gray",
+        "red",
+        "blue"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 0,
+    "attribute_presence_of_handles": false,
+    "attribute_mounting_type": "freestanding",
+    "attribute_presence_of_glass_panels": false,
+    "attribute_visible_contents": [
+        "books",
+        "stone",
+        "small objects"
+    ],
+    "uid": "6ae7074e4d8042c1a773005039aaf35e",
+    "near_synsets": {
+        "cabinet.n.01": 0.413004366235603,
+        "dresser.n.05": 0.4755934638188797,
+        "bookcase.n.01": 0.4763527885948382,
+        "cabinet.n.03": 0.491849061140573,
+        "cupboard.n.01": 0.49341653072058805,
+        "shelf.n.01": -1000.0,
+        "cabinet.n.04": -1000.0,
+        "ledge.n.01": -1000.0,
+        "cabinet.n.02": -1000.0
+    },
+    "synset": "cabinet.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6ae7074e4d8042c1a773005039aaf35e",
+        "creator_username": "ZiRui",
+        "creator_display_name": "ZiRui",
+        "creator_profile_url": "https://sketchfab.com/ZiRui"
+    },
+    "filename": "std_6ae7074e4d8042c1a773005039aaf35e.glb",
+    "length": 1.4501444697380066,
+    "width": 1.3042948246002197
+}

@@ -1,0 +1,91 @@
+{
+    "description_long": "This is a medium-sized boat with a distinct cabin structure and a streamlined hull, featuring a pointed bow and a wider stern. The cabin has multiple rectangular windows and an open upper deck area, likely for navigation or observation. The hull displays a camouflage-like pattern with shades of brown, gray, and white, giving it a rugged, weathered appearance. The boat appears to be constructed primarily from metal, with possible glass or acrylic for the windows and railings. There are no visible propulsion mechanisms such as motors or sails, suggesting they may be located at the stern or are not modeled. The overall design suggests a utilitarian vessel, possibly for transport or patrol in urban waterways.",
+    "description": "A medium-sized, camouflaged boat with a cabin featuring multiple windows and an open upper deck. The hull is pointed at the bow and broad at the stern, with a rugged, metallic appearance.",
+    "description_view_0": "Front view showing the pointed bow, the cabin's front windows, and the open upper deck area.",
+    "description_view_1": "Side view highlighting the elongated hull, the full length of the cabin with its windows, and the open deck railing.",
+    "description_view_2": "Rear view displaying the broad stern, the back of the cabin, and the open deck space.",
+    "description_view_3": "Opposite side view similar to view 1, showing the hull's camouflaged pattern and the cabin's window arrangement.",
+    "category": "boat",
+    "height": 2.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 3500,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cabin door",
+        "windows",
+        "deck railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_hull_type": "V-shaped",
+    "attribute_propulsion_type": "unknown",
+    "attribute_registration_number": "none",
+    "attribute_presence_of_trailer": false,
+    "attribute_visible_boat_name": "none",
+    "uid": "c1d72577d7e14f8499c7af0195e89ff9",
+    "near_synsets": {
+        "boat.n.01": 0.47497134966331706,
+        "cabin_cruiser.n.01": 0.4769641413554988,
+        "catamaran.n.01": 0.48961659866216173,
+        "small_boat.n.01": 0.49694170397649823,
+        "canoe.n.01": 0.5090289641731249,
+        "gravy_boat.n.01": -1000.0
+    },
+    "synset": "gravy_boat.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c1d72577d7e14f8499c7af0195e89ff9",
+        "creator_username": "alverspin",
+        "creator_display_name": "Alverspin",
+        "creator_profile_url": "https://sketchfab.com/alverspin"
+    },
+    "filename": "std_c1d72577d7e14f8499c7af0195e89ff9.glb",
+    "length": 5.830329179763794,
+    "width": 2.2792346477508545
+}

@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a large, gray military-style ship with a streamlined hull and a slightly raised bow and stern. The vessel features a prominent superstructure amidships, including two large funnels and several smaller deck structures, likely for navigation and command. The deck is equipped with various fixtures such as gun turrets, lifeboats, and antennae, indicating a warship or destroyer class. The hull is painted primarily gray with a red lower section near the waterline, and there are visible portholes and hatches along the sides. The ship has a sleek, elongated profile with a pointed bow and a rounded stern, and rigging or cables are visible running between masts. The overall design suggests a robust, ocean-going vessel built for speed and maneuverability.",
+    "description": "A large, gray military-style ship with a streamlined hull, two funnels, and deck equipment such as turrets and lifeboats. The vessel features a red lower hull and a detailed superstructure.",
+    "description_view_0": "Front view showing the pointed bow, narrow profile, and forward superstructure.",
+    "description_view_1": "Side view highlighting the full length of the ship, two funnels, deck equipment, and the red lower hull.",
+    "description_view_2": "Rear view displaying the rounded stern, aft superstructure, and symmetrical deck layout.",
+    "description_view_3": "Opposite side view mirroring view 1, with visible lifeboats, turrets, and hull details.",
+    "category": "ship",
+    "height": 12,
+    "max_dimension": 120,
+    "materials": [
+        "steel",
+        "glass",
+        "wood",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.01,
+        0.05
+    ],
+    "mass": 250000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "turret",
+        "lifeboat",
+        "antenna",
+        "funnel",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black",
+        "white",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 20,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a long, narrow, and streamlined shape, featuring a pointed bow and a rounded stern. The lower hull is painted red, and there are no visible keels or bulbous bows. The hull sides are smooth with portholes and hatches.",
+    "attribute_superstructure_layout": "The superstructure is centrally located with two large funnels, several smaller deckhouses, and a bridge near the bow. There are multiple levels, with visible turrets and lifeboats along the deck.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "turret",
+        "lifeboat",
+        "antenna",
+        "anchor",
+        "winch"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "8fbabfa8525f44b185980d26bd3c9475",
+    "near_synsets": {
+        "cargo_ship.n.01": 0.47953174051065406,
+        "transport_ship.n.01": 0.48647124570485467,
+        "troopship.n.01": 0.49153252469815545,
+        "vessel.n.02": 0.5004119219748918,
+        "surface_ship.n.01": 0.5032975861567017,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8fbabfa8525f44b185980d26bd3c9475",
+        "creator_username": "kikuzukikai",
+        "creator_display_name": "DD KIKUZUKI ASSOC.",
+        "creator_profile_url": "https://sketchfab.com/kikuzukikai"
+    },
+    "filename": "std_8fbabfa8525f44b185980d26bd3c9475.glb",
+    "length": 54.023319244384766,
+    "width": 5.2683422565460205
+}

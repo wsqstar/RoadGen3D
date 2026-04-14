@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a classic submachine gun with a wooden fixed stock and a long, blued steel barrel. The receiver and barrel assembly are constructed from dark metal, featuring a series of cooling slots along the upper handguard. A prominent round drum magazine is mounted beneath the receiver, characteristic of early 20th-century military firearms. The stock and foregrip are made of polished wood, providing a sturdy and ergonomic grip. Iron sights are mounted along the top of the barrel, and the muzzle is simple, lacking any additional device. The overall design is robust and utilitarian, suitable for rapid fire in close-quarters urban environments.",
+    "description": "A vintage submachine gun with a wooden stock, metal receiver, and a round drum magazine, featuring iron sights and a long, vented barrel.",
+    "description_view_0": "Side view showing the full length of the rifle, wooden stock, metal receiver, and drum magazine.",
+    "description_view_1": "Front view highlighting the circular drum magazine and the barrel's muzzle.",
+    "description_view_2": "Opposite side view displaying the wooden stock, metal body, and drum magazine from the other profile.",
+    "description_view_3": "Rear view focusing on the back of the stock and the alignment of the barrel and magazine.",
+    "category": "rifle",
+    "height": 0.22,
+    "max_dimension": 0.85,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.3,
+        0.03,
+        0.02
+    ],
+    "mass": 4.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 45,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "trigger",
+        "magazine",
+        "barrel",
+        "sight",
+        "charging handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.32,
+        0.6,
+        0.08
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "drum",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "089bdfb09ada407da3e75cfcbe2180fe",
+    "near_synsets": {
+        "submachine_gun.n.01": 0.5087623597815358,
+        "garand_rifle.n.01": 0.5088351495637914,
+        "sten_gun.n.01": 0.5092111056279193,
+        "tommy_gun.n.01": 0.5171168366079059,
+        "kalashnikov.n.01": 0.5206564912771828,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/089bdfb09ada407da3e75cfcbe2180fe",
+        "creator_username": "Artem.Goyko",
+        "creator_display_name": "Artem Goyko",
+        "creator_profile_url": "https://sketchfab.com/Artem.Goyko"
+    },
+    "filename": "std_089bdfb09ada407da3e75cfcbe2180fe.glb",
+    "length": 0.8901208341121674,
+    "width": 0.1562347412109375
+}

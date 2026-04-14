@@ -1,0 +1,101 @@
+{
+    "description_long": "This kiosk consists of a lightweight, modular pop-up display structure set on a square wooden platform. The main feature is a large, fabric-printed backdrop with a vibrant outdoor cycling advertisement labeled 'HUB', supported by a visible metal truss frame. The kiosk is accompanied by a standing male mannequin dressed in formal attire, suggesting its use for promotional or informational purposes. The display frame is constructed from interlocking metal rods, forming a grid that supports the printed banner. The wooden platform provides a stable, flat base, contrasting with the metallic and fabric elements of the display. There are no visible windows, doors, or enclosed spaces, and the structure is open on all sides.",
+    "description": "A modular pop-up kiosk with a large printed fabric backdrop on a metal truss frame, set on a wooden platform and accompanied by a standing mannequin. The kiosk is open and designed for promotional use.",
+    "description_view_0": "Front view shows the printed cycling advertisement, the metal frame behind it, the wooden platform, and the mannequin standing to the right.",
+    "description_view_1": "Side view highlights the depth of the metal truss frame and the profile of the mannequin, with the wooden platform extending forward.",
+    "description_view_2": "Rear view reveals the full metal grid structure supporting the fabric banner, with the mannequin facing away and no signage visible.",
+    "description_view_3": "Opposite side view shows the truss frame's side profile and the mannequin's stance, with the wooden platform extending to the left.",
+    "category": "kiosk",
+    "height": 2.2,
+    "max_dimension": 3.0,
+    "materials": [
+        "metal",
+        "fabric",
+        "wood",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "displayable",
+        "attachable",
+        "presentable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "banner",
+        "frame",
+        "platform"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "white",
+        "blue",
+        "orange",
+        "black"
+    ],
+    "colors_composition": [
+        0.35,
+        0.25,
+        0.15,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_signage_type": "printed sign on fabric banner, placed at the top center of the backdrop, with visible text 'HUB' and an image of a cyclist",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "none",
+    "attribute_roof_design": "none; open structure with no roof, only a vertical backdrop supported by a metal frame",
+    "attribute_architectural_style": "modern minimalist promotional",
+    "uid": "eccd94c017234d49b1defd697991d0c1",
+    "near_synsets": {
+        "pop-up.n.03": 0.5406389761346277,
+        "booth.n.02": 0.5548619444981004,
+        "booth.n.04": 0.5669221088531026,
+        "shopfront.n.01": 0.5836183441942626,
+        "display_window.n.01": 0.5868460869058039
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/eccd94c017234d49b1defd697991d0c1",
+        "creator_username": "exhibitbook",
+        "creator_display_name": "exhibitbook",
+        "creator_profile_url": "https://sketchfab.com/exhibitbook"
+    },
+    "filename": "std_eccd94c017234d49b1defd697991d0c1.glb",
+    "length": 3.5992947816848755,
+    "width": 3.599293351173401
+}

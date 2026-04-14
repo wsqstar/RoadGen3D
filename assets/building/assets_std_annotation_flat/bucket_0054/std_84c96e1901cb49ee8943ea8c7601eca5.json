@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a futuristic, compact airplane with a sleek, angular fuselage and a predominantly gray exterior. The aircraft features a forward-placed, multi-panel cockpit with large, dark-tinted windows, providing wide visibility. Its wings are short and stubby, mounted mid-fuselage, with one wing shown in a raised position, possibly indicating a variable geometry or folding mechanism. The landing gear consists of two robust main units and a single nose gear, all with wide, flat pads for stability on urban surfaces. A central entry door with a deployable stairway is visible on one side, suggesting easy access for passengers or crew. The tail section is distinctive, with a tall, single vertical stabilizer and no visible horizontal stabilizers, giving it a unique silhouette.",
+    "description": "A compact, angular gray airplane with a forward cockpit, short mid-mounted wings, and a tall single tail fin. Features include large cockpit windows, a deployable stairway, and robust landing gear.",
+    "description_view_0": "Side view showing the angular fuselage, main landing gear, and the tall central tail fin.",
+    "description_view_1": "Front view highlighting the wide cockpit windows, nose landing gear, and one wing in a raised position.",
+    "description_view_2": "Opposite side view with the entry door open and stairway deployed, revealing access to the interior.",
+    "description_view_3": "Rear view displaying the large, dark cockpit windows, both main landing gear, and the raised wing.",
+    "category": "airplane",
+    "height": 3.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 31360,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "stairway",
+        "cockpit canopy",
+        "landing gear",
+        "wing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.85,
+        0.13,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing configuration with short, straight wings; one wing shown in a raised or folding position; no visible winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "No visible external engines; engine type not apparent from images.",
+    "attribute_tail_design": "Single tall vertical stabilizer with no visible horizontal stabilizers; unconventional tail configuration.",
+    "attribute_landing_gear_type": "Tricycle landing gear with two main gear units and a single nose gear, all fixed and equipped with wide pads.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with large, multi-panel windows; appears to be multi-seat.",
+    "uid": "84c96e1901cb49ee8943ea8c7601eca5",
+    "near_synsets": {
+        "aircraft.n.01": 0.5039396914868232,
+        "airplane.n.01": 0.5124903582235998,
+        "monoplane.n.01": 0.5326415217294375,
+        "fuselage.n.01": 0.542719952188501,
+        "landing_gear.n.01": 0.5443818001257854
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/84c96e1901cb49ee8943ea8c7601eca5",
+        "creator_username": "FabiKurz",
+        "creator_display_name": "FabiKurz",
+        "creator_profile_url": "https://sketchfab.com/FabiKurz"
+    },
+    "filename": "std_84c96e1901cb49ee8943ea8c7601eca5.glb",
+    "length": 7.7827308177948,
+    "width": 5.484055280685425
+}

@@ -1,0 +1,92 @@
+{
+    "description_long": "This object is a large, tube-shaped anti-armor weapon resembling a classic rocket-propelled grenade launcher, such as the RPG-7. It features a long cylindrical barrel with a flared muzzle at one end and a narrower breech at the other. Two prominent pistol-style grips are attached beneath the barrel, one near the rear and one closer to the center, providing stability and control. Iron sights are mounted on the top, with a rear sight near the breech and a front sight near the muzzle. The surface is metallic, with a dark, matte finish and subtle texturing, giving it a robust, utilitarian appearance. The overall construction suggests a combination of steel and polymer components, designed for durability and field use.",
+    "description": "A large, tube-shaped anti-armor weapon with a flared muzzle, dual pistol grips, and iron sights, finished in dark matte metal.",
+    "description_view_0": "Side view showing the full length, flared muzzle, both pistol grips, and iron sights clearly.",
+    "description_view_1": "Front view highlighting the wide, flared muzzle opening and the alignment of the iron sights.",
+    "description_view_2": "Opposite side view, mirroring view 0, with clear visibility of the barrel, grips, and sight mounts.",
+    "description_view_3": "Rear view showing the breech end, rear sight, and the alignment of the grips along the barrel.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 0.95,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 7.0,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 70,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "aimable",
+        "triggerable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pistol grip",
+        "trigger",
+        "iron sights",
+        "barrel",
+        "muzzle",
+        "rear sight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "pistol grip",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "none",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "c2fdb9a2b5bf4d0e83fcda92b8d493de",
+    "near_synsets": {
+        "light_arm.n.01": 0.4700592211100269,
+        "rifle.n.01": 0.4769299312936976,
+        "gun.n.01": 0.4842303430946341,
+        "assault_rifle.n.01": 0.48939078762521,
+        "garand_rifle.n.01": 0.4926724377598688
+    },
+    "synset": "garand_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c2fdb9a2b5bf4d0e83fcda92b8d493de",
+        "creator_username": "imarcos",
+        "creator_display_name": "Marek Picheta",
+        "creator_profile_url": "https://sketchfab.com/imarcos"
+    },
+    "filename": "std_c2fdb9a2b5bf4d0e83fcda92b8d493de.glb",
+    "length": 0.8799374401569366,
+    "width": 0.1143765076994896
+}

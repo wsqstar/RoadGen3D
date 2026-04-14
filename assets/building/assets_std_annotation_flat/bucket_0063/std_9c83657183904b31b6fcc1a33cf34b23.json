@@ -1,0 +1,89 @@
+{
+    "description_long": "This object is a classic hot-air balloon featuring a large, teardrop-shaped envelope made from a light, semi-translucent fabric. The envelope is reinforced with a visible network of dark, vertical and horizontal seams, creating a geometric, panel-like pattern across its surface. At the base of the envelope, a small, rectangular basket is attached, likely constructed from wicker or a similar lightweight material. The basket is suspended directly beneath the envelope, and the connection appears to be made with sturdy cables or ropes, though these are not distinctly visible. The overall color of the balloon is a muted, off-white or beige, giving it a vintage or traditional appearance. There are no visible logos, symbols, or registration markings on the envelope or basket.",
+    "description": "A vintage-style hot-air balloon with a pale, fabric envelope reinforced by dark seams and a small basket attached at the bottom. The balloon is off-white with a geometric panel pattern and lacks any visible markings or decorations.",
+    "description_view_0": "The hot-air balloon is seen from the front, showing the full teardrop envelope and the small basket directly below, with the seam pattern clearly visible.",
+    "description_view_1": "This view is nearly identical to the front, with the same envelope and basket visible, but the seam pattern appears slightly shifted due to rotation.",
+    "description_view_2": "The balloon is shown from the back, maintaining the same geometric seam pattern and basket, with no additional features visible.",
+    "description_view_3": "A side view of the balloon, displaying the envelope's curvature and the basket below, with the seam pattern consistent across the surface.",
+    "category": "hot-air balloon",
+    "height": 22.0,
+    "max_dimension": 18.0,
+    "materials": [
+        "fabric",
+        "wicker",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 250,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "flyable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "basket",
+        "envelope"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "off-white",
+        "black"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 500,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_envelope_pattern": "The envelope features a geometric panel pattern created by dark vertical and horizontal seams, with no additional decorative elements or color variations. The overall appearance is a solid, off-white color with a grid-like seam structure.",
+    "attribute_basket_presence": true,
+    "attribute_burner_frame_visibility": false,
+    "attribute_suspension_cables": false,
+    "attribute_registration_markings": "none",
+    "uid": "9c83657183904b31b6fcc1a33cf34b23",
+    "near_synsets": {
+        "hot-air_balloon.n.01": 0.4444332298895912,
+        "balloon.n.01": 0.5087916402577045,
+        "ballooning.n.01": 0.514010711342405,
+        "balloon.n.02": 0.5327503152204911,
+        "balloonist.n.01": 0.5482829339091242
+    },
+    "synset": "hot-air_balloon.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9c83657183904b31b6fcc1a33cf34b23",
+        "creator_username": "Lew315406",
+        "creator_display_name": "Lew",
+        "creator_profile_url": "https://sketchfab.com/Lew315406"
+    },
+    "filename": "std_9c83657183904b31b6fcc1a33cf34b23.glb",
+    "length": 14.717668056488037,
+    "width": 14.740319728851318
+}

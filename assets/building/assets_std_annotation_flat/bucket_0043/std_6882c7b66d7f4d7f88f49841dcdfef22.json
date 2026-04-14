@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a weathered, green-painted boxcar train carriage with a rounded roof and visible signs of rust and aging across its metal exterior. The carriage features sliding doors on both sides, reinforced with diagonal and vertical metal bracing, and is supported by two sets of four wheels on each side. The ends of the carriage are solid, with no visible windows or doors, and the undercarriage includes detailed wheel assemblies and coupling mechanisms. The surface is predominantly matte with patches of rust, giving it a rugged, industrial appearance. The structure is robust, likely constructed from heavy steel panels, and is designed for transporting goods rather than passengers. There are no visible overhead wires, and the carriage lacks any windows, emphasizing its utilitarian freight function.",
+    "description": "A weathered green metal boxcar with rust patches, sliding side doors, and no windows, designed for freight transport.",
+    "description_view_0": "Side view showing the green, rusted metal surface, sliding door, and wheel assemblies.",
+    "description_view_1": "End view displaying the rounded roof, solid end panel, and coupling mechanism.",
+    "description_view_2": "Opposite side view, similar to view 0, with sliding door and visible rust patterns.",
+    "description_view_3": "Other end view showing the solid end panel and undercarriage details.",
+    "category": "train",
+    "height": 4.2,
+    "max_dimension": 14.0,
+    "materials": [
+        "steel",
+        "iron",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 32000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sliding door",
+        "wheel",
+        "coupling mechanism"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "freight train",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "sliding doors on both sides",
+    "attribute_window_arrangement": "no visible windows",
+    "uid": "6882c7b66d7f4d7f88f49841dcdfef22",
+    "near_synsets": {
+        "boxcar.n.01": 0.4447906621672012,
+        "coal_car.n.01": 0.4780362404270871,
+        "freight_car.n.01": 0.48876563260166594,
+        "stockcar.n.01": 0.503579000727884,
+        "flatcar.n.01": 0.5059188719556112,
+        "gearing.n.01": -1000.0,
+        "caravan.n.01": -1000.0,
+        "train.n.04": -1000.0,
+        "train.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "train.n.05": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6882c7b66d7f4d7f88f49841dcdfef22",
+        "creator_username": "kazhibaev.yerbolat",
+        "creator_display_name": "kazhibaev.yerbolat",
+        "creator_profile_url": "https://sketchfab.com/kazhibaev.yerbolat"
+    },
+    "filename": "std_6882c7b66d7f4d7f88f49841dcdfef22.glb",
+    "length": 13.0449538230896,
+    "width": 2.6877644062042236
+}

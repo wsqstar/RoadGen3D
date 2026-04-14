@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a heavy, turret-mounted multi-barrel weapon with a robust, industrial design. The main body is constructed from weathered metal, featuring a cylindrical housing with three hexagonally arranged barrels protruding from the front. The base is angular and reinforced, painted in a worn red color with visible bolts and gear-like details, suggesting mechanical articulation. The mounting includes a pivot joint, allowing for vertical and horizontal aiming, and the structure is supported by a broad, stable platform. The surface shows signs of wear, rust, and grime, indicating prolonged outdoor use. The overall appearance is utilitarian, built for durability and function in urban defense or security scenarios.",
+    "description": "A rugged, turret-mounted multi-barrel weapon with a weathered metal body, red reinforced base, and hexagonal barrel arrangement. Its industrial design and visible wear suggest use in urban defense settings.",
+    "description_view_0": "Side view showing the cylindrical main body, three parallel barrels, and gear-like details on the red base.",
+    "description_view_1": "Front view highlighting the hexagonal arrangement of the three barrels and the reinforced mounting platform.",
+    "description_view_2": "Opposite side view displaying the pivot joint and the full length of the barrels and mounting hardware.",
+    "description_view_3": "Rear view showing the closed back of the cylindrical housing and the angular, bolted base.",
+    "category": "rifle",
+    "height": 0.7,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "iron",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrels",
+        "pivot joint",
+        "mounting base",
+        "gears"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "gray",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "none",
+    "uid": "45be9a668261414c9f290d425f2fe9c0",
+    "near_synsets": {
+        "rifle.n.01": 0.5002798716233243,
+        "gun.n.01": 0.5260561321032422,
+        "shotgun.n.01": 0.5274486044706654,
+        "gatling_gun.n.01": 0.5313416942188531,
+        "gun_enclosure.n.01": 0.5323173315021086
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/45be9a668261414c9f290d425f2fe9c0",
+        "creator_username": "Knightro5",
+        "creator_display_name": "Knightro5",
+        "creator_profile_url": "https://sketchfab.com/Knightro5"
+    },
+    "filename": "std_45be9a668261414c9f290d425f2fe9c0.glb",
+    "length": 0.7256078124046326,
+    "width": 0.6982846260070801
+}

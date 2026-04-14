@@ -1,0 +1,92 @@
+{
+    "description_long": "This object is a compact helicopter with a streamlined, rounded fuselage and a low profile, suggesting a small civilian or utility model. The exterior is predominantly gray with subtle surface texturing, and the body appears to be constructed from lightweight metal or composite materials. The main rotor is mounted centrally on top, but the individual blades are not clearly visible from these views. The tail section is short and stubby, with no visible tail rotor or stabilizer details. The landing gear consists of two simple, parallel skids that run the length of the fuselage, providing stable ground support. Cockpit windows are not clearly distinguishable, and there are no visible registration numbers or markings on the surface.",
+    "description": "A small, gray, streamlined helicopter with a rounded body and simple landing skids. Rotor and cockpit details are minimal or not visible.",
+    "description_view_0": "The helicopter is seen from a slight angle, showing its rounded body and the right landing skid; rotor and cockpit details are indistinct.",
+    "description_view_1": "A more direct side view, highlighting the compact fuselage and both landing skids; surface texture is visible but no rotor or window details.",
+    "description_view_2": "The opposite side view, showing the left landing skid and the low, flat profile of the helicopter; rotor and tail details remain unclear.",
+    "description_view_3": "A rear or front-on view, emphasizing the symmetrical, rounded shape and the parallel landing skids; no cockpit or rotor details are visible.",
+    "category": "helicopter",
+    "height": 1.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 900,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 4,
+    "movable": true,
+    "required_force": 8820,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotor",
+        "door",
+        "skids",
+        "controls"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 6.0,
+    "asset_composition_type": "single",
+    "attribute_rotor_blades": "not visible",
+    "attribute_tail_rotor": "not visible",
+    "attribute_landing_skids": "Two parallel, straight skids made of metal, colored gray, running the length of the fuselage with no visible crossbars or footpads.",
+    "attribute_cockpit_windows": "not visible",
+    "attribute_registration_number": "not visible",
+    "uid": "dec7558c22e94a71b334e44f1af5b373",
+    "near_synsets": {
+        "single-rotor_helicopter.n.01": 0.484296393520649,
+        "helicopter.n.01": 0.4956371568379267,
+        "landing_skid.n.01": 0.5125614869047256,
+        "main_rotor.n.01": 0.5229313743980564,
+        "shuttle_helicopter.n.01": 0.532480068154533
+    },
+    "synset": "shuttle_helicopter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dec7558c22e94a71b334e44f1af5b373",
+        "creator_username": "osmosikum",
+        "creator_display_name": "osmosikum",
+        "creator_profile_url": "https://sketchfab.com/osmosikum"
+    },
+    "filename": "std_dec7558c22e94a71b334e44f1af5b373.glb",
+    "length": 2.4845190048217773,
+    "width": 3.002671003341675
+}

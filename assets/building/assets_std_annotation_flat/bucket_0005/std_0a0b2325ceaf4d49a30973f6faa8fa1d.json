@@ -1,0 +1,101 @@
+{
+    "description_long": "This humanoid robot features a compact, robust body with a wide, stable base and two articulated arm-like appendages extending from its sides. The central column rises vertically from the base, supporting a rectangular head equipped with dual camera-like lenses, suggesting advanced visual capabilities. The exterior is primarily composed of smooth, light gray panels with darker gray accents on the arms and head, and a coiled cable is visible, possibly for power or data transfer. The base includes several geometric details, such as vents and access panels, and the arms appear to be jointed for limited movement. The overall design is utilitarian, with no decorative elements, emphasizing function over form. The robot's proportions and features suggest it is designed for tasks requiring vision and manipulation in urban environments.",
+    "description": "A compact humanoid robot with a sturdy base, articulated arms, and a dual-lens head, finished in light and dark gray panels with visible cabling.",
+    "description_view_0": "The robot is seen from the rear-left, highlighting the coiled cable, the back of the head, and the robust base structure.",
+    "description_view_1": "The front view reveals the dual-lens head, symmetrical arm placement, and the main control panel on the base.",
+    "description_view_2": "This side view emphasizes the length and articulation of the arms, as well as the prominent head-mounted sensors.",
+    "description_view_3": "The rear view shows the back of the head, the cable connection, and additional access panels on the base.",
+    "category": "humanoid robot",
+    "height": 0.55,
+    "max_dimension": 0.65,
+    "materials": [
+        "plastic",
+        "metal",
+        "glass",
+        "rubber",
+        "air",
+        "copper"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 14,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 140,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "pullable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "head",
+        "control panel",
+        "cable",
+        "base access panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "dark gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is in a neutral, upright pose with its central column extended vertically and both arms angled outward and slightly downward. The head is positioned forward, aligned with the torso.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated panels and functional coverings in light and dark gray plastic and metal.",
+    "attribute_facial_features": "The face consists of a rectangular head with two prominent, forward-facing camera lenses and no visible mouth, nose, or expressive features.",
+    "attribute_limb_articulation": "The arms have visible hinge joints at the base, allowing for outward and downward movement, but no hands or fingers are present. The limbs appear rigid with limited articulation.",
+    "attribute_presence_of_sensors": "Two camera-like sensors are visible on the front of the head, likely for visual input.",
+    "uid": "0a0b2325ceaf4d49a30973f6faa8fa1d",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5440411419744741,
+        "android.n.01": 0.5501885900703257,
+        "cyborg.n.01": 0.5567046673215512,
+        "automaton.n.02": 0.5686712519610866,
+        "robotics.n.01": 0.5771904938151776
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0a0b2325ceaf4d49a30973f6faa8fa1d",
+        "creator_username": "Austin.Beaulier",
+        "creator_display_name": "Austin Beaulier",
+        "creator_profile_url": "https://sketchfab.com/Austin.Beaulier"
+    },
+    "filename": "std_0a0b2325ceaf4d49a30973f6faa8fa1d.glb",
+    "length": 0.5535101294517517,
+    "width": 0.60354283452034
+}

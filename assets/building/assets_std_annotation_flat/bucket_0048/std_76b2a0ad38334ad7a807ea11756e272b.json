@@ -1,0 +1,158 @@
+{
+    "description_long": "This is a small, walled graveyard featuring a stone chapel with a steep gabled roof and a bell tower. The graveyard is enclosed by a stone fence with pointed posts and an iron gate, and contains several upright headstones arranged in rows on a cobblestone path. A single leafless tree stands on a patch of bare earth, contrasting with the paved area where the graves are located. The chapel has arched windows and a prominent front entrance with steps leading up to it. The overall color palette is muted, with gray stone dominating the scene and brown earth providing contrast. The setting evokes a somber, historical atmosphere typical of older European cemeteries.",
+    "description": "A walled graveyard with a stone chapel, several headstones, a leafless tree, and cobblestone paths. The scene is somber and dominated by gray stone and brown earth.",
+    "description_view_0": "The chapel is seen from the side, with the leafless tree and several headstones visible behind the stone fence.",
+    "description_view_1": "A side elevation of the chapel, showing the length of the building, arched windows, and the tree behind the structure.",
+    "description_view_2": "The front entrance of the chapel is visible, with steps leading up and headstones arranged along the cobblestone path.",
+    "description_view_3": "A rear view of the graveyard, highlighting the headstones, the tree, and the back of the chapel with its arched windows.",
+    "category": "grave yard",
+    "height": 9.0,
+    "max_dimension": 20.0,
+    "materials": [
+        "stone",
+        "wood",
+        "metal",
+        "glass",
+        "soil",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.05,
+        0.05,
+        0.02,
+        0.2,
+        0.03
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "gate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.0,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_tombstone_inscriptions": [],
+    "attribute_crosses": [],
+    "attribute_grave_markers": [
+        {
+            "type": "headstone",
+            "material": "stone",
+            "dimensions": [
+                1.2,
+                0.5,
+                0.2
+            ]
+        },
+        {
+            "type": "headstone",
+            "material": "stone",
+            "dimensions": [
+                1.0,
+                0.4,
+                0.15
+            ]
+        },
+        {
+            "type": "headstone",
+            "material": "stone",
+            "dimensions": [
+                0.8,
+                0.3,
+                0.1
+            ]
+        }
+    ],
+    "attribute_mausoleums": [
+        {
+            "architectural_style": "Gothic Revival",
+            "primary_materials": "stone",
+            "dimensions": [
+                9.0,
+                7.0,
+                12.0
+            ],
+            "notable_features": [
+                "bell tower",
+                "arched windows",
+                "front door"
+            ]
+        }
+    ],
+    "attribute_cemetery_gates": [
+        {
+            "type": "stone fence with iron gate",
+            "primary_materials": "stone, metal",
+            "dimensions": [
+                2.0,
+                3.0
+            ],
+            "decorative_elements": [
+                "pointed posts"
+            ]
+        }
+    ],
+    "uid": "76b2a0ad38334ad7a807ea11756e272b",
+    "near_synsets": {
+        "grave.n.02": 0.504318667565321,
+        "cemetery.n.01": 0.5127455657172952,
+        "gravestone.n.01": 0.5219807943885649,
+        "cairn.n.01": 0.5306077943120078,
+        "potter's_field.n.01": 0.5556186509244383,
+        "cubic_yard.n.01": -1000.0,
+        "yard.n.02": -1000.0,
+        "yard.n.03": -1000.0,
+        "yard.n.01": -1000.0,
+        "yard.n.07": -1000.0,
+        "yard.n.09": -1000.0,
+        "thousand.n.01": -1000.0,
+        "yard.n.06": -1000.0,
+        "yard.n.08": -1000.0
+    },
+    "synset": "cemetery.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/76b2a0ad38334ad7a807ea11756e272b",
+        "creator_username": "ludodescary",
+        "creator_display_name": "ludodescary",
+        "creator_profile_url": "https://sketchfab.com/ludodescary"
+    },
+    "filename": "std_76b2a0ad38334ad7a807ea11756e272b.glb",
+    "length": 10.357447147369385,
+    "width": 10.35732126235962
+}

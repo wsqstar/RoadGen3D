@@ -1,0 +1,91 @@
+{
+    "description_long": "This airplane features a blocky, pixelated design reminiscent of voxel art, with a predominantly pale, icy blue and white color scheme. The wings are straight and extend laterally from the midsection of the fuselage, with a simple, flat profile and no visible winglets. The fuselage is elongated and tapers toward the tail, which is also blocky and features a single vertical stabilizer. The nose is blunt and squared, with a pair of black square markings suggesting cockpit windows. The surface appears matte and hard, with a uniform texture and no visible landing gear or engine details. The overall appearance is stylized and minimalistic, evoking a digital or game-like aesthetic.",
+    "description": "A blocky, pale blue and white stylized airplane with straight wings, a blunt nose, and a single vertical tail fin. The design is minimalistic and pixelated, resembling voxel art.",
+    "description_view_0": "Top-down view showing the full wingspan, straight wings, and the symmetrical, blocky layout of the fuselage and tail.",
+    "description_view_1": "Left side view highlighting the elongated fuselage, blunt nose, and the single vertical stabilizer at the tail.",
+    "description_view_2": "Front view displaying the squared nose, cockpit window markings, and the flat, wide wings extending outward.",
+    "description_view_3": "Right side view similar to the left, showing the blocky head, tail, and the straight wing profile.",
+    "category": "airplane",
+    "height": 0.7,
+    "max_dimension": 3.0,
+    "materials": [
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.15
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 6,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit",
+        "wings",
+        "tail"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "light blue",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing configuration with straight, rectangular wings and no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "No visible engines present on the fuselage or wings.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "No visible landing gear present.",
+    "attribute_cockpit_placement": "Forward-mounted cockpit with a squared, enclosed design and two black window markings.",
+    "uid": "1237deba7d98428d85ff2b1b2652cb49",
+    "near_synsets": {
+        "aircraft.n.01": 0.541267939621115,
+        "airplane.n.01": 0.5492739321554588,
+        "monoplane.n.01": 0.5525704365988332,
+        "biplane.n.01": 0.5578182380144001,
+        "plane.n.03": 0.5764680506150439
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1237deba7d98428d85ff2b1b2652cb49",
+        "creator_username": "Akicat1",
+        "creator_display_name": "SzushyCat",
+        "creator_profile_url": "https://sketchfab.com/Akicat1"
+    },
+    "filename": "std_1237deba7d98428d85ff2b1b2652cb49.glb",
+    "length": 2.6844472885131836,
+    "width": 2.010371685028076
+}

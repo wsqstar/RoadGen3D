@@ -1,0 +1,99 @@
+{
+    "description_long": "This object consists of two tall, vertically oriented cylindrical tanks made of weathered metal, each topped with a domed cap. The tanks are connected at the top by a large, curved pipe, suggesting a transfer or equalization function between the two chambers. Both tanks feature circular safety railings around their upper sections, likely for maintenance access. The surface is mottled with rust and discoloration, indicating prolonged exposure to the elements. The structure is robust and industrial, with no visible access ladders but clear pipework and safety features. This type of storage tank is commonly found in industrial or utility settings for storing liquids or gases.",
+    "description": "A pair of tall, weathered metal cylindrical tanks with domed tops, connected by a large curved pipe and surrounded by safety railings.",
+    "description_view_0": "Two cylindrical tanks with domed tops are visible, with the connecting pipe and safety railings prominent; the left tank is more forward.",
+    "description_view_1": "The front view shows both tanks side by side, the connecting pipe arching between them, and the safety railings encircling the upper sections.",
+    "description_view_2": "The tanks are seen from the rear, with the connecting pipe and domed tops visible; the right tank appears more forward.",
+    "description_view_3": "A clear side view of both tanks, showing the full height, domed tops, and the connecting pipe arching between them.",
+    "category": "storage tank",
+    "height": 8.0,
+    "max_dimension": 8.5,
+    "materials": [
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.08
+    ],
+    "mass": 9500,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressurizable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pipe",
+        "hatch",
+        "railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [
+        "connecting pipe"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_architectural_style": "cylindrical vertical with domed roof",
+    "uid": "bb36ed60afdf428a870bc8e62398c30e",
+    "near_synsets": {
+        "tank.n.02": 0.498247612999318,
+        "tank_farm.n.01": 0.5130160323979591,
+        "water_tower.n.01": 0.519844917303085,
+        "reservoir.n.03": 0.5296323918841533,
+        "standpipe.n.01": 0.5467979231718282,
+        "tank_car.n.01": -1000.0,
+        "cooler.n.03": -1000.0,
+        "repositing.n.01": -1000.0,
+        "storage.n.03": -1000.0,
+        "storage.n.01": -1000.0,
+        "memory.n.04": -1000.0,
+        "tank.n.01": -1000.0,
+        "storage.n.04": -1000.0,
+        "tank.n.03": -1000.0,
+        "storehouse.n.01": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bb36ed60afdf428a870bc8e62398c30e",
+        "creator_username": "qaz840530",
+        "creator_display_name": "Vivi Chen",
+        "creator_profile_url": "https://sketchfab.com/qaz840530"
+    },
+    "filename": "std_bb36ed60afdf428a870bc8e62398c30e.glb",
+    "length": 2.402099847793579,
+    "width": 3.7618408203125
+}

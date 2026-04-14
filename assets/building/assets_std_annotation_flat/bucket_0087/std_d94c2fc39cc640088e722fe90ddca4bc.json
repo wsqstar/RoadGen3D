@@ -1,0 +1,99 @@
+{
+    "description_long": "This shotgun features a compact, futuristic design with a predominantly metallic gray body accented by yellow highlights along the top. The frame is robust and angular, with a short, thick barrel and a prominent muzzle. The grip is dark, likely made of a synthetic or polymer material, and is ergonomically shaped for a secure hold. The trigger guard is elongated and curves smoothly, providing ample space for finger placement. Two circular details are visible on the side, possibly representing controls or indicators, and the underside features a rail system for attachments. The overall construction suggests a modern, tactical firearm suitable for urban environments.",
+    "description": "A compact, modern shotgun with a metallic gray body, yellow highlights, and a dark ergonomic grip. It features a short barrel, elongated trigger guard, and tactical rail system.",
+    "description_view_0": "Side view showing the full profile, including the yellow highlights, ergonomic grip, trigger guard, and two circular side details.",
+    "description_view_1": "Front view displaying the barrel's muzzle and the symmetrical, robust construction of the shotgun's front end.",
+    "description_view_2": "Opposite side view mirroring view 0, with the same yellow highlights, grip, and side details visible.",
+    "description_view_3": "Rear view focusing on the back of the grip and the overall width of the shotgun's body.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.65,
+    "materials": [
+        "metal",
+        "polymer",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "pressable",
+        "pullable",
+        "liftable",
+        "aimable",
+        "triggerable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "trigger guard",
+        "barrel",
+        "rail",
+        "side controls"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, short and thick with no visible ribbing or venting",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "semi-automatic",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "elongated, smoothly curved trigger guard with ample finger space and no visible reinforcement",
+    "uid": "d94c2fc39cc640088e722fe90ddca4bc",
+    "near_synsets": {
+        "sawed-off_shotgun.n.01": 0.529999060628342,
+        "shotgun.n.01": 0.539695425242423,
+        "pump_action.n.01": 0.548764068917541,
+        "gas_gun.n.01": 0.552273417652505,
+        "shotgun_shell.n.01": 0.5595401020961186
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d94c2fc39cc640088e722fe90ddca4bc",
+        "creator_username": "loganrinaldis",
+        "creator_display_name": "Logan Rinaldis",
+        "creator_profile_url": "https://sketchfab.com/loganrinaldis"
+    },
+    "filename": "std_d94c2fc39cc640088e722fe90ddca4bc.glb",
+    "length": 0.17196527868509293,
+    "width": 0.07029540464282036
+}

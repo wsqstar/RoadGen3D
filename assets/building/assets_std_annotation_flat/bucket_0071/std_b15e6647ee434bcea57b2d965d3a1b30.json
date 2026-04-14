@@ -1,0 +1,109 @@
+{
+    "description_long": "This toll booth consists of a small, rectangular concrete structure with a flat, overhanging roof and a single wooden door on the front. Two large glass windows are set into the front wall, providing visibility for the attendant inside. Adjacent to the booth is a red, boxy payment machine and a long, striped barrier arm for controlling vehicle access. The booth sits on a concrete platform that extends beyond the structure, providing a stable base. The exterior surfaces are primarily gray and off-white, with visible weathering and some surface texture. The overall design is utilitarian, suitable for urban environments such as parking lots, gated communities, or toll roads.",
+    "description": "A small, concrete toll booth with large front windows, a wooden door, a red payment machine, and a striped barrier arm on a concrete platform.",
+    "description_view_0": "Front view showing the booth's windows, wooden door, red payment machine, and the barrier arm.",
+    "description_view_1": "Side view displaying the solid wall of the booth and the edge of the roof, with the barrier arm barely visible behind.",
+    "description_view_2": "Rear view showing the plain back wall of the booth and the concrete platform, with the payment machine and barrier arm to the side.",
+    "description_view_3": "Opposite side view featuring a single window, the red payment machine, and the full length of the barrier arm.",
+    "category": "toll booth",
+    "height": 2.5,
+    "max_dimension": 4.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "wood",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.1,
+        0.07,
+        0.1,
+        0.03,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "barrier arm",
+        "payment machine"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "off-white",
+        "brown",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.07,
+        0.08,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_payment_booth_window": true,
+    "attribute_barrier_arm": true,
+    "attribute_payment_machine": true,
+    "attribute_overhead_signage": false,
+    "attribute_lane_markings": false,
+    "uid": "b15e6647ee434bcea57b2d965d3a1b30",
+    "near_synsets": {
+        "toll_plaza.n.01": 0.45399851918128326,
+        "tollbooth.n.01": 0.4741460932233503,
+        "toll_bridge.n.01": 0.5015070327892572,
+        "tollgate.n.01": 0.5021863966370365,
+        "toll.n.01": 0.5406301659696725,
+        "price.n.03": -1000.0,
+        "booth.n.03": -1000.0,
+        "booth.n.04": -1000.0,
+        "bell.n.03": -1000.0,
+        "booth.n.01": -1000.0,
+        "booth.n.02": -1000.0
+    },
+    "synset": "tollbooth.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b15e6647ee434bcea57b2d965d3a1b30",
+        "creator_username": "Claudio12345",
+        "creator_display_name": "claudio",
+        "creator_profile_url": "https://sketchfab.com/Claudio12345"
+    },
+    "filename": "std_b15e6647ee434bcea57b2d965d3a1b30.glb",
+    "length": 2.179717183113098,
+    "width": 5.688629865646362
+}

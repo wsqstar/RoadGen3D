@@ -1,0 +1,99 @@
+{
+    "description_long": "This object consists of four cylindrical yellow canisters tightly bundled together with multiple red bands, some of which appear worn and scratched. The tops of the canisters are capped with metallic discs, and blue electrical wires are visibly connected across the tops, suggesting a linked circuit. The red bands wrap horizontally around the canisters, providing both structural cohesion and a visual warning. The surface of the canisters and bands shows signs of wear, with scuffs and dirt, indicating possible handling or exposure to rough environments. The overall construction and visible wiring strongly suggest an improvised explosive device, commonly referred to as a time bomb. The compact, portable form factor makes it suitable for concealment in urban settings.",
+    "description": "A bundle of four yellow cylindrical canisters strapped together with red bands and connected by blue wires, resembling an improvised explosive device. The object shows visible wear and has a rugged, utilitarian appearance.",
+    "description_view_0": "Front view showing four yellow canisters tightly bound by red bands, with blue wires clearly visible on top.",
+    "description_view_1": "Side view highlighting the cylindrical shape of the canisters and the overlapping red bands, with less visible wiring.",
+    "description_view_2": "Rear view similar to the front, but with slightly different wear patterns on the red bands and canisters.",
+    "description_view_3": "Opposite side view, showing the curvature of the canisters and the continuous red bands, with blue wires partially visible.",
+    "category": "bomb",
+    "height": 0.25,
+    "max_dimension": 0.18,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "wire",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wires",
+        "canister tops"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "red",
+        "blue",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.55,
+        0.3,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "group",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation appears to be initiated via the visible blue electrical wires connecting the canister tops, possibly triggered by an external device or timer.",
+    "attribute_wiring_visibility": true,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": true,
+    "uid": "963a6d1854d449299c7ab418012132df",
+    "near_synsets": {
+        "pipe_bomb.n.01": 0.4901631532221739,
+        "bomb.n.01": 0.49997468414117,
+        "cluster_bomb.n.01": 0.5113385559903143,
+        "improvised_explosive_device.n.01": 0.5130993819338784,
+        "briefcase_bomb.n.01": 0.5163593430072559,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/963a6d1854d449299c7ab418012132df",
+        "creator_username": "zack424",
+        "creator_display_name": "zack424",
+        "creator_profile_url": "https://sketchfab.com/zack424"
+    },
+    "filename": "std_963a6d1854d449299c7ab418012132df.glb",
+    "length": 0.18817265331745148,
+    "width": 0.1883409023284912
+}

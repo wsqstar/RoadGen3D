@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a flintlock-style shotgun with a dark wooden stock and a metal barrel, reminiscent of historical firearms from the 18th or early 19th century. The barrel is relatively short and cylindrical, with a flared muzzle and metallic finish, while the lock mechanism features a prominent hammer and frizzen assembly. The stock is smoothly contoured, extending into a rounded grip that fits comfortably in the hand. The trigger guard is rounded and metallic, encasing a single trigger beneath the action. The overall construction combines wood and metal, with visible screws and mechanical details on the lock and trigger area. The finish is matte to semi-gloss, with the wood showing a rich brown color and the metal parts appearing dark gray to black.",
+    "description": "A historical flintlock shotgun with a dark wooden stock, short metal barrel, and prominent hammer mechanism. The design features a rounded grip and a metallic trigger guard.",
+    "description_view_0": "Front view showing the circular muzzle opening and the alignment of the barrel, with the hammer and frizzen assembly visible above.",
+    "description_view_1": "Side view highlighting the full length of the barrel, the wooden stock, and the detailed lock mechanism with hammer and frizzen.",
+    "description_view_2": "Rear view displaying the rounded end of the wooden stock and the top of the lock mechanism, with the trigger guard partially visible.",
+    "description_view_3": "Opposite side view showing the barrel, stock, and lock mechanism from the other side, with similar features as view 1.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.45,
+    "materials": [
+        "wood",
+        "steel",
+        "brass",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.35,
+        0.08,
+        0.02
+    ],
+    "mass": 2.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 22,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "graspable",
+        "aimable",
+        "triggerable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "hammer",
+        "frizzen",
+        "barrel",
+        "stock",
+        "trigger guard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "dark gray",
+        "brass"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.32,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 110000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, short, cylindrical with a flared muzzle and no visible ribbing or venting",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "flintlock",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized metallic guard with a smooth contour and no finger grooves",
+    "uid": "00c3914755b649eb877c7dad3b488f63",
+    "near_synsets": {
+        "flintlock.n.01": 0.4689018326126567,
+        "flintlock.n.02": 0.47065836209973927,
+        "shotgun.n.01": 0.5116911451142999,
+        "fusil.n.01": 0.5179112890471502,
+        "sawed-off_shotgun.n.01": 0.5242035191038983
+    },
+    "synset": "sawed-off_shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/00c3914755b649eb877c7dad3b488f63",
+        "creator_username": "lion.gelders",
+        "creator_display_name": "lion.gelders",
+        "creator_profile_url": "https://sketchfab.com/lion.gelders"
+    },
+    "filename": "std_00c3914755b649eb877c7dad3b488f63.glb",
+    "length": 0.47598718106746674,
+    "width": 0.0638832151889801
+}

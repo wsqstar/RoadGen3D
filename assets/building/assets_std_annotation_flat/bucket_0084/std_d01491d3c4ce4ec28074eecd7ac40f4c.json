@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a small, standalone public toilet building situated on a rectangular patch of green ground. The structure features a gabled roof with a dark, shingled appearance and light-colored walls. At the front, there is a ramp with handrails leading up to a single entrance door, making the facility accessible. The building is elevated slightly above the ground, supported by short pillars or blocks. The exterior is simple and functional, with no visible windows or decorative elements. The overall design prioritizes accessibility and utility, suitable for placement in parks or urban public spaces.",
+    "description": "A compact public toilet building with a gabled roof, light walls, and an accessible ramp leading to the entrance.",
+    "description_view_0": "Front view showing the entrance door, ramp with handrails, and the gabled roof.",
+    "description_view_1": "Side view highlighting the length of the ramp and the side profile of the building.",
+    "description_view_2": "Rear view displaying the plain back wall and the roof's gabled structure.",
+    "description_view_3": "Opposite side view showing the ramp from the other direction and the building's side wall.",
+    "category": "public toilets",
+    "height": 2.8,
+    "max_dimension": 5.5,
+    "materials": [
+        "concrete",
+        "wood",
+        "metal",
+        "asphalt_shingles",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.15,
+        0.1,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 4200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "ramp",
+        "handrail"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "dark gray",
+        "green"
+    ],
+    "colors_composition": [
+        0.45,
+        0.2,
+        0.15,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_signage": "none",
+    "attribute_door_type": "swinging",
+    "attribute_ventilation_features": "none",
+    "attribute_accessibility_features": "ramp, handrails, wide entrance",
+    "attribute_roof_structure": "Gabled roof with dark asphalt shingles, no visible skylights or gutters",
+    "uid": "d01491d3c4ce4ec28074eecd7ac40f4c",
+    "near_synsets": {
+        "public_toilet.n.01": 0.48148413879636115,
+        "washroom.n.01": 0.5067059297384378,
+        "men's_room.n.01": 0.5130194338779641,
+        "toilet.n.01": 0.5136379428810856,
+        "latrine.n.01": 0.5184701576201369,
+        "gutter.n.02": -1000.0,
+        "toilet.n.04": -1000.0,
+        "toilet.n.02": -1000.0
+    },
+    "synset": "public_toilet.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d01491d3c4ce4ec28074eecd7ac40f4c",
+        "creator_username": "Metaroy",
+        "creator_display_name": "Metaroy",
+        "creator_profile_url": "https://sketchfab.com/Metaroy"
+    },
+    "filename": "std_d01491d3c4ce4ec28074eecd7ac40f4c.glb",
+    "length": 4.5423595905303955,
+    "width": 5.7114644050598145
+}

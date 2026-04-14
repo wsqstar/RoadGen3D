@@ -1,0 +1,99 @@
+{
+    "description_long": "This traffic barricade consists of a sturdy rectangular concrete base supporting a vertical metal frame with a chain-link mesh panel. The lower half of the barricade features a solid metal or composite panel, painted with bold black chevron arrows on a bright orange background, serving as a high-visibility warning. The chevron pattern is oriented horizontally and spans the width of the barricade, making it easily noticeable to approaching vehicles or pedestrians. The upper section is open, formed by a diamond-patterned metal mesh, allowing visibility through the barrier while still providing a physical obstruction. The frame is constructed from metal pipes, likely steel, with a rust-resistant finish. The overall design is robust and intended for temporary or semi-permanent placement in urban environments to control or redirect traffic flow.",
+    "description": "A robust traffic barricade with a concrete base, metal frame, chain-link mesh, and a bright orange panel with black chevron arrows for high visibility.",
+    "description_view_0": "Front view showing the orange panel with black chevron arrows and the chain-link mesh above.",
+    "description_view_1": "Side view revealing the thin profile of the barricade and the depth of the concrete base.",
+    "description_view_2": "Rear view displaying the plain orange panel without chevron markings and the mesh above.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the narrow profile and structural frame.",
+    "category": "traffic barricade",
+    "height": 1.2,
+    "max_dimension": 1.8,
+    "materials": [
+        "concrete",
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.35,
+        0.05,
+        0.1
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "panel",
+        "frame"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "orange",
+        "black",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.4,
+        0.25,
+        0.15,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 20000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_reflective_striping_pattern": "Diagonal black chevron stripes on an orange background, wide, repeating horizontally across the lower panel.",
+    "attribute_warning_signage": [],
+    "attribute_number_of_support_legs": 2,
+    "attribute_attachment_fixtures": [],
+    "attribute_presence_of_lights": false,
+    "uid": "52f5b46223d447858d48f8ce15bde614",
+    "near_synsets": {
+        "roadblock.n.02": 0.5448836158951862,
+        "crash_barrier.n.01": 0.5469215998885277,
+        "chainlink_fence.n.01": 0.55678433992369,
+        "barricade.n.02": 0.5663753676802693,
+        "gate.n.01": 0.5668391883056755,
+        "traffic.n.02": -1000.0,
+        "traffic.n.01": -1000.0,
+        "traffic.n.03": -1000.0,
+        "dealings.n.01": -1000.0
+    },
+    "synset": "roadblock.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/52f5b46223d447858d48f8ce15bde614",
+        "creator_username": "brandonmijnders",
+        "creator_display_name": "brandonmijnders",
+        "creator_profile_url": "https://sketchfab.com/brandonmijnders"
+    },
+    "filename": "std_52f5b46223d447858d48f8ce15bde614.glb",
+    "length": 0.5809078216552734,
+    "width": 1.2992271184921265
+}

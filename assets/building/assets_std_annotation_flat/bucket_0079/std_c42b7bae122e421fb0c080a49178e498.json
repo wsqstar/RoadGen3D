@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a modern, low-floor city bus with a streamlined rectangular body painted in a vibrant green color. The bus features large, dark-tinted windows along both sides, providing ample visibility for passengers and a sleek, contemporary appearance. There are two wide passenger doors on one side, with the front door positioned near the driver's area and a second door located centrally for efficient boarding and alighting. The roof is equipped with several rectangular hatches or vents, and the wheels are fitted with metallic hubcaps. The front and rear ends are slightly rounded, with large windshields and integrated lighting elements. The overall design suggests a focus on urban public transportation, prioritizing accessibility and passenger capacity.",
+    "description": "A green, modern city bus with large tinted windows, two wide passenger doors, and a streamlined, accessible design.",
+    "description_view_0": "Side view showing two wide passenger doors, large tinted windows, and two visible wheels.",
+    "description_view_1": "Front view highlighting the wide windshield, side mirrors, and roof hatches.",
+    "description_view_2": "Opposite side view with uninterrupted windows and no visible passenger doors.",
+    "description_view_3": "Rear view showing the back window, rear lights, and roof features.",
+    "category": "bus",
+    "height": 3.2,
+    "max_dimension": 12.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "drivable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "button",
+        "mirror",
+        "vent"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.75,
+        0.18,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 2,
+    "attribute_window_arrangement": "Large, rectangular, evenly spaced windows run along both sides; the door side has windows interrupted by two wide passenger doors, while the opposite side has a continuous row of windows separated by slim pillars.",
+    "attribute_route_number_or_destination_sign": "",
+    "attribute_bus_manufacturer_logo": "",
+    "attribute_passenger_entry_step_height": 0.35,
+    "uid": "c42b7bae122e421fb0c080a49178e498",
+    "near_synsets": {
+        "bus.n.01": 0.5145564030714909,
+        "school_bus.n.01": 0.5211753992372785,
+        "minibus.n.01": 0.5231915153941418,
+        "bus_traffic.n.01": 0.5307417337133536,
+        "public_transit.n.01": 0.5330990315233141,
+        "busbar.n.01": -1000.0,
+        "bus.n.04": -1000.0,
+        "bus_topology.n.01": -1000.0
+    },
+    "synset": "bus_topology.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c42b7bae122e421fb0c080a49178e498",
+        "creator_username": "fedorovpavel396",
+        "creator_display_name": "fedorovpavel396",
+        "creator_profile_url": "https://sketchfab.com/fedorovpavel396"
+    },
+    "filename": "std_c42b7bae122e421fb0c080a49178e498.glb",
+    "length": 13.520836353302002,
+    "width": 3.366485595703125
+}

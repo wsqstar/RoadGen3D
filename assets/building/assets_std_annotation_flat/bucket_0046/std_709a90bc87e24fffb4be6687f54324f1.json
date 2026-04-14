@@ -1,0 +1,92 @@
+{
+    "description_long": "This humanoid robot consists of a segmented, modular frame with distinct limb components, including two arms, two legs, and a central torso. The limbs are composed of smooth, light gray panels with black accents, suggesting a protective shell over internal mechanisms. The robot's head is compact and rounded, with a streamlined design that lacks visible facial features. The joints are clearly articulated, allowing for a wide range of motion, and the overall structure is lightweight and skeletal, with significant gaps between the segments. The materials appear to be primarily advanced polymers or composites, possibly reinforced with metal for durability. The robot's design is utilitarian and minimalistic, optimized for mobility and flexibility in urban environments.",
+    "description": "A segmented, skeletal humanoid robot with articulated limbs and a smooth, light gray exterior. The design is minimalistic, with modular components and no visible facial features.",
+    "description_view_0": "The robot's right side is visible, showing the elongated arm, rounded head, and separated limb segments.",
+    "description_view_1": "A frontal view reveals the symmetrical arrangement of the limbs and the central torso, with the head facing forward.",
+    "description_view_2": "The left side is shown, highlighting the curvature of the torso and the articulation of the left arm and leg.",
+    "description_view_3": "The back of the robot is visible, displaying the rear of the head, the back of the torso, and the alignment of the limbs.",
+    "category": "humanoid robot",
+    "height": 1.6,
+    "max_dimension": 1.8,
+    "materials": [
+        "polymer composite",
+        "metal",
+        "synthetic rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "mass": 38,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arm",
+        "leg",
+        "head",
+        "joint"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 3500,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "group",
+    "attribute_pose": "The robot is in a neutral, upright pose with limbs slightly separated from the torso. Both arms and legs are extended outward, and the head is positioned above the torso.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated smooth panels and protective coverings as part of its structure.",
+    "attribute_facial_features": "The head is rounded and smooth with no visible eyes, mouth, or nose, and lacks expressive or display elements.",
+    "attribute_limb_articulation": "Each limb has multiple visible articulation points, including hinge and rotary joints at the shoulders, elbows, hips, and knees, allowing for flexible movement. The limbs appear rigid but highly articulated.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "709a90bc87e24fffb4be6687f54324f1",
+    "near_synsets": {
+        "android.n.01": 0.5436461563309706,
+        "cyborg.n.01": 0.5606034707811819,
+        "robotics_equipment.n.01": 0.5611613603016237,
+        "automaton.n.02": 0.5658605443140551,
+        "automaton.n.03": 0.5854396397083009
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/709a90bc87e24fffb4be6687f54324f1",
+        "creator_username": "8953310127akash",
+        "creator_display_name": "Akash",
+        "creator_profile_url": "https://sketchfab.com/8953310127akash"
+    },
+    "filename": "std_709a90bc87e24fffb4be6687f54324f1.glb",
+    "length": 2.7353967428207397,
+    "width": 2.2382789850234985
+}

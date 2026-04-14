@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a rectangular, repurposed shipping container structure with a corrugated blue metal exterior and a flat roof. One long side features a large sliding glass door and a small window, suggesting it is designed for human entry and use. The opposite long side has a single window, while one short end has a set of double doors with vertical metal bars, likely for secure access. The other short end is clad in white paneling and includes a red double door and another window, giving it a more residential or office-like appearance. The container appears robust and weather-resistant, suitable for urban environments as a pop-up office, kiosk, or small living space. The overall design is functional, with multiple access points and windows for light and ventilation.",
+    "description": "A blue corrugated metal container with multiple doors and windows, designed for human entry and use in urban settings. Features include sliding glass doors, secure double doors, and residential-style paneling.",
+    "description_view_0": "End view showing blue double doors with vertical metal bars, framed in white.",
+    "description_view_1": "Side view with a large sliding glass door and a small window, both set in the blue corrugated wall.",
+    "description_view_2": "Opposite end view with a red double door, a white panel exterior, and a window.",
+    "description_view_3": "Side view with a single window in the blue corrugated wall, no doors visible.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "handle"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "blue",
+        "white",
+        "red",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "none",
+    "attribute_opening_mechanism": "sliding door, hinged door, latch",
+    "attribute_labeling_or_signage": "none",
+    "attribute_handles_or_grips": "handles on doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "a9e5f7c215a540e2b323bdb1c355f94a",
+    "near_synsets": {
+        "container.n.01": 0.508153498899748,
+        "door.n.03": 0.5368217214148785,
+        "door.n.04": 0.5370891116469741,
+        "box.n.01": 0.5432540085746737,
+        "door.n.01": 0.554691917853589
+    },
+    "synset": "container.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a9e5f7c215a540e2b323bdb1c355f94a",
+        "creator_username": "sourseymour",
+        "creator_display_name": "sourseymour",
+        "creator_profile_url": "https://sketchfab.com/sourseymour"
+    },
+    "filename": "std_a9e5f7c215a540e2b323bdb1c355f94a.glb",
+    "length": 2.6802300214767456,
+    "width": 6.221038818359375
+}

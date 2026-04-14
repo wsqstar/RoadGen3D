@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a massive, heavy artillery piece resembling a World War-era siege gun, featuring a long, thick barrel mounted on a robust, riveted metal carriage. The structure includes large, curved armored shields on either side, likely for crew protection, and a complex system of gears, wheels, and support struts for stability and aiming. The base is broad and reinforced, with visible steps and platforms for operator access, and the entire assembly sits on a flat, riveted platform. The barrel is elevated at a steep angle, suggesting it is designed for high-arc, long-range bombardment. The surface is predominantly dark, matte metal with visible wear and rivet detailing, giving it an industrial, utilitarian appearance. This weapon is clearly intended for static emplacement rather than portability, and its imposing size and construction indicate it is capable of firing large-caliber shells.",
+    "description": "A large, stationary artillery gun with a long barrel, heavy metal carriage, and armored shields, designed for siege or defensive use. The structure is robust, industrial, and detailed with rivets and mechanical components.",
+    "description_view_0": "Front view showing the wide, armored shield and the circular opening of the barrel, with the support structure and steps visible below.",
+    "description_view_1": "Side view highlighting the long, elevated barrel, large wheels, and the curved armored shield extending from the base.",
+    "description_view_2": "Rear view displaying the back of the platform, steps, and the mounting structure supporting the barrel.",
+    "description_view_3": "Opposite side view mirroring view 1, showing the mechanical details, wheels, and the full length of the barrel.",
+    "category": "rifle",
+    "height": 3.2,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "iron",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "barrel",
+        "wheels",
+        "gears",
+        "steps",
+        "platform",
+        "shield"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "none",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "628d332047da43e699f9d1f23f79ac69",
+    "near_synsets": {
+        "artillery.n.01": 0.4644161690375385,
+        "rifle.n.01": 0.4669622814722294,
+        "artillery.n.02": 0.49467353688000837,
+        "cannon.n.01": 0.49785660393561215,
+        "sniper_rifle.n.01": 0.5015627819071484
+    },
+    "synset": "sniper_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/628d332047da43e699f9d1f23f79ac69",
+        "creator_username": "atypotopyta",
+        "creator_display_name": "atypotopyta",
+        "creator_profile_url": "https://sketchfab.com/atypotopyta"
+    },
+    "filename": "std_628d332047da43e699f9d1f23f79ac69.glb",
+    "length": 5.734525203704834,
+    "width": 3.4439687728881836
+}

@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a large, cylindrical red metal barrel with a slightly weathered and scratched surface, indicating exposure to outdoor or industrial environments. The barrel features two prominent yellow and black radioactive warning symbols on opposite sides, making it clear that it is intended for hazardous material storage. The top of the barrel is sealed with a fitted lid, which includes a small, round metal cap or bung for access or venting. The body of the barrel is reinforced with two horizontal ridges, providing structural strength and durability. The surface finish is matte with some minor glossiness from worn paint, and the overall construction suggests it is designed to be robust and secure. This type of barrel is commonly found in industrial, urban, or hazardous waste management settings.",
+    "description": "A large red metal barrel with radioactive warning symbols, reinforced ridges, and a sealed lid with a metal cap. The surface is weathered and matte, indicating industrial or hazardous use.",
+    "description_view_0": "Front view showing the red barrel with a radioactive warning symbol and a visible metal cap on the top left.",
+    "description_view_1": "Side view with the radioactive symbol and the metal cap now centered on the top surface.",
+    "description_view_2": "Opposite side view with the radioactive symbol and the metal cap positioned to the left on the top.",
+    "description_view_3": "Rear view with the radioactive symbol and the metal cap centered, similar to view 1 but from the opposite side.",
+    "category": "barrel or bucket",
+    "height": 0.9,
+    "max_dimension": 0.6,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 35,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "yellow",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "metal reinforcement rings at top and middle",
+    "attribute_labeling_or_markings": "radioactive warning symbols",
+    "attribute_placement_location": "industrial",
+    "uid": "34dc12337afd46ae808277feac85f428",
+    "near_synsets": {
+        "barrel.n.02": 0.5103783480991244,
+        "barrel.n.03": 0.5236615430291793,
+        "barrels.n.01": 0.544820414321452,
+        "barrel.n.01": 0.5463013927438255,
+        "beer_barrel.n.01": 0.5471363675325283,
+        "barrel.n.05": -1000.0,
+        "bucket.n.01": -1000.0,
+        "bucket.n.02": -1000.0,
+        "barrel.n.04": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/34dc12337afd46ae808277feac85f428",
+        "creator_username": "sabriayes",
+        "creator_display_name": "Sabri Aye\u015f",
+        "creator_profile_url": "https://sketchfab.com/sabriayes"
+    },
+    "filename": "std_34dc12337afd46ae808277feac85f428.glb",
+    "length": 0.5969725847244263,
+    "width": 0.6061840057373047
+}

@@ -1,0 +1,110 @@
+{
+    "description_long": "This structure is a large, wooden half-pipe skate ramp with high vertical walls and a flat central platform, featuring metal railings along the top edges for safety. The exterior is decorated with colorful graffiti and murals, including a prominent 'Santa Cruz' logo and various artistic motifs. One side of the ramp has a staircase leading up to a viewing or launching platform, which is also enclosed by metal railings. The ramp's interior is smooth and continuous, designed for skateboarding or similar activities, with a wide open space in the center. The wood panels are light in color, and the overall construction appears robust and professionally built. There are no visible water features, gates, or spillways, and the structure is clearly intended for recreational use rather than water management.",
+    "description": "A large, wooden half-pipe skate ramp with metal railings, graffiti art, and a staircase leading to a raised platform. The structure is robust, smooth, and designed for recreational use.",
+    "description_view_0": "Front view showing the flat central platform, high vertical walls, and colorful graffiti on the exterior.",
+    "description_view_1": "Interior view highlighting the smooth, continuous ramp surface and the 'Santa Cruz' logo at the center.",
+    "description_view_2": "Rear view displaying the large 'Santa Cruz' mural and the open central passage beneath the ramp.",
+    "description_view_3": "Side view focusing on the staircase, raised platform, and additional graffiti on the side panels.",
+    "category": "dam",
+    "height": 4.5,
+    "max_dimension": 12.0,
+    "materials": [
+        "wood",
+        "metal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "slideable",
+        "skateable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "staircase",
+        "platform",
+        "railings"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light brown",
+        "gray",
+        "multicolor (graffiti)",
+        "red",
+        "green",
+        "blue",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.01,
+        0.01,
+        0.01,
+        0.01,
+        0.01
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_spillway_presence": false,
+    "attribute_control_gates": [
+        "none"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_water_outflow": "none",
+    "attribute_perimeter_fencing": true,
+    "uid": "6d0917fc67da44f49e966b3dc0d01d2e",
+    "near_synsets": {
+        "dam.n.01": 0.5639216630286694,
+        "skateboarding.n.01": 0.5660164946386742,
+        "rink.n.01": 0.5795584360641968,
+        "ramp.n.03": 0.5818865853284443,
+        "stairhead.n.01": 0.5838830625321758,
+        "decameter.n.01": -1000.0,
+        "dam.n.03": -1000.0
+    },
+    "synset": "dam.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6d0917fc67da44f49e966b3dc0d01d2e",
+        "creator_username": "CharlesPriceV",
+        "creator_display_name": "CharlesPriceV",
+        "creator_profile_url": "https://sketchfab.com/CharlesPriceV"
+    },
+    "filename": "std_6d0917fc67da44f49e966b3dc0d01d2e.glb",
+    "length": 10.294614791870117,
+    "width": 11.21802282333374
+}

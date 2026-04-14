@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a compact industrial-style trailer with a deep, rectangular metal bin designed for hauling materials. The body is constructed from heavy steel panels, showing visible signs of rust and weathering, especially along the edges and interior surfaces. The trailer is supported by a robust metal frame and rides on two pairs of solid wheels, each mounted on a sturdy axle. At the front, a mechanical coupling mechanism is present, likely for attaching to a locomotive or another vehicle, and a chain is visible for added security. The interior is open and unobstructed, making it suitable for carrying bulk items such as gravel, debris, or construction materials. The overall design is utilitarian, with no visible doors, windows, or branding, emphasizing function over aesthetics.",
+    "description": "A rugged, weathered metal trailer with a deep open bin, mounted on four wheels and featuring a front coupling mechanism. The surface is rusted and industrial, designed for hauling bulk materials.",
+    "description_view_0": "Front view showing the deep open bin, central coupling mechanism, and structural frame details.",
+    "description_view_1": "Side view highlighting the length of the bin, the two visible wheels, and the absence of doors or windows.",
+    "description_view_2": "Rear view similar to the front, with the open bin and frame visible, but no coupling mechanism or chain.",
+    "description_view_3": "Opposite side view, again showing the bin's depth, two wheels, and the weathered metal surface.",
+    "category": "trailer",
+    "height": 1.1,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "iron",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 320,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 650,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "loadable",
+        "unloadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "coupling mechanism",
+        "chain"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "rust brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 4,
+    "attribute_hitch_type": "pintle hook",
+    "attribute_door_configuration": "no doors visible",
+    "attribute_branding_or_signage": "no visible signage",
+    "attribute_window_presence": "no windows visible",
+    "uid": "9b139a4a27fc4c58942c456a25604b2f",
+    "near_synsets": {
+        "trailer.n.03": 0.4727893769747713,
+        "trailer_truck.n.01": 0.5090985633897507,
+        "tandem_trailer.n.01": 0.510350383065248,
+        "trailer.n.04": 0.5167888386645867,
+        "car_carrier.n.01": 0.5396464798792604,
+        "dawdler.n.01": -1000.0,
+        "preview.n.01": -1000.0
+    },
+    "synset": "trailer.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9b139a4a27fc4c58942c456a25604b2f",
+        "creator_username": "AlexBorisov",
+        "creator_display_name": "Alex Borisov",
+        "creator_profile_url": "https://sketchfab.com/AlexBorisov"
+    },
+    "filename": "std_9b139a4a27fc4c58942c456a25604b2f.glb",
+    "length": 1.9319566488265991,
+    "width": 1.048577070236206
+}

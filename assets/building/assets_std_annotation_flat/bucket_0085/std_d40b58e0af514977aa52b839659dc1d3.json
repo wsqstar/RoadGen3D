@@ -1,0 +1,96 @@
+{
+    "description_long": "This object consists of two tall, upright clusters of flowering plants with slender green stems and broad, heart-shaped leaves. The leaves are arranged alternately along the stems, with a dense concentration near the base and midsection. At the top of each stem, there are multiple small, white, daisy-like flowers grouped in loose, rounded umbels. The flowers have delicate, radial petals and prominent yellow centers, giving a soft, airy appearance. The overall structure is vertical and bushy, with the flowers rising above the foliage. This type of plant is commonly found in urban parks, gardens, or along sidewalks, adding a natural and decorative touch to the environment.",
+    "description": "Tall, upright clusters of flowering plants with broad green leaves and small white flowers in rounded umbels. The stems are slender and leafy, topped with delicate, daisy-like blooms.",
+    "description_view_0": "Side view showing the dense foliage at the base and the full height of the stems with flowers clearly visible at the top.",
+    "description_view_1": "Frontal view highlighting the symmetrical arrangement of the two plant clusters and the vertical alignment of stems and flowers.",
+    "description_view_2": "Opposite side view, similar to view 0, with a clear display of the leaf density and flower clusters from a different angle.",
+    "description_view_3": "Rear view showing the back of the plant clusters, with the flowers and leaves overlapping and the stems less visible.",
+    "category": "flower",
+    "height": 1.0,
+    "max_dimension": 1.0,
+    "materials": [
+        "plant_fiber",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 2.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 15,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pluckable",
+        "cuttable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stem",
+        "leaf",
+        "flower_head"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "green",
+        "white",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.38,
+    "youngs_modulus": 20,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "group",
+    "attribute_petal_arrangement": "The petals are arranged radially in a daisy-like pattern, forming a symmetrical whorl around the central disc. Each flower head consists of multiple layers of overlapping petals, creating a rounded, umbel inflorescence.",
+    "attribute_number_of_petals": 40,
+    "attribute_stem_presence": true,
+    "attribute_leaf_shape": "cordate",
+    "attribute_flower_location": "terminal",
+    "uid": "d40b58e0af514977aa52b839659dc1d3",
+    "near_synsets": {
+        "umbel.n.01": 0.46466577997692543,
+        "showy_daisy.n.01": 0.4751822497825166,
+        "flower_head.n.01": 0.4891542226121732,
+        "flower.n.01": 0.49020625069708323,
+        "daisy.n.01": 0.4904823495549192,
+        "flower.n.03": -1000.0,
+        "flower.n.02": -1000.0
+    },
+    "synset": "flower.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d40b58e0af514977aa52b839659dc1d3",
+        "creator_username": "LivinVision",
+        "creator_display_name": "Livin Vision",
+        "creator_profile_url": "https://sketchfab.com/LivinVision"
+    },
+    "filename": "std_d40b58e0af514977aa52b839659dc1d3.glb",
+    "length": 1.2770902514457703,
+    "width": 0.8793562352657318
+}

@@ -1,0 +1,87 @@
+{
+    "description_long": "This is a rectangular barn with a steeply pitched gable roof, constructed from weathered wooden planks. The exterior siding features a vertical board and batten pattern, giving it a rustic and utilitarian appearance. The roof is made of wide, overlapping wooden boards, with a single small rectangular window or vent visible on one side. There is a large, simple door on one of the shorter ends, blending into the siding, and no other visible doors or elaborate architectural details. The barn's muted gray tones suggest aged wood, and its overall form is functional, typical of traditional American agricultural structures. The structure appears solid and robust, suitable for storage or sheltering livestock.",
+    "description": "A rectangular, weathered wooden barn with a steep gable roof and vertical board and batten siding. It features a large main door and a single small window or vent on the roof.",
+    "description_view_0": "The barn is seen from the narrow end, highlighting the steep gable roof and vertical siding, with the main door visible.",
+    "description_view_1": "A top-down view of the barn shows the full length of the gable roof, with a small window or vent on one side.",
+    "description_view_2": "The opposite narrow end of the barn, similar to view 0, but without a visible door.",
+    "description_view_3": "A top-down view from the other side, again showing the roof's length and the small window or vent.",
+    "category": "barn",
+    "height": 5.0,
+    "max_dimension": 15.0,
+    "materials": [
+        "wood",
+        "air",
+        "metal"
+    ],
+    "materials_composition": [
+        0.85,
+        0.14,
+        0.01
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "storable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window/vent"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "steep gable roof",
+    "attribute_siding_pattern": "vertical board and batten",
+    "attribute_door_style": "single large hinged door, flush with siding",
+    "attribute_window_arrangement": "single small window or vent on one roof side",
+    "attribute_architectural_style": "traditional American barn",
+    "uid": "edf8d93e96d14c368f6d92062d345bcf",
+    "near_synsets": {
+        "barn.n.01": 0.49812925426196814,
+        "barn_door.n.01": 0.5037365871118799,
+        "farm_building.n.01": 0.514028986332181,
+        "cowbarn.n.01": 0.5228018481504437,
+        "farmhouse.n.01": 0.5263401327121022,
+        "barn.n.02": -1000.0
+    },
+    "synset": "barn.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/edf8d93e96d14c368f6d92062d345bcf",
+        "creator_username": "ShadowCG",
+        "creator_display_name": "ShadowCG",
+        "creator_profile_url": "https://sketchfab.com/ShadowCG"
+    },
+    "filename": "std_edf8d93e96d14c368f6d92062d345bcf.glb",
+    "length": 11.431424617767334,
+    "width": 5.180356502532959
+}

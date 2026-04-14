@@ -1,0 +1,113 @@
+{
+    "description_long": "This object is a cylindrical electrical transformer tower with a robust metal body, featuring two prominent ceramic insulator stacks protruding from the top. The main body is painted light gray and displays high voltage warning signs on its sides, along with various access panels and bolted flanges. Several electrical connectors and bushings are visible, as well as a few attached control boxes and cable entry points. The top surface is flat with two insulator stacks arranged at an angle, while the sides include both rectangular and circular protrusions for electrical and maintenance access. The overall design is industrial, with visible fasteners and functional components typical of urban power distribution infrastructure.",
+    "description": "A cylindrical metal transformer tower with two angled ceramic insulator stacks, warning signs, and multiple electrical connectors and access panels.",
+    "description_view_0": "Front view showing two angled insulator stacks, a central access panel, and warning signs on both sides.",
+    "description_view_1": "Side view highlighting a single insulator stack, attached control boxes, and visible warning signage.",
+    "description_view_2": "Rear view displaying both insulator stacks, multiple electrical connectors, and the manufacturer's logo.",
+    "description_view_3": "Opposite side view with a single insulator stack, control boxes, and high voltage warning sign.",
+    "category": "transformer tower",
+    "height": 1.6,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "ceramic",
+        "plastic",
+        "copper",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.07,
+        0.07,
+        0.03,
+        0.03
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "connectable",
+        "inspectable",
+        "serviceable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "insulator stack",
+        "access panel",
+        "connector",
+        "control box",
+        "bushing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "white",
+        "black",
+        "yellow",
+        "red",
+        "blue"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_insulator_stacks": 2,
+    "attribute_arrangement_of_crossarms": "No traditional crossarms are present; instead, two insulator stacks are mounted at an outward angle from the top surface, spaced apart symmetrically.",
+    "attribute_presence_of_warning_signage": true,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "transformer",
+        "insulator",
+        "connector",
+        "control box"
+    ],
+    "attribute_configuration_of_attached_power_lines": "Power lines are configured for two circuits, each connected to a separate insulator stack, likely supporting a split-phase or dual-phase arrangement with parallel routing.",
+    "uid": "31b51b5ca9e64f5ea841b5a49501b9a0",
+    "near_synsets": {
+        "pylon.n.02": 0.5531286092567004,
+        "transformer.n.01": 0.56339096343907,
+        "cascade_transformer.n.01": 0.5776839634478714,
+        "coil.n.03": 0.5818058089464614,
+        "step-down_transformer.n.01": 0.5852253679603294,
+        "tower.n.01": -1000.0,
+        "column.n.04": -1000.0,
+        "tugboat.n.01": -1000.0
+    },
+    "synset": "transformer.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/31b51b5ca9e64f5ea841b5a49501b9a0",
+        "creator_username": "omarsaurio",
+        "creator_display_name": "Omwekiatl",
+        "creator_profile_url": "https://sketchfab.com/omarsaurio"
+    },
+    "filename": "std_31b51b5ca9e64f5ea841b5a49501b9a0.glb",
+    "length": 0.9623192548751831,
+    "width": 0.8813010454177856
+}

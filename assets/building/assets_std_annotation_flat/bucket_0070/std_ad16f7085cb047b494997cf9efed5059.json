@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a heavily damaged and rusted four-door sedan, with significant corrosion and weathering across its body. The roof is partially caved in, and the paint is almost entirely worn away, revealing large patches of bare, oxidized metal. The windows are missing, and one of the doors is detached and lying on the ground nearby. The tires are either missing or flattened, and the undercarriage is exposed, showing further signs of decay. Graffiti is visible on the sides, and the overall appearance suggests the vehicle has been abandoned for a long time, possibly in a post-apocalyptic or derelict urban environment.",
+    "description": "A rusted, abandoned four-door sedan with severe body damage, missing windows, and a detached door. The car is covered in corrosion and graffiti, evoking a sense of long-term neglect.",
+    "description_view_0": "The rear and top of the sedan are visible, showing a caved-in roof, missing rear window, and a detached door lying beside the car.",
+    "description_view_1": "The underside and left side of the sedan are visible, highlighting the exposed undercarriage, missing wheels, and graffiti on the side.",
+    "description_view_2": "The front and right side of the sedan are visible, with the detached door on the ground and extensive rust on the hood and roof.",
+    "description_view_3": "The top and left side of the sedan are visible, showing the collapsed roof, missing windows, and graffiti on the doors.",
+    "category": "sedan",
+    "height": 1.3,
+    "max_dimension": 4.8,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.05,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 6,
+    "movable": true,
+    "required_force": 6000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "trunk",
+        "hood"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "rust brown",
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_number_of_doors": 4,
+    "attribute_license_plate": "none",
+    "attribute_wheel_design": "unknown",
+    "uid": "ad16f7085cb047b494997cf9efed5059",
+    "near_synsets": {
+        "car_door.n.01": 0.5448570831708723,
+        "car_window.n.01": 0.558238798006681,
+        "sedan.n.01": 0.5651676624080091,
+        "used-car.n.01": 0.5715527132048198,
+        "disrepair.n.01": 0.572108993902007,
+        "sedan.n.02": -1000.0
+    },
+    "synset": "sedan.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ad16f7085cb047b494997cf9efed5059",
+        "creator_username": "kryik1023",
+        "creator_display_name": "Renafox",
+        "creator_profile_url": "https://sketchfab.com/kryik1023"
+    },
+    "filename": "std_ad16f7085cb047b494997cf9efed5059.glb",
+    "length": 4.931811332702637,
+    "width": 5.085564374923706
+}

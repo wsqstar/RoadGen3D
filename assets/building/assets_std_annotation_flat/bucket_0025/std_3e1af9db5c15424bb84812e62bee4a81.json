@@ -1,0 +1,87 @@
+{
+    "description_long": "This object is a rectangular section of sidewalk composed of large, flat stone slabs arranged in a staggered pattern. The stones are light gray with visible surface texture, including roughness, small pits, and occasional dark spots or inclusions. The joints between the slabs are filled with a lighter material, possibly mortar or sand, and are slightly recessed, emphasizing the separation between each stone. The surface is generally even but not perfectly smooth, with some minor undulations and irregularities typical of natural stone paving. The edges of the sidewalk are straight and well-defined, with no visible curb or raised border. There are no additional features such as tactile paving, street furniture, or embedded markings.",
+    "description": "A rectangular, light gray stone sidewalk section with rough, textured slabs and visible joints. The surface is even but naturally irregular, with no curb or street furniture present.",
+    "description_view_0": "From this view, the staggered arrangement of the stone slabs and the rough, pitted surface texture are clearly visible.",
+    "description_view_1": "This angle highlights the lengthwise alignment of the slabs and the recessed joints between them.",
+    "description_view_2": "The view shows the evenness of the surface and the consistent width of the stone slabs across the sidewalk.",
+    "description_view_3": "This perspective emphasizes the straight edge and the natural stone texture, with visible separation between the slabs.",
+    "category": "sidewalk",
+    "height": 0.08,
+    "max_dimension": 2.5,
+    "materials": [
+        "stone",
+        "mortar",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.06,
+        0.02
+    ],
+    "mass": 700,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "segmentable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light gray",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.92,
+        0.08
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.54,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": false,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "flush",
+    "attribute_adjacent_street_type": "residential",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "3e1af9db5c15424bb84812e62bee4a81",
+    "near_synsets": {
+        "sidewalk.n.01": 0.47185129675417714,
+        "curb.n.01": 0.5151040193471648,
+        "paved_surface.n.01": 0.5194859605904403,
+        "curbside.n.01": 0.5251882932053539,
+        "cobble.n.01": 0.5288053457690128
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3e1af9db5c15424bb84812e62bee4a81",
+        "creator_username": "Gian.Flower",
+        "creator_display_name": "CL4PTRAP",
+        "creator_profile_url": "https://sketchfab.com/Gian.Flower"
+    },
+    "filename": "std_3e1af9db5c15424bb84812e62bee4a81.glb",
+    "length": 1.245285987854004,
+    "width": 1.2066526412963867
+}

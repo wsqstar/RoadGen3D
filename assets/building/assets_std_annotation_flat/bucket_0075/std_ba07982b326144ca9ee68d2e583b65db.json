@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a large, rectangular, industrial shipping container with a weathered white exterior and visible rust along the edges and seams. The container features corrugated metal sides for structural strength and durability, and reinforced corners for stacking and transport. One end of the container has double doors with locking mechanisms and warning labels, while the opposite end appears to house a refrigeration unit, indicating it is a refrigerated or 'reefer' container. The surface shows signs of age and use, with streaks of rust and dirt, but the structure remains intact. The container is designed to be placed on the ground or loaded onto trucks, trains, or ships for cargo transport. Its robust construction allows it to support heavy loads and withstand harsh outdoor environments.",
+    "description": "A large, weathered white refrigerated shipping container with rusted edges, double doors, and a refrigeration unit at one end.",
+    "description_view_0": "This view shows the double doors with locking bars and warning labels, as well as the corrugated metal sides and some rust along the edges.",
+    "description_view_1": "This angle highlights the refrigeration unit at the far end, with the long, corrugated side panels and visible rust streaks.",
+    "description_view_2": "The refrigeration unit is clearly visible on the end, with the container's length and weathered surface prominent.",
+    "description_view_3": "This view focuses on the plain end opposite the doors, showing the container's length, rusted seams, and corrugated texture.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 12.0,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.01,
+        0.03
+    ],
+    "mass": 4000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 20000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking bar",
+        "refrigeration unit"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "rust brown",
+        "gray",
+        "blue"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "warning labels and small printed markings on the door end",
+    "attribute_handles_or_grips": "locking bars with integrated handles on the doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "ba07982b326144ca9ee68d2e583b65db",
+    "near_synsets": {
+        "cargo_container.n.01": 0.4706082178598235,
+        "container.n.01": 0.47172766801840166,
+        "refrigerator.n.01": 0.5253530442727684,
+        "dumpster.n.01": 0.5359365010735558,
+        "crate.n.01": 0.5432711755351418
+    },
+    "synset": "container.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ba07982b326144ca9ee68d2e583b65db",
+        "creator_username": "randombug",
+        "creator_display_name": "randombug",
+        "creator_profile_url": "https://sketchfab.com/randombug"
+    },
+    "filename": "std_ba07982b326144ca9ee68d2e583b65db.glb",
+    "length": 8.482367992401123,
+    "width": 7.750708103179932
+}

@@ -1,0 +1,91 @@
+{
+    "description_long": "This object is a long, robust rifle with a prominent fixed stock and a straight, extended barrel. The body appears to be constructed primarily from metal, with a dark matte finish, and features a pistol grip integrated into the stock for ergonomic handling. The rifle includes a simple iron sight system mounted along the top of the barrel, and the magazine is not externally visible, suggesting an internal or non-detachable configuration. The muzzle is unadorned, lacking any visible suppressor, flash hider, or compensator. The overall silhouette is utilitarian, with minimal decorative elements, emphasizing function over form. The design is reminiscent of military or law enforcement rifles intended for durability and reliability in urban environments.",
+    "description": "A long, dark, metal rifle with a fixed stock, straight barrel, and iron sights, designed for practical use.",
+    "description_view_0": "Side view showing the full length of the rifle, including the fixed stock, pistol grip, and straight barrel.",
+    "description_view_1": "Front view highlighting the circular barrel opening and the symmetrical width of the stock and grip.",
+    "description_view_2": "Opposite side view, mirroring the features of view 0, with the stock, grip, and barrel clearly visible.",
+    "description_view_3": "Rear view showing the back of the stock and the alignment of the barrel, with the grip and body visible on either side.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "mass": 4.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 45,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "aimable",
+        "triggerable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "pistol grip",
+        "trigger",
+        "barrel",
+        "iron sights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "f492bef8473b4314abb450893729379c",
+    "near_synsets": {
+        "rifle.n.01": 0.45797012503313606,
+        "garand_rifle.n.01": 0.49708893125488113,
+        "sniper_rifle.n.01": 0.5013373817573261,
+        "light_arm.n.01": 0.502930033302035,
+        "musket.n.01": 0.5089625801642378
+    },
+    "synset": "sniper_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f492bef8473b4314abb450893729379c",
+        "creator_username": "Med_Mercenary",
+        "creator_display_name": "Med_Mercenary",
+        "creator_profile_url": "https://sketchfab.com/Med_Mercenary"
+    },
+    "filename": "std_f492bef8473b4314abb450893729379c.glb",
+    "length": 1.3921647667884827,
+    "width": 0.3125644773244858
+}

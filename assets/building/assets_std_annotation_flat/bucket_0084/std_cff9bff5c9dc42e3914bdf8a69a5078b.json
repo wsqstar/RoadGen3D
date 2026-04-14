@@ -1,0 +1,91 @@
+{
+    "description_long": "This object is a modern rifle with a streamlined, compact profile, featuring a long, slender barrel and a distinct stock at the rear. The receiver and handguard are integrated into a single, continuous body, with a visible trigger guard and pistol grip beneath. The magazine is positioned just ahead of the trigger, suggesting a detachable box design. The barrel extends forward, ending in a small, cylindrical muzzle device. The coloration is predominantly a uniform dark gray, giving it a tactical, utilitarian appearance. Minimal surface detailing is visible, indicating a focus on function over ornamentation.",
+    "description": "A compact, modern rifle with a long barrel, detachable magazine, and a dark gray, streamlined body. The design is utilitarian and tactical.",
+    "description_view_0": "The rifle is seen from above, showing its full length and the alignment of the barrel, receiver, and stock.",
+    "description_view_1": "A side profile highlights the stock, pistol grip, and the magazine area, with the barrel extending forward.",
+    "description_view_2": "The front view emphasizes the narrow barrel and muzzle, with the handguard and receiver visible behind.",
+    "description_view_3": "The rear view shows the stock and the back of the receiver, with the barrel pointing away.",
+    "category": "rifle",
+    "height": 0.15,
+    "max_dimension": 1.0,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 6,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "aimable",
+        "triggerable",
+        "reloadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "magazine",
+        "safety selector",
+        "charging handle",
+        "stock",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "cff9bff5c9dc42e3914bdf8a69a5078b",
+    "near_synsets": {
+        "rifle.n.01": 0.4849943591659587,
+        "garand_rifle.n.01": 0.49321335704423713,
+        "carbine.n.01": 0.4956763200982403,
+        "light_arm.n.01": 0.5037242951887501,
+        "dragunov.n.01": 0.5113454729625208
+    },
+    "synset": "garand_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cff9bff5c9dc42e3914bdf8a69a5078b",
+        "creator_username": "stevenwolfyllama",
+        "creator_display_name": "stevenwolfyllama",
+        "creator_profile_url": "https://sketchfab.com/stevenwolfyllama"
+    },
+    "filename": "std_cff9bff5c9dc42e3914bdf8a69a5078b.glb",
+    "length": 11.41074514389038,
+    "width": 13.792603492736816
+}

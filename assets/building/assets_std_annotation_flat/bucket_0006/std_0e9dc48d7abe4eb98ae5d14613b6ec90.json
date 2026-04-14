@@ -1,0 +1,111 @@
+{
+    "description_long": "This is a two-story apartment building with a symmetrical facade, featuring a central entrance flanked by evenly spaced windows with white shutters. The exterior walls are painted a muted beige with yellow trim, and the roof is gabled with two prominent brick chimneys. The building is surrounded by a low brick and metal fence, and a wooden deck extends along one side. Decorative cornices and detailed molding run along the roofline, adding to the building's classic charm. The rear and one side of the building are plain, lacking windows or ornamentation, while the front and opposite side are more detailed and accessible.",
+    "description": "A two-story beige apartment building with yellow trim, white-shuttered windows, a gabled roof with two brick chimneys, and a fenced wooden deck.",
+    "description_view_0": "Front view showing the main entrance, symmetrical windows with white shutters, yellow trim, and the full fence.",
+    "description_view_1": "Side view displaying two windows per floor, yellow corner trim, and the wooden deck extending along the side.",
+    "description_view_2": "Rear view with a plain, windowless wall and the roof with two chimneys visible.",
+    "description_view_3": "Opposite side view showing a plain wall, the edge of the deck, and the roof's gable.",
+    "category": "apartment building",
+    "height": 9.0,
+    "max_dimension": 16.0,
+    "materials": [
+        "brick",
+        "wood",
+        "glass",
+        "metal",
+        "concrete",
+        "plaster",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.25,
+        0.1,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "shutter",
+        "gate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "yellow",
+        "white",
+        "gray",
+        "brown",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.35,
+        0.15,
+        0.15,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 2,
+    "attribute_balcony_presence": false,
+    "attribute_window_arrangement": "Windows are symmetrically arranged in two rows on the front and one side, each floor having evenly spaced windows with white shutters, while the rear and one side are windowless.",
+    "attribute_entrance_type": "single door",
+    "attribute_architectural_style": "Victorian",
+    "uid": "0e9dc48d7abe4eb98ae5d14613b6ec90",
+    "near_synsets": {
+        "apartment_building.n.01": 0.4933057971936035,
+        "duplex_apartment.n.01": 0.5378626356478498,
+        "building.n.04": 0.5379196897952736,
+        "penthouse.n.01": 0.5451866475023002,
+        "upstairs.n.01": 0.5462425432136252,
+        "construction.n.07": -1000.0,
+        "apartment.n.01": -1000.0,
+        "building.n.01": -1000.0,
+        "construction.n.01": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0e9dc48d7abe4eb98ae5d14613b6ec90",
+        "creator_username": "Cgoldberg",
+        "creator_display_name": "BethelDH",
+        "creator_profile_url": "https://sketchfab.com/Cgoldberg"
+    },
+    "filename": "std_0e9dc48d7abe4eb98ae5d14613b6ec90.glb",
+    "length": 7.043014049530029,
+    "width": 9.932539463043213
+}

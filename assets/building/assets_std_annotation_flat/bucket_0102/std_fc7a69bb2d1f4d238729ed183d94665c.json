@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a classic hand grenade, specifically resembling the Mk 2 fragmentation grenade, commonly known as the 'pineapple' grenade due to its segmented, textured green body. The main body is painted olive green with a yellow band near the top, indicating its military use and possibly its explosive content. The upper section features a metallic gray safety lever and pull ring, which are standard components for arming and deploying the grenade. The lever is attached to a cylindrical fuse assembly, which is inscribed with text, likely indicating model and lot numbers. The surface of the grenade is hard and faceted, designed to fragment upon detonation. The overall construction suggests a robust, heavy object intended for single-use deployment.",
+    "description": "A green, segmented hand grenade with a yellow band, metallic safety lever, and pull ring, featuring a robust, textured body and military markings.",
+    "description_view_0": "The grenade is shown from a three-quarter angle, highlighting the green segmented body, yellow band, and the prominent gray safety lever and pull ring.",
+    "description_view_1": "This view shows the grenade from the top, focusing on the metallic lever with visible engraved text and the alignment of the lever over the body.",
+    "description_view_2": "The grenade is seen from the opposite side, displaying the lever and ring from a different angle, with the yellow band and body texture clearly visible.",
+    "description_view_3": "A direct front view of the grenade, emphasizing the symmetry of the segmented body and the yellow band encircling the top.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.12,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 0.6,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 6,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "fuse assembly"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "gray",
+        "yellow",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.18,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the safety ring, which releases the lever and activates the internal fuse mechanism.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "fc7a69bb2d1f4d238729ed183d94665c",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.4757250141140385,
+        "grenade.n.01": 0.5100544608631756,
+        "rifle_grenade.n.01": 0.5431678438383633,
+        "bomb.n.01": 0.5519570555672901,
+        "general-purpose_bomb.n.01": 0.5632882011056669,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fc7a69bb2d1f4d238729ed183d94665c",
+        "creator_username": "mattyu",
+        "creator_display_name": "Mattyew",
+        "creator_profile_url": "https://sketchfab.com/mattyu"
+    },
+    "filename": "std_fc7a69bb2d1f4d238729ed183d94665c.glb",
+    "length": 0.06879283487796783,
+    "width": 0.07623320817947388
+}

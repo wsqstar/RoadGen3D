@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a black inflatable raft with a rigid, segmented floor and a pointed bow and stern, designed for water navigation. The raft features multiple air chambers along its sides, each with visible valve caps, enhancing its buoyancy and safety. A compact outboard motor is mounted at the stern, providing mechanical propulsion for the vessel. The raft's sides are equipped with several attachment points, likely for securing ropes or gear, and the interior is open, allowing for multiple occupants. The material appears to be a durable, reinforced rubber or synthetic polymer, suitable for withstanding rough handling and exposure to water. The overall design is utilitarian, prioritizing function and safety for use in urban or emergency scenarios.",
+    "description": "A black inflatable raft with a rigid floor, outboard motor, and multiple attachment points, designed for water navigation and carrying several occupants.",
+    "description_view_0": "Front view showing the pointed bow, segmented floor, and the open interior of the raft.",
+    "description_view_1": "Side view highlighting the elongated shape, multiple air chambers, and the outboard motor at the stern.",
+    "description_view_2": "Rear view focusing on the mounted outboard motor and the open seating area inside the raft.",
+    "description_view_3": "Opposite side view showing the same elongated structure and attachment points as the other side.",
+    "category": "raft",
+    "height": 0.7,
+    "max_dimension": 4.0,
+    "materials": [
+        "reinforced rubber",
+        "synthetic polymer",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 85,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 250,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "motor",
+        "valve cap",
+        "attachment ring"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "gray",
+        "blue"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 10000000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.6,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_presence_of_flotation_devices": true,
+    "attribute_number_of_seats": 6,
+    "attribute_type_of_propulsion": "motor",
+    "attribute_safety_markings": [],
+    "attribute_attachment_points": 12,
+    "uid": "0d4fca4f2e014cd7b6aefd4653b1508c",
+    "near_synsets": {
+        "life_raft.n.01": 0.4894322442168063,
+        "raft.n.01": 0.49395283184055233,
+        "boat.n.01": 0.5004221778288535,
+        "rowing_boat.n.01": 0.5077920847579037,
+        "houseboat.n.01": 0.5172279054891639,
+        "raft_foundation.n.01": -1000.0,
+        "batch.n.02": -1000.0
+    },
+    "synset": "raft_foundation.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0d4fca4f2e014cd7b6aefd4653b1508c",
+        "creator_username": "tnnv",
+        "creator_display_name": "tnnv",
+        "creator_profile_url": "https://sketchfab.com/tnnv"
+    },
+    "filename": "std_0d4fca4f2e014cd7b6aefd4653b1508c.glb",
+    "length": 3.2782135009765625,
+    "width": 1.4690190553665161
+}

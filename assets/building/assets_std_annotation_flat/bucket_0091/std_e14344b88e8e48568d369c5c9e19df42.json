@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a large, mechanical ballista-style siege weapon constructed primarily from heavy wooden beams reinforced with metal bands and brackets. It features a robust central frame with a long, horizontal arm that supports a thick, tensioned bowstring, which is held taut by a winding mechanism at the rear. The front of the device is equipped with a launching trough and a massive, pointed bolt or spear ready to be fired. The structure is stabilized by a wide, cross-shaped base, and the entire assembly is held together with numerous visible metal fasteners. The weapon's design is utilitarian, with exposed mechanical components such as ropes, pulleys, and winding gears, emphasizing its function as a projectile launcher. The overall appearance is rugged and imposing, suitable for tactical deployment in urban or fortified environments.",
+    "description": "A large, wooden and metal ballista siege weapon with a cross-shaped base, tensioned bowstring, and a massive bolt ready to fire. Its exposed mechanical parts and reinforced frame give it a robust, tactical look.",
+    "description_view_0": "Front view showing the wide bow arms, central launching trough, and reinforced cross-bracing.",
+    "description_view_1": "Side view highlighting the long frame, tensioned bowstring, winding mechanism, and the full length of the loaded bolt.",
+    "description_view_2": "Top-down view displaying the symmetrical layout of the arms, central trough, and the arrangement of metal reinforcements.",
+    "description_view_3": "Opposite side view similar to view 1, showing the mechanical winding assembly and the rear support structure.",
+    "category": "combat tactical  vehicle",
+    "height": 1.5,
+    "max_dimension": 3.0,
+    "materials": [
+        "wood",
+        "steel",
+        "rope",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.08,
+        0.02
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "winding mechanism",
+        "bowstring",
+        "bolt",
+        "launch trough"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large fixed bolt launcher at the front, integrated into the main frame.",
+    "attribute_armor_plating": "None visible; the structure is reinforced with metal bands and brackets but lacks dedicated armor plating.",
+    "attribute_camouflage_pattern": "None visible; the object is finished in solid brown with black and gray metal accents.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "e14344b88e8e48568d369c5c9e19df42",
+    "near_synsets": {
+        "ballista.n.01": 0.4838088778080483,
+        "artillery.n.01": 0.5328698397122542,
+        "cannon.n.02": 0.5339980998159709,
+        "bow.n.06": 0.5396512326437151,
+        "military_vehicle.n.01": 0.544647577952608,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "ballista.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e14344b88e8e48568d369c5c9e19df42",
+        "creator_username": "stylesmcgoo",
+        "creator_display_name": "Carrigan Raketic",
+        "creator_profile_url": "https://sketchfab.com/stylesmcgoo"
+    },
+    "filename": "std_e14344b88e8e48568d369c5c9e19df42.glb",
+    "length": 3.6835761070251465,
+    "width": 2.6535019874572754
+}

@@ -1,0 +1,100 @@
+{
+    "description_long": "This hotel is a modern, multi-story building featuring a row of identical units, each with private balconies and ground-level patios that open onto individual swimming pools. The structure is set on a landscaped plot with manicured lawns, a row of shrubs separating the pool area from the street, and a paved parking lot at the rear. The building's facade is predominantly white, with large glass windows and sliding doors providing ample natural light to each unit. The rear of the property includes a dedicated parking area with marked spaces, including accessible parking. The hotel is surrounded by low retaining walls and fencing, and the overall design emphasizes clean lines and geometric forms. The absence of visible signage or decorative elements suggests a minimalist, contemporary architectural style.",
+    "description": "A modern, multi-unit hotel with private balconies, ground-level pools, landscaped lawns, and a rear parking lot, all in a minimalist white design.",
+    "description_view_0": "Front view showing the row of hotel units, private pools, balconies, and landscaped lawn with shrubs.",
+    "description_view_1": "Side view highlighting the depth of the building, the staggered pool areas, and the sloped terrain.",
+    "description_view_2": "Rear view displaying the parking lot with marked spaces and the back entrances to the hotel units.",
+    "description_view_3": "Opposite side view showing the alignment of pools, patios, and the green slope behind the building.",
+    "category": "hotel",
+    "height": 10.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "balcony railing",
+        "pool gate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "green",
+        "blue",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.55,
+        0.2,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "scene",
+    "attribute_hotel_signage": "none",
+    "attribute_number_of_windows": 24,
+    "attribute_entrance_canopy": "none",
+    "attribute_presence_of_doorman_or_bellhop": false,
+    "attribute_architectural_style": "Modernist",
+    "uid": "45afc93350e1491ab32c4cc505ec55c3",
+    "near_synsets": {
+        "suite.n.02": 0.567362248530613,
+        "hotel_room.n.01": 0.5688270320105634,
+        "resort_hotel.n.02": 0.5734099532069608,
+        "villa.n.04": 0.5734928300649781,
+        "honeymoon_resort.n.01": 0.5740364190776641,
+        "hotel.n.01": -1000.0
+    },
+    "synset": "hotel.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/45afc93350e1491ab32c4cc505ec55c3",
+        "creator_username": "EDIHAUS",
+        "creator_display_name": "EDIHAUS -SWISSE EMOBILLIENE LDA",
+        "creator_profile_url": "https://sketchfab.com/EDIHAUS"
+    },
+    "filename": "std_45afc93350e1491ab32c4cc505ec55c3.glb",
+    "length": 31.318849563598633,
+    "width": 33.1749267578125
+}

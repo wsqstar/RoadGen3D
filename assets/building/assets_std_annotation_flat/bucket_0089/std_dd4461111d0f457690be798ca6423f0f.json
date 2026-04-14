@@ -1,0 +1,112 @@
+{
+    "description_long": "This is a modern main battle tank with a low-profile, angular hull and turret, designed for urban and battlefield environments. The vehicle features a long, smoothbore main cannon mounted on a rotating turret, with additional equipment such as a machine gun, smoke grenade launchers, and various sensors visible on the turret roof. The hull and turret are covered in thick, modular armor plating, including sloped and reactive panels for enhanced protection. The tank is equipped with wide, reinforced tracks for mobility over rough terrain, and side skirts provide additional defense for the suspension system. Antennas and external storage compartments are mounted on the turret and hull, indicating advanced communication and operational capabilities. The exterior is painted in a matte, two-tone green camouflage pattern, with no visible military markings or insignia.",
+    "description": "A heavily armored, modern main battle tank with a long cannon, modular armor, and a matte green camouflage finish.",
+    "description_view_0": "Side view showing the long main cannon, sloped armor, side skirts, and visible turret-mounted equipment.",
+    "description_view_1": "Front view highlighting the angular glacis plate, wide tracks, and the prominent main gun extending forward.",
+    "description_view_2": "Opposite side view displaying the rear storage, side armor, and the turret's rear equipment.",
+    "description_view_3": "Rear view revealing the engine deck, rear armor, and the turret's back with visible hatches and antennas.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 9.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 48000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 470000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "machine gun mount",
+        "antenna",
+        "track",
+        "side skirt",
+        "storage box"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "dark green",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.03,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the turret front, one machine gun mount on the turret roof, and several smoke grenade launchers on the turret sides.",
+    "attribute_armor_plating": "Full body coverage with thick, modular, and sloped armor plating; turret and hull feature additional reactive and composite panels, especially on the front and sides.",
+    "attribute_camouflage_pattern": "Matte two-tone green camouflage with angular, blocky shapes.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "dd4461111d0f457690be798ca6423f0f",
+    "near_synsets": {
+        "tank.n.01": 0.4477937678327641,
+        "military_vehicle.n.01": 0.4897114555956208,
+        "armored_car.n.02": 0.4991108558198614,
+        "assault_gun.n.02": 0.5016823253754146,
+        "armored_vehicle.n.01": 0.5076364261053098,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dd4461111d0f457690be798ca6423f0f",
+        "creator_username": "tflexcad",
+        "creator_display_name": "T-FLEX CAD ST (Free)",
+        "creator_profile_url": "https://sketchfab.com/tflexcad"
+    },
+    "filename": "std_dd4461111d0f457690be798ca6423f0f.glb",
+    "length": 3.422744870185852,
+    "width": 3.052622079849243
+}

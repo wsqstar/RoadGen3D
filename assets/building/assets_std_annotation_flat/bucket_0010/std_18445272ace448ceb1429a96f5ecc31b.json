@@ -1,0 +1,91 @@
+{
+    "description_long": "This object is a group of three deciduous trees, each with a slender trunk and a moderately dense canopy of green, compound leaves. The tallest tree stands prominently, with a branching structure that spreads outward and upward, while the two smaller trees have similar but slightly more compact forms. The trunks are light brown and relatively thin compared to the overall height, and the branches are distributed in an alternate pattern, giving the canopy a layered, airy appearance. The foliage is primarily concentrated at the ends of the branches, allowing for visible gaps and light penetration through the canopy. No roots are visible above ground, and the trees appear healthy and well-suited for urban parks, sidewalks, or landscaped streetscapes. The overall impression is of natural, urban-compatible vegetation with a realistic mix of heights and canopy shapes.",
+    "description": "A group of three deciduous trees with slender trunks and moderately dense, airy green canopies. The tallest tree is flanked by two smaller trees, all featuring compound leaves and alternate branching.",
+    "description_view_0": "Frontal view of the tallest tree, showing its full height and moderately dense, layered canopy.",
+    "description_view_1": "Side view displaying all three trees, highlighting their relative sizes and the spread of their canopies.",
+    "description_view_2": "Rear view of the group, with the tallest tree in front and the two smaller trees partially obscured behind.",
+    "description_view_3": "Angled view showing the spatial arrangement and separation between the three trees, emphasizing their individual canopies.",
+    "category": "tree",
+    "height": 8.0,
+    "max_dimension": 12.0,
+    "materials": [
+        "wood",
+        "leaf",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.15,
+        0.5
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "climbable",
+        "shade_providing"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trunk",
+        "branches",
+        "leaves"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [
+        "drone"
+    ],
+    "colors": [
+        "green",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_trunk_diameter": 0.18,
+    "attribute_branching_pattern": "alternate",
+    "attribute_leaf_type": "compound",
+    "attribute_canopy_density": "moderate",
+    "attribute_root_visibility": false,
+    "uid": "18445272ace448ceb1429a96f5ecc31b",
+    "near_synsets": {
+        "tree.n.01": 0.4956661569515923,
+        "european_larch.n.01": 0.5095068929200589,
+        "coniferales.n.01": 0.5101588725951346,
+        "deciduous_forest.n.01": 0.5123577321130561,
+        "tree.n.02": 0.5206737320970036,
+        "tree.n.03": -1000.0
+    },
+    "synset": "tree.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/18445272ace448ceb1429a96f5ecc31b",
+        "creator_username": "BazukaliKartal",
+        "creator_display_name": "BazukaliKartal",
+        "creator_profile_url": "https://sketchfab.com/BazukaliKartal"
+    },
+    "filename": "std_18445272ace448ceb1429a96f5ecc31b.glb",
+    "length": 16.831929206848145,
+    "width": 7.165001392364502
+}

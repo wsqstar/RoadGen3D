@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a tall, rectangular vending machine with a predominantly blue exterior, decorated with ice cube graphics and white star-like accents. The front panel features a large display area with images of hot and iced coffee, a product selection interface, and a payment section with multiple slots and buttons. The lower front section contains a product retrieval slot, highlighted in green, for dispensing beverages. The sides of the machine are simpler, displaying the 'ICE COFFEE' branding in both English and Korean, along with more ice cube illustrations. The back of the machine is plain blue, lacking any visible features or openings. The overall construction appears robust, likely made from metal panels with some plastic and glass components for the interactive areas.",
+    "description": "A blue, rectangular vending machine for hot and iced coffee, featuring a detailed front panel with product images, selection buttons, and payment slots. The sides display 'ICE COFFEE' branding and ice cube graphics.",
+    "description_view_0": "The left side of the vending machine, showing 'ICE COFFEE' branding, Korean text, and ice cube graphics on a blue background.",
+    "description_view_1": "The front view, displaying the main interactive panel with coffee images, product selection buttons, payment slots, and a green product retrieval slot.",
+    "description_view_2": "The right side, similar to the left, with 'ICE COFFEE' branding, Korean text, and ice cube graphics on a blue background.",
+    "description_view_3": "The back of the machine, plain blue with no visible features, openings, or branding.",
+    "category": "vending machine",
+    "height": 1.8,
+    "max_dimension": 1.8,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "electronic components",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "payment slot",
+        "product retrieval slot",
+        "display panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "white",
+        "green",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A large rectangular display panel is located on the upper front, featuring printed images of hot and iced coffee, product options, and some branding.",
+    "attribute_payment_interface": "Multiple payment interfaces are present on the right side of the front panel, including a coin slot, bill acceptor, and card reader, each with distinct slots and labeling.",
+    "attribute_product_selection_buttons": "A grid of individual product selection buttons is located below the display panel, each labeled with product options and arranged in rows.",
+    "attribute_product_retrieval_slot": "A green rectangular product retrieval slot is located in the lower center of the front panel, with a recessed opening for collecting dispensed beverages.",
+    "attribute_branding_or_signage": "Branding includes 'ICE COFFEE' in large white letters, Korean text, and ice cube graphics on both side panels and the front, with additional coffee imagery on the display panel.",
+    "uid": "729e9f90c0d24396aee0975a18c2a62e",
+    "near_synsets": {
+        "vending_machine.n.01": 0.514502585059396,
+        "ice_machine.n.01": 0.5310334699528685,
+        "automat.n.01": 0.5536569578770132,
+        "super-automatic_espresso_machine.n.01": 0.5625454321473133,
+        "coffee_maker.n.01": 0.5694399454356897,
+        "machine.n.04": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.02": -1000.0,
+        "machine.n.01": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.05": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/729e9f90c0d24396aee0975a18c2a62e",
+        "creator_username": "bolinas",
+        "creator_display_name": "bolinas",
+        "creator_profile_url": "https://sketchfab.com/bolinas"
+    },
+    "filename": "std_729e9f90c0d24396aee0975a18c2a62e.glb",
+    "length": 0.689269483089447,
+    "width": 0.7820704579353333
+}

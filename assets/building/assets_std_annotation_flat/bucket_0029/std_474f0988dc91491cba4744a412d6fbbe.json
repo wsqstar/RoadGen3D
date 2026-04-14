@@ -1,0 +1,106 @@
+{
+    "description_long": "This object is a classic British police telephone box, most notably resembling the TARDIS from Doctor Who. It features a rectangular, upright structure with a flat base and a slightly tapered roof topped by a small cylindrical beacon. The exterior is painted a deep blue, with paneled sides and multiple small, square-paned windows on the upper sections of each face. The front side has a door with a handle, a sign reading 'POLICE PUBLIC CALL BOX' above the windows, and an additional instructional placard below the left window. The windows are frosted or semi-opaque, and the overall construction appears to be primarily wood with glass window panes and metal hardware. This booth is designed to be entered by a person and provides shelter and privacy for making telephone calls.",
+    "description": "A blue, rectangular British police telephone box with paneled sides, small square windows, and a sign reading 'POLICE PUBLIC CALL BOX' above the door.",
+    "description_view_0": "Front view showing the door, handle, two windows, 'POLICE PUBLIC CALL BOX' sign, and an instructional placard.",
+    "description_view_1": "Rear view with two windows and the 'POLICE PUBLIC CALL BOX' sign, but no door or placard.",
+    "description_view_2": "Side view nearly identical to the rear, with two windows and the sign, no door or placard.",
+    "description_view_3": "Opposite side view, again with two windows and the sign, no door or placard.",
+    "category": "telephone booth",
+    "height": 2.6,
+    "max_dimension": 2.6,
+    "materials": [
+        "wood",
+        "glass",
+        "metal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 450,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "windows",
+        "signage",
+        "beacon"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "white",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_enclosure_type": "fully enclosed",
+    "attribute_door_presence": true,
+    "attribute_window_configuration": "two small square-paned windows on each side, upper section",
+    "attribute_signage_or_labeling": "Black and white 'POLICE PUBLIC CALL BOX' sign above windows on all sides; white instructional placard on front left door panel",
+    "attribute_handset_visibility": false,
+    "uid": "474f0988dc91491cba4744a412d6fbbe",
+    "near_synsets": {
+        "telephone_booth.n.01": 0.4491511461513285,
+        "pillar_box.n.01": 0.546742876534505,
+        "signal_box.n.01": 0.5495685407218568,
+        "pay-phone.n.01": 0.555150926283569,
+        "postbox.n.01": 0.5562959696412273,
+        "booth.n.02": -1000.0,
+        "booth.n.04": -1000.0,
+        "booth.n.03": -1000.0,
+        "telephone.n.01": -1000.0,
+        "booth.n.01": -1000.0,
+        "telephone.n.02": -1000.0
+    },
+    "synset": "telephone_booth.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/474f0988dc91491cba4744a412d6fbbe",
+        "creator_username": "YukiSwagato",
+        "creator_display_name": "YukiSwagato",
+        "creator_profile_url": "https://sketchfab.com/YukiSwagato"
+    },
+    "filename": "std_474f0988dc91491cba4744a412d6fbbe.glb",
+    "length": 1.2531424164772034,
+    "width": 1.2531415224075317
+}

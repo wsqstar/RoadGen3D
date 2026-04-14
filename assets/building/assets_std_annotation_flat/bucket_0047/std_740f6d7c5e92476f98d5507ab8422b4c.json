@@ -1,0 +1,116 @@
+{
+    "description_long": "This is a large, ancient-style wooden warship featuring a long, narrow hull with a pronounced upward curve at both the bow and stern. The ship is equipped with two large, triangular sails mounted on central masts, and a series of long oars extending from both sides, indicating it is a galley designed for both rowing and sailing. The bow is adorned with a decorative animal head, while the stern features a similar sculpted motif, giving the vessel a distinctive and historical appearance. Shields are mounted along the sides, suggesting a military or defensive function, and the deck is open with visible benches for rowers. The wood planking is dark and weathered, with rope rigging and simple, functional deck equipment. The overall design is reminiscent of ancient Greek or Roman triremes, built for speed and maneuverability in coastal waters.",
+    "description": "A large, ancient wooden warship with two sails, many oars, and decorative animal heads at the bow and stern. Shields line the sides, and the open deck is designed for rowers.",
+    "description_view_0": "Side view showing the full length of the ship, both sails, all oars, and the decorative animal heads at bow and stern.",
+    "description_view_1": "Front view highlighting the pointed bow, central mast, and the symmetrical arrangement of oars and shields.",
+    "description_view_2": "Opposite side view similar to view 0, with clear visibility of the hull curvature, sails, and oars.",
+    "description_view_3": "Rear view focusing on the stern's decorative head, the arrangement of the sails, and the ship's narrow width.",
+    "category": "ship",
+    "height": 7.0,
+    "max_dimension": 35.0,
+    "materials": [
+        "wood",
+        "cloth",
+        "metal",
+        "rope",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "rowable",
+        "steerable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "oar",
+        "sail",
+        "mast",
+        "rudder",
+        "shield",
+        "bench",
+        "rigging"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "brown",
+        "beige",
+        "gray",
+        "black",
+        "red",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is long, narrow, and constructed with overlapping wooden planks, featuring a pronounced upward curve at both the bow and stern. The bow is pointed and decorated with an animal head, while the stern is similarly adorned. The hull is of the displacement type, optimized for rowing and sailing, with no visible keels or bulbous bows.",
+    "attribute_superstructure_layout": "The ship has an open deck with two central masts and benches for rowers along the sides. Shields are mounted externally, and there are no enclosed cabins or raised superstructures visible.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "oar",
+        "sail",
+        "mast",
+        "shield",
+        "bench",
+        "rigging"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "740f6d7c5e92476f98d5507ab8422b4c",
+    "near_synsets": {
+        "rowing_boat.n.01": 0.48610871994437127,
+        "scull.n.01": 0.49056144162661647,
+        "schooner.n.02": 0.4909767884677102,
+        "longship.n.01": 0.49256434962852824,
+        "battleship.n.01": 0.4934910443355379,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/740f6d7c5e92476f98d5507ab8422b4c",
+        "creator_username": "Mitro123",
+        "creator_display_name": "Mitro123",
+        "creator_profile_url": "https://sketchfab.com/Mitro123"
+    },
+    "filename": "std_740f6d7c5e92476f98d5507ab8422b4c.glb",
+    "length": 11.128621101379395,
+    "width": 9.919784545898438
+}

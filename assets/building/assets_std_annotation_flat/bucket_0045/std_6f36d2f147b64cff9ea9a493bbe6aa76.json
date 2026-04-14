@@ -1,0 +1,106 @@
+{
+    "description_long": "This object consists of six cylindrical sticks, resembling red dynamite sticks, bundled together with two black straps. Attached to the top of the bundle is a small electronic circuit board featuring a digital display, several buttons, and indicator lights, suggesting a timing or triggering mechanism. Multiple colored wires (red, blue, and white) extend from the circuit board and connect to the sticks, indicating electrical connectivity for detonation. The sticks have a slightly rough, matte surface, and the circuit board is detailed with visible electronic components. The overall construction appears compact and portable, with the electronic module as the primary interactive element. The design is typical of improvised explosive devices often depicted in urban threat scenarios.",
+    "description": "A bundle of six red dynamite-like sticks strapped together with a black-taped electronic timer and visible colored wires. The device features a digital display and buttons on the circuit board.",
+    "description_view_0": "Front view showing the full bundle of sticks, the electronic circuit board with a digital display, and colored wires extending from the right side.",
+    "description_view_1": "Side view highlighting the circular ends of the sticks and the protruding colored wires, with the circuit board partially visible on the left.",
+    "description_view_2": "Rear view displaying the back of the bundled sticks and black straps, with no visible electronics or wires.",
+    "description_view_3": "Opposite side view showing the stick ends and the circuit board on the right, with wires emerging from the left.",
+    "category": "bomb",
+    "height": 0.09,
+    "max_dimension": 0.28,
+    "materials": [
+        "plastic",
+        "metal",
+        "electronic_components",
+        "insulation",
+        "explosive_material",
+        "tape",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.1,
+        0.1,
+        0.05,
+        0.3,
+        0.05,
+        0.05
+    ],
+    "mass": 2.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "button",
+        "digital_display",
+        "wires",
+        "circuit_board"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "green",
+        "blue",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "group",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The device features a digital timer display, buttons, and several colored wires connected to an electronic circuit board, suggesting detonation can be triggered electronically via timer or manual input.",
+    "attribute_wiring_visibility": true,
+    "attribute_timer_display": "digital",
+    "attribute_unusual_placement": true,
+    "uid": "6f36d2f147b64cff9ea9a493bbe6aa76",
+    "near_synsets": {
+        "time_bomb.n.02": 0.4761683316425371,
+        "briefcase_bomb.n.01": 0.49518612022651354,
+        "remote-control_bomb.n.01": 0.5039995861536876,
+        "car_bomb.n.01": 0.5168363787368999,
+        "bomb.n.01": 0.519989222778309,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6f36d2f147b64cff9ea9a493bbe6aa76",
+        "creator_username": "warkarma",
+        "creator_display_name": "Warkarma",
+        "creator_profile_url": "https://sketchfab.com/warkarma"
+    },
+    "filename": "std_6f36d2f147b64cff9ea9a493bbe6aa76.glb",
+    "length": 0.08775518834590912,
+    "width": 0.2565325051546097
+}

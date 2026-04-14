@@ -1,0 +1,98 @@
+{
+    "description_long": "This warehouse is a large, rectangular industrial building set on a green, slightly sloped terrain base. The structure features a flat, dark roof with a grid-like pattern, and the exterior walls are primarily gray with some lighter accents. One side of the building includes a series of loading docks and ramps, with visible entryways and a fenced area for vehicle access. The surrounding area includes paved surfaces and what appear to be security barriers or fencing, suggesting controlled access. The roof is uninterrupted and lacks skylights or visible HVAC units, emphasizing a utilitarian design. The overall appearance is functional, with minimal decorative elements and a focus on practicality for storage and logistics operations.",
+    "description": "A large, flat-roofed industrial warehouse with gray walls, loading docks, and fenced access areas, set on a green terrain base. The design is utilitarian and functional, emphasizing storage and logistics.",
+    "description_view_0": "Side view showing the long, flat roof, green terrain, and the main warehouse structure with minimal visible entry points.",
+    "description_view_1": "Angled view highlighting the loading docks, ramps, fenced vehicle access, and the paved area adjacent to the building.",
+    "description_view_2": "Opposite side view displaying the full length of the warehouse, the grid-patterned roof, and additional access points and barriers.",
+    "description_view_3": "Side view with a clear look at the building's length, the sloped terrain, and the absence of major entryways or docks on this side.",
+    "category": "warehouse",
+    "height": 10.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "glass",
+        "asphalt",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.05,
+        0.1,
+        0.1
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "loading dock",
+        "gate",
+        "ramp"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "green",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main facade features large, flat gray panels with minimal ornamentation, punctuated by industrial doors and loading docks. Fencing and ramps provide functional access, while the absence of windows and decorative elements emphasizes utility.",
+    "attribute_loading_dock_presence": true,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is flat and expansive, covered in a dark, grid-patterned material with no visible skylights or rooftop equipment. Its uniform surface suggests a focus on durability and weather resistance.",
+    "attribute_architectural_style": "modern industrial",
+    "uid": "67336ec51fdb43ecb38b23fb3ccb0eaf",
+    "near_synsets": {
+        "warehouse.n.01": 0.4992012543362635,
+        "loft.n.01": 0.5171975602943256,
+        "storehouse.n.01": 0.5498143363711997,
+        "shop_floor.n.01": 0.5561333324750439,
+        "storage.n.03": 0.562232516023097
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/67336ec51fdb43ecb38b23fb3ccb0eaf",
+        "creator_username": "M.Design.Studio",
+        "creator_display_name": "M Design Studio",
+        "creator_profile_url": "https://sketchfab.com/M.Design.Studio"
+    },
+    "filename": "std_67336ec51fdb43ecb38b23fb3ccb0eaf.glb",
+    "length": 63.068363189697266,
+    "width": 48.33686447143555
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a large, vintage-style airship with a rigid, ribbed envelope featuring a weathered, patchwork surface in muted tones of beige, brown, and red. The envelope is reinforced with a network of ropes and metal framework, and several cylindrical red tanks are mounted along its sides, likely for fuel or ballast. Four propellers are attached to the rear via struts, providing propulsion, while two large, rudder-like fins extend from the tail for steering. The gondola beneath the envelope is boxy and detailed, resembling a small cabin with windows and metallic accents. Notably, one side of the envelope displays a faded, classical portrait, adding a unique artistic touch to the airship's appearance.",
+    "description": "A vintage, ribbed airship with a weathered, patchwork envelope, red tanks, rear propellers, and a detailed gondola, featuring a classical portrait on one side.",
+    "description_view_0": "Front view showing the pointed nose, symmetrical ribbing, and the arrangement of ropes and cables converging at the front.",
+    "description_view_1": "Side view highlighting the classical portrait on the envelope, the red tanks, and the full gondola structure beneath.",
+    "description_view_2": "Rear view displaying the four propellers, tail fins, and the ribbed structure of the envelope.",
+    "description_view_3": "Opposite side view showing the envelope's patchwork texture, red tanks, and the gondola, but without the portrait.",
+    "category": "hot-air balloon",
+    "height": 7.0,
+    "max_dimension": 22.0,
+    "materials": [
+        "fabric",
+        "metal",
+        "wood",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 2000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "gondola door",
+        "control panel",
+        "suspension cables"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "brown",
+        "red",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 500,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_envelope_pattern": "The envelope features a ribbed, patchwork pattern with alternating faded beige and brown segments, and a large classical portrait is painted on one side. The surface is weathered, with visible seams and reinforced bands running longitudinally.",
+    "attribute_basket_presence": true,
+    "attribute_burner_frame_visibility": false,
+    "attribute_suspension_cables": true,
+    "attribute_registration_markings": "none",
+    "uid": "c0a0aa8b12d347b5a75b65be0bcb406f",
+    "near_synsets": {
+        "hot-air_balloon.n.01": 0.47224848783674617,
+        "ballooning.n.01": 0.5153909993844292,
+        "balloon.n.01": 0.532606118498655,
+        "blimp.n.02": 0.5334461288547668,
+        "airship.n.01": 0.5360568631519653,
+        "balloon.n.02": -1000.0
+    },
+    "synset": "hot-air_balloon.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c0a0aa8b12d347b5a75b65be0bcb406f",
+        "creator_username": "cjmitchell",
+        "creator_display_name": "cjmitchell",
+        "creator_profile_url": "https://sketchfab.com/cjmitchell"
+    },
+    "filename": "std_c0a0aa8b12d347b5a75b65be0bcb406f.glb",
+    "length": 10.508769989013672,
+    "width": 6.8168110847473145
+}

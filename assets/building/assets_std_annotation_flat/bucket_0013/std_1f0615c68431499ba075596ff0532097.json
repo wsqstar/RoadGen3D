@@ -1,0 +1,92 @@
+{
+    "description_long": "This object is a long, traditional-style rifle with a wooden stock and a lengthy, slender barrel, reminiscent of classic hunting or musket rifles. The stock is made of polished wood, curving gently at the butt and extending forward to a metal receiver and trigger guard. The barrel is metallic, straight, and unadorned, running the full length of the rifle and ending in a simple muzzle with no visible attachments. The trigger and trigger guard are clearly defined, and the rifle appears to have an internal magazine, as there is no visible external magazine. The sighting system is minimal, likely consisting of basic iron sights integrated into the barrel. The overall finish is smooth and matte, with the wood showing a reddish-brown hue and the metal components a dark, blued finish.",
+    "description": "A long, classic rifle with a polished wooden stock and a slender, dark metal barrel, featuring simple iron sights and a smooth, matte finish.",
+    "description_view_0": "Side view showing the full length of the rifle, highlighting the wooden stock, metal barrel, and trigger assembly.",
+    "description_view_1": "Front view down the barrel, emphasizing the narrow muzzle and the alignment of the barrel with the stock.",
+    "description_view_2": "Opposite side view, mirroring the first, with clear visibility of the stock's curve and the length of the barrel.",
+    "description_view_3": "Rear view showing the butt of the stock and the slim profile of the rifle's body.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 1.3,
+    "materials": [
+        "wood",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.45,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "liftable",
+        "triggerable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "trigger",
+        "trigger guard",
+        "sight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.45
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "internal",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "1f0615c68431499ba075596ff0532097",
+    "near_synsets": {
+        "rifle.n.01": 0.4729123329268472,
+        "garand_rifle.n.01": 0.500271810624469,
+        "light_arm.n.01": 0.5166317263680941,
+        "musket.n.01": 0.5271737271998496,
+        "dragunov.n.01": 0.5329955060360944
+    },
+    "synset": "garand_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1f0615c68431499ba075596ff0532097",
+        "creator_username": "generaljorge",
+        "creator_display_name": "General Jorge",
+        "creator_profile_url": "https://sketchfab.com/generaljorge"
+    },
+    "filename": "std_1f0615c68431499ba075596ff0532097.glb",
+    "length": 1.4673656225204468,
+    "width": 0.04133721813559532
+}

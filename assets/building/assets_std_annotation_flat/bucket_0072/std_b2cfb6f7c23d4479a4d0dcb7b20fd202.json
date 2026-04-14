@@ -1,0 +1,83 @@
+{
+    "description_long": "This object is a rectangular section of sidewalk composed of evenly arranged, light gray concrete paving slabs. The surface is flat and segmented into a grid pattern, with each slab separated by narrow, straight joints. The edges of the sidewalk are clean and slightly beveled, giving a defined boundary to the paved area. The color is a consistent pale gray, typical of modern urban sidewalks, and the surface appears hard and slightly rough, providing traction for pedestrians. There are no visible curbs, tactile paving, or street furniture present. The overall appearance suggests a standard sidewalk segment suitable for residential or commercial urban environments.",
+    "description": "A flat, rectangular sidewalk section made of light gray concrete slabs with a grid pattern and clean edges. The surface is hard, slightly rough, and uniform in color.",
+    "description_view_0": "The sidewalk is seen from a low angle, highlighting the grid pattern and the slight beveling along the front edge.",
+    "description_view_1": "Viewed from above, the uniform arrangement of rectangular slabs and the straight joints between them are clearly visible.",
+    "description_view_2": "Similar to view 0, this angle shows the opposite edge, again emphasizing the regular slab pattern and clean boundary.",
+    "description_view_3": "From this perspective, the grid layout and the evenness of the surface are prominent, with the edge detail visible at the front.",
+    "category": "sidewalk",
+    "height": 0.08,
+    "max_dimension": 2.5,
+    "materials": [
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.98,
+        0.02
+    ],
+    "mass": 480,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "segmentable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": false,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "flush",
+    "attribute_adjacent_street_type": "residential",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "b2cfb6f7c23d4479a4d0dcb7b20fd202",
+    "near_synsets": {
+        "sidewalk.n.01": 0.48367458406184,
+        "paved_surface.n.01": 0.511619456327397,
+        "curbside.n.01": 0.5454587519553379,
+        "road_surface.n.01": 0.5464691224043913,
+        "cement.n.01": 0.5517127598915079
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b2cfb6f7c23d4479a4d0dcb7b20fd202",
+        "creator_username": "zdenkoroman",
+        "creator_display_name": "grafi",
+        "creator_profile_url": "https://sketchfab.com/zdenkoroman"
+    },
+    "filename": "std_b2cfb6f7c23d4479a4d0dcb7b20fd202.glb",
+    "length": 2.7379740476608276,
+    "width": 3.2289732694625854
+}

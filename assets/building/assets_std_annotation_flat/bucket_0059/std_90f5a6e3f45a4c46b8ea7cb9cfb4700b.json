@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a miniature theme park attraction featuring a roller coaster and a Ferris wheel set on a rectangular base. The roller coaster track is composed of white rails with multiple loops, curves, and a steep incline, suggesting a thrilling ride experience. The Ferris wheel is positioned at one end of the base, with a circular frame and visible passenger cabins, accented by red highlights. The structure is primarily constructed from metal, with the Ferris wheel cabins likely made of painted metal or plastic. The overall design is open, with significant negative space between the tracks and around the Ferris wheel, giving a sense of scale and complexity. The asset is largely undecorated, focusing on the mechanical and structural elements typical of amusement park rides.",
+    "description": "A detailed model of a theme park attraction featuring a white roller coaster with loops and a Ferris wheel with red accents on a rectangular base.",
+    "description_view_0": "The roller coaster's looping tracks and the Ferris wheel are both clearly visible, with the Ferris wheel on the left and the tallest coaster incline on the right.",
+    "description_view_1": "A head-on view showing the Ferris wheel's circular face and the roller coaster's loops aligned behind it, emphasizing the depth of the structure.",
+    "description_view_2": "The Ferris wheel is now on the right, with the roller coaster's tracks and steep incline on the left, mirroring view 0 but from the opposite side.",
+    "description_view_3": "A rear view with the Ferris wheel edge-on and the roller coaster's tracks forming visible loops and curves, highlighting the linear layout.",
+    "category": "theme park",
+    "height": 8.0,
+    "max_dimension": 25.0,
+    "materials": [
+        "steel",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "rideable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "Ferris wheel cabins",
+        "roller coaster cars"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "smooth",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "group",
+    "attribute_ride_type": "roller coaster",
+    "attribute_thematic_decoration": "none",
+    "attribute_signage_style": "none",
+    "attribute_queue_structure": "none",
+    "attribute_character_statues": [],
+    "uid": "90f5a6e3f45a4c46b8ea7cb9cfb4700b",
+    "near_synsets": {
+        "theme_park.n.01": 0.49658263505817446,
+        "ferris_wheel.n.01": 0.5024511048570007,
+        "scenic_railway.n.01": 0.5342431391643254,
+        "roller_coaster.n.02": 0.5394914800458728,
+        "amusement_park.n.01": 0.5575142496733854,
+        "subject.n.01": -1000.0,
+        "park.n.06": -1000.0,
+        "root.n.03": -1000.0,
+        "theme.n.02": -1000.0,
+        "ballpark.n.01": -1000.0,
+        "park.n.02": -1000.0,
+        "theme.n.03": -1000.0,
+        "park.n.01": -1000.0,
+        "composition.n.08": -1000.0,
+        "parking_lot.n.01": -1000.0,
+        "park.n.04": -1000.0
+    },
+    "synset": "theme_park.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/90f5a6e3f45a4c46b8ea7cb9cfb4700b",
+        "creator_username": "Kao041",
+        "creator_display_name": "Kao041",
+        "creator_profile_url": "https://sketchfab.com/Kao041"
+    },
+    "filename": "std_90f5a6e3f45a4c46b8ea7cb9cfb4700b.glb",
+    "length": 11.107980728149414,
+    "width": 23.333662033081055
+}

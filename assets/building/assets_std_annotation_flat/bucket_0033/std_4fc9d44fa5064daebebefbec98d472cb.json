@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a weathered metal wheelbarrow with a deep, oval-shaped tray that shows signs of rust and wear, suggesting frequent use. The tray is supported by a sturdy metal frame, which includes two long, straight handles extending from the rear for manual operation. At the front, a single large metal wheel is mounted centrally, providing balance and maneuverability. The wheel is flanked by two angled support legs that allow the barrow to stand upright when not in motion. The surface of the tray and frame is predominantly a faded white with patches of rust and discoloration, giving it a rugged, utilitarian appearance. This type of barrow is commonly found in urban environments for transporting materials such as soil, debris, or tools.",
+    "description": "A weathered metal wheelbarrow with a deep, rusted tray, single front wheel, and two long handles, showing signs of heavy use.",
+    "description_view_0": "Side view showing the full length of the tray, single front wheel, and both handles extending backward.",
+    "description_view_1": "Top-down view highlighting the oval shape and depth of the tray, with the wheel and handles visible in alignment.",
+    "description_view_2": "Opposite side view mirroring view 0, showing the tray, wheel, and handles from the other side.",
+    "description_view_3": "Front view focusing on the single wheel, the open mouth of the tray, and the ends of the handles.",
+    "category": "barrow",
+    "height": 0.6,
+    "max_dimension": 1.4,
+    "materials": [
+        "steel",
+        "iron",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 35,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "tray",
+        "support legs"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "white",
+        "rust brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 1,
+    "attribute_handle_type": "dual straight handles",
+    "attribute_wheel_position": "single front-centered",
+    "attribute_tray_depth": 0.32,
+    "attribute_presence_of_support_legs": true,
+    "uid": "4fc9d44fa5064daebebefbec98d472cb",
+    "near_synsets": {
+        "barrow.n.03": 0.47681578502024347,
+        "handbarrow.n.01": 0.5205368704062489,
+        "crowbar.n.01": 0.5230361212283562,
+        "cart.n.01": 0.5338666448751214,
+        "drawbar.n.01": 0.5376712768538325,
+        "burial_mound.n.01": -1000.0,
+        "barrow.n.01": -1000.0
+    },
+    "synset": "barrow.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4fc9d44fa5064daebebefbec98d472cb",
+        "creator_username": "NWCFullsail",
+        "creator_display_name": "NWCFullsail",
+        "creator_profile_url": "https://sketchfab.com/NWCFullsail"
+    },
+    "filename": "std_4fc9d44fa5064daebebefbec98d472cb.glb",
+    "length": 1.2360389232635498,
+    "width": 0.2777296006679535
+}

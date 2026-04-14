@@ -1,0 +1,94 @@
+{
+    "description_long": "This is a modern, single-story garage structure integrated into a residential building, featuring clean lines and a minimalist aesthetic. The front facade displays a large, rectangular garage door in a smooth gray finish, adjacent to a smaller entry door and a section of vertical wooden paneling. The roof is flat with multiple raised sections, likely for skylights or ventilation, and the overall exterior is finished in a combination of white and gray surfaces. Windows are present along one side, providing natural light to the interior, while the rear and opposite side are mostly solid with minimal openings. The garage appears to be constructed primarily from concrete or masonry, with some wood and glass accents. The design is functional and contemporary, suitable for urban or suburban environments.",
+    "description": "A modern, flat-roofed garage attached to a residential building, featuring a large gray door, white and gray walls, and wood panel accents.",
+    "description_view_0": "Front view showing the main garage door, entry door, and wood panel accent.",
+    "description_view_1": "Side view with several rectangular windows and a mostly solid white wall.",
+    "description_view_2": "Rear view with a solid wall and raised roof sections, no visible doors.",
+    "description_view_3": "Opposite side view with a small window and partial view into the garage interior.",
+    "category": "garage",
+    "height": 3.5,
+    "max_dimension": 12.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 35000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "garage door",
+        "entry door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_garage_door_type": "single panel",
+    "attribute_number_of_garage_doors": 1,
+    "attribute_presence_of_driveway": false,
+    "attribute_door_hardware_style": "minimalist",
+    "attribute_architectural_style": "modern",
+    "uid": "4c66663986b447cb8038658437827bca",
+    "near_synsets": {
+        "garage.n.01": 0.4548843929776277,
+        "carport.n.01": 0.491108778788238,
+        "garage.n.02": 0.5319233379687618,
+        "door.n.04": 0.5501359983100264,
+        "loft.n.02": 0.55191855279438
+    },
+    "synset": "garage.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4c66663986b447cb8038658437827bca",
+        "creator_username": "crispimrafael",
+        "creator_display_name": "SrMonteiro",
+        "creator_profile_url": "https://sketchfab.com/crispimrafael"
+    },
+    "filename": "std_4c66663986b447cb8038658437827bca.glb",
+    "length": 10.160522937774658,
+    "width": 5.617919921875
+}

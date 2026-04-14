@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a large, weathered ship with a flat, elongated hull and a visibly aged exterior, featuring rust stains and faded paint. The deck is equipped with a prominent crane structure near the center, several hatches, and various deck fixtures, suggesting it may have been used for industrial or cargo purposes. The bow is rounded and slightly raised, while the stern appears damaged or incomplete, exposing internal structure. The superstructure is minimal, with no enclosed bridge or cabin, and the deck is mostly open with scattered equipment. The ship's surface is predominantly gray with patches of rust and grime, giving it a rugged, utilitarian appearance. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A large, weathered industrial ship with a flat, open deck, central crane, and visible rust and wear. The hull is elongated and the stern appears damaged or incomplete.",
+    "description_view_0": "Top-down view showing the full deck layout, central crane, and open hatches.",
+    "description_view_1": "Side profile highlighting the ship's elongated hull, central crane, and damaged stern.",
+    "description_view_2": "Bottom-up view emphasizing the hull shape, stern structure, and deck equipment.",
+    "description_view_3": "Opposite side profile showing the hull, deck fixtures, and exposed stern.",
+    "category": "ship",
+    "height": 6.0,
+    "max_dimension": 55.0,
+    "materials": [
+        "steel",
+        "iron",
+        "wood",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.01,
+        0.03
+    ],
+    "mass": 120000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1800000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "crane",
+        "hatch",
+        "winch",
+        "deck equipment"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "rust brown",
+        "black",
+        "green"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single, elongated displacement type with a rounded bow and a visibly damaged or incomplete stern. The sides are straight with a flat deck, and there is no visible keel or bulbous bow. The hull shows signs of rust and wear.",
+    "attribute_superstructure_layout": "The superstructure is minimal, with no enclosed bridge or cabin. The deck is open with a central crane and scattered equipment, and there are several hatches and fixtures but no upper decks or towers.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "crane",
+        "hatch",
+        "winch"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "75771841526143cdb75200c2d840886a",
+    "near_synsets": {
+        "hulk.n.02": 0.48208162933019405,
+        "abandoned_ship.n.01": 0.4984491617199016,
+        "wreck.n.04": 0.5015627841241386,
+        "shipwreck.n.01": 0.501800736586994,
+        "cargo_ship.n.01": 0.5160193343689974,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/75771841526143cdb75200c2d840886a",
+        "creator_username": "stuartnorton",
+        "creator_display_name": "stuartnorton",
+        "creator_profile_url": "https://sketchfab.com/stuartnorton"
+    },
+    "filename": "std_75771841526143cdb75200c2d840886a.glb",
+    "length": 19.298828125,
+    "width": 5.03564453125
+}

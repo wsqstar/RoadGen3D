@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a small, dilapidated concrete shelter with a partially collapsed roof and scattered debris around its base. The structure features weathered, gray concrete walls with visible brickwork showing through in places, indicating significant wear and damage. The roof is made of two large, broken concrete slabs, one of which has caved in, exposing the interior. There is a single entryway at the front, accessible by a short set of steps, and a small window on one side. The ground around the shelter is littered with loose bricks and broken pieces of concrete, suggesting recent structural failure. The overall appearance is that of an abandoned or ruined urban shelter, possibly used for temporary cover or as a remnant of a larger building.",
+    "description": "A small, ruined concrete shelter with a broken roof, exposed brickwork, and scattered debris. The structure appears abandoned and heavily damaged.",
+    "description_view_0": "Front view showing the main entryway, steps, and the collapsed roof with debris scattered in front.",
+    "description_view_1": "Side view revealing a small window, exposed brickwork, and a detached section of the structure lying nearby.",
+    "description_view_2": "Rear view highlighting the broken roof slabs, open back, and extensive debris behind the shelter.",
+    "description_view_3": "Opposite side view showing the interior through the open side, more debris, and a large broken section of the roof on the ground.",
+    "category": "shelter",
+    "height": 2.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "concrete",
+        "brick",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 4200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shelter",
+        "hiding",
+        "cover"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "doorway",
+        "window",
+        "roof slab"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "broken flat concrete slab roof",
+    "attribute_entryway_design": "open rectangular entryway with short concrete steps",
+    "attribute_support_structure": "reinforced concrete walls with exposed brick infill",
+    "attribute_signage": "none",
+    "attribute_transparency": "fully opaque",
+    "uid": "14c79f1a4d8548acb6592072549569ff",
+    "near_synsets": {
+        "shelter.n.05": 0.4872840581740106,
+        "shelter.n.01": 0.495868498269479,
+        "shelter.n.02": 0.49613641883722265,
+        "ruin.n.02": 0.5161520370194166,
+        "shed.n.01": 0.5226629701101185,
+        "tax_shelter.n.01": -1000.0,
+        "protection.n.04": -1000.0
+    },
+    "synset": "tax_shelter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/14c79f1a4d8548acb6592072549569ff",
+        "creator_username": "grox777",
+        "creator_display_name": "Yo.Ri",
+        "creator_profile_url": "https://sketchfab.com/grox777"
+    },
+    "filename": "std_14c79f1a4d8548acb6592072549569ff.glb",
+    "length": 8.751724243164062,
+    "width": 8.606914520263672
+}

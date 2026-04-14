@@ -1,0 +1,93 @@
+{
+    "description_long": "This humanoid robot features a skeletal, mechanical frame with a prominent, boxy head equipped with two large, circular eye-like components and a grid-like mouth structure. Its arms are extended horizontally, displaying a segmented, jointed design with visible wiring and mechanical linkages. The torso is composed of interconnected rods and circular joints, giving it an industrial, exoskeletal appearance. The legs are similarly mechanical, with multiple articulated joints and robust, blocky feet that suggest stability and support. The entire structure is finished in a dark, metallic color, with a matte sheen and visible bolts and connectors throughout. The robot's design is utilitarian, emphasizing exposed mechanics and functional articulation over aesthetic coverings.",
+    "description": "A dark, skeletal humanoid robot with exposed mechanical joints, a boxy head with large circular eyes, and articulated limbs. Its industrial design features visible wiring and robust, blocky feet.",
+    "description_view_0": "Front view shows the robot's boxy head with two large circular eyes, grid-like mouth, outstretched arms, and detailed mechanical torso and legs.",
+    "description_view_1": "Side view highlights the thin profile, protruding head, and the layered, jointed structure of the arms and legs.",
+    "description_view_2": "Rear view reveals the back of the head, the mechanical spine, and the symmetrical arrangement of the limbs and feet.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the slim silhouette and the mechanical articulation of the limbs.",
+    "category": "humanoid robot",
+    "height": 1.8,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 95,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "rotatable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head",
+        "arms",
+        "hands",
+        "legs",
+        "feet",
+        "joints"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms extended horizontally to the sides, legs straight and feet flat on the ground, head facing forward.",
+    "attribute_clothing_style": "Unclothed; only integrated mechanical panels and exposed structural components are visible.",
+    "attribute_facial_features": "Boxy head with two large, circular eye-like components and a grid-like mouth structure; no visible nose or expressive elements.",
+    "attribute_limb_articulation": "Arms and legs feature multiple visible hinge and rotary joints, allowing for a wide range of motion; limbs appear rigid but highly articulated.",
+    "attribute_presence_of_sensors": "Two large, circular components on the head likely serve as visual sensors (cameras); no other sensors visible.",
+    "uid": "b2ab7e64eb9c41ac9b8724f6c8db3fbd",
+    "near_synsets": {
+        "android.n.01": 0.5462427529545313,
+        "cyborg.n.01": 0.5549702193064907,
+        "robotics_equipment.n.01": 0.5562584667162453,
+        "automaton.n.02": 0.5723537537564003,
+        "robotics.n.01": 0.5819561473912169
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b2ab7e64eb9c41ac9b8724f6c8db3fbd",
+        "creator_username": "DillonXtrullier_21",
+        "creator_display_name": "DillonXtrullier_21",
+        "creator_profile_url": "https://sketchfab.com/DillonXtrullier_21"
+    },
+    "filename": "std_b2ab7e64eb9c41ac9b8724f6c8db3fbd.glb",
+    "length": 0.7597544193267822,
+    "width": 1.9768605828285217
+}

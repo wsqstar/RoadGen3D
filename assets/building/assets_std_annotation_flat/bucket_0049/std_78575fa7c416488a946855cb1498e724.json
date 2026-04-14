@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a tall, rectangular office building with a modern glass facade, featuring a grid of evenly spaced windows framed by dark structural elements. The building sits on a large, flat paved base, which includes a row of street lamps or parking lot lights along one side, suggesting an urban or business district setting. The roof is flat and bordered by a dark parapet, giving the structure a clean, minimalist silhouette. The windows are tinted blue, providing a reflective surface that contrasts with the dark framing. The ground area around the building is open, with no visible landscaping, emphasizing the utilitarian and commercial nature of the property. The overall design is functional and contemporary, with a focus on symmetry and regularity.",
+    "description": "A tall, modern office building with a blue glass facade and dark grid framing, set on a paved base with street lamps along one side. The structure is sleek, symmetrical, and designed for commercial use.",
+    "description_view_0": "Front view showing the main facade with a grid of blue-tinted windows and a wide paved area in front, with several lamp posts visible on both sides.",
+    "description_view_1": "Side view highlighting the row of street lamps aligned parallel to the building, and the narrow profile of the structure.",
+    "description_view_2": "Rear view mirroring the front, with the same window grid and paved area, but lamp posts are more evenly distributed across the visible space.",
+    "description_view_3": "Opposite side view with a clear view of the row of street lamps and the building's narrow side profile.",
+    "category": "office building",
+    "height": 40.0,
+    "max_dimension": 50.0,
+    "materials": [
+        "glass",
+        "steel",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.2,
+        0.05
+    ],
+    "mass": 1200000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "light fixture"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 16,
+    "attribute_window_pattern": "Uniform grid of rectangular windows, evenly spaced in horizontal and vertical rows across all facades.",
+    "attribute_building_entrance_type": "double glass doors",
+    "attribute_signage_presence": false,
+    "attribute_architectural_style": "International Style",
+    "uid": "78575fa7c416488a946855cb1498e724",
+    "near_synsets": {
+        "office_building.n.01": 0.46749794263441274,
+        "skyscraper.n.01": 0.5209887619359961,
+        "high-rise.n.01": 0.5236787858508085,
+        "office.n.01": 0.5404095863787525,
+        "building.n.01": 0.5411191713116645,
+        "office.n.05": -1000.0,
+        "office.n.04": -1000.0,
+        "construction.n.01": -1000.0,
+        "function.n.03": -1000.0,
+        "office.n.06": -1000.0,
+        "construction.n.07": -1000.0,
+        "position.n.06": -1000.0,
+        "building.n.04": -1000.0,
+        "agency.n.01": -1000.0
+    },
+    "synset": "office_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/78575fa7c416488a946855cb1498e724",
+        "creator_username": "joelhauck",
+        "creator_display_name": "Joel Hauck",
+        "creator_profile_url": "https://sketchfab.com/joelhauck"
+    },
+    "filename": "std_78575fa7c416488a946855cb1498e724.glb",
+    "length": 41.666669845581055,
+    "width": 41.66666030883789
+}

@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a large, rectangular green metal dumpster with a sloped, hinged lid that covers most of the top, leaving an opening for depositing trash. The exterior is painted dark green and shows patches of rust and weathering, indicating prolonged outdoor use. The interior is partially visible and filled with black garbage bags, some of which protrude through the opening. A yellow caution label is affixed to one side, providing a safety warning. The structure is robust, with reinforced edges and a solid base, but no wheels or visible handles are present. This type of dumpster is commonly found in alleys, behind commercial buildings, or in shared urban waste collection areas.",
+    "description": "A large, green, rust-patched metal dumpster with a sloped, hinged lid and a visible load of black garbage bags inside. It features a yellow caution label and is designed for outdoor waste collection.",
+    "description_view_0": "Side view showing the sloped lid with an open section revealing black garbage bags inside; no handles or wheels are visible.",
+    "description_view_1": "Front view displaying the full rectangular opening, the yellow caution label, and the garbage bags filling the interior.",
+    "description_view_2": "Opposite side view with the sloped lid and a smaller visible opening, showing less of the interior contents.",
+    "description_view_3": "Rear view showing a solid, flat green metal surface with no visible openings, handles, or labels.",
+    "category": "dumpster",
+    "height": 1.4,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "plastic",
+        "air",
+        "garbage (mixed)"
+    ],
+    "materials_composition": [
+        0.7,
+        0.05,
+        0.1,
+        0.15
+    ],
+    "mass": 350,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "yellow",
+        "rust (brownish-red)"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.02,
+        0.08
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "sloped, hinged metal lid with a single large opening; no visible locking or opening mechanisms",
+    "attribute_wheel_presence": false,
+    "attribute_handle_design": "none",
+    "attribute_warning_labels": [
+        {
+            "color": "yellow",
+            "shape": "rectangular",
+            "content": "caution/safety warning"
+        }
+    ],
+    "attribute_placement_location": "outdoor commercial area or residential alley",
+    "uid": "fefce37536b6407c8bcb80c70343c5b7",
+    "near_synsets": {
+        "dumpster.n.01": 0.4420247852382509,
+        "garbage.n.03": 0.49640814945284767,
+        "garbage_truck.n.01": 0.5111654852409068,
+        "recycling_bin.n.01": 0.5204292794750973,
+        "dump.n.02": 0.5327289963461076
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fefce37536b6407c8bcb80c70343c5b7",
+        "creator_username": "wasabicats",
+        "creator_display_name": "wasabicats",
+        "creator_profile_url": "https://sketchfab.com/wasabicats"
+    },
+    "filename": "std_fefce37536b6407c8bcb80c70343c5b7.glb",
+    "length": 1.540736973285675,
+    "width": 3.010424017906189
+}

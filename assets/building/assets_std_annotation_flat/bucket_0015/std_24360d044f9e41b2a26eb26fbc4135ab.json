@@ -1,0 +1,95 @@
+{
+    "description_long": "This warehouse consists of two large, rectangular wooden structures with steep, gabled roofs, set side by side on a dirt or sand base. The exterior walls are clad in dark, weathered wood planks, and each building features multiple small, square windows arranged in a grid pattern. The front of the warehouse is defined by a wide wooden loading dock, complete with a central ramp and stacked logs, suggesting a utilitarian function for loading and unloading goods. The roofs are made of corrugated metal, showing signs of rust and age, and extend over the buildings' full length. The overall design is simple and functional, with minimal decorative elements, emphasizing practicality and durability. The warehouse appears to be designed for bulk storage and easy access for vehicles or workers.",
+    "description": "A pair of large, dark wooden warehouses with gabled metal roofs and a wide wooden loading dock at the front, featuring multiple small windows and a utilitarian design.",
+    "description_view_0": "The rear view shows the long, dark wooden walls and the twin gabled roofs, with no visible windows or doors.",
+    "description_view_1": "The front view highlights the wide wooden loading dock, central ramp, and the symmetrical arrangement of windows and doors on both warehouse buildings.",
+    "description_view_2": "The opposite rear view mirrors view 0, showing the back of the warehouses with plain wooden walls and no visible entry points.",
+    "description_view_3": "The side view displays the length of the two buildings, the steep gabled roofs, and the grid-like window arrangement on the side facades.",
+    "category": "warehouse",
+    "height": 10.0,
+    "max_dimension": 35.0,
+    "materials": [
+        "wood",
+        "corrugated metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 120000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "loadable",
+        "unloadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "loading dock",
+        "ramp"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "group",
+    "attribute_facade_design": "The main facade features dark, vertically aligned wooden planks, a symmetrical grid of small square windows, and a wide wooden loading dock with a central ramp and stacked logs. The entryways are utilitarian, with minimal ornamentation, emphasizing function over form.",
+    "attribute_loading_dock_presence": true,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof consists of two steeply pitched, gabled forms made from corrugated metal, showing weathering and rust, with no visible skylights or rooftop equipment.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "24360d044f9e41b2a26eb26fbc4135ab",
+    "near_synsets": {
+        "warehouse.n.01": 0.49412985340469595,
+        "loft.n.01": 0.5213312123735104,
+        "storehouse.n.01": 0.547282051893335,
+        "cargo_door.n.01": 0.5497373953445311,
+        "godown.n.01": 0.5510622203466181
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/24360d044f9e41b2a26eb26fbc4135ab",
+        "creator_username": "Tidvis",
+        "creator_display_name": "Tidvis",
+        "creator_profile_url": "https://sketchfab.com/Tidvis"
+    },
+    "filename": "std_24360d044f9e41b2a26eb26fbc4135ab.glb",
+    "length": 18.712227821350098,
+    "width": 24.24142074584961
+}

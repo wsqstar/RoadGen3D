@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a modern naval warship with a sleek, angular hull painted primarily in light gray with a red lower section and a black deck. The ship features a prominent superstructure amidships, including a tall mast with various sensors and antennas, and a bridge with angular, radar-reducing surfaces. The bow is sharp and streamlined, while the stern includes a helicopter landing pad and hangar area. The deck is equipped with multiple fixtures, including radar domes, possible weapon mounts, and communication arrays. The vessel's design suggests advanced stealth capabilities and multi-role operational use, typical of contemporary frigates or destroyers.",
+    "description": "A modern gray naval warship with a red lower hull, angular superstructure, tall mast, and a helicopter pad at the stern.",
+    "description_view_0": "Side profile showing the full length of the ship, highlighting the angular superstructure, mast, and helicopter pad at the stern.",
+    "description_view_1": "Front view emphasizing the sharp bow, narrow beam, and the superstructure rising centrally behind the bow.",
+    "description_view_2": "Opposite side profile mirroring view 0, with clear visibility of the superstructure, mast, and stern features.",
+    "description_view_3": "Rear view showing the helicopter landing pad, hangar, and the width of the stern, with superstructure and mast visible forward.",
+    "category": "ship",
+    "height": 22,
+    "max_dimension": 140,
+    "materials": [
+        "steel",
+        "aluminum",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.03,
+        0.03,
+        0.01,
+        0.03
+    ],
+    "mass": 6000000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "radar",
+        "antenna",
+        "bridge window",
+        "hangar door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a sharp, streamlined bow and a flat transom stern. The lower hull is painted red, indicating anti-fouling coating, and there is a slight bulbous bow visible beneath the waterline. The hull sides are vertical with minimal flare, and the overall shape is optimized for stability and stealth.",
+    "attribute_superstructure_layout": "The superstructure is centrally located and angular, with a tall mast rising above the bridge. There are multiple decks, with the bridge positioned forward and a helicopter hangar and landing pad at the stern. The design is compact, with integrated radar and communication equipment.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "radar",
+        "antenna",
+        "helicopter pad",
+        "hangar",
+        "bridge",
+        "possible weapon mounts"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "c6f352b392964575b37699129d88f615",
+    "near_synsets": {
+        "surface_ship.n.01": 0.4946802040547656,
+        "guard_ship.n.01": 0.5103730167887406,
+        "capital_ship.n.01": 0.5161502229924079,
+        "naval_weaponry.n.01": 0.5192613053692531,
+        "small_ship.n.01": 0.5194777661479183,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c6f352b392964575b37699129d88f615",
+        "creator_username": "walaafikre-eg",
+        "creator_display_name": "Walaa Fekry",
+        "creator_profile_url": "https://sketchfab.com/walaafikre-eg"
+    },
+    "filename": "std_c6f352b392964575b37699129d88f615.glb",
+    "length": 61.50433921813965,
+    "width": 8.114747285842896
+}

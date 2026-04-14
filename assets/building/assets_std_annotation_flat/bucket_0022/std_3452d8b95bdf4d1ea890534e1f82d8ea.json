@@ -1,0 +1,88 @@
+{
+    "description_long": "This is a rugged, industrial-style mining trolley with a rectangular open-top container, constructed from heavy metal panels riveted together. The exterior is painted yellow but is heavily weathered with black patches, suggesting extensive use and exposure to harsh environments. The trolley sits on four solid metal wheels attached to a sturdy base frame, allowing it to roll along tracks or flat surfaces. The sides are reinforced with vertical metal ribs and rivets, enhancing structural integrity and giving it a robust appearance. The interior is deep and spacious, designed to carry bulk materials such as ore, debris, or construction supplies. There are no visible handles or branding, and the trolley's utilitarian design is focused on durability and function.",
+    "description": "A weathered yellow metal mining trolley with a deep open container, reinforced sides, and four solid wheels, designed for heavy-duty material transport.",
+    "description_view_0": "Front view showing the flat, riveted face of the trolley, the open container, and the base with two visible wheels.",
+    "description_view_1": "Side view highlighting the length of the container, four wheels, and the vertical reinforcement ribs along the trolley's body.",
+    "description_view_2": "Rear view similar to the front, showing the flat back panel, open container, and base structure.",
+    "description_view_3": "Opposite side view, again showing the length, four wheels, and reinforced ribs, mirroring view 1.",
+    "category": "trolley",
+    "height": 0.9,
+    "max_dimension": 1.5,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 120,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_handle_type": "none",
+    "attribute_number_of_wheels": 4,
+    "attribute_wheel_arrangement": "four wheels, two on each side in parallel pairs",
+    "attribute_basket_or_platform_presence": "basket",
+    "attribute_branding_or_signage": "none",
+    "uid": "3452d8b95bdf4d1ea890534e1f82d8ea",
+    "near_synsets": {
+        "tender.n.04": 0.5387918491895053,
+        "cart.n.01": 0.542631343162276,
+        "wheeled_vehicle.n.01": 0.544191052447809,
+        "trolleybus.n.01": 0.5473663839777106,
+        "trolley_line.n.01": 0.5502106120304572,
+        "streetcar.n.01": -1000.0
+    },
+    "synset": "trolley_line.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3452d8b95bdf4d1ea890534e1f82d8ea",
+        "creator_username": "przemek1996",
+        "creator_display_name": "przemek1996",
+        "creator_profile_url": "https://sketchfab.com/przemek1996"
+    },
+    "filename": "std_3452d8b95bdf4d1ea890534e1f82d8ea.glb",
+    "length": 1.5124616622924805,
+    "width": 0.7958128452301025
+}

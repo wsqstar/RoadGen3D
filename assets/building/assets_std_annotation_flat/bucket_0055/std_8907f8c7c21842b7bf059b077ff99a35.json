@@ -1,0 +1,109 @@
+{
+    "description_long": "This combat tactical vehicle features a low, angular body with a heavily armored exterior, painted in a striking combination of purple and blue hues with magenta highlights. The vehicle is equipped with a prominent roof-mounted weapon system, likely a cannon or energy weapon, and reinforced windows with a cross-braced design for added protection. Its wheels are partially enclosed by armored fenders, and the rear section appears to have additional plating and structural supports. Distinctive markings, including a white handprint and geometric symbols, are visible on the sides and roof, suggesting unit or faction identification. The overall design emphasizes both offensive capability and defensive resilience, with a sleek, futuristic aesthetic. The vehicle's robust construction and aggressive styling make it well-suited for urban combat scenarios.",
+    "description": "A heavily armored, purple and blue combat vehicle with a roof-mounted weapon and distinctive markings, designed for urban tactical operations.",
+    "description_view_0": "Side view showing the angular armored body, roof-mounted weapon, and a white handprint marking on the door.",
+    "description_view_1": "Front view highlighting the reinforced bumper, central weapon mount, and geometric symbol on the hood.",
+    "description_view_2": "Opposite side view with similar armored features and visible rear plating, but without the handprint marking.",
+    "description_view_3": "Rear view displaying the back armor, structural supports, and the rear aspect of the weapon mount.",
+    "category": "combat tactical  vehicle",
+    "height": 1.6,
+    "max_dimension": 4.2,
+    "materials": [
+        "metal",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.1,
+        0.05,
+        0.02
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 16000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "weapon mount",
+        "hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "purple",
+        "blue",
+        "magenta",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.07,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large weapon mount on the roof, centrally positioned, likely for a cannon or energy weapon.",
+    "attribute_armor_plating": "Full body armor plating with angular, reinforced panels covering the entire exterior, including doors, fenders, and rear. The plating appears thick and robust, with sloped surfaces for deflection.",
+    "attribute_camouflage_pattern": "Painted in a bold, high-contrast scheme of purple, blue, and magenta with geometric accents; no traditional camouflage pattern.",
+    "attribute_military_markings": "White handprint on the side door, geometric symbol on the hood, and additional magenta markings on the roof weapon mount.",
+    "attribute_tire_type": "Four large, partially enclosed tires with a smooth, reinforced tread pattern suitable for urban terrain.",
+    "uid": "8907f8c7c21842b7bf059b077ff99a35",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.49228698521197084,
+        "armored_car.n.02": 0.5299923605905177,
+        "armored_vehicle.n.01": 0.5314223332400316,
+        "tank.n.01": 0.5320286312443028,
+        "assault_gun.n.02": 0.5338404514945416,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "armored_car.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8907f8c7c21842b7bf059b077ff99a35",
+        "creator_username": "yasmineahmed",
+        "creator_display_name": "yasmine ahmed",
+        "creator_profile_url": "https://sketchfab.com/yasmineahmed"
+    },
+    "filename": "std_8907f8c7c21842b7bf059b077ff99a35.glb",
+    "length": 2.3203799724578857,
+    "width": 1.3904764652252197
+}

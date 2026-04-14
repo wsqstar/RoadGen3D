@@ -1,0 +1,97 @@
+{
+    "description_long": "This futuristic airplane features a streamlined, aerodynamic fuselage with a predominantly gray and black color scheme accented by red highlights. Its most distinctive elements are the large, circular dual rotors mounted on either side, each with visible internal fan blades, suggesting a vertical takeoff and landing (VTOL) capability. The cockpit is enclosed with a tinted, red canopy and is positioned forward on the fuselage, offering wide visibility. The tail section is compact and integrated, with subtle stabilizer fins and no traditional vertical stabilizer, giving it a sleek, modern appearance. The undercarriage appears smooth, with no visible landing gear, indicating possible retractable or concealed gear. The overall design is highly advanced, blending elements of both aircraft and drone technology.",
+    "description": "A sleek, gray and black VTOL airplane with large circular side rotors, a red-tinted forward cockpit, and a streamlined, futuristic design.",
+    "description_view_0": "Front view shows the dual circular rotors, central fuselage, and the red-tinted cockpit canopy prominently.",
+    "description_view_1": "Left side view highlights the elongated fuselage, the side profile of the cockpit, and the structure of the left rotor.",
+    "description_view_2": "Rear view displays the compact tail section, the back of the rotors, and the streamlined body tapering towards the tail.",
+    "description_view_3": "Right side view mirrors the left, showing the right rotor, cockpit profile, and the smooth, aerodynamic lines of the fuselage.",
+    "category": "airplane",
+    "height": 2.2,
+    "max_dimension": 7.5,
+    "materials": [
+        "composite",
+        "glass",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 17658,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "rotor",
+        "control panel",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "sleek",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.07,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with large, circular, ducted rotors on each side; no traditional fixed wings; rotors are integrated into the main structure with a flat dihedral profile.",
+    "attribute_engine_type": "Twin electric ducted fans integrated within circular side nacelles.",
+    "attribute_tail_design": "Compact tail with low-profile horizontal stabilizers and no visible vertical stabilizer; unconventional integrated design.",
+    "attribute_landing_gear_type": "No visible landing gear; likely retractable or concealed within the fuselage.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a single-seat configuration and a large, red-tinted canopy.",
+    "uid": "8bedfa8c39a649558f45a0e8531a9372",
+    "near_synsets": {
+        "aircraft.n.01": 0.5133476906914509,
+        "helicopter.n.01": 0.5329728913724202,
+        "vertical_tail.n.01": 0.5390823238549846,
+        "rotor.n.03": 0.5394390674281248,
+        "orthopter.n.01": 0.5447954253115719,
+        "airplane.n.01": -1000.0
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8bedfa8c39a649558f45a0e8531a9372",
+        "creator_username": "jcremoux",
+        "creator_display_name": "Reikan",
+        "creator_profile_url": "https://sketchfab.com/jcremoux"
+    },
+    "filename": "std_8bedfa8c39a649558f45a0e8531a9372.glb",
+    "length": 6.455678701400757,
+    "width": 7.563732624053955
+}

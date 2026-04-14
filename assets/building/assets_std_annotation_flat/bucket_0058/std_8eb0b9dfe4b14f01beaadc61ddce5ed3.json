@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a large, cylindrical bomb with a robust, metallic body painted in a dark green color, featuring patches of wear and rust. The midsection is encircled by a prominent yellow band, and the rear end is capped with a red, circular plate. The front section is equipped with stabilizing fins and a hollow, ring-like structure, likely for aerodynamic stability during descent. The surface is visibly scratched and weathered, suggesting exposure to harsh conditions or prolonged storage. Bolts and seams are visible along the body, indicating a solid, industrial construction typical of military ordnance.",
+    "description": "A large, green metallic bomb with a yellow band, red rear cap, and stabilizing fins, showing signs of wear and weathering.",
+    "description_view_0": "Front view shows the hollow, ringed stabilizer and internal support structure.",
+    "description_view_1": "Side view highlights the cylindrical body, yellow band, and the fin assembly at the rear.",
+    "description_view_2": "Rear view displays the red circular end cap and the yellow band encircling the bomb.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the green body, yellow band, and fin structure.",
+    "category": "bomb",
+    "height": 0.7,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.3,
+        0.03,
+        0.02
+    ],
+    "mass": 250,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2450,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "fin assembly",
+        "end cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "yellow",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.02,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "No visible external detonation mechanism; likely initiated by an internal fuse or impact trigger concealed within the body.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "8eb0b9dfe4b14f01beaadc61ddce5ed3",
+    "near_synsets": {
+        "plastic_bomb.n.01": 0.535695664398997,
+        "general-purpose_bomb.n.01": 0.5513677884613146,
+        "pipe_bomb.n.01": 0.5550879699978616,
+        "bomb.n.01": 0.5569472361480861,
+        "dirty_bomb.n.01": 0.558093218287822,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8eb0b9dfe4b14f01beaadc61ddce5ed3",
+        "creator_username": "cgmax7",
+        "creator_display_name": "cgmax7",
+        "creator_profile_url": "https://sketchfab.com/cgmax7"
+    },
+    "filename": "std_8eb0b9dfe4b14f01beaadc61ddce5ed3.glb",
+    "length": 1.1311816573143005,
+    "width": 0.6999998688697815
+}

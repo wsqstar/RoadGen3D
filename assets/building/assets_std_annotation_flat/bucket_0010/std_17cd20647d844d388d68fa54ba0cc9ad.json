@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a stylized wooden sailing ship with a rounded hull, adorned with purple and gold decorative patterns along the sides. The ship features two tall masts, each equipped with large, white, rectangular sails and topped with red flags. The bow is pointed and reinforced, while the stern is broad and slightly elevated, with a small, enclosed cabin area. The deck is open and flat, with minimal visible equipment, and the ship's hull is painted with a prominent purple band at the stern. The sails are unfurled, and the rigging is simple, with no visible ropes or pulleys. The overall design is reminiscent of a classic galleon or fantasy pirate ship, with a whimsical and colorful aesthetic.",
+    "description": "A stylized wooden sailing ship with two masts, white sails, and purple-gold decorative patterns. The hull is rounded and the stern features a small cabin.",
+    "description_view_0": "Front view showing the pointed bow, symmetrical sails, and the ship's narrow profile.",
+    "description_view_1": "Side view highlighting the decorative purple swirls, open deck, and the two masts with red flags.",
+    "description_view_2": "Rear view displaying the broad stern, purple band, and the full width of the ship's hull.",
+    "description_view_3": "Opposite side view with similar features to view 1, showing the cabin and decorative hull details.",
+    "category": "ship",
+    "height": 18.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "wood",
+        "fabric",
+        "metal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 300000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sails",
+        "masts",
+        "cabin",
+        "deck"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "white",
+        "purple",
+        "gold",
+        "red"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a rounded, bulbous bow and a broad, flat stern. Decorative purple and gold patterns are visible along the sides, and the hull features a prominent purple band at the stern. There are no visible keels or bulbous bows beyond the main hull curvature.",
+    "attribute_superstructure_layout": "The superstructure consists of an open main deck with a small, raised cabin at the stern. There are two tall masts centrally aligned, and the deck is otherwise clear of major structures or equipment.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [],
+    "attribute_registration_markings": "none",
+    "uid": "17cd20647d844d388d68fa54ba0cc9ad",
+    "near_synsets": {
+        "sailing_vessel.n.01": 0.5091735060067418,
+        "bark.n.03": 0.517086554584837,
+        "sail.n.03": 0.5173437918074844,
+        "fore-and-after.n.01": 0.5187992800914211,
+        "brig.n.01": 0.5192477033137496,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/17cd20647d844d388d68fa54ba0cc9ad",
+        "creator_username": "dmuenter",
+        "creator_display_name": "Dana Muenter",
+        "creator_profile_url": "https://sketchfab.com/dmuenter"
+    },
+    "filename": "std_17cd20647d844d388d68fa54ba0cc9ad.glb",
+    "length": 18.09155559539795,
+    "width": 6.6876220703125
+}

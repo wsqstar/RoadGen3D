@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a cylindrical, stick-handled bomb resembling the classic German Stielhandgranate or 'stick grenade.' The main body consists of a dark, metallic cylindrical head attached to a long, wooden handle, which is slightly tapered and features a metal cap at the end. The metal head appears robust and slightly weathered, with a matte finish and subtle surface irregularities. The handle is made of wood, showing a natural grain and a smooth, polished surface, with a metal ring or collar securing the head to the shaft. The overall construction suggests a utilitarian design, with the handle providing leverage for throwing. No visible wires, buttons, or digital components are present, and the object lacks any clear warning labels or timer displays.",
+    "description": "A stick-handled bomb with a dark metal cylindrical head and a long, polished wooden handle, resembling a classic stick grenade.",
+    "description_view_0": "Side view showing the full length of the bomb, highlighting the cylindrical metal head and the wooden handle with a metal cap.",
+    "description_view_1": "Front view looking directly at the metal head, with the handle receding behind and the circular face of the head prominent.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the cylindrical head and handle from the other side.",
+    "description_view_3": "Rear view focusing on the end of the wooden handle, with the metal cap visible and the head mostly obscured.",
+    "category": "bomb",
+    "height": 0.35,
+    "max_dimension": 0.35,
+    "materials": [
+        "wood",
+        "steel",
+        "explosive_compound",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.3,
+        0.2,
+        0.05
+    ],
+    "mass": 0.6,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 6,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "throwable",
+        "twistable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "metal head",
+        "end cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.45,
+        0.4,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The detonation mechanism is likely initiated by unscrewing or striking the end cap, which may activate an internal fuse or percussion system.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "be33e84e234841a68176acaf9b642389",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.48165427981948566,
+        "grenade.n.01": 0.4918721664464455,
+        "pipe_bomb.n.01": 0.49609383719412353,
+        "bomb.n.01": 0.524817265343103,
+        "plastic_bomb.n.01": 0.5347139510766893,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/be33e84e234841a68176acaf9b642389",
+        "creator_username": "TechnoCraft",
+        "creator_display_name": "TechnoCraft",
+        "creator_profile_url": "https://sketchfab.com/TechnoCraft"
+    },
+    "filename": "std_be33e84e234841a68176acaf9b642389.glb",
+    "length": 0.35539956390857697,
+    "width": 1.5125309228897095
+}

@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a medium-sized, boxy truck with a rectangular cargo compartment and a compact cab at the front. The truck features a muted greenish-gray body with a slightly raised section at the rear, likely for cargo storage. The cab is positioned at one end, with visible side mirrors and a windshield, while the cargo area is enclosed and appears to be made of metal panels. The wheels are small and set close to the body, suggesting a utilitarian design for urban deliveries or transport. The truck's overall appearance is utilitarian, with minimal decorative elements and a focus on function. The rear of the truck is flat, with no visible doors or ramps, and the front has a simple grille and headlight arrangement.",
+    "description": "A boxy, greenish-gray urban delivery truck with a compact cab and enclosed cargo area, designed for utility and transport. The truck has a simple, functional appearance with minimal decorative features.",
+    "description_view_0": "Side view showing the full length of the truck, with the cab on the left and the boxy cargo area extending to the right.",
+    "description_view_1": "Front view highlighting the narrow cab, windshield, and grille, with the cargo area mostly hidden behind.",
+    "description_view_2": "Opposite side view, similar to view 0, but with the cab on the right and the cargo area extending left.",
+    "description_view_3": "Rear view showing the flat back of the cargo area, with no visible doors or ramps, and the truck's overall boxy shape.",
+    "category": "truck",
+    "height": 2.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.08,
+        0.05,
+        0.04
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "mirror",
+        "window",
+        "headlight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "box",
+    "attribute_wheelbase": "4.0",
+    "attribute_number_of_axles": 2,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "0ec37184c6f1484dade6e7a3f89ee705",
+    "near_synsets": {
+        "delivery_truck.n.01": 0.4757678105253317,
+        "van.n.05": 0.49327446208500336,
+        "truck.n.01": 0.5197125476188403,
+        "pickup.n.01": 0.5219507688129613,
+        "cargo_container.n.01": 0.5328577829190441,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0ec37184c6f1484dade6e7a3f89ee705",
+        "creator_username": "topfrank2013",
+        "creator_display_name": "Francesco Coldesina",
+        "creator_profile_url": "https://sketchfab.com/topfrank2013"
+    },
+    "filename": "std_0ec37184c6f1484dade6e7a3f89ee705.glb",
+    "length": 56.67694091796875,
+    "width": 63.55823516845703
+}

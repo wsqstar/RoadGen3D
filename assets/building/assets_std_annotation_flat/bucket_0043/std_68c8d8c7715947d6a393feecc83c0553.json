@@ -1,0 +1,92 @@
+{
+    "description_long": "This handcart features a robust wooden construction with a rectangular cargo bed, reinforced by metal strips running lengthwise along the floor. The sides are formed by tall, solid wooden panels, providing containment for transported goods. Two large, spoked wooden wheels are mounted on either side, allowing for smooth rolling over uneven surfaces. At the front, a pair of straight wooden handles extend outward, designed for manual pushing or pulling. The overall finish is a warm, reddish-brown wood tone, with visible grain and some metallic accents. The design is utilitarian, suitable for transporting various items in urban environments such as markets, parks, or construction sites.",
+    "description": "A sturdy wooden handcart with tall side panels, large spoked wheels, and dual straight handles, finished in a reddish-brown wood tone with metal reinforcements.",
+    "description_view_0": "Top-down view showing the rectangular cargo bed with metal strips and tall side panels.",
+    "description_view_1": "Side view highlighting the large spoked wheel, the depth of the cargo bed, and the extended handles.",
+    "description_view_2": "Front view displaying the width of the cart, the two handles, and the front edge of the cargo bed.",
+    "description_view_3": "Opposite side view similar to view 1, showing the other wheel and the overall length of the handles.",
+    "category": "handcart",
+    "height": 1.0,
+    "max_dimension": 2.0,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "cargo bed"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "dark brown",
+        "metallic gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 2,
+    "attribute_handle_type": "dual straight handles",
+    "attribute_wheel_position": "side-mounted",
+    "attribute_presence_of_side_rails": true,
+    "attribute_load_platform_design": "flat solid surface with metal strips",
+    "uid": "68c8d8c7715947d6a393feecc83c0553",
+    "near_synsets": {
+        "hand_truck.n.01": 0.4558505338821631,
+        "handcart.n.01": 0.4687150505500116,
+        "shopping_cart.n.01": 0.48207406791285556,
+        "serving_cart.n.01": 0.48431007997196307,
+        "cart.n.01": 0.4916101070929403
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/68c8d8c7715947d6a393feecc83c0553",
+        "creator_username": "ape.cgart",
+        "creator_display_name": "Oleksandr Pelypenko",
+        "creator_profile_url": "https://sketchfab.com/ape.cgart"
+    },
+    "filename": "std_68c8d8c7715947d6a393feecc83c0553.glb",
+    "length": 1.810619592666626,
+    "width": 0.8657719492912292
+}

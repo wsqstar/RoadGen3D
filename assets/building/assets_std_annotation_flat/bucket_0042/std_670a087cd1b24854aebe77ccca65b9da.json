@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a historical artillery cannon mounted on a wooden wheeled carriage, positioned behind a low sandbag or stone barricade. The cannon is constructed from dark, weathered metal with visible rivets and reinforcement bands, and it sits atop a robust wooden frame with four solid wheels. Surrounding the cannon are several wooden barrels and scattered iron cannonballs, suggesting a scene prepared for loading and firing. A long ramrod or cleaning rod is propped against the barricade, and the ground is paved with large, worn stone tiles. The entire setup evokes a fortified position, likely from a historical urban defense scenario, with all elements showing signs of age and use.",
+    "description": "A weathered metal cannon on a wooden carriage, surrounded by barrels and cannonballs behind a stone barricade. The scene is detailed with historical textures and accessories.",
+    "description_view_0": "Front view showing the cannon's muzzle centered between two barrels and the stone barricade.",
+    "description_view_1": "Side view highlighting the cannon's length, wooden carriage, and scattered cannonballs.",
+    "description_view_2": "Top-down view displaying the full arrangement of the cannon, barrels, barricade, and cannonballs.",
+    "description_view_3": "Opposite side view showing the rear of the cannon, more barrels, and the ramrod leaning against the barricade.",
+    "category": "rifle",
+    "height": 1.2,
+    "max_dimension": 2.5,
+    "materials": [
+        "iron",
+        "wood",
+        "stone",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.35,
+        0.15,
+        0.03,
+        0.02
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pushable",
+        "pullable",
+        "loadable",
+        "fireable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "barrel",
+        "wheels",
+        "ramrod",
+        "cannonballs",
+        "barrels",
+        "carriage"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "black",
+        "green"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "none",
+    "attribute_sight_type": "none",
+    "attribute_muzzle_device": "none",
+    "uid": "670a087cd1b24854aebe77ccca65b9da",
+    "near_synsets": {
+        "cannon.n.01": 0.514631471946793,
+        "cannon.n.02": 0.5297562331744199,
+        "gun_carriage.n.01": 0.5345769459269692,
+        "rifle.n.01": 0.5458240976505128,
+        "cannon.n.04": 0.5461433870901213
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/670a087cd1b24854aebe77ccca65b9da",
+        "creator_username": "maxbrown519",
+        "creator_display_name": "maxbrown519",
+        "creator_profile_url": "https://sketchfab.com/maxbrown519"
+    },
+    "filename": "std_670a087cd1b24854aebe77ccca65b9da.glb",
+    "length": 2.764087677001953,
+    "width": 2.749385952949524
+}

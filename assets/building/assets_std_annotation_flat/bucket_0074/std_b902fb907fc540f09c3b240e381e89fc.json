@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a small, decorative pedestrian bridge with a gently arched deck and prominent red-painted wooden railings. The bridge features four sturdy posts at each corner, each topped with a gold-colored, rounded finial that adds an ornamental touch. The walking surface consists of evenly spaced, light gray wooden planks, providing a stable and visually appealing path. The railings are composed of curved horizontal beams supported by vertical balusters, all painted in a rich red hue. The overall design is compact and elegant, suitable for parks, gardens, or urban green spaces. The bridge's style evokes traditional East Asian influences, often seen in Japanese or Chinese garden architecture.",
+    "description": "A small, arched pedestrian bridge with red wooden railings, gold finials, and a light gray plank walkway. Its design is decorative and reminiscent of traditional East Asian garden bridges.",
+    "description_view_0": "Front view showing the entrance to the bridge, with two red posts topped by gold finials and the light gray plank walkway leading up.",
+    "description_view_1": "Side view highlighting the gentle arch of the bridge, the curved red railings, and all four gold-topped posts.",
+    "description_view_2": "Rear view mirroring the front, with two red posts and gold finials framing the exit of the bridge.",
+    "description_view_3": "Opposite side view showing the arch, red railings, and the full set of gold-topped posts from the other side.",
+    "category": "bridge",
+    "height": 1.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "wood",
+        "paint",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 600,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "crossable",
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "railing",
+        "deck",
+        "posts"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "red",
+        "gray",
+        "gold"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_support_type": "arch",
+    "attribute_railing_design": "painted wood railings with curved horizontal beams, vertical balusters, and gold-topped posts",
+    "attribute_arch_presence": true,
+    "attribute_lighting_fixtures": [],
+    "attribute_architectural_style": "East Asian",
+    "uid": "b902fb907fc540f09c3b240e381e89fc",
+    "near_synsets": {
+        "footbridge.n.01": 0.48829081944254,
+        "trestle_bridge.n.01": 0.532767767004966,
+        "viaduct.n.01": 0.5330047869303339,
+        "bridge.n.01": 0.5374991736291077,
+        "steel_arch_bridge.n.01": 0.5393251792056752,
+        "bridge.n.05": -1000.0,
+        "bridge.n.04": -1000.0,
+        "bridge.n.08": -1000.0,
+        "bridge.n.06": -1000.0,
+        "bridge.n.07": -1000.0,
+        "bridge.n.09": -1000.0,
+        "bridge.n.03": -1000.0,
+        "bridge.n.02": -1000.0
+    },
+    "synset": "bridge.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b902fb907fc540f09c3b240e381e89fc",
+        "creator_username": "saskatoon.sebastian",
+        "creator_display_name": "sebyseb",
+        "creator_profile_url": "https://sketchfab.com/saskatoon.sebastian"
+    },
+    "filename": "std_b902fb907fc540f09c3b240e381e89fc.glb",
+    "length": 3.404913067817688,
+    "width": 1.6267926692962646
+}

@@ -1,0 +1,112 @@
+{
+    "description_long": "This is a military-style tracked vehicle, resembling a Soviet-era main battle tank, painted in a dark green camouflage with a prominent long-barreled cannon extending from the turret. The hull is angular and robust, with visible armored plating and external storage compartments on the sides and rear. The vehicle features large, rugged tracks with multiple road wheels, suitable for traversing rough and urban terrain. On the turret, there are hatches, a mounted machine gun, and a radio antenna, indicating its combat readiness. The sides display markings, including a red star and numerical identifiers, adding to its military authenticity. Additional equipment such as spare fuel tanks and storage boxes are mounted externally, enhancing its operational utility.",
+    "description": "A dark green, heavily armored tracked tank with a long cannon, external storage, and military markings, designed for rugged all-terrain use.",
+    "description_view_0": "Side view showing the full length of the tank, the long cannon, external storage, and track details.",
+    "description_view_1": "Rear view highlighting the back storage compartments, exhausts, and the width of the tracks.",
+    "description_view_2": "Opposite side view with visible markings, spare fuel tanks, and the full track system.",
+    "description_view_3": "Front view emphasizing the cannon barrel, sloped armor, and the tank's imposing frontal profile.",
+    "category": "all-terrain vehicle",
+    "height": 2.5,
+    "max_dimension": 9.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.03,
+        0.04,
+        0.01,
+        0.05
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "track",
+        "wheel",
+        "antenna",
+        "storage box",
+        "fuel tank",
+        "machine gun"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "gray",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.03,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 12,
+    "attribute_tire_tread_pattern": "The tracks feature a rugged, blocky tread pattern designed for maximum traction on both soft and hard surfaces, suitable for all-terrain and urban environments.",
+    "attribute_suspension_type": "torsion bar",
+    "attribute_presence_of_roll_cage": false,
+    "attribute_handlebar_or_steering_wheel_type": "round steering wheel",
+    "uid": "2c707f21e97b44808a9753237749b7e6",
+    "near_synsets": {
+        "tank.n.01": 0.4549511472889243,
+        "military_vehicle.n.01": 0.4663416561616147,
+        "assault_gun.n.02": 0.48213869539345117,
+        "reconnaissance_vehicle.n.01": 0.4886147556518832,
+        "armored_vehicle.n.01": 0.4926004991021831,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2c707f21e97b44808a9753237749b7e6",
+        "creator_username": "Sen_C",
+        "creator_display_name": "Senator",
+        "creator_profile_url": "https://sketchfab.com/Sen_C"
+    },
+    "filename": "std_2c707f21e97b44808a9753237749b7e6.glb",
+    "length": 6.403564453125,
+    "width": 2.14472234249115
+}

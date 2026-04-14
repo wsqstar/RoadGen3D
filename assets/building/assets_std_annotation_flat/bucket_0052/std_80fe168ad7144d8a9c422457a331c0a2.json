@@ -1,0 +1,91 @@
+{
+    "description_long": "This object is a stylized, futuristic airplane with a distinctive X-shaped wing configuration, reminiscent of science fiction spacecraft. The fuselage is elongated and tapers to a pointed nose, with two cylindrical engines mounted on each side, for a total of four engines. The wings are straight and splayed outward, each ending in a long, narrow extension that resembles a laser cannon or antenna. The tail section is minimal, with no visible vertical stabilizer, and the landing gear is not visible, suggesting a streamlined, possibly retractable design. The surface appears smooth and untextured, with a uniform light gray color throughout.",
+    "description": "A futuristic, X-wing style airplane with four cylindrical engines, splayed wings, and a smooth, light gray surface.",
+    "description_view_0": "Front view showing the pointed nose, four cylindrical engines, and the X-shaped wing configuration.",
+    "description_view_1": "Side view highlighting the elongated fuselage, engine placement, and the long, narrow wing extensions.",
+    "description_view_2": "Rear view displaying the symmetry of the wings and engines, with the tail section visible.",
+    "description_view_3": "Opposite side view mirroring view 1, showing the same engine and wing structure.",
+    "category": "airplane",
+    "height": 2.5,
+    "max_dimension": 12.0,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 9000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 88200,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "engine",
+        "wing",
+        "control stick",
+        "throttle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 15.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing configuration with straight, splayed wings forming an X-shape; no visible winglets or dihedral/anhedral angles; each wing features a long, narrow extension at the tip.",
+    "attribute_engine_type": "Four cylindrical jet engines mounted in pairs on each side of the fuselage.",
+    "attribute_tail_design": "Minimal tail section with no visible vertical stabilizer; lacks conventional, T-tail, or V-tail features.",
+    "attribute_landing_gear_type": "Landing gear not visible; configuration indeterminate from images.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit integrated into the nose of the fuselage; appears to be single-seat with a streamlined canopy.",
+    "uid": "80fe168ad7144d8a9c422457a331c0a2",
+    "near_synsets": {
+        "aircraft.n.01": 0.5092933636651226,
+        "delta_wing.n.01": 0.5151302606067137,
+        "wing.n.02": 0.522116243872004,
+        "wing.n.04": 0.522364191307796,
+        "airplane.n.01": 0.5311844255382845
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/80fe168ad7144d8a9c422457a331c0a2",
+        "creator_username": "tomas.campos",
+        "creator_display_name": "tomas.campos",
+        "creator_profile_url": "https://sketchfab.com/tomas.campos"
+    },
+    "filename": "std_80fe168ad7144d8a9c422457a331c0a2.glb",
+    "length": 6.354138374328613,
+    "width": 6.592048645019531
+}

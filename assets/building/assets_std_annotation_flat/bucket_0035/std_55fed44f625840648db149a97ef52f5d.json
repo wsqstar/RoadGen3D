@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a classic urban telephone booth with a rectangular, upright structure made primarily of metal and glass. The booth features a prominent red sign labeled 'TELEPHONE' above the entrance, and its sides are composed of multiple glass panels framed by metal supports. The interior is visible through the transparent panels, revealing various posted notes, flyers, and graffiti, giving it a well-used, urban character. The booth has a door on one side, which is partially open, and the other sides are fully enclosed except for the back, which is solid metal. The roof is flat and solid, and the overall color scheme is a muted blue-gray with accents of red and white from the signage. The booth is large enough for a person to enter and use the telephone inside.",
+    "description": "A blue-gray metal and glass telephone booth with a red 'TELEPHONE' sign, glass panel sides, and visible interior notes and graffiti. The booth is fully enclosed except for the entrance door.",
+    "description_view_0": "Front angled view showing the partially open glass door, interior notes, and the red 'TELEPHONE' sign above the entrance.",
+    "description_view_1": "Direct front view with the door closed, clearly displaying the 'TELEPHONE' sign and various notes and flyers on the glass panels.",
+    "description_view_2": "Rear view showing a solid metal back panel with no windows or signage.",
+    "description_view_3": "Opposite front view with the 'TELEPHONE' sign, glass panels, and more visible notes and flyers on the glass.",
+    "category": "telephone booth",
+    "height": 2.3,
+    "max_dimension": 2.3,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "paper",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.3,
+        0.05,
+        0.01,
+        0.09
+    ],
+    "mass": 320,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "telephone",
+        "button",
+        "signage"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "blue-gray",
+        "red",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000.0,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.8,
+    "asset_composition_type": "single",
+    "attribute_enclosure_type": "fully enclosed",
+    "attribute_door_presence": true,
+    "attribute_window_configuration": "five rectangular glass panels on each side and door, no windows on the back",
+    "attribute_signage_or_labeling": "Red 'TELEPHONE' sign with white letters above the entrance door",
+    "attribute_handset_visibility": false,
+    "uid": "55fed44f625840648db149a97ef52f5d",
+    "near_synsets": {
+        "telephone_booth.n.01": 0.4313592362054564,
+        "booth.n.02": 0.5498085845198563,
+        "telephone_pole.n.01": 0.5524978161631888,
+        "pay-phone.n.01": 0.5625350826010816,
+        "tollbooth.n.01": 0.5635134861223617,
+        "booth.n.01": -1000.0,
+        "booth.n.04": -1000.0,
+        "telephone.n.02": -1000.0,
+        "telephone.n.01": -1000.0,
+        "booth.n.03": -1000.0
+    },
+    "synset": "telephone_booth.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/55fed44f625840648db149a97ef52f5d",
+        "creator_username": "mariekoller",
+        "creator_display_name": "Marie Koller",
+        "creator_profile_url": "https://sketchfab.com/mariekoller"
+    },
+    "filename": "std_55fed44f625840648db149a97ef52f5d.glb",
+    "length": 0.9568718075752258,
+    "width": 0.956871896982193
+}

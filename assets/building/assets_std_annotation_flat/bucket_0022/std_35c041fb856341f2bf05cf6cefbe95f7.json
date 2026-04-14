@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a heavily armored, angular combat tactical vehicle with a futuristic, polygonal design reminiscent of the Tesla Cybertruck, but modified for military use. The exterior is covered in a weathered, metallic finish with visible signs of wear and corrosion, giving it a rugged, battle-worn appearance. The vehicle features large, reinforced windows with a dark tint, and a prominent mounted machine gun on the roof, positioned centrally for maximum coverage. The wheels are robust and appear reinforced, suitable for urban and off-road environments, and the body panels are thick and sloped for deflection of projectiles. The rear cargo area is open, with the weapon mount accessible from this section, and the overall silhouette is low and wide for stability. No visible military insignia or camouflage patterns are present, emphasizing a utilitarian, stealthy look.",
+    "description": "A rugged, angular armored combat vehicle with a weathered metallic finish, reinforced windows, and a roof-mounted machine gun. Its design is futuristic and robust, built for tactical urban operations.",
+    "description_view_0": "Front view shows the sloped, armored nose, dark windshield, and the central roof-mounted weapon.",
+    "description_view_1": "Left side view highlights the polygonal body, large reinforced wheels, and the prominent roof-mounted machine gun.",
+    "description_view_2": "Rear view reveals the open cargo area, rear armor, and the back of the weapon mount.",
+    "description_view_3": "Right side view mirrors the left, showing the angular panels, wheels, and weapon mount from the opposite side.",
+    "category": "combat tactical  vehicle",
+    "height": 2.0,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 15000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "gun mount",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "rust brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible weapon mount: a machine gun mounted centrally on the roof above the rear cargo area.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped steel armor plating; panels are angular and appear reinforced, especially at the front and sides.",
+    "attribute_camouflage_pattern": "None visible; exterior is a solid, weathered metallic finish with rust and wear.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Four large, reinforced tires with a rugged, all-terrain tread pattern.",
+    "uid": "35c041fb856341f2bf05cf6cefbe95f7",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.5108446603679617,
+        "reconnaissance_vehicle.n.01": 0.5146472531977937,
+        "armored_car.n.02": 0.5193939823364397,
+        "assault_gun.n.02": 0.5197278695595773,
+        "tank.n.01": 0.5244632583537896,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "armored_car.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/35c041fb856341f2bf05cf6cefbe95f7",
+        "creator_username": "pasquill",
+        "creator_display_name": "pasquill",
+        "creator_profile_url": "https://sketchfab.com/pasquill"
+    },
+    "filename": "std_35c041fb856341f2bf05cf6cefbe95f7.glb",
+    "length": 5.132491827011108,
+    "width": 1.8980969190597534
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This handcart is a large, covered wooden vehicle with four spoked wheels and a rectangular body. The roof is arched and covered with a reddish, weathered fabric, secured by metal fasteners. The sides feature three circular windows with wooden frames and hanging baskets or containers beneath, suggesting storage or utility functions. The front has a small ladder and an open entryway, while the rear shows a closed wooden panel and two red lanterns. The cart is equipped with a long wooden tow bar at the front, indicating it is designed to be pulled by hand or possibly by an animal. The overall construction appears robust, with visible wood grain, metal reinforcements, and utilitarian details suitable for transporting goods or people in an urban environment.",
+    "description": "A large, covered wooden handcart with four spoked wheels, a red arched roof, circular side windows, and hanging baskets, designed for utility and transport.",
+    "description_view_0": "Front view shows the open entryway, small ladder, and the two large front wheels with the red fabric roof overhead.",
+    "description_view_1": "Side view reveals three circular windows, hanging baskets, and the full length of the wooden tow bar at the front.",
+    "description_view_2": "Rear view displays the closed wooden panel, two red lanterns, and the back wheels, with the roof arching above.",
+    "description_view_3": "Opposite side view mirrors the other side, showing the windows, baskets, and the structure of the wheels and frame.",
+    "category": "handcart",
+    "height": 2.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "wood",
+        "metal",
+        "fabric",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 450,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "openable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "door",
+        "wheel",
+        "ladder",
+        "window",
+        "basket"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "red",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 4,
+    "attribute_handle_type": "long wooden tow bar",
+    "attribute_wheel_position": "all corners",
+    "attribute_presence_of_side_rails": true,
+    "attribute_load_platform_design": "enclosed wooden compartment",
+    "uid": "e8b11aec127e4ce896d5cbd474702703",
+    "near_synsets": {
+        "handcart.n.01": 0.4307945469679678,
+        "shopping_cart.n.01": 0.43813265408985785,
+        "serving_cart.n.01": 0.45595117824814263,
+        "shopping_basket.n.01": 0.4596484338113698,
+        "hand_truck.n.01": 0.46781902254705277
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e8b11aec127e4ce896d5cbd474702703",
+        "creator_username": "dansoh",
+        "creator_display_name": "dansoh",
+        "creator_profile_url": "https://sketchfab.com/dansoh"
+    },
+    "filename": "std_e8b11aec127e4ce896d5cbd474702703.glb",
+    "length": 4.1331787109375,
+    "width": 1.7957404255867004
+}

@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a wooden rowboat with a classic, elongated monohull design, resting on a rectangular support platform. The boat features a pointed bow and a slightly raised stern, with visible ribs and planks forming the hull structure. The interior is open, with several crosswise thwarts for seating and structural support, and a partially covered bow section. The wood appears weathered, with a mix of dark brown and greenish hues, suggesting age and exposure to the elements. The boat is devoid of any visible motor or sail, indicating it is likely propelled by oars. The surrounding platform mimics a shallow water or dockside environment, enhancing its display context.",
+    "description": "A weathered wooden rowboat with an open interior, pointed bow, and visible ribs, resting on a rectangular support platform.",
+    "description_view_0": "Side view showing the full length of the boat, the open interior, and the supporting platform beneath.",
+    "description_view_1": "Front view highlighting the pointed bow, the covered bow section, and the alignment of the thwarts inside.",
+    "description_view_2": "Opposite side view displaying the hull's curvature, open seating, and the stern's raised profile.",
+    "description_view_3": "Rear view focusing on the stern, the open interior, and the platform's edge.",
+    "category": "boat",
+    "height": 0.7,
+    "max_dimension": 6.0,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 250,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "thwarts",
+        "gunwales",
+        "bow cover"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "green",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_hull_type": "monohull",
+    "attribute_propulsion_type": "oars",
+    "attribute_registration_number": "none",
+    "attribute_presence_of_trailer": false,
+    "attribute_visible_boat_name": "none",
+    "uid": "62ee41131ddc475d943db41a0e420457",
+    "near_synsets": {
+        "rowing_boat.n.01": 0.448661585437581,
+        "boat.n.01": 0.49243439760060426,
+        "boathouse.n.01": 0.5013612075130007,
+        "launch.n.01": 0.516695964844034,
+        "small_boat.n.01": 0.5178671620852899,
+        "gravy_boat.n.01": -1000.0
+    },
+    "synset": "gravy_boat.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/62ee41131ddc475d943db41a0e420457",
+        "creator_username": "arkeologiuit",
+        "creator_display_name": "Archaeology at UiT",
+        "creator_profile_url": "https://sketchfab.com/arkeologiuit"
+    },
+    "filename": "std_62ee41131ddc475d943db41a0e420457.glb",
+    "length": 2.9153536558151245,
+    "width": 1.4179267883300781
+}

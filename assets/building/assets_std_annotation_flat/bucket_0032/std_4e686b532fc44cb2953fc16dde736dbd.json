@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a large, horizontally-oriented cylindrical storage tank mounted on a concrete platform. The tank is constructed from dark metal and features a walkway with safety railings running along its top, accessible via a vertical metal ladder attached to one side. A prominent pipe extends from one end of the tank, likely serving as an inlet or outlet for fluids. The tank is supported by two sturdy concrete or metal saddles, elevating it above the platform. The walkway includes a grated surface and a hatch or access port on top, suggesting maintenance or inspection access. The overall design is utilitarian, typical for industrial or municipal storage applications.",
+    "description": "A large, horizontal cylindrical metal storage tank with a top walkway, safety railings, access ladder, and attached pipe, all mounted on a concrete base.",
+    "description_view_0": "Front view showing the rounded end of the tank, the walkway with railings, and the access ladder leading up to the platform.",
+    "description_view_1": "Side view highlighting the full length of the tank, the walkway, the access ladder, and the attached pipe extending from the tank's end.",
+    "description_view_2": "Rear view displaying the opposite rounded end of the tank, the walkway, and the pipe attachment more prominently.",
+    "description_view_3": "Opposite side view showing the tank's length, walkway, and the supporting saddles beneath the tank.",
+    "category": "storage tank",
+    "height": 3.0,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "concrete",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "turnable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "ladder",
+        "walkway",
+        "hatch",
+        "pipe"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": true,
+    "attribute_valve_or_pipe_attachments": [
+        "inlet pipe"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_architectural_style": "cylindrical horizontal",
+    "uid": "4e686b532fc44cb2953fc16dde736dbd",
+    "near_synsets": {
+        "tank.n.02": 0.48812598727594897,
+        "tank_farm.n.01": 0.5232635442587812,
+        "water_tower.n.01": 0.5307186030505222,
+        "reservoir.n.03": 0.5433177113057646,
+        "container.n.01": 0.5479485144971771,
+        "memory.n.04": -1000.0,
+        "cooler.n.03": -1000.0,
+        "tank.n.03": -1000.0,
+        "storage.n.04": -1000.0,
+        "tank.n.01": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "storage.n.03": -1000.0,
+        "repositing.n.01": -1000.0,
+        "storage.n.01": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4e686b532fc44cb2953fc16dde736dbd",
+        "creator_username": "AndersonCardoso",
+        "creator_display_name": "AndersonCardoso",
+        "creator_profile_url": "https://sketchfab.com/AndersonCardoso"
+    },
+    "filename": "std_4e686b532fc44cb2953fc16dde736dbd.glb",
+    "length": 5.282630205154419,
+    "width": 2.734984874725342
+}

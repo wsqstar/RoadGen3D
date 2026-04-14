@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a classic blue steam locomotive with a friendly, anthropomorphic face on the front, pulling two brown passenger carriages. The locomotive features a cylindrical boiler, a black smokestack, and red accents along the wheels and buffer beams. The carriages are rectangular with a series of evenly spaced rectangular windows and subtle gold detailing along the sides. The train rides on black wheels and is connected by visible couplings between the engine and carriages. The overall design is reminiscent of early 20th-century passenger trains, with a playful and inviting appearance suitable for urban or suburban railways. The materials suggest a sturdy metal construction with painted surfaces and glass windows.",
+    "description": "A blue steam locomotive with a face pulls two brown passenger carriages, featuring rectangular windows and red and black detailing. The train has a classic, playful design with visible couplings and wheels.",
+    "description_view_0": "Front view showing the locomotive's face, blue body, and the aligned carriages behind it.",
+    "description_view_1": "Side view displaying the full length of the train, including the blue engine and two brown carriages with rectangular windows.",
+    "description_view_2": "Rear view highlighting the back of the last carriage and the train's overall length.",
+    "description_view_3": "Opposite side view showing the train's profile, similar to view 1 but from the other side.",
+    "category": "train",
+    "height": 2.8,
+    "max_dimension": 18.0,
+    "materials": [
+        "steel",
+        "glass",
+        "paint",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "coupling",
+        "smokestack"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "brown",
+        "black",
+        "red",
+        "white",
+        "gold"
+    ],
+    "colors_composition": [
+        0.25,
+        0.45,
+        0.15,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "group",
+    "attribute_train_type": "steam passenger train",
+    "attribute_number_of_carriages": 2,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end of carriages",
+    "attribute_window_arrangement": "evenly spaced rectangular windows",
+    "uid": "a6340d2d4da64beeab3d53c19e679cb9",
+    "near_synsets": {
+        "train.n.01": 0.47934312905763,
+        "steam_locomotive.n.01": 0.4851183737722463,
+        "train_set.n.01": 0.5064994045968324,
+        "car_train.n.01": 0.5106251663709919,
+        "passenger_train.n.01": 0.5195378179816597,
+        "gearing.n.01": -1000.0,
+        "train.n.05": -1000.0,
+        "string.n.04": -1000.0,
+        "train.n.04": -1000.0,
+        "caravan.n.01": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a6340d2d4da64beeab3d53c19e679cb9",
+        "creator_username": "sealandair",
+        "creator_display_name": "Sea Land Air",
+        "creator_profile_url": "https://sketchfab.com/sealandair"
+    },
+    "filename": "std_a6340d2d4da64beeab3d53c19e679cb9.glb",
+    "length": 19.359243392944336,
+    "width": 2.0580474138259888
+}

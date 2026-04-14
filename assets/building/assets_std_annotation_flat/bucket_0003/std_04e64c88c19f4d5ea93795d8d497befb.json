@@ -1,0 +1,127 @@
+{
+    "description_long": "This is a rectangular indoor basketball court set within a sunken arena-like structure, surrounded by tiered seating in red and blue. The court features two basketball hoops with rectangular glass backboards at either end, and the playing surface is marked with standard basketball lines including a center circle and key. The seating is divided into sections, with two large, curved, tunnel-like entrances or exits at opposite corners, colored red and blue. The court is bordered by a dark, raised platform that separates the playing area from the seating. The overall design suggests a modern recreational or competitive sports facility, with clear sightlines for spectators and a focus on accessibility. The materials appear to be a mix of concrete, plastic, and metal, with a wooden playing surface.",
+    "description": "A modern indoor basketball court with red and blue tiered seating, two glass backboards, and marked wooden flooring, set within a sunken arena structure.",
+    "description_view_0": "Front view showing the full court, both hoops, and the main seating sections with red and blue benches and two large colored tunnel entrances.",
+    "description_view_1": "View from behind one hoop, highlighting the backboard, the court's length, and the arrangement of seating and tunnels on either side.",
+    "description_view_2": "Angled view emphasizing the opposite tunnel entrance and the symmetry of the seating layout around the court.",
+    "description_view_3": "View from behind the other hoop, mirroring view 1, with a clear look at the court markings and seating distribution.",
+    "category": "basketball court",
+    "height": 5.0,
+    "max_dimension": 32.0,
+    "materials": [
+        "concrete",
+        "plastic",
+        "wood",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "playable",
+        "sittable",
+        "shootable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hoop",
+        "backboard",
+        "bench",
+        "tunnel entrance",
+        "court surface"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "red",
+        "blue",
+        "brown",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.45,
+        0.15,
+        0.15,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "scene",
+    "attribute_hoop_presence": true,
+    "attribute_backboard_type": "rectangular glass",
+    "attribute_court_markings": [
+        "three-point line",
+        "free throw line",
+        "center circle",
+        "key",
+        "sidelines",
+        "baseline"
+    ],
+    "attribute_fence_enclosure": false,
+    "attribute_architectural_style": "modern recreational",
+    "uid": "04e64c88c19f4d5ea93795d8d497befb",
+    "near_synsets": {
+        "basketball_court.n.01": 0.4561633583044476,
+        "squash_court.n.01": 0.5063825936029652,
+        "badminton_court.n.01": 0.5268564665650834,
+        "tennis_court.n.01": 0.5271927358046281,
+        "volleyball_court.n.01": 0.5312180848418439,
+        "basketball.n.01": -1000.0,
+        "court.n.08": -1000.0,
+        "court.n.04": -1000.0,
+        "court.n.09": -1000.0,
+        "court.n.02": -1000.0,
+        "court.n.03": -1000.0,
+        "motor_hotel.n.01": -1000.0,
+        "court.n.01": -1000.0,
+        "basketball.n.02": -1000.0,
+        "court.n.05": -1000.0,
+        "court.n.06": -1000.0,
+        "court.n.10": -1000.0
+    },
+    "synset": "basketball_court.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/04e64c88c19f4d5ea93795d8d497befb",
+        "creator_username": "okankaralti",
+        "creator_display_name": "okankaralti",
+        "creator_profile_url": "https://sketchfab.com/okankaralti"
+    },
+    "filename": "std_04e64c88c19f4d5ea93795d8d497befb.glb",
+    "length": 28.65638542175293,
+    "width": 28.6563777923584
+}

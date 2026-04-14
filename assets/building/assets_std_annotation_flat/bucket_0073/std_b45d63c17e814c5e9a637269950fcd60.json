@@ -1,0 +1,92 @@
+{
+    "description_long": "This object is a compact submachine gun-style rifle, featuring a short barrel and a robust, boxy receiver. The body is predominantly constructed from dark, matte-finished metal, with a prominent pistol grip and a thick, solid stock that appears to be fixed. The magazine is integrated into the grip, typical of compact automatic weapons, and the upper receiver has minimal external attachments. The front end of the rifle is fitted with a short, cylindrical barrel, and the top features simple iron sights for aiming. The overall design is utilitarian, with minimal ornamentation and a focus on durability and ease of handling in close-quarters urban environments.",
+    "description": "A compact, dark-colored submachine gun-style rifle with a fixed stock, short barrel, and integrated iron sights. The design is robust and utilitarian, suited for close-quarters use.",
+    "description_view_0": "Side view showing the full length of the rifle, including the fixed stock, pistol grip, and short barrel.",
+    "description_view_1": "Front view highlighting the muzzle, iron sights, and the narrow profile of the receiver.",
+    "description_view_2": "Opposite side view displaying the stock, grip, and barrel, mirroring the main features seen in view 0.",
+    "description_view_3": "Rear view focusing on the back of the stock and the alignment of the iron sights along the top.",
+    "category": "rifle",
+    "height": 0.22,
+    "max_dimension": 0.48,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "magazine",
+        "safety selector",
+        "charging handle",
+        "stock",
+        "iron sights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "short",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "b45d63c17e814c5e9a637269950fcd60",
+    "near_synsets": {
+        "submachine_gun.n.01": 0.4925197438914049,
+        "carbine.n.01": 0.4952453055658137,
+        "garand_rifle.n.01": 0.49666258556696324,
+        "kalashnikov.n.01": 0.5026678885064221,
+        "uzi.n.01": 0.5043003455943426,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b45d63c17e814c5e9a637269950fcd60",
+        "creator_username": "bunkerbewahrer",
+        "creator_display_name": "bunkerbewahrer",
+        "creator_profile_url": "https://sketchfab.com/bunkerbewahrer"
+    },
+    "filename": "std_b45d63c17e814c5e9a637269950fcd60.glb",
+    "length": 0.38739678263664246,
+    "width": 0.05155668407678604
+}

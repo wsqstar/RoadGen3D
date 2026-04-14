@@ -1,0 +1,113 @@
+{
+    "description_long": "This delivery robot features a compact, cylindrical body with a predominantly white upper shell and a black base. It is equipped with four robust, articulated wheels, each partially covered by blue and white fenders, suggesting all-terrain capability. The top of the robot houses a prominent black circular lid with a central antenna and a smaller vertical rod, likely for communication or navigation. The front face displays a large, circular lens or sensor, possibly a camera or lidar, surrounded by a black bezel. Various ports, warning labels, and small lights are distributed around the body, with the word 'DANGER' clearly marked on one side. The overall design is utilitarian and robust, suitable for urban delivery tasks in diverse environments.",
+    "description": "A compact, white and black cylindrical delivery robot with four articulated wheels, a central sensor lens, and multiple antennas and warning labels.",
+    "description_view_0": "Front-left view showing the main body, two wheels, a side-mounted orange lever, and the central antenna.",
+    "description_view_1": "Rear-left view highlighting the back ports, warning stripes, and the arrangement of the wheels and antennas.",
+    "description_view_2": "Direct front view featuring the prominent central sensor lens, two front wheels, and the main antenna.",
+    "description_view_3": "Rear-right view displaying the 'DANGER' label, rear ports, and the side profile of the wheels and antennas.",
+    "category": "delivery robot",
+    "height": 0.6,
+    "max_dimension": 0.7,
+    "materials": [
+        "plastic",
+        "metal",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.05,
+        0.15,
+        0.05
+    ],
+    "mass": 28,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 9,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pressable",
+        "openable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "antenna",
+        "sensor lens",
+        "access panel",
+        "lever",
+        "button"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "blue",
+        "gray",
+        "orange"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_brand_logo": "none",
+    "attribute_sensor_array": [
+        "circular camera or lidar sensor on the front face",
+        "possible small indicator lights around the body"
+    ],
+    "attribute_wheel_configuration": "Four articulated wheels, each with partial fenders, arranged symmetrically at the base for stability and maneuverability.",
+    "attribute_compartment_access_panel": "A visible access panel is present on the side, marked by a seam and a small handle or lever, likely for accessing the cargo compartment.",
+    "attribute_display_screen": "none",
+    "uid": "7f014be2705844c49152bfa1eb66fd86",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5430191895159266,
+        "automaton.n.02": 0.5759773487017452,
+        "automaton.n.03": 0.5850941686748858,
+        "wheeled_vehicle.n.01": 0.587793743421369,
+        "robotics.n.01": 0.5957746927265808,
+        "rescue.n.01": -1000.0,
+        "delivery.n.07": -1000.0,
+        "manner_of_speaking.n.01": -1000.0,
+        "delivery.n.01": -1000.0,
+        "delivery.n.02": -1000.0,
+        "pitch.n.02": -1000.0,
+        "delivery.n.04": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7f014be2705844c49152bfa1eb66fd86",
+        "creator_username": "ROSEFALL",
+        "creator_display_name": "Tom F",
+        "creator_profile_url": "https://sketchfab.com/ROSEFALL"
+    },
+    "filename": "std_7f014be2705844c49152bfa1eb66fd86.glb",
+    "length": 0.4128987193107605,
+    "width": 0.3085937201976776
+}

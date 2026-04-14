@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a modern passenger train carriage with a streamlined rectangular body, primarily colored in dark gray with red and black accents. The carriage features a series of evenly spaced rectangular windows along both sides, allowing for ample natural light inside. There are doors located at each end of the carriage, marked by red vertical panels, which provide entry and exit points for passengers. The undercarriage is detailed with visible suspension and wheel assemblies, typical of urban commuter trains. The roof is smooth and slightly curved, with no visible pantographs or overhead wire connections. The overall design suggests a focus on efficiency and passenger comfort for urban or regional rail networks.",
+    "description": "A modern, dark gray passenger train carriage with red accents, rectangular windows, and doors at each end. Designed for urban or regional rail transit.",
+    "description_view_0": "Side view showing the full length of the carriage, with a row of rectangular windows and doors at both ends.",
+    "description_view_1": "End view displaying the flat face of the carriage, with visible door and undercarriage details.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the row of windows and end doors.",
+    "description_view_3": "End view from the opposite side, mirroring view 1 with the door and undercarriage visible.",
+    "category": "train",
+    "height": 3.8,
+    "max_dimension": 26.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.07,
+        0.03,
+        0.03
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "step",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "red",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "commuter train",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end",
+    "attribute_window_arrangement": "continuous row of rectangular windows",
+    "uid": "37a7ed21ef18454299ac4dd6550f814d",
+    "near_synsets": {
+        "passenger_train.n.01": 0.44752262061133885,
+        "car_train.n.01": 0.453401817532455,
+        "passenger_car.n.01": 0.46189705985882085,
+        "train.n.01": 0.4624227004929182,
+        "commuter.n.01": 0.49172640037120774,
+        "train.n.05": -1000.0,
+        "gearing.n.01": -1000.0,
+        "caravan.n.01": -1000.0,
+        "train.n.04": -1000.0,
+        "string.n.04": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/37a7ed21ef18454299ac4dd6550f814d",
+        "creator_username": "trainznation",
+        "creator_display_name": "trainznation",
+        "creator_profile_url": "https://sketchfab.com/trainznation"
+    },
+    "filename": "std_37a7ed21ef18454299ac4dd6550f814d.glb",
+    "length": 24.643699645996094,
+    "width": 3.2471535205841064
+}

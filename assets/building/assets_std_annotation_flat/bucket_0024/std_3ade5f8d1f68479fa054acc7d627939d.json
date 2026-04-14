@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a stylized ambulance vehicle with a boxy, geometric design and a two-tone color scheme of white and red. The front features a large, light green windshield, a red cross emblem, and a prominent emergency light bar on the roof. Both sides display a bold white medical cross symbol on the red lower half, and the wheels are hexagonal with red and white hubcaps. The rear is flat and simple, with two small rectangular taillights and what appears to be two rear compartment doors. The roof is flat and white, with a blue and red emergency light bar visible from above.",
+    "description": "A boxy, white and red ambulance with a large windshield, emergency light bar, and medical cross symbols on the sides.",
+    "description_view_0": "Front view shows the large windshield, red cross emblem, and emergency light bar on the roof.",
+    "description_view_1": "Left side view highlights the white medical cross on the red lower body and the hexagonal wheels.",
+    "description_view_2": "Rear view displays two small rectangular taillights and the flat rear compartment doors.",
+    "description_view_3": "Right side view mirrors the left, with a white medical cross and visible emergency light bar.",
+    "category": "ambulance",
+    "height": 2.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "painted metal",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "emergency light bar",
+        "windshield",
+        "taillight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "black",
+        "green",
+        "blue",
+        "gray",
+        "orange"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.08,
+        0.05,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_emergency_light_bar": true,
+    "attribute_ambulance_signage": "Red cross emblem on front, white medical cross symbols on both sides",
+    "attribute_medical_cross_symbol": true,
+    "attribute_siren": true,
+    "attribute_rear_compartment_doors": "two hinged doors",
+    "uid": "3ade5f8d1f68479fa054acc7d627939d",
+    "near_synsets": {
+        "ambulance.n.01": 0.4842060369709292,
+        "funny_wagon.n.01": 0.5219757640441232,
+        "bloodmobile.n.01": 0.5757270974404302,
+        "fire_engine.n.01": 0.5779168229996553,
+        "paramedic.n.01": 0.5805435253106085
+    },
+    "synset": "ambulance.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3ade5f8d1f68479fa054acc7d627939d",
+        "creator_username": "therealjohnnysix",
+        "creator_display_name": "JohnnySix",
+        "creator_profile_url": "https://sketchfab.com/therealjohnnysix"
+    },
+    "filename": "std_3ade5f8d1f68479fa054acc7d627939d.glb",
+    "length": 3.427747368812561,
+    "width": 2.16267466545105
+}

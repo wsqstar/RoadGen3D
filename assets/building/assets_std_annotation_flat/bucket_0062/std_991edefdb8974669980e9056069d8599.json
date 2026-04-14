@@ -1,0 +1,93 @@
+{
+    "description_long": "This warehouse is a large, rectangular industrial building with a flat, dark roof and multiple distinct sections, including two open courtyards or loading bays visible from above. The exterior walls are clad in a mix of concrete and metal panels, with horizontal banding and a utilitarian, modular appearance. The structure features a prominent central block with a slightly raised roof, flanked by lower wings and recessed areas that may serve as loading docks or service entrances. Windows are sparse and arranged in horizontal strips, primarily on the larger rear section, suggesting limited natural light and a focus on security. The roof is mostly flat and dark, with a subtle grid pattern, and there are no visible skylights or rooftop equipment. The overall design is functional, emphasizing durability and efficient use of space for storage and logistics.",
+    "description": "A large, flat-roofed industrial warehouse with concrete and metal panel walls, open courtyards, and minimal windows. The structure is utilitarian, with distinct sections and a focus on functionality.",
+    "description_view_0": "Front view shows the main facade with a central block, recessed entry, and two open courtyards on either side.",
+    "description_view_1": "Side view reveals the depth of the building, the open courtyards, and the connection between the main block and the rear section.",
+    "description_view_2": "Rear view highlights the expansive, windowed section and the flat, grid-patterned roof dominating the structure.",
+    "description_view_3": "Opposite side view displays the secondary courtyard and the layered arrangement of the building's wings.",
+    "category": "warehouse",
+    "height": 10,
+    "max_dimension": 60,
+    "materials": [
+        "concrete",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.1
+    ],
+    "mass": 1200000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "loading dock gate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 8,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main facade features horizontal bands of concrete and metal panels, with recessed entryways and minimal, strip-style windows. The design is modular and functional, with open courtyards and loading areas integrated into the structure.",
+    "attribute_loading_dock_presence": true,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is flat and expansive, covered in dark material with a subtle grid pattern, and lacks visible skylights or rooftop equipment. It appears to be constructed from reinforced concrete or metal panels.",
+    "attribute_architectural_style": "modern industrial",
+    "uid": "991edefdb8974669980e9056069d8599",
+    "near_synsets": {
+        "loft.n.01": 0.5079136284828186,
+        "warehouse.n.01": 0.521081011578089,
+        "shop_floor.n.01": 0.5578062283869518,
+        "farm_building.n.01": 0.5620153949109218,
+        "artist's_loft.n.01": 0.5634224597927895
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/991edefdb8974669980e9056069d8599",
+        "creator_username": "vrchris",
+        "creator_display_name": "vrchris",
+        "creator_profile_url": "https://sketchfab.com/vrchris"
+    },
+    "filename": "std_991edefdb8974669980e9056069d8599.glb",
+    "length": 50.63848876953125,
+    "width": 58.723649978637695
+}

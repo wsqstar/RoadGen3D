@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a compact, boxy combat tactical vehicle with a robust, armored exterior. The vehicle features a high, flat roof and vertical sides, suggesting a design optimized for protection and urban maneuverability. Its front and rear are squared off, with a small protrusion on the top that could be a sensor or communications device. The vehicle appears to have a dark, uniform finish with no visible camouflage or markings. There are no visible windows, doors, or weapon mounts, indicating a highly minimalistic and utilitarian design. The overall silhouette is narrow and tall, with no visible wheels or tracks.",
+    "description": "A compact, boxy combat tactical vehicle with a robust, armored exterior and a dark, uniform finish. It has a high, flat roof and no visible weapon mounts, markings, or camouflage.",
+    "description_view_0": "Front view shows a tall, narrow, rectangular profile with a small protrusion on top.",
+    "description_view_1": "Side view reveals the vehicle's slim width and the protrusion's position near the top.",
+    "description_view_2": "Rear view mirrors the front, with a boxy shape and no visible features except the top protrusion.",
+    "description_view_3": "Opposite side view, again showing the slim profile and top protrusion.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 2.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 3,
+    "movable": true,
+    "required_force": 15000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "protrusion (possible sensor/antenna)"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "none visible.",
+    "attribute_armor_plating": "Full body coverage with thick, flat panels; no visible sloping or modular features.",
+    "attribute_camouflage_pattern": "none visible.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "f2ef79db6072494681204205b18171d8",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4968229650855122,
+        "tank.n.01": 0.5016138995820847,
+        "reconnaissance_vehicle.n.01": 0.5065814506127784,
+        "armored_car.n.02": 0.5173732882468921,
+        "weapons_carrier.n.01": 0.5253183207436571,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f2ef79db6072494681204205b18171d8",
+        "creator_username": "Pebegou",
+        "creator_display_name": "Pebegou",
+        "creator_profile_url": "https://sketchfab.com/Pebegou"
+    },
+    "filename": "std_f2ef79db6072494681204205b18171d8.glb",
+    "length": 18.261423110961914,
+    "width": 0.7307378649711609
+}

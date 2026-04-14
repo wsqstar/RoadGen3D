@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a medium-sized quadcopter drone with a sleek, matte black finish and a robust, modern design. It features four large propellers mounted on extended arms, each arm curving outward and downward to form sturdy, fixed landing legs. The central body is compact and slightly domed, likely housing the main electronics and battery, with a small camera module visible beneath the center. The propeller guards are integrated into the arm structure, providing protection for the rotors while maintaining a lightweight frame. The overall construction appears to be primarily plastic with some metal reinforcements, optimized for durability and stability during flight. This drone is well-suited for urban environments, capable of taking off and landing on various surfaces such as streets, sidewalks, or parks.",
+    "description": "A sleek, matte black quadcopter drone with four propellers, fixed landing legs, and integrated propeller guards. It features a compact central body and a visible camera module beneath.",
+    "description_view_0": "Front-left view showing the curved landing legs, four propellers, and the camera module beneath the central body.",
+    "description_view_1": "Left-side view highlighting the symmetry of the arms and the integrated propeller guards around each rotor.",
+    "description_view_2": "Rear-left view displaying the back two propellers and the robust landing gear structure.",
+    "description_view_3": "Rear-right view emphasizing the overall frame, propeller guards, and the central dome housing.",
+    "category": "drone",
+    "height": 0.25,
+    "max_dimension": 0.55,
+    "materials": [
+        "plastic",
+        "metal",
+        "glass",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.08,
+        0.02
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "landing leg",
+        "camera",
+        "power button"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 4,
+    "attribute_rotor_configuration": "quadcopter X",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": true,
+    "attribute_propeller_guard_presence": true,
+    "uid": "f8ee6182dbc54a24813221c79ac13770",
+    "near_synsets": {
+        "drone.n.04": 0.5335432648813554,
+        "single-rotor_helicopter.n.01": 0.5894810405493839,
+        "orthopter.n.01": 0.5914227384537385,
+        "propeller_plane.n.01": 0.5933119768120884,
+        "buzz_bomb.n.01": 0.5974003415210413,
+        "monotone.n.01": -1000.0,
+        "drone.n.05": -1000.0,
+        "dawdler.n.01": -1000.0,
+        "drone.n.01": -1000.0
+    },
+    "synset": "drone.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f8ee6182dbc54a24813221c79ac13770",
+        "creator_username": "sergeykuchmin",
+        "creator_display_name": "sergeykuchmin",
+        "creator_profile_url": "https://sketchfab.com/sergeykuchmin"
+    },
+    "filename": "std_f8ee6182dbc54a24813221c79ac13770.glb",
+    "length": 0.5773517787456512,
+    "width": 0.598856657743454
+}

@@ -1,0 +1,92 @@
+{
+    "description_long": "This traffic barricade features a rectangular horizontal beam supported by two A-frame legs on either side. The beam is marked with alternating diagonal black and yellow stripes, a common visual cue for caution and hazard in urban environments. The structure appears to be made primarily of metal, giving it a sturdy and durable appearance suitable for outdoor use. The legs are angled outward, providing stability and preventing easy tipping. The surface of the beam shows some signs of wear, suggesting it is used in high-traffic or construction areas. There are no visible lights, signage, or attachment fixtures on the barricade.",
+    "description": "A sturdy metal traffic barricade with diagonal black and yellow caution stripes and two A-frame support legs.",
+    "description_view_0": "Front view showing the full length of the barricade with clear diagonal black and yellow stripes and both A-frame legs visible.",
+    "description_view_1": "Side view displaying the narrow profile of the barricade and the triangular shape of the A-frame support leg.",
+    "description_view_2": "Rear view, visually identical to the front, showing the full length and both A-frame legs with the same striped pattern.",
+    "description_view_3": "Opposite side view, again showing the narrow profile and the A-frame support structure.",
+    "category": "traffic barricade",
+    "height": 0.9,
+    "max_dimension": 1.8,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "beam",
+        "support legs"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.5
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_reflective_striping_pattern": "Diagonal black and yellow stripes, alternating, each stripe approximately equal width, repeating across the length of the beam.",
+    "attribute_warning_signage": [],
+    "attribute_number_of_support_legs": 4,
+    "attribute_attachment_fixtures": [],
+    "attribute_presence_of_lights": false,
+    "uid": "46bbfceb23ff435793d0b76628df0c2e",
+    "near_synsets": {
+        "crash_barrier.n.01": 0.5452412568450409,
+        "crossbar.n.03": 0.5482908899029095,
+        "street_sign.n.01": 0.5537107638907071,
+        "stop_sign.n.01": 0.554920970894839,
+        "roadblock.n.02": 0.5586703747190532,
+        "traffic.n.03": -1000.0,
+        "traffic.n.01": -1000.0,
+        "barricade.n.02": -1000.0,
+        "dealings.n.01": -1000.0,
+        "traffic.n.02": -1000.0
+    },
+    "synset": "roadblock.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/46bbfceb23ff435793d0b76628df0c2e",
+        "creator_username": "francoisespagnet",
+        "creator_display_name": "Fran\u00e7ois Espagnet",
+        "creator_profile_url": "https://sketchfab.com/francoisespagnet"
+    },
+    "filename": "std_46bbfceb23ff435793d0b76628df0c2e.glb",
+    "length": 0.7668973207473755,
+    "width": 2.1215403079986572
+}

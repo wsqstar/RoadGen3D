@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a cylindrical bomb with a robust, industrial design, featuring a segmented body. The upper section is white and dome-shaped, with a ribbed texture and a visible safety pin and lever mechanism, suggesting a manual arming or detonation process. The midsection is dark green with a slightly weathered, metallic appearance, and includes a mesh band and some stenciled markings, possibly for identification or instructions. The lower section is also dark green, with a slightly wider base and additional markings, giving the impression of a heavy, reinforced casing. A prominent metal lever and ring are attached to the top, likely serving as the primary safety and activation mechanism. The overall construction appears solid and utilitarian, with no visible digital or analog timer display, and the surface finish is matte with some roughness.",
+    "description": "A cylindrical, industrial-style bomb with a white domed top, green metallic body, and a prominent safety lever and pin. The surface is matte and slightly weathered, with visible stenciled markings.",
+    "description_view_0": "The bomb is shown with its white domed top and safety pin clearly visible, along with the ribbed texture and mesh band around the upper section.",
+    "description_view_1": "This view highlights the full length of the metal safety lever and ring, which runs vertically down the bomb's body, and shows more of the stenciled markings.",
+    "description_view_2": "The safety pin and lever are visible from the side, with the white dome and green body clearly segmented and the mesh band wrapping around the upper section.",
+    "description_view_3": "The back of the bomb is shown, with the dome and body visible but the safety lever mostly hidden, and a triangular marking on the green section.",
+    "category": "bomb",
+    "height": 0.35,
+    "max_dimension": 0.35,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 4.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 45,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety pin",
+        "lever",
+        "ring"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "dark green",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.25,
+        0.6,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The bomb appears to use a manual detonation mechanism, with a safety pin and lever that must be pulled or released to arm or trigger the device.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "de8ca63ce9dd4133a2e4f35f5083e447",
+    "near_synsets": {
+        "pipe_bomb.n.01": 0.5403190732696378,
+        "general-purpose_bomb.n.01": 0.5415645449059624,
+        "plastic_bomb.n.01": 0.5420804885233962,
+        "bomb.n.01": 0.5471598028733201,
+        "briefcase_bomb.n.01": 0.5528922002083109,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/de8ca63ce9dd4133a2e4f35f5083e447",
+        "creator_username": "yarogor",
+        "creator_display_name": "yarogor",
+        "creator_profile_url": "https://sketchfab.com/yarogor"
+    },
+    "filename": "std_de8ca63ce9dd4133a2e4f35f5083e447.glb",
+    "length": 0.1043797954916954,
+    "width": 0.12910200655460358
+}

@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a rectangular outdoor canopy structure with a dark green, tent-like fabric roof supported by a rigid black frame. The canopy features a peaked roof with subtle undulations and a central ridge, providing both shade and rain protection. The sides are mostly enclosed with solid black panels, while two opposite sides each have a pair of rectangular window openings, likely for ventilation and light. One side has an extended fabric flap, possibly serving as an entrance or additional shade. The support structure appears to be made of metal, with thin legs at each corner for stability. The overall design is utilitarian, suitable for temporary shelter in urban parks, markets, or event spaces.",
+    "description": "A dark green, peaked-roof canopy with a black frame and partially enclosed sides, featuring window openings and an entrance flap. The structure is sturdy and designed for outdoor urban use.",
+    "description_view_0": "Front view shows the entrance flap hanging down, with the peaked roof and two supporting legs visible.",
+    "description_view_1": "Side view reveals a pair of rectangular windows and a solid black panel, with the roof's central ridge and undulations visible.",
+    "description_view_2": "Rear view displays a fully enclosed black panel beneath the peaked roof, with no visible openings.",
+    "description_view_3": "Opposite side view shows another pair of rectangular windows and a solid panel, mirroring view 1.",
+    "category": "canopy",
+    "height": 2.5,
+    "max_dimension": 4.0,
+    "materials": [
+        "fabric",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.05,
+        0.15
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shade_providing",
+        "weather_protecting"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "entrance flap",
+        "windows"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "dark green",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.4
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_mounting_type": "freestanding, pole-supported",
+    "attribute_support_structure_design": "The canopy is supported by four slender vertical metal poles at each corner, connected by a rigid frame at the base of the roof. The roof fabric is tensioned over the frame, and the structure appears to be stabilized by the weight and distribution of the frame and legs.",
+    "attribute_edge_detailing": "Edges of the canopy are straight and appear hemmed, with reinforced seams along the perimeter for durability. The entrance flap is a loose extension of the main fabric, while the rest of the edges are taut and clean.",
+    "attribute_branding_or_signage": "none",
+    "attribute_lighting_integration": "none",
+    "uid": "b58fa5b145ee4ab282ef89e65eace8eb",
+    "near_synsets": {
+        "canopy.n.03": 0.4494099614215808,
+        "porte-cochere.n.02": 0.4894420878599106,
+        "awning.n.01": 0.49801892057057146,
+        "marquee.n.02": 0.49813618681868177,
+        "canopy.n.01": 0.50705343466158,
+        "canopy.n.02": -1000.0
+    },
+    "synset": "canopy.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b58fa5b145ee4ab282ef89e65eace8eb",
+        "creator_username": "fabfolio",
+        "creator_display_name": "fabfolio",
+        "creator_profile_url": "https://sketchfab.com/fabfolio"
+    },
+    "filename": "std_b58fa5b145ee4ab282ef89e65eace8eb.glb",
+    "length": 3.07159423828125,
+    "width": 3.071573495864868
+}

@@ -1,0 +1,111 @@
+{
+    "description_long": "This is a modern paddle court featuring a rectangular playing area with a blue surface, surrounded by transparent glass or acrylic walls and metal mesh fencing for safety and ball containment. The court is divided in the center by a taut net, supported by sturdy posts, and has entry gates on both sides. Overhead, there are multiple mounted floodlights positioned on tall poles to provide illumination for nighttime play. The base of the court is a solid, raised platform, likely made of concrete, providing stability and elevation. The overall design is clean and functional, with minimal decorative elements, emphasizing utility and visibility for both players and spectators. The structure is suitable for installation in urban parks, sports complexes, or recreational areas.",
+    "description": "A modern paddle court with blue flooring, transparent fencing, a central net, and overhead floodlights on a raised concrete base.",
+    "description_view_0": "Front view showing the main entry gates, transparent fencing, and overhead lighting fixtures.",
+    "description_view_1": "Side view highlighting the length of the court, the central net, and the transparent side walls.",
+    "description_view_2": "Rear view mirroring the front, with visible entry gates, fencing, and lighting fixtures.",
+    "description_view_3": "Opposite side view showing the court's depth, central net, and clear fencing structure.",
+    "category": "paddle court",
+    "height": 6.0,
+    "max_dimension": 22.0,
+    "materials": [
+        "glass",
+        "metal",
+        "concrete",
+        "synthetic flooring",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.25,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "playable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "gate",
+        "net",
+        "lighting fixture"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "blue",
+        "white",
+        "gray",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.4,
+        0.2,
+        0.2,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_enclosed_court_fencing": true,
+    "attribute_net_in_center": true,
+    "attribute_artificial_turf_flooring": false,
+    "attribute_overhead_lighting_fixtures": true,
+    "attribute_architectural_style": "modern",
+    "uid": "ef977f0912af4297bd842ab7bb82dde1",
+    "near_synsets": {
+        "tennis_court.n.01": 0.5250591669488224,
+        "volleyball_court.n.01": 0.5278436057145588,
+        "badminton_court.n.01": 0.5292691965076044,
+        "handball_court.n.01": 0.5436928943007319,
+        "basketball_court.n.01": 0.5510951968506589,
+        "court.n.10": -1000.0,
+        "court.n.04": -1000.0,
+        "motor_hotel.n.01": -1000.0,
+        "court.n.09": -1000.0,
+        "court.n.03": -1000.0,
+        "court.n.02": -1000.0,
+        "court.n.05": -1000.0,
+        "court.n.01": -1000.0,
+        "court.n.08": -1000.0,
+        "court.n.06": -1000.0
+    },
+    "synset": "court.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ef977f0912af4297bd842ab7bb82dde1",
+        "creator_username": "arca_done",
+        "creator_display_name": "arca_done",
+        "creator_profile_url": "https://sketchfab.com/arca_done"
+    },
+    "filename": "std_ef977f0912af4297bd842ab7bb82dde1.glb",
+    "length": 8.040809154510498,
+    "width": 14.89897346496582
+}

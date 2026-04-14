@@ -1,0 +1,109 @@
+{
+    "description_long": "This trolleybus features a vintage, open-sided design with a red and blue exterior and a fabric canopy roof. The body is constructed from metal panels with visible rivets and trim, and the roof is supported by vertical poles. The sides have multiple entry doors with black and white detailing, and the interior is fitted with wooden bench seating. The trolleybus rides on small wheels and has a rear handlebar, likely for manual maneuvering or attachment. The front and rear both display rounded shapes, with the front adorned by a decorative emblem and circular lights.",
+    "description": "A vintage red and blue trolleybus with a fabric canopy roof, open sides, and wooden bench seating. It features multiple entry doors, small wheels, and a rear handlebar.",
+    "description_view_0": "Front view showing the rounded front panel, decorative emblem, and circular lights beneath the red canopy.",
+    "description_view_1": "Side view revealing the open structure, multiple entry doors, wooden benches, and supporting poles for the canopy.",
+    "description_view_2": "Rear view displaying the rounded back, rear handlebar, and the continuation of the canopy roof.",
+    "description_view_3": "Opposite side view with similar open structure, entry doors, and visible interior benches.",
+    "category": "trolleybus",
+    "height": 2.2,
+    "max_dimension": 5.5,
+    "materials": [
+        "metal",
+        "wood",
+        "fabric",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.05,
+        0.02,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "pushable",
+        "pullable",
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "bench",
+        "wheel"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "red",
+        "blue",
+        "black",
+        "white",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.55,
+        0.15,
+        0.1,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_pantograph_poles": false,
+    "attribute_overhead_wire_connection": false,
+    "attribute_route_number_display": false,
+    "attribute_articulated_body_sections": 1,
+    "attribute_passenger_entry_doors": 6,
+    "uid": "cdd0f4ae20e2476790f3421c6ed3cf12",
+    "near_synsets": {
+        "trolleybus.n.01": 0.4981407564727608,
+        "trolley_line.n.01": 0.5283920312570111,
+        "boxcar.n.01": 0.5687902989806028,
+        "bus.n.01": 0.5713013327624394,
+        "current_collector.n.01": 0.5731975790670597
+    },
+    "synset": "trolleybus.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cdd0f4ae20e2476790f3421c6ed3cf12",
+        "creator_username": "vlad.neko",
+        "creator_display_name": "VladNeko",
+        "creator_profile_url": "https://sketchfab.com/vlad.neko"
+    },
+    "filename": "std_cdd0f4ae20e2476790f3421c6ed3cf12.glb",
+    "length": 4.088198661804199,
+    "width": 1.8985512852668762
+}

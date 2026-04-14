@@ -1,0 +1,88 @@
+{
+    "description_long": "This object is a rectangular section of cobblestone sidewalk, featuring a tightly packed arrangement of irregular, dark gray and brown stones. The stones are set in a slightly uneven pattern, giving the surface a rustic, historic appearance typical of old European or urban districts. The gaps between the stones are filled with a darker mortar, enhancing the visual separation and texture of each stone. The surface is flat and walkable, with no visible elevation changes or curbs along the edges. The overall finish is rough and matte, with minimal reflectivity, suggesting a weathered, outdoor environment. There are no visible features such as tactile paving, curbs, or street furniture present.",
+    "description": "A flat, rectangular cobblestone sidewalk section with irregular, dark stones and a rough, matte finish.",
+    "description_view_0": "The cobblestone pattern is clearly visible, showing the irregular shapes and dark mortar lines between stones.",
+    "description_view_1": "The stone arrangement appears slightly more elongated, emphasizing the uneven, rustic pattern of the sidewalk.",
+    "description_view_2": "The cobblestones are seen from a central angle, highlighting the uniformity and texture of the surface.",
+    "description_view_3": "The pattern and roughness of the cobblestones are prominent, with the surface texture clearly defined.",
+    "category": "sidewalk",
+    "height": 0.08,
+    "max_dimension": 3.0,
+    "materials": [
+        "stone",
+        "mortar",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 540,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "dark gray",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.54,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.95,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": false,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "flush",
+    "attribute_adjacent_street_type": "residential",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "d5ab915d43fe44a881c7a8486fdf64cd",
+    "near_synsets": {
+        "cobble.n.01": 0.4686649870628261,
+        "sidewalk.n.01": 0.4749929126812199,
+        "macadam.n.01": 0.5028879014579644,
+        "curb.n.01": 0.5147038401279511,
+        "paving_stone.n.01": 0.5166519420516476
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d5ab915d43fe44a881c7a8486fdf64cd",
+        "creator_username": "LThomas762",
+        "creator_display_name": "Logan Thomas",
+        "creator_profile_url": "https://sketchfab.com/LThomas762"
+    },
+    "filename": "std_d5ab915d43fe44a881c7a8486fdf64cd.glb",
+    "length": 595420.5,
+    "width": 595420.4375
+}

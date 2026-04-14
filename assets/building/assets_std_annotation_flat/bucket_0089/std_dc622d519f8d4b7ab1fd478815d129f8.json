@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a long, narrow train with a streamlined, rectangular profile and a predominantly reddish-brown exterior accented with yellow and black details. The train appears to be composed of several connected carriages, each with a consistent height and width, forming a continuous line. The sides feature a series of evenly spaced rectangular windows, suggesting passenger compartments. The ends of the train are slightly tapered, with black and yellow markings that may indicate the front and rear. The surface finish is smooth and hard, typical of metal-bodied trains used in urban transit. No overhead wires or pantographs are visible above the train, and the doors are not distinctly marked but may be integrated along the sides.",
+    "description": "A long, reddish-brown urban train with yellow and black accents, featuring a row of rectangular windows along its sides and a streamlined, hard exterior.",
+    "description_view_0": "Side view showing the full length of the train with a continuous row of windows and yellow accents.",
+    "description_view_1": "End view displaying the narrow, tapered front or rear with black and yellow markings.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the length and window arrangement.",
+    "description_view_3": "Opposite end view, mirroring view 1, with the same narrow, tapered profile and markings.",
+    "category": "train",
+    "height": 3.8,
+    "max_dimension": 32.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.07,
+        0.01,
+        0.05
+    ],
+    "mass": 95000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "coupler"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "yellow",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_train_type": "commuter train",
+    "attribute_number_of_carriages": 6,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "no visible doors",
+    "attribute_window_arrangement": "continuous row of rectangular windows",
+    "uid": "dc622d519f8d4b7ab1fd478815d129f8",
+    "near_synsets": {
+        "train.n.01": 0.4875013557068849,
+        "subway_train.n.01": 0.49528367956451447,
+        "car_train.n.01": 0.5103993820124679,
+        "passenger_train.n.01": 0.5173943065693458,
+        "train_set.n.01": 0.5179672454790393,
+        "gearing.n.01": -1000.0,
+        "train.n.05": -1000.0,
+        "string.n.04": -1000.0,
+        "caravan.n.01": -1000.0,
+        "train.n.04": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dc622d519f8d4b7ab1fd478815d129f8",
+        "creator_username": "ditovirnantio",
+        "creator_display_name": "ditovirnantio",
+        "creator_profile_url": "https://sketchfab.com/ditovirnantio"
+    },
+    "filename": "std_dc622d519f8d4b7ab1fd478815d129f8.glb",
+    "length": 106.448486328125,
+    "width": 3.278931140899658
+}

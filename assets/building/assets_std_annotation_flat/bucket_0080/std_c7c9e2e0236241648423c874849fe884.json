@@ -1,0 +1,113 @@
+{
+    "description_long": "This all-terrain vehicle is a highly specialized, six-wheeled robotic rover with a robust, angular chassis and a variety of mounted scientific instruments. Its body is predominantly white with metallic and black accents, featuring articulated suspension arms and large, rugged wheels designed for traversing rough surfaces. The vehicle is equipped with a prominent mast housing cameras and sensors, as well as an articulated robotic arm with a complex tool head for manipulation and analysis tasks. The rear section contains a boxy compartment, likely for power and data systems, with visible tubing and structural supports. Various antennae, vents, and external modules are distributed across the surface, indicating advanced communication and environmental sensing capabilities. The overall design suggests a vehicle built for exploration and data collection in challenging environments, with a focus on durability and versatility.",
+    "description": "A six-wheeled, white and black robotic all-terrain vehicle with articulated suspension, a sensor mast, and a multi-jointed robotic arm. Its rugged wheels and complex exterior modules suggest advanced exploration and scientific capabilities.",
+    "description_view_0": "Front view shows the vehicle's wide stance, central mast, and the articulated robotic arm extending from the left side.",
+    "description_view_1": "Left side view highlights the full length of the vehicle, the suspension system, and the extended robotic arm with its tool head.",
+    "description_view_2": "Rear view displays the back compartment, power modules, and the symmetrical wheel arrangement.",
+    "description_view_3": "Right side view reveals additional external modules, the sensor mast, and the articulated arm retracted toward the body.",
+    "category": "all-terrain vehicle",
+    "height": 2.2,
+    "max_dimension": 3.1,
+    "materials": [
+        "aluminum",
+        "steel",
+        "plastic",
+        "glass",
+        "rubber",
+        "copper",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.18,
+        0.15,
+        0.07,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "robotic arm",
+        "sensor mast",
+        "antenna",
+        "tool head",
+        "camera",
+        "panel",
+        "suspension arm"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "gray",
+        "copper",
+        "silver"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.07,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 6,
+    "attribute_tire_tread_pattern": "The tires have a blocky, all-terrain tread pattern with deep grooves and pronounced ridges, optimized for traction on loose or uneven surfaces.",
+    "attribute_suspension_type": "independent",
+    "attribute_presence_of_roll_cage": false,
+    "attribute_handlebar_or_steering_wheel_type": "round steering wheel",
+    "uid": "c7c9e2e0236241648423c874849fe884",
+    "near_synsets": {
+        "reconnaissance_vehicle.n.01": 0.5514505913842738,
+        "robotics_equipment.n.01": 0.5526121666587304,
+        "wheeled_vehicle.n.01": 0.5633407924707567,
+        "tracked_vehicle.n.01": 0.5711917460029782,
+        "self-propelled_vehicle.n.01": 0.5715610467640759,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "robotics_equipment.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c7c9e2e0236241648423c874849fe884",
+        "creator_username": "bfrederick",
+        "creator_display_name": "bfrederick",
+        "creator_profile_url": "https://sketchfab.com/bfrederick"
+    },
+    "filename": "std_c7c9e2e0236241648423c874849fe884.glb",
+    "length": 4.029747009277344,
+    "width": 2.6655354499816895
+}

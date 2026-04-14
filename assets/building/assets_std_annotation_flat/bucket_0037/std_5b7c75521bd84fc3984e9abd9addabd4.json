@@ -1,0 +1,115 @@
+{
+    "description_long": "This is a large, multi-masted sailing ship with three prominent masts, each rigged with multiple square sails made of cream-colored fabric. The hull is elongated and streamlined, painted primarily white with dark accents along the waterline and gunwale, and features a raised stern and bow. The deck is detailed with wooden planking, visible railings, and various nautical fixtures such as rigging, lifeboats, and cannons. The ship's rigging is extensive, with numerous ropes and spars supporting the sails and connecting to the masts. The stern is ornately constructed, with windows and decorative elements, while the bow is pointed and reinforced. This vessel resembles a classic 18th or 19th-century tall ship, designed for ocean voyages and equipped for both cargo and crew.",
+    "description": "A large, white-hulled sailing ship with three masts, cream-colored square sails, and detailed wooden decking. The vessel features ornate stern architecture, extensive rigging, and nautical fixtures.",
+    "description_view_0": "Front view showing the pointed bow, three aligned masts with full sails, and the ship's narrow profile.",
+    "description_view_1": "Starboard side view revealing the full length of the hull, detailed deck, lifeboats, cannons, and the arrangement of sails and rigging.",
+    "description_view_2": "Rear view highlighting the ornate stern, windows, and the alignment of the masts and sails from behind.",
+    "description_view_3": "Port side view similar to view 1, showing the opposite side of the hull, deck details, and rigging.",
+    "category": "ship",
+    "height": 45,
+    "max_dimension": 65,
+    "materials": [
+        "wood",
+        "canvas",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.1,
+        0.02,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 1800000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "door",
+        "hatch",
+        "cannon",
+        "lifeboat",
+        "anchor",
+        "rigging",
+        "sail"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "beige",
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.18,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.03,
+    "recommended_clearance": 20,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a classic displacement type with a pointed bow and a raised, rounded stern. The sides are smooth with gunports and a continuous gunwale, and the hull sits deep, indicating a design for stability and cargo capacity. No bulbous bow or catamaran features are visible.",
+    "attribute_superstructure_layout": "The superstructure includes multiple open decks with railings, a raised sterncastle, and a forecastle at the bow. There are visible cabins and hatches, with lifeboats and cannons arranged along the deck. No modern towers or bridges are present.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "lifeboat",
+        "cannon",
+        "anchor",
+        "rigging",
+        "hatch",
+        "wheel"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "5b7c75521bd84fc3984e9abd9addabd4",
+    "near_synsets": {
+        "sailing_vessel.n.01": 0.46625312700197713,
+        "galleon.n.01": 0.47625708974759107,
+        "bark.n.03": 0.48929336748395263,
+        "windjammer.n.01": 0.4960187326651828,
+        "brigantine.n.01": 0.4971223285685411,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5b7c75521bd84fc3984e9abd9addabd4",
+        "creator_username": "Museovirasto",
+        "creator_display_name": "Museovirasto Museiverket Finnish Heritage Agency",
+        "creator_profile_url": "https://sketchfab.com/Museovirasto"
+    },
+    "filename": "std_5b7c75521bd84fc3984e9abd9addabd4.glb",
+    "length": 58.98611831665039,
+    "width": 19.792226791381836
+}

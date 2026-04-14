@@ -1,0 +1,100 @@
+{
+    "description_long": "This is an old, weathered truck with a green cab and a visibly rusted, utilitarian appearance. The cab is compact, with a single row of windows and a slightly rounded roof, suggesting a vintage or classic design. The front features a prominent grille and headlights, while the rear consists of an exposed chassis frame with no cargo bed attached, revealing the structural rails and a single rear axle. The wheels are metallic and show signs of wear, and the overall bodywork is marked by patches of rust and faded paint. The truck's design is utilitarian, likely intended for heavy-duty or industrial use, but currently appears incomplete or in a state of disrepair. The interior is not visible, but the exterior suggests a primarily metal construction with some glass for the windows.",
+    "description": "A weathered, vintage green truck with a single cab and exposed chassis, showing rust and industrial wear. The truck lacks a cargo bed, revealing its structural frame and metallic wheels.",
+    "description_view_0": "Front view showing the grille, headlights, and the compact, rounded cab.",
+    "description_view_1": "Left side view highlighting the green cab, exposed chassis frame, and two wheels.",
+    "description_view_2": "Rear view displaying the open chassis, rear axle, and absence of a cargo bed.",
+    "description_view_3": "Right side view similar to the left, with clear visibility of the cab and chassis structure.",
+    "category": "truck",
+    "height": 2.2,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.07,
+        0.03
+    ],
+    "mass": 2200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "steering wheel",
+        "chassis frame"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "rust brown",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "chassis cab",
+    "attribute_wheelbase": 3.2,
+    "attribute_number_of_axles": 2,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "a9f888b7832d4bbf9ed18fe18f00bf89",
+    "near_synsets": {
+        "van.n.05": 0.5211591848323771,
+        "tractor.n.02": 0.5382742996589598,
+        "truck.n.01": 0.5386692504935573,
+        "pickup.n.01": 0.5556978995858497,
+        "truck_bed.n.01": 0.5585686655512493,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/a9f888b7832d4bbf9ed18fe18f00bf89",
+        "creator_username": "kryik1023",
+        "creator_display_name": "Renafox",
+        "creator_profile_url": "https://sketchfab.com/kryik1023"
+    },
+    "filename": "std_a9f888b7832d4bbf9ed18fe18f00bf89.glb",
+    "length": 7.805187225341797,
+    "width": 3.975584030151367
+}

@@ -1,0 +1,90 @@
+{
+    "description_long": "This object is a shotgun with a long, cylindrical barrel and a compact receiver. The barrel is smooth and metallic, extending the majority of the object's length, and is attached to a rectangular receiver with a visible trigger and a short, stubby grip beneath. The receiver appears robust and boxy, with a magazine tube or similar cylindrical component beneath the barrel. The finish is dark and glossy, suggesting a metal construction, and the overall design is utilitarian with minimal ornamentation. The shotgun lacks a traditional stock, instead featuring a pistol grip for one-handed operation. The trigger guard is small and rounded, closely hugging the trigger area.",
+    "description": "A dark, glossy shotgun with a long barrel, compact receiver, and pistol grip, lacking a traditional stock.",
+    "description_view_0": "Side view showing the full length of the barrel, the boxy receiver, and the pistol grip beneath.",
+    "description_view_1": "Front view highlighting the circular barrel opening and the alignment of the magazine tube below.",
+    "description_view_2": "Opposite side view, mirroring the barrel and receiver details, with the grip and trigger visible.",
+    "description_view_3": "Rear view showing the end of the receiver and the back of the pistol grip.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.95,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "pistol grip",
+        "barrel",
+        "magazine tube"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.42,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, smooth and long with no visible ribbing or venting",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "small, rounded trigger guard closely fitted around the trigger",
+    "uid": "b4e2ba5319d3495186dad49718a1c0f2",
+    "near_synsets": {
+        "sawed-off_shotgun.n.01": 0.46206949985889334,
+        "shotgun.n.01": 0.49330947418725857,
+        "rifle.n.01": 0.5259499981071064,
+        "pistol_grip.n.01": 0.5272788080476817,
+        "gas_gun.n.01": 0.5301217927011773
+    },
+    "synset": "shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b4e2ba5319d3495186dad49718a1c0f2",
+        "creator_username": "onyenacho",
+        "creator_display_name": "Onye Nacho",
+        "creator_profile_url": "https://sketchfab.com/onyenacho"
+    },
+    "filename": "std_b4e2ba5319d3495186dad49718a1c0f2.glb",
+    "length": 0.8970455229282379,
+    "width": 0.13543497025966644
+}

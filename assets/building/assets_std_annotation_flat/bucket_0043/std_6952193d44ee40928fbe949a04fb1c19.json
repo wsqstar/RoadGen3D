@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a modern, multi-story apartment building with a minimalist, geometric design. The facade features three prominent horizontal bands that form balconies or overhangs, each with large, rectangular blue-tinted windows set into the dark gray exterior. The entrance is accessed by a short flight of stairs leading to a recessed doorway at the base. The sides and rear of the building are plain, lacking windows or decorative elements, emphasizing a blocky, monolithic appearance. The structure appears to be constructed primarily from concrete, with glass used for the windows and metal likely present in window frames and railings. The overall aesthetic is utilitarian and functional, typical of urban residential developments.",
+    "description": "A modern, blocky apartment building with three floors, blue-tinted windows, and a dark gray concrete facade featuring horizontal balcony bands.",
+    "description_view_0": "Front view showing the main entrance, stairs, three floors with blue windows, and prominent horizontal balcony bands.",
+    "description_view_1": "Side view revealing a plain, windowless gray wall and the overhanging balcony structures.",
+    "description_view_2": "Rear view displaying a completely featureless, flat gray surface with no windows or doors.",
+    "description_view_3": "Opposite side view similar to view 1, showing the plain wall and the stepped balcony overhangs.",
+    "category": "apartment building",
+    "height": 12.0,
+    "max_dimension": 12.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "balcony railing",
+        "stairs"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.12,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.0,
+    "bounciness": 0.0,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 3,
+    "attribute_balcony_presence": true,
+    "attribute_window_arrangement": "Windows are symmetrically aligned in horizontal rows on each floor, evenly spaced and centered within the facade's balcony bands.",
+    "attribute_entrance_type": "single door",
+    "attribute_architectural_style": "Brutalist",
+    "uid": "6952193d44ee40928fbe949a04fb1c19",
+    "near_synsets": {
+        "apartment_building.n.01": 0.4887200816727207,
+        "block.n.05": 0.509123701636777,
+        "high-rise.n.01": 0.5301113725276689,
+        "apartment.n.01": 0.5364491595155441,
+        "suite.n.02": 0.5438484461370915,
+        "construction.n.07": -1000.0,
+        "building.n.04": -1000.0,
+        "building.n.01": -1000.0,
+        "construction.n.01": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6952193d44ee40928fbe949a04fb1c19",
+        "creator_username": "sbastuff",
+        "creator_display_name": "Sba Stuff",
+        "creator_profile_url": "https://sketchfab.com/sbastuff"
+    },
+    "filename": "std_6952193d44ee40928fbe949a04fb1c19.glb",
+    "length": 8.462316036224365,
+    "width": 5.7961506843566895
+}

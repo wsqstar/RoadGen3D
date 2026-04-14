@@ -1,0 +1,107 @@
+{
+    "description_long": "This humanoid robot features an exposed mechanical structure with visible wiring, gears, and metallic components throughout its body. Its head is rounded with a dark faceplate, circular eye-like elements, and intricate wiring on the cranium, giving it a distinctly robotic yet anthropomorphic appearance. The torso is composed of a central circular mechanism and rib-like supports, while the limbs are slender, jointed, and partially covered with metallic plating. The hands and feet are asymmetrical, with one hand appearing more complete and the other partially constructed, and the legs show a mix of metallic and synthetic materials. The robot's overall design is utilitarian, with a focus on function over aesthetics, and it lacks any external clothing or decorative coverings. The color palette is dominated by metallic silver, white, and muted green tones, with accents of exposed copper and wiring.",
+    "description": "A humanoid robot with exposed wiring, metallic limbs, and a mechanical, utilitarian design. Its head features circular eye elements and a dark faceplate, with no external clothing or coverings.",
+    "description_view_0": "Front view shows the robot's symmetrical body, exposed wiring, circular chest mechanism, and both arms extended forward.",
+    "description_view_1": "Left side view highlights the profile of the head, the layered structure of the torso, and the forward-reaching left arm.",
+    "description_view_2": "Rear view reveals the robot's back plating, exposed spinal wiring, and the asymmetry of the legs and arms.",
+    "description_view_3": "Right side view displays the right arm's forward extension, the mechanical details of the torso, and the side profile of the head.",
+    "category": "humanoid robot",
+    "height": 1.75,
+    "max_dimension": 1.75,
+    "materials": [
+        "metal",
+        "plastic",
+        "synthetic polymer",
+        "copper",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hand",
+        "arm",
+        "head",
+        "torso panel",
+        "leg",
+        "eye module"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "silver",
+        "gray",
+        "green",
+        "copper",
+        "black"
+    ],
+    "colors_composition": [
+        0.35,
+        0.25,
+        0.15,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms extended forward at chest height, legs straight and feet flat on the ground, head facing forward.",
+    "attribute_clothing_style": "Unclothed; only integrated metallic and synthetic panels with exposed wiring and mechanical components.",
+    "attribute_facial_features": "Face consists of a dark, featureless plate with two circular, goggle-like eye elements and no visible mouth or nose; intricate wiring is visible on the cranium.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints at the shoulders, elbows, wrists, hips, knees, and ankles; hands and fingers appear articulated for grasping, with rigid but jointed construction.",
+    "attribute_presence_of_sensors": "Visible sensors include two circular camera-like modules in the eye region and possible tactile sensors in the hands.",
+    "uid": "ae30191b246f4692ba97c11ae3bb9010",
+    "near_synsets": {
+        "cyborg.n.01": 0.5300981937287516,
+        "android.n.01": 0.5447048590724775,
+        "robotics_equipment.n.01": 0.5447351741845091,
+        "automaton.n.02": 0.5661216016538041,
+        "robotics.n.01": 0.571484564517944
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ae30191b246f4692ba97c11ae3bb9010",
+        "creator_username": "VERST",
+        "creator_display_name": "VERST",
+        "creator_profile_url": "https://sketchfab.com/VERST"
+    },
+    "filename": "std_ae30191b246f4692ba97c11ae3bb9010.glb",
+    "length": 0.6437526941299438,
+    "width": 0.6740961372852325
+}

@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a large, tripod-mounted heavy machine gun with a robust, industrial design, likely modeled after a Browning M2 or similar weapon. The main body is constructed from dark metal, featuring a long, cylindrical barrel extending from a rectangular receiver. A belt of ammunition is visibly fed into the side, with a large ammunition box positioned beneath the receiver. The weapon is supported by a sturdy, three-legged tripod with wide, flat feet for stability on urban surfaces. Wooden grips and handles are present at the rear, providing ergonomic control for the operator. The overall appearance is utilitarian, with exposed mechanical components and a rugged finish suitable for military or defensive use in urban environments.",
+    "description": "A heavy, tripod-mounted machine gun with a long barrel, visible ammo belt, and large ammunition box, featuring dark metal construction and wooden grips.",
+    "description_view_0": "Side view showing the full length of the barrel, the ammunition belt feeding into the receiver, and the large ammo box beneath.",
+    "description_view_1": "Front view highlighting the muzzle, tripod legs splayed outward, and the ammo box to the left side.",
+    "description_view_2": "Opposite side view displaying the receiver, tripod structure, and the rear wooden grips.",
+    "description_view_3": "Rear view focusing on the wooden grips, the back of the receiver, and the tripod's rear leg.",
+    "category": "rifle",
+    "height": 0.7,
+    "max_dimension": 1.7,
+    "materials": [
+        "steel",
+        "wood",
+        "brass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "mass": 38,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "rotatable",
+        "pressable",
+        "pullable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "handle",
+        "ammunition box",
+        "tripod legs",
+        "charging handle",
+        "sight",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "gold",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "belt-fed",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "70a737b00d7643978a1884fa026e56c4",
+    "near_synsets": {
+        "rifle.n.01": 0.4885780598151351,
+        "light_arm.n.01": 0.4949503232143651,
+        "machine_gun.n.01": 0.49606739770384883,
+        "gun.n.01": 0.5022659153196573,
+        "automatic_rifle.n.01": 0.5033452063988523
+    },
+    "synset": "automatic_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/70a737b00d7643978a1884fa026e56c4",
+        "creator_username": "arvansajay",
+        "creator_display_name": "Ajay Kumar",
+        "creator_profile_url": "https://sketchfab.com/arvansajay"
+    },
+    "filename": "std_70a737b00d7643978a1884fa026e56c4.glb",
+    "length": 1.8545005321502686,
+    "width": 1.3042984008789062
+}

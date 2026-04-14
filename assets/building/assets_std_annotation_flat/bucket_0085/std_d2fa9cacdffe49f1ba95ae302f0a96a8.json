@@ -1,0 +1,109 @@
+{
+    "description_long": "This combat tactical vehicle features a robust, angular chassis with heavy armor plating covering the sides and top. The vehicle is equipped with wide, tank-like tracks on both sides, each with four visible road wheels, providing excellent traction and mobility over rough terrain. The upper structure includes a flat, open deck area with railings, a raised central compartment, and what appears to be a hatch or entry point. The front is sharply sloped, likely for deflecting projectiles, and the rear has a ramp or ladder for access. The color scheme is a mix of gray, green, and tan, with no visible camouflage pattern or military markings. No weapon mounts are visible on the exterior, and the vehicle's design suggests a focus on protection and transport rather than direct combat engagement.",
+    "description": "A heavily armored, tracked combat vehicle with a flat deck, sloped front, and robust side plating. It features a mix of gray, green, and tan colors, with no visible weapon mounts or military markings.",
+    "description_view_0": "Side view showing the four large road wheels within the thick, dark track, the flat deck with railings, and the sloped front armor.",
+    "description_view_1": "Front view highlighting the sharply angled front armor, wide tracks, and the central raised compartment.",
+    "description_view_2": "Opposite side view with lighter-colored tracks, the flat deck, and the visible hatch or entry point.",
+    "description_view_3": "Rear view displaying the access ramp or ladder, rear armor, and the open deck area with railings.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 22000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "ramp",
+        "track",
+        "door",
+        "railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "green",
+        "tan",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "none visible",
+    "attribute_armor_plating": "Full body armor plating is visible, with thick, angular panels covering the sides, front, and top. The armor appears to be modular and sloped for increased protection.",
+    "attribute_camouflage_pattern": "none visible",
+    "attribute_military_markings": "none visible",
+    "attribute_tire_type": "not applicable",
+    "uid": "d2fa9cacdffe49f1ba95ae302f0a96a8",
+    "near_synsets": {
+        "tank.n.01": 0.48814966107805197,
+        "military_vehicle.n.01": 0.49440828756947397,
+        "reconnaissance_vehicle.n.01": 0.5025242401896636,
+        "armored_car.n.02": 0.5147227042133564,
+        "armored_vehicle.n.01": 0.5186754638754164,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "armored_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d2fa9cacdffe49f1ba95ae302f0a96a8",
+        "creator_username": "BraveTawan",
+        "creator_display_name": "BraveTawan",
+        "creator_profile_url": "https://sketchfab.com/BraveTawan"
+    },
+    "filename": "std_d2fa9cacdffe49f1ba95ae302f0a96a8.glb",
+    "length": 7.504040241241455,
+    "width": 5.493831396102905
+}

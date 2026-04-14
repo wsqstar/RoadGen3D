@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a large, tracked combat vehicle with a low, angular profile and a prominent, elongated main cannon mounted on a rotating turret. The hull and turret are covered in thick, sloped armor plating, with visible hatches, periscopes, and various mounted equipment on the upper surfaces. The vehicle features a set of wide, rugged tracks on each side, supported by multiple road wheels, providing high mobility over rough terrain. On the turret, there is a secondary machine gun mount and additional observation or communication equipment, including antennas. The rear deck is covered with grilles and panels, likely for engine ventilation and access. The overall finish is a uniform, matte gray color, with no visible camouflage patterns or military markings.",
+    "description": "A heavily armored, tracked combat vehicle with a long main cannon, sloped armor, and a matte gray finish. Features include a rotating turret, machine gun mount, and rugged tracks.",
+    "description_view_0": "Side view showing the long main cannon, sloped turret, and full length of the tracks.",
+    "description_view_1": "Rear three-quarter view highlighting the engine deck grilles, rear armor, and turret details.",
+    "description_view_2": "Opposite side view displaying the tracks, turret, and cannon from a different angle.",
+    "description_view_3": "Front view emphasizing the sloped frontal armor, cannon barrel, and turret roof equipment.",
+    "category": "combat tactical  vehicle",
+    "height": 2.4,
+    "max_dimension": 9.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "air",
+        "plastic"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.07,
+        0.03,
+        0.03,
+        0.02
+    ],
+    "mass": 45000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "machine gun mount",
+        "antenna",
+        "periscope",
+        "track",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large main cannon mounted on the turret and one machine gun mount on the turret roof.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating on the hull and turret; no visible modular or reactive panels.",
+    "attribute_camouflage_pattern": "None visible; solid matte gray color.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "73be0ebaa7e44b72bbf2c9b671b4f7dc",
+    "near_synsets": {
+        "tank.n.01": 0.4812097738986646,
+        "military_vehicle.n.01": 0.49475049394456566,
+        "armored_car.n.02": 0.5051126510079907,
+        "reconnaissance_vehicle.n.01": 0.5052038491295022,
+        "assault_gun.n.02": 0.5145026642981356,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/73be0ebaa7e44b72bbf2c9b671b4f7dc",
+        "creator_username": "jonathanto99",
+        "creator_display_name": "Joanthan To",
+        "creator_profile_url": "https://sketchfab.com/jonathanto99"
+    },
+    "filename": "std_73be0ebaa7e44b72bbf2c9b671b4f7dc.glb",
+    "length": 6.091095209121704,
+    "width": 4.779801368713379
+}

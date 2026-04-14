@@ -1,0 +1,90 @@
+{
+    "description_long": "This object is a single slice of pizza with a golden-brown crust and a layer of melted cheese covering the surface. Three round slices of pepperoni are evenly distributed on top, partially embedded in the cheese. The crust is thick and slightly raised, with a soft, bread-like appearance. The cheese appears to be slightly melted and drips over the edge in some places, giving a realistic, appetizing look. The underside of the slice is flat, and the overall shape is a classic pizza triangle. No packaging or branding is visible on or around the slice.",
+    "description": "A realistic slice of pizza with melted cheese, three pepperoni slices, and a thick, golden-brown crust.",
+    "description_view_0": "A top-down angled view showing the full triangular shape, three pepperoni slices, and the cheese melting over the edge.",
+    "description_view_1": "A side profile highlighting the thickness of the crust and the cheese layer, with pepperoni visible on top.",
+    "description_view_2": "A rear angled view focusing on the rounded, thick crust and the distribution of toppings toward the front.",
+    "description_view_3": "A view from the back corner, emphasizing the crust's height and the cheese's edge detail.",
+    "category": "pizza",
+    "height": 0.025,
+    "max_dimension": 0.18,
+    "materials": [
+        "bread",
+        "cheese",
+        "pepperoni",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "mass": 0.12,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "brown",
+        "red"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.15
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_topping_type": [
+        "cheese",
+        "pepperoni"
+    ],
+    "attribute_slice_count": 1,
+    "attribute_crust_style": "thick crust",
+    "attribute_packaging_presence": false,
+    "attribute_brand_logo": "None",
+    "uid": "512158da5f394bc79a844acf8fa972ab",
+    "near_synsets": {
+        "pepperoni_pizza.n.01": 0.47511107919925955,
+        "cheese_pizza.n.01": 0.48881731255251953,
+        "sicilian_pizza.n.01": 0.49912035952369166,
+        "sausage_pizza.n.01": 0.5217110534395978,
+        "pizza.n.01": 0.5271369709478967
+    },
+    "synset": "pizza.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/512158da5f394bc79a844acf8fa972ab",
+        "creator_username": "Fboys",
+        "creator_display_name": "Fboys",
+        "creator_profile_url": "https://sketchfab.com/Fboys"
+    },
+    "filename": "std_512158da5f394bc79a844acf8fa972ab.glb",
+    "length": 0.1423470601439476,
+    "width": 0.1110248975455761
+}

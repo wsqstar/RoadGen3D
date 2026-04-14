@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a large, multi-barreled shotgun with a distinctive rotary design, reminiscent of a Gatling or minigun style. The main body is predominantly black with red accents, including three visible barrel rings and a few highlighted details. The shotgun features six parallel barrels, each reinforced by three red bands, and a cylindrical housing at the rear, which likely contains the firing mechanism. There is a prominent handle at the back for carrying or aiming, and the side of the housing displays white geometric symbols. The overall construction appears robust and industrial, with a focus on durability and high-capacity firing. The design suggests it is intended for heavy-duty use in urban environments, possibly for crowd control or defense.",
+    "description": "A large, black rotary shotgun with six barrels, red accent rings, and a robust industrial design featuring a rear handle and geometric markings.",
+    "description_view_0": "Side view showing the six-barrel rotary configuration, rear handle, and white geometric symbols on the main housing.",
+    "description_view_1": "Front view highlighting the circular arrangement of the six barrels and the red accent rings encircling them.",
+    "description_view_2": "Opposite side view displaying the same six-barrel structure, handle, and cylindrical housing, with fewer visible markings.",
+    "description_view_3": "Rear view focusing on the back of the cylindrical housing and the handle, with minimal detail on the barrels.",
+    "category": "shotgun",
+    "height": 0.25,
+    "max_dimension": 1.0,
+    "materials": [
+        "steel",
+        "polymer",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "aimable",
+        "triggerable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "trigger",
+        "barrel cluster",
+        "rotary mechanism"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "rotary multi-barrel configuration with six parallel barrels, reinforced by three red rings",
+    "attribute_stock_type": "no stock",
+    "attribute_action_mechanism": "rotary-action",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "Not visibly present; trigger area appears integrated into the main housing without a distinct guard",
+    "uid": "644dfa35d0a14c618f16beac1d508c8f",
+    "near_synsets": {
+        "sawed-off_shotgun.n.01": 0.506023726636101,
+        "shotgun.n.01": 0.521789631795932,
+        "gatling_gun.n.01": 0.5264380965860249,
+        "shotgun_shell.n.01": 0.5396413324769713,
+        "revolver.n.01": 0.5469028255078707
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/644dfa35d0a14c618f16beac1d508c8f",
+        "creator_username": "antonuccio",
+        "creator_display_name": "kyofee",
+        "creator_profile_url": "https://sketchfab.com/antonuccio"
+    },
+    "filename": "std_644dfa35d0a14c618f16beac1d508c8f.glb",
+    "length": 1.0456178188323975,
+    "width": 0.20218908786773682
+}

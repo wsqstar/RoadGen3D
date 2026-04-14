@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a two-story hospital building with a flat blue roof, featuring a rooftop helipad marked with an 'H' and a small rooftop structure accessible by a ladder. The facade is painted in light blue with dark window frames and multiple evenly spaced windows on each floor. The front entrance is clearly marked with a red 'Hospital' sign and a medical cross symbol above the door, indicating its function as a healthcare facility. The building sits on a green rectangular base, suggesting a landscaped or grassed area around it. HVAC units and other rooftop equipment are visible, adding to the realism of the structure. The overall design is simple and functional, with a modern utilitarian architectural style.",
+    "description": "A modern, two-story hospital with a blue flat roof, rooftop helipad, and prominent hospital signage on a landscaped base.",
+    "description_view_0": "The rear view shows the rooftop helipad, ladder, and the small rooftop structure, with windows evenly distributed on the back wall.",
+    "description_view_1": "The left side view highlights the rooftop equipment, helipad, and the side extension of the building with additional windows.",
+    "description_view_2": "The front view displays the main entrance, red 'Hospital' sign, and medical cross symbol, making the building's purpose clear.",
+    "description_view_3": "The right side view shows the rooftop equipment, helipad, and the side extension, similar to the left but mirrored.",
+    "category": "hospital",
+    "height": 10.0,
+    "max_dimension": 22.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 350000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "windows",
+        "ladder",
+        "helipad"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "light blue",
+        "green",
+        "black",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.35,
+        0.3,
+        0.2,
+        0.08,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 6.0,
+    "asset_composition_type": "single",
+    "attribute_hospital_signage": true,
+    "attribute_emergency_entrance": false,
+    "attribute_ambulance_bay": false,
+    "attribute_medical_cross_symbol": true,
+    "attribute_architectural_style": "modern utilitarian",
+    "uid": "bf565b1b7cfb49bba7829f883d9974cf",
+    "near_synsets": {
+        "medical_building.n.01": 0.5126332373064066,
+        "hospital.n.01": 0.5338953913978466,
+        "hospital.n.02": 0.5477253251386535,
+        "hospital_room.n.01": 0.5546956738006462,
+        "medical_center.n.01": 0.5551664001101185
+    },
+    "synset": "hospital_room.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bf565b1b7cfb49bba7829f883d9974cf",
+        "creator_username": "rikki23",
+        "creator_display_name": "Vigneshwar",
+        "creator_profile_url": "https://sketchfab.com/rikki23"
+    },
+    "filename": "std_bf565b1b7cfb49bba7829f883d9974cf.glb",
+    "length": 20.900569915771484,
+    "width": 19.978538513183594
+}

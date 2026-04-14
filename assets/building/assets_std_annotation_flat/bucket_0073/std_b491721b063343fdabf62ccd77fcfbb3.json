@@ -1,0 +1,105 @@
+{
+    "description_long": "This humanoid robot features a sleek, segmented body with articulated limbs and a rounded head. Its exterior is primarily white with black and gray joint accents, and a prominent red section on the abdomen displaying a yellow and black hazard symbol. The robot's arms and legs are jointed at the shoulders, elbows, wrists, hips, knees, and ankles, allowing for a wide range of motion. The face is simple, with two light blue eyes and a smooth, expressionless surface, while the back of the head and neck show mechanical detailing. The overall design is functional and industrial, suggesting durability and adaptability for urban environments.",
+    "description": "A white, articulated humanoid robot with a red hazard-marked abdomen and simple, expressive face. Its segmented limbs and mechanical joints suggest high mobility and durability.",
+    "description_view_0": "Front view shows the robot's face, blue eyes, outstretched arms, and red hazard-marked abdomen.",
+    "description_view_1": "Left side view highlights the robot's profile, joint articulation, and mechanical neck details.",
+    "description_view_2": "Rear view reveals the back of the head, neck mechanisms, and the segmented structure of the limbs and torso.",
+    "description_view_3": "Right side view mirrors the left, showing limb articulation and the side profile of the head and torso.",
+    "category": "humanoid robot",
+    "height": 1.7,
+    "max_dimension": 2.1,
+    "materials": [
+        "plastic",
+        "metal",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head",
+        "arms",
+        "hands",
+        "legs",
+        "abdomen panel",
+        "joints"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "red",
+        "yellow",
+        "gray",
+        "blue"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.03,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms extended horizontally to the sides, legs straight and parallel, head facing forward, and torso upright.",
+    "attribute_clothing_style": "Unclothed; exterior consists of integrated panels and mechanical joints with no visible fabric or decorative coverings.",
+    "attribute_facial_features": "Face is smooth and white with two light blue circular eyes, no visible mouth or nose, and no expressive elements or display screens.",
+    "attribute_limb_articulation": "Arms and legs have visible hinge or rotary joints at shoulders, elbows, wrists, hips, knees, and ankles, allowing for flexible movement; limbs appear segmented and articulated.",
+    "attribute_presence_of_sensors": "Visible sensors include two eye-like cameras or optical sensors on the face; no other sensors are clearly visible.",
+    "uid": "b491721b063343fdabf62ccd77fcfbb3",
+    "near_synsets": {
+        "android.n.01": 0.5267954845766722,
+        "automaton.n.02": 0.5544322721013518,
+        "robotics_equipment.n.01": 0.5558422214671396,
+        "cyborg.n.01": 0.5630044674295887,
+        "robotics.n.01": 0.5780463917247696
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b491721b063343fdabf62ccd77fcfbb3",
+        "creator_username": "Mortharion",
+        "creator_display_name": "alpharius",
+        "creator_profile_url": "https://sketchfab.com/Mortharion"
+    },
+    "filename": "std_b491721b063343fdabf62ccd77fcfbb3.glb",
+    "length": 0.277956023812294,
+    "width": 1.7762998342514038
+}

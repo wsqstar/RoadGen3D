@@ -1,0 +1,103 @@
+{
+    "description_long": "This shelter features a domed structure with a prominent central entrance marked by the number '1' above the door. The roof is partially covered by a large, segmented transparent dome, likely made of reinforced glass or polycarbonate, allowing natural light to enter the interior. Attached to one side is a cylindrical ventilation or exhaust tower with horizontal slats near the top, and a tall, thin antenna extends from the roof, suggesting communication capabilities. The exterior is predominantly smooth and white, with black-tinted window panels and clear signage reading 'HCI POD CAPSULE NO.1' on the rear. The shelter sits on a flat green base, simulating grass or turf, and its overall form is reminiscent of a futuristic or emergency pod designed for rapid deployment. The structure appears robust, weather-resistant, and suitable for temporary or semi-permanent urban installation.",
+    "description": "A white domed shelter with a transparent segmented roof, cylindrical ventilation tower, and black-tinted windows, featuring clear signage and a central entry door.",
+    "description_view_0": "Front view shows the main arched entry door, the number '1' above it, the transparent roof dome, and the ventilation tower to the left.",
+    "description_view_1": "Rear view highlights the 'HCI POD CAPSULE NO.1' signage, the full extent of the transparent roof, and the antenna extending upward.",
+    "description_view_2": "Side view displays the black-tinted window panels, the cylindrical tower, and the antenna, with the dome's curvature visible.",
+    "description_view_3": "Opposite rear view emphasizes the cylindrical tower, the smooth dome surfaces, and the absence of entryways on this side.",
+    "category": "shelter",
+    "height": 4.5,
+    "max_dimension": 9.0,
+    "materials": [
+        "reinforced concrete",
+        "polycarbonate",
+        "glass",
+        "steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "black",
+        "blue",
+        "green"
+    ],
+    "colors_composition": [
+        0.65,
+        0.1,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "segmented transparent dome with reinforced concrete base",
+    "attribute_entryway_design": "arched single door with overhead numbering and flush frame",
+    "attribute_support_structure": "reinforced concrete shell with integrated cylindrical tower and steel framework",
+    "attribute_signage": "number '1' above the door and 'HCI POD CAPSULE NO.1' text on the rear dome",
+    "attribute_transparency": "partially transparent segmented roof panels",
+    "uid": "5d490552fda54ada901cdd456012bedc",
+    "near_synsets": {
+        "shelter.n.02": 0.49989102973608796,
+        "shelter.n.01": 0.5148509567505897,
+        "dome.n.04": 0.5290339002425074,
+        "observation_dome.n.01": 0.5365764609048354,
+        "sibley_tent.n.01": 0.5394878221497524,
+        "tax_shelter.n.01": -1000.0,
+        "protection.n.04": -1000.0,
+        "shelter.n.05": -1000.0
+    },
+    "synset": "shelter.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5d490552fda54ada901cdd456012bedc",
+        "creator_username": "puppet_lee",
+        "creator_display_name": "puppet_lee",
+        "creator_profile_url": "https://sketchfab.com/puppet_lee"
+    },
+    "filename": "std_5d490552fda54ada901cdd456012bedc.glb",
+    "length": 7.8181867599487305,
+    "width": 7.818181991577148
+}

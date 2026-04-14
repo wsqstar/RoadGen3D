@@ -1,0 +1,107 @@
+{
+    "description_long": "This storage tank consists of two main sections: a large rectangular blue chamber with a ribbed exterior and a smaller cylindrical tank encased in a black metal frame. The two sections are connected by a series of red and black pipes, suggesting a flow system between them. The rectangular chamber features visible internal piping and two prominent pipe attachments, one red and one blue, on opposite sides. The cylindrical section appears to be designed for pressurized storage, while the rectangular section may serve as a processing or mixing chamber. The overall construction is industrial, with robust metal framing and utilitarian design, suitable for handling liquids or gases in an urban infrastructure context.",
+    "description": "A robust, industrial storage tank system with a large blue rectangular chamber, a smaller cylindrical tank, and multiple connecting pipes.",
+    "description_view_0": "Side view showing both the rectangular blue chamber and the cylindrical tank, with connecting pipes clearly visible.",
+    "description_view_1": "End view of the rectangular chamber, highlighting the red and blue pipe attachments and the sloped top.",
+    "description_view_2": "Rear view revealing the open side of the rectangular chamber and internal piping, with the cylindrical tank in the background.",
+    "description_view_3": "End view of the cylindrical tank, showing its black metal frame and the connection to the rectangular chamber.",
+    "category": "storage tank",
+    "height": 1.5,
+    "max_dimension": 4.0,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "connectable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pipe",
+        "valve",
+        "chamber door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [
+        "inlet pipe",
+        "outlet pipe"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_architectural_style": "rectangular horizontal with cylindrical adjunct",
+    "uid": "01502a4d1454466fad16660be187e480",
+    "near_synsets": {
+        "tank.n.02": 0.48911272749967455,
+        "reservoir.n.03": 0.5248084561701687,
+        "tank_farm.n.01": 0.5324362379309976,
+        "water_tower.n.01": 0.5481709876983311,
+        "water_heater.n.01": 0.5505937814522504,
+        "repositing.n.01": -1000.0,
+        "tank.n.01": -1000.0,
+        "storage.n.01": -1000.0,
+        "memory.n.04": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "storage.n.04": -1000.0,
+        "tank.n.03": -1000.0,
+        "cooler.n.03": -1000.0,
+        "storage.n.03": -1000.0,
+        "storehouse.n.01": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/01502a4d1454466fad16660be187e480",
+        "creator_username": "Peter_Sawyer",
+        "creator_display_name": "Peter_Sawyer",
+        "creator_profile_url": "https://sketchfab.com/Peter_Sawyer"
+    },
+    "filename": "std_01502a4d1454466fad16660be187e480.glb",
+    "length": 1.5959879755973816,
+    "width": 5.905666351318359
+}

@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a section of a primary road intersection set within a grassy terrain. The road forms a cross-shaped junction with four distinct arms, each bordered by green embankments. The road surface is dark asphalt with visible lane markings, and the terrain gently slopes upward and downward along the road edges. There are no visible sidewalks, curbs, or pedestrian infrastructure, and the intersection appears to be designed for vehicular traffic only. The road markings are simple, with no special turn lanes or arrows, and there are no visible traffic signs or lighting fixtures. The overall appearance suggests a rural or suburban road crossing, with a focus on vehicular passage through open terrain.",
+    "description": "A cross-shaped asphalt road intersection set in grassy terrain, with simple lane markings and no visible signage or pedestrian features.",
+    "description_view_0": "The intersection is seen from a low angle, highlighting the sloped terrain and the main road arms extending horizontally and vertically.",
+    "description_view_1": "This view shows the intersection from above and to the left, emphasizing the rightward extension of the road and the surrounding grassy area.",
+    "description_view_2": "A top-down perspective reveals the full cross-junction layout and the even distribution of grassy embankments around the roads.",
+    "description_view_3": "Viewed from the opposite side, the intersection's leftward and upward road arms are prominent, with the terrain's contours more visible.",
+    "category": "road",
+    "height": 0.2,
+    "max_dimension": 40.0,
+    "materials": [
+        "asphalt",
+        "concrete",
+        "soil",
+        "grass",
+        "air"
+    ],
+    "materials_composition": [
+        0.4,
+        0.1,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "car",
+        "bicycle"
+    ],
+    "colors": [
+        "dark gray",
+        "green",
+        "yellow",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_lane_markings": "Single solid yellow centerline with white edge lines; no dashed or double lines; no special markings.",
+    "attribute_signage": "none",
+    "attribute_curb_presence": false,
+    "attribute_lighting_fixtures": "none",
+    "attribute_pedestrian_crossings": "none",
+    "uid": "d4c9514ebb32407dbd0b0a3fcfcf26e1",
+    "near_synsets": {
+        "crossing.n.05": 0.5064518712692614,
+        "school_crossing.n.01": 0.5128604006242755,
+        "intersection.n.02": 0.5141760628306767,
+        "cross_street.n.01": 0.5157390598683027,
+        "street_sign.n.01": 0.5185381350241978,
+        "road.n.02": -1000.0,
+        "road.n.01": -1000.0
+    },
+    "synset": "road.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d4c9514ebb32407dbd0b0a3fcfcf26e1",
+        "creator_username": "jimbogies",
+        "creator_display_name": "jimbogies",
+        "creator_profile_url": "https://sketchfab.com/jimbogies"
+    },
+    "filename": "std_d4c9514ebb32407dbd0b0a3fcfcf26e1.glb",
+    "length": 1.3876627683639526,
+    "width": 1.387662649154663
+}

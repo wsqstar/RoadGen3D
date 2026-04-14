@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a stylized biplane with a vibrant color scheme, featuring two sets of green wings with blue lightning bolt patterns and brown structural supports. The fuselage is orange with blue highlights and houses a visible, detailed engine at the front, along with a single propeller. The tail section is elongated and tapers to a point, with a vertical stabilizer and horizontal tailplane, both decorated with matching colors. The landing gear consists of two main wheels and a small tail wheel, all fixed and exposed. The cockpit is open and situated near the front of the fuselage, with multiple seats visible, suggesting a multi-occupant configuration. The overall design is reminiscent of early 20th-century aircraft, with exaggerated, almost fantasy-like proportions and details.",
+    "description": "A colorful, stylized biplane with green and blue wings, orange fuselage, exposed engine, and open multi-seat cockpit.",
+    "description_view_0": "Front view showing the dual green wings with blue lightning patterns, exposed engine, and propeller.",
+    "description_view_1": "Side view highlighting the elongated fuselage, open cockpit, and fixed landing gear beneath the lower wing.",
+    "description_view_2": "Rear view displaying the pointed tail, vertical stabilizer, and the full span of the biplane's wings.",
+    "description_view_3": "Opposite side view showing the cockpit seating, wing struts, and the detailed engine at the nose.",
+    "category": "airplane",
+    "height": 2.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "aluminum",
+        "fabric",
+        "glass",
+        "rubber",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.05,
+        0.05,
+        0.1,
+        0.1
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "cockpit controls",
+        "wheels",
+        "engine",
+        "seats"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "blue",
+        "orange",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.45,
+        0.15,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Biplane configuration with two sets of straight, staggered wings supported by struts; no winglets; slight dihedral angle.",
+    "attribute_engine_type": "Single front-mounted piston engine with exposed cylinders and a two-blade propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal tailplane.",
+    "attribute_landing_gear_type": "Fixed taildragger landing gear with two main wheels and a small tail wheel.",
+    "attribute_cockpit_placement": "Forward-mounted, open cockpit with multiple seats, no canopy, and visible cockpit details.",
+    "uid": "3d77c6324a32470d9bf03f15b38e6488",
+    "near_synsets": {
+        "biplane.n.01": 0.49146794783316794,
+        "monoplane.n.01": 0.5049320526444161,
+        "aircraft.n.01": 0.5077092629768254,
+        "airplane.n.01": 0.5143832925339443,
+        "multiengine_airplane.n.01": 0.5215834966782441
+    },
+    "synset": "multiengine_airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3d77c6324a32470d9bf03f15b38e6488",
+        "creator_username": "jorandp",
+        "creator_display_name": "jorandp",
+        "creator_profile_url": "https://sketchfab.com/jorandp"
+    },
+    "filename": "std_3d77c6324a32470d9bf03f15b38e6488.glb",
+    "length": 7.229975700378418,
+    "width": 7.748695611953735
+}

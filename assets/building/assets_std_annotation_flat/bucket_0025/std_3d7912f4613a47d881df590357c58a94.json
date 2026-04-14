@@ -1,0 +1,113 @@
+{
+    "description_long": "This is a rectangular, pink vending machine with a prominent cream-colored sign at the top displaying the word 'CANDY' in block letters. The front features four shelves filled with colorful candy bars, each separated by dividers, and a horizontal retrieval slot at the bottom. On the right side, there is a protruding digital display panel mounted on a curved arm, and a purple cable runs from the back to the side, suggesting power or connectivity. The back of the machine has four large, round, gray pads or feet and a vented panel, while the left side is mostly plain except for the cable. The overall design is playful and stylized, with smooth, rounded edges and a matte finish.",
+    "description": "A pink, rectangular vending machine labeled 'CANDY' with colorful candy bars, a digital display panel, and a retrieval slot at the bottom.",
+    "description_view_0": "Front view showing the 'CANDY' sign, candy shelves, retrieval slot, and part of the digital display panel on the right.",
+    "description_view_1": "Right side view highlighting the protruding digital display panel and the curved cable attachment.",
+    "description_view_2": "Rear view displaying four large gray pads or feet, a vented panel, and the purple cable looping out.",
+    "description_view_3": "Left side view showing the vented panel, cable attachment, and a mostly plain pink surface.",
+    "category": "vending machine",
+    "height": 1.6,
+    "max_dimension": 0.9,
+    "materials": [
+        "painted metal",
+        "plastic",
+        "glass",
+        "rubber",
+        "electronic components",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "display panel",
+        "product selection buttons",
+        "retrieval slot",
+        "payment interface"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "pink",
+        "cream",
+        "purple",
+        "gray",
+        "black",
+        "blue",
+        "multicolor (candy bars)"
+    ],
+    "colors_composition": [
+        0.6,
+        0.1,
+        0.08,
+        0.08,
+        0.05,
+        0.04,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A rectangular digital display panel is mounted on the right side of the machine, attached by a curved arm. It is medium-sized, flat, and appears to be a touchscreen.",
+    "attribute_payment_interface": "A small rectangular payment interface is visible on the lower left front, likely for card or contactless payments, but no coin or bill slots are clearly visible.",
+    "attribute_product_selection_buttons": "Individual rectangular buttons are arranged in rows in front of each candy slot, each corresponding to a specific product.",
+    "attribute_product_retrieval_slot": "A horizontal rectangular slot is located at the bottom center of the front face, likely with a flap for retrieving purchased items.",
+    "attribute_branding_or_signage": "A large cream-colored sign at the top front displays the word 'CANDY' in block letters.",
+    "uid": "3d7912f4613a47d881df590357c58a94",
+    "near_synsets": {
+        "vending_machine.n.01": 0.45753904921015337,
+        "automat.n.01": 0.5050106218671482,
+        "candy_bar.n.01": 0.5320378868300455,
+        "chocolate_bar.n.01": 0.5504026841258117,
+        "chocolate_candy.n.01": 0.5550180771809893,
+        "machine.n.05": -1000.0,
+        "machine.n.02": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.03": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.04": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3d7912f4613a47d881df590357c58a94",
+        "creator_username": "mattkahrer",
+        "creator_display_name": "mattkahrer",
+        "creator_profile_url": "https://sketchfab.com/mattkahrer"
+    },
+    "filename": "std_3d7912f4613a47d881df590357c58a94.glb",
+    "length": 0.9970816373825073,
+    "width": 1.7612812519073486
+}

@@ -1,0 +1,109 @@
+{
+    "description_long": "This object is a large, heavily armored robotic vehicle designed in the likeness of a scorpion, featuring a segmented, articulated tail with a mounted cannon at the tip. Its body is covered in angular, camouflaged armor plating, and it moves on multiple jointed legs, each ending in sharp, claw-like appendages. The front of the vehicle is equipped with two massive pincers, each reinforced and capable of grasping or crushing, and a set of red lights or sensors resembling eyes and fangs. Along the dorsal surface, there are visible weapon mounts, including a prominent turret and additional barrels or launchers. The vehicle's exterior is finished in a desert camouflage pattern, blending tan, brown, and black in irregular patches. The overall design suggests a focus on intimidation, mobility, and heavy firepower for urban or battlefield deployment.",
+    "description": "A large, armored robotic scorpion vehicle with a camouflaged exterior, multiple weapon mounts, and articulated legs and tail. Its design features heavy pincers, a cannon-tipped tail, and a menacing, tactical appearance.",
+    "description_view_0": "Front view showing the scorpion-like pincers, red sensor 'eyes', and the articulated tail raised behind the body.",
+    "description_view_1": "Side view highlighting the segmented tail with a cannon, the dorsal weapon mount, and the full array of jointed legs.",
+    "description_view_2": "Rear three-quarter view displaying the back armor, tail articulation, and the mechanical structure of the legs.",
+    "description_view_3": "Opposite side view emphasizing the tail cannon, dorsal weaponry, and the camouflaged armor plating.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.05,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "mass": 4200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 42000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pincers",
+        "tail cannon",
+        "turret",
+        "legs",
+        "sensors",
+        "weapon mounts"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "brown",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.18,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Four visible weapon mounts: one large cannon at the tip of the tail, one turret-mounted gun on the dorsal surface, and two smaller side-mounted barrels near the front pincers.",
+    "attribute_armor_plating": "Full body coverage with thick, angular armor plating; reinforced segments on the head, pincers, and tail; sloped and modular panels for deflection.",
+    "attribute_camouflage_pattern": "Desert camouflage with tan, brown, and black irregular patches in a disruptive pattern.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "098fe7f9592248a0be5b0d6d56cab056",
+    "near_synsets": {
+        "reconnaissance_vehicle.n.01": 0.5455463546451972,
+        "tank.n.01": 0.5497409035579564,
+        "military_vehicle.n.01": 0.5533621252704636,
+        "assault_gun.n.02": 0.5698204264955214,
+        "water_scorpion.n.01": 0.5708417788302773,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/098fe7f9592248a0be5b0d6d56cab056",
+        "creator_username": "sinnik",
+        "creator_display_name": "SINNIK",
+        "creator_profile_url": "https://sketchfab.com/sinnik"
+    },
+    "filename": "std_098fe7f9592248a0be5b0d6d56cab056.glb",
+    "length": 3.277427315711975,
+    "width": 2.5672332048416138
+}

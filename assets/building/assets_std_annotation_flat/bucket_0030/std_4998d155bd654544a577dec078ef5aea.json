@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a large, round pavilion-style tent with a high conical roof, featuring alternating vertical stripes of muted green and reddish-brown fabric. The tent's structure is supported by a central pole, implied by the peak at the top, and the fabric is tightly stretched to form a smooth, symmetrical surface. The lower edge of the tent is ringed by a vertical skirt of the same striped pattern, and there is a single wide entrance opening visible on one side. The tent appears to be designed for temporary outdoor use, such as in parks, fairs, or urban events, providing shelter and shade for groups of people. The fabric material has a matte, slightly textured finish, suggesting weather resistance and durability. No visible branding, guy lines, or ventilation openings are apparent from the exterior views.",
+    "description": "A large, round pavilion tent with a high conical roof and alternating green and reddish-brown stripes, featuring a single wide entrance and a matte fabric finish.",
+    "description_view_0": "Front view showing the wide entrance opening and the striped fabric pattern.",
+    "description_view_1": "Rear view with no visible entrance, displaying the continuous striped roof and skirt.",
+    "description_view_2": "Side view with the entrance partially visible, emphasizing the tent's round shape and fabric texture.",
+    "description_view_3": "Opposite side view with no entrance visible, highlighting the uninterrupted striped pattern.",
+    "category": "tent",
+    "height": 4.0,
+    "max_dimension": 10.0,
+    "materials": [
+        "fabric",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 120,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "closable",
+        "openable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "entrance flap",
+        "central pole"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "green",
+        "red-brown",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.45,
+        0.45,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 0.5,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "Large open flap entrance located on the lower skirt at the front, no visible door or closure mechanism.",
+    "attribute_number_of_poles": 1,
+    "attribute_guy_line_configuration": "No guy lines are visible; the tent appears to rely on internal support and ground anchoring.",
+    "attribute_ventilation_openings": [],
+    "attribute_branding_or_logo": "none",
+    "uid": "4998d155bd654544a577dec078ef5aea",
+    "near_synsets": {
+        "pavilion.n.01": 0.4307244420940953,
+        "field_tent.n.01": 0.4695818513252151,
+        "sibley_tent.n.01": 0.47077188787694224,
+        "canvas_tent.n.01": 0.4818601883996877,
+        "tent.n.02": 0.48765768392567416,
+        "tent.n.01": -1000.0
+    },
+    "synset": "tent.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4998d155bd654544a577dec078ef5aea",
+        "creator_username": "periklis",
+        "creator_display_name": "Periklis",
+        "creator_profile_url": "https://sketchfab.com/periklis"
+    },
+    "filename": "std_4998d155bd654544a577dec078ef5aea.glb",
+    "length": 7.196704387664795,
+    "width": 7.196700811386108
+}

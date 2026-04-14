@@ -1,0 +1,100 @@
+{
+    "description_long": "This wheelchair features a sturdy metal frame with a matte black finish and a broad, flat seat and backrest upholstered in dark brown material. The large rear wheels are spoked and paired with smaller front caster wheels, providing stability and maneuverability. The armrests are padded and extend horizontally, while the footrests are wide, flat, and positioned close to the ground for easy access. The frame includes cross-bracing beneath the seat for added structural support. Standard push handles are attached to the backrest, allowing an attendant to push the chair. The overall design is utilitarian, suitable for use on sidewalks, in parks, or within urban environments.",
+    "description": "A robust, black-framed wheelchair with spoked rear wheels, padded brown seat and backrest, and standard push handles. It features wide footrests and cross-bracing for stability.",
+    "description_view_0": "Side view showing the spoked rear wheel, padded armrest, and flat footrest; the frame and cross-bracing are clearly visible.",
+    "description_view_1": "Front view highlighting the wide seat, armrests, and dual footrests, with the front caster wheels visible.",
+    "description_view_2": "Opposite side view mirroring view 0, showing the other spoked rear wheel, armrest, and footrest.",
+    "description_view_3": "Rear view displaying the full backrest, push handles, and the rear wheel structure with cross-bracing beneath the seat.",
+    "category": "wheelchair",
+    "height": 1.0,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "synthetic fabric",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 16,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 25,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "pushable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "footrest",
+        "armrest"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_wheel_type": "Spoked wheels; two large rear wheels and two smaller front caster wheels; rear wheels are the primary for propulsion.",
+    "attribute_frame_design": "Folding frame with cross-bracing under the seat; tubular steel construction with rectangular geometry.",
+    "attribute_presence_of_push_rims": false,
+    "attribute_footrest_style": "Fixed, wide, flat footrests positioned close to the ground; non-detachable and non-elevating.",
+    "attribute_handlebar_configuration": "Standard push handles, straight and padded, extending from the top of the backrest.",
+    "uid": "393fb4399f704bc49b8d82be99785ab0",
+    "near_synsets": {
+        "wheelchair.n.01": 0.5132215199424213,
+        "motorized_wheelchair.n.01": 0.5322197604026548,
+        "bath_chair.n.01": 0.5427107063662795,
+        "windsor_chair.n.01": 0.5735723940626413,
+        "wheeled_vehicle.n.01": 0.5744957705140222
+    },
+    "synset": "motorized_wheelchair.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/393fb4399f704bc49b8d82be99785ab0",
+        "creator_username": "NicolasVB",
+        "creator_display_name": "NicolasVB",
+        "creator_profile_url": "https://sketchfab.com/NicolasVB"
+    },
+    "filename": "std_393fb4399f704bc49b8d82be99785ab0.glb",
+    "length": 1.140884518623352,
+    "width": 0.8064648509025574
+}

@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a medium-sized, steel-hulled ship with a blue lower hull and a tan superstructure, featuring two prominent smokestacks with red bands and two tall masts. The bow is rounded and reinforced, while the stern is squared off, both with visible portholes along the hull. The deck is equipped with railings, lifeboats on both sides, and various fixtures such as vents and hatches. The superstructure includes a bridge at the front, a central section with the smokestacks, and a rear cabin with additional windows and a ladder. The ship's design suggests it is a steam-powered vessel, likely used for transport or patrol duties. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A blue and tan steel ship with two smokestacks, two masts, lifeboats, and a detailed superstructure. The vessel features a rounded bow, squared stern, and multiple deck fixtures.",
+    "description_view_0": "Front view showing the rounded bow, forward bridge, and symmetrical placement of lifeboats and masts.",
+    "description_view_1": "Side view highlighting the two smokestacks, deck railings, lifeboats, and the full length of the superstructure.",
+    "description_view_2": "Rear view displaying the squared stern, rear cabin, and the alignment of the masts and smokestacks.",
+    "description_view_3": "Opposite side view with similar features to view 1, showing the hull's portholes and deck equipment.",
+    "category": "ship",
+    "height": 13.0,
+    "max_dimension": 45.0,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 650000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "steerable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "ladder",
+        "wheel",
+        "lifeboat",
+        "railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "tan",
+        "gray",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.45,
+        0.35,
+        0.12,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000.0,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.04,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a rounded bow and squared stern, featuring a deep draft and reinforced bow section. Portholes line the hull, and the sides are straight with a slight flare at the bow. No bulbous bow or visible keels are present.",
+    "attribute_superstructure_layout": "The superstructure consists of a forward bridge, a central section with two smokestacks, and a rear cabin. Decks are connected by ladders, and lifeboats are mounted on both sides. Railings run along the perimeter of the main deck.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "lifeboat",
+        "ladder",
+        "railing",
+        "vent",
+        "hatch"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "8c71f5ab59e84ac6baf16e22d96a2e45",
+    "near_synsets": {
+        "brig.n.01": 0.5292442156960573,
+        "blue_peter.n.01": 0.5345547977581091,
+        "superstructure.n.01": 0.5367566720313844,
+        "boat_deck.n.01": 0.5441047493648546,
+        "schooner.n.02": 0.5446621785501462,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8c71f5ab59e84ac6baf16e22d96a2e45",
+        "creator_username": "greattug",
+        "creator_display_name": "GreatTug",
+        "creator_profile_url": "https://sketchfab.com/greattug"
+    },
+    "filename": "std_8c71f5ab59e84ac6baf16e22d96a2e45.glb",
+    "length": 20.275060653686523,
+    "width": 7.381982803344727
+}

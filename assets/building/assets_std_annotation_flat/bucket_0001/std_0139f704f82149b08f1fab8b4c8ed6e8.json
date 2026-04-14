@@ -1,0 +1,115 @@
+{
+    "description_long": "This ship features a robust, armored hull with a red lower section and a light gray upper deck, typical of late 19th-century ironclad warships. The deck is equipped with two large cylindrical turrets, each housing heavy artillery, and a central superstructure with two tall smokestacks and a single mast. The stern displays a national flag, and the deck is bordered by metal railings for safety. Several smaller fixtures, such as ventilators, hatches, and lifeboats, are distributed across the deck, indicating a focus on both combat and crew operations. The bow is rounded and reinforced, while the stern is slightly tapered, contributing to the vessel's stability and seaworthiness. The overall design suggests a military purpose, with a balance of offensive and defensive features.",
+    "description": "An armored warship with a red and gray hull, twin turrets, central superstructure, and visible deck equipment, designed for naval combat.",
+    "description_view_0": "Side view showing the full length of the ship, twin turrets, smokestacks, mast, and stern flag.",
+    "description_view_1": "Front view highlighting the rounded bow, forward turret, and symmetrical deck layout.",
+    "description_view_2": "Opposite side view displaying the turrets, superstructure, and stern features, including the flag.",
+    "description_view_3": "Top-down view revealing the overall deck arrangement, placement of turrets, superstructure, and lifeboats.",
+    "category": "ship",
+    "height": 12,
+    "max_dimension": 70,
+    "materials": [
+        "steel",
+        "iron",
+        "wood",
+        "glass",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.01,
+        0.04
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "hatch",
+        "door",
+        "lifeboat",
+        "flag",
+        "mast",
+        "smokestack"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black",
+        "beige",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 15,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a rounded bow and slightly tapered stern, featuring a pronounced red lower section and a gray upper section. The hull sides are smooth and armored, with no visible keels or bulbous bows, and the waterline is clearly defined.",
+    "attribute_superstructure_layout": "The superstructure consists of a central raised section with two tall smokestacks, a single mast, and two large cylindrical turrets fore and aft. The deck is open with railings, and smaller fixtures such as ventilators, hatches, and lifeboats are distributed along the length.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "turret",
+        "lifeboat",
+        "ventilator",
+        "hatch",
+        "flag",
+        "mast",
+        "smokestack",
+        "railing"
+    ],
+    "attribute_registration_markings": "flag at stern",
+    "uid": "0139f704f82149b08f1fab8b4c8ed6e8",
+    "near_synsets": {
+        "warship.n.01": 0.4619947771522298,
+        "battleship.n.01": 0.46733192116114863,
+        "surface_ship.n.01": 0.46922241080350285,
+        "capital_ship.n.01": 0.4731477809054996,
+        "guard_ship.n.01": 0.4797838705085133,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0139f704f82149b08f1fab8b4c8ed6e8",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_0139f704f82149b08f1fab8b4c8ed6e8.glb",
+    "length": 26.51683521270752,
+    "width": 6.703121185302734
+}

@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a large, heavily armored combat vehicle resembling a super-heavy tank, featuring a dual-barrel main cannon mounted on a prominent turret. The hull and turret are covered in angular, sloped armor plating, providing extensive protection across all sides. The vehicle is equipped with wide, robust tracks for traversing rough terrain, and the rear section includes cylindrical external fuel tanks or storage canisters. Two long radio antennas are mounted on the hull, indicating advanced communication capabilities. The exterior is finished in a gray, polygonal camouflage pattern, enhancing concealment in urban or mixed environments. No visible military insignia or unit markings are present on the surface.",
+    "description": "A massive, dual-barrel super-heavy tank with sloped armor, wide tracks, and a gray polygonal camouflage pattern.",
+    "description_view_0": "Front-left view showing the imposing dual cannons, sloped turret, and angular armor details.",
+    "description_view_1": "Rear-left view highlighting the cylindrical rear canisters, track system, and two long radio antennas.",
+    "description_view_2": "Direct rear view displaying the twin cylindrical canisters and the back of the armored hull.",
+    "description_view_3": "Front-right view emphasizing the length of the dual barrels, turret shape, and side armor features.",
+    "category": "combat tactical  vehicle",
+    "height": 3.5,
+    "max_dimension": 11.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air",
+        "plastic"
+    ],
+    "materials_composition": [
+        0.85,
+        0.07,
+        0.03,
+        0.03,
+        0.02
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "antenna",
+        "track",
+        "fuel canister"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "dark gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Two large-caliber cannon mounts on the main turret; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full-body, thick, sloped steel armor plating covering the hull and turret; reinforced angular panels visible on all sides.",
+    "attribute_camouflage_pattern": "Gray polygonal camouflage pattern with irregular, angular shapes in multiple shades of gray.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "4945f5c071cb486e900d16721d0dd5e9",
+    "near_synsets": {
+        "tank.n.01": 0.48662960278152045,
+        "military_vehicle.n.01": 0.5061102714618807,
+        "reconnaissance_vehicle.n.01": 0.5183404887522952,
+        "assault_gun.n.02": 0.5212210266087322,
+        "tank_destroyer.n.01": 0.5220049603121798,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4945f5c071cb486e900d16721d0dd5e9",
+        "creator_username": "cosenkokir",
+        "creator_display_name": "cosenkokir",
+        "creator_profile_url": "https://sketchfab.com/cosenkokir"
+    },
+    "filename": "std_4945f5c071cb486e900d16721d0dd5e9.glb",
+    "length": 8.558032512664795,
+    "width": 7.1275551319122314
+}

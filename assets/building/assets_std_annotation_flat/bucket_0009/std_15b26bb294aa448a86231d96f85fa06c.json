@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a cylindrical cigarette, featuring a white paper-wrapped body and a tan-colored filter at one end. The filter is separated from the main body by a faint, slightly darker band, typical of commercial cigarettes. The opposite end of the filter displays a darkened, burnt tip with some visible ash, indicating it has been lit. The cigarette is slender and straight, with a smooth, matte finish on the paper and a slightly rougher texture at the burnt end. No branding, logos, or text are visible on the exterior. The overall appearance is consistent with a standard filtered cigarette commonly found in urban environments.",
+    "description": "A slender, white cigarette with a tan filter and a burnt, ashy tip. The surface is smooth except for the rough, darkened end.",
+    "description_view_0": "The cigarette is viewed from the filter end, showing the tan filter and a small dark circle at the tip.",
+    "description_view_1": "A side view reveals the full length, with the tan filter on the left and the white paper body extending to the right.",
+    "description_view_2": "The cigarette is seen from the burnt end, displaying the dark, ashy tip and the cylindrical white body.",
+    "description_view_3": "Another side view, similar to view 1, with the tan filter on the right and the white body extending to the left.",
+    "category": "cigarette",
+    "height": 0.008,
+    "max_dimension": 0.08,
+    "materials": [
+        "paper",
+        "tobacco",
+        "cellulose acetate",
+        "ash",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 0.001,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 7,
+    "movable": true,
+    "required_force": 0.01,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "graspable",
+        "ignitable",
+        "crushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "filter",
+        "burnt_tip"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "tan",
+        "dark brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 0.5,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.05,
+    "asset_composition_type": "single",
+    "attribute_brand_logo": "none",
+    "attribute_filter_presence": true,
+    "attribute_burn_mark": "Dark charring and discoloration are visible at the tip opposite the filter.",
+    "attribute_ash_tip": true,
+    "attribute_packaging_type": "none",
+    "uid": "15b26bb294aa448a86231d96f85fa06c",
+    "near_synsets": {
+        "filter-tipped_cigarette.n.01": 0.4546543268694293,
+        "cigarette_butt.n.01": 0.4674085300284009,
+        "cigarette_burn.n.01": 0.47033310989704386,
+        "cigarette.n.01": 0.4772607120926937,
+        "filter_tip.n.01": 0.48788048635274983
+    },
+    "synset": "cigarette.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/15b26bb294aa448a86231d96f85fa06c",
+        "creator_username": "MathewMantas",
+        "creator_display_name": "MathewMantas",
+        "creator_profile_url": "https://sketchfab.com/MathewMantas"
+    },
+    "filename": "std_15b26bb294aa448a86231d96f85fa06c.glb",
+    "length": 0.08799997717142105,
+    "width": 0.007608796004205942
+}

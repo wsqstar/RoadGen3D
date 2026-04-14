@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a tactical shotgun with a matte black finish, featuring a robust and utilitarian design. It has a single cylindrical barrel with a vented heat shield above, and a prominent pump-action fore-end with ribbed texturing for grip. The receiver is compact and streamlined, leading to a pistol grip and a skeletonized, folding stock with a curved support bar. The trigger guard is large and elongated, providing ample space for gloved fingers, and the overall build suggests durability and ease of handling. The shotgun's components, such as the barrel, pump, and stock, are clearly defined and constructed primarily from metal with some polymer elements. This weapon is designed for close-quarters use, typical in urban environments for law enforcement or tactical scenarios.",
+    "description": "A matte black tactical pump-action shotgun with a ribbed fore-end, folding skeleton stock, and elongated trigger guard, built for durability and close-quarters use.",
+    "description_view_0": "Front view showing the circular muzzle, heat shield, and ribbed pump grip aligned with the barrel.",
+    "description_view_1": "Side profile highlighting the full length of the barrel, pump, pistol grip, and skeletonized folding stock.",
+    "description_view_2": "Rear view displaying the stock's support bar, pistol grip, and the alignment of the receiver and barrel.",
+    "description_view_3": "Opposite side profile showing the same key features as view 1, with clear visibility of the trigger guard and stock structure.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.95,
+    "materials": [
+        "steel",
+        "polymer",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "pumpable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pump grip",
+        "trigger",
+        "trigger guard",
+        "stock",
+        "barrel",
+        "pistol grip"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel with vented heat shield",
+    "attribute_stock_type": "folding stock with skeletonized support",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "elongated, rounded trigger guard with ample space and a smooth contour",
+    "uid": "4a8995978fd145508a73710629aedc4c",
+    "near_synsets": {
+        "pump_action.n.01": 0.49421242166319485,
+        "sawed-off_shotgun.n.01": 0.5235348649796128,
+        "shotgun.n.01": 0.5375575666795165,
+        "gas_gun.n.01": 0.5539026183610812,
+        "shotgun_shell.n.01": 0.5563104527734499
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4a8995978fd145508a73710629aedc4c",
+        "creator_username": "kedamad02",
+        "creator_display_name": "kedamad02",
+        "creator_profile_url": "https://sketchfab.com/kedamad02"
+    },
+    "filename": "std_4a8995978fd145508a73710629aedc4c.glb",
+    "length": 0.8451541066169739,
+    "width": 0.06135280802845955
+}

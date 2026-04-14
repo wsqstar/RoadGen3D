@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a rectangular, upright vending machine with a robust metallic exterior, primarily finished in dark gray. The front features a large door with a prominent circular logo reading 'SNACK ATTACK' in bold red and white letters, partially bitten to resemble a cookie. On the right side of the front panel, there is a vertical payment and selection interface, including a card reader, keypad, and what appears to be a bill acceptor. The lower section of the front panel contains a horizontal product retrieval slot. The sides and top are plain and unadorned, emphasizing the utilitarian design. The machine is designed to be placed in public urban environments, such as sidewalks or building lobbies.",
+    "description": "A sturdy, dark gray vending machine with a large 'SNACK ATTACK' logo and a vertical payment and selection interface on the front. The machine features a product retrieval slot at the bottom and plain, unmarked sides.",
+    "description_view_0": "Front view showing the 'SNACK ATTACK' logo, payment and selection interface, and product retrieval slot.",
+    "description_view_1": "Left side view displaying a plain, unadorned dark gray surface with no visible features.",
+    "description_view_2": "Rear view with the back panel mostly obscured, showing the reverse side of the logo faintly and the machine's support feet.",
+    "description_view_3": "Right side view, also plain and unmarked, matching the left side.",
+    "category": "vending machine",
+    "height": 1.7,
+    "max_dimension": 1.7,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "electronic components",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "pressable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "keypad",
+        "card reader",
+        "bill acceptor",
+        "product retrieval slot",
+        "button"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "yellow",
+        "red",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A small rectangular display panel is located on the upper right section of the front interface, above the keypad, likely digital and dark in color.",
+    "attribute_payment_interface": "The payment interface includes a card reader at the top right, a bill acceptor below it, and a keypad for input, all vertically aligned on the right side of the front panel.",
+    "attribute_product_selection_buttons": "A numeric keypad with individual square buttons is present on the right side of the front panel, below the card reader and bill acceptor.",
+    "attribute_product_retrieval_slot": "A wide, horizontal slot with a metallic flap is located at the bottom center of the front panel.",
+    "attribute_branding_or_signage": "A large, circular 'SNACK ATTACK' logo with a bitten cookie design is prominently displayed on the front door, featuring yellow, red, and white colors.",
+    "uid": "147a9dd1ec4d49e18ea793368ce4404b",
+    "near_synsets": {
+        "vending_machine.n.01": 0.49507173903722496,
+        "automat.n.01": 0.5244345495715886,
+        "cash_machine.n.01": 0.5927184520376578,
+        "coin_box.n.01": 0.5954909708715026,
+        "slot_machine.n.01": 0.5955840670919395,
+        "car.n.01": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.02": -1000.0,
+        "machine.n.05": -1000.0,
+        "machine.n.03": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/147a9dd1ec4d49e18ea793368ce4404b",
+        "creator_username": "gatare",
+        "creator_display_name": "Gatare",
+        "creator_profile_url": "https://sketchfab.com/gatare"
+    },
+    "filename": "std_147a9dd1ec4d49e18ea793368ce4404b.glb",
+    "length": 0.9825847446918488,
+    "width": 1.086029052734375
+}

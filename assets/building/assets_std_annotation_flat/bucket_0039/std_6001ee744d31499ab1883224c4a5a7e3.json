@@ -1,0 +1,96 @@
+{
+    "description_long": "This humanoid robot features a robust, angular frame with a weathered, off-white exterior and visible signs of wear and scuffing. Its body is composed of geometric armor plating, with broad shoulders, a tapered torso, and segmented limbs that suggest mechanical articulation. The head is a faceted, helmet-like structure with a dark, visor-like panel at the front, lacking any traditional facial features. The arms and legs are blocky and reinforced, with jointed segments at the elbows, knees, and ankles, indicating a design for mobility and strength. The robot's overall build is humanoid, with proportions similar to an adult human, and it appears to be constructed primarily from metal alloys. The utilitarian design and rugged finish suggest it is intended for practical use in urban environments, possibly for security, maintenance, or heavy labor.",
+    "description": "A weathered, angular humanoid robot with broad shoulders, segmented limbs, and a faceted helmet-like head, built from metal alloys and designed for urban utility.",
+    "description_view_0": "Front view shows the broad, armored shoulders, faceted head with a dark visor, and symmetrical, robust limbs.",
+    "description_view_1": "Left side view highlights the angular profile of the head, layered arm and leg plating, and the blocky, reinforced joints.",
+    "description_view_2": "Rear view reveals the back armor plating, segmented legs, and the absence of any visible facial or sensor features.",
+    "description_view_3": "Right side view mirrors the left, showing the same angular limb construction and the sloped back of the head.",
+    "category": "humanoid robot",
+    "height": 1.85,
+    "max_dimension": 1.0,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 140,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 700,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arm",
+        "leg",
+        "torso panel",
+        "head"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "off-white",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.8,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms straight down at the sides and legs together; head facing forward; posture is rigid and neutral.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated, angular metal and plastic armor panels with a utilitarian, industrial appearance.",
+    "attribute_facial_features": "No traditional facial features; head has a faceted, helmet-like shape with a dark, visor-like panel at the front and no visible eyes, mouth, or nose.",
+    "attribute_limb_articulation": "Arms and legs have visible hinge joints at shoulders, elbows, hips, knees, and ankles; limbs appear rigid but segmented for mechanical articulation.",
+    "attribute_presence_of_sensors": "None visible",
+    "uid": "6001ee744d31499ab1883224c4a5a7e3",
+    "near_synsets": {
+        "android.n.01": 0.5118779040203109,
+        "cyborg.n.01": 0.5385630079278764,
+        "robotics_equipment.n.01": 0.5507730881332868,
+        "automaton.n.02": 0.5608492144180978,
+        "robotics.n.01": 0.5764994955938011
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6001ee744d31499ab1883224c4a5a7e3",
+        "creator_username": "n9444629",
+        "creator_display_name": "Luc Craquelin",
+        "creator_profile_url": "https://sketchfab.com/n9444629"
+    },
+    "filename": "std_6001ee744d31499ab1883224c4a5a7e3.glb",
+    "length": 0.4468056410551071,
+    "width": 0.8500766158103943
+}

@@ -1,0 +1,107 @@
+{
+    "description_long": "This object is a compact submachine gun with a boxy, utilitarian design reminiscent of the MAC-10. The main body is constructed from metal, featuring a rectangular receiver with a prominent magazine well extending downward. A simple cylindrical barrel protrudes from the front, and a folding metal wire stock is attached to the rear, curving over the top of the receiver. The grip is straight and vertical, with a trigger guard and a visible magazine inserted. The top of the receiver has a basic iron sight system, and the overall finish is matte gray, suggesting a functional, industrial build. The design is minimalistic, with few embellishments, emphasizing practicality and ease of use in close-quarters urban environments.",
+    "description": "A compact, boxy submachine gun with a folding wire stock, straight magazine, and matte gray metal finish. Its utilitarian design is suited for close-quarters use.",
+    "description_view_0": "Side view showing the full length of the receiver, folding wire stock, grip, and magazine.",
+    "description_view_1": "Front view highlighting the cylindrical barrel, front sight, and the width of the receiver.",
+    "description_view_2": "Opposite side view displaying the receiver, folding stock, grip, and magazine from the other side.",
+    "description_view_3": "Rear view showing the back of the receiver, the wire stock, and the alignment of the iron sights.",
+    "category": "machine gun",
+    "height": 0.25,
+    "max_dimension": 0.35,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 2.8,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable",
+        "foldable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "magazine",
+        "grip",
+        "folding stock",
+        "iron sights",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_type": "standard cylindrical barrel",
+    "attribute_stock_design": "folding metal wire stock",
+    "attribute_magazine_type": "box magazine",
+    "attribute_mounting_mechanism": "no mounting mechanism visible",
+    "attribute_iron_sight_configuration": "simple notch and blade",
+    "uid": "ee1a121dd435436eb7cc9afafd33ece3",
+    "near_synsets": {
+        "submachine_gun.n.01": 0.426381312752828,
+        "light_machine_gun.n.01": 0.4787597264649341,
+        "sten_gun.n.01": 0.4846031553519488,
+        "tommy_gun.n.01": 0.4890489972711105,
+        "machine_gun.n.01": 0.49064234287598885,
+        "gunman.n.02": -1000.0,
+        "machine.n.02": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.03": -1000.0,
+        "artillery.n.01": -1000.0,
+        "machine.n.01": -1000.0,
+        "gun.n.07": -1000.0,
+        "grease_gun.n.01": -1000.0,
+        "gunman.n.01": -1000.0,
+        "gun.n.01": -1000.0,
+        "accelerator.n.01": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.05": -1000.0
+    },
+    "synset": "machine_gun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ee1a121dd435436eb7cc9afafd33ece3",
+        "creator_username": "korian",
+        "creator_display_name": "korian",
+        "creator_profile_url": "https://sketchfab.com/korian"
+    },
+    "filename": "std_ee1a121dd435436eb7cc9afafd33ece3.glb",
+    "length": 0.28460344672203064,
+    "width": 0.037950992584228516
+}

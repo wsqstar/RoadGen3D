@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a robust, industrial-style trolley with a rectangular flat platform and a single, continuous U-shaped handlebar. The trolley is constructed primarily from metal, painted in a deep blue color, and features four small wheels for mobility. Along the side and front edges of the platform, the words 'KEEP OUT' are stenciled in red, providing a clear warning or restriction. The handlebar is tubular and slightly angled for ergonomic pushing, while the platform is spacious and flat, suitable for transporting heavy or bulky items. The wheels are positioned at each corner, ensuring stability and ease of movement across flat urban surfaces.",
+    "description": "A sturdy blue metal trolley with a flat platform, U-shaped handle, and four wheels, featuring 'KEEP OUT' signage on its sides and front.",
+    "description_view_0": "Front view showing the U-shaped handlebar and the 'KEEP OUT' sign on the front edge, with two wheels visible.",
+    "description_view_1": "Side view highlighting the length of the flat platform, the handle's angle, and the 'KEEP OUT' signage along the side.",
+    "description_view_2": "Rear view displaying the open back of the platform and the handlebar's attachment points, with two rear wheels visible.",
+    "description_view_3": "Opposite side view similar to view 1, showing the platform's width and the side 'KEEP OUT' signage.",
+    "category": "trolley",
+    "height": 1.0,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 22,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 35,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "platform"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "blue",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_handle_type": "single U-shaped bar handle, tubular steel, slightly angled for ergonomic grip, painted blue",
+    "attribute_number_of_wheels": 4,
+    "attribute_wheel_arrangement": "four wheels, one at each corner, likely all swivel for maneuverability",
+    "attribute_basket_or_platform_presence": "platform",
+    "attribute_branding_or_signage": "'KEEP OUT' stenciled in red on the front and both sides of the platform",
+    "uid": "8d68452f4cd54f0cb1d256943d0f264b",
+    "near_synsets": {
+        "trolley_line.n.01": 0.5564691219705207,
+        "trolleybus.n.01": 0.5700499754720261,
+        "trundle.n.02": 0.5707938255230222,
+        "shopping_cart.n.01": 0.5746700533923209,
+        "dolly.n.02": 0.5794782100365694,
+        "streetcar.n.01": -1000.0
+    },
+    "synset": "trolleybus.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8d68452f4cd54f0cb1d256943d0f264b",
+        "creator_username": "Pablo88",
+        "creator_display_name": "Pablo88",
+        "creator_profile_url": "https://sketchfab.com/Pablo88"
+    },
+    "filename": "std_8d68452f4cd54f0cb1d256943d0f264b.glb",
+    "length": 1.164531171321869,
+    "width": 0.6726450026035309
+}

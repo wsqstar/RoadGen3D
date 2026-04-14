@@ -1,0 +1,117 @@
+{
+    "description_long": "This delivery robot features a cylindrical main body with a weathered orange and green color scheme, accented by metallic and mechanical details. It stands on four articulated, claw-like legs, each with protective orange covers and metallic joints, suggesting stability and mobility on urban terrain. The front displays a vertical array of three circular lights or sensors, a prominent 'SP-03R' marking, and a horizontal teal band. The rear is equipped with a large, boxy mechanical module, pipes, and two vertical antennae, indicating communication or sensor functionality. The surface is rugged and industrial, with visible bolts, seams, and wear, implying durability for outdoor use. The overall design is utilitarian, with functional elements such as access panels, tubing, and reinforced joints, suitable for autonomous delivery tasks in city environments.",
+    "description": "A rugged, cylindrical delivery robot with orange and green panels, four articulated legs, and a front sensor array, designed for urban terrain.",
+    "description_view_0": "Front view shows the cylindrical body, three circular front lights or sensors, 'SP-03R' marking, and the four articulated legs.",
+    "description_view_1": "Side-rear view reveals the vertical pipe, mechanical module, and antennae, with more detail on the leg joints and rear structure.",
+    "description_view_2": "Rear view highlights the large, boxy mechanical module, dual antennae, and rear access panels, with less visible sensor detail.",
+    "description_view_3": "Side view displays the cylindrical body, side panel markings, and the full length of the vertical pipe and antennae.",
+    "category": "delivery robot",
+    "height": 1.1,
+    "max_dimension": 1.2,
+    "materials": [
+        "painted metal",
+        "glass",
+        "plastic",
+        "rubber",
+        "air",
+        "electronics"
+    ],
+    "materials_composition": [
+        0.65,
+        0.05,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "sensor array",
+        "access panel",
+        "antenna",
+        "legs",
+        "pipes"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "green",
+        "brown",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_brand_logo": "The front displays the marking 'SP-03R' in white text, vertically aligned to the left of the sensor array. No other brand logo or insignia is visible.",
+    "attribute_sensor_array": [
+        {
+            "type": "camera or optical sensor cluster",
+            "shape": "vertical array of three circular lenses",
+            "location": "front center of the cylindrical body"
+        }
+    ],
+    "attribute_wheel_configuration": "none",
+    "attribute_compartment_access_panel": "A large rectangular access panel is visible on the rear of the body, featuring two recessed sections and hinges, likely for cargo or maintenance access.",
+    "attribute_display_screen": "none",
+    "uid": "95bbc9cdebc849829942f31cb00c31eb",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5547212764786695,
+        "robotics.n.01": 0.5929216966057095,
+        "automaton.n.02": 0.5973920609422472,
+        "android.n.01": 0.6033076280037492,
+        "reconnaissance_vehicle.n.01": 0.6069511476431164,
+        "delivery.n.01": -1000.0,
+        "rescue.n.01": -1000.0,
+        "manner_of_speaking.n.01": -1000.0,
+        "delivery.n.02": -1000.0,
+        "delivery.n.07": -1000.0,
+        "pitch.n.02": -1000.0,
+        "delivery.n.04": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/95bbc9cdebc849829942f31cb00c31eb",
+        "creator_username": "tsoliai",
+        "creator_display_name": "tsoliai",
+        "creator_profile_url": "https://sketchfab.com/tsoliai"
+    },
+    "filename": "std_95bbc9cdebc849829942f31cb00c31eb.glb",
+    "length": 0.7851994931697845,
+    "width": 0.7852828204631805
+}

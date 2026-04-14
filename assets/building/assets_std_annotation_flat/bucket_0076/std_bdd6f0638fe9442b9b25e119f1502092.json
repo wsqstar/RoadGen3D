@@ -1,0 +1,91 @@
+{
+    "description_long": "This kiosk is a rectangular, concrete structure with a minimalist design, featuring a large open window on the left and a smaller service window with a step below it on the right. The front facade displays the signage 'CASA NOSTRA' along with additional text, suggesting a commercial or food service function. The structure is solid and robust, with thick walls and a flat roof, and the step in front of the service window provides access for customers. The left side of the kiosk is a solid wall, while the right side is similarly unadorned, emphasizing the focus on the front-facing service area. The rear of the kiosk is closed, with no visible openings or features. The overall appearance is utilitarian, with a focus on function and durability, suitable for urban environments.",
+    "description": "A robust, rectangular concrete kiosk with a large open window, a smaller service window, and prominent front signage. The design is minimalist and functional, with a flat roof and thick walls.",
+    "description_view_0": "The front view shows the large open window, the smaller service window with a step, and the 'CASA NOSTRA' signage.",
+    "description_view_1": "The left side view reveals the solid, thick wall with no openings or features.",
+    "description_view_2": "The rear view displays a closed, featureless wall, emphasizing the kiosk's solid construction.",
+    "description_view_3": "The right side view shows another solid wall, mirroring the left side, with the step slightly visible.",
+    "category": "kiosk",
+    "height": 2.5,
+    "max_dimension": 5.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.07
+    ],
+    "mass": 9000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "serving",
+        "displaying",
+        "signage"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "service window",
+        "step",
+        "signage area"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "printed sign, placed above the service window on the front facade, with the text 'CASA NOSTRA' and additional smaller text",
+    "attribute_window_presence": "2 windows; one large rectangular open window on the left front, one smaller rectangular service window on the right front",
+    "attribute_door_configuration": "none",
+    "attribute_roof_design": "flat roof, constructed from the same concrete material as the walls, with no visible overhangs or decorative elements",
+    "attribute_architectural_style": "minimalist, utilitarian",
+    "uid": "bdd6f0638fe9442b9b25e119f1502092",
+    "near_synsets": {
+        "booth.n.02": 0.5528974204449821,
+        "shopfront.n.01": 0.5559499275762996,
+        "window.n.07": 0.562830479233375,
+        "display_window.n.01": 0.5873738142099698,
+        "counter.n.01": 0.5892267031904704
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bdd6f0638fe9442b9b25e119f1502092",
+        "creator_username": "matiasguerra",
+        "creator_display_name": "Mat\u00edas",
+        "creator_profile_url": "https://sketchfab.com/matiasguerra"
+    },
+    "filename": "std_bdd6f0638fe9442b9b25e119f1502092.glb",
+    "length": 0.9730367362499237,
+    "width": 5.647976398468018
+}

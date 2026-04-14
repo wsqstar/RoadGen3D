@@ -1,0 +1,89 @@
+{
+    "description_long": "This radiator features a series of vertically aligned, flat metal panels with a slightly convex profile, joined together to form a modular heating unit. The top and bottom edges are capped with cylindrical manifolds, likely for water or steam flow, and the ends are finished with rounded caps. The front face displays evenly spaced vertical slats, providing both structural support and increased surface area for heat dissipation. The rear side is mostly solid, with only the top and bottom manifolds exposed, suggesting it is designed to be mounted flush against a wall. The visible materials are primarily painted or powder-coated metal, with some plastic or rubber gaskets at the pipe connections. The overall design is utilitarian and robust, suitable for installation in residential or commercial urban interiors.",
+    "description": "A robust, wall-mountable radiator with vertical metal slats and cylindrical top and bottom manifolds, finished in a neutral color. The front features evenly spaced panels for efficient heat dissipation.",
+    "description_view_0": "A narrow side view showing the radiator's slim profile and the cylindrical manifolds at the top and bottom.",
+    "description_view_1": "The front view reveals the vertical slats and modular panel design, highlighting the radiator's main heat-dissipating surface.",
+    "description_view_2": "The opposite side view, similar to view 0, again shows the slim profile and end caps of the manifolds.",
+    "description_view_3": "The rear view displays a mostly solid back panel with the top and bottom manifolds visible, indicating wall-mounting suitability.",
+    "category": "radiator",
+    "height": 0.6,
+    "max_dimension": 1.0,
+    "materials": [
+        "painted_steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "heatable",
+        "adjustable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "valve",
+        "pipe_connection"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "single",
+    "attribute_mounting_location": "wall-mounted",
+    "attribute_pipe_connections": "dual entry, one at each end of the top and bottom manifolds, horizontally oriented",
+    "attribute_fin_arrangement": "vertical columns",
+    "attribute_valve_type": "manual",
+    "attribute_grille_pattern": "vertical slats",
+    "uid": "85c9f823519a4ad9b8ed49974d70977b",
+    "near_synsets": {
+        "radiator.n.03": 0.5094457950106175,
+        "radiator.n.01": 0.5228117903713865,
+        "radiator.n.02": 0.5342625020239146,
+        "panel_heating.n.01": 0.5426856121434737,
+        "grille.n.02": 0.55943120030808
+    },
+    "synset": "radiator.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/85c9f823519a4ad9b8ed49974d70977b",
+        "creator_username": "sawyer.gh",
+        "creator_display_name": "Sawyer",
+        "creator_profile_url": "https://sketchfab.com/sawyer.gh"
+    },
+    "filename": "std_85c9f823519a4ad9b8ed49974d70977b.glb",
+    "length": 0.07019156217575073,
+    "width": 0.7107784748077393
+}

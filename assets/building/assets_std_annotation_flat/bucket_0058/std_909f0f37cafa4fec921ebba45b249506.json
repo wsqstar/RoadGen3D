@@ -1,0 +1,108 @@
+{
+    "description_long": "This object is a heavily weathered, industrial-style washing machine with a boxy, rectangular form and a predominantly red exterior marred by extensive black and gray corrosion and paint chipping. The top surface features a large, square lid with a raised metallic back panel, which likely houses the control interface. The control panel is situated at the rear right corner, appearing as a small, dark rectangular block, possibly containing buttons or dials. The sides and front are flat and unadorned, except for the pronounced weathering, giving the machine a rugged, utilitarian look. The base is slightly recessed, providing a subtle plinth effect. The overall design suggests durability and functionality, suitable for urban or industrial environments.",
+    "description": "A boxy, red washing machine with heavy black and gray weathering, a top lid, and a raised rear control panel. Its industrial appearance is marked by extensive corrosion and a utilitarian design.",
+    "description_view_0": "Front view showing the large, weathered red face with black corrosion and the top lid with a raised metallic back panel.",
+    "description_view_1": "Left side view highlighting the flat, corroded side and the protruding control panel at the rear.",
+    "description_view_2": "Rear view displaying the back panel and the extent of weathering, with the control panel visible on the left.",
+    "description_view_3": "Right side view showing the side profile of the lid, the raised back panel, and the control panel at the rear.",
+    "category": "washing machine",
+    "height": 1.0,
+    "max_dimension": 1.1,
+    "materials": [
+        "painted steel",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 70,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable",
+        "pullable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "control panel",
+        "buttons/dials",
+        "detergent compartment"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_control_panel_layout": "The control panel is located at the rear right corner on the top surface, appearing as a small, rectangular block. It likely contains buttons or dials, but specific controls and labeling are not clearly visible.",
+    "attribute_door_type": "Top-loading lid, rectangular in shape, made of painted steel with a possible metallic or plastic handle integrated into the edge.",
+    "attribute_brand_logo": "none",
+    "attribute_detergent_drawer_location": "not visible",
+    "attribute_drum_visibility": "not visible",
+    "uid": "909f0f37cafa4fec921ebba45b249506",
+    "near_synsets": {
+        "white_goods.n.01": 0.5586109936927723,
+        "washboard.n.01": 0.5590959870250353,
+        "washerman.n.01": 0.5640768588567829,
+        "laundry_cart.n.01": 0.5655419838326199,
+        "appliance.n.02": 0.5820969374263151,
+        "machine.n.02": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.05": -1000.0,
+        "washer.n.03": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.04": -1000.0
+    },
+    "synset": "washer.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/909f0f37cafa4fec921ebba45b249506",
+        "creator_username": "mfilip",
+        "creator_display_name": "mfilip",
+        "creator_profile_url": "https://sketchfab.com/mfilip"
+    },
+    "filename": "std_909f0f37cafa4fec921ebba45b249506.glb",
+    "length": 0.8271296918392181,
+    "width": 0.8539269268512726
+}

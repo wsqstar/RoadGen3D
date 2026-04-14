@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a long, rectangular brick warehouse with a distinctive sawtooth roof made of corrugated metal panels. The facade features a series of evenly spaced, industrial-style doors, some of which are equipped with metal roll-up mechanisms, and a few small, square windows. The brickwork is a deep reddish-brown, giving the building a robust, utilitarian appearance. The roof's repeating angular pattern is designed to maximize interior light and ventilation, typical of older industrial buildings. The structure sits low to the ground and appears to be a single story, with no visible signage or decorative elements. The overall design emphasizes function over form, with clear provisions for loading and unloading goods.",
+    "description": "A long, red-brick warehouse with a sawtooth metal roof and multiple industrial doors, designed for storage and logistics.",
+    "description_view_0": "The main facade shows a row of industrial doors and a single visible roll-up mechanism, set in red brick beneath the sawtooth roof.",
+    "description_view_1": "The short side reveals the full depth of the sawtooth roof and plain brickwork, with no doors or windows visible.",
+    "description_view_2": "The opposite long side displays more industrial doors, some with roll-up mechanisms, and the same sawtooth roof pattern.",
+    "description_view_3": "The other short side mirrors view 1, showing the depth and roof profile without any entry points.",
+    "category": "warehouse",
+    "height": 7.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "brick",
+        "corrugated metal",
+        "glass",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 420000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "roll-up mechanism"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 20000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main facade is constructed of deep red brick with a repeating pattern of industrial doors, some featuring metal roll-up mechanisms. There are minimal windows and no decorative elements, emphasizing a purely functional, utilitarian design.",
+    "attribute_loading_dock_presence": true,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is a sawtooth design made of corrugated metal panels, with a series of angular ridges running the length of the building. No skylights or rooftop equipment are visible.",
+    "attribute_architectural_style": "industrial",
+    "uid": "e6e105d35b3f486292c42ffa52f363c0",
+    "near_synsets": {
+        "warehouse.n.01": 0.496717938660468,
+        "loft.n.01": 0.5385039913536065,
+        "lumberyard.n.01": 0.5428231648901117,
+        "storehouse.n.01": 0.5429155114637857,
+        "toolshed.n.01": 0.5546855876225811
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e6e105d35b3f486292c42ffa52f363c0",
+        "creator_username": "Mazen220",
+        "creator_display_name": "99.Miles",
+        "creator_profile_url": "https://sketchfab.com/Mazen220"
+    },
+    "filename": "std_e6e105d35b3f486292c42ffa52f363c0.glb",
+    "length": 17.53657627105713,
+    "width": 40.22687911987305
+}

@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a modern quadcopter drone with a streamlined, aerodynamic body and four extended arms, each supporting a single rotor with two blades. The central body is slightly domed and houses the main electronics, while a camera gimbal is mounted underneath the front, allowing for stabilized aerial photography or video capture. The landing gear consists of two sturdy, fixed legs that provide clearance for the camera and stability during takeoff and landing. The rotors are positioned at the ends of the arms in a symmetrical X configuration, optimizing lift and maneuverability. The surface appears smooth and is likely constructed from lightweight composite materials, such as plastic and carbon fiber, for durability and reduced weight. No propeller guards are visible, and the overall design is typical for consumer or professional drones used in urban environments.",
+    "description": "A sleek quadcopter drone with four rotors, a front-mounted camera, and fixed landing legs, designed for aerial imaging in urban settings.",
+    "description_view_0": "Front view showing the camera gimbal, two front rotors, and the fixed landing legs clearly.",
+    "description_view_1": "Rear view highlighting the back arms, rotors, and the rear of the landing gear, with the camera less visible.",
+    "description_view_2": "Front view similar to view 0, emphasizing the camera and symmetrical rotor arrangement.",
+    "description_view_3": "Rear view similar to view 1, showing the back of the drone and the underside of the arms.",
+    "category": "drone",
+    "height": 0.25,
+    "max_dimension": 0.55,
+    "materials": [
+        "plastic",
+        "carbon fiber",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 1.6,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 20,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotor",
+        "propeller",
+        "camera",
+        "landing gear",
+        "gimbal"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 7000,
+    "friction_coefficient": 0.3,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 4,
+    "attribute_rotor_configuration": "quadcopter X",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": true,
+    "attribute_propeller_guard_presence": false,
+    "uid": "41e4c45a556c4682afc5696cf51686d1",
+    "near_synsets": {
+        "drone.n.04": 0.5152779677249648,
+        "single-rotor_helicopter.n.01": 0.5374895678007323,
+        "rotor.n.03": 0.5683119600022355,
+        "orthopter.n.01": 0.5700364381471943,
+        "helicopter.n.01": 0.5753746457940003,
+        "dawdler.n.01": -1000.0,
+        "drone.n.01": -1000.0,
+        "monotone.n.01": -1000.0,
+        "drone.n.05": -1000.0
+    },
+    "synset": "drone.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/41e4c45a556c4682afc5696cf51686d1",
+        "creator_username": "Lauri365",
+        "creator_display_name": "Lauri",
+        "creator_profile_url": "https://sketchfab.com/Lauri365"
+    },
+    "filename": "std_41e4c45a556c4682afc5696cf51686d1.glb",
+    "length": 0.41831207275390625,
+    "width": 0.46589750051498413
+}

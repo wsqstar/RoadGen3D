@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a rectangular section of a primary road, featuring a smooth, dark asphalt surface with two parallel dashed white lines running lengthwise, indicating lane separation. The road segment is bordered by slightly raised edges, suggesting the presence of a subtle curb or boundary. The dashed lane markings are evenly spaced and run the full length of the road, with no visible solid lines, arrows, or special markings. The surface appears clean and well-maintained, with a slight sheen that reflects ambient light. There are no visible road signs, lighting fixtures, or pedestrian crossings present on or near the road. The overall appearance is typical of a modern urban or suburban roadway designed for vehicular traffic.",
+    "description": "A rectangular, dark asphalt road segment with two dashed white lane markings and clean, slightly raised edges. No signage, lighting, or pedestrian features are present.",
+    "description_view_0": "Flat, wide view of the road showing the full width and both dashed lane markings.",
+    "description_view_1": "Perspective view down the length of the road, emphasizing the dashed lane markings and smooth surface.",
+    "description_view_2": "Opposite flat view, similar to view 0, showing the full width and lane markings from the other end.",
+    "description_view_3": "Perspective view from the opposite end, highlighting the length and lane markings.",
+    "category": "road",
+    "height": 0.15,
+    "max_dimension": 8.0,
+    "materials": [
+        "asphalt",
+        "paint",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.08,
+        0.02
+    ],
+    "mass": 2200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "car",
+        "bicycle",
+        "motorcycle",
+        "bus",
+        "truck"
+    ],
+    "colors": [
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.92,
+        0.08
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "smooth",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.53,
+    "youngs_modulus": 10000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_lane_markings": "Two parallel dashed white lines, evenly spaced, running lengthwise; no solid lines, arrows, or special markings.",
+    "attribute_signage": "none",
+    "attribute_curb_presence": false,
+    "attribute_lighting_fixtures": "none",
+    "attribute_pedestrian_crossings": "none",
+    "uid": "bdc9b72d13604f5a8c7bd6ace2ca3177",
+    "near_synsets": {
+        "traffic_lane.n.01": 0.5177673016185551,
+        "white_line.n.01": 0.5240539988694618,
+        "road_surface.n.01": 0.5305949080416802,
+        "two-way_street.n.01": 0.5315171733959699,
+        "sidewalk.n.01": 0.5344879906703616,
+        "road.n.02": -1000.0,
+        "road.n.01": -1000.0
+    },
+    "synset": "road.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bdc9b72d13604f5a8c7bd6ace2ca3177",
+        "creator_username": "siddhantm",
+        "creator_display_name": "siddhant",
+        "creator_profile_url": "https://sketchfab.com/siddhantm"
+    },
+    "filename": "std_bdc9b72d13604f5a8c7bd6ace2ca3177.glb",
+    "length": 7.212453365325928,
+    "width": 4.562551498413086
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a large, dark-colored warship with a sleek, elongated hull and a pointed bow, designed for speed and stability in the water. The ship features a prominent superstructure amidships, with multiple turrets and gun emplacements distributed along the deck, indicating a military function. The deck is equipped with various fixtures, including antennas, radar arrays, and what appear to be lifeboats or small auxiliary craft. The hull sides are angled and reinforced, with a subtle camouflaged paint scheme in shades of gray and black. The stern is squared off, and the ship sits low in the water, suggesting a heavy displacement hull. No visible registration markings or flags are present on the exterior.",
+    "description": "A large, dark military warship with multiple turrets, antennas, and a camouflaged hull, featuring a prominent superstructure and extensive deck equipment.",
+    "description_view_0": "Front view showing the pointed bow, forward turrets, and the narrow profile of the superstructure.",
+    "description_view_1": "Side view highlighting the ship's elongated hull, multiple turrets, superstructure, and deck equipment.",
+    "description_view_2": "Rear view displaying the squared stern, aft turrets, and the overall symmetry of the ship's layout.",
+    "description_view_3": "Opposite side view similar to view 1, showing the hull's camouflaged pattern and the arrangement of deck fixtures.",
+    "category": "ship",
+    "height": 18,
+    "max_dimension": 210,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.03,
+        0.01,
+        0.04
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "door",
+        "antenna",
+        "radar",
+        "lifeboat"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "light gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a sharp, pointed bow and a squared stern, featuring angled sides and a low profile for stability and reduced radar signature. There are no visible bulbous bows or keels, but the hull appears reinforced and camouflaged.",
+    "attribute_superstructure_layout": "The superstructure is centrally located with multiple levels, including a bridge, several turrets, and deck-mounted equipment such as antennas and radar arrays. The layout is symmetrical with clear separation between the forward and aft sections.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "turret",
+        "antenna",
+        "radar",
+        "lifeboat"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "44aa1d08f80b406eab5c64186ddc1a1b",
+    "near_synsets": {
+        "battleship.n.01": 0.4717600643177406,
+        "capital_ship.n.01": 0.4823218622523898,
+        "surface_ship.n.01": 0.4891047432733778,
+        "transport_ship.n.01": 0.4902511541345373,
+        "three-decker.n.03": 0.4904136003742823,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/44aa1d08f80b406eab5c64186ddc1a1b",
+        "creator_username": "lxyun_2",
+        "creator_display_name": "\u5168\u6597\u7115",
+        "creator_profile_url": "https://sketchfab.com/lxyun_2"
+    },
+    "filename": "std_44aa1d08f80b406eab5c64186ddc1a1b.glb",
+    "length": 80.07956314086914,
+    "width": 9.742467880249023
+}

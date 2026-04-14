@@ -1,0 +1,104 @@
+{
+    "description_long": "This object features a robust, square, dark metallic platform supported by four heavy-duty cylindrical columns, each equipped with visible yellow coil springs and mechanical joints. The base is cross-shaped, constructed from a lighter metallic material, and houses the columns at each end, providing stability and structural integrity. At the center, a complex assembly of cables and a central gear-like mechanism is visible, suggesting electrical or mechanical functionality. The top platform has a circular recess, possibly for mounting or interfacing with other equipment. The overall design is industrial, with exposed mechanical and electrical components, and is likely intended for high-voltage or heavy-duty urban infrastructure. The surfaces are predominantly matte and hard, with some glossy highlights on the metallic parts.",
+    "description": "A heavy, industrial transformer tower with a square dark platform, four spring-loaded columns, and a cross-shaped metallic base. Central cables and a gear mechanism are visible, emphasizing its electrical function.",
+    "description_view_0": "The front view highlights the square platform, four spring-loaded columns, and the central gear mechanism, with the cross-shaped base clearly visible.",
+    "description_view_1": "This view shows the columns more aligned, with the central mechanism partially obscured and the base's cross shape still prominent.",
+    "description_view_2": "The columns and springs are visible from a slightly rotated angle, revealing more of the internal cabling and the base's geometry.",
+    "description_view_3": "The columns and springs are most symmetrically aligned, with the central mechanism and base details clearly visible.",
+    "category": "transformer tower",
+    "height": 1.2,
+    "max_dimension": 1.5,
+    "materials": [
+        "steel",
+        "copper",
+        "ceramic",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "connectable",
+        "mountable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "insulator stack",
+        "spring column",
+        "central gear mechanism",
+        "cable connector"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "yellow",
+        "silver"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_insulator_stacks": 4,
+    "attribute_arrangement_of_crossarms": "There are four crossarms arranged in a cross-shaped configuration at the base, each extending outward from the central axis and supporting a spring-loaded column.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "insulator stack",
+        "spring assembly",
+        "cable connector"
+    ],
+    "attribute_configuration_of_attached_power_lines": "No visible power lines are attached; the structure appears ready for connection, with cable connectors positioned at the top and central areas.",
+    "uid": "41ca8a3a18e747788f2fa23c345bb763",
+    "near_synsets": {
+        "pylon.n.02": 0.5449612475373865,
+        "transformer.n.01": 0.553867001588662,
+        "cascade_transformer.n.01": 0.5678262815705891,
+        "tesla_coil.n.01": 0.5679322087888036,
+        "clock_tower.n.01": 0.569037014085208,
+        "tugboat.n.01": -1000.0,
+        "column.n.04": -1000.0,
+        "tower.n.01": -1000.0
+    },
+    "synset": "transformer.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/41ca8a3a18e747788f2fa23c345bb763",
+        "creator_username": "Brydoge",
+        "creator_display_name": "Brydoge",
+        "creator_profile_url": "https://sketchfab.com/Brydoge"
+    },
+    "filename": "std_41ca8a3a18e747788f2fa23c345bb763.glb",
+    "length": 1.764801025390625,
+    "width": 1.7094056606292725
+}

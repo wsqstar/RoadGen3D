@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a heavily armored combat tactical vehicle with a low, angular profile and a large, centrally mounted turret. The turret features a prominent, elongated cannon barrel extending forward, with reinforced geometric plating and visible hatches or access panels. The hull is broad and flat, with sloped armor on the sides and front, and detailed paneling suggesting modular construction. The vehicle moves on a set of wide, robust tracks with multiple road wheels, providing stability and traction over rough terrain. The exterior is finished in a matte, dark olive color with subtle panel lines and rivet details, but no visible camouflage or military insignia. The overall design emphasizes protection, firepower, and mobility, suitable for urban or battlefield deployment.",
+    "description": "A heavily armored, tracked combat vehicle with a large central turret and long cannon, finished in matte dark olive with detailed paneling and no visible markings.",
+    "description_view_0": "Front view shows the wide, flat hull, reinforced front armor, and the imposing cannon barrel centered above the tracks.",
+    "description_view_1": "Left side view highlights the length of the cannon, the angular turret, and the full set of road wheels and tracks.",
+    "description_view_2": "Rear view reveals the back armor, exhaust vents, and the rear of the turret, with the tracks partially visible.",
+    "description_view_3": "Right side view mirrors the left, showing the turret, cannon, and track system in profile.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 48000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "track",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark olive",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted centrally on the turret; no other weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, angular armor plating; sloped panels on the turret and hull for deflection; reinforced front and side sections.",
+    "attribute_camouflage_pattern": "Solid dark olive color with no visible camouflage pattern.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "7731c90709c84e4e8de170f17c367c79",
+    "near_synsets": {
+        "tank.n.01": 0.4870906326859751,
+        "military_vehicle.n.01": 0.49761129722562913,
+        "armored_car.n.02": 0.5018366780764577,
+        "assault_gun.n.02": 0.5102429190432693,
+        "reconnaissance_vehicle.n.01": 0.5158090023446172,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/7731c90709c84e4e8de170f17c367c79",
+        "creator_username": "curly_brace",
+        "creator_display_name": "curly-brace",
+        "creator_profile_url": "https://sketchfab.com/curly_brace"
+    },
+    "filename": "std_7731c90709c84e4e8de170f17c367c79.glb",
+    "length": 6.262259006500244,
+    "width": 3.5623764991760254
+}

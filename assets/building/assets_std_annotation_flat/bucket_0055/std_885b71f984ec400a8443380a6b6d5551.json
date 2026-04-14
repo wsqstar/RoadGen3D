@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a military-style SUV with an olive drab green exterior, featuring a prominent white star insignia on the hood. The vehicle has an open-top design with two front seats and a rear bench seat, all upholstered in a light khaki color. The front grille is vertical with round headlights on either side, and the windshield is upright and split in the middle. The rear of the vehicle includes a mounted spare tire and a jerry can, both attached to the back. The wheels are robust and utilitarian, matching the rugged, functional aesthetic of the vehicle. The dashboard is simple, with a visible steering wheel and a few control dials.",
+    "description": "A military-style, open-top olive green SUV with a white star on the hood, khaki seats, and rugged wheels.",
+    "description_view_0": "Front view showing the vertical grille, round headlights, and white star insignia on the hood.",
+    "description_view_1": "Left side view highlighting the open cabin, two front seats, rear bench, and upright windshield.",
+    "description_view_2": "Rear view displaying the mounted spare tire, jerry can, and simple dashboard layout.",
+    "description_view_3": "Right side view showing the open seating arrangement and utilitarian wheel design.",
+    "category": "suv",
+    "height": 1.7,
+    "max_dimension": 3.5,
+    "materials": [
+        "metal",
+        "glass",
+        "rubber",
+        "fabric",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.05,
+        0.1,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 6000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "steering wheel",
+        "door",
+        "seat",
+        "wheel",
+        "dashboard",
+        "windshield",
+        "spare tire",
+        "jerry can"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "khaki",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_license_plate": "none",
+    "attribute_number_of_doors": 2,
+    "attribute_wheel_design": "solid disc wheels with minimal detailing, no visible spokes",
+    "uid": "885b71f984ec400a8443380a6b6d5551",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.49781798608051975,
+        "sport_utility.n.01": 0.5221386959865021,
+        "humvee.n.01": 0.5290591750448674,
+        "reconnaissance_vehicle.n.01": 0.5301325497058785,
+        "jeep.n.01": 0.5556372810197655
+    },
+    "synset": "jeep.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/885b71f984ec400a8443380a6b6d5551",
+        "creator_username": "BedoyaCamilo",
+        "creator_display_name": "BedoyaCamilo",
+        "creator_profile_url": "https://sketchfab.com/BedoyaCamilo"
+    },
+    "filename": "std_885b71f984ec400a8443380a6b6d5551.glb",
+    "length": 3.5909769535064697,
+    "width": 1.7120457887649536
+}

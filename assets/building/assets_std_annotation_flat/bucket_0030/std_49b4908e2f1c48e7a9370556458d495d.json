@@ -1,0 +1,107 @@
+{
+    "description_long": "This object consists of a small group of books, with at least one book open to reveal printed pages filled with text, and others stacked or lying closed. The covers are a vivid red-orange color with a textured pattern, and one book features a prominent illustration on the front cover. The illustration depicts a stylized geometric object, possibly a low-poly mountain or rock, set against a yellow circular background. The books have white pages with black printed text, and the spines and edges are clearly defined. The overall appearance suggests these are modern, hardback books, likely used for study or reference in an urban environment.",
+    "description": "A group of red-orange hardback books, one open to reveal printed pages, with a geometric illustration on the cover of one book.",
+    "description_view_0": "Three books are visible, with one open showing printed text and another displaying a cover illustration with a geometric design.",
+    "description_view_1": "The open book dominates the view, showing two full pages of text, while the closed books are stacked behind it.",
+    "description_view_2": "The open book and the illustrated cover are both visible, with the spines and edges of the books clearly shown.",
+    "description_view_3": "The front cover of the top book is fully visible, featuring the geometric illustration and bold red-orange color.",
+    "category": "book",
+    "height": 0.04,
+    "max_dimension": 0.28,
+    "materials": [
+        "paper",
+        "cardboard",
+        "ink",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.04,
+        0.01
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "readable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cover",
+        "pages",
+        "spine"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red-orange",
+        "white",
+        "yellow",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.48,
+    "youngs_modulus": 4000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.1,
+    "asset_composition_type": "group",
+    "attribute_cover_illustration": "The front cover features a stylized geometric illustration resembling a low-poly mountain or rock, set against a yellow circular background. The artwork is simple and modern, with clean lines and a minimalistic style.",
+    "attribute_title_text": "MODELING",
+    "attribute_spine_design": "The spine is red-orange with black text running vertically, matching the cover's color scheme. The design is simple, with no additional decorative elements.",
+    "attribute_publisher_logo": "None.",
+    "attribute_dust_jacket_presence": false,
+    "uid": "49b4908e2f1c48e7a9370556458d495d",
+    "near_synsets": {
+        "book.n.02": 0.499083937309781,
+        "book.n.01": 0.5087736926614195,
+        "wordbook.n.01": 0.5304261721470294,
+        "frontispiece.n.02": 0.5344239501268823,
+        "bibliotheca.n.01": 0.5354329329934343,
+        "book.n.07": -1000.0,
+        "book.n.06": -1000.0,
+        "book.n.10": -1000.0,
+        "book.n.11": -1000.0,
+        "script.n.01": -1000.0,
+        "koran.n.01": -1000.0,
+        "record.n.05": -1000.0,
+        "ledger.n.01": -1000.0,
+        "bible.n.01": -1000.0
+    },
+    "synset": "book.n.11",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/49b4908e2f1c48e7a9370556458d495d",
+        "creator_username": "kielkaiser",
+        "creator_display_name": "kielkaiser",
+        "creator_profile_url": "https://sketchfab.com/kielkaiser"
+    },
+    "filename": "std_49b4908e2f1c48e7a9370556458d495d.glb",
+    "length": 0.23927006125450134,
+    "width": 0.193084254860878
+}

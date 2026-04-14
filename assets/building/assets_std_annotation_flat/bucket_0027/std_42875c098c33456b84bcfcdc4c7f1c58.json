@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a single-car electric commuter train with a rectangular, elongated body and a slightly rounded roof. The exterior is primarily dark brown with weathered, rusty textures, and the lower panels show a gradient to bluish-gray, suggesting exposure to urban elements. The roof features a visible pantograph assembly for overhead electric power collection, and the sides are lined with a series of evenly spaced rectangular windows. The undercarriage includes detailed wheel assemblies and suspension components, while the ends of the car have couplers and access steps. The train's design is utilitarian, with minimal decorative elements, emphasizing function and durability for city transit.",
+    "description": "A weathered, single-car electric commuter train with a dark brown body, roof-mounted pantograph, and rows of rectangular windows along each side.",
+    "description_view_0": "Front view showing the train's end with coupler, access steps, and roof-mounted equipment.",
+    "description_view_1": "Side view displaying the full length, pantograph on the roof, and a continuous row of rectangular windows.",
+    "description_view_2": "Rear view similar to the front, highlighting the opposite end's coupler and roof details.",
+    "description_view_3": "Opposite side view with visible undercarriage details and the same window arrangement as the other side.",
+    "category": "train",
+    "height": 3.8,
+    "max_dimension": 20.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 38000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "pantograph",
+        "coupler",
+        "steps"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark brown",
+        "bluish-gray",
+        "black",
+        "rust"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "commuter train",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end",
+    "attribute_window_arrangement": "continuous row of rectangular windows",
+    "uid": "42875c098c33456b84bcfcdc4c7f1c58",
+    "near_synsets": {
+        "train.n.01": 0.481243368922123,
+        "car_train.n.01": 0.4896753308768896,
+        "passenger_train.n.01": 0.4959327141354128,
+        "commuter.n.01": 0.5034671877631268,
+        "train_set.n.01": 0.5115368039844991,
+        "string.n.04": -1000.0,
+        "caravan.n.01": -1000.0,
+        "train.n.05": -1000.0,
+        "train.n.04": -1000.0,
+        "gearing.n.01": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/42875c098c33456b84bcfcdc4c7f1c58",
+        "creator_username": "roughdominator",
+        "creator_display_name": "3ddominator",
+        "creator_profile_url": "https://sketchfab.com/roughdominator"
+    },
+    "filename": "std_42875c098c33456b84bcfcdc4c7f1c58.glb",
+    "length": 15.171347618103027,
+    "width": 2.6095082759857178
+}

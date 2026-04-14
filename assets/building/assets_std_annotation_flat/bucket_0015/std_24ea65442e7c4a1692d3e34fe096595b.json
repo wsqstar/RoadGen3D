@@ -1,0 +1,101 @@
+{
+    "description_long": "This vending machine is a rectangular, boxy structure with a predominantly reddish-brown exterior and a flat top. The front face features a cream-colored panel inset with two grid-like display windows, each above a coin slot and a rectangular button, suggesting dual vending mechanisms. The machine's surfaces show signs of wear, with scattered dark marks and some grime, especially around the interactive front panel. The sides and back are plain, with no visible openings or features, and the top overhangs slightly, forming a subtle lip. The overall construction appears robust, likely made of metal, and the design is utilitarian, suitable for outdoor or semi-outdoor urban environments. There is no visible branding or digital display, giving it a somewhat generic, possibly older appearance.",
+    "description": "A robust, reddish-brown vending machine with a dual-panel cream front, coin slots, and buttons, showing signs of wear and grime. The sides and back are plain, and the design is utilitarian and unbranded.",
+    "description_view_0": "Side view showing a plain, reddish-brown surface with minor scuffs and no visible features.",
+    "description_view_1": "Rear view displaying a flat, unadorned reddish-brown panel with some surface marks.",
+    "description_view_2": "Opposite side view, identical to view 0, with a plain reddish-brown surface and no interactive elements.",
+    "description_view_3": "Front view featuring a cream-colored panel with two grid windows, coin slots, buttons, and visible grime, indicating the interactive face of the vending machine.",
+    "category": "vending machine",
+    "height": 1.2,
+    "max_dimension": 0.8,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "insertable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "coin slot",
+        "button",
+        "product retrieval slot"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red-brown",
+        "cream",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "Two small, square grid-like display windows located on the upper half of the front cream panel, each above a coin slot; no digital or illuminated display is visible.",
+    "attribute_payment_interface": "Two coin slots located below the grid windows on the front panel; no bill acceptor, card reader, or contactless terminal is visible.",
+    "attribute_product_selection_buttons": "Two rectangular buttons, each positioned below a coin slot, likely corresponding to the two vending options; no keypad or additional buttons are visible.",
+    "attribute_product_retrieval_slot": "Two rectangular retrieval slots located at the bottom of the front panel, each beneath a button; slots appear to have a flap or recessed area for product collection.",
+    "attribute_branding_or_signage": "None",
+    "uid": "24ea65442e7c4a1692d3e34fe096595b",
+    "near_synsets": {
+        "vending_machine.n.01": 0.46587206005009146,
+        "automat.n.01": 0.5213973768450556,
+        "coin_box.n.01": 0.5557511400935637,
+        "fruit_machine.n.01": 0.55981727738324,
+        "coin_slot.n.01": 0.5691444072468193,
+        "machine.n.03": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.05": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.02": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/24ea65442e7c4a1692d3e34fe096595b",
+        "creator_username": "3deoskill",
+        "creator_display_name": "Gene Ferrol",
+        "creator_profile_url": "https://sketchfab.com/3deoskill"
+    },
+    "filename": "std_24ea65442e7c4a1692d3e34fe096595b.glb",
+    "length": 0.5453270971775055,
+    "width": 0.9300001859664917
+}

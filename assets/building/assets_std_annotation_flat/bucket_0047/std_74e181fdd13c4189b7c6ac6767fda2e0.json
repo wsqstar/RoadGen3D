@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a long, narrow wooden ship with a single large square sail and numerous oars extending from both sides, reminiscent of a Viking longship. The hull is ornately curved at both the bow and stern, with the bow featuring a decorative dragon or serpent head. The deck is open, with benches for rowers and a central mast supported by rigging lines. The sail is dark and slightly billowed, and the ship's structure is reinforced with visible ribs and planking. The overall design is sleek and streamlined, optimized for speed and maneuverability on water. There are no visible cabins or enclosed superstructures, emphasizing its open and functional layout.",
+    "description": "A long, narrow wooden ship with a dragon-headed bow, single square sail, and rows of oars, resembling a Viking longship. The open deck features benches for rowers and detailed hull carvings.",
+    "description_view_0": "Side view showing the full length of the ship, the dragon-headed bow, curved stern, sail, and all oars extended.",
+    "description_view_1": "Front view highlighting the pointed bow, dragon head, symmetrical oar arrangement, and the sail's width.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the stern's curve and the sail's attachment.",
+    "description_view_3": "Rear view showing the stern's upward curve, the alignment of oars, and the full expanse of the sail.",
+    "category": "ship",
+    "height": 3.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "wood",
+        "fabric",
+        "metal",
+        "rope",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 4500,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "rowable",
+        "steerable",
+        "sailable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "oar",
+        "sail",
+        "mast",
+        "rudder",
+        "bench",
+        "rigging"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is long, narrow, and shallow with a displacement type design, featuring a pronounced upward curve at both the bow and stern. The bow is adorned with a dragon or serpent head, and the hull sides are reinforced with visible ribs and planking. There is no visible keel or bulbous bow, and the hull is optimized for speed and shallow water navigation.",
+    "attribute_superstructure_layout": "The ship has an open deck with no enclosed superstructure, cabins, or bridges. Benches for rowers are arranged along the length of the deck, and a single central mast is present. The design is minimalistic, focusing on functionality and crew space.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "oar",
+        "mast",
+        "sail",
+        "rigging",
+        "bench"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "74e181fdd13c4189b7c6ac6767fda2e0",
+    "near_synsets": {
+        "drekkar.n.01": 0.45304386032567173,
+        "longship.n.01": 0.46276992543482665,
+        "rowing_boat.n.01": 0.5121255772289802,
+        "longboat.n.01": 0.5172308285972249,
+        "figurehead.n.02": 0.5230409241013776,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/74e181fdd13c4189b7c6ac6767fda2e0",
+        "creator_username": "kreinin",
+        "creator_display_name": "ikreinin",
+        "creator_profile_url": "https://sketchfab.com/kreinin"
+    },
+    "filename": "std_74e181fdd13c4189b7c6ac6767fda2e0.glb",
+    "length": 6.234344720840454,
+    "width": 3.4163122177124023
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a large, mounted, industrial-style rifle or turret with a robust, weathered metal construction. It features a long, cylindrical barrel with green and copper accents, attached to a rectangular housing that appears to contain mechanical or energy components, visible through slotted vents. The rifle is mounted on a heavy-duty, four-legged base with wide, flat feet for stability, and a circular rotating mechanism at the center. A large, rusted metal shield is affixed to the front, providing protection for the operator or internal mechanisms. The surface is predominantly rusted brown with patches of green paint, giving it a rugged, utilitarian appearance. The overall design suggests it is intended for stationary defense in urban environments, such as guarding streets or entry points.",
+    "description": "A large, rusted, industrial turret rifle with a long barrel, protective shield, and heavy four-legged base, featuring green and copper accents.",
+    "description_view_0": "Side view showing the full length of the barrel, the slotted vented housing, and the circular rotating base.",
+    "description_view_1": "Front view dominated by the large rusted shield and the barrel protruding through a central opening.",
+    "description_view_2": "Opposite side view mirroring view 0, with visible mechanical details and the shield's edge.",
+    "description_view_3": "Rear view showing the back of the housing, the circular base, and the four-legged support structure.",
+    "category": "rifle",
+    "height": 1.2,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "copper",
+        "glass",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.03,
+        0.05,
+        0.02
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel",
+        "shield",
+        "rotating base",
+        "control panel",
+        "vented housing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "rust brown",
+        "green",
+        "copper",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "none",
+    "uid": "d96f554c1712449ea89e493785b6e94a",
+    "near_synsets": {
+        "cannon.n.02": 0.5344590005903624,
+        "rifle.n.01": 0.5354092313335793,
+        "light_arm.n.01": 0.5398717813302036,
+        "turret.n.01": 0.5407996743417495,
+        "cannon.n.01": 0.5472885062903129
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d96f554c1712449ea89e493785b6e94a",
+        "creator_username": "daanwever123",
+        "creator_display_name": "daanwever123",
+        "creator_profile_url": "https://sketchfab.com/daanwever123"
+    },
+    "filename": "std_d96f554c1712449ea89e493785b6e94a.glb",
+    "length": 1.4993863105773926,
+    "width": 0.9838394522666931
+}

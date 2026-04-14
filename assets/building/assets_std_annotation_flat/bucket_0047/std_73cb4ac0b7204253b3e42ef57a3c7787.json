@@ -1,0 +1,95 @@
+{
+    "description_long": "This rifle features a robust, industrial design with a multi-barrel rotary system reminiscent of a Gatling or minigun, suggesting high firepower and rapid firing capability. The central body is bulky and reinforced, with visible mechanical components and a prominent ammunition feed belt attached to one side, indicating a belt-fed mechanism. The rear section is angular and armored, likely housing the firing and loading mechanisms, while the front showcases several parallel barrels extending outward. The side profile reveals a complex assembly of cylindrical and gear-like structures, possibly for cooling or mechanical operation. The overall construction appears to be primarily metal, with some polymer or composite elements for structural support. The finish is matte and utilitarian, suitable for rugged urban environments.",
+    "description": "A heavy, multi-barrel rotary rifle with a belt-fed mechanism and robust, industrial construction, featuring a matte metal finish and complex mechanical details.",
+    "description_view_0": "Front view shows the circular arrangement of multiple barrels and the attached ammunition belt on the left side.",
+    "description_view_1": "Side view highlights the length of the barrels, the cylindrical central body, and the gear-like mechanical components.",
+    "description_view_2": "Rear view displays the angular, armored back section and the entry point of the ammunition belt.",
+    "description_view_3": "Opposite side view mirrors the side profile, showing the multi-barrel assembly and mechanical details without the visible belt.",
+    "category": "rifle",
+    "height": 0.35,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "polymer",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "aimable",
+        "triggerable",
+        "reloadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel cluster",
+        "trigger",
+        "ammunition belt",
+        "grip",
+        "stock",
+        "charging handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "rotary",
+    "attribute_magazine_type": "belt-fed",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "none",
+    "uid": "73cb4ac0b7204253b3e42ef57a3c7787",
+    "near_synsets": {
+        "rifle.n.01": 0.48882479713988364,
+        "gatling_gun.n.01": 0.4929816972688038,
+        "automatic_rifle.n.01": 0.5143178362744356,
+        "browning_automatic_rifle.n.01": 0.5196817108551229,
+        "browning_machine_gun.n.01": 0.5221221935047727
+    },
+    "synset": "browning_automatic_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/73cb4ac0b7204253b3e42ef57a3c7787",
+        "creator_username": "alexlexs",
+        "creator_display_name": "Alexey",
+        "creator_profile_url": "https://sketchfab.com/alexlexs"
+    },
+    "filename": "std_73cb4ac0b7204253b3e42ef57a3c7787.glb",
+    "length": 0.7012234628200531,
+    "width": 0.23939908295869827
+}

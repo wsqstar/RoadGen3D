@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a small, tracked combat tactical vehicle with a compact, angular body and a cylindrical turret mounted on top. The vehicle features continuous tracks on both sides, supported by visible suspension springs and wheels, giving it a robust, utilitarian appearance. The turret is equipped with a small, protruding barrel and what appears to be a hatch or periscope on top. The rear compartment is open and contains two cylindrical objects, possibly shells or tools, indicating some storage or utility function. The exterior is finished in a dark, weathered color, suggesting heavy use or exposure to harsh conditions. The overall design is reminiscent of early 20th-century light tanks or armored vehicles, with a focus on mobility and basic protection.",
+    "description": "A compact, tracked combat vehicle with a cylindrical turret, open rear compartment, and dark, weathered exterior. Features visible suspension, tracks, and turret-mounted barrel.",
+    "description_view_0": "Side view showing the full length of the tracks, suspension springs, and the cylindrical turret with a small barrel.",
+    "description_view_1": "Rear view revealing the open compartment with two cylindrical objects inside and the back of the turret.",
+    "description_view_2": "Opposite side view similar to view 0, highlighting the tracks, wheels, and turret details.",
+    "description_view_3": "Front view displaying the open compartment, the front of the tracks, and the turret's barrel facing forward.",
+    "category": "combat tactical  vehicle",
+    "height": 0.25,
+    "max_dimension": 0.45,
+    "materials": [
+        "metal",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 6,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "rotatable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "barrel",
+        "hatch",
+        "tracks",
+        "compartment"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible weapon mount on the turret roof, equipped with a small barrel.",
+    "attribute_armor_plating": "Visible armor plating covers the full body, including the turret and sides, with moderate thickness and simple, flat panels.",
+    "attribute_camouflage_pattern": "None visible; exterior is a solid, dark, weathered color.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "c9d7726e98cd45d4afc213b1b09aaac7",
+    "near_synsets": {
+        "tank.n.01": 0.4955898795522763,
+        "military_vehicle.n.01": 0.5136594736316148,
+        "reconnaissance_vehicle.n.01": 0.5203004507532255,
+        "weapons_carrier.n.01": 0.5287752686909236,
+        "armored_car.n.02": 0.5365386234119257,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c9d7726e98cd45d4afc213b1b09aaac7",
+        "creator_username": "ooooool_loooooo",
+        "creator_display_name": "Sportman",
+        "creator_profile_url": "https://sketchfab.com/ooooool_loooooo"
+    },
+    "filename": "std_c9d7726e98cd45d4afc213b1b09aaac7.glb",
+    "length": 0.3858262151479721,
+    "width": 0.20599087327718735
+}

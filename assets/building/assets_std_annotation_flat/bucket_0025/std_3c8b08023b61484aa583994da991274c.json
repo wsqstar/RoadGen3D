@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a large, rectangular cardboard parcel with visible wear, dirt stains, and partially open flaps on the top. The box features a shipping label affixed to the upper surface, indicating it has been processed for delivery. On one side, there are standard black shipping icons, including symbols for 'fragile', 'this side up', and 'keep dry', along with the word 'FRAGILE'. The cardboard surface is matte and shows signs of handling, with smudges and discoloration in several areas. The flaps are not fully closed, suggesting the box may be in the process of being opened or packed. The overall appearance is utilitarian, typical of packages found in urban delivery or storage environments.",
+    "description": "A large, worn cardboard parcel with open flaps, shipping label, and 'fragile' icons, showing dirt and handling marks.",
+    "description_view_0": "The parcel is seen from the short end, showing the open flaps and a portion of the shipping label on top.",
+    "description_view_1": "This side view displays the shipping icons and 'FRAGILE' text, with the label and open flaps visible on top.",
+    "description_view_2": "The opposite short end of the box, with open flaps and the shipping label partially visible, but no icons.",
+    "description_view_3": "Another side view with shipping icons and 'FRAGILE' text, similar to view 1 but with different dirt patterns.",
+    "category": "parcels",
+    "height": 0.45,
+    "max_dimension": 0.8,
+    "materials": [
+        "cardboard",
+        "adhesive",
+        "paper",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 2.5,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "flaps",
+        "label"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 4000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "",
+    "attribute_car_model": "",
+    "attribute_building_number": "",
+    "attribute_storefront_signage": "",
+    "attribute_street_name": "",
+    "uid": "3c8b08023b61484aa583994da991274c",
+    "near_synsets": {
+        "carton.n.02": 0.5415562256172106,
+        "packing_box.n.02": 0.5455948233770042,
+        "package.n.02": 0.5505816679524145,
+        "mail.n.01": 0.5509306347293617,
+        "parcel_post.n.01": 0.5521649824971464,
+        "tract.n.01": -1000.0,
+        "package.n.01": -1000.0,
+        "parcel.n.02": -1000.0
+    },
+    "synset": "carton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3c8b08023b61484aa583994da991274c",
+        "creator_username": "Artem.Goyko",
+        "creator_display_name": "Artem Goyko",
+        "creator_profile_url": "https://sketchfab.com/Artem.Goyko"
+    },
+    "filename": "std_3c8b08023b61484aa583994da991274c.glb",
+    "length": 0.5712025761604309,
+    "width": 0.8568034768104553
+}

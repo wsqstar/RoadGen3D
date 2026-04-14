@@ -1,0 +1,109 @@
+{
+    "description_long": "This combat tactical vehicle is a heavily armored, quadrupedal machine with a robust, angular chassis and reinforced plating covering its entire body. It features a large, forward-facing cannon mounted on a rotating turret, with additional smaller weapon mounts on either side of the main hull. The vehicle's legs are thick and jointed, designed for stability and mobility over rough urban terrain, and each leg is equipped with armored panels and mechanical actuators. The front of the vehicle is equipped with a pointed battering ram or spike, suggesting a capability for breaching obstacles. Various sensors, antennae, and hatches are visible on the upper surfaces, indicating advanced communication and targeting systems. The color scheme is primarily dark gray and green, with some orange highlights and a matte finish, providing a subdued, tactical appearance.",
+    "description": "A heavily armored, quadrupedal combat vehicle with a large turret-mounted cannon, reinforced plating, and a dark gray-green matte finish. It features jointed legs, a front battering ram, and multiple weapon mounts.",
+    "description_view_0": "Front view shows the pointed battering ram, dual headlights, and the broad, armored front legs with visible weapon mounts.",
+    "description_view_1": "Left side view highlights the large turret cannon, side armor panels, and mechanical leg joints with green and orange detailing.",
+    "description_view_2": "Rear view reveals the back armor plating, rear leg structure, and the rear of the turret with visible exhaust or vent ports.",
+    "description_view_3": "Right side view mirrors the left, showing the turret cannon, side armor, and detailed leg mechanisms with visible sensors and antennae.",
+    "category": "combat tactical  vehicle",
+    "height": 2.8,
+    "max_dimension": 5.2,
+    "materials": [
+        "armored steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "antenna",
+        "sensor array",
+        "leg joints"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "military green",
+        "black",
+        "orange"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted on the turret roof, two smaller weapon mounts on either side of the main hull, and a front battering ram.",
+    "attribute_armor_plating": "Full body coverage with thick, angular armor plating, including reinforced panels on the legs, turret, and hull; some panels appear modular and sloped for deflection.",
+    "attribute_camouflage_pattern": "Matte dark gray and military green with some orange highlights; no distinct camouflage pattern, primarily solid colors.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "f321bebf55fd4cfbb1256183cc46d672",
+    "near_synsets": {
+        "tank.n.01": 0.47744423696570976,
+        "military_vehicle.n.01": 0.4900970860356751,
+        "assault_gun.n.02": 0.5051100169488384,
+        "reconnaissance_vehicle.n.01": 0.5064251526207482,
+        "armored_car.n.02": 0.5068703197167134,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f321bebf55fd4cfbb1256183cc46d672",
+        "creator_username": "sleepman5719",
+        "creator_display_name": "sleepinglizard5719",
+        "creator_profile_url": "https://sketchfab.com/sleepman5719"
+    },
+    "filename": "std_f321bebf55fd4cfbb1256183cc46d672.glb",
+    "length": 4.907244682312012,
+    "width": 3.1817352771759033
+}

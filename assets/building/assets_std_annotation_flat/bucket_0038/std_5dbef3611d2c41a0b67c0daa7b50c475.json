@@ -1,0 +1,111 @@
+{
+    "description_long": "This bus station consists of multiple parallel bus lanes, each with a bus parked in a designated slot. The buses are of various colors, including red, yellow, green, purple, orange, and gray, and are aligned in neat rows, suggesting a large, organized terminal or depot. The lanes are marked by long, black strips that likely represent the road or bus bays, with each bus occupying a separate lane. There are no visible shelter structures, seating, or signage elements, indicating this is a functional, open-air bus station focused on bus organization and parking. The buses themselves are detailed with windows, wheels, and front/rear features, but the station lacks passenger amenities. The overall layout is spacious, allowing for easy maneuvering of buses and clear separation between each lane.",
+    "description": "A large, open-air bus station with multiple colored buses parked in parallel lanes, featuring no visible shelters or passenger amenities. The focus is on organized bus parking and movement.",
+    "description_view_0": "Top-down view showing the full array of buses in parallel lanes, highlighting the variety of bus colors and the organized layout.",
+    "description_view_1": "Side view displaying the length and height of the buses, with clear visibility of the wheels and the arrangement of buses in rows.",
+    "description_view_2": "Reverse top-down view emphasizing the rear ends of the buses and the separation between each lane.",
+    "description_view_3": "Opposite side view showing the buses from the other side, with a clear view of the bus fronts and the overall station width.",
+    "category": "bus station",
+    "height": 4.0,
+    "max_dimension": 30.0,
+    "materials": [
+        "metal",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "mirror"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "red",
+        "green",
+        "purple",
+        "orange",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.4,
+        0.15,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_shelter_structure": "No shelter structure is present; the station is fully open with no visible columns, beams, or roof elements.",
+    "attribute_route_signage": "No route signage is visible or implied in the asset; there are no signs, maps, or schedule boards present.",
+    "attribute_seating_arrangement": "No seating arrangement is present; there are no benches or seats visible within the bus station area.",
+    "attribute_bus_stop_pole": "No bus stop pole is present in the asset; there are no poles or attached features visible.",
+    "attribute_transparent_panels": "No transparent panels are present; the station is open-air with no glass or acrylic elements visible.",
+    "uid": "5dbef3611d2c41a0b67c0daa7b50c475",
+    "near_synsets": {
+        "bus_stop.n.01": 0.4946955370027263,
+        "bus_terminal.n.01": 0.514922960212389,
+        "bus_traffic.n.01": 0.5196433355356874,
+        "parking.n.01": 0.5390062863026469,
+        "local.n.01": 0.5402563488047291,
+        "bus.n.04": -1000.0,
+        "bus.n.01": -1000.0,
+        "station.n.01": -1000.0,
+        "station.n.05": -1000.0,
+        "busbar.n.01": -1000.0,
+        "station.n.03": -1000.0,
+        "place.n.10": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "post.n.01": -1000.0
+    },
+    "synset": "bus_terminal.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5dbef3611d2c41a0b67c0daa7b50c475",
+        "creator_username": "vladek27",
+        "creator_display_name": "Vladek",
+        "creator_profile_url": "https://sketchfab.com/vladek27"
+    },
+    "filename": "std_5dbef3611d2c41a0b67c0daa7b50c475.glb",
+    "length": 59.30738067626953,
+    "width": 26.092897415161133
+}

@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a fully equipped firefighter dressed in dark turnout gear with high-visibility yellow reflective stripes on the arms, legs, and torso. The figure wears a protective helmet with a wide brim and a face mask connected to a self-contained breathing apparatus (SCBA) mounted on the back. The uniform includes reinforced gloves, boots with rugged soles, and a utility belt holding various pouches and tools. The SCBA features a large air cylinder and harness system, while the chest area displays a radio and additional gear. Patches and insignia are visible on the upper sleeves, indicating fire department affiliation. The overall appearance is robust, functional, and designed for hazardous urban environments.",
+    "description": "A firefighter in full turnout gear with reflective stripes, helmet, face mask, and SCBA, carrying tools and fire department insignia.",
+    "description_view_0": "Front view showing the helmet, face mask, chest radio, reflective stripes, and utility belt with tools.",
+    "description_view_1": "Left side view highlighting the SCBA tank, harness, and side profile of the helmet and gear.",
+    "description_view_2": "Rear view displaying the full SCBA tank, harness system, and reflective stripes on the back and legs.",
+    "description_view_3": "Right side view showing the side of the helmet, face mask, and additional pouches on the belt.",
+    "category": "firefighter",
+    "height": 1.78,
+    "max_dimension": 0.65,
+    "materials": [
+        "fabric",
+        "plastic",
+        "metal",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.12,
+        0.05,
+        0.08,
+        0.05
+    ],
+    "mass": 88,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "helmet",
+        "face mask",
+        "SCBA tank",
+        "utility belt",
+        "radio",
+        "gloves",
+        "boots",
+        "pouches"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "yellow",
+        "gray",
+        "silver",
+        "green"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 500,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.8,
+    "asset_composition_type": "single",
+    "attribute_protective_helmet": true,
+    "attribute_reflective_stripes": true,
+    "attribute_turnout_gear": true,
+    "attribute_fire_department_insignia": true,
+    "attribute_breathing_apparatus": true,
+    "uid": "042691a0afb8497798bc50174f633e68",
+    "near_synsets": {
+        "company.n.09": 0.5133879047263888,
+        "fireman.n.04": 0.5220542769669176,
+        "fire_chief.n.01": 0.5423823636851381,
+        "visiting_fireman.n.01": 0.551294303450233,
+        "fire_department.n.01": 0.5596121969951326
+    },
+    "synset": "fireman.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/042691a0afb8497798bc50174f633e68",
+        "creator_username": "jakobscheidt",
+        "creator_display_name": "jakobscheidt",
+        "creator_profile_url": "https://sketchfab.com/jakobscheidt"
+    },
+    "filename": "std_042691a0afb8497798bc50174f633e68.glb",
+    "length": 0.5864913761615753,
+    "width": 0.7840930223464966
+}

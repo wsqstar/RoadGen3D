@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a long, modern vehicular bridge spanning a wide body of water, with multiple lanes for traffic and a central divider. The bridge is flanked by urban infrastructure, including roads, ramps, and adjacent buildings, indicating its integration into a busy cityscape. The structure appears to be primarily constructed from concrete and steel, with a flat deck supported by a series of piers or beams beneath. The bridge features simple, functional railings along both sides, likely made of metal or concrete, providing safety for vehicles and possibly pedestrians. The surface of the bridge is paved, and the overall design is utilitarian, prioritizing function and capacity over decorative elements. The approaches on either end are connected to complex road networks, facilitating efficient traffic flow across the water.",
+    "description": "A long, modern concrete and steel bridge with multiple traffic lanes, spanning a wide urban waterway and integrated into a busy city road network. The bridge features functional railings and a flat, paved deck supported by piers.",
+    "description_view_0": "Side view showing the full length of the bridge, the water below, and the urban surroundings on both ends.",
+    "description_view_1": "End-on view highlighting the width of the bridge, the central divider, and the approach roads leading onto the deck.",
+    "description_view_2": "Opposite side view displaying the bridge's length, the supporting piers, and the adjacent city infrastructure.",
+    "description_view_3": "Reverse end-on view showing the bridge's width, the road network feeding into it, and the surrounding urban landscape.",
+    "category": "bridge",
+    "height": 8,
+    "max_dimension": 220,
+    "materials": [
+        "concrete",
+        "steel",
+        "asphalt",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "mass": 3500000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "car",
+        "truck",
+        "bus",
+        "bicycle"
+    ],
+    "colors": [
+        "gray",
+        "blue",
+        "green",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.01,
+    "recommended_clearance": 10,
+    "asset_composition_type": "scene",
+    "attribute_support_type": "beam",
+    "attribute_railing_design": "solid concrete parapet with simple metal guardrails",
+    "attribute_arch_presence": false,
+    "attribute_lighting_fixtures": [],
+    "attribute_architectural_style": "utilitarian",
+    "uid": "1a253c3f2ee8482fbde0eb7dc9720c9a",
+    "near_synsets": {
+        "bridge.n.01": 0.5048919850214983,
+        "steel_arch_bridge.n.01": 0.510837293280909,
+        "viaduct.n.01": 0.520423147589192,
+        "footbridge.n.01": 0.5237686401947066,
+        "truss_bridge.n.01": 0.5280378763429042,
+        "bridge.n.08": -1000.0,
+        "bridge.n.09": -1000.0,
+        "bridge.n.06": -1000.0,
+        "bridge.n.02": -1000.0,
+        "bridge.n.04": -1000.0,
+        "bridge.n.05": -1000.0,
+        "bridge.n.07": -1000.0,
+        "bridge.n.03": -1000.0
+    },
+    "synset": "bridge.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1a253c3f2ee8482fbde0eb7dc9720c9a",
+        "creator_username": "CMBC",
+        "creator_display_name": "Brian Trepanier",
+        "creator_profile_url": "https://sketchfab.com/CMBC"
+    },
+    "filename": "std_1a253c3f2ee8482fbde0eb7dc9720c9a.glb",
+    "length": 89.23754501342773,
+    "width": 23.26894760131836
+}

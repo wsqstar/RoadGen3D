@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a large, military-style green truck with a robust, angular cab and a long, open flatbed cargo area. The truck features six large, rugged tires arranged on three axles, providing significant ground clearance and off-road capability. The cab is boxy with two prominent front windows and a set of side mirrors, while the flatbed is bordered by vertical slats for securing cargo. The front grille is simple, with a set of headlights integrated into the bumper. The truck's construction appears to be primarily metal, with some plastic and rubber components visible in the wheels and trim. Its utilitarian design suggests it is built for heavy-duty transport, likely for industrial, construction, or military use in urban or off-road environments.",
+    "description": "A large, green, six-wheeled flatbed truck with a boxy cab and open cargo area, designed for heavy-duty transport. The truck features rugged tires, metal slat sides, and a utilitarian, military-inspired appearance.",
+    "description_view_0": "Rear view showing the open flatbed cargo area with vertical slats and the back of the cab.",
+    "description_view_1": "Left side view highlighting the full length of the flatbed, three axles, and the boxy cab profile.",
+    "description_view_2": "Front view displaying the angular cab, two front windows, grille, and headlights.",
+    "description_view_3": "Right side view similar to the left, showing the flatbed, wheels, and cab from the opposite side.",
+    "category": "truck",
+    "height": 2.7,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.06,
+        0.04,
+        0.03
+    ],
+    "mass": 6500,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 6,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "cargo bed",
+        "side mirror",
+        "headlight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "flatbed",
+    "attribute_wheelbase": 4.2,
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "95222c502299426099efba60e8f30bed",
+    "near_synsets": {
+        "flatbed.n.02": 0.42116752871221963,
+        "truck.n.01": 0.48261373231984595,
+        "truck_bed.n.01": 0.49586562196926,
+        "lorry.n.02": 0.49751977236322215,
+        "delivery_truck.n.01": 0.5010967955380596,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/95222c502299426099efba60e8f30bed",
+        "creator_username": "virenimation",
+        "creator_display_name": "Virenimation",
+        "creator_profile_url": "https://sketchfab.com/virenimation"
+    },
+    "filename": "std_95222c502299426099efba60e8f30bed.glb",
+    "length": 7.9753851890563965,
+    "width": 2.687544584274292
+}

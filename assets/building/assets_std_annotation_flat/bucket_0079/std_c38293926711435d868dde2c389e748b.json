@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a boxy, modern ambulance vehicle with a white exterior and red emergency markings. The sides display bold red 'AMBULANCE' lettering and a thinner red stripe, with the word 'EMERGENCY' beneath. The front features a large windshield, side mirrors, and emergency lights above the cab. The roof is equipped with a prominent red and white emergency light bar. The rear has two large, windowed compartment doors and additional red lights. The vehicle sits on four black wheels with visible fenders and has a utilitarian, functional design typical of urban emergency response vehicles.",
+    "description": "A white, boxy ambulance with red emergency markings, a roof light bar, and rear double doors. It features bold 'AMBULANCE' signage and emergency lights.",
+    "description_view_0": "Front view showing the windshield, side mirrors, headlights, and roof-mounted emergency lights.",
+    "description_view_1": "Left side view displaying 'AMBULANCE EMERGENCY' signage, red stripe, and two wheels.",
+    "description_view_2": "Rear view with two large windowed doors, red lights, and a red stripe across the back.",
+    "description_view_3": "Right side view similar to the left, with 'AMBULANCE EMERGENCY' signage and visible wheels.",
+    "category": "ambulance",
+    "height": 2.6,
+    "max_dimension": 5.2,
+    "materials": [
+        "painted metal",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 7000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "handle",
+        "light bar",
+        "mirror"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "gray",
+        "black",
+        "blue"
+    ],
+    "colors_composition": [
+        0.75,
+        0.12,
+        0.06,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_emergency_light_bar": true,
+    "attribute_ambulance_signage": "Large red 'AMBULANCE' and 'EMERGENCY' text on both sides",
+    "attribute_medical_cross_symbol": false,
+    "attribute_siren": true,
+    "attribute_rear_compartment_doors": "two hinged doors",
+    "uid": "c38293926711435d868dde2c389e748b",
+    "near_synsets": {
+        "ambulance.n.01": 0.4989946663809455,
+        "funny_wagon.n.01": 0.5510450962142858,
+        "street_sign.n.01": 0.5878833726497322,
+        "fire_engine.n.01": 0.5882926152281622,
+        "ladder_truck.n.01": 0.5928031109946167
+    },
+    "synset": "ambulance.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c38293926711435d868dde2c389e748b",
+        "creator_username": "calebcram",
+        "creator_display_name": "calebcram",
+        "creator_profile_url": "https://sketchfab.com/calebcram"
+    },
+    "filename": "std_c38293926711435d868dde2c389e748b.glb",
+    "length": 5.217314004898071,
+    "width": 2.403275728225708
+}

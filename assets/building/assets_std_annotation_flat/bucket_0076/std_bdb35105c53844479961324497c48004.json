@@ -1,0 +1,105 @@
+{
+    "description_long": "This combat tactical vehicle features a robust, angular body with a matte black and blue finish, giving it a stealthy and aggressive appearance. It is equipped with four wide, metallic tracks instead of traditional wheels, suggesting enhanced mobility over rough or urban terrain. The front of the vehicle is fitted with a prominent dual-barrel weapon mount, while the rear section is bulkier, possibly for additional equipment or armor. The vehicle's cabin is compact and armored, with a small cylindrical turret or sensor module on the roof. The surface is mostly hard and metallic, with visible bolts and reinforced panels along the sides and rear. The overall design emphasizes durability, firepower, and urban combat readiness.",
+    "description": "A heavily armored, tracked combat vehicle with a black and blue finish, featuring a dual-barrel weapon at the front and a compact, reinforced cabin.",
+    "description_view_0": "Front-left view shows the dual-barrel weapon, angular armored cabin, and wide metallic tracks.",
+    "description_view_1": "Rear-left view highlights the bulkier rear section, roof module, and the full length of the side tracks.",
+    "description_view_2": "Rear-right view emphasizes the reinforced rear armor and the symmetry of the four tracks.",
+    "description_view_3": "Front-right view displays the weapon mount, sloped front armor, and the detailed track design.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 8500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "weapon mount",
+        "hatch",
+        "tracks",
+        "door",
+        "turret"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "blue",
+        "silver",
+        "red"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.13,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One dual-barrel weapon mount at the front center of the vehicle.",
+    "attribute_armor_plating": "Full body coverage with thick, angular armor plating; reinforced panels visible on sides and rear.",
+    "attribute_camouflage_pattern": "Solid black with blue highlights and subtle streaks; no traditional camouflage pattern.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "bdb35105c53844479961324497c48004",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4743296228402185,
+        "tank.n.01": 0.480490784186826,
+        "reconnaissance_vehicle.n.01": 0.49013203537071537,
+        "armored_car.n.02": 0.493114523293405,
+        "armored_vehicle.n.01": 0.5051808799306068,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bdb35105c53844479961324497c48004",
+        "creator_username": "Narutonic",
+        "creator_display_name": "Narutonic",
+        "creator_profile_url": "https://sketchfab.com/Narutonic"
+    },
+    "filename": "std_bdb35105c53844479961324497c48004.glb",
+    "length": 6.830063343048096,
+    "width": 6.958988428115845
+}

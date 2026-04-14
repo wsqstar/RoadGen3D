@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a tracked military combat vehicle with a low, angular hull and a prominent turret mounted centrally on top. The vehicle features six large road wheels on each side, connected by continuous metal tracks, providing excellent mobility over rough terrain. The exterior is covered in flat, sloped armor panels, with visible hatches, vents, and storage compartments on the upper surfaces. A long-barreled cannon protrudes from the front of the turret, and there are additional details such as a coaxial machine gun, antenna, and spare equipment mounted on the hull. The paint scheme consists of a gray-green base with black geometric camouflage stripes, and the vehicle bears white military markings, including a cross and the number '304' on the turret. The overall design suggests a World War II-era German Panzer tank, built for urban and battlefield deployment.",
+    "description": "A gray-green tracked combat vehicle with a central turret, long cannon, and black geometric camouflage, featuring white military markings and robust armor plating.",
+    "description_view_0": "Front view shows the sloped glacis plate, central turret, and the wide tracks with detailed road wheels.",
+    "description_view_1": "Left side view highlights the six large road wheels, continuous tracks, turret with cannon, and visible '304' marking.",
+    "description_view_2": "Rear view displays the engine deck, rear armor plate, exhaust system, and storage compartments.",
+    "description_view_3": "Right side view mirrors the left, showing the tracks, turret, and additional equipment mounted on the hull.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air",
+        "plastic"
+    ],
+    "materials_composition": [
+        0.85,
+        0.07,
+        0.02,
+        0.04,
+        0.02
+    ],
+    "mass": 22000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "machine gun",
+        "antenna",
+        "track",
+        "wheel",
+        "storage compartment"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray-green",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the central turret, one coaxial machine gun mount on the turret front.",
+    "attribute_armor_plating": "Full body coverage with sloped steel armor plating, especially thick on the front glacis and turret, with visible modular panels and reinforced sections.",
+    "attribute_camouflage_pattern": "Gray-green base with black geometric stripe camouflage pattern.",
+    "attribute_military_markings": "White cross insignia on the hull sides, white number '304' on the turret.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "84658db62c9945d6ace30b1a5c125951",
+    "near_synsets": {
+        "tank.n.01": 0.48710940018548593,
+        "military_vehicle.n.01": 0.4900193397901713,
+        "reconnaissance_vehicle.n.01": 0.509604258350893,
+        "assault_gun.n.02": 0.5222751304090385,
+        "armored_car.n.02": 0.5240575799758732,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/84658db62c9945d6ace30b1a5c125951",
+        "creator_username": "mudroljub",
+        "creator_display_name": "mudroljub",
+        "creator_profile_url": "https://sketchfab.com/mudroljub"
+    },
+    "filename": "std_84658db62c9945d6ace30b1a5c125951.glb",
+    "length": 5.053622007369995,
+    "width": 2.2967450618743896
+}

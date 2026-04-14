@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a spherical bomb with a matte, dark teal-blue exterior and a prominent, angular metal lever attached to the top, reminiscent of a classic hand grenade. The surface of the sphere is marked with glowing, irregular purple patterns, including a distinct handprint, suggesting either a magical or chemical component. The top features a cylindrical neck with a visible pin and ring mechanism, likely serving as the safety and detonation trigger. The lever is robust and angular, extending outward and upward, and appears to be made of metal, providing leverage for activation. The overall construction suggests a heavy, solid build, with the main body likely composed of metal to contain an explosive charge. The bomb's design is both functional and visually striking, with the purple markings serving as a warning or indicator of its dangerous contents.",
+    "description": "A spherical, dark teal-blue bomb with a metal lever and glowing purple markings, including a handprint. Features a pin and ring detonation mechanism on top.",
+    "description_view_0": "The bomb is shown with its metal lever angled upward and visible purple lightning-like markings on the left side.",
+    "description_view_1": "The bomb is viewed directly from the side, showing the full length of the angular lever and a mostly unmarked surface.",
+    "description_view_2": "The bomb is seen from a slightly rotated angle, highlighting the lever and additional purple markings on the right side.",
+    "description_view_3": "The front view displays the prominent purple handprint and several glowing markings, with the lever and pin mechanism clearly visible on top.",
+    "category": "bomb",
+    "height": 0.25,
+    "max_dimension": 0.3,
+    "materials": [
+        "steel",
+        "plastic",
+        "explosive_compound",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.1,
+        0.2,
+        0.05
+    ],
+    "mass": 2.5,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "lever",
+        "pin",
+        "ring"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark teal-blue",
+        "purple",
+        "silver"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The bomb features a classic pin and ring mechanism attached to a metal lever, which likely triggers detonation when the pin is pulled and the lever is released.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "95500d2fe1944cfb9e5214bb1d40d998",
+    "near_synsets": {
+        "cherry_bomb.n.01": 0.553786651128391,
+        "plastic_bomb.n.01": 0.5621796658355158,
+        "time_bomb.n.02": 0.5648140238077745,
+        "remote-control_bomb.n.01": 0.5653650341774223,
+        "pipe_bomb.n.01": 0.5674425531074476,
+        "bomb.n.01": -1000.0,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/95500d2fe1944cfb9e5214bb1d40d998",
+        "creator_username": "NeonSkull",
+        "creator_display_name": "NeonSkull",
+        "creator_profile_url": "https://sketchfab.com/NeonSkull"
+    },
+    "filename": "std_95500d2fe1944cfb9e5214bb1d40d998.glb",
+    "length": 0.21043947339057922,
+    "width": 0.17368675768375397
+}

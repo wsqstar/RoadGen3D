@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a large, twin-rotor helicopter with a robust, utilitarian design, reminiscent of Soviet or Russian heavy-lift helicopters. The fuselage is painted in a light grayish-blue color with darker accents, and it features a spacious cockpit with multiple large, angular windows for visibility. The main rotor system consists of two sets of long, straight blades mounted on a central mast, while the tail section is equipped with two large, horizontal stabilizers and a vertical fin, each bearing a red star insignia. The landing gear comprises two sets of wheels, positioned fore and aft, providing stability on the ground. The helicopter's body is streamlined yet boxy, with various hatches, panels, and external equipment visible along the sides. The overall appearance suggests a vehicle designed for heavy transport or utility missions in urban or rugged environments.",
+    "description": "A large, twin-rotor, grayish-blue helicopter with a spacious cockpit, prominent landing gear, and red star insignia on the tail stabilizers.",
+    "description_view_0": "Front view showing the wide cockpit windows, central rotor mast, and the symmetrical arrangement of the landing gear.",
+    "description_view_1": "Side view highlighting the elongated fuselage, twin rotors, landing wheels, and the red star insignia on the tail stabilizer.",
+    "description_view_2": "Rear view displaying the tail section with horizontal stabilizers, vertical fin, and the full span of the main rotor blades.",
+    "description_view_3": "Opposite side view showing the side hatches, external equipment, and the overall streamlined yet boxy body shape.",
+    "category": "helicopter",
+    "height": 5.5,
+    "max_dimension": 22.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.12,
+        0.08,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "mass": 15000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 147000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit window",
+        "rotor blade",
+        "landing gear",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "dark gray",
+        "blue-green",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.13,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.04,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_rotor_blades": "There are two sets of main rotor blades, each with three long, straight blades made of composite or metal, colored light gray with no visible markings. The blades are wide and appear robust, suitable for heavy lifting.",
+    "attribute_tail_rotor": "No traditional tail rotor is present; instead, the helicopter features a twin-rotor coaxial configuration with large horizontal stabilizers and a vertical fin at the tail, each marked with a red star.",
+    "attribute_landing_skids": "This helicopter uses wheeled landing gear rather than skids, with two main wheels visible on each side, supported by sturdy struts and crossbars, all colored dark gray or black.",
+    "attribute_cockpit_windows": "The cockpit has five large, angular windows arranged in a wraparound configuration, providing wide visibility. The windows are tinted light blue-green and framed in dark material.",
+    "attribute_registration_number": "not visible",
+    "uid": "054f00ec16eb4f1d94cd1b65324107d6",
+    "near_synsets": {
+        "helicopter.n.01": 0.4908072161452017,
+        "single-rotor_helicopter.n.01": 0.49300101303309746,
+        "cargo_helicopter.n.01": 0.5072229314540574,
+        "main_rotor.n.01": 0.5105553031574257,
+        "landing_skid.n.01": 0.5194001605520102
+    },
+    "synset": "cargo_helicopter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/054f00ec16eb4f1d94cd1b65324107d6",
+        "creator_username": "MaX3Dd",
+        "creator_display_name": "MaX3Dd",
+        "creator_profile_url": "https://sketchfab.com/MaX3Dd"
+    },
+    "filename": "std_054f00ec16eb4f1d94cd1b65324107d6.glb",
+    "length": 14.071044921875,
+    "width": 11.872648239135742
+}

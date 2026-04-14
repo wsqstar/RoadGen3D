@@ -1,0 +1,108 @@
+{
+    "description_long": "A floating grassy island features a prominent waterfall cascading off one edge, with a stream originating from a small pond near the center. The water flows past several pink-leaved trees and a simple, gray-roofed house, creating a tranquil yet dynamic scene. The waterfall itself is a vertical sheet of translucent blue water, plunging from the island's edge into the void below. The terrain is covered in lush green grass, and the rocky underside of the island is visible, giving the impression of a suspended landmass. The house and trees add a touch of human and natural presence, while the water's movement is the focal point. The overall composition blends natural and artificial elements in a whimsical, park-like setting.",
+    "description": "A floating grassy island with a dramatic blue waterfall, pink trees, and a small house, blending natural and man-made elements in a whimsical scene.",
+    "description_view_0": "The waterfall is prominently visible, cascading off the island's edge, with pink trees and the house in the background.",
+    "description_view_1": "The house and stream are in clear view, with the waterfall just visible at the far edge and trees scattered across the island.",
+    "description_view_2": "The pond feeding the waterfall is visible, with the house and trees arranged around the grassy terrain; the waterfall is mostly hidden.",
+    "description_view_3": "The stream and waterfall are both visible, with the house and a cluster of pink trees on the left side of the island.",
+    "category": "waterfall",
+    "height": 3.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "water",
+        "soil",
+        "rock",
+        "grass",
+        "wood",
+        "concrete",
+        "leaves",
+        "air"
+    ],
+    "materials_composition": [
+        0.18,
+        0.25,
+        0.2,
+        0.15,
+        0.08,
+        0.07,
+        0.05,
+        0.02
+    ],
+    "mass": 9500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "viewable",
+        "shelterable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "waterfall",
+        "pond",
+        "house door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "blue",
+        "pink",
+        "gray",
+        "brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.35,
+        0.2,
+        0.15,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.33,
+    "youngs_modulus": 20000000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_water_flow_direction": "downward",
+    "attribute_water_transparency": 0.7,
+    "attribute_presence_of_mist_or_spray": true,
+    "attribute_integration_with_urban_elements": "adjacent to house",
+    "attribute_sound_emission": "moderate flow",
+    "uid": "f098b68eb318475ab73bd1064a9f0cb0",
+    "near_synsets": {
+        "seascape.n.01": 0.5711583255969862,
+        "landscape.n.02": 0.5768015615777008,
+        "lily_pad.n.01": 0.5774775269034399,
+        "cascade.n.01": 0.5783398670653139,
+        "water_chute.n.01": 0.5793151226543757,
+        "waterfall.n.01": -1000.0
+    },
+    "synset": "waterfall.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f098b68eb318475ab73bd1064a9f0cb0",
+        "creator_username": "lawrencetrigg1989",
+        "creator_display_name": "lawrencetrigg1989",
+        "creator_profile_url": "https://sketchfab.com/lawrencetrigg1989"
+    },
+    "filename": "std_f098b68eb318475ab73bd1064a9f0cb0.glb",
+    "length": 3.6814563274383545,
+    "width": 3.710261344909668
+}

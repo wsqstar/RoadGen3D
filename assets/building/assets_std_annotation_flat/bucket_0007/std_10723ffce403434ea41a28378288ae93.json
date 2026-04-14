@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a heavy, turret-mounted automatic weapon system with a robust, angular design, likely intended for urban defense or security applications. The main body is composed of a large, rectangular housing with a hexagonal multi-barrel cluster at the front, suggesting a rotary or multi-launch capability. The base is wide and stable, featuring reinforced supports and a circular platform for mounting. Visible warning labels, such as 'CAUTION' and 'Mk 4B', are printed on the side, indicating a military or security-grade device. The top section includes a prominent sensor or targeting module, possibly for automated aiming, and several smaller geometric protrusions that may serve as access panels or additional sensors. The overall construction appears to be primarily metal, with a matte gray finish and some black detailing, giving it a utilitarian, industrial appearance.",
+    "description": "A heavy, turret-mounted automatic weapon system with a hexagonal multi-barrel cluster, robust metal housing, and visible warning labels. It features a wide, reinforced base and a prominent sensor module on top.",
+    "description_view_0": "Front-left view showing the hexagonal multi-barrel cluster, reinforced base, and the main sensor module on top.",
+    "description_view_1": "Left-side view highlighting the 'Mk 4B' label, side supports, and the angular housing of the weapon.",
+    "description_view_2": "Rear-left view displaying the back panel with warning labels, the sensor module, and the circular mounting base.",
+    "description_view_3": "Rear view focusing on the back housing, caution markings, and the structural supports of the base.",
+    "category": "rifle",
+    "height": 1.1,
+    "max_dimension": 1.5,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel cluster",
+        "sensor module",
+        "control panel",
+        "mounting base"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "multi-barrel cluster",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "sensor module",
+    "attribute_muzzle_device": "none",
+    "uid": "10723ffce403434ea41a28378288ae93",
+    "near_synsets": {
+        "automatic_rifle.n.01": 0.4931820200862133,
+        "carbine.n.01": 0.5172995819260302,
+        "machine_gun.n.01": 0.5238679569037822,
+        "assault_rifle.n.01": 0.5261742231969169,
+        "light_arm.n.01": 0.5278478728035337,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/10723ffce403434ea41a28378288ae93",
+        "creator_username": "Planetrix23",
+        "creator_display_name": "Peter Primini",
+        "creator_profile_url": "https://sketchfab.com/Planetrix23"
+    },
+    "filename": "std_10723ffce403434ea41a28378288ae93.glb",
+    "length": 1.5706130266189575,
+    "width": 1.4645463824272156
+}

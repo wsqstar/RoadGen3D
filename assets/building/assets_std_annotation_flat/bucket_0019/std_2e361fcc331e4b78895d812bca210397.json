@@ -1,0 +1,89 @@
+{
+    "description_long": "This is a standard Western-style toilet with a rectangular, exposed cistern at the back and a rounded bowl at the front. The toilet is made of smooth, glossy white ceramic, giving it a clean and hygienic appearance. The seat is present and raised in some views, revealing the open bowl beneath, while the lid is not visible. The base is broad and slightly contoured, providing stability and a solid connection to the floor. The cistern is boxy and sits directly above the bowl, with no visible flush mechanism on its exterior. The overall design is utilitarian and typical for public or residential restrooms in urban environments.",
+    "description": "A white ceramic toilet with a rectangular cistern and rounded bowl, featuring a raised seat and a smooth, glossy finish.",
+    "description_view_0": "Side view showing the rectangular cistern, raised seat, and the full profile of the bowl and base.",
+    "description_view_1": "Front view highlighting the circular bowl opening, raised seat, and the width of the cistern behind.",
+    "description_view_2": "Opposite side view similar to view 0, showing the cistern, bowl, and seat from the other side.",
+    "description_view_3": "Rear view displaying the back of the cistern and the base, with minimal detail of the bowl.",
+    "category": "toilets",
+    "height": 0.75,
+    "max_dimension": 0.8,
+    "materials": [
+        "ceramic",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 35,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "seat",
+        "lid",
+        "bowl"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.08,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 50000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_installation_type": "floor-mounted",
+    "attribute_flush_mechanism_visibility": false,
+    "attribute_seat_presence": true,
+    "attribute_cistern_design": "exposed cistern",
+    "attribute_accessibility_features": [],
+    "uid": "2e361fcc331e4b78895d812bca210397",
+    "near_synsets": {
+        "toilet_bowl.n.01": 0.46647947242221516,
+        "toilet.n.02": 0.470635751366396,
+        "toilet.n.01": 0.5009238496221735,
+        "cistern.n.02": 0.5028800432792788,
+        "toilet_seat.n.01": 0.5033408925024305,
+        "gutter.n.02": -1000.0,
+        "toilet.n.04": -1000.0
+    },
+    "synset": "toilet.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2e361fcc331e4b78895d812bca210397",
+        "creator_username": "maddykrob",
+        "creator_display_name": "maddykrob",
+        "creator_profile_url": "https://sketchfab.com/maddykrob"
+    },
+    "filename": "std_2e361fcc331e4b78895d812bca210397.glb",
+    "length": 0.7535745799541473,
+    "width": 0.40194982290267944
+}

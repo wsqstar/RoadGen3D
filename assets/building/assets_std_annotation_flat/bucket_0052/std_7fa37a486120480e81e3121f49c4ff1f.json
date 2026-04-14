@@ -1,0 +1,100 @@
+{
+    "description_long": "This helicopter features a robust, angular fuselage with a predominantly gray and white camouflage paint scheme, accented by darker panels and subtle red markings. The main body is equipped with two large, forward-facing cannons mounted above the cockpit, suggesting a military or tactical application. The cockpit is compact, with a rounded, reinforced canopy and visible side hatches, while the tail section is short and integrated into the main structure, lacking a traditional tail boom. The landing gear consists of sturdy, rectangular skids with reinforced supports, designed for stability on rough urban terrain. Various vents, hatches, and mechanical details are distributed along the body, contributing to a utilitarian, armored appearance. The overall design is functional and aggressive, with exposed mechanical elements and a focus on durability.",
+    "description": "A heavily armored, gray-and-white helicopter with dual forward cannons, compact cockpit, and reinforced landing skids, featuring a utilitarian, military-inspired design.",
+    "description_view_0": "Side view showing the dual cannons, compact cockpit, and rectangular landing skids, with visible mechanical details and camouflage pattern.",
+    "description_view_1": "Top-down view highlighting the length of the cannons, angular body panels, and the arrangement of vents and hatches on the upper fuselage.",
+    "description_view_2": "Opposite side view displaying the tail section, additional mechanical features, and the continuation of the camouflage paint scheme.",
+    "description_view_3": "Bottom-up view revealing the structure of the landing skids, underside hatches, and the lower profile of the cockpit and cannons.",
+    "category": "helicopter",
+    "height": 3.2,
+    "max_dimension": 8.5,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 4200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 41200,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cockpit door",
+        "control stick",
+        "cannon",
+        "rotor hub",
+        "landing skid",
+        "hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.55,
+        0.3,
+        0.12,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.32,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_rotor_blades": "Not visible; the main rotor blades are not clearly shown in any view.",
+    "attribute_tail_rotor": "Not visible; there is no traditional tail rotor apparent in any view.",
+    "attribute_landing_skids": "Rectangular, reinforced metal skids with angular supports and crossbars, painted in gray and black, designed for stability and durability.",
+    "attribute_cockpit_windows": "One main rounded cockpit window at the front, with side hatches; the glass appears clear with a slight tint and reinforced framing.",
+    "attribute_registration_number": "not visible",
+    "uid": "7fa37a486120480e81e3121f49c4ff1f",
+    "near_synsets": {
+        "cargo_helicopter.n.01": 0.4860539530706099,
+        "helicopter.n.01": 0.5087727481797013,
+        "landing_skid.n.01": 0.5213365918203673,
+        "skyhook.n.01": 0.5228950020856834,
+        "shuttle_helicopter.n.01": 0.5258454787023276
+    },
+    "synset": "shuttle_helicopter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7fa37a486120480e81e3121f49c4ff1f",
+        "creator_username": "dryk4085",
+        "creator_display_name": "Just Ryk",
+        "creator_profile_url": "https://sketchfab.com/dryk4085"
+    },
+    "filename": "std_7fa37a486120480e81e3121f49c4ff1f.glb",
+    "length": 2.237966775894165,
+    "width": 3.3268046379089355
+}

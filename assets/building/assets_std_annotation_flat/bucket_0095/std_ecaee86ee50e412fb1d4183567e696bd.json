@@ -1,0 +1,101 @@
+{
+    "description_long": "This humanoid robot features a segmented, jointed body with a rounded head, cylindrical torso, and articulated limbs. The robot's hands are stylized as large, glove-like appendages, and its feet are blocky with visible joint mechanisms at the ankles. The head is spherical with a central circular detail, possibly representing a sensor or camera, and a small antenna-like protrusion on top. The arms and legs are composed of multiple cylindrical segments connected by ball-and-socket joints, allowing for a wide range of motion. The robot's color palette includes muted reds, grays, and browns, with a matte finish on most surfaces. Several parts, such as the hands and head, are slightly separated from the main body, suggesting modularity or assembly in progress.",
+    "description": "A segmented humanoid robot with a spherical head, articulated limbs, large glove-like hands, and blocky feet in muted red, gray, and brown tones.",
+    "description_view_0": "Front view showing the robot's spherical head, central torso, outstretched arms, large hands, and blocky feet.",
+    "description_view_1": "Side view highlighting the robot's profile, the cylindrical segments of the limbs, and the protruding antenna on the head.",
+    "description_view_2": "Rear view displaying the back of the head, torso, and the symmetrical arrangement of the arms and legs.",
+    "description_view_3": "Opposite side view showing the side profile, limb articulation, and the separation of the hand and head components.",
+    "category": "humanoid robot",
+    "height": 1.4,
+    "max_dimension": 2.2,
+    "materials": [
+        "plastic",
+        "metal",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "mass": 38,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hand",
+        "head",
+        "arm",
+        "leg",
+        "foot",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "brown",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.2,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is in a standing pose with arms extended outward horizontally, hands open and separated from the arms, legs straight and feet flat on the ground, and the head slightly detached above the torso.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated panels and mechanical components with no visible clothing or decorative coverings.",
+    "attribute_facial_features": "The face consists of a smooth, spherical surface with a central circular detail, possibly a sensor or camera, and lacks traditional facial features such as eyes, mouth, or nose.",
+    "attribute_limb_articulation": "The robot has articulated arms and legs with visible ball-and-socket joints at the shoulders, elbows, hips, and knees, as well as hinge joints at the wrists and ankles, allowing for flexible movement.",
+    "attribute_presence_of_sensors": "A single central circular detail on the head, likely a camera or visual sensor; no other sensors are visible.",
+    "uid": "ecaee86ee50e412fb1d4183567e696bd",
+    "near_synsets": {
+        "android.n.01": 0.5380676191397925,
+        "robotics_equipment.n.01": 0.560410559376419,
+        "cyborg.n.01": 0.563877506213244,
+        "automaton.n.02": 0.5729038006446987,
+        "robotics.n.01": 0.5789532107991253
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ecaee86ee50e412fb1d4183567e696bd",
+        "creator_username": "werignac",
+        "creator_display_name": "werignac",
+        "creator_profile_url": "https://sketchfab.com/werignac"
+    },
+    "filename": "std_ecaee86ee50e412fb1d4183567e696bd.glb",
+    "length": 1.34275221824646,
+    "width": 1.8289437890052795
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a realistic representation of a blooming lily flower with a prominent white corolla and yellow accents radiating from the center. The flower features six elongated petals, some slightly overlapping, with visible orange stamens and a central pistil. Surrounding the flower are several green, lanceolate leaves attached to a slender, upright stem. The leaves are arranged alternately along the stem, with some showing a slightly glossy texture. The overall structure is delicate, with the flower positioned at the terminal end of the stem, making it the focal point. The coloration and organic form suggest a fresh, natural appearance suitable for parks, gardens, or urban green spaces.",
+    "description": "A white lily flower with yellow accents, orange stamens, and green lanceolate leaves on a slender stem. The flower is prominently displayed at the top of the plant.",
+    "description_view_0": "Front view showing the open face of the lily, with all six petals, orange stamens, and central pistil clearly visible.",
+    "description_view_1": "Side view highlighting the depth of the flower, the curvature of the petals, and the arrangement of leaves along the stem.",
+    "description_view_2": "Rear view showing the back of the petals and the full length of the stem with leaves extending outward.",
+    "description_view_3": "Side/rear view focusing on the stem and the alternate arrangement of the lanceolate leaves, with the flower partially visible from behind.",
+    "category": "flower",
+    "height": 0.35,
+    "max_dimension": 0.38,
+    "materials": [
+        "plant_tissue",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 0.04,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 5,
+    "movable": true,
+    "required_force": 0.5,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pluckable",
+        "breakable",
+        "crushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "petal",
+        "stem",
+        "leaf",
+        "stamen"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "white",
+        "yellow",
+        "orange",
+        "green"
+    ],
+    "colors_composition": [
+        0.45,
+        0.1,
+        0.05,
+        0.4
+    ],
+    "surface_hardness": "soft",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.38,
+    "youngs_modulus": 0.02,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.1,
+    "asset_composition_type": "single",
+    "attribute_petal_arrangement": "The petals are arranged in a radial, whorled configuration with slight overlapping at the base, displaying actinomorphic (radial) symmetry typical of lilies.",
+    "attribute_number_of_petals": 6,
+    "attribute_stem_presence": true,
+    "attribute_leaf_shape": "lanceolate",
+    "attribute_flower_location": "terminal",
+    "uid": "b791988b787149c3ae0782fa57b6121f",
+    "near_synsets": {
+        "lemon_lily.n.01": 0.4634937176325347,
+        "easter_lily.n.01": 0.4740944643624664,
+        "wood_lily.n.02": 0.47417175094629366,
+        "european_white_lily.n.01": 0.47486540496481083,
+        "canada_lily.n.01": 0.48160627799847155,
+        "flower.n.02": -1000.0,
+        "flower.n.01": -1000.0,
+        "flower.n.03": -1000.0
+    },
+    "synset": "flower.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b791988b787149c3ae0782fa57b6121f",
+        "creator_username": "light-box",
+        "creator_display_name": "light-box",
+        "creator_profile_url": "https://sketchfab.com/light-box"
+    },
+    "filename": "std_b791988b787149c3ae0782fa57b6121f.glb",
+    "length": 0.2890220135450363,
+    "width": 0.2916107028722763
+}

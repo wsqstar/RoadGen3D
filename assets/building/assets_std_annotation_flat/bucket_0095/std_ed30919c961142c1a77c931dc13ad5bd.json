@@ -1,0 +1,106 @@
+{
+    "description_long": "This is an electric locomotive painted in a bright orange and yellow livery with a gray roof, marked with 'Indian Railways' and the number 3179. The locomotive features two pantographs on the roof for overhead electric power collection, along with various rooftop equipment such as vents and insulators. The sides display a series of rectangular windows and grilles, likely for ventilation and crew access, with visible bogies and wheels beneath. The front and rear ends are equipped with large blue-tinted windows for the operator, headlights, and buffer beams with couplers. The body is constructed primarily from metal, with some plastic and glass components for windows and lights. The overall design is robust and functional, suitable for hauling passenger or freight carriages on electrified railways.",
+    "description": "A robust orange and yellow electric locomotive with a gray roof, featuring pantographs, blue-tinted operator windows, and detailed side grilles and windows.",
+    "description_view_0": "Front view showing blue-tinted operator windows, headlights, and the buffer beam with coupler.",
+    "description_view_1": "Side view displaying the full length of the locomotive, pantographs, grilles, and a series of rectangular windows.",
+    "description_view_2": "Rear view similar to the front, with blue-tinted windows and buffer beam, but fewer rooftop details visible.",
+    "description_view_3": "Opposite side view mirroring view 1, showing pantographs, grilles, and windows along the length.",
+    "category": "train",
+    "height": 4.2,
+    "max_dimension": 19.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.07,
+        0.04,
+        0.02,
+        0.02
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1800000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "pantograph",
+        "headlight",
+        "coupler"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "yellow",
+        "gray",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.15,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_train_type": "electric locomotive",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": true,
+    "attribute_door_placement": "doors at each end",
+    "attribute_window_arrangement": "row of rectangular windows along both sides",
+    "uid": "ed30919c961142c1a77c931dc13ad5bd",
+    "near_synsets": {
+        "train.n.01": 0.49859253889990607,
+        "steam_locomotive.n.01": 0.5041866957449987,
+        "electric_locomotive.n.01": 0.5065783196646835,
+        "train_set.n.01": 0.5144281056649623,
+        "diesel_locomotive.n.01": 0.5167984595120088,
+        "caravan.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "train.n.04": -1000.0,
+        "gearing.n.01": -1000.0,
+        "train.n.05": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ed30919c961142c1a77c931dc13ad5bd",
+        "creator_username": "virtualmakes",
+        "creator_display_name": "Prabhu Ram",
+        "creator_profile_url": "https://sketchfab.com/virtualmakes"
+    },
+    "filename": "std_ed30919c961142c1a77c931dc13ad5bd.glb",
+    "length": 14.207674026489258,
+    "width": 2.3215417861938477
+}

@@ -1,0 +1,97 @@
+{
+    "description_long": "This object consists of two large outdoor umbrellas, each with a hexagonal canopy supported by a central pole and a heavy, hexagonal base. One umbrella features a deep blue canopy, while the other is a neutral gray, both made from weather-resistant fabric. The canopies are divided into six distinct triangular segments, converging at a central point at the top. The poles are straight and metallic, connecting the canopy to a sturdy, weighted base designed to keep the umbrellas stable in outdoor environments. The bases are black and appear to be made of a dense material, likely concrete or heavy plastic, to prevent tipping. These umbrellas are typically used in urban parks, patios, or sidewalk cafes to provide shade and shelter from the sun.",
+    "description": "A pair of large, hexagonal outdoor umbrellas with blue and gray canopies, each supported by a central pole and a heavy black base. The umbrellas are designed for shade in urban outdoor settings.",
+    "description_view_0": "Front view showing both umbrellas side by side, with the blue umbrella on the left and the gray umbrella on the right, both fully open and supported by black bases.",
+    "description_view_1": "Top-down angled view highlighting the blue umbrella's canopy above and the gray umbrella below, revealing the segment divisions and the bases' hexagonal shapes.",
+    "description_view_2": "Rear view with the gray umbrella on the left and the blue umbrella on the right, both canopies fully visible and the bases aligned.",
+    "description_view_3": "Top-down angled view from the opposite side, with the gray umbrella above and the blue umbrella below, emphasizing the canopy shapes and segment lines.",
+    "category": "umbrella",
+    "height": 2.0,
+    "max_dimension": 2.2,
+    "materials": [
+        "fabric",
+        "metal",
+        "plastic",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.25,
+        0.15,
+        0.2,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "canopy",
+        "pole",
+        "base"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.4,
+        0.4,
+        0.2
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_handle_type": "straight pole",
+    "attribute_canopy_pattern": "solid color",
+    "attribute_canopy_segment_count": 6,
+    "attribute_tip_style": "capped",
+    "attribute_opening_mechanism": "manual push-up slider",
+    "uid": "b00374b58f9e4eb18b7c106a24a20a8c",
+    "near_synsets": {
+        "umbrella.n.01": 0.45585183820411834,
+        "umbrella_tent.n.01": 0.48730859371461815,
+        "umbrella.n.03": 0.5108984437927141,
+        "parasol.n.01": 0.5230638641936871,
+        "canopy.n.03": 0.5330608737241598,
+        "umbrella.n.02": -1000.0
+    },
+    "synset": "umbrella.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b00374b58f9e4eb18b7c106a24a20a8c",
+        "creator_username": "inter_net",
+        "creator_display_name": "inter_net",
+        "creator_profile_url": "https://sketchfab.com/inter_net"
+    },
+    "filename": "std_b00374b58f9e4eb18b7c106a24a20a8c.glb",
+    "length": 1.5653283596038818,
+    "width": 3.4643759727478027
+}

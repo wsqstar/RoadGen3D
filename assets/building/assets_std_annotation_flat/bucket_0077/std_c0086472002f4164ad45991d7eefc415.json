@@ -1,0 +1,92 @@
+{
+    "description_long": "This is a large, rectangular, industrial-style container with a robust, boxy structure and a predominantly black exterior accented by white or light gray horizontal and vertical stripes. The container features multiple rectangular panels on its sides, which may function as reinforcement or decorative elements. One end of the container has double doors that swing open, revealing a spacious, hollow interior suitable for storing or transporting goods. The doors themselves are detailed with matching rectangular insets, and the overall build suggests durability and security. The container appears modular, with a second, smaller unit placed adjacent, possibly for stacking or organizational purposes. Its design is reminiscent of urban storage or transport containers used in public spaces, transit hubs, or industrial settings.",
+    "description": "A large, black and white industrial container with double swing doors and rectangular panel detailing, designed for secure storage or transport. The structure is robust and modular, suitable for urban or industrial environments.",
+    "description_view_0": "Front angled view showing the double doors open, revealing the hollow interior and detailed paneling on the doors and sides.",
+    "description_view_1": "Top-down view highlighting the flat, reinforced top surfaces and the geometric pattern of stripes and panels.",
+    "description_view_2": "Side view displaying the long, uninterrupted paneling and the closed, solid end of the container.",
+    "description_view_3": "Rear view showing the back and side paneling, with the doors partially visible and the modular design apparent.",
+    "category": "container",
+    "height": 1.2,
+    "max_dimension": 2.5,
+    "materials": [
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "mass": 180,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "storable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "panel"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_lid_type": "double swing doors",
+    "attribute_opening_mechanism": "pull to open, push to close",
+    "attribute_labeling_or_signage": "none",
+    "attribute_handles_or_grips": "none",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "c0086472002f4164ad45991d7eefc415",
+    "near_synsets": {
+        "container.n.01": 0.4563801276553407,
+        "cargo_container.n.01": 0.49637967395299726,
+        "box.n.01": 0.541143645492116,
+        "cargo_door.n.01": 0.5459145038860966,
+        "bin.n.01": 0.5476702433097662
+    },
+    "synset": "cargo_container.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/c0086472002f4164ad45991d7eefc415",
+        "creator_username": "MRowa",
+        "creator_display_name": "MRowa",
+        "creator_profile_url": "https://sketchfab.com/MRowa"
+    },
+    "filename": "std_c0086472002f4164ad45991d7eefc415.glb",
+    "length": 2.6995164155960083,
+    "width": 2.781402587890625
+}

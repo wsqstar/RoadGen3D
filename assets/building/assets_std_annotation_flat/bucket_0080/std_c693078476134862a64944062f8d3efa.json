@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a modern electric locomotive with a streamlined rectangular body, painted primarily in blue and white with a dynamic wave pattern along the sides. The roof is equipped with various electrical components, including a pantograph for overhead power collection, insulators, and rooftop conduits. The sides feature large, ribbed blue panels and several access hatches, while the undercarriage is detailed with visible wheels, suspension, and rail equipment. The front and rear ends are flat, with the front displaying a prominent windshield, headlights, and a coupling mechanism. There are no visible passenger windows, indicating this is a locomotive rather than a passenger car. The overall design is robust, functional, and typical of urban or intercity electric trains.",
+    "description": "A blue and white electric locomotive with a streamlined body, rooftop pantograph, and detailed undercarriage, designed for urban or intercity rail use.",
+    "description_view_0": "End-on view showing the flat rear of the locomotive, rooftop electrical equipment, and blue end panel.",
+    "description_view_1": "Side view highlighting the long blue and white body, ribbed panels, rooftop pantograph, and detailed undercarriage.",
+    "description_view_2": "Front view displaying the windshield, headlights, coupling mechanism, and rooftop electrical components.",
+    "description_view_3": "Opposite side view similar to view 1, showing the blue and white body, ribbed panels, and pantograph in a raised position.",
+    "category": "train",
+    "height": 4.2,
+    "max_dimension": 19.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 85000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 9,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "pantograph",
+        "headlight",
+        "coupling",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "white",
+        "gray",
+        "black",
+        "red",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.45,
+        0.35,
+        0.1,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_train_type": "electric locomotive",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end",
+    "attribute_window_arrangement": "no visible windows",
+    "uid": "c693078476134862a64944062f8d3efa",
+    "near_synsets": {
+        "train.n.01": 0.43459716796508013,
+        "electric_locomotive.n.01": 0.4489029176033765,
+        "locomotive.n.01": 0.46749816607748185,
+        "steam_locomotive.n.01": 0.47018400269174443,
+        "train_set.n.01": 0.49033471462424166,
+        "train.n.05": -1000.0,
+        "caravan.n.01": -1000.0,
+        "train.n.04": -1000.0,
+        "string.n.04": -1000.0,
+        "gearing.n.01": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c693078476134862a64944062f8d3efa",
+        "creator_username": "DotBow",
+        "creator_display_name": "DotBow",
+        "creator_profile_url": "https://sketchfab.com/DotBow"
+    },
+    "filename": "std_c693078476134862a64944062f8d3efa.glb",
+    "length": 10.84276008605957,
+    "width": 2.2973105907440186
+}

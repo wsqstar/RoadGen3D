@@ -1,0 +1,103 @@
+{
+    "description_long": "This object is a large, ancient-style torsion-powered ballista constructed primarily from wood, featuring a long central frame with a robust crossbeam at the front. The weapon is equipped with a thick, tensioned bowstring attached to two curved arms, which are reinforced with dark bands, likely for structural integrity. At the front, a long, pointed bolt or spear is loaded, ready to be launched. The rear section includes a sturdy base with angled supports, allowing the device to remain stable during operation. The overall design is utilitarian, with exposed mechanical components such as winding gears and tension ropes visible. The finish is a natural wood tone, with no visible paint, markings, or modern embellishments.",
+    "description": "A large, wooden torsion-powered ballista with reinforced arms, a loaded spear, and a sturdy support base. The design is utilitarian and unpainted, with visible mechanical components.",
+    "description_view_0": "Side view showing the long wooden frame, tensioned bowstring, and a loaded spear projecting from the front.",
+    "description_view_1": "Front view highlighting the wide crossbeam, reinforced arms, and the pointed spear tip centered between the arms.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the frame, bowstring, and loaded spear from the other side.",
+    "description_view_3": "Rear view displaying the support base, winding mechanism, and the back of the crossbeam and arms.",
+    "category": "combat tactical  vehicle",
+    "height": 1.2,
+    "max_dimension": 3.0,
+    "materials": [
+        "wood",
+        "metal",
+        "rope",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pushable",
+        "pullable",
+        "loadable",
+        "fireable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bowstring",
+        "winding mechanism",
+        "arms",
+        "spear/bolt",
+        "base supports"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large central bolt launcher at the front, integrated into the main frame.",
+    "attribute_armor_plating": "none visible",
+    "attribute_camouflage_pattern": "none visible",
+    "attribute_military_markings": "none visible",
+    "attribute_tire_type": "not applicable",
+    "uid": "bc26c143a6814872ba2b4b8555140204",
+    "near_synsets": {
+        "ballista.n.01": 0.5397270355687314,
+        "military_vehicle.n.01": 0.5405973747709477,
+        "artillery.n.01": 0.5537885858114202,
+        "cannon.n.02": 0.5553696532254938,
+        "assault_gun.n.02": 0.5564887940649743,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "ballista.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bc26c143a6814872ba2b4b8555140204",
+        "creator_username": "tornear",
+        "creator_display_name": "tornear",
+        "creator_profile_url": "https://sketchfab.com/tornear"
+    },
+    "filename": "std_bc26c143a6814872ba2b4b8555140204.glb",
+    "length": 3.689453363418579,
+    "width": 2.70703125
+}

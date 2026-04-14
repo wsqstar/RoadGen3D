@@ -1,0 +1,99 @@
+{
+    "description_long": "This humanoid robot features a rounded, helmet-like head with a glossy black faceplate and two small antennae protruding from the sides. Its torso is robust and slightly barrel-shaped, with articulated shoulders connecting to mechanical arms that end in cylindrical forearms and hands. The robot's hips are wide and mechanical, supporting two segmented legs with visible joints and reinforced feet designed for stability. The arms and legs display a mix of metallic and plastic-like materials, with some areas appearing reinforced for durability. The overall color scheme is a combination of light gray, dark gray, and black, giving it a modern, industrial look. The robot's design suggests functionality for urban environments, with articulated limbs and a sturdy build.",
+    "description": "A sturdy, modern humanoid robot with a rounded head, articulated limbs, and a sleek gray and black color scheme. Its design features mechanical joints and reinforced feet, suitable for urban environments.",
+    "description_view_0": "Front view shows the robot's faceplate, antennae, broad chest, and symmetrical arms and legs.",
+    "description_view_1": "Left-side view highlights the robot's head profile, arm articulation, and the layered structure of the leg.",
+    "description_view_2": "Rear view reveals the back of the head, shoulders, and the mechanical structure of the hips and legs.",
+    "description_view_3": "Right-side view displays the head's curvature, arm, and leg articulation, mirroring the left side.",
+    "category": "humanoid robot",
+    "height": 1.6,
+    "max_dimension": 0.7,
+    "materials": [
+        "plastic",
+        "aluminum",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "faceplate",
+        "arms",
+        "hands",
+        "legs",
+        "feet",
+        "antennae"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "dark gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms relaxed at the sides and legs slightly apart, head facing forward.",
+    "attribute_clothing_style": "No visible clothing; the robot is covered in integrated panels and mechanical components with a sleek, industrial finish.",
+    "attribute_facial_features": "The face consists of a smooth, glossy black faceplate with no visible eyes, mouth, or nose; two small antennae are present on the sides of the head.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints at the shoulders, elbows, hips, knees, and ankles, allowing for a wide range of motion; limbs appear rigid but highly articulated.",
+    "attribute_presence_of_sensors": "None visible",
+    "uid": "d6c7edc2f7874b56853caf8712029714",
+    "near_synsets": {
+        "android.n.01": 0.5289647665505307,
+        "cyborg.n.01": 0.5461103785795715,
+        "robotics_equipment.n.01": 0.5630797954221731,
+        "automaton.n.02": 0.5655959839503822,
+        "robotics.n.01": 0.5747544825606035
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d6c7edc2f7874b56853caf8712029714",
+        "creator_username": "cyberworldhackathon",
+        "creator_display_name": "CyberWorld",
+        "creator_profile_url": "https://sketchfab.com/cyberworldhackathon"
+    },
+    "filename": "std_d6c7edc2f7874b56853caf8712029714.glb",
+    "length": 0.43288610875606537,
+    "width": 0.7978550791740417
+}

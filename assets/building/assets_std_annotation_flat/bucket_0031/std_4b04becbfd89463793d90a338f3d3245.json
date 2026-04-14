@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a long, narrow wooden ship with a single central mast supporting a large, rectangular sail that is mostly white with a bold black section. The hull is constructed from closely spaced wooden planks, with a shallow draft and slightly upturned bow and stern, giving it a classic ancient or Viking longship appearance. The deck is open and features a series of evenly spaced thwarts (crosswise seats or supports), with no visible cabins or superstructure above the main deck. Rigging lines extend from the mast to the bow, stern, and sides, providing structural support for the sail and mast. The ship appears to be designed for both rowing and sailing, as suggested by the open deck and the absence of a covered area. There are no visible modern features such as engines, electronics, or metal fittings, emphasizing its historical or traditional construction.",
+    "description": "A long, narrow wooden ship with a single mast and a large, mostly white sail, featuring an open deck and traditional construction details.",
+    "description_view_0": "Side view showing the full length of the ship, the single mast, and the distinctive black-and-white sail.",
+    "description_view_1": "Front view highlighting the pointed bow, the width of the hull, and the full expanse of the sail.",
+    "description_view_2": "Opposite side view similar to view 0, with the sail's black section more visible and the stern's curve apparent.",
+    "description_view_3": "Rear view showing the stern's shape, the open deck, and the symmetrical rigging supporting the mast and sail.",
+    "category": "ship",
+    "height": 10.0,
+    "max_dimension": 25.0,
+    "materials": [
+        "wood",
+        "fabric",
+        "rope",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sail",
+        "mast",
+        "rigging",
+        "thwarts"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is long, narrow, and shallow with a displacement type design, featuring a pointed bow and stern that curve upward. The hull is constructed from wooden planks with visible ribs and thwarts, and there is no visible keel or bulbous bow. The open deck runs the full length of the ship.",
+    "attribute_superstructure_layout": "There is no superstructure; the ship has a single open deck with evenly spaced thwarts and a central mast. No cabins, bridges, or towers are present.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [],
+    "attribute_registration_markings": "none",
+    "uid": "4b04becbfd89463793d90a338f3d3245",
+    "near_synsets": {
+        "sailboat.n.01": 0.45492176460563705,
+        "sailing_vessel.n.01": 0.46639700947086626,
+        "sail.n.03": 0.46719470724588347,
+        "windjammer.n.01": 0.47428605423231734,
+        "catboat.n.01": 0.4751567959290682,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4b04becbfd89463793d90a338f3d3245",
+        "creator_username": "VirtualArch",
+        "creator_display_name": "VirtualArch",
+        "creator_profile_url": "https://sketchfab.com/VirtualArch"
+    },
+    "filename": "std_4b04becbfd89463793d90a338f3d3245.glb",
+    "length": 12.089920043945312,
+    "width": 7.328328609466553
+}

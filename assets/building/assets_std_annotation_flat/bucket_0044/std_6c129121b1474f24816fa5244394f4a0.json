@@ -1,0 +1,96 @@
+{
+    "description_long": "This bus shelter features a modern, minimalist design with a flat, overhanging roof supported by three vertical columns at the front. The shelter is primarily constructed from transparent glass panels on the sides and back, providing visibility and some protection from the elements. The roof and supporting frame appear to be made of metal, likely steel or aluminum, with a smooth, matte finish. The interior includes a simple bench for seating, integrated into the back wall. There are no visible advertisement panels or signage, and the shelter is partially enclosed, leaving the front open for easy access. The overall color scheme is dominated by shades of gray and clear glass, giving it a sleek, contemporary appearance.",
+    "description": "A modern bus shelter with a flat metal roof, glass side and back panels, and a built-in bench. The structure is sleek, partially enclosed, and primarily gray with transparent elements.",
+    "description_view_0": "Front view showing the open entry, three supporting columns, and clear glass panels on the sides and back.",
+    "description_view_1": "Side view highlighting the depth of the shelter, the flat roof's overhang, and the transparent side panel.",
+    "description_view_2": "Rear view displaying the full glass back panel, supporting frame, and the bench inside.",
+    "description_view_3": "Opposite side view showing the other glass side panel and the roof's extension.",
+    "category": "bus shelter",
+    "height": 2.3,
+    "max_dimension": 3.2,
+    "materials": [
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "mass": 480,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "shelter"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.6,
+        0.4
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "matte",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "flat metal",
+    "attribute_seating_presence": true,
+    "attribute_advertisement_panel": false,
+    "attribute_shelter_enclosure_level": "partially enclosed",
+    "attribute_signage": [],
+    "uid": "6c129121b1474f24816fa5244394f4a0",
+    "near_synsets": {
+        "shelter.n.02": 0.5476160148416686,
+        "shelter.n.01": 0.5580367743500783,
+        "bus_stop.n.01": 0.574079303837473,
+        "berlin.n.03": 0.5795637656883724,
+        "gazebo.n.01": 0.5800736470544102,
+        "busbar.n.01": -1000.0,
+        "bus.n.04": -1000.0,
+        "tax_shelter.n.01": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "protection.n.04": -1000.0,
+        "bus.n.01": -1000.0,
+        "shelter.n.05": -1000.0
+    },
+    "synset": "shelter.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6c129121b1474f24816fa5244394f4a0",
+        "creator_username": "Islide",
+        "creator_display_name": "Islide",
+        "creator_profile_url": "https://sketchfab.com/Islide"
+    },
+    "filename": "std_6c129121b1474f24816fa5244394f4a0.glb",
+    "length": 1.901496171951294,
+    "width": 3.5503063201904297
+}

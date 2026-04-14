@@ -1,0 +1,105 @@
+{
+    "description_long": "This ferry is a large, flat-decked vessel with a robust steel hull and superstructure, designed for transporting vehicles and passengers across bodies of water. The main deck is expansive and open, bordered by safety railings, and features two prominent ramps at either end for vehicle loading and unloading. The superstructure, located centrally and towards the sides, is clad in a reddish-brown material and houses operational and passenger facilities, with a crane visible on one side for cargo handling. The ferry's deck is mostly unobstructed, allowing for efficient vehicle movement, while the upper structures are compact and functional. There are no large panoramic windows, but multiple entry points for vehicles and passengers are evident. The vessel sits on a black base, simulating its position in water, and lacks a prominent smokestack.",
+    "description": "A large, flat-decked ferry with vehicle ramps at both ends, reddish-brown superstructure, and safety railings, designed for transporting vehicles and passengers.",
+    "description_view_0": "Side view showing the full length of the ferry, the open deck, reddish-brown superstructure, and a crane on the right.",
+    "description_view_1": "End view highlighting the vehicle loading ramp, safety railings, and the compact superstructure at the far end.",
+    "description_view_2": "Opposite side view displaying the length of the ferry, the open deck, and the superstructure with visible entry points.",
+    "description_view_3": "End view from the opposite ramp, showing the open vehicle deck, safety railings, and the superstructure in the background.",
+    "category": "ferry",
+    "height": 7.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "wood",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.04,
+        0.03,
+        0.03,
+        0.01,
+        0.04
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1800000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "loadable",
+        "unloadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "vehicle ramp",
+        "crane",
+        "door",
+        "railing"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "vehicle"
+    ],
+    "colors": [
+        "white",
+        "black",
+        "red-brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_passenger_decks": 0,
+    "attribute_vehicle_loading_ramps": true,
+    "attribute_large_windows": false,
+    "attribute_multiple_entry_points": true,
+    "attribute_prominent_smokestack": false,
+    "uid": "abb0a184f5014f3a9426ec4bfa2ee25a",
+    "near_synsets": {
+        "car-ferry.n.01": 0.45218527237281136,
+        "ferry.n.01": 0.4537387681322959,
+        "ferry.n.02": 0.48511342635523763,
+        "ferryman.n.01": 0.5246444828826015,
+        "roll-on_roll-off.n.01": 0.5327590638199846
+    },
+    "synset": "ferryman.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/abb0a184f5014f3a9426ec4bfa2ee25a",
+        "creator_username": "maxged",
+        "creator_display_name": "maxged",
+        "creator_profile_url": "https://sketchfab.com/maxged"
+    },
+    "filename": "std_abb0a184f5014f3a9426ec4bfa2ee25a.glb",
+    "length": 30.06519603729248,
+    "width": 8.309307098388672
+}

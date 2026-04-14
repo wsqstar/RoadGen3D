@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a large, classic sailing ship with a wooden hull and three tall masts, each rigged with multiple square sails. The hull is elongated and features a raised stern with decorative elements, as well as a pointed bow. The deck is equipped with visible rigging, ropes, and what appear to be small hatches or portholes along the sides. The ship's superstructure is minimal, with no enclosed bridge or cabins visible, emphasizing its open-deck design typical of historical sailing vessels. The color palette consists mainly of rich brown wood tones, accented by white and gray sails, and some metallic or painted details. The overall design suggests a vessel built for long voyages, with ample space on deck for crew movement and cargo.",
+    "description": "A large, wooden sailing ship with three masts and multiple square sails, featuring a detailed hull and open deck. The vessel is richly colored in brown with white-gray sails and minimal superstructure.",
+    "description_view_0": "Front view showing the pointed bow, symmetrical sail arrangement, and the ship's narrow profile.",
+    "description_view_1": "Side view highlighting the length of the hull, three masts with rigging, and visible deck details.",
+    "description_view_2": "Rear view displaying the raised stern, decorative elements, and the full width of the ship's hull.",
+    "description_view_3": "Opposite side view showing similar features to view 1, with additional visibility of the stern and flag detail.",
+    "category": "ship",
+    "height": 25,
+    "max_dimension": 60,
+    "materials": [
+        "wood",
+        "canvas",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 350000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "steerable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "hatch",
+        "sail",
+        "rigging",
+        "anchor"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "white",
+        "gray",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 10,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a classic displacement type with a long, narrow profile, a pointed bow, and a raised, ornate stern. The sides are smooth with visible portholes and decorative stern features, and there is no visible keel or bulbous bow from these views.",
+    "attribute_superstructure_layout": "The superstructure is minimal, with an open deck and no enclosed bridge or cabins visible. The deck is flat with raised areas at the bow and stern, and the masts are evenly spaced along the length of the ship.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "anchor",
+        "rigging",
+        "hatch",
+        "flag"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "b62e67c3aec24f1f9ada546111df0d9f",
+    "near_synsets": {
+        "bark.n.03": 0.45512415483762786,
+        "sailing_vessel.n.01": 0.4567202801130943,
+        "galleon.n.01": 0.46784623382832907,
+        "sailboat.n.01": 0.47915370823430486,
+        "sail.n.03": 0.49300455326268794,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b62e67c3aec24f1f9ada546111df0d9f",
+        "creator_username": "Lisov1k",
+        "creator_display_name": "Lisov1k",
+        "creator_profile_url": "https://sketchfab.com/Lisov1k"
+    },
+    "filename": "std_b62e67c3aec24f1f9ada546111df0d9f.glb",
+    "length": 42.995466232299805,
+    "width": 10.045353412628174
+}

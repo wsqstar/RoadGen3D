@@ -1,0 +1,90 @@
+{
+    "description_long": "This lantern features a cubic structure with a pixelated, blocky design reminiscent of styles found in voxel-based games. The exterior is composed of alternating dark and light brown squares, forming a symmetrical pattern on each face, with a central motif that appears to represent a glowing light source. The lantern's surface is segmented into small, raised squares, giving it a textured, almost mosaic-like appearance. The top and sides are bordered by a darker frame, which visually reinforces the lantern's geometric form. The central area of each face is lighter, suggesting the presence of an illuminated core, while the corners and edges are darker, simulating a protective casing. The overall design is utilitarian yet decorative, suitable for urban environments such as parks, sidewalks, or plazas.",
+    "description": "A cubic, pixelated lantern with a glowing central motif and a dark, blocky frame, featuring a textured, mosaic-like surface.",
+    "description_view_0": "Front view shows the symmetrical, pixelated pattern with a bright central area and dark borders.",
+    "description_view_1": "This side view is nearly identical to the front, highlighting the repeating motif and blocky texture.",
+    "description_view_2": "Another rotated view, maintaining the same central glow and dark frame, with no significant visual differences.",
+    "description_view_3": "Final view, again showing the consistent pattern and structure, emphasizing the lantern's uniform design.",
+    "category": "lantern",
+    "height": 0.5,
+    "max_dimension": 0.5,
+    "materials": [
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "mass": 8,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "illuminable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "light panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark brown",
+        "light brown",
+        "beige",
+        "white"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "single",
+    "attribute_mounting_type": "post-mounted",
+    "attribute_light_source_type": "LED",
+    "attribute_decorative_elements": [],
+    "attribute_number_of_bulbs": 1,
+    "attribute_glass_enclosure_style": "clear panels",
+    "uid": "b8034a7099584601b6922166d461585c",
+    "near_synsets": {
+        "lantern.n.01": 0.47884384317675854,
+        "dark_lantern.n.01": 0.5288427690565835,
+        "lamplight.n.01": 0.539191914596832,
+        "chinese_lantern.n.01": 0.5438419442868874,
+        "magic_lantern.n.01": 0.5446047958070411
+    },
+    "synset": "magic_lantern.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b8034a7099584601b6922166d461585c",
+        "creator_username": "mareoncz",
+        "creator_display_name": "Mareon",
+        "creator_profile_url": "https://sketchfab.com/mareoncz"
+    },
+    "filename": "std_b8034a7099584601b6922166d461585c.glb",
+    "length": 0.5000000596046448,
+    "width": 0.5
+}

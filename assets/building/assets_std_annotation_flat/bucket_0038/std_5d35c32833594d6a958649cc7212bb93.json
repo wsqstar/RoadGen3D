@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a large, rectangular industrial storage tank with corrugated metal siding and a prominent blue horizontal stripe running around its midsection. The top of the tank is flat and surrounded by a metal safety railing, with a large cylindrical exhaust or ventilation pipe assembly mounted on the roof, including a vertical stack and several bends. Multiple pipes and conduits are attached to the sides and rear, some of which appear to be for fluid transfer or ventilation. The structure is elevated slightly above the ground on short supports, and there are several access points and hatches visible, as well as a warning sign near the rear. The overall construction suggests robust, heavy-duty use, likely for storing liquids or gases in an urban or industrial environment.",
+    "description": "A large, rectangular metal storage tank with a blue stripe, rooftop piping, and safety railings, designed for industrial or urban use.",
+    "description_view_0": "Side view showing the corrugated metal siding, blue stripe, rooftop railing, and a large vertical pipe with a cap.",
+    "description_view_1": "End view highlighting the width, the blue stripe, and the full length of the rooftop pipe assembly.",
+    "description_view_2": "Opposite side view similar to view 0, with visible piping and the blue stripe, but the rooftop pipe bends are more prominent.",
+    "description_view_3": "Rear view showing multiple access hatches, vertical pipes, and a warning sign, with the rooftop pipe assembly visible from behind.",
+    "category": "storage tank",
+    "height": 3.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.02,
+        0.08
+    ],
+    "mass": 9000,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "connectable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "pipe",
+        "valve",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [
+        "inlet pipe",
+        "outlet pipe",
+        "ventilation pipe"
+    ],
+    "attribute_warning_signage": true,
+    "attribute_architectural_style": "rectangular horizontal",
+    "uid": "5d35c32833594d6a958649cc7212bb93",
+    "near_synsets": {
+        "tank.n.02": 0.46690355446615583,
+        "tank_farm.n.01": 0.5064167836681833,
+        "reservoir.n.03": 0.5184973532126939,
+        "gas_tank.n.01": 0.5348786411435937,
+        "water_tower.n.01": 0.5383091706889175,
+        "storage.n.04": -1000.0,
+        "tank.n.03": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "tank.n.01": -1000.0,
+        "cooler.n.03": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "storage.n.01": -1000.0,
+        "memory.n.04": -1000.0,
+        "repositing.n.01": -1000.0,
+        "storage.n.03": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5d35c32833594d6a958649cc7212bb93",
+        "creator_username": "vrcityphoto",
+        "creator_display_name": "Nikitos & 3130",
+        "creator_profile_url": "https://sketchfab.com/vrcityphoto"
+    },
+    "filename": "std_5d35c32833594d6a958649cc7212bb93.glb",
+    "length": 3.771212577819824,
+    "width": 1.755615234375
+}

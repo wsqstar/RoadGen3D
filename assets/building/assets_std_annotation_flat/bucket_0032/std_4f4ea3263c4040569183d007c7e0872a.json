@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a cylindrical, black grenade-like bomb with a robust, industrial design. The body is segmented with three prominent horizontal ridges and a yellow band near the base, suggesting a reinforced casing. The top features a rectangular activation mechanism with a metallic pull ring and a visible yellow button or indicator, likely for arming or detonation. The surface appears to be made of matte, slightly rough metal, giving it a utilitarian and durable appearance. The bottom is flat and slightly wider, possibly for stability when placed upright. There are no visible labels or wiring, and the overall design is compact and portable, suitable for manual deployment in urban environments.",
+    "description": "A compact, black cylindrical bomb with a segmented metal body, yellow band near the base, and a pull-ring activation mechanism on top.",
+    "description_view_0": "Front view shows the pull ring and yellow indicator on the activation mechanism, with the yellow band at the base clearly visible.",
+    "description_view_1": "Slightly rotated, the pull ring is less prominent, but the yellow band and the segmented body are still visible.",
+    "description_view_2": "Side view highlights the cylindrical shape and the three horizontal ridges, with the pull ring and activation mechanism seen from an angle.",
+    "description_view_3": "Opposite side view, the pull ring is now on the left, and the yellow band and ridges remain visible.",
+    "category": "bomb",
+    "height": 0.22,
+    "max_dimension": 0.08,
+    "materials": [
+        "steel",
+        "plastic",
+        "explosive_compound",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.1,
+        0.25,
+        0.05
+    ],
+    "mass": 0.7,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 7,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pull ring",
+        "activation button"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "yellow",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation appears to be initiated by pulling the metal ring and possibly pressing the yellow button on the activation mechanism at the top.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "4f4ea3263c4040569183d007c7e0872a",
+    "near_synsets": {
+        "pipe_bomb.n.01": 0.5129910220184185,
+        "bomb.n.01": 0.5157655320340438,
+        "plastic_bomb.n.01": 0.5402837892429639,
+        "briefcase_bomb.n.01": 0.5420653866352068,
+        "time_bomb.n.02": 0.5432681135880586,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4f4ea3263c4040569183d007c7e0872a",
+        "creator_username": "jayspm",
+        "creator_display_name": "supamas",
+        "creator_profile_url": "https://sketchfab.com/jayspm"
+    },
+    "filename": "std_4f4ea3263c4040569183d007c7e0872a.glb",
+    "length": 0.14438346773386002,
+    "width": 0.1449613869190216
+}

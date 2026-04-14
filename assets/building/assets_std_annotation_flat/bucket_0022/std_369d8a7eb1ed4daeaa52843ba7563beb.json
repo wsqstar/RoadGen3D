@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a tracked military combat vehicle with a low, angular profile and a robust, armored exterior. The hull is painted in a dark olive green, with a flat, sloped front and a boxy rear section. The vehicle features a small, circular hatch and a raised dome on the top, likely for crew access or observation, and several rectangular panels and hatches along the upper surface. The sides are equipped with large, continuous track systems supported by multiple road wheels, providing enhanced mobility over rough terrain. There are no visible weapon mounts or armaments on the exterior, and the vehicle appears to be designed for transport or support roles. The overall construction suggests heavy steel armor plating for protection, with minimal external markings or decorative elements.",
+    "description": "A dark olive green tracked military vehicle with a low, armored hull and multiple hatches, designed for tactical combat support. It features robust steel tracks and a flat, angular body with minimal external details.",
+    "description_view_0": "Front view shows the sloped armored front, central hatch, and the beginning of the track system on both sides.",
+    "description_view_1": "Left side view highlights the full length of the track system, multiple road wheels, and the flat, featureless side armor.",
+    "description_view_2": "Rear view displays the boxy back with two large access panels and the end of the track system.",
+    "description_view_3": "Right side view mirrors the left, showing the track system, side armor, and the raised dome on the top.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air",
+        "plastic"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.03,
+        0.01
+    ],
+    "mass": 13000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "track",
+        "wheel",
+        "door",
+        "panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "none visible",
+    "attribute_armor_plating": "Full body steel armor plating with sloped front and flat side panels; thickness appears substantial, with no visible modular or reactive elements.",
+    "attribute_camouflage_pattern": "solid dark olive green color, no visible camouflage pattern",
+    "attribute_military_markings": "none visible",
+    "attribute_tire_type": "not applicable",
+    "uid": "369d8a7eb1ed4daeaa52843ba7563beb",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.5173166490696857,
+        "tank.n.01": 0.5399203585865204,
+        "weapons_carrier.n.01": 0.5460617821493908,
+        "reconnaissance_vehicle.n.01": 0.5512386264820431,
+        "half_track.n.01": 0.5549086253236449,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/369d8a7eb1ed4daeaa52843ba7563beb",
+        "creator_username": "citizensnip",
+        "creator_display_name": "Tim Samedov",
+        "creator_profile_url": "https://sketchfab.com/citizensnip"
+    },
+    "filename": "std_369d8a7eb1ed4daeaa52843ba7563beb.glb",
+    "length": 7.761059284210205,
+    "width": 3.4996410608291626
+}

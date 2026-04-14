@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a modern main battle tank with a low-profile, angular turret and a long, smoothbore main cannon extending from the front. The hull is broad and flat, with sloped armor panels and reinforced side skirts, providing substantial protection. The turret features multiple hatches, periscopes, and what appears to be a secondary machine gun mount on top. The vehicle is painted in a solid matte green color, typical of military vehicles, and has no visible camouflage pattern or military insignia. The tank is equipped with wide tracks for mobility, and the rear engine deck is covered with grilles for ventilation. No visible tires are present, as the vehicle relies on continuous tracks for movement.",
+    "description": "A heavily armored, matte green main battle tank with a long cannon, angular turret, and wide tracks, designed for urban and combat environments.",
+    "description_view_0": "Side view showing the long main cannon, sloped armor, and wide tracks.",
+    "description_view_1": "Front view highlighting the angular turret, cannon barrel, and reinforced frontal armor.",
+    "description_view_2": "Opposite side view with visible side skirts, cannon, and turret details.",
+    "description_view_3": "Rear view displaying the engine deck grilles, rear armor, and turret hatches.",
+    "category": "combat tactical  vehicle",
+    "height": 2.4,
+    "max_dimension": 9.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 48000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "machine gun mount",
+        "periscope",
+        "track",
+        "engine grille"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the turret front, one secondary machine gun mount on the turret roof.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating on the hull and turret; reinforced side skirts and modular panels visible.",
+    "attribute_camouflage_pattern": "Solid matte green color, no visible camouflage pattern.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "not applicable",
+    "uid": "d8e7945247084d329bb5b329e139b114",
+    "near_synsets": {
+        "tank.n.01": 0.45614602816394234,
+        "assault_gun.n.02": 0.4931514665964005,
+        "military_vehicle.n.01": 0.49561770865333055,
+        "armored_car.n.02": 0.5098558367865249,
+        "armored_vehicle.n.01": 0.5199390597671133,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d8e7945247084d329bb5b329e139b114",
+        "creator_username": "JohnSmithSketchfab",
+        "creator_display_name": "JohnSmithSketchfab",
+        "creator_profile_url": "https://sketchfab.com/JohnSmithSketchfab"
+    },
+    "filename": "std_d8e7945247084d329bb5b329e139b114.glb",
+    "length": 5.322904586791992,
+    "width": 2.1829681396484375
+}

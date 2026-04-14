@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a standard metal shopping cart commonly found in supermarkets and urban retail environments. The cart features a large wire basket with a rectangular shape, constructed from a grid of sturdy metal rods, and a lower shelf for additional storage. It is supported by four wheels, with the front two being swivel casters for easy maneuverability and the rear two fixed for stability. The handlebar is straight, coated in green plastic for grip and comfort, and includes a green panel with a circular design, possibly for branding or instructions. The cart's frame and basket are primarily metallic gray, with green accents on the handle and wheel mounts. The open wire design allows visibility and airflow, while the overall build is robust and functional for carrying groceries or other items.",
+    "description": "A metallic shopping cart with a wire basket, green plastic handle, and four wheels, designed for carrying items in urban retail settings. The cart features a robust metal frame with green accents and a spacious open basket.",
+    "description_view_0": "Front-right view showing the green handlebar, wire basket, and all four wheels, with the front basket panel and lower shelf visible.",
+    "description_view_1": "Side view highlighting the length of the basket, the straight handlebar, and the alignment of the wheels and frame.",
+    "description_view_2": "Rear-left view focusing on the handlebar's green grip, the back of the basket, and the rear wheel configuration.",
+    "description_view_3": "Front-left view displaying the basket's depth, the green handle, and the front wheel assembly.",
+    "category": "shopping cart",
+    "height": 1.05,
+    "max_dimension": 1.15,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 25,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "basket",
+        "wheel",
+        "lower shelf"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_wire_basket_pattern": "Rectangular grid pattern with evenly spaced horizontal and vertical steel rods, medium density, straight lines, and moderate wire thickness.",
+    "attribute_handlebar_design": "Straight steel handlebar with green plastic coating for grip, rounded ends, and a central green panel with a circular design; ergonomic and easy to grasp.",
+    "attribute_wheel_configuration": "Four wheels, two front swivel casters and two fixed rear wheels, medium size, spaced at the corners for stability, with green mounts and no visible locking mechanism.",
+    "attribute_child_seat_presence": "absent",
+    "attribute_store_branding": "Green color accents on handlebar and wheel mounts, with a green panel on the handlebar featuring a circular design; no explicit store logo or name visible.",
+    "uid": "d01658d342d943329c1db78de4fa71fa",
+    "near_synsets": {
+        "shopping_cart.n.01": 0.4489349716566554,
+        "shopping_basket.n.01": 0.4763385450192597,
+        "shopping_bag.n.01": 0.5157294746625983,
+        "cart.n.01": 0.5264680992394456,
+        "serving_cart.n.01": 0.5377787096544451,
+        "handcart.n.01": -1000.0
+    },
+    "synset": "shopping_cart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/d01658d342d943329c1db78de4fa71fa",
+        "creator_username": "pamoan10",
+        "creator_display_name": "pamoan10",
+        "creator_profile_url": "https://sketchfab.com/pamoan10"
+    },
+    "filename": "std_d01658d342d943329c1db78de4fa71fa.glb",
+    "length": 1.2792463898658752,
+    "width": 1.3216167092323303
+}

@@ -1,0 +1,108 @@
+{
+    "description_long": "This object consists of two large, cylindrical metal storage tanks with conical roofs, positioned side by side on a rectangular concrete base. Between the tanks stands a tall, metal-framed tower with a small, roofed observation platform at the top, accessible by a series of metal stairs and ladders. The tanks are weathered, showing signs of rust, grime, and faded paint, with some yellow hazard markings and a large number '4' visible on one tank. Metal pipes connect the tops of the tanks to the central tower, suggesting a system for transferring or processing stored materials. The ground around the tanks is stained and littered with debris, indicating heavy industrial use. The overall structure is robust and utilitarian, typical of storage facilities found in industrial or urban infrastructure settings.",
+    "description": "A pair of large, weathered cylindrical metal storage tanks with conical roofs, connected by pipes to a central metal tower with stairs and an observation platform. The tanks sit on a concrete base and show signs of industrial use and aging.",
+    "description_view_0": "Front view showing the central tower, stairs, and the tops of both storage tanks with visible weathering.",
+    "description_view_1": "Side view revealing both tanks, the connecting pipes, the number '4' on the right tank, and more detail of the tower's structure.",
+    "description_view_2": "Rear view similar to the front, focusing on the back sides of the tanks and the tower's rear stair access.",
+    "description_view_3": "Opposite side view, again showing both tanks, the connecting pipes, and the tower, but with less visible signage.",
+    "category": "storage tank",
+    "height": 10.0,
+    "max_dimension": 15.0,
+    "materials": [
+        "steel",
+        "concrete",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 35000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "openable",
+        "connectable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "ladder",
+        "stairs",
+        "platform",
+        "pipes"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "group",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": true,
+    "attribute_valve_or_pipe_attachments": [
+        "inlet pipe"
+    ],
+    "attribute_warning_signage": true,
+    "attribute_architectural_style": "cylindrical vertical with conical roof",
+    "uid": "ef3e7aa9a5254faaa2a612afe0cd92b3",
+    "near_synsets": {
+        "tank.n.02": 0.5162386558148193,
+        "water_tower.n.01": 0.5171809248194545,
+        "tank_farm.n.01": 0.5207006907735097,
+        "reservoir.n.03": 0.5394542864886563,
+        "bunker.n.02": 0.5582963227648148,
+        "tank.n.01": -1000.0,
+        "storage.n.03": -1000.0,
+        "storage.n.01": -1000.0,
+        "memory.n.04": -1000.0,
+        "tank.n.03": -1000.0,
+        "cooler.n.03": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "storage.n.04": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "repositing.n.01": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ef3e7aa9a5254faaa2a612afe0cd92b3",
+        "creator_username": "nermin",
+        "creator_display_name": "nermin",
+        "creator_profile_url": "https://sketchfab.com/nermin"
+    },
+    "filename": "std_ef3e7aa9a5254faaa2a612afe0cd92b3.glb",
+    "length": 6.287699222564697,
+    "width": 14.527341842651367
+}

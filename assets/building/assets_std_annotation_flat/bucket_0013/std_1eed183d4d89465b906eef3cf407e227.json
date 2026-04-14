@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a large, modern ferry with a streamlined hull and multiple decks, designed for transporting passengers across water. The exterior features a predominantly white body with a red stripe along the waterline and black accents, as well as rows of large panoramic windows on both sides for scenic views. The upper deck is open and includes seating areas, lifeboats, and a series of black smokestacks running along the centerline. The bow is pointed and features a distinct bridge area, while the stern is squared off, likely accommodating boarding ramps or access points. The vessel is equipped with multiple entry points for efficient passenger flow and safety. The overall design suggests a focus on comfort, visibility, and efficient boarding for urban or intercity water transit.",
+    "description": "A large, white modern ferry with multiple decks, panoramic windows, and a series of black smokestacks. It features open upper decks, a pointed bow, and multiple entry points for passengers.",
+    "description_view_0": "Side view showing the full length of the ferry, with large panoramic windows, red waterline stripe, and a row of black smokestacks on the upper deck.",
+    "description_view_1": "Rear view highlighting the squared stern, visible entry points, and the arrangement of lifeboats and smokestacks along the deck.",
+    "description_view_2": "Opposite side view similar to view 0, showing the length, windows, and upper deck features, but from the other side.",
+    "description_view_3": "Front view displaying the pointed bow, bridge area, and the symmetry of the upper deck and smokestacks.",
+    "category": "ferry",
+    "height": 12,
+    "max_dimension": 110,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.07,
+        0.01,
+        0.05
+    ],
+    "mass": 350000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "lifeboat",
+        "smokestack",
+        "ramp"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "red",
+        "blue",
+        "beige"
+    ],
+    "colors_composition": [
+        0.65,
+        0.12,
+        0.08,
+        0.08,
+        0.07
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 15,
+    "asset_composition_type": "single",
+    "attribute_passenger_decks": 2,
+    "attribute_vehicle_loading_ramps": false,
+    "attribute_large_windows": true,
+    "attribute_multiple_entry_points": true,
+    "attribute_prominent_smokestack": true,
+    "uid": "1eed183d4d89465b906eef3cf407e227",
+    "near_synsets": {
+        "ferry.n.01": 0.5278659106953234,
+        "ferry.n.02": 0.5363583424146211,
+        "car-ferry.n.01": 0.5439626177791701,
+        "foredeck.n.01": 0.5524896761218329,
+        "boat_train.n.01": 0.5542380462052668
+    },
+    "synset": "car-ferry.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1eed183d4d89465b906eef3cf407e227",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_1eed183d4d89465b906eef3cf407e227.glb",
+    "length": 141.21328735351562,
+    "width": 20.01637077331543
+}

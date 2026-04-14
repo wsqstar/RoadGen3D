@@ -1,0 +1,120 @@
+{
+    "description_long": "This is a rectangular, enclosed football field featuring a vibrant green artificial turf with alternating light and dark stripes, clearly marked with white lines for the center circle, penalty areas, and goal boxes. The field is surrounded by a tall, transparent mesh fence supported by a black base, providing safety and containment for the play area. At each end, there are standard white goal posts with nets, and a scoreboard is mounted on one of the longer sides. The enclosure is open at the top, allowing natural light and air, while the mesh fencing ensures the ball remains within the play area. The field markings are crisp and regulation-style, and the overall design suggests a compact, urban-friendly sports facility. The structure is modern and functional, suitable for recreational or competitive play in a city environment.",
+    "description": "A modern, enclosed football field with artificial turf, white regulation markings, and transparent mesh fencing on all sides. Standard goals and a scoreboard are included, making it ideal for urban recreational use.",
+    "description_view_0": "Front view showing the full width of the field, both goals, and the transparent mesh fencing with the scoreboard visible on the far side.",
+    "description_view_1": "Side view highlighting one goal in the foreground, the center circle, and the mesh enclosure with the scoreboard visible on the right.",
+    "description_view_2": "Rear view displaying the opposite width of the field, both goals, and the scoreboard now in the foreground.",
+    "description_view_3": "Side view similar to view 1 but from the opposite end, showing the other goal in the foreground and the scoreboard on the left.",
+    "category": "football field",
+    "height": 4.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "artificial turf",
+        "metal",
+        "plastic",
+        "netting",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 25000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "playable",
+        "kickable",
+        "scoreable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "goal posts",
+        "net",
+        "scoreboard"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "green",
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 100,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.2,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_goal_posts": true,
+    "attribute_center_circle_marking": true,
+    "attribute_penalty_area_markings": true,
+    "attribute_corner_flags": false,
+    "attribute_architectural_style": "urban rooftop",
+    "uid": "aec62086bbb54aabade1cb4c83bb4042",
+    "near_synsets": {
+        "football_field.n.01": 0.4697781122758026,
+        "playing_field.n.02": 0.5019812783161542,
+        "field_game.n.01": 0.5152361269032755,
+        "football_stadium.n.01": 0.5198917616944648,
+        "american_football.n.01": 0.5281977094951439,
+        "field.n.10": -1000.0,
+        "field.n.12": -1000.0,
+        "field.n.13": -1000.0,
+        "discipline.n.01": -1000.0,
+        "airfield.n.01": -1000.0,
+        "field.n.03": -1000.0,
+        "plain.n.01": -1000.0,
+        "field.n.06": -1000.0,
+        "sphere.n.01": -1000.0,
+        "football.n.01": -1000.0,
+        "battlefield.n.01": -1000.0,
+        "field.n.11": -1000.0,
+        "field.n.05": -1000.0,
+        "field.n.15": -1000.0,
+        "field.n.01": -1000.0,
+        "football.n.02": -1000.0,
+        "field.n.14": -1000.0,
+        "field.n.16": -1000.0
+    },
+    "synset": "football_field.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/aec62086bbb54aabade1cb4c83bb4042",
+        "creator_username": "alplaleli",
+        "creator_display_name": "alplaleli",
+        "creator_profile_url": "https://sketchfab.com/alplaleli"
+    },
+    "filename": "std_aec62086bbb54aabade1cb4c83bb4042.glb",
+    "length": 15.410948753356934,
+    "width": 19.575904846191406
+}

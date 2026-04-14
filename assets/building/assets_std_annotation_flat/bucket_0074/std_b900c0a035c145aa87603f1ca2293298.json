@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a full-height turnstile composed of four adjacent, semi-cylindrical columns arranged in a row, each with a smooth, metallic finish and a contrasting color scheme of dark gray and orange. The tops of the columns are flat and feature small, circular access control indicators, some of which display accessibility symbols. Between the columns, transparent or semi-transparent barriers are visible, likely made of reinforced glass or polycarbonate, which swing or rotate to control pedestrian passage. The structure is robust and designed for high-traffic urban environments, such as subway stations, stadiums, or secure building entrances. The turnstile's design emphasizes both security and accessibility, with one wider lane for wheelchair access. The overall appearance is modern, functional, and built to withstand frequent use.",
+    "description": "A modern, full-height turnstile with four semi-cylindrical columns in dark gray and orange, featuring access control panels and transparent swing barriers. Designed for secure, high-traffic urban entry points.",
+    "description_view_0": "Front view showing the four semi-cylindrical columns with flat tops, access indicators, and the accessible lane clearly visible.",
+    "description_view_1": "Top-down view highlighting the arrangement of the columns, the flat orange tops, and the transparent barriers between each lane.",
+    "description_view_2": "Rear view displaying the back sides of the columns and the accessible lane, with the color contrast between orange and dark gray prominent.",
+    "description_view_3": "Top-down view from the opposite side, showing the alignment of the columns and the transparent barriers from a different angle.",
+    "category": "full-height turnstile",
+    "height": 2.1,
+    "max_dimension": 3.2,
+    "materials": [
+        "steel",
+        "polycarbonate",
+        "plastic",
+        "electronics",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "rotatable",
+        "pushable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "rotating arm",
+        "access control panel",
+        "barrier panel",
+        "indicator light"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "dark gray",
+        "orange",
+        "green",
+        "blue"
+    ],
+    "colors_composition": [
+        0.65,
+        0.3,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "group",
+    "attribute_number_of_rotating_arms": 4,
+    "attribute_arm_arrangement_pattern": "parallel linear array",
+    "attribute_presence_of_access_control_panel": true,
+    "attribute_mounting_type": "floor-mounted",
+    "attribute_top_enclosure_design": "flat metal cover with integrated indicator lights",
+    "uid": "b900c0a035c145aa87603f1ca2293298",
+    "near_synsets": {
+        "turnstile.n.01": 0.5261672794637872,
+        "lock-gate.n.01": 0.572166790415746,
+        "portcullis.n.01": 0.5759470055903579,
+        "gate.n.01": 0.5760243888376493,
+        "traffic_control.n.01": 0.5871557651356959
+    },
+    "synset": "turnstile.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b900c0a035c145aa87603f1ca2293298",
+        "creator_username": "s-burov",
+        "creator_display_name": "Sergey Burov",
+        "creator_profile_url": "https://sketchfab.com/s-burov"
+    },
+    "filename": "std_b900c0a035c145aa87603f1ca2293298.glb",
+    "length": 6.4007673263549805,
+    "width": 3.267019510269165
+}

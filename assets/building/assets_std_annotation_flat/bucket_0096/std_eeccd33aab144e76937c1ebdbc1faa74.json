@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a metallic subway train car with a streamlined, rectangular body and rounded edges. The exterior is primarily gray with subtle panel lines and detailing, giving it a modern, utilitarian appearance. There are several rectangular windows evenly spaced along both sides, allowing visibility into the passenger compartment. The train features double doors positioned at intervals along the sides, designed for efficient boarding and disembarking in urban environments. The undercarriage includes visible wheels and suspension components, typical of subway rolling stock. The ends of the car have detailed lights, couplers, and access panels, indicating functionality for connecting with other cars.",
+    "description": "A modern gray subway train car with evenly spaced windows and side doors, featuring detailed ends and a streamlined metallic body.",
+    "description_view_0": "Side view showing the full length of the train car, with evenly spaced windows and doors visible.",
+    "description_view_1": "End view displaying the front face of the train car, including headlights, access panels, and coupler details.",
+    "description_view_2": "Opposite side view, nearly identical to view 0, showing the same arrangement of windows and doors.",
+    "description_view_3": "Rear end view, mirroring view 1, with similar detailing on the end face and undercarriage.",
+    "category": "train",
+    "height": 3.6,
+    "max_dimension": 20.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 35000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "pressable",
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "headlight",
+        "coupler",
+        "button"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "silver",
+        "brown"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "subway",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "evenly spaced along both sides",
+    "attribute_window_arrangement": "spaced rectangular windows",
+    "uid": "eeccd33aab144e76937c1ebdbc1faa74",
+    "near_synsets": {
+        "subway_train.n.01": 0.4661843494707779,
+        "train.n.01": 0.5161002237549285,
+        "car_train.n.01": 0.5219342994601633,
+        "streamliner.n.01": 0.524868512230474,
+        "passenger_train.n.01": 0.526196250946984,
+        "caravan.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "train.n.05": -1000.0,
+        "gearing.n.01": -1000.0,
+        "train.n.04": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/eeccd33aab144e76937c1ebdbc1faa74",
+        "creator_username": "subink",
+        "creator_display_name": "Subin",
+        "creator_profile_url": "https://sketchfab.com/subink"
+    },
+    "filename": "std_eeccd33aab144e76937c1ebdbc1faa74.glb",
+    "length": 15.746644020080566,
+    "width": 2.7356438636779785
+}

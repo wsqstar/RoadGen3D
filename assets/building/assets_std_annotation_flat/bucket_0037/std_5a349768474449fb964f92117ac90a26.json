@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a blue-painted metal pumping station, typically used for water or utility management in urban environments. It features a horizontal cylindrical main body with two prominent vertical valve assemblies and several pipe connections extending from both ends. The structure is mounted on a concrete or paved base, suggesting it is designed for outdoor installation. The valves and pipe fittings are metallic, with some areas showing signs of wear or discoloration. The overall form is robust, with flanged joints and bolted connections visible at several points. The surface finish is mostly matte with some glossy patches where the paint is less weathered.",
+    "description": "A blue-painted metal pumping station with multiple valves and pipe connections, mounted on a concrete base. The structure is robust and designed for outdoor utility management.",
+    "description_view_0": "Side view showing the full length of the pumping station, with both main valves and pipe connections clearly visible.",
+    "description_view_1": "End-on view highlighting the alignment of the pipes and the vertical orientation of the valve assemblies.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the main body and pipework from the other side.",
+    "description_view_3": "End-on view from the opposite end, showing the pipe outlets and the tops of the valve assemblies.",
+    "category": "pumping station",
+    "height": 0.7,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "paint",
+        "rubber",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "valve handle",
+        "pipe flange",
+        "bolted joint"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_building_signage": "none",
+    "attribute_ventilation_grilles": "none",
+    "attribute_security_fencing": "none",
+    "attribute_access_hatches": "none",
+    "attribute_warning_lights": "none",
+    "uid": "5a349768474449fb964f92117ac90a26",
+    "near_synsets": {
+        "pump_house.n.01": 0.5373151012947975,
+        "water_tower.n.01": 0.5679159298959325,
+        "pump_well.n.01": 0.5805869722689607,
+        "groundwater_pump.n.01": 0.5829275419674788,
+        "gas_system.n.01": 0.5886041282736635,
+        "station.n.01": -1000.0,
+        "station.n.05": -1000.0,
+        "station.n.03": -1000.0,
+        "place.n.10": -1000.0,
+        "post.n.01": -1000.0
+    },
+    "synset": "pump_house.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/5a349768474449fb964f92117ac90a26",
+        "creator_username": "pepperjackplease",
+        "creator_display_name": "pepperjackplease",
+        "creator_profile_url": "https://sketchfab.com/pepperjackplease"
+    },
+    "filename": "std_5a349768474449fb964f92117ac90a26.glb",
+    "length": 0.5033376216888428,
+    "width": 2.2368409633636475
+}

@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a military-style rifle featuring a wooden fixed stock and a long, perforated metal barrel shroud. The receiver and barrel assembly are constructed from dark metal, with a detachable box magazine positioned below the action. A bipod is attached near the front of the barrel, providing stability for prone or supported firing positions. The rifle includes iron sights for aiming, and the muzzle is fitted with a flash hider. The overall design suggests a robust, utilitarian firearm suitable for urban or field deployment.",
+    "description": "A military-style rifle with a wooden fixed stock, long perforated barrel shroud, detachable box magazine, bipod, and iron sights.",
+    "description_view_0": "Front view showing the bipod extended, the muzzle with flash hider, and the magazine placed beside the rifle.",
+    "description_view_1": "Side profile highlighting the wooden stock, receiver, long barrel with perforated shroud, and the bipod extended forward.",
+    "description_view_2": "Direct muzzle view emphasizing the bipod's spread, barrel shroud, and the magazine lying nearby.",
+    "description_view_3": "Opposite side profile showing the wooden stock, receiver, barrel, and the magazine on the ground.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 5.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "deployable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "trigger",
+        "magazine",
+        "barrel",
+        "bipod",
+        "sight",
+        "muzzle device",
+        "charging handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.25,
+        0.7,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "flash hider",
+    "uid": "500032cd11fb49e69dd7ca0fae3b53ec",
+    "near_synsets": {
+        "rifle.n.01": 0.47720681847089774,
+        "garand_rifle.n.01": 0.4982654379532205,
+        "musket.n.01": 0.5099481722229208,
+        "light_arm.n.01": 0.5157852709208689,
+        "sniper_rifle.n.01": 0.5180612312584074
+    },
+    "synset": "sniper_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/500032cd11fb49e69dd7ca0fae3b53ec",
+        "creator_username": "MichalCavrnoch",
+        "creator_display_name": "Michal Cavrnoch",
+        "creator_profile_url": "https://sketchfab.com/MichalCavrnoch"
+    },
+    "filename": "std_500032cd11fb49e69dd7ca0fae3b53ec.glb",
+    "length": 0.46557044982910156,
+    "width": 0.22904086112976074
+}

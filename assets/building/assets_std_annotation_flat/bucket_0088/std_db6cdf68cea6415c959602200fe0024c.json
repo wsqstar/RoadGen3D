@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a large, architecturally striking canopy structure designed for outdoor urban environments such as plazas, parks, or event spaces. The canopy features a series of interconnected, tensioned fabric membranes in a light tan color, supported by an intricate framework of slender, metallic poles and trusses. The fabric is stretched into dynamic, angular forms, creating a visually dramatic, tent-like appearance with multiple peaks and valleys. Beneath the canopy, there are several sets of seating arrangements, suggesting its use as a shaded gathering or event area. The support structure is open and airy, with visible cross-bracing and angled supports that provide both stability and aesthetic interest. The edges of the canopy are sharply defined, with some points extending outward in a dramatic fashion, enhancing its modern and functional appeal.",
+    "description": "A large, modern canopy with tensioned tan fabric and a complex metal support structure, providing shaded space for seating in urban settings. Its angular, peaked design and open framework create a dramatic and functional shelter.",
+    "description_view_0": "From this side, the canopy's sweeping, angular fabric and the supporting metal framework are prominent, with the seating area partially visible underneath.",
+    "description_view_1": "This view highlights the front of the canopy, showing the main entrance area, the arrangement of chairs beneath, and the dramatic peaks of the fabric.",
+    "description_view_2": "Here, the elongated, pointed extension of the canopy is visible, along with the intricate truss work and the open space beneath.",
+    "description_view_3": "This angle emphasizes the rear and side of the canopy, showing the layered fabric peaks and the supporting structure's complexity.",
+    "category": "canopy",
+    "height": 5.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "fabric",
+        "steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.35,
+        0.05,
+        0.1
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shade_providing",
+        "weather_protecting"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "support_poles",
+        "fabric_membrane"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "tan",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_mounting_type": "pole-supported, anchored",
+    "attribute_support_structure_design": "The canopy is supported by multiple slender steel poles arranged in a geometric pattern, with cross-bracing and angled trusses for stability. The structure uses tensioned cables and frames to hold the fabric taut, creating peaks and valleys in the membrane.",
+    "attribute_edge_detailing": "The edges are sharply defined and reinforced, with some points extending outward in dramatic, angular forms. The fabric appears hemmed and tensioned, with exposed frame elements at the corners.",
+    "attribute_branding_or_signage": "none",
+    "attribute_lighting_integration": "none",
+    "uid": "db6cdf68cea6415c959602200fe0024c",
+    "near_synsets": {
+        "canopy.n.03": 0.4728617917009617,
+        "awning.n.01": 0.5168042216852418,
+        "pavilion.n.01": 0.5207789129129164,
+        "marquee.n.02": 0.5272694501052415,
+        "canvas_tent.n.01": 0.5315608677684168,
+        "canopy.n.01": -1000.0,
+        "canopy.n.02": -1000.0
+    },
+    "synset": "canopy.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/db6cdf68cea6415c959602200fe0024c",
+        "creator_username": "namida.nia",
+        "creator_display_name": "namida.nia",
+        "creator_profile_url": "https://sketchfab.com/namida.nia"
+    },
+    "filename": "std_db6cdf68cea6415c959602200fe0024c.glb",
+    "length": 32.308218002319336,
+    "width": 23.100919723510742
+}

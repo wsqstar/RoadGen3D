@@ -1,0 +1,96 @@
+{
+    "description_long": "This rifle features a long, slender barrel with a metallic finish, extending from a robust receiver and a fixed wooden stock. The magazine is a prominent detachable box type, inserted vertically above the trigger assembly. The handguard and receiver are constructed from metal, giving the weapon a utilitarian and durable appearance. The stock is made of dark wood, providing a classic contrast to the metallic components. The rifle is equipped with simple iron sights, with no visible optics or advanced sighting systems. The muzzle is plain, lacking any additional devices such as a flash hider or suppressor.",
+    "description": "A long-barreled rifle with a metallic body, wooden stock, detachable box magazine, and iron sights.",
+    "description_view_0": "Side view showing the full length, wooden stock, metallic receiver, and magazine.",
+    "description_view_1": "Barrel-end view highlighting the narrow profile and round barrel.",
+    "description_view_2": "Opposite side view showing the stock, receiver, and magazine from the other side.",
+    "description_view_3": "View from the stock end, emphasizing the length and alignment of the barrel.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 4.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 45,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "trigger",
+        "magazine",
+        "barrel",
+        "sight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "5d4dcf89fd2040a3bc1bba4e5a34107c",
+    "near_synsets": {
+        "rifle.n.01": 0.4540905667712859,
+        "garand_rifle.n.01": 0.4767148251668914,
+        "light_arm.n.01": 0.4968847010313713,
+        "automatic_rifle.n.01": 0.5087866176975785,
+        "dragunov.n.01": 0.509994285953308
+    },
+    "synset": "automatic_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5d4dcf89fd2040a3bc1bba4e5a34107c",
+        "creator_username": "korian",
+        "creator_display_name": "korian",
+        "creator_profile_url": "https://sketchfab.com/korian"
+    },
+    "filename": "std_5d4dcf89fd2040a3bc1bba4e5a34107c.glb",
+    "length": 0.9750705063343048,
+    "width": 0.0757904052734375
+}

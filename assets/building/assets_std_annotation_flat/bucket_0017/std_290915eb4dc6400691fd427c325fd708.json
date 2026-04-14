@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a medium-sized wooden sailing ship with a classic, historical design, featuring a prominent sterncastle and two large, rectangular white sails mounted on wooden masts. The hull is constructed from dark brown timber planks, with a rounded bow and a flat, elevated stern that includes a small balcony-like structure with railings. The ship's deck is open, with visible steps leading up to the sterncastle and a central mast rising from the main deck. The ship is equipped with a rudder at the stern and a bowsprit extending forward from the bow. The overall appearance suggests a vessel from the Age of Sail, suitable for river or coastal navigation, and it is devoid of modern machinery or visible armament.",
+    "description": "A wooden sailing ship with two large white sails, a raised sterncastle, and a rounded hull, evoking a classic historical design.",
+    "description_view_0": "Frontal view showing the two large white sails, the bowsprit, and the symmetrical hull with the sterncastle visible behind the sails.",
+    "description_view_1": "Side view highlighting the stepped sterncastle, open deck, central mast, and the curvature of the wooden hull.",
+    "description_view_2": "Rear view displaying the flat stern, balcony-like sterncastle, rudder, and the alignment of the sails and masts.",
+    "description_view_3": "Opposite side view showing the same stepped sterncastle, open deck, and hull curvature, with the bowsprit extending forward.",
+    "category": "ship",
+    "height": 8.0,
+    "max_dimension": 18.0,
+    "materials": [
+        "wood",
+        "fabric",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "steerable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sails",
+        "rudder",
+        "deck",
+        "stairs",
+        "railings",
+        "mast",
+        "bowsprit"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a rounded bow and a flat, vertical stern. The hull is constructed from wooden planks, with a pronounced keel running along the bottom and a rudder at the stern. There are no visible bulbous bows or additional keels.",
+    "attribute_superstructure_layout": "The superstructure consists of a raised sterncastle with railings and steps leading up from the main deck. There are no enclosed cabins or bridges visible, and the deck is open with a central mast and minimal additional structures.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "mast",
+        "sails",
+        "rudder",
+        "stairs",
+        "railings",
+        "bowsprit"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "290915eb4dc6400691fd427c325fd708",
+    "near_synsets": {
+        "schooner.n.02": 0.4866960365225278,
+        "sail.n.03": 0.4870358402034829,
+        "sailing_vessel.n.01": 0.4929333659523785,
+        "windjammer.n.01": 0.49725310299837544,
+        "brig.n.01": 0.49921759149779715,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/290915eb4dc6400691fd427c325fd708",
+        "creator_username": "ppenhorwood",
+        "creator_display_name": "ppenhorwood",
+        "creator_profile_url": "https://sketchfab.com/ppenhorwood"
+    },
+    "filename": "std_290915eb4dc6400691fd427c325fd708.glb",
+    "length": 12.037622451782227,
+    "width": 6.296554088592529
+}

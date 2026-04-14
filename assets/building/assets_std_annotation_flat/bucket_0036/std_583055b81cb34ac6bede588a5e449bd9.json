@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a large, rectangular above-ground jacuzzi with a wooden exterior frame and a blue water-filled interior. The jacuzzi features a set of metal steps with a handrail at one end, providing easy access for users. The wooden panels are reinforced with visible metal supports at the base, ensuring structural stability. On the opposite end, two orange cylindrical devices, likely water pumps or filters, are attached to the exterior. The water inside appears clean and nearly fills the entire basin, with a smooth, reflective surface. The overall design is robust and suitable for outdoor urban environments such as parks, backyards, or recreational areas.",
+    "description": "A large, rectangular above-ground jacuzzi with a wooden exterior, blue water, metal steps, and visible pumps. The design is sturdy and suitable for outdoor urban settings.",
+    "description_view_0": "Front view showing the metal steps and handrail leading into the jacuzzi, with the wooden frame and blue water clearly visible.",
+    "description_view_1": "Side view highlighting the length of the jacuzzi, the wooden paneling, and the absence of steps or pumps on this side.",
+    "description_view_2": "Rear view displaying two orange cylindrical pumps or filters attached to the wooden frame, with the water surface visible inside.",
+    "description_view_3": "Opposite side view similar to view 1, showing the wooden exterior and blue water, with no steps or pumps visible.",
+    "category": "jacuzzi",
+    "height": 1.2,
+    "max_dimension": 6.0,
+    "materials": [
+        "wood",
+        "metal",
+        "plastic",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.15,
+        0.1,
+        0.2,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "fillable",
+        "drainable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "steps",
+        "handrail",
+        "pumps",
+        "water surface"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "blue",
+        "silver",
+        "orange",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.35,
+        0.04,
+        0.04,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.35,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_jets": [],
+    "attribute_control_panel": "none visible",
+    "attribute_water_level": "nearly full, water close to the top edge",
+    "attribute_cover": false,
+    "attribute_steps": [
+        {
+            "location": "front",
+            "number_of_steps": 3,
+            "material": "metal"
+        }
+    ],
+    "uid": "583055b81cb34ac6bede588a5e449bd9",
+    "near_synsets": {
+        "hot_tub.n.01": 0.5251596857625904,
+        "bath_water.n.01": 0.5835905489969304,
+        "bathtub.n.01": 0.5882262721159384,
+        "pump_room.n.01": 0.5910318616677241,
+        "lido_deck.n.01": 0.5964019794456673
+    },
+    "synset": "hot_tub.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/583055b81cb34ac6bede588a5e449bd9",
+        "creator_username": "trzyde.com",
+        "creator_display_name": "trzyde.com",
+        "creator_profile_url": "https://sketchfab.com/trzyde.com"
+    },
+    "filename": "std_583055b81cb34ac6bede588a5e449bd9.glb",
+    "length": 7.507793664932251,
+    "width": 4.443681716918945
+}

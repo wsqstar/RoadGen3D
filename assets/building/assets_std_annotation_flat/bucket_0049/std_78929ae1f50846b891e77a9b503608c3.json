@@ -1,0 +1,99 @@
+{
+    "description_long": "This structure is a large, wooden half-pipe with high vertical walls and a flat central platform, resembling a skateboarding ramp rather than a traditional dam. The surface is constructed from light-colored wood panels, with visible seams and reinforced edges. Metal railings run along the top perimeter for safety, and a staircase on one end provides access to the upper platform. The exterior and interior surfaces are decorated with colorful graffiti and murals, adding an urban, artistic flair. There is a large rectangular opening in the central wall, and the overall form is symmetrical with a deep, curved basin.",
+    "description": "A large, wooden half-pipe structure with metal railings, graffiti art, and a staircase leading to an upper platform.",
+    "description_view_0": "Side view showing the staircase, upper platform, and a large graffiti tag on the curved wall.",
+    "description_view_1": "Angled view into the basin, highlighting the curved wooden surface, graffiti on the floor, and the staircase at the far end.",
+    "description_view_2": "Opposite side view showing a large mural, the rectangular opening, and the full height of the structure.",
+    "description_view_3": "Angled view from the other end, focusing on the deep basin, graffiti, and the staircase structure.",
+    "category": "dam",
+    "height": 5.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "wood",
+        "metal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "slideable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "staircase",
+        "platform",
+        "railings"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light brown",
+        "gray",
+        "multicolor (graffiti)"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_spillway_presence": false,
+    "attribute_control_gates": [
+        "none"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_water_outflow": "none",
+    "attribute_perimeter_fencing": true,
+    "uid": "78929ae1f50846b891e77a9b503608c3",
+    "near_synsets": {
+        "dam.n.01": 0.5395909677642978,
+        "stairhead.n.01": 0.5499973525891426,
+        "standpipe.n.01": 0.5580658021591298,
+        "flashboard.n.01": 0.5590029412535821,
+        "weir.n.01": 0.570707871196554,
+        "dam.n.03": -1000.0,
+        "decameter.n.01": -1000.0
+    },
+    "synset": "dam.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/78929ae1f50846b891e77a9b503608c3",
+        "creator_username": "bannana611",
+        "creator_display_name": "bannana611",
+        "creator_profile_url": "https://sketchfab.com/bannana611"
+    },
+    "filename": "std_78929ae1f50846b891e77a9b503608c3.glb",
+    "length": 12.377224922180176,
+    "width": 13.63076400756836
+}

@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a large, industrial-style metal gate composed of vertical corrugated panels framed by robust horizontal and vertical supports. The gate features two main swinging sections that meet in the center, each reinforced with a series of horizontal slats at the outer edges for added strength and rigidity. Overhead, two diagonal support cables connect to the top corners, likely providing additional structural stability and preventing sagging. The surface of the gate is predominantly metallic gray, with a slightly ribbed texture from the corrugated panels. The design is utilitarian, with no visible decorative elements, emphasizing function over form. The gate is flanked by solid side posts, which likely anchor it securely to the ground or adjacent structures.",
+    "description": "A large, industrial metal swing gate with corrugated panels, reinforced edges, and overhead support cables. The design is utilitarian and robust, suitable for urban or industrial access control.",
+    "description_view_0": "Top-down view showing the full width of the gate, the corrugated panels, and the overhead support cables.",
+    "description_view_1": "Side profile view revealing the thinness of the gate and the depth of the supporting posts.",
+    "description_view_2": "Front view displaying the central meeting point of the two swinging panels, the vertical corrugation, and the reinforced side edges.",
+    "description_view_3": "Opposite side profile, similar to view 1, highlighting the gate's slim profile and structural posts.",
+    "category": "gate",
+    "height": 2.2,
+    "max_dimension": 5.0,
+    "materials": [
+        "steel",
+        "cable (steel)",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "gate panel",
+        "hinge",
+        "support cable"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "bicycle",
+        "car"
+    ],
+    "colors": [
+        "gray",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_gate_type": "driveway swing gate",
+    "attribute_opening_mechanism": "manual swing",
+    "attribute_decorative_elements": [],
+    "attribute_locking_system": "no visible lock",
+    "attribute_surrounding_structure": "metal posts",
+    "uid": "cf50626a5ccf45d3a689460a35bd7e94",
+    "near_synsets": {
+        "gate.n.01": 0.5274007571373847,
+        "lock-gate.n.01": 0.5295719363891213,
+        "portcullis.n.01": 0.5339860348491955,
+        "gateway.n.01": 0.5352578161556077,
+        "door.n.01": 0.5360364914137326,
+        "gate.n.03": -1000.0,
+        "gate.n.04": -1000.0,
+        "gate.n.02": -1000.0
+    },
+    "synset": "gate.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cf50626a5ccf45d3a689460a35bd7e94",
+        "creator_username": "NaidarInoxArt",
+        "creator_display_name": "Naidar - InoxArt",
+        "creator_profile_url": "https://sketchfab.com/NaidarInoxArt"
+    },
+    "filename": "std_cf50626a5ccf45d3a689460a35bd7e94.glb",
+    "length": 0.15997593104839325,
+    "width": 4.393004655838013
+}

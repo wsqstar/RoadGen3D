@@ -1,0 +1,115 @@
+{
+    "description_long": "This object is a tall, vertical utility structure composed primarily of a sturdy central pole with two prominent horizontal crossarms near the top. At the uppermost level, there are multiple blue-green ceramic or composite insulator stacks supporting thick power lines, with a brown central block likely serving as a busbar or connector. Below the crossarms, a gray electrical box is mounted to the pole, and several metallic braces and cables provide structural support. At the base and around the pole, there are various electrical components, including a large transformer unit, solar panels, a satellite dish, and other utility equipment. The overall construction is robust, with metallic and composite materials dominating the structure, and the equipment at the base suggests a multi-functional power distribution role.",
+    "description": "A tall utility pole with two crossarms, insulator stacks, and various electrical equipment including a transformer and solar panels at the base. The structure is metallic and robust, designed for urban power distribution.",
+    "description_view_0": "Front view showing the full height, both crossarms, insulator stacks, and a clear view of the transformer, solar panels, and satellite dish at the base.",
+    "description_view_1": "Angled view highlighting the side of the pole, the electrical box, and a partial view of the equipment at the base.",
+    "description_view_2": "Rear-side view with a focus on the back of the crossarms, insulator stacks, and a clearer look at the brown equipment and wiring.",
+    "description_view_3": "Opposite side view showing the transformer, solar panels, and satellite dish from a different angle, with the crossarms and insulators visible from behind.",
+    "category": "transformer tower",
+    "height": 7.5,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "ceramic",
+        "composite",
+        "copper",
+        "plastic",
+        "glass",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.12,
+        0.1,
+        0.08,
+        0.07,
+        0.03,
+        0.03,
+        0.02
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "connectable",
+        "mountable",
+        "supportive"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "electrical box",
+        "transformer",
+        "solar panel",
+        "satellite dish",
+        "insulator stack"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue-green",
+        "brown",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.12,
+        0.1,
+        0.08,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "group",
+    "attribute_number_of_insulator_stacks": 6,
+    "attribute_arrangement_of_crossarms": "There are two horizontal crossarms arranged in parallel at different heights, each spanning across the pole and supporting insulator stacks at their ends.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "transformer",
+        "solar panel",
+        "satellite dish",
+        "electrical box"
+    ],
+    "attribute_configuration_of_attached_power_lines": "There are three main power lines arranged in a parallel, three-phase configuration, each supported by insulator stacks on the crossarms, with the lines running horizontally and spaced evenly.",
+    "uid": "5987f52bad9f4c3dadb0e4eca2b35b5a",
+    "near_synsets": {
+        "pylon.n.02": 0.5002813341034148,
+        "telephone_pole.n.01": 0.5176481099966241,
+        "power_system.n.01": 0.5381361376785794,
+        "substation.n.01": 0.5391007217423167,
+        "transformer.n.01": 0.5508104161100043,
+        "column.n.04": -1000.0,
+        "tugboat.n.01": -1000.0,
+        "tower.n.01": -1000.0
+    },
+    "synset": "pylon.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5987f52bad9f4c3dadb0e4eca2b35b5a",
+        "creator_username": "BrynCouvreur",
+        "creator_display_name": "BrynCouvreur",
+        "creator_profile_url": "https://sketchfab.com/BrynCouvreur"
+    },
+    "filename": "std_5987f52bad9f4c3dadb0e4eca2b35b5a.glb",
+    "length": 4.004631757736206,
+    "width": 4.251103401184082
+}

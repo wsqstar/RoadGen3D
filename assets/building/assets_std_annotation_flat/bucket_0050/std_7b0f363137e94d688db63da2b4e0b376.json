@@ -1,0 +1,102 @@
+{
+    "description_long": "This ferry is a large, multi-deck vessel with a white superstructure and a green hull, designed for transporting passengers across water. The roof is adorned with numerous red-and-white life rings, indicating a strong emphasis on safety. The sides of the ferry feature rows of large rectangular windows, providing panoramic views for passengers inside. There are two tall masts at either end, likely for navigation and communication equipment, and a prominent black smokestack is visible at the center of the roof. The hull is reinforced and features multiple fender bumpers along the sides, suggesting it is built for frequent docking. The overall design is robust and functional, suitable for urban water transit.",
+    "description": "A large, white and green multi-deck ferry with rows of big windows, life rings on the roof, and a central smokestack, built for urban water transport.",
+    "description_view_0": "Front view showing the pointed bow, roof life rings, and the symmetry of the ferry's structure.",
+    "description_view_1": "Side view highlighting the long rows of large windows, fender bumpers, and both masts at the ends.",
+    "description_view_2": "Rear view similar to the front, showing the stern's shape and the arrangement of life rings on the roof.",
+    "description_view_3": "Opposite side view, mirroring view 1, with clear visibility of windows, masts, and hull details.",
+    "category": "ferry",
+    "height": 8.0,
+    "max_dimension": 45.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 350000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "lifebuoy",
+        "smokestack",
+        "mast"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "green",
+        "black",
+        "red",
+        "orange"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.03,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_passenger_decks": 1,
+    "attribute_vehicle_loading_ramps": false,
+    "attribute_large_windows": true,
+    "attribute_multiple_entry_points": true,
+    "attribute_prominent_smokestack": true,
+    "uid": "7b0f363137e94d688db63da2b4e0b376",
+    "near_synsets": {
+        "ferry.n.01": 0.49044248098044013,
+        "car-ferry.n.01": 0.5010878027057539,
+        "ferry.n.02": 0.5051374953925395,
+        "ferryman.n.01": 0.5291594002724673,
+        "wherry.n.02": 0.5371691512713628
+    },
+    "synset": "ferryman.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7b0f363137e94d688db63da2b4e0b376",
+        "creator_username": "chrisw225",
+        "creator_display_name": "chrisw225",
+        "creator_profile_url": "https://sketchfab.com/chrisw225"
+    },
+    "filename": "std_7b0f363137e94d688db63da2b4e0b376.glb",
+    "length": 19.56090545654297,
+    "width": 6.253170967102051
+}

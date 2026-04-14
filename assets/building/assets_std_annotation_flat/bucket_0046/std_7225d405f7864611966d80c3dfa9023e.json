@@ -1,0 +1,147 @@
+{
+    "description_long": "This grave yard scene features a rectangular plot of grassy terrain bordered by rough stone edges, with a central open stone grave topped by a large cross-shaped headstone. Several smaller gravestones, each with distinct shapes and engravings, are arranged around the main grave, some partially embedded in the ground. A stone slab lies propped against the open grave, suggesting recent disturbance or maintenance. Decorative elements include tufts of wild grass, a ceramic urn placed on a stone pedestal, and scattered pebbles and dirt patches. The overall color palette is dominated by muted grays and greens, with subtle hints of purple in the stone and brown in the soil. The setting evokes a tranquil, slightly overgrown cemetery corner, suitable for urban parks or historical neighborhoods.",
+    "description": "A detailed grave yard scene with an open stone grave, cross headstone, multiple gravestones, wild grass, and a ceramic urn on grassy terrain.",
+    "description_view_0": "Side view showing the open grave with its lid propped up, several gravestones, wild grass, and the urn on a pedestal.",
+    "description_view_1": "Frontal view highlighting the large cross headstone, open grave, three gravestones in the foreground, and the urn to the right.",
+    "description_view_2": "Opposite side view with the open grave, urn, and gravestones visible, emphasizing the arrangement of markers and grass.",
+    "description_view_3": "Rear view focusing on the back of the cross headstone, urn on pedestal, and gravestones, with wild grass at the corners.",
+    "category": "grave yard",
+    "height": 1.2,
+    "max_dimension": 2.0,
+    "materials": [
+        "stone",
+        "soil",
+        "grass",
+        "ceramic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "grave lid",
+        "urn"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "green",
+        "brown",
+        "purple"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.54,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "scene",
+    "attribute_tombstone_inscriptions": [],
+    "attribute_crosses": [
+        {
+            "style": "Latin",
+            "height": 1.0,
+            "material": "stone"
+        }
+    ],
+    "attribute_grave_markers": [
+        {
+            "type": "headstone",
+            "material": "stone",
+            "dimensions": [
+                0.5,
+                0.4,
+                0.1
+            ]
+        },
+        {
+            "type": "headstone",
+            "material": "stone",
+            "dimensions": [
+                0.4,
+                0.3,
+                0.1
+            ]
+        },
+        {
+            "type": "headstone",
+            "material": "stone",
+            "dimensions": [
+                0.3,
+                0.25,
+                0.1
+            ]
+        },
+        {
+            "type": "cross headstone",
+            "material": "stone",
+            "dimensions": [
+                1.0,
+                0.6,
+                0.2
+            ]
+        }
+    ],
+    "attribute_mausoleums": [],
+    "attribute_cemetery_gates": [],
+    "uid": "7225d405f7864611966d80c3dfa9023e",
+    "near_synsets": {
+        "grave.n.02": 0.5039594173659068,
+        "gravestone.n.01": 0.5181210927643871,
+        "cemetery.n.01": 0.5217183534127654,
+        "cairn.n.01": 0.5450392776256571,
+        "grave.n.01": 0.5486969690785536,
+        "thousand.n.01": -1000.0,
+        "yard.n.03": -1000.0,
+        "yard.n.01": -1000.0,
+        "yard.n.06": -1000.0,
+        "yard.n.08": -1000.0,
+        "yard.n.07": -1000.0,
+        "yard.n.02": -1000.0,
+        "yard.n.09": -1000.0,
+        "cubic_yard.n.01": -1000.0
+    },
+    "synset": "cemetery.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7225d405f7864611966d80c3dfa9023e",
+        "creator_username": "yuliatsu",
+        "creator_display_name": "Yuliia Tsukanova",
+        "creator_profile_url": "https://sketchfab.com/yuliatsu"
+    },
+    "filename": "std_7225d405f7864611966d80c3dfa9023e.glb",
+    "length": 2.552492380142212,
+    "width": 2.3991384506225586
+}

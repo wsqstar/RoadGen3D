@@ -1,0 +1,102 @@
+{
+    "description_long": "This combat tactical vehicle features a sleek, angular design with a low profile and sharply pointed nose, suggesting a focus on stealth and aerodynamics. The body is predominantly matte black, with visible hardpoints and mounted weaponry on both wings and the central fuselage. The vehicle has two large, rear-mounted engine pods and a pair of vertical stabilizers at the back, each marked with alphanumeric codes. The wings are sharply swept and house additional equipment or armaments, while the undercarriage appears reinforced for durability. The cockpit is centrally located and heavily armored, with no visible windows, indicating advanced sensor or remote operation. Markings and insignia are present on the wings and stabilizers, adding to its militaristic appearance.",
+    "description": "A matte black, angular combat tactical vehicle with swept wings, rear engine pods, and visible weapon mounts. It features heavy armor, military markings, and a stealthy, aerodynamic profile.",
+    "description_view_0": "Side view showing the sharply pointed nose, swept wing, and large rear engine pod, with visible weapon mounts beneath the wing.",
+    "description_view_1": "Front view highlighting the wide, angular wings, central cockpit, and dual stabilizers, with weapon mounts visible on both sides.",
+    "description_view_2": "Opposite side view mirroring view 0, showing the other wing, engine pod, and additional weapon mounts.",
+    "description_view_3": "Rear view displaying the two large engine pods, vertical stabilizers, and the broad, angular rear profile.",
+    "category": "combat tactical  vehicle",
+    "height": 1.8,
+    "max_dimension": 6.5,
+    "materials": [
+        "metal",
+        "composite",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit hatch",
+        "weapon mount",
+        "engine pod",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Four visible weapon mounts: two under each wing and two on the central fuselage, likely for cannons or missile launchers.",
+    "attribute_armor_plating": "Full body coverage with thick, angular armor plating; sloped surfaces for deflection and reinforced cockpit area.",
+    "attribute_camouflage_pattern": "Solid matte black paint scheme; no visible camouflage pattern.",
+    "attribute_military_markings": "Alphanumeric codes 'JP-05' and 'UB-45' on wings and stabilizers in white stencil style.",
+    "attribute_tire_type": "not applicable",
+    "uid": "bce3b3eb3de948a09d2cdbdcb50fc624",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.5200221573099588,
+        "reconnaissance_vehicle.n.01": 0.5378247369148871,
+        "tank.n.01": 0.5404417977567982,
+        "armored_car.n.02": 0.5433201423252462,
+        "weapons_carrier.n.01": 0.5522410464810925,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bce3b3eb3de948a09d2cdbdcb50fc624",
+        "creator_username": "giamarraalejo",
+        "creator_display_name": "Alejo Giamarra",
+        "creator_profile_url": "https://sketchfab.com/giamarraalejo"
+    },
+    "filename": "std_bce3b3eb3de948a09d2cdbdcb50fc624.glb",
+    "length": 5.279930591583252,
+    "width": 5.117676019668579
+}

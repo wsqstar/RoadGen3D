@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a classic wooden handcart with a rectangular cargo bed, reinforced by a red-painted lower frame and black metal brackets at the corners. The cart features four metal wheels, each attached at the corners for stability, and a long, black metal handle with a rectangular grip for pulling. The side panels are constructed from horizontal wooden slats, providing containment for items while allowing visibility through the gaps. The front and rear panels are similarly slatted, with the front panel slightly lower to facilitate loading and unloading. The wheels have a slightly weathered, metallic appearance, suggesting durability for outdoor use. The overall design is utilitarian, evoking a nostalgic, vintage style suitable for parks, sidewalks, or neighborhood settings.",
+    "description": "A vintage-style wooden handcart with slatted sides, red lower frame, four metal wheels, and a long black pull handle.",
+    "description_view_0": "Side view showing the full length of the wooden slats, red frame, and two wheels with the handle angled forward.",
+    "description_view_1": "Front view highlighting the rectangular handle, front slatted panel, and the alignment of the front wheels.",
+    "description_view_2": "Opposite side view mirroring view 0, with the handle visible and the same slatted wood and red frame details.",
+    "description_view_3": "Rear view showing the back slatted panel, rear wheels, and the handle extending directly outward.",
+    "category": "handcart",
+    "height": 0.5,
+    "max_dimension": 1.0,
+    "materials": [
+        "wood",
+        "metal",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 25,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "side rail",
+        "load platform"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "red",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 4,
+    "attribute_handle_type": "straight bar with rectangular grip",
+    "attribute_wheel_position": "all corners",
+    "attribute_presence_of_side_rails": true,
+    "attribute_load_platform_design": "flat solid surface",
+    "uid": "2c8b8737e70544a1925e69620b2c0ce2",
+    "near_synsets": {
+        "handcart.n.01": 0.4687554423036323,
+        "serving_cart.n.01": 0.47815704897859945,
+        "hand_truck.n.01": 0.483794871242957,
+        "laundry_cart.n.01": 0.4953656037008478,
+        "shopping_cart.n.01": 0.4953807115628235
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2c8b8737e70544a1925e69620b2c0ce2",
+        "creator_username": "anais.breault",
+        "creator_display_name": "anais.breault",
+        "creator_profile_url": "https://sketchfab.com/anais.breault"
+    },
+    "filename": "std_2c8b8737e70544a1925e69620b2c0ce2.glb",
+    "length": 0.654762327671051,
+    "width": 0.2958298623561859
+}

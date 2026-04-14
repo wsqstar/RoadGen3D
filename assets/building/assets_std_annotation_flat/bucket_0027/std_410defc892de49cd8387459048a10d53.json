@@ -1,0 +1,113 @@
+{
+    "description_long": "This is a large, articulated cargo truck with a long, enclosed trailer designed for transporting goods. The cab is painted black with blue accents and features a prominent windshield and side mirrors. The trailer is a box type, primarily gray, and is shown partially loaded with brown cardboard boxes visible through an open side. The truck has three axles on the trailer and one on the cab, with black wheels and visible mudguards. The rear of the trailer is equipped with standard tail lights and reflective safety markings. The overall design is utilitarian, built for heavy-duty freight transport in urban and highway environments.",
+    "description": "A large black and gray cargo truck with a long, enclosed trailer, partially loaded with cardboard boxes and designed for urban freight transport.",
+    "description_view_0": "Side view showing the cab, trailer, and visible cargo boxes inside the trailer.",
+    "description_view_1": "Rear view displaying the closed back doors of the trailer and tail lights.",
+    "description_view_2": "Opposite side view with the trailer fully enclosed and no cargo visible.",
+    "description_view_3": "Front view highlighting the cab's windshield, grille, and headlights.",
+    "category": "truck",
+    "height": 4.0,
+    "max_dimension": 16.0,
+    "materials": [
+        "steel",
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air",
+        "cardboard"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.07,
+        0.03,
+        0.03,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "handle",
+        "mirror",
+        "cargo compartment"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "blue",
+        "white",
+        "brown",
+        "yellow",
+        "red"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.05,
+        0.05,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "day cab",
+    "attribute_cargo_bed_type": "box",
+    "attribute_wheelbase": 7.0,
+    "attribute_number_of_axles": 4,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "410defc892de49cd8387459048a10d53",
+    "near_synsets": {
+        "cargo_container.n.01": 0.45442339173621893,
+        "van.n.05": 0.4776478748064271,
+        "car_carrier.n.02": 0.48631263399048363,
+        "transporter.n.01": 0.49220521533950273,
+        "cargo.n.01": 0.49225009381802626,
+        "hand_truck.n.01": -1000.0,
+        "truck.n.01": -1000.0
+    },
+    "synset": "truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/410defc892de49cd8387459048a10d53",
+        "creator_username": "TobyPlunkett",
+        "creator_display_name": "TobyPlunkett",
+        "creator_profile_url": "https://sketchfab.com/TobyPlunkett"
+    },
+    "filename": "std_410defc892de49cd8387459048a10d53.glb",
+    "length": 20.48903179168701,
+    "width": 3.0228463411331177
+}

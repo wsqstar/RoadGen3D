@@ -1,0 +1,103 @@
+{
+    "description_long": "This humanoid robot features a metallic, rounded head with large, circular green eyes and a small red antenna on top, giving it a friendly and approachable appearance. Its body is composed of smooth, silver panels with a boxy torso and articulated limbs, including segmented arms and legs that suggest a wide range of motion. The robot's hands are claw-like, with three distinct fingers, and its feet are broad and rounded for stability. The back of the torso has a hexagonal panel, possibly for access or maintenance, and the joints are visibly mechanical, with bolts and hinges. The overall design is sleek and functional, with a glossy finish that reflects light. The robot's proportions and features are distinctly humanoid, making it suitable for interaction in urban environments.",
+    "description": "A sleek, silver humanoid robot with large green eyes, a red antenna, articulated limbs, and a glossy metallic finish.",
+    "description_view_0": "Front view shows the robot's large green eyes, red antenna, and symmetrical articulated limbs.",
+    "description_view_1": "Left side view highlights the rounded head, mechanical joints, and the profile of the arms and legs.",
+    "description_view_2": "Rear view reveals a smooth metallic back with a hexagonal panel and the backs of the articulated limbs.",
+    "description_view_3": "Right side view mirrors the left, showing the mechanical joints and the side profile of the head and limbs.",
+    "category": "humanoid robot",
+    "height": 1.1,
+    "max_dimension": 0.6,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 38,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "rotatable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "antenna",
+        "eyes",
+        "arms",
+        "hands",
+        "legs",
+        "feet",
+        "torso panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "silver",
+        "green",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.12,
+    "surface_finish": "glossy",
+    "reflectivity": 0.65,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.15,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is standing upright with its arms relaxed at its sides and legs straight. The head is facing forward, and the torso is aligned vertically.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated metallic panels and mechanical joints with no decorative coverings.",
+    "attribute_facial_features": "The face consists of two large, circular green eyes set in a smooth metallic head, with no visible mouth or nose. A small red antenna is positioned on top of the head.",
+    "attribute_limb_articulation": "The robot has articulated arms and legs with visible hinge and rotary joints at the shoulders, elbows, hips, and knees. The hands have three articulated fingers each, and the feet are broad and rounded.",
+    "attribute_presence_of_sensors": "Visible sensors include two large green eyes on the head, likely functioning as cameras or visual sensors. No other sensors are visible.",
+    "uid": "70b167e86c6a42769d3b42fdc1781117",
+    "near_synsets": {
+        "android.n.01": 0.5345047646686877,
+        "cyborg.n.01": 0.5559145859288721,
+        "robotics_equipment.n.01": 0.5595914659022655,
+        "automaton.n.02": 0.5650215601219917,
+        "automaton.n.03": 0.5887848712742464
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/70b167e86c6a42769d3b42fdc1781117",
+        "creator_username": "Twardunger",
+        "creator_display_name": "Twardun",
+        "creator_profile_url": "https://sketchfab.com/Twardunger"
+    },
+    "filename": "std_70b167e86c6a42769d3b42fdc1781117.glb",
+    "length": 0.3324843794107437,
+    "width": 0.45340727269649506
+}

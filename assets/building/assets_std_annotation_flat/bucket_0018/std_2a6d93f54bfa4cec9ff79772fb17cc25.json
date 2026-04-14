@@ -1,0 +1,116 @@
+{
+    "description_long": "This is a large, modern research or utility ship with a robust steel hull and a multi-level superstructure. The hull is painted gray with a green deck, and the ship features a prominent bow and a wide, open stern area, likely for equipment or vehicle deployment. The superstructure includes several decks, a bridge with windows, and a large satellite dome, as well as various antennas and communication equipment. On the aft deck, there is a substantial crane or davit, suggesting the ship is equipped for heavy lifting or scientific operations. Lifeboats and safety equipment are visible along the sides, and the vessel is detailed with railings, ladders, and access points. The ship's design is functional and industrial, with clear provisions for crew movement and operational tasks.",
+    "description": "A large, modern utility or research ship with a gray hull, green deck, multi-level superstructure, and visible deck equipment including a crane and satellite dome.",
+    "description_view_0": "Front view showing the ship's bow, bridge, and superstructure rising above the hull.",
+    "description_view_1": "Starboard side view highlighting the full length of the hull, superstructure, crane, and lifeboats.",
+    "description_view_2": "Stern view displaying the open rear deck, crane, and access to the main deck area.",
+    "description_view_3": "Port side view similar to view 1, showing the hull, superstructure, and deck equipment from the opposite side.",
+    "category": "ship",
+    "height": 18,
+    "max_dimension": 90,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.01,
+        0.05
+    ],
+    "mass": 420000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000.0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "operable",
+        "deployable",
+        "liftable (crane)"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "crane",
+        "ladder",
+        "bridge controls",
+        "lifeboat",
+        "antenna",
+        "radar"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "green",
+        "white",
+        "blue",
+        "red",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.08,
+        0.05,
+        0.05,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 15,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a pronounced bow and a wide, squared stern. The sides are straight with a slight flare at the bow, and the stern is open, likely for equipment deployment. No bulbous bow or visible keels are present, and the hull appears robust and reinforced for heavy-duty use.",
+    "attribute_superstructure_layout": "The superstructure is multi-leveled, with a central bridge topped by a large satellite dome and several antennas. There are multiple decks with windows, external walkways, and safety railings. The aft section features an open deck with a large crane, and lifeboats are mounted along the sides.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "crane",
+        "lifeboat",
+        "radar",
+        "antenna",
+        "satellite dome",
+        "ladder",
+        "railing"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "2a6d93f54bfa4cec9ff79772fb17cc25",
+    "near_synsets": {
+        "cargo_ship.n.01": 0.4724827219947105,
+        "ship.n.01": 0.4919933488460397,
+        "surface_ship.n.01": 0.4933020051199289,
+        "container_ship.n.01": 0.5102165676917236,
+        "weather_ship.n.01": 0.5120517937111926
+    },
+    "synset": "weather_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2a6d93f54bfa4cec9ff79772fb17cc25",
+        "creator_username": "ariefaparker",
+        "creator_display_name": "ariefaparker",
+        "creator_profile_url": "https://sketchfab.com/ariefaparker"
+    },
+    "filename": "std_2a6d93f54bfa4cec9ff79772fb17cc25.glb",
+    "length": 43.86853790283203,
+    "width": 10.090126514434814
+}

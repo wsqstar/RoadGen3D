@@ -1,0 +1,85 @@
+{
+    "description_long": "This is a small, streamlined canoe with a pointed bow and stern, constructed primarily from a wood-like material. The canoe features two oars resting across its width, suggesting it is designed for manual rowing. The interior includes at least one seat and a flat floor, with a slightly raised section at the stern. The gunwales run along the top edges, providing structural integrity and a place to grip or attach accessories. The exterior is smooth and unadorned, with no visible registration numbers or decorative markings. The overall design is simple and functional, suitable for use on calm urban waterways or as a decorative element in parks or near water features.",
+    "description": "A small, wooden canoe with two oars, a seat, and smooth, unmarked surfaces. It features pointed ends and visible gunwales along the top edges.",
+    "description_view_0": "Front view showing the pointed bow, both oars extended outward, and the seat visible inside.",
+    "description_view_1": "Side view highlighting the canoe's length, flat bottom, and the oars resting across the width.",
+    "description_view_2": "Rear view displaying the stern, the seat, and the oars extending to either side.",
+    "description_view_3": "Opposite side view showing the same features as view 1, with the oars and the canoe's profile.",
+    "category": "canoe",
+    "height": 0.5,
+    "max_dimension": 3.5,
+    "materials": [
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.15
+    ],
+    "mass": 35,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "rowable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "oar",
+        "seat"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_presence_of_seats": true,
+    "attribute_presence_of_thwarts": false,
+    "attribute_presence_of_gunwales": true,
+    "attribute_presence_of_carrying_handles": false,
+    "attribute_presence_of_registration_numbers": false,
+    "uid": "b70daf34485c43fb952e2f356dfc5c1c",
+    "near_synsets": {
+        "canoe.n.01": 0.3747332450069384,
+        "paddle.n.04": 0.4708987131181242,
+        "kayak.n.01": 0.48439593303376044,
+        "dugout_canoe.n.01": 0.48842006124283766,
+        "rowing_boat.n.01": 0.4939313941612399
+    },
+    "synset": "dugout_canoe.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b70daf34485c43fb952e2f356dfc5c1c",
+        "creator_username": "3DDomino",
+        "creator_display_name": "3DDomino",
+        "creator_profile_url": "https://sketchfab.com/3DDomino"
+    },
+    "filename": "std_b70daf34485c43fb952e2f356dfc5c1c.glb",
+    "length": 2.688944935798645,
+    "width": 3.3364851474761963
+}

@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a large, rectangular blue metal shipping container with a corrugated surface and reinforced corners. One end features a solid door panel, while the opposite end is fully enclosed with no visible openings. One long side is fitted with multiple evenly spaced, vertically oriented shuttered panels, likely for ventilation or access, while the opposite long side reveals open bays, suggesting it can be accessed or loaded from this side. The container is robust and industrial, designed for secure storage or transport of goods. Its construction and features indicate it is suitable for use in urban environments such as construction sites, storage yards, or transportation hubs.",
+    "description": "A large blue metal shipping container with shuttered panels on one side and open bays on the other, designed for secure storage or transport.",
+    "description_view_0": "The end view shows a solid blue face with a single gray door panel, indicating the main entry point.",
+    "description_view_1": "This side view displays a series of evenly spaced, vertically shuttered panels along the length of the container.",
+    "description_view_2": "The opposite end is fully enclosed with no visible doors or openings, showing a solid blue surface.",
+    "description_view_3": "This side view reveals multiple open bays, providing access to the container's interior along its length.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 12.0,
+    "materials": [
+        "steel",
+        "aluminum",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 15000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "loadable",
+        "unloadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "shuttered panels"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "blue",
+        "gray"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "no lid",
+    "attribute_opening_mechanism": "swing door and sliding shutters",
+    "attribute_labeling_or_signage": "none",
+    "attribute_handles_or_grips": "none",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "0e8f2468dac244dc863bf52c628bcb5a",
+    "near_synsets": {
+        "container.n.01": 0.41799652218976263,
+        "cargo_container.n.01": 0.45057368332291076,
+        "container_ship.n.01": 0.49360648582842864,
+        "box.n.01": 0.49899132505665605,
+        "bin.n.01": 0.5139921387642867
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0e8f2468dac244dc863bf52c628bcb5a",
+        "creator_username": "eroliy",
+        "creator_display_name": "eroliy",
+        "creator_profile_url": "https://sketchfab.com/eroliy"
+    },
+    "filename": "std_0e8f2468dac244dc863bf52c628bcb5a.glb",
+    "length": 11.742158889770508,
+    "width": 2.713992714881897
+}

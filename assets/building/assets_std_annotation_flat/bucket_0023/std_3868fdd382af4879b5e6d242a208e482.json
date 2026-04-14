@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a cylindrical wooden barrel with a hollow interior, constructed from vertical wooden staves bound together. The wood has a natural, weathered finish, showing grain patterns and some discoloration typical of outdoor exposure. One end of the barrel is fully open, revealing the interior staves and a dark, empty space, while the other end is partially closed with a wooden base. A dark, flexible cord or strap is attached near the closed end, likely for carrying or securing the barrel. The exterior surface is segmented by faint horizontal and vertical lines, suggesting reinforcement or paneling. There are no visible labels, markings, or decorative elements on the surface.",
+    "description": "A weathered, cylindrical wooden barrel with a hollow interior, open on one end and featuring a dark carrying strap. The surface shows natural wood grain and subtle reinforcement lines.",
+    "description_view_0": "The open end of the barrel is visible, showing the interior staves and a dark, empty space.",
+    "description_view_1": "The side of the barrel is shown, highlighting the wood grain, reinforcement lines, and the attached dark strap.",
+    "description_view_2": "The partially closed end of the barrel is visible, with the strap extending outward and the interior partially obscured.",
+    "description_view_3": "Another side view of the barrel, similar to view 1 but with the strap more visible and curving away from the barrel.",
+    "category": "barrel or bucket",
+    "height": 0.7,
+    "max_dimension": 0.7,
+    "materials": [
+        "wood",
+        "metal",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.07
+    ],
+    "mass": 8,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "strap"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.92,
+        0.08
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": false,
+    "attribute_handle_type": "fabric strap",
+    "attribute_banding_or_reinforcement": "wooden panel reinforcement",
+    "attribute_labeling_or_markings": "none",
+    "attribute_placement_location": "outdoor",
+    "uid": "3868fdd382af4879b5e6d242a208e482",
+    "near_synsets": {
+        "barrel.n.03": 0.43474096543479573,
+        "barrel.n.02": 0.4365387297899292,
+        "beer_barrel.n.01": 0.4865623611642125,
+        "bucket.n.01": 0.48805391838481926,
+        "wine_cask.n.01": 0.49684804138123595,
+        "barrel.n.04": -1000.0,
+        "bucket.n.02": -1000.0,
+        "barrel.n.01": -1000.0,
+        "barrel.n.05": -1000.0
+    },
+    "synset": "bucket.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3868fdd382af4879b5e6d242a208e482",
+        "creator_username": "eeelabvisual",
+        "creator_display_name": "eeelabvisual",
+        "creator_profile_url": "https://sketchfab.com/eeelabvisual"
+    },
+    "filename": "std_3868fdd382af4879b5e6d242a208e482.glb",
+    "length": 1.7628331780433655,
+    "width": 0.8681983947753906
+}

@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a large container ship with a deep red hull and a dark blue band along the side, prominently displaying the name 'FALKIRK-SOUTHLERLAND' in white block letters. The ship's deck is stacked high with rows of standardized shipping containers, arranged in a grid pattern and painted in shades of blue, white, and gray. The bow is sharply pointed, while the stern is squared off, and the hull sits low in the water, indicating a displacement-type design. The superstructure, including the bridge and control tower, is located toward the rear of the vessel and rises above the containers, featuring several decks and windows. Visible atop the superstructure are communication and navigation equipment, such as antennas and radar domes. The ship's overall appearance is utilitarian and robust, designed for the efficient transport of cargo across oceans.",
+    "description": "A massive container ship with a red hull, blue band, and stacked shipping containers, featuring a rear superstructure and visible navigation equipment. The name 'FALKIRK-SOUTHLERLAND' is displayed prominently on the side.",
+    "description_view_0": "Side view showing the full length of the ship, stacked containers, and the name 'FALKIRK-SOUTHLERLAND' clearly visible.",
+    "description_view_1": "Narrow end-on view showing the ship's width and the vertical stack of containers, with minimal detail visible.",
+    "description_view_2": "Opposite side view mirroring view 0, with the ship's name in reverse and similar container arrangement.",
+    "description_view_3": "Narrow end-on view from the opposite end, again showing the ship's width and container stacks with little detail.",
+    "category": "ship",
+    "height": 30,
+    "max_dimension": 400,
+    "materials": [
+        "steel",
+        "aluminum",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.03,
+        0.01,
+        0.03
+    ],
+    "mass": 200000000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 1000000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "loadable",
+        "unloadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bridge",
+        "door",
+        "container",
+        "antenna",
+        "radar",
+        "hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "blue",
+        "white",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.35,
+        0.25,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.01,
+    "recommended_clearance": 50,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a deep, elongated form, a sharply pointed bow, and a squared-off stern. The hull sits low in the water and features a flat deck for container stacking, with no visible keels or bulbous bow from the images.",
+    "attribute_superstructure_layout": "The superstructure is located toward the stern, rising above the containers with multiple decks and a bridge, and includes windows and communication/navigation equipment on top.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "antenna",
+        "radar"
+    ],
+    "attribute_registration_markings": "FALKIRK-SOUTHLERLAND",
+    "uid": "01055f1414f24b11a3e1aebb297de427",
+    "near_synsets": {
+        "container_ship.n.01": 0.5290301663072885,
+        "cargo_ship.n.01": 0.5453330147035503,
+        "ship.n.01": 0.5508307299751265,
+        "cargo_liner.n.01": 0.5517788111428527,
+        "bottom.n.07": 0.5527757116298374
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/01055f1414f24b11a3e1aebb297de427",
+        "creator_username": "_Muzaev",
+        "creator_display_name": "_Muzaev",
+        "creator_profile_url": "https://sketchfab.com/_Muzaev"
+    },
+    "filename": "std_01055f1414f24b11a3e1aebb297de427.glb",
+    "length": 0.06050766259431839,
+    "width": 158.0443115234375
+}

@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a modern commuter train with a streamlined, low-profile design and a predominantly metallic exterior. The train features a long, rectangular body with multiple carriages connected seamlessly, and the surface is punctuated by evenly spaced windows and doors. The exterior is primarily silver-gray with black accents, giving it a sleek and contemporary appearance. The undercarriage is visible, showing mechanical components and wheels, while the roof is flat and unadorned, lacking any visible pantographs or overhead wire connections. The train's sides are smooth, with minimal protrusions, and the overall build suggests a focus on efficiency and urban passenger transport. The design is typical of electric or light rail commuter trains used in metropolitan areas.",
+    "description": "A sleek, silver-gray commuter train with multiple carriages, evenly spaced windows, and a streamlined, modern design. The exterior is smooth with black accents and minimal surface features.",
+    "description_view_0": "Side view showing the full length of the train, with visible windows, doors, and undercarriage details.",
+    "description_view_1": "End view displaying the narrow front or rear face of the train, highlighting the flat roof and minimal width.",
+    "description_view_2": "Opposite side view similar to view 0, showing the train's length, windows, and carriage connections.",
+    "description_view_3": "End view mirroring view 1, again showing the narrow profile and flat roof of the train.",
+    "category": "train",
+    "height": 3.5,
+    "max_dimension": 24.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 90000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "button",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "commuter train",
+    "attribute_number_of_carriages": 3,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "evenly spaced along both sides",
+    "attribute_window_arrangement": "continuous row of rectangular windows",
+    "uid": "5c17839128374c8aa108e03745576bf9",
+    "near_synsets": {
+        "commuter.n.01": 0.49125751454289585,
+        "streamliner.n.01": 0.4933327300029104,
+        "subway_train.n.01": 0.5024768791486368,
+        "car_train.n.01": 0.5039663033684049,
+        "train.n.01": 0.5042460606786787,
+        "string.n.04": -1000.0,
+        "gearing.n.01": -1000.0,
+        "train.n.04": -1000.0,
+        "caravan.n.01": -1000.0,
+        "train.n.05": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5c17839128374c8aa108e03745576bf9",
+        "creator_username": "yudiadnan",
+        "creator_display_name": "yudiadnan",
+        "creator_profile_url": "https://sketchfab.com/yudiadnan"
+    },
+    "filename": "std_5c17839128374c8aa108e03745576bf9.glb",
+    "length": 58.84432029724121,
+    "width": 2.7637939453125
+}

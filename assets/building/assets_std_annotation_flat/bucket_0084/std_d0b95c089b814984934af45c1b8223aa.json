@@ -1,0 +1,107 @@
+{
+    "description_long": "This object is a large, industrial storage tank encased within a robust black metal frame, featuring cross-braced beams for structural reinforcement. The tank itself is cylindrical with rounded ends and is painted a matte black, with visible rivets and seams along its body. Prominently displayed on the side are warning labels and hazard symbols, indicating the tank is designed to store potentially dangerous or pressurized substances. There is a small control panel or gauge mounted on the frame, as well as a visible pipe or valve attachment protruding from the tank. The frame is constructed from thick, bolted steel beams, providing both protection and ease of transport. The overall design suggests it is intended for use in industrial or urban utility settings, such as chemical plants or storage facilities.",
+    "description": "A large black cylindrical storage tank encased in a heavy-duty metal frame with warning labels, a control panel, and a visible pipe attachment.",
+    "description_view_0": "The front view shows the tank's cylindrical body within the cross-braced metal frame, with warning signage, a control panel, and a pipe attachment clearly visible.",
+    "description_view_1": "The side view reveals the rounded end of the tank and the depth of the frame, with no visible signage or attachments.",
+    "description_view_2": "The rear view is similar to the front, showing the tank's body and frame, but the warning signage and control panel are less prominent.",
+    "description_view_3": "The opposite side view mirrors view 1, displaying the rounded tank end and the frame's cross-bracing, with no visible attachments.",
+    "category": "storage tank",
+    "height": 1.5,
+    "max_dimension": 3.0,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.01,
+        0.09
+    ],
+    "mass": 1200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "control panel",
+        "valve",
+        "pipe"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "yellow",
+        "green"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.04,
+        0.01
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [
+        "pipe",
+        "valve"
+    ],
+    "attribute_warning_signage": true,
+    "attribute_architectural_style": "cylindrical horizontal with external frame",
+    "uid": "d0b95c089b814984934af45c1b8223aa",
+    "near_synsets": {
+        "tank.n.02": 0.48303838600502885,
+        "tank_farm.n.01": 0.5273789079091492,
+        "reservoir.n.03": 0.5416070302788046,
+        "gas_tank.n.01": 0.5455254245899637,
+        "water_tower.n.01": 0.555572212945966,
+        "storage.n.03": -1000.0,
+        "memory.n.04": -1000.0,
+        "cooler.n.03": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "repositing.n.01": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "storage.n.04": -1000.0,
+        "tank.n.01": -1000.0,
+        "tank.n.03": -1000.0,
+        "storage.n.01": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d0b95c089b814984934af45c1b8223aa",
+        "creator_username": "vladruz2005",
+        "creator_display_name": "KrayDay",
+        "creator_profile_url": "https://sketchfab.com/vladruz2005"
+    },
+    "filename": "std_d0b95c089b814984934af45c1b8223aa.glb",
+    "length": 1.6476365327835083,
+    "width": 2.7934592962265015
+}

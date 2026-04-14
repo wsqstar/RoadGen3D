@@ -1,0 +1,105 @@
+{
+    "description_long": "This drone features a robust, angular body with a matte black finish and subtle red accents, giving it a tactical and futuristic appearance. It is equipped with four large, exposed rotors mounted on short arms, two on each side, providing stable lift and maneuverability. The front section houses a prominent camera or sensor module, while the rear is dominated by a large, turbine-like exhaust, suggesting powerful propulsion. The drone's sides are reinforced with armored panels and visible mechanical details, enhancing its durability for urban operations. Two fixed, wing-like stabilizers extend from the rear, contributing to aerodynamic stability. The overall design is compact yet sturdy, suitable for navigating complex urban environments.",
+    "description": "A compact, armored quadcopter drone with four exposed rotors, a front camera module, and a turbine-like rear exhaust, finished in matte black with red accents.",
+    "description_view_0": "Side view showing two rotors, armored panels, and the turbine exhaust at the rear.",
+    "description_view_1": "Rear view highlighting the large turbine exhaust, wing-like stabilizers, and the symmetrical rotor arrangement.",
+    "description_view_2": "Opposite side view mirroring view 0, with visible rotors and armored body details.",
+    "description_view_3": "Front view displaying the camera module, intake vents, and the forward-facing rotors.",
+    "category": "drone",
+    "height": 0.35,
+    "max_dimension": 1.1,
+    "materials": [
+        "carbon fiber",
+        "aluminum",
+        "plastic",
+        "glass",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.05,
+        0.08,
+        0.02
+    ],
+    "mass": 8.5,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 85,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "flyable",
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotor",
+        "camera module",
+        "turbine exhaust",
+        "stabilizer",
+        "sensor panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.22,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.08,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 4,
+    "attribute_rotor_configuration": "quadcopter X",
+    "attribute_landing_gear_type": "skids",
+    "attribute_camera_presence": true,
+    "attribute_propeller_guard_presence": true,
+    "uid": "7237deba38c344f48ea78e774edbb49d",
+    "near_synsets": {
+        "drone.n.04": 0.5420178540411583,
+        "rotor.n.03": 0.5633719797862742,
+        "single-rotor_helicopter.n.01": 0.564318604962429,
+        "buzz_bomb.n.01": 0.579241473140438,
+        "aircraft.n.01": 0.5877501905213949,
+        "drone.n.01": -1000.0,
+        "drone.n.05": -1000.0,
+        "monotone.n.01": -1000.0,
+        "dawdler.n.01": -1000.0
+    },
+    "synset": "drone.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7237deba38c344f48ea78e774edbb49d",
+        "creator_username": "malward",
+        "creator_display_name": "malward",
+        "creator_profile_url": "https://sketchfab.com/malward"
+    },
+    "filename": "std_7237deba38c344f48ea78e774edbb49d.glb",
+    "length": 1.3459396958351135,
+    "width": 1.566849708557129
+}

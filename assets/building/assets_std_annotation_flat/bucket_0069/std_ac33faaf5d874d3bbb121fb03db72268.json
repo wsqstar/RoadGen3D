@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a classic red and black tram situated on a cobblestone street section, surrounded by several tall, thin utility poles with overhead wires for electric power. The tram features a rectangular body with a slightly rounded roof, large windows along its sides, and visible entry doors. The windows are evenly spaced and framed, providing a clear view of the tram's interior seating arrangement. The tram is accompanied by a set of rails embedded in the street, and the surrounding pavement shows signs of wear and urban grime. Overhead, a pantograph connects the tram to the power lines, and a small flock of birds is perched on the wires, adding a touch of urban realism.",
+    "description": "A red and black tram on cobblestone tracks, surrounded by utility poles and overhead wires, with large side windows and entry doors.",
+    "description_view_0": "Side view showing the full length of the tram, its large windows, and the cobblestone street with utility poles and overhead wires.",
+    "description_view_1": "Angled front-left view highlighting the tram's front face, entry door, and the arrangement of poles and wires.",
+    "description_view_2": "Opposite side view displaying the tram's windows, doors, and the full extent of the cobblestone street and utility infrastructure.",
+    "description_view_3": "Angled rear-left view focusing on the tram's rear, the tracks, and the surrounding urban pavement.",
+    "category": "tram",
+    "height": 3.2,
+    "max_dimension": 12.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.07,
+        0.07,
+        0.03,
+        0.03
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 35000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "pantograph",
+        "wheel",
+        "button",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_pantograph_type": "diamond",
+    "attribute_door_configuration": "two sliding doors on the right side, centrally located",
+    "attribute_window_arrangement": "six large, evenly spaced rectangular windows on each side, separated by vertical frames",
+    "attribute_route_number_display": "none",
+    "attribute_front_signage": "none",
+    "uid": "ac33faaf5d874d3bbb121fb03db72268",
+    "near_synsets": {
+        "tramline.n.01": 0.5195555865994999,
+        "trolley_line.n.01": 0.5245567325560463,
+        "streetcar.n.01": 0.5277551833378467,
+        "trolleybus.n.01": 0.5308113892528586,
+        "tramway.n.01": 0.5335438145203968,
+        "tramcar.n.01": -1000.0
+    },
+    "synset": "tramcar.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ac33faaf5d874d3bbb121fb03db72268",
+        "creator_username": "sandramira",
+        "creator_display_name": "sandramira",
+        "creator_profile_url": "https://sketchfab.com/sandramira"
+    },
+    "filename": "std_ac33faaf5d874d3bbb121fb03db72268.glb",
+    "length": 15.3074631690979,
+    "width": 10.985198497772217
+}

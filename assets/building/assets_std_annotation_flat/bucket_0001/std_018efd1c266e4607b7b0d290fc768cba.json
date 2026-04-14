@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a rustic wooden cabin with a prominent red gable roof supported by large log beams. The exterior walls are constructed from horizontal wooden planks, and the foundation is made of stone. A covered porch with a wooden railing wraps around the front and one side, accessible by a short set of stone steps. The cabin features a single wooden door at the front, flanked by a small window, and additional windows are visible on the side and rear, providing natural light. The structure sits on a grassy plot, giving it a cozy, countryside appearance.",
+    "description": "A rustic wooden cabin with a red gable roof, stone foundation, and a wraparound porch with wooden railings.",
+    "description_view_0": "Front view showing the main entrance, stone steps, porch, and a small window beside the door.",
+    "description_view_1": "Top-down view highlighting the full expanse of the red gable roof and the porch's layout.",
+    "description_view_2": "Rear view displaying the wooden plank walls, a side window, and the log roof supports.",
+    "description_view_3": "Side view showing two windows, the porch extending along the side, and the wooden fencing.",
+    "category": "cabin",
+    "height": 4.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "wood",
+        "stone",
+        "roof_tile",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "porch railing",
+        "steps"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "red",
+        "gray",
+        "green"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gable roof with a steep pitch, constructed from red roof tiles and supported by exposed log beams with significant overhangs",
+    "attribute_window_arrangement": "Three rectangular windows: one small window on the front facade beside the door, one medium window on the rear wall, and one medium window on the side wall, arranged asymmetrically and spaced apart",
+    "attribute_door_placement": "Single wooden door centered on the front facade, opening onto the porch and flanked by a small window",
+    "attribute_porch_presence": true,
+    "attribute_architectural_style": "log cabin",
+    "uid": "018efd1c266e4607b7b0d290fc768cba",
+    "near_synsets": {
+        "cabin.n.02": 0.44046908582132815,
+        "log_cabin.n.01": 0.4507303967974519,
+        "farmhouse.n.01": 0.5187496062343949,
+        "gazebo.n.01": 0.5333770345914294,
+        "cottage_tent.n.01": 0.5381977371182106,
+        "cabin.n.03": -1000.0,
+        "cabin.n.01": -1000.0
+    },
+    "synset": "cabin.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/018efd1c266e4607b7b0d290fc768cba",
+        "creator_username": "HugoBabin",
+        "creator_display_name": "Hugo Babin",
+        "creator_profile_url": "https://sketchfab.com/HugoBabin"
+    },
+    "filename": "std_018efd1c266e4607b7b0d290fc768cba.glb",
+    "length": 11.661104202270508,
+    "width": 11.661099433898926
+}

@@ -1,0 +1,141 @@
+{
+    "description_long": "This is a double grave plot bordered by a low, rectangular fence made of black stone or polished granite, set on a reddish-brown tiled base. At the head of the plot are two upright headstones, each with engraved portraits, names, and dates, separated by a central reddish-brown stone panel. A white angel statue sits atop the central panel, adding a decorative and solemn touch. The headstones feature Cyrillic inscriptions and a prominent cross engraved between them. The grave is designed with a clean, geometric layout, and the tiled surface is divided into square sections. The overall appearance is formal and respectful, suitable for a cemetery or memorial park.",
+    "description": "A double grave plot with black stone fencing, two upright headstones with Cyrillic inscriptions, a central angel statue, and a reddish-brown tiled base.",
+    "description_view_0": "Side view showing the black stone fence, tiled base, and the profile of the headstones with the angel statue visible on top.",
+    "description_view_1": "Frontal view highlighting the engraved portraits, inscriptions, cross, and the angel statue atop the central panel.",
+    "description_view_2": "Opposite side view focusing on the fence, tiled base, and the rear profile of the headstones and angel statue.",
+    "description_view_3": "Rear view showing the backs of the headstones, the central reddish-brown panel, and the angel statue, with the fence and tiled base in the foreground.",
+    "category": "grave yard",
+    "height": 1.3,
+    "max_dimension": 2.5,
+    "materials": [
+        "granite",
+        "marble",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "memorializable",
+        "decoratable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "headstone",
+        "fence",
+        "angel statue"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red-brown",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.54,
+    "youngs_modulus": 50000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.01,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_tombstone_inscriptions": [
+        "\u0418\u043c\u044f \u041e\u0442\u0447\u0435\u0441\u0442\u0432\u043e \u0424\u0430\u043c\u0438\u043b\u0438\u044f 01.01.1900 - 02.02.2001",
+        "\u041b\u0438\u043b\u0438\u044f \u042e\u0440\u044c\u0435\u0432\u043d\u0430 \u0413\u043e\u0440\u043e\u0432\u0435\u0446 18.08.1948 - 18.02.2021",
+        "MEDIK-UMA \u041f\u0410\u041c\u042f\u0422\u041d\u0418\u041a\u0418 \u0412 \u041c\u0418\u041d\u0421\u041a\u0415"
+    ],
+    "attribute_crosses": [
+        {
+            "style": "Orthodox",
+            "height": 0.25,
+            "primary_material": "granite"
+        }
+    ],
+    "attribute_grave_markers": [
+        {
+            "type": "headstone",
+            "material": "granite",
+            "dimensions": [
+                1.2,
+                0.5,
+                0.1
+            ]
+        },
+        {
+            "type": "headstone",
+            "material": "granite",
+            "dimensions": [
+                1.2,
+                0.5,
+                0.1
+            ]
+        },
+        {
+            "type": "statue",
+            "material": "marble",
+            "dimensions": [
+                0.3,
+                0.2,
+                0.2
+            ]
+        }
+    ],
+    "attribute_mausoleums": [],
+    "attribute_cemetery_gates": [],
+    "uid": "7059ee65d6ef43a487a372a7d95b927f",
+    "near_synsets": {
+        "gravestone.n.01": 0.5335684691194991,
+        "grave.n.02": 0.5360140847691397,
+        "cairn.n.01": 0.5425498629116094,
+        "cemetery.n.01": 0.5508928949553564,
+        "cenotaph.n.01": 0.5637473811080481,
+        "yard.n.09": -1000.0,
+        "cubic_yard.n.01": -1000.0,
+        "yard.n.03": -1000.0,
+        "yard.n.06": -1000.0,
+        "yard.n.07": -1000.0,
+        "yard.n.08": -1000.0,
+        "yard.n.02": -1000.0,
+        "yard.n.01": -1000.0,
+        "thousand.n.01": -1000.0
+    },
+    "synset": "gravestone.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7059ee65d6ef43a487a372a7d95b927f",
+        "creator_username": "edaizer",
+        "creator_display_name": "Edgar",
+        "creator_profile_url": "https://sketchfab.com/edaizer"
+    },
+    "filename": "std_7059ee65d6ef43a487a372a7d95b927f.glb",
+    "length": 1.8832839727401733,
+    "width": 1.8832844495773315
+}

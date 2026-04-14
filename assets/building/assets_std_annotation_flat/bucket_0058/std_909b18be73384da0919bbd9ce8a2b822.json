@@ -1,0 +1,100 @@
+{
+    "description_long": "This bridge features a rustic, wooden design with a weathered appearance, evoking the look of an outdoor recreational or park structure. The deck is flanked by wooden side walls, and the surface appears to be made of planks, with visible grain and knots. At one end, a circular red-and-white target is mounted on the back wall, suggesting the bridge may be part of an axe-throwing or archery range. The bridge is relatively narrow, with a small bucket or container placed near the entrance, possibly for collecting thrown objects. The overall construction is simple, with no visible metal or concrete elements, and the bridge is open at both ends. The setting and details suggest a utilitarian, recreational function rather than a major urban thoroughfare.",
+    "description": "A narrow, rustic wooden bridge with plank sides and a target mounted at one end, resembling a recreational or park structure.",
+    "description_view_0": "Side view showing the wooden planks and a circular target mounted at the far end.",
+    "description_view_1": "Opposite side view highlighting the wood grain and a plain section of the bridge wall.",
+    "description_view_2": "Frontal view down the length of the bridge, with the target and a small bucket visible at the far and near ends, respectively.",
+    "description_view_3": "Rear view showing the back of the bridge, wood textures, and the side of the target.",
+    "category": "bridge",
+    "height": 1.2,
+    "max_dimension": 3.0,
+    "materials": [
+        "wood",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.85,
+        0.13,
+        0.02
+    ],
+    "mass": 250,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 4,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "throwable_target"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "target",
+        "bucket"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "red",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_support_type": "beam",
+    "attribute_railing_design": "solid wooden side walls with visible plank texture",
+    "attribute_arch_presence": false,
+    "attribute_lighting_fixtures": [],
+    "attribute_architectural_style": "utilitarian",
+    "uid": "909b18be73384da0919bbd9ce8a2b822",
+    "near_synsets": {
+        "bridge.n.03": 0.502445792204978,
+        "bridge.n.01": 0.5078499655264236,
+        "trestle_bridge.n.01": 0.5104610894392521,
+        "rope_bridge.n.01": 0.5127212088868808,
+        "covered_bridge.n.01": 0.5152823964280115,
+        "bridge.n.05": -1000.0,
+        "bridge.n.08": -1000.0,
+        "bridge.n.07": -1000.0,
+        "bridge.n.04": -1000.0,
+        "bridge.n.09": -1000.0,
+        "bridge.n.06": -1000.0,
+        "bridge.n.02": -1000.0
+    },
+    "synset": "bridge.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/909b18be73384da0919bbd9ce8a2b822",
+        "creator_username": "michaelsliffe",
+        "creator_display_name": "michaelsliffe",
+        "creator_profile_url": "https://sketchfab.com/michaelsliffe"
+    },
+    "filename": "std_909b18be73384da0919bbd9ce8a2b822.glb",
+    "length": 2.0081708431243896,
+    "width": 0.7422007918357849
+}

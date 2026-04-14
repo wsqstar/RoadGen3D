@@ -1,0 +1,91 @@
+{
+    "description_long": "This object is a compact, blocky firearm resembling a submachine gun, constructed with a minimalist, pixelated design. The body is predominantly matte black, with a rectangular receiver and a short, squared barrel. The grip is vertical and robust, with a visible trigger guard and a simple trigger. The top of the firearm features a stepped, blocky sight rail, and the rear has a raised section that may serve as a basic rear sight. The magazine is integrated into the grip, typical of compact automatic weapons. The overall appearance is utilitarian, with no visible embellishments or attachments beyond the basic functional components.",
+    "description": "A compact, blocky black rifle with a vertical grip, short barrel, and minimalist sight rail. The design is utilitarian and pixelated, resembling a submachine gun.",
+    "description_view_0": "Side view showing the full profile, including the grip, trigger, magazine, and stepped sight rail.",
+    "description_view_1": "Front view highlighting the squared barrel opening and the narrow width of the receiver.",
+    "description_view_2": "Opposite side view, mirroring the profile of view 0 with similar features visible.",
+    "description_view_3": "Rear view showing the back of the receiver and the alignment of the sight rail.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 0.35,
+    "materials": [
+        "polymer",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "mass": 2.7,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "magazine",
+        "sight rail"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "short",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "dc79a3ca97ce4ed38f8694afc6ac74e9",
+    "near_synsets": {
+        "submachine_gun.n.01": 0.5065750211458474,
+        "carbine.n.01": 0.5079548508851652,
+        "kalashnikov.n.01": 0.5083746726733089,
+        "garand_rifle.n.01": 0.5150332934672524,
+        "light_arm.n.01": 0.5225652892155633,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dc79a3ca97ce4ed38f8694afc6ac74e9",
+        "creator_username": "salatis",
+        "creator_display_name": "salatis",
+        "creator_profile_url": "https://sketchfab.com/salatis"
+    },
+    "filename": "std_dc79a3ca97ce4ed38f8694afc6ac74e9.glb",
+    "length": 0.27040813863277435,
+    "width": 0.020408201962709427
+}

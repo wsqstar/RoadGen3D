@@ -1,0 +1,110 @@
+{
+    "description_long": "This bus shelter features a modern, angular black roof with a slight central dip, supported by a sturdy metal frame. The shelter has transparent glass or acrylic side and back panels, providing weather protection while maintaining visibility. Inside, there are four individual red seats fixed to the ground, offering seating for waiting passengers. A green waste bin is positioned at one end of the shelter, and a tall, slender bus stop pole with a red cap stands nearby. The shelter is open at the front, allowing easy access, and the structure appears robust and designed for urban environments. The overall design is functional, with clean lines and a focus on durability and user comfort.",
+    "description": "A modern bus shelter with a black angular roof, transparent panels, red seating, a green waste bin, and a nearby bus stop pole.",
+    "description_view_0": "Front view showing the narrow end of the shelter, with the red seats and transparent panels visible through the entrance.",
+    "description_view_1": "Side view displaying the full length of the shelter, four red seats, transparent panels, the green waste bin, and the bus stop pole.",
+    "description_view_2": "Rear view highlighting the back panels, the green waste bin in the foreground, and the angular roof shape.",
+    "description_view_3": "Opposite side view showing the shelter's length, seating, transparent panels, the waste bin on the left, and the bus stop pole on the right.",
+    "category": "bus shelter",
+    "height": 2.5,
+    "max_dimension": 5.0,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "composite",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "leanable",
+        "deposit_trash"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "seat",
+        "waste bin",
+        "bus stop pole"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "red",
+        "green",
+        "gray",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.45,
+        0.15,
+        0.05,
+        0.25,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_roof_type": "curved angular metal roof",
+    "attribute_seating_presence": true,
+    "attribute_advertisement_panel": false,
+    "attribute_shelter_enclosure_level": "partially enclosed",
+    "attribute_signage": [],
+    "uid": "6b0d8e1d703746a1be4d94c9866ee364",
+    "near_synsets": {
+        "bus_stop.n.01": 0.5364946934908864,
+        "bus_traffic.n.01": 0.5670020311072672,
+        "shelter.n.02": 0.5700181167072473,
+        "school_bus.n.01": 0.5804026406576285,
+        "shuttle_bus.n.01": 0.581336990864115,
+        "bus.n.04": -1000.0,
+        "bus.n.01": -1000.0,
+        "shelter.n.05": -1000.0,
+        "tax_shelter.n.01": -1000.0,
+        "protection.n.04": -1000.0,
+        "busbar.n.01": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "shelter.n.01": -1000.0
+    },
+    "synset": "shelter.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6b0d8e1d703746a1be4d94c9866ee364",
+        "creator_username": "tobylisle",
+        "creator_display_name": "tobylisle",
+        "creator_profile_url": "https://sketchfab.com/tobylisle"
+    },
+    "filename": "std_6b0d8e1d703746a1be4d94c9866ee364.glb",
+    "length": 1.5179635286331177,
+    "width": 6.405005931854248
+}

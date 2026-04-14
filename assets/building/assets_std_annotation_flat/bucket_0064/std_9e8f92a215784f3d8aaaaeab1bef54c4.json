@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a classic yellow taxi cab, reminiscent of mid-20th century American city taxis, with a boxy body and rounded roof. The exterior is painted a weathered yellow, featuring black and white checkered decals and company information on the front doors. Chrome accents are visible on the bumpers, grille, and around the windows, adding a vintage touch. The vehicle has four doors, black tires with chrome hubcaps, and a roof-mounted taxi sign and light. The windows are dark, obscuring the interior, but the overall structure suggests a typical passenger seating arrangement. The rear and front license plates are visible, and the car shows signs of wear, such as minor scratches and dirt, indicating heavy urban use.",
+    "description": "A vintage yellow taxi cab with chrome details, checkered decals, and a roof-mounted taxi sign, showing signs of urban wear.",
+    "description_view_0": "Side view showing the yellow body, checkered decal, company branding, and two doors with chrome trim.",
+    "description_view_1": "Rear view displaying the trunk, rear license plate, chrome bumper, and taillights.",
+    "description_view_2": "Opposite side view with similar features as view 0, including decals and chrome details.",
+    "description_view_3": "Front view highlighting the chrome grille, headlights, front license plate, and roof taxi sign.",
+    "category": "taxi",
+    "height": 1.6,
+    "max_dimension": 4.8,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "chrome",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.1,
+        0.08,
+        0.05,
+        0.04,
+        0.03,
+        0.03,
+        0.02
+    ],
+    "mass": 1600,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "wheel",
+        "window",
+        "trunk",
+        "hood",
+        "taxi sign",
+        "roof light"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "chrome",
+        "white"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "glossy",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_taxi_sign": true,
+    "attribute_roof_light": true,
+    "attribute_license_plate": true,
+    "attribute_company_branding": true,
+    "attribute_fare_meter_display": false,
+    "uid": "9e8f92a215784f3d8aaaaeab1bef54c4",
+    "near_synsets": {
+        "medallion.n.03": 0.5127804124190307,
+        "gypsy_cab.n.01": 0.5200952464320334,
+        "minicab.n.01": 0.5222361195005287,
+        "cab.n.03": 0.5512510162214556,
+        "taximeter.n.01": 0.5537502024123224
+    },
+    "synset": "taximeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9e8f92a215784f3d8aaaaeab1bef54c4",
+        "creator_username": "DanielZhabotinsky",
+        "creator_display_name": "Daniel Zhabotinsky",
+        "creator_profile_url": "https://sketchfab.com/DanielZhabotinsky"
+    },
+    "filename": "std_9e8f92a215784f3d8aaaaeab1bef54c4.glb",
+    "length": 4.668410062789917,
+    "width": 1.8774229884147644
+}

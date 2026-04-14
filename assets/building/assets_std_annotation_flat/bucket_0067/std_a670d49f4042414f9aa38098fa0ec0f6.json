@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a medium-sized quadcopter drone with a digital camouflage pattern, designed for urban or tactical environments. It features four rotors mounted on extended arms, each with matching camo propellers. The central body is robust and streamlined, with a mounted camera gimbal system visible beneath the main chassis for aerial surveillance or photography. The landing gear consists of four fixed legs, providing stable support for takeoff and landing on various surfaces. Black structural elements reinforce the arms and central body, contrasting with the tan and brown camouflage. The overall design suggests durability and functionality for both civilian and tactical urban operations.",
+    "description": "A camouflaged quadcopter drone with four rotors, fixed landing legs, and a visible camera gimbal beneath its central body.",
+    "description_view_0": "Front-left view showing the camera gimbal and two prominent camo propellers, with landing legs clearly visible.",
+    "description_view_1": "Side view highlighting the symmetrical arm layout and the camera gimbal directly beneath the body.",
+    "description_view_2": "Rear-left view displaying the back arms and propellers, with the camera gimbal partially visible.",
+    "description_view_3": "Top-rear view emphasizing the X-shaped arm configuration and the full set of propellers.",
+    "category": "drone",
+    "height": 0.25,
+    "max_dimension": 0.6,
+    "materials": [
+        "plastic",
+        "carbon fiber",
+        "metal",
+        "glass",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.05,
+        0.08,
+        0.02
+    ],
+    "mass": 2.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 22,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable",
+        "toggleable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "camera gimbal",
+        "landing leg",
+        "battery compartment"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 7000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 4,
+    "attribute_rotor_configuration": "quadcopter X",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": true,
+    "attribute_propeller_guard_presence": false,
+    "uid": "a670d49f4042414f9aa38098fa0ec0f6",
+    "near_synsets": {
+        "drone.n.04": 0.5187313416625188,
+        "single-rotor_helicopter.n.01": 0.5460061911244032,
+        "orthopter.n.01": 0.5616582779870193,
+        "helicopter.n.01": 0.5721028579514087,
+        "rotor.n.03": 0.5721063765440197,
+        "drone.n.01": -1000.0,
+        "dawdler.n.01": -1000.0,
+        "drone.n.05": -1000.0,
+        "monotone.n.01": -1000.0
+    },
+    "synset": "drone.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a670d49f4042414f9aa38098fa0ec0f6",
+        "creator_username": "ProfessionalAsstes",
+        "creator_display_name": "ProfessionalAssets",
+        "creator_profile_url": "https://sketchfab.com/ProfessionalAsstes"
+    },
+    "filename": "std_a670d49f4042414f9aa38098fa0ec0f6.glb",
+    "length": 0.5032243132591248,
+    "width": 0.5178509205579758
+}

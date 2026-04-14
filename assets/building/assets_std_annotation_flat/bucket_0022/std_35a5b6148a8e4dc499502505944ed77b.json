@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a compact firearm with a metallic body and a wooden grip, featuring a long, cylindrical barrel and a wireframe folding stock. The receiver and barrel are constructed from dark metal, showing signs of wear and utilitarian design, while the grip and fore-end are made of polished wood, providing a visual contrast. The magazine is a straight, box-type, protruding vertically beneath the receiver, and the trigger is housed within a simple, rounded metal guard. The folding stock is made of bent metal rods, designed for compactness and portability, and can be extended or collapsed as needed. The front sight is a small, raised post, and the rear sight is a notch integrated into the receiver. The overall design suggests a focus on functionality and ease of use in urban environments.",
+    "description": "A compact, metal-bodied shotgun with a wooden grip, wireframe folding stock, and a straight box magazine. The design is utilitarian, with a mix of dark metal and polished wood elements.",
+    "description_view_0": "The shotgun is viewed directly from the front, showing the circular barrel opening, the narrow profile of the folding stock, and the alignment of the magazine below.",
+    "description_view_1": "A side view reveals the full length of the barrel, the wooden grip, the straight box magazine, and the extended wireframe folding stock.",
+    "description_view_2": "The top-down view highlights the receiver, the alignment of the barrel, and the slim profile of the folding stock and magazine.",
+    "description_view_3": "The opposite side view mirrors view 1, showing the wooden grip, magazine, and the extended folding stock from the other side.",
+    "category": "shotgun",
+    "height": 0.25,
+    "max_dimension": 0.8,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.18,
+        0.05,
+        0.02
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "foldable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "magazine",
+        "folding stock",
+        "safety switch",
+        "grip"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, no visible ribbing or venting, standard barrel length",
+    "attribute_stock_type": "folding stock",
+    "attribute_action_mechanism": "semi-automatic",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized metal guard with no visible finger grooves or reinforcement",
+    "uid": "35a5b6148a8e4dc499502505944ed77b",
+    "near_synsets": {
+        "sawed-off_shotgun.n.01": 0.49847364003598543,
+        "shotgun.n.01": 0.5196152999220459,
+        "shotgun_shell.n.01": 0.5355904243812225,
+        "pump_action.n.01": 0.542554904673364,
+        "case_shot.n.01": 0.547269712519574
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/35a5b6148a8e4dc499502505944ed77b",
+        "creator_username": "Tnkii",
+        "creator_display_name": "Charlie Tinley",
+        "creator_profile_url": "https://sketchfab.com/Tnkii"
+    },
+    "filename": "std_35a5b6148a8e4dc499502505944ed77b.glb",
+    "length": 0.6717252135276794,
+    "width": 0.050778718665242195
+}

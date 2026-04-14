@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a long, straight segment of a primary road with a dark asphalt surface and a brownish base, likely representing the underlying roadbed or curb. The road features a single lane in each direction, separated by a series of evenly spaced white dashed lane markings running down the center. The surface is flat and smooth, suitable for vehicular traffic, and the edges are cleanly defined without visible sidewalks or curbs. There are no visible road signs, lighting fixtures, or pedestrian crossings present. The road segment appears to be designed for urban or suburban environments, facilitating the movement of vehicles along a main thoroughfare.",
+    "description": "A straight, dark asphalt road segment with white dashed center lane markings and a brown base, lacking signage, curbs, or pedestrian features.",
+    "description_view_0": "Narrow end-on view showing the width of the road and the central dashed lane markings.",
+    "description_view_1": "Side view displaying the full length of the road, the dark surface, and the brown base beneath.",
+    "description_view_2": "Opposite end-on view, similar to view 0, highlighting the road's width and central markings.",
+    "description_view_3": "Side view from the opposite direction, again showing the road's length, surface, and base.",
+    "category": "road",
+    "height": 0.2,
+    "max_dimension": 12.0,
+    "materials": [
+        "asphalt",
+        "concrete",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 4200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "car",
+        "bicycle"
+    ],
+    "colors": [
+        "black",
+        "brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.53,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_lane_markings": "Single row of white dashed lane markings running down the center of the road; no special markings or additional lanes.",
+    "attribute_signage": "none",
+    "attribute_curb_presence": false,
+    "attribute_lighting_fixtures": "none",
+    "attribute_pedestrian_crossings": "none",
+    "uid": "5b8f88289bec4292a8a7e43fec211f3e",
+    "near_synsets": {
+        "white_line.n.01": 0.48013740655678466,
+        "traffic_lane.n.01": 0.5048026294269606,
+        "road_surface.n.01": 0.5121798165556156,
+        "road.n.01": 0.5227103683394773,
+        "lane.n.01": 0.525360669564152,
+        "road.n.02": -1000.0
+    },
+    "synset": "road.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5b8f88289bec4292a8a7e43fec211f3e",
+        "creator_username": "trmhtk2",
+        "creator_display_name": "trmhtk2",
+        "creator_profile_url": "https://sketchfab.com/trmhtk2"
+    },
+    "filename": "std_5b8f88289bec4292a8a7e43fec211f3e.glb",
+    "length": 4.949983596801758,
+    "width": 0.34999924898147583
+}

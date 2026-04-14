@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a Soviet-era T-34 medium tank, characterized by its angular, sloped armor and robust steel construction. The vehicle features a prominent cylindrical turret with a long-barreled main cannon, and several hatches and periscopes are visible on the turret and hull. The tank is equipped with six large road wheels on each side, connected by a continuous metal track system, and cylindrical external fuel tanks are mounted along the rear sides. The surface is painted in a weathered, light gray color with visible dirt and wear, and the number '22' is stenciled in red on the turret. The front hull is sharply angled for deflection, and the rear includes engine ventilation grilles and exhausts. The overall design is utilitarian, with minimal decorative elements and a focus on battlefield durability.",
+    "description": "A weathered, light gray T-34 tank with a sloped hull, cylindrical turret, and red '22' marking, featuring six large road wheels per side and external fuel tanks.",
+    "description_view_0": "Front view showing the sharply angled glacis plate, main cannon, and frontal armor details.",
+    "description_view_1": "Left side view highlighting the six large road wheels, continuous tracks, and external cylindrical fuel tanks.",
+    "description_view_2": "Rear view displaying engine grilles, exhausts, and the back of the turret and hull.",
+    "description_view_3": "Right side view with similar features to the left, including the red '22' marking on the turret and visible track system.",
+    "category": "combat tactical  vehicle",
+    "height": 2.4,
+    "max_dimension": 6.7,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.88,
+        0.02,
+        0.05,
+        0.05
+    ],
+    "mass": 26000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "wheel",
+        "track",
+        "fuel tank",
+        "periscope"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.92,
+        0.03,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the turret front; no additional weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped steel armor plating; prominent on the front glacis, turret, and sides.",
+    "attribute_camouflage_pattern": "Solid light gray paint with weathering and dirt; no distinct camouflage pattern.",
+    "attribute_military_markings": "Red number '22' stenciled on both sides of the turret; no other markings visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "1b931275d2b4416cb5d9a0f1034de1e8",
+    "near_synsets": {
+        "tank.n.01": 0.5138189872560409,
+        "military_vehicle.n.01": 0.5386492770804242,
+        "tank_destroyer.n.01": 0.5422398820664003,
+        "panzer.n.01": 0.5492637735855839,
+        "reconnaissance_vehicle.n.01": 0.5500874747420909,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1b931275d2b4416cb5d9a0f1034de1e8",
+        "creator_username": "Hsu.Pei.Ge",
+        "creator_display_name": "Basic Hsu",
+        "creator_profile_url": "https://sketchfab.com/Hsu.Pei.Ge"
+    },
+    "filename": "std_1b931275d2b4416cb5d9a0f1034de1e8.glb",
+    "length": 5.641880512237549,
+    "width": 2.998675584793091
+}

@@ -1,0 +1,98 @@
+{
+    "description_long": "This object consists of three robust, rectangular containers placed side by side, each with a military or industrial aesthetic. The containers have a dark green to black color palette, with reinforced edges and two prominent horizontal bands across the top. The front face of each container features a detailed locking mechanism with a keypad and red indicator, suggesting secure access. The sides are relatively plain, with a small circular indicator light and a recessed panel, while the back is featureless and solid. The containers appear to be constructed from heavy-duty metal, likely designed for secure storage or transport of valuable or sensitive items in urban or tactical environments.",
+    "description": "A set of three heavy-duty, dark green and black rectangular containers with reinforced edges and secure keypad locks on the front.",
+    "description_view_0": "Front view showing the three containers' locking mechanisms, keypads, and reinforced structure.",
+    "description_view_1": "Side view displaying the containers' depth, small indicator lights, and recessed panels.",
+    "description_view_2": "Rear view revealing the plain, solid backs of the containers with no visible openings or features.",
+    "description_view_3": "Opposite side view similar to view 1, with indicator lights and recessed panels visible.",
+    "category": "container",
+    "height": 0.6,
+    "max_dimension": 2.1,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.8,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "keypad",
+        "lock",
+        "lid",
+        "indicator light"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_lid_type": "hinged flat lid",
+    "attribute_opening_mechanism": "unlatch and lift",
+    "attribute_labeling_or_signage": "keypad and indicator lights on front; no other visible labels",
+    "attribute_handles_or_grips": "none",
+    "attribute_placement_location": "floor or outdoor ground",
+    "uid": "659c485350614710b2cc8d88189b4c3f",
+    "near_synsets": {
+        "container.n.01": 0.5181545470338733,
+        "safe.n.01": 0.5314407160869712,
+        "box.n.01": 0.5402746834875648,
+        "case.n.05": 0.5504159478329747,
+        "cargo_container.n.01": 0.5517332184478396
+    },
+    "synset": "cargo_container.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/659c485350614710b2cc8d88189b4c3f",
+        "creator_username": "Brahim.Ait.Hamou",
+        "creator_display_name": "IBRA",
+        "creator_profile_url": "https://sketchfab.com/Brahim.Ait.Hamou"
+    },
+    "filename": "std_659c485350614710b2cc8d88189b4c3f.glb",
+    "length": 0.7850647866725922,
+    "width": 3.517256021499634
+}

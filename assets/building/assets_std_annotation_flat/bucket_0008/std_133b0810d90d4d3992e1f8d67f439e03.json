@@ -1,0 +1,91 @@
+{
+    "description_long": "This is a large, rectangular, industrial shipping container with a weathered, rust-red exterior. The sides feature vertical metal slats and a faded white logo, suggesting it is used for commercial or freight purposes. The front end is reinforced with vertical locking bars and displays stenciled white text indicating weight and handling information, as well as a small yellow caution label. The back end is solid and unadorned, while the top surface is flat and shows signs of wear and rust. The container is constructed primarily from heavy-duty steel, designed to withstand harsh outdoor environments and rough handling. Its robust build and secure locking mechanism make it suitable for storing or transporting goods in urban or industrial settings.",
+    "description": "A large, rust-red steel shipping container with vertical slats, faded white logo, and reinforced locking bars, showing signs of weathering and industrial use.",
+    "description_view_0": "The side view shows vertical metal slats and a faded white logo at the center, with a weathered, rusted surface.",
+    "description_view_1": "The front view features reinforced vertical locking bars, stenciled white handling information, and a small yellow caution label.",
+    "description_view_2": "The opposite side view mirrors the first, with vertical slats and a faded white logo, but no additional markings.",
+    "description_view_3": "The back view is a solid, unadorned metal panel with visible rust and no markings or features.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.92,
+        0.07,
+        0.01
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3500,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking bars"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "rust red",
+        "white",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.95,
+        0.04,
+        0.01
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 2.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "no lid",
+    "attribute_opening_mechanism": "unlatch and swing open doors",
+    "attribute_labeling_or_signage": "faded white logo on sides, stenciled white handling information and yellow caution label on front",
+    "attribute_handles_or_grips": "vertical locking bars on front doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "133b0810d90d4d3992e1f8d67f439e03",
+    "near_synsets": {
+        "container.n.01": 0.483427421649621,
+        "cargo_container.n.01": 0.4870730958503962,
+        "crate.n.01": 0.5368118860767987,
+        "box.n.01": 0.542455234470939,
+        "container_ship.n.01": 0.5472080636175184
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/133b0810d90d4d3992e1f8d67f439e03",
+        "creator_username": "sousinho",
+        "creator_display_name": "Sousinho",
+        "creator_profile_url": "https://sketchfab.com/sousinho"
+    },
+    "filename": "std_133b0810d90d4d3992e1f8d67f439e03.glb",
+    "length": 5.635349273681641,
+    "width": 2.9368536472320557
+}

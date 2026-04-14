@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a classic steam locomotive with a separate coal tender, both painted in a dark green color with black and metallic accents. The locomotive features a cylindrical boiler, a prominent smokestack at the front, and a brass dome near the center. The wheels are large and spoked, with the locomotive having a 4-6-0 wheel arrangement and the tender supported by two sets of smaller wheels. The tender is boxy and sits directly behind the locomotive, likely used for carrying coal and water. The front of the train is equipped with a red buffer beam and coupling hooks, while the sides display subtle paneling and rivet details. There are no visible doors or windows, and the overall design is reminiscent of early 20th-century British steam engines.",
+    "description": "A dark green, classic steam locomotive with a separate coal tender, featuring a cylindrical boiler, large spoked wheels, and metallic detailing.",
+    "description_view_0": "Side view showing the full length of the locomotive and tender, highlighting the wheel arrangement and cylindrical boiler.",
+    "description_view_1": "Front view displaying the round smokestack, buffer beam, and the narrow profile of the locomotive.",
+    "description_view_2": "Opposite side view similar to view 0, showing the full length and details of the wheels and tender.",
+    "description_view_3": "Rear view focusing on the back of the tender and the cab, with the locomotive's roof and tender's top visible.",
+    "category": "train",
+    "height": 4.2,
+    "max_dimension": 18.0,
+    "materials": [
+        "steel",
+        "iron",
+        "glass",
+        "brass",
+        "paint",
+        "coal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.03,
+        0.02,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 85000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "door",
+        "lever",
+        "coupling hook",
+        "smokestack"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "red",
+        "brass",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "group",
+    "attribute_train_type": "steam locomotive",
+    "attribute_number_of_carriages": 2,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "no visible doors",
+    "attribute_window_arrangement": "no visible windows",
+    "uid": "21d15cc8adde4fd6b138dfd46727c2ff",
+    "near_synsets": {
+        "steam_locomotive.n.01": 0.44896350565164467,
+        "train.n.01": 0.47444913391149734,
+        "diesel_locomotive.n.01": 0.48585027661391106,
+        "traction_engine.n.01": 0.489147091353451,
+        "train_set.n.01": 0.4942896996266438,
+        "train.n.04": -1000.0,
+        "train.n.05": -1000.0,
+        "string.n.04": -1000.0,
+        "caravan.n.01": -1000.0,
+        "gearing.n.01": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/21d15cc8adde4fd6b138dfd46727c2ff",
+        "creator_username": "ThomasBeerens",
+        "creator_display_name": "ThomasBeerens",
+        "creator_profile_url": "https://sketchfab.com/ThomasBeerens"
+    },
+    "filename": "std_21d15cc8adde4fd6b138dfd46727c2ff.glb",
+    "length": 19.90956401824951,
+    "width": 2.7750473022460938
+}

@@ -1,0 +1,103 @@
+{
+    "description_long": "This kiosk is a small, freestanding wooden structure with a rectangular footprint and a single open front supported by a central post. The exterior walls are clad in horizontal wooden planks with a natural, weathered finish, while the roof is a single-pitch metal design sloping from front to back. The interior is unfinished wood, visible from the open front, and the floor appears to be a solid concrete slab. A printed sign with the text 'A la maison DUBOIS' is mounted above the entrance, adding a commercial touch. There are no visible windows or doors, and the structure is designed for easy access from the front. The overall appearance is functional and rustic, suitable for use as a street-side vendor kiosk or information booth.",
+    "description": "A small, rustic wooden kiosk with a sloped metal roof, open front, and a commercial sign above the entrance.",
+    "description_view_0": "Front view showing the open entrance, central support post, interior wood framing, and a printed sign above the entryway.",
+    "description_view_1": "Rear angled view displaying the solid wooden back wall and the sloped metal roof.",
+    "description_view_2": "Direct rear view highlighting the horizontal wooden planks and the full width of the sloped roof.",
+    "description_view_3": "Side view showing the plain wooden wall and the roof's slope from front to back.",
+    "category": "kiosk",
+    "height": 2.5,
+    "max_dimension": 3.0,
+    "materials": [
+        "wood",
+        "metal",
+        "concrete",
+        "air",
+        "plastic (sign)"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "displayable",
+        "shelterable",
+        "mountable (sign)"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sign",
+        "support post"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "gray",
+        "white",
+        "green",
+        "yellow",
+        "red"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.03,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "printed sign mounted above entrance, displaying 'A la maison DUBOIS' with a logo",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "single open entryway at front, no doors",
+    "attribute_roof_design": "single-pitch sloped roof made of metal panels, overhanging front and sides",
+    "attribute_architectural_style": "rustic utilitarian with modern commercial signage",
+    "uid": "495dfa40fd7d4f6ebec800e31cbdaec0",
+    "near_synsets": {
+        "booth.n.02": 0.5336040293327429,
+        "booth.n.04": 0.5352225216044213,
+        "shopfront.n.01": 0.540810370161992,
+        "pop-up.n.03": 0.554694620064096,
+        "newsstand.n.01": 0.5548113716751171
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/495dfa40fd7d4f6ebec800e31cbdaec0",
+        "creator_username": "jeromelemercier",
+        "creator_display_name": "J\u00e9r\u00f4me LEMERCIER",
+        "creator_profile_url": "https://sketchfab.com/jeromelemercier"
+    },
+    "filename": "std_495dfa40fd7d4f6ebec800e31cbdaec0.glb",
+    "length": 2.2775559425354004,
+    "width": 2.2344577312469482
+}

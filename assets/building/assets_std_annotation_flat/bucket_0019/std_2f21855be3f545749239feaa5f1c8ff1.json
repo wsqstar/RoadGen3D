@@ -1,0 +1,104 @@
+{
+    "description_long": "This object is a large, belt-fed machine gun with a robust, metallic construction and a matte black finish. It features a fixed stock at the rear, a prominent barrel with a perforated heat shield, and a bipod mounted near the muzzle for stability during firing. The ammunition is supplied via a box magazine attached to the side, with visible linked cartridges feeding into the receiver. The top of the receiver is equipped with iron sights for aiming, and the overall design is utilitarian, emphasizing durability and sustained fire. The weapon's size and configuration suggest it is intended for use as a support weapon, likely deployed on the ground or mounted for defensive positions.",
+    "description": "A large, belt-fed machine gun with a fixed stock, bipod, side-mounted box magazine, and iron sights, finished in matte black metal. Designed for sustained fire and stability, it features a robust, utilitarian build.",
+    "description_view_0": "Side view showing the full length of the machine gun, fixed stock, bipod folded, and the box magazine with visible ammunition belt.",
+    "description_view_1": "Front-angled view highlighting the muzzle, bipod deployed, and the box magazine attached to the side.",
+    "description_view_2": "Opposite side view displaying the receiver, stock, and the ammunition belt feeding from the box magazine.",
+    "description_view_3": "Rear-angled view focusing on the stock, the top of the receiver, and the alignment of the bipod and magazine.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 1.25,
+    "materials": [
+        "steel",
+        "polymer",
+        "brass",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 12.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 150,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "deployable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "trigger",
+        "magazine",
+        "bipod",
+        "charging handle",
+        "sight",
+        "barrel",
+        "ammunition belt"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "brown",
+        "gold"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "belt-fed box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "2f21855be3f545749239feaa5f1c8ff1",
+    "near_synsets": {
+        "browning_machine_gun.n.01": 0.4974432096851358,
+        "automatic_rifle.n.01": 0.5031063672150332,
+        "rifle.n.01": 0.5108133242312759,
+        "assault_rifle.n.01": 0.512067014232902,
+        "machine_gun.n.01": 0.5125659343069981
+    },
+    "synset": "assault_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/2f21855be3f545749239feaa5f1c8ff1",
+        "creator_username": "kingy",
+        "creator_display_name": "Kingy",
+        "creator_profile_url": "https://sketchfab.com/kingy"
+    },
+    "filename": "std_2f21855be3f545749239feaa5f1c8ff1.glb",
+    "length": 0.6715416610240936,
+    "width": 0.614890843629837
+}

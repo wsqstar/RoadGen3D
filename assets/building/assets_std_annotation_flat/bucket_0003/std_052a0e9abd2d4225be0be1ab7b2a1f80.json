@@ -1,0 +1,97 @@
+{
+    "description_long": "This humanoid robot features a skeletal, mechanical frame with exposed joints and components, giving it an industrial and utilitarian appearance. Its head is equipped with two prominent, round eye-like sensors and a detailed jaw structure, evoking a classic robotic visage. The torso is constructed from a network of rods and plates, with visible springs and cables suggesting advanced articulation and flexibility. Both arms are segmented with multiple joints, one ending in a claw-like gripper and the other in a more hand-like structure, enhancing its dexterity. The legs are similarly jointed, with large, flat feet designed for stability on urban surfaces. The overall design is metallic, with a predominantly dark, steel-gray finish and hints of mechanical complexity throughout.",
+    "description": "A skeletal, metallic humanoid robot with exposed joints, a detailed head, and articulated limbs, featuring a claw and hand for manipulation.",
+    "description_view_0": "Frontal view showing the robot's symmetrical frame, detailed head, articulated arms (one with a claw, one with a hand), and large, flat feet.",
+    "description_view_1": "Left side view highlighting the robot's thin profile, visible arm and leg joints, and the protruding claw hand.",
+    "description_view_2": "Rear view displaying the back structure, exposed mechanical components, and the symmetrical arrangement of limbs and feet.",
+    "description_view_3": "Right side view emphasizing the hand-like manipulator, the mechanical spine, and the layered construction of the legs.",
+    "category": "humanoid robot",
+    "height": 1.85,
+    "max_dimension": 1.85,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.02,
+        0.08
+    ],
+    "mass": 95,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "graspable",
+        "pressable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "claw",
+        "hand",
+        "head",
+        "joints"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.8,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both legs straight, arms slightly bent at the elbows, left arm ending in a claw and right arm in a hand, head facing forward, torso erect.",
+    "attribute_clothing_style": "Unclothed; only integrated metallic panels and exposed mechanical components are visible.",
+    "attribute_facial_features": "The face features two large, round eye-like sensors, a detailed jaw structure with visible teeth-like elements, and no visible nose or mouth; the overall expression is neutral and mechanical.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints, allowing for a wide range of motion; the hands and claws are articulated for grasping, and the feet are flat and jointed for stability.",
+    "attribute_presence_of_sensors": "Two prominent optical sensors (eyes) on the head; no other visible sensors.",
+    "uid": "052a0e9abd2d4225be0be1ab7b2a1f80",
+    "near_synsets": {
+        "android.n.01": 0.5356051741414801,
+        "cyborg.n.01": 0.5506210925081911,
+        "robotics_equipment.n.01": 0.5565424178902528,
+        "automaton.n.02": 0.5609040204846661,
+        "robotics.n.01": 0.5777549488907343
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/052a0e9abd2d4225be0be1ab7b2a1f80",
+        "creator_username": "daniilserbin",
+        "creator_display_name": "daniilserbin",
+        "creator_profile_url": "https://sketchfab.com/daniilserbin"
+    },
+    "filename": "std_052a0e9abd2d4225be0be1ab7b2a1f80.glb",
+    "length": 0.31211452186107635,
+    "width": 0.7340222597122192
+}

@@ -1,0 +1,99 @@
+{
+    "description_long": "This humanoid robot features a large, square head resembling a monitor with a black faceplate displaying two yellow circular eyes and a small yellow smiling mouth, giving it a friendly and approachable appearance. The head is framed by a gray border and is attached to a blue, rounded torso with gray and black accents. Its arms are thin and segmented, ending in three-fingered hands, and are colored primarily blue with gray joints and black highlights. The legs are similarly segmented, with blue upper and lower sections, gray joints, and black feet, designed for bipedal movement. The robot's overall design is compact and stylized, with a playful, cartoon-like aesthetic suitable for urban environments. The surface appears to be made of smooth, hard plastic or composite material, with visible seams at the joints and articulation points.",
+    "description": "A compact, blue humanoid robot with a monitor-like head displaying a friendly face, segmented limbs, and a playful, cartoonish design.",
+    "description_view_0": "Front view shows the robot's smiling face, outstretched arms, and full frontal details of the torso and legs.",
+    "description_view_1": "Left side view highlights the depth of the head, the profile of the torso, and the articulation of the arm and leg.",
+    "description_view_2": "Rear view reveals the smooth back of the head and torso, as well as the backs of the arms and legs.",
+    "description_view_3": "Right side view mirrors the left, showing the head's depth, arm, and leg articulation from the opposite profile.",
+    "category": "humanoid robot",
+    "height": 1.0,
+    "max_dimension": 0.8,
+    "materials": [
+        "plastic",
+        "metal",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 22,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "face display",
+        "arms",
+        "hands",
+        "legs",
+        "feet"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "black",
+        "yellow",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.18,
+        0.15,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.18,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms extended horizontally to the sides, legs straight and feet flat on the ground, head facing forward.",
+    "attribute_clothing_style": "No clothing; the robot is covered in integrated blue, gray, and black panels with a smooth, plastic-like finish.",
+    "attribute_facial_features": "The face consists of a black screen with two yellow circular eyes and a small yellow smiling mouth, giving an expressive and friendly appearance; no nose or other facial features are present.",
+    "attribute_limb_articulation": "Arms and legs are segmented with visible joints at the shoulders, elbows, hips, and knees, suggesting hinge or rotary articulation; hands have three fingers each, and feet are blocky with possible ankle joints.",
+    "attribute_presence_of_sensors": "None visible",
+    "uid": "9ab84c39e7e042a9a59417b22b97176d",
+    "near_synsets": {
+        "android.n.01": 0.5346276139769424,
+        "cyborg.n.01": 0.5563580623099482,
+        "robotics_equipment.n.01": 0.5669485884107832,
+        "automaton.n.02": 0.5687468236772951,
+        "animatronics.n.01": 0.5774157165422847
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/9ab84c39e7e042a9a59417b22b97176d",
+        "creator_username": "jarestrepogu",
+        "creator_display_name": "Jorge Restrepo",
+        "creator_profile_url": "https://sketchfab.com/jarestrepogu"
+    },
+    "filename": "std_9ab84c39e7e042a9a59417b22b97176d.glb",
+    "length": 0.3336791694164276,
+    "width": 1.204505205154419
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a futuristic, angular combat tactical vehicle resembling a stealth aircraft, with a low-profile, wide body and sharply contoured wings. The exterior is covered in dark, matte panels with a geometric camouflage pattern, and the vehicle features two prominent vertical stabilizers at the rear. The front section is pointed and streamlined, with a small, tinted cockpit canopy and what appears to be a sensor or targeting module at the nose. The wings are broad and swept, with visible hardpoints or mounts for weaponry integrated into their structure. The surface is mostly hard and metallic, with some composite elements, and the vehicle lacks visible wheels or landing gear, suggesting a hovering or flying capability. Markings and insignia are present on the wings, adding to its military appearance.",
+    "description": "A sleek, angular combat tactical vehicle with dark geometric camouflage, broad swept wings, and visible weapon mounts, resembling a stealth aircraft.",
+    "description_view_0": "Front view shows the pointed nose, cockpit canopy, and symmetrical angular wings with visible hardpoints.",
+    "description_view_1": "Left rear angle highlights the vertical stabilizer, wing structure, and rear fuselage details.",
+    "description_view_2": "Top-down view reveals the full camouflage pattern, wing span, and placement of weapon mounts and markings.",
+    "description_view_3": "Right rear angle displays the second vertical stabilizer, rear fuselage, and wing hardpoints.",
+    "category": "combat tactical  vehicle",
+    "height": 1.8,
+    "max_dimension": 8.0,
+    "materials": [
+        "metal",
+        "composite",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 63750,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "weapon mount",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "light gray",
+        "yellow-orange"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Four visible hardpoints integrated into the wings, suitable for mounting missiles or other external weaponry.",
+    "attribute_armor_plating": "Full body coverage with angular, sloped armor panels; thickness appears moderate, with reinforced sections on the nose and wing roots.",
+    "attribute_camouflage_pattern": "Geometric camouflage pattern in dark gray, black, and light gray, with sharp angular shapes.",
+    "attribute_military_markings": "Circular insignia on both wings and additional symbols on the wing tips; style is minimal and geometric.",
+    "attribute_tire_type": "not applicable",
+    "uid": "58f7aa4194864db087a4bf41d93ee4da",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.509183893486858,
+        "reconnaissance_vehicle.n.01": 0.5247553827077399,
+        "weapons_carrier.n.01": 0.5328106877139516,
+        "aircraft.n.01": 0.537820365237625,
+        "armored_car.n.02": 0.5385446914616877,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "aircraft.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/58f7aa4194864db087a4bf41d93ee4da",
+        "creator_username": "alx_flameniro",
+        "creator_display_name": "alx_flameniro",
+        "creator_profile_url": "https://sketchfab.com/alx_flameniro"
+    },
+    "filename": "std_58f7aa4194864db087a4bf41d93ee4da.glb",
+    "length": 4.682906866073608,
+    "width": 5.414699077606201
+}

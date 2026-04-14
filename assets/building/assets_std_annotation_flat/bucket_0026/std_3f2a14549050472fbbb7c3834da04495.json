@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a traditional watermill set on a rectangular patch of green terrain with a winding dark path or stream running through it. The watermill features a small, gabled-roof building constructed primarily from timber and stone, with a prominent wooden water wheel attached to one side. The water wheel is positioned adjacent to the building, partially over the stream, and is supported by a visible wooden framework. The building appears to be a single story with a steeply pitched roof, and the structure is compact, with a rustic, historical appearance. The surrounding terrain is slightly curved and textured to resemble grass or earth, providing a naturalistic setting for the watermill. The overall scene is simple but evocative, capturing the essential elements of a classic rural watermill.",
+    "description": "A rustic watermill with a timber and stone building, a large wooden water wheel, and a winding stream set on a grassy terrain patch.",
+    "description_view_0": "Front view showing the gabled entrance of the watermill, the water wheel on the right, and the stream running beneath.",
+    "description_view_1": "Side view highlighting the length of the building, the water wheel's profile, and the curve of the stream.",
+    "description_view_2": "Rear view displaying the back of the building, the water wheel's support structure, and the terrain's curvature.",
+    "description_view_3": "Opposite side view focusing on the building's side wall, the water wheel's placement, and the stream's approach.",
+    "category": "watermill",
+    "height": 5.0,
+    "max_dimension": 18.0,
+    "materials": [
+        "wood",
+        "stone",
+        "thatch",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "water wheel",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "green",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.35,
+        0.4,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 10000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "scene",
+    "attribute_water_wheel": "Large wooden overshot wheel, approximately 2.5 meters in diameter, constructed from timber with visible spokes and paddles; about 8-10 paddles are discernible, and the wheel is supported by a wooden frame.",
+    "attribute_mill_race": "A dark, winding open channel resembling a stream or flume, about 1.5 meters wide and 10 meters long, constructed to appear as a natural watercourse.",
+    "attribute_building_structure": "Single-story structure with timber framing and stone base, compact rectangular form, set on a flat foundation with a visible entrance and attached water wheel support.",
+    "attribute_roof_type": "Steeply pitched gabled roof, covered with thatch or wooden shingles, with simple eaves and no visible chimneys or dormers.",
+    "attribute_window_style": "Not visible",
+    "uid": "3f2a14549050472fbbb7c3834da04495",
+    "near_synsets": {
+        "water_mill.n.01": 0.4416407273770166,
+        "windmill.n.01": 0.4957792366712876,
+        "millwheel.n.01": 0.5064075314377734,
+        "milldam.n.01": 0.5218784369312388,
+        "flour_mill.n.01": 0.5243481296036696
+    },
+    "synset": "water_mill.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3f2a14549050472fbbb7c3834da04495",
+        "creator_username": "thomas005",
+        "creator_display_name": "Thomas Andris",
+        "creator_profile_url": "https://sketchfab.com/thomas005"
+    },
+    "filename": "std_3f2a14549050472fbbb7c3834da04495.glb",
+    "length": 30.924591064453125,
+    "width": 25.577322006225586
+}

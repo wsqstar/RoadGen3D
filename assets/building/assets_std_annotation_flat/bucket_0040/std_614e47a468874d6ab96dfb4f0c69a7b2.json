@@ -1,0 +1,99 @@
+{
+    "description_long": "This dam structure features a large, curved retaining wall with a smooth, light wood-textured surface and prominent safety railings along the top perimeter. The central section includes a deep, bowl-like depression, likely for water collection or flow management, and a raised platform with stairs on one side, providing access to the upper level. The dam is segmented by a dark, rectangular channel running through its center, possibly simulating a spillway or maintenance access. Circular markings are visible on the inner curved surfaces, adding to the industrial aesthetic. The structure is elevated on sturdy supports, with a stairway leading up to the main platform, and the entire perimeter is enclosed by railings for safety. The overall design suggests a modern, urban dam intended for controlled water management in a city park or recreational area.",
+    "description": "A modern, light wood-textured dam with curved retaining walls, central channel, and safety railings, featuring a raised platform and stair access.",
+    "description_view_0": "Front view showing the full width of the dam, the central channel, and the upper platform with railings and stairs.",
+    "description_view_1": "Angled view highlighting the deep bowl-like depression, central channel, and the stairway leading to the upper platform.",
+    "description_view_2": "Rear view displaying the back of the dam, the elevated platform, and the stair structure on the right side.",
+    "description_view_3": "Opposite angled view focusing on the interior curved surfaces, circular markings, and the central channel.",
+    "category": "dam",
+    "height": 6.0,
+    "max_dimension": 18.0,
+    "materials": [
+        "wood",
+        "metal",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "mass": 32000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "stairs",
+        "platform",
+        "railings"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_spillway_presence": true,
+    "attribute_control_gates": [
+        "none"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_water_outflow": "none",
+    "attribute_perimeter_fencing": true,
+    "uid": "614e47a468874d6ab96dfb4f0c69a7b2",
+    "near_synsets": {
+        "dam.n.01": 0.5331333746066476,
+        "milldam.n.01": 0.535763412744318,
+        "weir.n.01": 0.5475990342285127,
+        "flume.n.02": 0.5701778779690964,
+        "millpond.n.01": 0.5704029921887114,
+        "decameter.n.01": -1000.0,
+        "dam.n.03": -1000.0
+    },
+    "synset": "dam.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/614e47a468874d6ab96dfb4f0c69a7b2",
+        "creator_username": "kimballynsmith",
+        "creator_display_name": "kimballynsmith",
+        "creator_profile_url": "https://sketchfab.com/kimballynsmith"
+    },
+    "filename": "std_614e47a468874d6ab96dfb4f0c69a7b2.glb",
+    "length": 13.357892990112305,
+    "width": 15.011887550354004
+}

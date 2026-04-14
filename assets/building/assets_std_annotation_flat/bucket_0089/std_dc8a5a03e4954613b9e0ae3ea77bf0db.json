@@ -1,0 +1,94 @@
+{
+    "description_long": "This is a large, industrial-style dumpster with a rectangular metal body painted in a weathered yellow color, showing patches of grime and rust. The top is fitted with a split, hinged black plastic lid, designed to be opened for depositing waste. Four sturdy caster wheels are attached to the base, allowing for mobility across flat surfaces. Reinforced horizontal ribs along the sides and back add structural strength, while the front and sides feature molded slots and indents for mechanical lifting. A long, cylindrical metal handle runs along the top rear edge, likely for maneuvering or opening the lid. The overall appearance suggests durability and suitability for heavy-duty waste collection in urban environments.",
+    "description": "A large, yellow industrial dumpster with a split black lid, caster wheels, and reinforced metal sides, showing signs of wear and grime.",
+    "description_view_0": "Side view showing the sloped lid, three vertical molded slots, and two visible wheels.",
+    "description_view_1": "Rear view highlighting the full width of the dumpster, the long rear handle, and all four wheels.",
+    "description_view_2": "Opposite side view, similar to view 0, with three vertical slots and two wheels visible.",
+    "description_view_3": "Front view displaying the split lid, reinforced front panel, and the main access area for waste disposal.",
+    "category": "dumpster",
+    "height": 1.3,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "handle",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "split, hinged lid with two black plastic sections, no visible locking mechanism, opens upward",
+    "attribute_wheel_presence": true,
+    "attribute_handle_design": "one long cylindrical metal bar handle at the rear, positioned horizontally near the top edge",
+    "attribute_warning_labels": [],
+    "attribute_placement_location": "outdoor commercial area, alleyway, or industrial site",
+    "uid": "dc8a5a03e4954613b9e0ae3ea77bf0db",
+    "near_synsets": {
+        "dumpster.n.01": 0.4463926511552999,
+        "garbage_truck.n.01": 0.5318505436834765,
+        "garbage.n.03": 0.5353094569265472,
+        "scrapheap.n.02": 0.5451563805684168,
+        "recycling_bin.n.01": 0.5535475566268381
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dc8a5a03e4954613b9e0ae3ea77bf0db",
+        "creator_username": "hilbert_markus",
+        "creator_display_name": "hilbert markus",
+        "creator_profile_url": "https://sketchfab.com/hilbert_markus"
+    },
+    "filename": "std_dc8a5a03e4954613b9e0ae3ea77bf0db.glb",
+    "length": 0.8311854600906372,
+    "width": 1.7236641645431519
+}

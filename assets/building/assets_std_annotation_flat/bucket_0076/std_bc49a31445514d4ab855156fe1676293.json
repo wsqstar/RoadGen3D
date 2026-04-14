@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a blocky, stylized combat tactical vehicle resembling a modern armored patrol boat or small naval vessel. Its exterior is primarily white with black and beige accents, featuring a raised central cabin with dark windows and a pair of antennae or masts on the roof. The sides are angular and geometric, with a stepped deck at the rear and a slightly pointed bow at the front. There are visible ladders and railings, suggesting access to upper and lower decks, and the overall shape is streamlined for movement through water. The vehicle appears to have multiple levels, with open deck areas and enclosed compartments. No visible weapon mounts, armor plating, or military markings are present, and the surface is smooth and hard, likely constructed from metal and composite materials.",
+    "description": "A blocky, white and black armored patrol boat with a raised cabin, ladders, and railings, featuring angular sides and open deck areas. The design is stylized and streamlined, with no visible weapon mounts or markings.",
+    "description_view_0": "Front view shows the pointed bow, raised cabin, and symmetrical black and beige accents.",
+    "description_view_1": "Left side view highlights the stepped deck, central cabin, and ladder leading to the upper level.",
+    "description_view_2": "Rear view reveals the open deck area, dual ladders, and the back of the cabin structure.",
+    "description_view_3": "Right side view mirrors the left, showing the angular hull, cabin, and deck features.",
+    "category": "combat tactical  vehicle",
+    "height": 4.0,
+    "max_dimension": 18.0,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "ladder",
+        "railing",
+        "window",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "beige"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "none visible.",
+    "attribute_armor_plating": "none visible.",
+    "attribute_camouflage_pattern": "none visible.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "bc49a31445514d4ab855156fe1676293",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.5403594447221565,
+        "patrol_boat.n.01": 0.5431084366586484,
+        "pt_boat.n.01": 0.54416268511989,
+        "torpedo_boat.n.01": 0.548271691479917,
+        "tank.n.01": 0.5567500110999523,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "patrol_boat.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bc49a31445514d4ab855156fe1676293",
+        "creator_username": "madexc",
+        "creator_display_name": "madexc",
+        "creator_profile_url": "https://sketchfab.com/madexc"
+    },
+    "filename": "std_bc49a31445514d4ab855156fe1676293.glb",
+    "length": 6.28573203086853,
+    "width": 2.0
+}

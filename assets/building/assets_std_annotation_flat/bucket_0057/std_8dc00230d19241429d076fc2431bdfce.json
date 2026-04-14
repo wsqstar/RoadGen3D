@@ -1,0 +1,93 @@
+{
+    "description_long": "This kiosk features a raised platform accessed by a set of stairs, flanked by two prominent, column-like structures at the entrance. The main body of the kiosk is rectangular, with a partially enclosed area that appears to serve as a counter or service window, and a rear section with angular, blocky elements that may function as display or storage units. The structure is primarily composed of solid, stone-like materials, giving it a robust and monumental appearance. The front entrance is open, with no visible doors, and the side and rear views reveal additional architectural details such as layered steps and segmented panels. There are no visible windows or signage, and the roof is flat and unadorned, blending seamlessly with the rest of the structure. The overall design suggests a blend of utilitarian and classical influences, suitable for use as a street-side kiosk or small commercial booth.",
+    "description": "A robust, stone-like kiosk with a raised platform, open entrance flanked by columns, and a flat roof. The structure features stairs, blocky rear elements, and no visible signage or windows.",
+    "description_view_0": "Front view shows the open entrance with two prominent columns and a ramp or platform leading inside.",
+    "description_view_1": "Side view reveals the length of the kiosk, the stairs, and the blocky rear elements, with one column visible at the front.",
+    "description_view_2": "Rear view highlights the stairs, the back of the columns, and the segmented, blocky rear section.",
+    "description_view_3": "Opposite side view shows the side profile of the kiosk, the stairs, and the rear blocky elements, with the other column visible.",
+    "category": "kiosk",
+    "height": 2.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "stone",
+        "concrete",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "leanable",
+        "displayable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "stairs",
+        "counter"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "none",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "single open archway at front",
+    "attribute_roof_design": "flat roof, seamless with main structure, no overhangs or decorative features",
+    "attribute_architectural_style": "classical with utilitarian influences",
+    "uid": "8dc00230d19241429d076fc2431bdfce",
+    "near_synsets": {
+        "booth.n.02": 0.5592150424151024,
+        "cornerstone.n.02": 0.5599404829192183,
+        "portico.n.01": 0.5639000511168438,
+        "cornerstone.n.03": 0.565405017251057,
+        "stone.n.02": 0.5683703206633883
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8dc00230d19241429d076fc2431bdfce",
+        "creator_username": "siii-lab",
+        "creator_display_name": "siii-lab",
+        "creator_profile_url": "https://sketchfab.com/siii-lab"
+    },
+    "filename": "std_8dc00230d19241429d076fc2431bdfce.glb",
+    "length": 7.453911781311035,
+    "width": 2.715535283088684
+}

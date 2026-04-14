@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a stylized representation of an AK-pattern assault rifle, featuring a combination of matte black and orange-brown components. The rifle has a fixed wooden stock and handguard, both rendered in a warm orange-brown color, contrasting with the black metal receiver, barrel, and magazine. The magazine is curved and detachable, typical of this rifle type, and the pistol grip is also black, ergonomically shaped for handling. The barrel is of standard length and ends with a simple muzzle, lacking any visible advanced muzzle device. Iron sights are present on the top of the receiver and barrel, providing basic aiming functionality.",
+    "description": "A stylized AK-pattern rifle with a fixed orange-brown stock and handguard, black receiver, barrel, and curved magazine. Features iron sights and a standard muzzle.",
+    "description_view_0": "Front view showing the narrow profile of the barrel and handguard, with the front sight post visible.",
+    "description_view_1": "Side view displaying the full length of the rifle, including the fixed stock, curved magazine, and iron sights.",
+    "description_view_2": "Rear view highlighting the stock's width and the alignment of the receiver and barrel.",
+    "description_view_3": "Opposite side view showing the rifle's profile, similar to view 1 but from the other side.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 0.88,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.08,
+        0.02
+    ],
+    "mass": 3.8,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "magazine",
+        "trigger",
+        "pistol grip",
+        "sight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "orange-brown"
+    ],
+    "colors_composition": [
+        0.65,
+        0.35
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "e41f202b201a43629a5538c5b7436b82",
+    "near_synsets": {
+        "kalashnikov.n.01": 0.5162614101319513,
+        "garand_rifle.n.01": 0.5387919426232377,
+        "carbine.n.01": 0.5504632399004302,
+        "automatic_rifle.n.01": 0.5535276656769064,
+        "dragunov.n.01": 0.5544650763173314,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e41f202b201a43629a5538c5b7436b82",
+        "creator_username": "kharalos",
+        "creator_display_name": "kharalos",
+        "creator_profile_url": "https://sketchfab.com/kharalos"
+    },
+    "filename": "std_e41f202b201a43629a5538c5b7436b82.glb",
+    "length": 1.041380375623703,
+    "width": 0.07687899842858315
+}

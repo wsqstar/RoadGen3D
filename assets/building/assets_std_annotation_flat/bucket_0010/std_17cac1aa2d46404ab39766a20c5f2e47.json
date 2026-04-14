@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a robust industrial forklift painted in a striking red and orange color scheme, featuring a large, reinforced mast and wide fork arms designed for heavy-duty lifting. The vehicle has a compact, boxy cab with visible hydraulic cylinders and a protective overhead guard for operator safety. The front section displays a wide carriage with extendable fork arms, while the rear is marked with caution signage and a visible exhaust system. The wheels are thick and rugged, suitable for urban and industrial terrains. The mast is tall and reinforced, with visible lift mechanisms and a central hydraulic assembly. The overall design emphasizes durability, safety, and functionality for transporting heavy loads in urban environments.",
+    "description": "A heavy-duty red and orange forklift with a tall mast, wide fork arms, and a protective overhead guard, built for industrial lifting tasks.",
+    "description_view_0": "Side view showing the cab, hydraulic cylinders, and the full length of the mast and fork arms.",
+    "description_view_1": "Front view highlighting the wide fork arms, central mast, and the 'TMI HEAVY INDUSTRY' branding.",
+    "description_view_2": "Opposite side view similar to view 0, showing the cab, mast, and fork arms from the other side.",
+    "description_view_3": "Rear view displaying the caution signage, exhaust system, and the back of the overhead guard and cab.",
+    "category": "forklift",
+    "height": 3.5,
+    "max_dimension": 5.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 10,
+    "movable": true,
+    "required_force": 25000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "liftable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "steering wheel",
+        "fork arms",
+        "mast",
+        "operator seat",
+        "pedals",
+        "levers",
+        "wheels",
+        "door",
+        "warning lights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "orange",
+        "black",
+        "gray",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.55,
+        0.2,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_fork_arms": "The forklift has two wide, flat fork arms extending forward, each with a rectangular cross-section and reinforced tips. The arms are long and thick, designed for heavy loads, and are attached to a robust carriage. The fork arms appear to be made of solid metal and show no visible wear or attachments. Their position is parallel and evenly spaced, suitable for pallet lifting.",
+    "attribute_overhead_guard": "The overhead guard is a sturdy, rectangular metal frame covering the operator's cab, constructed from thick steel bars. It provides full coverage above the seat, with open sides for visibility and access. The guard is painted red and features warning signage for safety. Its design prioritizes operator protection from falling objects.",
+    "attribute_mast": "The mast is a tall, double-stage structure made of heavy steel, with visible hydraulic cylinders and lift chains. It extends vertically from the front of the vehicle and supports the fork carriage. The mast is reinforced with cross-bracing and features rollers and guide rails for smooth lifting. Its construction is robust, suitable for high-capacity lifting.",
+    "attribute_operator_seat": "The operator seat is centrally located within the cab, moderately sized, and appears to be padded for comfort. It is black in color and features a high backrest. The seat is surrounded by control levers and a steering wheel, with no visible armrests or headrest. The seatbelt and adjustment levers are not clearly visible.",
+    "attribute_warning_lights": "There is a single warning light mounted on the top of the cab, cylindrical in shape and colored red. It is positioned for maximum visibility and does not appear to be illuminated in the images.",
+    "uid": "17cac1aa2d46404ab39766a20c5f2e47",
+    "near_synsets": {
+        "forklift.n.01": 0.4397281955955257,
+        "lifting_device.n.01": 0.5295294467660037,
+        "hoist.n.01": 0.5342769571715953,
+        "stacker_crane.n.01": 0.5362100770860125,
+        "crane.n.04": 0.5485880558608652
+    },
+    "synset": "forklift.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/17cac1aa2d46404ab39766a20c5f2e47",
+        "creator_username": "thejinjinjin",
+        "creator_display_name": "jinjinjin",
+        "creator_profile_url": "https://sketchfab.com/thejinjinjin"
+    },
+    "filename": "std_17cac1aa2d46404ab39766a20c5f2e47.glb",
+    "length": 3.3213396072387695,
+    "width": 3.2545982599258423
+}

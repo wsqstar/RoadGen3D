@@ -1,0 +1,92 @@
+{
+    "description_long": "This is a large, rectangular steel shipping container, commonly used for freight transport and storage. The exterior is corrugated for structural strength and painted in a weathered reddish-brown color, with visible signs of wear and some faded markings. One end features double doors with locking bars and reinforced hinges, while the opposite end is solid and unadorned. The sides display vertical ridges and some stenciled text, including the word 'SHIPPING' and other faded labels. The container sits on a reinforced steel frame with corner fittings for lifting and stacking. Its robust construction and secure doors make it suitable for protecting goods in transit or on-site storage in urban environments.",
+    "description": "A large, weathered reddish-brown steel shipping container with corrugated sides, double locking doors on one end, and faded stenciled markings.",
+    "description_view_0": "Top-down view showing the corrugated steel roof and the rectangular shape of the container.",
+    "description_view_1": "Front view highlighting the double doors with locking bars and reinforced hinges, used for access.",
+    "description_view_2": "Side view displaying the corrugated surface, faded 'SHIPPING' text, and some minor markings.",
+    "description_view_3": "Rear view showing a solid, unmarked steel panel with 'SHIPPING' text near the bottom.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.92,
+        0.07,
+        0.01
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 15000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking bar",
+        "hinge"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "reddish-brown",
+        "white",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.95,
+        0.04,
+        0.01
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 2.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "faded stenciled text including 'SHIPPING' and other markings on sides and doors",
+    "attribute_handles_or_grips": "integrated locking bars and door handles on front doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "14b61eff5e134d7e9b66bbd035272a4c",
+    "near_synsets": {
+        "container.n.01": 0.45680842292024704,
+        "cargo_container.n.01": 0.4575276264581277,
+        "box.n.01": 0.5041193578544299,
+        "crate.n.01": 0.5167195195356177,
+        "drum.n.04": 0.5276750475004165
+    },
+    "synset": "cargo_container.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/14b61eff5e134d7e9b66bbd035272a4c",
+        "creator_username": "Ronny_3D",
+        "creator_display_name": "ronny_3d",
+        "creator_profile_url": "https://sketchfab.com/Ronny_3D"
+    },
+    "filename": "std_14b61eff5e134d7e9b66bbd035272a4c.glb",
+    "length": 6.3944385051727295,
+    "width": 2.552230715751648
+}

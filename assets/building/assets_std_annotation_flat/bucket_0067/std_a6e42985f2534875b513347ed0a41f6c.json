@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a modern shotgun with a sleek, tactical design, primarily finished in matte black with subtle blue highlights. The barrel is long and cylindrical, featuring a prominent muzzle and a smooth, unvented surface. The receiver area is compact, with a visible ejection port and a rail system on top, likely for mounting optics or accessories. The grip is ergonomic and angled, resembling a pistol grip, and there is no visible full stock, suggesting a compact, maneuverable form. A pump mechanism is clearly present beneath the barrel, with a ribbed texture for secure handling. The trigger guard is elongated and rounded, providing ample space for gloved fingers and ensuring safety during operation.",
+    "description": "A modern, tactical shotgun with a long black barrel, blue accents, pistol grip, and a visible pump mechanism. The design is compact and ergonomic, with a rounded trigger guard and accessory rail.",
+    "description_view_0": "Front view showing the circular muzzle, narrow barrel profile, and the pump handle beneath.",
+    "description_view_1": "Side view displaying the full length of the barrel, the pump mechanism, pistol grip, and accessory rail on top.",
+    "description_view_2": "Rear view highlighting the back of the receiver, grip, and the overall slim profile.",
+    "description_view_3": "Opposite side view showing the ejection port, pump, and the ergonomic grip in detail.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.95,
+    "materials": [
+        "steel",
+        "polymer",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "pumpable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pump handle",
+        "trigger",
+        "trigger guard",
+        "grip",
+        "barrel",
+        "rail",
+        "ejection port"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "blue"
+    ],
+    "colors_composition": [
+        0.92,
+        0.08
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, long and smooth with no visible ribbing or venting",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "elongated and rounded, medium size, with a smooth contour and no finger grooves",
+    "uid": "a6e42985f2534875b513347ed0a41f6c",
+    "near_synsets": {
+        "shotgun.n.01": 0.5144741372417352,
+        "sawed-off_shotgun.n.01": 0.5164961870515437,
+        "pump_action.n.01": 0.5165296083070672,
+        "gas_gun.n.01": 0.5499990358348553,
+        "gun.n.01": 0.5522901799463013
+    },
+    "synset": "sawed-off_shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/a6e42985f2534875b513347ed0a41f6c",
+        "creator_username": "davidshort",
+        "creator_display_name": "David Short",
+        "creator_profile_url": "https://sketchfab.com/davidshort"
+    },
+    "filename": "std_a6e42985f2534875b513347ed0a41f6c.glb",
+    "length": 0.808329701423645,
+    "width": 0.08712120354175568
+}

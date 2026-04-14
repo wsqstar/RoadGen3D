@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a tan, boxy combat tactical vehicle with a rugged, angular design and a matte, desert-camouflage finish. The vehicle features four large, black off-road tires and a spare tire mounted on the rear. Its windows are small and rectangular, providing limited visibility for occupants, and the body appears to be constructed from thick, armored panels. The front grille is reinforced with a metal guard, and the hood has a vented section, likely for engine cooling. Side mirrors protrude from both front doors, and the vehicle's overall build suggests durability and protection in urban or combat environments. No visible weapon mounts, military markings, or insignia are present.",
+    "description": "A tan, armored combat tactical vehicle with a boxy, angular design, off-road tires, and a matte desert-camouflage finish. Features include reinforced panels, small windows, and a rear-mounted spare tire.",
+    "description_view_0": "Rear view showing the spare tire mounted on the back and the flat, armored rear panel.",
+    "description_view_1": "Left side view highlighting two small windows, the angular armored body, and the off-road tires.",
+    "description_view_2": "Front view displaying the reinforced grille, vented hood, and two rectangular front windows.",
+    "description_view_3": "Right side view similar to the left, with two small windows and the angular armored design.",
+    "category": "combat tactical  vehicle",
+    "height": 2.0,
+    "max_dimension": 5.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 7,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "side mirror",
+        "spare tire"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "none visible",
+    "attribute_armor_plating": "Full body coverage with thick, angular armored panels; no visible modular or reactive features.",
+    "attribute_camouflage_pattern": "Desert camouflage with irregular tan and light brown patches in a matte finish.",
+    "attribute_military_markings": "none visible",
+    "attribute_tire_type": "Four large off-road tires with deep tread pattern; one rear-mounted spare; no visible reinforcement or chains.",
+    "uid": "921f4f28ea3c4d55aef61ee628268a14",
+    "near_synsets": {
+        "reconnaissance_vehicle.n.01": 0.5029805173841974,
+        "military_vehicle.n.01": 0.5128408359289274,
+        "tank.n.01": 0.5138821982494439,
+        "armored_car.n.02": 0.5395015489549866,
+        "weapons_carrier.n.01": 0.5413564159079026,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/921f4f28ea3c4d55aef61ee628268a14",
+        "creator_username": "Mishas3D",
+        "creator_display_name": "Mishas3D",
+        "creator_profile_url": "https://sketchfab.com/Mishas3D"
+    },
+    "filename": "std_921f4f28ea3c4d55aef61ee628268a14.glb",
+    "length": 5.663445711135864,
+    "width": 2.585617780685425
+}

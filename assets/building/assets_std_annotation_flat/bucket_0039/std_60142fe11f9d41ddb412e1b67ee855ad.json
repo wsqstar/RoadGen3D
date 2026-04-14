@@ -1,0 +1,107 @@
+{
+    "description_long": "This humanoid robot features a robust, armored exterior with a predominantly white body accented by blue, red, and yellow panels. It has a distinctly mechanical, angular design with a helmet-like head, two antennae, and a faceplate reminiscent of a classic mecha style. The robot is equipped with a large, rectangular shield on its left arm, painted red with a yellow cross motif, and holds a gray rifle in its right hand. Its limbs are heavily jointed, suggesting a high degree of articulation, and the feet are broad and red, providing stability. The torso is detailed with vents, panel lines, and colored sections, while the back displays mechanical components and a backpack-like structure. The overall appearance is that of a combat-ready, humanoid machine designed for urban or battlefield scenarios.",
+    "description": "A heavily armored, humanoid robot with a white, blue, red, and yellow color scheme, equipped with a large shield and rifle. Its design features angular panels, jointed limbs, and a helmeted head with antennae.",
+    "description_view_0": "The robot is seen from a front-left angle, highlighting the shield's thickness, the rifle's details, and the layered armor on the chest and legs.",
+    "description_view_1": "A direct front view shows the symmetrical design, prominent chest paneling, and the full faceplate with antennae, as well as the shield's front cross motif.",
+    "description_view_2": "The rear-left view emphasizes the back of the shield, the mechanical backpack, and the robust leg joints, with the shield's red and yellow design visible.",
+    "description_view_3": "A rear view reveals the backpack structure, rear leg armor, and the attachment points for the shield and rifle, with the head's back and antennae visible.",
+    "category": "humanoid robot",
+    "height": 1.8,
+    "max_dimension": 1.8,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 3136,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "shield",
+        "rifle",
+        "arms",
+        "legs",
+        "head",
+        "antennae",
+        "backpack"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "blue",
+        "yellow",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.15,
+        0.12,
+        0.08,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both legs straight, left arm bent holding a large shield, right arm bent holding a rifle, head facing forward, and torso erect.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated, colored armor panels and mechanical coverings typical of a combat robot.",
+    "attribute_facial_features": "Faceplate with a central vertical slit, two side vents, and a red chin guard; no visible mouth or expressive features, with two antennae protruding from the head.",
+    "attribute_limb_articulation": "Arms and legs feature multiple visible hinge and rotary joints at shoulders, elbows, wrists, hips, knees, and ankles, allowing for a wide range of motion; hands appear to have articulated fingers.",
+    "attribute_presence_of_sensors": "Possible camera or optical sensor in the head's faceplate; no other visible sensors.",
+    "uid": "60142fe11f9d41ddb412e1b67ee855ad",
+    "near_synsets": {
+        "android.n.01": 0.5427460401682755,
+        "cyborg.n.01": 0.5509263085752103,
+        "robotics_equipment.n.01": 0.5524806841669506,
+        "automaton.n.02": 0.5719831441089542,
+        "helmet.n.01": 0.5805798317795359
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/60142fe11f9d41ddb412e1b67ee855ad",
+        "creator_username": "Davix",
+        "creator_display_name": "Davix",
+        "creator_profile_url": "https://sketchfab.com/Davix"
+    },
+    "filename": "std_60142fe11f9d41ddb412e1b67ee855ad.glb",
+    "length": 1.3365641236305237,
+    "width": 1.343457043170929
+}

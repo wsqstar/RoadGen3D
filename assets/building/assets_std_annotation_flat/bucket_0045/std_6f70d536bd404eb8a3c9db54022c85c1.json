@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a large, multi-barreled rotary machine gun, reminiscent of a Gatling or minigun design, with a robust cylindrical body and a prominent rotating barrel cluster at the front. The gun features three long, parallel barrels arranged in a circular pattern, each with visible muzzle details, and a central axis for rotation. The main body is bulky and appears to house the firing mechanism and ammunition feed, with a side-mounted handle for grip and maneuverability. A sturdy carrying handle or mounting bracket is attached to the top, suggesting it can be transported or mounted on a vehicle or fixed emplacement. The surface is predominantly matte black metal, with some subtle textural variations indicating different metal finishes. The overall construction is industrial and utilitarian, designed for durability and sustained fire in urban combat scenarios.",
+    "description": "A heavy, multi-barreled rotary machine gun with a robust cylindrical body, three long barrels, and a top-mounted carrying handle. The surface is matte black metal, and the design is industrial and utilitarian.",
+    "description_view_0": "Front view showing the three-barrel cluster and the circular arrangement of the barrels, with the handle and mounting bracket partially visible.",
+    "description_view_1": "Side view highlighting the length of the barrels, the cylindrical main body, and the prominent top-mounted carrying handle.",
+    "description_view_2": "Rear view displaying the back of the main body, the handle, and the alignment of the barrels extending forward.",
+    "description_view_3": "Opposite side view similar to view 1, showing the full length of the barrels and the mounting bracket from the other side.",
+    "category": "machine gun",
+    "height": 0.35,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "rotatable",
+        "triggerable",
+        "mountable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "barrel cluster",
+        "trigger",
+        "mounting bracket"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_type": "multi-barrel rotary cluster with standard cylindrical barrels",
+    "attribute_stock_design": "no stock",
+    "attribute_magazine_type": "no magazine visible",
+    "attribute_mounting_mechanism": "top-mounted carrying handle and mounting bracket",
+    "attribute_iron_sight_configuration": "no iron sights visible",
+    "uid": "6f70d536bd404eb8a3c9db54022c85c1",
+    "near_synsets": {
+        "gatling_gun.n.01": 0.4576489151693906,
+        "machine_gun.n.01": 0.4757911821296039,
+        "submachine_gun.n.01": 0.48378166999157896,
+        "shotgun.n.01": 0.5031608772285819,
+        "maxim_gun.n.01": 0.5047471529975072,
+        "gunman.n.01": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.05": -1000.0,
+        "machine.n.01": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.02": -1000.0,
+        "gun.n.01": -1000.0,
+        "artillery.n.01": -1000.0,
+        "grease_gun.n.01": -1000.0,
+        "accelerator.n.01": -1000.0,
+        "gunman.n.02": -1000.0,
+        "gun.n.07": -1000.0
+    },
+    "synset": "submachine_gun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6f70d536bd404eb8a3c9db54022c85c1",
+        "creator_username": "Iliya_Luchkiy",
+        "creator_display_name": "Iliya_Luchkiy",
+        "creator_profile_url": "https://sketchfab.com/Iliya_Luchkiy"
+    },
+    "filename": "std_6f70d536bd404eb8a3c9db54022c85c1.glb",
+    "length": 1.3148537278175354,
+    "width": 0.41890716552734375
+}

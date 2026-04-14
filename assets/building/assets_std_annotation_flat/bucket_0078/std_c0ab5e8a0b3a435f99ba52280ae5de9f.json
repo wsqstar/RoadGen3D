@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a modern bolt-action sniper rifle with a distinctive camouflage pattern across its body, featuring a long, precision barrel and a robust stock. The rifle is equipped with a high-magnification scope mounted on top, designed for long-range targeting. The stock appears to be fixed and ergonomically shaped, with a cheek rest and a textured grip area for stability. The barrel is long and slender, with a visible muzzle brake at the end to reduce recoil. The magazine is a detachable box type, partially visible beneath the action. The overall finish is a mix of tan, green, and black, with some red accents, giving it a tactical and urban-ready appearance.",
+    "description": "A camouflaged bolt-action sniper rifle with a long barrel, high-magnification scope, and detachable box magazine. The rifle features a fixed stock and a muzzle brake, designed for precision shooting in urban environments.",
+    "description_view_0": "Side view showing the full length of the rifle, including the scope, fixed stock, and camouflage pattern.",
+    "description_view_1": "Front view highlighting the muzzle brake, barrel alignment, and the scope's front lens.",
+    "description_view_2": "Opposite side view displaying the bolt action, magazine, and detailed stock design.",
+    "description_view_3": "Rear view focusing on the buttstock, cheek rest, and the rear of the scope.",
+    "category": "rifle",
+    "height": 0.22,
+    "max_dimension": 1.25,
+    "materials": [
+        "steel",
+        "polymer",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 6.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 65,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "rotatable",
+        "pullable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "bolt handle",
+        "magazine",
+        "scope",
+        "safety switch",
+        "muzzle brake",
+        "stock"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "green",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.55,
+        0.2,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "scope",
+    "attribute_muzzle_device": "muzzle brake",
+    "uid": "c0ab5e8a0b3a435f99ba52280ae5de9f",
+    "near_synsets": {
+        "sniper_rifle.n.01": 0.47287309495528174,
+        "dragunov.n.01": 0.47581479058479914,
+        "rifle.n.01": 0.5222114282882178,
+        "garand_rifle.n.01": 0.5313410696232673,
+        "sniper.n.01": 0.5365391122400867
+    },
+    "synset": "garand_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c0ab5e8a0b3a435f99ba52280ae5de9f",
+        "creator_username": "antonoshank",
+        "creator_display_name": "antonoshank",
+        "creator_profile_url": "https://sketchfab.com/antonoshank"
+    },
+    "filename": "std_c0ab5e8a0b3a435f99ba52280ae5de9f.glb",
+    "length": 1.079534888267517,
+    "width": 0.08186047524213791
+}

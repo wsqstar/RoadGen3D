@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a medium-sized passenger ferry named 'ALEXANDER', featuring a green hull with a cream and red superstructure. The vessel has two main passenger decks with large rectangular windows, providing ample natural light and views for passengers. The upper deck is equipped with multiple orange life rafts, and a small flag is mounted at the stern. The ferry's bow and stern are both squared off, and the name 'ALEXANDER' is prominently displayed on both sides of the hull. The bridge is located at the front of the upper deck, with visible navigation equipment and railings. The overall design suggests a vessel intended for short to medium urban or harbor crossings, prioritizing passenger comfort and safety.",
+    "description": "A medium-sized, green and cream passenger ferry named 'ALEXANDER' with two main decks, large windows, and visible life rafts on the upper deck.",
+    "description_view_0": "Front view showing the ferry's bow, bridge windows, and the name 'ALEXANDER' above the main entry.",
+    "description_view_1": "Side view highlighting the length of the ferry, large windows, life rafts on the upper deck, and the flag at the stern.",
+    "description_view_2": "Rear view displaying the stern, upper deck life rafts, and the open passenger area.",
+    "description_view_3": "Opposite side view showing the ferry's profile, windows, life rafts, and bridge structure.",
+    "category": "ferry",
+    "height": 8.0,
+    "max_dimension": 35.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "steering wheel",
+        "life raft",
+        "flagpole"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "cream",
+        "red",
+        "orange",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.45,
+        0.3,
+        0.1,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000.0,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_passenger_decks": 2,
+    "attribute_vehicle_loading_ramps": false,
+    "attribute_large_windows": true,
+    "attribute_multiple_entry_points": true,
+    "attribute_prominent_smokestack": false,
+    "uid": "8b39b8957231420d919b60febb627bd5",
+    "near_synsets": {
+        "ferry.n.01": 0.5371109257556207,
+        "ferry.n.02": 0.5425199158327749,
+        "car-ferry.n.01": 0.5578769570874323,
+        "passenger_ship.n.01": 0.5583468585933952,
+        "boat_deck.n.01": 0.5660893484711031
+    },
+    "synset": "car-ferry.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8b39b8957231420d919b60febb627bd5",
+        "creator_username": "salphytheunemployed",
+        "creator_display_name": "PolyDucky",
+        "creator_profile_url": "https://sketchfab.com/salphytheunemployed"
+    },
+    "filename": "std_8b39b8957231420d919b60febb627bd5.glb",
+    "length": 18.586938858032227,
+    "width": 6.491582155227661
+}

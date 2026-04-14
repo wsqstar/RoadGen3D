@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a cylindrical bomb with a central body and two symmetrical, barrel-shaped ends, connected by a robust central shaft. The surface is metallic, showing signs of wear, rust, and grime, suggesting it has been exposed to harsh conditions or is of industrial origin. A prominent spring mechanism is mounted on the upper section, possibly serving as part of the triggering or detonation system. Below the spring, a rectangular control box with a visible switch or lever is attached, indicating a manual or mechanical activation method. The lower shaft is wrapped in a textured material, likely for grip or insulation, and the overall construction appears solid and heavy. The coloration is predominantly dark, with shades of brown, black, and hints of metallic gray, giving it a rugged, utilitarian appearance.",
+    "description": "A rugged, cylindrical bomb with barrel-shaped ends, a central spring mechanism, and a control box with a switch, featuring a worn metallic surface and dark coloration.",
+    "description_view_0": "Front view shows the symmetrical barrel-shaped ends, central spring, and the control box with a visible switch on the shaft.",
+    "description_view_1": "Side view reveals the cylindrical profile of the bomb, with the spring and control box appearing as protrusions, and the shaft's textured wrapping is visible.",
+    "description_view_2": "Rear view mirrors the front, showing the opposite side of the barrel ends, spring, and control box, but with less detail on the switch.",
+    "description_view_3": "Opposite side view, similar to view 1, highlights the cylindrical form and the alignment of the spring and control box along the shaft.",
+    "category": "bomb",
+    "height": 0.7,
+    "max_dimension": 0.7,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.8,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 12,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "switch",
+        "spring mechanism",
+        "control box",
+        "shaft grip"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark brown",
+        "black",
+        "metallic gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The bomb appears to use a spring-loaded mechanical trigger, with a control box and a visible switch or lever for manual activation.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "e700a8ea88734d3e98d43621bd1a36a0",
+    "near_synsets": {
+        "remote-control_bomb.n.01": 0.49006477654692215,
+        "bomb.n.01": 0.4988360810954371,
+        "pipe_bomb.n.01": 0.5066516208207342,
+        "time_bomb.n.02": 0.5161789027539309,
+        "briefcase_bomb.n.01": 0.5187493617409562,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e700a8ea88734d3e98d43621bd1a36a0",
+        "creator_username": "jdavenport1",
+        "creator_display_name": "Joel Davenport",
+        "creator_profile_url": "https://sketchfab.com/jdavenport1"
+    },
+    "filename": "std_e700a8ea88734d3e98d43621bd1a36a0.glb",
+    "length": 0.09088379144668579,
+    "width": 0.3844658136367798
+}

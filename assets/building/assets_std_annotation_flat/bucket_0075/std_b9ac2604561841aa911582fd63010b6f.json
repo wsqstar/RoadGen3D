@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a rectangular tennis court enclosed by a tall, red metal mesh fence on all sides, providing a secure and visible boundary. The court surface is a solid, flat area in a reddish-orange color, likely made of a hard material suitable for sports play. The mesh fencing is supported by vertical and horizontal metal bars, creating a grid pattern that ensures both durability and visibility. There is a clear entryway or gate visible on the shorter sides, allowing access to the court. The structure is open at the top, with no roof or overhead covering, and there are no visible tennis nets, lighting fixtures, or court line markings. The overall design is utilitarian, focusing on function and safety for urban recreational use.",
+    "description": "A rectangular, red metal mesh-enclosed tennis court with a solid reddish-orange playing surface and open top, designed for secure urban recreation. No net, markings, or lighting fixtures are visible.",
+    "description_view_0": "Front view showing the entryway and the full height of the red mesh fence, with the reddish-orange court surface clearly visible.",
+    "description_view_1": "Side view highlighting the long expanse of the mesh fence and the uninterrupted length of the court surface.",
+    "description_view_2": "Rear view mirroring the front, with another entryway and the same mesh fence and court surface visible.",
+    "description_view_3": "Opposite side view, again showing the length of the mesh fence and the court surface, similar to view 1.",
+    "category": "tennis court",
+    "height": 3.0,
+    "max_dimension": 24.0,
+    "materials": [
+        "steel",
+        "paint",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.05,
+        0.4,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "playable",
+        "enclosable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "gate"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "red",
+        "orange",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.1,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_net_type": "none",
+    "attribute_court_line_markings": "none",
+    "attribute_surrounding_fence": "Tall, full-perimeter red metal mesh fence, approximately 3 meters high, with vertical and horizontal support bars.",
+    "attribute_lighting_fixtures": "none",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "b9ac2604561841aa911582fd63010b6f",
+    "near_synsets": {
+        "tennis_court.n.01": 0.44109882646195525,
+        "volleyball_court.n.01": 0.5140137299040158,
+        "tennis.n.01": 0.515430136294742,
+        "royal_tennis.n.01": 0.5179686540036498,
+        "badminton_court.n.01": 0.5265778011074963,
+        "court.n.02": -1000.0,
+        "court.n.01": -1000.0,
+        "motor_hotel.n.01": -1000.0,
+        "court.n.03": -1000.0,
+        "court.n.05": -1000.0,
+        "court.n.06": -1000.0,
+        "court.n.09": -1000.0,
+        "court.n.08": -1000.0,
+        "court.n.04": -1000.0,
+        "court.n.10": -1000.0
+    },
+    "synset": "tennis_court.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b9ac2604561841aa911582fd63010b6f",
+        "creator_username": "arturstoppa",
+        "creator_display_name": "Artur Stoppa",
+        "creator_profile_url": "https://sketchfab.com/arturstoppa"
+    },
+    "filename": "std_b9ac2604561841aa911582fd63010b6f.glb",
+    "length": 10.279419898986816,
+    "width": 5.011117458343506
+}

@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a World War I-era British Mark I tank, characterized by its rhomboid shape and continuous track system that wraps around the entire body. The vehicle features large, armored side panels with visible rivets and a pair of protruding sponsons on each side, each equipped with a mounted gun. The tracks are wide and robust, designed to traverse rough terrain and obstacles. The body is painted in a muted, desert-camouflage pattern with subtle brown and tan hues, and the surface appears to be made of thick, riveted steel armor. There are no visible windows, and the vehicle's design prioritizes protection and firepower over visibility or speed.",
+    "description": "A heavily armored, rhomboid-shaped combat vehicle with full-length tracks and side-mounted guns, painted in a desert camouflage pattern.",
+    "description_view_0": "Front view shows the wide, armored tracks and the central armored hull with a hatch and riveted details.",
+    "description_view_1": "Side view highlights the elongated tracks, the large sponson with a gun mount, and the sloped armor panels.",
+    "description_view_2": "Rear view displays the back of the tracks, the armored hull, and the rear hatch or access panel.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the other sponson and the continuous track system.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.01,
+        0.04,
+        0.1
+    ],
+    "mass": 28000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "gun mount",
+        "track",
+        "door",
+        "sponson"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "brown",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.0,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Two visible sponson-mounted gun mounts, one on each side of the vehicle.",
+    "attribute_armor_plating": "Full body coverage with thick, riveted steel armor plating; sloped and reinforced on all sides.",
+    "attribute_camouflage_pattern": "Desert camouflage with tan and brown irregular patches in a mottled style.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "2a5801f7842e4c3d8346653193341c5d",
+    "near_synsets": {
+        "reconnaissance_vehicle.n.01": 0.4772919805052964,
+        "military_vehicle.n.01": 0.48468505079436386,
+        "armored_car.n.02": 0.5023606088509658,
+        "tank.n.01": 0.5062653384310827,
+        "armored_vehicle.n.01": 0.5148757089645206,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2a5801f7842e4c3d8346653193341c5d",
+        "creator_username": "mudroljub",
+        "creator_display_name": "mudroljub",
+        "creator_profile_url": "https://sketchfab.com/mudroljub"
+    },
+    "filename": "std_2a5801f7842e4c3d8346653193341c5d.glb",
+    "length": 7.797799348831177,
+    "width": 3.7892978191375732
+}

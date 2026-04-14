@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a compact quadcopter drone with a sleek, modern design, featuring a central body housing electronics and four extended arms, each ending in a rotor. The body is primarily light gray with a black top panel, which may contain status indicators or sensors. The rotors are thin and black, optimized for efficient lift and maneuverability. The arms are robust yet lightweight, likely made from composite materials for strength and reduced weight. The underside appears to have fixed landing legs integrated into the arm structure, providing stability during takeoff and landing. No visible camera or propeller guards are present, suggesting a streamlined build for general aerial use.",
+    "description": "A sleek, light gray quadcopter drone with four black rotors and a streamlined, modern body. It features fixed landing legs and a black top panel, with no visible camera or propeller guards.",
+    "description_view_0": "Front view showing the central body, black top panel, and all four rotors extended outward, with the landing legs visible beneath the arms.",
+    "description_view_1": "Angled side-rear view highlighting the arm structure, rotor placement, and the rear section of the drone's body.",
+    "description_view_2": "Rear view displaying the back of the drone, the symmetry of the arms, and the black top panel.",
+    "description_view_3": "Angled side-front view emphasizing the front arms, rotors, and the streamlined body design.",
+    "category": "drone",
+    "height": 0.07,
+    "max_dimension": 0.35,
+    "materials": [
+        "plastic",
+        "carbon fiber",
+        "metal",
+        "air",
+        "electronic components"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 0.6,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 6,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable",
+        "toggleable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotor",
+        "arm",
+        "landing leg",
+        "power button",
+        "battery compartment"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 7000,
+    "friction_coefficient": 0.32,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 4,
+    "attribute_rotor_configuration": "quadcopter X",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": false,
+    "attribute_propeller_guard_presence": false,
+    "uid": "25ce1c254207402294fc797ed640a0bd",
+    "near_synsets": {
+        "drone.n.04": 0.5114306355474266,
+        "single-rotor_helicopter.n.01": 0.5561564290295938,
+        "orthopter.n.01": 0.5641247298888896,
+        "helicopter.n.01": 0.5707112943098219,
+        "rotor.n.03": 0.5757014782735126,
+        "monotone.n.01": -1000.0,
+        "dawdler.n.01": -1000.0,
+        "drone.n.05": -1000.0,
+        "drone.n.01": -1000.0
+    },
+    "synset": "drone.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/25ce1c254207402294fc797ed640a0bd",
+        "creator_username": "zombitt",
+        "creator_display_name": "zombitt",
+        "creator_profile_url": "https://sketchfab.com/zombitt"
+    },
+    "filename": "std_25ce1c254207402294fc797ed640a0bd.glb",
+    "length": 0.4168061465024948,
+    "width": 0.5335078835487366
+}

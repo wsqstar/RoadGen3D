@@ -1,0 +1,112 @@
+{
+    "description_long": "This is a tall, modern office building with a rectangular footprint and a glass curtain wall facade, featuring a grid of teal-tinted windows framed by thin, dark mullions. The structure rises from a broad, multi-story podium that includes landscaped areas with trees and a paved sidewalk, as well as adjacent street elements like lamp posts and road markings. The main tower is set back from the podium, creating a stepped profile, and the uppermost floors are distinguished by a lighter, more transparent section, possibly indicating a penthouse or mechanical level. The building's base includes multiple entry points and is surrounded by urban infrastructure, such as crosswalks and street lighting. The overall design is sleek and geometric, with a strong emphasis on verticality and regular window repetition. The setting suggests a prominent location in a city center, suitable for corporate offices or commercial tenants.",
+    "description": "A tall, modern office building with a teal glass facade, set on a landscaped podium with street and sidewalk elements. The structure features a regular grid of windows and a stepped design with a prominent tower.",
+    "description_view_0": "Front view showing the main entrance, landscaped trees, and the building's podium with adjacent street and lamp posts.",
+    "description_view_1": "Side view highlighting the building's depth, podium extension, and a row of trees along the sidewalk.",
+    "description_view_2": "Rear view displaying the back of the podium, the tower's glass facade, and the street running parallel to the building.",
+    "description_view_3": "Opposite side view showing the podium's layout, additional trees, and the building's stepped profile.",
+    "category": "office building",
+    "height": 80.0,
+    "max_dimension": 100.0,
+    "materials": [
+        "glass",
+        "steel",
+        "concrete",
+        "air",
+        "asphalt",
+        "vegetation"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.2,
+        0.07,
+        0.02,
+        0.01
+    ],
+    "mass": 1200000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "elevator",
+        "light switch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "teal",
+        "gray",
+        "white",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.55,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "scene",
+    "attribute_number_of_floors": 28,
+    "attribute_window_pattern": "Uniform grid of rectangular windows, evenly spaced in horizontal and vertical rows, creating a regular curtain wall pattern.",
+    "attribute_building_entrance_type": "double glass doors",
+    "attribute_signage_presence": false,
+    "attribute_architectural_style": "International Style",
+    "uid": "9fed86dfca4d45709a985063c341fc45",
+    "near_synsets": {
+        "office_building.n.01": 0.4909455270766762,
+        "high-rise.n.01": 0.525862199021979,
+        "skyscraper.n.01": 0.5337044922239935,
+        "office.n.01": 0.5625229498463267,
+        "city_hall.n.01": 0.5672125340177255,
+        "building.n.04": -1000.0,
+        "function.n.03": -1000.0,
+        "position.n.06": -1000.0,
+        "office.n.05": -1000.0,
+        "building.n.01": -1000.0,
+        "agency.n.01": -1000.0,
+        "construction.n.01": -1000.0,
+        "construction.n.07": -1000.0,
+        "office.n.06": -1000.0,
+        "office.n.04": -1000.0
+    },
+    "synset": "office_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9fed86dfca4d45709a985063c341fc45",
+        "creator_username": "joelhauck",
+        "creator_display_name": "Joel Hauck",
+        "creator_profile_url": "https://sketchfab.com/joelhauck"
+    },
+    "filename": "std_9fed86dfca4d45709a985063c341fc45.glb",
+    "length": 65.57378768920898,
+    "width": 65.57376861572266
+}

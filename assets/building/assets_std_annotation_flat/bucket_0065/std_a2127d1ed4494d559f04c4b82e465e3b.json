@@ -1,0 +1,112 @@
+{
+    "description_long": "This is a medium-sized, early 20th-century warship with a long, narrow hull painted primarily in light gray and brown tones. The ship features two tall masts and three prominent cylindrical funnels amidships, indicating a steam-powered vessel. The deck is detailed with various fixtures, including lifeboats, gun emplacements, and deckhouses, suggesting a military or patrol function. The bow is sharply pointed, while the stern is rounded, both designed for efficient movement through water. Visible deck equipment includes winches, anchors, and railings, with a flag at the stern and another at the bow. The superstructure is compact, with a bridge and observation platforms located centrally.",
+    "description": "A detailed, early 20th-century military ship with a long hull, three funnels, two masts, and various deck equipment. The vessel is painted in light gray and brown, featuring lifeboats, gun emplacements, and flags.",
+    "description_view_0": "Side view showing the full length of the ship, three funnels, two masts, and detailed deck equipment including lifeboats and gun emplacements.",
+    "description_view_1": "Front (bow) view highlighting the pointed bow, central superstructure, and symmetrical arrangement of funnels and masts.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the stern flag, deck fixtures, and hull details.",
+    "description_view_3": "Rear (stern) view showing the rounded stern, arrangement of lifeboats, and the alignment of the superstructure and funnels.",
+    "category": "ship",
+    "height": 12,
+    "max_dimension": 95,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2500000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "steerable",
+        "operable",
+        "mountable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "wheel",
+        "gun",
+        "lifeboat",
+        "anchor",
+        "winch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "black",
+        "white",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.03,
+    "recommended_clearance": 15,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a long, narrow profile, sharply pointed bow, and rounded stern. The hull sides are smooth with minimal flare, and there are no visible keels or bulbous bows. The deck sits flush with the hull, and the waterline is clearly defined.",
+    "attribute_superstructure_layout": "The superstructure is compact and centrally located, featuring a bridge, observation platforms, and three cylindrical funnels in a row. There are two tall masts fore and aft, with deckhouses and lifeboats positioned along the sides.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "lifeboat",
+        "anchor",
+        "winch",
+        "gun",
+        "flagpole",
+        "railings"
+    ],
+    "attribute_registration_markings": "flags at bow and stern",
+    "uid": "a2127d1ed4494d559f04c4b82e465e3b",
+    "near_synsets": {
+        "sailing_warship.n.01": 0.495174916719951,
+        "three-decker.n.03": 0.5199403514364551,
+        "transport_ship.n.01": 0.5204832575662256,
+        "troopship.n.01": 0.5225971065675663,
+        "cargo_ship.n.01": 0.5260529431787933,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a2127d1ed4494d559f04c4b82e465e3b",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_a2127d1ed4494d559f04c4b82e465e3b.glb",
+    "length": 42.04216957092285,
+    "width": 9.78168535232544
+}

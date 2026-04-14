@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a large, rectangular metal dumpster with a sloped top and a split, hinged lid. The exterior is painted green and heavily covered in graffiti, with various tags and spray-painted markings in black, white, red, yellow, and purple. The front features a prominent yellow and purple sign with French text, indicating it is for clothing donations, and a rectangular deposit slot. The surface is weathered, with visible scratches, dirt, and signs of prolonged outdoor exposure. The lid appears to be made of metal and is partially open, revealing a dark interior. There are no visible wheels or handles, and the base sits flat on the ground.",
+    "description": "A large, green, graffiti-covered metal dumpster with a sloped, split lid and a front donation slot, designed for outdoor use.",
+    "description_view_0": "Front view showing the donation slot, yellow and purple signage, and heavy graffiti in black and white.",
+    "description_view_1": "Rear view dominated by red and white graffiti, with no signage or openings visible.",
+    "description_view_2": "Opposite front view with another yellow and purple sign, less graffiti, and a more subdued appearance.",
+    "description_view_3": "Side view with yellow graffiti and faded tags, no visible openings or signage.",
+    "category": "dumpster",
+    "height": 1.5,
+    "max_dimension": 1.8,
+    "materials": [
+        "steel",
+        "paint",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 220,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "deposit slot"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "white",
+        "red",
+        "yellow",
+        "purple"
+    ],
+    "colors_composition": [
+        0.65,
+        0.12,
+        0.08,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "split, hinged metal lid with two sections, no visible locking mechanism, partially open",
+    "attribute_wheel_presence": false,
+    "attribute_handle_design": "none",
+    "attribute_warning_labels": [
+        {
+            "color": "yellow",
+            "shape": "rectangle",
+            "content": "French text for clothing donation"
+        },
+        {
+            "color": "red",
+            "shape": "square",
+            "content": "prohibition symbol"
+        }
+    ],
+    "attribute_placement_location": "outdoor public sidewalk or parking lot, near commercial or residential areas",
+    "uid": "1c038dd5b5fb4b6696c16462f9c0a420",
+    "near_synsets": {
+        "dumpster.n.01": 0.434412687029126,
+        "garbage.n.03": 0.4988071187470554,
+        "recycling_bin.n.01": 0.5010968446869589,
+        "garbage_truck.n.01": 0.5335480869672556,
+        "litterbin.n.01": 0.5396745781243141
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1c038dd5b5fb4b6696c16462f9c0a420",
+        "creator_username": "GM3Dscan",
+        "creator_display_name": "GM3Dscan",
+        "creator_profile_url": "https://sketchfab.com/GM3Dscan"
+    },
+    "filename": "std_1c038dd5b5fb4b6696c16462f9c0a420.glb",
+    "length": 1.696823000907898,
+    "width": 1.4346833229064941
+}

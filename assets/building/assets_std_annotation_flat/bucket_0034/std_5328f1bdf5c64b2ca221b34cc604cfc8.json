@@ -1,0 +1,91 @@
+{
+    "description_long": "This object consists of a group of 25 square, flat, stone-like pavers arranged in a 5x5 grid with small gaps between each piece. The pavers have a rough, weathered surface with visible textural variations and slightly rounded edges, suggesting age and exposure to the elements. Each paver appears to be made of concrete or stone, with a dark gray coloration and subtle mottling. The arrangement is orderly, but the individual pieces are not perfectly aligned, giving a sense of casual placement or minor displacement. The overall form is low and flat, with each paver being relatively thin compared to its width and length. This type of debris is commonly found in urban environments where paving materials have been disturbed or removed.",
+    "description": "A 5x5 grid of weathered, square stone or concrete pavers with rough, dark gray surfaces and slightly irregular alignment. The pavers are flat, low, and show signs of age and exposure.",
+    "description_view_0": "View 0 shows the pavers from a slightly elevated front angle, highlighting the grid arrangement and the rough, textured surfaces of each stone.",
+    "description_view_1": "View 1 presents the pavers from a similar angle but slightly rotated, revealing the depth and thickness of each paver and the spacing between them.",
+    "description_view_2": "View 2 offers a rear perspective, emphasizing the uniformity of the grid and the subtle variations in the alignment of the pavers.",
+    "description_view_3": "View 3 shows the pavers from the opposite side, again highlighting the grid pattern and the rough, aged surfaces.",
+    "category": "debris",
+    "height": 0.07,
+    "max_dimension": 2.0,
+    "materials": [
+        "concrete",
+        "stone",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 600,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "stackable",
+        "stepable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "obstacle",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_location": "urban street",
+    "attribute_context": "Displaced paving stones likely resulting from sidewalk or road maintenance, construction, or minor urban disruption.",
+    "attribute_object_type": "concrete paver",
+    "attribute_condition": "intact but weathered and slightly misaligned",
+    "attribute_associated_infrastructure": [
+        "road",
+        "sidewalk"
+    ],
+    "uid": "5328f1bdf5c64b2ca221b34cc604cfc8",
+    "near_synsets": {
+        "paving_stone.n.01": 0.5060942875441027,
+        "paved_surface.n.01": 0.5390391850265859,
+        "cobble.n.01": 0.5397936560187916,
+        "paving.n.01": 0.548036205781978,
+        "bluestone.n.01": 0.5493345990115739,
+        "debris.n.01": -1000.0
+    },
+    "synset": "debris.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5328f1bdf5c64b2ca221b34cc604cfc8",
+        "creator_username": "JonhGillessen",
+        "creator_display_name": "JonhGillessen",
+        "creator_profile_url": "https://sketchfab.com/JonhGillessen"
+    },
+    "filename": "std_5328f1bdf5c64b2ca221b34cc604cfc8.glb",
+    "length": 1.5449824333190918,
+    "width": 1.5416355729103088
+}

@@ -1,0 +1,92 @@
+{
+    "description_long": "This humanoid robot features a compact, bipedal form with a robust, mechanical build. Its head is small and rounded, with a distinct separation from the torso, and the arms hang down at its sides, ending in simple, claw-like hands. The legs are thick and sturdy, designed for stability, and the feet are broad, suggesting a focus on balance and support. The exterior appears to be constructed from dark, metallic materials with a matte finish, giving it an industrial, utilitarian look. There are no visible decorative elements or clothing, and the robot's surface is textured, likely to enhance grip and durability. The overall design is functional, with visible joints at the shoulders, elbows, hips, and knees, indicating a moderate range of motion.",
+    "description": "A compact, bipedal humanoid robot with a dark, matte metallic exterior, simple claw-like hands, and broad, stable feet. Its design is utilitarian and robust, with visible limb joints and no decorative elements.",
+    "description_view_0": "Front view shows the robot's symmetrical build, rounded head, and both arms hanging straight down, with broad feet visible.",
+    "description_view_1": "Left side view highlights the thickness of the limbs, the forward tilt of the head, and the mechanical joints at the shoulders and hips.",
+    "description_view_2": "Rear view reveals the back of the head, the alignment of the arms and legs, and the broad, flat feet.",
+    "description_view_3": "Right side view mirrors the left, showing the same limb proportions and joint placements, with the head slightly angled.",
+    "category": "humanoid robot",
+    "height": 0.45,
+    "max_dimension": 0.45,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "hands",
+        "legs",
+        "head"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms hanging straight down at the sides, legs straight and feet flat on the ground, head facing forward.",
+    "attribute_clothing_style": "Unclothed; exterior consists of integrated metallic and plastic panels with no decorative elements.",
+    "attribute_facial_features": "Face is minimally detailed, with no visible eyes, mouth, or expressive features; head is smooth and rounded.",
+    "attribute_limb_articulation": "Visible hinge joints at shoulders, elbows, hips, and knees; limbs appear rigid but capable of basic movement.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "fea5e0b27d2c49c3bb1840401fcaeb8a",
+    "near_synsets": {
+        "android.n.01": 0.5359131068119415,
+        "robotics_equipment.n.01": 0.5486317251977725,
+        "automaton.n.02": 0.5539021825975927,
+        "cyborg.n.01": 0.5561616218061917,
+        "robotics.n.01": 0.5603973002722908
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fea5e0b27d2c49c3bb1840401fcaeb8a",
+        "creator_username": "MooKorea",
+        "creator_display_name": "MooKorea",
+        "creator_profile_url": "https://sketchfab.com/MooKorea"
+    },
+    "filename": "std_fea5e0b27d2c49c3bb1840401fcaeb8a.glb",
+    "length": 26.613865852355957,
+    "width": 164.66209411621094
+}

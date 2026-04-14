@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a large, concrete half-pipe structure resembling a skate park ramp, but annotated as a dam. The structure features high, curved walls with a central rectangular opening and stair access on one side, all bordered by metal safety railings. Graffiti art and black painted symbols are visible on the exterior and interior surfaces, adding an urban aesthetic. The concrete surface shows signs of wear and discoloration, suggesting heavy use or exposure to the elements. The dam is elevated on sturdy supports, with a stairway leading up to the top platform. No visible water, spillway, or control gates are present, and the structure is surrounded by perimeter fencing for safety.",
+    "description": "A large, concrete dam-like structure with curved walls, metal railings, graffiti, and stair access, resembling an urban skate ramp.",
+    "description_view_0": "Front view showing the main wall with graffiti, central rectangular opening, and stairway on the left.",
+    "description_view_1": "Interior view highlighting the curved concrete basin, graffiti on the inner walls, and the stairway at the far end.",
+    "description_view_2": "Opposite side view with 'LOVE' graffiti, a large star, and the stairway on the right.",
+    "description_view_3": "Interior perspective from the opposite end, showing the curved basin, railings, and graffiti details.",
+    "category": "dam",
+    "height": 6.5,
+    "max_dimension": 22.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 180000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "slideable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "stairs",
+        "platform",
+        "railings"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light beige",
+        "gray",
+        "black",
+        "red",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.85,
+        0.08,
+        0.04,
+        0.02,
+        0.01
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_spillway_presence": false,
+    "attribute_control_gates": [
+        "none"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_water_outflow": "none",
+    "attribute_perimeter_fencing": true,
+    "uid": "654e839d95484a4b817092cacd886198",
+    "near_synsets": {
+        "dam.n.01": 0.505890417753385,
+        "rampart.n.01": 0.5631406829980087,
+        "flashboard.n.01": 0.5683089169854417,
+        "weir.n.01": 0.5684475742411685,
+        "aqueduct.n.01": 0.5722113711853348,
+        "dam.n.03": -1000.0,
+        "decameter.n.01": -1000.0
+    },
+    "synset": "dam.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/654e839d95484a4b817092cacd886198",
+        "creator_username": "CrGainey",
+        "creator_display_name": "CrGainey",
+        "creator_profile_url": "https://sketchfab.com/CrGainey"
+    },
+    "filename": "std_654e839d95484a4b817092cacd886198.glb",
+    "length": 14.90599775314331,
+    "width": 16.192981719970703
+}

@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a heavily armored combat tactical vehicle resembling a modern main battle tank. It features a large, angular hull with reinforced plating and a prominent turret mounted centrally on the chassis. The turret is equipped with a long, cylindrical main cannon and what appears to be a coaxial secondary weapon. The vehicle moves on wide, robust tracks that wrap around multiple road wheels, providing stability and traction over rough terrain. The exterior is solid and utilitarian, with hatches, periscopes, and other functional details visible on the upper surfaces. The overall design emphasizes protection, firepower, and mobility for urban or battlefield environments.",
+    "description": "A heavily armored tracked combat vehicle with a central turret and long main cannon, designed for urban and battlefield use. Its robust hull and wide tracks emphasize protection and mobility.",
+    "description_view_0": "The vehicle is seen from above and slightly to the front, highlighting the angular hull, turret, and the main cannon extending forward.",
+    "description_view_1": "This side view reveals the full length of the tracks, the road wheels, and the profile of the turret and cannon.",
+    "description_view_2": "A rear three-quarter view shows the back of the hull, the rear section of the tracks, and the turret's rear armor.",
+    "description_view_3": "The opposite side view displays the tracks, turret, and cannon from the other flank, mirroring the features seen in view 1.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 55000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 540000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "periscope",
+        "track",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the turret; possible coaxial secondary weapon also on the turret.",
+    "attribute_armor_plating": "Full body coverage with thick, angular armor plating; turret and hull both appear heavily reinforced.",
+    "attribute_camouflage_pattern": "None visible; exterior is a solid gray color.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "0b0dd38872854a97b97d678c907bdfa2",
+    "near_synsets": {
+        "tank.n.01": 0.4579567633964269,
+        "military_vehicle.n.01": 0.48969389850486444,
+        "assault_gun.n.02": 0.49278050706092386,
+        "armored_car.n.02": 0.4976862180195027,
+        "armored_vehicle.n.01": 0.5017657944821287,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0b0dd38872854a97b97d678c907bdfa2",
+        "creator_username": "Johnson-Martin",
+        "creator_display_name": "Johnson Martin",
+        "creator_profile_url": "https://sketchfab.com/Johnson-Martin"
+    },
+    "filename": "std_0b0dd38872854a97b97d678c907bdfa2.glb",
+    "length": 33.51569938659668,
+    "width": 33.51569366455078
+}

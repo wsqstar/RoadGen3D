@@ -1,0 +1,88 @@
+{
+    "description_long": "This kiosk is a small, rectangular structure with ornate, carved reliefs on its front and side panels, reminiscent of ancient or classical architectural motifs. The front features a large open archway, flanked by two thick pillars adorned with intricate bas-relief artwork, and a small step or platform at the base. The roof is flat with a slightly raised central section and decorative trim along the edges, including sculpted patterns and motifs. The side and rear panels are solid, with the rear also displaying detailed carvings, while the sides are mostly plain except for the upper decorative border. The overall color is a weathered, light beige stone, giving the kiosk a monumental and historic appearance. There are no visible windows or doors, and the structure appears to be made primarily of stone or a similar material.",
+    "description": "A small, ornate kiosk with carved stone reliefs, a large open archway at the front, and a flat, decorated roof. The structure is light beige and resembles a classical or ancient monument.",
+    "description_view_0": "Front view showing the open archway, two carved pillars, and a small step at the base, with detailed reliefs and decorative roof trim.",
+    "description_view_1": "Side view revealing the solid, plain side panel and the thickness of the roof, with decorative trim visible along the top edge.",
+    "description_view_2": "Rear view displaying a solid panel with intricate carvings and the raised central section of the flat roof.",
+    "description_view_3": "Opposite side view showing the plain side panel and ornate roof trim, similar to the other side.",
+    "category": "kiosk",
+    "height": 2.2,
+    "max_dimension": 3.0,
+    "materials": [
+        "stone",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 4200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "standable",
+        "leanable",
+        "displayable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "step/platform"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "beige",
+        "brown"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "none",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "single open archway at front",
+    "attribute_roof_design": "Flat roof with a slightly raised central section, decorative trim, and carved motifs along the edges.",
+    "attribute_architectural_style": "Classical with ancient monumental influences, featuring ornate bas-relief carvings and decorative trim.",
+    "uid": "24233c09e6dc4e1094c57c8e93533079",
+    "near_synsets": {
+        "minaret.n.01": 0.5407010901455009,
+        "arcade.n.01": 0.5614424694949589,
+        "booth.n.02": 0.5616652224460826,
+        "portico.n.01": 0.5637692590170649,
+        "cornerstone.n.02": 0.5642017585182709
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/24233c09e6dc4e1094c57c8e93533079",
+        "creator_username": "seirogan",
+        "creator_display_name": "seirogan",
+        "creator_profile_url": "https://sketchfab.com/seirogan"
+    },
+    "filename": "std_24233c09e6dc4e1094c57c8e93533079.glb",
+    "length": 1.9089691638946533,
+    "width": 3.289995789527893
+}

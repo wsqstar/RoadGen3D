@@ -1,0 +1,108 @@
+{
+    "description_long": "This combat tactical vehicle is a quadrupedal, armored machine with a robust, angular body and four articulated legs ending in wide, claw-like feet for stability on varied terrain. The main body is heavily armored with sloped plating, and a large, turret-mounted cannon is positioned on the roof, accompanied by several smaller protruding barrels and sensors. The vehicle's sides feature mechanical joints and exposed components, suggesting advanced suspension and mobility systems. The rear is equipped with dual exhausts and additional armor, while the front is reinforced and slightly pointed, likely for deflecting impacts. The overall color is a muted, dusty tan, with a matte finish and no visible camouflage pattern or military insignia. The design emphasizes durability, firepower, and adaptability for urban combat scenarios.",
+    "description": "A heavily armored, four-legged combat vehicle with a turret-mounted cannon and robust, angular plating. Its tan, matte finish and articulated legs suggest advanced mobility and urban warfare capability.",
+    "description_view_0": "Front view shows the pointed, reinforced nose, dual headlights, and the wide stance of the four clawed legs.",
+    "description_view_1": "Left side view highlights the long turret cannon, angular armor plating, and detailed leg joints.",
+    "description_view_2": "Rear view reveals dual exhausts, rear armor plating, and the symmetrical arrangement of the legs.",
+    "description_view_3": "Right side view mirrors the left, showing the turret cannon, armor, and mechanical leg structure.",
+    "category": "combat tactical  vehicle",
+    "height": 3.2,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "air",
+        "plastic"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.05,
+        0.04,
+        0.06,
+        0.02
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "legs",
+        "sensors",
+        "exhaust ports"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted on the roof turret, with several smaller barrel mounts on the sides and front of the main body.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating; reinforced at the front and sides, with visible modular panels and heavy rear armor.",
+    "attribute_camouflage_pattern": "Solid tan color with a matte finish; no visible camouflage pattern.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "c75e7767ca3b40a19cdce5c856a7ac4c",
+    "near_synsets": {
+        "tank.n.01": 0.4544950340974875,
+        "military_vehicle.n.01": 0.4868243223441965,
+        "armored_car.n.02": 0.49202704043384404,
+        "assault_gun.n.02": 0.49583459562631305,
+        "reconnaissance_vehicle.n.01": 0.4978353015216669,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/c75e7767ca3b40a19cdce5c856a7ac4c",
+        "creator_username": "donizaki",
+        "creator_display_name": "David Onizaki",
+        "creator_profile_url": "https://sketchfab.com/donizaki"
+    },
+    "filename": "std_c75e7767ca3b40a19cdce5c856a7ac4c.glb",
+    "length": 8.078475952148438,
+    "width": 4.51077127456665
+}

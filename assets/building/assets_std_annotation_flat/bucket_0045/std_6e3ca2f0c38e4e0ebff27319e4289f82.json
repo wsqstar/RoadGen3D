@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a rectangular vending machine with a predominantly green exterior, decorated with bubble graphics and a large, stylized '7 DOWN' logo on the front. The front panel features a vertical black section on the right side, housing a display panel, product selection buttons, and a payment interface. The sides of the machine are green with bubble motifs, while the back is solid black and unadorned. The machine appears to be constructed from metal panels with a glossy finish, likely reinforced with internal structural components. The product retrieval slot is located near the bottom of the front panel, and the overall design is typical of beverage vending machines found in urban environments. The branding and color scheme suggest it dispenses a lemon-lime soda product.",
+    "description": "A green, bubble-themed vending machine with a prominent '7 DOWN' logo, black front panel, and product interface on the right side. The machine is metallic, glossy, and designed for dispensing beverages.",
+    "description_view_0": "Front view showing the '7 DOWN' logo, product interface, payment system, and retrieval slot on a green, bubble-patterned background.",
+    "description_view_1": "Left side view displaying a plain green panel with bubble graphics and no visible interface or openings.",
+    "description_view_2": "Rear view showing a solid black, featureless panel with no branding or functional elements.",
+    "description_view_3": "Right side view similar to the left, with green bubble graphics and no visible openings or controls.",
+    "category": "vending machine",
+    "height": 1.8,
+    "max_dimension": 1.8,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "electronic components",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 220,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "display panel",
+        "payment slot",
+        "retrieval slot",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "white",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A small, vertically oriented display panel is located on the right side of the front face, above the product selection buttons, showing product options and possibly instructions.",
+    "attribute_payment_interface": "A payment interface is integrated into the black vertical panel on the front, including a coin slot and bill acceptor, both positioned above the product selection buttons.",
+    "attribute_product_selection_buttons": "A column of individual rectangular buttons, each labeled with a product or number, is arranged vertically on the right side of the front panel.",
+    "attribute_product_retrieval_slot": "A rectangular retrieval slot is located near the bottom center of the front panel, with a dark flap or opening for product access.",
+    "attribute_branding_or_signage": "A large '7 DOWN' logo in white and red is prominently displayed on the front, surrounded by green bubble graphics covering the front and sides.",
+    "uid": "6e3ca2f0c38e4e0ebff27319e4289f82",
+    "near_synsets": {
+        "vending_machine.n.01": 0.5273557374728826,
+        "automat.n.01": 0.5728875308387152,
+        "soda_fountain.n.02": 0.5908064764663512,
+        "soda_fountain.n.01": 0.5978092003448346,
+        "fruit_machine.n.01": 0.6009604419189506,
+        "car.n.01": -1000.0,
+        "machine.n.05": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.02": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.04": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6e3ca2f0c38e4e0ebff27319e4289f82",
+        "creator_username": "tboiston",
+        "creator_display_name": "tboiston",
+        "creator_profile_url": "https://sketchfab.com/tboiston"
+    },
+    "filename": "std_6e3ca2f0c38e4e0ebff27319e4289f82.glb",
+    "length": 0.8723180592060089,
+    "width": 0.980848491191864
+}

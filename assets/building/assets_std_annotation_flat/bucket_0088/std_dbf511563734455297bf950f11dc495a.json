@@ -1,0 +1,100 @@
+{
+    "description_long": "This apartment building features a simple, boxy design with two distinct levels, the upper floor set back from the lower, creating a stepped profile. The exterior is finished in a muted blue color with light gray trim outlining the flat roofs and window frames. The front facade displays six symmetrically arranged windows with white awnings and a single entrance door on the left side. The side and rear views reveal additional windows and two small utility boxes, while the roof is adorned with a pair of small black vent pipes. The building sits on a dark rectangular base, suggesting a paved or concrete foundation. The overall appearance is clean and modern, with minimal decorative elements and a focus on functional geometry.",
+    "description": "A modern, two-story blue apartment building with flat roofs, symmetrical windows, and minimalistic design.",
+    "description_view_0": "Front view showing six windows with white awnings, a single entrance door, and the stepped two-level structure.",
+    "description_view_1": "Side view highlighting the building's depth, the setback of the upper floor, and a single roof vent.",
+    "description_view_2": "Rear view displaying the plain blue facade, two roof vents, and no visible windows or doors.",
+    "description_view_3": "Opposite side view with two utility boxes and no windows, emphasizing the building's clean lines.",
+    "category": "apartment building",
+    "height": 8.0,
+    "max_dimension": 12.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "utility box"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 2,
+    "attribute_balcony_presence": false,
+    "attribute_window_arrangement": "The windows are symmetrically arranged in two horizontal rows on the front facade, evenly spaced and aligned vertically and horizontally for a balanced appearance.",
+    "attribute_entrance_type": "single door",
+    "attribute_architectural_style": "Contemporary",
+    "uid": "dbf511563734455297bf950f11dc495a",
+    "near_synsets": {
+        "apartment_building.n.01": 0.49521432207200733,
+        "duplex_apartment.n.01": 0.5279750180719882,
+        "apartment.n.01": 0.5363448611082713,
+        "block.n.05": 0.537331646016468,
+        "skyscraper.n.01": 0.5375485749111955,
+        "construction.n.07": -1000.0,
+        "building.n.04": -1000.0,
+        "building.n.01": -1000.0,
+        "construction.n.01": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dbf511563734455297bf950f11dc495a",
+        "creator_username": "danilo2222255",
+        "creator_display_name": "danilo2222255",
+        "creator_profile_url": "https://sketchfab.com/danilo2222255"
+    },
+    "filename": "std_dbf511563734455297bf950f11dc495a.glb",
+    "length": 9.277822494506836,
+    "width": 9.277817726135254
+}

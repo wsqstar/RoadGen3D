@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a tall, rectangular Coca-Cola branded kiosk with a glossy black and red exterior. The front features a large, single glass door with a metallic handle, revealing several interior shelves for product display or storage. The left side is mostly black with a red accent at the top and bottom, while the right side prominently displays the Coca-Cola logo in white script on a red background. The interior is divided into multiple horizontal shelves, and the door appears to be hinged on the left. The top of the kiosk is flat and boxy, with a slight overhang. The overall design is modern and functional, suitable for use as a refrigerated display or vending unit in urban environments.",
+    "description": "A tall, rectangular Coca-Cola branded kiosk with a glass door and multiple interior shelves, featuring a glossy black and red finish and prominent logo signage.",
+    "description_view_0": "Side view showing the black exterior with red accents and the open glass door revealing interior shelves.",
+    "description_view_1": "Front view with the glass door open, exposing the shelving and the main access point for interaction.",
+    "description_view_2": "Side view with the Coca-Cola logo in white on a red background, and the open door visible to the left.",
+    "description_view_3": "Rear view showing a plain black and silver surface with no visible signage or openings.",
+    "category": "kiosk",
+    "height": 2.0,
+    "max_dimension": 2.0,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.1
+    ],
+    "mass": 120,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pullable",
+        "pushable",
+        "supportive"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "shelves"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "white",
+        "silver"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.5,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "printed logo on right side panel, large white 'Coca-Cola' script on red background",
+    "attribute_window_presence": "one large rectangular glass door at the front",
+    "attribute_door_configuration": "one single hinged glass door at the front",
+    "attribute_roof_design": "flat roof with slight overhang, finished in glossy black and red",
+    "attribute_architectural_style": "modern commercial with branded elements",
+    "uid": "a73e005d9bad4472801b51c2fa035c05",
+    "near_synsets": {
+        "coca_cola.n.01": 0.5123216158334626,
+        "booth.n.02": 0.5699039567970439,
+        "soda_fountain.n.01": 0.5751889886508429,
+        "soda_can.n.01": 0.5784721686901789,
+        "pop_bottle.n.01": 0.5795223867496301
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a73e005d9bad4472801b51c2fa035c05",
+        "creator_username": "Ishmam",
+        "creator_display_name": "Ishmam Adib Al NIzam",
+        "creator_profile_url": "https://sketchfab.com/Ishmam"
+    },
+    "filename": "std_a73e005d9bad4472801b51c2fa035c05.glb",
+    "length": 1.1771240234375,
+    "width": 0.7975311279296875
+}

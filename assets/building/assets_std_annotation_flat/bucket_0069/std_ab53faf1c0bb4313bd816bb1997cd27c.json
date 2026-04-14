@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a mid-rise apartment building with a rectangular footprint and a flat roof, featuring a small rooftop structure and an antenna. The facade is painted in muted beige and orange tones, with a distinctive geometric pattern of colored rectangles framing the windows. The building has eight stories, each with rows of evenly spaced windows, and a prominent main entrance accessed by a wide staircase. One side of the building displays a fire escape, while the rear and side facades are simpler, with minimal window openings and color bands. The structure appears to be constructed primarily from concrete, with metal elements for the fire escape and window frames. The overall design is functional and utilitarian, typical of post-war urban residential architecture.",
+    "description": "A rectangular, eight-story apartment building with a flat roof, geometric window patterns, and a main entrance with a staircase. The facade features beige and orange tones, with a fire escape on one side.",
+    "description_view_0": "This side view shows a plain facade with a single fire escape and minimal windows, highlighting the building's height and the rooftop structure.",
+    "description_view_1": "The front view displays the main entrance, a wide staircase, and a colorful geometric window arrangement across eight floors.",
+    "description_view_2": "The rear view is simple, with horizontal color bands and a fire escape, lacking the decorative window patterns of the front.",
+    "description_view_3": "This view shows the secondary facade with a staircase leading to the entrance and a regular grid of windows, similar to the front but with less color variation.",
+    "category": "apartment building",
+    "height": 24.0,
+    "max_dimension": 28.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.08,
+        0.05
+    ],
+    "mass": 1200000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "fire escape",
+        "staircase",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "orange",
+        "gray",
+        "blue",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 8,
+    "attribute_balcony_presence": false,
+    "attribute_window_arrangement": "Windows are arranged in a regular, grid-like pattern with some colored framing elements creating geometric groupings on the main facade. The spacing is uniform, contributing to a sense of symmetry and order.",
+    "attribute_entrance_type": "single door",
+    "attribute_architectural_style": "Modernist",
+    "uid": "ab53faf1c0bb4313bd816bb1997cd27c",
+    "near_synsets": {
+        "apartment_building.n.01": 0.5245117863356754,
+        "railroad_flat.n.01": 0.552519497730597,
+        "cityscape.n.02": 0.5535213028033253,
+        "elevation.n.07": 0.554839667723172,
+        "block.n.05": 0.5578895123228259,
+        "building.n.01": -1000.0,
+        "construction.n.01": -1000.0,
+        "construction.n.07": -1000.0,
+        "building.n.04": -1000.0,
+        "apartment.n.01": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ab53faf1c0bb4313bd816bb1997cd27c",
+        "creator_username": "afbu",
+        "creator_display_name": "AfBu",
+        "creator_profile_url": "https://sketchfab.com/afbu"
+    },
+    "filename": "std_ab53faf1c0bb4313bd816bb1997cd27c.glb",
+    "length": 12.371898651123047,
+    "width": 13.9510178565979
+}

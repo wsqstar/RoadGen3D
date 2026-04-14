@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a compact, vintage-style tractor truck with a weathered, military-green exterior and visible signs of rust and wear. The front features a rounded hood with a central grille, two round headlights, and a small orange badge marked with the number '2'. The cab is enclosed with glass windows and has side mirrors, while the rear cargo bed is constructed from wooden slats and contains several large, dark crates. The vehicle has four wheels, with the rear wheels slightly larger than the front, and the undercarriage shows mechanical components and a fuel tank. The overall design suggests a utilitarian vehicle, likely used for transporting goods or equipment in urban or semi-urban environments. The truck's rugged appearance and open cargo area make it suitable for carrying various loads.",
+    "description": "A weathered, vintage-style tractor truck with an enclosed cab, wooden cargo bed, and several crates in the back. The vehicle is painted military green with visible rust and wear, and features four wheels and a utilitarian design.",
+    "description_view_0": "Front view shows the rounded hood, central grille, two headlights, orange badge, and enclosed cab with glass windows.",
+    "description_view_1": "Left side view highlights the cab profile, wooden cargo bed with crates, side mirror, and visible undercarriage components.",
+    "description_view_2": "Rear view displays the open wooden cargo bed, three large crates, and the vehicle's taillights.",
+    "description_view_3": "Right side view mirrors the left, showing the cab, wooden slats, crates, and wheel arrangement.",
+    "category": "tractor",
+    "height": 2.0,
+    "max_dimension": 4.0,
+    "materials": [
+        "metal",
+        "wood",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.1,
+        0.02,
+        0.03
+    ],
+    "mass": 1800,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 4500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable",
+        "pullable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "steering wheel",
+        "cargo bed",
+        "side mirror"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "military green",
+        "brown",
+        "black",
+        "gray",
+        "orange",
+        "red"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_tractor_brand": "unknown",
+    "attribute_tractor_model": "unknown",
+    "attribute_wheel_configuration": "four wheels, rear wheels slightly larger, likely two-wheel drive",
+    "attribute_presence_of_agricultural_implements": false,
+    "attribute_cabin_design": "Enclosed cabin with glass windows, side mirrors, and doors; no visible protective structures or advanced ergonomic features.",
+    "uid": "a6b4a307a5c44df0a0960456362f3ed7",
+    "near_synsets": {
+        "tractor.n.02": 0.494990816700224,
+        "tractor.n.01": 0.5096373728937499,
+        "truck.n.01": 0.5272139829820526,
+        "van.n.05": 0.5290167920222356,
+        "trailer.n.03": 0.5435186561242777
+    },
+    "synset": "tractor.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/a6b4a307a5c44df0a0960456362f3ed7",
+        "creator_username": "afremor",
+        "creator_display_name": "Anatoly Zelensky",
+        "creator_profile_url": "https://sketchfab.com/afremor"
+    },
+    "filename": "std_a6b4a307a5c44df0a0960456362f3ed7.glb",
+    "length": 3.3299756050109863,
+    "width": 1.4194416999816895
+}

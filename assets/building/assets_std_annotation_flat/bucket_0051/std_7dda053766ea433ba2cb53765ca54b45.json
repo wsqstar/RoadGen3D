@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a large, rustic wooden handcart with a flat plank load platform and tall slatted side rails, designed for transporting goods or materials. The cart features two large spoked wooden wheels with metal rims, positioned centrally along the sides for balance and mobility. The front of the cart has two extended wooden shafts, likely for manual pulling or for attaching to an animal. The wood appears weathered, giving the cart a vintage, utilitarian look suitable for outdoor or urban environments. The open-top design allows for easy loading and unloading of bulky items. Metal fastenings and reinforcements are visible at key structural points, enhancing durability.",
+    "description": "A large, vintage wooden handcart with tall slatted side rails, two big spoked wheels, and long front shafts for pulling. The open, flat platform is ideal for carrying bulky loads.",
+    "description_view_0": "Front view showing the open end of the cart, the flat wooden platform, and the tall side rails.",
+    "description_view_1": "Side view highlighting the long slatted side rails, large spoked wheels, and extended front shafts.",
+    "description_view_2": "Rear view displaying the closed end of the cart, the platform, and the side rails.",
+    "description_view_3": "Opposite side view showing the same features as view 1, with clear visibility of the wheels and rails.",
+    "category": "handcart",
+    "height": 1.2,
+    "max_dimension": 3.0,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 90,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle/shafts",
+        "wheel",
+        "side rail"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 2,
+    "attribute_handle_type": "dual straight shafts",
+    "attribute_wheel_position": "side-mounted, centered",
+    "attribute_presence_of_side_rails": true,
+    "attribute_load_platform_design": "flat solid surface",
+    "uid": "7dda053766ea433ba2cb53765ca54b45",
+    "near_synsets": {
+        "handcart.n.01": 0.44858123028650165,
+        "hand_truck.n.01": 0.4563207286868389,
+        "serving_cart.n.01": 0.4681005852335576,
+        "cart.n.01": 0.4710400507944393,
+        "shopping_cart.n.01": 0.4740407620320297
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7dda053766ea433ba2cb53765ca54b45",
+        "creator_username": "LukasBobor",
+        "creator_display_name": "Lukas Bobor",
+        "creator_profile_url": "https://sketchfab.com/LukasBobor"
+    },
+    "filename": "std_7dda053766ea433ba2cb53765ca54b45.glb",
+    "length": 3.659313201904297,
+    "width": 1.7492242455482483
+}

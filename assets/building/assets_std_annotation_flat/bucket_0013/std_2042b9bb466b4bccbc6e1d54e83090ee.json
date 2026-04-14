@@ -1,0 +1,92 @@
+{
+    "description_long": "This object is a classic cartoon-style spherical bomb, featuring a smooth, dark metallic body with a slightly reflective surface and visible scuff marks. The upper hemisphere is a lighter gray, contrasting with the glossy black lower section, which is marred by scratches and wear. A thick, segmented fuse extends from the base, curving outward and appearing to be made of a fibrous or wrapped material. The base of the bomb is slightly faceted, providing a stable resting surface. There are no visible buttons, switches, or digital displays on the exterior. The overall design is simple and iconic, evoking the appearance of traditional gunpowder bombs.",
+    "description": "A spherical, dark metallic bomb with a segmented fuse and a slightly reflective, scratched surface. The upper half is lighter gray, and the base is faceted for stability.",
+    "description_view_0": "The front view shows the bomb's glossy black surface with visible scratches, a lighter gray top, and the fuse emerging from the lower right.",
+    "description_view_1": "This side view highlights the transition between the dark and light hemispheres and shows the fuse curving forward.",
+    "description_view_2": "The rear view displays mostly the smooth, light gray surface with the fuse looping around to the left.",
+    "description_view_3": "This view reveals the seam between the dark and light sections and the fuse's attachment point at the base.",
+    "category": "bomb",
+    "height": 0.28,
+    "max_dimension": 0.35,
+    "materials": [
+        "metal",
+        "fabric",
+        "air",
+        "gunpowder"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 35,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "fuse"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "light gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The bomb appears to be ignited via a physical fuse, which would be lit to initiate detonation after a delay.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "2042b9bb466b4bccbc6e1d54e83090ee",
+    "near_synsets": {
+        "bomb.n.01": 0.5229020425142128,
+        "cluster_bomb.n.01": 0.5495134578583298,
+        "fireball.n.04": 0.5513511474776235,
+        "general-purpose_bomb.n.01": 0.553130608740343,
+        "fragmentation_bomb.n.01": 0.5543628204521802,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2042b9bb466b4bccbc6e1d54e83090ee",
+        "creator_username": "1026807",
+        "creator_display_name": "1026807",
+        "creator_profile_url": "https://sketchfab.com/1026807"
+    },
+    "filename": "std_2042b9bb466b4bccbc6e1d54e83090ee.glb",
+    "length": 2.5109241008758545,
+    "width": 0.40484723448753357
+}

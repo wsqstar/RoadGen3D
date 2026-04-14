@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a compact, single-barrel shotgun with a robust cylindrical barrel and a short, pistol-style grip. The grip is wrapped in a reddish-brown material that appears to be stained or weathered, possibly for improved handling or aesthetic effect. The main body and barrel are matte black, with visible mounting brackets and a simple iron sight on top. The trigger is housed within a thin, metallic guard, and the overall design is utilitarian, lacking decorative elements. The shotgun's construction suggests a focus on functionality and ease of use in close-quarters urban environments. The materials and finish give it a rugged, makeshift appearance, suitable for scenarios where reliability and durability are prioritized.",
+    "description": "A compact, single-barrel shotgun with a black cylindrical barrel and a stained, wrapped pistol grip, designed for rugged urban use.",
+    "description_view_0": "Side view showing the full length of the black barrel, the stained wrap on the grip, and the thin trigger guard.",
+    "description_view_1": "Front view highlighting the circular barrel opening and the width of the wrapped grip.",
+    "description_view_2": "Opposite side view displaying the same barrel and grip features, with visible mounting brackets and iron sight.",
+    "description_view_3": "Rear view focusing on the back of the grip and the alignment of the barrel.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.45,
+    "materials": [
+        "steel",
+        "wood",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 2.8,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 28,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "aimable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "grip",
+        "barrel",
+        "trigger guard",
+        "iron sight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "red",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, cylindrical with no visible ribbing or venting",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "break-action",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "thin, rounded metallic guard with a simple, unreinforced design",
+    "uid": "7e5d65a756ea45cebe70e3ea49c4b466",
+    "near_synsets": {
+        "shotgun.n.01": 0.44997984508845035,
+        "sawed-off_shotgun.n.01": 0.45521540382687947,
+        "pistol.n.01": 0.49187045374759625,
+        "zip_gun.n.01": 0.5025955007057036,
+        "shotgun_shell.n.01": 0.51262648135501
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7e5d65a756ea45cebe70e3ea49c4b466",
+        "creator_username": "sh4m4n",
+        "creator_display_name": "sh4m4n",
+        "creator_profile_url": "https://sketchfab.com/sh4m4n"
+    },
+    "filename": "std_7e5d65a756ea45cebe70e3ea49c4b466.glb",
+    "length": 0.23802459239959717,
+    "width": 0.03927693888545036
+}

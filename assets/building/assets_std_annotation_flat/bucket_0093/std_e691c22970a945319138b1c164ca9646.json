@@ -1,0 +1,122 @@
+{
+    "description_long": "This robot dog features a robust, mechanical body with a quadrupedal stance, evoking the form of a large canine. Its exterior is armored with dark metallic plating, and it is equipped with a prominent turret or cannon mounted on its back, suggesting a military or security function. The head is angular and stylized, with what appear to be sensor arrays or cameras embedded in the front, and mechanical jaws that resemble those of a predatory animal. The legs are jointed and reinforced, each ending in claw-like feet designed for stability and traction on urban surfaces. Along its sides and back, there are visible panels, vents, and warning decals, indicating access points or maintenance hatches. The overall design is utilitarian and intimidating, with exposed mechanical joints and a rugged, industrial finish.",
+    "description": "A heavily armored, quadrupedal robot dog with a turret on its back, mechanical jaws, and reinforced legs, designed for urban security or combat roles.",
+    "description_view_0": "Side view showing the full length of the robot dog, highlighting the turret, angular head, and detailed leg mechanisms.",
+    "description_view_1": "Front view emphasizing the dual sensor arrays, mechanical jaws, and the broad, armored shoulders.",
+    "description_view_2": "Opposite side view similar to view 0, revealing symmetrical features and additional panel details.",
+    "description_view_3": "Rear view displaying the back-mounted turret, rear leg articulation, and exhaust or vent structures.",
+    "category": "robot dog",
+    "height": 1.2,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 4200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "turret",
+        "sensor array",
+        "jaws",
+        "leg joints",
+        "maintenance panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "silver",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_mechanical_joints": [
+        "rotary joint",
+        "hinge joint",
+        "linear actuator"
+    ],
+    "attribute_visible_sensors": [
+        "camera",
+        "infrared sensor"
+    ],
+    "attribute_led_indicators": [],
+    "attribute_articulated_limbs": [
+        "front left leg",
+        "front right leg",
+        "rear left leg",
+        "rear right leg",
+        "jaw"
+    ],
+    "attribute_robotic_face": true,
+    "uid": "e691c22970a945319138b1c164ca9646",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5434002754815438,
+        "attack_dog.n.01": 0.5529027180999562,
+        "quadruped.n.01": 0.5538370622428284,
+        "working_dog.n.01": 0.5668748428092326,
+        "automaton.n.02": 0.5678983623730803,
+        "andiron.n.01": -1000.0,
+        "pawl.n.01": -1000.0,
+        "dog.n.03": -1000.0,
+        "frump.n.01": -1000.0,
+        "frank.n.01": -1000.0,
+        "cad.n.01": -1000.0,
+        "dog.n.01": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e691c22970a945319138b1c164ca9646",
+        "creator_username": "sinnik",
+        "creator_display_name": "SINNIK",
+        "creator_profile_url": "https://sketchfab.com/sinnik"
+    },
+    "filename": "std_e691c22970a945319138b1c164ca9646.glb",
+    "length": 2.311081051826477,
+    "width": 0.9364641904830933
+}

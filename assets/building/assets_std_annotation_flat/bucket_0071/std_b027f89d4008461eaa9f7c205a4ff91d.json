@@ -1,0 +1,108 @@
+{
+    "description_long": "This helicopter features a robust, angular fuselage with a predominantly gray and blue color scheme, accented by military-style markings and a shark mouth graphic on the nose. Two large, cylindrical engines or weapon pods are mounted above the main body, extending forward and giving the craft a distinctive, aggressive silhouette. The cockpit is enclosed with a rounded, multi-panel window, providing wide visibility for the pilot, and the side doors appear reinforced. The tail section is compact, with a vertical stabilizer and no visible tail rotor, suggesting a possible alternative stabilization system. The landing gear consists of sturdy, angular skids designed for rough terrain. The overall design suggests a heavily armored, combat-oriented helicopter suitable for urban or battlefield environments.",
+    "description": "A heavily armored, gray and blue combat helicopter with dual forward-mounted pods, a shark mouth nose graphic, and reinforced cockpit windows. It features angular landing skids and military markings.",
+    "description_view_0": "Top-down view showing the dual forward-mounted pods, angular wings, and the full extent of the shark mouth graphic on the nose.",
+    "description_view_1": "Rear oblique view highlighting the compact tail section, the underside of the pods, and the angular landing skids.",
+    "description_view_2": "Side view displaying the full profile of the fuselage, cockpit window arrangement, and military insignia on the tail and wings.",
+    "description_view_3": "Bottom oblique view revealing the underside details, landing skids, and the arrangement of the cockpit and side doors.",
+    "category": "helicopter",
+    "height": 3.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.2,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 5200,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 50900,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit door",
+        "side door",
+        "control stick",
+        "rotor blades",
+        "landing skids",
+        "engine pods",
+        "buttons",
+        "switches"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "white",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 12.0,
+    "asset_composition_type": "single",
+    "attribute_rotor_blades": "Two long, narrow main rotor blades are visible, appearing to be made of composite material with a gray and blue color scheme and minimal markings.",
+    "attribute_tail_rotor": "Not visible; the tail section does not show a conventional tail rotor, possibly indicating a NOTAR or alternative stabilization system.",
+    "attribute_landing_skids": "Angular, robust landing skids made of metal, painted gray with black footpads and reinforced crossbars for stability.",
+    "attribute_cockpit_windows": "The cockpit features a multi-panel, rounded window arrangement with clear glass, black framing, and no visible tint or markings.",
+    "attribute_registration_number": "not visible",
+    "uid": "b027f89d4008461eaa9f7c205a4ff91d",
+    "near_synsets": {
+        "cargo_helicopter.n.01": 0.5354062412473689,
+        "landing_skid.n.01": 0.5487196953529182,
+        "helicopter.n.01": 0.5574639085463117,
+        "shuttle_helicopter.n.01": 0.5607113091112681,
+        "skyhook.n.01": 0.56251148243188
+    },
+    "synset": "shuttle_helicopter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/b027f89d4008461eaa9f7c205a4ff91d",
+        "creator_username": "dryk4085",
+        "creator_display_name": "Just Ryk",
+        "creator_profile_url": "https://sketchfab.com/dryk4085"
+    },
+    "filename": "std_b027f89d4008461eaa9f7c205a4ff91d.glb",
+    "length": 2.634479284286499,
+    "width": 3.6386919021606445
+}

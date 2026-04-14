@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a small, blocky airplane situated on a rectangular section of terrain featuring a gray runway with white markings. The airplane has a compact fuselage with straight wings extending from either side, and a tail assembly at the rear. The wings are positioned at a mid-level on the fuselage and appear to be straight without any visible sweep or winglets. The airplane is rendered in a pixelated, voxel style with a color palette dominated by gray, black, and hints of purple. The surrounding terrain is green with brown patches, simulating grass and earth, and the runway is bordered by these natural textures. The airplane is depicted in a static position, as if ready for takeoff or landing on the runway.",
+    "description": "A small, voxel-style airplane with straight mid-mounted wings sits on a gray runway surrounded by green and brown terrain.",
+    "description_view_0": "The airplane is seen from the side, showing the full length of the runway and the terrain, with the airplane near the right edge.",
+    "description_view_1": "A rear view of the airplane, with the runway extending away and the airplane's tail and wings clearly visible.",
+    "description_view_2": "A top-down perspective reveals the airplane's wingspan and the full runway, with the airplane positioned near the left edge.",
+    "description_view_3": "A frontal view of the airplane, showing the nose, cockpit area, and the runway stretching behind it.",
+    "category": "airplane",
+    "height": 0.5,
+    "max_dimension": 1.5,
+    "materials": [
+        "plastic",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 5,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit",
+        "wings",
+        "tail",
+        "landing gear"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "purple",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "scene",
+    "attribute_wingspan_configuration": "Mid-wing configuration with straight wings and no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Single piston engine mounted at the nose.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "Tricycle landing gear with two main gear units and a single nose gear, fixed.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a single seat visible.",
+    "uid": "3db25faa084d495bac4c739adcb72b24",
+    "near_synsets": {
+        "aircraft.n.01": 0.5228191856970344,
+        "airplane.n.01": 0.5420799691487684,
+        "plane.n.03": 0.5486869645860035,
+        "monoplane.n.01": 0.5541169503236407,
+        "ski-plane.n.01": 0.5632218084334774
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3db25faa084d495bac4c739adcb72b24",
+        "creator_username": "lucykiru",
+        "creator_display_name": "Lucy",
+        "creator_profile_url": "https://sketchfab.com/lucykiru"
+    },
+    "filename": "std_3db25faa084d495bac4c739adcb72b24.glb",
+    "length": 2.1866753101348877,
+    "width": 1.856962263584137
+}

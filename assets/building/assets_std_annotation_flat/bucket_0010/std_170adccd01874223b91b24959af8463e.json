@@ -1,0 +1,87 @@
+{
+    "description_long": "This object is a rectangular section of sidewalk composed of uniformly arranged rectangular paving stones. The stones are set in a grid pattern, with visible mortar or joint lines separating each stone, giving the surface a structured and orderly appearance. The color palette consists of muted grays and light browns, typical of concrete or stone pavers used in urban environments. The surface appears flat and even, suitable for pedestrian use, and the edges are straight with no visible curbs or barriers. There are no visible features such as tactile paving, street furniture, or decorative elements. The overall look is utilitarian and designed for durability and ease of maintenance in public spaces.",
+    "description": "A flat, rectangular sidewalk section made of evenly spaced gray and light brown paving stones, arranged in a grid pattern. The surface is smooth and uniform, with no curbs or additional features.",
+    "description_view_0": "The sidewalk is seen from a low angle, highlighting the depth and regularity of the paving stones' grid pattern.",
+    "description_view_1": "Viewed from the opposite side, the grid pattern remains consistent, with the rectangular stones and joint lines clearly visible.",
+    "description_view_2": "This angle shows the sidewalk's flatness and the uniform arrangement of the pavers, emphasizing the straight edges.",
+    "description_view_3": "From this perspective, the surface texture and color variation among the stones are apparent, with no additional features visible.",
+    "category": "sidewalk",
+    "height": 0.08,
+    "max_dimension": 4.0,
+    "materials": [
+        "concrete",
+        "mortar",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.06,
+        0.02
+    ],
+    "mass": 750,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "segmentable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "light brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": false,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "flush",
+    "attribute_adjacent_street_type": "residential",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "170adccd01874223b91b24959af8463e",
+    "near_synsets": {
+        "sidewalk.n.01": 0.4546157621034941,
+        "paved_surface.n.01": 0.4732650936491346,
+        "cobble.n.01": 0.5105754596520695,
+        "paving_stone.n.01": 0.512879809153673,
+        "pavement.n.01": 0.5145191504598171
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/170adccd01874223b91b24959af8463e",
+        "creator_username": "Pixelz22",
+        "creator_display_name": "Pixelz22",
+        "creator_profile_url": "https://sketchfab.com/Pixelz22"
+    },
+    "filename": "std_170adccd01874223b91b24959af8463e.glb",
+    "length": 595420.5,
+    "width": 595420.4375
+}

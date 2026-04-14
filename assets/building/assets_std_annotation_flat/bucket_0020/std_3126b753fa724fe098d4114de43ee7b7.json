@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a small windmill with a horizontal-axis rotor featuring three slender, greenish blades attached to a central hub. The windmill is mounted on a sturdy, multi-segmented tower that transitions from a cylindrical shaft to a hexagonal base, which appears weighted for stability. Two vertical stabilizer fins are attached to the lower section of the tower, likely for additional balance or wind direction sensing. At the rear of the rotor, a black tail vane extends outward, helping to orient the windmill into the wind. The materials appear to be primarily metal and plastic, with a matte and slightly reflective finish. The overall design suggests it is intended for small-scale urban or residential use, possibly for demonstration, measurement, or light power generation.",
+    "description": "A small, three-bladed horizontal-axis windmill with a hexagonal base, stabilizer fins, and a black tail vane, constructed mainly from metal and plastic.",
+    "description_view_0": "Top-down view showing the three evenly spaced blades and the hexagonal base.",
+    "description_view_1": "Side view highlighting the horizontal rotor, black tail vane, and stabilizer fins.",
+    "description_view_2": "Opposite top-down view, emphasizing the blade symmetry and base structure.",
+    "description_view_3": "Opposite side view showing the rotor, tail vane, and the detailed tower structure.",
+    "category": "windmill",
+    "height": 1.2,
+    "max_dimension": 1.3,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotor blades",
+        "tail vane",
+        "tower",
+        "base"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_blades": 3,
+    "attribute_blade_orientation": "horizontal-axis",
+    "attribute_tower_structure_type": "tubular",
+    "attribute_presence_of_nacelle": true,
+    "attribute_mounting_location": "ground-mounted",
+    "uid": "3126b753fa724fe098d4114de43ee7b7",
+    "near_synsets": {
+        "windmill.n.01": 0.4446126248054709,
+        "windmill.n.02": 0.48507049374305183,
+        "wind_turbine.n.01": 0.4975728872885001,
+        "fan_blade.n.01": 0.5250570584166726,
+        "weathervane.n.01": 0.5345165598330821
+    },
+    "synset": "windmill.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3126b753fa724fe098d4114de43ee7b7",
+        "creator_username": "greyhousedesign",
+        "creator_display_name": "greyhousedesign",
+        "creator_profile_url": "https://sketchfab.com/greyhousedesign"
+    },
+    "filename": "std_3126b753fa724fe098d4114de43ee7b7.glb",
+    "length": 0.8515223562717438,
+    "width": 0.6825205981731415
+}

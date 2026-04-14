@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a large lattice boom crane, commonly used on construction sites for lifting and moving heavy materials. The crane features a tall, truss-like tower structure made of interlocking steel segments, providing both height and stability. Its boom is long and angled, constructed from a lattice of metal beams, and extends outward with a visible cable system for hoisting. The base is robust and rectangular, likely housing the engine, counterweights, and operator controls, and is painted in a dark blue color. A red hook is suspended from the end of the boom, indicating its primary lifting function. The overall design is utilitarian, with exposed structural elements and a focus on strength and reach.",
+    "description": "A tall lattice boom crane with a truss tower, long angled boom, and a red hook for lifting, mounted on a sturdy blue base. The structure is made of interlocking steel beams and features visible cables and counterweights.",
+    "description_view_0": "Side view showing the full height of the lattice tower, angled boom, and red hook, with the blue base clearly visible.",
+    "description_view_1": "Front view displaying the narrow profile of the crane, with the boom and tower aligned and the base appearing as a small rectangle.",
+    "description_view_2": "Opposite side view similar to view 0, showing the lattice structure, angled boom, and red hook, but from the other side.",
+    "description_view_3": "Rear view showing the back of the base and the tower's vertical alignment, with the boom extending away from the viewer.",
+    "category": "crane",
+    "height": 45.0,
+    "max_dimension": 55.0,
+    "materials": [
+        "steel",
+        "paint",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "liftable",
+        "rotatable",
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "boom",
+        "hook",
+        "cable",
+        "operator controls",
+        "counterweight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "white",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.3,
+        0.5,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_boom_type": "lattice boom",
+    "attribute_counterweight_presence": true,
+    "attribute_operator_cabin_visibility": false,
+    "attribute_hook_or_lifting_mechanism": "single hook",
+    "attribute_support_structure_design": "fixed base",
+    "uid": "fa21991b758543e187a634c6e0e85c2b",
+    "near_synsets": {
+        "crane.n.04": 0.4439599614481702,
+        "derrick.n.02": 0.4888942776047463,
+        "skyhook.n.01": 0.5434390413100006,
+        "stacker_crane.n.01": 0.5501384478920185,
+        "aerial_ladder.n.01": 0.5528261861538796,
+        "grus.n.01": -1000.0,
+        "crane.n.02": -1000.0,
+        "crane.n.05": -1000.0,
+        "crane.n.01": -1000.0
+    },
+    "synset": "crane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fa21991b758543e187a634c6e0e85c2b",
+        "creator_username": "BigKBK",
+        "creator_display_name": "Meas Rathnaksambath",
+        "creator_profile_url": "https://sketchfab.com/BigKBK"
+    },
+    "filename": "std_fa21991b758543e187a634c6e0e85c2b.glb",
+    "length": 2.8315110206604004,
+    "width": 13.34664011001587
+}

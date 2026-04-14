@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a robust industrial-style handcart, constructed primarily from dark, weathered metal with a rectangular, deep open container for carrying heavy loads. The cart features four solid metal wheels, each with a reinforced hub, attached to a sturdy base that supports the main receptacle. A single, tall, cylindrical handlebar is affixed to one end, designed for pushing or pulling the cart, and is complemented by a visible latch mechanism on the side. The metal surfaces exhibit a matte, slightly rough finish with signs of wear and subtle discoloration, suggesting frequent use in rugged environments. The interior is spacious and unobstructed, making it suitable for transporting bulk materials or debris. The overall design is utilitarian, prioritizing durability and load capacity over aesthetics.",
+    "description": "A heavy-duty, open-topped metal handcart with four solid wheels and a tall push handle, designed for transporting large or heavy loads. The cart has a rugged, industrial appearance with a deep rectangular container and visible wear.",
+    "description_view_0": "Side view showing the deep rectangular container, two wheels, and the tall handlebar extending upward at the rear.",
+    "description_view_1": "End view highlighting the handlebar, a circular latch or cap, and the reinforced base structure beneath the container.",
+    "description_view_2": "Opposite side view mirroring view 0, with two wheels and the handlebar visible at the far end.",
+    "description_view_3": "Front view displaying the open mouth of the container and the solid base, with the handlebar barely visible behind.",
+    "category": "handcart",
+    "height": 1.1,
+    "max_dimension": 1.3,
+    "materials": [
+        "steel",
+        "iron",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 95,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheels",
+        "latch"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "dark gray",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 4,
+    "attribute_handle_type": "straight vertical bar",
+    "attribute_wheel_position": "all corners",
+    "attribute_presence_of_side_rails": false,
+    "attribute_load_platform_design": "deep solid-walled container",
+    "uid": "5b776f76e0c94b3bb2571802a3614ced",
+    "near_synsets": {
+        "hand_truck.n.01": 0.43466453974359964,
+        "handcart.n.01": 0.4373264141653301,
+        "cart.n.01": 0.47246475270385097,
+        "laundry_cart.n.01": 0.49153437898418356,
+        "serving_cart.n.01": 0.49685284080019104
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5b776f76e0c94b3bb2571802a3614ced",
+        "creator_username": "SangeetBlaze",
+        "creator_display_name": "SangeetBlaze",
+        "creator_profile_url": "https://sketchfab.com/SangeetBlaze"
+    },
+    "filename": "std_5b776f76e0c94b3bb2571802a3614ced.glb",
+    "length": 1.016101896762848,
+    "width": 0.6646250784397125
+}

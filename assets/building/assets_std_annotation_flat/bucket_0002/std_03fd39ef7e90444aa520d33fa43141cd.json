@@ -1,0 +1,109 @@
+{
+    "description_long": "This storage locker is a large, rectangular structure with a weathered, industrial appearance, featuring a flat, slightly stained roof and sides covered in various posters, graffiti, and signs. The exterior is primarily composed of metal panels, some of which show signs of rust and wear, suggesting prolonged outdoor exposure. The front side includes multiple access doors, some with visible handles and possible locking mechanisms, and a section with exposed internal compartments or shelving. The sides are adorned with colorful paper and painted elements, adding to its urban, utilitarian character. The overall build appears robust, with reinforced corners and a solid base, likely designed to withstand heavy use and environmental stress. The locker is large enough to store bulky items and is likely used in public or semi-public urban spaces for secure storage.",
+    "description": "A large, weathered metal storage locker with multiple doors, graffiti, and posters, designed for secure outdoor storage in urban environments.",
+    "description_view_0": "Side view showing a long, flat roof, weathered metal panels, and various posters and graffiti.",
+    "description_view_1": "Front view displaying multiple access doors, handles, and exposed compartments, with visible signage and urban wear.",
+    "description_view_2": "Opposite side view with more graffiti, posters, and a patchwork of metal panels, highlighting the locker\u2019s ruggedness.",
+    "description_view_3": "Rear view showing a mostly plain, weathered metal surface with some structural details and less decoration.",
+    "category": "storage locker",
+    "height": 2.0,
+    "max_dimension": 5.0,
+    "materials": [
+        "metal",
+        "plastic",
+        "paper",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 1200,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 4,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "lock"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "white",
+        "red",
+        "blue",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.65,
+        0.1,
+        0.08,
+        0.07,
+        0.06,
+        0.04
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 3,
+    "attribute_locking_mechanism_type": "key lock",
+    "attribute_ventilation_pattern": "none visible",
+    "attribute_handle_design": "bar handle",
+    "attribute_placement_location": "outdoor",
+    "uid": "03fd39ef7e90444aa520d33fa43141cd",
+    "near_synsets": {
+        "cabinet.n.03": 0.5570200240640553,
+        "sentry_box.n.01": 0.5609116353069412,
+        "safe.n.01": 0.561118614217504,
+        "vault.n.02": 0.5622589002272004,
+        "storage_space.n.01": 0.5652753046686984,
+        "storage.n.01": -1000.0,
+        "locker.n.02": -1000.0,
+        "repositing.n.01": -1000.0,
+        "storage.n.04": -1000.0,
+        "memory.n.04": -1000.0,
+        "footlocker.n.01": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "storage.n.03": -1000.0
+    },
+    "synset": "cabinet.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/03fd39ef7e90444aa520d33fa43141cd",
+        "creator_username": "yuihoumeoka",
+        "creator_display_name": "yuihoumeoka",
+        "creator_profile_url": "https://sketchfab.com/yuihoumeoka"
+    },
+    "filename": "std_03fd39ef7e90444aa520d33fa43141cd.glb",
+    "length": 5.86572790145874,
+    "width": 3.868922472000122
+}

@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a medium-sized, modern ferry with a catamaran hull design, featuring two parallel hulls for stability and efficiency. The upper deck includes a partially covered passenger area with a blue canopy, while the lower deck appears open and accessible, likely for vehicles or additional passengers. The rear of the ferry is equipped with two prominent loading ramps, suggesting vehicle transport capability, and multiple outboard engines for propulsion. Railings run along the perimeter of both decks, providing safety for passengers. The ferry's structure is primarily composed of metal, with some plastic and glass elements, and the overall color scheme is a combination of gray, white, and blue. The vessel is designed for urban waterways, allowing for both pedestrian and vehicular boarding.",
+    "description": "A modern, catamaran-style ferry with dual hulls, upper and lower decks, vehicle ramps, and a blue canopy on the passenger area. The vessel is primarily gray and white with safety railings and multiple engines at the rear.",
+    "description_view_0": "Front view showing the dual hulls, open lower deck, and upper deck with a blue canopy and railings.",
+    "description_view_1": "Side view highlighting the length of the ferry, the blue canopy, and the arrangement of the decks and engines.",
+    "description_view_2": "Rear view displaying the two vehicle loading ramps, multiple engines, and stair access to the upper deck.",
+    "description_view_3": "Opposite side view emphasizing the hull design, engine placement, and the blue canopy on the upper deck.",
+    "category": "ferry",
+    "height": 4.5,
+    "max_dimension": 22.0,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.07,
+        0.03,
+        0.02,
+        0.03
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "steerable",
+        "boardable",
+        "ramp_lowerable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "steering wheel",
+        "ramp",
+        "engine throttle",
+        "stairs",
+        "canopy",
+        "railings"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 6.0,
+    "asset_composition_type": "single",
+    "attribute_passenger_decks": 1,
+    "attribute_vehicle_loading_ramps": true,
+    "attribute_large_windows": false,
+    "attribute_multiple_entry_points": true,
+    "attribute_prominent_smokestack": false,
+    "uid": "bb76eefde5db47648e53d9296c198775",
+    "near_synsets": {
+        "car-ferry.n.01": 0.48231897158133663,
+        "ferry.n.01": 0.4919685425781881,
+        "catamaran.n.01": 0.49962302939192466,
+        "ferry.n.02": 0.5109276314810557,
+        "ferryman.n.01": 0.5427998144810916
+    },
+    "synset": "ferryman.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bb76eefde5db47648e53d9296c198775",
+        "creator_username": "fgiraldez",
+        "creator_display_name": "fgiraldez",
+        "creator_profile_url": "https://sketchfab.com/fgiraldez"
+    },
+    "filename": "std_bb76eefde5db47648e53d9296c198775.glb",
+    "length": 11.644675254821777,
+    "width": 8.760053634643555
+}

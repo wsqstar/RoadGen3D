@@ -1,0 +1,107 @@
+{
+    "description_long": "This object is a tall, metallic structure composed of a lattice steel tower with a concrete base, supporting three large cylindrical insulator stacks at the top. Each insulator stack is connected to thick, black power cables that run vertically down the tower and are secured with metal brackets. At the uppermost section, three parallel metallic crossarms extend horizontally, each supporting a high-voltage power line. The insulators are separated by red mounting hardware, providing electrical isolation between the cables and the supporting structure. The overall design is robust and industrial, with a focus on stability and electrical safety. The structure is utilitarian, with no visible signage or decorative elements, and is intended for high-voltage power transmission in urban environments.",
+    "description": "A tall, steel lattice tower with three insulator stacks and parallel crossarms supporting high-voltage power lines. Thick cables and red mounting hardware are visible, emphasizing its industrial and electrical function.",
+    "description_view_0": "Front view showing three insulator stacks aligned at the top, with thick cables descending symmetrically down the tower.",
+    "description_view_1": "Side view highlighting the horizontal arrangement of the three crossarms and the vertical alignment of the insulator stacks and cables.",
+    "description_view_2": "Rear view mirroring the front, with clear visibility of the insulator stacks and cable arrangement.",
+    "description_view_3": "Opposite side view showing the crossarms' length and the attachment points of the cables and insulators.",
+    "category": "transformer tower",
+    "height": 7.0,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "ceramic",
+        "concrete",
+        "copper",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.1,
+        0.1,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "connectable",
+        "supportive",
+        "insulating"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "insulator stack",
+        "crossarm",
+        "power cable",
+        "mounting bracket"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "red",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.01,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_insulator_stacks": 3,
+    "attribute_arrangement_of_crossarms": "Three parallel crossarms are arranged horizontally at the top in a single tier, each supporting a separate insulator stack.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "insulator",
+        "power cable",
+        "mounting hardware"
+    ],
+    "attribute_configuration_of_attached_power_lines": "Three power lines are attached in a parallel, three-phase configuration, each routed horizontally and spaced evenly across the crossarms.",
+    "uid": "531fe973f14f4f0686d5236e8d14eef3",
+    "near_synsets": {
+        "pylon.n.02": 0.5051750359062313,
+        "power_system.n.01": 0.5495429684846325,
+        "telephone_pole.n.01": 0.5542230700826773,
+        "power_line.n.01": 0.5568272124228286,
+        "transformer.n.01": 0.5604748501711717,
+        "column.n.04": -1000.0,
+        "tower.n.01": -1000.0,
+        "tugboat.n.01": -1000.0
+    },
+    "synset": "pylon.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/531fe973f14f4f0686d5236e8d14eef3",
+        "creator_username": "wrapbrasil",
+        "creator_display_name": "wrapbrasil",
+        "creator_profile_url": "https://sketchfab.com/wrapbrasil"
+    },
+    "filename": "std_531fe973f14f4f0686d5236e8d14eef3.glb",
+    "length": 4.426452159881592,
+    "width": 2.0782365798950195
+}

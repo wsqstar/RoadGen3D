@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a cylindrical bomb with a matte dark gray body, accented by two prominent yellow bands encircling its length. The nose is rounded and slightly pointed, resembling the classic shape of a missile or rocket. Four stabilizing fins are attached symmetrically near the base, each with a yellow warning label and a red inner surface, providing aerodynamic stability. The midsection features a pair of small rectangular protrusions, possibly for mounting or triggering mechanisms. The overall construction suggests a robust, metallic shell designed to withstand handling and impact. The surface appears hard and smooth, with minimal visible seams or openings.",
+    "description": "A dark gray cylindrical bomb with yellow bands, four stabilizing fins, and a rounded nose. The fins have yellow warning labels and red accents.",
+    "description_view_0": "Front view showing the rounded nose, yellow bands, and two visible stabilizing fins with warning labels.",
+    "description_view_1": "Slightly rotated view revealing more of the side, with the yellow bands and the rectangular protrusions near the top more visible.",
+    "description_view_2": "Another side view similar to view 1, with the same features visible but from a slightly different angle.",
+    "description_view_3": "Rear-angled view showing the base of the bomb and the full extent of the stabilizing fins, including their red inner surfaces.",
+    "category": "bomb",
+    "height": 1.2,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.3,
+        0.03,
+        0.02
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "fins",
+        "rectangular protrusions"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "yellow",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.02,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [
+        "WARNING"
+    ],
+    "attribute_detonation_mechanism": "The bomb features small rectangular protrusions near the top, which may house triggering or arming mechanisms, but no explicit buttons or switches are visible.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "208e1de6721e439cbb1666ec9a6517e5",
+    "near_synsets": {
+        "plastic_bomb.n.01": 0.5696440229212154,
+        "cherry_bomb.n.01": 0.5737017698076251,
+        "buzz_bomb.n.01": 0.5753530643550603,
+        "dirty_bomb.n.01": 0.5766422248479002,
+        "bomb.n.01": 0.5767516953377587,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/208e1de6721e439cbb1666ec9a6517e5",
+        "creator_username": "xephoney",
+        "creator_display_name": "xephoney",
+        "creator_profile_url": "https://sketchfab.com/xephoney"
+    },
+    "filename": "std_208e1de6721e439cbb1666ec9a6517e5.glb",
+    "length": 0.23274081200361252,
+    "width": 0.23274025321006775
+}

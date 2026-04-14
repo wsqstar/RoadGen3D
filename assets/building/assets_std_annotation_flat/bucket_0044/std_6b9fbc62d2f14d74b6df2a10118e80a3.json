@@ -1,0 +1,107 @@
+{
+    "description_long": "This object depicts a stylized stone tomb or grave set on a circular cobblestone platform with a raised wooden border. The central feature is a large, rounded stone mound with a dark entrance, partially blocked by a large, round stone slab that appears to have been rolled aside. Atop the mound are three wooden crosses, arranged in a row, and encircled by a large crown of thorns made from twisted branches. The cobblestone base is bordered by a thick, dark wooden ring, giving the scene a sense of enclosure. The overall appearance evokes imagery associated with Christian iconography, particularly the site of the crucifixion and resurrection.",
+    "description": "A stone tomb with a rolled-away stone, three wooden crosses, and a crown of thorns atop a cobblestone platform with a wooden border.",
+    "description_view_0": "Front view showing the tomb entrance, the rolled-away stone, three crosses, and the crown of thorns.",
+    "description_view_1": "Side view highlighting the crown of thorns and the rolled-away stone positioned to the left of the entrance.",
+    "description_view_2": "Rear view displaying the back of the stone mound and the three crosses, with no visible entrance.",
+    "description_view_3": "Opposite side view showing the crown of thorns and the rolled-away stone now on the right, with the entrance not visible.",
+    "category": "grave yard",
+    "height": 1.2,
+    "max_dimension": 2.0,
+    "materials": [
+        "stone",
+        "wood",
+        "thorny branches",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "pushable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "stone slab",
+        "tomb entrance"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "tan"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.0,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_tombstone_inscriptions": [],
+    "attribute_crosses": [
+        {
+            "count": 3,
+            "type": "Latin",
+            "height_m": 0.7,
+            "material": "wood"
+        }
+    ],
+    "attribute_grave_markers": [],
+    "attribute_mausoleums": [],
+    "attribute_cemetery_gates": [],
+    "uid": "6b9fbc62d2f14d74b6df2a10118e80a3",
+    "near_synsets": {
+        "gravestone.n.01": 0.49964279978812737,
+        "grave.n.02": 0.5050392087077369,
+        "cairn.n.01": 0.5149763906484742,
+        "cemetery.n.01": 0.5349689459360427,
+        "burial_mound.n.01": 0.547204260285404,
+        "yard.n.01": -1000.0,
+        "yard.n.07": -1000.0,
+        "yard.n.08": -1000.0,
+        "yard.n.02": -1000.0,
+        "thousand.n.01": -1000.0,
+        "yard.n.03": -1000.0,
+        "cubic_yard.n.01": -1000.0,
+        "yard.n.06": -1000.0,
+        "yard.n.09": -1000.0
+    },
+    "synset": "gravestone.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/6b9fbc62d2f14d74b6df2a10118e80a3",
+        "creator_username": "LordoftheGoombas",
+        "creator_display_name": "LordoftheGoombas",
+        "creator_profile_url": "https://sketchfab.com/LordoftheGoombas"
+    },
+    "filename": "std_6b9fbc62d2f14d74b6df2a10118e80a3.glb",
+    "length": 1.8767681121826172,
+    "width": 1.876767635345459
+}

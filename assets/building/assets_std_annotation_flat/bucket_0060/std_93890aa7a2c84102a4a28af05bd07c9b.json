@@ -1,0 +1,107 @@
+{
+    "description_long": "This combat tactical vehicle is a quadrupedal, heavily armored machine with a robust, angular chassis and four articulated legs ending in wide, star-shaped feet for stability. The main body is constructed from thick, gray metal plating with visible seams and reinforced edges, giving it a rugged, utilitarian appearance. A prominent, long-barreled cannon is mounted on the top front, flanked by additional mechanical components and what appear to be targeting sensors. The sides feature circular hatches and mechanical joints, while the rear is equipped with exhaust ports and additional armor. Red and yellow accent panels add visual contrast to the otherwise industrial color scheme. The overall design suggests a focus on durability, firepower, and all-terrain mobility, suitable for urban combat scenarios.",
+    "description": "A heavily armored, four-legged combat vehicle with a top-mounted cannon, reinforced metal plating, and star-shaped feet for stability. Its industrial gray body is accented with red and yellow panels, emphasizing its tactical and robust design.",
+    "description_view_0": "Front view shows the angular armored face, dual exhaust ports, and the prominent forward-facing cannon.",
+    "description_view_1": "Left side view highlights the long cannon, articulated legs, circular hatches, and red/yellow accent panels.",
+    "description_view_2": "Rear view displays the back armor plating, exhaust ports, and the symmetrical arrangement of the legs.",
+    "description_view_3": "Right side view mirrors the left, showing the cannon, mechanical joints, and structural details.",
+    "category": "combat tactical  vehicle",
+    "height": 2.8,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cannon",
+        "hatch",
+        "leg joint",
+        "sensor array",
+        "exhaust port"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted on the top front center of the vehicle.",
+    "attribute_armor_plating": "Full body coverage with thick, angular steel and composite armor plating; sloped and reinforced at edges and joints.",
+    "attribute_camouflage_pattern": "Solid gray with red and yellow accent panels; no distinct camouflage pattern.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "93890aa7a2c84102a4a28af05bd07c9b",
+    "near_synsets": {
+        "tank.n.01": 0.4641916726445153,
+        "reconnaissance_vehicle.n.01": 0.4846255864250358,
+        "military_vehicle.n.01": 0.49162334502871835,
+        "armored_car.n.02": 0.5075617487057625,
+        "armored_vehicle.n.01": 0.5200564828930173,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/93890aa7a2c84102a4a28af05bd07c9b",
+        "creator_username": "Haruka_S",
+        "creator_display_name": "HarukaS",
+        "creator_profile_url": "https://sketchfab.com/Haruka_S"
+    },
+    "filename": "std_93890aa7a2c84102a4a28af05bd07c9b.glb",
+    "length": 6.465402603149414,
+    "width": 3.8321943283081055
+}

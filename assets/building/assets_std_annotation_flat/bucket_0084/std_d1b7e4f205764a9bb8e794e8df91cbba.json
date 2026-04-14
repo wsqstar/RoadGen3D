@@ -1,0 +1,111 @@
+{
+    "description_long": "This is a weathered, rectangular storage locker building with a flat, rust-stained roof and high concrete side walls. The exterior walls are painted white but show significant signs of aging, including peeling paint, grime, and graffiti. The front features a single blue metal door with a warning sign and a small, barred window, while the sides have additional utility access points and electrical hazard signage. Power lines are attached to the structure, supported by wooden poles, suggesting it is used for utility or industrial storage. The rear wall is plain with horizontal paneling and no visible entry points, and the roof appears accessible but not designed for regular use. The overall appearance is utilitarian and robust, suitable for harsh outdoor environments.",
+    "description": "A weathered, white concrete storage locker building with a rusted flat roof, blue metal door, graffiti, and attached power lines. It has a utilitarian, industrial look and is designed for outdoor use.",
+    "description_view_0": "Front view showing the blue metal door, graffiti, warning sign, and weathered white walls.",
+    "description_view_1": "Side view highlighting the attached power lines, utility access, and a small barred window.",
+    "description_view_2": "Opposite side view with another blue door, more graffiti, and visible power line attachments.",
+    "description_view_3": "Rear view displaying plain horizontal paneling and no visible doors or windows.",
+    "category": "storage locker",
+    "height": 3.2,
+    "max_dimension": 6.0,
+    "materials": [
+        "concrete",
+        "metal",
+        "glass",
+        "wood",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.02,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "lock",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "rust orange",
+        "blue",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.18,
+        0.12,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 2,
+    "attribute_locking_mechanism_type": "key lock",
+    "attribute_ventilation_pattern": "horizontal slits",
+    "attribute_handle_design": "bar handle",
+    "attribute_placement_location": "outdoor",
+    "uid": "d1b7e4f205764a9bb8e794e8df91cbba",
+    "near_synsets": {
+        "shed.n.01": 0.5611949709034701,
+        "toolshed.n.01": 0.5670787236065318,
+        "sentry_box.n.01": 0.5731466067608518,
+        "garage.n.01": 0.5783840358366454,
+        "storage_space.n.01": 0.5809387967397552,
+        "locker.n.02": -1000.0,
+        "cabinet.n.03": -1000.0,
+        "memory.n.04": -1000.0,
+        "repositing.n.01": -1000.0,
+        "storage.n.03": -1000.0,
+        "footlocker.n.01": -1000.0,
+        "storage.n.04": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "storage.n.01": -1000.0
+    },
+    "synset": "shed.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d1b7e4f205764a9bb8e794e8df91cbba",
+        "creator_username": "NVSarge",
+        "creator_display_name": "NVSarge",
+        "creator_profile_url": "https://sketchfab.com/NVSarge"
+    },
+    "filename": "std_d1b7e4f205764a9bb8e794e8df91cbba.glb",
+    "length": 4.190339088439941,
+    "width": 6.446407318115234
+}

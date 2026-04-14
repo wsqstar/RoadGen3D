@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a compact, single-barrel handgun with a robust, cylindrical frame and a short, thick barrel. The frame and barrel are finished in a matte black or dark metallic color, with visible metallic hardware and a few subtle seams along the body. The grip is made of a dark brown material, likely wood or a synthetic polymer, and is smoothly contoured for ergonomic handling. The trigger guard is rounded and substantial, providing ample space for finger placement, while the trigger itself is a simple curved metal piece. There are minimal external markings, with only faint engravings or serial numbers visible on the side of the frame. The overall design is utilitarian, with a focus on durability and straightforward function.",
+    "description": "A compact, dark metallic handgun with a thick barrel and a smooth, brown contoured grip. The design is robust and utilitarian, with minimal external markings.",
+    "description_view_0": "Side view showing the full profile of the handgun, including the thick barrel, rounded trigger guard, and smooth brown grip.",
+    "description_view_1": "Top-down view highlighting the width of the barrel and the slim profile of the grip.",
+    "description_view_2": "Opposite side view, mirroring the first but showing the other side of the grip and frame details.",
+    "description_view_3": "Front view focusing on the circular barrel opening and the overall symmetry of the handgun.",
+    "category": "handgun",
+    "height": 0.15,
+    "max_dimension": 0.25,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 1.1,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 15,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "trigger guard",
+        "barrel",
+        "hammer"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_grip_design": "The grip is smoothly contoured with a gentle curve that fits comfortably in the hand, made from a dark brown material resembling polished wood or a high-quality polymer. Its surface is smooth without visible checkering or stippling, and it lacks finger grooves or prominent ergonomic embellishments. The grip appears to be solid and robust, with a subtle sheen and no visible logos or decorative inlays.",
+    "attribute_trigger_guard_style": "The trigger guard is rounded and moderately thick, forming a protective loop around the trigger. It is smoothly integrated into the frame with no undercuts or squared-off edges, and there are no visible texturing or reinforcement features. The design is simple and functional, prioritizing safety and ease of access.",
+    "attribute_barrel_type": "The barrel is short, thick, and cylindrical, with a smooth exterior profile and no visible threading, porting, or fluting. It has a matte black finish and lacks external compensators or suppressor threads. There are no prominent markings or decorative features on the barrel surface.",
+    "attribute_slide_markings": "There are minimal visible markings on the slide, with only faint engravings or serial numbers present on the side of the frame. No manufacturer logos, model names, or caliber designations are prominently displayed.",
+    "attribute_magazine_base_shape": "The magazine base is not externally visible, as the design suggests a break-action or single-shot mechanism rather than a detachable magazine. There are no extended, beveled, or flared features, and no finger rests, logos, or texturing are apparent at the base.",
+    "uid": "9092e2acc8c54e04a7be4528dc8587ca",
+    "near_synsets": {
+        "pistol.n.01": 0.5063312697013007,
+        "colt.n.02": 0.5168934629814883,
+        "derringer.n.01": 0.5225749139907296,
+        "firearm.n.01": 0.522890455615062,
+        "twenty-two_pistol.n.01": 0.5248054893919002
+    },
+    "synset": "pistol.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9092e2acc8c54e04a7be4528dc8587ca",
+        "creator_username": "smackyplay",
+        "creator_display_name": "Svyatoslav Ovchinnik",
+        "creator_profile_url": "https://sketchfab.com/smackyplay"
+    },
+    "filename": "std_9092e2acc8c54e04a7be4528dc8587ca.glb",
+    "length": 0.227953240275383,
+    "width": 0.03349502012133598
+}

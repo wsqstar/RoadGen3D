@@ -1,0 +1,99 @@
+{
+    "description_long": "This mud patch is an irregularly shaped, low-lying area of exposed earth, featuring a mottled surface with a mix of gray, brown, and off-white tones. The patch appears to be slightly sunken compared to the surrounding ground, with subtle undulations and a rough, uneven texture. Small stones and gravel are embedded throughout, giving the surface a gritty appearance. The edges are jagged and blend gradually into the adjacent terrain, suggesting natural formation rather than artificial boundaries. There are no visible signs of standing water, but the coloration hints at dampness or recent moisture. No clear footprints, tire marks, or debris are present, making the patch appear relatively undisturbed.",
+    "description": "An irregular, gritty mud patch with mottled gray and brown tones, rough texture, and gradual, jagged edges blending into the ground. Small stones are embedded throughout, with no visible water or debris.",
+    "description_view_0": "From this angle, the mud patch's uneven surface and embedded stones are prominent, with the left edge appearing more jagged and the right side tapering off.",
+    "description_view_1": "This view highlights the patch's broad, flat expanse and the irregular, indented lower edge, with a slightly rougher texture visible across the surface.",
+    "description_view_2": "Here, the patch's rounded contours and subtle surface undulations are most visible, with the upper edge appearing smoother and less jagged.",
+    "description_view_3": "This angle emphasizes the patch's elongated shape and the gradual blending of its edges into the surrounding ground, with a consistent gritty texture throughout.",
+    "category": "mud patch",
+    "height": 0.03,
+    "max_dimension": 1.2,
+    "materials": [
+        "mud",
+        "gravel",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "gray",
+        "brown",
+        "off-white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 50,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_location": "urban roadside or sidewalk edge",
+    "attribute_boundary_definition": "The boundaries are irregular and blend gradually into the surrounding ground, with no sharp transitions between mud and adjacent surfaces.",
+    "attribute_presence_of_footprints_or_tire_marks": "none visible",
+    "attribute_water_accumulation": "none visible",
+    "attribute_surrounding_debris": "none visible",
+    "uid": "141dc3a15b604d1d8fd708ce4547feee",
+    "near_synsets": {
+        "mud_puddle.n.01": 0.5195380268015105,
+        "mud_stain.n.01": 0.5223825261830725,
+        "mud.n.01": 0.5249624255167858,
+        "mottle.n.01": 0.5392172039555461,
+        "sandiness.n.01": 0.5616903632544218,
+        "spot.n.05": -1000.0,
+        "while.n.01": -1000.0,
+        "temporary_hookup.n.01": -1000.0,
+        "eyepatch.n.01": -1000.0,
+        "patch.n.03": -1000.0,
+        "patch.n.05": -1000.0,
+        "plot.n.02": -1000.0,
+        "mud.n.02": -1000.0,
+        "mend.n.01": -1000.0,
+        "bandage.n.01": -1000.0
+    },
+    "synset": "spot.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/141dc3a15b604d1d8fd708ce4547feee",
+        "creator_username": "rmahon1",
+        "creator_display_name": "Robert Mahon",
+        "creator_profile_url": "https://sketchfab.com/rmahon1"
+    },
+    "filename": "std_141dc3a15b604d1d8fd708ce4547feee.glb",
+    "length": 0.857495903968811,
+    "width": 0.7325584888458252
+}

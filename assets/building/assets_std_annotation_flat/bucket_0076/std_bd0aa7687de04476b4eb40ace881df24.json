@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a compact, industrial-style forklift with a boxy, utilitarian design and a weathered yellow exterior. The vehicle features two seats with simple, flat gray cushions and a basic steering wheel, positioned behind a flat front panel marked with the number '24'. The sides are equipped with horizontal ventilation grilles and sturdy metal railings, while the front displays two large, round headlights. The rear of the vehicle is plain, with visible seams and a small protruding hitch or attachment point. The wheels are solid and robust, suitable for industrial or warehouse environments, and the overall appearance suggests heavy use and durability.",
+    "description": "A small, boxy yellow forklift with two seats, metal railings, and large headlights, showing signs of wear and industrial use.",
+    "description_view_0": "Front view showing the flat yellow face with two large headlights, the number '24', and the two seats behind the steering wheel.",
+    "description_view_1": "Left side view highlighting the ventilation grille, two seats, steering wheel, and the pair of horn-like fixtures at the front.",
+    "description_view_2": "Rear view displaying the plain yellow back panel, seatbacks, steering wheel, and the small rear hitch.",
+    "description_view_3": "Right side view similar to the left, with visible grille, seats, steering wheel, and horn fixtures.",
+    "category": "forklift",
+    "height": 1.3,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "steerable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "steering wheel",
+        "seat",
+        "wheel",
+        "headlight",
+        "horn",
+        "rail"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_fork_arms": "No visible fork arms are present on this vehicle; the front is flat and featureless except for two headlights and a painted number.",
+    "attribute_overhead_guard": "The overhead guard consists of two parallel metal rails running along the top sides of the vehicle, providing minimal coverage and no visible mesh or roof panel.",
+    "attribute_mast": "No mast is visible; the vehicle lacks any upright lifting structure or hydraulic components typically associated with forklift masts.",
+    "attribute_operator_seat": "The operator seat is a simple, flat, gray bench-style seat with a backrest, no visible armrests, headrest, or seatbelt, and appears to be made of a hard material with minimal padding.",
+    "attribute_warning_lights": "There are two large, round headlights on the front panel, but no distinct warning lights are visible; the headlights are not illuminated.",
+    "uid": "bd0aa7687de04476b4eb40ace881df24",
+    "near_synsets": {
+        "forklift.n.01": 0.45955922104403696,
+        "hayfork.n.01": 0.5638970050791341,
+        "stacker_crane.n.01": 0.5639637996412898,
+        "farm_machine.n.01": 0.5670285531651192,
+        "hand_truck.n.01": 0.5681165583740145
+    },
+    "synset": "forklift.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bd0aa7687de04476b4eb40ace881df24",
+        "creator_username": "maxdragon",
+        "creator_display_name": "maxdragonn",
+        "creator_profile_url": "https://sketchfab.com/maxdragon"
+    },
+    "filename": "std_bd0aa7687de04476b4eb40ace881df24.glb",
+    "length": 2.2936755418777466,
+    "width": 0.9060160517692566
+}

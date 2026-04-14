@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a small, vintage-style blue tractor with a weathered and rusted exterior, featuring a compact enclosed cabin with large windows and side mirrors. The front displays a round yellow badge with the number '2' and a classic grille, while the sides are adorned with 'Route US 66' signs, adding a nostalgic touch. The rear cargo bed is constructed from wooden slats and contains three large gray boxes, suggesting its use for transporting goods or materials. The wheels are modest in size, with the rear wheels slightly larger than the front, and the vehicle sits low to the ground. The cabin appears to have a single door on each side, and the overall design is utilitarian yet charming, with visible signs of wear and use. The asset combines metal, wood, and glass materials, giving it a sturdy yet approachable appearance suitable for urban or rural settings.",
+    "description": "A weathered blue vintage tractor with an enclosed cabin, wooden cargo bed, and Route 66 signage, carrying three gray boxes. The design features rust patches, a classic grille, and a utilitarian, nostalgic look.",
+    "description_view_0": "Front view shows the rounded grille, yellow badge with '2', and the enclosed cabin with large windows and side mirrors.",
+    "description_view_1": "Left side view highlights the 'Route US 66' sign, single cabin door, wooden cargo bed with slatted sides, and visible cargo boxes.",
+    "description_view_2": "Rear view displays the open wooden cargo bed containing three gray boxes and the rear license plate.",
+    "description_view_3": "Right side view mirrors the left, showing the cabin door, Route 66 sign, and the arrangement of cargo in the bed.",
+    "category": "tractor",
+    "height": 1.7,
+    "max_dimension": 3.2,
+    "materials": [
+        "metal",
+        "wood",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.07,
+        0.07,
+        0.03,
+        0.03
+    ],
+    "mass": 950,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable",
+        "pullable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "cargo bed",
+        "side mirror",
+        "window",
+        "headlight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "brown",
+        "gray",
+        "black",
+        "yellow",
+        "orange"
+    ],
+    "colors_composition": [
+        0.55,
+        0.18,
+        0.15,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.55,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.08,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_tractor_brand": "unknown",
+    "attribute_tractor_model": "unknown",
+    "attribute_wheel_configuration": "four wheels, rear wheels slightly larger than front, likely two-wheel drive",
+    "attribute_presence_of_agricultural_implements": false,
+    "attribute_cabin_design": "Enclosed cabin with large windows, single door on each side, no visible ROPS, basic ergonomic features",
+    "uid": "45c4fe0f799c4688b493d71b74e23803",
+    "near_synsets": {
+        "tractor.n.02": 0.530281759631632,
+        "truck.n.01": 0.5576633422417946,
+        "van.n.05": 0.5582755273201951,
+        "trailer.n.03": 0.5583292361023607,
+        "tractor.n.01": 0.5619316470121197
+    },
+    "synset": "tractor.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/45c4fe0f799c4688b493d71b74e23803",
+        "creator_username": "KoteTheCat",
+        "creator_display_name": "KoteTheCat",
+        "creator_profile_url": "https://sketchfab.com/KoteTheCat"
+    },
+    "filename": "std_45c4fe0f799c4688b493d71b74e23803.glb",
+    "length": 2.8304810523986816,
+    "width": 1.2065249681472778
+}

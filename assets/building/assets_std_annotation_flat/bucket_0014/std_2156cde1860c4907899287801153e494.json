@@ -1,0 +1,110 @@
+{
+    "description_long": "This object is a rectangular control cabinet with a robust, box-like structure, featuring a light gray exterior with yellow trim along the edges. The cabinet is open-topped, revealing an interior with multiple rows of black and metallic components, likely circuit breakers or switches, arranged in parallel. Two long, cylindrical rods extend from one side, possibly for mounting or cable management, while the interior is divided by a central partition. The visible components inside include metallic rails and connectors, suggesting electrical distribution or control functions. The cabinet appears to be constructed primarily from metal, with some plastic or composite elements for insulation and component housing. Its design is typical for urban infrastructure, such as power distribution or signal control in public spaces.",
+    "description": "A rectangular, open-topped control cabinet with yellow trim, internal electrical components, and protruding mounting rods. The interior features rows of black and metallic elements for power or signal control.",
+    "description_view_0": "Side view showing the open top, internal components, and two long rods extending from the left side.",
+    "description_view_1": "Front view highlighting the rows of black and metallic components inside, with the yellow-trimmed edge visible.",
+    "description_view_2": "Opposite side view with a clear look at the internal partition and rods extending from the right side.",
+    "description_view_3": "Rear view showing the open back, internal rows of components, and the rods extending outward.",
+    "category": "control cabinets",
+    "height": 0.5,
+    "max_dimension": 1.2,
+    "materials": [
+        "painted steel",
+        "plastic",
+        "copper",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 45,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "toggleable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door/panel",
+        "switch",
+        "breaker",
+        "mounting rods"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "yellow",
+        "black",
+        "metallic"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_door_handle_type": "none",
+    "attribute_lock_mechanism_presence": false,
+    "attribute_ventilation_grille_pattern": "none",
+    "attribute_warning_or_information_labels": [],
+    "attribute_mounting_style": "floor-standing",
+    "uid": "2156cde1860c4907899287801153e494",
+    "near_synsets": {
+        "control_panel.n.01": 0.4906220227220765,
+        "cabinet.n.04": 0.5117421107887151,
+        "control_room.n.01": 0.5546376606007466,
+        "corner_cabinet.n.01": 0.5646453561179111,
+        "cabinet.n.01": 0.5696302451007847,
+        "control_condition.n.01": -1000.0,
+        "control.n.10": -1000.0,
+        "cabinet.n.03": -1000.0,
+        "control.n.02": -1000.0,
+        "dominance.n.02": -1000.0,
+        "restraint.n.02": -1000.0,
+        "control.n.05": -1000.0,
+        "command.n.06": -1000.0,
+        "cabinet.n.02": -1000.0,
+        "control.n.01": -1000.0,
+        "control.n.03": -1000.0,
+        "control.n.09": -1000.0,
+        "control.n.11": -1000.0
+    },
+    "synset": "control_panel.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2156cde1860c4907899287801153e494",
+        "creator_username": "KimsTeam",
+        "creator_display_name": "Kongsberg Innovation Center",
+        "creator_profile_url": "https://sketchfab.com/KimsTeam"
+    },
+    "filename": "std_2156cde1860c4907899287801153e494.glb",
+    "length": 3.2272720336914062,
+    "width": 1.495454490184784
+}

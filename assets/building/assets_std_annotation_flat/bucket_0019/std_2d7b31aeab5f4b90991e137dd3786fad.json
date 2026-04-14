@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a large, rectangular metal street cabinet with a sloped roof, heavily weathered and covered in rust and peeling paint. The cabinet sits on a concrete base and features multiple vented doors with visible hinges and handles, likely for access to internal electrical or communication equipment. Prominent warning labels and signage, including high voltage symbols, are affixed to the front and side panels. The surface is marked by extensive corrosion, especially on the roof and around the door seams, giving it a gritty, urban appearance. Several ventilation grilles are integrated into the doors, and there are indications of cable entry points at the base. The overall structure is robust and designed to be tamper-resistant, suitable for outdoor installation in public spaces.",
+    "description": "A large, rusted metal street cabinet with vented doors, warning labels, and a sloped, weathered roof on a concrete base.",
+    "description_view_0": "Front-left view showing three main vented doors, heavy rust streaks, warning labels, and a prominent sloped roof.",
+    "description_view_1": "Front-right view highlighting the main access doors, extensive rust on the roof and sides, and visible warning signage.",
+    "description_view_2": "Rear-right view displaying the back and side panels, less signage, and continued rust and weathering.",
+    "description_view_3": "Rear-left view with side and back panels, visible corrosion, and fewer interactive features.",
+    "category": "street cabinet",
+    "height": 1.6,
+    "max_dimension": 2.8,
+    "materials": [
+        "steel",
+        "concrete",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "lock",
+        "ventilation grille"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "rust orange",
+        "blue",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.55,
+        0.3,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 3,
+    "attribute_presence_of_ventilation_grilles": true,
+    "attribute_locking_mechanism_type": "cylinder lock",
+    "attribute_placement_of_warning_labels_or_signage": "front door, side panel",
+    "attribute_presence_of_cable_entry_points": true,
+    "uid": "2d7b31aeab5f4b90991e137dd3786fad",
+    "near_synsets": {
+        "cabinet.n.01": 0.5542919806957587,
+        "sentry_box.n.01": 0.5573775543069363,
+        "corner_cabinet.n.01": 0.5668707171259946,
+        "cabinet.n.03": 0.5681137880080267,
+        "dresser.n.05": 0.5690256359097304,
+        "cabinet.n.02": -1000.0,
+        "street.n.02": -1000.0,
+        "cabinet.n.04": -1000.0,
+        "street.n.01": -1000.0,
+        "street.n.04": -1000.0,
+        "street.n.03": -1000.0,
+        "street.n.05": -1000.0
+    },
+    "synset": "cabinet.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2d7b31aeab5f4b90991e137dd3786fad",
+        "creator_username": "randombug",
+        "creator_display_name": "randombug",
+        "creator_profile_url": "https://sketchfab.com/randombug"
+    },
+    "filename": "std_2d7b31aeab5f4b90991e137dd3786fad.glb",
+    "length": 3.1108089685440063,
+    "width": 2.9937652349472046
+}

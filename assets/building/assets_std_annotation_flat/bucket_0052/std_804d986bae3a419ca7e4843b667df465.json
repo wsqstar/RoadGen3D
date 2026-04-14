@@ -1,0 +1,111 @@
+{
+    "description_long": "This is a World War II-era German tank destroyer, featuring a long-barreled main cannon mounted centrally on a low, angular hull. The vehicle is painted in a tan base color with irregular red and green camouflage streaks, and it has visible military markings including a white cross and the number '430' on the side. The tracks are wide and robust, with large road wheels and detailed suspension components visible along the sides. The upper hull is sloped for increased ballistic protection, and there are several hatches, periscopes, and antennae on the roof, indicating crew access and communication capabilities. The front and rear views show thick, sloped armor plating, while the side views highlight the length of the gun and the arrangement of the running gear. The overall design is utilitarian, optimized for combat effectiveness and survivability.",
+    "description": "A tan, camouflaged German tank destroyer with a long cannon, sloped armor, and visible military markings, including a white cross and the number '430'. The vehicle features wide tracks, detailed suspension, and multiple hatches and antennae.",
+    "description_view_0": "Front view showing the sloped glacis plate, centrally mounted long cannon, and the tank's wide tracks.",
+    "description_view_1": "Left side view displaying the full length of the cannon, the number '430', a white cross, and the detailed running gear.",
+    "description_view_2": "Rear view highlighting the back armor, rear deck details, and the end of the cannon barrel.",
+    "description_view_3": "Right side view showing the camouflage pattern, running gear, and additional hatches and equipment.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 45000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "cannon",
+        "antenna",
+        "wheel",
+        "track",
+        "periscope",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "red",
+        "green",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted centrally on the hull front; no additional weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped steel armor plating; prominent on the front, sides, and rear, with no visible modular or reactive panels.",
+    "attribute_camouflage_pattern": "Tan base with irregular red and green streaks in a disruptive camouflage pattern.",
+    "attribute_military_markings": "White cross insignia on the side, number '430' painted in yellow on the side of the hull.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "804d986bae3a419ca7e4843b667df465",
+    "near_synsets": {
+        "tank.n.01": 0.49278256415106936,
+        "tank_destroyer.n.01": 0.5152476885352989,
+        "panzer.n.01": 0.5183275286523034,
+        "military_vehicle.n.01": 0.532389881797853,
+        "reconnaissance_vehicle.n.01": 0.5390864447015193,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "tank_destroyer.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/804d986bae3a419ca7e4843b667df465",
+        "creator_username": "ANDREOID",
+        "creator_display_name": "Andreoid",
+        "creator_profile_url": "https://sketchfab.com/ANDREOID"
+    },
+    "filename": "std_804d986bae3a419ca7e4843b667df465.glb",
+    "length": 4.8566155433654785,
+    "width": 1.7889128923416138
+}

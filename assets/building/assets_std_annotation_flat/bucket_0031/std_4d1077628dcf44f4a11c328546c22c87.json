@@ -1,0 +1,110 @@
+{
+    "description_long": "This object consists of six industrial metal barrels arranged in a rectangular formation on a wooden pallet, all enclosed within a robust metal cage. The barrels are painted in distinct colors: red and white with Texaco branding, green, and yellow, with some displaying hazard symbols. The metal cage is constructed from thick, welded rods, providing structural protection and preventing unauthorized access to the barrels. The wooden pallet beneath supports the entire assembly, allowing for forklift transport. The barrels are likely used for storing hazardous or flammable liquids, as indicated by the warning signage and industrial design.",
+    "description": "A group of six colored industrial barrels, some with hazard symbols, secured on a wooden pallet and enclosed by a sturdy metal cage.",
+    "description_view_0": "Front view showing three barrels (red/white, green, yellow) with Texaco branding and hazard symbols, all enclosed in a metal cage on a wooden pallet.",
+    "description_view_1": "Side view highlighting the cylindrical shape of the barrels, the metal cage's grid structure, and the wooden pallet base.",
+    "description_view_2": "Rear view displaying the opposite side of the barrels, with hazard symbols more visible on the yellow barrels and the green barrel in the center.",
+    "description_view_3": "Side view from the other direction, showing the arrangement of barrels and the metal cage's protective structure.",
+    "category": "storage tank",
+    "height": 1.1,
+    "max_dimension": 1.4,
+    "materials": [
+        "steel",
+        "wood",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 350,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 4000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "barrel lid",
+        "pallet",
+        "cage door (implied)"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "green",
+        "yellow",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.35,
+        0.15,
+        0.1,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [],
+    "attribute_warning_signage": true,
+    "attribute_architectural_style": "cylindrical vertical",
+    "uid": "4d1077628dcf44f4a11c328546c22c87",
+    "near_synsets": {
+        "barrel.n.02": 0.525618274913274,
+        "tank.n.02": 0.5339602973415045,
+        "barrels.n.01": 0.5340030251713461,
+        "tank_farm.n.01": 0.5346185626349521,
+        "container.n.01": 0.5487912867151652,
+        "repositing.n.01": -1000.0,
+        "storage.n.04": -1000.0,
+        "cooler.n.03": -1000.0,
+        "storage.n.01": -1000.0,
+        "tank.n.01": -1000.0,
+        "storage.n.03": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "memory.n.04": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "tank.n.03": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4d1077628dcf44f4a11c328546c22c87",
+        "creator_username": "HugoVilladiego",
+        "creator_display_name": "Hugo Armando Villadiego A",
+        "creator_profile_url": "https://sketchfab.com/HugoVilladiego"
+    },
+    "filename": "std_4d1077628dcf44f4a11c328546c22c87.glb",
+    "length": 1.6605475544929504,
+    "width": 2.134798526763916
+}

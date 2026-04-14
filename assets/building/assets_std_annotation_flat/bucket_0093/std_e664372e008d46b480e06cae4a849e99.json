@@ -1,0 +1,101 @@
+{
+    "description_long": "This humanoid robot features a sleek, matte black exterior with a stylized, futuristic design. Its head is large and angular, with a flat top and prominent, glowing rectangular eyes, and it has two protruding ear-like structures on either side. The torso is broad and marked with the word 'iBOT' in bold, metallic letters, while the limbs are segmented and jointed, suggesting a high degree of articulation. The arms and legs are robust, with rounded joints and mechanical hands and feet, each designed for dexterity and stability. The overall build is compact and sturdy, with a smooth, hard surface finish and minimal decorative elements. The robot's design is both functional and visually striking, making it suitable for urban environments where interaction with humans and other machines is likely.",
+    "description": "A matte black humanoid robot with glowing eyes, segmented limbs, and a broad torso labeled 'iBOT', featuring a sleek, futuristic design.",
+    "description_view_0": "Front view shows the robot's glowing eyes, 'iBOT' label, and symmetrical, articulated limbs.",
+    "description_view_1": "Left side view highlights the ear-like head protrusion and the segmented arm and leg joints.",
+    "description_view_2": "Rear view reveals the smooth, rounded back and the mechanical structure of the limbs.",
+    "description_view_3": "Right side view mirrors the left, showing the head protrusion and limb articulation.",
+    "category": "humanoid robot",
+    "height": 1.4,
+    "max_dimension": 0.7,
+    "materials": [
+        "plastic",
+        "metal",
+        "glass",
+        "air",
+        "electronic components"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head",
+        "arms",
+        "hands",
+        "legs",
+        "feet",
+        "torso"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "white",
+        "gray",
+        "blue"
+    ],
+    "colors_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.55,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.15,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms slightly bent at the elbows and legs straight, head facing forward, and hands relaxed at the sides.",
+    "attribute_clothing_style": "No visible clothing; exterior consists of integrated matte black panels and mechanical joints.",
+    "attribute_facial_features": "Face features two large, glowing rectangular eyes and no visible mouth or nose; the faceplate is smooth and expressionless.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible ball and hinge joints at the shoulders, elbows, wrists, hips, knees, and ankles, allowing for a wide range of motion; hands have articulated fingers.",
+    "attribute_presence_of_sensors": "Visible sensors include two illuminated eye-like elements on the face, likely functioning as cameras or visual sensors; no other sensors are visible.",
+    "uid": "e664372e008d46b480e06cae4a849e99",
+    "near_synsets": {
+        "cyborg.n.01": 0.5510341656282303,
+        "robotics_equipment.n.01": 0.5631216072522739,
+        "android.n.01": 0.5639831501488861,
+        "automaton.n.02": 0.5682294236584439,
+        "robotics.n.01": 0.5872147135069442
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e664372e008d46b480e06cae4a849e99",
+        "creator_username": "Monhoo",
+        "creator_display_name": "Monhoo",
+        "creator_profile_url": "https://sketchfab.com/Monhoo"
+    },
+    "filename": "std_e664372e008d46b480e06cae4a849e99.glb",
+    "length": 0.4773537963628769,
+    "width": 0.7735812067985535
+}

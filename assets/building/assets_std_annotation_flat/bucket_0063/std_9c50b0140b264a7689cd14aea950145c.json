@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a spherical, olive-green bomb with a robust metallic body and a prominent red button on top. Around the upper section, there is a gray collar featuring red warning arrows and the word 'DANGER' clearly printed, indicating its hazardous nature. A sturdy metal pull ring is attached to the collar, likely serving as a safety pin or activation mechanism, with a small tab labeled 'PULL'. The surface is segmented with visible panel lines and rivets, suggesting reinforced construction. The lower half of the bomb is smooth and unadorned, while the upper half contains most of the functional and interactive elements. The overall design is compact and utilitarian, suitable for manual deployment in urban environments.",
+    "description": "A spherical, olive-green bomb with a red top button, gray collar marked 'DANGER', and a metal pull ring for activation.",
+    "description_view_0": "Front view showing the red button, gray collar with red arrows, and a side-mounted metal lever.",
+    "description_view_1": "Rear view highlighting the large metal pull ring and the 'PULL' tab, with the button partially visible.",
+    "description_view_2": "Side view displaying the smooth olive surface and the collar with red warning arrows, lever visible.",
+    "description_view_3": "Back view showing the word 'DANGER' on the collar and the uninterrupted spherical body.",
+    "category": "bomb",
+    "height": 0.18,
+    "max_dimension": 0.18,
+    "materials": [
+        "steel",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "button",
+        "pull ring",
+        "lever"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "gray",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.12,
+        0.1,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [
+        "DANGER"
+    ],
+    "attribute_detonation_mechanism": "Detonation appears to be initiated by pressing the prominent red button on top or by pulling the attached metal ring labeled 'PULL', which likely acts as a safety pin.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "9c50b0140b264a7689cd14aea950145c",
+    "near_synsets": {
+        "remote-control_bomb.n.01": 0.5294853939056158,
+        "cherry_bomb.n.01": 0.5319936363063802,
+        "bomb.n.01": 0.5426980330370118,
+        "pipe_bomb.n.01": 0.5466817981722637,
+        "dirty_bomb.n.01": 0.5493948677508653,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9c50b0140b264a7689cd14aea950145c",
+        "creator_username": "onurgurarslan",
+        "creator_display_name": "onurgurarslan",
+        "creator_profile_url": "https://sketchfab.com/onurgurarslan"
+    },
+    "filename": "std_9c50b0140b264a7689cd14aea950145c.glb",
+    "length": 0.14320705831050873,
+    "width": 0.14595741033554077
+}

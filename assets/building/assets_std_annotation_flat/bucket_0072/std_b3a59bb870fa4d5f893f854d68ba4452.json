@@ -1,0 +1,94 @@
+{
+    "description_long": "This humanoid robot features a sleek, metallic exoskeleton covering its torso, shoulders, arms, and legs, with articulated armor plates that suggest both protection and flexibility. The head is smooth and bald, with minimal facial features, giving it a neutral, almost mannequin-like appearance. The arms and legs are proportionate to a human, with visible joint separations at the shoulders, elbows, hips, and knees, indicating a wide range of motion. The hands are outstretched with fingers splayed, and the feet are flat and rectangular, providing stability. The armor is primarily a dark metallic gray, contrasting with the exposed, flesh-toned synthetic material of the head, neck, and upper limbs. The overall design is utilitarian, with no visible weapons or tools, suggesting a general-purpose urban robot.",
+    "description": "A humanoid robot with metallic armor plating, exposed synthetic skin, and articulated limbs, designed for urban environments. Its face is featureless and its posture is neutral with arms outstretched.",
+    "description_view_0": "Front view shows the robot's armored torso, symmetrical limb plating, and featureless face with arms extended outward.",
+    "description_view_1": "Left side view highlights the profile of the head, the layered armor on the arm and leg, and the flat, blocky foot.",
+    "description_view_2": "Rear view reveals the segmented back armor, the back of the head, and the symmetrical plating on the legs and arms.",
+    "description_view_3": "Right side view mirrors the left, showing the side profile of the head, arm, and leg armor, and the straight posture.",
+    "category": "humanoid robot",
+    "height": 1.75,
+    "max_dimension": 1.85,
+    "materials": [
+        "metal",
+        "synthetic polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.3,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "legs",
+        "hands",
+        "head",
+        "torso"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "flesh",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms extended horizontally to the sides, legs straight and parallel, head facing forward, and torso erect.",
+    "attribute_clothing_style": "Wearing integrated metallic armor plating on the torso, shoulders, arms, and legs; no separate clothing or decorative elements.",
+    "attribute_facial_features": "Face is smooth and featureless, lacking visible eyes, mouth, or nose; no expressive elements or display screens.",
+    "attribute_limb_articulation": "Visible articulation at shoulders, elbows, wrists, hips, knees, and ankles; limbs appear to have hinge or rotary joints allowing for flexible movement.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "b3a59bb870fa4d5f893f854d68ba4452",
+    "near_synsets": {
+        "android.n.01": 0.5094526858732807,
+        "cyborg.n.01": 0.5307701199148386,
+        "automaton.n.02": 0.5545964319996811,
+        "robotics_equipment.n.01": 0.5624048381812585,
+        "automaton.n.03": 0.5669210185890838
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b3a59bb870fa4d5f893f854d68ba4452",
+        "creator_username": "blooobird",
+        "creator_display_name": "blooobird",
+        "creator_profile_url": "https://sketchfab.com/blooobird"
+    },
+    "filename": "std_b3a59bb870fa4d5f893f854d68ba4452.glb",
+    "length": 0.28173331916332245,
+    "width": 1.586392879486084
+}

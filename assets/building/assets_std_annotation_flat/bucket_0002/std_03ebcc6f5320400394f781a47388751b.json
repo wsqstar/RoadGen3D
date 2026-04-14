@@ -1,0 +1,107 @@
+{
+    "description_long": "This traffic barricade is a classic A-frame construction barrier, commonly used for roadwork and urban access control. It features two wide, rectangular panels with alternating orange and white diagonal reflective stripes, designed to maximize visibility. The panels are supported by four sturdy, metallic legs that form an inverted 'V' shape when viewed from the side, providing stability. At the top, a round, yellow warning light is mounted, enhancing its visibility during nighttime or low-light conditions. The surface of the barricade shows signs of weathering and dirt, indicating outdoor use. The overall build appears robust, with metal fasteners and reinforced joints for durability in urban environments.",
+    "description": "A robust A-frame traffic barricade with orange and white diagonal stripes and a mounted yellow warning light, supported by four metal legs.",
+    "description_view_0": "Front view showing the full face of the barricade with orange and white stripes and the round yellow warning light on top.",
+    "description_view_1": "Side view highlighting the A-frame structure and the depth of the barricade, with the warning light visible at the apex.",
+    "description_view_2": "Rear view similar to the front, displaying the striped panel and warning light, but with minor differences in weathering.",
+    "description_view_3": "Opposite side view, again showing the A-frame profile and the light at the top, with visible metal supports.",
+    "category": "traffic barricade",
+    "height": 1.1,
+    "max_dimension": 1.2,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.05,
+        0.07,
+        0.05
+    ],
+    "mass": 14,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "warning light",
+        "barricade panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "orange",
+        "gray",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.35,
+        0.25,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_reflective_striping_pattern": "Diagonal orange and white stripes, medium width, repeating across the main panels.",
+    "attribute_warning_signage": [],
+    "attribute_number_of_support_legs": 4,
+    "attribute_attachment_fixtures": [
+        "mounting brackets",
+        "bolts"
+    ],
+    "attribute_presence_of_lights": true,
+    "uid": "03ebcc6f5320400394f781a47388751b",
+    "near_synsets": {
+        "crossbar.n.03": 0.5533169136249021,
+        "street_sign.n.01": 0.5622405131335045,
+        "crash_barrier.n.01": 0.5711709584711705,
+        "bicycle_traffic.n.01": 0.5728522973600932,
+        "crossbar.n.01": 0.5742005815359637,
+        "traffic.n.01": -1000.0,
+        "dealings.n.01": -1000.0,
+        "traffic.n.02": -1000.0,
+        "traffic.n.03": -1000.0,
+        "roadblock.n.02": -1000.0,
+        "barricade.n.02": -1000.0
+    },
+    "synset": "roadblock.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/03ebcc6f5320400394f781a47388751b",
+        "creator_username": "chimeracreations",
+        "creator_display_name": "Kyle Burton",
+        "creator_profile_url": "https://sketchfab.com/chimeracreations"
+    },
+    "filename": "std_03ebcc6f5320400394f781a47388751b.glb",
+    "length": 0.8885526657104492,
+    "width": 0.69294273853302
+}

@@ -1,0 +1,119 @@
+{
+    "description_long": "This object is a quadrupedal robot dog with a mechanical, industrial design, featuring four articulated legs with wide, claw-like feet for stability. Its body is composed of metallic segments connected by visible rotary joints, and it has a prominent robotic arm extending from the front, ending in a pincer-style gripper. Mounted on its back is a blue cylindrical container, resembling a cup, which is securely held in place by a mechanical bracket. The robot's structure is primarily metallic gray with accents of blue and black, and it displays exposed mechanical components such as gears and actuators. The design suggests functionality for both mobility and manipulation, suitable for tasks like object retrieval or delivery in urban environments. The overall appearance is robust and utilitarian, with a focus on practical movement and object handling.",
+    "description": "A metallic quadrupedal robot dog with articulated legs, a pincer arm, and a blue cup-like container mounted on its back. It features exposed mechanical joints and a robust, utilitarian design.",
+    "description_view_0": "Side view showing the robot dog's articulated legs, pincer arm extended forward, and the blue cup mounted on its back.",
+    "description_view_1": "Front view highlighting the pincer gripper, symmetrical leg arrangement, and the blue cup visible behind the arm.",
+    "description_view_2": "Opposite side view with the pincer arm extended, clear view of the blue cup and mechanical leg joints.",
+    "description_view_3": "Rear view focusing on the blue cup, the back of the robot, and the symmetrical rear legs.",
+    "category": "robot dog",
+    "height": 0.6,
+    "max_dimension": 1.0,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 32,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 320,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "graspable",
+        "pushable",
+        "pullable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "pincer gripper",
+        "robotic arm",
+        "cup holder",
+        "leg joints"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "blue",
+        "silver"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_mechanical_joints": [
+        "rotary joint",
+        "hinge joint",
+        "linear actuator"
+    ],
+    "attribute_visible_sensors": [
+        "camera"
+    ],
+    "attribute_led_indicators": [],
+    "attribute_articulated_limbs": [
+        "front left leg",
+        "front right leg",
+        "rear left leg",
+        "rear right leg",
+        "robotic arm"
+    ],
+    "attribute_robotic_face": false,
+    "uid": "9dfd4ec5755e45d8a60e0e7e39b39474",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5449417918286771,
+        "quadruped.n.01": 0.5615118837584849,
+        "robotics.n.01": 0.5843435606265119,
+        "automaton.n.02": 0.5870343488510011,
+        "dogcart.n.01": 0.5877618410216416,
+        "dog.n.03": -1000.0,
+        "frank.n.01": -1000.0,
+        "dog.n.01": -1000.0,
+        "frump.n.01": -1000.0,
+        "pawl.n.01": -1000.0,
+        "andiron.n.01": -1000.0,
+        "cad.n.01": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9dfd4ec5755e45d8a60e0e7e39b39474",
+        "creator_username": "DumitriyL",
+        "creator_display_name": "DumitriyL",
+        "creator_profile_url": "https://sketchfab.com/DumitriyL"
+    },
+    "filename": "std_9dfd4ec5755e45d8a60e0e7e39b39474.glb",
+    "length": 0.9590220749378204,
+    "width": 0.5086212158203125
+}

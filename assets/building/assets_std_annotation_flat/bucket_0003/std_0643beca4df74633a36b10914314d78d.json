@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a mid-rise Soviet-era apartment building with four stories, constructed primarily from light gray brick. The facade features a regular grid of windows, some of which are paired with enclosed balconies of varying styles and colors, adding visual interest to the otherwise utilitarian design. The ground floor includes a central entrance with a small awning, flanked by graffiti and a streetlamp. The roof is flat and equipped with several antennas and a satellite dish, typical of urban residential buildings from the late 20th century. The building's exterior is accented by painted window frames and balcony railings, with some balconies enclosed in glass or wood. The overall appearance is functional, with minimal decorative elements, reflecting a practical architectural approach.",
+    "description": "A four-story gray brick apartment building with multiple balconies, a central entrance, and a flat roof topped with antennas and a satellite dish.",
+    "description_view_0": "The front view shows the main facade with a central entrance, multiple windows, balconies, graffiti, and rooftop antennas.",
+    "description_view_1": "The left side view reveals the building's narrow depth and the protruding balconies, with little detail visible on the side wall.",
+    "description_view_2": "The rear view displays a plain, featureless black wall with rooftop antennas and a satellite dish visible above.",
+    "description_view_3": "The right side view mirrors the left, showing the building's slim profile and the arrangement of balconies and windows.",
+    "category": "apartment building",
+    "height": 13.0,
+    "max_dimension": 25.0,
+    "materials": [
+        "brick",
+        "concrete",
+        "glass",
+        "metal",
+        "wood",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.08,
+        0.05,
+        0.02,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "balcony railing",
+        "antenna",
+        "satellite dish"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "brown",
+        "black",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 4,
+    "attribute_balcony_presence": true,
+    "attribute_window_arrangement": "Windows are arranged in a regular, symmetrical grid pattern across the facade, with some grouped in pairs and others paired with balconies, maintaining consistent vertical and horizontal alignment.",
+    "attribute_entrance_type": "single door",
+    "attribute_architectural_style": "Brutalist",
+    "uid": "0643beca4df74633a36b10914314d78d",
+    "near_synsets": {
+        "apartment_building.n.01": 0.4995412162924007,
+        "skyscraper.n.01": 0.5321879364813384,
+        "high-rise.n.01": 0.5440928364061646,
+        "penthouse.n.01": 0.5442164603056505,
+        "railroad_flat.n.01": 0.5512326442123562,
+        "apartment.n.01": -1000.0,
+        "building.n.01": -1000.0,
+        "construction.n.01": -1000.0,
+        "building.n.04": -1000.0,
+        "construction.n.07": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0643beca4df74633a36b10914314d78d",
+        "creator_username": "cube931",
+        "creator_display_name": "Cubovich",
+        "creator_profile_url": "https://sketchfab.com/cube931"
+    },
+    "filename": "std_0643beca4df74633a36b10914314d78d.glb",
+    "length": 8.9498929977417,
+    "width": 14.525652885437012
+}

@@ -1,0 +1,103 @@
+{
+    "description_long": "This imposing gate features two massive cylindrical stone towers flanking a central double-door entryway, all constructed from dark, weathered stone blocks. The towers are topped with domed, concrete-like caps and are adorned with thin vertical antennas or flagpoles. The upper edge of the gate is lined with a row of pointed spikes, adding a defensive, fortress-like appearance. The double doors are reinforced with horizontal and diagonal metal bars, and the stonework is rough and uneven, suggesting age and durability. The structure is symmetrical, with both towers and doors mirroring each other, and the overall design evokes the entrance to a fortified compound or castle. The gate is clearly designed to restrict access and withstand significant force, making it suitable for high-security or historical urban settings.",
+    "description": "A large, fortress-style stone gate with twin cylindrical towers, spiked battlements, and reinforced double doors. The structure is dark, weathered, and highly defensive in appearance.",
+    "description_view_0": "Front view showing both cylindrical towers, spiked battlements, and the central double doors with visible metal reinforcements.",
+    "description_view_1": "Side view revealing the full height and cylindrical shape of one tower, with the domed cap and antenna visible.",
+    "description_view_2": "Rear view, nearly identical to the front, displaying the twin towers and double doors, but with less detail on the door reinforcements.",
+    "description_view_3": "Opposite side view, mirroring view 1, showing the other tower's cylindrical form and cap.",
+    "category": "gate",
+    "height": 8.0,
+    "max_dimension": 16.0,
+    "materials": [
+        "stone",
+        "concrete",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "lock",
+        "handle",
+        "bar"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "vehicle"
+    ],
+    "colors": [
+        "dark gray",
+        "light gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_gate_type": "fortress gate",
+    "attribute_opening_mechanism": "manual swing",
+    "attribute_decorative_elements": [
+        "spikes"
+    ],
+    "attribute_locking_system": "bar latch",
+    "attribute_surrounding_structure": "stone towers",
+    "uid": "57dae3d201ff420ea3fe114bfa7257a4",
+    "near_synsets": {
+        "portcullis.n.01": 0.4693926627493017,
+        "gate.n.01": 0.5099579575173467,
+        "gatehouse.n.01": 0.5126406810094968,
+        "castle.n.02": 0.5146989740384653,
+        "fortress.n.01": 0.5152619967963284,
+        "gate.n.02": -1000.0,
+        "gate.n.04": -1000.0,
+        "gate.n.03": -1000.0
+    },
+    "synset": "gate.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/57dae3d201ff420ea3fe114bfa7257a4",
+        "creator_username": "ghimpster",
+        "creator_display_name": "ghimpster",
+        "creator_profile_url": "https://sketchfab.com/ghimpster"
+    },
+    "filename": "std_57dae3d201ff420ea3fe114bfa7257a4.glb",
+    "length": 2.4260493516921997,
+    "width": 12.989112854003906
+}

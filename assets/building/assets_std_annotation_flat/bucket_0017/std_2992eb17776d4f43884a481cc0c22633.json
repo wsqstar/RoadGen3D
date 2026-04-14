@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a three-story apartment building with a flat roof, featuring a muted orange facade and dark gray trim. The front side has a central entrance with a small set of stairs, flanked by large, evenly spaced rectangular windows on each floor. Metal fire escape balconies and ladders are attached to the sides and rear, providing emergency access. The roof is equipped with two large HVAC units and a boxy air conditioning structure, indicating modern utilities. Subtle wall cracks and weathering add realism to the exterior, while electrical boxes and conduit are visible near the entrance. The overall design is utilitarian, with minimal ornamentation and a focus on function.",
+    "description": "A three-story orange apartment building with dark trim, flat roof, and fire escape balconies. Features include large windows, a central entrance, and rooftop HVAC units.",
+    "description_view_0": "Front view showing the main entrance, three rows of large windows, and electrical boxes near the door.",
+    "description_view_1": "Side view highlighting the vertical fire escape ladder and a large utility box attached to the wall.",
+    "description_view_2": "Rear view displaying more windows, rooftop HVAC units, and the back fire escape balconies.",
+    "description_view_3": "Side/rear angle showing the fire escape balconies and ladders, as well as the rooftop equipment.",
+    "category": "apartment building",
+    "height": 10.5,
+    "max_dimension": 16.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "steel",
+        "brick",
+        "air",
+        "plastic"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.15,
+        0.1,
+        0.04,
+        0.01
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "windows",
+        "fire escape",
+        "stairs",
+        "electrical box"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.55,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 3,
+    "attribute_balcony_presence": true,
+    "attribute_window_arrangement": "The windows are arranged in a symmetrical grid pattern, with three evenly spaced windows per floor on each visible side. The alignment is consistent across all floors, creating a uniform appearance.",
+    "attribute_entrance_type": "single door",
+    "attribute_architectural_style": "Contemporary",
+    "uid": "2992eb17776d4f43884a481cc0c22633",
+    "near_synsets": {
+        "apartment_building.n.01": 0.5273175358565694,
+        "penthouse.n.01": 0.5500945975052021,
+        "high-rise.n.01": 0.5542079192047025,
+        "block.n.05": 0.554471765612481,
+        "suite.n.02": 0.5666462881070481,
+        "building.n.04": -1000.0,
+        "apartment.n.01": -1000.0,
+        "construction.n.01": -1000.0,
+        "construction.n.07": -1000.0,
+        "building.n.01": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2992eb17776d4f43884a481cc0c22633",
+        "creator_username": "Artise1",
+        "creator_display_name": "Artise1",
+        "creator_profile_url": "https://sketchfab.com/Artise1"
+    },
+    "filename": "std_2992eb17776d4f43884a481cc0c22633.glb",
+    "length": 9.397837162017822,
+    "width": 10.593486785888672
+}

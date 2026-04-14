@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a compact, futuristic drone with a streamlined, segmented body reminiscent of a mechanical fish or aquatic creature. It features three large, flat rotors arranged in a Y-configuration, each attached to articulated arms extending from the central body. The main body is composed of interlocking, ribbed segments, with a rounded front section that has multiple circular apertures, possibly for sensors or cooling. On top of the body, there is a prominent rectangular module that could house navigation or communication equipment. The tail section tapers to a fin-like structure, enhancing its aerodynamic profile. The overall design suggests a lightweight, agile drone suitable for urban surveillance or reconnaissance.",
+    "description": "A sleek, segmented drone with three large rotors in a Y-configuration, ribbed body, and a prominent top module, resembling a mechanical fish.",
+    "description_view_0": "Front view shows the rounded nose with multiple apertures and two rotors extending outward, with the top module visible.",
+    "description_view_1": "Side view highlights the ribbed, segmented body, the articulated rotor arm, and the fin-like tail structure.",
+    "description_view_2": "Rear view displays the tail fin and the symmetrical arrangement of the three rotors extending from the body.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the ribbed body, rotor arm, and top-mounted module.",
+    "category": "drone",
+    "height": 0.18,
+    "max_dimension": 0.45,
+    "materials": [
+        "plastic",
+        "aluminum",
+        "glass",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.08,
+        0.02
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 15,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable",
+        "toggleable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotor",
+        "top module",
+        "tail fin",
+        "body segment"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "dark gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 7000,
+    "friction_coefficient": 0.32,
+    "bounciness": 0.08,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 3,
+    "attribute_rotor_configuration": "tricopter Y",
+    "attribute_landing_gear_type": "none",
+    "attribute_camera_presence": false,
+    "attribute_propeller_guard_presence": false,
+    "uid": "b5e3aad98c874a338d5fa895bdcdd774",
+    "near_synsets": {
+        "drone.n.04": 0.548916324951669,
+        "rotor.n.03": 0.552058689535046,
+        "single-rotor_helicopter.n.01": 0.5636491535315695,
+        "flying_fish.n.01": 0.5793944478283382,
+        "aircraft.n.01": 0.5816512170142072,
+        "drone.n.05": -1000.0,
+        "drone.n.01": -1000.0,
+        "dawdler.n.01": -1000.0,
+        "monotone.n.01": -1000.0
+    },
+    "synset": "drone.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b5e3aad98c874a338d5fa895bdcdd774",
+        "creator_username": "Ricardo.Orona",
+        "creator_display_name": "Ricardo.Orona",
+        "creator_profile_url": "https://sketchfab.com/Ricardo.Orona"
+    },
+    "filename": "std_b5e3aad98c874a338d5fa895bdcdd774.glb",
+    "length": 0.28404247760772705,
+    "width": 0.4077795445919037
+}

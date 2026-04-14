@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a blocky, stylized airplane with a predominantly white fuselage and a blue tail fin, reminiscent of a voxel or pixel-art design. The wings are straight and extend laterally from the midsection, with brown elements suggesting propeller engines mounted on each wing. The nose is squared with a small black detail that may represent a cockpit window or sensor. The tail features a vertical stabilizer with a stepped, pixelated pattern in blue and white, and a horizontal stabilizer at the base. The undercarriage includes small, dark elements that likely represent fixed landing gear.",
+    "description": "A voxel-style white airplane with blue tail, brown propeller engines, and straight wings.",
+    "description_view_0": "Side view showing the white fuselage, blue tail, brown propeller engines, and squared nose.",
+    "description_view_1": "Front view highlighting the straight wingspan, twin brown propeller engines, and narrow fuselage.",
+    "description_view_2": "Opposite side view with clear visibility of the blue tail, white body, and brown propeller engines.",
+    "description_view_3": "Rear view displaying the blue vertical stabilizer, horizontal stabilizer, and the symmetry of the wings and engines.",
+    "category": "airplane",
+    "height": 1.2,
+    "max_dimension": 7.0,
+    "materials": [
+        "plastic",
+        "air",
+        "metal"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 11760,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "cockpit",
+        "landing gear",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing configuration with straight wings and no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Twin piston engines mounted on the wings with visible propellers.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers at the base.",
+    "attribute_landing_gear_type": "Fixed tricycle landing gear with visible main and nose gear units.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit at the front of the fuselage with a single window feature.",
+    "uid": "67d519eae4184fd8a51d58a395acaab4",
+    "near_synsets": {
+        "aircraft.n.01": 0.5244251708027756,
+        "airplane.n.01": 0.5269484802342035,
+        "propeller_plane.n.01": 0.5354182102171484,
+        "propjet.n.01": 0.5517856123776591,
+        "jet.n.01": 0.5546938625622989
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/67d519eae4184fd8a51d58a395acaab4",
+        "creator_username": "POTATO_O",
+        "creator_display_name": "POTATO_O",
+        "creator_profile_url": "https://sketchfab.com/POTATO_O"
+    },
+    "filename": "std_67d519eae4184fd8a51d58a395acaab4.glb",
+    "length": 3.066665530204773,
+    "width": 3.866665840148926
+}

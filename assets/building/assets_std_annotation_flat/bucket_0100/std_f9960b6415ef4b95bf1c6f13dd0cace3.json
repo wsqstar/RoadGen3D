@@ -1,0 +1,95 @@
+{
+    "description_long": "This warehouse is a large, rectangular industrial building with a flat roof and dark exterior walls, likely constructed from concrete or metal panels. The roof features a series of evenly spaced rectangular skylights or vents, and there are prominent metallic railings or safety barriers along the roof edges, especially at the corners. The facade is punctuated by a series of horizontal and vertical slits or windows, and there are several large entry bays or loading dock doors visible on the shorter sides. The structure sits on a broad, flat base, possibly representing a paved lot or loading area. The overall design is utilitarian, with minimal decorative elements and a focus on function, typical of urban storage or distribution facilities.",
+    "description": "A large, dark, rectangular warehouse with a flat roof, skylights, and prominent metal railings, featuring multiple loading bays and minimal decorative elements.",
+    "description_view_0": "The long side of the warehouse is visible, showing multiple skylights on the roof and two corner roof railings.",
+    "description_view_1": "The short end of the warehouse is shown, highlighting several large loading dock doors and a prominent corner railing.",
+    "description_view_2": "The opposite long side is visible, with a similar arrangement of skylights and roof railings as view 0.",
+    "description_view_3": "The other short end is shown, featuring more loading dock doors and a clear view of the roof's safety barriers.",
+    "category": "warehouse",
+    "height": 8.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "loadable",
+        "unloadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "loading dock",
+        "window",
+        "roof railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main facade features dark, industrial wall panels with a series of horizontal and vertical window slits and several large loading dock doors. Metal safety railings are visible at the roof edges, and the overall appearance is functional and unadorned.",
+    "attribute_loading_dock_presence": true,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is flat and covered with a series of rectangular skylights or vents, bordered by metallic safety railings at the corners and edges. The surface appears to be made of dark, weather-resistant material.",
+    "attribute_architectural_style": "modern industrial",
+    "uid": "f9960b6415ef4b95bf1c6f13dd0cace3",
+    "near_synsets": {
+        "warehouse.n.01": 0.49343263138026444,
+        "loft.n.01": 0.5160809856735344,
+        "storehouse.n.01": 0.5395390802694461,
+        "shop_floor.n.01": 0.5485144053070339,
+        "stockroom.n.01": 0.5504837886336392
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f9960b6415ef4b95bf1c6f13dd0cace3",
+        "creator_username": "magicgo",
+        "creator_display_name": "MagicGo",
+        "creator_profile_url": "https://sketchfab.com/magicgo"
+    },
+    "filename": "std_f9960b6415ef4b95bf1c6f13dd0cace3.glb",
+    "length": 48.37500190734863,
+    "width": 31.822265625
+}

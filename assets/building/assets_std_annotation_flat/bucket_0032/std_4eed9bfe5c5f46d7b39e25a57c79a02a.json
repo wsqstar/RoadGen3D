@@ -1,0 +1,100 @@
+{
+    "description_long": "This humanoid robot features a robust, industrial design with a segmented cylindrical torso and thick, articulated limbs. Its arms and legs are composed of multiple cylindrical segments, each connected by visible joints, and the hands terminate in claw-like grippers. The head is a simple, rounded dome with two prominent red circular elements resembling eyes and a small central protrusion, suggesting basic sensory equipment. The robot's exterior is primarily a matte beige color with metallic accents, giving it a utilitarian, machine-like appearance. The overall build is bulky and symmetrical, with reinforced shoulders and lower legs, indicating durability and strength. The design lacks any visible clothing or decorative elements, focusing on function over form.",
+    "description": "A bulky, beige humanoid robot with segmented limbs, claw-like hands, and a simple domed head featuring two red eye-like sensors. Its industrial design emphasizes strength and durability.",
+    "description_view_0": "Front view shows the robot's domed head with two red sensors, broad shoulders, and symmetrical, segmented limbs ending in claw grippers.",
+    "description_view_1": "Side view highlights the cylindrical depth of the torso and limbs, with the head's dome and arm joints clearly visible.",
+    "description_view_2": "Rear view reveals the back of the head, reinforced shoulders, and the symmetrical structure of the legs and arms.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the cylindrical profile and jointed limbs from the other side.",
+    "category": "humanoid robot",
+    "height": 2.0,
+    "max_dimension": 1.6,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 250,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2450,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "graspable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "claw grippers",
+        "arm joints",
+        "leg joints",
+        "head sensors",
+        "torso segments"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "gray",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms extended downward and slightly outward, legs straight and parallel, head facing forward, and torso upright.",
+    "attribute_clothing_style": "No visible clothing; exterior consists of integrated panels and mechanical components in a utilitarian, industrial style.",
+    "attribute_facial_features": "Face consists of a rounded dome with two red circular sensors resembling eyes and a small central protrusion; no mouth, nose, or expressive features present.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible cylindrical segments connected by rotary and hinge joints, allowing for a wide range of motion; hands are claw-like with articulated pincers.",
+    "attribute_presence_of_sensors": "Two red circular sensors on the head, likely cameras or optical sensors; no other visible sensors.",
+    "uid": "4eed9bfe5c5f46d7b39e25a57c79a02a",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5546817629611239,
+        "android.n.01": 0.5575958501707793,
+        "cyborg.n.01": 0.5713180660049775,
+        "robotics.n.01": 0.5823541074713746,
+        "automaton.n.02": 0.5897796728555754
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4eed9bfe5c5f46d7b39e25a57c79a02a",
+        "creator_username": "noxprow",
+        "creator_display_name": "noxprow (Daniel Rueda)",
+        "creator_profile_url": "https://sketchfab.com/noxprow"
+    },
+    "filename": "std_4eed9bfe5c5f46d7b39e25a57c79a02a.glb",
+    "length": 0.7645845711231232,
+    "width": 2.036273717880249
+}

@@ -1,0 +1,100 @@
+{
+    "description_long": "This humanoid robot features a robust, weathered metallic body with a domed, dark-tinted headpiece that suggests a protective visor or sensor housing. Its torso is broad and rounded, with visible wear and rust patches, giving it an industrial, utilitarian appearance. The arms are jointed at the shoulders and elbows, with flexible, ribbed black segments at the elbows and claw-like hands with three articulated fingers each. The legs are thick and segmented, with spring-like joints at the knees and ankles, ending in pointed, conical feet. The back is smooth and unadorned, while the front displays a recessed area beneath the head, possibly for additional sensors or a speaker. The overall design is functional and sturdy, suitable for urban environments where durability is essential.",
+    "description": "A weathered, industrial humanoid robot with a domed head, jointed limbs, and claw-like hands, featuring a robust metallic body and visible signs of wear.",
+    "description_view_0": "Front view shows the domed head, broad chest, articulated arms with claw hands, and recessed area beneath the head.",
+    "description_view_1": "Left side view highlights the rounded torso, ribbed elbow joints, and the conical shape of the feet.",
+    "description_view_2": "Rear view reveals a smooth, unadorned back and the segmented structure of the legs.",
+    "description_view_3": "Right side view mirrors the left, emphasizing the arm articulation and the weathered surface texture.",
+    "category": "humanoid robot",
+    "height": 1.7,
+    "max_dimension": 0.9,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1176,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "hands",
+        "fingers",
+        "head",
+        "legs"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "greenish-gray",
+        "black",
+        "silver",
+        "rust-brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms slightly bent at the elbows and extended forward, legs straight and feet planted firmly on the ground, head facing forward.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated metallic panels with visible bolts and seams, and a domed head covering.",
+    "attribute_facial_features": "No traditional facial features; head is a smooth dome with a dark visor-like area, lacking eyes, mouth, or nose.",
+    "attribute_limb_articulation": "Arms have visible hinge joints at shoulders and elbows, with flexible ribbed segments at elbows; hands have three articulated fingers each. Legs are segmented with hinge joints at hips, knees, and ankles, ending in pointed feet.",
+    "attribute_presence_of_sensors": "None visible",
+    "uid": "934e3b177b3342c49338fb58422872d5",
+    "near_synsets": {
+        "android.n.01": 0.5369098039469076,
+        "cyborg.n.01": 0.5502808007833507,
+        "robotics_equipment.n.01": 0.553163307860611,
+        "automaton.n.02": 0.5695876516670697,
+        "human_head.n.01": 0.5783495528819945
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/934e3b177b3342c49338fb58422872d5",
+        "creator_username": "vvch91",
+        "creator_display_name": "vvch91",
+        "creator_profile_url": "https://sketchfab.com/vvch91"
+    },
+    "filename": "std_934e3b177b3342c49338fb58422872d5.glb",
+    "length": 0.9307291805744171,
+    "width": 0.9038396179676056
+}

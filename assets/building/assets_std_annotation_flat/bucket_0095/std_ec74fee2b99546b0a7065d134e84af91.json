@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a beige, four-wheeled combat tactical vehicle with a boxy, armored body and reinforced doors. The vehicle features a prominent roof-mounted machine gun turret, accessible via a hatch, and a long radio antenna at the rear. Its exterior is rugged, with visible dirt and wear, suggesting heavy use in challenging environments. The windows are small and likely bullet-resistant, and the tires are large, thick, and designed for off-road mobility. The front grille is robust, with protective bars and a utilitarian design. The vehicle's overall appearance emphasizes durability, protection, and combat readiness.",
+    "description": "A beige, armored combat tactical vehicle with a roof-mounted machine gun, reinforced doors, and large off-road tires.",
+    "description_view_0": "Side view showing the full length, four doors, roof-mounted machine gun, and long rear antenna.",
+    "description_view_1": "Rear view highlighting the back door, taillights, and the rear end of the roof-mounted weapon.",
+    "description_view_2": "Opposite side view, similar to view 0, with visible doors, machine gun, and antenna.",
+    "description_view_3": "Front view displaying the armored grille, headlights, and the forward-facing machine gun.",
+    "category": "combat tactical  vehicle",
+    "height": 2.0,
+    "max_dimension": 5.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.1,
+        0.05,
+        0.01,
+        0.04
+    ],
+    "mass": 4200,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 25000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "hatch",
+        "gun mount",
+        "antenna",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible roof-mounted machine gun mount located centrally on the roof.",
+    "attribute_armor_plating": "Full body visible armor plating, including reinforced doors and sloped panels; thickness appears substantial, with no modular or reactive panels visible.",
+    "attribute_camouflage_pattern": "Solid beige color with some weathering; no distinct camouflage pattern visible.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Four large off-road tires with deep tread pattern, suitable for rugged terrain; no visible chains or special reinforcements.",
+    "uid": "ec74fee2b99546b0a7065d134e84af91",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4846280047740313,
+        "reconnaissance_vehicle.n.01": 0.49731174185648125,
+        "tank.n.01": 0.5176321642945169,
+        "armored_car.n.02": 0.5192520182802012,
+        "assault_gun.n.02": 0.52238464325781,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "armored_car.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ec74fee2b99546b0a7065d134e84af91",
+        "creator_username": "haoliu95",
+        "creator_display_name": "8sianDude",
+        "creator_profile_url": "https://sketchfab.com/haoliu95"
+    },
+    "filename": "std_ec74fee2b99546b0a7065d134e84af91.glb",
+    "length": 6.077279567718506,
+    "width": 6.077280521392822
+}

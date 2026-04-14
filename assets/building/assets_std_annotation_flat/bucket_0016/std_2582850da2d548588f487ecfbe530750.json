@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a large, multi-engine airplane with a streamlined fuselage and a classic straight-wing design. The wings are mounted at a mid-level on the fuselage and feature four visible propeller engines, each housed in a nacelle. The airplane is predominantly gray with bold red accents along the fuselage, wings, and tail, giving it a striking appearance. The tail section consists of a single vertical stabilizer and a horizontal stabilizer, both colored red. The cockpit is located at the front of the fuselage and appears to be enclosed, with a slightly raised canopy. The overall design suggests a vintage or historical aircraft, likely used for transport or bomber roles.",
+    "description": "A large, gray and red multi-engine airplane with straight mid-mounted wings, four propeller engines, and a single vertical tail. The cockpit is enclosed and positioned at the front of the fuselage.",
+    "description_view_0": "Front-left view showing the four propeller engines, the enclosed cockpit, and the red accents on the wings and tail.",
+    "description_view_1": "Rear-left view highlighting the red tail section, horizontal stabilizer, and the full span of the straight wings.",
+    "description_view_2": "Rear-right view focusing on the tail assembly and the alignment of the engines along the wings.",
+    "description_view_3": "Front-right view displaying the propeller engines, cockpit, and the red and gray color scheme.",
+    "category": "airplane",
+    "height": 5.0,
+    "max_dimension": 32.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 24000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "propeller",
+        "cockpit door",
+        "landing gear",
+        "engine nacelle",
+        "control surfaces"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 40.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing configuration with straight wings, no visible winglets, and no pronounced dihedral or anhedral angles.",
+    "attribute_engine_type": "Four piston engines mounted in nacelles along the leading edge of the wings.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "Not clearly visible, but likely retractable based on typical design; no fixed gear or floats apparent.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a slightly raised canopy at the front of the fuselage.",
+    "uid": "2582850da2d548588f487ecfbe530750",
+    "near_synsets": {
+        "multiengine_airplane.n.01": 0.49145494810017226,
+        "airplane.n.01": 0.49167107251708203,
+        "fuselage.n.01": 0.5086605504899704,
+        "propeller_plane.n.01": 0.5126046025273978,
+        "aircraft_engine.n.01": 0.521547646213201
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2582850da2d548588f487ecfbe530750",
+        "creator_username": "manilov.ap",
+        "creator_display_name": "manilov.ap",
+        "creator_profile_url": "https://sketchfab.com/manilov.ap"
+    },
+    "filename": "std_2582850da2d548588f487ecfbe530750.glb",
+    "length": 29.181798934936523,
+    "width": 29.676925659179688
+}

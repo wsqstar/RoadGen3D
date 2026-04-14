@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a military-style twin-engine propeller airplane with a long, rectangular fuselage and straight, high-mounted wings. The aircraft is painted in a camouflage pattern of green and brown with roundel insignias on the wings and fuselage, indicating Royal Air Force markings. The cockpit is positioned at the front of the fuselage and features a multi-pane canopy, while the tail section has a twin vertical stabilizer configuration connected by a horizontal stabilizer. The landing gear appears to be fixed and is visible beneath the wings and tail. The airplane is equipped with two large propellers mounted on the wings, and several antennae or struts are visible on the upper fuselage and tail. The overall design suggests a World War II-era reconnaissance or bomber aircraft.",
+    "description": "A military-style, twin-propeller airplane with camouflage paint, high-mounted straight wings, and twin vertical stabilizers, featuring Royal Air Force insignia.",
+    "description_view_0": "Front-left view showing the cockpit, twin propellers, and detailed camouflage pattern on the wings and fuselage.",
+    "description_view_1": "Rear-left view highlighting the twin vertical stabilizers, tail details, and the fixed landing gear under the wings and tail.",
+    "description_view_2": "Rear-right view emphasizing the length of the fuselage, the high-mounted wings, and the tail structure.",
+    "description_view_3": "Front-right view focusing on the cockpit, propellers, and the forward section of the airplane.",
+    "category": "airplane",
+    "height": 3.5,
+    "max_dimension": 22.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "propeller",
+        "landing gear",
+        "door",
+        "control surfaces"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "gray",
+        "white",
+        "blue",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.1,
+        0.1,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 25.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "High-wing, straight wings with no visible dihedral or anhedral angle, no winglets, and a rectangular planform.",
+    "attribute_engine_type": "Twin piston engines mounted on the wings with large propellers.",
+    "attribute_tail_design": "Twin vertical stabilizers connected by a horizontal stabilizer, forming an H-tail configuration.",
+    "attribute_landing_gear_type": "Fixed landing gear with two main units under the wings and a tailwheel under the rear fuselage.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a multi-pane canopy, likely multi-seat.",
+    "uid": "9b6bb975b67d43ab89cf933fc76556da",
+    "near_synsets": {
+        "aircraft.n.01": 0.4906240145154402,
+        "royal_air_force.n.01": 0.500831715629892,
+        "wings.n.02": 0.5041102624250388,
+        "airplane.n.01": 0.5070325234794737,
+        "warplane.n.01": 0.5178481958370373
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9b6bb975b67d43ab89cf933fc76556da",
+        "creator_username": "manilov.ap",
+        "creator_display_name": "manilov.ap",
+        "creator_profile_url": "https://sketchfab.com/manilov.ap"
+    },
+    "filename": "std_9b6bb975b67d43ab89cf933fc76556da.glb",
+    "length": 21.128430366516113,
+    "width": 20.816637992858887
+}

@@ -1,0 +1,105 @@
+{
+    "description_long": "This object is a futuristic, industrial-style projector with a robust, angular black metal housing and a prominent cylindrical lens at the front. Two flexible, ribbed mechanical arms extend from either side, each ending in a claw-like gripper, suggesting possible robotic or automated adjustment capabilities. The front features a large, glassy lens surrounded by a ridged collar, while the top is equipped with a small antenna and a cluster of three circular indicator lights. The sides are flat and armored, with one side displaying a rectangular panel, and the rear includes a metallic access hatch with warning labels. Underneath, two concentric, glowing blue rings appear to function as a base or stabilization mechanism, giving the impression of advanced technology or anti-gravity support. The overall design is utilitarian yet advanced, suitable for deployment in urban environments for surveillance, projection, or communication purposes.",
+    "description": "A black, angular projector with a large front lens, robotic arms with claw grippers, and glowing blue stabilization rings beneath. It features indicator lights, an antenna, and a rear access hatch, giving it a high-tech, industrial appearance.",
+    "description_view_0": "Front view shows the large central lens, two mechanical arms with claws, indicator lights, and the antenna on top.",
+    "description_view_1": "Left side view highlights the rectangular side panel, the ribbed arm, and the glowing blue rings beneath.",
+    "description_view_2": "Rear view displays the metallic access hatch with warning labels, both arms extended, and the blue rings clearly visible below.",
+    "description_view_3": "Right side view reveals the smooth armored surface, the ribbed arm, and the blue rings, with the lens partially visible.",
+    "category": "projector",
+    "height": 0.7,
+    "max_dimension": 1.2,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 38,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "rotatable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "lens",
+        "arms",
+        "claws",
+        "antenna",
+        "indicator lights",
+        "access hatch",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "blue",
+        "red",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.08,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_brand_logo": "none",
+    "attribute_lens_type": "fixed, large cylindrical lens with a ridged collar; no visible adjustment rings or zoom mechanism",
+    "attribute_mounting_style": "portable",
+    "attribute_control_panel_design": "A small control panel with three circular indicator lights is located on the top right side; no visible buttons or dials, suggesting touch or remote operation.",
+    "attribute_ventilation_pattern": "Front features a circular grill pattern around the lens, likely for ventilation; no other visible vents or grills.",
+    "uid": "62bbd45bb5ac4681b961f9984e67e1e7",
+    "near_synsets": {
+        "projector.n.01": 0.5413478444368606,
+        "projector.n.02": 0.5448232492418534,
+        "robotics_equipment.n.01": 0.5512159291574931,
+        "home_theater_projector.n.01": 0.5535199098054377,
+        "front_projector.n.01": 0.5550732239982532
+    },
+    "synset": "front_projector.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/62bbd45bb5ac4681b961f9984e67e1e7",
+        "creator_username": "jamiemcfarlane",
+        "creator_display_name": "Jamie McFarlane",
+        "creator_profile_url": "https://sketchfab.com/jamiemcfarlane"
+    },
+    "filename": "std_62bbd45bb5ac4681b961f9984e67e1e7.glb",
+    "length": 0.6818909645080566,
+    "width": 0.586387038230896
+}

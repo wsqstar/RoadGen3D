@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a classic wooden sailing ship with three tall masts, each equipped with spars for sails, and a prominent hull featuring a dark lower section and a lighter, possibly wooden, upper section. The ship's hull is elongated and slightly curved, with a pointed bow and a rounded stern, giving it a traditional galleon or frigate appearance. The deck appears to be open, with no visible superstructure or cabins, and the masts are evenly spaced along the length of the vessel. The rigging and spars are visible, but no sails are unfurled, suggesting the ship is at rest or in port. The overall design is reminiscent of historical naval or merchant ships from the Age of Sail, with a focus on both cargo capacity and maneuverability. There are no visible modern features such as engines, radar, or lifeboats, emphasizing its historical character.",
+    "description": "A classic wooden sailing ship with three tall masts, a pointed bow, and a rounded stern, featuring an open deck and traditional rigging.",
+    "description_view_0": "The ship is seen from the front, showing the pointed bow and the alignment of the three masts in a row.",
+    "description_view_1": "A side view reveals the full length of the hull, the three masts with spars, and the open deck structure.",
+    "description_view_2": "The ship is viewed from the stern, highlighting the rounded rear and the alignment of the masts from behind.",
+    "description_view_3": "Another side view, similar to view 1, showing the hull's length, the three masts, and the open deck.",
+    "category": "ship",
+    "height": 18.0,
+    "max_dimension": 50.0,
+    "materials": [
+        "wood",
+        "metal",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 350000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "mast",
+        "spars",
+        "deck",
+        "hull"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a pronounced pointed bow and a rounded stern, featuring a smooth, continuous sheer line and no visible keels or bulbous bows.",
+    "attribute_superstructure_layout": "There is no visible superstructure; the deck is open with only the masts and spars rising above the hull, and no cabins, bridges, or towers are present.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [],
+    "attribute_registration_markings": "none",
+    "uid": "e36211dff0ab474b8dbab25c92544bb9",
+    "near_synsets": {
+        "bark.n.03": 0.4445708372256989,
+        "sailing_vessel.n.01": 0.4768814703549478,
+        "fore-and-after.n.01": 0.4822070928063446,
+        "brig.n.01": 0.4856655049366773,
+        "schooner.n.02": 0.48688949567657197,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e36211dff0ab474b8dbab25c92544bb9",
+        "creator_username": "DanielSturing",
+        "creator_display_name": "Daniel Sturing",
+        "creator_profile_url": "https://sketchfab.com/DanielSturing"
+    },
+    "filename": "std_e36211dff0ab474b8dbab25c92544bb9.glb",
+    "length": 148.2511444091797,
+    "width": 149.06771087646484
+}

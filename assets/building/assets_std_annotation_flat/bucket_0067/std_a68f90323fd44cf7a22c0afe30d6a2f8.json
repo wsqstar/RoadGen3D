@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a medium-sized, vertically oriented cylindrical storage tank, commonly recognized as a propane or LPG gas cylinder. The tank's exterior is heavily weathered, with extensive areas of peeling, chipped paint and visible rust patches, indicating prolonged outdoor exposure. The top features a protective metal collar surrounding a central valve assembly, which is a typical safety feature for pressurized gas storage. The base is slightly wider and reinforced, providing stability and a small gap from the ground. The surface texture is rough and uneven, with a mottled pattern of off-white, gray, and brown tones. This type of tank is often found in urban garages, workshops, or near residential buildings for fuel storage.",
+    "description": "A weathered, cylindrical propane storage tank with peeling paint, rust patches, and a protective valve collar on top. The surface is rough and mottled in off-white and brown tones.",
+    "description_view_0": "Front view showing the valve assembly and the most prominent rust and paint chipping on the lower half.",
+    "description_view_1": "Side view with additional rust patches and a clearer look at the protective collar's opening.",
+    "description_view_2": "Rear view with less rust, showing more of the cracked paint texture and a relatively intact surface.",
+    "description_view_3": "Side view with the least rust, highlighting the cracked paint and the cylindrical form.",
+    "category": "storage tank",
+    "height": 0.5,
+    "max_dimension": 0.3,
+    "materials": [
+        "steel",
+        "paint",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.09,
+        0.01
+    ],
+    "mass": 10,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 100,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "valve",
+        "protective collar"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "off-white",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_location": "urban garage",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [
+        "valve"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_architectural_style": "cylindrical vertical",
+    "uid": "a68f90323fd44cf7a22c0afe30d6a2f8",
+    "near_synsets": {
+        "propane.n.01": 0.5635295776150782,
+        "tank.n.02": 0.5795834868546981,
+        "tank_farm.n.01": 0.5799001406186532,
+        "gas_tank.n.01": 0.5823138277296197,
+        "reservoir.n.03": 0.5915566829333556,
+        "storage.n.01": -1000.0,
+        "tank.n.03": -1000.0,
+        "storage.n.03": -1000.0,
+        "memory.n.04": -1000.0,
+        "tank.n.01": -1000.0,
+        "cooler.n.03": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "repositing.n.01": -1000.0,
+        "storage.n.04": -1000.0,
+        "tank_car.n.01": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a68f90323fd44cf7a22c0afe30d6a2f8",
+        "creator_username": "azizcharfeddine1997",
+        "creator_display_name": "azizcharfeddine1997",
+        "creator_profile_url": "https://sketchfab.com/azizcharfeddine1997"
+    },
+    "filename": "std_a68f90323fd44cf7a22c0afe30d6a2f8.glb",
+    "length": 0.25397801399230957,
+    "width": 0.2539776861667633
+}

@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a medium-sized, tracked combat vehicle with a robust, angular hull and a prominent rotating turret mounted centrally. The turret features a large main cannon and a coaxial machine gun, with additional hatches and periscopes visible on the roof. The vehicle's body is covered in thick, sloped armor plating, especially at the front and sides, providing enhanced protection. The tracks are wide and supported by multiple road wheels, with visible suspension components and drive sprockets at the rear. The exterior is painted in a uniform, matte tan color, with no visible camouflage patterns or military markings. The vehicle is equipped with a long radio antenna on the turret, indicating communication capabilities.",
+    "description": "A tan, tracked combat vehicle with a large turret, main cannon, and thick sloped armor. It features wide tracks, multiple road wheels, and a robust, angular hull.",
+    "description_view_0": "Front view shows the thick, sloped frontal armor, main cannon, coaxial machine gun, and the central turret with hatches and periscopes.",
+    "description_view_1": "Left side view highlights the full length of the tracks, road wheels, suspension, and the side profile of the turret and hull.",
+    "description_view_2": "Rear view displays the back armor, rear hull shape, and the ends of the tracks, with minimal detail on the turret.",
+    "description_view_3": "Right side view mirrors the left, showing the tracks, wheels, and turret profile, with the radio antenna visible.",
+    "category": "combat tactical  vehicle",
+    "height": 2.75,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air",
+        "plastic"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.03,
+        0.01
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 160000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "machine gun",
+        "antenna",
+        "track",
+        "wheel",
+        "periscope"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon and one coaxial machine gun mounted on the turret; no other visible mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating, especially reinforced at the front and turret. No modular or reactive panels visible.",
+    "attribute_camouflage_pattern": "None visible; solid tan color.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "06df0fdccda04b97ada8c541508e6fd8",
+    "near_synsets": {
+        "tank.n.01": 0.47774735819274194,
+        "military_vehicle.n.01": 0.5081168718879784,
+        "assault_gun.n.02": 0.5195130381135835,
+        "tank_destroyer.n.01": 0.521297038824024,
+        "reconnaissance_vehicle.n.01": 0.521979581739165,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/06df0fdccda04b97ada8c541508e6fd8",
+        "creator_username": "snegi5566",
+        "creator_display_name": "snegi5566",
+        "creator_profile_url": "https://sketchfab.com/snegi5566"
+    },
+    "filename": "std_06df0fdccda04b97ada8c541508e6fd8.glb",
+    "length": 3.440681576728821,
+    "width": 1.7773588299751282
+}

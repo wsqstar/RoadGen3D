@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a Soviet-era spaceplane, specifically the Buran orbiter, characterized by its white fuselage with black thermal protection tiles along the nose, wing edges, and underside. The wings are sharply swept and mid-mounted, with a pair of vertical stabilizers at the tail, one of which is prominent and the other a smaller ventral fin. The fuselage features red 'CCCP' markings and Soviet flags, as well as a cockpit with a blacked-out window section at the front. The rear houses three large rocket engine nozzles and two smaller ones, with additional surface details such as panel lines and access hatches. The overall design is aerodynamic, with a smooth, hard surface and minimal external protrusions, optimized for atmospheric reentry and landing.",
+    "description": "A Soviet Buran spaceplane with a white fuselage, black thermal tiles, swept mid-mounted wings, and prominent Soviet markings. Features a forward cockpit, large rear engines, and a distinctive twin-tail design.",
+    "description_view_0": "Left side view showing the full length of the fuselage, swept wing, prominent vertical stabilizer, and red Soviet markings.",
+    "description_view_1": "Rear view highlighting the three main rocket engine nozzles, twin tail fins, and the 'CCCP' marking on the left wing.",
+    "description_view_2": "Right side view displaying the opposite wing, vertical stabilizer, and additional Soviet insignia.",
+    "description_view_3": "Front view focusing on the black cockpit windows, nose section, and the leading edges of the swept wings.",
+    "category": "airplane",
+    "height": 5.5,
+    "max_dimension": 36.0,
+    "materials": [
+        "aluminum alloy",
+        "titanium",
+        "ceramic tiles",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 62000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 600000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cockpit door",
+        "landing gear",
+        "engine nozzle",
+        "control surfaces",
+        "hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.18,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 40.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing, sharply swept wings with no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Three rear-mounted jet/rocket engines with two smaller auxiliary nozzles.",
+    "attribute_tail_design": "Conventional tail with a single large vertical stabilizer and a smaller ventral fin.",
+    "attribute_landing_gear_type": "Retractable tricycle landing gear (not visible but implied by design).",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a multi-seat configuration and blacked-out window section.",
+    "uid": "126c15b428494313a494c06822f2a756",
+    "near_synsets": {
+        "sputnik.n.01": 0.5807034015975789,
+        "aircraft.n.01": 0.5892936311675203,
+        "monoplane.n.01": 0.5935113874078687,
+        "biplane.n.01": 0.593732041272056,
+        "narrowbody_aircraft.n.01": 0.5985535599572798,
+        "airplane.n.01": -1000.0
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/126c15b428494313a494c06822f2a756",
+        "creator_username": "Northwodearts",
+        "creator_display_name": "Northwodearts",
+        "creator_profile_url": "https://sketchfab.com/Northwodearts"
+    },
+    "filename": "std_126c15b428494313a494c06822f2a756.glb",
+    "length": 14.65829086303711,
+    "width": 9.473097801208496
+}

@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a tracked military combat vehicle with a boxy, angular hull and a rotating turret mounted centrally on top. The vehicle is painted in a greenish-yellow color with a subtle spotted camouflage pattern and features a prominent cannon extending from the front of the turret. The tracks are robust and wide, designed for traversing rough terrain, and the front of the vehicle is equipped with pointed metal spikes, likely for obstacle clearing or ramming. The rear section includes a compartment with visible exhausts and what appears to be a storage or engine area. A red star insignia is visible on the side of the turret, indicating a military marking. The overall construction suggests heavy armor plating and a design optimized for urban and battlefield environments.",
+    "description": "A greenish-yellow tracked combat vehicle with a central turret, front-mounted cannon, and visible armor plating, featuring a red star insignia and pointed metal spikes at the front.",
+    "description_view_0": "Side view showing the full length of the tracks, the turret with railing, and the rear compartment details.",
+    "description_view_1": "Front view highlighting the cannon, angular armor, and pointed metal spikes beneath the hull.",
+    "description_view_2": "Opposite side view displaying the red star insignia on the turret and the side profile of the tracks and hull.",
+    "description_view_3": "Rear view showing the exhausts, rear compartment, and the back of the tracks.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.03,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 14000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "hatch",
+        "cannon",
+        "tracks",
+        "exhaust",
+        "spikes"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "yellow",
+        "red",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the front of the turret; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body armor plating with angular, sloped surfaces; appears thick and robust, covering the entire hull and turret.",
+    "attribute_camouflage_pattern": "Greenish-yellow base with irregular, subtle spotted camouflage pattern.",
+    "attribute_military_markings": "Red star emblem on the left side of the turret.",
+    "attribute_tire_type": "not applicable",
+    "uid": "83a73cfe272747bfbb6447f3fbd9b76d",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4991965358558729,
+        "tank.n.01": 0.5031367825223712,
+        "reconnaissance_vehicle.n.01": 0.5142214048431859,
+        "armored_car.n.02": 0.5339827674619816,
+        "assault_gun.n.02": 0.5405513282999708,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/83a73cfe272747bfbb6447f3fbd9b76d",
+        "creator_username": "Rysky",
+        "creator_display_name": "Jorma Rysky (Joona Ven\u00e4l\u00e4inen)",
+        "creator_profile_url": "https://sketchfab.com/Rysky"
+    },
+    "filename": "std_83a73cfe272747bfbb6447f3fbd9b76d.glb",
+    "length": 5.628509759902954,
+    "width": 2.7942922115325928
+}

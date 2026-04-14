@@ -1,0 +1,107 @@
+{
+    "description_long": "This combat tactical vehicle is a heavily armored, four-wheeled transport designed for urban operations. Its exterior is clad in angular, reinforced metal panels with visible bolts and seams, providing substantial protection to the cabin and cargo area. The vehicle features a prominent roof-mounted turret ring, likely for a machine gun or similar weapon, and has rugged, deep-tread off-road tires for enhanced mobility over rough terrain. The side doors and rear cargo area are reinforced, with metal railings and storage compartments along the sides. The front of the vehicle is sloped and robust, with a reinforced bumper and protective grilles over the headlights. The overall color scheme is a worn, matte gray with subtle weathering, giving it a utilitarian and battle-hardened appearance.",
+    "description": "A heavily armored, four-wheeled tactical vehicle with a roof turret, reinforced panels, and rugged off-road tires in a matte gray finish.",
+    "description_view_0": "Side view showing the full length of the vehicle, roof turret, reinforced side panels, and rear cargo area.",
+    "description_view_1": "Front view highlighting the sloped armored nose, protective grilles, and wide stance of the off-road tires.",
+    "description_view_2": "Opposite side view revealing the open door, interior seating, and detailed side armor with storage compartments.",
+    "description_view_3": "Rear view displaying the armored back, rear cargo area, and the structure of the rear bumper and turret mount.",
+    "category": "combat tactical  vehicle",
+    "height": 2.4,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.1,
+        0.05,
+        0.01,
+        0.04
+    ],
+    "mass": 5200,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "turret ring",
+        "hatch",
+        "handle",
+        "bumper"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible circular roof turret mount located centrally on the roof, suitable for a machine gun or similar weapon.",
+    "attribute_armor_plating": "Full body coverage with thick, angular steel armor plating, including reinforced doors, sloped front, and side panels with visible bolts and seams.",
+    "attribute_camouflage_pattern": "None visible; the vehicle is painted in a solid, weathered matte gray.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Four large off-road tires with deep, aggressive tread pattern and reinforced sidewalls.",
+    "uid": "6ed4ee7101404d08b85278d03b241d1e",
+    "near_synsets": {
+        "reconnaissance_vehicle.n.01": 0.46968411115286546,
+        "military_vehicle.n.01": 0.47801235623415966,
+        "tank.n.01": 0.4918011231045363,
+        "armored_car.n.02": 0.49803712112020854,
+        "assault_gun.n.02": 0.5101642003665755,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "armored_car.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6ed4ee7101404d08b85278d03b241d1e",
+        "creator_username": "l-odin",
+        "creator_display_name": "l-odin",
+        "creator_profile_url": "https://sketchfab.com/l-odin"
+    },
+    "filename": "std_6ed4ee7101404d08b85278d03b241d1e.glb",
+    "length": 5.295834302902222,
+    "width": 2.635088086128235
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This hamburger features a thick, polygonal sesame seed bun with a lightly textured, tan surface and scattered white sesame seeds on top. The interior reveals layers of bright green lettuce, a slice of yellow cheese, and a vivid red tomato, all stacked neatly between the buns. The cheese and tomato are visible from the sides, peeking out beneath the lettuce, while the patty itself is not clearly seen. The bun appears soft and slightly domed, with a matte finish and subtle geometric facets. The overall shape is compact and rounded, with the ingredients evenly distributed and no visible packaging. The colors are vibrant and the structure is visually appealing, resembling a classic cheeseburger commonly found in urban food settings.",
+    "description": "A classic hamburger with a sesame seed bun, layered with lettuce, cheese, and tomato, featuring vibrant colors and a soft, rounded appearance.",
+    "description_view_0": "Front view showing the sesame seed bun, green lettuce, yellow cheese, and a hint of red tomato beneath the lettuce.",
+    "description_view_1": "Slightly rotated view highlighting the layered arrangement of lettuce, cheese, and tomato, with the bun's geometric facets more visible.",
+    "description_view_2": "Opposite side view similar to the front, with the same visible toppings and bun details, but the tomato appears more prominent.",
+    "description_view_3": "Back view where the tomato slice is more exposed, and the layering of cheese and lettuce is clearly visible beneath the bun.",
+    "category": "hamburger",
+    "height": 0.1,
+    "max_dimension": 0.13,
+    "materials": [
+        "bread",
+        "lettuce",
+        "cheese",
+        "tomato",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.13,
+        0.12,
+        0.05
+    ],
+    "mass": 0.18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "top bun",
+        "lettuce",
+        "cheese",
+        "tomato",
+        "bottom bun"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "white",
+        "green",
+        "yellow",
+        "red"
+    ],
+    "colors_composition": [
+        0.55,
+        0.05,
+        0.15,
+        0.13,
+        0.12
+    ],
+    "surface_hardness": "soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_bun_type": "sesame seed bun",
+    "attribute_patty_visibility": "not visible",
+    "attribute_topping_arrangement": "Lettuce is layered directly beneath the top bun, followed by a slice of tomato and a slice of cheese, all stacked evenly with no visible patty.",
+    "attribute_packaging_presence": false,
+    "attribute_sesame_seed_presence": true,
+    "uid": "7c05c683425740febabd29a937de624f",
+    "near_synsets": {
+        "hamburger.n.01": 0.46380534459781625,
+        "hamburger_bun.n.01": 0.4985804043238456,
+        "cheeseburger.n.01": 0.5029852134756836,
+        "bacon-lettuce-tomato_sandwich.n.01": 0.5279090859093583,
+        "tunaburger.n.01": 0.5414095855425538,
+        "ground_beef.n.01": -1000.0
+    },
+    "synset": "hamburger_bun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7c05c683425740febabd29a937de624f",
+        "creator_username": "greenbox6",
+        "creator_display_name": "Sictuan",
+        "creator_profile_url": "https://sketchfab.com/greenbox6"
+    },
+    "filename": "std_7c05c683425740febabd29a937de624f.glb",
+    "length": 0.1626090258359909,
+    "width": 0.16274289786815643
+}

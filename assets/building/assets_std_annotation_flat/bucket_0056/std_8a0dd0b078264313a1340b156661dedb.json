@@ -1,0 +1,97 @@
+{
+    "description_long": "This drone features a robust, elongated central body with a rounded nose and a more angular, faceted rear section. It is equipped with three large, dual-bladed rotors mounted on extended arms, arranged in a triangular configuration for stable flight. The rotors are dark in color and contrast with the tan and brown hues of the main body, which appears to be constructed from a combination of lightweight metal and composite materials. The rear of the drone includes a smaller, multi-bladed propeller, likely for additional stabilization or thrust. The landing gear consists of two angular, fixed legs that provide ground clearance for the body and rotors. The overall design suggests a utilitarian, possibly surveillance or delivery-oriented drone suitable for urban environments.",
+    "description": "A tan and brown drone with three large rotors in a triangular layout, angular landing legs, and a small rear propeller. Its robust body and extended arms suggest a design for stable flight and urban utility.",
+    "description_view_0": "Top-down view showing the three large rotors, the angular arms, and the full length of the body with the rear propeller visible.",
+    "description_view_1": "Front view highlighting the rounded nose, the symmetrical placement of the rotors, and the angular landing legs.",
+    "description_view_2": "Side view displaying the elongated body, the angular rear section, and the alignment of the rotors and rear propeller.",
+    "description_view_3": "Rear view focusing on the small multi-bladed rear propeller, the two main rotors, and the structure of the landing legs.",
+    "category": "drone",
+    "height": 0.5,
+    "max_dimension": 1.2,
+    "materials": [
+        "composite",
+        "aluminum",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "mass": 6.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 65,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotor",
+        "propeller",
+        "landing gear"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 4,
+    "attribute_rotor_configuration": "tricopter Y with tail propeller",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": false,
+    "attribute_propeller_guard_presence": false,
+    "uid": "8a0dd0b078264313a1340b156661dedb",
+    "near_synsets": {
+        "drone.n.04": 0.5335560372122425,
+        "single-rotor_helicopter.n.01": 0.5532497441136544,
+        "rotor.n.03": 0.5588236354353865,
+        "orthopter.n.01": 0.5654196534147166,
+        "main_rotor.n.01": 0.5662678977237252,
+        "drone.n.01": -1000.0,
+        "drone.n.05": -1000.0,
+        "monotone.n.01": -1000.0,
+        "dawdler.n.01": -1000.0
+    },
+    "synset": "drone.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8a0dd0b078264313a1340b156661dedb",
+        "creator_username": "SophieF",
+        "creator_display_name": "SophieF",
+        "creator_profile_url": "https://sketchfab.com/SophieF"
+    },
+    "filename": "std_8a0dd0b078264313a1340b156661dedb.glb",
+    "length": 0.9832992553710938,
+    "width": 1.239959716796875
+}

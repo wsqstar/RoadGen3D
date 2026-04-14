@@ -1,0 +1,98 @@
+{
+    "description_long": "This humanoid robot features a rounded, metallic body with a domed head and a friendly, simple face consisting of two circular eyes and a small smiling mouth. Its torso is cylindrical, segmented by a horizontal band, and the arms and legs are constructed from jointed, mechanical segments with visible bolts and hinges. The arms end in claw-like hands, while the legs terminate in broad, flat feet designed for stability. The robot's surface is predominantly a dark, matte gray metal, giving it a robust and industrial appearance. The design is utilitarian yet approachable, with exposed mechanical joints and a sturdy build suitable for urban environments. Subtle details, such as panel lines and fasteners, enhance its mechanical realism.",
+    "description": "A sturdy, matte gray humanoid robot with a rounded head, simple facial features, jointed limbs, and broad, flat feet. Its industrial design is both functional and approachable.",
+    "description_view_0": "Side view showing the robot's cylindrical torso, jointed arm extended forward, and broad, flat feet.",
+    "description_view_1": "Rear view highlighting the segmented back, mechanical joints, and symmetrical leg structure.",
+    "description_view_2": "Opposite side view with the other arm visible, showing the same jointed structure and mechanical details.",
+    "description_view_3": "Front view displaying the robot's friendly face, symmetrical arms, and sturdy stance.",
+    "category": "humanoid robot",
+    "height": 1.6,
+    "max_dimension": 0.7,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air",
+        "glass"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "hands",
+        "legs",
+        "feet",
+        "head"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both legs straight, one arm extended forward and the other slightly bent, head facing forward, and torso upright.",
+    "attribute_clothing_style": "No visible clothing; the robot is covered in integrated metallic panels with some exposed mechanical joints.",
+    "attribute_facial_features": "The face features two circular, indented eyes and a small, curved mouth, giving a friendly and approachable expression. No nose or additional facial components are present.",
+    "attribute_limb_articulation": "Arms and legs have multiple hinge joints at the shoulders, elbows, hips, and knees, allowing for a range of motion. Hands are claw-like with simple articulation, and feet are broad and flat with visible ankle joints.",
+    "attribute_presence_of_sensors": "None visible",
+    "uid": "472809d7045c4863adbe2df7fbb4d3fd",
+    "near_synsets": {
+        "android.n.01": 0.5428867851359807,
+        "robotics_equipment.n.01": 0.5662999343783683,
+        "cyborg.n.01": 0.5752301573825701,
+        "automaton.n.02": 0.5753047150896227,
+        "robotics.n.01": 0.5822790917061472
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/472809d7045c4863adbe2df7fbb4d3fd",
+        "creator_username": "krimzik",
+        "creator_display_name": "Krimzik",
+        "creator_profile_url": "https://sketchfab.com/krimzik"
+    },
+    "filename": "std_472809d7045c4863adbe2df7fbb4d3fd.glb",
+    "length": 0.9387572705745697,
+    "width": 0.6499382257461548
+}

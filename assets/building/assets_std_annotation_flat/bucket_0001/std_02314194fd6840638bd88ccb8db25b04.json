@@ -1,0 +1,116 @@
+{
+    "description_long": "This is a large, rectangular outdoor control cabinet, typically used for housing electrical or power distribution equipment in urban environments. The exterior is primarily composed of light gray concrete or metal panels, with sections of dark gray brick-like texture on the front and sides. The front face features two black doors, one of which has a ventilation grille and both display high voltage warning signs, indicating electrical hazard. The cabinet is partially covered with green climbing ivy, especially on the sides and top, giving it a weathered, urban look. The structure appears robust and is likely anchored to the ground, with a flat roof that could support small objects. A number '19' is visible on the front, likely serving as an identification or address marker.",
+    "description": "A large, rectangular, gray control cabinet with black doors, warning signs, and climbing ivy on its surfaces, designed for outdoor electrical or power distribution use.",
+    "description_view_0": "The side view shows a plain gray panel with a brick-like texture and some ivy climbing up the right edge.",
+    "description_view_1": "The back view is dominated by a brick-textured surface heavily covered with green ivy, obscuring much of the panel.",
+    "description_view_2": "The opposite side view is almost entirely covered in dense ivy, with only a small portion of the gray surface visible.",
+    "description_view_3": "The front view displays two black doors, one with a ventilation grille, high voltage warning signs, a number '19', and some ivy creeping from the left.",
+    "category": "control cabinets",
+    "height": 2.0,
+    "max_dimension": 3.0,
+    "materials": [
+        "metal",
+        "concrete",
+        "glass",
+        "plastic",
+        "air",
+        "vegetation"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.05,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "ventilation grille"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "green",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_door_handle_type": "lever",
+    "attribute_lock_mechanism_presence": true,
+    "attribute_ventilation_grille_pattern": "horizontal slits",
+    "attribute_warning_or_information_labels": [
+        "high voltage",
+        "number 19"
+    ],
+    "attribute_mounting_style": "floor-standing",
+    "uid": "02314194fd6840638bd88ccb8db25b04",
+    "near_synsets": {
+        "control_panel.n.01": 0.5135762922035476,
+        "cabinet.n.04": 0.5379525235996209,
+        "wiring.n.01": 0.5507408739460852,
+        "outlet_box.n.01": 0.5539526617479178,
+        "control_room.n.01": 0.555635788725728,
+        "restraint.n.02": -1000.0,
+        "control_condition.n.01": -1000.0,
+        "control.n.10": -1000.0,
+        "control.n.01": -1000.0,
+        "dominance.n.02": -1000.0,
+        "control.n.05": -1000.0,
+        "control.n.11": -1000.0,
+        "control.n.02": -1000.0,
+        "cabinet.n.02": -1000.0,
+        "control.n.03": -1000.0,
+        "cabinet.n.03": -1000.0,
+        "cabinet.n.01": -1000.0,
+        "command.n.06": -1000.0,
+        "control.n.09": -1000.0
+    },
+    "synset": "control_panel.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/02314194fd6840638bd88ccb8db25b04",
+        "creator_username": "VRVisuals_nl",
+        "creator_display_name": "VRVisuals.nl",
+        "creator_profile_url": "https://sketchfab.com/VRVisuals_nl"
+    },
+    "filename": "std_02314194fd6840638bd88ccb8db25b04.glb",
+    "length": 2.1736139059066772,
+    "width": 3.0453786849975586
+}

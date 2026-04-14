@@ -1,0 +1,120 @@
+{
+    "description_long": "This gas station features a large, dark blue canopy with yellow trim, sheltering three fueling bays, each with a modern pump. The main building is attached to the rear of the canopy, with a flat roof and a secondary structure to the side, likely serving as a convenience store or service area. A tall, rectangular sign tower stands at the front left, prominently displaying branding. The fueling area is paved with a wide driveway, bordered by yellow lines for traffic guidance. The overall design is modern, with clean lines and a cohesive color scheme of blue and yellow. The station includes multiple interactive elements such as fuel pumps, signage, and entryways.",
+    "description": "A modern gas station with a blue and yellow canopy, three fuel pumps, a main building, and a tall branded sign tower.",
+    "description_view_0": "Front view showing the canopy, three fuel pumps, main building, and tall sign tower with branding.",
+    "description_view_1": "Side view highlighting the flat-roofed main building, canopy extension, and the paved driveway layout.",
+    "description_view_2": "Rear view displaying the back of the main building, canopy support columns, and the secondary structure.",
+    "description_view_3": "Opposite side view showing the side of the main building, canopy, and the extended paved area.",
+    "category": "gas station",
+    "height": 6.0,
+    "max_dimension": 28.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "glass",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.18,
+        0.1,
+        0.08,
+        0.04,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "fueling",
+        "payment",
+        "refilling",
+        "signage_reading"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "fuel pump",
+        "pump nozzle",
+        "payment terminal",
+        "door",
+        "signage",
+        "price board"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "car"
+    ],
+    "colors": [
+        "blue",
+        "yellow",
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.55,
+        0.15,
+        0.2,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 6.0,
+    "asset_composition_type": "scene",
+    "attribute_fuel_pumps": "Three modern fuel pumps are arranged in a single row under the canopy, each with a rectangular design, blue and yellow color scheme, and visible hoses. Branding is present on the pumps, but no digital displays are clearly visible.",
+    "attribute_canopy_structure": "A large, flat, dark blue canopy with yellow trim covers the fueling area, supported by four white columns. The canopy is rectangular with a modern, minimalist style and features attached signage.",
+    "attribute_station_signage": "A tall, rectangular sign tower at the front left displays the station's branding in blue and yellow. Additional branding is visible on the canopy and fuel pumps. No other directional or safety signage is clearly visible.",
+    "attribute_price_display_board": "A price display board is integrated into the tall sign tower at the front left, featuring a blue background with yellow trim. The format and number of price listings are not clearly visible.",
+    "attribute_convenience_store_entrance": "The convenience store entrance is located at the rear of the canopy, attached to the main building. It appears to have a single manual door, with branding above the entrance. The entrance is modest in size and style.",
+    "uid": "4c77c1ef6d264e5fa1628391a3e93d87",
+    "near_synsets": {
+        "service_station.n.01": 0.4946684386129351,
+        "gasoline_station.n.01": 0.5081229498075058,
+        "gas_pump.n.01": 0.5126447132699684,
+        "gas_line.n.01": 0.5603937999682754,
+        "gas_tank.n.01": 0.5606666140105137,
+        "natural_gas.n.01": -1000.0,
+        "accelerator.n.01": -1000.0,
+        "place.n.10": -1000.0,
+        "gas.n.01": -1000.0,
+        "station.n.03": -1000.0,
+        "flatulence.n.01": -1000.0,
+        "post.n.01": -1000.0,
+        "station.n.05": -1000.0,
+        "gas.n.02": -1000.0,
+        "station.n.01": -1000.0,
+        "gasoline.n.01": -1000.0
+    },
+    "synset": "gasoline_station.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4c77c1ef6d264e5fa1628391a3e93d87",
+        "creator_username": "charmortytcntc",
+        "creator_display_name": "Cris Charmort",
+        "creator_profile_url": "https://sketchfab.com/charmortytcntc"
+    },
+    "filename": "std_4c77c1ef6d264e5fa1628391a3e93d87.glb",
+    "length": 20.988680839538574,
+    "width": 28.80303192138672
+}

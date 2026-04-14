@@ -1,0 +1,110 @@
+{
+    "description_long": "This object depicts a small, rectangular graveyard plot set on a grassy terrain. The graveyard consists of a concrete or stone slab with a series of evenly spaced, upright grave markers arranged in rows. At one end of the plot, there is a prominent vertical headstone or memorial wall, which features a central plaque or inscription area and two small decorative motifs on either side. The grave markers are simple, dark-colored posts, possibly representing headstones or grave stakes. The surrounding terrain is slightly undulating, giving a naturalistic appearance to the setting. The overall design is minimalistic, with a focus on the orderly arrangement of the graves and the central memorial feature.",
+    "description": "A small, rectangular graveyard with a central memorial wall and rows of upright grave markers on a grassy plot.",
+    "description_view_0": "Front view showing the solid memorial wall and the tops of the grave markers arranged in rows.",
+    "description_view_1": "Side view highlighting the length of the graveyard and the alignment of the grave markers extending from the memorial wall.",
+    "description_view_2": "Rear view displaying the face of the memorial wall with a central plaque and decorative motifs, as well as the full arrangement of grave markers.",
+    "description_view_3": "Opposite side view showing the grave markers in profile and the thickness of the memorial wall.",
+    "category": "grave yard",
+    "height": 1.2,
+    "max_dimension": 6.0,
+    "materials": [
+        "concrete",
+        "stone",
+        "metal",
+        "soil",
+        "grass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [],
+    "support_surface": true,
+    "interactive_parts": [
+        "plaque"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "scene",
+    "attribute_tombstone_inscriptions": [],
+    "attribute_crosses": [],
+    "attribute_grave_markers": [
+        {
+            "type": "headstone",
+            "material": "stone",
+            "dimensions": [
+                0.4,
+                0.15,
+                0.05
+            ]
+        }
+    ],
+    "attribute_mausoleums": [],
+    "attribute_cemetery_gates": [],
+    "uid": "2aee82cc88f9449ebb2f225049fce5b3",
+    "near_synsets": {
+        "grave.n.02": 0.45596813848830753,
+        "cemetery.n.01": 0.46902996166130556,
+        "gravestone.n.01": 0.4824951620412945,
+        "cairn.n.01": 0.5025809965080124,
+        "repository.n.03": 0.5137511243763174,
+        "yard.n.03": -1000.0,
+        "yard.n.08": -1000.0,
+        "yard.n.02": -1000.0,
+        "yard.n.06": -1000.0,
+        "yard.n.07": -1000.0,
+        "yard.n.09": -1000.0,
+        "cubic_yard.n.01": -1000.0,
+        "yard.n.01": -1000.0,
+        "thousand.n.01": -1000.0
+    },
+    "synset": "cemetery.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2aee82cc88f9449ebb2f225049fce5b3",
+        "creator_username": "sdaamfa",
+        "creator_display_name": "San Diego African American Museum of Fine Art",
+        "creator_profile_url": "https://sketchfab.com/sdaamfa"
+    },
+    "filename": "std_2aee82cc88f9449ebb2f225049fce5b3.glb",
+    "length": 7.524795055389404,
+    "width": 8.771644592285156
+}

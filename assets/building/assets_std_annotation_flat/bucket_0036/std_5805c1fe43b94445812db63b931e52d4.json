@@ -1,0 +1,90 @@
+{
+    "description_long": "This humanoid robot features a blocky, geometric design with a copper-brown and dark gray color scheme. Its head is a simple rectangular prism, mounted atop a broad, angular chest and shoulder assembly. The arms and legs are composed of segmented, jointed sections, with the legs ending in wide, wedge-shaped feet that suggest stability and support. The robot's torso is compact and connects to the limbs via visible pivot points, indicating mechanical articulation. The overall appearance is utilitarian, with no decorative elements or visible sensors, and the surfaces are smooth and hard, resembling metal or high-grade plastic. The robot's proportions and stance evoke a functional, industrial aesthetic suitable for urban environments.",
+    "description": "A blocky, copper-brown and dark gray humanoid robot with articulated limbs and a simple, geometric design. Its smooth, hard surfaces and wide feet suggest stability and industrial utility.",
+    "description_view_0": "Front view showing the robot's rectangular head, broad shoulders, articulated arms, and wide, wedge-shaped feet.",
+    "description_view_1": "Side view highlighting the depth of the torso, the angular head profile, and the thickness of the legs and feet.",
+    "description_view_2": "Rear view similar to the front, with visible limb articulation and the back of the head and torso.",
+    "description_view_3": "Opposite side view, mirroring view 1, showing the same angular head and robust limb structure.",
+    "category": "humanoid robot",
+    "height": 1.7,
+    "max_dimension": 1.0,
+    "materials": [
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "legs",
+        "head",
+        "torso joints"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "copper-brown",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.35
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.08,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms hanging straight down and legs positioned symmetrically beneath the torso. The head is facing forward and the body is in a neutral, balanced stance.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated panels and mechanical components with no decorative coverings.",
+    "attribute_facial_features": "The face is a plain rectangular block with no visible eyes, mouth, nose, or expressive elements; it lacks any display screens or facial features.",
+    "attribute_limb_articulation": "Arms and legs each have at least two visible hinge joints, allowing for basic forward and backward movement. The limbs appear rigid, with no visible hands or fingers, and the feet are wide and flat.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "5805c1fe43b94445812db63b931e52d4",
+    "near_synsets": {
+        "android.n.01": 0.5470179963757764,
+        "cyborg.n.01": 0.5649844617722285,
+        "automaton.n.02": 0.5701639924601871,
+        "robotics_equipment.n.01": 0.5766211527211171,
+        "robotics.n.01": 0.5904043746510372
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5805c1fe43b94445812db63b931e52d4",
+        "creator_username": "DiceMeister",
+        "creator_display_name": "DiceMeister",
+        "creator_profile_url": "https://sketchfab.com/DiceMeister"
+    },
+    "filename": "std_5805c1fe43b94445812db63b931e52d4.glb",
+    "length": 0.7691781520843506,
+    "width": 1.2224435806274414
+}

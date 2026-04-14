@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a boxy, utilitarian ambulance vehicle with a predominantly white exterior and a bold red horizontal stripe running along its sides. The vehicle features two prominent blue emergency light bars mounted on the roof, and the front cab has large, dark-tinted windows for visibility. The wheels are black with simple hubcaps, and the bodywork shows subtle panel lines and some weathering, suggesting regular urban use. The rear of the ambulance is equipped with a single hinged door, providing access to the medical compartment. There are no visible medical cross symbols or detailed signage, but the red stripe and blue lights clearly indicate its emergency function. The overall design is functional, with minimal decorative elements, focusing on practicality and quick access.",
+    "description": "A white ambulance van with a red stripe, blue roof lights, and a single rear door, designed for emergency medical response.",
+    "description_view_0": "Side view showing the red stripe, two blue roof lights, and the main body with black wheels.",
+    "description_view_1": "Front view highlighting the windshield, blue roof lights, and the vehicle's boxy cab.",
+    "description_view_2": "Opposite side view with the red stripe, blue lights, and visible panel lines on the body.",
+    "description_view_3": "Rear view showing a single hinged door and part of the red stripe wrapping around the back.",
+    "category": "ambulance",
+    "height": 2.5,
+    "max_dimension": 5.0,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 3200,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "light bar",
+        "window",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "black",
+        "blue",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_emergency_light_bar": true,
+    "attribute_ambulance_signage": "red horizontal stripe, no visible text or symbols",
+    "attribute_medical_cross_symbol": false,
+    "attribute_siren": false,
+    "attribute_rear_compartment_doors": "single hinged door",
+    "uid": "3da99d95bb1b4555b06f1ecc7e4667c2",
+    "near_synsets": {
+        "ambulance.n.01": 0.45108492732134037,
+        "funny_wagon.n.01": 0.5298143203454718,
+        "police_van.n.01": 0.5447003410740101,
+        "passenger_van.n.01": 0.56538797891468,
+        "paramedic.n.01": 0.5664055119427183
+    },
+    "synset": "ambulance.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3da99d95bb1b4555b06f1ecc7e4667c2",
+        "creator_username": "tp3rson",
+        "creator_display_name": "tp3rson",
+        "creator_profile_url": "https://sketchfab.com/tp3rson"
+    },
+    "filename": "std_3da99d95bb1b4555b06f1ecc7e4667c2.glb",
+    "length": 6.45424747467041,
+    "width": 2.347250461578369
+}

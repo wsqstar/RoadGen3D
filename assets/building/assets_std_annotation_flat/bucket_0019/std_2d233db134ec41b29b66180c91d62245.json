@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a dark gray armored combat vehicle with a low, angular profile and a prominent central turret. The turret is octagonal and features a forward-facing cannon, while the hull is broad and flat with sharply defined edges. The vehicle is equipped with wide, continuous tracks on both sides, supported by multiple large road wheels, giving it significant ground clearance and off-road capability. The front of the vehicle is sloped for deflection, and there are additional geometric details on the upper hull, including a hatch and angular panels. The rear is blocky and features squared-off surfaces, with no visible exhausts or external storage. The overall design is utilitarian, with no visible markings or camouflage, emphasizing function over aesthetics.",
+    "description": "A dark gray, angular armored combat vehicle with a central turret and forward-facing cannon, supported by wide tracks and large road wheels. The design is utilitarian, with sloped armor and no visible markings or camouflage.",
+    "description_view_0": "Front view shows the sloped glacis plate, central turret with cannon, and wide tracks flanking the hull.",
+    "description_view_1": "Left side view highlights the octagonal turret, cannon, and the full length of the tracks with six large road wheels.",
+    "description_view_2": "Rear view reveals the blocky back of the hull, squared-off surfaces, and the rear ends of the tracks.",
+    "description_view_3": "Right side view mirrors the left, showing the turret, cannon, and track system with large wheels.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air",
+        "plastic"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 160000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "tracks",
+        "wheels"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the central turret; no other weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, angular steel armor plating; sloped front glacis and turret for deflection; no modular or reactive panels visible.",
+    "attribute_camouflage_pattern": "None visible; solid dark gray color.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "2d233db134ec41b29b66180c91d62245",
+    "near_synsets": {
+        "tank.n.01": 0.4927087470474041,
+        "military_vehicle.n.01": 0.49577994567845934,
+        "armored_car.n.02": 0.4995084462343176,
+        "assault_gun.n.02": 0.5116229929804744,
+        "reconnaissance_vehicle.n.01": 0.517552044861752,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2d233db134ec41b29b66180c91d62245",
+        "creator_username": "alex-toma",
+        "creator_display_name": "alex-toma",
+        "creator_profile_url": "https://sketchfab.com/alex-toma"
+    },
+    "filename": "std_2d233db134ec41b29b66180c91d62245.glb",
+    "length": 5.50312066078186,
+    "width": 2.9030741453170776
+}

@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a large, weathered barn with a classic gambrel roof, featuring a prominent central section and two lower side extensions. The roof is covered in corrugated metal panels, showing signs of rust and age, giving it a rustic, utilitarian appearance. The exterior siding is vertically oriented and appears distressed, with visible wear and fading. The front facade has a large, rectangular main door and two smaller side openings, likely for equipment or livestock access. There are no visible windows, emphasizing its functional, agricultural design. The barn sits on a flat, rectangular base, suggesting it is intended to be placed on level ground.",
+    "description": "A large, weathered barn with a gambrel roof, corrugated metal panels, and distressed vertical siding. The front features a large main door and two side openings, with no visible windows.",
+    "description_view_0": "Front view showing the main large door and two smaller side openings, with the gambrel roof and distressed vertical siding clearly visible.",
+    "description_view_1": "Top-down view highlighting the corrugated metal roof panels and the barn's overall rectangular footprint, with the central and side roof sections distinct.",
+    "description_view_2": "Rear view displaying the plain, unadorned back wall with no doors or windows, and the full height of the gambrel roof.",
+    "description_view_3": "Top-down view from the rear, emphasizing the roof's structure and the barn's overall massing without visible openings.",
+    "category": "barn",
+    "height": 8.0,
+    "max_dimension": 20.0,
+    "materials": [
+        "wood",
+        "corrugated metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "mass": 25000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "storable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "gray",
+        "white",
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gambrel roof with central and side extensions",
+    "attribute_siding_pattern": "vertical board and batten",
+    "attribute_door_style": "single large rectangular hinged door with two smaller side openings",
+    "attribute_window_arrangement": "no visible windows on any facade",
+    "attribute_architectural_style": "traditional American barn",
+    "uid": "c40f5f5a430b4acfb677f102c5d127a5",
+    "near_synsets": {
+        "barn_door.n.01": 0.4961434694570808,
+        "barn.n.01": 0.5081079165733218,
+        "farm_building.n.01": 0.5237330519009535,
+        "farmhouse.n.01": 0.5281964954764984,
+        "cowbarn.n.01": 0.5323237822040029,
+        "barn.n.02": -1000.0
+    },
+    "synset": "barn.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c40f5f5a430b4acfb677f102c5d127a5",
+        "creator_username": "acolitart",
+        "creator_display_name": "acolitart",
+        "creator_profile_url": "https://sketchfab.com/acolitart"
+    },
+    "filename": "std_c40f5f5a430b4acfb677f102c5d127a5.glb",
+    "length": 17.40755271911621,
+    "width": 17.407546997070312
+}

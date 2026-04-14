@@ -1,0 +1,108 @@
+{
+    "description_long": "This stretcher is a hospital-style medical bed designed for patient transport and care, featuring a robust metal frame with a segmented, adjustable platform. The bed is equipped with four wheels for mobility, two of which have visible locking mechanisms for stability during use. Both sides of the stretcher have protective side rails that can be raised or lowered to prevent the patient from falling out. The head and foot sections are slightly elevated, and the surface is covered with a green mattress pad for patient comfort. Handles are integrated at both ends for manual maneuvering, and the overall construction suggests a collapsible frame for ease of storage or transport. The stretcher's design is utilitarian, with a mix of metallic gray, black, and green tones, suitable for use in urban healthcare settings such as ambulances, clinics, or emergency response scenarios.",
+    "description": "A hospital-style stretcher with a metal frame, wheels, side rails, and a green mattress pad, designed for patient transport and care. It features handles, collapsible elements, and a utilitarian color scheme.",
+    "description_view_0": "Front view showing the headboard, raised side rails, and the green mattress pad with handles visible at the front.",
+    "description_view_1": "Side view highlighting the segmented bed platform, wheels, and the full length of the side rails.",
+    "description_view_2": "Rear view displaying the footboard, rear handles, and the structure of the collapsible frame.",
+    "description_view_3": "Opposite side view showing the wheels, side rails, and the overall length of the stretcher.",
+    "category": "stretcher",
+    "height": 1.1,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "plastic",
+        "foam",
+        "fabric",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.12,
+        0.1,
+        0.05,
+        0.03
+    ],
+    "mass": 55,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "adjustable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "side rail",
+        "handle",
+        "mattress pad",
+        "locking mechanism"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "black",
+        "green",
+        "white"
+    ],
+    "colors_composition": [
+        0.55,
+        0.2,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.08,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_wheels": true,
+    "attribute_collapsible_frame": true,
+    "attribute_side_rails": true,
+    "attribute_handles": true,
+    "attribute_mattress_pad": true,
+    "uid": "20c3e27754f24f3abcd04a4e60f4cb16",
+    "near_synsets": {
+        "stretcher.n.03": 0.4734016624830172,
+        "hospital_bed.n.01": 0.5013896827954144,
+        "gurney.n.01": 0.5232926687034931,
+        "stretcher_party.n.01": 0.5359330959745104,
+        "stretcher.n.02": 0.5517082149222312,
+        "stretcher.n.01": -1000.0,
+        "capstone.n.02": -1000.0
+    },
+    "synset": "stretcher.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/20c3e27754f24f3abcd04a4e60f4cb16",
+        "creator_username": "damngoodadmin",
+        "creator_display_name": "damngoodadmin",
+        "creator_profile_url": "https://sketchfab.com/damngoodadmin"
+    },
+    "filename": "std_20c3e27754f24f3abcd04a4e60f4cb16.glb",
+    "length": 2.5378729104995728,
+    "width": 1.3898239135742188
+}

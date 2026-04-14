@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a robust, tactical-style shotgun with a distinctive triple-barrel configuration, each barrel aligned horizontally and encased in a matte black finish. The receiver is a solid, metallic gray block that connects the barrels to a wooden stock, which is ergonomically shaped and finished in a dark brown color. The stock is full-sized, providing stability and control, and the grip area is smoothly contoured for comfortable handling. The trigger guard is a simple, rounded metal loop, offering basic protection for the trigger mechanism. The shotgun features a prominent, squared receiver and a visible trigger, with no external magazine or shell port apparent. The overall design suggests a heavy, durable weapon suitable for urban tactical scenarios, with a blend of metal and wood materials for both function and aesthetics.",
+    "description": "A heavy, triple-barrel shotgun with a matte black finish, metallic receiver, and a full wooden stock. The design is robust and tactical, blending metal and wood for durability and control.",
+    "description_view_0": "Front view showing the three horizontally aligned barrels and the muzzle openings.",
+    "description_view_1": "Side view highlighting the triple-barrel arrangement, metallic receiver, and full wooden stock.",
+    "description_view_2": "Rear view displaying the end of the wooden stock and the back of the receiver.",
+    "description_view_3": "Opposite side view showing the same triple-barrel and stock configuration from the other side.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.95,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 4.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 45,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "aimable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "trigger",
+        "trigger guard",
+        "barrels",
+        "receiver",
+        "grip"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "Triple-barrel, horizontally aligned, no visible ribbing or venting.",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "break-action",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "Rounded, medium-sized metal loop with no finger grooves or reinforcement.",
+    "uid": "fc154de691cb4856839e3a818c64391b",
+    "near_synsets": {
+        "shotgun.n.01": 0.5189766389081966,
+        "sawed-off_shotgun.n.01": 0.5329916935807192,
+        "shotgun_shell.n.01": 0.5629376715166969,
+        "gun.n.01": 0.563148390483324,
+        "dragunov.n.01": 0.5730700467095186
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fc154de691cb4856839e3a818c64391b",
+        "creator_username": "yellowdrill",
+        "creator_display_name": "Yellow Drill",
+        "creator_profile_url": "https://sketchfab.com/yellowdrill"
+    },
+    "filename": "std_fc154de691cb4856839e3a818c64391b.glb",
+    "length": 0.6933703124523163,
+    "width": 0.11041311547160149
+}

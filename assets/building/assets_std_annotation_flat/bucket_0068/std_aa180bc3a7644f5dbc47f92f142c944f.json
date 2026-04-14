@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a sunken airplane resting on a seabed, partially covered by marine growth and surrounded by clear blue water. The fuselage is largely intact, with the wings extending out from either side and the tail section still attached. The cockpit area is visible at the front, though the canopy appears to be missing or heavily degraded. The wings are straight and mid-mounted, with no visible winglets or significant sweep. The engines are mounted on the wings, and the landing gear is not visible, likely retracted or lost. The surface of the airplane is weathered, with a mix of exposed metal and encrusted marine life, giving it a rough, matte appearance.",
+    "description": "A weathered, sunken airplane with mid-mounted straight wings and visible engines, partially covered by marine growth on a blue seabed.",
+    "description_view_0": "The airplane is seen from a side angle, highlighting the length of the fuselage and the outline of the wings against the seabed.",
+    "description_view_1": "A diagonal view emphasizes the nose and cockpit area, with the wings and engines extending outward and the tail receding into the background.",
+    "description_view_2": "A top-down view clearly shows the full wingspan, the central fuselage, and the symmetrical placement of the engines.",
+    "description_view_3": "A narrow, angled view focuses on the side of the fuselage and the wing, with the tail section visible in the distance.",
+    "category": "airplane",
+    "height": 1.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 9000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 5,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cockpit",
+        "door",
+        "engine",
+        "wing",
+        "tail"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "green"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "mid-wing, straight wings with no visible winglets or sweep, no pronounced dihedral or anhedral angle",
+    "attribute_engine_type": "twin piston engines mounted on the wings",
+    "attribute_tail_design": "conventional tail with a single vertical stabilizer and horizontal stabilizers",
+    "attribute_landing_gear_type": "retractable landing gear, not visible",
+    "attribute_cockpit_placement": "forward-mounted, enclosed cockpit with multi-seat configuration, canopy missing or degraded",
+    "uid": "aa180bc3a7644f5dbc47f92f142c944f",
+    "near_synsets": {
+        "aircraft.n.01": 0.5303886494284742,
+        "seaplane.n.01": 0.5532079580714807,
+        "airplane.n.01": 0.5533946177405973,
+        "aircraft_engine.n.01": 0.5562354817666999,
+        "flying_boat.n.01": 0.5595195484535598
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/aa180bc3a7644f5dbc47f92f142c944f",
+        "creator_username": "beldridg",
+        "creator_display_name": "Brett Eldridge",
+        "creator_profile_url": "https://sketchfab.com/beldridg"
+    },
+    "filename": "std_aa180bc3a7644f5dbc47f92f142c944f.glb",
+    "length": 1.3225900530815125,
+    "width": 0.8041741251945496
+}

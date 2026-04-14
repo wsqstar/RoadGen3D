@@ -1,0 +1,97 @@
+{
+    "description_long": "This cowshed consists of two connected structures, both featuring red, pitched roofs with a hip design. The larger section is fully enclosed with light tan wooden siding, while the smaller section is open on all sides, supported by sturdy wooden posts with concrete footings. The open area provides shelter and ventilation, ideal for livestock, while the enclosed section offers protection from the elements. The construction materials appear to be primarily wood for the frame and siding, with a metal or composite roof. There are no visible windows, but the open design of one section ensures airflow. The overall appearance is functional and rustic, suitable for agricultural or rural-urban edge environments.",
+    "description": "A dual-section cowshed with a red hip roof, one part fully enclosed in tan wood and the other open-sided with wooden posts. The structure is rustic and functional, designed for livestock shelter and protection.",
+    "description_view_0": "Front view showing both the open-sided shelter and the fully enclosed section with red roofs and wooden supports.",
+    "description_view_1": "Side view highlighting the depth of both sections, with the open shelter in front and the enclosed building behind.",
+    "description_view_2": "Rear view displaying the back of the enclosed section and the open structure to the left, emphasizing the separation between the two parts.",
+    "description_view_3": "Opposite side view showing the gable ends of both sections, with the enclosed area in the foreground and the open shelter behind.",
+    "category": "cowshed",
+    "height": 5.5,
+    "max_dimension": 16.0,
+    "materials": [
+        "wood",
+        "metal",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.15
+    ],
+    "mass": 18000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "livestock"
+    ],
+    "colors": [
+        "red",
+        "tan",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.35,
+        0.45,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "hip",
+    "attribute_door_style": "single wooden plank door, simple construction",
+    "attribute_window_presence": "no windows",
+    "attribute_ventilation_features": "open eaves, open-sided section",
+    "attribute_architectural_style": "traditional rural",
+    "uid": "df90dcfcda0046d5b5575198b06577b5",
+    "near_synsets": {
+        "cowbarn.n.01": 0.4496147250736604,
+        "shed.n.01": 0.5134666459201236,
+        "woodshed.n.01": 0.5169103678684454,
+        "stockyard.n.01": 0.5199008128329754,
+        "coal_house.n.01": 0.52838724699096
+    },
+    "synset": "cowbarn.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/df90dcfcda0046d5b5575198b06577b5",
+        "creator_username": "crownoakbuildingsdesigns",
+        "creator_display_name": "crownoakbuildingsdesigns",
+        "creator_profile_url": "https://sketchfab.com/crownoakbuildingsdesigns"
+    },
+    "filename": "std_df90dcfcda0046d5b5575198b06577b5.glb",
+    "length": 7.229342699050903,
+    "width": 18.11714458465576
+}

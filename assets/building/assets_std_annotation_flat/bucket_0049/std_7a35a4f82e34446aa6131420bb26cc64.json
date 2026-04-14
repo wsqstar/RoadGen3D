@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a large, modern cargo or transport airplane with a robust, angular fuselage and a high-mounted, straight wing configuration. The aircraft features four prominent jet engines mounted in pairs under each wing, with large circular intakes and exhausts. The tail section is equipped with a T-tail design, where the horizontal stabilizer sits atop a tall vertical fin, and the rear fuselage is squared off, suggesting a cargo ramp or door. The cockpit is positioned at the very front of the fuselage, with a multi-panel windshield and a visible access ladder beneath the left side. The landing gear appears to be a tricycle configuration, with the main gear housed in pods under the wings and a nose gear beneath the cockpit. The exterior is primarily light gray with dark accents around the engines and windows, giving it a utilitarian, military or heavy-duty civilian transport appearance.",
+    "description": "A large, high-wing cargo or transport airplane with four underwing jet engines, a T-tail, and a forward cockpit. The exterior is light gray with dark engine and window accents.",
+    "description_view_0": "Rear view showing the T-tail, squared-off fuselage, and four large jet engines under the wings.",
+    "description_view_1": "Left side view highlighting the high-mounted wings, engine placement, cockpit windows, and access ladder.",
+    "description_view_2": "Front view displaying the cockpit, nose, four jet engines, and the broad wingspan.",
+    "description_view_3": "Right side view similar to the left, showing the wing, engines, cockpit, and access ladder.",
+    "category": "airplane",
+    "height": 12.0,
+    "max_dimension": 45.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "mass": 90000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "ladder",
+        "cockpit window",
+        "landing gear",
+        "engine",
+        "cargo ramp"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "dark gray",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.03,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "High-wing, straight configuration with no visible winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "Four underwing jet engines, likely turbofan type.",
+    "attribute_tail_design": "T-tail configuration with a single vertical stabilizer and high-mounted horizontal stabilizer.",
+    "attribute_landing_gear_type": "Tricycle landing gear with two main gear units under the wings and a single nose gear.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with multi-panel windows, likely multi-seat.",
+    "uid": "7a35a4f82e34446aa6131420bb26cc64",
+    "near_synsets": {
+        "aircraft.n.01": 0.48008521756013606,
+        "airplane.n.01": 0.48129101645700995,
+        "fuselage.n.01": 0.5058885463734026,
+        "jet.n.01": 0.5156114405592478,
+        "jetliner.n.01": 0.5156561771736513
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7a35a4f82e34446aa6131420bb26cc64",
+        "creator_username": "pandoraskitten",
+        "creator_display_name": "pandoraskitten",
+        "creator_profile_url": "https://sketchfab.com/pandoraskitten"
+    },
+    "filename": "std_7a35a4f82e34446aa6131420bb26cc64.glb",
+    "length": 31.23747730255127,
+    "width": 29.532681465148926
+}

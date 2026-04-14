@@ -1,0 +1,110 @@
+{
+    "description_long": "This vending machine features a rectangular, upright form with a predominantly red exterior and dark trim. The front panel displays a large, realistic image of a glass of cola with ice and a straw, accompanied by the stylized text 'Beta Cola' in white script. To the right of the image, there are several colored rectangular elements that may represent selection buttons or indicators. The left side panel also features a large image of a cola glass, while the right side is plain red with subtle texture. The back panel is solid dark brown with a visible circular vent or fan cover and four recessed circles, likely for mounting or ventilation. The machine's surface appears hard and slightly glossy, typical of metal vending machines with printed or laminated graphics.",
+    "description": "A red, rectangular vending machine with 'Beta Cola' branding, a large cola glass image, and colored selection elements on the front.",
+    "description_view_0": "The front view shows the main branding, a large cola glass image, 'Beta Cola' text, and colored selection elements.",
+    "description_view_1": "The left side view displays a large image of a cola glass on a red background, with no visible controls or branding text.",
+    "description_view_2": "The back view is solid dark brown with a circular vent or fan cover and four recessed circles, lacking any branding or controls.",
+    "description_view_3": "The right side view is plain red with subtle texture and no images, branding, or controls.",
+    "category": "vending machine",
+    "height": 1.7,
+    "max_dimension": 0.8,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "electronic_components",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "display panel",
+        "product retrieval slot",
+        "payment interface"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "white",
+        "brown",
+        "yellow",
+        "blue",
+        "green"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.04,
+        0.02,
+        0.02,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A small, vertically oriented rectangular area on the right side of the front panel, possibly a display or indicator, with colored segments.",
+    "attribute_payment_interface": "A small black rectangular area on the lower left of the front panel, likely a payment slot, but no clear details of type are visible.",
+    "attribute_product_selection_buttons": "A vertical row of four colored rectangular buttons or indicators on the right side of the front panel.",
+    "attribute_product_retrieval_slot": "A black rectangular slot near the bottom left of the front panel, likely for product retrieval.",
+    "attribute_branding_or_signage": "Large 'Beta Cola' script in white on the front panel, with a prominent image of a cola glass; both are centrally located and highly visible.",
+    "uid": "98dec21894e14ef1b4abf1ef233cfb8f",
+    "near_synsets": {
+        "vending_machine.n.01": 0.5238987722150403,
+        "coca_cola.n.01": 0.5240969496040341,
+        "pepsi.n.01": 0.5495703531770622,
+        "automat.n.01": 0.5642156964917495,
+        "soda_fountain.n.02": 0.5819554270280719,
+        "machine.n.04": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.05": -1000.0,
+        "machine.n.02": -1000.0,
+        "car.n.01": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/98dec21894e14ef1b4abf1ef233cfb8f",
+        "creator_username": "gunnarcorrea",
+        "creator_display_name": "Gunnar Correa",
+        "creator_profile_url": "https://sketchfab.com/gunnarcorrea"
+    },
+    "filename": "std_98dec21894e14ef1b4abf1ef233cfb8f.glb",
+    "length": 0.9564442038536072,
+    "width": 0.9529091417789459
+}

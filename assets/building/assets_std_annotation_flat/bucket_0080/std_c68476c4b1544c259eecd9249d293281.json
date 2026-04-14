@@ -1,0 +1,101 @@
+{
+    "description_long": "This vehicle is a heavily armored, matte-black police car with a boxy, angular design and reinforced panels. The front features a sloped hood and a small, centrally mounted turret or camera dome on the roof, suggesting tactical or riot control use. The sides are equipped with thick, angular doors and large, rugged wheels designed for urban or off-road environments. The rear cargo area is open and contains several large, cylindrical objects resembling battering rams or equipment canisters, as well as a rectangular box and a slanted panel. The windows are small and reinforced, providing limited visibility for occupants while maximizing protection. The overall appearance is utilitarian and robust, with no visible police markings, lights, or insignia.",
+    "description": "A matte-black, armored police vehicle with angular panels, rugged wheels, and an open rear cargo area containing equipment. It has a turret-like dome on the roof and lacks visible police markings or emergency lights.",
+    "description_view_0": "Side view showing the angular armored panels, large rugged wheels, and the open rear cargo area with equipment.",
+    "description_view_1": "Rear view highlighting the open cargo area with cylindrical equipment, a rectangular box, and a slanted panel.",
+    "description_view_2": "Opposite side view similar to view 0, showing the armored panels, wheels, and rear cargo details.",
+    "description_view_3": "Front view displaying the sloped hood, small windows, and the centrally mounted turret or dome on the roof.",
+    "category": "police car",
+    "height": 2.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 5,
+    "movable": true,
+    "required_force": 16000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "turret",
+        "cargo compartment",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_police_markings": "None",
+    "attribute_emergency_lights": "None",
+    "attribute_siren": "Not visible",
+    "attribute_police_insignia": "None",
+    "attribute_license_plate": "None",
+    "uid": "c68476c4b1544c259eecd9249d293281",
+    "near_synsets": {
+        "panda_car.n.01": 0.5029304609801775,
+        "cruiser.n.01": 0.5152759524713931,
+        "armored_car.n.02": 0.52219425814622,
+        "armored_car.n.01": 0.5268464650247066,
+        "police_van.n.01": 0.5314149412729361,
+        "cable_car.n.01": -1000.0,
+        "police.n.01": -1000.0,
+        "car.n.04": -1000.0,
+        "car.n.01": -1000.0,
+        "car.n.02": -1000.0,
+        "car.n.03": -1000.0
+    },
+    "synset": "armored_car.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c68476c4b1544c259eecd9249d293281",
+        "creator_username": "animefunzone",
+        "creator_display_name": "animefunzone",
+        "creator_profile_url": "https://sketchfab.com/animefunzone"
+    },
+    "filename": "std_c68476c4b1544c259eecd9249d293281.glb",
+    "length": 3.798006296157837,
+    "width": 2.3059314489364624
+}

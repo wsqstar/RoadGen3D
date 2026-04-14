@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a heavily armored, tracked military vehicle resembling a World War II German Tiger I tank, featuring a large, centrally mounted turret with a long-barreled cannon. The hull is rectangular with sloped armor plating, and the sides display prominent road wheels and continuous metal tracks for traversing rough terrain. The vehicle is equipped with various hatches, periscopes, and external storage elements, including a cylindrical tool or equipment container mounted on the side. The front showcases a thick glacis plate, headlamps, and a coaxial machine gun, while the rear includes engine access panels and exhaust pipes. The turret has a cupola for the commander and additional vision ports, and the overall finish is a matte, weathered gray, typical of armored vehicles used in urban and battlefield environments. The vehicle's robust construction and imposing size suggest it is designed for both offensive and defensive operations in challenging conditions.",
+    "description": "A large, armored tracked vehicle with a rotating turret and long cannon, finished in matte gray with visible road wheels and heavy armor plating.",
+    "description_view_0": "Front view shows the thick frontal armor, central cannon, headlamps, and tracks.",
+    "description_view_1": "Left side view highlights the long barrel, multiple road wheels, side-mounted equipment, and turret details.",
+    "description_view_2": "Rear view displays engine access panels, exhaust pipes, and the back of the turret.",
+    "description_view_3": "Right side view reveals the track system, turret, and additional side details.",
+    "category": "all-terrain vehicle",
+    "height": 3.0,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 57000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 300000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "wheel",
+        "track",
+        "headlamp",
+        "periscope",
+        "exhaust pipe"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 16,
+    "attribute_tire_tread_pattern": "The tracks feature a blocky, aggressive tread pattern designed for maximum traction on rough and uneven terrain, suitable for both urban rubble and off-road conditions.",
+    "attribute_suspension_type": "torsion bar",
+    "attribute_presence_of_roll_cage": false,
+    "attribute_handlebar_or_steering_wheel_type": "round steering wheel",
+    "uid": "268cc5eb807c444db2e26411e186f342",
+    "near_synsets": {
+        "armored_vehicle.n.01": 0.4636798348904694,
+        "tank.n.01": 0.4725439788487606,
+        "assault_gun.n.02": 0.478595376588888,
+        "military_vehicle.n.01": 0.48171472662850434,
+        "reconnaissance_vehicle.n.01": 0.48883420464782024,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/268cc5eb807c444db2e26411e186f342",
+        "creator_username": "165738",
+        "creator_display_name": "Some Random Guy From Internet",
+        "creator_profile_url": "https://sketchfab.com/165738"
+    },
+    "filename": "std_268cc5eb807c444db2e26411e186f342.glb",
+    "length": 6.701874494552612,
+    "width": 2.892968535423279
+}

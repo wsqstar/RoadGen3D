@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a realistic daisy-like flower with a bright yellow, textured central disc and numerous elongated white petals radiating outward in a symmetrical, radial pattern. The petals are slightly curved and overlap at their bases, giving the flower a full, layered appearance. The central disc is dome-shaped and densely packed, contrasting with the smooth, slender green stem that supports the flower. The stem is straight and cylindrical, with a subtle gradient from a deeper green at the base to a lighter green near the flower head. No leaves are visible along the stem, and the flower head is solitary, positioned at the very top of the stem. The overall form is delicate and natural, suitable for placement in urban parks, gardens, or roadside green spaces.",
+    "description": "A daisy-like flower with a yellow central disc and white, radiating petals atop a slender green stem. The flower is solitary and lacks visible leaves.",
+    "description_view_0": "Front view showing the full face of the flower with its yellow center and white petals radiating outward.",
+    "description_view_1": "Side view highlighting the thickness of the central disc and the profile of the petals, with the green stem visible.",
+    "description_view_2": "Rear view displaying the green base of the flower head and the arrangement of petals from behind.",
+    "description_view_3": "Opposite side view showing the same profile as view 1, with the stem and petal layering visible.",
+    "category": "flower",
+    "height": 0.18,
+    "max_dimension": 0.07,
+    "materials": [
+        "plant_fiber",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 0.003,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0.1,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pluckable",
+        "breakable",
+        "crushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "petals",
+        "stem",
+        "central_disc"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "white",
+        "yellow",
+        "green"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.2
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.38,
+    "youngs_modulus": 0.02,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.05,
+    "asset_composition_type": "single",
+    "attribute_petal_arrangement": "The petals are arranged in a radial, actinomorphic pattern around the central disc, with each petal overlapping slightly at the base and forming a single whorl. The arrangement is symmetrical and evenly spaced, typical of many daisy species.",
+    "attribute_number_of_petals": 18,
+    "attribute_stem_presence": true,
+    "attribute_leaf_shape": "none",
+    "attribute_flower_location": "terminal",
+    "uid": "16f836d223ec401bb3eaedb77503872f",
+    "near_synsets": {
+        "common_daisy.n.01": 0.4571172712609713,
+        "daisy.n.01": 0.47573791514986746,
+        "showy_daisy.n.01": 0.4761936262682625,
+        "crown_daisy.n.01": 0.500820433731454,
+        "yellow_spiny_daisy.n.01": 0.5013771340302661,
+        "flower.n.03": -1000.0,
+        "flower.n.01": -1000.0,
+        "flower.n.02": -1000.0
+    },
+    "synset": "flower.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/16f836d223ec401bb3eaedb77503872f",
+        "creator_username": "rhcreations",
+        "creator_display_name": "rhcreations",
+        "creator_profile_url": "https://sketchfab.com/rhcreations"
+    },
+    "filename": "std_16f836d223ec401bb3eaedb77503872f.glb",
+    "length": 0.023145475424826145,
+    "width": 0.06850775331258774
+}

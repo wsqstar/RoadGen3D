@@ -1,0 +1,120 @@
+{
+    "description_long": "This object consists of a road work detour setup featuring a prominent white and orange-striped barricade with the words 'KEEP OUT' displayed in bold black letters. Adjacent to the barricade is a red octagonal 'STOP' sign mounted on a black pole, angled slightly as if temporarily placed. In front of both signs is a classic orange traffic cone with a white reflective band, set on a black square base for stability. The barricade is constructed from what appears to be painted metal or plastic, with diagonal orange stripes for high visibility. The STOP sign is likely made of metal with a reflective coating, while the cone is made of flexible rubber or plastic. This arrangement is typical for urban roadwork or detour scenarios, designed to alert and redirect both vehicles and pedestrians.",
+    "description": "A white and orange-striped barricade with 'KEEP OUT' text, accompanied by a red STOP sign on a pole and an orange traffic cone with a black base.",
+    "description_view_0": "Side view showing the thin profile of the STOP sign and barricade, with the traffic cone visible in front.",
+    "description_view_1": "Frontal view displaying the 'KEEP OUT' text on the barricade, the STOP sign to the left, and the traffic cone in front.",
+    "description_view_2": "Opposite side view highlighting the angled barricade and STOP sign, with the cone in the foreground.",
+    "description_view_3": "Rear view showing the back of the barricade and STOP sign, with the traffic cone partially visible behind.",
+    "category": "road work detour ahead sign",
+    "height": 1.1,
+    "max_dimension": 1.5,
+    "materials": [
+        "plastic",
+        "metal",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 12,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "barricade",
+        "STOP sign",
+        "traffic cone"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "orange",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_sign_text": "STOP\nKEEP OUT",
+    "attribute_arrow_direction": "none",
+    "attribute_mounting_type": "barricade-mounted",
+    "attribute_placement_location": "roadside",
+    "attribute_surrounding_barriers": [
+        "traffic cones",
+        "barricades"
+    ],
+    "uid": "c0353ae3304e499891ad57b5d5dc5f08",
+    "near_synsets": {
+        "stop_sign.n.01": 0.4715501268105037,
+        "street_sign.n.01": 0.520139996002989,
+        "yellow_light.n.01": 0.5421800875143746,
+        "white_line.n.01": 0.5469462762348748,
+        "direction_sign.n.01": 0.5472032248319907,
+        "workplace.n.01": -1000.0,
+        "sign_of_the_zodiac.n.01": -1000.0,
+        "employment.n.02": -1000.0,
+        "work.n.02": -1000.0,
+        "sign.n.10": -1000.0,
+        "oeuvre.n.01": -1000.0,
+        "signal.n.01": -1000.0,
+        "augury.n.01": -1000.0,
+        "polarity.n.02": -1000.0,
+        "road.n.02": -1000.0,
+        "sign.n.01": -1000.0,
+        "work.n.01": -1000.0,
+        "work.n.05": -1000.0,
+        "detour.n.01": -1000.0,
+        "signboard.n.01": -1000.0,
+        "road.n.01": -1000.0,
+        "sign.n.02": -1000.0,
+        "sign.n.11": -1000.0,
+        "sign.n.09": -1000.0,
+        "sign.n.06": -1000.0,
+        "study.n.02": -1000.0
+    },
+    "synset": "street_sign.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c0353ae3304e499891ad57b5d5dc5f08",
+        "creator_username": "adbeifeld",
+        "creator_display_name": "adbeifeld",
+        "creator_profile_url": "https://sketchfab.com/adbeifeld"
+    },
+    "filename": "std_c0353ae3304e499891ad57b5d5dc5f08.glb",
+    "length": 0.8277289569377899,
+    "width": 1.2702171802520752
+}

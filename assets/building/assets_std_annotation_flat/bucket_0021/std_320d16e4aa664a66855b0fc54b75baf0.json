@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a blocky, stylized representation of a commercial passenger airplane, featuring a long, rectangular fuselage with a row of small, evenly spaced windows along each side. The wings are straight and extend outward from the midsection of the fuselage, with a slight upward dihedral angle and squared-off wingtips. The tail section includes a vertical stabilizer and two horizontal stabilizers, forming a conventional tail design. The landing gear is visible beneath the fuselage, with two main gear units and a nose gear, all rendered in a simplified, blocky style. The cockpit is positioned at the front of the fuselage, distinguished by a slightly raised section and a few dark blocks representing cockpit windows. The overall color scheme is primarily light gray with some darker accents on the windows, landing gear, and tail.",
+    "description": "A blocky, light gray commercial airplane with straight wings, a conventional tail, and visible landing gear. The fuselage features rows of windows and a distinct cockpit at the front.",
+    "description_view_0": "Front view showing the nose, cockpit windows, and the symmetrical extension of the wings and landing gear.",
+    "description_view_1": "Side view highlighting the elongated fuselage, row of windows, straight wings, and the tail assembly.",
+    "description_view_2": "Top-down view displaying the full wingspan, the arrangement of the tail, and the overall blocky structure.",
+    "description_view_3": "Opposite side view similar to view 1, showing the other side of the fuselage, wings, and tail.",
+    "category": "airplane",
+    "height": 5.0,
+    "max_dimension": 35.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 40000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 800000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit window",
+        "landing gear",
+        "passenger window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "dark gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 40.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing configuration with straight, slightly dihedral wings and squared wingtips; no visible winglets.",
+    "attribute_engine_type": "No visible engines present on the wings or fuselage.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Tricycle landing gear with two main gear units and a single nose gear, all fixed and non-retractable.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit at the front of the fuselage with multiple window blocks.",
+    "uid": "320d16e4aa664a66855b0fc54b75baf0",
+    "near_synsets": {
+        "airplane.n.01": 0.49755948359954,
+        "aircraft.n.01": 0.5103627869235821,
+        "fuselage.n.01": 0.5252571740545067,
+        "narrowbody_aircraft.n.01": 0.5299934312149557,
+        "monoplane.n.01": 0.5318618598944008
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/320d16e4aa664a66855b0fc54b75baf0",
+        "creator_username": "POTATO_O",
+        "creator_display_name": "POTATO_O",
+        "creator_profile_url": "https://sketchfab.com/POTATO_O"
+    },
+    "filename": "std_320d16e4aa664a66855b0fc54b75baf0.glb",
+    "length": 17.49999713897705,
+    "width": 10.499996185302734
+}

@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a double-leaf wooden gate constructed from vertical slats framed by horizontal and diagonal bracing, forming a classic 'X' reinforcement pattern on each leaf. The wood appears to be light-colored, possibly pine or spruce, with visible grain and a natural finish. Metal hinges and brackets are mounted at the top, bottom, and center, providing structural support and allowing the gate to swing open. The gate is flanked by two robust wooden posts, which serve as the main supports for the swinging mechanism. The rear side of the gate is simpler, showing only the vertical slats without the diagonal bracing. The overall design is utilitarian, with no visible decorative elements, making it suitable for driveways, gardens, or residential entrances.",
+    "description": "A sturdy double-leaf wooden gate with vertical slats, diagonal bracing, and metal hinges, supported by two thick wooden posts. The design is functional and unadorned, ideal for driveways or garden entrances.",
+    "description_view_0": "Front view showing the double-leaf gate with prominent diagonal bracing and metal hinges, framed by two thick wooden posts.",
+    "description_view_1": "Side view revealing the thickness of the gate and posts, with minimal visible detail except the layered wood construction.",
+    "description_view_2": "Rear view displaying the plain vertical slats of the gate, lacking the diagonal bracing seen on the front.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the gate's thickness and the solid construction of the posts.",
+    "category": "gate",
+    "height": 1.5,
+    "max_dimension": 2.5,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 90,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "gate leaf",
+        "hinge",
+        "latch"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.92,
+        0.08
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_gate_type": "driveway gate",
+    "attribute_opening_mechanism": "manual swing",
+    "attribute_decorative_elements": [],
+    "attribute_locking_system": "latch",
+    "attribute_surrounding_structure": "wooden posts",
+    "uid": "2a6667ef214b4596b5dc407f4b073fdb",
+    "near_synsets": {
+        "hinging_post.n.01": 0.49141505013187936,
+        "double_door.n.01": 0.510609098556998,
+        "gate.n.01": 0.5125309065961556,
+        "portcullis.n.01": 0.5132959722902438,
+        "lock-gate.n.01": 0.5176563135347273,
+        "gate.n.04": -1000.0,
+        "gate.n.02": -1000.0,
+        "gate.n.03": -1000.0
+    },
+    "synset": "gate.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2a6667ef214b4596b5dc407f4b073fdb",
+        "creator_username": "codf",
+        "creator_display_name": "Steve @ DWB",
+        "creator_profile_url": "https://sketchfab.com/codf"
+    },
+    "filename": "std_2a6667ef214b4596b5dc407f4b073fdb.glb",
+    "length": 0.12562578916549683,
+    "width": 2.1562498807907104
+}

@@ -1,0 +1,107 @@
+{
+    "description_long": "This object consists of a classic fast food meal featuring a hamburger, a serving of French fries in a red carton, and a can of Pepsi. The hamburger is made with a round sesame seed bun, a slice of yellow cheese, and a visible beef patty. The fries are golden and stick out from the top of the red carton, while the Pepsi can is blue with white and red branding. The hamburger bun is generously sprinkled with sesame seeds, and the cheese is neatly draped over the patty. The overall presentation is typical of a quick-service restaurant meal, with each item placed side by side.",
+    "description": "A classic fast food meal with a sesame seed hamburger, fries in a red carton, and a blue Pepsi can.",
+    "description_view_0": "Front view showing the hamburger, fries in a red carton to the left, and a Pepsi can to the right.",
+    "description_view_1": "Side view with the Pepsi can in front of the hamburger and fries visible behind the burger.",
+    "description_view_2": "Rear view with the hamburger, Pepsi can to the left, and fries in a red carton to the right.",
+    "description_view_3": "Back view showing the fries directly behind the hamburger and the Pepsi can partially visible.",
+    "category": "hamburger",
+    "height": 0.12,
+    "max_dimension": 0.28,
+    "materials": [
+        "bread",
+        "beef",
+        "cheese",
+        "potato",
+        "aluminum",
+        "paperboard",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.15,
+        0.1,
+        0.15,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "mass": 0.45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 5,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "bun",
+        "cheese slice",
+        "patty",
+        "fries",
+        "can"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "yellow",
+        "red",
+        "blue",
+        "white",
+        "golden"
+    ],
+    "colors_composition": [
+        0.3,
+        0.15,
+        0.2,
+        0.15,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "group",
+    "attribute_bun_type": "sesame seed bun",
+    "attribute_patty_visibility": "partially visible",
+    "attribute_topping_arrangement": "A slice of yellow cheese is placed directly on top of the beef patty, with no other visible toppings such as lettuce or tomato. The cheese is evenly draped over the patty and slightly visible beneath the top bun.",
+    "attribute_packaging_presence": false,
+    "attribute_sesame_seed_presence": true,
+    "uid": "12998bea16ee4bfba0c6b67de6499f51",
+    "near_synsets": {
+        "fast_food.n.01": 0.5176826733205796,
+        "hamburger.n.01": 0.5441790127135343,
+        "cheeseburger.n.01": 0.5450183809153137,
+        "reuben.n.02": 0.5727639684358709,
+        "pepsi.n.01": 0.5870916554319277,
+        "ground_beef.n.01": -1000.0
+    },
+    "synset": "hamburger.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/12998bea16ee4bfba0c6b67de6499f51",
+        "creator_username": "BluesWhitefox",
+        "creator_display_name": "BluesWhitefox",
+        "creator_profile_url": "https://sketchfab.com/BluesWhitefox"
+    },
+    "filename": "std_12998bea16ee4bfba0c6b67de6499f51.glb",
+    "length": 0.11204911768436432,
+    "width": 0.2590904235839844
+}

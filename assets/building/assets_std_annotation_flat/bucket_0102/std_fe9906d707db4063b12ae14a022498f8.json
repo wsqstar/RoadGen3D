@@ -1,0 +1,97 @@
+{
+    "description_long": "This factory building features a large, rectangular main structure with a flat roof and several attached auxiliary sections, including a prominent loading dock area. The exterior is primarily composed of light-colored concrete or masonry, with multiple large industrial windows providing natural light to the interior. Several rooftop installations, such as HVAC units and industrial fans, are visible, indicating active mechanical systems. The building is surrounded by paved areas for vehicle access, including a long driveway and multiple loading dock doors suitable for freight trucks. There are no visible smokestacks, but the presence of rooftop machinery and large access doors suggests heavy industrial use. The overall design is utilitarian, with a focus on function and efficient logistics.",
+    "description": "A large, light-colored industrial factory building with flat roofs, multiple loading docks, and visible rooftop machinery. The structure features expansive paved areas and large industrial windows.",
+    "description_view_0": "From this side, the building's loading dock area and several large industrial windows are visible, along with rooftop machinery.",
+    "description_view_1": "This view highlights the main entrance and the arrangement of rooftop equipment, as well as the paved access road leading to the building.",
+    "description_view_2": "The rear of the building shows additional loading docks and a clear view of the auxiliary structures attached to the main factory.",
+    "description_view_3": "This angle emphasizes the flat roof, the extent of the paved area, and the distribution of rooftop machinery and large windows.",
+    "category": "factory building",
+    "height": 10,
+    "max_dimension": 60,
+    "materials": [
+        "concrete",
+        "glass",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 1200000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "loading dock door",
+        "window",
+        "rooftop machinery"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 8,
+    "asset_composition_type": "single",
+    "attribute_number_of_large_industrial_windows": 6,
+    "attribute_presence_of_smokestacks": false,
+    "attribute_loading_dock_doors": 3,
+    "attribute_rooftop_machinery": true,
+    "attribute_architectural_style": "Modern Industrial",
+    "uid": "fe9906d707db4063b12ae14a022498f8",
+    "near_synsets": {
+        "factory.n.01": 0.5274242195253583,
+        "loft.n.01": 0.5345439141111407,
+        "plant.n.01": 0.5377905218924395,
+        "farm_building.n.01": 0.5450576977622783,
+        "shop_floor.n.01": 0.547871040949079,
+        "building.n.01": -1000.0,
+        "construction.n.07": -1000.0,
+        "construction.n.01": -1000.0,
+        "building.n.04": -1000.0
+    },
+    "synset": "factory.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/fe9906d707db4063b12ae14a022498f8",
+        "creator_username": "homedesign3d",
+        "creator_display_name": "Home Design 3D",
+        "creator_profile_url": "https://sketchfab.com/homedesign3d"
+    },
+    "filename": "std_fe9906d707db4063b12ae14a022498f8.glb",
+    "length": 144.38827514648438,
+    "width": 96.93478775024414
+}

@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a classic wooden barrel with a slightly bulging midsection and flat, circular ends. The exterior is constructed from vertical wooden staves, held together by three prominent, evenly spaced metal hoops that encircle the barrel horizontally. The wood appears weathered and light grayish-brown, suggesting age or exposure to the elements, while the metal bands have a dull, slightly rusty finish. One side of the barrel is marked with the stenciled text 'GUN POWDER', indicating its historical or industrial use for storing gunpowder. The top and bottom surfaces are flat, and there are no visible handles or spouts. The overall construction suggests it is hollow and capable of holding substantial contents.",
+    "description": "A weathered wooden barrel with three metal hoops and 'GUN POWDER' stenciled on one side, featuring a bulging midsection and flat ends.",
+    "description_view_0": "Front view of a wooden barrel showing the flat top, three metal hoops, and the wood grain texture.",
+    "description_view_1": "Side view highlighting the barrel's bulging shape and the even spacing of the metal hoops.",
+    "description_view_2": "Opposite side view with similar features, showing the wood texture and metal bands without any markings.",
+    "description_view_3": "View displaying the 'GUN POWDER' stencil on the barrel's side, with all three metal hoops visible.",
+    "category": "barrel or bucket",
+    "height": 0.8,
+    "max_dimension": 0.9,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.1
+    ],
+    "mass": 35,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid (implied)",
+        "body"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "dark gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "metal hoops",
+    "attribute_labeling_or_markings": "GUN POWDER",
+    "attribute_placement_location": "industrial",
+    "uid": "3a5938c960974f1a8f2950500febb21c",
+    "near_synsets": {
+        "barrel.n.03": 0.4716209359047587,
+        "powder_keg.n.02": 0.48551535137192225,
+        "barrel.n.02": 0.49233005130413554,
+        "barrel.n.01": 0.4955366836057227,
+        "barrels.n.01": 0.4971938086030778,
+        "barrel.n.05": -1000.0,
+        "bucket.n.02": -1000.0,
+        "barrel.n.04": -1000.0,
+        "bucket.n.01": -1000.0
+    },
+    "synset": "powder_keg.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3a5938c960974f1a8f2950500febb21c",
+        "creator_username": "vpimenovs1",
+        "creator_display_name": "vpimenovs1",
+        "creator_profile_url": "https://sketchfab.com/vpimenovs1"
+    },
+    "filename": "std_3a5938c960974f1a8f2950500febb21c.glb",
+    "length": 1.2484588623046875,
+    "width": 1.2484585046768188
+}

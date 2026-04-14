@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a classic steam locomotive with a cylindrical black boiler, a large smokestack at the front, and a cab at the rear. The locomotive features prominent red driving wheels and detailed mechanical linkages along its sides. The front is equipped with a cowcatcher and a headlamp, while the top displays domes and piping typical of steam engines. The cab is enclosed, providing space for the crew, and the body is constructed primarily from metal with visible rivets and seams. There are no visible passenger or cargo carriages attached, and the locomotive appears robust and industrial, suitable for hauling heavy loads.",
+    "description": "A black steam locomotive with red wheels, detailed mechanical parts, and a classic cylindrical boiler. The engine is robust, metallic, and features a cowcatcher and headlamp at the front.",
+    "description_view_0": "Front view showing the circular smokestack, headlamp, and cowcatcher, with the boiler's cylindrical shape prominent.",
+    "description_view_1": "Side view revealing the full length of the locomotive, red driving wheels, mechanical linkages, and the enclosed cab at the rear.",
+    "description_view_2": "Rear view highlighting the back of the cab and the end of the boiler, with less detail visible compared to the front.",
+    "description_view_3": "Opposite side view similar to view 1, showing the wheels, linkages, and cab, but from the other side.",
+    "category": "train",
+    "height": 4.5,
+    "max_dimension": 15.0,
+    "materials": [
+        "steel",
+        "iron",
+        "glass",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.03,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 80000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "door",
+        "lever",
+        "valve",
+        "headlamp",
+        "cowcatcher"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "steam locomotive",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end of the cab",
+    "attribute_window_arrangement": "no visible windows",
+    "uid": "88678ba9768d4543b81001108bf2f9a0",
+    "near_synsets": {
+        "steam_locomotive.n.01": 0.4513645291885459,
+        "locomotive.n.01": 0.48851299475560206,
+        "diesel_locomotive.n.01": 0.4928977058152228,
+        "traction_engine.n.01": 0.502910557726236,
+        "train.n.01": 0.5130070909481845,
+        "caravan.n.01": -1000.0,
+        "gearing.n.01": -1000.0,
+        "train.n.04": -1000.0,
+        "train.n.05": -1000.0,
+        "string.n.04": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/88678ba9768d4543b81001108bf2f9a0",
+        "creator_username": "ironkors",
+        "creator_display_name": "ironkors",
+        "creator_profile_url": "https://sketchfab.com/ironkors"
+    },
+    "filename": "std_88678ba9768d4543b81001108bf2f9a0.glb",
+    "length": 16.7005615234375,
+    "width": 3.7645227909088135
+}

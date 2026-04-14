@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a modern military fighter jet with a sleek, aerodynamic fuselage painted primarily in light gray with subtle markings and insignia. The aircraft features a single-seat enclosed cockpit with a tinted canopy, positioned forward on the fuselage for optimal pilot visibility. Its wings are sharply swept back and mounted low on the body, each equipped with multiple hardpoints carrying missiles and external fuel tanks. The tail section includes a single vertical stabilizer and horizontal stabilizers, forming a conventional tail design. The jet is powered by a single large engine with an exhaust nozzle at the rear, and the landing gear appears to be retractable, with the main gear housed under the wings and a nose gear under the cockpit. Distinctive roundels and national insignia are visible on the wings and fuselage, indicating military use.",
+    "description": "A modern, light gray military fighter jet with swept-back low wings, a single vertical tail, and a forward-positioned enclosed cockpit. The jet is armed with missiles and features retractable landing gear.",
+    "description_view_0": "Front view showing the pointed nose, forward cockpit canopy, and symmetrical arrangement of missiles and fuel tanks under the swept-back wings.",
+    "description_view_1": "Left side view highlighting the single-seat cockpit, swept-back low wings, and visible landing gear doors beneath the fuselage.",
+    "description_view_2": "Rear view displaying the large engine exhaust nozzle, single vertical stabilizer, and the full span of the armed wings.",
+    "description_view_3": "Right side view similar to the left, showing the cockpit, wing-mounted armaments, and the tail section with military insignia.",
+    "category": "airplane",
+    "height": 4.8,
+    "max_dimension": 15.0,
+    "materials": [
+        "aluminum",
+        "titanium",
+        "composite",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "landing gear",
+        "control stick",
+        "throttle",
+        "missile hardpoints",
+        "engine nozzle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "black",
+        "white",
+        "red",
+        "green"
+    ],
+    "colors_composition": [
+        0.85,
+        0.08,
+        0.04,
+        0.02,
+        0.01
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "sleek",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.03,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, sharply swept-back wings with multiple hardpoints for external stores; no visible winglets; moderate dihedral angle.",
+    "attribute_engine_type": "Single rear-mounted jet engine with visible exhaust nozzle.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Retractable tricycle landing gear with one nose gear and two main gear units.",
+    "attribute_cockpit_placement": "Forward-mounted, single-seat enclosed cockpit with a bubble canopy.",
+    "uid": "0b6fb2556a81434687066af8e65661ae",
+    "near_synsets": {
+        "aircraft.n.01": 0.468911555440705,
+        "airplane.n.01": 0.48092677622836244,
+        "fighter.n.02": 0.48273665029755614,
+        "warplane.n.01": 0.4911384864001674,
+        "jet.n.01": 0.49274532606508353
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0b6fb2556a81434687066af8e65661ae",
+        "creator_username": "vojce",
+        "creator_display_name": "Vojkan",
+        "creator_profile_url": "https://sketchfab.com/vojce"
+    },
+    "filename": "std_0b6fb2556a81434687066af8e65661ae.glb",
+    "length": 11.81078815460205,
+    "width": 9.822726249694824
+}

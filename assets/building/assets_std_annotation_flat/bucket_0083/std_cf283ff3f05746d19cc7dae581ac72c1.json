@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a green armored combat vehicle with a prominent, forward-facing cannon mounted on a rotating turret. The body is angular and robust, featuring sloped armor panels for increased deflection and protection. The vehicle rides on a set of six visible road wheels on each side, indicating a tracked undercarriage, though the tracks themselves are not clearly visible. The surface is painted in a worn, solid green with black scuff marks, giving it a rugged, battle-worn appearance. The rear of the vehicle has a hatch with a warning symbol, suggesting access for crew or maintenance. The overall design is utilitarian, prioritizing protection and firepower for urban or battlefield deployment.",
+    "description": "A green armored combat vehicle with a large turret-mounted cannon and sloped, rugged armor. The surface is worn and battle-scarred, with six road wheels per side and a rear hatch.",
+    "description_view_0": "Front view showing the large cannon barrel, sloped frontal armor, and angular turret.",
+    "description_view_1": "Left side view highlighting the full length of the cannon, turret, and six road wheels.",
+    "description_view_2": "Rear view displaying the back hatch with a warning symbol and the vehicle's angular rear armor.",
+    "description_view_3": "Right side view similar to the left, showing the turret, cannon, and six road wheels.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 210000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "wheels"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted on the central turret; no other weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating; angular panels with visible wear and scuff marks.",
+    "attribute_camouflage_pattern": "Solid green paint with black scuff marks and weathering; no distinct camouflage pattern.",
+    "attribute_military_markings": "One warning symbol on the rear hatch; no other visible markings or insignia.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "cf283ff3f05746d19cc7dae581ac72c1",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4871013741258419,
+        "tank.n.01": 0.49029067051308534,
+        "reconnaissance_vehicle.n.01": 0.5001484410000387,
+        "armored_car.n.02": 0.5087078232715181,
+        "assault_gun.n.02": 0.516088431598645,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cf283ff3f05746d19cc7dae581ac72c1",
+        "creator_username": "younesse-nono-1996",
+        "creator_display_name": "Tha_Slayer",
+        "creator_profile_url": "https://sketchfab.com/younesse-nono-1996"
+    },
+    "filename": "std_cf283ff3f05746d19cc7dae581ac72c1.glb",
+    "length": 4.7180304527282715,
+    "width": 2.897348165512085
+}

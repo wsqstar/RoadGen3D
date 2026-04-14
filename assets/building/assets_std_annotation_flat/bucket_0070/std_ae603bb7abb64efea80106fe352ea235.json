@@ -1,0 +1,97 @@
+{
+    "description_long": "This object consists of three distinct shotguns, each with a different combination of stock and fore-end materials, arranged side by side. The shotguns feature long, cylindrical barrels with metallic finishes, and the stocks are either wood-textured or matte black synthetic. The central shotgun is equipped with a visible pump-action fore-end, while the others have traditional fore-ends. The trigger guards are rounded and proportionally sized to the grip, with no visible finger grooves or reinforcement. The barrels are of similar length, and the overall design is robust, suitable for practical use in urban environments. The arrangement and details suggest these are functional, modern shotguns intended for a variety of scenarios.",
+    "description": "A set of three modern shotguns with metallic barrels and either wood or black synthetic stocks, including a pump-action model. The shotguns are robust and visually detailed, with rounded trigger guards and practical urban styling.",
+    "description_view_0": "The shotguns are viewed directly from the muzzle end, appearing as thin vertical lines with minimal visible detail.",
+    "description_view_1": "The shotguns are shown in profile, clearly displaying the wood and black stocks, metallic barrels, and the pump-action mechanism on the central shotgun.",
+    "description_view_2": "Similar to view 0, the shotguns are seen from the opposite end, again as thin vertical lines with little detail visible.",
+    "description_view_3": "The shotguns are shown in reverse profile, highlighting the opposite sides of the stocks and barrels, with the same material and action details as view 1.",
+    "category": "shotgun",
+    "height": 0.15,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "pumpable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "trigger",
+        "trigger guard",
+        "pump",
+        "fore-end"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.25
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_barrel_configuration": "single-barrel, with no visible ribbing or venting; all barrels are of similar length",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with no visible finger grooves or reinforcement",
+    "uid": "ae603bb7abb64efea80106fe352ea235",
+    "near_synsets": {
+        "pump_action.n.01": 0.5084233689761163,
+        "sawed-off_shotgun.n.01": 0.5129810227459743,
+        "shotgun.n.01": 0.5143531465973539,
+        "shotgun_shell.n.01": 0.5376445483509255,
+        "case_shot.n.01": 0.5502276076103618
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ae603bb7abb64efea80106fe352ea235",
+        "creator_username": "austincford",
+        "creator_display_name": "austincford",
+        "creator_profile_url": "https://sketchfab.com/austincford"
+    },
+    "filename": "std_ae603bb7abb64efea80106fe352ea235.glb",
+    "length": 0.015658551827073097,
+    "width": 1.0057333707809448
+}

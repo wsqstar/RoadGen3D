@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a two-level fire escape ladder structure, commonly found attached to the exterior of urban buildings. The object features two platforms, each surrounded by metal railings for safety, and a vertical ladder connecting the lower platform to the ground. The platforms are constructed from dark, solid panels supported by a red-brown metal frame, with black horizontal steps and vertical supports. The railings are made of thin, evenly spaced metal rods, providing both security and visibility. The overall design is utilitarian, prioritizing function and durability for emergency egress in city environments.",
+    "description": "A two-level metal fire escape ladder with platforms, railings, and a vertical connecting ladder, designed for building exteriors.",
+    "description_view_0": "Side view showing the vertical alignment of the two platforms and the connecting ladder.",
+    "description_view_1": "Top-down view highlighting the open platforms and the surrounding railings.",
+    "description_view_2": "Opposite side view displaying the ladder and the structure's depth.",
+    "description_view_3": "Bottom-up view emphasizing the underside of the platforms and the supporting frame.",
+    "category": "ladder",
+    "height": 4.0,
+    "max_dimension": 4.0,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "climbable",
+        "grippable",
+        "standable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "ladder rungs",
+        "platforms",
+        "railings"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "red-brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_number_of_rungs": 8,
+    "attribute_rung_spacing": 0.35,
+    "attribute_side_rail_profile": "rectangular steel",
+    "attribute_mounting_position": "fixed wall-mounted",
+    "attribute_presence_of_safety_features": [
+        "handrails"
+    ],
+    "uid": "8cef2b9dcef84803ac3aa7dde55883f7",
+    "near_synsets": {
+        "fire_escape.n.01": 0.47181444514575654,
+        "ladder.n.01": 0.48151202366313783,
+        "aerial_ladder.n.01": 0.501709394313654,
+        "extension_ladder.n.01": 0.5019048459781837,
+        "ladder_truck.n.01": 0.5287330342601453,
+        "ladder.n.02": -1000.0,
+        "run.n.13": -1000.0
+    },
+    "synset": "ladder.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8cef2b9dcef84803ac3aa7dde55883f7",
+        "creator_username": "cruftcam",
+        "creator_display_name": "cruftcam",
+        "creator_profile_url": "https://sketchfab.com/cruftcam"
+    },
+    "filename": "std_8cef2b9dcef84803ac3aa7dde55883f7.glb",
+    "length": 2.152115821838379,
+    "width": 0.6195635199546814
+}

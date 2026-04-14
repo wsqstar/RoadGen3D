@@ -1,0 +1,107 @@
+{
+    "description_long": "This object is a collection of six distinct bomb types, each with unique shapes and markings. The bombs include a large orange bomb with prominent fins and a radiation warning symbol, a dark gray bomb with orange highlights and a teardrop shape, a classic green hand grenade with a red safety lever, a cylindrical black bomb with a yellow caution symbol and a boxy top, a spherical black bomb with flame decals and a fuse, and a green missile with fins, a red nose, and hazard markings. The surface finishes range from matte to slightly glossy, with visible seams, safety pins, and warning labels. The bombs are constructed primarily from metal, with some plastic and rubber components for handles and fuses. These objects are visually designed to be recognizable as dangerous explosives, with clear hazard symbols and military-style detailing.",
+    "description": "A set of six visually distinct bombs, each with unique shapes, hazard symbols, and military-style detailing. The collection includes a hand grenade, missile, and various classic bomb forms.",
+    "description_view_0": "Front view showing all six bombs side by side, highlighting their unique shapes, colors, and warning symbols.",
+    "description_view_1": "Top-down view emphasizing the alignment and fin structures of the bombs, with less detail visible on the sides.",
+    "description_view_2": "Rear view displaying the opposite sides of the bombs, revealing additional markings and the backs of fins and handles.",
+    "description_view_3": "Bottom-up view focusing on the bases and tail fins of the bombs, with the orange bomb's fins most prominent.",
+    "category": "bomb",
+    "height": 0.45,
+    "max_dimension": 0.55,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety pin",
+        "handle",
+        "fuse",
+        "button",
+        "lever"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "green",
+        "black",
+        "gray",
+        "yellow",
+        "red"
+    ],
+    "colors_composition": [
+        0.25,
+        0.2,
+        0.3,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "group",
+    "attribute_warning_labels": [
+        "radiation symbol",
+        "caution symbol",
+        "flame symbol"
+    ],
+    "attribute_detonation_mechanism": "Detonation mechanisms include visible fuses, safety pins, levers, and buttons, suggesting both timed and manual triggering options.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "564f00078fb04e549fa12c3e948c94f0",
+    "near_synsets": {
+        "grenade.n.01": 0.5054521550250215,
+        "bomb.n.01": 0.5214303538465754,
+        "cluster_bomb.n.01": 0.5232389689752698,
+        "plastic_bomb.n.01": 0.533964875805896,
+        "general-purpose_bomb.n.01": 0.5342145635949961,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/564f00078fb04e549fa12c3e948c94f0",
+        "creator_username": "phamminhtri",
+        "creator_display_name": "Pham Minh Tri",
+        "creator_profile_url": "https://sketchfab.com/phamminhtri"
+    },
+    "filename": "std_564f00078fb04e549fa12c3e948c94f0.glb",
+    "length": 0.2236141785979271,
+    "width": 1.344246745109558
+}

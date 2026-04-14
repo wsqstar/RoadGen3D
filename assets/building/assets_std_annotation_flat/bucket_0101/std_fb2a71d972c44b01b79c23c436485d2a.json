@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a large, stylized semi-truck with a prominent cab and a long, rectangular cargo trailer. The truck features a detailed front grille, visible exhaust stacks, and multiple wheels, indicating a heavy-duty design suitable for transporting goods. The trailer is adorned with bold, graphic text reading 'VMax Burst' and angular patterns, giving it a futuristic or high-performance appearance. The cab is equipped with side mirrors, steps, and a robust bumper, while the trailer has reinforced corners and rear doors. The overall color scheme is a striking neon green with black accents, making the vehicle highly visible. The truck's proportions and features suggest it is designed for urban and highway freight transport.",
+    "description": "A neon green and black semi-truck with a detailed cab and a long, graphic-covered cargo trailer labeled 'VMax Burst'. The truck is robust, highly stylized, and built for heavy-duty freight transport.",
+    "description_view_0": "Front-left view showing the detailed cab, grille, and the start of the trailer with bold graphics.",
+    "description_view_1": "Rear-left view highlighting the length of the trailer, rear wheels, and the 'VMax Burst' graphics.",
+    "description_view_2": "Rear-right view focusing on the back of the trailer, rear doors, and the full extent of the cargo compartment.",
+    "description_view_3": "Front-right view displaying the cab's right side, steps, and the trailer's side graphics.",
+    "category": "truck",
+    "height": 4.0,
+    "max_dimension": 14.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "handle",
+        "mirror",
+        "step",
+        "trailer door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "glossy",
+    "reflectivity": 0.5,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "day cab",
+    "attribute_cargo_bed_type": "box",
+    "attribute_wheelbase": 7.0,
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "fb2a71d972c44b01b79c23c436485d2a",
+    "near_synsets": {
+        "van.n.05": 0.5363731747655287,
+        "truck.n.01": 0.5701401455611022,
+        "tandem_trailer.n.01": 0.5788621000628337,
+        "delivery_truck.n.01": 0.5806639784341596,
+        "trailer_truck.n.01": 0.5863825807540634,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fb2a71d972c44b01b79c23c436485d2a",
+        "creator_username": "virtualmakes",
+        "creator_display_name": "Prabhu Ram",
+        "creator_profile_url": "https://sketchfab.com/virtualmakes"
+    },
+    "filename": "std_fb2a71d972c44b01b79c23c436485d2a.glb",
+    "length": 14.383524894714355,
+    "width": 12.32409954071045
+}

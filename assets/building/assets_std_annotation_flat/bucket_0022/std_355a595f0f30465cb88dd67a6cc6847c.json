@@ -1,0 +1,104 @@
+{
+    "description_long": "This rifle features a traditional wooden stock and foregrip, paired with a long, dark metal barrel. Mounted atop the receiver is a large, cylindrical green canister or tank, possibly for pneumatic or gas-powered operation, secured with visible brackets and tubing. The trigger guard and trigger are clearly defined, and the rifle includes a prominent iron sight at the front. The overall design suggests a hybrid between a classic hunting rifle and a specialized utility or experimental firearm, likely for urban or industrial use. The wood grain is visible on the stock and grip, while the metal components have a matte, slightly worn finish. The green canister adds a distinct, utilitarian appearance, contrasting with the otherwise conventional rifle silhouette.",
+    "description": "A long rifle with a wooden stock, dark metal barrel, and a large green canister mounted on top, featuring visible brackets and tubing.",
+    "description_view_0": "Front view showing the circular end of the barrel, the green canister above, and the alignment of the iron sight.",
+    "description_view_1": "Side view displaying the full length of the rifle, the wooden stock, the green canister, and the trigger assembly.",
+    "description_view_2": "Rear view highlighting the wooden buttstock, the cylindrical canister, and the straight alignment of the barrel.",
+    "description_view_3": "Opposite side view showing the rifle's profile, the canister mounting, and the details of the foregrip and barrel.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 1.1,
+    "materials": [
+        "wood",
+        "steel",
+        "aluminum",
+        "polymer",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.4,
+        0.1,
+        0.05,
+        0.01,
+        0.09
+    ],
+    "mass": 5.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "aimable",
+        "triggerable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "trigger",
+        "trigger guard",
+        "canister",
+        "sight",
+        "foregrip"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "green",
+        "silver"
+    ],
+    "colors_composition": [
+        0.35,
+        0.35,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "internal",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "355a595f0f30465cb88dd67a6cc6847c",
+    "near_synsets": {
+        "rifle.n.01": 0.47330933551453014,
+        "garand_rifle.n.01": 0.49838376255658057,
+        "light_arm.n.01": 0.5018700203561544,
+        "musket.n.01": 0.5171784154720601,
+        "rifle_grenade.n.01": 0.52017208408578
+    },
+    "synset": "rifle_grenade.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/355a595f0f30465cb88dd67a6cc6847c",
+        "creator_username": "Snider",
+        "creator_display_name": "Max Bischoff",
+        "creator_profile_url": "https://sketchfab.com/Snider"
+    },
+    "filename": "std_355a595f0f30465cb88dd67a6cc6847c.glb",
+    "length": 1.0768253803253174,
+    "width": 0.0854451023042202
+}

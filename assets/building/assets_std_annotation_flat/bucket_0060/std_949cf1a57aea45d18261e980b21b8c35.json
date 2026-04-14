@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a mid-rise police station building with a rectangular footprint and a flat roof. The front facade features multiple rows of windows, balconies, and a main entrance, suggesting a multi-story structure designed for public service. The exterior is primarily composed of concrete or stone, with dark and muted tones dominating the color palette. The side and rear views show minimal architectural detailing, with solid walls and a few small windows or access points. There are no visible police vehicles, signage, or security cameras on the exterior. The overall design is utilitarian, with a focus on functionality and security rather than decorative elements.",
+    "description": "A multi-story, rectangular police station with a flat roof, dark facade, and rows of windows and balconies on the front.",
+    "description_view_0": "The front view shows the main facade with multiple windows, balconies, and the primary entrance.",
+    "description_view_1": "The left side view reveals a mostly solid wall with minimal detailing and a sloped roof edge.",
+    "description_view_2": "The rear view displays a plain wall with a few small windows and access points, lacking decorative features.",
+    "description_view_3": "The right side view is similar to the left, with a solid wall and little architectural detail.",
+    "category": "police station",
+    "height": 15.0,
+    "max_dimension": 30.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 4,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "dark green"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_police_signage": "none",
+    "attribute_police_vehicle_presence": "none",
+    "attribute_building_facade_features": "Rows of windows, balconies, main entrance, flat roof, solid side and rear walls.",
+    "attribute_security_cameras": "none",
+    "attribute_architectural_style": "modern utilitarian",
+    "uid": "949cf1a57aea45d18261e980b21b8c35",
+    "near_synsets": {
+        "police_station.n.01": 0.4979586347870722,
+        "lockup.n.01": 0.5311425915860093,
+        "fire_station.n.01": 0.5599964572635329,
+        "police_academy.n.01": 0.565078188726768,
+        "city_hall.n.01": 0.5670481294206958,
+        "police.n.01": -1000.0,
+        "post.n.01": -1000.0,
+        "station.n.05": -1000.0,
+        "station.n.03": -1000.0,
+        "station.n.01": -1000.0,
+        "place.n.10": -1000.0
+    },
+    "synset": "police_station.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/949cf1a57aea45d18261e980b21b8c35",
+        "creator_username": "Andreea.Sandu",
+        "creator_display_name": "Andreea.Sandu",
+        "creator_profile_url": "https://sketchfab.com/Andreea.Sandu"
+    },
+    "filename": "std_949cf1a57aea45d18261e980b21b8c35.glb",
+    "length": 42.137826919555664,
+    "width": 22.364883422851562
+}

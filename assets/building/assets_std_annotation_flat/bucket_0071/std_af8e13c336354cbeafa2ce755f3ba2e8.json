@@ -1,0 +1,109 @@
+{
+    "description_long": "This vending machine is a rectangular, upright unit with a robust metal exterior and a transparent glass front panel that displays a variety of snacks such as chips, cookies, and candy bars. The front features a large illuminated display area for product visibility, a keypad for product selection, a digital payment interface, and a prominent retrieval slot labeled 'PUSH' at the bottom. The sides of the machine are adorned with large, vertical signage panels showing appetizing images of snacks and the word 'SNACKS' in bold letters. The back of the machine is solid metal with ventilation slats and an electrical warning label, indicating the presence of internal machinery. The overall color scheme is primarily dark gray and black, with accents of white and colorful product packaging visible through the glass. The machine is designed to be placed in public urban environments, offering convenient snack access to passersby.",
+    "description": "A robust, glass-fronted vending machine with snack displays, digital payment, and bold side signage, designed for urban public spaces.",
+    "description_view_0": "Side view showing a tall, vertical panel with 'SNACKS' text and food images, no visible controls or retrieval slot.",
+    "description_view_1": "Front view displaying the transparent snack compartment, keypad, payment interface, and a large 'PUSH' retrieval slot at the bottom.",
+    "description_view_2": "Opposite side view similar to view 0, with the same 'SNACKS' signage and food imagery.",
+    "description_view_3": "Rear view showing a solid metal panel with ventilation slats and an electrical warning, no interactive features.",
+    "category": "vending machine",
+    "height": 1.8,
+    "max_dimension": 1.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "electronic components",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 220,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "keypad",
+        "payment interface",
+        "product retrieval slot",
+        "display panel",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "white",
+        "red",
+        "yellow",
+        "blue"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A rectangular digital display panel is located on the upper right of the front face, showing a screen with payment instructions and branding.",
+    "attribute_payment_interface": "A payment interface is present on the right side of the front, featuring a card reader, keypad, and possibly a contactless terminal.",
+    "attribute_product_selection_buttons": "A numeric keypad is located on the right side of the front, arranged in a grid for product selection.",
+    "attribute_product_retrieval_slot": "A wide, rectangular retrieval slot labeled 'PUSH' is located at the bottom center of the front face, with a flap for product access.",
+    "attribute_branding_or_signage": "Large vertical signage panels on both sides display the word 'SNACKS' and images of food; the front also has visible product branding through the glass.",
+    "uid": "af8e13c336354cbeafa2ce755f3ba2e8",
+    "near_synsets": {
+        "vending_machine.n.01": 0.4636524098256828,
+        "automat.n.01": 0.5052101142239102,
+        "automat.n.02": 0.5639889531937547,
+        "soda_fountain.n.02": 0.5760372274283911,
+        "soda_fountain.n.01": 0.5787234744027419,
+        "machine.n.03": -1000.0,
+        "machine.n.04": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.02": -1000.0,
+        "machine.n.05": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/af8e13c336354cbeafa2ce755f3ba2e8",
+        "creator_username": "DMATH",
+        "creator_display_name": "DMATH",
+        "creator_profile_url": "https://sketchfab.com/DMATH"
+    },
+    "filename": "std_af8e13c336354cbeafa2ce755f3ba2e8.glb",
+    "length": 0.6664589047431946,
+    "width": 1.3296963572502136
+}

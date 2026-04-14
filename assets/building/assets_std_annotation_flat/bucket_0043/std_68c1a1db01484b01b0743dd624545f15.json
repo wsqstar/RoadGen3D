@@ -1,0 +1,101 @@
+{
+    "description_long": "This object consists of two wooden barrels, each constructed from vertical wooden staves held together by three dark metal hoops. One barrel is fully closed with a wooden lid, while the other is open at the top and filled with a pile of small, round, purple objects resembling grapes or berries. The wood has a natural, slightly weathered texture, and the metal bands appear robust and slightly glossy. The barrels have a classic, slightly bulging cylindrical shape, with flat tops and bottoms for stability. The open barrel's contents are densely packed and slightly uneven at the surface, adding visual interest and suggesting use in storage or transport of produce.",
+    "description": "A pair of wooden barrels with dark metal hoops, one closed and one open and filled with purple grapes or berries.",
+    "description_view_0": "Front view showing both barrels side by side, with the left barrel closed and the right barrel open and filled with purple contents.",
+    "description_view_1": "Side view with the open barrel in front, clearly displaying the purple contents, and the closed barrel behind it.",
+    "description_view_2": "Rear view similar to the front, but with the open barrel on the left and the closed barrel on the right.",
+    "description_view_3": "Opposite side view with the closed barrel in front and the open, grape-filled barrel behind it.",
+    "category": "barrel or bucket",
+    "height": 0.8,
+    "max_dimension": 0.6,
+    "materials": [
+        "wood",
+        "metal",
+        "fruit",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.15,
+        0.05
+    ],
+    "mass": 35,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable",
+        "pullable",
+        "supportable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "barrel body",
+        "contents"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "purple"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "metal hoops",
+    "attribute_labeling_or_markings": "none",
+    "attribute_placement_location": "outdoor",
+    "uid": "68c1a1db01484b01b0743dd624545f15",
+    "near_synsets": {
+        "barrel.n.02": 0.48958950263642365,
+        "wine_cask.n.01": 0.5011850036147837,
+        "barrels.n.01": 0.5044711570950319,
+        "pickle_barrel.n.01": 0.5050833899581236,
+        "barrel.n.03": 0.510417112445893,
+        "barrel.n.04": -1000.0,
+        "barrel.n.01": -1000.0,
+        "barrel.n.05": -1000.0,
+        "bucket.n.02": -1000.0,
+        "bucket.n.01": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/68c1a1db01484b01b0743dd624545f15",
+        "creator_username": "chopsuey.wol",
+        "creator_display_name": "chopsuey",
+        "creator_profile_url": "https://sketchfab.com/chopsuey.wol"
+    },
+    "filename": "std_68c1a1db01484b01b0743dd624545f15.glb",
+    "length": 0.785308301448822,
+    "width": 1.799836277961731
+}

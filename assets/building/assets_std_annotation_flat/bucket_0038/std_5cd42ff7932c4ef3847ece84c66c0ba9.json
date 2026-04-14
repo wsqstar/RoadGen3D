@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a realistic representation of a yellow daffodil flower with a long, slender green stem and two elongated, lanceolate leaves. The flower features six broad, pointed petals arranged radially around a central trumpet-shaped corona, which is slightly darker in color. The petals are a soft, pale yellow, while the corona is a deeper yellow with a subtle gradient. The stem is smooth and cylindrical, supporting the flower at an angle, and the leaves emerge from the lower part of the stem, tapering to a point. The overall structure is delicate and natural, with the flower head slightly nodding. This type of flower is commonly found in urban parks, gardens, and landscaped areas.",
+    "description": "A yellow daffodil flower with six pointed petals, a trumpet-shaped center, and two long green leaves on a slender stem.",
+    "description_view_0": "Side view showing the curved stem, trumpet-shaped corona, and one leaf extending alongside the stem.",
+    "description_view_1": "Rear view highlighting the back of the six petals and both leaves extending from the stem.",
+    "description_view_2": "Opposite side view with the corona and petals visible from the side, and both leaves aligned with the stem.",
+    "description_view_3": "Front view displaying the full face of the flower, six petals radiating around the central corona, and both leaves visible.",
+    "category": "flower",
+    "height": 0.35,
+    "max_dimension": 0.35,
+    "materials": [
+        "plant_fiber",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 0.025,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0.1,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "petal",
+        "stem",
+        "leaf",
+        "corona"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "yellow",
+        "green",
+        "orange"
+    ],
+    "colors_composition": [
+        0.55,
+        0.4,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.38,
+    "youngs_modulus": 0.02,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.1,
+    "asset_composition_type": "single",
+    "attribute_petal_arrangement": "The petals are arranged in a radial, whorled configuration with six distinct petals forming a symmetrical circle around the central corona. The petals slightly overlap at their bases, creating a star-like appearance.",
+    "attribute_number_of_petals": 6,
+    "attribute_stem_presence": true,
+    "attribute_leaf_shape": "lanceolate",
+    "attribute_flower_location": "terminal",
+    "uid": "5cd42ff7932c4ef3847ece84c66c0ba9",
+    "near_synsets": {
+        "daffodil.n.01": 0.4477758791571774,
+        "corona.n.03": 0.5010730228872704,
+        "narcissus.n.01": 0.513546314945207,
+        "paper_white.n.01": 0.5281193376305661,
+        "flower.n.01": 0.5290012411157266,
+        "flower.n.02": -1000.0,
+        "flower.n.03": -1000.0
+    },
+    "synset": "flower.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5cd42ff7932c4ef3847ece84c66c0ba9",
+        "creator_username": "uniszok",
+        "creator_display_name": "uniszok",
+        "creator_profile_url": "https://sketchfab.com/uniszok"
+    },
+    "filename": "std_5cd42ff7932c4ef3847ece84c66c0ba9.glb",
+    "length": 0.08807728067040443,
+    "width": 0.19900453090667725
+}

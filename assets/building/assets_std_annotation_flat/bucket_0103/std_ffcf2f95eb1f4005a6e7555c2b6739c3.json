@@ -1,0 +1,103 @@
+{
+    "description_long": "This bus shelter features a rectangular, flat metal roof with a weathered, rusted blue and brown finish, supported by four slender metal legs. The shelter's sides and back are partially enclosed with corrugated metal panels, providing some protection from the elements while maintaining visibility and airflow. The front is open for easy access, and there is a small, attached sign or placard on one side, likely for route or schedule information. Underneath the roof, a simple bench is integrated into the structure, offering seating for waiting passengers. The overall design is utilitarian and industrial, with visible signs of wear and exposure to the elements. The shelter is compact, making it suitable for placement on urban sidewalks or near roadways.",
+    "description": "A compact, weathered metal bus shelter with a flat roof, partial corrugated metal enclosure, and an integrated bench. Features a small sign and an industrial, utilitarian appearance.",
+    "description_view_0": "Front angled view showing the flat, rusted roof, open front, and partial corrugated metal enclosure beneath the roof.",
+    "description_view_1": "Side view highlighting the open front, visible bench, and a small sign or placard attached to the shelter.",
+    "description_view_2": "Rear angled view displaying the full corrugated metal back panel and partial side enclosure, with the bench partially visible.",
+    "description_view_3": "Direct rear view showing the solid corrugated metal back panel and the shelter's overall rectangular shape.",
+    "category": "bus shelter",
+    "height": 2.2,
+    "max_dimension": 3.0,
+    "materials": [
+        "steel",
+        "corrugated metal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench",
+        "sign panel"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "blue",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "flat metal",
+    "attribute_seating_presence": true,
+    "attribute_advertisement_panel": false,
+    "attribute_shelter_enclosure_level": "partially enclosed",
+    "attribute_signage": [
+        "route sign"
+    ],
+    "uid": "ffcf2f95eb1f4005a6e7555c2b6739c3",
+    "near_synsets": {
+        "shelter.n.02": 0.5314600845745122,
+        "park_bench.n.01": 0.566035112709765,
+        "bus_stop.n.01": 0.5688295159987977,
+        "shelter.n.05": 0.5698762640037388,
+        "sentry_box.n.01": 0.5713875427326911,
+        "bus.n.04": -1000.0,
+        "protection.n.04": -1000.0,
+        "shelter.n.01": -1000.0,
+        "tax_shelter.n.01": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "busbar.n.01": -1000.0,
+        "bus.n.01": -1000.0
+    },
+    "synset": "shelter.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ffcf2f95eb1f4005a6e7555c2b6739c3",
+        "creator_username": "Lordies",
+        "creator_display_name": "Lordies",
+        "creator_profile_url": "https://sketchfab.com/Lordies"
+    },
+    "filename": "std_ffcf2f95eb1f4005a6e7555c2b6739c3.glb",
+    "length": 1.9341001510620117,
+    "width": 3.2877005338668823
+}

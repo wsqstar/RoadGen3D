@@ -1,0 +1,100 @@
+{
+    "description_long": "This drone features a compact, aerodynamic central body with three large, circular rotors mounted symmetrically around it. The rotors are housed in robust, open frames, suggesting a design optimized for stability and maneuverability in urban environments. The central fuselage appears to be constructed from a durable, lightweight metal or composite, with visible paneling and a small, raised section that may house electronics or sensors. The landing gear consists of three sturdy, fixed legs extending downward, providing stable support when the drone is at rest. The overall design is sleek and functional, with minimal extraneous features, emphasizing efficiency and utility. The color scheme is predominantly metallic gray and black, giving it a modern, industrial appearance.",
+    "description": "A sleek, tri-rotor drone with a compact metallic body, three large exposed rotors, and fixed landing legs. Its design is modern and robust, suitable for urban use.",
+    "description_view_0": "Front view shows the central body flanked by two large rotors and the landing gear extending forward.",
+    "description_view_1": "Side view highlights the circular rotor housing and the compact, slightly raised central section.",
+    "description_view_2": "Rear view displays the symmetrical arrangement of the three rotors and the streamlined body.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the rotor housing and landing gear from the other side.",
+    "category": "drone",
+    "height": 0.5,
+    "max_dimension": 1.2,
+    "materials": [
+        "aluminum",
+        "carbon fiber",
+        "plastic",
+        "glass",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.4,
+        0.25,
+        0.15,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 7.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotor",
+        "landing gear",
+        "central body",
+        "possible sensor housing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 3,
+    "attribute_rotor_configuration": "tricopter Y",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": false,
+    "attribute_propeller_guard_presence": false,
+    "uid": "294e79652f494130ad2ab00a13fdbafd",
+    "near_synsets": {
+        "drone.n.04": 0.5405736115224963,
+        "single-rotor_helicopter.n.01": 0.5428186326946624,
+        "rotor.n.03": 0.5517748212882574,
+        "main_rotor.n.01": 0.5678504013798834,
+        "rotor_blade.n.01": 0.5746841670536744,
+        "drone.n.01": -1000.0,
+        "monotone.n.01": -1000.0,
+        "drone.n.05": -1000.0,
+        "dawdler.n.01": -1000.0
+    },
+    "synset": "drone.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/294e79652f494130ad2ab00a13fdbafd",
+        "creator_username": "lavadragon",
+        "creator_display_name": "LaVADraGoN",
+        "creator_profile_url": "https://sketchfab.com/lavadragon"
+    },
+    "filename": "std_294e79652f494130ad2ab00a13fdbafd.glb",
+    "length": 1.6787064671516418,
+    "width": 1.4538025856018066
+}

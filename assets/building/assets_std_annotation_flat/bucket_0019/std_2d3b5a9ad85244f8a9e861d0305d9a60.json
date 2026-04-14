@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a modern passenger train carriage with a streamlined, rectangular body and a dark roof. The sides feature a continuous row of rectangular windows, allowing ample light into the passenger compartment. The exterior is primarily dark gray or black, accented by a horizontal white and red stripe running along the lower section of the carriage. The undercarriage includes visible wheels and suspension components, typical of rail vehicles. Both ends of the carriage are flat with minimal detailing, suggesting this is a mid-train car rather than a locomotive or cab car. The overall design is utilitarian and suited for urban or intercity rail service.",
+    "description": "A modern passenger train carriage with a dark roof, continuous side windows, and a white and red accent stripe along the lower body.",
+    "description_view_0": "End-on view showing the flat face of the carriage with minimal detailing and the train's width.",
+    "description_view_1": "Side view displaying the full length of the carriage, continuous row of windows, and the white and red accent stripe.",
+    "description_view_2": "Opposite end-on view, similar to view 0, showing the flat face and undercarriage details.",
+    "description_view_3": "Opposite side view, mirroring view 1, with the same window and stripe arrangement.",
+    "category": "train",
+    "height": 3.8,
+    "max_dimension": 26.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.07,
+        0.01,
+        0.05
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "white",
+        "red"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "commuter train",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end",
+    "attribute_window_arrangement": "continuous row of rectangular windows",
+    "uid": "2d3b5a9ad85244f8a9e861d0305d9a60",
+    "near_synsets": {
+        "passenger_train.n.01": 0.44984054758258046,
+        "car_train.n.01": 0.47630456538595267,
+        "passenger_car.n.01": 0.4924195599774766,
+        "train.n.01": 0.49251582135914074,
+        "streamliner.n.01": 0.501052013804228,
+        "train.n.04": -1000.0,
+        "caravan.n.01": -1000.0,
+        "train.n.05": -1000.0,
+        "gearing.n.01": -1000.0,
+        "string.n.04": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2d3b5a9ad85244f8a9e861d0305d9a60",
+        "creator_username": "timblewee",
+        "creator_display_name": "timblewee",
+        "creator_profile_url": "https://sketchfab.com/timblewee"
+    },
+    "filename": "std_2d3b5a9ad85244f8a9e861d0305d9a60.glb",
+    "length": 22.68255043029785,
+    "width": 2.728858470916748
+}

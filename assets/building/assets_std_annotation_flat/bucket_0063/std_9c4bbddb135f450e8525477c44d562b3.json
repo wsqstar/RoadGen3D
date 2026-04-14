@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a classic hand grenade with a textured, dark green, segmented body and a yellow-painted top section, indicating a military or combat design. The upper assembly features a robust black safety lever and a prominent pull ring, both made of metal, which are essential for arming and deploying the device. The body is oval-shaped with a grid-like pattern, providing grip and structural integrity. The safety lever is attached to a pin mechanism, which, when pulled, would allow the lever to release and initiate the detonation sequence. The surface of the grenade is slightly rough and matte, with visible wear and subtle metallic reflections. No visible warning labels or digital components are present, emphasizing a traditional mechanical detonation mechanism.",
+    "description": "A classic, dark green hand grenade with a yellow top, black metal safety lever, and pull ring, featuring a textured, segmented body.",
+    "description_view_0": "Front view showing the yellow top, black safety lever, and pull ring clearly against the textured green body.",
+    "description_view_1": "Side view highlighting the thickness of the safety lever and the alignment of the pull ring along the grenade's axis.",
+    "description_view_2": "Opposite side view with the safety lever and pull ring visible, showing the yellow top and grid pattern on the body.",
+    "description_view_3": "Rear view focusing on the back of the safety lever and the full curvature of the grenade's body.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.12,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.3,
+        0.03,
+        0.02
+    ],
+    "mass": 0.4,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "pin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The detonation mechanism is mechanical, initiated by pulling the safety pin and releasing the lever, which triggers an internal fuse.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "9c4bbddb135f450e8525477c44d562b3",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.4921945765697702,
+        "grenade.n.01": 0.5143999494173314,
+        "bomb.n.01": 0.5449527663607542,
+        "general-purpose_bomb.n.01": 0.553863818224884,
+        "rifle_grenade.n.01": 0.5589985378284406,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9c4bbddb135f450e8525477c44d562b3",
+        "creator_username": "wei-zheng-tai",
+        "creator_display_name": "\u4f2a\u6b63\u592a",
+        "creator_profile_url": "https://sketchfab.com/wei-zheng-tai"
+    },
+    "filename": "std_9c4bbddb135f450e8525477c44d562b3.glb",
+    "length": 0.06342936307191849,
+    "width": 0.07516516745090485
+}

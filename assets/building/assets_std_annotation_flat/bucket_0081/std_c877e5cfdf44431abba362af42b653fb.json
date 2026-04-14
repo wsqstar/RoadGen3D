@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a small, single-engine airplane with a high-wing configuration and a fixed tricycle landing gear. The fuselage is primarily white with orange accents along the edges and tail, and the cockpit features dark-tinted windows. The propeller is mounted at the nose, and the tail section includes a conventional vertical stabilizer and horizontal stabilizer. The wings are straight and lack winglets, with a simple, utilitarian design suitable for general aviation. The landing gear consists of two main wheels and a nose wheel, all fixed and exposed. The overall appearance suggests a light aircraft commonly used for training, recreation, or short-distance travel.",
+    "description": "A small, high-wing, single-engine airplane with orange and white coloring, fixed tricycle landing gear, and a forward, enclosed cockpit.",
+    "description_view_0": "Front view showing the propeller, nose wheel, and the full span of the high-mounted wings.",
+    "description_view_1": "Left-side perspective highlighting the cockpit windows, wing structure, and fixed landing gear.",
+    "description_view_2": "Rear view displaying the tail assembly, including the vertical and horizontal stabilizers, and the main landing gear.",
+    "description_view_3": "Right-side perspective showing the propeller, cockpit, and the high-wing configuration with visible landing gear.",
+    "category": "airplane",
+    "height": 2.5,
+    "max_dimension": 9.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "mass": 750,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "door",
+        "wheel",
+        "window",
+        "landing gear",
+        "control surfaces"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "orange",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 12.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "High-wing, straight wings with no winglets or visible dihedral/anhedral angles.",
+    "attribute_engine_type": "Single nose-mounted piston engine with a two-blade propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizer.",
+    "attribute_landing_gear_type": "Fixed tricycle landing gear with two main wheels and one nose wheel.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with side windows, likely single or dual seat.",
+    "uid": "c877e5cfdf44431abba362af42b653fb",
+    "near_synsets": {
+        "airplane.n.01": 0.48576802114583495,
+        "monoplane.n.01": 0.49168124783200073,
+        "aircraft.n.01": 0.4952831580884106,
+        "biplane.n.01": 0.5099545237514191,
+        "multiengine_airplane.n.01": 0.5201863153768493
+    },
+    "synset": "multiengine_airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c877e5cfdf44431abba362af42b653fb",
+        "creator_username": "FaizU",
+        "creator_display_name": "FaizU",
+        "creator_profile_url": "https://sketchfab.com/FaizU"
+    },
+    "filename": "std_c877e5cfdf44431abba362af42b653fb.glb",
+    "length": 7.455816030502319,
+    "width": 9.971445083618164
+}

@@ -1,0 +1,91 @@
+{
+    "description_long": "This object is a tactical shotgun with a matte black finish, featuring a short barrel and a prominent tubular magazine beneath the barrel. The shotgun is equipped with a pistol grip instead of a traditional full stock, enhancing maneuverability in close-quarters environments. The fore-end is ribbed for improved grip and is likely used to operate the pump-action mechanism. The receiver and barrel are constructed from metal, while the grip and fore-end appear to be made of high-strength polymer. The trigger guard is rounded and moderately sized, providing protection for the trigger while allowing easy access. Overall, the design is compact and robust, suitable for urban law enforcement or self-defense scenarios.",
+    "description": "A compact, matte black tactical shotgun with a pistol grip, ribbed fore-end, and short barrel, designed for close-quarters use.",
+    "description_view_0": "Side view showing the full length of the shotgun, including the pistol grip, ribbed fore-end, and tubular magazine under the barrel.",
+    "description_view_1": "Front view highlighting the circular barrel opening, tubular magazine, and the alignment of the grip and fore-end.",
+    "description_view_2": "Opposite side view displaying the same features as view 0, with clear visibility of the pump and receiver details.",
+    "description_view_3": "Rear view showing the back of the pistol grip and the alignment of the receiver and barrel.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.85,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "pumpable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pistol grip",
+        "trigger",
+        "trigger guard",
+        "pump fore-end",
+        "barrel",
+        "magazine tube"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel with a tubular magazine beneath; no visible ribbing or venting on the barrel.",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with a smooth contour and no visible finger grooves or reinforcement.",
+    "uid": "fea7b12a18d24b8da18d8019f82496b9",
+    "near_synsets": {
+        "sawed-off_shotgun.n.01": 0.48868765355557237,
+        "shotgun.n.01": 0.5055650629730882,
+        "pistol.n.01": 0.5195691306186864,
+        "pistol_grip.n.01": 0.5258308775455998,
+        "shotgun_shell.n.01": 0.5329291919363637
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fea7b12a18d24b8da18d8019f82496b9",
+        "creator_username": "TORI106",
+        "creator_display_name": "TORI106",
+        "creator_profile_url": "https://sketchfab.com/TORI106"
+    },
+    "filename": "std_fea7b12a18d24b8da18d8019f82496b9.glb",
+    "length": 0.7341626882553101,
+    "width": 0.06780184805393219
+}

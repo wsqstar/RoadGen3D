@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a large cargo ship with a robust steel hull painted in a combination of dark red and gray, featuring a bulbous bow and a flat stern. The deck is equipped with three prominent cranes evenly spaced along the midsection, likely for loading and unloading bulk materials. The superstructure is located at the stern and includes a bridge with blue and white elements, as well as several smaller structures and equipment. The ship's deck is mostly flat and open, with visible hatches for cargo holds and various fixtures for maritime operations. The hull sits low in the water, indicating a displacement-type design optimized for stability and heavy loads. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A large steel cargo ship with a red and gray hull, three deck cranes, and a stern superstructure with blue and white details.",
+    "description_view_0": "Front view showing the bulbous bow, the symmetry of the hull, and the forward-most crane.",
+    "description_view_1": "Side profile highlighting the full length of the ship, three deck cranes, and the stern superstructure with blue and white features.",
+    "description_view_2": "Rear view displaying the flat stern, superstructure, and the arrangement of deck equipment at the back.",
+    "description_view_3": "Opposite side profile mirroring view 1, with clear visibility of the hull, cranes, and stern superstructure.",
+    "category": "ship",
+    "height": 25,
+    "max_dimension": 180,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.03,
+        0.02,
+        0.01,
+        0.02
+    ],
+    "mass": 25000000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 50000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "loadable",
+        "unloadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "crane",
+        "hatch",
+        "door",
+        "bridge",
+        "ladder"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "white",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.02,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a bulbous bow for improved hydrodynamics and a flat stern. The hull sides are vertical with a slight flare, and the bottom is rounded, typical for large cargo vessels. No keels or catamaran features are visible.",
+    "attribute_superstructure_layout": "The superstructure is concentrated at the stern, featuring a multi-level bridge and several smaller deck structures. The main deck is open and flat with three large cranes and multiple cargo hatches.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "crane",
+        "hatch",
+        "ladder",
+        "antenna",
+        "funnel"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "5c7c39b8a39645f8a7ecd5ec6f795a7b",
+    "near_synsets": {
+        "cargo_ship.n.01": 0.4596141228542161,
+        "ship.n.01": 0.4941214669055021,
+        "container_ship.n.01": 0.49611872131389234,
+        "three-decker.n.03": 0.5133594196503439,
+        "car_carrier.n.02": 0.5145958560295003
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5c7c39b8a39645f8a7ecd5ec6f795a7b",
+        "creator_username": "medialog",
+        "creator_display_name": "medialog",
+        "creator_profile_url": "https://sketchfab.com/medialog"
+    },
+    "filename": "std_5c7c39b8a39645f8a7ecd5ec6f795a7b.glb",
+    "length": 100.03870391845703,
+    "width": 17.513888359069824
+}

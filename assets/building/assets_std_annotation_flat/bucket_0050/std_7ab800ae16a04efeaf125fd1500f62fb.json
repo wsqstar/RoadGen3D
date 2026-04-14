@@ -1,0 +1,101 @@
+{
+    "description_long": "This gatehouse features a robust arched stone frame constructed from dark, roughly hewn blocks, giving it a fortified medieval appearance. The central entryway is a vertically planked wooden door with visible wood grain, reinforced by two prominent horizontal iron hinges and a round iron ring handle. The stonework extends above and around the door, forming a thick, protective arch that suggests durability and security. The door is set deeply within the stone frame, emphasizing the thickness of the walls and the defensive nature of the structure. No windows or additional openings are visible, and the sides reveal the substantial depth of the stonework. The overall design is utilitarian, prioritizing strength and protection, typical of historical gatehouses found at the entrances to castles or walled towns.",
+    "description": "A fortified arched stone gatehouse with a thick wooden door, iron hinges, and a ring handle, exuding a medieval defensive style.",
+    "description_view_0": "Front view showing the arched stone frame, wooden door with iron hinges, and a round iron handle.",
+    "description_view_1": "Side view displaying the deep, solid stone construction and the thickness of the gatehouse walls.",
+    "description_view_2": "Rear view showing the back of the wooden door set within the stone arch, with no visible hardware.",
+    "description_view_3": "Opposite side view, again highlighting the depth and solidity of the stone structure.",
+    "category": "gatehouse",
+    "height": 2.5,
+    "max_dimension": 2.7,
+    "materials": [
+        "stone",
+        "wood",
+        "iron",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.08,
+        0.02
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pullable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "hinges"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "dark gray",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Medieval",
+    "attribute_roof_type": "arched",
+    "attribute_entryway_design": "Arched stone doorway with a single heavy wooden door and iron hardware.",
+    "attribute_window_placement": "No windows visible on any side.",
+    "attribute_security_features": [
+        "reinforced door",
+        "iron hinges",
+        "thick stone walls"
+    ],
+    "uid": "7ab800ae16a04efeaf125fd1500f62fb",
+    "near_synsets": {
+        "gatehouse.n.01": 0.45372566528631403,
+        "portcullis.n.01": 0.4704728916538506,
+        "stockade.n.01": 0.5153083946575847,
+        "castle.n.02": 0.5157270475998782,
+        "blockhouse.n.01": 0.5214910015645721
+    },
+    "synset": "gatehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/7ab800ae16a04efeaf125fd1500f62fb",
+        "creator_username": "ENOMIC",
+        "creator_display_name": "ENOMIC",
+        "creator_profile_url": "https://sketchfab.com/ENOMIC"
+    },
+    "filename": "std_7ab800ae16a04efeaf125fd1500f62fb.glb",
+    "length": 0.42179593443870544,
+    "width": 1.8552974462509155
+}

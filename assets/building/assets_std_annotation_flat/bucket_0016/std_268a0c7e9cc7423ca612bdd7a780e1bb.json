@@ -1,0 +1,111 @@
+{
+    "description_long": "This object is a modern traffic light assembly featuring a right-angled, L-shaped horizontal arm supported by a vertical post. At the end of the horizontal arm, there is a rectangular signal head with three distinct circular lenses, colored red, yellow, and green, arranged vertically. The signal head is mounted perpendicular to the arm, allowing clear visibility for oncoming traffic. The structure appears to be made primarily of metal, likely steel or aluminum, with the signal head housing made of a durable plastic or composite material. The surface is finished in a dark, matte color, and the lenses are glossy and colored for high visibility. There are no visible pedestrian signals or control boxes attached to the assembly.",
+    "description": "A right-angled, pole-mounted traffic light with a vertical stack of red, yellow, and green lenses at the end of a horizontal arm. The structure is dark-colored and robust, designed for urban intersections.",
+    "description_view_0": "The L-shaped structure is clearly visible, with the signal head and its three colored lenses seen from the side.",
+    "description_view_1": "The traffic light is viewed edge-on, making the arm and post appear as thin lines and the signal head's lenses barely visible.",
+    "description_view_2": "A top-down view reveals the full right-angle of the arm and the vertical arrangement of the three signal lenses.",
+    "description_view_3": "Another edge-on view, similar to view 1, with the signal head's profile and mounting details visible.",
+    "category": "traffic light",
+    "height": 2.5,
+    "max_dimension": 3.0,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "signalable",
+        "illuminable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "signal lenses"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "yellow",
+        "green"
+    ],
+    "colors_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_signal_lights": 6,
+    "attribute_signal_orientation": "vertical",
+    "attribute_mounting_type": "overhead",
+    "attribute_presence_of_pedestrian_signals": false,
+    "attribute_control_box_visibility": false,
+    "uid": "268a0c7e9cc7423ca612bdd7a780e1bb",
+    "near_synsets": {
+        "traffic_light.n.01": 0.49082865316674223,
+        "streetlight.n.01": 0.5346132116634253,
+        "stoplight.n.01": 0.5384456147255723,
+        "taillight.n.01": 0.5442908805196411,
+        "red_light.n.01": 0.5529561142004131,
+        "traffic.n.01": -1000.0,
+        "dealings.n.01": -1000.0,
+        "light.n.05": -1000.0,
+        "sparkle.n.01": -1000.0,
+        "light.n.12": -1000.0,
+        "light.n.07": -1000.0,
+        "light.n.10": -1000.0,
+        "light.n.09": -1000.0,
+        "light.n.02": -1000.0,
+        "light.n.14": -1000.0,
+        "light.n.01": -1000.0,
+        "lighter.n.02": -1000.0,
+        "traffic.n.03": -1000.0,
+        "light.n.06": -1000.0,
+        "traffic.n.02": -1000.0,
+        "luminosity.n.01": -1000.0,
+        "light.n.08": -1000.0,
+        "inner_light.n.01": -1000.0,
+        "light.n.03": -1000.0
+    },
+    "synset": "traffic_light.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/268a0c7e9cc7423ca612bdd7a780e1bb",
+        "creator_username": "Islide",
+        "creator_display_name": "Islide",
+        "creator_profile_url": "https://sketchfab.com/Islide"
+    },
+    "filename": "std_268a0c7e9cc7423ca612bdd7a780e1bb.glb",
+    "length": 0.17425537109375,
+    "width": 1.9265979528427124
+}

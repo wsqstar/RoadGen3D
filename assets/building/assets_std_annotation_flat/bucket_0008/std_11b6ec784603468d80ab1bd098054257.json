@@ -1,0 +1,107 @@
+{
+    "description_long": "This object is a modern machine gun with a robust, angular receiver and a long, slender barrel extending from the front. The stock and foregrip are both blocky and appear to be constructed from a matte, olive-green polymer, providing ergonomic support for the user. The central receiver is black and boxy, with a visible magazine well and a prominent trigger guard. A vertical foregrip is attached beneath the barrel, enhancing stability during firing. The underside features an integrated bipod for supported firing positions, and the overall design is utilitarian, with minimal decorative elements. The machine gun's surfaces are mostly matte, with subtle texturing for grip and durability.",
+    "description": "A modern, angular machine gun with a long barrel, olive-green polymer stock and foregrip, and an integrated bipod for stability. The design is utilitarian and robust, with matte surfaces and a prominent vertical foregrip.",
+    "description_view_0": "Side view showing the full length of the machine gun, including the olive-green stock, foregrip, and the integrated bipod beneath the receiver.",
+    "description_view_1": "Front view highlighting the narrow barrel profile, vertical foregrip, and the bipod legs extending downward.",
+    "description_view_2": "Opposite side view, mirroring view 0, with clear visibility of the stock, foregrip, and bipod.",
+    "description_view_3": "Rear view showing the width of the stock and the alignment of the barrel, with the bipod and foregrip visible below.",
+    "category": "machine gun",
+    "height": 0.25,
+    "max_dimension": 1.0,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 8.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 4,
+    "movable": true,
+    "required_force": 90,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "aimable",
+        "reloadable",
+        "deployable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "trigger",
+        "magazine",
+        "bipod",
+        "foregrip"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "olive green"
+    ],
+    "colors_composition": [
+        0.6,
+        0.4
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_type": "standard cylindrical barrel",
+    "attribute_stock_design": "fixed polymer stock",
+    "attribute_magazine_type": "box magazine",
+    "attribute_mounting_mechanism": "integrated bipod",
+    "attribute_iron_sight_configuration": "no iron sights visible",
+    "uid": "11b6ec784603468d80ab1bd098054257",
+    "near_synsets": {
+        "submachine_gun.n.01": 0.5216519053945637,
+        "machine_gun.n.01": 0.5228580961121905,
+        "maxim_gun.n.01": 0.5349274692597893,
+        "shotgun.n.01": 0.5400088280245168,
+        "browning_machine_gun.n.01": 0.5417557050728364,
+        "machine.n.02": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.04": -1000.0,
+        "artillery.n.01": -1000.0,
+        "accelerator.n.01": -1000.0,
+        "gun.n.01": -1000.0,
+        "gunman.n.02": -1000.0,
+        "gunman.n.01": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.05": -1000.0,
+        "grease_gun.n.01": -1000.0,
+        "car.n.01": -1000.0,
+        "gun.n.07": -1000.0
+    },
+    "synset": "browning_machine_gun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/11b6ec784603468d80ab1bd098054257",
+        "creator_username": "TARATRAP",
+        "creator_display_name": "TARATRAP",
+        "creator_profile_url": "https://sketchfab.com/TARATRAP"
+    },
+    "filename": "std_11b6ec784603468d80ab1bd098054257.glb",
+    "length": 0.8945313394069672,
+    "width": 0.03906254656612873
+}

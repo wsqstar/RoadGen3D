@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a weathered, cylindrical metal barrel with a yellowish-brown exterior, showing significant rust and grime, especially around the base and rim. The surface is marred by scratches, stains, and patches of corrosion, giving it a distinctly aged and industrial appearance. There are three prominent horizontal metal bands reinforcing the structure, and the top is sealed with a fitted metal lid featuring a small capped opening. One side displays faded green graffiti, while another side has a diamond-shaped marking with a dark stain in the center, possibly indicating hazardous contents. The barrel's finish is matte and rough, with visible pitting and irregularities in the paint. This type of barrel is commonly found in urban or industrial environments, often used for storage or waste containment.",
+    "description": "A rusty, yellowish metal barrel with reinforced bands, graffiti, and a sealed lid, showing heavy wear and industrial use.",
+    "description_view_0": "Front view shows graffiti on the upper left side and visible rust along the rim and base.",
+    "description_view_1": "This view highlights the capped opening on the lid and more pronounced rust stains at the bottom.",
+    "description_view_2": "A diamond-shaped marking with a dark stain is visible on the side, with less graffiti and more uniform corrosion.",
+    "description_view_3": "This side is relatively plain, showing only the weathered surface and rust, with no visible markings or graffiti.",
+    "category": "barrel or bucket",
+    "height": 0.9,
+    "max_dimension": 0.6,
+    "materials": [
+        "steel",
+        "paint",
+        "air",
+        "rust"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "liftable",
+        "supportable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "brown",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "metal hoops",
+    "attribute_labeling_or_markings": "graffiti, diamond-shaped symbol, stains",
+    "attribute_placement_location": "outdoor",
+    "uid": "fbda574e17864282b5f9be1023dffcb1",
+    "near_synsets": {
+        "barrel.n.02": 0.47975109756656026,
+        "barrel.n.03": 0.49311399780657783,
+        "beer_barrel.n.01": 0.5005772497960717,
+        "bucket.n.01": 0.5031892491884581,
+        "barrels.n.01": 0.5181233307882043,
+        "bucket.n.02": -1000.0,
+        "barrel.n.04": -1000.0,
+        "barrel.n.05": -1000.0,
+        "barrel.n.01": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fbda574e17864282b5f9be1023dffcb1",
+        "creator_username": "shawn_michaels",
+        "creator_display_name": "shawn_michaels",
+        "creator_profile_url": "https://sketchfab.com/shawn_michaels"
+    },
+    "filename": "std_fbda574e17864282b5f9be1023dffcb1.glb",
+    "length": 0.5742653012275696,
+    "width": 0.5742654800415039
+}

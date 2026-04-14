@@ -1,0 +1,94 @@
+{
+    "description_long": "This is a small, rustic cabin composed of two separate structures, each with a gable roof and visible wooden slat siding. The larger structure features a covered porch area with railings and an overhanging roof, while the smaller structure appears to be a detached outbuilding or shed. Both buildings have small, rectangular windows distributed asymmetrically along the sides, and the main cabin has a prominent front entrance beneath the porch. The roofs are steeply pitched and extend slightly beyond the walls, providing additional shelter. The overall appearance suggests a utilitarian yet cozy design, suitable for residential or recreational use in an urban or park setting.",
+    "description": "A rustic, two-part wooden cabin with gable roofs, a covered porch, and asymmetrical window placement. The main structure is accompanied by a smaller outbuilding.",
+    "description_view_0": "Side view showing both the main cabin and the smaller outbuilding, highlighting the porch and window arrangement.",
+    "description_view_1": "Front view displaying the gable roofs and the covered porch of the main cabin, with the outbuilding directly behind.",
+    "description_view_2": "Opposite side view revealing the rear and side windows of both structures, with minimal architectural detail visible.",
+    "description_view_3": "Rear view focusing on the back of the main cabin and outbuilding, showing the gable rooflines and limited window placement.",
+    "category": "cabin",
+    "height": 4.0,
+    "max_dimension": 10.0,
+    "materials": [
+        "wood",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 9000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "porch railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "green"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_roof_type": "gable roof with moderate pitch and slight overhangs, constructed from wood or similar material",
+    "attribute_window_arrangement": "multiple small rectangular windows arranged asymmetrically along the sides of both structures, with no clear pattern or clustering",
+    "attribute_door_placement": "single main door centered beneath the porch on the front facade of the main cabin; no doors visible on the outbuilding",
+    "attribute_porch_presence": true,
+    "attribute_architectural_style": "rustic",
+    "uid": "6c5d4e151a4f4973a41ed6fe636f4c45",
+    "near_synsets": {
+        "cabin.n.02": 0.43972456120678227,
+        "log_cabin.n.01": 0.46649384756186874,
+        "gazebo.n.01": 0.5209383947521716,
+        "chalet.n.01": 0.5347698152487351,
+        "farmhouse.n.01": 0.5354973500308668,
+        "cabin.n.03": -1000.0,
+        "cabin.n.01": -1000.0
+    },
+    "synset": "cabin.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6c5d4e151a4f4973a41ed6fe636f4c45",
+        "creator_username": "labarch",
+        "creator_display_name": "labarch",
+        "creator_profile_url": "https://sketchfab.com/labarch"
+    },
+    "filename": "std_6c5d4e151a4f4973a41ed6fe636f4c45.glb",
+    "length": 12.97005844116211,
+    "width": 3.9844229221343994
+}

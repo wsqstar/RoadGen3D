@@ -1,0 +1,91 @@
+{
+    "description_long": "This is a wooden canoe with a flat-bottomed hull and a pointed bow and stern, featuring a single central mast with two white sails attached. The hull is constructed from dark brown wood, giving it a rustic and traditional appearance. The mast and spars are also wooden, matching the hull in color and texture. The sails are made of a light, fabric-like material and are slightly curved as if catching wind. The canoe has a long, narrow shape, and there is a protruding wooden element at the stern, possibly representing a rudder or tiller. There are no visible seats, thwarts, or carrying handles, and the interior appears open and unobstructed.",
+    "description": "A wooden canoe with a central mast and two white sails, featuring a long, narrow hull and a rustic finish.",
+    "description_view_0": "Side view showing the full length of the wooden hull, the central mast, and both sails clearly.",
+    "description_view_1": "Top-down view highlighting the narrow width of the canoe and the alignment of the mast and sails along the center.",
+    "description_view_2": "Opposite side view displaying the hull, mast, and sails, with the stern's protruding element visible.",
+    "description_view_3": "Top-down view from the opposite end, emphasizing the pointed bow and the open interior.",
+    "category": "canoe",
+    "height": 0.8,
+    "max_dimension": 3.0,
+    "materials": [
+        "wood",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 35,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "mast",
+        "sails",
+        "rudder/tiller"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_presence_of_seats": false,
+    "attribute_presence_of_thwarts": false,
+    "attribute_presence_of_gunwales": true,
+    "attribute_presence_of_carrying_handles": false,
+    "attribute_presence_of_registration_numbers": false,
+    "uid": "fb0e9f294446465583516faf36e6767b",
+    "near_synsets": {
+        "canoe.n.01": 0.4319470174064993,
+        "birchbark_canoe.n.01": 0.4943902944887879,
+        "catboat.n.01": 0.4954117331651782,
+        "kayak.n.01": 0.4975989488710231,
+        "rowing_boat.n.01": 0.4982654519292892
+    },
+    "synset": "birchbark_canoe.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fb0e9f294446465583516faf36e6767b",
+        "creator_username": "vockem",
+        "creator_display_name": "vockem",
+        "creator_profile_url": "https://sketchfab.com/vockem"
+    },
+    "filename": "std_fb0e9f294446465583516faf36e6767b.glb",
+    "length": 0.34637586772441864,
+    "width": 1.322104573249817
+}

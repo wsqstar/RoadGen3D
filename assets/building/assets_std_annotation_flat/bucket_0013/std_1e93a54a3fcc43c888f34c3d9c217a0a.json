@@ -1,0 +1,110 @@
+{
+    "description_long": "This object is a detailed urban pedestrian crosswalk set within a section of black asphalt road, bordered by red-and-white striped curbs on both sides. The crosswalk features a series of white parallel lines indicating the pedestrian path, with additional road markings such as stop lines and dashed lane dividers. At each end of the crosswalk, there are tall traffic lights mounted on poles, each with visible signal lights and attached signage. One side of the crosswalk includes a green metal pedestrian barrier, while the other side has a green road sign. The surface is flat and hard, designed to support the weight of vehicles and pedestrians, and the overall structure is robust, likely constructed from concrete, metal, and plastic components. The crosswalk is clearly intended for safe pedestrian passage across a secondary road in an urban environment.",
+    "description": "A realistic urban pedestrian crosswalk with white stripes, bordered by red-and-white curbs, traffic lights, and pedestrian barriers on a black asphalt road segment.",
+    "description_view_0": "Front view showing the full width of the crosswalk, both traffic lights, and the red-and-white curbs clearly.",
+    "description_view_1": "Side view highlighting the green pedestrian barrier and the traffic light pole, with the crosswalk lines visible from the side.",
+    "description_view_2": "Rear view displaying the opposite side of the crosswalk, both traffic lights, and the road sign, with the striped curbs prominent.",
+    "description_view_3": "Side view from the other end, focusing on the traffic light and signage, with the pedestrian barrier partially visible.",
+    "category": "pedestrian crosswalk",
+    "height": 2.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "concrete",
+        "asphalt",
+        "metal",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "traffic light button",
+        "traffic light signal",
+        "pedestrian barrier",
+        "road sign"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "white",
+        "red",
+        "green",
+        "gray"
+    ],
+    "colors_composition": [
+        0.55,
+        0.18,
+        0.12,
+        0.08,
+        0.07
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_zebra_pattern": true,
+    "attribute_road_markings": [
+        "zebra stripes",
+        "stop line",
+        "lane divider"
+    ],
+    "attribute_pedestrian_signage": [],
+    "attribute_curb_ramps": false,
+    "attribute_traffic_signals": [
+        "traffic light"
+    ],
+    "uid": "1e93a54a3fcc43c888f34c3d9c217a0a",
+    "near_synsets": {
+        "pedestrian_crossing.n.01": 0.46867123146673817,
+        "school_crossing.n.01": 0.5102588778228838,
+        "crossing.n.05": 0.5277872156589545,
+        "sidewalk.n.01": 0.5291484390598525,
+        "white_line.n.01": 0.537112841501418
+    },
+    "synset": "pedestrian_crossing.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1e93a54a3fcc43c888f34c3d9c217a0a",
+        "creator_username": "nawinda.han",
+        "creator_display_name": "nawinda.han",
+        "creator_profile_url": "https://sketchfab.com/nawinda.han"
+    },
+    "filename": "std_1e93a54a3fcc43c888f34c3d9c217a0a.glb",
+    "length": 4.01539421081543,
+    "width": 5.3592283725738525
+}

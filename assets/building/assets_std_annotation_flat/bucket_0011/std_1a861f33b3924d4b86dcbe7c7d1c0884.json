@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a medium-sized ferry with a streamlined hull and a superstructure featuring multiple decks. The vessel has a light gray and white color scheme with some tan and red accents, and the upper deck includes a bridge area with visible windows. The hull is relatively flat and broad, designed for stability and capacity, and the ferry appears to have a central smokestack or funnel on the upper deck. There are several small details such as lifeboats or equipment mounted on the deck, and the sides of the ferry show portholes or windows for passenger viewing. The overall design suggests it is intended for short to medium-distance urban or regional water transport, likely accommodating both passengers and vehicles.",
+    "description": "A medium-sized, light gray and white ferry with multiple decks, a central smokestack, and visible windows and deck details.",
+    "description_view_0": "Front view showing the pointed bow, bridge windows, and the central smokestack.",
+    "description_view_1": "Side profile highlighting the flat hull, deck levels, and the smokestack rising above the superstructure.",
+    "description_view_2": "Rear view displaying the stern, possible vehicle ramp area, and deck equipment.",
+    "description_view_3": "Opposite side profile with similar features to view 1, showing the hull and superstructure.",
+    "category": "ferry",
+    "height": 0.08,
+    "max_dimension": 0.45,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 3000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "smokestack",
+        "lifeboat",
+        "ramp"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "tan",
+        "red"
+    ],
+    "colors_composition": [
+        0.55,
+        0.3,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_passenger_decks": 2,
+    "attribute_vehicle_loading_ramps": true,
+    "attribute_large_windows": true,
+    "attribute_multiple_entry_points": true,
+    "attribute_prominent_smokestack": true,
+    "uid": "1a861f33b3924d4b86dcbe7c7d1c0884",
+    "near_synsets": {
+        "ferry.n.01": 0.5280758697155421,
+        "ferry.n.02": 0.5323854584106403,
+        "car-ferry.n.01": 0.535487820556766,
+        "ferryman.n.01": 0.5380159352544918,
+        "foredeck.n.01": 0.549195868821996
+    },
+    "synset": "ferryman.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1a861f33b3924d4b86dcbe7c7d1c0884",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_1a861f33b3924d4b86dcbe7c7d1c0884.glb",
+    "length": 0.7312334775924683,
+    "width": 2.7799649238586426
+}

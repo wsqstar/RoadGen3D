@@ -1,0 +1,104 @@
+{
+    "description_long": "This object is a shoulder-fired rocket-propelled grenade launcher, specifically resembling the RPG-7. It features a long cylindrical wooden body with metallic fittings and a prominent black conical muzzle at the rear. The launcher is equipped with a large, olive-green warhead attached to the front, which tapers to a point and has a blue tip. The grip and trigger assembly are located beneath the main tube, constructed from black metal and designed for ergonomic handling. The rear section of the launcher is flared, providing stability during firing, while the front section is narrower to accommodate the projectile. The overall construction combines wood, metal, and composite materials, giving it a rugged, utilitarian appearance suitable for urban combat scenarios.",
+    "description": "A shoulder-fired RPG-7 launcher with a wooden body, black metal fittings, and an olive-green warhead with a blue tip. The launcher features a flared rear muzzle, ergonomic grip, and a prominent front projectile.",
+    "description_view_0": "Front view showing the pointed warhead and the narrow profile of the launcher, with the blue tip and olive-green body most visible.",
+    "description_view_1": "Side view displaying the full length of the launcher, the wooden body, black metal grip, and the attached warhead.",
+    "description_view_2": "Rear view highlighting the flared black muzzle and the alignment of the launcher tube, with the warhead visible from behind.",
+    "description_view_3": "Opposite side view showing the wooden tube, black fittings, and the full profile of the warhead and grip assembly.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 0.95,
+    "materials": [
+        "wood",
+        "steel",
+        "composite",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.35,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 7.0,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "aimable",
+        "triggerable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "barrel",
+        "sight",
+        "muzzle",
+        "warhead"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "olive green",
+        "blue",
+        "silver"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "none",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "99c0af8a1803490a86edc48cd3bfc700",
+    "near_synsets": {
+        "rifle_grenade.n.01": 0.5327748573222587,
+        "light_arm.n.01": 0.5367573046920459,
+        "launcher.n.01": 0.5462982942946216,
+        "dragunov.n.01": 0.5581469937723509,
+        "winchester.n.02": 0.5605167087978151,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/99c0af8a1803490a86edc48cd3bfc700",
+        "creator_username": "javadbayat",
+        "creator_display_name": "javadbayat",
+        "creator_profile_url": "https://sketchfab.com/javadbayat"
+    },
+    "filename": "std_99c0af8a1803490a86edc48cd3bfc700.glb",
+    "length": 0.7702088952064514,
+    "width": 0.12614669650793076
+}

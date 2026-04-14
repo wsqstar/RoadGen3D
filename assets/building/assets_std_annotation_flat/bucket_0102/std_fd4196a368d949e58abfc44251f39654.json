@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a light armored combat vehicle with a low-profile turret and a long, slender cannon mounted at the front. The hull is angular with riveted armor plates covering the entire body, and the vehicle runs on continuous metal tracks with visible suspension wheels. The turret is centrally positioned and features a hatch and periscopic sights, while the rear engine deck is vented and flanked by cylindrical exhausts. The vehicle's surface is painted in a uniform matte tan color, with no visible camouflage or military markings. The design suggests a focus on mobility and light protection, with sloped armor for deflection and compact dimensions for urban maneuverability. The overall construction is robust, with hard metallic surfaces and minimal external accessories.",
+    "description": "A tan, riveted light armored combat vehicle with a central turret, long cannon, and continuous metal tracks. The body is fully armored and compact, designed for mobility and protection.",
+    "description_view_0": "Rear view showing the engine deck, exhausts, and track ends, with the turret and cannon visible in the distance.",
+    "description_view_1": "Left side view highlighting the full length of the tracks, suspension wheels, turret, and cannon.",
+    "description_view_2": "Front view displaying the cannon, sloped frontal armor, and the front ends of the tracks.",
+    "description_view_3": "Right side view similar to the left, showing the tracks, turret, and cannon from the opposite side.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 5.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 9500,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "tracks",
+        "wheels",
+        "engine cover"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the turret front; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body coverage with riveted steel armor plates, sloped at the front and sides, moderate thickness, no modular or reactive panels visible.",
+    "attribute_camouflage_pattern": "Solid tan color, no camouflage pattern visible.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "fd4196a368d949e58abfc44251f39654",
+    "near_synsets": {
+        "tank.n.01": 0.4600437051867446,
+        "armored_car.n.02": 0.48812345641684296,
+        "military_vehicle.n.01": 0.4946954763027475,
+        "reconnaissance_vehicle.n.01": 0.5056080703520369,
+        "assault_gun.n.02": 0.5101132383439333,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fd4196a368d949e58abfc44251f39654",
+        "creator_username": "jpo1703",
+        "creator_display_name": "jpo1703",
+        "creator_profile_url": "https://sketchfab.com/jpo1703"
+    },
+    "filename": "std_fd4196a368d949e58abfc44251f39654.glb",
+    "length": 4.688368797302246,
+    "width": 2.170252203941345
+}

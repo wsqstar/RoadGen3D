@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a large, rectangular industrial dumpster with a weathered yellow exterior, covered in rust, grime, and graffiti. The top surface is flat and features a white spray-painted marking, while the sides are reinforced with vertical metal ribs for structural strength. One side has a fixed metal ladder for access to the top, and the opposite side displays colorful graffiti and a small access hatch. The ends of the dumpster are solid, with one end showing two recessed panels and the other end featuring angled support legs. The overall appearance suggests heavy use in an urban or industrial environment, with visible signs of wear and exposure to the elements.",
+    "description": "A large, yellow, weathered industrial dumpster with a flat top, metal ladder, graffiti, and reinforced sides, showing signs of heavy urban use.",
+    "description_view_0": "Front view showing the metal ladder attached to the left side and reinforced vertical ribs, with visible rust and grime.",
+    "description_view_1": "End view displaying two recessed panels and the flat top with a white marking, highlighting the dumpster's depth.",
+    "description_view_2": "Opposite side view with colorful graffiti, a small access hatch, and reinforced ribs, lacking the ladder seen in view 0.",
+    "description_view_3": "Rear view showing angled support legs and a solid end panel, with the flat top and white marking visible.",
+    "category": "dumpster",
+    "height": 1.5,
+    "max_dimension": 4.0,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.05,
+        0.03
+    ],
+    "mass": 900,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "climbable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "ladder",
+        "lid",
+        "access hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "brown",
+        "white",
+        "blue",
+        "red",
+        "green"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.04,
+        0.03,
+        0.02,
+        0.01
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "flat, single-section steel lid with no visible hinges or locking mechanisms; appears fixed or removable",
+    "attribute_wheel_presence": false,
+    "attribute_handle_design": "none",
+    "attribute_warning_labels": [],
+    "attribute_placement_location": "outdoor commercial area or industrial site",
+    "uid": "363b36fdbae940a7bee619e17da4803a",
+    "near_synsets": {
+        "dumpster.n.01": 0.4710355348604177,
+        "scrapheap.n.02": 0.5395572127083526,
+        "garbage.n.03": 0.5432713378042965,
+        "garbage_truck.n.01": 0.545361650067821,
+        "dump.n.02": 0.5531477536330548
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/363b36fdbae940a7bee619e17da4803a",
+        "creator_username": "sousinho",
+        "creator_display_name": "Sousinho",
+        "creator_profile_url": "https://sketchfab.com/sousinho"
+    },
+    "filename": "std_363b36fdbae940a7bee619e17da4803a.glb",
+    "length": 1.591796875,
+    "width": 3.1928634643554688
+}

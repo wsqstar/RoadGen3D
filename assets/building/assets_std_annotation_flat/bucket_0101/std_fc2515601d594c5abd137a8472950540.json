@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a medium-sized airplane with a streamlined fuselage and a distinct cockpit area at the front. The wings are mounted low on the fuselage and extend outward with a straight configuration, lacking visible winglets. The tail section features a conventional design with a single vertical stabilizer and horizontal stabilizers. The exterior is primarily white with some red and gray accents, and the surface appears hard and smooth, typical of metal-skinned aircraft. The landing gear is visible and appears to be a tricycle configuration with two main gear units and a nose wheel. The airplane is large enough to be enterable and likely supports multiple passengers or crew inside.",
+    "description": "A medium-sized, white airplane with low-mounted straight wings, a conventional tail, and a forward cockpit. The exterior is smooth and hard, with visible tricycle landing gear.",
+    "description_view_0": "Side view showing the full length of the fuselage, cockpit at the front, and the tail section with a single vertical stabilizer.",
+    "description_view_1": "Front view highlighting the nose, cockpit windows, and the forward placement of the landing gear.",
+    "description_view_2": "Opposite side view displaying the wingspan and the tail section, with less detail on the cockpit.",
+    "description_view_3": "Rear view focusing on the tail assembly, horizontal stabilizers, and the back of the fuselage.",
+    "category": "airplane",
+    "height": 4.0,
+    "max_dimension": 18.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "mass": 9500,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 4,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit controls",
+        "landing gear",
+        "windows"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, straight configuration with no visible winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "No visible engines; engine type and placement not clearly shown.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "Tricycle landing gear with two main gear units and a nose wheel, fixed configuration.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with multiple windows, likely multi-seat.",
+    "uid": "fc2515601d594c5abd137a8472950540",
+    "near_synsets": {
+        "airplane.n.01": 0.4725182380788813,
+        "aircraft.n.01": 0.4872232710414772,
+        "aircraft_landing.n.01": 0.514903130561241,
+        "monoplane.n.01": 0.5159292186053059,
+        "biplane.n.01": 0.519624033648804
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fc2515601d594c5abd137a8472950540",
+        "creator_username": "meng0801",
+        "creator_display_name": "meng0801",
+        "creator_profile_url": "https://sketchfab.com/meng0801"
+    },
+    "filename": "std_fc2515601d594c5abd137a8472950540.glb",
+    "length": 9.266618728637695,
+    "width": 4.756343126296997
+}

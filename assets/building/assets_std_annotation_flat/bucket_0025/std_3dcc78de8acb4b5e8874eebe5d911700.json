@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a compact, rectangular vending kiosk with a smooth, white exterior and a rounded top. The front features a transparent window displaying several blue spherical capsules inside, suggesting it is a capsule toy or gashapon machine. Below the window is a circular dispensing mechanism with a blue ring, a coin slot, and a small retrieval opening. The sides are plain, with the right side showing the transparent window wrapping slightly around the corner. The top is arched, giving the kiosk a modern, streamlined appearance. A printed sign with Japanese text and graphics is mounted above the dispensing area, adding a playful and commercial touch.",
+    "description": "A white, capsule toy vending kiosk with a rounded top, transparent front window, and a blue-accented dispensing mechanism. Features a printed sign and visible blue capsules inside.",
+    "description_view_0": "Front view showing the transparent window with blue capsules, printed sign, coin slot, and dispensing mechanism.",
+    "description_view_1": "Right-side view highlighting the curved top, transparent window wrapping around, and the stacked blue capsules inside.",
+    "description_view_2": "Rear view showing the plain, solid white back and the arched roof with no visible features.",
+    "description_view_3": "Left-side view with the transparent window and blue capsules visible, but no dispensing mechanism or signage.",
+    "category": "kiosk",
+    "height": 1.2,
+    "max_dimension": 0.6,
+    "materials": [
+        "plastic",
+        "glass",
+        "metal",
+        "paper",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 35,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "openable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "dispensing knob",
+        "coin slot",
+        "capsule retrieval door",
+        "signage panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "printed sign above dispensing area with Japanese text and graphics",
+    "attribute_window_presence": "one large, curved rectangular window on the front and partially on the sides",
+    "attribute_door_configuration": "one small retrieval door below the dispensing mechanism on the front",
+    "attribute_roof_design": "arched, smooth, white plastic roof with no overhangs or decorative elements",
+    "attribute_architectural_style": "modern, minimalist commercial style",
+    "uid": "3dcc78de8acb4b5e8874eebe5d911700",
+    "near_synsets": {
+        "capsule.n.01": 0.5452964167948715,
+        "capsule.n.02": 0.5498855620147325,
+        "vending_machine.n.01": 0.5619103387303626,
+        "pillbox.n.02": 0.5761727338221053,
+        "toyshop.n.01": 0.5825119942580297,
+        "booth.n.02": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3dcc78de8acb4b5e8874eebe5d911700",
+        "creator_username": "boycraft",
+        "creator_display_name": "Boycraft",
+        "creator_profile_url": "https://sketchfab.com/boycraft"
+    },
+    "filename": "std_3dcc78de8acb4b5e8874eebe5d911700.glb",
+    "length": 3.6770554184913635,
+    "width": 24.54818844795227
+}

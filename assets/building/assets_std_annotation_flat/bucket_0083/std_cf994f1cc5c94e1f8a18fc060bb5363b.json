@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a military-style, six-wheeled cargo truck with a utilitarian, boxy design and a weathered, olive-green paint job. The truck features a single cab with two doors, a flat windshield, and a prominent front grille flanked by rectangular headlights. The cargo bed is open and surrounded by metal railings, containing several brown cardboard boxes stacked loosely. The wheels are large and rugged, suitable for heavy loads and rough terrain, and a spare tire is mounted on the side behind the cab. The overall appearance suggests durability and functionality, with exposed metal surfaces and minimal decorative elements.",
+    "description": "A rugged, olive-green six-wheeled cargo truck with an open bed carrying cardboard boxes and a utilitarian cab.",
+    "description_view_0": "Side view showing the full length of the truck, the open cargo bed with boxes, and the spare tire mounted behind the cab.",
+    "description_view_1": "Rear view highlighting the open cargo bed, the arrangement of cardboard boxes, and the rear railings.",
+    "description_view_2": "Opposite side view mirroring view 0, showing the truck's length, cargo bed, and cab details.",
+    "description_view_3": "Front view displaying the grille, headlights, windshield, and the open cab area.",
+    "category": "truck",
+    "height": 2.6,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "cardboard",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.03,
+        0.05,
+        0.02
+    ],
+    "mass": 5200,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "pullable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "steering wheel",
+        "cargo bed",
+        "headlight",
+        "tailgate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "black",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "flatbed",
+    "attribute_wheelbase": 3.8,
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "cf994f1cc5c94e1f8a18fc060bb5363b",
+    "near_synsets": {
+        "van.n.05": 0.4928686672034484,
+        "flatbed.n.02": 0.5011254073129481,
+        "cargo_container.n.01": 0.5186592329455412,
+        "truck.n.01": 0.5216623590255882,
+        "pickup.n.01": 0.5282859509554971,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cf994f1cc5c94e1f8a18fc060bb5363b",
+        "creator_username": "dilong1107",
+        "creator_display_name": "Sam",
+        "creator_profile_url": "https://sketchfab.com/dilong1107"
+    },
+    "filename": "std_cf994f1cc5c94e1f8a18fc060bb5363b.glb",
+    "length": 7.312695026397705,
+    "width": 1.933279275894165
+}

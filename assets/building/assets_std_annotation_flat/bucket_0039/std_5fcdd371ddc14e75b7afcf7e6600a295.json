@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a cylindrical urban trash bin made primarily of metal, featuring a perforated midsection for ventilation and durability. The top of the bin is flat with a central circular opening for depositing waste, and the rim is prominently labeled with the phrase 'Don't litter' in white text on a black background. The body of the bin is light gray, with additional signage including pictograms instructing users to dispose of litter properly and a recycling symbol. The surface appears robust and weather-resistant, suitable for outdoor environments such as sidewalks, parks, or public squares. There are no visible wheels or external handles, and the lid appears to be fixed and flat, with the opening always exposed. The bin is designed to be both functional and informative, encouraging responsible waste disposal in public spaces.",
+    "description": "A cylindrical, metal urban trash bin with a flat, labeled lid and a central opening, featuring ventilation holes and clear anti-litter signage.",
+    "description_view_0": "Front view showing the 'Don't litter' label on the rim and a recycling symbol with the instruction 'Put your litter in its place.'",
+    "description_view_1": "Side view highlighting the pictogram of a person disposing of trash and the phrase 'Put litter in its place.'",
+    "description_view_2": "Rear view with the 'Don't litter' label visible and less signage, showing the plain perforated metal surface.",
+    "description_view_3": "Opposite side view with the pictogram and text partially visible, focusing on the bin's cylindrical shape and flat lid.",
+    "category": "trash bin",
+    "height": 1.0,
+    "max_dimension": 0.6,
+    "materials": [
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 35,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "depositable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "opening"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "white",
+        "green"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "flat, fixed",
+    "attribute_opening_mechanism": "open-top",
+    "attribute_presence_of_wheels": false,
+    "attribute_handle_design": "absent",
+    "attribute_labeling_or_signage": "Features 'Don't litter' text, pictograms for waste disposal, recycling symbol, and disposal instructions.",
+    "uid": "5fcdd371ddc14e75b7afcf7e6600a295",
+    "near_synsets": {
+        "recycling_bin.n.01": 0.4849885683177329,
+        "litterbin.n.01": 0.4902587151454188,
+        "dumpster.n.01": 0.5076867522881807,
+        "bin_liner.n.01": 0.5079876098360772,
+        "garbage.n.03": 0.5224866400671683,
+        "methamphetamine.n.01": -1000.0,
+        "bin.n.01": -1000.0,
+        "trash.n.02": -1000.0,
+        "ashcan.n.01": -1000.0,
+        "rubbish.n.01": -1000.0,
+        "bank_identification_number.n.01": -1000.0,
+        "folderol.n.01": -1000.0,
+        "bin.n.02": -1000.0
+    },
+    "synset": "litterbin.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5fcdd371ddc14e75b7afcf7e6600a295",
+        "creator_username": "jkentwhite",
+        "creator_display_name": "jkentwhite",
+        "creator_profile_url": "https://sketchfab.com/jkentwhite"
+    },
+    "filename": "std_5fcdd371ddc14e75b7afcf7e6600a295.glb",
+    "length": 0.6452918350696564,
+    "width": 0.6183350682258606
+}

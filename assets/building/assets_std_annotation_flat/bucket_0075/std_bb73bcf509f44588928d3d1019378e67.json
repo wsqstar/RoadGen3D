@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a compact, industrial-style step ladder with a sturdy yellow metal frame and three wide, black anti-slip steps. The ladder features continuous handrails on both sides, extending above the top step for added safety and support. Each of the four legs is capped with a large, round, black anti-slip foot, providing stability and grip on various surfaces. The frame is reinforced with diagonal support bars, enhancing its structural integrity and load-bearing capacity. The yellow paint is slightly worn, suggesting frequent use in urban or industrial environments such as warehouses, garages, or maintenance areas. The overall design prioritizes safety and durability, making it suitable for both indoor and outdoor urban settings.",
+    "description": "A sturdy yellow metal step ladder with three black anti-slip steps, continuous handrails, and large anti-slip feet. Its reinforced frame and worn paint suggest heavy-duty, urban use.",
+    "description_view_0": "Side view showing the three steps, diagonal support bar, and two handrails with anti-slip feet visible.",
+    "description_view_1": "Front view highlighting the width of the steps, the parallel handrails, and the symmetrical placement of the anti-slip feet.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the steps, support bar, and handrails.",
+    "description_view_3": "Rear view showing the back of the steps, the handrails, and the alignment of the anti-slip feet.",
+    "category": "ladder",
+    "height": 1.0,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 60,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "climbable",
+        "grippable",
+        "supportive"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "steps",
+        "handrails",
+        "feet"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "grippy",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_number_of_rungs": 3,
+    "attribute_rung_spacing": 0.28,
+    "attribute_side_rail_profile": "round steel tubing",
+    "attribute_mounting_position": "freestanding",
+    "attribute_presence_of_safety_features": [
+        "anti-slip feet",
+        "handrails"
+    ],
+    "uid": "bb73bcf509f44588928d3d1019378e67",
+    "near_synsets": {
+        "ladder.n.01": 0.5129945764371703,
+        "step_ladder.n.01": 0.5196308643322588,
+        "aerial_ladder.n.01": 0.5416452315802339,
+        "extension_ladder.n.01": 0.5446433166316773,
+        "rope_ladder.n.01": 0.5556533863293021,
+        "ladder.n.02": -1000.0,
+        "run.n.13": -1000.0
+    },
+    "synset": "ladder.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bb73bcf509f44588928d3d1019378e67",
+        "creator_username": "tasha.kosaykina",
+        "creator_display_name": "tasha.kosaykina",
+        "creator_profile_url": "https://sketchfab.com/tasha.kosaykina"
+    },
+    "filename": "std_bb73bcf509f44588928d3d1019378e67.glb",
+    "length": 0.5411723554134369,
+    "width": 0.5802496075630188
+}

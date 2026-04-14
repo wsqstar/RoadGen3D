@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a modern city transit bus with a rectangular, elongated body and a low-floor design for easy passenger access. The exterior is primarily white with blue and yellow accent stripes running along the lower panels, and it features large, rectangular tinted windows evenly spaced along both sides. The front of the bus displays an electronic route sign above the windshield, and the front bumper is equipped with a bike rack. There are two wide, black-framed passenger doors on the right side, one at the front and one at the middle, both designed for rapid boarding and alighting. The rear of the bus has multiple lights, a license plate, and ventilation grilles, while the roof is flat with a small antenna or vent. The bus appears to be constructed mainly from metal and glass, with rubber tires and plastic trim components.",
+    "description": "A modern, low-floor city transit bus with a white body, blue and yellow stripes, large tinted windows, and dual passenger doors on the right side.",
+    "description_view_0": "Side view showing the right side of the bus with two wide passenger doors, large rectangular windows, and blue/yellow accent stripes.",
+    "description_view_1": "Front view displaying the windshield, electronic route sign, headlights, and a bike rack mounted on the bumper.",
+    "description_view_2": "Side view of the left side, featuring large windows and blue/yellow stripes, but no visible passenger doors.",
+    "description_view_3": "Rear view showing the back lights, ventilation grilles, license plate, and a flat roof with a small vent or antenna.",
+    "category": "bus",
+    "height": 3.2,
+    "max_dimension": 12.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "mass": 13000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "drivable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "button",
+        "bike rack",
+        "display panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "yellow",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.08,
+        0.04
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 2,
+    "attribute_window_arrangement": "Seven large, rectangular, evenly spaced passenger windows on each side, separated by vertical pillars; windows are all similar in size and shape, with no significant variation.",
+    "attribute_route_number_or_destination_sign": "55 JUBILEE",
+    "attribute_bus_manufacturer_logo": "No clearly visible manufacturer logo or branding on the exterior in the provided views.",
+    "attribute_passenger_entry_step_height": 0.35,
+    "uid": "b61cac55f9b544728d1ef6ce7e7ab189",
+    "near_synsets": {
+        "bus.n.01": 0.4896705158264464,
+        "minibus.n.01": 0.49858740309376565,
+        "school_bus.n.01": 0.5123445877493995,
+        "public_transit.n.01": 0.5167545910346687,
+        "bus_traffic.n.01": 0.525127695143389,
+        "bus_topology.n.01": -1000.0,
+        "bus.n.04": -1000.0,
+        "busbar.n.01": -1000.0
+    },
+    "synset": "busbar.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b61cac55f9b544728d1ef6ce7e7ab189",
+        "creator_username": "olm",
+        "creator_display_name": "olm",
+        "creator_profile_url": "https://sketchfab.com/olm"
+    },
+    "filename": "std_b61cac55f9b544728d1ef6ce7e7ab189.glb",
+    "length": 12.08754014968872,
+    "width": 2.934145927429199
+}

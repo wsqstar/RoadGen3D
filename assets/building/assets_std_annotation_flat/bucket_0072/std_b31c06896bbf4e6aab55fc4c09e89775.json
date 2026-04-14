@@ -1,0 +1,103 @@
+{
+    "description_long": "This object is a large, industrial transformer tower with a robust, rectangular metal body and a prominent cylindrical component mounted on top, likely serving as a conservator or bushing. The main body features vertically ribbed cooling fins on its front and rear faces, designed to dissipate heat efficiently. On the top surface, there are four insulator stacks with metallic connectors, arranged in a row, which serve as terminals for high-voltage electrical connections. The cylindrical component is supported by metal brackets and is offset to one side, giving the structure an asymmetrical profile. The entire surface is finished in a weathered, dark gray metal, suggesting outdoor use and exposure to the elements. The base is supported by sturdy metal feet, elevating the unit slightly above ground level for stability and ventilation.",
+    "description": "A large, weathered metal transformer tower with ribbed cooling fins, a cylindrical top component, and four insulator stacks with connectors. The structure is robust and industrial, designed for outdoor electrical distribution.",
+    "description_view_0": "The front view shows the ribbed cooling fins, four insulator stacks with connectors on top, and the cylindrical component offset to the left.",
+    "description_view_1": "The side view highlights the cylindrical component's full length and the rectangular body, with cooling fins visible at the front.",
+    "description_view_2": "The rear view mirrors the front, showing the cooling fins and insulator stacks, with the cylindrical component now offset to the right.",
+    "description_view_3": "The opposite side view displays the cylindrical component's mounting and the arrangement of the insulator stacks from a different angle.",
+    "category": "transformer tower",
+    "height": 2.2,
+    "max_dimension": 2.6,
+    "materials": [
+        "steel",
+        "ceramic",
+        "copper",
+        "oil",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.08,
+        0.02
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "connectable",
+        "insulatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "insulator stack",
+        "connector",
+        "cylindrical conservator",
+        "cooling fins"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "metallic silver"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_insulator_stacks": 4,
+    "attribute_arrangement_of_crossarms": "There is a single horizontal row of four crossarms (insulator stacks) mounted on the top surface, evenly spaced and parallel to each other.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "transformer",
+        "insulator",
+        "conservator"
+    ],
+    "attribute_configuration_of_attached_power_lines": "The configuration suggests a single circuit with four connection points, likely supporting a three-phase system with an additional ground or neutral, with lines routed parallel to each other.",
+    "uid": "b31c06896bbf4e6aab55fc4c09e89775",
+    "near_synsets": {
+        "pylon.n.02": 0.571423608002267,
+        "tesla_coil.n.01": 0.5773540272201854,
+        "coil.n.06": 0.5788914726895832,
+        "cupola.n.01": 0.5827573685179621,
+        "water_tower.n.01": 0.5869572364182144,
+        "column.n.04": -1000.0,
+        "tugboat.n.01": -1000.0,
+        "tower.n.01": -1000.0,
+        "transformer.n.01": -1000.0
+    },
+    "synset": "transformer.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b31c06896bbf4e6aab55fc4c09e89775",
+        "creator_username": "FlyingTuiMao",
+        "creator_display_name": "FlyingTuiMao",
+        "creator_profile_url": "https://sketchfab.com/FlyingTuiMao"
+    },
+    "filename": "std_b31c06896bbf4e6aab55fc4c09e89775.glb",
+    "length": 1.1115791201591492,
+    "width": 2.0729724168777466
+}

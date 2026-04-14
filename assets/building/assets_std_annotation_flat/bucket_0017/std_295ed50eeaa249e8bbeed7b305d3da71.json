@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a hospital-style privacy curtain system, featuring a rectangular metal frame suspended from above by several vertical rods. The curtain itself is made of a semi-transparent, light blue material with a wavy lower edge, and is attached to the frame via a series of evenly spaced hooks or rings. The curtain can be drawn along the frame to create a temporary enclosed space, commonly used for privacy in medical or public settings. The frame is robust and angular, with a matte black finish, and the curtain material appears lightweight and flexible. A medical equipment stand is visible nearby, suggesting the curtain's use in clinical or emergency environments.",
+    "description": "A rectangular, ceiling-mounted privacy curtain system with a semi-transparent blue curtain and a sturdy black metal frame, commonly used in medical or public spaces.",
+    "description_view_0": "View 0 shows the curtain partially closed, with the frame and curtain extending toward the viewer and a medical stand visible to the right.",
+    "description_view_1": "View 1 provides a top-down angle, highlighting the curtain's attachment to the frame and the medical stand positioned close to the curtain's edge.",
+    "description_view_2": "View 2 displays the curtain from the opposite side, with the curtain mostly open and the medical stand now on the left.",
+    "description_view_3": "View 3 offers a clear look at the frame's rectangular shape and the curtain's wavy lower edge, with no medical stand in view.",
+    "category": "curtain",
+    "height": 2.1,
+    "max_dimension": 2.5,
+    "materials": [
+        "polyester fabric",
+        "steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.05,
+        0.15
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 15,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "closable",
+        "openable",
+        "pullable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "curtain panel",
+        "hooks",
+        "frame",
+        "track"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "light blue",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.2,
+        0.6,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.48,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_mounting_location": "ceiling",
+    "attribute_openness_state": "partially open",
+    "attribute_fabric_pattern": "solid color",
+    "attribute_top_design": "eyelet",
+    "attribute_attachment_type": "hooks",
+    "uid": "295ed50eeaa249e8bbeed7b305d3da71",
+    "near_synsets": {
+        "curtain.n.02": 0.47473899117979274,
+        "curtain.n.01": 0.4899907062233537,
+        "cafe_curtain.n.01": 0.4965428227991078,
+        "window_blind.n.01": 0.49751621068158747,
+        "net_curtain.n.01": 0.5012392449628237
+    },
+    "synset": "net_curtain.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/295ed50eeaa249e8bbeed7b305d3da71",
+        "creator_username": "EDIIIC",
+        "creator_display_name": "Ethan Cragun",
+        "creator_profile_url": "https://sketchfab.com/EDIIIC"
+    },
+    "filename": "std_295ed50eeaa249e8bbeed7b305d3da71.glb",
+    "length": 1.728781819343567,
+    "width": 1.9106817245483398
+}

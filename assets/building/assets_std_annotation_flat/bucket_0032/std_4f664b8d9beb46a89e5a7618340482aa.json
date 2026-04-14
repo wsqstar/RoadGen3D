@@ -1,0 +1,94 @@
+{
+    "description_long": "This is a large, rectangular steel shipping container, commonly used for storage or transportation of goods. The exterior is painted a dark green color and features corrugated metal sides for structural strength. One end of the container has double doors secured with vertical locking bars and metal handles, along with several warning and information labels. The other sides are plain, with no visible openings or windows. The container sits on small corner supports, elevating it slightly above the ground. Its robust construction and secure doors make it suitable for outdoor urban environments such as construction sites, shipping yards, or industrial areas.",
+    "description": "A large, dark green steel shipping container with corrugated sides and secure double doors featuring warning labels.",
+    "description_view_0": "Side view showing the long, corrugated metal wall with no visible openings or features.",
+    "description_view_1": "Front view displaying the double doors with locking bars, handles, and several warning and information labels.",
+    "description_view_2": "Opposite side view, identical to view 0, showing the plain corrugated wall.",
+    "description_view_3": "End view showing the solid, corrugated metal panel with no doors or openings.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.92,
+        0.07,
+        0.01
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "locking bar"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "yellow",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.92,
+        0.03,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "warning and information labels on the front doors, including yellow hazard signs and white text",
+    "attribute_handles_or_grips": "four vertical metal handles on the front doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "4f664b8d9beb46a89e5a7618340482aa",
+    "near_synsets": {
+        "container.n.01": 0.46718245370036343,
+        "cargo_container.n.01": 0.4720732434997132,
+        "box.n.01": 0.5170351752557426,
+        "bin.n.01": 0.5383208092970501,
+        "container_ship.n.01": 0.5399565531154809
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4f664b8d9beb46a89e5a7618340482aa",
+        "creator_username": "pissok15",
+        "creator_display_name": "pissok15",
+        "creator_profile_url": "https://sketchfab.com/pissok15"
+    },
+    "filename": "std_4f664b8d9beb46a89e5a7618340482aa.glb",
+    "length": 6.393507242202759,
+    "width": 2.5822994709014893
+}

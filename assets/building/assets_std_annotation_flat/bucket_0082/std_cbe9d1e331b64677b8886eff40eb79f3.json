@@ -1,0 +1,87 @@
+{
+    "description_long": "This object is a vintage-style biplane with a wooden appearance, featuring two stacked straight wings supported by struts. The fuselage is slender and tapers toward the tail, which has a conventional horizontal stabilizer and a single vertical fin. The front of the airplane is equipped with a large, multi-blade propeller and a fixed landing gear with two main wheels and a small tail wheel. The cockpit is open and situated just behind the upper wing, with a cutout in the fuselage for pilot access. The surface texture is matte and slightly rough, with visible wood grain patterns throughout. The overall design is reminiscent of early 20th-century aircraft, likely intended as a decorative or model piece.",
+    "description": "A wooden biplane with stacked wings, open cockpit, and fixed landing gear, featuring a large front propeller and classic vintage design.",
+    "description_view_0": "Front view shows the large multi-blade propeller, stacked biplane wings, and fixed landing gear.",
+    "description_view_1": "Angled side view highlights the open cockpit, strut-supported wings, and the tail's horizontal and vertical stabilizers.",
+    "description_view_2": "Rear view displays the tail assembly, including the single vertical fin and horizontal stabilizer, as well as the alignment of the wings.",
+    "description_view_3": "Opposite angled side view reveals the propeller, open cockpit, and the full length of the fuselage and tail wheel.",
+    "category": "airplane",
+    "height": 0.35,
+    "max_dimension": 0.7,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 4.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 45,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "wheels",
+        "cockpit"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Biplane configuration with two straight, parallel wings stacked vertically and supported by interplane struts; no winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "Single front-mounted piston engine with a multi-blade propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizer.",
+    "attribute_landing_gear_type": "Fixed taildragger landing gear with two main wheels and a single tail wheel.",
+    "attribute_cockpit_placement": "Open, single-seat cockpit located just behind the upper wing, mid-fuselage.",
+    "uid": "cbe9d1e331b64677b8886eff40eb79f3",
+    "near_synsets": {
+        "biplane.n.01": 0.44625884878860156,
+        "airplane.n.01": 0.4821938516501568,
+        "propeller_plane.n.01": 0.5040899894389713,
+        "monoplane.n.01": 0.5074746155002208,
+        "aircraft.n.01": 0.5199877071821046
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cbe9d1e331b64677b8886eff40eb79f3",
+        "creator_username": "abdelrahmanshaban",
+        "creator_display_name": "AbdElrahman Shaban",
+        "creator_profile_url": "https://sketchfab.com/abdelrahmanshaban"
+    },
+    "filename": "std_cbe9d1e331b64677b8886eff40eb79f3.glb",
+    "length": 0.5944389700889587,
+    "width": 0.48394501209259033
+}

@@ -1,0 +1,106 @@
+{
+    "description_long": "This object is a modern passenger train carriage, finished in a sleek gray color with the words 'EAST COAST' printed along the side. The carriage features a continuous row of rectangular windows, evenly spaced, allowing for ample natural light inside. The undercarriage is equipped with detailed bogies and wheels, and the ends of the carriage have visible connectors and buffers. The body appears to be constructed primarily from metal, likely steel or aluminum, with glass windows and rubber or plastic trim. The design is streamlined, with smooth surfaces and minimal external protrusions, typical of intercity or commuter rail stock. The overall appearance suggests a focus on passenger comfort and efficient urban or regional transit.",
+    "description": "A sleek gray passenger train carriage with 'EAST COAST' branding, featuring a row of rectangular windows and detailed undercarriage components. The design is modern and streamlined, suitable for urban or regional rail service.",
+    "description_view_0": "Front view showing the rounded end of the carriage with a visible connector and buffer details.",
+    "description_view_1": "Side view displaying the full length of the carriage, 'EAST COAST' branding, and a continuous row of rectangular windows.",
+    "description_view_2": "Rear view similar to the front, with connector and buffer details visible.",
+    "description_view_3": "Opposite side view, mirroring the other side, with windows and undercarriage visible.",
+    "category": "train",
+    "height": 3.8,
+    "max_dimension": 23.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.05,
+        0.03,
+        0.05
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "pressable",
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "connector",
+        "buffer",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "yellow",
+        "purple"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.04,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_train_type": "commuter train",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end",
+    "attribute_window_arrangement": "continuous row of rectangular windows",
+    "uid": "425e8e6e72c34c29b0832a897852f2e5",
+    "near_synsets": {
+        "passenger_train.n.01": 0.5106621850780485,
+        "car_train.n.01": 0.5221901682103974,
+        "train.n.01": 0.5344961891013865,
+        "passenger_car.n.01": 0.5421999804113394,
+        "streamliner.n.01": 0.5423204337779961,
+        "caravan.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "gearing.n.01": -1000.0,
+        "train.n.05": -1000.0,
+        "train.n.04": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/425e8e6e72c34c29b0832a897852f2e5",
+        "creator_username": "timblewee",
+        "creator_display_name": "timblewee",
+        "creator_profile_url": "https://sketchfab.com/timblewee"
+    },
+    "filename": "std_425e8e6e72c34c29b0832a897852f2e5.glb",
+    "length": 22.68255043029785,
+    "width": 2.726973056793213
+}

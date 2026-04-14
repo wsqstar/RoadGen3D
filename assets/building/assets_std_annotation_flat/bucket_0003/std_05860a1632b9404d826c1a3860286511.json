@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a medium-sized steel truss bridge with a gently arched upper truss structure spanning between two solid concrete abutments. The bridge deck appears to be made of concrete or asphalt, with visible expansion joints and a slightly textured surface. The truss is composed of interconnected metal beams forming a geometric lattice, providing both structural support and a distinctive industrial aesthetic. The side railings are made of metal, featuring horizontal bars for safety and minimal visual obstruction. The bridge is designed for pedestrian or light vehicular traffic, with no visible lighting fixtures or decorative elements. The overall appearance is utilitarian, prioritizing function and durability over ornamentation.",
+    "description": "A steel truss bridge with an arched upper structure, concrete abutments, and metal railings, designed for urban crossings. Its industrial design emphasizes strength and utility.",
+    "description_view_0": "The bridge is seen from an angle highlighting the arching truss and one concrete abutment, with the metal railing and deck surface visible.",
+    "description_view_1": "This view emphasizes the full span of the arched truss and both abutments, showing the bridge's length and structural symmetry.",
+    "description_view_2": "The bridge is viewed from the opposite end, revealing the truss arch and the deck's surface texture, with the far abutment in clear view.",
+    "description_view_3": "A side perspective shows the entire truss arch and both abutments, with the metal railing running along the deck's edge.",
+    "category": "bridge",
+    "height": 5.0,
+    "max_dimension": 30.0,
+    "materials": [
+        "steel",
+        "concrete",
+        "asphalt",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "protective"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "railing"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "bicycle",
+        "car"
+    ],
+    "colors": [
+        "gray",
+        "dark gray",
+        "blue-gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.01,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_support_type": "truss arch",
+    "attribute_railing_design": "metal bars with horizontal rails and minimal vertical supports",
+    "attribute_arch_presence": true,
+    "attribute_lighting_fixtures": [],
+    "attribute_architectural_style": "industrial",
+    "uid": "05860a1632b9404d826c1a3860286511",
+    "near_synsets": {
+        "steel_arch_bridge.n.01": 0.4388448407680523,
+        "truss_bridge.n.01": 0.4427897033866785,
+        "trestle_bridge.n.01": 0.5043843633834801,
+        "bridge.n.01": 0.5074589925510941,
+        "truss.n.02": 0.5079033620547933,
+        "bridge.n.09": -1000.0,
+        "bridge.n.07": -1000.0,
+        "bridge.n.03": -1000.0,
+        "bridge.n.05": -1000.0,
+        "bridge.n.04": -1000.0,
+        "bridge.n.02": -1000.0,
+        "bridge.n.06": -1000.0,
+        "bridge.n.08": -1000.0
+    },
+    "synset": "bridge.n.08",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/05860a1632b9404d826c1a3860286511",
+        "creator_username": "orjansandland",
+        "creator_display_name": "\u00d8rjan Sandland",
+        "creator_profile_url": "https://sketchfab.com/orjansandland"
+    },
+    "filename": "std_05860a1632b9404d826c1a3860286511.glb",
+    "length": 34.342153549194336,
+    "width": 23.723846435546875
+}

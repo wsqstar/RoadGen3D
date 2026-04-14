@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a large, industrial garbage truck with a robust, boxy green waste container mounted on a heavy-duty chassis. The cab is painted a light gray and features side mirrors, antennae, and a windshield, while the rear section is dominated by a tall, ribbed compactor body. The truck has six wheels, with dual rear axles for supporting heavy loads, and visible access steps and rails along the side. At the back, there is a complex assembly of mechanical parts, including a loading hopper and mechanisms for lifting and compacting waste. The vehicle is designed for urban waste collection, with reinforced panels and functional details such as hydraulic components and access doors. The overall appearance is utilitarian, with minimal decorative elements and a focus on durability and functionality.",
+    "description": "A large green and gray garbage truck with a reinforced compactor body, six wheels, and visible rear loading mechanisms. Designed for urban waste collection, it features robust construction and functional details.",
+    "description_view_0": "Front-left view showing the gray cab, side mirrors, and the long green compactor body with access steps and rails.",
+    "description_view_1": "Left-rear view highlighting the ribbed compactor body, rear loading mechanisms, and dual rear axles.",
+    "description_view_2": "Rear-right view focusing on the complex rear loading hopper, hydraulic components, and the back of the compactor body.",
+    "description_view_3": "Front-right view displaying the cab, side steps, and the length of the green compactor body.",
+    "category": "garbage truck",
+    "height": 3.5,
+    "max_dimension": 9.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 14000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 35000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "mirror",
+        "step",
+        "handle",
+        "hydraulic arm",
+        "hopper",
+        "compactor panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_waste_container_attachment": "There are visible mechanical arms and rails at the rear of the truck, designed to interface with standard waste bins or dumpsters. These attachments are robust, metallic, and integrated into the lower rear section, appearing capable of lifting and tipping containers into the hopper.",
+    "attribute_hydraulic_lift_mechanism": "Hydraulic cylinders and pistons are visible at the rear, integrated into the compactor and lifting assembly. These mechanisms are medium to large in size, painted black, and appear functional, with hoses and mounting brackets connecting them to the truck's frame.",
+    "attribute_rear_loading_hopper": "A large rear loading hopper is present, occupying the lower rear section of the truck. It is rectangular, reinforced, and features hinged panels and mechanical linkages for loading and compacting waste. The hopper appears accessible for loading bins.",
+    "attribute_warning_signage": "There is a small white emblem or logo on the side of the compactor body, but no explicit warning signage such as 'Caution' or hazard icons is visible.",
+    "attribute_reflective_safety_markings": "No reflective safety markings such as stripes, chevrons, or panels are visible on the exterior of the truck.",
+    "uid": "3e03fbff124f4a2fa366bd77b2efff11",
+    "near_synsets": {
+        "garbage_truck.n.01": 0.47579835041314433,
+        "dumpster.n.01": 0.5161451692412039,
+        "garbage.n.03": 0.5556949235423995,
+        "dump_truck.n.01": 0.5590791879220316,
+        "garbage_man.n.01": 0.5657769287887466,
+        "drivel.n.01": -1000.0,
+        "hand_truck.n.01": -1000.0,
+        "garbage.n.01": -1000.0,
+        "truck.n.01": -1000.0
+    },
+    "synset": "garbage_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3e03fbff124f4a2fa366bd77b2efff11",
+        "creator_username": "miroslavstoqnov1163",
+        "creator_display_name": "miroslavstoqnov1163",
+        "creator_profile_url": "https://sketchfab.com/miroslavstoqnov1163"
+    },
+    "filename": "std_3e03fbff124f4a2fa366bd77b2efff11.glb",
+    "length": 6.3569018840789795,
+    "width": 5.390860557556152
+}

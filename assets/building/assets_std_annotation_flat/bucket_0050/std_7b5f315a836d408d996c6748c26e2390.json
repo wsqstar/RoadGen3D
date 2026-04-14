@@ -1,0 +1,90 @@
+{
+    "description_long": "This object is a dark green, spherical bomb mounted on a flat square base, with a thin vertical rod extending from the top and two thin rods protruding downward from the base. The sphere is smooth and reflective, suggesting a metallic or painted metal surface. The square base appears sturdy and is likely made of the same material as the sphere, providing stability. The thin rods may serve as supports or triggering mechanisms, and the top rod could be a fuse or antenna. There are no visible buttons, switches, or digital displays on the exterior. The overall design is simple, with no visible warning labels or markings.",
+    "description": "A dark green, spherical bomb with a smooth surface, mounted on a square base and featuring thin rods extending from the top and bottom.",
+    "description_view_0": "Front view shows the spherical bomb centered on a square base, with a thin rod on top and two thin rods extending downward.",
+    "description_view_1": "This view is nearly identical to the front, highlighting the symmetry of the sphere and the rods.",
+    "description_view_2": "The bomb remains centered, with the top and bottom rods clearly visible, and the square base providing a stable platform.",
+    "description_view_3": "Similar to other views, the sphere and rods are prominent, with the square base visible beneath the bomb.",
+    "category": "bomb",
+    "height": 0.7,
+    "max_dimension": 0.7,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.05,
+        0.05
+    ],
+    "mass": 35,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 343,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "top rod (fuse/antenna)",
+        "base",
+        "support rods"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.1,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The thin rod extending from the top likely serves as a fuse or triggering antenna, with no visible buttons or switches for manual detonation.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "7b5f315a836d408d996c6748c26e2390",
+    "near_synsets": {
+        "bomb.n.01": 0.5347953760827535,
+        "pipe_bomb.n.01": 0.5375945691708105,
+        "plastic_bomb.n.01": 0.5416702077705261,
+        "briefcase_bomb.n.01": 0.545622551222674,
+        "buzz_bomb.n.01": 0.5475428714237611,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7b5f315a836d408d996c6748c26e2390",
+        "creator_username": "alshareef892007",
+        "creator_display_name": "an anonymous gothamite",
+        "creator_profile_url": "https://sketchfab.com/alshareef892007"
+    },
+    "filename": "std_7b5f315a836d408d996c6748c26e2390.glb",
+    "length": 0.43670226633548737,
+    "width": 0.43670205771923065
+}

@@ -1,0 +1,95 @@
+{
+    "description_long": "This humanoid robot features a broad, angular torso with a geometric, armored appearance, primarily finished in matte black with blue and gold accent lines. Its arms are robust and segmented, ending in gold hook-like appendages, suggesting utility or industrial function. The legs are thick and cylindrical, with wide, stable feet designed for balance and support. The chest area is adorned with triangular and trapezoidal blue highlights, giving it a futuristic, high-tech look. The head is minimal or absent, with no visible facial features, and the overall build is symmetrical and imposing. The robot's surface is hard and smooth, with a slightly glossy sheen, and its joints are clearly defined for articulated movement.",
+    "description": "A broad, angular humanoid robot with a matte black armored body, blue and gold accents, and robust, articulated limbs ending in gold hooks.",
+    "description_view_0": "Front view shows the wide, angular torso, blue and gold chest accents, and both articulated arms with gold hooks clearly visible.",
+    "description_view_1": "Side view reveals the depth of the torso, the layered arm segments, and the protruding back panel, with one leg and arm profile visible.",
+    "description_view_2": "Rear view highlights the geometric back panel with blue lines, symmetrical limb placement, and the absence of a head or facial features.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the arm and leg profile, torso depth, and back panel structure.",
+    "category": "humanoid robot",
+    "height": 1.8,
+    "max_dimension": 1.8,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 140,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1372,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "hooks",
+        "legs",
+        "torso panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "blue",
+        "gold"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.12,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms relaxed at the sides and legs straight, torso facing forward, and no visible head.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated black armor panels with blue and gold decorative lines.",
+    "attribute_facial_features": "No visible face or facial features; head area is minimal or absent, with no eyes, mouth, or display.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible joints, likely hinge or rotary, allowing for articulated movement; limbs appear robust and somewhat rigid.",
+    "attribute_presence_of_sensors": "None visible",
+    "uid": "c6f458d3825b4be8ba8dfea5c9e7e46e",
+    "near_synsets": {
+        "android.n.01": 0.5331060274375022,
+        "cyborg.n.01": 0.5587125549275157,
+        "robotics_equipment.n.01": 0.5614571971397574,
+        "automaton.n.02": 0.5624965245751203,
+        "toy_soldier.n.01": 0.5905834553786268
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c6f458d3825b4be8ba8dfea5c9e7e46e",
+        "creator_username": "germirekwy",
+        "creator_display_name": "Gavin Lawrence",
+        "creator_profile_url": "https://sketchfab.com/germirekwy"
+    },
+    "filename": "std_c6f458d3825b4be8ba8dfea5c9e7e46e.glb",
+    "length": 0.6735483705997467,
+    "width": 1.5291089415550232
+}

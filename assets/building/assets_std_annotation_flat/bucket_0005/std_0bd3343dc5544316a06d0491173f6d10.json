@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a modern, free-standing ATM machine with a robust rectangular form and a prominent red exterior casing. The front features a large display screen at the top, beneath which is a keypad and a card slot, all set within a black panel. Below the interactive area, there is a white panel with the ADCB bank logo and Arabic text, indicating clear bank branding. The sides are solid red with black insets, and the back is a plain red surface, giving the machine a clean, secure appearance. The ATM is designed for outdoor or semi-outdoor urban environments, with a sturdy build to withstand public use. The overall design is functional, with all user interaction points concentrated on the front face.",
+    "description": "A robust, red, free-standing ATM with a black interactive front panel, display screen, keypad, card slot, and ADCB bank branding.",
+    "description_view_0": "Front view showing the display screen, keypad, card slot, receipt dispenser, and ADCB branding panel.",
+    "description_view_1": "Left side view displaying a solid red side with a large black inset panel and no interactive features.",
+    "description_view_2": "Rear view showing a plain, uninterrupted red surface with no visible features or access points.",
+    "description_view_3": "Right side view similar to the left, with a solid red side and a large black inset panel.",
+    "category": "atm",
+    "height": 1.5,
+    "max_dimension": 0.7,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "electronic_components",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "insertable",
+        "withdrawable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "screen",
+        "keypad",
+        "card slot",
+        "receipt dispenser",
+        "cash dispenser"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_screen_interface": "A rectangular, landscape-oriented screen located at the top front, displaying a static image and some text, with no visible touch or button interface on the screen itself.",
+    "attribute_card_slot": "A single horizontal card slot is visible below the screen and keypad, centrally located, with a dark border and no visible illumination or labeling.",
+    "attribute_keypad_layout": "A compact rectangular keypad with a grid layout, positioned directly below the screen and above the card slot, featuring multiple square keys likely labeled with numbers and function keys.",
+    "attribute_bank_branding": "ADCB bank branding is prominently displayed on a white panel at the lower front, with the ADCB logo and Arabic text in gray and red.",
+    "attribute_receipt_dispenser": "A small horizontal slot below the keypad and card slot, likely for receipts, with a metallic or plastic trim and no visible labeling.",
+    "uid": "0bd3343dc5544316a06d0491173f6d10",
+    "near_synsets": {
+        "cash_machine.n.01": 0.5659408496850497,
+        "debit_card.n.01": 0.5974042885641258,
+        "acquirer.n.03": 0.601370692478401,
+        "automat.n.01": 0.6028896936843144,
+        "bank_card.n.01": 0.6055209102692626,
+        "asynchronous_transfer_mode.n.01": -1000.0,
+        "standard_atmosphere.n.01": -1000.0
+    },
+    "synset": "standard_atmosphere.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0bd3343dc5544316a06d0491173f6d10",
+        "creator_username": "mohamed.amir94812",
+        "creator_display_name": "mohamed.amir94812",
+        "creator_profile_url": "https://sketchfab.com/mohamed.amir94812"
+    },
+    "filename": "std_0bd3343dc5544316a06d0491173f6d10.glb",
+    "length": 1.281897485256195,
+    "width": 1.2818973064422607
+}

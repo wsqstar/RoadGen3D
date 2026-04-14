@@ -1,0 +1,90 @@
+{
+    "description_long": "This warehouse is a large, L-shaped industrial building with a flat roof and a minimalist, utilitarian design. The exterior is predominantly smooth and light-colored, likely constructed from concrete or prefabricated panels. One side features a series of evenly spaced, rectangular ventilation grilles, suggesting climate control or storage of sensitive goods. The shorter wing of the building has a few small, dark openings that may serve as access points or utility ports. The structure is windowless, emphasizing security and controlled access, and there are no visible decorative elements or signage. The overall appearance is functional, with a focus on durability and efficient use of space.",
+    "description": "A large, L-shaped, flat-roofed warehouse with smooth, light-colored exterior walls and multiple ventilation grilles, designed for industrial storage.",
+    "description_view_0": "The short end of the L-shape is visible, showing a plain facade with a small dark opening and no windows or decorative features.",
+    "description_view_1": "The long side of the building is shown, featuring a row of rectangular ventilation grilles and a small access port on the shorter wing.",
+    "description_view_2": "The end of the long wing is visible, displaying two small dark openings and a smooth, unadorned wall.",
+    "description_view_3": "The full length of the long facade is shown, highlighting a continuous row of ventilation grilles and a flat, featureless roofline.",
+    "category": "warehouse",
+    "height": 6.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.01,
+        0.14
+    ],
+    "mass": 420000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "ventilation grille",
+        "access port"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main facade features a series of evenly spaced rectangular ventilation grilles set into smooth, light-colored walls, with minimal ornamentation and a focus on functional elements such as access ports. The design is stark and industrial, lacking windows or decorative details.",
+    "attribute_loading_dock_presence": false,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is flat and featureless, constructed from the same material as the walls, with no visible skylights, HVAC units, or other rooftop structures.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "314ae7c9d129477da379d3edf5a2b280",
+    "near_synsets": {
+        "warehouse.n.01": 0.4799421406692004,
+        "loft.n.01": 0.48663515340838137,
+        "storehouse.n.01": 0.5304207991703622,
+        "garage.n.01": 0.54487677917379,
+        "loft.n.02": 0.5458078845579251
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/314ae7c9d129477da379d3edf5a2b280",
+        "creator_username": "kolia.novosiolov",
+        "creator_display_name": "kolia.novosiolov",
+        "creator_profile_url": "https://sketchfab.com/kolia.novosiolov"
+    },
+    "filename": "std_314ae7c9d129477da379d3edf5a2b280.glb",
+    "length": 33.57112503051758,
+    "width": 55.1691837310791
+}

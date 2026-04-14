@@ -1,0 +1,118 @@
+{
+    "description_long": "This object depicts a stylized urban canal scene, featuring a central waterway flanked by embankments and bordered by several multi-story buildings in red, orange, and blue hues. The canal is crossed by a single arched bridge, providing pedestrian access between the two sides. Metal railings line the canal edges, serving as safety barriers along the walkways. The surrounding buildings have flat roofs, some with visible rooftop equipment, and the canal itself is filled with water, reflecting the urban environment. The scene includes paved walkways and open spaces adjacent to the canal, suggesting a public or communal area. The overall construction appears to be primarily concrete and masonry, with metal elements for railings and structural details.",
+    "description": "A stylized urban canal with water, bordered by colorful buildings, an arched pedestrian bridge, and metal railings along the embankments.",
+    "description_view_0": "The canal is seen from the end, highlighting the arched bridge and the waterway flanked by buildings on both sides.",
+    "description_view_1": "A side view showing the length of the canal, the arrangement of buildings, and rooftop details on the left.",
+    "description_view_2": "The opposite end view, focusing on the canal's water surface, the bridge, and the open paved area in the foreground.",
+    "description_view_3": "A side view from the other direction, displaying the canal's length, the bridge, and the buildings' rear facades.",
+    "category": "canal",
+    "height": 7.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "concrete",
+        "brick",
+        "metal",
+        "glass",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.1,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 350000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "crossable",
+        "viewable",
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bridge",
+        "railing",
+        "walkway"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "boat"
+    ],
+    "colors": [
+        "gray",
+        "red",
+        "orange",
+        "blue",
+        "yellow",
+        "black",
+        "white",
+        "cyan"
+    ],
+    "colors_composition": [
+        0.35,
+        0.2,
+        0.15,
+        0.1,
+        0.05,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_water_presence": true,
+    "attribute_embankment_type": "concrete",
+    "attribute_edge_barrier_style": "metal railing",
+    "attribute_waterway_signage": [
+        "no signage"
+    ],
+    "attribute_bridge_structures": [
+        "arched stone bridge"
+    ],
+    "uid": "6342d619527a46a581a6da688f478e7a",
+    "near_synsets": {
+        "canal.n.03": 0.48916886621944283,
+        "industrial_watercourse.n.01": 0.5327359025764862,
+        "cityscape.n.02": 0.534104777515567,
+        "waterway.n.01": 0.5499670942236828,
+        "watercourse.n.01": 0.554058322295251,
+        "canal.n.01": -1000.0,
+        "duct.n.01": -1000.0
+    },
+    "synset": "canal.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6342d619527a46a581a6da688f478e7a",
+        "creator_username": "inmafdz",
+        "creator_display_name": "inmafdz",
+        "creator_profile_url": "https://sketchfab.com/inmafdz"
+    },
+    "filename": "std_6342d619527a46a581a6da688f478e7a.glb",
+    "length": 26.066250801086426,
+    "width": 33.875118255615234
+}

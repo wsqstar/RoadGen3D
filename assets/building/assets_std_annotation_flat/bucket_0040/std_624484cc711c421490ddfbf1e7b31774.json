@@ -1,0 +1,100 @@
+{
+    "description_long": "This object consists of three cylindrical grenade-like devices, each with a hexagonal end cap and multiple circular holes along the body, revealing colored internal components\u2014yellow, red, and blue. The cylinders are connected by visible metal pins, safety levers, and prominent black pull rings, suggesting a hand-thrown or manually triggered explosive. The surface is primarily matte metal, with some plastic or rubberized elements around the handles and colored inserts. The devices feature intricate mechanical details, including visible wiring and small metallic components, indicating a complex triggering mechanism. The overall design is compact and utilitarian, with a military or tactical aesthetic. The colored holes and exposed wiring make the object visually distinctive and suggest a specialized function, such as a flashbang or smoke grenade.",
+    "description": "A set of three cylindrical, multi-holed grenade-like bombs with colored inserts, metal safety levers, and visible wiring, designed for tactical or military use.",
+    "description_view_0": "Side view showing two bombs connected at a right angle, with colored holes and black safety levers visible.",
+    "description_view_1": "Frontal view displaying all three bombs upright, highlighting the colored inserts (yellow, red, blue) and the pull rings.",
+    "description_view_2": "Opposite side view focusing on the blue and yellow inserts, with wiring and safety levers prominent.",
+    "description_view_3": "Rear angled view showing the hexagonal end caps and the arrangement of the three bombs, with wiring and colored holes visible.",
+    "category": "bomb",
+    "height": 0.18,
+    "max_dimension": 0.22,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 15,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pull ring",
+        "safety lever",
+        "pins",
+        "wiring"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "yellow",
+        "red",
+        "blue"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "group",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation appears to be initiated by pulling the safety ring and releasing the lever, with visible wiring suggesting an additional electrical or timed trigger.",
+    "attribute_wiring_visibility": true,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "624484cc711c421490ddfbf1e7b31774",
+    "near_synsets": {
+        "bomb.n.01": 0.47512203081124144,
+        "grenade.n.01": 0.48908795810281835,
+        "chemical_bomb.n.01": 0.49540692805038655,
+        "pipe_bomb.n.01": 0.5024620678657937,
+        "cluster_bomb.n.01": 0.5044252749338659,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/624484cc711c421490ddfbf1e7b31774",
+        "creator_username": "foon.",
+        "creator_display_name": "Sean Thomas",
+        "creator_profile_url": "https://sketchfab.com/foon."
+    },
+    "filename": "std_624484cc711c421490ddfbf1e7b31774.glb",
+    "length": 0.18652813881635666,
+    "width": 0.3024676740169525
+}

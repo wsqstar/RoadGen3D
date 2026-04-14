@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a large, triangular fortress-like prison complex with high stone perimeter walls and four prominent cylindrical guard towers at each corner. The walls are constructed from rough, weathered stone, topped with reddish-brown tiled roofs that extend along the entire perimeter. Each tower features a conical roof and small flag, suggesting a historic or medieval architectural influence. The structure is imposing and designed for maximum security, with limited visible entry points and no windows along the main walls. The interior courtyard is open and spacious, surrounded entirely by the fortified walls. The overall appearance is austere and defensive, emphasizing containment and surveillance.",
+    "description": "A triangular stone prison with high walls, four cylindrical guard towers, and red-tiled roofs, evoking a historic fortress. The structure is imposing, secure, and designed for surveillance.",
+    "description_view_0": "Three of the four cylindrical guard towers are visible, with the triangular layout and high stone walls clearly shown. The open courtyard and the defensive nature of the structure are prominent.",
+    "description_view_1": "The front face of the prison is most visible, showing the main entrance area and three guard towers, with the triangular shape and high walls emphasized.",
+    "description_view_2": "This view highlights the rear and side walls, with three towers visible and the open courtyard more apparent. The defensive perimeter is clear.",
+    "description_view_3": "The triangular layout is evident, with three towers in view and the high stone walls enclosing the open courtyard. The structure's symmetry and security features are prominent.",
+    "category": "prison",
+    "height": 18,
+    "max_dimension": 90,
+    "materials": [
+        "stone",
+        "clay_tile",
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 1200000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "lockable",
+        "surveillable",
+        "defensible"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "gate",
+        "tower",
+        "roof"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 10,
+    "asset_composition_type": "single",
+    "attribute_barbed_wire": false,
+    "attribute_guard_towers": 4,
+    "attribute_high_perimeter_walls": true,
+    "attribute_security_cameras": 0,
+    "attribute_architectural_style": "medieval fortress",
+    "uid": "1871d9fb5e11456694807d5734068b10",
+    "near_synsets": {
+        "panopticon.n.02": 0.5351364709633856,
+        "watchtower.n.01": 0.5364123366128506,
+        "prison.n.02": 0.5427356182548007,
+        "minaret.n.01": 0.5507811101105093,
+        "stockade.n.01": 0.5510368749176737,
+        "prison.n.01": -1000.0
+    },
+    "synset": "prison.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1871d9fb5e11456694807d5734068b10",
+        "creator_username": "3dmi_pol",
+        "creator_display_name": "Dmitrijus Polonskis",
+        "creator_profile_url": "https://sketchfab.com/3dmi_pol"
+    },
+    "filename": "std_1871d9fb5e11456694807d5734068b10.glb",
+    "length": 71.74364852905273,
+    "width": 80.12954711914062
+}

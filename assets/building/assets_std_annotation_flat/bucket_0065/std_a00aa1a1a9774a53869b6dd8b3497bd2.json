@@ -1,0 +1,105 @@
+{
+    "description_long": "This hospital building features a rectangular, multi-story structure with a flat roof and a prominent central entrance. The facade is primarily white with red trim along the roof edges and around the windows, which are a striking blue. The front entrance is marked by a large red medical cross and a sign reading 'Hospital', flanked by two symmetrical wings. Several ambulances are parked on the side, and stylized green trees are placed along the perimeter, adding a touch of landscaping. The building's design is simple and functional, with clear emergency access and visible medical symbols. The overall appearance is clean, modern, and easily recognizable as a healthcare facility.",
+    "description": "A modern, white hospital building with red trim, blue windows, a large red cross, and ambulances parked outside. The structure is multi-story, rectangular, and features clear medical signage and landscaping.",
+    "description_view_0": "The front view shows three stylized trees and the main entrance with blue windows and red trim.",
+    "description_view_1": "This view highlights the main entrance, large red cross, 'Hospital' sign, and two ambulances parked to the right.",
+    "description_view_2": "The side view displays the building's depth, a single ambulance, and additional blue windows.",
+    "description_view_3": "The rear view shows the back of the building with more blue windows and landscaping, including a tree and the ambulance parking area.",
+    "category": "hospital",
+    "height": 10.0,
+    "max_dimension": 30.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "plastic",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.01,
+        0.04
+    ],
+    "mass": 120000.0,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "ambulance",
+        "signage"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "blue",
+        "gray",
+        "green",
+        "brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.1,
+        0.15,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "scene",
+    "attribute_hospital_signage": true,
+    "attribute_emergency_entrance": true,
+    "attribute_ambulance_bay": true,
+    "attribute_medical_cross_symbol": true,
+    "attribute_architectural_style": "modern utilitarian",
+    "uid": "a00aa1a1a9774a53869b6dd8b3497bd2",
+    "near_synsets": {
+        "medical_building.n.01": 0.5086323635989745,
+        "hospital.n.01": 0.5546432297693419,
+        "medical_center.n.01": 0.5556582300380951,
+        "hospital.n.02": 0.5562620387340881,
+        "medical_institution.n.01": 0.5638912554688108
+    },
+    "synset": "hospital.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a00aa1a1a9774a53869b6dd8b3497bd2",
+        "creator_username": "_its_sagar_bro",
+        "creator_display_name": "_its_sagar_bro",
+        "creator_profile_url": "https://sketchfab.com/_its_sagar_bro"
+    },
+    "filename": "std_a00aa1a1a9774a53869b6dd8b3497bd2.glb",
+    "length": 27.98330307006836,
+    "width": 27.983302116394043
+}

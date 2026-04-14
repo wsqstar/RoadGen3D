@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a large, angular military tank with a low-profile, heavily armored hull and a prominent rotating turret. The vehicle is painted in a solid dark green color, with a long, straight main cannon extending from the front of the turret. The tank features two visible antennas on the turret, suggesting communication capabilities, and has side skirts covering the tracks for additional protection. The tracks are wide and robust, designed for traversing rough terrain, and the overall structure is boxy with sloped armor for deflection. No visible markings, camouflage patterns, or additional weapon mounts are present beyond the main cannon.",
+    "description": "A dark green, heavily armored military tank with a long main cannon, side skirts, and two antennas on the turret.",
+    "description_view_0": "Front view shows the tank's sloped armor, main cannon, and the two antennas on the turret.",
+    "description_view_1": "Left side view highlights the length of the main cannon, the side skirts, and the tank's tracks.",
+    "description_view_2": "Rear view displays the back armor, rear deck, and the two antennas extending upward.",
+    "description_view_3": "Right side view mirrors the left, showing the cannon, side skirts, and track details.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 48000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "antenna",
+        "track",
+        "side skirt"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the turret; no other weapon mounts visible.",
+    "attribute_armor_plating": "Full body armor plating with sloped surfaces on the front and sides; appears thick and robust, with side skirts for additional protection.",
+    "attribute_camouflage_pattern": "Solid dark green color; no camouflage pattern visible.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "5ace365a275a432782043a2a3082413d",
+    "near_synsets": {
+        "tank.n.01": 0.4633451413333526,
+        "military_vehicle.n.01": 0.48601650019354564,
+        "assault_gun.n.02": 0.5029386495577172,
+        "armored_car.n.02": 0.5084063969723014,
+        "tank_destroyer.n.01": 0.5135824366459518,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5ace365a275a432782043a2a3082413d",
+        "creator_username": "alrado08",
+        "creator_display_name": "alrado",
+        "creator_profile_url": "https://sketchfab.com/alrado08"
+    },
+    "filename": "std_5ace365a275a432782043a2a3082413d.glb",
+    "length": 6.363634824752808,
+    "width": 2.499999165534973
+}

@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a rectangular wooden picnic table with a simple, classic design. The tabletop consists of three wide, evenly spaced wooden planks running lengthwise, supported by a sturdy frame beneath. The table is elevated by four straight legs, reinforced by horizontal crossbeams for added stability. The wood is stained a deep brown, giving it a rich, natural appearance suitable for outdoor environments. There are no attached benches or seats, and the table surface is flat and unobstructed. The construction appears robust, making it ideal for communal use in parks or recreational areas.",
+    "description": "A rectangular, brown wooden picnic table with a plank-style tabletop and sturdy crossbeam supports, designed for outdoor use.",
+    "description_view_0": "End-on view showing the narrow width of the tabletop and the supporting legs and crossbeam structure beneath.",
+    "description_view_1": "Side view displaying the full length of the tabletop, the four legs, and the horizontal support beam connecting the legs.",
+    "description_view_2": "Opposite end-on view, similar to view 0, highlighting the tabletop planks and leg bracing.",
+    "description_view_3": "Opposite side view, mirroring view 1, showing the table's length and support structure.",
+    "category": "picnic table",
+    "height": 0.75,
+    "max_dimension": 1.8,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.06,
+        0.02
+    ],
+    "mass": 38,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportable",
+        "sittable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "tabletop",
+        "legs",
+        "crossbeam"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_seating_capacity": 0,
+    "attribute_tabletop_support_structure": "The tabletop is supported by four straight legs connected by horizontal crossbeams, providing stability and strength to the structure.",
+    "attribute_bench_attachment_type": "detached",
+    "attribute_location_context": "outdoor public park",
+    "attribute_presence_of_umbrella_hole": false,
+    "uid": "c18a9feafffd446e94449256b520dfb1",
+    "near_synsets": {
+        "picnic.n.03": 0.5132595926965076,
+        "parsons_table.n.01": 0.5215516116447528,
+        "table.n.03": 0.5216320951314066,
+        "trestle.n.02": 0.5237072657610793,
+        "table.n.02": 0.5256953855743001,
+        "board.n.04": -1000.0,
+        "mesa.n.01": -1000.0,
+        "cinch.n.01": -1000.0,
+        "table.n.05": -1000.0,
+        "table.n.01": -1000.0,
+        "field_day.n.04": -1000.0
+    },
+    "synset": "table.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c18a9feafffd446e94449256b520dfb1",
+        "creator_username": "endrit",
+        "creator_display_name": "endrit",
+        "creator_profile_url": "https://sketchfab.com/endrit"
+    },
+    "filename": "std_c18a9feafffd446e94449256b520dfb1.glb",
+    "length": 0.8693930804729462,
+    "width": 3.8154397010803223
+}

@@ -1,0 +1,102 @@
+{
+    "description_long": "This object features a straight, two-lane primary road segment bordered by a modern residential building complex. The road is paved with a smooth, gray surface and is marked by two parallel white lines running down its center, indicating a divided roadway. Adjacent to the road, the building complex consists of white and dark gray structures with flat roofs, large windows, and a small cluster of green trees and shrubs, suggesting landscaped grounds. The building appears to have multiple stories and a contemporary architectural style, with clean lines and geometric forms. The road and building are integrated, with the building set back slightly from the road and surrounded by minimal landscaping. No visible signage, curbs, or lighting fixtures are present, and the scene is devoid of vehicles or pedestrians.",
+    "description": "A straight, two-lane primary road with parallel white markings runs alongside a modern, multi-story residential building complex with landscaped greenery.",
+    "description_view_0": "Side view showing the narrow profile of the road and the building complex, with greenery visible behind the structure.",
+    "description_view_1": "Top-down view highlighting the full length of the road, the building's roof, and the arrangement of trees and shrubs.",
+    "description_view_2": "Opposite side view showing the building's facade and the road extending away, with the greenery partially visible.",
+    "description_view_3": "Frontal view of the building complex facing the road, with the main entrance and landscaping clearly visible.",
+    "category": "road",
+    "height": 7.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "asphalt",
+        "concrete",
+        "glass",
+        "metal",
+        "wood",
+        "vegetation",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.1,
+        0.05,
+        0.02,
+        0.08,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "car"
+    ],
+    "colors": [
+        "gray",
+        "white",
+        "black",
+        "green"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_lane_markings": "Two solid white parallel lines running down the center of the road; no other markings visible.",
+    "attribute_signage": "none",
+    "attribute_curb_presence": false,
+    "attribute_lighting_fixtures": "none",
+    "attribute_pedestrian_crossings": "none",
+    "uid": "499a66a4929c4e80a91a52cec68f1c05",
+    "near_synsets": {
+        "street.n.01": 0.5153769257449125,
+        "two-way_street.n.01": 0.5201632420209545,
+        "traffic_lane.n.01": 0.5246357597060354,
+        "ribbon_development.n.01": 0.5282323915203746,
+        "white_line.n.01": 0.5287200019216876,
+        "road.n.02": -1000.0,
+        "road.n.01": -1000.0
+    },
+    "synset": "road.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/499a66a4929c4e80a91a52cec68f1c05",
+        "creator_username": "homedesign3d",
+        "creator_display_name": "Home Design 3D",
+        "creator_profile_url": "https://sketchfab.com/homedesign3d"
+    },
+    "filename": "std_499a66a4929c4e80a91a52cec68f1c05.glb",
+    "length": 24.65308380126953,
+    "width": 101.21099090576172
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a large, modern roll-on/roll-off passenger ferry, primarily painted in white and blue with a prominent P&O logo on the side. The vessel features multiple decks, including at least two visible passenger decks with rows of large windows for panoramic views. The superstructure includes a blue funnel with a flag motif, and the stern is equipped with a red vehicle loading ramp, indicating its capability to transport cars and trucks. Lifeboats are mounted on both sides, and the bridge is located at the bow, above the main passenger area. The ferry's hull is streamlined for efficient travel across water, and the overall design is robust, suitable for both short and long-distance crossings.",
+    "description": "A large, blue and white P&O passenger ferry with multiple decks, large windows, and a red vehicle loading ramp at the stern.",
+    "description_view_0": "Front view showing the bow, bridge, and the forward superstructure with windows and the blue funnel visible in the background.",
+    "description_view_1": "Starboard side view displaying the P&O logo, rows of large windows, lifeboats, and the blue funnel with a flag motif.",
+    "description_view_2": "Rear view highlighting the red vehicle loading ramp, stern superstructure, and the upper decks.",
+    "description_view_3": "Port side view showing the lifeboats, large windows, blue funnel, and the overall length of the ferry.",
+    "category": "ferry",
+    "height": 25,
+    "max_dimension": 180,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.04,
+        0.01,
+        0.02
+    ],
+    "mass": 250000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "vehicle ramp",
+        "window",
+        "lifeboat",
+        "bridge controls"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "red",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_passenger_decks": 2,
+    "attribute_vehicle_loading_ramps": true,
+    "attribute_large_windows": true,
+    "attribute_multiple_entry_points": true,
+    "attribute_prominent_smokestack": true,
+    "uid": "f7c269fbb81e4072b72e28b085e52c7e",
+    "near_synsets": {
+        "passenger_ship.n.01": 0.5199515043689631,
+        "ferry.n.02": 0.5290346381576714,
+        "ferry.n.01": 0.531110766689505,
+        "car-ferry.n.01": 0.5313241919338143,
+        "ferryman.n.01": 0.5416387830574169
+    },
+    "synset": "ferryman.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f7c269fbb81e4072b72e28b085e52c7e",
+        "creator_username": "ipierre",
+        "creator_display_name": "iPierre",
+        "creator_profile_url": "https://sketchfab.com/ipierre"
+    },
+    "filename": "std_f7c269fbb81e4072b72e28b085e52c7e.glb",
+    "length": 81.44390106201172,
+    "width": 16.400571823120117
+}

@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a streamlined, vintage-style city bus with a long, rounded body and a metallic, ribbed exterior. The bus features large, rectangular side windows that allow a clear view of the interior seating, which is arranged in rows along the length of the vehicle. The front of the bus has a classic design with two circular headlights and a wide windshield, while the rear is similarly rounded and features horizontal grille detailing. The wheels are partially covered by the body panels, contributing to the bus's aerodynamic appearance. The exterior is primarily a dark metallic color, with subtle highlights and reflections indicating a smooth, hard surface. The bus is designed for urban passenger transport, with a single main entry door visible on the right side.",
+    "description": "A vintage, streamlined city bus with a ribbed metallic exterior, large side windows, and a rounded front and rear. The bus is dark metallic in color and features a single main passenger door.",
+    "description_view_0": "The rear view shows the rounded back of the bus with horizontal grille detailing and no visible doors or windows.",
+    "description_view_1": "The right side view displays the full length of the bus, including the large side windows, interior seating, and the main passenger entry door near the front.",
+    "description_view_2": "The front view highlights the wide windshield, two circular headlights, and the classic rounded front design.",
+    "description_view_3": "The left side view shows the continuous row of large windows and the absence of a passenger door on this side.",
+    "category": "bus",
+    "height": 3.2,
+    "max_dimension": 11.0,
+    "materials": [
+        "metal",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.07,
+        0.05,
+        0.03,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "headlight",
+        "step"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray",
+        "silver",
+        "blue-green (windows)"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "sleek",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 1,
+    "attribute_window_arrangement": "There are ten large, rectangular passenger windows evenly spaced along each side of the bus, separated by thin vertical pillars. The windows are uniform in size and shape, providing a continuous visual line along the length of the bus.",
+    "attribute_route_number_or_destination_sign": "",
+    "attribute_bus_manufacturer_logo": "",
+    "attribute_passenger_entry_step_height": 0.45,
+    "uid": "3c512c0e2782442dbc9b4cd09dcf2cf4",
+    "near_synsets": {
+        "bus.n.01": 0.5211003535972095,
+        "school_bus.n.01": 0.539715544300631,
+        "minibus.n.01": 0.54139003321803,
+        "bus.n.04": 0.554053287443457,
+        "berlin.n.03": 0.5585969383960896,
+        "busbar.n.01": -1000.0,
+        "bus_topology.n.01": -1000.0
+    },
+    "synset": "bus_topology.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3c512c0e2782442dbc9b4cd09dcf2cf4",
+        "creator_username": "UofA-CDH",
+        "creator_display_name": "The Center for Digital Humanities UArizona",
+        "creator_profile_url": "https://sketchfab.com/UofA-CDH"
+    },
+    "filename": "std_3c512c0e2782442dbc9b4cd09dcf2cf4.glb",
+    "length": 13.53630781173706,
+    "width": 2.934048891067505
+}

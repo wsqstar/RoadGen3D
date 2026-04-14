@@ -1,0 +1,93 @@
+{
+    "description_long": "This humanoid robot features a sleek, streamlined body with a predominantly green exterior accented by blue highlights. Its head is rounded with a dark blue, visor-like faceplate, suggesting a display or sensor area, and is flanked by circular blue elements on each side. The torso is compact and cylindrical, connecting to a long, tapered lower body that mimics a single, unified leg or pedestal, giving it a futuristic, minimalist appearance. The robot lacks visible arms or hands, emphasizing a simplified, functional design. The surface appears smooth and hard, with a subtle sheen that suggests a durable polymer or composite shell. Overall, the robot's form is both approachable and modern, suitable for urban environments where interaction and mobility are key.",
+    "description": "A sleek green humanoid robot with blue accents, a rounded head with a visor-like faceplate, and a streamlined, unified lower body. Its minimalist design lacks visible arms and emphasizes smooth, modern surfaces.",
+    "description_view_0": "Front view shows the rounded head with a blue faceplate, compact torso, and a long, tapered lower body with central blue detailing.",
+    "description_view_1": "Side view reveals the robot's depth, the cylindrical shape of the torso, and the curved, tapering lower body extending backward.",
+    "description_view_2": "Rear view displays the smooth, rounded back of the head and torso, with the lower body narrowing to a point and minimal blue accents.",
+    "description_view_3": "Opposite side view highlights the curvature of the head and torso, as well as the single, unified lower body extending in a gentle arc.",
+    "category": "humanoid robot",
+    "height": 1.7,
+    "max_dimension": 1.7,
+    "materials": [
+        "polymer composite",
+        "metal alloy",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 48,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "faceplate",
+        "head",
+        "torso"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "blue",
+        "dark blue"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 3500,
+    "friction_coefficient": 0.32,
+    "bounciness": 0.18,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with a straight, unified lower body and a forward-facing head; no visible arms or limb articulation.",
+    "attribute_clothing_style": "No visible clothing; the robot is covered in integrated green and blue panels with a smooth, seamless finish.",
+    "attribute_facial_features": "The face consists of a dark blue, visor-like plate with no visible eyes, mouth, or nose; the head is rounded with blue circular elements on the sides.",
+    "attribute_limb_articulation": "No visible arms or hands; the lower body is a single, tapered structure with no clear joints, suggesting limited or no limb articulation.",
+    "attribute_presence_of_sensors": "Possible sensor or display area on the faceplate; no other visible sensors.",
+    "uid": "2cd7b46e776e4513a97f750547647f7c",
+    "near_synsets": {
+        "android.n.01": 0.5491863330957626,
+        "cyborg.n.01": 0.5546477132227059,
+        "robotics_equipment.n.01": 0.5691891292232569,
+        "automaton.n.02": 0.5824776049141914,
+        "machine.n.02": 0.5901187128215143
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2cd7b46e776e4513a97f750547647f7c",
+        "creator_username": "djvivid",
+        "creator_display_name": "djvivid",
+        "creator_profile_url": "https://sketchfab.com/djvivid"
+    },
+    "filename": "std_2cd7b46e776e4513a97f750547647f7c.glb",
+    "length": 0.34827572107315063,
+    "width": 0.37221041321754456
+}

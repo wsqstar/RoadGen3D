@@ -1,0 +1,108 @@
+{
+    "description_long": "This roadside assistance vehicle features a boxy, utilitarian design with a sloped front windshield and a flat roof, painted primarily in a muted blue-gray color. The vehicle has large, dark-tinted windows on both sides and a set of black wheels with rugged tires, suggesting it is built for urban and roadside environments. Along the lower side panels, there are yellow and black hazard stripes, and the word 'JOHNNYCAB' is printed in yellow, indicating its service function. The front and rear both have rectangular lights, with a yellow emergency light bar mounted centrally on the roof. The overall construction appears to be metal with some plastic trim, and the vehicle is large enough to be enterable by people. Its design prioritizes visibility and safety, with clear service branding and high-visibility markings.",
+    "description": "A blue-gray, boxy roadside assistance vehicle with large windows, yellow-black hazard stripes, and a roof-mounted yellow emergency light bar. The word 'JOHNNYCAB' is printed on the side, emphasizing its service role.",
+    "description_view_0": "Side view showing the 'JOHNNYCAB' branding, yellow-black hazard stripes, and large windows.",
+    "description_view_1": "Rear view displaying two red tail lights, a flat back panel, and the absence of visible branding.",
+    "description_view_2": "Opposite side view mirroring view 0, with hazard stripes and windows but no visible branding.",
+    "description_view_3": "Front view highlighting the sloped windshield, yellow-black hazard striping on the bumper, and the roof-mounted yellow emergency light bar.",
+    "category": "roadside assistance vehicle",
+    "height": 1.7,
+    "max_dimension": 4.2,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "mass": 1700,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 3500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "emergency light",
+        "headlight",
+        "taillight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue-gray",
+        "black",
+        "yellow",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_vehicle_branding": "The word 'JOHNNYCAB' is printed in yellow on the lower side panel of the vehicle, just above the black hazard stripe, on both sides. The font is simple and legible, making the branding clear and prominent.",
+    "attribute_emergency_lights": "A single yellow emergency light bar is mounted centrally on the roof, visible from the front and rear. It appears functional and is designed for high visibility.",
+    "attribute_company_logo": "none",
+    "attribute_equipment_racks": "none",
+    "attribute_high-visibility_markings": "Yellow and black hazard stripes run along the lower side panels and the front bumper, providing high-visibility warning patterns for safety.",
+    "uid": "54eb11915cd74478bb14cde2ba2d0acc",
+    "near_synsets": {
+        "gypsy_cab.n.01": 0.5674467818855006,
+        "curb_service.n.01": 0.586378094576215,
+        "truck_stop.n.01": 0.5895602936643292,
+        "ambulance.n.01": 0.5898968024731943,
+        "minicab.n.01": 0.5908260076408896,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "aid.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "aid.n.03": -1000.0,
+        "aid.n.02": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/54eb11915cd74478bb14cde2ba2d0acc",
+        "creator_username": "sealandair",
+        "creator_display_name": "Sea Land Air",
+        "creator_profile_url": "https://sketchfab.com/sealandair"
+    },
+    "filename": "std_54eb11915cd74478bb14cde2ba2d0acc.glb",
+    "length": 3.7213757038116455,
+    "width": 1.5896340608596802
+}

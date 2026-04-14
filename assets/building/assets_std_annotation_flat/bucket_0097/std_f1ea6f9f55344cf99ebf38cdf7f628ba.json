@@ -1,0 +1,105 @@
+{
+    "description_long": "This bridge features two tall, ornate towers at either end, each adorned with pointed spires and intricate gothic detailing. The main span of the bridge is a graceful arch, supported by a lattice of metal trusses beneath the walkway. The towers are constructed with large, arched windows and decorative stonework, giving the structure a dramatic and historic appearance. The bridge's walkway is bordered by slender metal railings, providing both safety and a sense of openness. The overall color palette is dominated by dark stone and metal, with hints of blue accents near the spires. The design evokes the grandeur of gothic revival architecture, making it a striking landmark in any urban setting.",
+    "description": "A gothic-style arched bridge with two tall, spired towers and ornate metal railings, featuring intricate stonework and large arched windows.",
+    "description_view_0": "Front view showing both towers, the central arch, and the full span of the bridge with detailed gothic elements.",
+    "description_view_1": "Side view highlighting the height and slenderness of one tower, with visible arched windows and spire details.",
+    "description_view_2": "Rear view mirroring the front, displaying both towers, the arch, and the bridge's ornate structure.",
+    "description_view_3": "Opposite side view focusing on the other tower, showing the same vertical gothic features and window arrangement.",
+    "category": "bridge",
+    "height": 60,
+    "max_dimension": 90,
+    "materials": [
+        "stone",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "mass": 350000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "crossable",
+        "viewpoint"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "railing",
+        "walkway"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "dark gray",
+        "black",
+        "blue",
+        "light gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 10,
+    "asset_composition_type": "single",
+    "attribute_support_type": "arch, truss",
+    "attribute_railing_design": "metal bars with vertical balusters and decorative gothic motifs",
+    "attribute_arch_presence": true,
+    "attribute_lighting_fixtures": [],
+    "attribute_architectural_style": "gothic",
+    "uid": "f1ea6f9f55344cf99ebf38cdf7f628ba",
+    "near_synsets": {
+        "steel_arch_bridge.n.01": 0.47649748577126855,
+        "gothic.n.03": 0.4983929795923659,
+        "gothic_arch.n.01": 0.49923889146292155,
+        "trestle_bridge.n.01": 0.5041534784362959,
+        "viaduct.n.01": 0.5117558539258814,
+        "bridge.n.06": -1000.0,
+        "bridge.n.09": -1000.0,
+        "bridge.n.02": -1000.0,
+        "bridge.n.01": -1000.0,
+        "bridge.n.03": -1000.0,
+        "bridge.n.04": -1000.0,
+        "bridge.n.08": -1000.0,
+        "bridge.n.07": -1000.0,
+        "bridge.n.05": -1000.0
+    },
+    "synset": "bridge.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f1ea6f9f55344cf99ebf38cdf7f628ba",
+        "creator_username": "chambersu1996",
+        "creator_display_name": "ChamberSu1996",
+        "creator_profile_url": "https://sketchfab.com/chambersu1996"
+    },
+    "filename": "std_f1ea6f9f55344cf99ebf38cdf7f628ba.glb",
+    "length": 74.94923782348633,
+    "width": 74.94921875
+}

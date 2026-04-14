@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a cylindrical military-style smoke grenade, specifically labeled as an M18 Smoke Red. The body is olive green with a wide white band near the base and a red top, featuring prominent white warning text indicating the need for protective masks in smoke clouds. The top section includes a metal safety lever and a pull ring, both painted in a similar green, which are standard features for arming and deploying the grenade. The canister appears to be constructed from metal, likely steel, with a painted finish for camouflage and identification. The surface shows a matte, slightly rough texture, typical of military ordnance to reduce glare. The overall design is compact and robust, intended for manual deployment in urban or field environments.",
+    "description": "A compact, olive green cylindrical smoke grenade with a red top, white warning labels, and a metal safety lever and pull ring. The surface is matte and slightly rough, with clear military markings.",
+    "description_view_0": "Front view showing the main warning label, red top, and the safety lever resting along the side.",
+    "description_view_1": "Side view with the pull ring and lever profile visible, and partial text wrapping around the canister.",
+    "description_view_2": "Rear view displaying the 'M18 SMOKE RED' label and the full pull ring and lever assembly.",
+    "description_view_3": "Opposite side view focusing on the lever's length and attachment, with minimal text visible.",
+    "category": "bomb",
+    "height": 0.15,
+    "max_dimension": 0.15,
+    "materials": [
+        "steel",
+        "paint",
+        "plastic",
+        "air",
+        "pyrotechnic composition"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 0.6,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 6,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "top cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "white",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [
+        "WARNING DO NOT USE IN ENCLOSED AREA PROTECTIVE MASK MUST BE WORN IN A SMOKE CLOUD"
+    ],
+    "attribute_detonation_mechanism": "The grenade is activated by pulling the metal ring, which releases the safety lever and ignites the internal pyrotechnic composition.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "6dbb48151a9147b4830aa7bf55fc8282",
+    "near_synsets": {
+        "smoke_bomb.n.01": 0.5427486108603046,
+        "hand_grenade.n.01": 0.543465837548266,
+        "grenade.n.01": 0.5441249179379353,
+        "rifle_grenade.n.01": 0.5599714357613654,
+        "cherry_bomb.n.01": 0.5618246955690955,
+        "bomb.n.01": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6dbb48151a9147b4830aa7bf55fc8282",
+        "creator_username": "RedRogueXIII",
+        "creator_display_name": "RedRogueXIII",
+        "creator_profile_url": "https://sketchfab.com/RedRogueXIII"
+    },
+    "filename": "std_6dbb48151a9147b4830aa7bf55fc8282.glb",
+    "length": 0.07057245448231697,
+    "width": 0.06749086827039719
+}

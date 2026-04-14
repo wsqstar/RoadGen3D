@@ -1,0 +1,112 @@
+{
+    "description_long": "This is a white NYPD police car with a sleek, modern coupe design, featuring four doors and black wheels. The vehicle is adorned with blue horizontal stripes running along both sides, and the text 'NYPD' is prominently displayed on the front doors, accompanied by a police shield insignia. On the roof, there is a distinctive array of emergency lights arranged in a bar, with alternating red and blue lenses. The front and rear bumpers are fitted with standard police markings, and the rear displays the 'NYPD' text above the license plate area. The windows are tinted, and the car's body is constructed from metal with plastic and glass components, typical of urban police vehicles.",
+    "description": "A white NYPD police car with blue stripes, black wheels, roof-mounted emergency lights, and prominent police markings and insignia.",
+    "description_view_0": "Front view showing the windshield, roof-mounted emergency lights, and a subtle NYPD badge on the hood.",
+    "description_view_1": "Left side view highlighting the 'NYPD' text, blue stripe, police shield insignia, and black wheels.",
+    "description_view_2": "Rear view displaying the 'NYPD' text above the license plate area, taillights, and the emergency light bar on the roof.",
+    "description_view_3": "Right side view similar to the left, with 'NYPD' text, blue stripe, police shield insignia, and black wheels visible.",
+    "category": "police car",
+    "height": 1.45,
+    "max_dimension": 4.6,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.12,
+        0.1,
+        0.07,
+        0.03,
+        0.03
+    ],
+    "mass": 1550,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "emergency light bar",
+        "trunk",
+        "hood",
+        "side mirror",
+        "license plate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.42,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.07,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_police_markings": "The vehicle features 'NYPD' text in bold black letters on both front doors, a blue horizontal stripe running along each side, and 'NYPD' text in blue on the rear above the license plate. There is also a small NYPD shield insignia on the front doors.",
+    "attribute_emergency_lights": "A roof-mounted emergency light bar with alternating red and blue lights is present, arranged in a linear fashion across the top center of the vehicle.",
+    "attribute_siren": "Not visible",
+    "attribute_police_insignia": "A police shield insignia is visible on both front doors, rendered in black and gold.",
+    "attribute_license_plate": "A license plate is visible on the rear of the vehicle, colored white with blue text, displaying 'NYPD'.",
+    "uid": "274bf0130e5e497990719d44c498ba00",
+    "near_synsets": {
+        "panda_car.n.01": 0.5049451669000574,
+        "cruiser.n.01": 0.5513217179696238,
+        "police_van.n.01": 0.5625862955315764,
+        "traffic_cop.n.01": 0.5657863311718678,
+        "police_boat.n.01": 0.5681653418213243,
+        "car.n.01": -1000.0,
+        "car.n.02": -1000.0,
+        "cable_car.n.01": -1000.0,
+        "car.n.04": -1000.0,
+        "car.n.03": -1000.0,
+        "police.n.01": -1000.0
+    },
+    "synset": "cruiser.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/274bf0130e5e497990719d44c498ba00",
+        "creator_username": "David_Holiday",
+        "creator_display_name": "David_Holiday",
+        "creator_profile_url": "https://sketchfab.com/David_Holiday"
+    },
+    "filename": "std_274bf0130e5e497990719d44c498ba00.glb",
+    "length": 2.0301971435546875,
+    "width": 0.8210029602050781
+}

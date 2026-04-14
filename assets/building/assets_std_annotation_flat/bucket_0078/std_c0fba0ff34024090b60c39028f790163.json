@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a small, boxy cinema building with a simple, rectangular structure and a flat roof. The facade features a stepped marquee or signboard above the entrance, which is slightly raised and centrally positioned. The building is primarily light gray with pinkish accents, and the entrance area is subtly distinguished by a darker tone. The overall design is minimalistic, with no visible windows or elaborate architectural details, suggesting a utilitarian, possibly mid-20th-century style. The cinema appears compact, likely intended for a small urban neighborhood or side street. There are no visible decorative elements, branding, or signage on the exterior.",
+    "description": "A compact, boxy cinema building with a stepped marquee and minimalistic, light gray and pinkish exterior.",
+    "description_view_0": "Front view showing the stepped marquee above the entrance and the main facade.",
+    "description_view_1": "Side view revealing the building's rectangular depth and the protruding marquee.",
+    "description_view_2": "Rear view displaying a plain, flat wall with no visible features.",
+    "description_view_3": "Opposite side view similar to view 1, showing the building's depth and simple side wall.",
+    "category": "cinema",
+    "height": 4.0,
+    "max_dimension": 8.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.05,
+        0.15
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 4,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "marquee",
+        "ticket window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "pink",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Modernist",
+    "attribute_brand_name": "None",
+    "attribute_license_plate_number": "None",
+    "attribute_storefront_signage": "None",
+    "attribute_street_art_or_murals": "None",
+    "uid": "c0fba0ff34024090b60c39028f790163",
+    "near_synsets": {
+        "cinema.n.02": 0.5296711861600827,
+        "multiplex.n.02": 0.5643517598603115,
+        "fleapit.n.01": 0.5665203333382125,
+        "silver_screen.n.01": 0.5716318104040703,
+        "house.n.04": 0.5798192617487993,
+        "film.n.02": -1000.0
+    },
+    "synset": "cinema.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c0fba0ff34024090b60c39028f790163",
+        "creator_username": "eccitatore",
+        "creator_display_name": "eccitatore",
+        "creator_profile_url": "https://sketchfab.com/eccitatore"
+    },
+    "filename": "std_c0fba0ff34024090b60c39028f790163.glb",
+    "length": 79.48362731933594,
+    "width": 79.48362350463867
+}

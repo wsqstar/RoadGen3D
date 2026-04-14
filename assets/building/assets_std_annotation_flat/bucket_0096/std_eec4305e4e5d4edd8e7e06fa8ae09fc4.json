@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a long, narrow airplane with a streamlined fuselage and clearly defined wings extending from either side. The wings appear to be straight and relatively thin, with no visible winglets or pronounced dihedral angles. The surface is predominantly metallic gray, with some subtle blue and white highlights, suggesting a painted or composite finish. The tail section is conventional, with a single vertical stabilizer and horizontal stabilizers extending from the rear. The cockpit is positioned at the forward end of the fuselage, with a slightly raised canopy area. The landing gear is not clearly visible, but the overall form is consistent with a typical small to medium-sized civilian or utility airplane.",
+    "description": "A long, narrow metallic-gray airplane with straight wings, a conventional tail, and a forward cockpit.",
+    "description_view_0": "The airplane is seen from the front, showing the narrow fuselage and the forward cockpit area.",
+    "description_view_1": "A side profile reveals the full wingspan and the length of the fuselage, with the tail and stabilizers visible at the far end.",
+    "description_view_2": "The rear view highlights the tail section, including the vertical and horizontal stabilizers, and the tapering fuselage.",
+    "description_view_3": "Another side profile, opposite to view 1, again showing the wingspan and the streamlined body.",
+    "category": "airplane",
+    "height": 1.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 3,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "closable",
+        "openable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit canopy",
+        "wheel",
+        "control surfaces"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "white"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with straight wings and no visible winglets or pronounced dihedral angles.",
+    "attribute_engine_type": "Not clearly visible; no engines are distinctly shown in the images.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "Landing gear not clearly visible; configuration indeterminate from images.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a slightly raised canopy area.",
+    "uid": "eec4305e4e5d4edd8e7e06fa8ae09fc4",
+    "near_synsets": {
+        "aircraft.n.01": 0.48062995674069126,
+        "monoplane.n.01": 0.4834350688392268,
+        "airplane.n.01": 0.4846094977454862,
+        "biplane.n.01": 0.5023924753599824,
+        "narrowbody_aircraft.n.01": 0.5172134558178393
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/eec4305e4e5d4edd8e7e06fa8ae09fc4",
+        "creator_username": "mogawa",
+        "creator_display_name": "mogawa",
+        "creator_profile_url": "https://sketchfab.com/mogawa"
+    },
+    "filename": "std_eec4305e4e5d4edd8e7e06fa8ae09fc4.glb",
+    "length": 41.82961654663086,
+    "width": 13.467882633209229
+}

@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a dual-compartment urban trash bin made from a dark, matte-finished metal, designed for waste separation. The front face features two distinct panels: the left panel displays a recycling symbol with a red prohibition sign, indicating non-recyclable waste, while the right panel has a standard green recycling symbol for recyclable materials. Both compartments have narrow slots above the signage for depositing waste. The bin has a slightly slanted top and a robust, rectangular form, with no visible handles or wheels. The sides and back are plain, emphasizing its utilitarian design. The overall construction suggests durability and suitability for high-traffic public spaces such as sidewalks, parks, or transit stations.",
+    "description": "A dual-compartment, dark metal trash bin with recycling and non-recycling signage, featuring a slanted top and front-facing waste slots.",
+    "description_view_0": "Front view showing two waste slots, one with a recycling prohibition symbol and one with a green recycling symbol.",
+    "description_view_1": "Side view revealing the slanted top and the bin's depth, with no visible signage or openings.",
+    "description_view_2": "Rear view displaying a plain, unmarked surface with no openings or features.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the slanted top and plain side panel.",
+    "category": "trash bin",
+    "height": 1.1,
+    "max_dimension": 1.3,
+    "materials": [
+        "metal",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.02,
+        0.08
+    ],
+    "mass": 65,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 10,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "depositable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "waste slot",
+        "door/panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "green",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.92,
+        0.04,
+        0.02,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "flat hinged",
+    "attribute_opening_mechanism": "hand lift",
+    "attribute_presence_of_wheels": false,
+    "attribute_handle_design": "absent",
+    "attribute_labeling_or_signage": "Front panels display a recycling prohibition symbol and a green recycling symbol for waste separation.",
+    "uid": "8e3bb3f0858b42bbb636a47db9fc60f3",
+    "near_synsets": {
+        "recycling_bin.n.01": 0.46417909920249917,
+        "garbage.n.03": 0.5214348442878047,
+        "dumpster.n.01": 0.5247065143705435,
+        "bin_liner.n.01": 0.5501900666498714,
+        "wastepaper_basket.n.01": 0.5510594451139106,
+        "folderol.n.01": -1000.0,
+        "ashcan.n.01": -1000.0,
+        "methamphetamine.n.01": -1000.0,
+        "bin.n.02": -1000.0,
+        "bank_identification_number.n.01": -1000.0,
+        "bin.n.01": -1000.0,
+        "rubbish.n.01": -1000.0,
+        "trash.n.02": -1000.0
+    },
+    "synset": "ashcan.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8e3bb3f0858b42bbb636a47db9fc60f3",
+        "creator_username": "aigokeros",
+        "creator_display_name": "Randy Groeneveld",
+        "creator_profile_url": "https://sketchfab.com/aigokeros"
+    },
+    "filename": "std_8e3bb3f0858b42bbb636a47db9fc60f3.glb",
+    "length": 0.534780353307724,
+    "width": 1.0263793468475342
+}

@@ -1,0 +1,99 @@
+{
+    "description_long": "This humanoid robot features a rounded, blue metallic body with a segmented design, including a spherical head and torso connected by a visible joint. The head is adorned with four cylindrical protrusions on top and two large, round, protruding eyes with black pupils, giving it a cartoonish and approachable appearance. Its arms are long and tubular, ending in three-pronged claw-like hands, while the legs are short and cylindrical, supporting the robot in a standing posture. The surface of the robot is slightly worn, with visible scuffs and a matte finish, suggesting it is built for durability in urban environments. The robot's joints and limb connections are clearly defined, indicating multiple articulation points for movement. There are no visible clothing or decorative elements, and the robot's design is functional and industrial.",
+    "description": "A blue, cartoonish humanoid robot with a rounded body, large protruding eyes, and articulated limbs ending in claw-like hands. Its surface is metallic and slightly worn, with a functional, industrial appearance.",
+    "description_view_0": "Front view showing the robot's large, round eyes, four head protrusions, and three-pronged hands extended forward.",
+    "description_view_1": "Three-quarter side view highlighting the cylindrical head protrusions, arm articulation, and the robot's rounded torso.",
+    "description_view_2": "Rear view displaying the back of the head with four protrusions, the back torso joint, and the symmetrical placement of the arms and legs.",
+    "description_view_3": "Opposite three-quarter side view emphasizing the arm's length, hand structure, and the robot's overall rounded form.",
+    "category": "humanoid robot",
+    "height": 1.1,
+    "max_dimension": 1.1,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 38,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "pullable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "eyes",
+        "arms",
+        "hands",
+        "head",
+        "torso joints"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms slightly bent and extended outward, legs straight and parallel, head facing forward.",
+    "attribute_clothing_style": "No visible clothing; the robot has integrated blue metallic panels with some black and gray mechanical joints.",
+    "attribute_facial_features": "The face features two large, round, protruding eyes with black pupils and no visible mouth or nose; the head has four cylindrical protrusions and a central seam.",
+    "attribute_limb_articulation": "Arms and legs have visible rotary joints at the shoulders, elbows, hips, and knees; hands have three articulated prongs; limbs appear to allow for a moderate range of motion.",
+    "attribute_presence_of_sensors": "Visible sensors include two large camera-like eyes on the front of the head.",
+    "uid": "863e6d679f114be59d43127e7e49d599",
+    "near_synsets": {
+        "android.n.01": 0.5372270497447789,
+        "cyborg.n.01": 0.5460175108371602,
+        "automaton.n.02": 0.5557769572589879,
+        "robotics_equipment.n.01": 0.5620925563799462,
+        "animatronics.n.01": 0.5692316203799741
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/863e6d679f114be59d43127e7e49d599",
+        "creator_username": "bumstrum",
+        "creator_display_name": "DJMaesen",
+        "creator_profile_url": "https://sketchfab.com/bumstrum"
+    },
+    "filename": "std_863e6d679f114be59d43127e7e49d599.glb",
+    "length": 0.43597081303596497,
+    "width": 0.9508273601531982
+}

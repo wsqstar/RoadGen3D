@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a rugged, industrial excavator with a weathered yellow and black exterior, showing signs of heavy use and exposure to dirt and grime. The vehicle features a large, toothed front bucket attached to articulated arms, designed for digging and moving earth or debris. Its cab is enclosed and elevated, providing visibility and protection for the operator, with access steps and handrails visible on the side. The excavator is mounted on four large, robust rubber tires, indicating it is a wheeled model suitable for urban construction sites. The body is boxy and reinforced, with visible hydraulic cylinders and mechanical linkages for bucket operation. The overall design emphasizes durability, functionality, and maneuverability in tight urban environments.",
+    "description": "A weathered yellow and black wheeled excavator with a large toothed front bucket, enclosed cab, and robust tires, designed for heavy-duty urban construction tasks.",
+    "description_view_0": "Front view showing the wide, toothed bucket and the symmetrical, sturdy build of the excavator.",
+    "description_view_1": "Left side view highlighting the articulated arm, access steps, and the cab's position above the large tires.",
+    "description_view_2": "Rear view displaying the solid back of the excavator and the protective structure of the cab.",
+    "description_view_3": "Right side view showing the bucket's articulation, hydraulic components, and the cab's side details.",
+    "category": "excavator",
+    "height": 3.2,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.05,
+        0.03,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 10,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bucket",
+        "wheels",
+        "cab door",
+        "steps",
+        "hydraulic arm",
+        "ladder",
+        "mirrors"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_boom_type": "mono boom",
+    "attribute_cab_position": "left side",
+    "attribute_track_or_wheel_type": "wheeled",
+    "attribute_bucket_design": "standard digging bucket",
+    "attribute_brand_logo": "none",
+    "uid": "2137d93b5a804161bc65b44d583aa68e",
+    "near_synsets": {
+        "excavator.n.01": 0.4774799690998389,
+        "backhoe.n.01": 0.486958441016227,
+        "power_shovel.n.01": 0.49237109902379694,
+        "scoop.n.05": 0.5175419628051549,
+        "bulldozer.n.01": 0.5341242805598255
+    },
+    "synset": "excavator.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2137d93b5a804161bc65b44d583aa68e",
+        "creator_username": "RobbyHollister",
+        "creator_display_name": "RobbyHollister",
+        "creator_profile_url": "https://sketchfab.com/RobbyHollister"
+    },
+    "filename": "std_2137d93b5a804161bc65b44d583aa68e.glb",
+    "length": 7.673238039016724,
+    "width": 3.049685478210449
+}

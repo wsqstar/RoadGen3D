@@ -1,0 +1,121 @@
+{
+    "description_long": "This is a large, rectangular metal dumpster with a weathered green exterior and visible rust patches, indicating prolonged outdoor use. The front and rear panels are marked with bold white stenciled text reading 'DRY GARBAGE' and 'TRASH', along with graffiti and worn stickers. The top features a black, ribbed, hinged plastic lid that spans the entire length, designed to be lifted for depositing waste. Several warning and recycling labels are affixed to the sides, including a red 'RECYCLING CARDBOARD ONLY' sign and yellow caution stickers. The structure is robust, with reinforced metal bars along the top edge for added durability and to facilitate handling. The dumpster is designed for placement in urban environments, such as alleys, parking lots, or behind commercial buildings.",
+    "description": "A large, green, weathered metal dumpster with a black ribbed hinged lid, white stenciled text, graffiti, and multiple warning labels. It is robustly built for outdoor urban waste management.",
+    "description_view_0": "Front view showing 'DRY GARBAGE' text, graffiti, and a yellow warning label on the left side of the green, rusted dumpster with a closed black lid.",
+    "description_view_1": "Left side view displaying the sloped black lid, 'TRASH' text, a yellow caution sticker, and a small orange warning label.",
+    "description_view_2": "Rear view with large 'DRY GARBAGE' text, significant rust and graffiti, and a mostly uninterrupted green panel.",
+    "description_view_3": "Right side view featuring 'TRASH' text, a red 'RECYCLING CARDBOARD ONLY' sign, a yellow caution sticker, and visible lid hinges.",
+    "category": "dumpster",
+    "height": 1.3,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 320,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 10,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "handle",
+        "reinforcement bar"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "white",
+        "yellow",
+        "red",
+        "brown"
+    ],
+    "colors_composition": [
+        0.65,
+        0.18,
+        0.07,
+        0.04,
+        0.02,
+        0.04
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "hinged, ribbed, flat plastic lid in two sections, no visible locking mechanism",
+    "attribute_wheel_presence": false,
+    "attribute_handle_design": "single horizontal metal bar handle on the front, rectangular cross-section, steel, located just below the lid",
+    "attribute_warning_labels": [
+        {
+            "color": "yellow",
+            "shape": "rectangle",
+            "content": "CAUTION"
+        },
+        {
+            "color": "red",
+            "shape": "rectangle",
+            "content": "RECYCLING CARDBOARD ONLY"
+        },
+        {
+            "color": "orange",
+            "shape": "rectangle",
+            "content": "NO PARKING"
+        },
+        {
+            "color": "white",
+            "shape": "rectangle",
+            "content": "NO PARKING SIGN"
+        }
+    ],
+    "attribute_placement_location": "outdoor commercial area, alley, or parking lot",
+    "uid": "f80a2a0af6924562be10be7354b7a72f",
+    "near_synsets": {
+        "dumpster.n.01": 0.45436016053882194,
+        "garbage.n.03": 0.5150927258560994,
+        "garbage_truck.n.01": 0.5308674824723342,
+        "recycling_bin.n.01": 0.5352796570254624,
+        "dump.n.02": 0.5461490950342164
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f80a2a0af6924562be10be7354b7a72f",
+        "creator_username": "jmarcos28",
+        "creator_display_name": "jmarcos28",
+        "creator_profile_url": "https://sketchfab.com/jmarcos28"
+    },
+    "filename": "std_f80a2a0af6924562be10be7354b7a72f.glb",
+    "length": 1.002732515335083,
+    "width": 1.8534058332443237
+}

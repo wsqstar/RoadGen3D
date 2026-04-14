@@ -1,0 +1,104 @@
+{
+    "description_long": "This garbage truck features a robust, industrial design with a large, angular waste container body in gray and a blue cab at the front. The side panels of the container display a yellow advertisement with recycling graphics and the message 'CLEAN UP YOUR RECYCLING.' The truck has six black wheels, with two axles at the rear and one at the front, supporting its heavy-duty frame. At the rear, the truck has a prominent compactor section with a sloped, reinforced door for waste loading. The front cab is boxy, with large windows and side mirrors for visibility, and a metallic towing hook is visible beneath the cab. The overall appearance is functional and utilitarian, suitable for urban waste collection and recycling operations.",
+    "description": "A heavy-duty garbage truck with a gray waste container, blue cab, yellow recycling signage, and six wheels, designed for urban waste collection.",
+    "description_view_0": "Side view showing the yellow recycling advertisement, blue cab, and the full length of the waste container with rear compactor details.",
+    "description_view_1": "Front view highlighting the blue cab, large windshield, side mirrors, and the metallic towing hook beneath the cab.",
+    "description_view_2": "Opposite side view mirroring view 0, with the yellow recycling signage and visible compactor section at the rear.",
+    "description_view_3": "Rear view showing the compactor door, taillights, and the opening for waste loading.",
+    "category": "garbage truck",
+    "height": 3.5,
+    "max_dimension": 9.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.82,
+        0.05,
+        0.07,
+        0.03,
+        0.03
+    ],
+    "mass": 13500,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "compactor door",
+        "side mirror",
+        "towing hook"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.12,
+        0.08
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_waste_container_attachment": "A metallic towing hook is visible beneath the front cab, which may serve as an attachment point for towing or maneuvering, but no dedicated arms, forks, or rails for lifting bins or dumpsters are visible on the sides or rear.",
+    "attribute_hydraulic_lift_mechanism": "None; there are no visible hydraulic cylinders, pistons, or hoses on the exterior of the truck.",
+    "attribute_rear_loading_hopper": "A rear loading hopper is present, characterized by a large, sloped compactor door at the back of the truck. The hopper is rectangular, with reinforced edges and an accessible opening for loading waste.",
+    "attribute_warning_signage": "No explicit warning signage such as 'Caution' or hazard icons is visible, but there is a yellow recycling advertisement with text and graphics on the side panels.",
+    "attribute_reflective_safety_markings": "None; there are no visible reflective stripes, chevrons, or panels on the truck's exterior.",
+    "uid": "f64baa008b98490cba53e9e14efd4f66",
+    "near_synsets": {
+        "garbage_truck.n.01": 0.4265465450462455,
+        "dumpster.n.01": 0.4531772463536574,
+        "garbage.n.03": 0.509046502549696,
+        "garbage_man.n.01": 0.5263120413697544,
+        "laundry_truck.n.01": 0.5375012765197148,
+        "truck.n.01": -1000.0,
+        "hand_truck.n.01": -1000.0,
+        "drivel.n.01": -1000.0,
+        "garbage.n.01": -1000.0
+    },
+    "synset": "garbage_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f64baa008b98490cba53e9e14efd4f66",
+        "creator_username": "artlab",
+        "creator_display_name": "artlab",
+        "creator_profile_url": "https://sketchfab.com/artlab"
+    },
+    "filename": "std_f64baa008b98490cba53e9e14efd4f66.glb",
+    "length": 9.724386215209961,
+    "width": 2.2098307609558105
+}

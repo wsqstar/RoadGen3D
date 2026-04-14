@@ -1,0 +1,103 @@
+{
+    "description_long": "This object consists of five distinct trucks, each with a blue cab and a different cargo configuration. The trucks include a box truck with a covered cargo area, a flatbed truck carrying red barrels, a flatbed truck loaded with logs, a standard flatbed, and a tanker truck with cylindrical tanks and visible piping. The cabs are rounded and stylized, with prominent fenders and headlights, and the cargo beds are detailed to reflect their specific loads. The wheels are black and robust, suitable for heavy-duty urban or industrial use. The trucks are visually cohesive, sharing a similar color palette and design language, and are likely constructed from metal with some plastic and rubber components.",
+    "description": "A set of five blue trucks with varied cargo beds, including box, flatbed, log, barrel, and tanker configurations. Each truck features a rounded cab and detailed cargo area.",
+    "description_view_0": "Front view showing the five trucks side by side, highlighting their blue cabs and the different cargo types loaded behind each cab.",
+    "description_view_1": "Side view displaying the length of each truck and the distinct cargo beds, with the tanker and box truck shapes most prominent.",
+    "description_view_2": "Rear view focusing on the cargo areas, including the cylindrical tanker, logs, barrels, and the closed box compartment.",
+    "description_view_3": "Opposite side view, again showing the trucks' profiles and the arrangement of their cargo beds.",
+    "category": "truck",
+    "height": 2.8,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "mass": 9000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "cargo bed",
+        "tank cap",
+        "headlight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black",
+        "gray",
+        "brown",
+        "red"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "group",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "box",
+    "attribute_wheelbase": 4.2,
+    "attribute_number_of_axles": 2,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "6e7743803d6d4c8d832de58fab96735c",
+    "near_synsets": {
+        "flatbed.n.02": 0.5349189512309422,
+        "van.n.05": 0.5371198776037417,
+        "truck.n.01": 0.5410149033226903,
+        "trailer_truck.n.01": 0.5466367442139589,
+        "truck_bed.n.01": 0.5491619356452346,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6e7743803d6d4c8d832de58fab96735c",
+        "creator_username": "bukkbeek",
+        "creator_display_name": "BUKKBEEK",
+        "creator_profile_url": "https://sketchfab.com/bukkbeek"
+    },
+    "filename": "std_6e7743803d6d4c8d832de58fab96735c.glb",
+    "length": 6.792471408843994,
+    "width": 14.8458251953125
+}

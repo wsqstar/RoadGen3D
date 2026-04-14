@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a modern drone with a streamlined, angular fuselage and two large circular rotors mounted on either side of the main body. The drone features a pointed nose, a rear vertical stabilizer fin, and a pair of extended landing skids beneath the body. The rotors are housed in protective circular frames, suggesting a design optimized for stability and safety in urban environments. The surface appears to be made of a matte black composite material, likely carbon fiber or reinforced plastic, with metallic elements visible in the rotor hubs and landing gear. The overall design is sleek and functional, suitable for surveillance, delivery, or inspection tasks in city settings.",
+    "description": "A sleek, black urban drone with two large circular rotors, a pointed nose, and extended landing skids. Its body is streamlined and features a rear stabilizer fin.",
+    "description_view_0": "Front view showing the pointed nose, symmetrical circular rotors, and the extended landing skids beneath.",
+    "description_view_1": "Side view highlighting the elongated fuselage, circular rotor housing, and the vertical stabilizer at the rear.",
+    "description_view_2": "Rear view displaying the twin rotors, the rear stabilizer fin, and the symmetry of the landing skids.",
+    "description_view_3": "Opposite side view similar to view 1, showing the rotor housing and the streamlined body profile.",
+    "category": "drone",
+    "height": 0.5,
+    "max_dimension": 1.2,
+    "materials": [
+        "carbon fiber",
+        "plastic",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "mass": 7.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotor",
+        "landing skid",
+        "stabilizer fin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 2,
+    "attribute_rotor_configuration": "bicopter parallel",
+    "attribute_landing_gear_type": "skids",
+    "attribute_camera_presence": false,
+    "attribute_propeller_guard_presence": true,
+    "uid": "cf9c09fbcb2c43f39bcbdfc10adcb62b",
+    "near_synsets": {
+        "drone.n.04": 0.5243219571285467,
+        "single-rotor_helicopter.n.01": 0.559052723160177,
+        "rotor.n.03": 0.5635126481773892,
+        "main_rotor.n.01": 0.5691611806609139,
+        "orthopter.n.01": 0.5703108070727879,
+        "dawdler.n.01": -1000.0,
+        "drone.n.05": -1000.0,
+        "drone.n.01": -1000.0,
+        "monotone.n.01": -1000.0
+    },
+    "synset": "drone.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cf9c09fbcb2c43f39bcbdfc10adcb62b",
+        "creator_username": "oroo3",
+        "creator_display_name": "oroo3",
+        "creator_profile_url": "https://sketchfab.com/oroo3"
+    },
+    "filename": "std_cf9c09fbcb2c43f39bcbdfc10adcb62b.glb",
+    "length": 1.2750139236450195,
+    "width": 0.8395974636077881
+}

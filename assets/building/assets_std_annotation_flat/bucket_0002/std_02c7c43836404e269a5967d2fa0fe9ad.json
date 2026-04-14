@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a compact, cylindrical hand grenade with a matte black finish and a segmented, grid-like exterior shell. The top features a prominent safety lever and a circular pull ring, typical of modern fragmentation grenades. The body is divided into rectangular panels, likely designed to enhance grip and possibly fragment upon detonation. The surface shows minor scuffs and wear, suggesting it is made from a durable metal, possibly steel or an alloy. The overall design is utilitarian, with no visible markings or labels, and the construction appears robust and functional. The object is small enough to be easily carried or thrown by hand, making it suitable for use in urban tactical scenarios.",
+    "description": "A compact, black cylindrical hand grenade with a segmented shell, safety lever, and pull ring. The surface is matte and slightly worn, with a robust, utilitarian design.",
+    "description_view_0": "The grenade is seen at an angle, highlighting the safety lever, pull ring, and the segmented grid pattern on the body.",
+    "description_view_1": "This side view emphasizes the cylindrical shape and the grid-like segmentation, with the pull ring partially obscuring the top.",
+    "description_view_2": "A close side view showing the worn, matte finish and the rectangular segments, with the pull ring resting against the body.",
+    "description_view_3": "The grenade is viewed from a slightly different angle, showing the top mechanism and the segmented shell with less emphasis on the pull ring.",
+    "category": "bomb",
+    "height": 0.13,
+    "max_dimension": 0.13,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 0.45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 5,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pull ring",
+        "safety lever",
+        "body"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is likely initiated by pulling the safety ring, which releases the safety lever and triggers the internal fuse mechanism.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "02c7c43836404e269a5967d2fa0fe9ad",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.4984907505879673,
+        "grenade.n.01": 0.5099342088904387,
+        "bomb.n.01": 0.5335060027710836,
+        "pipe_bomb.n.01": 0.5504282783397306,
+        "general-purpose_bomb.n.01": 0.5553720942896682,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/02c7c43836404e269a5967d2fa0fe9ad",
+        "creator_username": "janovich3D",
+        "creator_display_name": "Janovich",
+        "creator_profile_url": "https://sketchfab.com/janovich3D"
+    },
+    "filename": "std_02c7c43836404e269a5967d2fa0fe9ad.glb",
+    "length": 0.1332916095852852,
+    "width": 0.14244593679904938
+}

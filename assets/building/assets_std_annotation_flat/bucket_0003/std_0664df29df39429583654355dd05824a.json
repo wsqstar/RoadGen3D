@@ -1,0 +1,101 @@
+{
+    "description_long": "This humanoid robot features a sleek, metallic exoskeleton with a robust, angular torso and articulated limbs. Its head is boxy with what appear to be sensor arrays or cameras positioned at the front, giving it a focused, utilitarian appearance. The arms are long and jointed, ending in hands with articulated fingers, while the legs are sturdy and mechanical, designed for bipedal locomotion. The robot's surface is predominantly dark, with glossy and reflective finishes that suggest a high-tech, durable construction. Subtle highlights and panel lines are visible, indicating modular components and possible access points for maintenance. The overall design is functional and imposing, suitable for urban environments where interaction with humans and navigation of complex terrain are required.",
+    "description": "A sleek, dark, metallic humanoid robot with articulated limbs, a boxy sensor-equipped head, and a glossy, high-tech finish.",
+    "description_view_0": "Side view showing the robot's slim profile, articulated arm, and mechanical leg details.",
+    "description_view_1": "Front view highlighting the boxy head with sensor arrays, broad chest, and outstretched articulated arms.",
+    "description_view_2": "Opposite side view, mirroring the slim profile and mechanical limb structure seen in view 0.",
+    "description_view_3": "Rear view displaying the back paneling, jointed legs, and the symmetrical arrangement of the arms and legs.",
+    "category": "humanoid robot",
+    "height": 1.8,
+    "max_dimension": 2.0,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "rubber",
+        "air",
+        "electronics"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 110,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1078,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hand",
+        "arm",
+        "head",
+        "torso panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray",
+        "silver",
+        "blue"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.08,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms extended outward at an angle, legs straight and parallel, head facing forward, and torso erect.",
+    "attribute_clothing_style": "No visible clothing; exterior consists of integrated metallic and plastic panels with a high-tech, armored appearance.",
+    "attribute_facial_features": "Boxy head with a flat front featuring multiple sensor-like elements; no visible mouth or nose, and eyes are represented by small, recessed lenses or cameras.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints at the shoulders, elbows, wrists, hips, knees, and ankles; hands have articulated fingers, suggesting a wide range of motion.",
+    "attribute_presence_of_sensors": "Visible camera or sensor arrays on the front of the head; possible additional sensors embedded in the torso and hands.",
+    "uid": "0664df29df39429583654355dd05824a",
+    "near_synsets": {
+        "android.n.01": 0.5271016653971458,
+        "robotics_equipment.n.01": 0.5346782427707358,
+        "cyborg.n.01": 0.537541863997769,
+        "automaton.n.02": 0.5573705624826826,
+        "robotics.n.01": 0.5614862004035576
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0664df29df39429583654355dd05824a",
+        "creator_username": "AbhinavRaj50",
+        "creator_display_name": "AbhinavRaj50",
+        "creator_profile_url": "https://sketchfab.com/AbhinavRaj50"
+    },
+    "filename": "std_0664df29df39429583654355dd05824a.glb",
+    "length": 0.3230399042367935,
+    "width": 1.409780502319336
+}

@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a classic submachine gun with a wooden stock and a prominent round drum magazine, reminiscent of the Soviet PPSh-41. The receiver and barrel assembly are constructed from dark metal, with visible vent holes along the barrel shroud for cooling. The wooden stock is smoothly contoured and stained a deep brown, providing a sturdy shoulder rest. The drum magazine is large and circular, attached beneath the receiver, and is made of metal. Iron sights are mounted along the top of the barrel, with a simple post front and notch rear configuration. The overall design is robust and utilitarian, suitable for rapid fire in urban environments.",
+    "description": "A classic submachine gun with a wooden stock, metal receiver, and a large round drum magazine, featuring iron sights and a utilitarian design.",
+    "description_view_0": "Front view showing the circular drum magazine and the barrel's muzzle, with the iron sight post visible at the top.",
+    "description_view_1": "Side view highlighting the full length of the rifle, the wooden stock, metal receiver, and the attached drum magazine.",
+    "description_view_2": "Rear view displaying the end of the wooden stock and the alignment of the barrel and drum magazine.",
+    "description_view_3": "Opposite side view showing the wooden stock, metal receiver, and the drum magazine from the other side.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 0.85,
+    "materials": [
+        "steel",
+        "wood",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 5.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 54,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "trigger",
+        "magazine",
+        "barrel",
+        "sight",
+        "charging handle",
+        "safety lever"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "drum",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "d3f7af13bec64e899b6a24ae5bf73b90",
+    "near_synsets": {
+        "submachine_gun.n.01": 0.4970316569156532,
+        "garand_rifle.n.01": 0.4974717845450975,
+        "tommy_gun.n.01": 0.5028695344607653,
+        "sten_gun.n.01": 0.5051869428285484,
+        "kalashnikov.n.01": 0.5060902538487517,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d3f7af13bec64e899b6a24ae5bf73b90",
+        "creator_username": "FoxxAssets",
+        "creator_display_name": "Foxx Assets",
+        "creator_profile_url": "https://sketchfab.com/FoxxAssets"
+    },
+    "filename": "std_d3f7af13bec64e899b6a24ae5bf73b90.glb",
+    "length": 1.051547348499298,
+    "width": 0.19138281047344208
+}

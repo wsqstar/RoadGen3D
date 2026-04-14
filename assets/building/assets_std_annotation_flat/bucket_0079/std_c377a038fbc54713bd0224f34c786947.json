@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a large, horizontally-oriented cylindrical storage tank with rounded end caps and a weathered, industrial appearance. The tank is primarily constructed from metal, exhibiting a blue-green paint that is chipped and rusted in several areas, revealing the underlying material. It is supported by two sturdy rectangular metal saddles at the base, which keep it elevated above the ground. On the top of the tank, there is a prominent circular access hatch with a bolted rim and a small gauge or fitting adjacent to it, suggesting points for inspection or maintenance. The surface is covered in rivets or bolts along the seams, reinforcing its robust, utilitarian design. This type of tank is commonly found in industrial or urban utility settings for storing liquids or gases.",
+    "description": "A large, weathered blue-green cylindrical metal storage tank with rounded ends, top access hatch, and rusted patches, supported by two metal saddles.",
+    "description_view_0": "The tank is seen from the end, showing the circular, rusted cap and the seam bolts around the edge.",
+    "description_view_1": "Side view reveals the full cylindrical body, two support saddles, the top access hatch, and a small gauge or fitting.",
+    "description_view_2": "Opposite end view, similar to view 0, with the rounded cap and visible seam bolts.",
+    "description_view_3": "Side view similar to view 1, showing the cylindrical body, support saddles, and top hatch, but from the opposite side.",
+    "category": "storage tank",
+    "height": 1.5,
+    "max_dimension": 4.0,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 1200,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "access hatch",
+        "gauge/fitting"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue-green",
+        "rust brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [],
+    "attribute_warning_signage": false,
+    "attribute_architectural_style": "cylindrical horizontal",
+    "uid": "c377a038fbc54713bd0224f34c786947",
+    "near_synsets": {
+        "tank.n.02": 0.49200682174873783,
+        "tank_farm.n.01": 0.5242721559675723,
+        "reservoir.n.03": 0.5350439857782086,
+        "gas_tank.n.01": 0.537616649610492,
+        "bunker.n.02": 0.5533403799693024,
+        "tank.n.01": -1000.0,
+        "storage.n.01": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "cooler.n.03": -1000.0,
+        "storage.n.03": -1000.0,
+        "repositing.n.01": -1000.0,
+        "storage.n.04": -1000.0,
+        "memory.n.04": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "tank.n.03": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c377a038fbc54713bd0224f34c786947",
+        "creator_username": "wafel",
+        "creator_display_name": "Wafelek",
+        "creator_profile_url": "https://sketchfab.com/wafel"
+    },
+    "filename": "std_c377a038fbc54713bd0224f34c786947.glb",
+    "length": 1.368403136730194,
+    "width": 3.4824068546295166
+}

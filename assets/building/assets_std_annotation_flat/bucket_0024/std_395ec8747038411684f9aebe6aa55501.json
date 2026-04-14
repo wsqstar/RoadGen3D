@@ -1,0 +1,94 @@
+{
+    "description_long": "This handcart is constructed primarily from weathered wooden planks, giving it a rustic and utilitarian appearance. The cart features two large, spoked wooden wheels mounted on either side near the rear, providing stability and ease of movement. The load area is enclosed by vertical and horizontal wooden slats, with gaps between the boards and a visibly damaged plank on the floor, suggesting heavy use. Two long, straight wooden handles extend from the front, designed for manual pulling or pushing. The side rails are elevated, helping to contain cargo, while the open top and rear allow for easy loading and unloading. The overall build is robust, suitable for transporting goods or materials in an urban or rural setting.",
+    "description": "A weathered wooden handcart with two large spoked wheels, high side rails, and long front handles, designed for manual transport of goods.",
+    "description_view_0": "Side view showing the full length of the cart, both wheels, and the extended handles.",
+    "description_view_1": "Front view highlighting the open end, dual handles, and the depth of the load area.",
+    "description_view_2": "Opposite side view displaying the wheels, side rails, and the damaged floor plank.",
+    "description_view_3": "Rear view showing the open back, interior load space, and the arrangement of the side rails.",
+    "category": "handcart",
+    "height": 1.0,
+    "max_dimension": 2.2,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 45,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "load platform",
+        "side rail"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 2,
+    "attribute_handle_type": "dual straight bars",
+    "attribute_wheel_position": "rear-mounted",
+    "attribute_presence_of_side_rails": true,
+    "attribute_load_platform_design": "open slats",
+    "uid": "395ec8747038411684f9aebe6aa55501",
+    "near_synsets": {
+        "handcart.n.01": 0.42632716451772246,
+        "hand_truck.n.01": 0.4445041563086751,
+        "shopping_cart.n.01": 0.4508749765953422,
+        "cart.n.01": 0.4613841127936966,
+        "serving_cart.n.01": 0.4656867708050159
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/395ec8747038411684f9aebe6aa55501",
+        "creator_username": "JoseCasta",
+        "creator_display_name": "Jos\u00e9 Castanheira",
+        "creator_profile_url": "https://sketchfab.com/JoseCasta"
+    },
+    "filename": "std_395ec8747038411684f9aebe6aa55501.glb",
+    "length": 2.319183349609375,
+    "width": 1.0860748291015625
+}

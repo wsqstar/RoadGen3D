@@ -1,0 +1,94 @@
+{
+    "description_long": "This is a large, utilitarian warehouse structure with a corrugated metal exterior and a gabled roof. The main building is predominantly light gray, with a secondary, attached section featuring rusted and weathered metal panels, suggesting long-term outdoor exposure. The front facade includes large sliding doors and a smaller access door, both made of metal, suitable for vehicle or equipment entry. The side and rear views reveal minimal fenestration, with only a few small windows and no decorative elements, emphasizing function over form. The roof is continuous and slightly pitched, constructed from ribbed metal sheets, and shows no visible skylights or rooftop equipment. The overall appearance is industrial, with clear signs of wear and practical design for storage or logistics purposes.",
+    "description": "A large, industrial warehouse with a corrugated metal exterior, gabled roof, and attached rusted side section. The structure is utilitarian, with large sliding doors and weathered surfaces.",
+    "description_view_0": "The front view shows the main entry with large sliding metal doors and a smaller access door, as well as a clean, light gray facade.",
+    "description_view_1": "The side view displays a long, uninterrupted metal wall with a small utility box and no visible windows or doors.",
+    "description_view_2": "The rear view highlights the full width of the gabled roof and a secondary, rusted metal section attached to the main building.",
+    "description_view_3": "The opposite side view reveals the rusted, weathered metal extension and the plain rear wall of the main warehouse.",
+    "category": "warehouse",
+    "height": 7.5,
+    "max_dimension": 32.0,
+    "materials": [
+        "corrugated_steel",
+        "structural_steel",
+        "glass",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.01,
+        0.09,
+        0.1
+    ],
+    "mass": 120000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sliding_door",
+        "access_door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "rust red",
+        "white"
+    ],
+    "colors_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main facade features large, vertically-ribbed sliding metal doors and a smaller personnel door, all set within a plain corrugated metal wall. There are minimal windows and no decorative elements, emphasizing a purely functional industrial design.",
+    "attribute_loading_dock_presence": false,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is a simple gabled form constructed from corrugated metal panels, with no visible skylights, HVAC units, or other rooftop features. The surface is continuous and slightly pitched for drainage.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "42210867fd32422ab9d4471f75cb409a",
+    "near_synsets": {
+        "warehouse.n.01": 0.5320850592236799,
+        "loft.n.01": 0.5450268451214357,
+        "garage.n.01": 0.5506105872694365,
+        "corrugated_iron.n.01": 0.5506241660972755,
+        "shed.n.01": 0.5550374492490179
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/42210867fd32422ab9d4471f75cb409a",
+        "creator_username": "toromanovic1989",
+        "creator_display_name": "toromanovic1989",
+        "creator_profile_url": "https://sketchfab.com/toromanovic1989"
+    },
+    "filename": "std_42210867fd32422ab9d4471f75cb409a.glb",
+    "length": 25.22346019744873,
+    "width": 20.59400177001953
+}

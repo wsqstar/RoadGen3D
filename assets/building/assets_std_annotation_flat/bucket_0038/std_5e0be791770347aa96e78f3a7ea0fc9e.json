@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a military-style twin-engine airplane with a dark camouflage paint scheme featuring green, brown, and orange tones. The aircraft has a mid-mounted straight wing configuration, with two large engines mounted under each wing. The fuselage is long and slender, with a glazed nose section suggesting a bomber or reconnaissance role, and the cockpit is positioned at the front with multiple windows. The tail section features a conventional design with a single vertical stabilizer and horizontal stabilizers. Distinctive markings, including the number '021' and yellow insignia, are visible on the wings and fuselage. The airplane appears to be constructed primarily from metal, with glass for the cockpit and nose, and likely contains internal structural components and air-filled spaces.",
+    "description": "A twin-engine, military-style airplane with a camouflage paint scheme, mid-mounted straight wings, and a glazed nose section. Markings and insignia are visible on the wings and fuselage.",
+    "description_view_0": "Front view showing the twin engines under the wings, the glazed nose, and the broad wingspan.",
+    "description_view_1": "Left side view highlighting the length of the fuselage, the cockpit windows, and the tail's vertical stabilizer.",
+    "description_view_2": "Top-down view displaying the full wingspan, engine placement, and camouflage pattern across the wings and fuselage.",
+    "description_view_3": "Right side view showing the engine nacelles, cockpit, and tail configuration, with visible markings on the wing and fuselage.",
+    "category": "airplane",
+    "height": 4.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.05,
+        0.1,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit door",
+        "landing gear",
+        "engine",
+        "propeller",
+        "control panel",
+        "windows",
+        "bomb bay doors"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "orange",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 22.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing, straight wings with no visible winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "Twin piston engines mounted under each wing.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "Retractable tricycle landing gear, with two main gear units and one nose gear unit visible.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with multiple windows, likely multi-seat.",
+    "uid": "5e0be791770347aa96e78f3a7ea0fc9e",
+    "near_synsets": {
+        "aircraft.n.01": 0.5145675985851061,
+        "warplane.n.01": 0.5230710227071902,
+        "wings.n.02": 0.5253907563406037,
+        "monoplane.n.01": 0.5271191709984391,
+        "multiengine_airplane.n.01": 0.5303493756000308,
+        "airplane.n.01": -1000.0
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5e0be791770347aa96e78f3a7ea0fc9e",
+        "creator_username": "alx_flameniro",
+        "creator_display_name": "alx_flameniro",
+        "creator_profile_url": "https://sketchfab.com/alx_flameniro"
+    },
+    "filename": "std_5e0be791770347aa96e78f3a7ea0fc9e.glb",
+    "length": 17.645344734191895,
+    "width": 21.70145034790039
+}

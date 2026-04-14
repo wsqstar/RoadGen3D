@@ -1,0 +1,101 @@
+{
+    "description_long": "This mud patch features a rough, uneven surface with deep tire tracks and compacted earth, indicating frequent vehicular passage. The coloration is a mix of brownish mud and patches of green grass, suggesting partial grass cover and recent disturbance. The tire marks are prominent and crisscross the patch, with some areas more deeply rutted than others. The edges of the patch are irregular and blend gradually into the surrounding ground, with no sharp boundaries. There is no visible standing water, but the surface appears moist and soft, typical of recently traversed muddy terrain. No debris such as leaves, sticks, or trash is visible on or around the patch.",
+    "description": "A rough, irregular mud patch with deep tire tracks and patches of green grass, blending gradually into the surrounding ground. The surface is moist and uneven, with no visible debris or standing water.",
+    "description_view_0": "This view highlights the deep tire tracks and compacted mud, with some green grass visible at the edges.",
+    "description_view_1": "From this angle, the patch appears flatter and more elongated, with less visible tire track detail and more grass coverage.",
+    "description_view_2": "This view shows the crisscrossing tire marks most clearly, with the mud surface appearing rough and uneven.",
+    "description_view_3": "Here, the tire tracks curve across the patch, and the transition between mud and grass is more apparent.",
+    "category": "mud patch",
+    "height": 0.08,
+    "max_dimension": 2.2,
+    "materials": [
+        "mud",
+        "soil",
+        "grass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.09,
+        0.01
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "impressionable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "green",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 50,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_location": "urban roadside or construction site",
+    "attribute_boundary_definition": "The boundaries are irregular and blend gradually into the surrounding ground, with no sharp transitions between mud and adjacent surfaces.",
+    "attribute_presence_of_footprints_or_tire_marks": "Multiple deep, clear tire marks are visible, crisscrossing the mud patch.",
+    "attribute_water_accumulation": "none visible",
+    "attribute_surrounding_debris": "none visible",
+    "uid": "bdde6dad0f1f4069b8cf3ed2453b9097",
+    "near_synsets": {
+        "mud_puddle.n.01": 0.5091488334505658,
+        "mud_stain.n.01": 0.5288033025581579,
+        "mud.n.01": 0.529968877374092,
+        "mud_flat.n.01": 0.5379069774339288,
+        "turf.n.01": 0.566352811104789,
+        "bandage.n.01": -1000.0,
+        "while.n.01": -1000.0,
+        "patch.n.05": -1000.0,
+        "patch.n.03": -1000.0,
+        "mud.n.02": -1000.0,
+        "spot.n.05": -1000.0,
+        "mend.n.01": -1000.0,
+        "eyepatch.n.01": -1000.0,
+        "temporary_hookup.n.01": -1000.0,
+        "plot.n.02": -1000.0
+    },
+    "synset": "mud.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bdde6dad0f1f4069b8cf3ed2453b9097",
+        "creator_username": "spleen.vision",
+        "creator_display_name": "SPLEEN VISION",
+        "creator_profile_url": "https://sketchfab.com/spleen.vision"
+    },
+    "filename": "std_bdde6dad0f1f4069b8cf3ed2453b9097.glb",
+    "length": 0.9638723731040955,
+    "width": 0.8732097148895264
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a large, olive-green armored combat vehicle with a prominent, forward-facing main cannon mounted on a rotating turret. The vehicle features a low, angular profile with sloped armor panels covering the front, sides, and turret, enhancing its defensive capabilities. The turret is equipped with a visible antenna and a small hatch, suggesting communication and crew access points. The hull is supported by a set of wide, rugged tracks with multiple road wheels, designed for traversing rough terrain. The surface is smooth and matte, with no visible camouflage patterns, markings, or insignia. The vehicle's robust construction and heavy armor indicate it is built for frontline combat and urban tactical operations.",
+    "description": "A large, olive-green armored combat vehicle with a main cannon, sloped armor, and rugged tracks. The turret features an antenna and hatch, and the vehicle is built for heavy-duty tactical use.",
+    "description_view_0": "Front view showing the wide, sloped frontal armor, large main cannon, and the turret's hatch and antenna.",
+    "description_view_1": "Left side view highlighting the length of the cannon, the angular turret, and the full set of road wheels and tracks.",
+    "description_view_2": "Rear view displaying the back armor, exhaust details, and the rear of the tracks.",
+    "description_view_3": "Right side view similar to the left, showing the turret's angular design, antenna, and track system.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 48000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "antenna",
+        "tracks",
+        "wheels"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large main cannon mounted centrally on the turret; no other weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating on the front, sides, and turret; no modular or reactive panels visible.",
+    "attribute_camouflage_pattern": "None visible; solid olive green paint scheme.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "94400495243d49fdba409876deb590da",
+    "near_synsets": {
+        "tank.n.01": 0.49308483729033126,
+        "military_vehicle.n.01": 0.4987016010197939,
+        "assault_gun.n.02": 0.5066558043720645,
+        "reconnaissance_vehicle.n.01": 0.5322920926632467,
+        "weapons_carrier.n.01": 0.5363227876111318,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/94400495243d49fdba409876deb590da",
+        "creator_username": "amigos3d",
+        "creator_display_name": "Amigos3D",
+        "creator_profile_url": "https://sketchfab.com/amigos3d"
+    },
+    "filename": "std_94400495243d49fdba409876deb590da.glb",
+    "length": 3.4768850803375244,
+    "width": 2.3597031831741333
+}

@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a rustic wooden handcart with a rectangular frame constructed from several parallel wooden slats forming the load platform. The cart is supported by four large, spoked wooden wheels, one at each corner, giving it a sturdy and traditional appearance. Two green watermelons are placed on the platform, suggesting its use for transporting produce or goods. The sides of the cart feature simple horizontal rails, providing minimal containment for items placed on the cart. There is no visible handle, indicating it may be pushed or pulled by gripping the frame itself. The wood appears weathered, with a matte, rough finish, and the wheels are attached via metal axles.",
+    "description": "A rustic wooden handcart with four large spoked wheels, open slatted platform, and two watermelons on board. The cart features side rails and a weathered, matte finish.",
+    "description_view_0": "Side view showing the full length of the handcart, four spoked wheels, and two watermelons resting on the slatted platform.",
+    "description_view_1": "Top-down view highlighting the open slatted platform, the placement of the watermelons, and the alignment of the wheels.",
+    "description_view_2": "Opposite side view similar to view 0, showing the wheels and slatted platform with watermelons visible.",
+    "description_view_3": "Top-down view from the opposite end, emphasizing the open slats and the arrangement of the watermelons.",
+    "category": "handcart",
+    "height": 0.6,
+    "max_dimension": 1.6,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 32,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "side rail",
+        "load platform"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "green",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.8,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 4,
+    "attribute_handle_type": "none",
+    "attribute_wheel_position": "all corners",
+    "attribute_presence_of_side_rails": true,
+    "attribute_load_platform_design": "open slats",
+    "uid": "3b2c8db611ca40cdb2951b153ef0cede",
+    "near_synsets": {
+        "handcart.n.01": 0.49448855495767413,
+        "serving_cart.n.01": 0.5063103541400784,
+        "applecart.n.02": 0.5130707078823618,
+        "hand_truck.n.01": 0.5198203207261942,
+        "shopping_cart.n.01": 0.520159482262856
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3b2c8db611ca40cdb2951b153ef0cede",
+        "creator_username": "fatalre",
+        "creator_display_name": "Ihor Mukminov",
+        "creator_profile_url": "https://sketchfab.com/fatalre"
+    },
+    "filename": "std_3b2c8db611ca40cdb2951b153ef0cede.glb",
+    "length": 0.8344229459762573,
+    "width": 1.9874587655067444
+}

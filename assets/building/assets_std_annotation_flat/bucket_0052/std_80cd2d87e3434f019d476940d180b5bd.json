@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a compact, futuristic shotgun with a robust, angular frame and a short barrel. The body is predominantly black with metallic blue highlights and features a prominent gold wing emblem on the side. The magazine is curved and detachable, resembling those found on tactical firearms, and the grip is ergonomically shaped for secure handling. The front end has a ribbed foregrip for stability, and the top includes a rail system for mounting accessories. The trigger guard is large and squared, providing ample space for gloved fingers. The overall design suggests a weapon built for close-quarters urban combat, with a focus on durability and ease of use.",
+    "description": "A compact, black and blue tactical shotgun with a gold wing emblem, ribbed foregrip, and curved magazine, designed for urban combat.",
+    "description_view_0": "Side view showing the gold wing emblem, ribbed foregrip, curved magazine, and ergonomic grip.",
+    "description_view_1": "Front view highlighting the short barrel, ribbed foregrip, and the width of the body.",
+    "description_view_2": "Opposite side view with the gold wing emblem, ribbed foregrip, and magazine visible, mirroring view 0.",
+    "description_view_3": "Rear view showing the back of the grip, the squared trigger guard, and the top rail system.",
+    "category": "shotgun",
+    "height": 0.25,
+    "max_dimension": 0.55,
+    "materials": [
+        "metal",
+        "polymer",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 35,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "magazine",
+        "foregrip",
+        "barrel",
+        "rail system",
+        "trigger guard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "blue",
+        "gold",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, short with no visible ribbing or venting",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "semi-automatic",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "large, squared trigger guard with pronounced finger grooves",
+    "uid": "80cd2d87e3434f019d476940d180b5bd",
+    "near_synsets": {
+        "shotgun.n.01": 0.5182020772395893,
+        "sawed-off_shotgun.n.01": 0.5271186608762018,
+        "tommy_gun.n.01": 0.5431654365370662,
+        "submachine_gun.n.01": 0.5501517731433718,
+        "gas_gun.n.01": 0.5504003226668852
+    },
+    "synset": "sawed-off_shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/80cd2d87e3434f019d476940d180b5bd",
+        "creator_username": "kevinlauretta",
+        "creator_display_name": "kevin lauretta",
+        "creator_profile_url": "https://sketchfab.com/kevinlauretta"
+    },
+    "filename": "std_80cd2d87e3434f019d476940d180b5bd.glb",
+    "length": 0.37073276937007904,
+    "width": 0.06388581544160843
+}

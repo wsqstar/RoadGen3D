@@ -1,0 +1,102 @@
+{
+    "description_long": "This humanoid robot features a cylindrical green torso with a domed, metallic head and a transparent visor, giving it a retro-futuristic appearance. Two long, flexible, ribbed arms extend from the shoulders, each ending in a mechanical claw, suggesting dexterous manipulation capabilities. The robot stands on two robust, tank-like treads with red wheels, providing stability and mobility over urban terrain. A central display panel is embedded in the chest, possibly for status readouts or communication. The back is equipped with various cables and mechanical components, hinting at power or control systems. The overall design is industrial, with visible bolts, joints, and a utilitarian color scheme of green, black, and metallic gray.",
+    "description": "A green, industrial humanoid robot with a domed head, flexible ribbed arms ending in claws, and tank-like treads for legs. Features a chest display and visible mechanical details.",
+    "description_view_0": "Front view shows the domed head, transparent visor, chest display, and both articulated arms with claws extended forward.",
+    "description_view_1": "Left-side view highlights the curvature of the head, the ribbed arm's articulation, and the tank tread with red wheels.",
+    "description_view_2": "Rear view reveals the back panel, cables, and mechanical components, with both arms visible from behind.",
+    "description_view_3": "Right-side view mirrors the left, showing the arm's articulation, head profile, and tread details.",
+    "category": "humanoid robot",
+    "height": 1.5,
+    "max_dimension": 1.7,
+    "materials": [
+        "metal",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "graspable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "claw",
+        "arm",
+        "display panel",
+        "tread",
+        "visor"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "gray",
+        "red",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with torso vertical, both arms extended forward and slightly bent at the elbows, claws open and ready for manipulation. Head is level, legs are parallel and firmly planted on treads.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated metal panels, ribbed arm coverings, and a domed head with a transparent visor.",
+    "attribute_facial_features": "No traditional facial features; head has a transparent visor and a central display panel on the chest, but lacks eyes, mouth, or nose. Expression is neutral and mechanical.",
+    "attribute_limb_articulation": "Arms have multiple visible rotary and hinge joints, allowing for flexible movement; claws are articulated for grasping. Legs are rigid, integrated into tank treads for mobility.",
+    "attribute_presence_of_sensors": "Possible visual sensor behind the transparent visor; no other sensors are clearly visible.",
+    "uid": "11861b3d2da048f99777f7c2c7b6b83b",
+    "near_synsets": {
+        "android.n.01": 0.558980571914719,
+        "robotics_equipment.n.01": 0.5694804983799584,
+        "cyborg.n.01": 0.5790062650653329,
+        "automaton.n.02": 0.5812989955701474,
+        "animatronics.n.01": 0.5972555651472738
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/11861b3d2da048f99777f7c2c7b6b83b",
+        "creator_username": "garrett.windus1",
+        "creator_display_name": "garrett.windus1",
+        "creator_profile_url": "https://sketchfab.com/garrett.windus1"
+    },
+    "filename": "std_11861b3d2da048f99777f7c2c7b6b83b.glb",
+    "length": 1.3029133677482605,
+    "width": 1.3951536417007446
+}

@@ -1,0 +1,105 @@
+{
+    "description_long": "This object is a cross-sectional model of a modern stage and auditorium facility, featuring tiered seating in blue arranged in a semi-circular pattern facing a large, curved proscenium stage. The structure includes two prominent vertical walls flanking the stage area, likely serving as acoustic or visual barriers. The rear section contains enclosed rooms or backstage areas, separated from the main seating by solid partitions. The floor and walls are rendered in shades of orange and gray, suggesting concrete or masonry construction with some metallic or composite elements. The seating area is elevated, with access likely provided by steps or ramps integrated into the design. The overall form is streamlined and functional, reflecting contemporary architectural sensibilities.",
+    "description": "A modern auditorium and stage with tiered blue seating, curved proscenium, and enclosed backstage areas in orange and gray.",
+    "description_view_0": "Side cross-section showing tiered blue seating, curved stage front, and backstage rooms in orange.",
+    "description_view_1": "Rear view highlighting the solid orange walls of the backstage and support areas, with no visible seating.",
+    "description_view_2": "Opposite side cross-section, mirroring view 0, with clear visibility of the seating tiers and stage structure.",
+    "description_view_3": "Front view facing the stage, displaying the full array of blue seats and the curved proscenium wall.",
+    "category": "stage",
+    "height": 10.0,
+    "max_dimension": 30.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "viewable",
+        "performable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "seats",
+        "stage",
+        "doors"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "orange",
+        "blue"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "scene",
+    "attribute_architectural_style": "Modernist",
+    "attribute_car_model": "",
+    "attribute_car_manufacturer": "",
+    "attribute_building_function": "performance venue",
+    "attribute_street_sign_type": "",
+    "uid": "b2fd42cc30864d2e9bf84c39236e205e",
+    "near_synsets": {
+        "stage.n.03": 0.4659495766200214,
+        "auditorium.n.01": 0.47806842495889723,
+        "theater_stage.n.01": 0.4878857729845192,
+        "proscenium.n.01": 0.48886347346622266,
+        "orchestra.n.02": 0.4917920660303298,
+        "stage.n.07": -1000.0,
+        "stage.n.08": -1000.0,
+        "phase.n.01": -1000.0,
+        "stage.n.06": -1000.0,
+        "degree.n.02": -1000.0,
+        "stage.n.04": -1000.0,
+        "stagecoach.n.01": -1000.0
+    },
+    "synset": "stagecoach.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b2fd42cc30864d2e9bf84c39236e205e",
+        "creator_username": "Pal.Oros",
+        "creator_display_name": "Pal.Oros",
+        "creator_profile_url": "https://sketchfab.com/Pal.Oros"
+    },
+    "filename": "std_b2fd42cc30864d2e9bf84c39236e205e.glb",
+    "length": 24.712424278259277,
+    "width": 12.615569591522217
+}

@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a heavily armored, six-wheeled combat tactical vehicle designed for urban operations. The vehicle features a robust, angular hull with reinforced panels and a low-profile, sloped front for deflecting impacts. Its exterior is equipped with multiple hatches, access panels, and a visible roof-mounted weapon station, suggesting modularity and adaptability for various missions. The wheels are large, rugged, and appear to be all-terrain, providing high mobility over diverse surfaces. The rear of the vehicle has dual exhaust ports and additional armored plating, while the sides show storage compartments and ladder rungs for crew access. The overall design emphasizes protection, mobility, and tactical versatility in urban environments.",
+    "description": "A six-wheeled, heavily armored combat vehicle with a sloped front, roof weapon mount, and rugged all-terrain tires, built for urban tactical operations.",
+    "description_view_0": "Rear view showing dual exhaust ports, reinforced rear armor, and the back set of large all-terrain wheels.",
+    "description_view_1": "Left side view highlighting three large wheels, side storage compartments, ladder rungs, and the angular armored body.",
+    "description_view_2": "Front view displaying the sloped, reinforced front armor, grille, and the forward set of wheels.",
+    "description_view_3": "Right side view similar to the left, with visible access panels, storage, and the roof-mounted weapon station.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 6.5,
+    "materials": [
+        "armored steel",
+        "reinforced glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.12,
+        0.03,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "wheel",
+        "ladder rung",
+        "weapon mount"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible roof-mounted weapon station located centrally above the front cabin.",
+    "attribute_armor_plating": "Full body coverage with thick, angular armor plating; sloped front and reinforced side panels; modular sections visible on the roof and sides.",
+    "attribute_camouflage_pattern": "none visible",
+    "attribute_military_markings": "none visible",
+    "attribute_tire_type": "Six large off-road tires with deep tread pattern, designed for all-terrain use.",
+    "uid": "6c4420fcec854fa2b109a44f2b8f1ed0",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4823383923562404,
+        "reconnaissance_vehicle.n.01": 0.4867150420301212,
+        "tank.n.01": 0.5106850150966076,
+        "humvee.n.01": 0.5203965580604861,
+        "assault_gun.n.02": 0.5220664921664651,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6c4420fcec854fa2b109a44f2b8f1ed0",
+        "creator_username": "gamerkhjin",
+        "creator_display_name": "Khjin",
+        "creator_profile_url": "https://sketchfab.com/gamerkhjin"
+    },
+    "filename": "std_6c4420fcec854fa2b109a44f2b8f1ed0.glb",
+    "length": 5.179350137710571,
+    "width": 3.419997215270996
+}

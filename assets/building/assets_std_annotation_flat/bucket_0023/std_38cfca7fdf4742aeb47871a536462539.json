@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a geodesic dome tent with a semi-spherical structure, supported by a network of intersecting poles forming triangular panels. The front features a large transparent section, likely made of clear plastic or mesh, providing visibility and access to the interior, which contains a sofa, a potted plant, and a small table, suggesting use as a lounge or relaxation space. The rest of the dome is covered in opaque material, offering privacy and protection from the elements. The tent sits on a flat, dark base that extends slightly beyond the dome's footprint, possibly simulating a groundsheet or platform. The geometric framework is prominent, giving the tent a modern, architectural appearance. No branding or logos are visible, and there are no obvious guy lines or external attachments.",
+    "description": "A modern geodesic dome tent with a transparent front section, opaque sides, and a visible interior lounge setup. The structure is supported by a network of intersecting poles and sits on a flat base.",
+    "description_view_0": "The front view shows the transparent entrance, interior furnishings, and the geometric pole structure clearly.",
+    "description_view_1": "This angled view highlights the transition from the transparent front to the opaque sides and shows the dome's curvature.",
+    "description_view_2": "The rear view displays the fully opaque back of the dome, with no visible openings or features.",
+    "description_view_3": "This side view emphasizes the dome's geometric framework and the partial transparency of the front section.",
+    "category": "tent",
+    "height": 2.5,
+    "max_dimension": 5.0,
+    "materials": [
+        "polyester fabric",
+        "polycarbonate/plastic",
+        "aluminum",
+        "air",
+        "foam (interior furniture)",
+        "fabric (interior furniture)"
+    ],
+    "materials_composition": [
+        0.5,
+        0.15,
+        0.1,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "sittable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door/panel",
+        "zipper/flap",
+        "sofa",
+        "table",
+        "plant pot"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "white",
+        "black",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.15
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_entrance_type": "Large transparent panel at the front, likely a zippered or roll-up door, providing wide access to the interior.",
+    "attribute_number_of_poles": 20,
+    "attribute_guy_line_configuration": "No visible guy lines; the structure appears self-supporting with a geodesic pole framework.",
+    "attribute_ventilation_openings": [],
+    "attribute_branding_or_logo": "none",
+    "uid": "38cfca7fdf4742aeb47871a536462539",
+    "near_synsets": {
+        "geodesic_dome.n.01": 0.4930478888947644,
+        "sibley_tent.n.01": 0.511398621219199,
+        "umbrella_tent.n.01": 0.5403082663165221,
+        "pop_tent.n.01": 0.5447197280014443,
+        "cottage_tent.n.01": 0.5474364538121755,
+        "tent.n.02": -1000.0,
+        "tent.n.01": -1000.0
+    },
+    "synset": "tent.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/38cfca7fdf4742aeb47871a536462539",
+        "creator_username": "inventa3d",
+        "creator_display_name": "inventa3d",
+        "creator_profile_url": "https://sketchfab.com/inventa3d"
+    },
+    "filename": "std_38cfca7fdf4742aeb47871a536462539.glb",
+    "length": 4.365785598754883,
+    "width": 4.4554266929626465
+}

@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a dark green armored combat vehicle with a low, angular hull and a prominent, elongated cannon mounted on a rotating turret. The vehicle features six large road wheels on each side, protected by side skirts, and a flat, sloped front glacis for deflecting projectiles. The turret is equipped with a secondary machine gun mount and various hatches, periscopes, and observation devices. The rear of the vehicle is slightly raised, and the overall design emphasizes heavy armor and a streamlined silhouette. The surface appears matte and robust, with no visible markings or camouflage patterns. The vehicle is designed for urban and battlefield environments, providing both offensive and defensive capabilities.",
+    "description": "A dark green armored combat vehicle with a long cannon, six road wheels per side, and a matte, angular hull. The turret features a secondary machine gun and multiple hatches.",
+    "description_view_0": "Front view showing the sloped glacis, central cannon, and the angular hull shape.",
+    "description_view_1": "Left side view highlighting the six large road wheels, side skirts, and the full length of the cannon.",
+    "description_view_2": "Rear view displaying the back of the turret, rear hull, and the symmetrical track layout.",
+    "description_view_3": "Right side view similar to the left, showing the wheels, side armor, and turret-mounted machine gun.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "machine gun mount",
+        "wheels",
+        "tracks"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted on the turret front and one machine gun mount on the turret roof.",
+    "attribute_armor_plating": "Full body armor plating with sloped and angular surfaces, appearing thick and robust, especially at the front and turret.",
+    "attribute_camouflage_pattern": "Solid dark green color, no visible camouflage pattern.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "bdb8952c17ed4091b92271b56372840e",
+    "near_synsets": {
+        "tank.n.01": 0.5005177013605437,
+        "military_vehicle.n.01": 0.507312331640019,
+        "armored_car.n.02": 0.508459465633657,
+        "assault_gun.n.02": 0.5197388941540952,
+        "weapons_carrier.n.01": 0.5305188879252849,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bdb8952c17ed4091b92271b56372840e",
+        "creator_username": "pointed.hood",
+        "creator_display_name": "pointed.hood",
+        "creator_profile_url": "https://sketchfab.com/pointed.hood"
+    },
+    "filename": "std_bdb8952c17ed4091b92271b56372840e.glb",
+    "length": 8.423902988433838,
+    "width": 3.057299017906189
+}

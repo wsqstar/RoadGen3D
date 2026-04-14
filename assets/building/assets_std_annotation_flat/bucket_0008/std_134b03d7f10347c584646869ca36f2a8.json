@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a visually exaggerated sandwich featuring two thick slices of toasted bread as the top and bottom layers. Between the bread, there are vibrant green leafy vegetables, a prominent slice of red tomato, and what appears to be a sausage or hot dog, along with a slice of yellow cheese. The ingredients are stacked in a haphazard, overflowing manner, giving the sandwich a playful and abundant appearance. The bread has a slightly browned, toasted look, while the vegetables and tomato are glossy and fresh. The overall construction is tall and uneven, with ingredients jutting out at various angles.",
+    "description": "A tall, overflowing sandwich with toasted bread, leafy greens, tomato, sausage, and cheese, stacked in a playful, exaggerated manner.",
+    "description_view_0": "Front view showing the sandwich's overflowing ingredients, with leafy greens and sausage protruding outward.",
+    "description_view_1": "Side view highlighting the thick top bread slice and the visible layers of tomato and greens.",
+    "description_view_2": "Rear view focusing on the tomato and greens, with less of the sausage visible.",
+    "description_view_3": "Angled view showing the cheese slice and sausage extending from the side, with greens and tomato prominent.",
+    "category": "sandwich",
+    "height": 0.18,
+    "max_dimension": 0.22,
+    "materials": [
+        "bread",
+        "lettuce",
+        "tomato",
+        "sausage",
+        "cheese",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.2,
+        0.15,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 0.35,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 3.5,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "graspable",
+        "edible"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "top bread slice",
+        "bottom bread slice",
+        "lettuce",
+        "tomato slice",
+        "sausage",
+        "cheese slice"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "green",
+        "red",
+        "yellow",
+        "white"
+    ],
+    "colors_composition": [
+        0.4,
+        0.22,
+        0.18,
+        0.12,
+        0.08
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.35,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.08,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "single",
+    "attribute_packaging_type": "none",
+    "attribute_brand_logo": "none",
+    "attribute_display_location": "unknown",
+    "attribute_advertisement_signage": false,
+    "attribute_vendor_cart_presence": false,
+    "uid": "134b03d7f10347c584646869ca36f2a8",
+    "near_synsets": {
+        "sandwich.n.01": 0.4825569534281343,
+        "bacon-lettuce-tomato_sandwich.n.01": 0.4831711755861329,
+        "grilled_cheese.n.01": 0.4841519575289806,
+        "reuben.n.02": 0.5000654278771398,
+        "sandwich_plate.n.01": 0.5026335559867776
+    },
+    "synset": "sandwich_plate.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/134b03d7f10347c584646869ca36f2a8",
+        "creator_username": "nermal666",
+        "creator_display_name": "nermal666",
+        "creator_profile_url": "https://sketchfab.com/nermal666"
+    },
+    "filename": "std_134b03d7f10347c584646869ca36f2a8.glb",
+    "length": 0.18923626840114594,
+    "width": 0.22517230361700058
+}

@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a standard metal shopping cart commonly found in supermarkets and urban retail environments. The cart features a spacious wire basket with a rectangular shape, constructed from a grid of sturdy metal rods, allowing for visibility and ventilation of contents. It is supported by a robust metal frame and equipped with four small, swiveling wheels for easy maneuverability on flat surfaces. The handlebar is coated in green plastic for comfort and grip, and includes a green panel on the basket's front, which may serve as a branding or information area. The cart's design includes a foldable child seat near the handle, with a visible safety flap. The overall color scheme is primarily metallic gray with green accents, giving it a recognizable and functional appearance.",
+    "description": "A metallic shopping cart with a wire basket, green plastic handle, and four swiveling wheels, featuring green accent panels and a foldable child seat.",
+    "description_view_0": "The cart is shown from a front-left angle, highlighting the green handlebar, wire basket, and the front green panel.",
+    "description_view_1": "Viewed from the rear-left, the green handlebar and the rear frame are prominent, with the basket's depth visible.",
+    "description_view_2": "From the rear-right, the handlebar and the right side of the basket are visible, showing the cart's length and wheel configuration.",
+    "description_view_3": "The front-right view emphasizes the front green panel, the wire basket's structure, and the front wheels.",
+    "category": "shopping cart",
+    "height": 1.05,
+    "max_dimension": 1.15,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 25,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "basket",
+        "wheel",
+        "child seat flap"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_wire_basket_pattern": "Rectangular grid pattern with medium-density horizontal and vertical steel rods, evenly spaced, forming a rigid mesh structure.",
+    "attribute_handlebar_design": "Straight steel handlebar coated in green plastic, cylindrical in shape, with a smooth grip and no visible ergonomic contours or integrated controls.",
+    "attribute_wheel_configuration": "Four small wheels, one at each corner, all appear to be swiveling casters for multidirectional movement; no visible locking mechanism.",
+    "attribute_child_seat_presence": "present; foldable wire seat near the handle with a green safety flap.",
+    "attribute_store_branding": "Green color accents on the handlebar and a green panel on the basket, but no explicit store logo or name visible.",
+    "uid": "1c75c94dbe15458db73006a2bde8ed0e",
+    "near_synsets": {
+        "shopping_cart.n.01": 0.47508622684841756,
+        "shopping_basket.n.01": 0.5070377732975774,
+        "laundry_cart.n.01": 0.5384878238893012,
+        "cart.n.01": 0.541424377143793,
+        "serving_cart.n.01": 0.5453590516872688,
+        "handcart.n.01": -1000.0
+    },
+    "synset": "shopping_cart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/1c75c94dbe15458db73006a2bde8ed0e",
+        "creator_username": "pamoan10",
+        "creator_display_name": "pamoan10",
+        "creator_profile_url": "https://sketchfab.com/pamoan10"
+    },
+    "filename": "std_1c75c94dbe15458db73006a2bde8ed0e.glb",
+    "length": 1.2806380987167358,
+    "width": 1.3207785487174988
+}

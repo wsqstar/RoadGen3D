@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a modern tactical shotgun with a bullpup configuration, featuring a compact and streamlined design. The main body is predominantly black with a matte finish, and it includes a prominent top-mounted optical sight for improved aiming. The shotgun has a tubular barrel with a visible pump-action fore-end, ribbing for grip, and a short, thick stock integrated into the rear of the weapon. The trigger area is protected by a large, rounded trigger guard, and the grip is ergonomically shaped for comfortable handling. The overall construction appears robust, with metallic and polymer components, and the design is optimized for urban tactical use. The shotgun's compactness and accessory rails suggest it is intended for close-quarters scenarios.",
+    "description": "A compact, black bullpup shotgun with a top-mounted optic, pump-action fore-end, and ergonomic grip, designed for tactical urban use.",
+    "description_view_0": "Side view showing the full length, top optic, pump fore-end, and ergonomic grip with a large trigger guard.",
+    "description_view_1": "Front view highlighting the narrow barrel profile and the alignment of the optic and pump grip.",
+    "description_view_2": "Opposite side view displaying the same features as view 0, with clear visibility of the stock and action.",
+    "description_view_3": "Rear view showing the compact stock and the alignment of the barrel and optic.",
+    "category": "shotgun",
+    "height": 0.22,
+    "max_dimension": 0.75,
+    "materials": [
+        "polymer",
+        "steel",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.05,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "aimable",
+        "pumpable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "pump fore-end",
+        "optic",
+        "grip",
+        "stock",
+        "trigger guard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, tubular with no visible ribbing or venting",
+    "attribute_stock_type": "thumbhole stock",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "large, rounded trigger guard with an elongated shape and integrated finger groove",
+    "uid": "369e57c8a4b14d98a67a7fa0ca66dd40",
+    "near_synsets": {
+        "shotgun.n.01": 0.5188854056515395,
+        "pump_action.n.01": 0.5194182887154705,
+        "sawed-off_shotgun.n.01": 0.5258253678860999,
+        "gas_gun.n.01": 0.5384616039186799,
+        "bb_gun.n.01": 0.541153400106957
+    },
+    "synset": "sawed-off_shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/369e57c8a4b14d98a67a7fa0ca66dd40",
+        "creator_username": "Pratiksharma",
+        "creator_display_name": "Pratiksharma",
+        "creator_profile_url": "https://sketchfab.com/Pratiksharma"
+    },
+    "filename": "std_369e57c8a4b14d98a67a7fa0ca66dd40.glb",
+    "length": 0.5811296999454498,
+    "width": 0.033539772033691406
+}

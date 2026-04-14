@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a helicopter with a compact, angular fuselage and a set of main rotor blades extending from the top. The body appears to be constructed from dark, matte materials, with some small, lighter-colored details near the rotor hub. The helicopter's silhouette is jagged and blocky, suggesting a stylized or low-detail representation. The tail section is short and does not clearly show a tail rotor, while the landing gear consists of two simple skids. There are no visible cockpit windows or detailed markings on the exterior. The overall form is utilitarian, with minimal surface features and a focus on basic geometric shapes.",
+    "description": "A dark, angular helicopter with blocky features, main rotor blades, and simple landing skids. The exterior is matte and lacks visible cockpit windows or detailed markings.",
+    "description_view_0": "The helicopter is seen from the front, showing the main rotor hub and a compact, blocky fuselage with minimal detail.",
+    "description_view_1": "A side view reveals the elongated body, main rotor blades, and the landing skids extending below, with some small details near the rotor hub.",
+    "description_view_2": "The rear view highlights the back of the fuselage, with no visible tail rotor and a simple, angular structure.",
+    "description_view_3": "The opposite side view shows the blocky body and skids, with the main rotor blades extending outward and minimal surface features.",
+    "category": "helicopter",
+    "height": 2.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 2,
+    "movable": true,
+    "required_force": 17650,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "main rotor",
+        "landing skids",
+        "doors"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "yellow-green"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_rotor_blades": "Four main rotor blades are visible, straight and flat, appearing to be made of composite material with a dark color and no visible markings.",
+    "attribute_tail_rotor": "Not visible.",
+    "attribute_landing_skids": "Two straight, parallel landing skids are present, made of metal or composite, colored black, with minimal visible structural features.",
+    "attribute_cockpit_windows": "Not visible.",
+    "attribute_registration_number": "Not visible.",
+    "uid": "57035fcd89e7496aa712ca1b522700fd",
+    "near_synsets": {
+        "helicopter.n.01": 0.5124806175646826,
+        "single-rotor_helicopter.n.01": 0.5133538454593248,
+        "main_rotor.n.01": 0.5205395819687707,
+        "landing_skid.n.01": 0.5393993984878334,
+        "rotor_blade.n.01": 0.5457125427658609
+    },
+    "synset": "single-rotor_helicopter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/57035fcd89e7496aa712ca1b522700fd",
+        "creator_username": "sa3d",
+        "creator_display_name": "St\u00e9phane Agullo",
+        "creator_profile_url": "https://sketchfab.com/sa3d"
+    },
+    "filename": "std_57035fcd89e7496aa712ca1b522700fd.glb",
+    "length": 6.838953495025635,
+    "width": 3.1723849773406982
+}

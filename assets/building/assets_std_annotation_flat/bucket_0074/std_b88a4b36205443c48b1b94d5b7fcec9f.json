@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a medium-span arch bridge with a gently curving deck supported by a prominent metal arch structure beneath. The bridge features a series of vertical suspender cables connecting the arch to the deck, providing both structural support and a visually open design. The deck appears to be constructed from concrete or a similar material, with a smooth, flat surface suitable for pedestrian or vehicular traffic. On either side of the deck, there are metal railings with vertical balusters, offering safety without obstructing the view. The ends of the bridge are anchored by solid abutments, and the overall color palette is dominated by earthy browns and metallic tones. The design is functional yet elegant, with a modern utilitarian aesthetic and no visible decorative lighting fixtures.",
+    "description": "A modern arch bridge with a curved metal arch beneath a flat deck, supported by vertical cables and flanked by metal railings. The structure is primarily brown and metallic, with a clean, utilitarian design.",
+    "description_view_0": "End-on view showing the narrow width of the bridge, the vertical railings, and the arch structure beneath the deck.",
+    "description_view_1": "Side view highlighting the full span of the arch, the vertical suspender cables, and the flat deck above.",
+    "description_view_2": "Opposite end-on view, similar to view 0, showing the bridge's width, railings, and arch support.",
+    "description_view_3": "Opposite side view, mirroring view 1, displaying the arch, suspender cables, and deck profile.",
+    "category": "bridge",
+    "height": 8.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "steel",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "protective"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "railing"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "car"
+    ],
+    "colors": [
+        "brown",
+        "gray",
+        "metallic"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.01,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_support_type": "arch",
+    "attribute_railing_design": "metal bars with vertical balusters",
+    "attribute_arch_presence": true,
+    "attribute_lighting_fixtures": [],
+    "attribute_architectural_style": "modern",
+    "uid": "b88a4b36205443c48b1b94d5b7fcec9f",
+    "near_synsets": {
+        "steel_arch_bridge.n.01": 0.46193067353308254,
+        "truss_bridge.n.01": 0.5158825437801602,
+        "viaduct.n.01": 0.5174199711671412,
+        "bridge.n.01": 0.5287286264762379,
+        "trestle_bridge.n.01": 0.529178806891539,
+        "bridge.n.04": -1000.0,
+        "bridge.n.06": -1000.0,
+        "bridge.n.08": -1000.0,
+        "bridge.n.07": -1000.0,
+        "bridge.n.02": -1000.0,
+        "bridge.n.05": -1000.0,
+        "bridge.n.09": -1000.0,
+        "bridge.n.03": -1000.0
+    },
+    "synset": "bridge.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b88a4b36205443c48b1b94d5b7fcec9f",
+        "creator_username": "bosch00",
+        "creator_display_name": "BotondBencsik",
+        "creator_profile_url": "https://sketchfab.com/bosch00"
+    },
+    "filename": "std_b88a4b36205443c48b1b94d5b7fcec9f.glb",
+    "length": 59.148399353027344,
+    "width": 4.999378681182861
+}

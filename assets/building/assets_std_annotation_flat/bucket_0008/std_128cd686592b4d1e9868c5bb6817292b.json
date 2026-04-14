@@ -1,0 +1,98 @@
+{
+    "description_long": "This object represents a section of urban roadway featuring a pedestrian crosswalk. The crosswalk is marked by a series of parallel white stripes spanning the width of the road, bordered by solid gray sidewalks on both sides. The road surface is dark asphalt with a central yellow line and dashed yellow lane dividers, indicating a two-way secondary road. The crosswalk is positioned perpendicular to the road, providing a safe passage for pedestrians. The sidewalks are composed of rectangular concrete tiles, visually distinct from the asphalt road. The overall design is typical of city streets, emphasizing pedestrian safety and clear vehicular guidance.",
+    "description": "A city street segment with a white-striped pedestrian crosswalk, bordered by gray sidewalks and marked with yellow road lines.",
+    "description_view_0": "Side view showing the full length of the crosswalk, road markings, and both sidewalks.",
+    "description_view_1": "Frontal view highlighting the crosswalk stripes, central yellow line, and sidewalk edges.",
+    "description_view_2": "Opposite side view mirroring view 0, with the crosswalk and road markings visible.",
+    "description_view_3": "Rear view focusing on the crosswalk stripes and the road's central yellow line.",
+    "category": "pedestrian crosswalk",
+    "height": 0.15,
+    "max_dimension": 8.0,
+    "materials": [
+        "asphalt",
+        "concrete",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.05,
+        0.05
+    ],
+    "mass": 2200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "crossable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "bicycle",
+        "car"
+    ],
+    "colors": [
+        "gray",
+        "black",
+        "white",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.45,
+        0.35,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_zebra_pattern": true,
+    "attribute_road_markings": [
+        "center line",
+        "dashed lane divider",
+        "crosswalk stripes"
+    ],
+    "attribute_pedestrian_signage": [],
+    "attribute_curb_ramps": false,
+    "attribute_traffic_signals": [],
+    "uid": "128cd686592b4d1e9868c5bb6817292b",
+    "near_synsets": {
+        "pedestrian_crossing.n.01": 0.4457249173997656,
+        "school_crossing.n.01": 0.4960654178849828,
+        "sidewalk.n.01": 0.5023428938830303,
+        "white_line.n.01": 0.5100626631826002,
+        "crossing.n.05": 0.5120485134571885
+    },
+    "synset": "pedestrian_crossing.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/128cd686592b4d1e9868c5bb6817292b",
+        "creator_username": "juchen_camila",
+        "creator_display_name": "Camila Juchen",
+        "creator_profile_url": "https://sketchfab.com/juchen_camila"
+    },
+    "filename": "std_128cd686592b4d1e9868c5bb6817292b.glb",
+    "length": 10.258727073669434,
+    "width": 5.131963729858398
+}

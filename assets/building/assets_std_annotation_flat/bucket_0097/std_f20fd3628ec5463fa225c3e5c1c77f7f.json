@@ -1,0 +1,94 @@
+{
+    "description_long": "This is a robust, rectangular double-leaf gate constructed from what appears to be heavy, pixelated gray metal, reminiscent of iron or steel. Each leaf features three vertical bars at the top and bottom, providing visibility and ventilation while maintaining security. The surface is textured with a blocky, stone-like pattern, and reinforced with horizontal and diagonal support beams, suggesting durability and resistance to force. The gate is devoid of decorative elements, focusing on utilitarian design, and includes visible hinges and a simple latch mechanism for manual operation. The structure is thick and solid, indicating it is designed for high-security urban environments such as alleyways, service entrances, or industrial zones. There are no visible handles or advanced locking systems, implying a basic but sturdy access control function.",
+    "description": "A heavy, double-leaf gray metal gate with vertical bars and reinforced beams, featuring a utilitarian, blocky design for secure urban access.",
+    "description_view_0": "Front view showing both leaves of the gate, with visible vertical bars, horizontal and diagonal reinforcements, and a simple latch mechanism.",
+    "description_view_1": "Side view displaying the thickness of the gate and the alignment of the two leaves, emphasizing its solid, robust construction.",
+    "description_view_2": "Rear view similar to the front, highlighting the same bar and reinforcement pattern but with the diagonal and horizontal supports swapped between leaves.",
+    "description_view_3": "Opposite side view, again showing the gate's thickness and the way the two leaves are joined, with no additional features visible.",
+    "category": "gate",
+    "height": 2.0,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "gate leaf",
+        "hinge",
+        "latch"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_gate_type": "swing gate",
+    "attribute_opening_mechanism": "manual swing",
+    "attribute_decorative_elements": [],
+    "attribute_locking_system": "latch",
+    "attribute_surrounding_structure": "none visible",
+    "uid": "f20fd3628ec5463fa225c3e5c1c77f7f",
+    "near_synsets": {
+        "lock-gate.n.01": 0.47529786386024914,
+        "gate.n.01": 0.4769205691869606,
+        "gateway.n.01": 0.4945637237276554,
+        "portcullis.n.01": 0.5028745135196505,
+        "double_door.n.01": 0.5224737643396856,
+        "gate.n.03": -1000.0,
+        "gate.n.04": -1000.0,
+        "gate.n.02": -1000.0
+    },
+    "synset": "gate.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f20fd3628ec5463fa225c3e5c1c77f7f",
+        "creator_username": "ullert",
+        "creator_display_name": "ullert",
+        "creator_profile_url": "https://sketchfab.com/ullert"
+    },
+    "filename": "std_f20fd3628ec5463fa225c3e5c1c77f7f.glb",
+    "length": 0.34650278091430664,
+    "width": 2.0425796508789062
+}

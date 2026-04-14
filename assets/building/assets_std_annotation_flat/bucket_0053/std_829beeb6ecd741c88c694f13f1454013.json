@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a large, wooden half-pipe structure resembling a skateboarding ramp, but annotated as a dam. The main body is constructed from light-colored wood panels, with a smooth, continuous curved surface and vertical side walls. Metal railings run along the top edges for safety, and there is a staircase on one end leading to a raised platform. The structure features a rectangular opening in the center of the ramp, possibly for access or drainage. Black, stylized text is painted on the front and side panels, adding a decorative element. The overall design is robust and industrial, with clear attention to structural integrity and user safety.",
+    "description": "A large, wooden dam-like structure with curved surfaces, metal railings, a staircase, and decorative text. It features a central opening and robust construction.",
+    "description_view_0": "Front view shows the curved wooden face, central opening, staircase on the left, and bold black text on the front.",
+    "description_view_1": "Top-down angle highlights the smooth, continuous ramp surface, central opening, and railings along the edges.",
+    "description_view_2": "Rear view displays the full width, central opening, and the staircase structure on the right side.",
+    "description_view_3": "Angled rear view emphasizes the staircase, platform, and the overall depth of the structure.",
+    "category": "dam",
+    "height": 6.0,
+    "max_dimension": 20.0,
+    "materials": [
+        "wood",
+        "metal",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "slideable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "staircase",
+        "platform",
+        "railings"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "light brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_spillway_presence": false,
+    "attribute_control_gates": [
+        "none"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_water_outflow": "none",
+    "attribute_perimeter_fencing": true,
+    "uid": "829beeb6ecd741c88c694f13f1454013",
+    "near_synsets": {
+        "dam.n.01": 0.49750654806038846,
+        "weir.n.01": 0.5474892028435119,
+        "aqueduct.n.01": 0.5544129815159579,
+        "milldam.n.01": 0.5556450294343717,
+        "flashboard.n.01": 0.5613720020263018,
+        "decameter.n.01": -1000.0,
+        "dam.n.03": -1000.0
+    },
+    "synset": "dam.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/829beeb6ecd741c88c694f13f1454013",
+        "creator_username": "nateaskanison",
+        "creator_display_name": "Nathan Pluskota",
+        "creator_profile_url": "https://sketchfab.com/nateaskanison"
+    },
+    "filename": "std_829beeb6ecd741c88c694f13f1454013.glb",
+    "length": 13.350421905517578,
+    "width": 14.927776336669922
+}

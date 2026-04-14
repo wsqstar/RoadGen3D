@@ -1,0 +1,94 @@
+{
+    "description_long": "This is a rustic cowshed constructed primarily from horizontal wooden planks, featuring a steep gable roof made of corrugated metal. The front facade has a large central opening with double wooden doors that swing outward, providing access for livestock or equipment. Above the main entrance, there is a small overhanging wooden awning for added weather protection. The side walls include a small square window and a secondary door, both made of wood, enhancing ventilation and access. The rear of the structure is solid, with no visible openings, emphasizing its utilitarian function. The overall appearance is weathered and practical, suitable for agricultural or rural-urban edge environments.",
+    "description": "A weathered wooden cowshed with a steep metal gable roof, double front doors, and small side openings for ventilation and access.",
+    "description_view_0": "Front view showing the double wooden doors open, a large central entrance, and a small awning above.",
+    "description_view_1": "Side view revealing a small square window and a secondary wooden door, with the corrugated metal roof extending over the side.",
+    "description_view_2": "Rear view displaying a solid wooden wall with no openings, highlighting the structure's enclosed back.",
+    "description_view_3": "Opposite side view with the secondary door visible and the roof's overhang apparent, but no window on this side.",
+    "category": "cowshed",
+    "height": 4.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "mass": 3200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "double door",
+        "side door",
+        "window"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "brown",
+        "gray",
+        "tan"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gable",
+    "attribute_door_style": "double hinged wooden plank doors with visible metal hinges",
+    "attribute_window_presence": "one small square window on the side",
+    "attribute_ventilation_features": "openings and small window for passive ventilation",
+    "attribute_architectural_style": "traditional rural",
+    "uid": "26b27c4325a44e17a9c443cf2135a399",
+    "near_synsets": {
+        "cowbarn.n.01": 0.4299312577439857,
+        "woodshed.n.01": 0.49155114457058313,
+        "farm_building.n.01": 0.501426554972031,
+        "shed.n.01": 0.5021152195129621,
+        "cow_pasture.n.01": 0.5026756859546837
+    },
+    "synset": "cowbarn.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/26b27c4325a44e17a9c443cf2135a399",
+        "creator_username": "rhcreations",
+        "creator_display_name": "rhcreations",
+        "creator_profile_url": "https://sketchfab.com/rhcreations"
+    },
+    "filename": "std_26b27c4325a44e17a9c443cf2135a399.glb",
+    "length": 6.700279951095581,
+    "width": 3.8078088760375977
+}

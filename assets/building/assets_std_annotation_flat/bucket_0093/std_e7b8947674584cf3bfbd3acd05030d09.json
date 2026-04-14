@@ -1,0 +1,104 @@
+{
+    "description_long": "This object is a short, curved section of railway track, featuring two parallel rails that gently bend to one side. The rails are supported by a series of evenly spaced cross-ties, or sleepers, which appear to be made of wood and have a weathered, dark brown and greenish coloration, suggesting exposure to outdoor elements. The rails themselves are slightly raised above the sleepers and have a metallic sheen, indicating they are likely made of steel. There is no visible ballast bed or gravel beneath the sleepers, and the track is not embedded in any pavement. The structure is compact and appears to be a segment rather than a full-length track, suitable for use in a park, model railway, or as a decorative urban feature. No signage, lights, or additional railway infrastructure is present.",
+    "description": "A short, curved railway track segment with two parallel metal rails on wooden sleepers, showing a weathered brown and green finish. No ballast, pavement, or signage is present.",
+    "description_view_0": "Curved railway track segment viewed from an angle showing the bend and the tops of the wooden sleepers.",
+    "description_view_1": "Side view highlighting the profile of the rails and the sleepers' alignment along the curve.",
+    "description_view_2": "End-on view showing the parallel rails and the spacing between the sleepers.",
+    "description_view_3": "Opposite side view of the curved track, emphasizing the gentle arc and the sleeper arrangement.",
+    "category": "railway track",
+    "height": 0.15,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.4,
+        0.5,
+        0.1
+    ],
+    "mass": 80,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 400,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "connectable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "rail",
+        "sleeper"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "brown",
+        "green",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_parallel_metal_rails": true,
+    "attribute_wooden_or_concrete_sleepers": "wood",
+    "attribute_ballast_bed": false,
+    "attribute_embedded_in_pavement": false,
+    "attribute_railway_crossing_signage": false,
+    "uid": "e7b8947674584cf3bfbd3acd05030d09",
+    "near_synsets": {
+        "railroad_bed.n.01": 0.4767427866125274,
+        "railhead.n.02": 0.484081006288282,
+        "track.n.09": 0.4883878528184202,
+        "line.n.14": 0.4898197398530156,
+        "railroad_track.n.01": 0.491295272967083,
+        "railway.n.01": -1000.0,
+        "racetrack.n.01": -1000.0,
+        "lead.n.03": -1000.0,
+        "track.n.03": -1000.0,
+        "track.n.08": -1000.0,
+        "track.n.11": -1000.0,
+        "track.n.10": -1000.0,
+        "track.n.06": -1000.0,
+        "track.n.07": -1000.0,
+        "cut.n.08": -1000.0,
+        "path.n.04": -1000.0
+    },
+    "synset": "track.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e7b8947674584cf3bfbd3acd05030d09",
+        "creator_username": "Samjheaven",
+        "creator_display_name": "Samjheaven",
+        "creator_profile_url": "https://sketchfab.com/Samjheaven"
+    },
+    "filename": "std_e7b8947674584cf3bfbd3acd05030d09.glb",
+    "length": 1.6113795042037964,
+    "width": 1.2109965085983276
+}

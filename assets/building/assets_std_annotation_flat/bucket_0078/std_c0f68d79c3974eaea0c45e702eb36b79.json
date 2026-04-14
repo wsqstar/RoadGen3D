@@ -1,0 +1,107 @@
+{
+    "description_long": "This is an above-ground, octagonal jacuzzi with a wooden exterior frame and a bright blue inner lining, designed to hold water for recreational soaking. The jacuzzi features a metal ladder at the front for easy entry and exit, and a set of wooden steps leading up to the rim. An external filtration or pump system, colored orange and black, is attached to the side, indicating water circulation and cleaning functionality. The jacuzzi sits on a concrete or stone base, providing stability and separation from the ground. The water inside appears clean and nearly fills the tub, with no visible jets or control panels on the exterior. The overall design is robust and suitable for outdoor urban environments such as backyards, parks, or communal spaces.",
+    "description": "An octagonal, above-ground wooden jacuzzi with a blue interior, metal ladder, and external pump system, nearly filled with water. It features wooden steps and sits on a concrete base.",
+    "description_view_0": "Front view showing the metal ladder and wooden steps leading up to the jacuzzi, with the blue water visible inside.",
+    "description_view_1": "Side view highlighting the external orange pump system and a partially open wooden access panel.",
+    "description_view_2": "Rear view focusing on the pump system and the uninterrupted octagonal wooden frame.",
+    "description_view_3": "Angled view showing both the pump system and the metal ladder, with the wooden steps visible from the side.",
+    "category": "jacuzzi",
+    "height": 1.2,
+    "max_dimension": 3.0,
+    "materials": [
+        "wood",
+        "plastic",
+        "metal",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.15,
+        0.05
+    ],
+    "mass": 350,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "sittable",
+        "fillable",
+        "drainable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "ladder",
+        "steps",
+        "pump",
+        "access panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "blue",
+        "silver",
+        "orange",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_jets": [],
+    "attribute_control_panel": "none visible",
+    "attribute_water_level": "nearly full, water level close to the top rim",
+    "attribute_cover": false,
+    "attribute_steps": [
+        {
+            "location": "front",
+            "number_of_steps": 3,
+            "material": "wood"
+        }
+    ],
+    "uid": "c0f68d79c3974eaea0c45e702eb36b79",
+    "near_synsets": {
+        "hot_tub.n.01": 0.5354713370439524,
+        "pump_room.n.01": 0.578500732042307,
+        "bath_water.n.01": 0.5825031083726467,
+        "lido_deck.n.01": 0.5838421338901831,
+        "bathtub.n.01": 0.5875624373117802
+    },
+    "synset": "hot_tub.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/c0f68d79c3974eaea0c45e702eb36b79",
+        "creator_username": "trzyde.com",
+        "creator_display_name": "trzyde.com",
+        "creator_profile_url": "https://sketchfab.com/trzyde.com"
+    },
+    "filename": "std_c0f68d79c3974eaea0c45e702eb36b79.glb",
+    "length": 3.8829933404922485,
+    "width": 3.88690984249115
+}

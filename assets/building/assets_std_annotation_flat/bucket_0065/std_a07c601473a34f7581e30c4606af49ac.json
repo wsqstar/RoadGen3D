@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a small, single-propeller biplane with a colorful, stylized design. The fuselage is primarily orange and blue, with a green upper wing and orange tail surfaces. The airplane features a wooden propeller at the nose, exposed engine cylinders on top of the forward fuselage, and a set of black wheels for landing gear. Multiple support wires connect the wings and fuselage, typical of classic biplane construction. The cockpit is open and situated just behind the upper wing, with no visible canopy. The tail section includes a horizontal stabilizer and a single vertical fin, both in matching orange and blue colors.",
+    "description": "A small, colorful biplane with a wooden propeller, exposed engine, and open cockpit. Features green wings, orange fuselage, and classic biplane support wires.",
+    "description_view_0": "Side view showing the orange fuselage, green wing, exposed engine, and open cockpit behind the upper wing.",
+    "description_view_1": "Front view highlighting the wooden propeller, engine cylinders, and symmetrical green wings with support wires.",
+    "description_view_2": "Opposite side view with similar features to view 0, showing the landing gear and tail surfaces.",
+    "description_view_3": "Rear view displaying the orange tail, blue accents, and the full span of the green wings.",
+    "category": "airplane",
+    "height": 1.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "metal",
+        "wood",
+        "fabric",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 6370,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "wheels",
+        "cockpit",
+        "engine",
+        "control stick"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "green",
+        "blue",
+        "wood brown",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.35,
+        0.25,
+        0.2,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 6.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Biplane configuration with two straight, parallel wings mounted one above the other, featuring interplane struts and support wires; no winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "Single front-mounted piston engine with exposed cylinders and a wooden propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizer.",
+    "attribute_landing_gear_type": "Taildragger configuration with two main fixed wheels and a small tail skid or wheel.",
+    "attribute_cockpit_placement": "Open, single-seat cockpit located just behind the upper wing, mid-fuselage, with no canopy.",
+    "uid": "a07c601473a34f7581e30c4606af49ac",
+    "near_synsets": {
+        "biplane.n.01": 0.4912194572867091,
+        "propeller_plane.n.01": 0.49676472153091555,
+        "airplane.n.01": 0.4982218602007783,
+        "propjet.n.01": 0.5178256846019026,
+        "single_prop.n.01": 0.5228237028717765
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a07c601473a34f7581e30c4606af49ac",
+        "creator_username": "BramVerheyen",
+        "creator_display_name": "Bram Verheyen",
+        "creator_profile_url": "https://sketchfab.com/BramVerheyen"
+    },
+    "filename": "std_a07c601473a34f7581e30c4606af49ac.glb",
+    "length": 2.2543128728866577,
+    "width": 2.7419328689575195
+}

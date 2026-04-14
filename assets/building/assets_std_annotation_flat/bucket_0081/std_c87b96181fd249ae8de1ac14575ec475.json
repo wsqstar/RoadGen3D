@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a dual-tank rail trailer designed for transporting liquids, featuring two cylindrical tanks mounted side by side on a flatbed rail chassis. The tanks are encased in robust metal frames for structural support and safety, with visible hazard placards and industrial signage indicating the transport of potentially hazardous materials. The left tank is white with red stripes and Cyrillic branding, while the right tank is a weathered beige with additional branding and warning labels. The undercarriage includes detailed rail wheels, axles, and coupling mechanisms typical of freight railcars. The frame structure is metallic, with visible ladders and access points for maintenance or filling. The overall appearance is industrial, with signs of use and exposure to the elements.",
+    "description": "A dual-tank rail trailer with metal frames, industrial signage, and two cylindrical tanks for liquid transport, mounted on a detailed rail chassis.",
+    "description_view_0": "Front view showing the end of the white tank with hazard placards and the metal frame structure.",
+    "description_view_1": "Side view displaying both tanks, their branding, and the full length of the rail chassis with wheels.",
+    "description_view_2": "Rear view highlighting the end of the beige tank, additional signage, and the rear frame.",
+    "description_view_3": "Opposite side view showing both tanks, their signage, and the rail chassis from the other side.",
+    "category": "trailer",
+    "height": 3.2,
+    "max_dimension": 12.0,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 18000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 25000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "connectable",
+        "fillable",
+        "drainable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "ladder",
+        "valve",
+        "coupling",
+        "frame"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "beige",
+        "black",
+        "red",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.45,
+        0.35,
+        0.12,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_number_of_wheels": 8,
+    "attribute_hitch_type": "rail coupling",
+    "attribute_door_configuration": "no doors visible",
+    "attribute_branding_or_signage": "Cyrillic company branding, hazard placards, and industrial logos on both tanks",
+    "attribute_window_presence": "no windows visible",
+    "uid": "c87b96181fd249ae8de1ac14575ec475",
+    "near_synsets": {
+        "tandem_trailer.n.01": 0.4755103767798166,
+        "tank_car.n.01": 0.5112065770164366,
+        "trailer.n.03": 0.5148689942120988,
+        "trailer_truck.n.01": 0.5278976038245106,
+        "tender.n.04": 0.5298932121373418,
+        "dawdler.n.01": -1000.0,
+        "trailer.n.04": -1000.0,
+        "preview.n.01": -1000.0
+    },
+    "synset": "trailer.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c87b96181fd249ae8de1ac14575ec475",
+        "creator_username": "dmitriev_nd",
+        "creator_display_name": "Dmitriev Nikita",
+        "creator_profile_url": "https://sketchfab.com/dmitriev_nd"
+    },
+    "filename": "std_c87b96181fd249ae8de1ac14575ec475.glb",
+    "length": 10.194271087646484,
+    "width": 2.284754991531372
+}

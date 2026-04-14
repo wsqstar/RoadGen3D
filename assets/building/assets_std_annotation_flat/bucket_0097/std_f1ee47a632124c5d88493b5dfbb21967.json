@@ -1,0 +1,90 @@
+{
+    "description_long": "This object is a large, multi-barreled rotary rifle resembling a Gatling or minigun, characterized by six parallel barrels arranged in a circular cluster. The main body is robust and cylindrical, with a prominent drum-shaped component likely serving as an ammunition feed or power source. A curved handle is attached to the rear, providing a grip for operation, and a secondary handle or support is visible on the top rear. The surface is uniformly dark, likely matte black, with metallic highlights suggesting a steel or alloy construction. The overall design is utilitarian and heavy-duty, suitable for high-volume fire in urban defense or assault scenarios.",
+    "description": "A heavy, multi-barreled rotary rifle with a drum feed and dual handles, finished in matte black metal.",
+    "description_view_0": "Front view showing the six-barrel cluster and the circular arrangement of the barrels.",
+    "description_view_1": "Side view highlighting the length of the barrels, the drum feed, and the rear handle assembly.",
+    "description_view_2": "Rear view displaying the back of the main body, the handle, and the drum feed attachment.",
+    "description_view_3": "Opposite side view similar to view 1, showing the full length of the barrels and the drum feed.",
+    "category": "rifle",
+    "height": 0.35,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "rotatable",
+        "triggerable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "trigger",
+        "barrel cluster",
+        "drum magazine",
+        "top handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "pistol grip",
+    "attribute_barrel_type": "rotary",
+    "attribute_magazine_type": "drum",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "f1ee47a632124c5d88493b5dfbb21967",
+    "near_synsets": {
+        "rifle.n.01": 0.5006940765030446,
+        "gatling_gun.n.01": 0.5075784060805874,
+        "garand_rifle.n.01": 0.5195758851239177,
+        "mauser.n.02": 0.5195884497826678,
+        "dragunov.n.01": 0.5198880581671657
+    },
+    "synset": "garand_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f1ee47a632124c5d88493b5dfbb21967",
+        "creator_username": "Waseem963",
+        "creator_display_name": "Waseem963",
+        "creator_profile_url": "https://sketchfab.com/Waseem963"
+    },
+    "filename": "std_f1ee47a632124c5d88493b5dfbb21967.glb",
+    "length": 0.7081585228443146,
+    "width": 0.22945088148117065
+}

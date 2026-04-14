@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a large, orange mobile trailer vehicle with a boxy structure mounted on a truck chassis. The trailer features an extended awning on one side, providing a shaded area supported by poles, and a side door for entry. Several windows are distributed along the sides, suggesting interior compartments or rooms. The front cab is integrated with the trailer body, and the wheels are partially visible beneath the structure. The asset includes exterior details such as mirrors, handles, and a step for easier access. A human figure is shown for scale, indicating the trailer's substantial height and length.",
+    "description": "A large orange mobile trailer with an extended awning, side entry door, and multiple windows, mounted on a truck chassis.",
+    "description_view_0": "Front and side view showing the extended awning, open side door, and a human figure for scale.",
+    "description_view_1": "Top-down side view highlighting the roof, window placements, and the awning's coverage.",
+    "description_view_2": "Opposite front and side view with the awning extended and the side door open, showing the trailer's entry points.",
+    "description_view_3": "Rear and roof view displaying the awning's structure, rear windows, and the overall boxy shape.",
+    "category": "trailer",
+    "height": 3.2,
+    "max_dimension": 7.5,
+    "materials": [
+        "metal",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.08,
+        0.1,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "mass": 4200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 9000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable",
+        "deployable",
+        "retractable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "awning",
+        "window",
+        "wheel",
+        "mirror",
+        "step",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "gray",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 4,
+    "attribute_hitch_type": "none",
+    "attribute_door_configuration": "single side swing door",
+    "attribute_branding_or_signage": "no visible signage",
+    "attribute_window_presence": "three side windows",
+    "uid": "502c2313650146bda1465e63ffc4e063",
+    "near_synsets": {
+        "trailer.n.03": 0.46203010894507623,
+        "trailer.n.04": 0.48448091078894817,
+        "camper_trailer.n.01": 0.48707414755514206,
+        "trailer_truck.n.01": 0.5135020973064841,
+        "tandem_trailer.n.01": 0.5174804172549783,
+        "dawdler.n.01": -1000.0,
+        "preview.n.01": -1000.0
+    },
+    "synset": "tandem_trailer.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/502c2313650146bda1465e63ffc4e063",
+        "creator_username": "vladek27",
+        "creator_display_name": "Vladek",
+        "creator_profile_url": "https://sketchfab.com/vladek27"
+    },
+    "filename": "std_502c2313650146bda1465e63ffc4e063.glb",
+    "length": 6.570261240005493,
+    "width": 20.106914520263672
+}

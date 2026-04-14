@@ -1,0 +1,121 @@
+{
+    "description_long": "This is a small, enclosed outdoor basketball court surrounded by high, solid concrete walls with a weathered, gray finish. The court features a single basketball hoop with a rectangular backboard mounted on one end, and the playing surface is covered in green turf or artificial grass. Inside the enclosure, there are several wooden benches and a picnic table, as well as a small round table with chairs, suggesting the space is also used for socializing or resting. The court lacks visible painted basketball markings, giving it a more casual, multi-use appearance. The open roof and high walls provide some privacy and separation from the surrounding urban environment. The overall design is utilitarian and functional, with minimal decorative elements.",
+    "description": "A compact, walled outdoor basketball court with green turf, a single hoop, benches, and a picnic table, designed for both play and relaxation.",
+    "description_view_0": "View 0 shows the entrance to the court, with benches and a round table visible along the walls.",
+    "description_view_1": "View 1 provides a top-down look over the wall, highlighting the benches and the open, green playing area.",
+    "description_view_2": "View 2 focuses on the basketball hoop and backboard at one end, with a picnic table and benches nearby.",
+    "description_view_3": "View 3 offers a rear perspective, showing the round table and chairs, as well as the open space inside the enclosure.",
+    "category": "basketball court",
+    "height": 2.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "concrete",
+        "wood",
+        "metal",
+        "plastic",
+        "artificial turf",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.07,
+        0.03,
+        0.05,
+        0.05
+    ],
+    "mass": 35000,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "playable",
+        "shootable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench",
+        "picnic table",
+        "basketball hoop",
+        "backboard",
+        "round table",
+        "chairs"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "green",
+        "brown",
+        "black",
+        "white",
+        "red"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.08,
+        0.05,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.1,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_hoop_presence": true,
+    "attribute_backboard_type": "rectangular glass",
+    "attribute_court_markings": [],
+    "attribute_fence_enclosure": true,
+    "attribute_architectural_style": "urban outdoor",
+    "uid": "a651379ff75d47bb9fd0892497c1a82b",
+    "near_synsets": {
+        "basketball_court.n.01": 0.42569292512816603,
+        "tennis_court.n.01": 0.4824455041181059,
+        "volleyball_court.n.01": 0.490222385904426,
+        "playground.n.02": 0.5042714507454074,
+        "squash_court.n.01": 0.5076125165531098,
+        "court.n.05": -1000.0,
+        "court.n.06": -1000.0,
+        "court.n.03": -1000.0,
+        "court.n.10": -1000.0,
+        "court.n.08": -1000.0,
+        "court.n.02": -1000.0,
+        "motor_hotel.n.01": -1000.0,
+        "court.n.09": -1000.0,
+        "basketball.n.02": -1000.0,
+        "court.n.04": -1000.0,
+        "basketball.n.01": -1000.0,
+        "court.n.01": -1000.0
+    },
+    "synset": "basketball_court.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a651379ff75d47bb9fd0892497c1a82b",
+        "creator_username": "jjdeglow",
+        "creator_display_name": "jjdeglow",
+        "creator_profile_url": "https://sketchfab.com/jjdeglow"
+    },
+    "filename": "std_a651379ff75d47bb9fd0892497c1a82b.glb",
+    "length": 8.118537902832031,
+    "width": 6.622612953186035
+}

@@ -1,0 +1,91 @@
+{
+    "description_long": "This object is a sleek, unmanned aerial vehicle (UAV) with a long, slender fuselage and straight, narrow wings extending symmetrically from the midsection. The wings are mounted in a mid-wing configuration and feature no visible winglets or pronounced dihedral angles. The nose is rounded and tapers smoothly, while the tail section is equipped with a distinctive inverted V-tail (also known as a butterfly tail) and twin vertical stabilizers. The undercarriage consists of a tricycle landing gear arrangement, with two main wheels and a single nose wheel, all of which appear to be fixed. The surface is uniformly dark, likely matte or semi-matte, and the overall design is optimized for aerodynamic efficiency and minimal radar signature.",
+    "description": "A dark, streamlined unmanned aerial vehicle with straight mid-mounted wings, an inverted V-tail, and fixed tricycle landing gear.",
+    "description_view_0": "Front view showing the narrow fuselage, straight wings, and the inverted V-tail configuration clearly visible behind the body.",
+    "description_view_1": "Side view highlighting the elongated nose, mid-mounted wings, and the fixed tricycle landing gear beneath the fuselage.",
+    "description_view_2": "Rear view displaying the full span of the wings and the distinctive inverted V-tail with twin vertical stabilizers.",
+    "description_view_3": "Opposite side view showing the same features as view 1, with the landing gear and tail configuration visible from the other side.",
+    "category": "airplane",
+    "height": 1.8,
+    "max_dimension": 11.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4905,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "landing gear",
+        "propeller",
+        "control surfaces",
+        "cockpit window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 13.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing configuration with straight wings, no visible winglets, and no pronounced dihedral or anhedral angles.",
+    "attribute_engine_type": "Single pusher propeller engine mounted at the rear of the fuselage.",
+    "attribute_tail_design": "Inverted V-tail (butterfly tail) with twin vertical stabilizers.",
+    "attribute_landing_gear_type": "Fixed tricycle landing gear with two main wheels and one nose wheel.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a single-seat configuration and a streamlined canopy.",
+    "uid": "f70d075ac1a745ecb5b1f295fc501300",
+    "near_synsets": {
+        "aircraft.n.01": 0.45678589760631205,
+        "airplane.n.01": 0.49338702371070164,
+        "drone.n.04": 0.5180071028791097,
+        "monoplane.n.01": 0.5213770248079668,
+        "aircraft_landing.n.01": 0.5303129888974344
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f70d075ac1a745ecb5b1f295fc501300",
+        "creator_username": "timmod",
+        "creator_display_name": "TimMod",
+        "creator_profile_url": "https://sketchfab.com/timmod"
+    },
+    "filename": "std_f70d075ac1a745ecb5b1f295fc501300.glb",
+    "length": 7.370861053466797,
+    "width": 11.324353694915771
+}

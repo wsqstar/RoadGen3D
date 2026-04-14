@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a heavily damaged and partially destroyed airplane, resembling the iconic NASA Space Shuttle orbiter. The fuselage is broken open, exposing internal structural elements and what appears to be a hollowed-out cargo bay. The wings are present but show significant wear, with jagged edges and missing sections, and the vertical stabilizer is partially intact but also damaged. The surface is covered in a mix of white, gray, and brownish hues, with some blue visible on the nose, suggesting remnants of the original paint and thermal tiles. The cockpit area is visible but appears crushed and deformed, with the canopy missing or shattered. Overall, the object gives the impression of a derelict or crash-landed shuttle, with exposed framework and a weathered, corroded appearance.",
+    "description": "A wrecked, partially destroyed space shuttle with exposed internal structure, jagged wings, and a weathered, multicolored surface.",
+    "description_view_0": "Front oblique view showing the crushed nose, exposed cockpit, and jagged wing edges.",
+    "description_view_1": "Side view highlighting the broken fuselage, open cargo bay, and damaged tail fin.",
+    "description_view_2": "Rear oblique view revealing the hollowed-out interior and the back of the wings and tail.",
+    "description_view_3": "Opposite side view displaying the mostly intact but weathered wing and the damaged vertical stabilizer.",
+    "category": "airplane",
+    "height": 3.5,
+    "max_dimension": 12.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 4,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cockpit",
+        "cargo bay doors",
+        "landing gear",
+        "control surfaces"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "brown",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with straight, swept-back wings; no visible winglets; moderate dihedral angle; wings appear damaged and incomplete.",
+    "attribute_engine_type": "No engines visibly present; engine mounts or bays appear empty or destroyed.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers; tail surfaces are damaged but recognizable.",
+    "attribute_landing_gear_type": "Retractable tricycle landing gear; gear doors and bays visible but landing gear itself is not extended.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit; canopy is missing or destroyed, with internal structure exposed; appears to be multi-seat.",
+    "uid": "5a5e71ec4dd6421ca5c3feceb3c17f80",
+    "near_synsets": {
+        "space_shuttle.n.01": 0.5110726002253774,
+        "shipwreck.n.01": 0.5499078163666749,
+        "wreckage.n.01": 0.5531844826054214,
+        "aircraft.n.01": 0.5584994795924553,
+        "wreck.n.04": 0.5635613077908418,
+        "airplane.n.01": -1000.0
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/5a5e71ec4dd6421ca5c3feceb3c17f80",
+        "creator_username": "dwigfor",
+        "creator_display_name": "David Wigforss",
+        "creator_profile_url": "https://sketchfab.com/dwigfor"
+    },
+    "filename": "std_5a5e71ec4dd6421ca5c3feceb3c17f80.glb",
+    "length": 7.263685703277588,
+    "width": 4.84310507774353
+}

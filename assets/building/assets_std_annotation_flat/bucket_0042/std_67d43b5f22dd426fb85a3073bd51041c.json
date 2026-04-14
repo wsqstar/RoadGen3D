@@ -1,0 +1,93 @@
+{
+    "description_long": "This handcart features a long, flat wooden platform supported by two large spoked wheels mounted on either side near the rear. The frame and structural elements are constructed from dark metal, providing durability and a classic utilitarian appearance. At the front, two extended metal handles allow for easy pushing or pulling by hand, while the rear is enclosed by a vertical metal barrier to prevent cargo from sliding off. The load platform is made of closely spaced wooden planks, offering a stable surface for transporting goods. The wheels are robust and designed for traversing urban surfaces such as streets and sidewalks. The overall design is practical and well-suited for manual transport of various items in an urban environment.",
+    "description": "A sturdy handcart with a flat wooden plank platform, large spoked metal wheels, and dual front handles for manual transport. The rear features a vertical metal barrier for cargo retention.",
+    "description_view_0": "Side view showing the full length of the handcart, the wooden platform, both large wheels, and the extended front handles.",
+    "description_view_1": "Rear view highlighting the vertical metal barrier, the width of the platform, and the alignment of the wheels.",
+    "description_view_2": "Angled view displaying the platform, both wheels, the rear barrier, and the dual front handles.",
+    "description_view_3": "Front view focusing on the dual handles, the narrow width of the platform, and the alignment of the wheels along the sides.",
+    "category": "handcart",
+    "height": 1.0,
+    "max_dimension": 2.2,
+    "materials": [
+        "wood",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.45,
+        0.05
+    ],
+    "mass": 35,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "load platform"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.4
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 2,
+    "attribute_handle_type": "dual straight handles",
+    "attribute_wheel_position": "side-mounted near rear",
+    "attribute_presence_of_side_rails": false,
+    "attribute_load_platform_design": "flat solid surface",
+    "uid": "67d43b5f22dd426fb85a3073bd51041c",
+    "near_synsets": {
+        "hand_truck.n.01": 0.4581490051241083,
+        "handcart.n.01": 0.4729751061244215,
+        "laundry_cart.n.01": 0.503829194121436,
+        "shopping_cart.n.01": 0.5042420373498953,
+        "serving_cart.n.01": 0.5056671831001611
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/67d43b5f22dd426fb85a3073bd51041c",
+        "creator_username": "guurme",
+        "creator_display_name": "bruyere",
+        "creator_profile_url": "https://sketchfab.com/guurme"
+    },
+    "filename": "std_67d43b5f22dd426fb85a3073bd51041c.glb",
+    "length": 1.9674775004386902,
+    "width": 0.73720383644104
+}

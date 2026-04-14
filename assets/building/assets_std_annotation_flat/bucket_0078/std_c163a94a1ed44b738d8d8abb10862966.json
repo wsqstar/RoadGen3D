@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a large, horizontally-oriented cylindrical storage tank supported by four sturdy black metal legs. The tank is predominantly white with green hemispherical end caps and features a prominent orange hazard stripe running along its length, accompanied by Russian warning text and a flammable material symbol. A black metal platform with safety railings is mounted on top, providing access to a central green and white hatch or manway. A vertical ladder is attached to the side, allowing personnel to reach the platform for inspection or maintenance. The tank's robust construction and warning signage indicate it is designed for storing hazardous or flammable substances, likely under pressure. Its industrial appearance and safety features suggest it is intended for use in environments where secure containment and controlled access are critical.",
+    "description": "A large, white and green horizontal cylindrical storage tank with a top platform, access ladder, and hazard signage, supported by black metal legs.",
+    "description_view_0": "Front view showing the green end cap, black support legs, and the top platform with hatch visible in the background.",
+    "description_view_1": "Side view displaying the full length of the tank, orange hazard stripe, Russian warning text, flammable symbol, and the access ladder leading to the top platform.",
+    "description_view_2": "Rear view mirroring the front, with the green end cap and support legs, and the top platform and hatch visible from behind.",
+    "description_view_3": "Opposite side view showing the orange hazard stripe, Russian warning text, flammable symbol, and the top platform, but without the ladder visible.",
+    "category": "storage tank",
+    "height": 3.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "paint",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.02,
+        0.08
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "ladder",
+        "hatch",
+        "platform railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "green",
+        "black",
+        "orange",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": true,
+    "attribute_valve_or_pipe_attachments": [],
+    "attribute_warning_signage": true,
+    "attribute_architectural_style": "cylindrical horizontal",
+    "uid": "c163a94a1ed44b738d8d8abb10862966",
+    "near_synsets": {
+        "tank.n.02": 0.5100757326633982,
+        "water_tower.n.01": 0.5270153845562846,
+        "tank_farm.n.01": 0.5328197530866161,
+        "reservoir.n.03": 0.5529345092333202,
+        "gas_tank.n.01": 0.5530503236034608,
+        "tank.n.03": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "storage.n.01": -1000.0,
+        "cooler.n.03": -1000.0,
+        "memory.n.04": -1000.0,
+        "repositing.n.01": -1000.0,
+        "storage.n.04": -1000.0,
+        "storage.n.03": -1000.0,
+        "tank.n.01": -1000.0,
+        "tank_car.n.01": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c163a94a1ed44b738d8d8abb10862966",
+        "creator_username": "popovich.stanislav.01",
+        "creator_display_name": "JSlyin",
+        "creator_profile_url": "https://sketchfab.com/popovich.stanislav.01"
+    },
+    "filename": "std_c163a94a1ed44b738d8d8abb10862966.glb",
+    "length": 1.9422755241394043,
+    "width": 5.825616121292114
+}

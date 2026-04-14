@@ -1,0 +1,86 @@
+{
+    "description_long": "This object is a brass wind instrument with a long, cylindrical body and a flared bell at one end. The instrument features a slide mechanism, which is used to change the pitch, and is composed primarily of a shiny, metallic material with a golden hue. The bell is wide and smoothly flared, while the tubing is straight with a gentle curve near the bell. There are no visible piston or rotary valves, but the slide is prominent and extends along the length of the instrument. The mouthpiece is attached at the narrow end, opposite the bell, and the overall construction is sleek and polished. This instrument is commonly seen in marching bands, orchestras, and urban street performances.",
+    "description": "A shiny brass wind instrument with a long slide and a wide, flared bell, featuring a polished golden finish and a sleek, straight body.",
+    "description_view_0": "The instrument is viewed from the bell end, showing the circular opening and the straight alignment of the slide tubing below.",
+    "description_view_1": "A side profile reveals the full length of the instrument, the slide mechanism, and the wide, flared bell.",
+    "description_view_2": "Viewed from the mouthpiece end, the bell appears as a solid circle, and the slide tubes are visible extending away.",
+    "description_view_3": "Another side profile, similar to view 1, showing the slide and bell, but from the opposite side.",
+    "category": "trumpet",
+    "height": 0.18,
+    "max_dimension": 1.2,
+    "materials": [
+        "brass",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 1.8,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 18,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable",
+        "pullable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "slide",
+        "mouthpiece",
+        "bell"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gold"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.08,
+    "surface_finish": "glossy",
+    "reflectivity": 0.7,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 100000,
+    "friction_coefficient": 0.3,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_bell_flare": "The bell is wide and smoothly flared, creating a gradual, elegant opening at the end.",
+    "attribute_valve_configuration": "No valves are present; the instrument uses a slide mechanism along the main body.",
+    "attribute_mouthpiece_presence": true,
+    "attribute_leadpipe_curvature": "The leadpipe is gently curved, connecting the mouthpiece to the main body in a smooth arc.",
+    "attribute_tuning_slide_location": "The main tuning slide is located near the center of the instrument, forming a U-shape just before the bell section.",
+    "uid": "3709e96c01694bc791b118e2ce534910",
+    "near_synsets": {
+        "brass.n.02": 0.4148825506747956,
+        "cornet.n.01": 0.4197034196164218,
+        "trombone.n.01": 0.41997296483700264,
+        "french_horn.n.01": 0.44957807720194004,
+        "flugelhorn.n.01": 0.47456465162028943
+    },
+    "synset": "trombone.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3709e96c01694bc791b118e2ce534910",
+        "creator_username": "sethgordon",
+        "creator_display_name": "sethgordon",
+        "creator_profile_url": "https://sketchfab.com/sethgordon"
+    },
+    "filename": "std_3709e96c01694bc791b118e2ce534910.glb",
+    "length": 0.15427231788635254,
+    "width": 0.8444488048553467
+}

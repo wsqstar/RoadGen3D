@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a small, flat-bottomed boat with a beige hull and a rectangular black canopy supported by four vertical poles. The boat features a simple open interior with bench seating and a pair of wooden oars resting inside, suggesting it is manually powered. The hull appears to be constructed from a sturdy, possibly composite or fiberglass material, with visible wear and weathering along the sides. The canopy provides shade and is likely made of a lightweight metal frame with a solid or fabric cover. The boat is designed for calm waters, such as lakes or slow-moving rivers, and is suitable for short-distance transport or leisure activities. There are no visible registration numbers or boat names on the hull or canopy.",
+    "description": "A small beige flat-bottomed boat with a black canopy and wooden oars, designed for manual rowing and shaded seating.",
+    "description_view_0": "Front view showing the pointed bow, black canopy, and interior bench seating.",
+    "description_view_1": "Side view highlighting the full length of the beige hull, the rectangular black canopy, and the oars inside.",
+    "description_view_2": "Rear view displaying the stern, canopy supports, and the oars resting across the benches.",
+    "description_view_3": "Opposite side view showing the hull's weathered texture, canopy, and open seating area.",
+    "category": "boat",
+    "height": 1.5,
+    "max_dimension": 4.0,
+    "materials": [
+        "fiberglass",
+        "wood",
+        "metal",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 120,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 400,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "rowable",
+        "shadable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "oar",
+        "bench",
+        "canopy",
+        "canopy support pole"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "beige",
+        "black",
+        "brown",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_hull_type": "flat-bottom",
+    "attribute_propulsion_type": "oars",
+    "attribute_registration_number": "none",
+    "attribute_presence_of_trailer": false,
+    "attribute_visible_boat_name": "none",
+    "uid": "a7c46f46c7aa4dabae95362be953c7da",
+    "near_synsets": {
+        "rowing_boat.n.01": 0.43232858254572143,
+        "boat.n.01": 0.460215165694121,
+        "small_boat.n.01": 0.4620857858295758,
+        "canoe.n.01": 0.4646848486154743,
+        "gondola.n.02": 0.47943252849748896,
+        "gravy_boat.n.01": -1000.0
+    },
+    "synset": "gravy_boat.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a7c46f46c7aa4dabae95362be953c7da",
+        "creator_username": "rasamot",
+        "creator_display_name": "Tomas Rubianes",
+        "creator_profile_url": "https://sketchfab.com/rasamot"
+    },
+    "filename": "std_a7c46f46c7aa4dabae95362be953c7da.glb",
+    "length": 3.6287341117858887,
+    "width": 1.3705488443374634
+}

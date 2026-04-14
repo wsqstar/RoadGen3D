@@ -1,0 +1,124 @@
+{
+    "description_long": "This object is a miniature amusement park set atop a circular, rocky base, featuring a variety of classic rides and attractions. Dominating the scene is a large Ferris wheel with multicolored gondolas, positioned near the edge of the park. A winding roller coaster with red tracks and white supports snakes around the park, looping and twisting through the landscape. There are also two tall, intertwining water slides with blue and yellow chutes, supported by metal frameworks. The central area contains a circular plaza with a fountain or decorative pattern, surrounded by benches, trees with pink foliage, and smaller play structures. The park is detailed with pathways, greenery, and vibrant colors, evoking a lively and festive atmosphere.",
+    "description": "A detailed miniature amusement park with a Ferris wheel, roller coaster, water slides, and decorative landscaping on a rocky base. The scene is colorful and lively, featuring multiple rides and playful elements.",
+    "description_view_0": "This view highlights the roller coaster's looping track and the water slides, with the Ferris wheel visible on the left and decorative trees in the background.",
+    "description_view_1": "The Ferris wheel is centered and prominent, with the water slides and roller coaster flanking it, and the central plaza clearly visible.",
+    "description_view_2": "The roller coaster's twists and turns are most visible here, with the Ferris wheel and water slides in the background and the plaza partially obscured.",
+    "description_view_3": "The Ferris wheel is seen from above and behind, with the roller coaster's entry and exit points visible, and the water slides on the right.",
+    "category": "amusement park",
+    "height": 8.0,
+    "max_dimension": 20.0,
+    "materials": [
+        "steel",
+        "plastic",
+        "concrete",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 35000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "rideable",
+        "climbable",
+        "slideable",
+        "spinable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "Ferris wheel gondola",
+        "roller coaster car",
+        "slide entrance",
+        "benches",
+        "fountain"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "red",
+        "yellow",
+        "blue",
+        "white",
+        "gray",
+        "pink",
+        "black"
+    ],
+    "colors_composition": [
+        0.35,
+        0.15,
+        0.12,
+        0.12,
+        0.1,
+        0.08,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "scene",
+    "attribute_ride_type": "roller coaster, Ferris wheel, water slide",
+    "attribute_theming_elements": [
+        "decorative trees",
+        "colorful benches",
+        "patterned plaza",
+        "multicolored gondolas"
+    ],
+    "attribute_signage": "None",
+    "attribute_lighting_features": [
+        "marquee bulbs",
+        "decorative lights on Ferris wheel"
+    ],
+    "attribute_queue_design": "None",
+    "uid": "0a6d5cd1558746b4a870acf88224886c",
+    "near_synsets": {
+        "scenic_railway.n.01": 0.49599593826462346,
+        "amusement_park.n.01": 0.49680571351886216,
+        "ferris_wheel.n.01": 0.4980968541873981,
+        "theme_park.n.01": 0.4992361902927507,
+        "roller_coaster.n.02": 0.5476165875086523,
+        "ballpark.n.01": -1000.0,
+        "entertainment.n.01": -1000.0,
+        "parking_lot.n.01": -1000.0,
+        "park.n.04": -1000.0,
+        "amusement.n.01": -1000.0,
+        "park.n.02": -1000.0,
+        "park.n.01": -1000.0,
+        "park.n.06": -1000.0
+    },
+    "synset": "amusement_park.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0a6d5cd1558746b4a870acf88224886c",
+        "creator_username": "Evvvai",
+        "creator_display_name": "EVAI",
+        "creator_profile_url": "https://sketchfab.com/Evvvai"
+    },
+    "filename": "std_0a6d5cd1558746b4a870acf88224886c.glb",
+    "length": 16.357425689697266,
+    "width": 16.375493049621582
+}

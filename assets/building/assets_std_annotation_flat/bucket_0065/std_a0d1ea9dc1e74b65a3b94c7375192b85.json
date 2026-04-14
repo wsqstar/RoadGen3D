@@ -1,0 +1,97 @@
+{
+    "description_long": "This object consists of a bundle of cylindrical red sticks, each resembling a classic dynamite stick, tightly grouped together in a vertical arrangement. Two thick, dark bands encircle the bundle, one near the top and one near the bottom, securing the sticks in place. A single black fuse wire extends from the center of the top face, suggesting a manual ignition method. The surface of the cylinders appears matte and slightly rough, with subtle wear and discoloration, giving a realistic, utilitarian look. The overall construction is compact and symmetrical, with no visible digital or analog timer or external controls. The design is reminiscent of traditional improvised explosive devices often depicted in urban or cinematic scenarios.",
+    "description": "A bundle of red cylindrical sticks, secured by dark bands, with a single fuse wire protruding from the top. The surface is matte and slightly worn, evoking a classic dynamite bomb.",
+    "description_view_0": "The front view shows the bundle of red cylinders with two dark bands and a central fuse wire extending upward, clearly displaying the symmetrical arrangement.",
+    "description_view_1": "This side view highlights the cylindrical shapes and the way the bands tightly secure the sticks, with the fuse wire slightly bent.",
+    "description_view_2": "The rear view is similar to the front, showing the fuse wire and the even spacing of the cylinders, with the bands visible.",
+    "description_view_3": "Another side view, nearly identical to view 1, but the fuse wire appears more upright and the banding is clearly visible.",
+    "category": "bomb",
+    "height": 0.35,
+    "max_dimension": 0.13,
+    "materials": [
+        "paper",
+        "explosive_compound",
+        "metal",
+        "string",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.35,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 2.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable",
+        "ignitable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "fuse_wire",
+        "cylindrical_sticks",
+        "securing_bands"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "group",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation appears to be initiated by lighting the exposed fuse wire extending from the top of the bundle.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": true,
+    "uid": "a0d1ea9dc1e74b65a3b94c7375192b85",
+    "near_synsets": {
+        "bomb.n.01": 0.4872658375529315,
+        "pipe_bomb.n.01": 0.5049910109877987,
+        "detonating_fuse.n.01": 0.5127529100266813,
+        "cherry_bomb.n.01": 0.517222681677933,
+        "briefcase_bomb.n.01": 0.5221855862042125,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a0d1ea9dc1e74b65a3b94c7375192b85",
+        "creator_username": "Florian.Bernard",
+        "creator_display_name": "Florian.Bernard",
+        "creator_profile_url": "https://sketchfab.com/Florian.Bernard"
+    },
+    "filename": "std_a0d1ea9dc1e74b65a3b94c7375192b85.glb",
+    "length": 0.1058591827750206,
+    "width": 0.11248238384723663
+}

@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a heavy, automated turret-style rifle system mounted on a robust hexagonal base, designed for stationary defense in urban environments. The main body is constructed from matte, sand-colored metal with visible wear and weathering, suggesting use in outdoor or combat scenarios. It features dual long barrels extending from a reinforced housing, with a prominent cylindrical mechanism and a side-mounted box, likely for ammunition or electronics. The base is equipped with angular armor plating and a set of three rectangular storage or battery compartments on one side. On top, there is a small, circular sighting device and various mechanical details, including bolts, vents, and access panels. The overall design is utilitarian and militaristic, optimized for durability and automated operation rather than portability.",
+    "description": "A heavy, sand-colored automated turret rifle with dual barrels, mounted on a reinforced hexagonal base and equipped with a top-mounted sight and side compartments. The design is robust, angular, and built for stationary defense.",
+    "description_view_0": "Side view showing dual barrels, the main body, and three rectangular compartments on the left side of the base.",
+    "description_view_1": "Front view highlighting the twin barrels, central housing, and the circular sighting device on top.",
+    "description_view_2": "Opposite side view with dual barrels, main housing, and the right side of the base, lacking the side compartments seen in view 0.",
+    "description_view_3": "Rear view displaying the back of the base, the rear of the main housing, and the top-mounted sighting device.",
+    "category": "rifle",
+    "height": 1.2,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "barrel",
+        "sight",
+        "ammunition box",
+        "base",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "box",
+    "attribute_sight_type": "scope",
+    "attribute_muzzle_device": "none",
+    "uid": "17840b0ce9754d78b0610e525a7a7ef5",
+    "near_synsets": {
+        "gun_enclosure.n.01": 0.5052982862095801,
+        "automatic_rifle.n.01": 0.5166977693632777,
+        "turret.n.01": 0.52403289239137,
+        "cannon.n.02": 0.5258714073148517,
+        "carbine.n.01": 0.5260901494648751,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/17840b0ce9754d78b0610e525a7a7ef5",
+        "creator_username": "seangorman",
+        "creator_display_name": "seangorman",
+        "creator_profile_url": "https://sketchfab.com/seangorman"
+    },
+    "filename": "std_17840b0ce9754d78b0610e525a7a7ef5.glb",
+    "length": 2.1070977449417114,
+    "width": 0.8860442340373993
+}

@@ -1,0 +1,107 @@
+{
+    "description_long": "This object is an industrial electrical control cabinet, likely an ABB contactor or relay unit, commonly used in power distribution and automation systems. The front face features three prominent rectangular slots and a set of labeled terminals, with a red accent line and the ABB logo visible. The sides are solid, with one side displaying technical specifications and certification markings, while the other side is mostly plain with some structural features. The rear view reveals spring mechanisms and mounting points, indicating it is designed to be installed within a larger electrical panel or enclosure. The overall construction is robust, with a combination of molded plastic and metal components, and the surface finish is matte with some areas of slight texture. This type of control cabinet is typically found in urban infrastructure, such as utility rooms, substations, or industrial facilities.",
+    "description": "A robust ABB electrical control cabinet with labeled terminals, technical markings, and a matte gray finish, designed for industrial power management.",
+    "description_view_0": "Front view showing labeled terminals, ABB logo, red accent, and main access slots.",
+    "description_view_1": "Side view with technical specifications, certification markings, and a solid molded surface.",
+    "description_view_2": "Rear view displaying spring mechanisms, mounting points, and structural details.",
+    "description_view_3": "Opposite side view, mostly plain with some structural features and mounting slots.",
+    "category": "control cabinets",
+    "height": 0.13,
+    "max_dimension": 0.15,
+    "materials": [
+        "plastic",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 0.6,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "openable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "terminal block",
+        "switch",
+        "label slot"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.55,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.1,
+    "asset_composition_type": "single",
+    "attribute_door_handle_type": "none",
+    "attribute_lock_mechanism_presence": false,
+    "attribute_ventilation_grille_pattern": "none",
+    "attribute_warning_or_information_labels": [
+        "manufacturer label"
+    ],
+    "attribute_mounting_style": "rack-mounted",
+    "uid": "7ef20762571947ada3b1649b30ac10d0",
+    "near_synsets": {
+        "control_panel.n.01": 0.559727111926012,
+        "cabinet.n.04": 0.5918297481729617,
+        "outlet_box.n.01": 0.6009194964320608,
+        "control.n.09": 0.6121714270457744,
+        "cabinet.n.01": 0.6133067905243069,
+        "restraint.n.02": -1000.0,
+        "cabinet.n.03": -1000.0,
+        "command.n.06": -1000.0,
+        "cabinet.n.02": -1000.0,
+        "control.n.05": -1000.0,
+        "control.n.02": -1000.0,
+        "control.n.01": -1000.0,
+        "control.n.11": -1000.0,
+        "control.n.10": -1000.0,
+        "control.n.03": -1000.0,
+        "control_condition.n.01": -1000.0,
+        "dominance.n.02": -1000.0
+    },
+    "synset": "control_panel.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/7ef20762571947ada3b1649b30ac10d0",
+        "creator_username": "formations-barricade",
+        "creator_display_name": "formations-barricade",
+        "creator_profile_url": "https://sketchfab.com/formations-barricade"
+    },
+    "filename": "std_7ef20762571947ada3b1649b30ac10d0.glb",
+    "length": 0.11481790617108345,
+    "width": 0.06033805571496487
+}

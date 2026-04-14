@@ -1,0 +1,105 @@
+{
+    "description_long": "This object is a portable cement mixer, commonly used on construction sites for mixing concrete or mortar. It features a large, rusted cylindrical drum with a rounded body, supported by a sturdy metal frame and two wheels for mobility. The drum is heavily weathered, showing patches of white residue and rust, indicating frequent use and exposure to cement and the elements. Attached to one side is a boxy motor housing, likely containing the electric or gasoline-powered engine that rotates the drum. The frame includes a handle for tilting or maneuvering the mixer, and the drum has a visible opening for loading and unloading materials. The overall appearance is utilitarian, robust, and designed for heavy-duty work in urban or construction environments.",
+    "description": "A weathered, portable cement mixer with a rusted drum, sturdy metal frame, and wheeled base, featuring a motor housing and handle for maneuvering.",
+    "description_view_0": "Angled view showing the drum, motor housing, and wheels, highlighting the rust and residue on the drum's surface.",
+    "description_view_1": "Frontal view displaying the drum opening, motor housing to the left, and both wheels, emphasizing the mixer\u2019s symmetry and access point.",
+    "description_view_2": "Rear angled view focusing on the back of the drum and frame, with the handle and motor housing visible.",
+    "description_view_3": "Direct rear view showing the back of the drum, support frame, and the motor housing, with both wheels visible.",
+    "category": "cement mixer",
+    "height": 1.2,
+    "max_dimension": 1.6,
+    "materials": [
+        "steel",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 90,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pushable",
+        "pullable",
+        "tiltable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "drum",
+        "handle",
+        "wheel",
+        "motor housing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "rusty orange",
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.12,
+        0.08
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_rotating_drum": true,
+    "attribute_chute": false,
+    "attribute_mixing_blades": true,
+    "attribute_truck_cab": false,
+    "attribute_support_frame": true,
+    "uid": "a7947baf2e7144458c75be8e4142fb4c",
+    "near_synsets": {
+        "concrete_mixer.n.01": 0.4591118997973187,
+        "stand_mixer.n.01": 0.5349510946830656,
+        "electric_mixer.n.01": 0.5373963953848745,
+        "hand_mixer.n.01": 0.5456346911358932,
+        "mixer.n.04": 0.5564501677989185,
+        "cement.n.01": -1000.0,
+        "mixer.n.02": -1000.0,
+        "cement.n.02": -1000.0,
+        "cement.n.04": -1000.0,
+        "mixer.n.03": -1000.0,
+        "sociable.n.01": -1000.0,
+        "cement.n.03": -1000.0,
+        "cementum.n.01": -1000.0
+    },
+    "synset": "concrete_mixer.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a7947baf2e7144458c75be8e4142fb4c",
+        "creator_username": "andrej.grave",
+        "creator_display_name": "Andrej Grave",
+        "creator_profile_url": "https://sketchfab.com/andrej.grave"
+    },
+    "filename": "std_a7947baf2e7144458c75be8e4142fb4c.glb",
+    "length": 4.611034870147705,
+    "width": 4.769294500350952
+}

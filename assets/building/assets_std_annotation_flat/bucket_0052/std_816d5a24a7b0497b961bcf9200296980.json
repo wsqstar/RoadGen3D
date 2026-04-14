@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a classic hand grenade, specifically resembling the Mk 2 fragmentation grenade, commonly used in military contexts. Its body is oval-shaped with a segmented, pineapple-like texture, painted in a worn olive drab color with a yellow band near the top, indicating its explosive nature. The top features a robust metal safety lever and a prominent pull ring attached to a safety pin, both showing signs of wear and metallic sheen. The surface is rugged and slightly chipped, suggesting heavy use or age, with visible scuff marks and paint loss. The grenade's construction appears to be primarily metal, designed to fragment upon detonation. No visible digital or analog timer is present, and there are no exposed wires or electronic components.",
+    "description": "A worn, olive drab, pineapple-textured hand grenade with a yellow band, metal safety lever, and pull ring. The surface is rugged and shows signs of use.",
+    "description_view_0": "The grenade is viewed from the top, highlighting the safety lever, pull ring, and the segmented body directly beneath.",
+    "description_view_1": "A side view showing the full profile of the grenade, with the safety lever and pull ring clearly visible and the yellow band encircling the neck.",
+    "description_view_2": "The grenade is seen from the opposite side, focusing on the yellow band and the textured body, with the lever and ring partially visible.",
+    "description_view_3": "Another side view, emphasizing the circular pull ring and the lever, with the rugged body and yellow band in clear view.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.12,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 0.6,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 6,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "throwable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "safety pin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive drab",
+        "yellow",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the safety pin and releasing the safety lever, which triggers an internal fuse mechanism.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "816d5a24a7b0497b961bcf9200296980",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.5083328215360385,
+        "grenade.n.01": 0.5356199014928276,
+        "pipe_bomb.n.01": 0.5647502206717235,
+        "rifle_grenade.n.01": 0.5656734807132252,
+        "plastic_bomb.n.01": 0.5677390952147151,
+        "bomb.n.01": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/816d5a24a7b0497b961bcf9200296980",
+        "creator_username": "ant_jura",
+        "creator_display_name": "jura",
+        "creator_profile_url": "https://sketchfab.com/ant_jura"
+    },
+    "filename": "std_816d5a24a7b0497b961bcf9200296980.glb",
+    "length": 0.0591566227376461,
+    "width": 0.07016675546765327
+}

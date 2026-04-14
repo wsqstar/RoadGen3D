@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a historical-style cannon mounted on a wooden carriage with two large wheels on each side. The cannon barrel is long, cylindrical, and black with several metallic bands encircling it for reinforcement, and a fuse protrudes from the rear. The carriage is constructed from brown wood with metallic accents and features angular, reinforced side panels. Cannonballs are stored in the front compartment of the carriage, visible from the front view. The wheels are solid and rimmed with metal, designed to support the heavy weight of the cannon. The overall design is robust and utilitarian, suitable for deployment in defensive or offensive urban scenarios.",
+    "description": "A large, black cannon mounted on a reinforced wooden carriage with metal-rimmed wheels and visible cannonballs stored in front. The design is robust, with metallic bands and angular wooden panels.",
+    "description_view_0": "Side view showing the full length of the cannon barrel, the wooden carriage, and two large wheels with metallic rims.",
+    "description_view_1": "Front view highlighting the open compartment with stacked cannonballs and the circular muzzle of the cannon.",
+    "description_view_2": "Opposite side view similar to view 0, showing the cannon barrel, carriage, and wheels from the other side.",
+    "description_view_3": "Rear view displaying the back of the carriage, the fuse at the end of the cannon, and the structure of the wooden frame.",
+    "category": "combat tactical  vehicle",
+    "height": 1.2,
+    "max_dimension": 3.0,
+    "materials": [
+        "iron",
+        "wood",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 3000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "rotatable",
+        "loadable",
+        "fireable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cannon barrel",
+        "wheels",
+        "fuse",
+        "cannonball compartment"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_weapon_mounts": "One large fixed cannon barrel mounted centrally on the wooden carriage.",
+    "attribute_armor_plating": "None visible; the carriage is made of wood with some metallic reinforcement, but no dedicated armor plating is present.",
+    "attribute_camouflage_pattern": "None visible; the object is painted in solid black, brown, and gray colors.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "f1619aee70674e5eae75729b53bdd14a",
+    "near_synsets": {
+        "cannon.n.02": 0.47556601749378924,
+        "cannon.n.01": 0.48450195146632663,
+        "tank.n.01": 0.5021682432231236,
+        "caisson.n.02": 0.503824007741432,
+        "military_vehicle.n.01": 0.5053192628035774,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "cannon.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f1619aee70674e5eae75729b53bdd14a",
+        "creator_username": "Lymite",
+        "creator_display_name": "M.Umeyr",
+        "creator_profile_url": "https://sketchfab.com/Lymite"
+    },
+    "filename": "std_f1619aee70674e5eae75729b53bdd14a.glb",
+    "length": 2.806638479232788,
+    "width": 1.833887755870819
+}

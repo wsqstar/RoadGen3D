@@ -1,0 +1,113 @@
+{
+    "description_long": "This is an above-ground, octagonal jacuzzi with a wooden exterior frame and a blue water-filled interior. The jacuzzi features a metal ladder for entry, positioned on one side, and a set of wooden steps on another, providing easy access. A visible filtration or pump system is attached to the exterior, housed in an orange and black casing. The water inside is clear and appears to be nearly full, with the surface reflecting light. The structure is supported by a series of reinforced panels and sits on a set of concrete or stone pads. No visible jets or control panels are present on the exterior surfaces.",
+    "description": "An octagonal, above-ground wooden jacuzzi with blue water, metal ladder, wooden steps, and an external pump system.",
+    "description_view_0": "Shows the jacuzzi from a corner angle, highlighting the orange pump system and the metal ladder at the back.",
+    "description_view_1": "Displays a side view with the full length of the jacuzzi, showing the wooden paneling and the metal ladder at the far end.",
+    "description_view_2": "Presents a frontal view with the metal ladder and attached wooden steps clearly visible.",
+    "description_view_3": "Shows the opposite side with both the wooden steps and the pump system visible, emphasizing the access points.",
+    "category": "jacuzzi",
+    "height": 1.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "wood",
+        "metal",
+        "plastic",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.15,
+        0.1,
+        0.25,
+        0.05
+    ],
+    "mass": 950,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "sittable",
+        "fillable",
+        "drainable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "ladder",
+        "steps",
+        "pump system"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "blue",
+        "gray",
+        "orange",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.55,
+        0.3,
+        0.05,
+        0.03,
+        0.03,
+        0.04
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.35,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_jets": [],
+    "attribute_control_panel": "none visible",
+    "attribute_water_level": "nearly full, water close to the top edge",
+    "attribute_cover": false,
+    "attribute_steps": [
+        {
+            "location": "front",
+            "number_of_steps": 3,
+            "material": "wood"
+        },
+        {
+            "location": "side",
+            "number_of_steps": 1,
+            "material": "metal"
+        }
+    ],
+    "uid": "026d241fb79e4accb8d3adf81a96b5e7",
+    "near_synsets": {
+        "hot_tub.n.01": 0.5388526055425673,
+        "pump_room.n.01": 0.5576832297873374,
+        "bath_water.n.01": 0.568337474887644,
+        "lido_deck.n.01": 0.5779538876774477,
+        "water_chute.n.01": 0.5816294000284714
+    },
+    "synset": "hot_tub.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/026d241fb79e4accb8d3adf81a96b5e7",
+        "creator_username": "trzyde.com",
+        "creator_display_name": "trzyde.com",
+        "creator_profile_url": "https://sketchfab.com/trzyde.com"
+    },
+    "filename": "std_026d241fb79e4accb8d3adf81a96b5e7.glb",
+    "length": 5.013229131698608,
+    "width": 3.664794683456421
+}

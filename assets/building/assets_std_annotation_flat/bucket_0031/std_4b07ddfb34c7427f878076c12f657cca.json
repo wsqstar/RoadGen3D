@@ -1,0 +1,94 @@
+{
+    "description_long": "This warehouse is a large, rectangular building set on an expansive plot of green land, with a main structure featuring a flat roof and a smaller attached section. The exterior is primarily light gray, with blue accents visible on the doors and trim, suggesting functional entry points and possibly office or loading areas. The main building appears to be constructed from concrete or metal panels, typical of industrial storage facilities, and is surrounded by a paved area for vehicle access. The roof is flat and unadorned, with no visible skylights or rooftop equipment, emphasizing a utilitarian design. The site includes a significant open yard, likely for vehicle maneuvering or outdoor storage. There are no visible windows, and the overall appearance is clean and modern, with minimal decorative elements.",
+    "description": "A large, modern warehouse with a flat roof, light gray exterior, blue accents, and a spacious surrounding yard.",
+    "description_view_0": "The warehouse is seen from the front, showing the main entrance area and the large green yard extending away from the building.",
+    "description_view_1": "A side view highlights the length of the building and the attached smaller section, with the yard stretching to the left.",
+    "description_view_2": "The rear view reveals the back of the warehouse and the paved area, with blue doors and trim visible.",
+    "description_view_3": "A side view from the opposite end, showing the full extent of the green yard and the building's flat roof.",
+    "category": "warehouse",
+    "height": 8.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "concrete",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.1
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "loading bay"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "blue",
+        "green",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.1,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "scene",
+    "attribute_facade_design": "The main facade features a flat, light gray surface with minimal ornamentation, accented by blue doors and trim. Entryways are clearly defined, and the facade is functional, lacking windows or decorative elements.",
+    "attribute_loading_dock_presence": true,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is flat and expansive, constructed from what appears to be concrete or metal panels, with no visible skylights or rooftop equipment.",
+    "attribute_architectural_style": "modern industrial",
+    "uid": "4b07ddfb34c7427f878076c12f657cca",
+    "near_synsets": {
+        "warehouse.n.01": 0.5185916579107787,
+        "loft.n.01": 0.5264851422127649,
+        "farm_building.n.01": 0.5575451525833087,
+        "workroom.n.01": 0.5590295937382642,
+        "garage.n.01": 0.5626774366856124
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4b07ddfb34c7427f878076c12f657cca",
+        "creator_username": "siposmernokiroda",
+        "creator_display_name": "SzD",
+        "creator_profile_url": "https://sketchfab.com/siposmernokiroda"
+    },
+    "filename": "std_4b07ddfb34c7427f878076c12f657cca.glb",
+    "length": 203.59156799316406,
+    "width": 89.80477142333984
+}

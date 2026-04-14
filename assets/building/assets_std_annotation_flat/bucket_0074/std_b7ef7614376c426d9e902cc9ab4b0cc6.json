@@ -1,0 +1,105 @@
+{
+    "description_long": "This bakery is a small, single-story building with a blue-tiled gabled roof and a prominent brown chimney emitting black smoke, suggesting active baking inside. The structure features a stone-tiled base, beige walls, and brown trim, with two large front windows and a central door. On one side, a large industrial gear and pipework are visible, hinting at a steampunk or industrial-inspired design. The rear of the building has a wooden door and additional piping, while a covered side entrance with a blue awning provides extra access. The roof is slightly overhanging, and the building sits on a rectangular stone platform. The overall appearance is whimsical and functional, blending traditional bakery elements with mechanical accents.",
+    "description": "A whimsical bakery with a blue-tiled roof, brown chimney, stone base, and industrial gear and piping details, blending traditional and steampunk styles.",
+    "description_view_0": "Front view shows the main entrance, two large windows, blue roof, brown chimney with smoke, and a large gear on the right wall.",
+    "description_view_1": "Side view reveals the covered side entrance with a blue awning, stone path, and visible piping along the wall.",
+    "description_view_2": "Rear view displays a large industrial oven or machinery, more gears, a single window, and the continuation of the blue roof.",
+    "description_view_3": "Opposite side view highlights a wooden door, additional piping, and the overhanging blue roof, with the chimney and smoke visible above.",
+    "category": "bakery",
+    "height": 4.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "brick",
+        "wood",
+        "ceramic tile",
+        "metal",
+        "glass",
+        "stone",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.2,
+        0.15,
+        0.15,
+        0.05,
+        0.08,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "windows",
+        "gear",
+        "chimney",
+        "awning"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "brown",
+        "beige",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.3,
+        0.3,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_storefront_signage": "none",
+    "attribute_display_window_with_baked_goods": "none",
+    "attribute_awning_with_bakery_branding": "A blue, sloped awning is present above the side entrance, made of what appears to be fabric or metal, but there is no visible bakery branding, logos, text, or patterns.",
+    "attribute_outdoor_seating_area": "none",
+    "attribute_architectural_style": "The building features a whimsical, industrial-inspired style with steampunk elements, such as exposed gears and pipes, combined with traditional bakery architecture like tiled roofing and stone base.",
+    "uid": "b7ef7614376c426d9e902cc9ab4b0cc6",
+    "near_synsets": {
+        "bakery.n.01": 0.5401731968396424,
+        "patisserie.n.01": 0.5534631640904588,
+        "baker.n.01": 0.5770743742219215,
+        "baked_goods.n.01": 0.5803218649974276,
+        "baking.n.01": 0.5816359693325486
+    },
+    "synset": "bakery.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b7ef7614376c426d9e902cc9ab4b0cc6",
+        "creator_username": "Art_Sharp",
+        "creator_display_name": "Sharp_Art",
+        "creator_profile_url": "https://sketchfab.com/Art_Sharp"
+    },
+    "filename": "std_b7ef7614376c426d9e902cc9ab4b0cc6.glb",
+    "length": 3.454556107521057,
+    "width": 5.357726097106934
+}

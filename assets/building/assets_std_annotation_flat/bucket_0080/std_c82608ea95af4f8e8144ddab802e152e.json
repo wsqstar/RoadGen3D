@@ -1,0 +1,96 @@
+{
+    "description_long": "This combat tactical vehicle features a unique dual-hull design connected by a central shaft, giving it a futuristic and robust appearance. The hulls are heavily armored, with visible surface details such as hatches, panel lines, and reinforced sections, suggesting strong protection against ballistic threats. The vehicle is elongated, with a prominent forward extension that may serve as a weapon mount or sensor array. The exterior is finished in a matte, dark olive color, with a rough, utilitarian texture typical of military hardware. No visible wheels or tracks are present, indicating it may be a hover or anti-gravity vehicle. The overall construction appears to prioritize durability and combat readiness, with no visible windows or civilian features.",
+    "description": "A dual-hull, heavily armored combat vehicle with a central connecting shaft and a matte, dark olive finish. Its robust, futuristic design lacks visible wheels or tracks, emphasizing protection and tactical utility.",
+    "description_view_0": "Front view shows the dual-hull structure stacked vertically, with a central shaft and a forward extension, highlighting the vehicle's symmetry and armored face.",
+    "description_view_1": "Side view reveals the elongated profile, the two hulls aligned horizontally, and the full length of the central shaft, emphasizing the vehicle's length and streamlined form.",
+    "description_view_2": "Rear view displays the back ends of the hulls and the central shaft, with no visible exhausts or access points, maintaining the armored appearance.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the same elongated dual-hull configuration and the robust, armored exterior.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.05,
+        0.02,
+        0.08
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hatch",
+        "weapon mount"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark olive",
+        "black"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One prominent forward mount located at the tip of the central shaft, likely for a cannon or energy weapon; no other mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating on both hulls; surface features include reinforced panels and modular sections.",
+    "attribute_camouflage_pattern": "Solid dark olive color with no visible camouflage pattern.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "c82608ea95af4f8e8144ddab802e152e",
+    "near_synsets": {
+        "tank.n.01": 0.5221380409563399,
+        "military_vehicle.n.01": 0.5284625902769448,
+        "tank_destroyer.n.01": 0.5355556719434945,
+        "armored_car.n.02": 0.5406760705218293,
+        "assault_gun.n.02": 0.5438383032545842,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/c82608ea95af4f8e8144ddab802e152e",
+        "creator_username": "TSB3DMODELS",
+        "creator_display_name": "TSB3DMODELS",
+        "creator_profile_url": "https://sketchfab.com/TSB3DMODELS"
+    },
+    "filename": "std_c82608ea95af4f8e8144ddab802e152e.glb",
+    "length": 6.626447677612305,
+    "width": 2.3088581562042236
+}

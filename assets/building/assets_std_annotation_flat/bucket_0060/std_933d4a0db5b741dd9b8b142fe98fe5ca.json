@@ -1,0 +1,91 @@
+{
+    "description_long": "This handcart features a robust wooden construction with four large, round wheels attached to the sides, reinforced by visible metal bolts. The cart's body is composed of vertical and horizontal wooden slats, forming a deep, open receptacle ideal for carrying goods. Side rails run along the length of the cart, providing containment and structural support. At the front, a long, straight wooden handle extends outward, capped with a metal end for grip and durability. The wheels are designed to be sturdy and functional, with a wood grain texture and metal hubs. The overall appearance is rustic and utilitarian, suitable for transporting items in urban or park environments.",
+    "description": "A sturdy wooden handcart with four large wheels, side rails, and a long front handle, designed for carrying goods. The cart has a rustic, reinforced look with visible bolts and a deep open platform.",
+    "description_view_0": "Front view showing the open end of the cart, the depth of the load platform, and the parallel side rails.",
+    "description_view_1": "Side view highlighting the four large wheels, the wooden slat construction, and the extended handle with a metal cap.",
+    "description_view_2": "Rear view displaying the back of the cart, the alignment of the side rails, and the handle extending forward.",
+    "description_view_3": "Opposite side view similar to view 1, showing the wheels, slatted body, and handle from the other side.",
+    "category": "handcart",
+    "height": 1.0,
+    "max_dimension": 2.0,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "load platform",
+        "side rails"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 4,
+    "attribute_handle_type": "straight bar with metal cap",
+    "attribute_wheel_position": "side-mounted at all corners",
+    "attribute_presence_of_side_rails": true,
+    "attribute_load_platform_design": "open slats",
+    "uid": "933d4a0db5b741dd9b8b142fe98fe5ca",
+    "near_synsets": {
+        "handcart.n.01": 0.4275925642832149,
+        "hand_truck.n.01": 0.4354282715124711,
+        "shopping_cart.n.01": 0.462498711171569,
+        "cart.n.01": 0.4627938053692248,
+        "serving_cart.n.01": 0.4762569461942351
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/933d4a0db5b741dd9b8b142fe98fe5ca",
+        "creator_username": "vijoyanto",
+        "creator_display_name": "vijoyanto",
+        "creator_profile_url": "https://sketchfab.com/vijoyanto"
+    },
+    "filename": "std_933d4a0db5b741dd9b8b142fe98fe5ca.glb",
+    "length": 1.0907378196716309,
+    "width": 0.465703547000885
+}

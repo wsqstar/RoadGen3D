@@ -1,0 +1,91 @@
+{
+    "description_long": "This object features a central vertical cylindrical column with three elongated, rectangular crossarms extending outward at equal 120-degree intervals, forming a symmetrical Y-shaped structure. Each crossarm is covered with a grid-like pattern of blue and black panels, likely representing insulated or conductive surfaces. The central column is robust and solid, with a similar grid pattern, suggesting reinforced construction for high-voltage applications. The crossarms are attached at a single level, all positioned horizontally and equidistant from each other, providing balanced support for electrical components. The overall design is industrial and utilitarian, with no visible warning signage or external attachments such as transformers or circuit breakers. The structure is primarily composed of metal and composite materials, giving it a sturdy and durable appearance suitable for urban power distribution.",
+    "description": "A tall, cylindrical tower with three evenly spaced, blue-and-black crossarms extending outward in a Y-shaped configuration. The structure is robust, industrial, and designed for high-voltage power distribution.",
+    "description_view_0": "The central column and all three crossarms are visible, showing the symmetrical Y-shaped arrangement and the grid pattern on the surfaces.",
+    "description_view_1": "A direct view of the central column with two crossarms extending to the sides and the third crossarm partially visible behind, emphasizing the tower's width.",
+    "description_view_2": "The crossarms are seen at an angle, highlighting the depth and spacing between each arm and the cylindrical core.",
+    "description_view_3": "A view directly facing one crossarm, with the other two receding into the background, showcasing the grid pattern and the robust build of the central column.",
+    "category": "transformer tower",
+    "height": 4.5,
+    "max_dimension": 5.2,
+    "materials": [
+        "steel",
+        "composite polymer",
+        "ceramic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "mountable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "crossarm",
+        "central column"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "blue"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_insulator_stacks": 0,
+    "attribute_arrangement_of_crossarms": "Three crossarms are arranged horizontally at a single level, spaced evenly at 120-degree intervals around the central column.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [],
+    "attribute_configuration_of_attached_power_lines": "No power lines are visibly attached; the structure appears prepared for three-phase routing with parallel spatial arrangement.",
+    "uid": "30efc2fb700741bf846ea00e6e3f065f",
+    "near_synsets": {
+        "pylon.n.02": 0.5339607788120445,
+        "cascade_transformer.n.01": 0.5618836275875129,
+        "tower.n.01": 0.5683210138163084,
+        "transformer.n.01": 0.5761955646395909,
+        "tesla_coil.n.01": 0.5785560637254443,
+        "column.n.04": -1000.0,
+        "tugboat.n.01": -1000.0
+    },
+    "synset": "pylon.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/30efc2fb700741bf846ea00e6e3f065f",
+        "creator_username": "azzajess",
+        "creator_display_name": "azzajess",
+        "creator_profile_url": "https://sketchfab.com/azzajess"
+    },
+    "filename": "std_30efc2fb700741bf846ea00e6e3f065f.glb",
+    "length": 2.35189425945282,
+    "width": 2.6241912841796875
+}

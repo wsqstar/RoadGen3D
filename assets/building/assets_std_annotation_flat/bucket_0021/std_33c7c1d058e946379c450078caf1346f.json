@@ -1,0 +1,102 @@
+{
+    "description_long": "This humanoid robot features a robust, armored exoskeleton with angular, matte-black panels and reinforced joints, giving it a militaristic and industrial appearance. Its broad shoulders and chest are accentuated by geometric plating, with a prominent triangular insignia on the chest and legs. The arms are mechanical and segmented, ending in claw-like hands, while the legs are thick and jointed for stability, with visible hydraulic or actuator details. The back reveals a set of cylindrical components, possibly power cells or thrusters, and red elements that suggest internal mechanisms or sensors. Markings such as 'W-001' and warning triangles add to its utilitarian, tactical design. The overall build is imposing, suggesting a machine designed for strength, durability, and urban deployment.",
+    "description": "A heavily armored, matte-black humanoid robot with broad shoulders, mechanical limbs, and industrial detailing, featuring warning markings and visible actuator components.",
+    "description_view_0": "Front view shows the robot's broad chest, triangular insignia, and symmetrical armored limbs with claw-like hands.",
+    "description_view_1": "Left side view highlights the depth of the torso, the 'W-001' marking, and the layered armor on the arms and legs.",
+    "description_view_2": "Rear view reveals cylindrical components, red internal elements, and the back structure of the legs and arms.",
+    "description_view_3": "Right side view mirrors the left, showing the 'W-001' marking and the mechanical articulation of the limbs.",
+    "category": "humanoid robot",
+    "height": 2.2,
+    "max_dimension": 2.4,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.05,
+        0.03,
+        0.05
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 4120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arm",
+        "hand",
+        "leg",
+        "shoulder panel",
+        "chest panel",
+        "back cylinder",
+        "claw"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.22,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms relaxed at the sides, legs straight and slightly apart, head facing forward, and torso aligned vertically.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated armored panels and mechanical coverings in a tactical, industrial style.",
+    "attribute_facial_features": "No traditional facial features; the head is angular and helmet-like with no visible eyes, mouth, or nose, and lacks expressive elements.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints at the shoulders, elbows, wrists, hips, knees, and ankles; hands are claw-like with articulated fingers, suggesting a wide range of motion.",
+    "attribute_presence_of_sensors": "Possible sensors on the head and chest, including small lens-like elements and red lights, but no explicit cameras or microphones are clearly visible.",
+    "uid": "33c7c1d058e946379c450078caf1346f",
+    "near_synsets": {
+        "android.n.01": 0.5124771445553366,
+        "automaton.n.02": 0.5365546548936093,
+        "robotics_equipment.n.01": 0.5372868995120168,
+        "cyborg.n.01": 0.5375158402650708,
+        "automaton.n.01": 0.5696051052383977
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/33c7c1d058e946379c450078caf1346f",
+        "creator_username": "HiagoTadeu",
+        "creator_display_name": "Hiago Tadeu",
+        "creator_profile_url": "https://sketchfab.com/HiagoTadeu"
+    },
+    "filename": "std_33c7c1d058e946379c450078caf1346f.glb",
+    "length": 0.8920307159423828,
+    "width": 1.6942862272262573
+}

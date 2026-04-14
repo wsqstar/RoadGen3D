@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a classic steam locomotive with a separate coal tender, both positioned on a section of railway track. The locomotive features a cylindrical black boiler with gold piping, a prominent smokestack at the front, and a wooden cab with a brown roof. The tender, labeled 'UNION PACIFIC,' is attached behind the locomotive and is designed to carry coal or water. The wheels are large and spoked, typical of historical steam engines, and the front of the locomotive is equipped with a cowcatcher. The entire train sits on wooden railway ties and metal rails, and the model includes fine details such as handrails, a bell, and connecting rods.",
+    "description": "A detailed black and gold steam locomotive with a brown-roofed cab and a separate coal tender labeled 'UNION PACIFIC,' set on railway tracks. Features include a smokestack, cowcatcher, and spoked wheels.",
+    "description_view_0": "Side view showing the full length of the locomotive and tender, with visible gold piping, cab details, and the 'UNION PACIFIC' label on the tender.",
+    "description_view_1": "Front view highlighting the smokestack, cowcatcher, and the round face of the boiler, with the track extending forward.",
+    "description_view_2": "Opposite side view similar to view 0, showing the locomotive and tender from the other side, with visible wheels and cab structure.",
+    "description_view_3": "Rear view focusing on the back of the tender and the cab's roof, with the track receding into the distance.",
+    "category": "train",
+    "height": 3.8,
+    "max_dimension": 15.0,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.03,
+        0.05,
+        0.02
+    ],
+    "mass": 70000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "lever",
+        "bell",
+        "smokestack",
+        "cowcatcher"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "gold",
+        "gray",
+        "red"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "group",
+    "attribute_train_type": "steam locomotive",
+    "attribute_number_of_carriages": 2,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end of the cab",
+    "attribute_window_arrangement": "spaced rectangular windows on the cab",
+    "uid": "2f49d23c06bd47bfa65a89dcf985d043",
+    "near_synsets": {
+        "train.n.01": 0.49443474779284,
+        "steam_locomotive.n.01": 0.5039497507431947,
+        "train_set.n.01": 0.5246292938314125,
+        "diesel_locomotive.n.01": 0.5324772985429392,
+        "tender.n.04": 0.5342136338864036,
+        "gearing.n.01": -1000.0,
+        "train.n.04": -1000.0,
+        "caravan.n.01": -1000.0,
+        "train.n.05": -1000.0,
+        "string.n.04": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2f49d23c06bd47bfa65a89dcf985d043",
+        "creator_username": "ana_faria",
+        "creator_display_name": "ana_faria",
+        "creator_profile_url": "https://sketchfab.com/ana_faria"
+    },
+    "filename": "std_2f49d23c06bd47bfa65a89dcf985d043.glb",
+    "length": 15.849708557128906,
+    "width": 8.625615119934082
+}

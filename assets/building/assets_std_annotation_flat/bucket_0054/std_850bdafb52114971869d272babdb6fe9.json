@@ -1,0 +1,90 @@
+{
+    "description_long": "This object represents a rural barn complex set on a rectangular plot of land, featuring multiple small barn structures scattered across a gently undulating terrain. The barns are depicted in two main color groups: a reddish-brown and a light tan, suggesting different building materials or ages. The terrain is dark brown and appears to be soil or earth, with the barns arranged in loose clusters and some isolated. The barns themselves are simple, boxy forms with pitched roofs, and some are grouped in rows, possibly indicating storage or livestock areas. There are no visible fences, roads, or vegetation, emphasizing the focus on the barns themselves. The overall scene gives the impression of a small agricultural settlement or a collection of farm outbuildings.",
+    "description": "A collection of small, boxy barns with pitched roofs scattered across a dark brown, gently contoured plot of land. The barns are arranged in clusters and rows, with reddish-brown and tan colors dominating the scene.",
+    "description_view_0": "This view shows the barns spread across the terrain, with clusters of tan and reddish-brown barns visible, and the land's gentle slope apparent.",
+    "description_view_1": "From this angle, the rows of barns are more pronounced, especially the reddish-brown group at the far end, and the distribution of the tan barns is clearer.",
+    "description_view_2": "This side view highlights the linear arrangement of the reddish-brown barns and the scattered placement of the tan barns on the left side.",
+    "description_view_3": "This perspective emphasizes the reddish-brown barns in the foreground and the tan barns grouped further back, with the terrain's elevation changes more visible.",
+    "category": "barn",
+    "height": 0.25,
+    "max_dimension": 2.0,
+    "materials": [
+        "wood",
+        "earth",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 5,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "storable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark brown",
+        "tan",
+        "reddish-brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "scene",
+    "attribute_roof_type": "gable roof",
+    "attribute_siding_pattern": "vertical board and batten",
+    "attribute_door_style": "single hinged doors, one per barn, simple rectangular design",
+    "attribute_window_arrangement": "no visible windows on the barn exteriors",
+    "attribute_architectural_style": "traditional American barn",
+    "uid": "850bdafb52114971869d272babdb6fe9",
+    "near_synsets": {
+        "barn.n.01": 0.4689611351755353,
+        "barnyard.n.01": 0.49627244242261764,
+        "farm_building.n.01": 0.4987338455174495,
+        "farmyard.n.01": 0.5020147065333553,
+        "cowbarn.n.01": 0.5048797058307793,
+        "barn.n.02": -1000.0
+    },
+    "synset": "barn.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/850bdafb52114971869d272babdb6fe9",
+        "creator_username": "Ankledot",
+        "creator_display_name": "Ankledot",
+        "creator_profile_url": "https://sketchfab.com/Ankledot"
+    },
+    "filename": "std_850bdafb52114971869d272babdb6fe9.glb",
+    "length": 0.6086728572845459,
+    "width": 1.1804559230804443
+}

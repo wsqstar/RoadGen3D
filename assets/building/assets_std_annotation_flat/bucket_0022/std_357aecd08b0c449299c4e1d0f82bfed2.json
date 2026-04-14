@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a classic wooden canoe with a blue-painted hull and interior, featuring a streamlined, symmetrical shape ideal for rowing. The canoe is equipped with three pairs of wooden oars, each with blue blades, attached to the sides via oarlocks. Inside, there are multiple crosswise seats and thwarts, providing structural support and seating for several occupants. The gunwales are clearly defined, running along the top edge of the canoe, and the overall craftsmanship suggests a traditional design. The exterior is smooth and glossy, with no visible registration numbers or markings. The canoe is open-topped, making it suitable for carrying people or cargo across water.",
+    "description": "A blue and wooden canoe with three pairs of oars, multiple seats, and a smooth, glossy finish. The design is traditional, open-topped, and built for rowing.",
+    "description_view_0": "Top-down view showing the full interior layout, including all seats, thwarts, and the symmetrical arrangement of three pairs of oars.",
+    "description_view_1": "Side perspective highlighting the canoe's length, the curvature of the hull, and the oars extending outward from the sides.",
+    "description_view_2": "Bottom-up angled view emphasizing the hull's shape, the placement of the oars, and the absence of any markings on the exterior.",
+    "description_view_3": "Opposite side view showing the profile of the canoe, the arrangement of the oars, and the open seating area.",
+    "category": "canoe",
+    "height": 0.5,
+    "max_dimension": 4.0,
+    "materials": [
+        "wood",
+        "paint",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 55,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "rowable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "oar",
+        "seat",
+        "thwart",
+        "gunwale",
+        "oarlock"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "glossy",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_presence_of_seats": true,
+    "attribute_presence_of_thwarts": true,
+    "attribute_presence_of_gunwales": true,
+    "attribute_presence_of_carrying_handles": false,
+    "attribute_presence_of_registration_numbers": false,
+    "uid": "357aecd08b0c449299c4e1d0f82bfed2",
+    "near_synsets": {
+        "canoe.n.01": 0.4550618787812477,
+        "rowing_boat.n.01": 0.5026947072481464,
+        "canoeist.n.01": 0.5094020894919452,
+        "dugout_canoe.n.01": 0.5197252851572229,
+        "kayak.n.01": 0.5280435647556176
+    },
+    "synset": "dugout_canoe.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/357aecd08b0c449299c4e1d0f82bfed2",
+        "creator_username": "ianabaird",
+        "creator_display_name": "ianabaird",
+        "creator_profile_url": "https://sketchfab.com/ianabaird"
+    },
+    "filename": "std_357aecd08b0c449299c4e1d0f82bfed2.glb",
+    "length": 1.4404196739196777,
+    "width": 1.5783794522285461
+}

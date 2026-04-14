@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a compact quadcopter drone with a sleek, dark gray body and four extended arms, each supporting a black propeller with silver tips. The central fuselage is streamlined, featuring a prominent dome-shaped camera or sensor mounted at the front. The arms are reinforced with subtle yellow bands near the base, adding a touch of color and possibly indicating structural joints. The landing gear consists of short, fixed legs integrated into the arm structure, providing ground clearance for the body and camera. The overall design suggests a lightweight, agile drone suitable for aerial photography or surveillance in urban environments. The surface appears hard and smooth, with a matte to slightly glossy finish.",
+    "description": "A sleek, dark gray quadcopter drone with four black propellers, a dome-shaped front camera, and yellow accent bands on the arms. The body is streamlined and features short, fixed landing legs.",
+    "description_view_0": "Front view showing the dome-shaped camera, symmetrical arm layout, and all four propellers clearly.",
+    "description_view_1": "Angled side view highlighting the drone's low profile, arm structure, and the fixed landing legs.",
+    "description_view_2": "Rear view displaying the back of the fuselage, arm attachment points, and the absence of a rear camera.",
+    "description_view_3": "Opposite angled side view, similar to view 1, showing the drone's streamlined body and propeller arrangement.",
+    "category": "drone",
+    "height": 0.09,
+    "max_dimension": 0.35,
+    "materials": [
+        "plastic",
+        "aluminum",
+        "glass",
+        "electronic_components",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable",
+        "toggleable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "camera",
+        "landing gear",
+        "power button",
+        "battery compartment"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "silver",
+        "yellow",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.32,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 4,
+    "attribute_rotor_configuration": "quadcopter X",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": true,
+    "attribute_propeller_guard_presence": false,
+    "uid": "02e5bda4ab97441e9d0107b2625af4ae",
+    "near_synsets": {
+        "drone.n.04": 0.5309177388391298,
+        "orthopter.n.01": 0.5820178061691921,
+        "aircraft.n.01": 0.582335103061921,
+        "buzz_bomb.n.01": 0.5882308618424015,
+        "propeller_plane.n.01": 0.5960461741362182,
+        "drone.n.01": -1000.0,
+        "monotone.n.01": -1000.0,
+        "drone.n.05": -1000.0,
+        "dawdler.n.01": -1000.0
+    },
+    "synset": "drone.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/02e5bda4ab97441e9d0107b2625af4ae",
+        "creator_username": "faad",
+        "creator_display_name": "faad",
+        "creator_profile_url": "https://sketchfab.com/faad"
+    },
+    "filename": "std_02e5bda4ab97441e9d0107b2625af4ae.glb",
+    "length": 0.6056186556816101,
+    "width": 0.5898310542106628
+}

@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a small, historic stone chapel with a steeply pitched gabled roof covered in weathered gray tiles. The walls are constructed from rough-hewn stone blocks, giving the structure a rustic and aged appearance. The front facade features a pointed arched doorway with a wooden door, flanked by simple stonework and a small, louvered window above, topped with a stone cross. The side walls each have rectangular mullioned windows with stone frames, and one side includes a small secondary door. The building sits on a patch of green grass, with the stonework extending down to the ground. Architectural details such as the cross, arched entrance, and mullioned windows suggest a medieval or early English Gothic style.",
+    "description": "A small, historic stone chapel with a steep gabled roof, arched entrance, and mullioned windows, set on a grassy base. The structure features weathered stonework and simple Gothic architectural details.",
+    "description_view_0": "Side view showing a rectangular stone wall with a three-panel mullioned window and no visible door.",
+    "description_view_1": "Front view displaying the pointed arched entrance door, a small louvered window above, and a stone cross at the roof peak.",
+    "description_view_2": "Opposite side view with a rectangular window and a small secondary door, both framed in stone.",
+    "description_view_3": "Rear view showing a plain stone wall with a single rectangular window and no doors.",
+    "category": "chapel",
+    "height": 6.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "stone",
+        "wood",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.07,
+        0.04,
+        0.01,
+        0.03
+    ],
+    "mass": 65000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "windows"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Early English Gothic",
+    "attribute_religious_symbols": [
+        "stone cross"
+    ],
+    "attribute_stained_glass_windows": "None",
+    "attribute_steeple_or_bell_tower": "None",
+    "attribute_entrance_door_design": "The main entrance door is a pointed arch wooden door set within a stone frame, with a simple, unadorned surface and muted brown color. Above the door is a small louvered window and minimal decorative stonework.",
+    "uid": "896c8da0b9af44978b20cf7aae0c953e",
+    "near_synsets": {
+        "chapel.n.01": 0.49326022345290726,
+        "side_chapel.n.01": 0.5041034834013874,
+        "lady_chapel.n.01": 0.5268606997218959,
+        "church_tower.n.01": 0.5330133718041864,
+        "chapel_service.n.01": 0.5436234584859455
+    },
+    "synset": "chapel_service.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/896c8da0b9af44978b20cf7aae0c953e",
+        "creator_username": "PhilHudson",
+        "creator_display_name": "PhilHudson",
+        "creator_profile_url": "https://sketchfab.com/PhilHudson"
+    },
+    "filename": "std_896c8da0b9af44978b20cf7aae0c953e.glb",
+    "length": 8.775313377380371,
+    "width": 6.603547811508179
+}

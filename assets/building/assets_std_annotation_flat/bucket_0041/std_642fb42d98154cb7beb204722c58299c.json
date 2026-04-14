@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a Bank of America automated teller machine (ATM) encased in a rectangular, wall-mounted housing with a prominent red border. The ATM features a central screen interface above a metallic keypad and card slot, with a cash dispenser and receipt slot below. The upper section displays the Bank of America logo and branding, while the lower section is designed for user interaction, including a numeric keypad and function buttons. The structure is primarily metallic with some plastic components, and the housing is set on a concrete base. The overall appearance is robust and utilitarian, suitable for outdoor or semi-outdoor urban environments.",
+    "description": "A wall-mounted Bank of America ATM with a red-bordered housing, central screen, keypad, card slot, and cash dispenser, designed for public urban use.",
+    "description_view_0": "Frontal view showing the Bank of America branding, screen, keypad, card slot, and cash dispenser clearly.",
+    "description_view_1": "Side profile view revealing the thinness of the ATM housing and the protruding concrete base.",
+    "description_view_2": "Rear or alternate frontal view, similar to the front but with branding text mirrored and less detail visible.",
+    "description_view_3": "Opposite side profile, again showing the slim profile and the edge of the concrete base.",
+    "category": "atm",
+    "height": 1.7,
+    "max_dimension": 1.8,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.05,
+        0.2,
+        0.05
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "insertable",
+        "withdrawable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "screen",
+        "keypad",
+        "card slot",
+        "cash dispenser",
+        "receipt dispenser",
+        "function buttons"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "gray",
+        "white",
+        "blue"
+    ],
+    "colors_composition": [
+        0.25,
+        0.5,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_screen_interface": "A medium-sized rectangular screen centrally placed above the keypad, likely LCD, with visible UI elements and possibly touch capability.",
+    "attribute_card_slot": "One horizontal card slot located below the screen and above the keypad, with a metallic finish and possible illumination.",
+    "attribute_keypad_layout": "A standard numeric keypad with 12 keys arranged in a 3x4 grid, positioned directly below the card slot and screen, with additional function buttons on the sides.",
+    "attribute_bank_branding": "Bank of America logo and text prominently displayed at the top of the ATM in blue and red, with a white background.",
+    "attribute_receipt_dispenser": "A small horizontal slot located below the keypad, likely for dispensing receipts, with a metallic or plastic trim.",
+    "uid": "642fb42d98154cb7beb204722c58299c",
+    "near_synsets": {
+        "cash_machine.n.01": 0.5168466429489874,
+        "bank.n.09": 0.5564117893014912,
+        "automat.n.01": 0.5777460058130753,
+        "bank_withdrawal.n.01": 0.5788779988517568,
+        "bank_card.n.01": 0.5815493477717345,
+        "standard_atmosphere.n.01": -1000.0,
+        "asynchronous_transfer_mode.n.01": -1000.0
+    },
+    "synset": "standard_atmosphere.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/642fb42d98154cb7beb204722c58299c",
+        "creator_username": "edemaistre",
+        "creator_display_name": "Emm (Scenario)",
+        "creator_profile_url": "https://sketchfab.com/edemaistre"
+    },
+    "filename": "std_642fb42d98154cb7beb204722c58299c.glb",
+    "length": 0.4140123277902603,
+    "width": 0.7042276859283447
+}

@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a portable restroom kiosk, commonly known as a porta-potty, with a rectangular blue body and a domed gray roof. The front features a single door with a black handle and the words 'RENT-A-POTTY' displayed diagonally in bold white letters. The sides and rear are plain blue panels, with the sides featuring two rectangular vent panels near the roof for ventilation. The roof is slightly arched and made of molded plastic, with a small vent pipe protruding from one side. The structure is elevated slightly off the ground with black skids at the base, and the overall design is utilitarian and functional, suitable for temporary placement in urban or event settings.",
+    "description": "A blue portable restroom kiosk with a domed gray roof, front door, and prominent 'RENT-A-POTTY' signage. Side vents and a small roof pipe add to its functional, utilitarian appearance.",
+    "description_view_0": "Front view showing the door with 'RENT-A-POTTY' signage and a black handle.",
+    "description_view_1": "Side view displaying two rectangular vent panels near the top and the smooth blue panel.",
+    "description_view_2": "Rear view with a plain blue panel and no visible features except the roof's shape.",
+    "description_view_3": "Opposite side view with two vent panels and a visible roof vent pipe.",
+    "category": "kiosk",
+    "height": 2.2,
+    "max_dimension": 2.2,
+    "materials": [
+        "plastic",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 90,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "vent panel"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "blue",
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "printed sign, placed diagonally on the front door, text: 'RENT-A-POTTY'",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "single hinged door at the front",
+    "attribute_roof_design": "domed roof made of molded plastic with a small vent pipe, no overhangs or decorative elements",
+    "attribute_architectural_style": "utilitarian, functional, modern portable design",
+    "uid": "eb7025cc094746c4a44fec4cdcb1f55b",
+    "near_synsets": {
+        "pop_tent.n.01": 0.572850809124932,
+        "public_toilet.n.01": 0.5755231757841994,
+        "service_area.n.01": 0.5805515341032756,
+        "sibley_tent.n.01": 0.5896192583617325,
+        "accommodation.n.04": 0.5946149393197749,
+        "booth.n.02": -1000.0
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/eb7025cc094746c4a44fec4cdcb1f55b",
+        "creator_username": "save_screen",
+        "creator_display_name": "save_screen",
+        "creator_profile_url": "https://sketchfab.com/save_screen"
+    },
+    "filename": "std_eb7025cc094746c4a44fec4cdcb1f55b.glb",
+    "length": 1.2493171691894531,
+    "width": 1.2874641418457031
+}

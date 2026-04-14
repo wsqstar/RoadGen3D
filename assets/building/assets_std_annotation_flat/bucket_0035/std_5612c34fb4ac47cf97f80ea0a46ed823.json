@@ -1,0 +1,103 @@
+{
+    "description_long": "This object is a towed anti-aircraft or anti-tank artillery gun, featuring a long, slender barrel mounted on a robust carriage. The gun is supported by two large wheels on either side, allowing for mobility, and stabilizing arms that extend outward for deployment. The rear of the gun is shielded by a perforated armored plate, providing some protection for the operators. The surface is covered in a mottled camouflage paint, primarily in shades of green and brown, with visible signs of wear and rust. The overall construction is heavy-duty metal, with exposed mechanical components and mounting points for operation and transport.",
+    "description": "A large, camouflaged towed artillery gun with a long barrel, armored shield, and two large wheels for mobility. The structure is robust, metallic, and shows signs of wear and camouflage paint.",
+    "description_view_0": "Front view shows the long barrel pointing forward, flanked by the armored shield and stabilizing arms extending outward.",
+    "description_view_1": "Side view highlights the length of the barrel, the large wheels, and the mechanical structure of the carriage.",
+    "description_view_2": "Rear view displays the perforated armored shield, the base of the gun, and the wheel arrangement.",
+    "description_view_3": "Opposite side view reveals the gun's length, wheel placement, and the detailed carriage mechanism.",
+    "category": "combat tactical  vehicle",
+    "height": 2.0,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.88,
+        0.08,
+        0.01,
+        0.03
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 5,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "barrel",
+        "wheels",
+        "stabilizing arms",
+        "gun shield",
+        "mounting points"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "black",
+        "rust"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon barrel mounted centrally on the carriage; no additional mounts visible.",
+    "attribute_armor_plating": "Perforated armored shield at the rear of the gun, covering the operator's position; moderate thickness, flat and fixed.",
+    "attribute_camouflage_pattern": "Mottled camouflage pattern in green and brown with irregular, organic shapes.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "Two large rubber tires with a rugged, off-road tread pattern; no special reinforcements or chains visible.",
+    "uid": "5612c34fb4ac47cf97f80ea0a46ed823",
+    "near_synsets": {
+        "tank.n.01": 0.4820767532540874,
+        "military_vehicle.n.01": 0.4847475816719684,
+        "assault_gun.n.02": 0.5046173779178116,
+        "armored_car.n.02": 0.5103118328179637,
+        "weapons_carrier.n.01": 0.5127130955973784,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5612c34fb4ac47cf97f80ea0a46ed823",
+        "creator_username": "neominigan",
+        "creator_display_name": "Neo_minigan",
+        "creator_profile_url": "https://sketchfab.com/neominigan"
+    },
+    "filename": "std_5612c34fb4ac47cf97f80ea0a46ed823.glb",
+    "length": 5.703356504440308,
+    "width": 5.115477085113525
+}

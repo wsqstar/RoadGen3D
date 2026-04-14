@@ -1,0 +1,113 @@
+{
+    "description_long": "This object is a modern gas station featuring a large, asymmetrical canopy supported by several columns, providing shelter over multiple fueling lanes. The canopy is flat and extends over four distinct fueling bays, each separated by black driveways and bordered by a textured ground surface. On one side, there is a rectangular building with large windows, likely serving as a convenience store or service area, attached to the canopy. A small kiosk or price display board is positioned at the edge of the property, and several red bollards are visible near the fueling area for safety. The materials appear to be primarily concrete, metal, and glass, with a sleek, utilitarian design. The color palette is dominated by shades of gray, black, and white, giving the station a clean and contemporary appearance.",
+    "description": "A modern gas station with a large, flat canopy over four fueling lanes, an attached convenience store building, and a small kiosk or price board at the edge. The design is sleek, with gray, black, and white tones.",
+    "description_view_0": "Front view showing the wide canopy covering four fueling lanes, with the driveways and bollards clearly visible.",
+    "description_view_1": "Side view highlighting the attached convenience store with large windows and the canopy extending over the fueling area.",
+    "description_view_2": "Rear view displaying the back of the convenience store and the full length of the canopy structure.",
+    "description_view_3": "Opposite side view showing the kiosk or price board and the arrangement of fueling lanes under the canopy.",
+    "category": "gas station",
+    "height": 5.0,
+    "max_dimension": 22.0,
+    "materials": [
+        "concrete",
+        "metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "fueling",
+        "paying",
+        "shopping"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "fuel pump",
+        "door",
+        "window",
+        "price board"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "car"
+    ],
+    "colors": [
+        "gray",
+        "black",
+        "white",
+        "red"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "scene",
+    "attribute_fuel_pumps": "Four fuel pumps are visible, each positioned in a separate lane under the canopy. The pumps are modern in style, primarily black with red accents, and have visible hoses. No branding or digital displays are clearly visible.",
+    "attribute_canopy_structure": "A large, flat, asymmetrical canopy covers the fueling area, supported by multiple cylindrical columns. The canopy is gray and appears to be made of metal, with no visible signage or lighting attached.",
+    "attribute_station_signage": "No main brand signage or directional signs are visible. There is a small vertical structure at the edge of the property that may serve as a price board or minor sign, but no text or logos are discernible.",
+    "attribute_price_display_board": "A small vertical board is present at the edge of the property, likely serving as a price display board. Its format and price listings are not clearly visible.",
+    "attribute_convenience_store_entrance": "The convenience store entrance is located on the side of the building facing the fueling area. It features a single large door, likely glass, with adjacent large windows. No visible signage or branding is present above the entrance.",
+    "uid": "2db88217ea6248ceb927f2332a3a0901",
+    "near_synsets": {
+        "service_station.n.01": 0.5028375887518017,
+        "gasoline_station.n.01": 0.5106589054673105,
+        "gas_pump.n.01": 0.5451045070246971,
+        "gas_line.n.01": 0.5659235850371077,
+        "gas_tank.n.01": 0.5720817482920685,
+        "natural_gas.n.01": -1000.0,
+        "station.n.03": -1000.0,
+        "station.n.01": -1000.0,
+        "flatulence.n.01": -1000.0,
+        "gasoline.n.01": -1000.0,
+        "place.n.10": -1000.0,
+        "gas.n.02": -1000.0,
+        "accelerator.n.01": -1000.0,
+        "post.n.01": -1000.0,
+        "station.n.05": -1000.0,
+        "gas.n.01": -1000.0
+    },
+    "synset": "gasoline_station.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2db88217ea6248ceb927f2332a3a0901",
+        "creator_username": "scadl",
+        "creator_display_name": "SCADL & Co",
+        "creator_profile_url": "https://sketchfab.com/scadl"
+    },
+    "filename": "std_2db88217ea6248ceb927f2332a3a0901.glb",
+    "length": 28.50465488433838,
+    "width": 15.966961860656738
+}

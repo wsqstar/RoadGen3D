@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a tan-colored tracked combat vehicle with a low, sloped turret and a prominent main cannon extending from the front. The hull is angular, with visible armor plating and detailed track assemblies on both sides, featuring multiple road wheels and a drive sprocket at the rear. On the left side, there is an external storage box and a cylindrical container, while the rear deck has a circular hatch and vent grilles. The turret is centrally mounted and features a small hatch and periscope details. The vehicle's surface is matte and slightly rough, with no visible military markings or camouflage patterns. The overall design suggests a focus on protection and mobility in urban or rugged environments.",
+    "description": "A tan, tracked combat vehicle with a sloped turret, main cannon, and detailed armor plating. Features external storage and rugged tracks for urban or rough terrain.",
+    "description_view_0": "Side view showing the full length of the tracks, main cannon, turret, and external storage box on the left.",
+    "description_view_1": "Rear view highlighting the circular hatch, vent grilles, and cylindrical container on the rear deck.",
+    "description_view_2": "Opposite side view displaying the tracks, turret, and absence of external storage on this side.",
+    "description_view_3": "Front view focusing on the main cannon, sloped armor, and the compact, angular profile of the vehicle.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 90000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "track",
+        "storage box",
+        "cylindrical container"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "gray",
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the front of the turret; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body armor plating with sloped surfaces, moderate thickness, and no visible modular or reactive panels.",
+    "attribute_camouflage_pattern": "Solid tan color; no visible camouflage pattern.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "9599190f84ae4bc7b4031fa12be8ad9e",
+    "near_synsets": {
+        "tank.n.01": 0.49525191720684253,
+        "military_vehicle.n.01": 0.5099440088094424,
+        "reconnaissance_vehicle.n.01": 0.5210769091193136,
+        "assault_gun.n.02": 0.534774204621339,
+        "weapons_carrier.n.01": 0.5422029106312108,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9599190f84ae4bc7b4031fa12be8ad9e",
+        "creator_username": "pollackMD",
+        "creator_display_name": "Dmitry Pollack",
+        "creator_profile_url": "https://sketchfab.com/pollackMD"
+    },
+    "filename": "std_9599190f84ae4bc7b4031fa12be8ad9e.glb",
+    "length": 4.969135522842407,
+    "width": 2.3765432834625244
+}

@@ -1,0 +1,106 @@
+{
+    "description_long": "This vending machine is a rectangular, upright unit with a metallic gray exterior and a flat top. The front features two shelves stocked with cylindrical products, each with a dark label and purple-green accents, arranged in neat rows. Below the shelves, there is a circular product retrieval slot, a square payment interface, and a wide dispensing area. The left side displays two sheets of paper with abstract diagrams or instructions, while the right and back sides are plain and unadorned. The machine's surface appears smooth and hard, typical of metal vending machines found in urban environments. The overall design is utilitarian, with minimal decoration and a focus on function.",
+    "description": "A metallic gray vending machine with two shelves of cylindrical products, a circular retrieval slot, and a square payment interface on the front. The left side has two abstract instruction sheets, while the other sides are plain.",
+    "description_view_0": "Front view showing product shelves, a circular retrieval slot, a square payment interface, and a wide dispensing area.",
+    "description_view_1": "Left side view displaying two sheets of paper with abstract diagrams or instructions attached to the surface.",
+    "description_view_2": "Right side view, plain and featureless with a smooth metallic finish.",
+    "description_view_3": "Back view, completely plain with a smooth metallic surface and no visible features.",
+    "category": "vending machine",
+    "height": 1.8,
+    "max_dimension": 1.8,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "paper",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.02,
+        0.08
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "payment interface",
+        "product retrieval slot",
+        "product shelves"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "purple",
+        "green",
+        "white"
+    ],
+    "colors_composition": [
+        0.8,
+        0.08,
+        0.05,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A small square display panel is located on the front, to the right of the product shelves. It appears to be a printed or illuminated area, but no digital content is visible.",
+    "attribute_payment_interface": "A square payment interface is present on the front, adjacent to the display panel, likely for coins or bills, but no card reader or contactless terminal is visible.",
+    "attribute_product_selection_buttons": "A single round button is visible on the front, below the shelves and next to the payment interface, with no additional labeling or keypad.",
+    "attribute_product_retrieval_slot": "A circular product retrieval slot is located on the lower front, beneath the shelves and payment area, with a visible flap or recessed opening.",
+    "attribute_branding_or_signage": "No visible branding, logos, or signage are present on the vending machine exterior.",
+    "uid": "349728c47f7e4f28b8cad5d86a9a38c2",
+    "near_synsets": {
+        "vending_machine.n.01": 0.46204346364024695,
+        "automat.n.01": 0.5149650995076308,
+        "coin_box.n.01": 0.5512924452431404,
+        "slot_machine.n.01": 0.5664400832922717,
+        "coin_slot.n.01": 0.5669777575044954,
+        "machine.n.03": -1000.0,
+        "machine.n.02": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.05": -1000.0,
+        "car.n.01": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/349728c47f7e4f28b8cad5d86a9a38c2",
+        "creator_username": "teahnaw",
+        "creator_display_name": "teahnaw",
+        "creator_profile_url": "https://sketchfab.com/teahnaw"
+    },
+    "filename": "std_349728c47f7e4f28b8cad5d86a9a38c2.glb",
+    "length": 1.1724470257759094,
+    "width": 0.7788809239864349
+}

@@ -1,0 +1,104 @@
+{
+    "description_long": "This humanoid robot features a cylindrical metallic torso mounted on a pair of rugged, tank-like treads for mobility. Two long, flexible, segmented arms extend from the sides, each ending in a three-pronged claw, suggesting dexterous manipulation capabilities. Atop the torso is a transparent dome housing a visible, organic-looking brain structure, encircled by metallic supports and cables. The robot's back is equipped with two boxy modules, likely for power or processing, and various cables and tubes run along its body, connecting different components. The overall design is industrial and utilitarian, with a blend of exposed mechanical parts and armored panels. The color palette is primarily gray and black with metallic accents, giving it a robust, functional appearance suitable for urban environments.",
+    "description": "A rugged humanoid robot with a cylindrical torso, tank treads, flexible clawed arms, and a visible brain under a transparent dome. Its design is industrial, with exposed cables and metallic panels.",
+    "description_view_0": "Front view shows the cylindrical torso, both articulated arms with claws extended, and the brain dome prominently on top.",
+    "description_view_1": "Left side view highlights the flexible arm's articulation, the brain dome's wiring, and the tank tread base.",
+    "description_view_2": "Rear view reveals two boxy modules on the back, cable connections, and the full width of the tank treads.",
+    "description_view_3": "Right side view mirrors the left, showing the arm's articulation, side panel details, and the brain dome's structure.",
+    "category": "humanoid robot",
+    "height": 1.4,
+    "max_dimension": 1.7,
+    "materials": [
+        "metal",
+        "glass",
+        "rubber",
+        "plastic",
+        "organic tissue",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.08,
+        0.12,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "graspable",
+        "manipulatable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "claw",
+        "arm",
+        "tread",
+        "brain dome",
+        "cable"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "gold",
+        "transparent",
+        "red"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000000000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is in a neutral standing pose with its torso upright, both arms extended outward and slightly bent at the elbows, and treads parallel to the ground. The head (brain dome) is centered above the torso.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated metallic panels, exposed cables, and a transparent dome as part of its structure.",
+    "attribute_facial_features": "No traditional facial features are present; instead, a visible brain-like structure is housed under a transparent dome, with no eyes, mouth, or nose.",
+    "attribute_limb_articulation": "Each arm has multiple visible articulation points, including rotary and hinge joints at the shoulder and elbow, and a claw with three articulated prongs. The treads provide mobility in place of legs.",
+    "attribute_presence_of_sensors": "None visible",
+    "uid": "1c97413523b3464a83584754bc4d1049",
+    "near_synsets": {
+        "cyborg.n.01": 0.5497089435569082,
+        "robotics_equipment.n.01": 0.5554621083806848,
+        "android.n.01": 0.5556087208310515,
+        "automaton.n.02": 0.5776108377911545,
+        "robotics.n.01": 0.5843518594195101
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1c97413523b3464a83584754bc4d1049",
+        "creator_username": "Jake.D",
+        "creator_display_name": "Jake.D",
+        "creator_profile_url": "https://sketchfab.com/Jake.D"
+    },
+    "filename": "std_1c97413523b3464a83584754bc4d1049.glb",
+    "length": 1.2161665558815002,
+    "width": 1.3048908710479736
+}

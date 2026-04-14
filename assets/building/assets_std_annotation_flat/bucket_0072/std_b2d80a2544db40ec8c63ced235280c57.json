@@ -1,0 +1,103 @@
+{
+    "description_long": "This object is a detailed model of a farm complex, featuring multiple buildings and greenhouses arranged on a rectangular plot of grassy land. The central structure appears to be a farmhouse with a gabled roof and a porch, flanked by several elongated greenhouse structures with transparent or translucent roofing. Additional outbuildings, possibly barns or storage sheds, are distributed symmetrically around the main house. The greenhouses are characterized by their glass or polycarbonate panels and metal framing, while the other buildings have shingled or metal roofs and wooden or brick walls. The layout suggests a well-organized agricultural facility, with clear pathways and separation between residential and cultivation areas. The overall appearance is clean and orderly, with a focus on both residential comfort and efficient crop production.",
+    "description": "A well-organized farm complex with a central farmhouse, multiple greenhouses, and outbuildings on a grassy plot. The structures feature a mix of glass, metal, wood, and brick materials.",
+    "description_view_0": "Front view showing the main farmhouse in the center, flanked by greenhouses and outbuildings, all set on a grassy base.",
+    "description_view_1": "Side view highlighting the length of the greenhouses and the alignment of the buildings from left to right.",
+    "description_view_2": "Rear view displaying the back sides of the greenhouses and the farmhouse, with the outbuildings visible at the edges.",
+    "description_view_3": "Opposite side view focusing on the greenhouses' arrangement and the side profiles of the farmhouse and outbuildings.",
+    "category": "farm",
+    "height": 6.0,
+    "max_dimension": 50.0,
+    "materials": [
+        "glass",
+        "metal",
+        "wood",
+        "brick",
+        "shingles",
+        "air",
+        "grass"
+    ],
+    "materials_composition": [
+        0.35,
+        0.2,
+        0.15,
+        0.1,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "roof",
+        "gate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "gray",
+        "brown",
+        "white",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.4,
+        0.25,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "scene",
+    "attribute_farm_equipment_type": "greenhouse",
+    "attribute_manufacturer_brand": "unknown",
+    "attribute_presence_of_agricultural_attachments": false,
+    "attribute_distinctive_rural_signage": [],
+    "attribute_architectural_style": "modern agricultural shed, gabled farmhouse, greenhouse",
+    "uid": "b2d80a2544db40ec8c63ced235280c57",
+    "near_synsets": {
+        "farm.n.01": 0.45307207046118353,
+        "farm_building.n.01": 0.47213282219173175,
+        "farmhouse.n.01": 0.4732110008505802,
+        "farmstead.n.01": 0.4968191892243597,
+        "farmyard.n.01": 0.5052914679657403
+    },
+    "synset": "farmyard.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b2d80a2544db40ec8c63ced235280c57",
+        "creator_username": "3dmi_pol",
+        "creator_display_name": "Dmitrijus Polonskis",
+        "creator_profile_url": "https://sketchfab.com/3dmi_pol"
+    },
+    "filename": "std_b2d80a2544db40ec8c63ced235280c57.glb",
+    "length": 32.90740203857422,
+    "width": 50.475528717041016
+}

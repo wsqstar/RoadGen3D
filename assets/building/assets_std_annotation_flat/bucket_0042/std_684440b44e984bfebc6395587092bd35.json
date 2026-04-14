@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a manual wheelchair with a metallic frame and two large spoked rear wheels, each equipped with a push rim for self-propulsion. The seat and backrest are covered in a dark, hexagon-patterned material, likely a durable synthetic fabric or vinyl. The wheelchair features two smaller front caster wheels for maneuverability and a pair of metal footrests extending forward, providing support for the user's feet. The armrests are straight and parallel to the seat, constructed from the same metal tubing as the frame. The overall design is utilitarian, with exposed metal surfaces and a robust, practical build suitable for urban environments. The handles at the back are standard, straight, and positioned for an attendant to push the wheelchair if needed.",
+    "description": "A manual wheelchair with a metallic frame, large spoked rear wheels with push rims, and a dark hex-patterned seat and backrest. It features straight armrests, metal footrests, and standard push handles.",
+    "description_view_0": "Front view showing the wide seat, hex-patterned backrest, armrests, and both footrests clearly.",
+    "description_view_1": "Left side view highlighting the large spoked rear wheel, small front caster, and the straight armrest and footrest.",
+    "description_view_2": "Rear view displaying the full backrest, both rear wheels, and the push handles.",
+    "description_view_3": "Right side view similar to the left, showing the spoked wheel, caster, armrest, and footrest from the opposite side.",
+    "category": "wheelchair",
+    "height": 1.1,
+    "max_dimension": 1.2,
+    "materials": [
+        "metal",
+        "synthetic fabric",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 16,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 25,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "pushable",
+        "rotatable",
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "push rim",
+        "footrest",
+        "armrest"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_wheel_type": "Two large spoked rear wheels with push rims and two small solid front caster wheels; rear wheels are significantly larger than the front.",
+    "attribute_frame_design": "Rigid frame constructed from round metal tubing with straight armrests and no visible folding mechanism.",
+    "attribute_presence_of_push_rims": true,
+    "attribute_footrest_style": "Fixed metal footrests extending forward, rectangular in shape and attached to the lower frame.",
+    "attribute_handlebar_configuration": "Standard straight push handles at the back, positioned at seat-back height for attendant use.",
+    "uid": "684440b44e984bfebc6395587092bd35",
+    "near_synsets": {
+        "motorized_wheelchair.n.01": 0.5075838573032316,
+        "wheelchair.n.01": 0.5161800797814757,
+        "bath_chair.n.01": 0.543201003206766,
+        "handcart.n.01": 0.5708232926048415,
+        "handwheel.n.02": 0.5801866633978523
+    },
+    "synset": "wheelchair.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/684440b44e984bfebc6395587092bd35",
+        "creator_username": "HaroldXd",
+        "creator_display_name": "HaroldXd",
+        "creator_profile_url": "https://sketchfab.com/HaroldXd"
+    },
+    "filename": "std_684440b44e984bfebc6395587092bd35.glb",
+    "length": 1.0787716507911682,
+    "width": 0.7676375806331635
+}

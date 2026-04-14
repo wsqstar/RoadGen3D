@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a small, circular pond bordered by a ring of smooth, gray stones. The water inside is clear and blue, with a few visible ripples suggesting a calm surface. Several green lily pads float on the water, accompanied by a few blooming pink water lilies. Sparse aquatic plants and reeds emerge from the water near the stone edge, adding a touch of natural greenery. The pond's stone border is uniform and slightly raised, creating a defined separation between the water and the surrounding ground. The overall appearance is clean and decorative, suitable for placement in an urban park or garden setting.",
+    "description": "A circular pond with clear blue water, bordered by smooth gray stones, featuring lily pads, pink water lilies, and sparse aquatic plants.",
+    "description_view_0": "The pond is seen with a prominent cluster of aquatic plants and a clear view of lily pads and flowers near the front edge.",
+    "description_view_1": "This view highlights the even stone border and shows more of the water lilies and lily pads distributed across the pond.",
+    "description_view_2": "The pond's stone edge is visible with aquatic plants concentrated at the far side, and the water surface appears undisturbed.",
+    "description_view_3": "This angle shows a mix of aquatic plants and flowers near the front, with the stone border and water surface clearly visible.",
+    "category": "pond",
+    "height": 0.3,
+    "max_dimension": 2.5,
+    "materials": [
+        "water",
+        "stone",
+        "plant",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "mass": 3500,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "containable",
+        "decorative"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "water",
+        "lily pads",
+        "flowers",
+        "stone border",
+        "aquatic plants"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "drone"
+    ],
+    "colors": [
+        "blue",
+        "gray",
+        "green",
+        "pink"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "smooth",
+    "reflectivity": 0.5,
+    "index_of_refraction": 1.33,
+    "youngs_modulus": 30000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_water_presence": true,
+    "attribute_surrounding_vegetation": [
+        "reeds",
+        "flowers",
+        "lily pads"
+    ],
+    "attribute_edge_treatment": "The pond is bordered by a continuous ring of smooth, rounded gray stones, creating a defined and decorative edge.",
+    "attribute_reflections": false,
+    "attribute_wildlife_activity": [],
+    "uid": "c124ec679fff46ab9a2bac89a0b2a3f2",
+    "near_synsets": {
+        "lily_pad.n.01": 0.45740347853138263,
+        "fishpond.n.01": 0.46750877819396447,
+        "watercress.n.02": 0.5199325113098316,
+        "spatterdock.n.01": 0.5253992949825462,
+        "pad.n.02": 0.535359258783689,
+        "pond.n.01": -1000.0
+    },
+    "synset": "pond.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c124ec679fff46ab9a2bac89a0b2a3f2",
+        "creator_username": "hemmarath.ss",
+        "creator_display_name": "iDiteMD",
+        "creator_profile_url": "https://sketchfab.com/hemmarath.ss"
+    },
+    "filename": "std_c124ec679fff46ab9a2bac89a0b2a3f2.glb",
+    "length": 2.913360118865967,
+    "width": 2.8986287117004395
+}

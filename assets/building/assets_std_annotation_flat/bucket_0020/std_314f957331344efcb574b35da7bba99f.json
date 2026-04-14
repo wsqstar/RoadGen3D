@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a large, modern Volvo semi-truck tractor unit, painted in a deep metallic green with black lower trim and silver accents. The cab is tall and streamlined, featuring a prominent grille with the Volvo logo, large side mirrors, and aerodynamic fairings. The side profile reveals a high-roof sleeper cab with integrated steps, side windows, and a robust chassis designed for hauling heavy trailers. The rear view shows dual rear axles, mudguards, and a fifth wheel coupling for trailer attachment, with visible safety reflectors and lights. The truck's exterior is primarily composed of metal panels, glass windows, and rubber tires, with some plastic trim and detailing. This vehicle is designed for long-haul freight transport and is commonly seen on highways and in urban logistics hubs.",
+    "description": "A large, green Volvo semi-truck tractor unit with a high-roof cab, dual rear axles, and aerodynamic features, built for hauling heavy trailers.",
+    "description_view_0": "Front view showing the tall cab, large windshield, prominent Volvo grille, and side mirrors.",
+    "description_view_1": "Left side view highlighting the high-roof sleeper cab, steps, side windows, and the length of the chassis.",
+    "description_view_2": "Rear view displaying dual rear axles, mudguards, fifth wheel coupling, and safety reflectors.",
+    "description_view_3": "Right side view similar to the left, showing the cab profile, chassis, and wheel arrangement.",
+    "category": "truck",
+    "height": 3.8,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.08,
+        0.05,
+        0.02,
+        0.02
+    ],
+    "mass": 8000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 40000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "mirror",
+        "step",
+        "window",
+        "fifth wheel coupling",
+        "headlight",
+        "taillight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "silver",
+        "white"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "high-roof sleeper cab",
+    "attribute_cargo_bed_type": "chassis cab",
+    "attribute_wheelbase": 4.0,
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "Volvo",
+    "uid": "314f957331344efcb574b35da7bba99f",
+    "near_synsets": {
+        "trailer_truck.n.01": 0.4780667789428429,
+        "truck.n.01": 0.49111644928953274,
+        "trailer.n.03": 0.49645884262640966,
+        "tractor.n.02": 0.5056525909515465,
+        "van.n.05": 0.5076108381660673,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/314f957331344efcb574b35da7bba99f",
+        "creator_username": "Matheus.Molina",
+        "creator_display_name": "Matheus.Molina",
+        "creator_profile_url": "https://sketchfab.com/Matheus.Molina"
+    },
+    "filename": "std_314f957331344efcb574b35da7bba99f.glb",
+    "length": 6.668826103210449,
+    "width": 3.520446300506592
+}

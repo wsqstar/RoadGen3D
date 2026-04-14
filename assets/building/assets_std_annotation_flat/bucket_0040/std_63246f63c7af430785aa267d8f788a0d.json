@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a compact submachine gun-style rifle with a simple, utilitarian design, reminiscent of the MAC-10. The main body is a rectangular metal receiver with a cylindrical barrel protruding from one end. A detachable box magazine is inserted vertically beneath the receiver, and a straight, angular pistol grip is attached at the rear, featuring a brownish coloration. The trigger guard is a simple metal loop, and there are minimal external controls or embellishments, emphasizing functionality over aesthetics. The finish is matte and dark, with subtle highlights indicating a hard, metallic surface.",
+    "description": "A compact, matte-black submachine gun with a box magazine and angular pistol grip, featuring a utilitarian, minimalist design.",
+    "description_view_0": "Side view showing the full length of the rifle, including the barrel, box magazine, and brown pistol grip.",
+    "description_view_1": "Front view highlighting the circular barrel opening and the width of the receiver and magazine.",
+    "description_view_2": "Opposite side view, displaying the ejection port and the magazine, with the grip angled away.",
+    "description_view_3": "Rear view focusing on the back of the receiver and the alignment of the barrel and magazine.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 0.45,
+    "materials": [
+        "steel",
+        "polymer",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 2.8,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pistol grip",
+        "trigger",
+        "magazine",
+        "barrel",
+        "magazine release"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "pistol grip",
+    "attribute_barrel_type": "short",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "63246f63c7af430785aa267d8f788a0d",
+    "near_synsets": {
+        "submachine_gun.n.01": 0.4776684394679268,
+        "kalashnikov.n.01": 0.4831029866164737,
+        "carbine.n.01": 0.4976865400788558,
+        "sten_gun.n.01": 0.501093609220589,
+        "uzi.n.01": 0.5033600568832066,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/63246f63c7af430785aa267d8f788a0d",
+        "creator_username": "drumdorf",
+        "creator_display_name": "drumdorf",
+        "creator_profile_url": "https://sketchfab.com/drumdorf"
+    },
+    "filename": "std_63246f63c7af430785aa267d8f788a0d.glb",
+    "length": 0.5476152002811432,
+    "width": 0.07065011188387871
+}

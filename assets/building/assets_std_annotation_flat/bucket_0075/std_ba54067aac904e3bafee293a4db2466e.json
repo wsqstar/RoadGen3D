@@ -1,0 +1,101 @@
+{
+    "description_long": "This hospital is a large, multi-story structure surrounded by other buildings, forming a dense urban block. The main hospital building features a flat black roof and a facade with a mix of beige, tan, and light brown tones, accented by large window arrays. The central section is flanked by taller, rectangular wings with a grid of windows, suggesting patient rooms or offices. The hospital is set within a courtyard-like space, with limited visible access points and a small green area visible from above. The surrounding buildings are simpler, mostly white or gray, and serve to enclose the hospital, creating a sense of privacy and separation from the street. The overall design is functional and modern, with clean lines and minimal ornamentation.",
+    "description": "A large, modern hospital with a flat black roof, beige and tan facades, and extensive window grids, surrounded by urban buildings in a dense block.",
+    "description_view_0": "The hospital is seen from the front, with the main entrance area partially visible and the central black-roofed section flanked by taller wings.",
+    "description_view_1": "This side view shows the hospital's beige facade and a narrow access path leading into the complex, with adjacent buildings closely packed.",
+    "description_view_2": "The rear view highlights the hospital's back facade, with large window arrays and the black roof, bordered by tall, plain buildings.",
+    "description_view_3": "The opposite side view reveals the hospital's main windowed facade and the surrounding urban enclosure, with a glimpse of the courtyard.",
+    "category": "hospital",
+    "height": 22,
+    "max_dimension": 55,
+    "materials": [
+        "concrete",
+        "glass",
+        "steel",
+        "air",
+        "asphalt",
+        "composite panels"
+    ],
+    "materials_composition": [
+        0.55,
+        0.18,
+        0.12,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 3200000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "beige",
+        "black",
+        "brown",
+        "green"
+    ],
+    "colors_composition": [
+        0.35,
+        0.25,
+        0.18,
+        0.1,
+        0.08,
+        0.04
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.32,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.03,
+    "recommended_clearance": 8,
+    "asset_composition_type": "scene",
+    "attribute_hospital_signage": false,
+    "attribute_emergency_entrance": false,
+    "attribute_ambulance_bay": false,
+    "attribute_medical_cross_symbol": false,
+    "attribute_architectural_style": "modern",
+    "uid": "ba54067aac904e3bafee293a4db2466e",
+    "near_synsets": {
+        "medical_building.n.01": 0.5123663557108626,
+        "medical_center.n.01": 0.5267679038224526,
+        "hospital.n.01": 0.5283880448695998,
+        "hospital.n.02": 0.5358229729878535,
+        "hospital_room.n.01": 0.5470274860919061
+    },
+    "synset": "hospital_room.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/ba54067aac904e3bafee293a4db2466e",
+        "creator_username": "homedesign3d",
+        "creator_display_name": "Home Design 3D",
+        "creator_profile_url": "https://sketchfab.com/homedesign3d"
+    },
+    "filename": "std_ba54067aac904e3bafee293a4db2466e.glb",
+    "length": 46.964202880859375,
+    "width": 57.282602310180664
+}

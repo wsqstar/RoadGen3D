@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a large, wooden half-pipe structure resembling a skateboarding ramp, but annotated as a dam. It features a tall vertical wall on one end with a staircase and platform, and a continuous curved surface connecting both sides. The structure is enclosed by metal railings along the top edges for safety, and the main body is constructed from light-colored wood panels with a textured, engineered wood base. There is a large rectangular opening at the base, possibly for passage or maintenance access. The surface is smooth and appears suitable for rolling or sliding activities, with visible fasteners and reinforcement plates. The overall design is robust, elevated on metal supports at one end, and includes a prominent entry platform.",
+    "description": "A large, wooden half-pipe structure with metal railings, a staircase, and a rectangular opening at the base, resembling a skateboarding ramp but annotated as a dam.",
+    "description_view_0": "Side view showing the tall vertical wall, staircase, and the rectangular opening at the base.",
+    "description_view_1": "Top-down view highlighting the curved ramp surface, railings, and the open interior.",
+    "description_view_2": "Opposite side view showing the flat back, railings, and the entry platform with supporting legs.",
+    "description_view_3": "Angled view from the entry platform side, showing the staircase, elevated platform, and the full curve of the ramp.",
+    "category": "dam",
+    "height": 6.0,
+    "max_dimension": 18.0,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.1
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "slideable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "staircase",
+        "platform",
+        "railings"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light brown",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_spillway_presence": false,
+    "attribute_control_gates": [
+        "none"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_water_outflow": "none",
+    "attribute_perimeter_fencing": true,
+    "uid": "f4bdca8a38504b8eb745528e6efc7461",
+    "near_synsets": {
+        "dam.n.01": 0.5130333431142402,
+        "flashboard.n.01": 0.5454850027077527,
+        "skateboarding.n.01": 0.5575896076501634,
+        "milldam.n.01": 0.5622513416610324,
+        "flume.n.02": 0.5643432432336337,
+        "decameter.n.01": -1000.0,
+        "dam.n.03": -1000.0
+    },
+    "synset": "dam.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f4bdca8a38504b8eb745528e6efc7461",
+        "creator_username": "topraman",
+        "creator_display_name": "topraman",
+        "creator_profile_url": "https://sketchfab.com/topraman"
+    },
+    "filename": "std_f4bdca8a38504b8eb745528e6efc7461.glb",
+    "length": 13.859238624572754,
+    "width": 15.946601867675781
+}

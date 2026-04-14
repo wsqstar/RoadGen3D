@@ -1,0 +1,100 @@
+{
+    "description_long": "This gatehouse is a large, rectangular stone structure featuring two prominent towers at either end, each topped with a domed roof and a golden spire. The central section is an open colonnade with a series of evenly spaced arches, allowing passage beneath. The towers have multiple levels, with the uppermost sections containing small, arched windows and decorative cornices. The main entryway is a grand, arched opening set into one of the towers, while the other tower features a large, open archway at its base. The exterior is finished in a brown, stone-like material, giving it a historic and fortified appearance. The overall design suggests a blend of classical and medieval architectural influences, with symmetrical elements and robust construction.",
+    "description": "A large, brown stone gatehouse with two domed towers, arched entryways, and a central colonnade, exuding a historic and fortified look.",
+    "description_view_0": "Front view showing both towers, the central colonnade with arches, and the main arched entryway on the right tower.",
+    "description_view_1": "Side view highlighting the depth of the left tower, the domed roof, and the layered architectural details.",
+    "description_view_2": "Rear view mirroring the front, with both towers and the central colonnade visible, but the main entryway is less prominent.",
+    "description_view_3": "Side view focusing on the right tower, its open archway, and the domed roof with spire.",
+    "category": "gatehouse",
+    "height": 18.0,
+    "max_dimension": 38.0,
+    "materials": [
+        "stone",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 950000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "passage",
+        "shelter"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "archway",
+        "windows",
+        "colonnade"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "brown",
+        "gray",
+        "gold",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Neoclassical",
+    "attribute_roof_type": "domed",
+    "attribute_entryway_design": "Large arched stone entryway integrated into the tower base.",
+    "attribute_window_placement": "Small arched windows encircle the upper levels of both towers.",
+    "attribute_security_features": [
+        "elevated towers",
+        "thick stone walls",
+        "limited entry points"
+    ],
+    "uid": "d997cdd421364eee9fa7ad22a51cbedb",
+    "near_synsets": {
+        "gatehouse.n.01": 0.45122188533139534,
+        "castle.n.02": 0.5066873575366393,
+        "portcullis.n.01": 0.5143382637842145,
+        "lodge.n.03": 0.5190598562048636,
+        "keep.n.02": 0.5338406679260141
+    },
+    "synset": "gatehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d997cdd421364eee9fa7ad22a51cbedb",
+        "creator_username": "KonstantinAg",
+        "creator_display_name": "KonstantinAg",
+        "creator_profile_url": "https://sketchfab.com/KonstantinAg"
+    },
+    "filename": "std_d997cdd421364eee9fa7ad22a51cbedb.glb",
+    "length": 6.078981161117554,
+    "width": 22.45989227294922
+}

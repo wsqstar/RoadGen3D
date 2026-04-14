@@ -1,0 +1,108 @@
+{
+    "description_long": "This object is a detailed model of an ambulance station complex, featuring multiple low-rise buildings arranged in a grid on a green base. The buildings are primarily rectangular with flat or slightly sloped roofs, and several have visible garage doors for emergency vehicle access. The structures are colored in muted greens, grays, and whites, with some red accents, and are accompanied by parked ambulances and utility vehicles. The station includes designated parking bays for ambulances, with clear separation between vehicle areas and administrative or operational buildings. There are no visible large signs or medical symbols on the exterior, but the presence of ambulances and garage bays strongly suggests its function. The overall architectural style is utilitarian, prioritizing function and accessibility for rapid emergency response.",
+    "description": "A utilitarian ambulance station complex with multiple low-rise buildings, garage bays, and parked emergency vehicles on a green base. The structures are mostly green, gray, and white, with flat roofs and clear vehicle access points.",
+    "description_view_0": "Front view showing the main entrance area, several garage bays, and ambulances parked in front of the buildings.",
+    "description_view_1": "Side view highlighting the length of the complex, the arrangement of buildings, and the alignment of garage doors and parking bays.",
+    "description_view_2": "Rear view displaying the back sides of the buildings, with fewer visible garage doors and more focus on the administrative sections.",
+    "description_view_3": "Opposite side view showing the full row of garage bays and the overall layout of the station, with ambulances and support vehicles visible.",
+    "category": "ambulance station",
+    "height": 5.0,
+    "max_dimension": 32.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.1,
+        0.1,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "garage door",
+        "window",
+        "vehicle",
+        "button"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "gray",
+        "white",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.45,
+        0.3,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 6.0,
+    "asset_composition_type": "scene",
+    "attribute_ambulance_signage": "No explicit signage identifying the building as an ambulance station is visible. There are no large text labels, logos, or illuminated signs on the building exteriors or above the garage doors.",
+    "attribute_emergency_vehicle_parking_bays": "There are multiple designated parking bays for emergency vehicles, clearly arranged in front of the garage doors. The bays are separated by small posts or barriers, and ambulances are visibly parked in these areas, indicating their reserved status.",
+    "attribute_red_cross_or_medical_symbols": "No visible Red Cross, Star of Life, or other medical symbols are present on the building exteriors, doors, or signage. The identification of the station relies on the presence of ambulances and the layout.",
+    "attribute_garage_doors_for_rapid_vehicle_exit": "Several large garage doors are present, designed for ambulance entry and exit. These doors are wide, rectangular, and positioned at the front of the main buildings, with a utilitarian appearance and likely sectional or rolling design for rapid deployment.",
+    "attribute_architectural_style": "The architectural style is utilitarian, with a focus on function over form. The buildings have flat or slightly sloped roofs, minimal ornamentation, and are constructed from concrete and metal. Windows are simple and rectangular, and the overall form is boxy and practical.",
+    "uid": "7050ead6300044d79e649b1699c4cd8f",
+    "near_synsets": {
+        "ambulance.n.01": 0.5164864250609297,
+        "fire_station.n.01": 0.5546436346006531,
+        "first-aid_station.n.01": 0.5671507830207765,
+        "funny_wagon.n.01": 0.575997418297798,
+        "station.n.01": 0.5815100754401311,
+        "station.n.03": -1000.0,
+        "place.n.10": -1000.0,
+        "post.n.01": -1000.0,
+        "station.n.05": -1000.0
+    },
+    "synset": "station.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7050ead6300044d79e649b1699c4cd8f",
+        "creator_username": "madexc",
+        "creator_display_name": "madexc",
+        "creator_profile_url": "https://sketchfab.com/madexc"
+    },
+    "filename": "std_7050ead6300044d79e649b1699c4cd8f.glb",
+    "length": 41.1298770904541,
+    "width": 28.474565505981445
+}

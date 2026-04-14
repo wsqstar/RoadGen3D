@@ -1,0 +1,92 @@
+{
+    "description_long": "This humanoid robot features a robust, industrial design with a broad, angular torso and two sturdy, mechanical legs. The torso is characterized by a prominent, ribbed central section and a rounded, dome-like head with no visible facial features. The legs are segmented with clear articulation points at the hips, knees, and ankles, ending in wide, flat feet for stability. The arms are absent, giving the robot a streamlined, utilitarian appearance. The surface is predominantly a dark, matte gray, suggesting a metal or composite exterior suitable for urban environments. The overall build implies durability and functionality, likely intended for tasks requiring mobility and resilience.",
+    "description": "A sturdy, dark gray humanoid robot with a broad torso, segmented legs, and no visible arms or facial features. Its industrial design suggests durability and urban utility.",
+    "description_view_0": "Front view shows the wide torso, ribbed central section, dome-like head, and both segmented legs with flat feet.",
+    "description_view_1": "Side view highlights the depth of the torso, the rounded head, and the articulation points in the legs.",
+    "description_view_2": "Rear view reveals the back of the torso and legs, with similar segmentation and no additional features.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the profile of the torso and leg joints.",
+    "category": "humanoid robot",
+    "height": 1.8,
+    "max_dimension": 1.8,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "legs",
+        "head",
+        "torso"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "light gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both legs straight and parallel, torso upright, and head facing forward. No arms are present.",
+    "attribute_clothing_style": "Unclothed; exterior consists of integrated metal and plastic panels with no decorative elements.",
+    "attribute_facial_features": "No visible facial features; head is a smooth, rounded dome with no eyes, mouth, or expressive elements.",
+    "attribute_limb_articulation": "Legs have visible hinge joints at hips, knees, and ankles, allowing for walking motion. No arms or hands are present.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "cc56250080574446a5a6d6ab3f9af78f",
+    "near_synsets": {
+        "android.n.01": 0.5350011872725443,
+        "cyborg.n.01": 0.5580694417897557,
+        "robotics_equipment.n.01": 0.5628872257886846,
+        "automaton.n.02": 0.5663219168850148,
+        "automaton.n.03": 0.5804669571101602
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cc56250080574446a5a6d6ab3f9af78f",
+        "creator_username": "gabang",
+        "creator_display_name": "gabang",
+        "creator_profile_url": "https://sketchfab.com/gabang"
+    },
+    "filename": "std_cc56250080574446a5a6d6ab3f9af78f.glb",
+    "length": 0.7761944234371185,
+    "width": 10.058631896972656
+}

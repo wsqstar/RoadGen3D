@@ -1,0 +1,103 @@
+{
+    "description_long": "This humanoid robot features a rugged, industrial design with a boxy torso and robust, mechanical limbs. Its arms are asymmetrical, with one ending in a large, articulated hand and the other in a cylindrical, tool-like appendage, suggesting multifunctional capabilities. The legs are thick and jointed, terminating in wide, flat feet designed for stability on uneven urban terrain. The surface is predominantly metallic, with visible wear, scratches, and patches of rust, giving it a weathered, utilitarian appearance. The head is minimalistic, lacking distinct facial features, and is topped with a circular, dome-like structure that may house sensors or communication equipment. The overall construction emphasizes durability and strength, suitable for tasks in challenging urban environments.",
+    "description": "A rugged, industrial humanoid robot with asymmetrical arms, a boxy torso, and weathered metallic surfaces, designed for durability and utility in urban settings.",
+    "description_view_0": "The robot is seen with its large, articulated hand extended forward and its tool-like arm angled back, highlighting the asymmetry of its limbs and the broad, flat feet.",
+    "description_view_1": "This view emphasizes the cylindrical, tool-like appendage on the right arm and the compact, angular torso, with the hand partially clenched.",
+    "description_view_2": "The robot's left side is visible, showing the full extension of the tool-like arm and the robust, jointed legs supporting its weight.",
+    "description_view_3": "From the rear, the robot's back and the mechanical structure of its limbs are prominent, with the hand arm raised and the tool arm lowered.",
+    "category": "humanoid robot",
+    "height": 2.2,
+    "max_dimension": 3.0,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.06,
+        0.01,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 3200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "pressable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hand",
+        "tool arm",
+        "fingers",
+        "joints",
+        "feet"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "rust",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.12,
+        0.08
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with legs apart for stability, left arm extended forward with articulated hand open, right arm extended backward with a cylindrical tool-like end, torso upright, and head facing forward.",
+    "attribute_clothing_style": "Unclothed; exterior consists of integrated metallic panels with visible bolts and industrial detailing.",
+    "attribute_facial_features": "No visible facial features; head is a simple dome with no eyes, mouth, or expressive elements.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints, allowing for a wide range of motion; left hand has articulated fingers, right arm ends in a fixed tool.",
+    "attribute_presence_of_sensors": "None visible",
+    "uid": "a3d80119614c49e993427f47c40d3b27",
+    "near_synsets": {
+        "android.n.01": 0.5145716303364807,
+        "robotics_equipment.n.01": 0.5393082980199532,
+        "cyborg.n.01": 0.5416160586860157,
+        "automaton.n.02": 0.5543031617106939,
+        "robotics.n.01": 0.5574863430288529
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a3d80119614c49e993427f47c40d3b27",
+        "creator_username": "alban.capaj",
+        "creator_display_name": "alban.capaj",
+        "creator_profile_url": "https://sketchfab.com/alban.capaj"
+    },
+    "filename": "std_a3d80119614c49e993427f47c40d3b27.glb",
+    "length": 2.490966796875,
+    "width": 3.090576171875
+}

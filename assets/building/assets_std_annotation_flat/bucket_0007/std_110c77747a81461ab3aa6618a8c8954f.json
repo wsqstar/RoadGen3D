@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a wall-mounted ATM machine encased in a rectangular metal frame, set into a brown and gray bordered wall panel. The ATM features a central display screen with a blue-toned interface, surrounded by a variety of stickers and graffiti, giving it a well-used, urban appearance. Below the screen are several functional components, including a numeric keypad, card slot, and receipt dispenser, all arranged in a compact, accessible layout. The machine's surface is primarily metallic with some plastic elements, and the surrounding wall panel is painted brown with a gray border. The ATM is adorned with multiple stickers and handwritten notes, adding to its visual complexity and suggesting frequent public interaction. The overall structure appears robust and fixed, designed to withstand outdoor urban environments.",
+    "description": "A wall-mounted, sticker-covered ATM with a central screen, keypad, card slot, and receipt dispenser, set in a brown and gray bordered panel. The machine shows signs of heavy urban use and is surrounded by graffiti and stickers.",
+    "description_view_0": "Side view showing the ATM's depth and how it is embedded into the wall, with the screen and interface slightly protruding.",
+    "description_view_1": "Frontal view displaying the full ATM interface, including the screen, keypad, card slot, receipt dispenser, and numerous stickers and graffiti.",
+    "description_view_2": "Opposite side view highlighting the thin profile of the ATM and its flush integration with the wall panel.",
+    "description_view_3": "Angled front view emphasizing the screen, keypad, and the dense arrangement of stickers and graffiti on the machine's surface.",
+    "category": "atm",
+    "height": 1.0,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "electronic_components",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "insertable",
+        "withdrawable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "screen",
+        "keypad",
+        "card slot",
+        "receipt dispenser",
+        "cash dispenser",
+        "buttons"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "black",
+        "white",
+        "blue",
+        "purple"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_screen_interface": "Medium-sized rectangular screen centered on the upper half of the ATM, surrounded by a metallic bezel, displaying a blue-toned static interface with no visible touch capability; flanked by several physical buttons.",
+    "attribute_card_slot": "One horizontal card slot located to the right of the screen, with a metallic border and possible illumination.",
+    "attribute_keypad_layout": "Numeric keypad with 12 keys arranged in a 3x4 grid, positioned below the screen and card slot, with additional function keys nearby.",
+    "attribute_bank_branding": "Text 'Amos Klausner' visible below the screen in white, along with various stickers and graffiti obscuring other potential branding.",
+    "attribute_receipt_dispenser": "Rectangular slot located below the keypad, with a metallic flap and surrounded by stickers and graffiti.",
+    "uid": "110c77747a81461ab3aa6618a8c8954f",
+    "near_synsets": {
+        "cash_machine.n.01": 0.50806700470292,
+        "automat.n.01": 0.5599631113906324,
+        "vending_machine.n.01": 0.5616925856134855,
+        "ticket-stamping_machine.n.01": 0.5745872826427182,
+        "automat.n.02": 0.5756761348250174,
+        "standard_atmosphere.n.01": -1000.0,
+        "asynchronous_transfer_mode.n.01": -1000.0
+    },
+    "synset": "standard_atmosphere.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/110c77747a81461ab3aa6618a8c8954f",
+        "creator_username": "David.Antalek",
+        "creator_display_name": "David Antalek",
+        "creator_profile_url": "https://sketchfab.com/David.Antalek"
+    },
+    "filename": "std_110c77747a81461ab3aa6618a8c8954f.glb",
+    "length": 0.3729512691497803,
+    "width": 0.7669009268283844
+}

@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a large, red, heavy-duty truck with a prominent rectangular cargo bed designed for transporting bulk materials. The cab is robust, featuring a classic long-nose design with dual vertical exhaust stacks, side mirrors, and a set of steps for entry. The cargo bed is open-topped, boxy, and reinforced with yellow structural supports at the front, suitable for hauling debris, goods, or construction materials. The truck has three axles, with two sets of rear wheels for added load-bearing capacity. The exterior shows signs of wear and weathering, giving it a rugged, utilitarian appearance. The windows are tinted, and the metallic surfaces, such as the exhaust pipes and steps, contrast with the dominant red paint.",
+    "description": "A large, weathered red truck with a long-nose cab and an open, boxy cargo bed, reinforced with yellow supports and three axles for heavy-duty hauling.",
+    "description_view_0": "Front-left view showing the long-nose cab, dual exhaust stacks, and the open cargo bed with yellow front supports.",
+    "description_view_1": "Rear-left view highlighting the depth and open nature of the cargo bed, as well as the dual rear axles.",
+    "description_view_2": "Rear-right view emphasizing the length of the cargo bed and the truck's robust rear wheel configuration.",
+    "description_view_3": "Front-right view focusing on the cab's details, including the steps, mirrors, and the front grille.",
+    "category": "truck",
+    "height": 3.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.08,
+        0.05,
+        0.02,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "step",
+        "mirror",
+        "exhaust stack",
+        "cargo bed"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "yellow",
+        "black",
+        "silver",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.05,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "day cab",
+    "attribute_cargo_bed_type": "box",
+    "attribute_wheelbase": 5.0,
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "efdce2d230764de599cd574f5a20b55c",
+    "near_synsets": {
+        "van.n.05": 0.48726145335857163,
+        "truck.n.01": 0.4899551582228764,
+        "flatbed.n.02": 0.49133100151136266,
+        "lorry.n.02": 0.5015535567652729,
+        "tractor.n.02": 0.5063309120396666,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/efdce2d230764de599cd574f5a20b55c",
+        "creator_username": "hasnatahmedkhan216",
+        "creator_display_name": "H.A.K_Niazi",
+        "creator_profile_url": "https://sketchfab.com/hasnatahmedkhan216"
+    },
+    "filename": "std_efdce2d230764de599cd574f5a20b55c.glb",
+    "length": 8.065536975860596,
+    "width": 10.698688507080078
+}

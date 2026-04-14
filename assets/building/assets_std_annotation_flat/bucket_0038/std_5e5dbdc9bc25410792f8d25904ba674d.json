@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a large, rectangular metal dumpster with a weathered, industrial appearance, featuring extensive graffiti in orange, green, white, and red tones across its exterior. The dumpster is open-topped, lacking any visible lid, and has reinforced metal edges and corners, with some rust and wear evident on the rim and body. Four black caster wheels are attached to the base, allowing for mobility, and there are metal brackets and protrusions on the upper rim, likely for securing or lifting the container. Both sides of the dumpster have rectangular, recessed metal handles for maneuvering. The interior is empty and shows signs of heavy use, with scratches and grime visible on the inner surfaces. This type of dumpster is commonly found in urban environments, such as alleys, parking lots, or behind commercial buildings.",
+    "description": "A large, open-topped metal dumpster with graffiti, rust, and four caster wheels, designed for urban waste collection. It features recessed side handles and a heavily worn, industrial look.",
+    "description_view_0": "Front view showing the main graffiti-covered panel, open top, and two visible wheels.",
+    "description_view_1": "Side view highlighting a recessed rectangular handle and metal brackets on the rim.",
+    "description_view_2": "Rear view with more graffiti, visible wear, and two caster wheels.",
+    "description_view_3": "Opposite side view with another recessed handle and additional rust and graffiti.",
+    "category": "dumpster",
+    "height": 1.2,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 10,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "bracket"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "orange",
+        "white",
+        "red",
+        "black",
+        "gray",
+        "rust brown"
+    ],
+    "colors_composition": [
+        0.45,
+        0.15,
+        0.1,
+        0.1,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "none",
+    "attribute_wheel_presence": true,
+    "attribute_handle_design": "Two rectangular recessed metal handles, one on each side panel.",
+    "attribute_warning_labels": [],
+    "attribute_placement_location": "outdoor commercial area",
+    "uid": "5e5dbdc9bc25410792f8d25904ba674d",
+    "near_synsets": {
+        "dumpster.n.01": 0.43213904056775393,
+        "garbage_truck.n.01": 0.5019493679642878,
+        "garbage.n.03": 0.520151889173666,
+        "wastepaper_basket.n.01": 0.5388676337238671,
+        "scrapheap.n.02": 0.5520976585139789
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5e5dbdc9bc25410792f8d25904ba674d",
+        "creator_username": "thethieme",
+        "creator_display_name": "thethieme",
+        "creator_profile_url": "https://sketchfab.com/thethieme"
+    },
+    "filename": "std_5e5dbdc9bc25410792f8d25904ba674d.glb",
+    "length": 0.9558652639389038,
+    "width": 1.6268031597137451
+}

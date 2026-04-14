@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a single, robust train car with a cylindrical tank-like body, likely constructed from weathered metal, as indicated by its textured, slightly corroded surface. The car features several circular hatches or access ports along its top and sides, and two prominent round covers on the roof. At one end, there is a small open platform with a visible mechanical assembly, possibly a brake or coupling mechanism, and protective side panels. The opposite end is more streamlined, with no visible platform or equipment. The exterior is predominantly gray, with darkened areas suggesting exposure to the elements and heavy use. There are no visible windows or passenger doors, indicating this is likely a freight or utility train car rather than one designed for passengers.",
+    "description": "A weathered, cylindrical metal train car with multiple hatches and a mechanical platform at one end, lacking windows or passenger doors.",
+    "description_view_0": "Front view shows the rounded end of the tank car with two lower fixtures and no visible platform.",
+    "description_view_1": "Side view reveals the cylindrical body, multiple hatches, and the open platform with mechanical parts at the far end.",
+    "description_view_2": "Rear view highlights the open platform, mechanical assembly, and protective side panels.",
+    "description_view_3": "Opposite side view mirrors the first side, showing hatches and the open platform at the near end.",
+    "category": "train",
+    "height": 3.8,
+    "max_dimension": 12.0,
+    "materials": [
+        "steel",
+        "iron",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.02,
+        0.01,
+        0.02
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "connectable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hatch",
+        "valve",
+        "platform",
+        "coupler",
+        "mechanical assembly"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "freight train",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "no visible doors",
+    "attribute_window_arrangement": "no visible windows",
+    "uid": "8684b9b136a5410ca802bb9700ecfb13",
+    "near_synsets": {
+        "car_train.n.01": 0.506129750497723,
+        "train.n.01": 0.5088952173412566,
+        "boxcar.n.01": 0.5095833886025449,
+        "train_set.n.01": 0.5117871206779252,
+        "passenger_train.n.01": 0.5150010755207296,
+        "caravan.n.01": -1000.0,
+        "train.n.04": -1000.0,
+        "train.n.05": -1000.0,
+        "gearing.n.01": -1000.0,
+        "string.n.04": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8684b9b136a5410ca802bb9700ecfb13",
+        "creator_username": "nadiralishly",
+        "creator_display_name": "Nadir Alishly",
+        "creator_profile_url": "https://sketchfab.com/nadiralishly"
+    },
+    "filename": "std_8684b9b136a5410ca802bb9700ecfb13.glb",
+    "length": 12.745849609375,
+    "width": 3.7340396642684937
+}

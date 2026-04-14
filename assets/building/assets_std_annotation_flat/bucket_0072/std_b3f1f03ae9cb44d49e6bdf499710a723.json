@@ -1,0 +1,90 @@
+{
+    "description_long": "This object is a highly simplified, blocky representation of a bus, characterized by a long rectangular body with a glossy black finish. The bus sits on a flat, dark base, and features two small cylindrical protrusions on one side, likely representing wheels. The front and rear faces are flat and unadorned, with no visible windows, doors, or detailed features. The surface is highly reflective, giving it a sleek, polished appearance. There are no visible markings, logos, or route indicators on the exterior. The overall design is minimalistic, lacking the typical details found on real-world buses such as lights, mirrors, or passenger windows.",
+    "description": "A minimalistic, glossy black rectangular bus with two small cylindrical wheels and no visible windows or doors. The surface is highly reflective and lacks detailed features.",
+    "description_view_0": "The bus is seen from the front, showing a flat, featureless face with a glossy finish and no visible windows or doors.",
+    "description_view_1": "A side view reveals two small cylindrical wheels beneath the bus and a smooth, reflective surface with no windows or doors.",
+    "description_view_2": "The rear view mirrors the front, with a flat, glossy surface and no distinguishing features.",
+    "description_view_3": "Another side view, similar to view 1, showing the two small wheels and the uninterrupted glossy black surface.",
+    "category": "bus",
+    "height": 0.8,
+    "max_dimension": 3.5,
+    "materials": [
+        "painted metal",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 3,
+    "movable": true,
+    "required_force": 15000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.05,
+    "surface_finish": "glossy",
+    "reflectivity": 0.7,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 0,
+    "attribute_window_arrangement": "No visible passenger windows; sides are solid and featureless.",
+    "attribute_route_number_or_destination_sign": "",
+    "attribute_bus_manufacturer_logo": "",
+    "attribute_passenger_entry_step_height": 0.8,
+    "uid": "b3f1f03ae9cb44d49e6bdf499710a723",
+    "near_synsets": {
+        "school_bus.n.01": 0.543720408584421,
+        "bus.n.01": 0.5444617698714357,
+        "minibus.n.01": 0.5508934870025657,
+        "bus_traffic.n.01": 0.5615604341018084,
+        "shuttle_bus.n.01": 0.5715282500716875,
+        "bus.n.04": -1000.0,
+        "busbar.n.01": -1000.0,
+        "bus_topology.n.01": -1000.0
+    },
+    "synset": "bus_topology.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b3f1f03ae9cb44d49e6bdf499710a723",
+        "creator_username": "itsvbt",
+        "creator_display_name": "itsvbt",
+        "creator_profile_url": "https://sketchfab.com/itsvbt"
+    },
+    "filename": "std_b3f1f03ae9cb44d49e6bdf499710a723.glb",
+    "length": 6.960674285888672,
+    "width": 6.960691452026367
+}

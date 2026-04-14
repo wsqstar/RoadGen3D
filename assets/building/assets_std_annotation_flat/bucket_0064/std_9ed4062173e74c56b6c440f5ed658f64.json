@@ -1,0 +1,103 @@
+{
+    "description_long": "This ATM is a rectangular, upright machine with a prominent orange front panel decorated with blue lightning bolt motifs. The front features a digital screen, a keypad, a card slot, and a cash dispenser, all arranged in a standard ATM layout. Above the screen, a sign labeled 'ATM' is clearly visible, making it easily identifiable in public spaces. The sides of the machine are adorned with a colorful cartoon bear character holding a microphone, adding a playful and eye-catching element. The back and top of the machine are plain, with a solid blue-gray color and no visible functional components. The overall design is robust and suitable for placement in urban environments such as sidewalks, malls, or parks.",
+    "description": "A robust, orange and blue ATM with a digital interface, keypad, and playful cartoon bear graphics on the sides. The front panel is decorated with lightning bolts and features all standard ATM components.",
+    "description_view_0": "Side view showing the cartoon bear graphic and the edge of the orange front panel.",
+    "description_view_1": "Frontal view displaying the ATM sign, screen, keypad, card slot, cash dispenser, and lightning bolt decorations.",
+    "description_view_2": "Opposite side view with another cartoon bear graphic and the orange panel's edge.",
+    "description_view_3": "Rear view showing a plain blue-gray surface with no visible interactive features.",
+    "category": "atm",
+    "height": 1.7,
+    "max_dimension": 0.7,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "electronic_components",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "insertable",
+        "withdrawable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "screen",
+        "keypad",
+        "card slot",
+        "cash dispenser",
+        "receipt dispenser"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "blue-gray",
+        "light blue",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_screen_interface": "A medium-sized rectangular screen centered on the front panel, surrounded by a bezel, with several physical buttons or touch areas below and beside it.",
+    "attribute_card_slot": "One horizontal card slot located below the screen and keypad, with a dark border and no visible illumination.",
+    "attribute_keypad_layout": "A numeric keypad with 12 square keys arranged in a 3x4 grid, positioned below the screen and to the right of the card slot.",
+    "attribute_bank_branding": "The word 'ATM' is prominently displayed in large block letters at the top front; no specific bank branding or logos are visible.",
+    "attribute_receipt_dispenser": "A small horizontal slot located above the cash dispenser, likely serving as the receipt dispenser, with no additional labeling.",
+    "uid": "9ed4062173e74c56b6c440f5ed658f64",
+    "near_synsets": {
+        "cash_machine.n.01": 0.5741901706241996,
+        "automat.n.01": 0.5999537687003336,
+        "acquirer.n.03": 0.6156522166124271,
+        "terminal.n.04": 0.6191602209428,
+        "amusement_arcade.n.01": 0.6208400670932454,
+        "asynchronous_transfer_mode.n.01": -1000.0,
+        "standard_atmosphere.n.01": -1000.0
+    },
+    "synset": "standard_atmosphere.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9ed4062173e74c56b6c440f5ed658f64",
+        "creator_username": "NoTimeForAdventure",
+        "creator_display_name": "NoTimeForAdventure",
+        "creator_profile_url": "https://sketchfab.com/NoTimeForAdventure"
+    },
+    "filename": "std_9ed4062173e74c56b6c440f5ed658f64.glb",
+    "length": 0.6419353783130646,
+    "width": 0.6231968402862549
+}

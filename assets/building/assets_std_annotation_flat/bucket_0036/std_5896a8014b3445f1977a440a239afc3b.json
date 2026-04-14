@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a dark green armored combat vehicle resembling a Soviet-era tank, featuring a large, centrally mounted turret with a prominent cannon extending from the front. The hull is angular with sloped armor plating, and the vehicle rides on a set of wide, heavy-duty tracks with multiple road wheels visible on each side. The turret has several hatches and periscopes, and the front glacis plate is reinforced and angled for deflection. The rear of the vehicle is flat with visible engine access panels and tow hooks. The overall design emphasizes protection, firepower, and mobility, suitable for urban and battlefield environments.",
+    "description": "A dark green armored tank with a large turret, prominent cannon, and heavy-duty tracks, featuring sloped armor and multiple hatches.",
+    "description_view_0": "Front view showing the cannon, sloped glacis plate, and front tow hooks.",
+    "description_view_1": "Left side view highlighting the full length of the tracks, road wheels, and the side profile of the turret.",
+    "description_view_2": "Rear view displaying engine access panels, rear tow hooks, and the back of the turret.",
+    "description_view_3": "Right side view similar to the left, showing the tracks, wheels, and turret profile.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.85,
+        0.07,
+        0.02,
+        0.05,
+        0.01
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "track",
+        "wheel",
+        "engine panel",
+        "tow hook",
+        "periscope"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted on the central turret; no additional weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped steel armor plating on the hull and turret; reinforced front glacis and turret sides.",
+    "attribute_camouflage_pattern": "Solid dark green paint; no visible camouflage pattern.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "5896a8014b3445f1977a440a239afc3b",
+    "near_synsets": {
+        "tank.n.01": 0.46197165865562656,
+        "military_vehicle.n.01": 0.49219496438827065,
+        "armored_car.n.02": 0.5068093217427994,
+        "assault_gun.n.02": 0.5078214389193081,
+        "tank_destroyer.n.01": 0.515763126446951,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5896a8014b3445f1977a440a239afc3b",
+        "creator_username": "Nextty3",
+        "creator_display_name": "Nextty3",
+        "creator_profile_url": "https://sketchfab.com/Nextty3"
+    },
+    "filename": "std_5896a8014b3445f1977a440a239afc3b.glb",
+    "length": 6.232301473617554,
+    "width": 3.0039405822753906
+}

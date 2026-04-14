@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a classic wheelbarrow with a deep, rectangular metal tray designed for carrying materials such as soil, gravel, or debris. The tray is supported by a sturdy metal frame, which extends into two straight handles for manual operation. At the front, a single large wheel is mounted centrally beneath the tray, providing balance and maneuverability. Two angled support legs are attached near the rear, allowing the barrow to stand upright when not in use. The handles are capped for comfort and grip, and the overall construction appears robust, suitable for heavy-duty urban or garden tasks. The visible surfaces are smooth and metallic, with a utilitarian, functional appearance.",
+    "description": "A robust metal wheelbarrow with a deep tray, single front wheel, and two straight handles, designed for carrying heavy loads. It features angled support legs and a smooth, metallic finish.",
+    "description_view_0": "Front view showing the single central wheel, the deep tray, and the two handles extending backward.",
+    "description_view_1": "Side view highlighting the depth of the tray, the position of the wheel at the front, and the angled support legs at the rear.",
+    "description_view_2": "Rear view displaying the two handles, the open tray, and the support legs clearly.",
+    "description_view_3": "Opposite side view similar to view 1, showing the tray's depth, wheel, and support legs from the other side.",
+    "category": "barrow",
+    "height": 0.6,
+    "max_dimension": 1.4,
+    "materials": [
+        "steel",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 16,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 25,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable",
+        "dumpable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "tray",
+        "support legs"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 1,
+    "attribute_handle_type": "dual straight handles",
+    "attribute_wheel_position": "single front-centered",
+    "attribute_tray_depth": 0.28,
+    "attribute_presence_of_support_legs": true,
+    "uid": "576005f6bcbf4983b92e91da5a1b6c3e",
+    "near_synsets": {
+        "barrow.n.03": 0.42631615108316484,
+        "handbarrow.n.01": 0.4924675088940775,
+        "cart.n.01": 0.5213306887876333,
+        "barrow.n.01": 0.5246344353744704,
+        "drawbar.n.01": 0.5248858911631189,
+        "burial_mound.n.01": -1000.0
+    },
+    "synset": "barrow.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/576005f6bcbf4983b92e91da5a1b6c3e",
+        "creator_username": "MichaelTallpost",
+        "creator_display_name": "Michael Tallpost",
+        "creator_profile_url": "https://sketchfab.com/MichaelTallpost"
+    },
+    "filename": "std_576005f6bcbf4983b92e91da5a1b6c3e.glb",
+    "length": 1.3585817217826843,
+    "width": 0.62750244140625
+}

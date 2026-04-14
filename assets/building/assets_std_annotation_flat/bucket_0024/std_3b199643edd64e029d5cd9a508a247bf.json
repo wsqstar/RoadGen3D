@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a compact subway train car with a rounded, streamlined roof and a predominantly black and red exterior. The front and rear faces are slightly curved, featuring minimalistic detailing and a small set of lights at the base. The sides of the train display two large sliding doors centrally positioned, flanked by dark-tinted windows that blend into the black upper section. The undercarriage is equipped with visible wheels and suspension components, typical of urban rail vehicles. The train's design suggests it is intended for underground or metro systems, prioritizing efficient passenger entry and exit. The overall appearance is modern, functional, and built for high-frequency urban transit.",
+    "description": "A modern, compact subway train car with a black and red color scheme, central sliding doors, and dark-tinted windows, designed for urban metro systems.",
+    "description_view_0": "Front view showing the curved face, minimal lights, and the black and red color split.",
+    "description_view_1": "Side view highlighting the central sliding doors, large dark windows, and visible wheels.",
+    "description_view_2": "Rear view, nearly identical to the front, with curved design and minimal detailing.",
+    "description_view_3": "Opposite side view, mirroring the other side with central doors and windows.",
+    "category": "train",
+    "height": 3.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "button"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.42,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_train_type": "subway",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "central doors only",
+    "attribute_window_arrangement": "spaced rectangular windows",
+    "uid": "3b199643edd64e029d5cd9a508a247bf",
+    "near_synsets": {
+        "subway_train.n.01": 0.43146734273230875,
+        "train.n.01": 0.48518978762172543,
+        "metro.n.01": 0.4937805687996709,
+        "car_train.n.01": 0.49420728184124935,
+        "subway_station.n.01": 0.5210324691235275,
+        "train.n.05": -1000.0,
+        "caravan.n.01": -1000.0,
+        "train.n.04": -1000.0,
+        "gearing.n.01": -1000.0,
+        "string.n.04": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3b199643edd64e029d5cd9a508a247bf",
+        "creator_username": "fabioorsi",
+        "creator_display_name": "Fabio Orsi",
+        "creator_profile_url": "https://sketchfab.com/fabioorsi"
+    },
+    "filename": "std_3b199643edd64e029d5cd9a508a247bf.glb",
+    "length": 4.897020578384399,
+    "width": 2.435705542564392
+}

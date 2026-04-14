@@ -1,0 +1,95 @@
+{
+    "description_long": "This hospital complex consists of two main rectangular structures, each with multiple stories and a flat roof. The larger building features a series of green, angular roof sections and a mix of brown and beige facade elements, with rows of windows indicating patient rooms and administrative areas. The smaller building is attached or adjacent, with a simpler green roof and a more uniform window arrangement. The exterior walls are primarily brick or concrete, with some sections possibly clad in metal or glass. The overall design is functional, with minimal decorative elements, focusing on accessibility and efficient use of space. There are no visible signs, emergency entrances, or medical symbols on the exterior.",
+    "description": "A multi-story hospital complex with two main rectangular buildings, flat green roofs, and a functional, utilitarian facade with rows of windows.",
+    "description_view_0": "The hospital is seen from an angled side, showing both the larger and smaller buildings, with green roofs and rows of windows visible.",
+    "description_view_1": "A top-down view highlights the flat green roofs and the layout of the two main structures, revealing the angular roof sections on the larger building.",
+    "description_view_2": "The opposite angled side view displays the same two buildings, emphasizing the length of the larger structure and the window arrangements.",
+    "description_view_3": "A direct end view shows the front facades, with the main entrance area and the uniform window rows on both buildings.",
+    "category": "hospital",
+    "height": 12,
+    "max_dimension": 60,
+    "materials": [
+        "concrete",
+        "brick",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 1800000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "green",
+        "beige",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 8,
+    "asset_composition_type": "group",
+    "attribute_hospital_signage": false,
+    "attribute_emergency_entrance": false,
+    "attribute_ambulance_bay": false,
+    "attribute_medical_cross_symbol": false,
+    "attribute_architectural_style": "utilitarian",
+    "uid": "d0d969e4dcef4f55bca3a6d98753f52f",
+    "near_synsets": {
+        "medical_building.n.01": 0.49518699887321216,
+        "hospital.n.01": 0.5288654814763767,
+        "medical_center.n.01": 0.5386912579153362,
+        "hospital.n.02": 0.5439703576595057,
+        "building_complex.n.01": 0.5538142944161721
+    },
+    "synset": "hospital.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d0d969e4dcef4f55bca3a6d98753f52f",
+        "creator_username": "cfletche",
+        "creator_display_name": "cfletche",
+        "creator_profile_url": "https://sketchfab.com/cfletche"
+    },
+    "filename": "std_d0d969e4dcef4f55bca3a6d98753f52f.glb",
+    "length": 73.7332878112793,
+    "width": 26.169201850891113
+}

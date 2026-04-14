@@ -1,0 +1,94 @@
+{
+    "description_long": "This kiosk is a compact, rectangular structure set on a square base with bold, alternating black and white stripes that create a visually striking pattern. The main body of the kiosk is boxy and features a metallic, grid-like texture on its exterior surfaces, giving it an industrial and modern appearance. The top of the kiosk has a partially open, grated section, possibly for ventilation or as a serving window, and the front includes a recessed area that could function as a counter or service hatch. The base extends beyond the kiosk itself, forming a platform with geometric, stepped patterns that add depth and visual interest. There are no visible windows or doors, and the structure appears solid except for the open top section. The overall design is minimalist with a focus on sharp lines and high-contrast surfaces.",
+    "description": "A modern, boxy kiosk with a metallic grid exterior, set on a bold black-and-white striped platform. Features a partially open top and a recessed front counter area.",
+    "description_view_0": "Front view shows the recessed counter area and the open, grated top section, with the striped platform extending outward.",
+    "description_view_1": "Side view highlights the solid, metallic grid texture and the stepped, geometric pattern of the platform.",
+    "description_view_2": "Rear view displays the closed back of the kiosk and the continuation of the striped platform.",
+    "description_view_3": "Opposite side view reveals the solid side wall and the open top, with the platform's angular pattern visible.",
+    "category": "kiosk",
+    "height": 2.5,
+    "max_dimension": 5.0,
+    "materials": [
+        "metal",
+        "concrete",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.1
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "serving"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "counter",
+        "grated top section"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "white",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.4,
+        0.4,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "glossy",
+    "reflectivity": 0.6,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "none",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "none",
+    "attribute_roof_design": "flat roof with a grated, open section; metallic material; no overhangs or decorative elements",
+    "attribute_architectural_style": "modern industrial with minimalist influences",
+    "uid": "70be5e4a8b394b0cb7fde1f0a007d3b1",
+    "near_synsets": {
+        "booth.n.02": 0.5273995232168194,
+        "counter.n.01": 0.5593399092376679,
+        "telephone_booth.n.01": 0.5637484019862402,
+        "meat_counter.n.01": 0.5659993595548951,
+        "shopfront.n.01": 0.5697663831621004
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/70be5e4a8b394b0cb7fde1f0a007d3b1",
+        "creator_username": "johnbel",
+        "creator_display_name": "johnbel",
+        "creator_profile_url": "https://sketchfab.com/johnbel"
+    },
+    "filename": "std_70be5e4a8b394b0cb7fde1f0a007d3b1.glb",
+    "length": 9.950243949890137,
+    "width": 9.950241088867188
+}

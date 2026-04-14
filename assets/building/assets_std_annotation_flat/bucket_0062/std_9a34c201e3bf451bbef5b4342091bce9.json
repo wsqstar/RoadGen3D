@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a compact quadcopter drone with a striking black and purple color scheme, featuring a lightweight, open-frame chassis. The drone is equipped with four large rotors, each mounted on extended arms that provide stability and lift. The central body houses a cylindrical component at the front, likely for mounting a camera or sensor, and the frame is reinforced with geometric cutouts for reduced weight and increased rigidity. The landing gear consists of fixed, circular pads beneath each rotor arm, providing stable support during takeoff and landing. The overall design is sleek and modern, optimized for agility and speed in urban environments. The visible materials suggest a combination of lightweight metal or carbon fiber and plastic, with a glossy finish.",
+    "description": "A sleek, black and purple quadcopter drone with four large rotors, a lightweight open-frame body, and fixed circular landing pads. The design is modern and optimized for urban agility.",
+    "description_view_0": "Front-top view showing the four rotors, open-frame body, and circular landing pads, with the cylindrical front component partially visible.",
+    "description_view_1": "Direct front view highlighting the cylindrical front component, symmetrical rotor arms, and the geometric cutouts in the frame.",
+    "description_view_2": "Rear-top view mirroring the front, with the open-frame structure and landing pads visible, but the cylindrical front component less prominent.",
+    "description_view_3": "Direct rear view showing the symmetry of the frame and rotor arms, with the central body and landing gear clearly visible.",
+    "category": "drone",
+    "height": 0.12,
+    "max_dimension": 0.45,
+    "materials": [
+        "carbon fiber",
+        "plastic",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.1
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotor",
+        "landing gear",
+        "camera mount",
+        "battery compartment"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "purple"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.55,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 4,
+    "attribute_rotor_configuration": "quadcopter X",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": true,
+    "attribute_propeller_guard_presence": false,
+    "uid": "9a34c201e3bf451bbef5b4342091bce9",
+    "near_synsets": {
+        "drone.n.04": 0.5379614034863187,
+        "single-rotor_helicopter.n.01": 0.5666658150279531,
+        "orthopter.n.01": 0.5714799987123623,
+        "rotor.n.03": 0.5778001689803485,
+        "helicopter.n.01": 0.5797417884896414,
+        "monotone.n.01": -1000.0,
+        "drone.n.05": -1000.0,
+        "drone.n.01": -1000.0,
+        "dawdler.n.01": -1000.0
+    },
+    "synset": "drone.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9a34c201e3bf451bbef5b4342091bce9",
+        "creator_username": "jostin.ninamango",
+        "creator_display_name": "jostin.ninamango",
+        "creator_profile_url": "https://sketchfab.com/jostin.ninamango"
+    },
+    "filename": "std_9a34c201e3bf451bbef5b4342091bce9.glb",
+    "length": 0.24552522599697113,
+    "width": 0.2711990028619766
+}

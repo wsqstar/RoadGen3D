@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a flowering plant with long, spiky green leaves that have serrated edges and a waxy texture. At the center, a prominent inflorescence emerges, featuring a cluster of narrow, pointed petals in a vibrant orange-red hue. The leaves radiate outward from the base, creating a rosette pattern, while the flower spike rises above the foliage. The plant appears to be a type of bromeliad or similar tropical species, often found in urban parks or landscaped gardens. The stem is visible and supports both the leaves and the flower spike. The overall structure is airy, with gaps between the leaves and the flower, giving it a light and delicate appearance.",
+    "description": "A spiky-leaved plant with a central orange-red flower spike, surrounded by green, serrated leaves in a rosette pattern.",
+    "description_view_0": "Front view shows the central orange-red flower spike clearly, with green serrated leaves radiating outward.",
+    "description_view_1": "Side view highlights the length and curvature of the leaves, with the flower spike visible to the left.",
+    "description_view_2": "Rear view focuses on the dense arrangement of leaves, with the flower spike partially obscured.",
+    "description_view_3": "Opposite side view shows the flower spike extending outward, with leaves arching around it.",
+    "category": "flower",
+    "height": 0.45,
+    "max_dimension": 0.55,
+    "materials": [
+        "plant_fiber",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 0.6,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 3,
+    "movable": true,
+    "required_force": 6,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pluckable",
+        "cuttable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "flower spike",
+        "leaves",
+        "stem"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "green",
+        "orange",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.38,
+    "youngs_modulus": 20,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_petal_arrangement": "The petals are arranged in a dense, radial cluster forming a spike-like inflorescence, with each petal narrow and pointed, radiating outward from the central axis. There is a clear whorled pattern with overlapping layers.",
+    "attribute_number_of_petals": 18,
+    "attribute_stem_presence": true,
+    "attribute_leaf_shape": "lanceolate",
+    "attribute_flower_location": "terminal",
+    "uid": "2f1f86de8f704f25a5491af865c50a05",
+    "near_synsets": {
+        "spike.n.04": 0.501363018416946,
+        "texas_purple_spike.n.01": 0.5033350423622641,
+        "iris.n.01": 0.510176387452097,
+        "cockscomb.n.01": 0.5105852440839849,
+        "epipactis_helleborine.n.01": 0.5107939106462132,
+        "flower.n.02": -1000.0,
+        "flower.n.01": -1000.0,
+        "flower.n.03": -1000.0
+    },
+    "synset": "flower.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2f1f86de8f704f25a5491af865c50a05",
+        "creator_username": "marcelo.torres.vega",
+        "creator_display_name": "marcelo.torres.vega",
+        "creator_profile_url": "https://sketchfab.com/marcelo.torres.vega"
+    },
+    "filename": "std_2f1f86de8f704f25a5491af865c50a05.glb",
+    "length": 0.5768360197544098,
+    "width": 0.49265316128730774
+}

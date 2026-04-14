@@ -1,0 +1,99 @@
+{
+    "description_long": "This shotgun features a robust, industrial design with a combination of matte black metal and polished wood elements. The receiver and barrel assembly are constructed from dark metal, with visible mechanical details such as screws, levers, and a prominent sighting mechanism on top. The stock and foregrip are made of wood, displaying a rich brown color and a smooth, slightly glossy finish. The shotgun has a lever-action mechanism, with a large, curved lever loop beneath the receiver for cycling the action. The trigger guard is rounded and substantial, providing ample space for gloved fingers. Overall, the weapon exudes a rugged, utilitarian aesthetic suitable for urban environments.",
+    "description": "A rugged lever-action shotgun with a black metal receiver and barrel, complemented by a polished wooden stock and foregrip. It features a prominent lever loop and a rounded trigger guard.",
+    "description_view_0": "Side view showing the full length of the shotgun, highlighting the wooden stock, metal receiver, and lever-action mechanism.",
+    "description_view_1": "Front-on view emphasizing the barrel opening, sight, and the rounded end of the wooden stock.",
+    "description_view_2": "Opposite side view displaying the same key features as view 0, with additional detail on the receiver and lever.",
+    "description_view_3": "Rear view focusing on the butt of the wooden stock and the alignment of the barrel and receiver.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.95,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 35,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "aimable",
+        "cockable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "lever",
+        "trigger",
+        "trigger guard",
+        "barrel",
+        "sight",
+        "foregrip"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, no visible ribbing or venting, standard barrel length",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "lever-action",
+    "attribute_presence_of_a_pump_or_lever": "lever",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with a smooth contour and no finger grooves",
+    "uid": "0980fc736f064ce2b5c185f3e047cd87",
+    "near_synsets": {
+        "pump_action.n.01": 0.5055626390014607,
+        "gun_trigger.n.01": 0.5082297090788732,
+        "sawed-off_shotgun.n.01": 0.521566261141823,
+        "shotgun.n.01": 0.525694921555964,
+        "shotgun_shell.n.01": 0.5430498610013026
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0980fc736f064ce2b5c185f3e047cd87",
+        "creator_username": "holgcool",
+        "creator_display_name": "holgcool",
+        "creator_profile_url": "https://sketchfab.com/holgcool"
+    },
+    "filename": "std_0980fc736f064ce2b5c185f3e047cd87.glb",
+    "length": 0.8590056300163269,
+    "width": 0.08289609104394913
+}

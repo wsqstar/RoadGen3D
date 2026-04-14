@@ -1,0 +1,115 @@
+{
+    "description_long": "This is a fenced urban playground featuring a variety of colorful play structures arranged on a dark, flat surface. The playground includes a multi-level wooden play tower with a slide, a set of swings, a roundabout, a seesaw, a climbing frame, and several spring riders shaped like animals or vehicles. The perimeter is enclosed by a metal fence, providing safety and clear boundaries. The play equipment is constructed from a mix of metal, plastic, and wood, with bright primary colors for visual appeal. The layout is open, allowing for easy supervision and movement between structures. There are no visible shade structures or covered areas within the playground.",
+    "description": "A fenced urban playground with a wooden play tower, swings, roundabout, seesaw, climbing frame, and spring riders, all in bright colors on a dark surface.",
+    "description_view_0": "This view shows the playground from the long side, highlighting the roundabout, swing set, seesaw, and the play tower with slide at the far end.",
+    "description_view_1": "From this angle, the play tower with slide is prominent in the foreground, with the climbing frame and roundabout visible in the background.",
+    "description_view_2": "This view presents the playground from the opposite long side, with the play tower and spring riders on the left, and the roundabout and seesaw on the right.",
+    "description_view_3": "Here, the climbing frame and roundabout are in the foreground, while the play tower and slide are positioned at the back left.",
+    "category": "playground",
+    "height": 3.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "metal",
+        "plastic",
+        "wood",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "slideable",
+        "swingable",
+        "rotatable",
+        "seesawable",
+        "rideable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "slide",
+        "swing seat",
+        "seesaw plank",
+        "roundabout platform",
+        "climbing bars",
+        "spring rider",
+        "ladder",
+        "steps"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "red",
+        "yellow",
+        "green",
+        "blue",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.45,
+        0.15,
+        0.1,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.15,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_playground_equipment_type": "multi-play structure, swing set, roundabout, seesaw, climbing frame, spring riders",
+    "attribute_presence_of_safety_barriers": true,
+    "attribute_number_of_play_structures": 6,
+    "attribute_presence_of_shade_structures": false,
+    "attribute_architectural_style": "traditional",
+    "uid": "11d6c39627f0491895cf2f776949ed6a",
+    "near_synsets": {
+        "playground.n.02": 0.47365701411283956,
+        "jungle_gym.n.01": 0.5297545596208494,
+        "climbing_frame.n.01": 0.5377321312123492,
+        "schoolyard.n.01": 0.5658251906731351,
+        "slide.n.04": 0.5693927014831116,
+        "resort_area.n.01": -1000.0
+    },
+    "synset": "playground.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/11d6c39627f0491895cf2f776949ed6a",
+        "creator_username": "rhcreations",
+        "creator_display_name": "rhcreations",
+        "creator_profile_url": "https://sketchfab.com/rhcreations"
+    },
+    "filename": "std_11d6c39627f0491895cf2f776949ed6a.glb",
+    "length": 19.024930953979492,
+    "width": 25.721065521240234
+}

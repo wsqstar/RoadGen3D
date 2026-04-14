@@ -1,0 +1,111 @@
+{
+    "description_long": "This is a large, heavily-armored military tank with a low, sloped turret and a long main cannon extending from the front. The hull and turret are painted in a green camouflage pattern with red highlights on the barrel, rear, and side panels. The tank features visible caterpillar tracks for all-terrain mobility, and a mounted machine gun is positioned atop the turret. Markings include a white number '808' and a red star insignia on the side, indicating military identification. The vehicle's exterior is constructed from thick, angular armor plating, and various hatches, periscopes, and equipment are visible on the upper surfaces.",
+    "description": "A green, heavily-armored military tank with a long cannon, caterpillar tracks, and visible military markings. Red highlights and a mounted machine gun accent its robust, angular design.",
+    "description_view_0": "Side view showing the full length of the tank, the long main cannon, caterpillar tracks, and visible markings including '808' and a red star.",
+    "description_view_1": "Front view highlighting the sloped armor, the main cannon facing forward, and the width of the tracks.",
+    "description_view_2": "Opposite side view with similar features to view 0, but the mounted machine gun and turret details are more visible.",
+    "description_view_3": "Rear view showing the back armor, engine grilles, and red rear panel, with the cannon extending away from the viewer.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "machine gun",
+        "periscope",
+        "track",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "red",
+        "black",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.08,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large main cannon mounted on the turret front, one machine gun mount on top of the turret.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped steel armor plating on the hull and turret; reinforced front and side panels are visible.",
+    "attribute_camouflage_pattern": "Green camouflage with subtle, irregular lighter and darker green patches and solid red highlights on the barrel, rear, and side panels.",
+    "attribute_military_markings": "White number '808' and red star insignia on the side of the hull.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "8a6be7c6e12e4e2f95a8a58a7c3dc466",
+    "near_synsets": {
+        "tank.n.01": 0.4475129025269035,
+        "military_vehicle.n.01": 0.4828325968169472,
+        "armored_car.n.02": 0.505991908735281,
+        "reconnaissance_vehicle.n.01": 0.5132426270355227,
+        "assault_gun.n.02": 0.5249029598533665,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8a6be7c6e12e4e2f95a8a58a7c3dc466",
+        "creator_username": "Detroyt",
+        "creator_display_name": "Detroyt",
+        "creator_profile_url": "https://sketchfab.com/Detroyt"
+    },
+    "filename": "std_8a6be7c6e12e4e2f95a8a58a7c3dc466.glb",
+    "length": 4.382715940475464,
+    "width": 1.957310438156128
+}

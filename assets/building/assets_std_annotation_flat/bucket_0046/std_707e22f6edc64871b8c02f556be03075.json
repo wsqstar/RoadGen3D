@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a large, four-engine propeller-driven airplane with a high-wing configuration and a robust, utilitarian design. The fuselage is predominantly white with blue and gray striping along the sides, and the tail features a flag insignia. The wings are straight and mounted high on the fuselage, each supporting two turboprop engines with visible propellers. The tail section is conventional, with a single vertical stabilizer and horizontal stabilizers extending from either side. The cockpit is located at the forward end of the fuselage, featuring multiple windows for visibility. The landing gear appears to be a tricycle configuration, with the main gear under the wings and a nose gear beneath the cockpit.",
+    "description": "A large, white, four-engine turboprop airplane with high-mounted straight wings, blue and gray striping, and a conventional tail. The cockpit is forward-mounted with multiple windows, and the landing gear is tricycle type.",
+    "description_view_0": "Side view showing the full length of the fuselage, high-mounted wings with four propeller engines, and the tail with flag insignia.",
+    "description_view_1": "Front view highlighting the broad wingspan, four propeller engines, and the cockpit windows at the nose.",
+    "description_view_2": "Opposite side view mirroring view 0, showing the high-wing configuration, engine placement, and tail details.",
+    "description_view_3": "Top-down view displaying the straight wings, engine arrangement, and the overall planform of the airplane.",
+    "category": "airplane",
+    "height": 11.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.8,
+        0.05,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 70000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "cockpit controls",
+        "landing gear",
+        "propeller",
+        "windows"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "blue",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 15.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "High-wing, straight wings with no visible winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "Four turboprop engines mounted on the wings, two per side.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "Tricycle landing gear with two main gear units and a single nose gear.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with multiple windows, likely multi-seat.",
+    "uid": "707e22f6edc64871b8c02f556be03075",
+    "near_synsets": {
+        "airplane.n.01": 0.4794693578836779,
+        "propjet.n.01": 0.47968187643424337,
+        "propeller_plane.n.01": 0.5005719803874247,
+        "jet.n.01": 0.524069878917974,
+        "aircraft.n.01": 0.5285588504775477
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/707e22f6edc64871b8c02f556be03075",
+        "creator_username": "helijah",
+        "creator_display_name": "helijah",
+        "creator_profile_url": "https://sketchfab.com/helijah"
+    },
+    "filename": "std_707e22f6edc64871b8c02f556be03075.glb",
+    "length": 34.71747016906738,
+    "width": 39.85077667236328
+}

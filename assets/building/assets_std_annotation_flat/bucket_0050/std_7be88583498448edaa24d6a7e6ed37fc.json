@@ -1,0 +1,96 @@
+{
+    "description_long": "This humanoid robot features a robust, armored design with a metallic, greenish-tinted torso and limbs, accented by dark, matte-black plating on its joints, feet, and head. Its head is dome-shaped with a cross-like indentation, lacking any visible facial features, and is flanked by two cylindrical protrusions that may serve as weapon mounts or sensors. The arms are heavily armored, with the right arm ending in a large, multi-barreled rotary cannon and the left arm equipped with a broad, axe-like blade. The legs are thick and jointed, terminating in wide, clawed feet designed for stability and traction. The robot's overall build suggests a focus on strength and combat, with articulated joints at the shoulders, elbows, hips, and knees for a wide range of motion. The surface finish is predominantly matte with some subtle gloss, and the construction appears to be primarily metal, likely steel or a similar alloy.",
+    "description": "A heavily armored humanoid robot with a greenish metallic body, black plating, a dome-shaped head, and weaponized arms featuring a rotary cannon and axe blade.",
+    "description_view_0": "Side view showing the robot's profile, highlighting the rotary cannon on the right arm and the axe blade on the left, as well as the thick, jointed legs and dome-shaped head.",
+    "description_view_1": "Front view displaying the symmetrical build, dome head with cross indentation, broad chest, and both weaponized arms clearly visible.",
+    "description_view_2": "Opposite side view emphasizing the axe blade on the left arm and the robust leg structure, with the head and torso profile visible.",
+    "description_view_3": "Rear-angled front view showing the back of the dome head, the armored plating on the limbs, and the clawed feet, with both arms and weapons in partial view.",
+    "category": "humanoid robot",
+    "height": 2.2,
+    "max_dimension": 2.4,
+    "materials": [
+        "steel",
+        "composite polymer",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 4200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pressable",
+        "rotatable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotary cannon",
+        "axe blade",
+        "arm joints",
+        "leg joints",
+        "head"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both legs slightly apart, arms bent at the elbows and positioned forward, head facing straight ahead, and torso upright.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated metallic and composite armor panels with a utilitarian, industrial appearance.",
+    "attribute_facial_features": "No visible facial features; the head is a smooth dome with a cross-shaped indentation and no eyes, mouth, or expressive elements.",
+    "attribute_limb_articulation": "Arms and legs have visible hinge and rotary joints at the shoulders, elbows, hips, and knees, allowing for a wide range of motion; limbs appear rigid and robust.",
+    "attribute_presence_of_sensors": "None visible",
+    "uid": "7be88583498448edaa24d6a7e6ed37fc",
+    "near_synsets": {
+        "android.n.01": 0.5512859602550231,
+        "cyborg.n.01": 0.5531663823369218,
+        "robotics_equipment.n.01": 0.5587623272311261,
+        "automaton.n.02": 0.5614833518845973,
+        "helmet.n.01": 0.5889888188139959
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7be88583498448edaa24d6a7e6ed37fc",
+        "creator_username": "FacundoGerboles",
+        "creator_display_name": "FacundoGerboles",
+        "creator_profile_url": "https://sketchfab.com/FacundoGerboles"
+    },
+    "filename": "std_7be88583498448edaa24d6a7e6ed37fc.glb",
+    "length": 1.5199182033538818,
+    "width": 1.5421559810638428
+}

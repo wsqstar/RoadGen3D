@@ -1,0 +1,90 @@
+{
+    "description_long": "This is a modern windmill, commonly known as a wind turbine, featuring a tall, cylindrical tubular tower with a smooth metallic finish. At the top, a streamlined nacelle houses the generator and gearbox, from which three long, slender blades extend outward in a horizontal-axis configuration. The blades are slightly tapered and have red markings near their tips for visibility and safety. The structure is predominantly gray, with subtle red accents on both the tower and the blades. The overall design is engineered for efficiency and durability, suitable for urban or suburban environments where renewable energy generation is desired. The windmill stands as a prominent, fixed installation, designed to harness wind energy and convert it into electricity.",
+    "description": "A tall, gray windmill with three long blades and a streamlined nacelle atop a tubular tower, featuring red safety markings. The structure is sleek and modern, built for efficient wind energy generation.",
+    "description_view_0": "Side view showing the slender tower and the profile of the nacelle with one blade edge-on.",
+    "description_view_1": "Frontal view displaying all three blades radiating from the nacelle and the full height of the tower.",
+    "description_view_2": "Opposite side view, similar to view 0, highlighting the blade profile and tower alignment.",
+    "description_view_3": "Rear view showing the back of the nacelle and the three blades extending outward.",
+    "category": "windmill",
+    "height": 45.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "steel",
+        "composite",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 65000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "blade",
+        "nacelle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_blades": 3,
+    "attribute_blade_orientation": "horizontal-axis",
+    "attribute_tower_structure_type": "tubular",
+    "attribute_presence_of_nacelle": true,
+    "attribute_mounting_location": "ground-mounted",
+    "uid": "4feb15af7b554c16b88bf9cbe179558b",
+    "near_synsets": {
+        "windmill.n.01": 0.46094701601493354,
+        "windmill.n.02": 0.47524128806723626,
+        "wind_turbine.n.01": 0.49932555019895525,
+        "wind_farm.n.01": 0.5179249554263875,
+        "wind_generation.n.01": 0.5397166312660289
+    },
+    "synset": "windmill.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4feb15af7b554c16b88bf9cbe179558b",
+        "creator_username": "skettch",
+        "creator_display_name": "Sket_h",
+        "creator_profile_url": "https://sketchfab.com/skettch"
+    },
+    "filename": "std_4feb15af7b554c16b88bf9cbe179558b.glb",
+    "length": 6.3342955112457275,
+    "width": 26.639649391174316
+}

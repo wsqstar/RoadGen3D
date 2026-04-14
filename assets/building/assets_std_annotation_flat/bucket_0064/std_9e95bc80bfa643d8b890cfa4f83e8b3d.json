@@ -1,0 +1,104 @@
+{
+    "description_long": "This humanoid robot features a boxy, industrial design with a predominantly metallic body and visible mechanical joints. Its torso is a rectangular unit with orange and black panels, and the limbs are segmented, with cylindrical upper and lower arms and legs, each connected by robust joints. The head is compact and angular, with what appears to be a sensor or camera module on the front, and the robot's hands and feet are blocky, suggesting durability and stability. The robot's exterior shows signs of wear, with scuffed paint and exposed metal, indicating it is built for rugged urban environments. The overall construction is utilitarian, with exposed bolts and mechanical components, emphasizing function over aesthetics. The robot's limbs are currently detached and spaced apart, revealing internal connectors and joint mechanisms.",
+    "description": "A rugged, industrial humanoid robot with a boxy orange and black body, segmented limbs, and visible mechanical joints. Its design is utilitarian, with exposed bolts and signs of wear.",
+    "description_view_0": "Front view showing the robot's rectangular torso, compact head, and blocky arms and legs, all separated and spaced apart.",
+    "description_view_1": "Angled top-down view highlighting the robot's head, torso, and limbs scattered outward, revealing more of the upper surfaces and internal connectors.",
+    "description_view_2": "Rear view with the robot's back panel visible, limbs extended outward, and the head facing away, showing the back of the head and legs.",
+    "description_view_3": "Angled rear-side view displaying the robot's back, side of the torso, and the arrangement of detached limbs, emphasizing the mechanical joints.",
+    "category": "humanoid robot",
+    "height": 1.6,
+    "max_dimension": 2.2,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.05,
+        0.07,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head",
+        "arm",
+        "leg",
+        "hand",
+        "foot",
+        "joint",
+        "sensor module",
+        "panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "black",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.4,
+        0.35,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is in a disassembled pose with its head, arms, and legs separated from the torso and spaced outward, exposing internal connectors and joints. The torso remains upright, while the limbs are positioned around it.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated metal and plastic panels with visible bolts and mechanical details. No decorative elements or coverings are present.",
+    "attribute_facial_features": "The face consists of a compact, angular head with a prominent sensor or camera module on the front. There are no visible eyes, mouth, or expressive features; the design is functional and minimal.",
+    "attribute_limb_articulation": "The robot has articulated arms and legs with visible hinge and rotary joints at the shoulders, elbows, hips, and knees. The hands and feet are blocky, and the limbs appear to allow for a moderate range of motion, though they are currently detached.",
+    "attribute_presence_of_sensors": "A sensor or camera module is visible on the front of the head; no other sensors are clearly visible.",
+    "uid": "9e95bc80bfa643d8b890cfa4f83e8b3d",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5324502832508022,
+        "android.n.01": 0.535102975272072,
+        "cyborg.n.01": 0.5432482394996112,
+        "robotics.n.01": 0.564072658579471,
+        "automaton.n.02": 0.5680451259696662
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9e95bc80bfa643d8b890cfa4f83e8b3d",
+        "creator_username": "milinam2002",
+        "creator_display_name": "Milin Andrei",
+        "creator_profile_url": "https://sketchfab.com/milinam2002"
+    },
+    "filename": "std_9e95bc80bfa643d8b890cfa4f83e8b3d.glb",
+    "length": 3.3974825143814087,
+    "width": 5.177595615386963
+}

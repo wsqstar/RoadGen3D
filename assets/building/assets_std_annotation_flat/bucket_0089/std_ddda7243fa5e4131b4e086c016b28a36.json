@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a large, industrial-style rifle mounted on a mechanical base, reminiscent of a steampunk or retro-futuristic artillery piece. The main body is constructed from dark metal with bronze and copper accents, featuring a long, cylindrical barrel and a secondary tube mounted above it, possibly for targeting or stabilization. The base is robust and square, with visible gears and mechanical linkages that suggest the rifle can be rotated and elevated for aiming. The mounting includes several bolts, brackets, and adjustment wheels, giving it a heavy-duty, engineered appearance. The surface is worn and slightly weathered, with metallic highlights and patina, indicating frequent use or exposure to the elements. This rifle is clearly designed for stationary deployment, likely as a defensive emplacement in an urban environment.",
+    "description": "A large, steampunk-inspired mounted rifle with a long barrel, bronze and copper accents, and a gear-driven mechanical base. The object is robust, industrial, and designed for stationary use.",
+    "description_view_0": "Side view showing the full length of the barrel, the secondary tube above, and the detailed gear mechanism at the base.",
+    "description_view_1": "Front view highlighting the circular muzzle, twin tubes, and symmetrical adjustment handles on either side.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the mounting gears and structural supports.",
+    "description_view_3": "Rear view displaying the back of the mounting assembly, mechanical supports, and the base platform.",
+    "category": "rifle",
+    "height": 1.1,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "copper",
+        "brass",
+        "iron",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.08,
+        0.02
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "aimable",
+        "triggerable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel",
+        "mounting gears",
+        "adjustment wheels",
+        "trigger mechanism",
+        "sight tube"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "bronze",
+        "copper",
+        "dark brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "scope",
+    "attribute_muzzle_device": "none",
+    "uid": "ddda7243fa5e4131b4e086c016b28a36",
+    "near_synsets": {
+        "rifle.n.01": 0.5469915921005604,
+        "gatling_gun.n.01": 0.5552189473502414,
+        "machine_gun.n.01": 0.5560803653003208,
+        "light_arm.n.01": 0.5620517555256479,
+        "garand_rifle.n.01": 0.5629513473263996
+    },
+    "synset": "garand_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ddda7243fa5e4131b4e086c016b28a36",
+        "creator_username": "krambulini",
+        "creator_display_name": "krambulini",
+        "creator_profile_url": "https://sketchfab.com/krambulini"
+    },
+    "filename": "std_ddda7243fa5e4131b4e086c016b28a36.glb",
+    "length": 1.4271240234375,
+    "width": 1.0072026252746582
+}

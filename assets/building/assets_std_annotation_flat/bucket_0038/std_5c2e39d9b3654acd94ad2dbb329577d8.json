@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a weathered, vintage sedan resembling a classic Volkswagen Beetle, painted in a faded turquoise with visible rust patches and signs of age. The car features a roof rack made of metal slats, and the words 'FOR SALE' are hand-painted in large, uneven letters on both sides. The headlights are round and slightly fogged, while the front and rear bumpers show signs of wear and oxidation. The windows are slightly tinted, and the car has a compact, rounded body with a rear engine compartment. The wheels are mismatched, with one appearing more rusted than the others, and the rear window displays a 'FOR SALE' sign.",
+    "description": "A weathered, turquoise vintage sedan with rust patches, roof rack, and 'FOR SALE' signs on both sides and rear window.",
+    "description_view_0": "Left side view showing the 'FOR SALE' sign, roof rack, and rusted details along the body and wheels.",
+    "description_view_1": "Front view highlighting the rounded hood, fogged headlights, and visible rust streaks on the bonnet.",
+    "description_view_2": "Right side view with another 'FOR SALE' sign, mismatched wheels, and more visible rust on the fender.",
+    "description_view_3": "Rear view showing the rear window 'FOR SALE' sign, license plate, and aged bumper.",
+    "category": "sedan",
+    "height": 1.5,
+    "max_dimension": 4.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.05,
+        0.05,
+        0.02
+    ],
+    "mass": 900,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "roof rack",
+        "trunk",
+        "hood",
+        "headlight",
+        "license plate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "turquoise",
+        "rust brown",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_car_manufacturer": "Volkswagen",
+    "attribute_car_model": "Beetle",
+    "attribute_number_of_doors": 2,
+    "attribute_license_plate": "Rear license plate present, black with yellow text, unreadable details",
+    "attribute_wheel_design": "Simple steel wheels, one rusted, with basic circular hubcaps and no visible spokes",
+    "uid": "5c2e39d9b3654acd94ad2dbb329577d8",
+    "near_synsets": {
+        "sedan.n.01": 0.5521178114606534,
+        "car_window.n.01": 0.5556492205827044,
+        "used-car.n.01": 0.563067916662662,
+        "used-car_lot.n.01": 0.574919967356718,
+        "van.n.05": 0.577030813691196,
+        "sedan.n.02": -1000.0
+    },
+    "synset": "sedan.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5c2e39d9b3654acd94ad2dbb329577d8",
+        "creator_username": "les83machines",
+        "creator_display_name": "les83machines",
+        "creator_profile_url": "https://sketchfab.com/les83machines"
+    },
+    "filename": "std_5c2e39d9b3654acd94ad2dbb329577d8.glb",
+    "length": 3.5727906227111816,
+    "width": 1.8485590815544128
+}

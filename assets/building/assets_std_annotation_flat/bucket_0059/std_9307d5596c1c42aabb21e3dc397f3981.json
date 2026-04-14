@@ -1,0 +1,90 @@
+{
+    "description_long": "This crustacean features a robust, segmented exoskeleton with a reddish-brown coloration and lighter, almost white, highlights along its dorsal ridges. Its body is arched and supported by multiple sturdy legs, each ending in pointed tips, giving it a strong, grounded appearance. The anterior end is broad and shield-like, tapering towards the rear where several long, whip-like appendages extend outward, suggesting specialized sensory or defensive functions. The surface of the exoskeleton appears textured, with visible ridges and segmentations, and the legs are thick and muscular. No prominent claws are visible, but the creature's front is equipped with smaller appendages near the mouth area. The overall form is reminiscent of a large isopod or similar benthic crustacean, adapted for crawling along hard surfaces.",
+    "description": "A large, reddish-brown segmented crustacean with multiple legs and long, trailing appendages at the rear, featuring a textured exoskeleton and no visible claws.",
+    "description_view_0": "Front view shows the broad, shield-like head and the thick, pointed legs extending outward, with the mouth area partially visible.",
+    "description_view_1": "Side view highlights the arched, segmented body and the long, trailing appendages extending from the rear, as well as the robust legs.",
+    "description_view_2": "Rear view emphasizes the numerous long, whip-like appendages and the tapering of the body towards the back.",
+    "description_view_3": "Opposite side view displays the segmentation of the body, the arrangement of the legs, and the trailing appendages from a different angle.",
+    "category": "crustacean",
+    "height": 0.25,
+    "max_dimension": 0.7,
+    "materials": [
+        "chitin",
+        "protein",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "mass": 6.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "legs",
+        "antennae",
+        "tail appendages"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "reddish-brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.56,
+    "youngs_modulus": 4000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_legs": 8,
+    "attribute_presence_of_claws": false,
+    "attribute_body_segmentation": "cephalothorax and abdomen",
+    "attribute_antennae_visibility": true,
+    "attribute_eye_placement": "not visible",
+    "uid": "9307d5596c1c42aabb21e3dc397f3981",
+    "near_synsets": {
+        "crustacean.n.01": 0.41560395293539776,
+        "decapod_crustacean.n.01": 0.44506226718477043,
+        "crab.n.01": 0.4693481361407911,
+        "crayfish.n.03": 0.4755216347649286,
+        "true_lobster.n.01": 0.4805318344043712
+    },
+    "synset": "decapod_crustacean.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9307d5596c1c42aabb21e3dc397f3981",
+        "creator_username": "bbeent",
+        "creator_display_name": "Backbone Entertainment",
+        "creator_profile_url": "https://sketchfab.com/bbeent"
+    },
+    "filename": "std_9307d5596c1c42aabb21e3dc397f3981.glb",
+    "length": 0.8700126707553864,
+    "width": 0.7564495503902435
+}

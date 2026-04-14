@@ -1,0 +1,104 @@
+{
+    "description_long": "This humanoid robot features a robust, military-inspired design with a camouflage-patterned exterior and heavily armored plating. Its upper body is equipped with multiple weapon systems, including dual rotary cannons, missile pods, and articulated arms with mechanical grippers. The legs are thick and jointed, designed for stability and mobility, with large, reinforced feet for traversing rough urban terrain. The torso is broad and houses various mechanical and electronic components, with visible hydraulic pistons and cables. Antennae and sensor arrays protrude from the top, suggesting advanced communication and targeting capabilities. The overall appearance is utilitarian and intimidating, optimized for combat or security roles in urban environments.",
+    "description": "A heavily armored, camouflaged humanoid robot with multiple weapon systems, articulated limbs, and advanced sensors, designed for urban combat or security.",
+    "description_view_0": "Front view shows the robot's broad chest, dual rotary cannons, missile pods, and prominent sensor arrays.",
+    "description_view_1": "Left side view highlights the depth of the torso, the side profile of the weapon systems, and the articulated arm structure.",
+    "description_view_2": "Rear view reveals the back-mounted components, hydraulic systems, and the robust leg construction.",
+    "description_view_3": "Right side view displays the side-mounted weaponry, arm articulation, and the mechanical details of the legs.",
+    "category": "humanoid robot",
+    "height": 2.4,
+    "max_dimension": 2.7,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "plastic",
+        "air",
+        "wiring"
+    ],
+    "materials_composition": [
+        0.55,
+        0.2,
+        0.05,
+        0.08,
+        0.05,
+        0.05,
+        0.02
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 9310,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotary cannon",
+        "missile pod",
+        "antenna",
+        "mechanical gripper",
+        "sensor array",
+        "arm joint",
+        "leg joint"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both legs slightly apart for stability, arms bent at the elbows with weapon systems aimed forward and to the sides, torso facing forward, and head area equipped with sensors and antennae.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated camouflage-patterned armored panels and mechanical coverings.",
+    "attribute_facial_features": "No traditional facial features; the head area is equipped with sensor arrays, antennae, and possibly cameras, but lacks eyes, mouth, or nose.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints, allowing for a wide range of motion; hands are replaced by mechanical grippers, and feet are broad and articulated for stability.",
+    "attribute_presence_of_sensors": "Visible sensors include multiple camera-like devices and antennae on the head and torso, likely for vision, targeting, and communication.",
+    "uid": "7b8738c8b0ed4561814856503a4642fb",
+    "near_synsets": {
+        "cyborg.n.01": 0.5121749925695369,
+        "android.n.01": 0.5172917394898342,
+        "robotics_equipment.n.01": 0.5418472670491876,
+        "automaton.n.02": 0.546608033954414,
+        "armored_car.n.02": 0.5572918239936189
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7b8738c8b0ed4561814856503a4642fb",
+        "creator_username": "SchrisArt",
+        "creator_display_name": "SchrisArt",
+        "creator_profile_url": "https://sketchfab.com/SchrisArt"
+    },
+    "filename": "std_7b8738c8b0ed4561814856503a4642fb.glb",
+    "length": 1.7034311294555664,
+    "width": 1.8804912567138672
+}

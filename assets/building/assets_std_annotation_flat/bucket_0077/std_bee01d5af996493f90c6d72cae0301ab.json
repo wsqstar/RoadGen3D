@@ -1,0 +1,93 @@
+{
+    "description_long": "This kiosk features a two-level structure with a prominent overhanging flat roof and a wraparound balcony on the upper level. The main body is constructed from a dark, textured material, likely concrete or stucco, with white trim accentuating the roof and balcony edges. The front is accessible via a short staircase leading to a gated entry, and the upper level is enclosed by metal railings. The kiosk sits on a square, tiled platform that extends beyond the building's footprint, providing a stable base. There are no visible windows or signage, and the design is clean and modern with geometric lines and minimal ornamentation.",
+    "description": "A modern, two-level kiosk with a flat overhanging roof, wraparound balcony, and gated entry, built from dark concrete and white trim on a tiled platform.",
+    "description_view_0": "Front view showing the staircase, gated entry, and the layered balcony with white trim.",
+    "description_view_1": "Side view highlighting the staircase, metal railings, and the depth of the overhanging roof.",
+    "description_view_2": "Rear view displaying the solid back wall and the layered structure without visible entry points.",
+    "description_view_3": "Opposite side view showing the balcony railings and the structural supports beneath the roof.",
+    "category": "kiosk",
+    "height": 4.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "concrete",
+        "metal",
+        "tile",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "gated",
+        "climbable",
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "gate",
+        "stairs",
+        "railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "beige"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "none",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "single open gated entry at front, no visible doors",
+    "attribute_roof_design": "Flat overhanging roof with white trim, constructed from solid material, no visible skylights or decorative elements",
+    "attribute_architectural_style": "modern minimalist with geometric lines and functional design",
+    "uid": "bee01d5af996493f90c6d72cae0301ab",
+    "near_synsets": {
+        "gallery.n.06": 0.5465322015803977,
+        "booth.n.02": 0.5545092137802812,
+        "balcony.n.02": 0.5580489118720349,
+        "loggia.n.01": 0.5605591965194447,
+        "loge.n.01": 0.5617306253100601
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bee01d5af996493f90c6d72cae0301ab",
+        "creator_username": "stolmark",
+        "creator_display_name": "Stolmark",
+        "creator_profile_url": "https://sketchfab.com/stolmark"
+    },
+    "filename": "std_bee01d5af996493f90c6d72cae0301ab.glb",
+    "length": 6.487124681472778,
+    "width": 7.572517395019531
+}

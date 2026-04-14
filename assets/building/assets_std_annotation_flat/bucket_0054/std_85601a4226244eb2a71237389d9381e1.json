@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a large, classic sailing ship with a wooden hull and three tall masts, each rigged with multiple white sails. The hull is deep and rounded, featuring a dark brown color with blue accents along the waterline. The rigging is extensive, with numerous ropes and spars supporting the sails, and the masts are topped with crow's nests. The bow is pointed and slightly raised, while the stern is rounded and sits lower in the water. There are no visible cabins or superstructure above the main deck, emphasizing the open deck space typical of historical sailing vessels. The ship's overall design suggests it is built for ocean travel, with a robust structure and ample sail area for propulsion.",
+    "description": "A large, classic wooden sailing ship with three masts and multiple white sails, featuring a deep brown hull and extensive rigging. The vessel has a pointed bow, rounded stern, and open deck typical of historical ocean-going ships.",
+    "description_view_0": "Angled side view showing the full length of the ship, three masts with white sails, and the deep brown hull with blue accents.",
+    "description_view_1": "Front view highlighting the pointed bow, symmetrical sail arrangement, and the narrow profile of the hull.",
+    "description_view_2": "Opposite angled side view, similar to view 0, displaying the masts, sails, and hull curvature from the other side.",
+    "description_view_3": "Rear view showing the rounded stern, the alignment of the masts, and the layered sails from behind.",
+    "category": "ship",
+    "height": 18.0,
+    "max_dimension": 45.0,
+    "materials": [
+        "wood",
+        "canvas",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sailable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sails",
+        "masts",
+        "rigging",
+        "deck"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "white",
+        "blue"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a deep, rounded profile, a pointed bow, and a rounded stern. There are no visible keels or bulbous bows, and the hull features blue accents along the waterline.",
+    "attribute_superstructure_layout": "There is no visible superstructure above the main deck; the ship features an open deck layout with three tall masts and extensive rigging.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [],
+    "attribute_registration_markings": "none",
+    "uid": "85601a4226244eb2a71237389d9381e1",
+    "near_synsets": {
+        "bark.n.03": 0.45807443829763234,
+        "sailing_vessel.n.01": 0.4610358335296811,
+        "sailboat.n.01": 0.4806815099592083,
+        "galleon.n.01": 0.4809514439345662,
+        "schooner.n.02": 0.48351100070889796,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/85601a4226244eb2a71237389d9381e1",
+        "creator_username": "nitleks",
+        "creator_display_name": "Nitleks",
+        "creator_profile_url": "https://sketchfab.com/nitleks"
+    },
+    "filename": "std_85601a4226244eb2a71237389d9381e1.glb",
+    "length": 27.094724655151367,
+    "width": 8.526313781738281
+}

@@ -1,0 +1,106 @@
+{
+    "description_long": "This object is a heavily damaged police car with a compact, four-door hatchback design. The exterior is predominantly blackened, with significant burn marks and deformation, especially on the roof and sides, suggesting it has been through a fire or severe accident. The wheels are still attached, but the windows are missing or shattered, and the roof is partially caved in with large holes. There are no visible police markings, insignia, or emergency lights remaining on the surface, likely due to the extensive damage. The car's body panels are dented and warped, and the overall structure appears unstable. The interior is exposed in several areas, revealing a hollow and charred cabin.",
+    "description": "A severely burned and damaged black police car with missing windows, caved-in roof, and no visible police markings or emergency lights.",
+    "description_view_0": "Side view showing the most extensive burn damage, missing windows, and warped doors.",
+    "description_view_1": "Top-down view highlighting the caved-in, partially destroyed roof and exposed interior.",
+    "description_view_2": "Opposite side view with visible dents, missing windows, and less burn damage than the other side.",
+    "description_view_3": "Rear angled view showing the collapsed roof, missing rear window, and damaged rear panel.",
+    "category": "police car",
+    "height": 1.5,
+    "max_dimension": 4.2,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.08,
+        0.1,
+        0.1,
+        0.02,
+        0.05
+    ],
+    "mass": 1350,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 3,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "trunk",
+        "hood"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "yellow-brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_police_markings": "None",
+    "attribute_emergency_lights": "None",
+    "attribute_siren": "Not visible",
+    "attribute_police_insignia": "None",
+    "attribute_license_plate": "None",
+    "uid": "9edb0ab99b844f9a8a7138c63db58e02",
+    "near_synsets": {
+        "panda_car.n.01": 0.534890334205576,
+        "car_window.n.01": 0.5643729272955913,
+        "police_van.n.01": 0.5759535999182125,
+        "cruiser.n.01": 0.6008087856775387,
+        "dashcam.n.01": 0.6017642288905602,
+        "car.n.01": -1000.0,
+        "car.n.03": -1000.0,
+        "car.n.02": -1000.0,
+        "police.n.01": -1000.0,
+        "cable_car.n.01": -1000.0,
+        "car.n.04": -1000.0
+    },
+    "synset": "cruiser.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9edb0ab99b844f9a8a7138c63db58e02",
+        "creator_username": "crystal",
+        "creator_display_name": "crystal",
+        "creator_profile_url": "https://sketchfab.com/crystal"
+    },
+    "filename": "std_9edb0ab99b844f9a8a7138c63db58e02.glb",
+    "length": 2.5719997882843018,
+    "width": 2.7168792486190796
+}

@@ -1,0 +1,103 @@
+{
+    "description_long": "This object is a cluster-style explosive device composed of six cylindrical canisters arranged in a circular pattern and secured together with metal bands and a dark, textured wrap. The canisters are olive drab in color, suggesting a military or improvised origin, and are held in place by metallic brackets and a wire or cable that loops around the circumference. A wooden handle, wrapped in a lighter material for grip, extends downward from the center, ending in a metal cap or possible fuse assembly. The top view reveals the tightly packed arrangement of the canisters, while the sides show the securing mechanisms and the handle's attachment. The overall construction appears robust, with visible seams and fastening points, and the device is designed for manual deployment. No visible digital or analog timer is present, and the device lacks any clear warning labels or hazard symbols.",
+    "description": "A cluster bomb with six olive drab canisters secured by metal bands and a wire, attached to a wooden handle with a metal cap at the base.",
+    "description_view_0": "Front view showing the circular arrangement of six canisters, metal bands, and the wooden handle with grip wrapping.",
+    "description_view_1": "Side view highlighting the securing metal brackets, wire loop, and the handle's attachment to the canister cluster.",
+    "description_view_2": "Top-down view displaying the tightly packed, circular configuration of the six canisters.",
+    "description_view_3": "Angled top view emphasizing the canister arrangement and the handle's connection beneath the cluster.",
+    "category": "bomb",
+    "height": 0.45,
+    "max_dimension": 0.28,
+    "materials": [
+        "metal",
+        "wood",
+        "fabric",
+        "plastic",
+        "explosive_compound",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.18,
+        0.08,
+        0.04,
+        0.22,
+        0.03
+    ],
+    "mass": 5.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "metal cap",
+        "canisters",
+        "wire loop"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive drab",
+        "dark gray",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "group",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The device appears to use a mechanical or percussion-based detonation mechanism, likely initiated by manipulating the handle or metal cap, with a wire loop possibly serving as a safety or arming feature.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": true,
+    "uid": "1e79459e3de849db856c5551850c1bab",
+    "near_synsets": {
+        "cluster_bomb.n.01": 0.4732662444544767,
+        "pipe_bomb.n.01": 0.5052654237758801,
+        "briefcase_bomb.n.01": 0.5258114182840654,
+        "plastic_bomb.n.01": 0.5319483977088296,
+        "bomblet.n.01": 0.5343479834864558,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0,
+        "bomb.n.01": -1000.0
+    },
+    "synset": "bomb.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1e79459e3de849db856c5551850c1bab",
+        "creator_username": "Beta36",
+        "creator_display_name": "Dragonfly",
+        "creator_profile_url": "https://sketchfab.com/Beta36"
+    },
+    "filename": "std_1e79459e3de849db856c5551850c1bab.glb",
+    "length": 0.36255398392677307,
+    "width": 0.4039379358291626
+}

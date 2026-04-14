@@ -1,0 +1,91 @@
+{
+    "description_long": "This object consists of three rectangular, flat segments arranged in a stepped formation, resembling modular sections of a primary road. Each segment features a dark gray surface with two parallel, lighter-colored lines running lengthwise, suggesting lane demarcations. The largest segment is at the base, followed by a medium segment, and a smaller square segment at the top, all aligned along a central axis. The surface appears to be made of asphalt or concrete, with subtle texture variations and slightly worn edges. There are no visible curbs, signage, or lighting fixtures, and the road sections are separated by small gaps. The overall appearance is utilitarian, suitable for urban or suburban environments.",
+    "description": "A set of three flat, rectangular road segments with parallel lane markings and a dark, asphalt-like surface, arranged in a stepped layout. The segments vary in size and are separated by small gaps.",
+    "description_view_0": "Front view showing all three road segments aligned centrally, with the smallest segment at the top and the largest at the bottom.",
+    "description_view_1": "Angled side view revealing the thickness of each segment and the separation between them, with lane markings visible on the surfaces.",
+    "description_view_2": "Rear view displaying the segments from the opposite side, maintaining the stepped arrangement and clear lane markings.",
+    "description_view_3": "Angled view from the other side, highlighting the square segment on the left and the two larger segments to the right.",
+    "category": "road",
+    "height": 0.15,
+    "max_dimension": 8.0,
+    "materials": [
+        "asphalt",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "car"
+    ],
+    "colors": [
+        "dark gray",
+        "light gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_lane_markings": "Two parallel solid light-colored lines per segment, no dashed or special markings, no arrows or turn lanes.",
+    "attribute_signage": "none",
+    "attribute_curb_presence": false,
+    "attribute_lighting_fixtures": "none",
+    "attribute_pedestrian_crossings": "none",
+    "uid": "d42c4932221747a9af29ad20bf85a490",
+    "near_synsets": {
+        "traffic_lane.n.01": 0.5064904650634737,
+        "road_surface.n.01": 0.5065568084806844,
+        "lane.n.02": 0.5100534149435384,
+        "lane.n.01": 0.5138041293505501,
+        "road.n.01": 0.5210489887277665,
+        "road.n.02": -1000.0
+    },
+    "synset": "road.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d42c4932221747a9af29ad20bf85a490",
+        "creator_username": "vxdesigns",
+        "creator_display_name": "VX-Designs",
+        "creator_profile_url": "https://sketchfab.com/vxdesigns"
+    },
+    "filename": "std_d42c4932221747a9af29ad20bf85a490.glb",
+    "length": 19.015772819519043,
+    "width": 17.109098434448242
+}

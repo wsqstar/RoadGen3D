@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a large, old-fashioned sailing ship with a dark wooden hull and three tall masts, each rigged with tattered white sails. The ship features ornate gold detailing at the stern, visible rigging, and a raised quarterdeck at the rear. The deck is cluttered with various nautical equipment, and the sides of the hull display decorative elements and portholes. The bow is pointed and reinforced, while the stern is rounded and adorned with intricate designs. The ship appears weathered, with visible wear on the sails and hull, suggesting a long history at sea. The overall appearance is reminiscent of a classic pirate or galleon ship, with a dramatic and imposing presence.",
+    "description": "A large, weathered wooden sailing ship with three masts, tattered white sails, and ornate gold detailing at the stern. The ship has a dark hull, visible rigging, and a raised quarterdeck.",
+    "description_view_0": "Front view showing the pointed bow, central mast, and tattered sails with rigging extending outward.",
+    "description_view_1": "Side view revealing the full length of the hull, three masts, deck equipment, and decorative elements along the side.",
+    "description_view_2": "Rear view highlighting the rounded stern with ornate gold detailing and the central mast rising above.",
+    "description_view_3": "Opposite side view displaying the hull's length, deck layout, and the arrangement of masts and sails.",
+    "category": "ship",
+    "height": 22.0,
+    "max_dimension": 48.0,
+    "materials": [
+        "wood",
+        "canvas",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.08,
+        0.05
+    ],
+    "mass": 320000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1800000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "steerable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "anchor",
+        "hatch",
+        "rigging",
+        "cannon",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark brown",
+        "white",
+        "gold",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a pointed bow and a rounded, ornate stern. The sides are high and reinforced, with decorative elements and portholes visible. No bulbous bow or keels are clearly visible, but the structure suggests a traditional galleon or frigate design.",
+    "attribute_superstructure_layout": "The superstructure consists of a raised quarterdeck at the stern, a main deck running the length of the ship, and three tall masts. There are no enclosed bridges or cabins visible, but the deck is cluttered with nautical equipment and rigging.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "anchor",
+        "rigging",
+        "cannon",
+        "wheel"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "f7d1489031ce475084e3260a0d0ba289",
+    "near_synsets": {
+        "bark.n.03": 0.4680933619260778,
+        "sailing_vessel.n.01": 0.4840484153256188,
+        "abandoned_ship.n.01": 0.4888284191119097,
+        "galleon.n.01": 0.4921658557082438,
+        "windjammer.n.01": 0.4995565982688656,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f7d1489031ce475084e3260a0d0ba289",
+        "creator_username": "9of9",
+        "creator_display_name": "9of9",
+        "creator_profile_url": "https://sketchfab.com/9of9"
+    },
+    "filename": "std_f7d1489031ce475084e3260a0d0ba289.glb",
+    "length": 26.510905265808105,
+    "width": 13.243491172790527
+}

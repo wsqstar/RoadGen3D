@@ -1,0 +1,104 @@
+{
+    "description_long": "This object is a freight train car with a rectangular, boxy structure and two distinct compartments, each covered by a corrugated metal roof\u2014one blue and one tan. The sides of the car feature multiple triangular reinforcement panels and a central door, typical of cargo or hopper cars used for transporting bulk materials. The undercarriage is equipped with black metal wheels and visible suspension components, indicating it is designed for heavy loads. The exterior is primarily a muted brownish color, with the roofs providing contrasting hues. There are no visible windows, and the doors are located centrally on each side, suggesting access for loading and unloading cargo. The overall construction appears robust, with hard, industrial materials dominating the design.",
+    "description": "A robust, two-compartment freight train car with blue and tan corrugated roofs, brown reinforced sides, and black metal wheels, designed for transporting bulk cargo.",
+    "description_view_0": "Front view showing the end of the train car with stacked horizontal panels and the edge of the tan roof.",
+    "description_view_1": "Side view displaying both compartments, the blue and tan roofs, central doors, and detailed reinforcement panels.",
+    "description_view_2": "Rear view highlighting the end structure, the transition between the tan and blue roofs, and the undercarriage.",
+    "description_view_3": "Opposite side view showing the same two compartments, with the tan roof in the foreground and blue roof behind, plus visible side doors and panels.",
+    "category": "train",
+    "height": 4.2,
+    "max_dimension": 14.0,
+    "materials": [
+        "steel",
+        "paint",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.01,
+        0.02,
+        0.07
+    ],
+    "mass": 32000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "loadable",
+        "unloadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "roof hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "blue",
+        "tan",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "freight train",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "central doors on both sides",
+    "attribute_window_arrangement": "no visible windows",
+    "uid": "e7a38fe05d784df79d64d88bf939670b",
+    "near_synsets": {
+        "freight_car.n.01": 0.46022079370033575,
+        "boxcar.n.01": 0.4746869384643345,
+        "freight_train.n.01": 0.47688006710976216,
+        "coal_car.n.01": 0.47819078451906755,
+        "car_train.n.01": 0.4946294436891044,
+        "train.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "train.n.05": -1000.0,
+        "caravan.n.01": -1000.0,
+        "train.n.04": -1000.0,
+        "gearing.n.01": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e7a38fe05d784df79d64d88bf939670b",
+        "creator_username": "benjamintang2012",
+        "creator_display_name": "benjamintang2012",
+        "creator_profile_url": "https://sketchfab.com/benjamintang2012"
+    },
+    "filename": "std_e7a38fe05d784df79d64d88bf939670b.glb",
+    "length": 15.27377462387085,
+    "width": 3.372586250305176
+}

@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a small, stylized pond set within a grassy, polygonal plot of land. The pond features a gently winding blue water channel bordered by yellowish banks, surrounded by lush green grass. Scattered around the pond are several gray rocks of varying sizes and clusters of low, spiky plants, as well as a few small flowers. A simple wooden sign with two posts stands near the water's edge, adding a touch of human presence. The overall scene is clean and minimalistic, with a focus on natural elements and a clear, open layout. The asset is ideal for placement in parks, gardens, or urban green spaces.",
+    "description": "A small, stylized pond with blue water, grassy banks, rocks, plants, and a wooden sign. The scene is open and natural, suitable for parks or gardens.",
+    "description_view_0": "Front view shows the wooden sign facing forward, with rocks and plants scattered on grassy terrain and the pond visible behind.",
+    "description_view_1": "Side view highlights the winding shape of the pond and the sign's side profile, with more rocks and plants visible along the bank.",
+    "description_view_2": "Rear view centers on the pond's water, with the back of the wooden sign and a clear view of the surrounding rocks and vegetation.",
+    "description_view_3": "Opposite side view shows the pond's curve and the sign from behind, with rocks and plants distributed around the edge.",
+    "category": "pond",
+    "height": 0.6,
+    "max_dimension": 5.0,
+    "materials": [
+        "water",
+        "soil",
+        "grass",
+        "wood",
+        "stone",
+        "air"
+    ],
+    "materials_composition": [
+        0.25,
+        0.25,
+        0.2,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "mass": 3500,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "viewable",
+        "sign_readable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "sign"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "blue",
+        "brown",
+        "gray",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.4,
+        0.25,
+        0.15,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.33,
+    "youngs_modulus": 10000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "scene",
+    "attribute_water_presence": true,
+    "attribute_surrounding_vegetation": [
+        "grass",
+        "bushes",
+        "flowers"
+    ],
+    "attribute_edge_treatment": "The pond is bordered by natural grassy banks with scattered rocks and low plants, creating a soft, organic edge.",
+    "attribute_reflections": false,
+    "attribute_wildlife_activity": [],
+    "uid": "134e93334ed94c908890a32e8ef875e2",
+    "near_synsets": {
+        "fishpond.n.01": 0.5020667186978162,
+        "horsepond.n.01": 0.5535400919445133,
+        "lily_pad.n.01": 0.5557145950248039,
+        "mere.n.01": 0.5635389495247783,
+        "birdbath.n.01": 0.5643033715077568,
+        "pond.n.01": -1000.0
+    },
+    "synset": "pond.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/134e93334ed94c908890a32e8ef875e2",
+        "creator_username": "Selcia",
+        "creator_display_name": "Selcia",
+        "creator_profile_url": "https://sketchfab.com/Selcia"
+    },
+    "filename": "std_134e93334ed94c908890a32e8ef875e2.glb",
+    "length": 3.280963659286499,
+    "width": 3.299036145210266
+}

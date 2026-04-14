@@ -1,0 +1,103 @@
+{
+    "description_long": "This object is a section of standard railway track, featuring two parallel steel rails mounted on a series of evenly spaced wooden sleepers. The rails are metallic and cylindrical, running the full length of the track section, and are fastened securely to the sleepers with visible mounting plates and bolts. The sleepers are rectangular, dark brown, and appear to be made of treated wood, providing structural support and maintaining the gauge between the rails. There is no visible ballast bed beneath the sleepers, and the track is not embedded in any pavement or concrete. The overall construction is robust, designed to support the heavy loads of passing trains or trams. No signage, signals, or additional railway infrastructure is present in this isolated segment.",
+    "description": "A robust railway track segment with two parallel steel rails mounted on dark wooden sleepers, lacking ballast or pavement embedding.",
+    "description_view_0": "Side view showing the full length of the rails and the alignment of the wooden sleepers beneath.",
+    "description_view_1": "End-on view highlighting the parallel spacing of the rails and the rectangular shape of the sleepers.",
+    "description_view_2": "Opposite side view, similar to view 0, displaying the rails and sleepers from the other side.",
+    "description_view_3": "Opposite end-on view, mirroring view 1, showing the rails' parallelism and sleeper arrangement.",
+    "category": "railway track",
+    "height": 0.15,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.4,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "guiding"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "rail",
+        "sleeper",
+        "mounting plate",
+        "bolt"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "train"
+    ],
+    "colors": [
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.55,
+        0.45
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.01,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_parallel_metal_rails": true,
+    "attribute_wooden_or_concrete_sleepers": "wood",
+    "attribute_ballast_bed": false,
+    "attribute_embedded_in_pavement": false,
+    "attribute_railway_crossing_signage": false,
+    "uid": "a4c9fb9522db4bfab119b753297827e7",
+    "near_synsets": {
+        "railroad_bed.n.01": 0.4482903836962271,
+        "track.n.09": 0.4803428437475183,
+        "line.n.14": 0.49874726169348343,
+        "railroad_track.n.01": 0.501639087702606,
+        "track.n.03": 0.5076212675257233,
+        "cut.n.08": -1000.0,
+        "track.n.08": -1000.0,
+        "racetrack.n.01": -1000.0,
+        "railway.n.01": -1000.0,
+        "lead.n.03": -1000.0,
+        "track.n.06": -1000.0,
+        "track.n.07": -1000.0,
+        "path.n.04": -1000.0,
+        "track.n.11": -1000.0,
+        "track.n.10": -1000.0
+    },
+    "synset": "track.n.09",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a4c9fb9522db4bfab119b753297827e7",
+        "creator_username": "evanpritchard",
+        "creator_display_name": "evanpritchard",
+        "creator_profile_url": "https://sketchfab.com/evanpritchard"
+    },
+    "filename": "std_a4c9fb9522db4bfab119b753297827e7.glb",
+    "length": 3.3402557373046875,
+    "width": 1.484844446182251
+}

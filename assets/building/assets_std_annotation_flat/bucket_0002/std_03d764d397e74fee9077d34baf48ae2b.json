@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a modern tactical rifle, featuring a matte black finish and a modular design. It has a collapsible stock at the rear, a pistol grip, and a detachable box magazine located just in front of the trigger guard. The upper receiver includes a carry handle with integrated iron sights, and the handguard is ribbed for improved grip. The barrel is long and slender, ending in a cylindrical suppressor. The overall appearance is utilitarian and robust, suitable for urban tactical scenarios.",
+    "description": "A matte black tactical rifle with a collapsible stock, ribbed handguard, detachable magazine, and a suppressor on the barrel.",
+    "description_view_0": "Front view showing the suppressor and the narrow profile of the barrel.",
+    "description_view_1": "Side view displaying the full length of the rifle, collapsible stock, pistol grip, magazine, and carry handle with iron sights.",
+    "description_view_2": "Rear view highlighting the collapsible stock and the alignment of the barrel and suppressor.",
+    "description_view_3": "Opposite side view showing the same features as view 1, with details of the handguard and magazine.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 0.9,
+    "materials": [
+        "steel",
+        "polymer",
+        "aluminum",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "pistol grip",
+        "magazine",
+        "trigger",
+        "safety selector",
+        "charging handle",
+        "handguard",
+        "sight",
+        "suppressor"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "collapsible",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "suppressor",
+    "uid": "03d764d397e74fee9077d34baf48ae2b",
+    "near_synsets": {
+        "carbine.n.01": 0.5294989779894592,
+        "dragunov.n.01": 0.5350169717440161,
+        "garand_rifle.n.01": 0.5436097371326042,
+        "silencer.n.01": 0.5441015270652889,
+        "assault_rifle.n.01": 0.5470641170791457,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/03d764d397e74fee9077d34baf48ae2b",
+        "creator_username": "liitransfield",
+        "creator_display_name": "liitransfield",
+        "creator_profile_url": "https://sketchfab.com/liitransfield"
+    },
+    "filename": "std_03d764d397e74fee9077d34baf48ae2b.glb",
+    "length": 1.0135782957077026,
+    "width": 0.07654914259910583
+}

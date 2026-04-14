@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a heavily armored tracked combat vehicle, featuring a low-profile turret with a long, prominent main cannon extending from the front. The hull is angular and robust, with sloped armor panels designed to deflect incoming projectiles. The vehicle is equipped with a secondary machine gun mounted on top of the turret, as well as two visible radio antennas for communication. The tracks are wide and reinforced, running along the full length of the vehicle's sides, providing stability and traction over rough terrain. The exterior is finished in a green and brown woodland camouflage pattern, with no visible military insignia or numbers.",
+    "description": "A camouflaged, heavily armored tracked combat vehicle with a long main cannon, secondary turret-mounted machine gun, and robust sloped armor.",
+    "description_view_0": "Side view showing the full length of the tracks, the long main cannon, and the turret-mounted machine gun.",
+    "description_view_1": "Front view highlighting the wide, angular hull, sloped armor, and the main cannon pointing directly forward.",
+    "description_view_2": "Opposite side view displaying the tracks, turret, and main cannon, with both antennas visible.",
+    "description_view_3": "Rear view showing the back of the turret, the camouflage pattern, and the vehicle's overall width.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "air",
+        "plastic"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.04,
+        0.04,
+        0.02
+    ],
+    "mass": 48000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1800000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "main cannon",
+        "machine gun",
+        "antenna",
+        "track"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the turret front, one machine gun mounted on top of the turret.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating on the hull and turret; no visible modular or reactive panels.",
+    "attribute_camouflage_pattern": "Woodland camouflage with irregular green, brown, and black patches in a disruptive pattern.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "9d6217a1b897405290044b18c663a330",
+    "near_synsets": {
+        "tank.n.01": 0.45256341792604055,
+        "military_vehicle.n.01": 0.46683765147174466,
+        "armored_car.n.02": 0.4791914201925769,
+        "reconnaissance_vehicle.n.01": 0.480147126957911,
+        "armored_vehicle.n.01": 0.4923767537843594,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9d6217a1b897405290044b18c663a330",
+        "creator_username": "Matheus.Filipe",
+        "creator_display_name": "Matheus.Filipe",
+        "creator_profile_url": "https://sketchfab.com/Matheus.Filipe"
+    },
+    "filename": "std_9d6217a1b897405290044b18c663a330.glb",
+    "length": 5.111274003982544,
+    "width": 2.3028229475021362
+}

@@ -1,0 +1,106 @@
+{
+    "description_long": "This object represents a pedestrian crosswalk integrated into a section of urban roadway. The crosswalk features three wide, yellow rectangular stripes set against a black road surface, providing high visibility for pedestrian safety. Adjacent to the crosswalk is a textured, grid-patterned area resembling a drainage or tactile warning surface, which slopes downward in the center, possibly simulating a curb ramp or drainage channel. Four red-and-white striped bollards are positioned at the corners of the grid-patterned section, likely serving as visual or physical barriers for vehicles. The overall structure is flat and robust, designed to support both pedestrian and vehicular traffic. The materials appear to be primarily asphalt or concrete for the road and crosswalk, with metal or plastic for the bollards.",
+    "description": "A pedestrian crosswalk with three yellow stripes on a black road, next to a sloped, grid-patterned drainage or tactile area with red-and-white bollards.",
+    "description_view_0": "Front view showing the yellow crosswalk stripes and the sloped, grid-patterned area with bollards at the far end.",
+    "description_view_1": "Side view highlighting the length of the crosswalk stripes and the full extent of the grid-patterned drainage area.",
+    "description_view_2": "Rear view focusing on the grid-patterned area and bollards, with the crosswalk stripes visible in the background.",
+    "description_view_3": "Opposite side view showing the crosswalk stripes and the adjacent grid-patterned area with bollards.",
+    "category": "pedestrian crosswalk",
+    "height": 0.15,
+    "max_dimension": 6.0,
+    "materials": [
+        "asphalt",
+        "concrete",
+        "metal",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "crossable",
+        "guidable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bollard"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "bicycle",
+        "stroller",
+        "wheelchair"
+    ],
+    "colors": [
+        "black",
+        "yellow",
+        "gray",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.55,
+        0.15,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_zebra_pattern": false,
+    "attribute_road_markings": [
+        "crosswalk lines"
+    ],
+    "attribute_pedestrian_signage": [],
+    "attribute_curb_ramps": true,
+    "attribute_traffic_signals": [],
+    "uid": "9e42b1befd644966bb89e8347b055bc5",
+    "near_synsets": {
+        "pedestrian_crossing.n.01": 0.45075877994142305,
+        "school_crossing.n.01": 0.5109213652169455,
+        "crossing.n.05": 0.5362636820832721,
+        "walk-through.n.02": 0.5387657236770148,
+        "sidewalk.n.01": 0.5405494809323218
+    },
+    "synset": "pedestrian_crossing.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9e42b1befd644966bb89e8347b055bc5",
+        "creator_username": "s-burov",
+        "creator_display_name": "Sergey Burov",
+        "creator_profile_url": "https://sketchfab.com/s-burov"
+    },
+    "filename": "std_9e42b1befd644966bb89e8347b055bc5.glb",
+    "length": 1.1066193580627441,
+    "width": 1.157141625881195
+}

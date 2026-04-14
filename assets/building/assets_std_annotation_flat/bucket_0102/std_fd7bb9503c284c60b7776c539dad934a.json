@@ -1,0 +1,101 @@
+{
+    "description_long": "This bulldozer features a robust yellow and green body with a large, angular front blade designed for heavy-duty earthmoving tasks. The vehicle is equipped with four oversized, rugged black wheels with yellow rims, providing stability and traction on rough urban terrain. The cabin is partially enclosed with a transparent windshield and protective railings, offering visibility and some operator safety. The rear section includes a green compartment marked with 'OIL' and cylindrical components, likely representing fuel or hydraulic tanks. The front blade is distinctive, with serrated, fork-like prongs for grabbing or pushing debris. The overall design is utilitarian, with exposed mechanical elements and a functional, industrial aesthetic suitable for construction sites or urban maintenance.",
+    "description": "A yellow and green bulldozer with a serrated front blade, large black wheels, and a partially enclosed operator cabin. Its rugged design and visible mechanical parts make it ideal for urban construction tasks.",
+    "description_view_0": "Front view showing the wide, serrated blade and the narrow profile of the cabin behind it.",
+    "description_view_1": "Left side view highlighting the blade's prongs, the large wheels, and the green rear compartment marked 'OIL'.",
+    "description_view_2": "Rear view displaying the green back section, protective railings, and the overall width of the vehicle.",
+    "description_view_3": "Right side view showing the blade, wheels, and cylindrical components on the rear, with clear visibility of the cabin's side window.",
+    "category": "bulldozer",
+    "height": 2.5,
+    "max_dimension": 5.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.12,
+        0.05,
+        0.03
+    ],
+    "mass": 8500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "blade",
+        "wheel",
+        "cabin door",
+        "control lever",
+        "exhaust pipe"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "green",
+        "black",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.55,
+        0.2,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_blade_type": "angle blade; the blade is angled with serrated, fork-like prongs, suitable for pushing and grabbing debris.",
+    "attribute_track_type": "wheeled system; the bulldozer uses four large, rugged wheels instead of traditional tracks, providing mobility on urban surfaces.",
+    "attribute_cabin_design": "The cabin is partially enclosed with a transparent windshield and protective railings, offering moderate operator protection and visibility. Controls are likely accessible from within the cabin, with some comfort features implied by the design.",
+    "attribute_exhaust_placement": "Vertical stack on the right side of the cabin, extending upward.",
+    "attribute_manufacturer_logo": "None visible",
+    "uid": "fd7bb9503c284c60b7776c539dad934a",
+    "near_synsets": {
+        "bulldozer.n.01": 0.44186113366898866,
+        "angledozer.n.01": 0.5200248735484279,
+        "power_shovel.n.01": 0.5390521493773099,
+        "caterpillar.n.02": 0.5480053351084625,
+        "backhoe.n.01": 0.5514845018867863
+    },
+    "synset": "bulldozer.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fd7bb9503c284c60b7776c539dad934a",
+        "creator_username": "Geedtopia",
+        "creator_display_name": "Geedtopia",
+        "creator_profile_url": "https://sketchfab.com/Geedtopia"
+    },
+    "filename": "std_fd7bb9503c284c60b7776c539dad934a.glb",
+    "length": 5.472073554992676,
+    "width": 2.7122281789779663
+}

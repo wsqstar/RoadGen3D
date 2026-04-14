@@ -1,0 +1,101 @@
+{
+    "description_long": "This kiosk is a small, temporary commercial structure with a rectangular footprint, featuring a blue horizontal frame at the top and partially enclosed beige walls. The front side is open, displaying a table draped with a white cloth bearing the 'JANUS' logo, and a translucent panel behind it that serves as a backdrop. A single purple chair is positioned to the right of the table, suggesting a space for an attendant or visitor. The structure appears to be constructed from lightweight materials, likely fabric or plastic panels supported by a metal or plastic frame. The overall design is utilitarian, with minimal decorative elements and a focus on function, suitable for use at events, fairs, or as a temporary information booth.",
+    "description": "A rectangular kiosk with a blue frame, beige walls, an open front, a branded table, and a purple chair, designed for temporary commercial or informational use.",
+    "description_view_0": "Front view showing the open entrance, branded table, translucent backdrop, and purple chair.",
+    "description_view_1": "Rear-side view highlighting the mostly enclosed back and side panels, with the chair partially visible.",
+    "description_view_2": "Back view showing the solid rear panels and the blue frame, with minimal interior detail visible.",
+    "description_view_3": "Angled view showing the open front, table, and partial side enclosure.",
+    "category": "kiosk",
+    "height": 2.2,
+    "max_dimension": 3.0,
+    "materials": [
+        "fabric",
+        "plastic",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.2
+    ],
+    "mass": 80,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 5,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "displayable",
+        "presentable",
+        "sittable",
+        "usable_surface"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "table",
+        "chair",
+        "backdrop panel"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "white",
+        "beige",
+        "blue",
+        "gray",
+        "purple"
+    ],
+    "colors_composition": [
+        0.3,
+        0.3,
+        0.2,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_signage_type": "printed sign on tablecloth at front, logo and text 'JANUS' on translucent backdrop panel",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "single open entryway at front",
+    "attribute_roof_design": "flat open frame roof with blue horizontal beams, no solid covering",
+    "attribute_architectural_style": "utilitarian, temporary event booth style",
+    "uid": "8f31f3a86a9c489e9df0bd571bb7c9af",
+    "near_synsets": {
+        "booth.n.02": 0.5123445675142422,
+        "pop-up.n.03": 0.5439435200002471,
+        "telephone_booth.n.01": 0.5484286180368781,
+        "counter.n.01": 0.552466040670674,
+        "shopfront.n.01": 0.5529292930892222
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8f31f3a86a9c489e9df0bd571bb7c9af",
+        "creator_username": "ruehilton",
+        "creator_display_name": "Rupert Hilton",
+        "creator_profile_url": "https://sketchfab.com/ruehilton"
+    },
+    "filename": "std_8f31f3a86a9c489e9df0bd571bb7c9af.glb",
+    "length": 3.1811270713806152,
+    "width": 4.679951190948486
+}

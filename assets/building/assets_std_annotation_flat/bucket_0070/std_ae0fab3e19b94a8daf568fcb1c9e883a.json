@@ -1,0 +1,94 @@
+{
+    "description_long": "This handcart features a robust wooden frame with an open slat design for the load platform, supported by two large spoked wheels on either side. The cart's sides are reinforced with vertical wooden slats and black metal bands, providing structural integrity and a rustic appearance. The front of the cart extends into two long wooden handles, joined by a curved black metal brace for added strength and ease of pulling. The wheels are rimmed with metal, enhancing durability for urban or rougher terrain. The open-top design allows for easy loading and unloading of goods, making it suitable for transporting items in urban environments such as markets or parks. The overall construction suggests a balance between strength and maneuverability, with ample space for carrying various loads.",
+    "description": "A sturdy wooden handcart with open slat sides, two large spoked wheels, and long front handles reinforced with metal bands.",
+    "description_view_0": "Front view showing the dual wooden handles and the open slat platform leading into the cart's main body.",
+    "description_view_1": "Side view highlighting the large spoked wheel, vertical side slats, and the full length of the handles.",
+    "description_view_2": "Rear view displaying the closed back with horizontal slats and both wheels visible.",
+    "description_view_3": "Opposite side view showing the second wheel, side rails, and the open slat platform.",
+    "category": "handcart",
+    "height": 0.9,
+    "max_dimension": 2.2,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "mass": 38,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "load platform",
+        "side rail"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 2,
+    "attribute_handle_type": "dual straight bars with cross brace",
+    "attribute_wheel_position": "side-mounted near rear",
+    "attribute_presence_of_side_rails": true,
+    "attribute_load_platform_design": "open slats",
+    "uid": "ae0fab3e19b94a8daf568fcb1c9e883a",
+    "near_synsets": {
+        "handcart.n.01": 0.4507974723825096,
+        "cart.n.01": 0.4529607613826545,
+        "hand_truck.n.01": 0.4569857397816685,
+        "serving_cart.n.01": 0.4688716945194237,
+        "shopping_cart.n.01": 0.46960766673809745
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ae0fab3e19b94a8daf568fcb1c9e883a",
+        "creator_username": "landout",
+        "creator_display_name": "landout",
+        "creator_profile_url": "https://sketchfab.com/landout"
+    },
+    "filename": "std_ae0fab3e19b94a8daf568fcb1c9e883a.glb",
+    "length": 2.6413105726242065,
+    "width": 1.0784533023834229
+}

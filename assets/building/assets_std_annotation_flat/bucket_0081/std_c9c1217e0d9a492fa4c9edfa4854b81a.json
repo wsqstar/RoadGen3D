@@ -1,0 +1,113 @@
+{
+    "description_long": "This is a large, heavily armored Soviet-era tank with a boxy turret and a long main cannon. The hull and turret are painted in a green camouflage pattern with subtle brown and tan streaks, and the sides of the turret display white Cyrillic script and a red star insignia. The tank features wide, robust tracks with multiple road wheels, suitable for traversing rough terrain. The front of the vehicle is dominated by thick, sloped armor and a prominent gun barrel, while the rear shows engine access panels and exhaust ports. The turret has several hatches, periscopes, and mounting points for additional equipment. The overall design emphasizes protection, firepower, and battlefield durability.",
+    "description": "A large, green Soviet tank with a boxy turret, long cannon, and wide tracks, featuring Cyrillic markings and a red star. Its armored hull and turret are covered in a camouflage pattern.",
+    "description_view_0": "Front view showing the thick sloped armor, central main cannon, and wide tracks.",
+    "description_view_1": "Left side view highlighting the Cyrillic script, red star, and the full length of the tracks and cannon.",
+    "description_view_2": "Rear view displaying engine access panels, exhaust ports, and the back of the turret and hull.",
+    "description_view_3": "Right side view with Cyrillic script, red star, and a clear profile of the turret and tracks.",
+    "category": "combat tactical  vehicle",
+    "height": 3.3,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 47000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "track",
+        "wheel",
+        "periscope",
+        "engine panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "tan",
+        "black",
+        "white",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.05,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted centrally on the turret; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body armor plating with thick, sloped panels on the front, sides, and turret; no visible modular or reactive panels.",
+    "attribute_camouflage_pattern": "Green base with brown and tan streaks in a blended, irregular camouflage pattern.",
+    "attribute_military_markings": "White Cyrillic script and a red star on both sides of the turret.",
+    "attribute_tire_type": "not applicable",
+    "uid": "c9c1217e0d9a492fa4c9edfa4854b81a",
+    "near_synsets": {
+        "tank.n.01": 0.49312503279200876,
+        "military_vehicle.n.01": 0.5235826050868675,
+        "reconnaissance_vehicle.n.01": 0.5399352597266224,
+        "assault_gun.n.02": 0.5425894212831673,
+        "panzer.n.01": 0.5518311334901619,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c9c1217e0d9a492fa4c9edfa4854b81a",
+        "creator_username": "Hsu.Pei.Ge",
+        "creator_display_name": "Basic Hsu",
+        "creator_profile_url": "https://sketchfab.com/Hsu.Pei.Ge"
+    },
+    "filename": "std_c9c1217e0d9a492fa4c9edfa4854b81a.glb",
+    "length": 6.833088397979736,
+    "width": 3.370003581047058
+}

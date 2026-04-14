@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a heavily damaged and partially destroyed airplane fuselage, with its structure exposed and numerous jagged, broken elements protruding from the sides. The fuselage is largely hollow, with visible openings where windows and doors once were, and the internal framework is exposed along the length of the body. The wings are missing or severely fragmented, leaving only stubs or attachment points along the lower edge. The surface is a mix of faded white and gray, with patches of rust, debris, and remnants of paint, suggesting long-term exposure to the elements. The tail section is absent, and the nose is not clearly defined, further emphasizing the derelict state of the aircraft. Various metallic and composite materials are visible, with some colored elements hinting at former airline livery or markings.",
+    "description": "A derelict, broken airplane fuselage with exposed framework, missing wings and tail, and numerous jagged openings. The surface is weathered, with faded paint and visible structural damage.",
+    "description_view_0": "Side view showing the jagged, broken edge of the fuselage and protruding structural elements.",
+    "description_view_1": "Top-down view revealing the hollow interior, missing roof, and multiple open compartments along the fuselage.",
+    "description_view_2": "Opposite side view with more visible broken framework and additional protruding debris.",
+    "description_view_3": "Bottom or underside view highlighting the attachment points for missing wings and the open, skeletal structure.",
+    "category": "airplane",
+    "height": 2.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 4,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "fuselage frame",
+        "debris"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "rust",
+        "red",
+        "blue"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with straight, fragmented stubs; no visible winglets or dihedral/anhedral angles due to damage.",
+    "attribute_engine_type": "No engines visible; nacelle mounts or attachment points may be present but are empty.",
+    "attribute_tail_design": "Tail section missing; no vertical or horizontal stabilizers present.",
+    "attribute_landing_gear_type": "No landing gear visible; attachment points or bays may be present but are empty.",
+    "attribute_cockpit_placement": "Forward-mounted cockpit area with large open window frames; appears to be an enclosed, multi-seat configuration.",
+    "uid": "aa69552de44847f593345171555aa68f",
+    "near_synsets": {
+        "airframe.n.01": 0.5370923225055774,
+        "aircraft.n.01": 0.5410952082784111,
+        "fuselage.n.01": 0.543733896406303,
+        "airplane.n.01": 0.5576891238431566,
+        "disrepair.n.01": 0.5709755097598584
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/aa69552de44847f593345171555aa68f",
+        "creator_username": "sem.kontakt",
+        "creator_display_name": "sem.kontakt",
+        "creator_profile_url": "https://sketchfab.com/sem.kontakt"
+    },
+    "filename": "std_aa69552de44847f593345171555aa68f.glb",
+    "length": 20.7576961517334,
+    "width": 4.628507137298584
+}

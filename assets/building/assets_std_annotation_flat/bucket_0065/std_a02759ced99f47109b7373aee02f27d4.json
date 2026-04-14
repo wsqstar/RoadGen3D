@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a classic diamond-shaped kite with a vibrant rainbow pattern spanning across its sail, transitioning from red at the top to purple at the bottom. The kite features a lightweight, semi-translucent fabric stretched over a slender frame, likely made of fiberglass or plastic rods. At the bottom, three long, colorful tails\u2014green, blue, and red\u2014extend gracefully, adding both visual appeal and stability during flight. The corners of the kite are reinforced, and a string is attached at the lower front, suggesting a secure flying mechanism. The surface appears smooth and slightly glossy, typical of synthetic kite materials. This kite is designed for recreational use in open urban spaces such as parks or playgrounds.",
+    "description": "A diamond-shaped rainbow kite with three colorful tails and a smooth, semi-glossy sail, designed for recreational flying.",
+    "description_view_0": "The kite is seen from a front angle, showcasing its full rainbow sail and three trailing tails.",
+    "description_view_1": "A side view reveals the thin profile of the kite and the length of the tails extending behind it.",
+    "description_view_2": "The back of the kite is visible, displaying the same rainbow pattern and the attachment points for the tails.",
+    "description_view_3": "Another side view, opposite to view 1, again highlighting the slimness of the kite and the trailing tails.",
+    "category": "kite",
+    "height": 0.7,
+    "max_dimension": 1.1,
+    "materials": [
+        "synthetic fabric",
+        "fiberglass",
+        "plastic",
+        "string",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 0.12,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pullable",
+        "flyable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "string",
+        "tail",
+        "frame"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "red",
+        "orange",
+        "yellow",
+        "green",
+        "blue",
+        "purple"
+    ],
+    "colors_composition": [
+        0.25,
+        0.18,
+        0.15,
+        0.15,
+        0.15,
+        0.12
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 3500,
+    "friction_coefficient": 0.3,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_tail_presence": true,
+    "attribute_string_attachment": "String is attached at the lower front corner of the kite, secured at a reinforced point.",
+    "attribute_frame_structure": "Internal frame with two spars: one vertical and one horizontal, forming a cross to support the diamond shape.",
+    "attribute_sail_pattern": "Rainbow arc pattern with bands of red, orange, yellow, green, blue, and purple spanning diagonally across the sail.",
+    "attribute_flying_position": "Typically flies with the top angled upward and the tails trailing downward, facing into the wind.",
+    "uid": "a02759ced99f47109b7373aee02f27d4",
+    "near_synsets": {
+        "kite.n.03": 0.47469012872699334,
+        "sport_kite.n.01": 0.4944980889564148,
+        "box_kite.n.01": 0.4961920274196039,
+        "kite.n.04": 0.5188567630541978,
+        "kite_tail.n.01": 0.5197570477970851,
+        "kite.n.01": -1000.0,
+        "kite.n.02": -1000.0
+    },
+    "synset": "kite.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/a02759ced99f47109b7373aee02f27d4",
+        "creator_username": "Astari28",
+        "creator_display_name": "Astari28",
+        "creator_profile_url": "https://sketchfab.com/Astari28"
+    },
+    "filename": "std_a02759ced99f47109b7373aee02f27d4.glb",
+    "length": 1.1872941851615906,
+    "width": 6.654790163040161
+}

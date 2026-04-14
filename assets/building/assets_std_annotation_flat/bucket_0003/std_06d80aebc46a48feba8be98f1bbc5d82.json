@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a classic steam locomotive with a bright red tender and large spoked wheels, designed in the style of 19th-century American trains. The engine features a prominent black smokestack, brass domes, and a cowcatcher at the front, with intricate piping and metallic details along the boiler. The tender, attached directly behind the locomotive, is painted red and labeled 'WILD WILD WEST,' and appears to be used for carrying coal or wood. The train sits on a section of standard gauge track, with visible rails and ties. The cab is covered with a brown roof, and there are small steps and handrails for crew access. The overall design is ornate, with a mix of metallic, wooden, and painted surfaces, evoking the era of the American Old West.",
+    "description": "A detailed, vintage steam locomotive with a red tender, ornate brass and black engine, and large red wheels, styled after 19th-century American trains.",
+    "description_view_0": "Side view showing the full length of the train, including the red tender, ornate engine, and all wheels.",
+    "description_view_1": "Front view highlighting the cowcatcher, smokestack, and headlamp, with the track receding behind.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the train's length and details on the other side.",
+    "description_view_3": "Rear view focusing on the back of the red tender and the cab roof, with the track extending forward.",
+    "category": "train",
+    "height": 3.8,
+    "max_dimension": 13.0,
+    "materials": [
+        "steel",
+        "iron",
+        "wood",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 48000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "door",
+        "lever",
+        "step",
+        "headlamp",
+        "cowcatcher"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "brass",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.35,
+        0.3,
+        0.15,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "group",
+    "attribute_train_type": "steam locomotive",
+    "attribute_number_of_carriages": 2,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end of the cab",
+    "attribute_window_arrangement": "no visible windows",
+    "uid": "06d80aebc46a48feba8be98f1bbc5d82",
+    "near_synsets": {
+        "steam_locomotive.n.01": 0.4583265508212327,
+        "train_set.n.01": 0.4864901171334751,
+        "train.n.01": 0.4877667714208474,
+        "locomotive.n.01": 0.49747730402415635,
+        "tender.n.04": 0.49944996405508774,
+        "train.n.04": -1000.0,
+        "gearing.n.01": -1000.0,
+        "train.n.05": -1000.0,
+        "string.n.04": -1000.0,
+        "caravan.n.01": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/06d80aebc46a48feba8be98f1bbc5d82",
+        "creator_username": "perceval-66",
+        "creator_display_name": "perceval-66",
+        "creator_profile_url": "https://sketchfab.com/perceval-66"
+    },
+    "filename": "std_06d80aebc46a48feba8be98f1bbc5d82.glb",
+    "length": 14.910720348358154,
+    "width": 2.5348950624465942
+}

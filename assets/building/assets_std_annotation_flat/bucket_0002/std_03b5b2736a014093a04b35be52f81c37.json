@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a weathered, cylindrical steel barrel painted blue, with visible rust patches and signs of wear throughout its surface. The barrel features several horizontal reinforcement ribs around its body, providing structural strength and a classic industrial appearance. On two sides, there is a prominent yellow warning label with a flame symbol and the text 'Warning Flammable Liquid,' indicating it is used for storing hazardous materials. The top of the barrel is sealed with a fitted metal lid, which has two small capped openings for filling or dispensing liquids. The surface finish is mostly matte with some areas of exposed, corroded metal, giving it a rugged, utilitarian look. This type of barrel is commonly found in industrial, urban, or construction environments for the storage and transport of chemicals or fuels.",
+    "description": "A blue, weathered steel barrel with rust patches, horizontal ribs, and a yellow flammable warning label. It has a sealed metal lid with two capped openings and is typically used for hazardous liquid storage.",
+    "description_view_0": "Front view showing the yellow flammable warning label and the weathered blue paint with rust patches.",
+    "description_view_1": "Side view with no visible label, highlighting the horizontal ribs and the worn blue surface.",
+    "description_view_2": "Opposite side view with another visible warning label and similar weathering as the front.",
+    "description_view_3": "Side view without a label, showing the ribbed structure and surface wear.",
+    "category": "barrel or bucket",
+    "height": 0.9,
+    "max_dimension": 0.6,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.05,
+        0.03
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "yellow",
+        "gray",
+        "rust brown"
+    ],
+    "colors_composition": [
+        0.75,
+        0.05,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "integrated steel reinforcement ribs",
+    "attribute_labeling_or_markings": "yellow flammable warning label with flame symbol and text",
+    "attribute_placement_location": "industrial",
+    "uid": "03b5b2736a014093a04b35be52f81c37",
+    "near_synsets": {
+        "barrel.n.02": 0.4597789689546496,
+        "barrel.n.03": 0.4897851025419711,
+        "beer_barrel.n.01": 0.5002920328404201,
+        "bucket.n.01": 0.503196741633629,
+        "barrel.n.05": 0.5073073307343507,
+        "bucket.n.02": -1000.0,
+        "barrel.n.04": -1000.0,
+        "barrel.n.01": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/03b5b2736a014093a04b35be52f81c37",
+        "creator_username": "dokazvo",
+        "creator_display_name": "Dokazvo",
+        "creator_profile_url": "https://sketchfab.com/dokazvo"
+    },
+    "filename": "std_03b5b2736a014093a04b35be52f81c37.glb",
+    "length": 0.5355386137962341,
+    "width": 0.5355384945869446
+}

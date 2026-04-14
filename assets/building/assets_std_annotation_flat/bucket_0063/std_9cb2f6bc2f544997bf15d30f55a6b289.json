@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a long, straight sword with a double-edged blade that tapers to a sharp point. The blade is metallic and appears to be forged from steel, exhibiting a smooth, slightly reflective surface. The hilt features a crossguard that curves slightly toward the blade, providing hand protection, and a rounded pommel at the end for balance. The handle is cylindrical and appears to be wrapped or textured for grip, possibly with a darker material than the blade. The overall design is reminiscent of a medieval European arming sword, suitable for both cutting and thrusting. There are no visible engravings or decorative elements, giving it a utilitarian and functional appearance.",
+    "description": "A straight, double-edged medieval-style sword with a metallic blade, crossguard, and rounded pommel. The handle is dark and textured, designed for a secure grip.",
+    "description_view_0": "The sword is seen from the side, highlighting the long, straight blade and the subtle curve of the crossguard.",
+    "description_view_1": "A top-down view shows the full width of the blade, the crossguard, and the rounded pommel, emphasizing the sword's symmetry.",
+    "description_view_2": "The opposite side profile reveals the same straight blade and crossguard, with the handle and pommel visible at the left end.",
+    "description_view_3": "A bottom-up view focuses on the handle, crossguard, and pommel, with the blade extending away and appearing narrower.",
+    "category": "knife or sword",
+    "height": 1.0,
+    "max_dimension": 1.0,
+    "materials": [
+        "steel",
+        "wood",
+        "leather",
+        "air"
+    ],
+    "materials_composition": [
+        0.8,
+        0.1,
+        0.09,
+        0.01
+    ],
+    "mass": 1.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 20,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "cuttable",
+        "thrustable",
+        "grippable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "blade",
+        "handle",
+        "crossguard",
+        "pommel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_blade_type": "straight, double-edged, pointed",
+    "attribute_handle_design": "cylindrical, dark, possibly wrapped or textured, rounded pommel",
+    "attribute_guard_presence": true,
+    "attribute_ornamentation": "none",
+    "attribute_sheath_presence": false,
+    "uid": "9cb2f6bc2f544997bf15d30f55a6b289",
+    "near_synsets": {
+        "sword.n.01": 0.41749405224612873,
+        "falchion.n.01": 0.4569716484987652,
+        "knife.n.02": 0.46553630032484317,
+        "case_knife.n.01": 0.469017356315604,
+        "fencing_sword.n.01": 0.4800959387589655,
+        "knife.n.01": -1000.0,
+        "tongue.n.03": -1000.0
+    },
+    "synset": "knife.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9cb2f6bc2f544997bf15d30f55a6b289",
+        "creator_username": "FlukierJupiter",
+        "creator_display_name": "FlukierJupiter",
+        "creator_profile_url": "https://sketchfab.com/FlukierJupiter"
+    },
+    "filename": "std_9cb2f6bc2f544997bf15d30f55a6b289.glb",
+    "length": 65.30459594726562,
+    "width": 10.175851345062256
+}

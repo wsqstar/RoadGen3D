@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a large, eight-wheeled armored combat tactical vehicle with a robust, angular exterior and a matte, desert-camouflage finish. The vehicle features a prominent rotating turret mounted on the roof, equipped with a large-caliber cannon and additional weapon mounts, as well as various hatches and observation ports. Its body is heavily armored with sloped and modular plating, providing extensive protection across all sides, including reinforced wheel arches and side panels. The front is characterized by a sloped glacis plate, multiple vision blocks, and a central entry hatch, while the rear has exhaust vents and additional armor. The vehicle's tires are large, rugged, and designed for off-road mobility, with deep treads and reinforced sidewalls. Antennas, handrails, and external equipment mounts are visible, indicating its readiness for urban and tactical operations.",
+    "description": "A heavily armored, eight-wheeled combat vehicle with a rotating turret, desert camouflage, and reinforced off-road tires. It features sloped armor, multiple weapon mounts, and extensive exterior detailing for tactical use.",
+    "description_view_0": "Side view showing the full length of the vehicle, turret, and all eight rugged tires, with visible hatches and external equipment.",
+    "description_view_1": "Front view highlighting the sloped armor, central entry hatch, vision blocks, and the imposing presence of the turret.",
+    "description_view_2": "Opposite side view displaying the turret, weapon mounts, and detailed wheel arches, with visible antennas and side armor.",
+    "description_view_3": "Rear view showing exhaust vents, rear armor plating, and the back of the turret, with reinforced structural elements.",
+    "category": "combat tactical  vehicle",
+    "height": 2.8,
+    "max_dimension": 8.5,
+    "materials": [
+        "armored steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air",
+        "composite materials"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.08,
+        0.04,
+        0.05,
+        0.03
+    ],
+    "mass": 22000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "turret",
+        "wheel",
+        "antenna",
+        "weapon mount",
+        "handle",
+        "vision block"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large-caliber cannon on the main turret (roof, center-rear), one secondary weapon mount on the front roof, and additional mounts for smaller arms or sensors on the turret and roof.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped, and modular armor plating; reinforced wheel arches and side panels; additional armor on the front glacis and rear.",
+    "attribute_camouflage_pattern": "Desert camouflage with tan and gray angular patterns and matte finish.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Eight large off-road tires with deep tread pattern and reinforced sidewalls.",
+    "uid": "faba144fb896482eb05813b0c122ef5e",
+    "near_synsets": {
+        "reconnaissance_vehicle.n.01": 0.4958645857914532,
+        "military_vehicle.n.01": 0.49726618789130256,
+        "tank.n.01": 0.49738717377515834,
+        "armored_car.n.02": 0.5124413798621281,
+        "armored_vehicle.n.01": 0.5257797079494659,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "armored_car.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/faba144fb896482eb05813b0c122ef5e",
+        "creator_username": "hruschak30",
+        "creator_display_name": "hruschak30",
+        "creator_profile_url": "https://sketchfab.com/hruschak30"
+    },
+    "filename": "std_faba144fb896482eb05813b0c122ef5e.glb",
+    "length": 6.756175994873047,
+    "width": 3.241673231124878
+}

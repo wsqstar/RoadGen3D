@@ -1,0 +1,103 @@
+{
+    "description_long": "This tram features a streamlined, elongated body with a rounded front and rear, painted in a classic red and beige color scheme. The roof is flat and gray, with a prominent diamond-shaped pantograph mounted near the front for overhead electric power collection. Large rectangular windows line both sides, separated by vertical beige pillars, providing ample visibility for passengers. The tram sits on a set of small, dark wheels barely visible beneath the body, and the front includes a metallic bumper and coupling mechanism. The doors are integrated into the side panels, blending with the window arrangement, and the overall design suggests a mid-20th-century urban streetcar. No visible route number or destination signage is present on the exterior.",
+    "description": "A streamlined red and beige tram with large side windows, a diamond pantograph on the roof, and a rounded front and rear. The design is classic and functional, with integrated doors and no visible signage.",
+    "description_view_0": "Side view showing the full length of the tram, large windows, and the diamond pantograph on the roof.",
+    "description_view_1": "Front view highlighting the rounded nose, metallic bumper, and absence of visible signage or route display.",
+    "description_view_2": "Opposite side view, mirroring the window and door arrangement, with the pantograph visible on the roof.",
+    "description_view_3": "Rear view showing the rounded back, window, and lack of rear signage or displays.",
+    "category": "tram",
+    "height": 3.2,
+    "max_dimension": 15.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 40000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "pantograph",
+        "bumper",
+        "coupling mechanism"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "beige",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_pantograph_type": "diamond",
+    "attribute_door_configuration": "Two sliding doors on the right side, positioned near the front and rear; no doors visible on the left side.",
+    "attribute_window_arrangement": "Seven large rectangular windows evenly spaced along each side, separated by vertical beige pillars, forming a continuous band with a small window at each end.",
+    "attribute_route_number_display": "none",
+    "attribute_front_signage": "none",
+    "uid": "832be807365c49d5b6cb9844c4aa66f8",
+    "near_synsets": {
+        "berlin.n.03": 0.5579810805220409,
+        "streamliner.n.01": 0.564670198095073,
+        "gondola_car.n.01": 0.5744397223228364,
+        "boxcar.n.01": 0.5768056123511502,
+        "tramline.n.01": 0.5793315172207966,
+        "tramway.n.01": -1000.0,
+        "tramcar.n.01": -1000.0,
+        "streetcar.n.01": -1000.0
+    },
+    "synset": "tramcar.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/832be807365c49d5b6cb9844c4aa66f8",
+        "creator_username": "AlexanderRuz",
+        "creator_display_name": "AlexanderRuz",
+        "creator_profile_url": "https://sketchfab.com/AlexanderRuz"
+    },
+    "filename": "std_832be807365c49d5b6cb9844c4aa66f8.glb",
+    "length": 8.75663709640503,
+    "width": 1.603071928024292
+}

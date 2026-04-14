@@ -1,0 +1,93 @@
+{
+    "description_long": "This sandwich consists of a lightly toasted, oval-shaped flatbread with subtle grill marks, resting partially open on a white, square plate. Inside, there is a generous layer of thinly sliced, reddish cured meat, arranged in a neat, overlapping lattice pattern. The bread appears soft and slightly puffy, with a pale golden-brown hue and a smooth, matte finish. The cured meat has a glossy, marbled texture, with visible streaks of fat and a deep red coloration. The sandwich is presented without any visible vegetables, sauces, or additional fillings, emphasizing the simplicity and quality of the bread and meat. The plate is clean and unadorned, suggesting a straightforward, urban presentation style.",
+    "description": "A flatbread sandwich with thinly sliced cured meat, presented open-faced on a white square plate. The bread is lightly toasted and the meat is arranged in a neat, glossy lattice.",
+    "description_view_0": "Front view shows the sandwich open-faced, with the flatbread slightly lifted and the cured meat clearly visible on the plate.",
+    "description_view_1": "This angle highlights the rounded, toasted top of the bread and the glossy cured meat beneath, with the bread partially covering the filling.",
+    "description_view_2": "From the back, the sandwich's flatbread dominates the view, with only the edge of the cured meat visible underneath.",
+    "description_view_3": "This side view emphasizes the thickness and texture of the bread, with the cured meat peeking out from behind.",
+    "category": "sandwich",
+    "height": 0.05,
+    "max_dimension": 0.18,
+    "materials": [
+        "bread",
+        "cured_meat",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.4,
+        0.05
+    ],
+    "mass": 0.22,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 2,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "separable",
+        "edible"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "bread_top",
+        "meat_filling",
+        "bread_bottom"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "light brown",
+        "red",
+        "dark red"
+    ],
+    "colors_composition": [
+        0.35,
+        0.25,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.08,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "group",
+    "attribute_packaging_type": "none",
+    "attribute_brand_logo": "none",
+    "attribute_display_location": "unknown",
+    "attribute_advertisement_signage": false,
+    "attribute_vendor_cart_presence": false,
+    "uid": "24c397ed47e04043817adffd8987fb95",
+    "near_synsets": {
+        "open-face_sandwich.n.01": 0.4808794341341576,
+        "sandwich.n.01": 0.48400297659167213,
+        "flatbread.n.01": 0.49815690493394127,
+        "sandwich_plate.n.01": 0.5050282618315074,
+        "grilled_cheese.n.01": 0.5102312881555533
+    },
+    "synset": "sandwich_plate.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/24c397ed47e04043817adffd8987fb95",
+        "creator_username": "pfoche",
+        "creator_display_name": "pfoche",
+        "creator_profile_url": "https://sketchfab.com/pfoche"
+    },
+    "filename": "std_24c397ed47e04043817adffd8987fb95.glb",
+    "length": 0.21484661102294922,
+    "width": 0.2145942822098732
+}

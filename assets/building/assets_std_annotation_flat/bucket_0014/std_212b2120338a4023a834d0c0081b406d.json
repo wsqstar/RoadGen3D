@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a heavy, turret-mounted automatic rifle system with a robust, angular base and a long, cylindrical barrel. The base is wide and reinforced, featuring metallic panels, visible bolts, and a weathered, industrial finish, suggesting durability for outdoor urban deployment. The turret housing is angular and black, with vent-like openings and a small protruding sensor or sight on top. The barrel is metallic gray with red accents and a perforated muzzle device, indicating a high-caliber, rapid-fire capability. Markings such as the number '09' and warning symbols are stenciled on the body, adding to its militaristic appearance. The rear of the turret features a reinforced hatch or access panel, likely for maintenance or ammunition loading.",
+    "description": "A heavy, turret-mounted automatic rifle with a reinforced base, angular black turret, and a long, red-accented barrel. It features industrial markings and a perforated muzzle device, designed for urban defense.",
+    "description_view_0": "Side view showing the long barrel, angular turret, and stenciled '09' marking on the base.",
+    "description_view_1": "Front view highlighting the barrel's muzzle device and the symmetrical, reinforced base.",
+    "description_view_2": "Opposite side view with clear visibility of the barrel, turret, and weathered surface details.",
+    "description_view_3": "Rear view displaying the turret's back panel, warning symbols, and access hatch.",
+    "category": "rifle",
+    "height": 1.2,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel",
+        "turret",
+        "access hatch",
+        "muzzle device",
+        "sensor/sight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "muzzle brake",
+    "uid": "212b2120338a4023a834d0c0081b406d",
+    "near_synsets": {
+        "automatic_rifle.n.01": 0.4830521466311564,
+        "assault_rifle.n.01": 0.5034575994605107,
+        "carbine.n.01": 0.5086337216122684,
+        "rifle.n.01": 0.5090464978267351,
+        "machine_gun.n.01": 0.5137292886212158
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/212b2120338a4023a834d0c0081b406d",
+        "creator_username": "mklement",
+        "creator_display_name": "Michael Klement",
+        "creator_profile_url": "https://sketchfab.com/mklement"
+    },
+    "filename": "std_212b2120338a4023a834d0c0081b406d.glb",
+    "length": 1.8801462054252625,
+    "width": 1.6014374494552612
+}

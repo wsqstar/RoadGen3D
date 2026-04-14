@@ -1,0 +1,96 @@
+{
+    "description_long": "This handcart features a rectangular wooden cargo bed with raised side panels and metallic corner reinforcements, providing both structure and durability. The cart is supported by two large, spoked wooden wheels with a dark rim, positioned centrally along the sides for balance and ease of movement. At the front, a sturdy wooden T-shaped handle extends outward, designed for manual pulling or pushing. The load platform is flat and solid, suitable for carrying various goods or materials in an urban environment. The overall construction is robust, with visible metal fasteners along the side panels and handle for added strength. The wood has a polished, slightly glossy finish, giving the cart a classic, utilitarian appearance.",
+    "description": "A robust wooden handcart with a flat cargo bed, raised side panels, and two large spoked wheels, featuring a T-shaped handle for manual operation.",
+    "description_view_0": "Side view showing the full length of the cart, both large spoked wheels, and the raised side panels with metal reinforcements.",
+    "description_view_1": "Front view highlighting the T-shaped handle and the open cargo bed, with the side panels visible on either side.",
+    "description_view_2": "Opposite side view mirroring view 0, displaying the wheels, side panels, and the handle extending from the front.",
+    "description_view_3": "Rear view showing the open end of the cargo bed and the side panels, with the handle and wheels partially visible.",
+    "category": "handcart",
+    "height": 1.0,
+    "max_dimension": 2.2,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "load platform",
+        "side panel"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "glossy",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 2,
+    "attribute_handle_type": "T-shaped straight bar",
+    "attribute_wheel_position": "side-mounted, centered",
+    "attribute_presence_of_side_rails": true,
+    "attribute_load_platform_design": "flat solid surface",
+    "uid": "c9ec2dc5bfec45c693e7ab52027a8a9b",
+    "near_synsets": {
+        "hand_truck.n.01": 0.4296923236698366,
+        "handcart.n.01": 0.4384182589031507,
+        "shopping_cart.n.01": 0.4738224755754541,
+        "cart.n.01": 0.4755164399167329,
+        "serving_cart.n.01": 0.47608588102269156
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c9ec2dc5bfec45c693e7ab52027a8a9b",
+        "creator_username": "Jharris5398",
+        "creator_display_name": "Jharris5398",
+        "creator_profile_url": "https://sketchfab.com/Jharris5398"
+    },
+    "filename": "std_c9ec2dc5bfec45c693e7ab52027a8a9b.glb",
+    "length": 2.4827455282211304,
+    "width": 1.162397861480713
+}

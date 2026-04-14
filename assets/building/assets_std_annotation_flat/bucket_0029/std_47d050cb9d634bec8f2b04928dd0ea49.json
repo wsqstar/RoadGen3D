@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a bolt-action sniper rifle with a wooden stock featuring green triangular decals and a matte finish. The rifle is equipped with a long, fluted barrel and a prominent telescopic scope mounted on top, suggesting it is designed for precision shooting at long distances. The stock is fixed and ergonomically shaped for shoulder support, with a cheek rest integrated into the design. The receiver and barrel are constructed from dark metal, contrasting with the brown wood of the stock. The magazine appears to be an internal type, seamlessly integrated into the body without protruding. The muzzle end of the barrel features a series of vents, indicating the presence of a muzzle brake to reduce recoil.",
+    "description": "A bolt-action sniper rifle with a wooden stock, fluted barrel, telescopic scope, and green decals, designed for precision shooting.",
+    "description_view_0": "Side view showing the wooden stock with green decals, mounted scope, and fluted barrel with muzzle brake.",
+    "description_view_1": "Top-down view highlighting the narrow profile, scope alignment, and barrel venting.",
+    "description_view_2": "Opposite side view displaying the same wooden stock, scope, and barrel details, with the magazine area visible.",
+    "description_view_3": "Bottom-up view emphasizing the undercarriage, stock shape, and barrel alignment.",
+    "category": "rifle",
+    "height": 0.18,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.35,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 5.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 52,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pullable",
+        "pushable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "trigger",
+        "bolt handle",
+        "scope",
+        "magazine",
+        "barrel",
+        "muzzle brake"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "green",
+        "gray"
+    ],
+    "colors_composition": [
+        0.45,
+        0.4,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "fluted",
+    "attribute_magazine_type": "internal",
+    "attribute_sight_type": "scope",
+    "attribute_muzzle_device": "muzzle brake",
+    "uid": "47d050cb9d634bec8f2b04928dd0ea49",
+    "near_synsets": {
+        "dragunov.n.01": 0.4571127837049583,
+        "sniper_rifle.n.01": 0.4774959517193409,
+        "garand_rifle.n.01": 0.5156029572911301,
+        "sniper.n.01": 0.5200308838092704,
+        "light_arm.n.01": 0.5276243807423583,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/47d050cb9d634bec8f2b04928dd0ea49",
+        "creator_username": "Monhoo",
+        "creator_display_name": "Monhoo",
+        "creator_profile_url": "https://sketchfab.com/Monhoo"
+    },
+    "filename": "std_47d050cb9d634bec8f2b04928dd0ea49.glb",
+    "length": 0.028324933722615242,
+    "width": 0.728898286819458
+}

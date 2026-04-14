@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a large, stationary, turret-style automatic rifle mounted on a reinforced circular base. The main body features a prominent multi-barrel rotary cannon, reminiscent of a Gatling gun, with visible ammunition belts feeding into the weapon from both sides. The base is heavily armored with angular plating and mechanical components, suggesting durability and resistance to damage. The structure includes gear-like mechanisms and exposed cabling, indicating a complex, industrial design. The color scheme is dominated by shades of yellow, brown, and gray, giving it a rugged, utilitarian appearance suitable for urban defense. The overall build and scale imply it is intended for fixed emplacement rather than handheld use.",
+    "description": "A large, stationary rotary cannon turret with armored plating, visible ammo belts, and industrial detailing in yellow and gray tones.",
+    "description_view_0": "Side view showing the full length of the rotary barrel, ammo belts, and the circular armored base.",
+    "description_view_1": "Rear view highlighting the back of the turret, gear mechanisms, and the entry point for ammunition.",
+    "description_view_2": "Opposite side view displaying the rotary barrel and mirrored ammo feed, with clear sight of the base structure.",
+    "description_view_3": "Frontal view focusing on the multi-barrel muzzle, ammo feeds, and the symmetrical design of the turret.",
+    "category": "rifle",
+    "height": 1.2,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "barrel",
+        "ammo belt",
+        "turret base",
+        "gear mechanism"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "brown",
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.4,
+        0.25,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "rotary",
+    "attribute_magazine_type": "belt-fed",
+    "attribute_sight_type": "none",
+    "attribute_muzzle_device": "none",
+    "uid": "ed1d836423814ad4bf52418326f74976",
+    "near_synsets": {
+        "cannon.n.02": 0.4741799989349506,
+        "cannon.n.01": 0.48112719804065807,
+        "artillery.n.01": 0.5095763033281225,
+        "cannon.n.04": 0.5107510953729422,
+        "tank_shell.n.01": 0.5113646528998015,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ed1d836423814ad4bf52418326f74976",
+        "creator_username": "michaelweixianghuang",
+        "creator_display_name": "michaelweixianghuang",
+        "creator_profile_url": "https://sketchfab.com/michaelweixianghuang"
+    },
+    "filename": "std_ed1d836423814ad4bf52418326f74976.glb",
+    "length": 2.2062820196151733,
+    "width": 2.17177677154541
+}

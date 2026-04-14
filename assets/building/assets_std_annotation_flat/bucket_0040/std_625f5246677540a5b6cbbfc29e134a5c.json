@@ -1,0 +1,97 @@
+{
+    "description_long": "This humanoid robot features a sleek, metallic blue body with silver mechanical joints and accents, giving it a futuristic and industrial appearance. Its head is angular with a pronounced crest and a smooth, visor-like faceplate, lacking any visible facial features. The torso is broad at the shoulders and tapers down to a narrow waist, with a central silver panel and additional metallic detailing. The arms and legs are long and slender, composed of segmented cylindrical sections connected by visible joints, allowing for a wide range of motion. The hands are claw-like with three articulated fingers, and the feet are wide and flat, providing stability. The overall design suggests a functional, utilitarian robot intended for urban environments, with a robust yet agile build.",
+    "description": "A metallic blue humanoid robot with silver joints, an angular head, claw-like hands, and a streamlined, industrial design.",
+    "description_view_0": "Front view showing the robot's broad shoulders, central chest panel, and symmetrical arm and leg positioning.",
+    "description_view_1": "Left side view highlighting the angular head profile, segmented arm and leg joints, and the flat, wide foot.",
+    "description_view_2": "Rear view displaying the back of the head, torso, and the symmetrical alignment of limbs.",
+    "description_view_3": "Right side view mirroring the left, with clear visibility of the head's crest and limb articulation.",
+    "category": "humanoid robot",
+    "height": 1.8,
+    "max_dimension": 1.8,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "rotatable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hands",
+        "arms",
+        "head",
+        "torso panel",
+        "legs"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "silver",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "sleek",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms relaxed at the sides and legs straight, head facing forward, and hands open.",
+    "attribute_clothing_style": "No clothing; the robot is covered in integrated metallic and plastic panels with visible mechanical joints.",
+    "attribute_facial_features": "The face is a smooth, visor-like panel with no visible eyes, mouth, or nose; no expressive or display elements are present.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints at the shoulders, elbows, wrists, hips, knees, and ankles; hands have three articulated fingers each.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "625f5246677540a5b6cbbfc29e134a5c",
+    "near_synsets": {
+        "android.n.01": 0.5392486310708943,
+        "cyborg.n.01": 0.5567226252264095,
+        "robotics_equipment.n.01": 0.5578447972671583,
+        "automaton.n.02": 0.5686024986406881,
+        "machine.n.02": 0.5849783482465121
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/625f5246677540a5b6cbbfc29e134a5c",
+        "creator_username": "Mishas3D",
+        "creator_display_name": "Mishas3D",
+        "creator_profile_url": "https://sketchfab.com/Mishas3D"
+    },
+    "filename": "std_625f5246677540a5b6cbbfc29e134a5c.glb",
+    "length": 0.29405999183654785,
+    "width": 0.5979208648204803
+}

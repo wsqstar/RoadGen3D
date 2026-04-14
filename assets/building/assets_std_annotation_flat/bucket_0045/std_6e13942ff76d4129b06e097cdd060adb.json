@@ -1,0 +1,105 @@
+{
+    "description_long": "This hamburger features a rustic, lightly browned bun with a flour-dusted appearance, giving it a hearty, artisanal look. The top bun is thick and domed, while the bottom bun is slightly flatter and robust. Inside, a juicy beef patty is visible, topped with a slice of yellow cheese that drapes over the patty's edge. Crisp green lettuce and a slice of red tomato are layered above the cheese, adding color and freshness. The ingredients are stacked neatly, with the toppings peeking out from the sides, and there is no visible packaging or sesame seeds on the bun. The overall appearance is appetizing and realistic, suitable for a street food or park setting.",
+    "description": "A rustic hamburger with a flour-dusted bun, visible beef patty, cheese, lettuce, and tomato, all stacked neatly. The bun is thick and artisanal, with no sesame seeds or packaging present.",
+    "description_view_0": "The hamburger is shown with the cheese, lettuce, and tomato clearly visible beneath a thick, flour-dusted top bun.",
+    "description_view_1": "This view highlights the front of the hamburger, with the cheese slice and lettuce most prominent and the tomato peeking out.",
+    "description_view_2": "The side angle reveals the rounded bun and a good view of the cheese and lettuce, with the tomato less visible.",
+    "description_view_3": "From this angle, the tomato slice is more exposed, and the cheese and lettuce are partially visible under the bun.",
+    "category": "hamburger",
+    "height": 0.1,
+    "max_dimension": 0.13,
+    "materials": [
+        "bread",
+        "beef",
+        "cheese",
+        "lettuce",
+        "tomato",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.12,
+        0.1,
+        0.06,
+        0.02
+    ],
+    "mass": 0.22,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 2,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "top bun",
+        "bottom bun",
+        "patty",
+        "cheese slice",
+        "lettuce",
+        "tomato slice"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light brown",
+        "yellow",
+        "green",
+        "red",
+        "dark brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.55,
+        0.12,
+        0.1,
+        0.08,
+        0.12,
+        0.03
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.08,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_bun_type": "plain white bun",
+    "attribute_patty_visibility": "fully visible",
+    "attribute_topping_arrangement": "Lettuce and tomato are layered above a slice of cheese, all stacked on top of the beef patty and beneath the top bun, with toppings distributed evenly and peeking out from the sides.",
+    "attribute_packaging_presence": false,
+    "attribute_sesame_seed_presence": false,
+    "uid": "6e13942ff76d4129b06e097cdd060adb",
+    "near_synsets": {
+        "hamburger.n.01": 0.4837201455682126,
+        "hamburger_bun.n.01": 0.5121850356704546,
+        "ground_beef.n.01": 0.526308066052227,
+        "cheeseburger.n.01": 0.5316396525267352,
+        "reuben.n.02": 0.5394312943303065
+    },
+    "synset": "hamburger_bun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/6e13942ff76d4129b06e097cdd060adb",
+        "creator_username": "EhsanAbbasi",
+        "creator_display_name": "Ehsan Abbasi",
+        "creator_profile_url": "https://sketchfab.com/EhsanAbbasi"
+    },
+    "filename": "std_6e13942ff76d4129b06e097cdd060adb.glb",
+    "length": 0.09185958653688431,
+    "width": 0.08491480350494385
+}

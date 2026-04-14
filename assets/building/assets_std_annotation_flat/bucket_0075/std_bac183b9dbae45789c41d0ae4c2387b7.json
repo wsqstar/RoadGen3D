@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a modern naval warship with a sleek, angular hull designed for stealth and hydrodynamic efficiency. The ship features a pointed bow and a wide, flat stern with a helipad marked by a circular landing symbol. The superstructure is compact and angular, with multiple radar domes, antennas, and what appear to be missile launchers or gun turrets. The deck is mostly clear except for essential equipment, and the hull is painted in a dark, camouflaged gray-blue pattern. The vessel's overall design suggests advanced technology and a focus on both defense and offensive capabilities.",
+    "description": "A modern, angular naval warship with a camouflaged hull, compact superstructure, and a helipad at the stern. Features radar domes, antennas, and weapon systems.",
+    "description_view_0": "Top-down view showing the pointed bow, central superstructure, and helipad marking at the stern.",
+    "description_view_1": "Side profile highlighting the ship's low, angular hull, superstructure, and visible deck equipment.",
+    "description_view_2": "Rear view focusing on the helipad, stern width, and the compact arrangement of the superstructure.",
+    "description_view_3": "Opposite side profile, mirroring view 1, with clear visibility of the hull's angular lines and deck layout.",
+    "category": "ship",
+    "height": 18,
+    "max_dimension": 150,
+    "materials": [
+        "steel",
+        "aluminum",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.01,
+        0.04
+    ],
+    "mass": 6500000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "radar",
+        "antenna",
+        "turret",
+        "helipad"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a monohull with a sharp, angular bow and a wide, flat stern. The sides are steep and faceted, likely for stealth, with no visible keels or bulbous bows. The hull sits low in the water, emphasizing stability and speed.",
+    "attribute_superstructure_layout": "The superstructure is compact and angular, centrally located with multiple levels. It includes a bridge, several radar domes, antennas, and weapon mounts, with a helipad at the stern and minimal open deck space.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "radar",
+        "antenna",
+        "turret",
+        "helipad"
+    ],
+    "attribute_registration_markings": "helipad landing symbol at stern",
+    "uid": "bac183b9dbae45789c41d0ae4c2387b7",
+    "near_synsets": {
+        "naval_radar.n.01": 0.4918181004999313,
+        "surface_ship.n.01": 0.49260897888257543,
+        "naval_missile.n.01": 0.4932957460960839,
+        "naval_weaponry.n.01": 0.5030733491702494,
+        "naval_gun.n.01": 0.5179684227577759,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bac183b9dbae45789c41d0ae4c2387b7",
+        "creator_username": "Razhielth.Kaio",
+        "creator_display_name": "Razhielth.Kaio",
+        "creator_profile_url": "https://sketchfab.com/Razhielth.Kaio"
+    },
+    "filename": "std_bac183b9dbae45789c41d0ae4c2387b7.glb",
+    "length": 80.15607833862305,
+    "width": 10.28024435043335
+}

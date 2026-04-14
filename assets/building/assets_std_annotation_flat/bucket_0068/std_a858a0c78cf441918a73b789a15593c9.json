@@ -1,0 +1,102 @@
+{
+    "description_long": "This structure is a large, curved concrete and wood construction resembling a dam, with a prominent U-shaped channel flanked by high vertical walls. The exterior surfaces are mostly gray, with graffiti and painted designs visible on the sides, adding an urban aesthetic. The top edges are lined with metal railings for safety, and there is a stairway leading to an elevated platform on one end, supported by tall metal posts. The central channel is made of smooth, light-colored wood, contrasting with the concrete exterior. There is an open passageway beneath the structure, suggesting a tunnel or maintenance access. The overall design is robust and utilitarian, with features that prioritize both function and safety.",
+    "description": "A large, curved dam-like structure with concrete walls, wooden channel, metal railings, and an elevated platform with stairs. Graffiti and painted designs decorate the exterior, and a tunnel-like opening is present at the base.",
+    "description_view_0": "Front view showing the full width of the dam, graffiti on the concrete wall, and the central tunnel opening.",
+    "description_view_1": "Angled view highlighting the smooth wooden channel, high side walls, and the stairway leading to the elevated platform.",
+    "description_view_2": "Rear view displaying more graffiti, the tunnel opening, and the elevated platform with supporting posts.",
+    "description_view_3": "Side view focusing on the depth of the channel, the height of the structure, and the tall support posts for the platform.",
+    "category": "dam",
+    "height": 7.5,
+    "max_dimension": 20.0,
+    "materials": [
+        "concrete",
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "slideable",
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "railing",
+        "stairs",
+        "platform"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "light brown",
+        "black",
+        "green"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_spillway_presence": false,
+    "attribute_control_gates": [
+        "none"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_water_outflow": "none",
+    "attribute_perimeter_fencing": true,
+    "uid": "a858a0c78cf441918a73b789a15593c9",
+    "near_synsets": {
+        "dam.n.01": 0.5113284643359818,
+        "aqueduct.n.01": 0.5487683252379427,
+        "weir.n.01": 0.5517226759778407,
+        "railroad_tunnel.n.01": 0.5601456102918997,
+        "bridge.n.01": 0.5624576361490553,
+        "decameter.n.01": -1000.0,
+        "dam.n.03": -1000.0
+    },
+    "synset": "dam.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a858a0c78cf441918a73b789a15593c9",
+        "creator_username": "daisydix",
+        "creator_display_name": "daisydix",
+        "creator_profile_url": "https://sketchfab.com/daisydix"
+    },
+    "filename": "std_a858a0c78cf441918a73b789a15593c9.glb",
+    "length": 17.258073806762695,
+    "width": 18.588826179504395
+}

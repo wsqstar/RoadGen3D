@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a military-style cargo truck with a robust, boxy cab and a large, covered rear cargo area. The truck features a khaki green paint scheme, with a canvas canopy stretched over a metal frame in the rear, providing protection for transported goods or personnel. The cab has two large, rectangular windshields with visible wipers and side mirrors extending outward for enhanced visibility. The vehicle is equipped with three axles and six large, rugged tires, indicating its capability for heavy loads and off-road use. The rear cargo area is accessible from the back, which is partially open, and the truck's overall design emphasizes durability and utility. The exterior surfaces appear matte and utilitarian, with minimal decorative elements.",
+    "description": "A khaki green, military-style cargo truck with a covered rear bed and a boxy cab, featuring six large wheels and a rugged, utilitarian design.",
+    "description_view_0": "Front view showing the boxy cab, two large windshields, side mirrors, and the front grille.",
+    "description_view_1": "Left side view highlighting the full length of the truck, the covered cargo bed, and all three axles with six wheels.",
+    "description_view_2": "Rear view displaying the open back of the covered cargo area and the dual rear wheels.",
+    "description_view_3": "Right side view similar to the left, showing the cab, covered cargo bed, and wheel arrangement.",
+    "category": "truck",
+    "height": 2.8,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "canvas",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.12,
+        0.07,
+        0.08,
+        0.03,
+        0.05
+    ],
+    "mass": 6500,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "mirror",
+        "windshield wiper",
+        "cargo bed cover",
+        "tailgate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "khaki green",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.18,
+        0.07
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "box",
+    "attribute_wheelbase": 4.2,
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "e86a62f4b8c84e03b2c6e32c51474bc7",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4918771757999115,
+        "van.n.05": 0.49241923280696437,
+        "truck.n.01": 0.5072788676898053,
+        "weapons_carrier.n.01": 0.5091617491784508,
+        "pickup.n.01": 0.5293085989898956,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e86a62f4b8c84e03b2c6e32c51474bc7",
+        "creator_username": "davidbroutian",
+        "creator_display_name": "Brout",
+        "creator_profile_url": "https://sketchfab.com/davidbroutian"
+    },
+    "filename": "std_e86a62f4b8c84e03b2c6e32c51474bc7.glb",
+    "length": 5.914814472198486,
+    "width": 2.4476394653320312
+}

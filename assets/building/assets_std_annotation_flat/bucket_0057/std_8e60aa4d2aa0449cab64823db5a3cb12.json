@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a stylized, compact airplane with a sharply pointed nose and a streamlined fuselage. The wings are short and swept back, positioned low on the body, and there is a single, tall vertical stabilizer at the rear. The cockpit is located at the front of the fuselage and features two dark, oval windows. At the rear, three visible jet exhausts suggest a jet propulsion system, with faint exhaust trails depicted. The surface is smooth and predominantly light gray, with minimal detailing and no visible landing gear. The overall design is simple and geometric, evoking a modern, possibly futuristic, small jet aircraft.",
+    "description": "A compact, stylized jet airplane with swept-back low wings, a pointed nose, and a single tall tail fin. It features a smooth light gray surface, dark cockpit windows, and three rear jet exhausts.",
+    "description_view_0": "Side view showing the pointed nose, low swept-back wing, tall vertical stabilizer, and rear jet exhausts.",
+    "description_view_1": "Front view highlighting the pointed nose, two dark cockpit windows, and the symmetrical placement of the wings and tail.",
+    "description_view_2": "Opposite side view similar to view 0, showing the other wing and the rear jet exhausts.",
+    "description_view_3": "Rear view displaying the three jet exhausts, the base of the vertical stabilizer, and the trailing edges of the wings.",
+    "category": "airplane",
+    "height": 1.2,
+    "max_dimension": 5.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 5,
+    "movable": true,
+    "required_force": 17650,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "jet exhaust",
+        "wing",
+        "tail fin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 7.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with short, swept-back wings and no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Triple rear-mounted jet engines integrated into the fuselage.",
+    "attribute_tail_design": "Conventional tail with a single tall vertical stabilizer and no visible horizontal stabilizers.",
+    "attribute_landing_gear_type": "No landing gear visible.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with two dark, oval windows.",
+    "uid": "8e60aa4d2aa0449cab64823db5a3cb12",
+    "near_synsets": {
+        "airplane.n.01": 0.4805240737741051,
+        "aircraft.n.01": 0.5010938265302708,
+        "jet.n.01": 0.5043290844106959,
+        "monoplane.n.01": 0.5198903862080261,
+        "propjet.n.01": 0.5264281289432166
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/8e60aa4d2aa0449cab64823db5a3cb12",
+        "creator_username": "jrweth",
+        "creator_display_name": "jrweth",
+        "creator_profile_url": "https://sketchfab.com/jrweth"
+    },
+    "filename": "std_8e60aa4d2aa0449cab64823db5a3cb12.glb",
+    "length": 1.5723505020141602,
+    "width": 0.5724080204963684
+}

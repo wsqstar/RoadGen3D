@@ -1,0 +1,100 @@
+{
+    "description_long": "This tram is a compact, rectangular public transport vehicle with a beige body and dark-tinted windows running along its sides. The tram sits on a pair of parallel tracks embedded in a dark road surface, with visible grooves for the wheels. The roof features a small, raised structure, likely for ventilation or electrical equipment, and a pantograph for overhead power collection. The windows are evenly spaced and rectangular, providing clear visibility for passengers. The front and rear ends are flat with a slight curvature, and the tram's overall design is streamlined for efficient urban transit. No external advertisements or decorative elements are visible, giving it a utilitarian appearance.",
+    "description": "A beige, rectangular tram with evenly spaced side windows, running on parallel tracks and featuring a roof-mounted pantograph.",
+    "description_view_0": "The tram is seen from the front, showing its flat face, central headlight, and the start of the side windows.",
+    "description_view_1": "A top-down view reveals the tram's roof details, including the pantograph and a small raised structure.",
+    "description_view_2": "The tram is viewed from the rear, mirroring the front with a flat end and visible rear windows.",
+    "description_view_3": "Another top-down view from the opposite direction, again highlighting the roof and the tram's length along the tracks.",
+    "category": "tram",
+    "height": 3.2,
+    "max_dimension": 12.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "pantograph",
+        "button",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_pantograph_type": "single-arm",
+    "attribute_door_configuration": "two sliding doors on the right side, centrally located",
+    "attribute_window_arrangement": "eight evenly spaced rectangular windows along each side, separated by narrow vertical frames",
+    "attribute_route_number_display": "none",
+    "attribute_front_signage": "none",
+    "uid": "adb5b3fc0d774e7d82060a319d5d9705",
+    "near_synsets": {
+        "tramline.n.01": 0.5137604716789254,
+        "train.n.01": 0.5310736981457502,
+        "subway_train.n.01": 0.5330891939447207,
+        "streetcar.n.01": 0.5373793627685804,
+        "trolley_line.n.01": 0.5428797149479001,
+        "tramcar.n.01": -1000.0,
+        "tramway.n.01": -1000.0
+    },
+    "synset": "tramway.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/adb5b3fc0d774e7d82060a319d5d9705",
+        "creator_username": "robinmikart",
+        "creator_display_name": "Libau Media",
+        "creator_profile_url": "https://sketchfab.com/robinmikart"
+    },
+    "filename": "std_adb5b3fc0d774e7d82060a319d5d9705.glb",
+    "length": 28.715593338012695,
+    "width": 28.715560913085938
+}

@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a large, rectangular metal dumpster with a weathered blue exterior and a black, ribbed split lid. The surface is marred with patches of rust, grime, and faded graffiti, giving it a distinctly urban, well-used appearance. The lid is divided into two hinged sections, each with visible wear and some white markings or graffiti. The sides of the dumpster feature protruding metal bars and brackets, likely for lifting or securing the container, and there are no visible wheels at the base. The front and sides display additional graffiti and scuff marks, while the overall structure appears robust and industrial. This type of dumpster is commonly found in alleys, behind commercial buildings, or in service areas for waste collection.",
+    "description": "A large, blue metal dumpster with a split black lid, covered in rust, grime, and graffiti, designed for urban waste collection.",
+    "description_view_0": "Front view showing the split black lid, blue rusted body, and prominent graffiti marks.",
+    "description_view_1": "Left side view highlighting the ribbed lid, side lifting bars, and additional graffiti.",
+    "description_view_2": "Rear view with a clear look at the blue, rusted metal surface and minimal graffiti.",
+    "description_view_3": "Right side view showing the lid's hinge mechanism, side bars, and more faded graffiti.",
+    "category": "dumpster",
+    "height": 1.3,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.06,
+        0.02
+    ],
+    "mass": 320,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "handle",
+        "side bar"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "split, flat, hinged lid with two sections made of ribbed steel; no visible locking mechanism",
+    "attribute_wheel_presence": false,
+    "attribute_handle_design": "two straight bar handles on each side, made of metal, positioned near the top edge",
+    "attribute_warning_labels": [],
+    "attribute_placement_location": "outdoor commercial area or residential alley",
+    "uid": "5c6036f09cbc443da7c5a55df695c3dc",
+    "near_synsets": {
+        "dumpster.n.01": 0.41237007694466676,
+        "garbage.n.03": 0.4869927896020864,
+        "garbage_truck.n.01": 0.49019171878496426,
+        "recycling_bin.n.01": 0.5173241656243223,
+        "dump.n.02": 0.5233033592425428
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5c6036f09cbc443da7c5a55df695c3dc",
+        "creator_username": "Agustin_Honnun",
+        "creator_display_name": "Agust\u00edn H\u00f6nnun",
+        "creator_profile_url": "https://sketchfab.com/Agustin_Honnun"
+    },
+    "filename": "std_5c6036f09cbc443da7c5a55df695c3dc.glb",
+    "length": 1.2103736996650696,
+    "width": 1.6825793981552124
+}

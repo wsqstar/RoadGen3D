@@ -1,0 +1,107 @@
+{
+    "description_long": "This object is a solar energy infrastructure installation featuring multiple rectangular photovoltaic panels arranged on a flat, rectangular base. The panels are mounted at an angle, likely to optimize sunlight capture, and are supported by a visible structural framework. The base appears to be a solid platform, possibly simulating a rooftop or ground-mounted foundation, with a section that looks like a metallic or concrete overhang. The panels are dark with a grid-like pattern, typical of crystalline silicon solar cells, and the supporting structure is metallic, likely aluminum or steel. There are no visible electrical inverters or cabling, suggesting these components are either not modeled or are concealed. The overall design is modular and functional, suitable for urban environments such as rooftops, parking structures, or dedicated solar farms.",
+    "description": "A modular solar energy installation with multiple angled photovoltaic panels on a solid rectangular base, featuring a metallic overhang and grid-patterned solar cells.",
+    "description_view_0": "Front view showing the full width of the installation, with the angled solar panels and the metallic overhang clearly visible.",
+    "description_view_1": "Side view highlighting the depth of the base and the tilt of the solar panels, with the overhang extending to the left.",
+    "description_view_2": "Rear view displaying the back of the panels and the structural framework, with the overhang now on the far side.",
+    "description_view_3": "Opposite side view showing the arrangement of the panels and the overhang extending to the right.",
+    "category": "solar energy infrastructure",
+    "height": 1.2,
+    "max_dimension": 8.0,
+    "materials": [
+        "glass",
+        "aluminum",
+        "steel",
+        "plastic",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.25,
+        0.15,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "energy_collecting",
+        "mountable",
+        "inspectable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "solar panel",
+        "mounting frame"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "blue",
+        "silver"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_panel_orientation": "tilted at approximately 30 degrees, azimuth direction not clearly defined, orientation appears fixed",
+    "attribute_mounting_structure_type": "roof-mounted or ground-mounted with visible metallic (likely aluminum) frame",
+    "attribute_electrical_inverter_presence": false,
+    "attribute_cabling_visibility": "not visible",
+    "attribute_array_configuration": "multiple rows of panels in a staggered cluster, approximately 8-10 panels total",
+    "uid": "7d86d2932203442d80d7613f4e61fe8c",
+    "near_synsets": {
+        "solar_array.n.01": 0.4946251332902815,
+        "solar_cell.n.01": 0.5322471971107575,
+        "solar_house.n.01": 0.5351738457066931,
+        "solar_thermal_system.n.01": 0.5447882224015219,
+        "solar_energy.n.01": 0.5511594652726863,
+        "energy.n.03": -1000.0,
+        "energy.n.01": -1000.0,
+        "energy.n.05": -1000.0,
+        "energy.n.06": -1000.0,
+        "energy.n.02": -1000.0,
+        "infrastructure.n.01": -1000.0,
+        "department_of_energy.n.01": -1000.0,
+        "energy.n.04": -1000.0,
+        "infrastructure.n.02": -1000.0
+    },
+    "synset": "solar_array.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7d86d2932203442d80d7613f4e61fe8c",
+        "creator_username": "brooklynsolarworks",
+        "creator_display_name": "brooklynsolarworks",
+        "creator_profile_url": "https://sketchfab.com/brooklynsolarworks"
+    },
+    "filename": "std_7d86d2932203442d80d7613f4e61fe8c.glb",
+    "length": 5.730762481689453,
+    "width": 11.051730632781982
+}

@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a rectangular, upright vending machine with a prominent Diet Coke branding on its front and sides. The front face features a large glass or plastic panel displaying the Diet Coke logo in red and white, with a product selection and payment interface panel on the right side. The machine is primarily constructed from metal, with some plastic and glass components, and has a sturdy, industrial appearance. The sides are also branded with the Diet Coke logo and a diagonal red swoosh, while the back is plain and unadorned. The product retrieval slot is located at the lower front, beneath the main display area. The overall design is typical of beverage vending machines found in urban public spaces.",
+    "description": "A tall, rectangular Diet Coke vending machine with bold branding, a glass front panel, and a side-mounted selection and payment interface.",
+    "description_view_0": "Front view showing the large Diet Coke logo, glass display, product selection/payment panel on the right, and the product retrieval slot at the bottom.",
+    "description_view_1": "Side view displaying the full-height Diet Coke branding and logo on a white background with a red swoosh.",
+    "description_view_2": "Rear view, plain and unbranded, showing a solid black metal surface with no visible features.",
+    "description_view_3": "Opposite side view, similar to view 1, with Diet Coke branding and a white panel with a red swoosh.",
+    "category": "vending machine",
+    "height": 1.8,
+    "max_dimension": 1.8,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "aluminum",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 220,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "payment slot",
+        "product retrieval slot",
+        "display panel",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "white",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A rectangular display panel is located on the upper right front, vertically oriented, with visible product images and selection instructions.",
+    "attribute_payment_interface": "A payment interface is integrated into the right front panel, featuring a coin slot and bill acceptor, both positioned above the product selection buttons.",
+    "attribute_product_selection_buttons": "A vertical row of individual product selection buttons is present on the right front panel, each labeled with product images or numbers.",
+    "attribute_product_retrieval_slot": "A rectangular product retrieval slot is located at the lower front, beneath the main display area, with a flap or door.",
+    "attribute_branding_or_signage": "Large Diet Coke branding in red and white covers the front and both sides, with the logo and a red swoosh; smaller Coca-Cola logos are also visible.",
+    "uid": "2c94bc1386cd468abc55afcb6cfa18be",
+    "near_synsets": {
+        "vending_machine.n.01": 0.5008680389263812,
+        "automat.n.01": 0.5407056647280681,
+        "coca_cola.n.01": 0.5465538470845838,
+        "soda_fountain.n.02": 0.5556895059421401,
+        "soda_fountain.n.01": 0.5648206802207271,
+        "machine.n.01": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.05": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.02": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2c94bc1386cd468abc55afcb6cfa18be",
+        "creator_username": "Aarondraws8",
+        "creator_display_name": "Aarondraws8",
+        "creator_profile_url": "https://sketchfab.com/Aarondraws8"
+    },
+    "filename": "std_2c94bc1386cd468abc55afcb6cfa18be.glb",
+    "length": 0.9425463974475861,
+    "width": 1.0692902207374573
+}

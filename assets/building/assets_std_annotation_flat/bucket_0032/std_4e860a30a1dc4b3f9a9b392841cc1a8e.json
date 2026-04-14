@@ -1,0 +1,95 @@
+{
+    "description_long": "This object consists of two commercial jet airplanes, one significantly larger than the other, both featuring streamlined fuselages and swept-back wings. The larger airplane has two underwing turbofan engines, a low-wing configuration, and a conventional tail with a single vertical stabilizer and horizontal stabilizers. The smaller airplane also has a low-wing design, with engines mounted at the rear of the fuselage and a T-tail configuration. Both aircraft have multiple passenger windows along the fuselage and visible landing gear beneath the main body. The surfaces are smooth and appear to be made of metal, with a uniform light gray color. The overall design is typical of modern passenger jets, optimized for aerodynamic efficiency and commercial transport.",
+    "description": "Two commercial jet airplanes, one large and one small, with swept-back low wings, smooth metallic surfaces, and visible landing gear.",
+    "description_view_0": "Front view showing the nose profiles, cockpit windows, and the underwing engines of the larger airplane, with both aircraft aligned nose-to-tail.",
+    "description_view_1": "Side view highlighting the full length of both airplanes, the passenger windows, and the relative size difference between the two.",
+    "description_view_2": "Rear view displaying the tail configurations, including the T-tail of the smaller airplane and the conventional tail of the larger one.",
+    "description_view_3": "Opposite side view similar to view 1, showing the other side of both airplanes and the placement of engines and landing gear.",
+    "category": "airplane",
+    "height": 6.5,
+    "max_dimension": 75.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2500000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "landing gear",
+        "engine",
+        "cockpit window",
+        "passenger window",
+        "cargo hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.08,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 80.0,
+    "asset_composition_type": "group",
+    "attribute_wingspan_configuration": "Low-wing, swept-back wings with slight dihedral; the larger airplane features blended winglets, while the smaller has straight tips.",
+    "attribute_engine_type": "Larger airplane: twin underwing turbofan engines; smaller airplane: twin rear-mounted jet engines.",
+    "attribute_tail_design": "Larger airplane: conventional tail with single vertical stabilizer; smaller airplane: T-tail with single vertical stabilizer and high-mounted horizontal stabilizers.",
+    "attribute_landing_gear_type": "Tricycle configuration with retractable landing gear; both airplanes have two main gear units and a single nose gear.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with multiple windows, typical of commercial passenger jets.",
+    "uid": "4e860a30a1dc4b3f9a9b392841cc1a8e",
+    "near_synsets": {
+        "airplane.n.01": 0.48600627397961027,
+        "aircraft.n.01": 0.5030496874127556,
+        "aircraft_landing.n.01": 0.5056327276622333,
+        "biplane.n.01": 0.5102897408368964,
+        "widebody_aircraft.n.01": 0.5149123915213476
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4e860a30a1dc4b3f9a9b392841cc1a8e",
+        "creator_username": "infina",
+        "creator_display_name": "infina",
+        "creator_profile_url": "https://sketchfab.com/infina"
+    },
+    "filename": "std_4e860a30a1dc4b3f9a9b392841cc1a8e.glb",
+    "length": 26.219510078430176,
+    "width": 22.382712364196777
+}

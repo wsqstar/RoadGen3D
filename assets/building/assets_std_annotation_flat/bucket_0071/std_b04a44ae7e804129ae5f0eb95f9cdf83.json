@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a modern military fighter jet with a sleek, aerodynamic fuselage and sharply swept-back wings. The aircraft features a single vertical stabilizer and a horizontal stabilizer at the tail, with visible underwing pylons carrying missiles or external fuel tanks. The cockpit is positioned forward on the fuselage and is enclosed with a clear canopy, likely accommodating a single pilot. The jet is painted in a dark gray camouflage scheme with insignia and markings on the tail and fuselage. The nose is sharply pointed, and the air intake is located beneath the cockpit, characteristic of high-speed supersonic aircraft.",
+    "description": "A dark gray, modern military fighter jet with swept-back wings, a single vertical stabilizer, and a forward-enclosed cockpit.",
+    "description_view_0": "Side view showing the full length of the jet, swept-back wings, underwing pylons, and tail markings.",
+    "description_view_1": "Front view highlighting the pointed nose, cockpit canopy, and the symmetry of the wings and stabilizers.",
+    "description_view_2": "Opposite side view similar to view 0, showing the other side's markings and external stores.",
+    "description_view_3": "Rear view displaying the jet exhaust, tail assembly, and the full span of the wings.",
+    "category": "airplane",
+    "height": 4.5,
+    "max_dimension": 15.0,
+    "materials": [
+        "aluminum",
+        "titanium",
+        "composite",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "landing gear",
+        "control stick",
+        "throttle",
+        "missile pylons",
+        "wings",
+        "tail surfaces"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "light gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "sleek",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.03,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, sharply swept-back wings with underwing pylons and no visible winglets.",
+    "attribute_engine_type": "Single jet engine with intake beneath the cockpit and exhaust at the rear fuselage.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Tricycle retractable landing gear, with main gear under the wings and a nose gear.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed single-seat cockpit with a clear canopy.",
+    "uid": "b04a44ae7e804129ae5f0eb95f9cdf83",
+    "near_synsets": {
+        "aircraft.n.01": 0.47168187514214704,
+        "airplane.n.01": 0.49027882932343564,
+        "warplane.n.01": 0.4978966159437802,
+        "fighter.n.02": 0.4981190889081846,
+        "jet.n.01": 0.505909757471614
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b04a44ae7e804129ae5f0eb95f9cdf83",
+        "creator_username": "karelkiers",
+        "creator_display_name": "karelkiers",
+        "creator_profile_url": "https://sketchfab.com/karelkiers"
+    },
+    "filename": "std_b04a44ae7e804129ae5f0eb95f9cdf83.glb",
+    "length": 14.561734676361084,
+    "width": 9.409444808959961
+}

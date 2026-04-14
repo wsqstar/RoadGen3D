@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a large, four-engine commercial or cargo airplane with a high-wing configuration and a robust, wide fuselage. The aircraft features swept-back wings mounted high on the body, each supporting two underwing turbofan engines. The tail section is distinctive, with a T-tail design and a single vertical stabilizer, complemented by a horizontal stabilizer mounted atop the fin. The fuselage is painted primarily white with blue and gray striping, and the tail fin displays a red and orange accent. The cockpit is positioned at the very front of the fuselage, with multiple windows providing visibility for the flight crew. The landing gear appears to be retractable, with multiple wheels visible beneath the wings and fuselage.",
+    "description": "A large, high-wing, four-engine airplane with a T-tail and prominent cockpit, painted white with blue and gray accents. Features swept wings, underwing turbofan engines, and a robust fuselage.",
+    "description_view_0": "The airplane is seen from a front-left angle, highlighting the high-mounted swept wings, four underwing engines, and the T-tail with colored accents on the vertical stabilizer.",
+    "description_view_1": "A direct front view shows the full wingspan, the four engines beneath the wings, and the rounded nose with cockpit windows.",
+    "description_view_2": "The airplane is viewed from a front-right angle, displaying the opposite side of the fuselage, the high wings, and the T-tail structure.",
+    "description_view_3": "A direct rear view reveals the T-tail configuration, the four engines, and the broad, high-mounted wings extending outward.",
+    "category": "airplane",
+    "height": 15.0,
+    "max_dimension": 50.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "cockpit window",
+        "landing gear",
+        "engine",
+        "cargo bay door",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "blue",
+        "red",
+        "orange",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 60.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "High-wing, swept-back wings with moderate anhedral angle and no visible winglets.",
+    "attribute_engine_type": "Four underwing turbofan engines, two per wing.",
+    "attribute_tail_design": "T-tail configuration with a single vertical stabilizer and a high-mounted horizontal stabilizer.",
+    "attribute_landing_gear_type": "Retractable tricycle landing gear with multiple main and nose wheels visible.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with multiple windows at the front of the fuselage.",
+    "uid": "4ccdb22417ab4bfbaaa82143f958efcb",
+    "near_synsets": {
+        "airplane.n.01": 0.4909423197097965,
+        "propjet.n.01": 0.5076555126416733,
+        "aircraft.n.01": 0.5080913659250055,
+        "jet.n.01": 0.5244008881454554,
+        "fanjet.n.01": 0.5249622891090172
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4ccdb22417ab4bfbaaa82143f958efcb",
+        "creator_username": "biothrix",
+        "creator_display_name": "biothrix",
+        "creator_profile_url": "https://sketchfab.com/biothrix"
+    },
+    "filename": "std_4ccdb22417ab4bfbaaa82143f958efcb.glb",
+    "length": 47.38955116271973,
+    "width": 51.52603530883789
+}

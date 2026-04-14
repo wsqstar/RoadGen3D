@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a compact quadcopter drone with a streamlined, cylindrical central body and four extended arms, each supporting a rotor with two blades. The drone features fixed landing legs at the end of each arm, providing stability for takeoff and landing. At the front, a spherical camera module is mounted beneath the main body, suggesting capabilities for aerial photography or surveillance. The rotors are positioned in a classic 'X' configuration, maximizing lift and maneuverability. The exterior appears to be constructed primarily from matte-finished composite materials, likely carbon fiber or reinforced plastic, with metallic components at the rotor hubs. The overall design is utilitarian and robust, suitable for urban environments where agility and durability are essential.",
+    "description": "A compact quadcopter drone with a cylindrical body, four rotors in an 'X' layout, fixed landing legs, and a front-mounted camera module.",
+    "description_view_0": "Front-left view showing the spherical camera module, two rotors, and the fixed landing legs.",
+    "description_view_1": "Rear-left view highlighting the back of the drone, the cylindrical body, and the rear landing legs.",
+    "description_view_2": "Front-right view with a clear look at the camera module, two rotors, and the right-side landing legs.",
+    "description_view_3": "Rear-right view focusing on the back of the drone, the cylindrical body, and the rear rotors and legs.",
+    "category": "drone",
+    "height": 0.25,
+    "max_dimension": 0.55,
+    "materials": [
+        "carbon fiber",
+        "plastic",
+        "aluminum",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 2.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 22,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable",
+        "toggleable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotor",
+        "landing leg",
+        "camera module",
+        "power button"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "blue"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.08,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 4,
+    "attribute_rotor_configuration": "quadcopter X",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": true,
+    "attribute_propeller_guard_presence": false,
+    "uid": "dd36036ddd54467fb373eb817758e441",
+    "near_synsets": {
+        "drone.n.04": 0.5434202250263535,
+        "single-rotor_helicopter.n.01": 0.5493553787487686,
+        "rotor.n.03": 0.5693268972223543,
+        "orthopter.n.01": 0.5841156866650761,
+        "main_rotor.n.01": 0.5867681261012427,
+        "drone.n.01": -1000.0,
+        "drone.n.05": -1000.0,
+        "dawdler.n.01": -1000.0,
+        "monotone.n.01": -1000.0
+    },
+    "synset": "drone.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dd36036ddd54467fb373eb817758e441",
+        "creator_username": "ChassisXY",
+        "creator_display_name": "ChassisXY",
+        "creator_profile_url": "https://sketchfab.com/ChassisXY"
+    },
+    "filename": "std_dd36036ddd54467fb373eb817758e441.glb",
+    "length": 0.5598487854003906,
+    "width": 0.6155294477939606
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a robust, turret-like automated rifle system with a predominantly red armored exterior and black mechanical components. It features a dual-barrel configuration extending from a thick, rounded housing, suggesting heavy firepower and advanced targeting capabilities. The main body is mounted on a spherical pivot, supported by four sturdy, articulated legs with wide, flat feet for stability on urban surfaces. The top of the housing includes a small, raised module, likely for sensors or targeting optics. The overall design is utilitarian and militaristic, with visible joints and mechanical linkages for rotation and elevation adjustment. The construction appears to be primarily metal, with a matte finish and some wear, indicating durability for outdoor deployment.",
+    "description": "A red, dual-barrel automated turret rifle with four articulated legs and a robust, armored housing. Designed for stability and heavy firepower in urban environments.",
+    "description_view_0": "Side view showing the dual barrels extending from the thick, rounded housing and the articulated legs supporting the main body.",
+    "description_view_1": "Front view highlighting the twin barrels, central pivot, and symmetrical leg arrangement for stability.",
+    "description_view_2": "Opposite side view, mirroring view 0, with clear visibility of the barrels and leg structure.",
+    "description_view_3": "Direct barrel-facing view, emphasizing the twin barrels and the robust, armored front of the housing.",
+    "category": "rifle",
+    "height": 1.1,
+    "max_dimension": 1.6,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.02,
+        0.05,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel",
+        "sensor module",
+        "legs",
+        "pivot joint"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "none",
+    "uid": "9c6547e491eb4adfbd2a3bd5284a9bca",
+    "near_synsets": {
+        "automatic_rifle.n.01": 0.49427179869499227,
+        "light_arm.n.01": 0.5063187545038956,
+        "machine_gun.n.01": 0.5169998245761261,
+        "assault_gun.n.02": 0.5235101104878135,
+        "gun_enclosure.n.01": 0.5265558610709307,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9c6547e491eb4adfbd2a3bd5284a9bca",
+        "creator_username": "smellypenguin",
+        "creator_display_name": "smellypenguin",
+        "creator_profile_url": "https://sketchfab.com/smellypenguin"
+    },
+    "filename": "std_9c6547e491eb4adfbd2a3bd5284a9bca.glb",
+    "length": 2.026726722717285,
+    "width": 1.429762840270996
+}

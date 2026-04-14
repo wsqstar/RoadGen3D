@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a compact, boxy all-terrain vehicle with a utilitarian design, painted in a matte tan color. The front features a flat hood, rectangular headlights, a black grille, and a license plate reading 'MS-78-BEL'. The side view reveals two doors, one for the driver and a rear compartment window, with black, rugged wheels suitable for off-road use. The vehicle's body is constructed from metal panels, with visible seams and a slightly weathered finish, suggesting durability for rough environments. The windows are tinted or darkened, and the windshield is equipped with two wipers. The rear and opposite side are less visible, but the silhouette confirms a symmetrical, enclosed cargo area. This vehicle is designed for both urban and off-road scenarios, offering robust transport capabilities.",
+    "description": "A compact, boxy tan all-terrain vehicle with rugged black wheels, flat hood, and utilitarian metal body, designed for durability and off-road use.",
+    "description_view_0": "Front view showing the flat hood, rectangular headlights, black grille, windshield with wipers, and license plate.",
+    "description_view_1": "Side view displaying the driver door, rear compartment window, and four rugged black wheels.",
+    "description_view_2": "Rear view, mostly in shadow, with the outline of the vehicle's back and hints of the rear door.",
+    "description_view_3": "Opposite side view, silhouetted, showing the vehicle's boxy profile and wheel arrangement.",
+    "category": "all-terrain vehicle",
+    "height": 1.8,
+    "max_dimension": 3.8,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 1400,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 3500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable",
+        "pullable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "steering wheel",
+        "windshield wiper"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 4,
+    "attribute_tire_tread_pattern": "The tires have a blocky, all-terrain tread pattern designed for enhanced grip on both paved and unpaved surfaces.",
+    "attribute_suspension_type": "solid axle",
+    "attribute_presence_of_roll_cage": false,
+    "attribute_handlebar_or_steering_wheel_type": "round steering wheel",
+    "uid": "f508446c4351422ca99ef836427f1407",
+    "near_synsets": {
+        "sport_utility.n.01": 0.5071768556728113,
+        "jeep.n.01": 0.533299799800791,
+        "reconnaissance_vehicle.n.01": 0.533737480927301,
+        "military_vehicle.n.01": 0.5381060143934262,
+        "dune_buggy.n.01": 0.5434273892506069,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "jeep.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f508446c4351422ca99ef836427f1407",
+        "creator_username": "bondaru",
+        "creator_display_name": "Bogdan Georgescu",
+        "creator_profile_url": "https://sketchfab.com/bondaru"
+    },
+    "filename": "std_f508446c4351422ca99ef836427f1407.glb",
+    "length": 3.199409008026123,
+    "width": 3.254462957382202
+}

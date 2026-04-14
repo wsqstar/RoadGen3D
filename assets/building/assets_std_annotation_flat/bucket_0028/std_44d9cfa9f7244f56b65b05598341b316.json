@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a streamlined, cylindrical bomb with a conical nose and a rounded, black-colored intake at the opposite end. The body is primarily a light gray color, featuring a series of small rivets or fasteners along the seams, suggesting a metallic construction. A single prominent stabilizing fin is mounted on the upper side, extending backward and slightly upward, which would aid in aerodynamic stability during flight. The front of the bomb has a turbine-like structure visible within the black intake, indicating it may be a jet-propelled or guided munition. The rear end tapers to a smaller diameter, with a central nozzle or exhaust port. The overall design is sleek and functional, with no visible external wiring, switches, or labels.",
+    "description": "A streamlined, gray bomb with a black intake, visible turbine blades, and a single stabilizing fin. The body is metallic with riveted seams and a tapered rear nozzle.",
+    "description_view_0": "Side view showing the conical body, black intake, and the single stabilizing fin extending upward.",
+    "description_view_1": "Front view highlighting the black intake and internal turbine blades, with the fin visible at the top.",
+    "description_view_2": "Opposite side view showing the same conical body and fin, with the black intake and rivet details.",
+    "description_view_3": "Rear view displaying the tapered nozzle and the fin mounted on top, with the intake not visible.",
+    "category": "bomb",
+    "height": 0.7,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1176,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "fin",
+        "intake",
+        "nozzle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "smooth",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "No visible external detonation mechanism; detonation may be initiated internally or via remote signal, as there are no buttons, switches, or wires present.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "44d9cfa9f7244f56b65b05598341b316",
+    "near_synsets": {
+        "buzz_bomb.n.01": 0.5470577051410512,
+        "bomber.n.01": 0.5622328670245911,
+        "dive_bomber.n.01": 0.5682822570502045,
+        "plastic_bomb.n.01": 0.5703490564416362,
+        "nacelle.n.01": 0.5714397952827228,
+        "bomb_calorimeter.n.01": -1000.0,
+        "bomb.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/44d9cfa9f7244f56b65b05598341b316",
+        "creator_username": "Porry",
+        "creator_display_name": "Porry",
+        "creator_profile_url": "https://sketchfab.com/Porry"
+    },
+    "filename": "std_44d9cfa9f7244f56b65b05598341b316.glb",
+    "length": 0.9091475009918213,
+    "width": 0.5854392647743225
+}

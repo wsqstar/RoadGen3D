@@ -1,0 +1,105 @@
+{
+    "description_long": "This object consists of two whole pizzas, each with a single slice removed and placed nearby. One pizza features a light-colored crust and a pale, creamy surface with subtle green and orange toppings, suggesting a mild cheese and vegetable combination. The other pizza has a dark blue base with a dense scattering of white and purple toppings, giving it a more vibrant and unique appearance. Both pizzas are round and flat, with thin, slightly raised crusts visible along the edges. The slices are triangular and match the toppings and crusts of their respective pizzas. The overall presentation suggests freshly baked pizzas, ready to be served or shared in a casual urban setting.",
+    "description": "Two round pizzas, each with a single slice removed and placed nearby; one is pale with subtle toppings, the other is dark blue with white and purple toppings.",
+    "description_view_0": "Both pizzas are seen from an elevated angle, showing their full round shapes and the removed slices placed in front of each pizza.",
+    "description_view_1": "The pizzas are viewed from the side, emphasizing the flatness of the pizzas and the triangular shape of the slices.",
+    "description_view_2": "The pizzas are seen from the opposite side, with the slices positioned behind the pizzas, highlighting the crust edges.",
+    "description_view_3": "A side view with the pizzas and slices aligned horizontally, showing the surface toppings and the thinness of the crusts.",
+    "category": "pizza",
+    "height": 0.03,
+    "max_dimension": 0.35,
+    "materials": [
+        "bread",
+        "cheese",
+        "vegetable",
+        "sauce",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "slice",
+        "whole pizza"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "cream",
+        "green",
+        "orange",
+        "blue",
+        "white",
+        "purple"
+    ],
+    "colors_composition": [
+        0.35,
+        0.05,
+        0.05,
+        0.35,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_topping_type": [
+        "cheese",
+        "vegetable",
+        "unknown purple topping"
+    ],
+    "attribute_slice_count": 8,
+    "attribute_crust_style": "thin crust",
+    "attribute_packaging_presence": false,
+    "attribute_brand_logo": "None",
+    "uid": "7a880b183f5a47488dba3af2af1a7eef",
+    "near_synsets": {
+        "pepperoni_pizza.n.01": 0.5249392937314954,
+        "cheese_pizza.n.01": 0.5424634067838157,
+        "sausage_pizza.n.01": 0.5451746993438178,
+        "sicilian_pizza.n.01": 0.5458084891986611,
+        "anchovy_pizza.n.01": 0.5601907803958809,
+        "pizza.n.01": -1000.0
+    },
+    "synset": "pizza.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7a880b183f5a47488dba3af2af1a7eef",
+        "creator_username": "cameronzavala",
+        "creator_display_name": "cameronzavala",
+        "creator_profile_url": "https://sketchfab.com/cameronzavala"
+    },
+    "filename": "std_7a880b183f5a47488dba3af2af1a7eef.glb",
+    "length": 2.0102933645248413,
+    "width": 0.7325510084629059
+}

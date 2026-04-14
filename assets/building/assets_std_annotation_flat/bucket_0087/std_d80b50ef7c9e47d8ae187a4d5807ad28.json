@@ -1,0 +1,88 @@
+{
+    "description_long": "This is a rectangular section of urban sidewalk composed of coarse, gray concrete with visible aggregate and a prominent, irregular crack running across its surface. The crack is filled with darker material and is accompanied by small debris such as twigs and pebbles scattered across the surface. The texture is rough and uneven, with small stones embedded throughout, giving it a weathered and aged appearance. The sidewalk shows signs of wear, likely from foot traffic and exposure to the elements, as evidenced by the crack and surface imperfections. There are no visible curbs, tactile paving, or street furniture present in the immediate area. The overall look is typical of a secondary road sidewalk in a residential or lightly trafficked urban setting.",
+    "description": "A cracked, weathered gray concrete sidewalk segment with embedded stones and scattered debris. The surface is rough and aged, showing signs of wear and exposure.",
+    "description_view_0": "The crack runs horizontally across the center, with visible aggregate and some debris near the top edge.",
+    "description_view_1": "The crack appears more jagged and runs diagonally, with more visible debris and a rougher texture.",
+    "description_view_2": "The crack is again horizontal but appears slightly less jagged, with fewer visible debris pieces.",
+    "description_view_3": "The crack runs diagonally, similar to view 1, with a focus on the rough, uneven surface and scattered twigs.",
+    "category": "sidewalk",
+    "height": 0.08,
+    "max_dimension": 2.0,
+    "materials": [
+        "concrete",
+        "aggregate",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 380,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "dark gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": false,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "flush",
+    "attribute_adjacent_street_type": "residential",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "d80b50ef7c9e47d8ae187a4d5807ad28",
+    "near_synsets": {
+        "sidewalk.n.01": 0.5244181047952212,
+        "macadam.n.01": 0.5293627560902756,
+        "cement.n.01": 0.5654983327018394,
+        "shingle.n.02": 0.5669443039037436,
+        "paving_stone.n.01": 0.5696356102000194
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/d80b50ef7c9e47d8ae187a4d5807ad28",
+        "creator_username": "romullus",
+        "creator_display_name": "romullus",
+        "creator_profile_url": "https://sketchfab.com/romullus"
+    },
+    "filename": "std_d80b50ef7c9e47d8ae187a4d5807ad28.glb",
+    "length": 595420.5,
+    "width": 595420.4375
+}

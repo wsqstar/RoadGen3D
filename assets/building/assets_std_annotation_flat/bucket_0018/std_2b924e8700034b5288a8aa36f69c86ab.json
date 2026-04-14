@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a military-style tiltrotor helicopter, resembling the Bell Boeing V-22 Osprey, with a robust, angular fuselage and two large, forward-facing rotors mounted on the ends of fixed wings. The body is painted in a matte dark gray with subtle panel lines and a few red markings on the rotor tips. The cockpit is located at the front, featuring a multi-pane window arrangement with a slightly tinted appearance. The tail section is T-shaped, with a horizontal stabilizer and vertical fins, providing aerodynamic stability. The landing gear consists of retractable wheels rather than skids, integrated into the underside of the fuselage. The overall design is utilitarian, optimized for both vertical takeoff and forward flight, making it suitable for rapid deployment in urban or tactical environments.",
+    "description": "A dark gray, military-style tiltrotor helicopter with two large rotors, a robust fuselage, and a T-shaped tail. It features a multi-pane cockpit window and retractable wheel landing gear.",
+    "description_view_0": "Rear three-quarter view showing the T-shaped tail, both rotors, and the angular rear fuselage.",
+    "description_view_1": "Direct rear view highlighting the full span of the wings, both rotors, and the symmetrical tail structure.",
+    "description_view_2": "Rear side view emphasizing the right rotor, wing, and the side profile of the cockpit and fuselage.",
+    "description_view_3": "Front view displaying the cockpit windows, nose, and both rotors extending outward from the wings.",
+    "category": "helicopter",
+    "height": 5.5,
+    "max_dimension": 17.5,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 15000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 147000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotor",
+        "cockpit door",
+        "landing gear",
+        "control panel",
+        "cargo door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_rotor_blades": "Two main rotors, each with three long, straight blades made of composite material, colored black with red tips and subtle markings.",
+    "attribute_tail_rotor": "No traditional tail rotor; instead, the helicopter uses tiltrotor configuration with both main rotors providing yaw control.",
+    "attribute_landing_skids": "No landing skids; the helicopter is equipped with retractable wheel landing gear integrated into the fuselage.",
+    "attribute_cockpit_windows": "Multiple cockpit windows arranged in a wraparound configuration at the front, rectangular with slight tint and black framing.",
+    "attribute_registration_number": "not visible",
+    "uid": "2b924e8700034b5288a8aa36f69c86ab",
+    "near_synsets": {
+        "single-rotor_helicopter.n.01": 0.4892658987368462,
+        "helicopter.n.01": 0.495161350694668,
+        "main_rotor.n.01": 0.5019749380933469,
+        "tail_rotor.n.01": 0.5055784957163595,
+        "cargo_helicopter.n.01": 0.5216227632224766
+    },
+    "synset": "cargo_helicopter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2b924e8700034b5288a8aa36f69c86ab",
+        "creator_username": "mistermanbruh",
+        "creator_display_name": "mistermanbruh",
+        "creator_profile_url": "https://sketchfab.com/mistermanbruh"
+    },
+    "filename": "std_2b924e8700034b5288a8aa36f69c86ab.glb",
+    "length": 17.47725009918213,
+    "width": 19.109920501708984
+}

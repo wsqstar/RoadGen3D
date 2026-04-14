@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a modular set of urban road segments, including straight sections, curved sections, T-junctions, and cross intersections. The road surfaces are dark gray with white and yellow lane markings, and the edges are bordered by lighter gray sidewalks or shoulders. The set includes both wide and narrow road pieces, allowing for flexible assembly into various street layouts. The lane markings are clearly defined, with some segments featuring dashed lines and others solid lines, indicating different traffic flows. The pieces are flat and appear to be made of asphalt with concrete or stone borders. There are no visible curbs, signage, or lighting fixtures present in the set.",
+    "description": "A modular collection of urban road segments with distinct lane markings and sidewalks, including straight, curved, and intersection pieces. The surfaces are dark gray with white and yellow markings and lighter gray borders.",
+    "description_view_0": "This view shows the full set of road segments laid out, highlighting the variety of straight, curved, and intersection pieces with visible lane markings.",
+    "description_view_1": "From this angle, the curved road segments and the arrangement of intersections are more prominent, showing the modularity of the set.",
+    "description_view_2": "This view emphasizes the width and flatness of the road pieces, with the cross and T-junctions clearly visible in the foreground.",
+    "description_view_3": "Here, the arrangement of the road segments is seen from the opposite side, with the straight and curved sections aligned in rows and the lane markings still visible.",
+    "category": "road",
+    "height": 0.15,
+    "max_dimension": 8.0,
+    "materials": [
+        "asphalt",
+        "concrete",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "supportive"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "car",
+        "bicycle",
+        "motorcycle",
+        "bus",
+        "truck"
+    ],
+    "colors": [
+        "dark gray",
+        "light gray",
+        "white",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_lane_markings": "Solid and dashed white lines, single and double yellow lines, arranged for two-way and multi-lane traffic; no special markings such as arrows or bicycle lanes.",
+    "attribute_signage": "none",
+    "attribute_curb_presence": false,
+    "attribute_lighting_fixtures": "none",
+    "attribute_pedestrian_crossings": "none",
+    "uid": "558f2ea2ae7b4861b18eea228085674b",
+    "near_synsets": {
+        "street.n.01": 0.5189287078129897,
+        "street.n.02": 0.5241335094351851,
+        "sidewalk.n.01": 0.5257149300783663,
+        "traffic_lane.n.01": 0.5326474438040896,
+        "white_line.n.01": 0.5369600547350443,
+        "road.n.02": -1000.0,
+        "road.n.01": -1000.0
+    },
+    "synset": "road.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/558f2ea2ae7b4861b18eea228085674b",
+        "creator_username": "MRowa",
+        "creator_display_name": "MRowa",
+        "creator_profile_url": "https://sketchfab.com/MRowa"
+    },
+    "filename": "std_558f2ea2ae7b4861b18eea228085674b.glb",
+    "length": 1.1997070908546448,
+    "width": 1.919921875
+}

@@ -1,0 +1,87 @@
+{
+    "description_long": "This is a small, wooden shelter with a gabled roof and open front, resembling a rustic bus stop or park shelter. The structure is constructed primarily from light-colored wood, with visible grain patterns and a simple, natural finish. The front features an open entryway with a decorative wooden trim and a small triangular cutout above the entrance, adding a touch of ornamentation. The sides and back are enclosed with vertical and horizontal wooden planks, providing protection from the elements. The roof is broad and overhanging, offering ample coverage and supported by sturdy wooden walls. The overall design is minimalistic yet functional, suitable for providing shade and shelter in urban parks or along sidewalks.",
+    "description": "A small, rustic wooden shelter with a gabled roof, open front, and decorative trim, ideal for parks or bus stops.",
+    "description_view_0": "Front view showing the open entryway, decorative trim, and triangular cutout above the entrance.",
+    "description_view_1": "Side view displaying the overhanging gabled roof and vertically paneled wooden wall.",
+    "description_view_2": "Rear view with horizontal wooden planks and a scalloped trim beneath the roof.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the roof's overhang and vertical paneling.",
+    "category": "shelter",
+    "height": 2.2,
+    "max_dimension": 2.8,
+    "materials": [
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.15
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shelterable",
+        "shadeable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "entryway"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light brown"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.55,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gabled wooden roof with broad overhangs and visible wood grain",
+    "attribute_entryway_design": "open front entryway with decorative trim and a small triangular cutout above",
+    "attribute_support_structure": "solid wooden walls and roof beams supporting the structure",
+    "attribute_signage": "none",
+    "attribute_transparency": "fully opaque",
+    "uid": "7b3055793611466491557f06476529ea",
+    "near_synsets": {
+        "shelter.n.02": 0.4667811885474302,
+        "shelter.n.01": 0.47568803262917125,
+        "shelter.n.05": 0.48657702704516076,
+        "gazebo.n.01": 0.4916404199825406,
+        "lean-to.n.01": 0.5119571964560482,
+        "tax_shelter.n.01": -1000.0,
+        "protection.n.04": -1000.0
+    },
+    "synset": "tax_shelter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7b3055793611466491557f06476529ea",
+        "creator_username": "Joyce.Zou",
+        "creator_display_name": "Jiayi Zou",
+        "creator_profile_url": "https://sketchfab.com/Joyce.Zou"
+    },
+    "filename": "std_7b3055793611466491557f06476529ea.glb",
+    "length": 1.8160336017608643,
+    "width": 4.062676906585693
+}

@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a tall, tower-style construction crane with a lattice steel structure forming both the vertical mast and the long horizontal jib. The crane features a prominent ladder running up the mast, and cables extend from the top of the mast to the end of the jib for structural support. A large, cross-shaped stabilizing base is visible at the bottom, providing balance and anchorage. The crane's boom extends far horizontally, with a trolley and a single hook hanging from it for lifting heavy loads. The structure is primarily metallic, with visible signs of industrial use and weathering, and the overall design is utilitarian and robust, suitable for urban construction sites.",
+    "description": "A tall, lattice steel tower crane with a long horizontal boom, stabilizing base, and a single hook for lifting. The structure is industrial and robust, designed for heavy-duty construction work.",
+    "description_view_0": "Side view showing the full length of the horizontal boom, the vertical mast with ladder, and the cross-shaped stabilizing base.",
+    "description_view_1": "End-on view highlighting the narrow profile of the mast, the alignment of the boom, and the cross-shaped base extending outward.",
+    "description_view_2": "Opposite side view mirroring view 0, showing the boom, mast, and base from the other direction.",
+    "description_view_3": "Rear view focusing on the back of the mast, the ladder, and the cross-shaped base, with the boom extending away.",
+    "category": "crane",
+    "height": 25.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "steel",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.92,
+        0.07,
+        0.01
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "ladder",
+        "hook",
+        "trolley",
+        "boom",
+        "counterweight area"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_boom_type": "lattice boom",
+    "attribute_counterweight_presence": true,
+    "attribute_operator_cabin_visibility": false,
+    "attribute_hook_or_lifting_mechanism": "single hook",
+    "attribute_support_structure_design": "fixed base",
+    "uid": "647872b89d084f7cb50329a6f7e35721",
+    "near_synsets": {
+        "crane.n.04": 0.41946111767014865,
+        "derrick.n.02": 0.4825761618115367,
+        "stacker_crane.n.01": 0.5110615453839663,
+        "hoist.n.01": 0.5438701875388277,
+        "lift_capacity.n.01": 0.5495498940095659,
+        "crane.n.02": -1000.0,
+        "crane.n.05": -1000.0,
+        "grus.n.01": -1000.0,
+        "crane.n.01": -1000.0
+    },
+    "synset": "crane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/647872b89d084f7cb50329a6f7e35721",
+        "creator_username": "chris.berghs",
+        "creator_display_name": "chris.berghs",
+        "creator_profile_url": "https://sketchfab.com/chris.berghs"
+    },
+    "filename": "std_647872b89d084f7cb50329a6f7e35721.glb",
+    "length": 9.67490816116333,
+    "width": 32.07832717895508
+}

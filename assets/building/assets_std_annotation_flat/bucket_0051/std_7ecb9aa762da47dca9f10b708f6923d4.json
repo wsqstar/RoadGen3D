@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a compact, dual-rotor drone with a robust, industrial design, featuring two large ducted fans mounted on either side of a central body. The main body is rectangular and appears to be constructed from a dark, metallic material with yellow-orange accent panels, giving it a utilitarian look suitable for urban environments. The underside is equipped with four fixed landing legs, each ending in a rounded foot for stable landings on various surfaces. At the front, a prominent camera or sensor module is visible, encased in a protective housing, suggesting surveillance or inspection capabilities. The top of the drone has a small antenna, likely for communication or remote control. The rotors are recessed within protective housings, minimizing the risk of damage or injury during operation.",
+    "description": "A sturdy, dual-rotor drone with a dark metallic body, yellow-orange accents, fixed landing legs, and a front-facing camera module.",
+    "description_view_0": "Front view showing the central body, both rotors, and the landing legs beneath.",
+    "description_view_1": "Angled side view highlighting the side profile, rotor housings, and the landing legs' arrangement.",
+    "description_view_2": "Rear view displaying the back of the drone, the camera module, and the symmetrical rotor placement.",
+    "description_view_3": "Opposite angled side view, showing the other side of the drone and the landing gear.",
+    "category": "drone",
+    "height": 0.35,
+    "max_dimension": 0.7,
+    "materials": [
+        "aluminum",
+        "plastic",
+        "glass",
+        "rubber",
+        "air",
+        "electronic_components"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.05,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotor",
+        "landing leg",
+        "camera module",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "yellow-orange",
+        "black",
+        "silver",
+        "red"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 2,
+    "attribute_rotor_configuration": "twin coaxial",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": true,
+    "attribute_propeller_guard_presence": true,
+    "uid": "7ecb9aa762da47dca9f10b708f6923d4",
+    "near_synsets": {
+        "drone.n.04": 0.5620317361500397,
+        "single-rotor_helicopter.n.01": 0.5823347934955391,
+        "orthopter.n.01": 0.5899841359321932,
+        "skyhook.n.01": 0.5911176499602798,
+        "dorbeetle.n.01": 0.594067311326822,
+        "drone.n.05": -1000.0,
+        "drone.n.01": -1000.0,
+        "monotone.n.01": -1000.0,
+        "dawdler.n.01": -1000.0
+    },
+    "synset": "drone.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7ecb9aa762da47dca9f10b708f6923d4",
+        "creator_username": "TheMiniFrench",
+        "creator_display_name": "TheMiniFrench",
+        "creator_profile_url": "https://sketchfab.com/TheMiniFrench"
+    },
+    "filename": "std_7ecb9aa762da47dca9f10b708f6923d4.glb",
+    "length": 0.44544491171836853,
+    "width": 0.8924016356468201
+}

@@ -1,0 +1,95 @@
+{
+    "description_long": "This hotel is a two-story stone and wood structure with a steeply pitched, shingled roof and multiple chimneys, evoking a rustic, lodge-like appearance. The exterior walls are constructed from rough-hewn gray stone on the lower levels, while the upper sections and roof gables are clad in weathered wooden planks. Numerous blue-framed windows punctuate the facade, providing a striking contrast to the earthy tones of the building. The main entrance is sheltered by a wooden overhang supported by posts, and a covered walkway extends along one side of the building. Architectural details such as dormer windows, exposed beams, and a prominent central chimney contribute to its traditional, countryside charm. The overall form is asymmetrical, with several wings and extensions creating a complex, inviting silhouette.",
+    "description": "A rustic, stone-and-wood hotel with a steep shingled roof, blue-framed windows, and multiple chimneys. The building features a covered entrance and walkway, with traditional lodge-style architectural details.",
+    "description_view_0": "Side view showing the long covered walkway, main entrance with overhang, and many blue windows along the stone and wood facade.",
+    "description_view_1": "Angled view highlighting the main entrance area, two-story structure, and the intersection of the building's wings.",
+    "description_view_2": "Rear view displaying the back wings, central chimney, and the stone and wood construction without visible entrances.",
+    "description_view_3": "Front view with the main chimney, symmetrical window arrangement, and dormer windows on the roof.",
+    "category": "hotel",
+    "height": 10.0,
+    "max_dimension": 24.0,
+    "materials": [
+        "stone",
+        "wood",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.35,
+        0.08,
+        0.02,
+        0.1
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "chimney"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "blue"
+    ],
+    "colors_composition": [
+        0.55,
+        0.35,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_hotel_signage": "none",
+    "attribute_number_of_windows": 18,
+    "attribute_entrance_canopy": "wooden overhang supported by posts",
+    "attribute_presence_of_doorman_or_bellhop": false,
+    "attribute_architectural_style": "Rustic Lodge",
+    "uid": "00794d8efe8d4ebab9d598d6988714ee",
+    "near_synsets": {
+        "lodge.n.04": 0.5350016797414875,
+        "lodge.n.03": 0.5366859782903547,
+        "chalet.n.01": 0.5405448961190212,
+        "log_cabin.n.01": 0.5460899989294384,
+        "farmhouse.n.01": 0.5504759534864904,
+        "hotel.n.01": -1000.0
+    },
+    "synset": "hotel.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/00794d8efe8d4ebab9d598d6988714ee",
+        "creator_username": "DanielAndersson",
+        "creator_display_name": "Daniel",
+        "creator_profile_url": "https://sketchfab.com/DanielAndersson"
+    },
+    "filename": "std_00794d8efe8d4ebab9d598d6988714ee.glb",
+    "length": 21.39181900024414,
+    "width": 16.714179039001465
+}

@@ -1,0 +1,105 @@
+{
+    "description_long": "This object consists of five adjacent portable public toilet units, each with a distinct color: green, gray, blue, brown, and yellow. The units have a rectangular shape with slightly curved, white roofs and front-facing doors, one of which is partially open, revealing a simple interior. Each door features a small window or vent at the top, a handle, and signage indicating usage instructions. The exterior surfaces are made of molded plastic panels with visible seams and reinforced edges, while the roofs appear to be a single molded piece. The units are designed for temporary placement in urban environments such as parks, construction sites, or event venues. The overall appearance is utilitarian, with emphasis on durability, ease of cleaning, and modularity.",
+    "description": "A row of five colorful portable public toilet units with curved white roofs, front doors, and visible signage. The design is utilitarian, modular, and suitable for temporary urban placement.",
+    "description_view_0": "Front view showing all five toilet units, each with a different color and visible signage on the doors; one door is partially open.",
+    "description_view_1": "Side view highlighting the depth of the units and the partially open brown door, with the yellow unit in the foreground.",
+    "description_view_2": "Rear view displaying the backs of the five units, showing the molded plastic panels and the uniformity of the roof design.",
+    "description_view_3": "Opposite side view with the green unit in the foreground and the open brown door visible further down the row.",
+    "category": "public toilets",
+    "height": 2.3,
+    "max_dimension": 5.5,
+    "materials": [
+        "plastic",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 450,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "pullable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "lock"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "green",
+        "gray",
+        "blue",
+        "brown",
+        "yellow",
+        "white"
+    ],
+    "colors_composition": [
+        0.18,
+        0.18,
+        0.18,
+        0.18,
+        0.18,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_signage": "Each door has signage with text and symbols indicating usage instructions and possibly gender or accessibility, though details are not fully legible.",
+    "attribute_door_type": "swinging",
+    "attribute_ventilation_features": "Small vents or windows at the top of each door and possible vent slots below the roofline.",
+    "attribute_accessibility_features": "none",
+    "attribute_roof_structure": "Curved, molded plastic roof with a smooth, slightly domed shape and no visible skylights or overhangs.",
+    "uid": "0b7537a5baf547dc8ec3bf5b067565a7",
+    "near_synsets": {
+        "public_toilet.n.01": 0.4870818363675577,
+        "latrine.n.01": 0.5296655511346359,
+        "washroom.n.01": 0.5383737501251392,
+        "accommodation.n.04": 0.5437468974076326,
+        "men's_room.n.01": 0.54594878101152,
+        "toilet.n.02": -1000.0,
+        "toilet.n.01": -1000.0,
+        "gutter.n.02": -1000.0,
+        "toilet.n.04": -1000.0
+    },
+    "synset": "public_toilet.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0b7537a5baf547dc8ec3bf5b067565a7",
+        "creator_username": "nermin",
+        "creator_display_name": "nermin",
+        "creator_profile_url": "https://sketchfab.com/nermin"
+    },
+    "filename": "std_0b7537a5baf547dc8ec3bf5b067565a7.glb",
+    "length": 1.641958236694336,
+    "width": 7.014434814453125
+}

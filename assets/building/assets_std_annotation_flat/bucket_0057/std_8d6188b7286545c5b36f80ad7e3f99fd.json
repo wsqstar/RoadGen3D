@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a classic double-barrel shotgun with a side-by-side barrel configuration, featuring a long, blued steel barrel assembly and a polished wooden full stock. The barrels are parallel and of equal length, with a smooth, uninterrupted rib running along the top. The receiver is metallic and connects the barrels to the stock, with visible dual triggers and a rounded, metallic trigger guard. The stock is dark wood, smoothly contoured for shoulder support, and the fore-end is also wooden, matching the stock. The overall design is traditional, with no visible modern attachments or embellishments, and the finish is sleek and well-maintained.",
+    "description": "A traditional side-by-side double-barrel shotgun with a polished wooden stock and long, blued steel barrels. The design is classic and streamlined, with dual triggers and a rounded metallic trigger guard.",
+    "description_view_0": "Side profile showing the full length of the shotgun, highlighting the double barrels, wooden stock, and metallic receiver.",
+    "description_view_1": "Front view down the barrels, emphasizing the side-by-side configuration and the narrow profile of the barrels.",
+    "description_view_2": "Opposite side profile, mirroring view 0, with clear visibility of the stock, barrels, and receiver.",
+    "description_view_3": "Rear view from the stock end, showing the width of the stock and the alignment of the barrels.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "trigger",
+        "trigger guard",
+        "fore-end",
+        "receiver"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "side-by-side double-barrel, equal length, smooth rib on top",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "break-action",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized metallic guard with smooth edges and no visible finger grooves",
+    "uid": "8d6188b7286545c5b36f80ad7e3f99fd",
+    "near_synsets": {
+        "shotgun.n.01": 0.4821740396840464,
+        "sawed-off_shotgun.n.01": 0.510625444232078,
+        "pump_action.n.01": 0.5507823566795585,
+        "stock.n.03": 0.5606479579871594,
+        "shotgun_shell.n.01": 0.5611307368049395
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8d6188b7286545c5b36f80ad7e3f99fd",
+        "creator_username": "JasperCarmack",
+        "creator_display_name": "Jasper Carmack",
+        "creator_profile_url": "https://sketchfab.com/JasperCarmack"
+    },
+    "filename": "std_8d6188b7286545c5b36f80ad7e3f99fd.glb",
+    "length": 1.11733478307724,
+    "width": 0.05830669589340687
+}

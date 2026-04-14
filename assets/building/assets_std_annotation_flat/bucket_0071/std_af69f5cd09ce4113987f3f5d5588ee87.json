@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a medium-sized, rectangular event tent with a peaked roof and open front and back entrances. The tent is supported by a visible frame structure, likely made of metal or sturdy plastic, with a white fabric canopy stretched over the top and sides. The tent is anchored to the ground with multiple guy lines extending from the corners and midpoints, providing stability. The base platform is a flat, dark surface, possibly representing a temporary flooring or ground mat. The side walls are solid and opaque, while the front and back are open, allowing easy access and ventilation. The overall design suggests it is suitable for gatherings, markets, or temporary urban shelters.",
+    "description": "A rectangular event tent with a peaked white canopy, open front and back, and guy lines for stability. The tent sits on a flat, dark platform and is supported by a visible frame.",
+    "description_view_0": "Front view showing the open entrance, peaked roof, and guy lines extending from the corners.",
+    "description_view_1": "Side view displaying the solid side wall, the peaked roof profile, and guy lines extending outward.",
+    "description_view_2": "Rear view mirroring the front, with an open entrance and visible guy lines.",
+    "description_view_3": "Opposite side view showing the solid wall and peaked roof, similar to view 1.",
+    "category": "tent",
+    "height": 2.5,
+    "max_dimension": 5.0,
+    "materials": [
+        "polyester fabric",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.05,
+        0.15
+    ],
+    "mass": 60,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "closable",
+        "openable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "entrance flap",
+        "guy lines",
+        "support poles"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "white",
+        "black",
+        "olive green"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "Open entrance with no visible door or flap, located at both the front and rear of the tent.",
+    "attribute_number_of_poles": 6,
+    "attribute_guy_line_configuration": "Four guy lines, one at each corner, extending outward and anchored to the ground.",
+    "attribute_ventilation_openings": [],
+    "attribute_branding_or_logo": "none",
+    "uid": "af69f5cd09ce4113987f3f5d5588ee87",
+    "near_synsets": {
+        "field_tent.n.01": 0.4878889370880745,
+        "sibley_tent.n.01": 0.4879696064186157,
+        "pop_tent.n.01": 0.502199209952594,
+        "wall_tent.n.01": 0.508784463833151,
+        "pavilion.n.01": 0.5096545075198239,
+        "tent.n.01": -1000.0,
+        "tent.n.02": -1000.0
+    },
+    "synset": "tent.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/af69f5cd09ce4113987f3f5d5588ee87",
+        "creator_username": "typko.cz",
+        "creator_display_name": "typko.cz",
+        "creator_profile_url": "https://sketchfab.com/typko.cz"
+    },
+    "filename": "std_af69f5cd09ce4113987f3f5d5588ee87.glb",
+    "length": 6.564550399780273,
+    "width": 6.564548015594482
+}

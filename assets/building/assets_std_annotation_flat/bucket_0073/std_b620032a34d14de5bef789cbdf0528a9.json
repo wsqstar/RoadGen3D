@@ -1,0 +1,95 @@
+{
+    "description_long": "This small chapel features a barrel-vaulted roof and a simple rectangular structure, with a prominent arched entrance supported by two classical columns. The interior is visible from the front, revealing a checkered stone floor and a central altar or niche at the back wall, possibly for religious icons or statues. The exterior is finished in a light, stone-like material, with minimal ornamentation and a focus on geometric simplicity. The roof is gently curved and appears to be constructed from the same material as the walls, giving the building a cohesive look. The rear and side views show solid, unadorned walls, while the front is open, inviting entry. The overall design is reminiscent of early Christian or Romanesque chapels, emphasizing function and solemnity over elaborate decoration.",
+    "description": "A small, barrel-vaulted chapel with a stone-like finish, arched entrance, and two supporting columns, featuring a checkered floor and a simple altar niche inside.",
+    "description_view_0": "Front view showing the arched entrance, two columns, checkered floor, and interior altar niche.",
+    "description_view_1": "Side view displaying the curved roof and plain, unadorned wall with no visible openings.",
+    "description_view_2": "Rear view highlighting the solid back wall and the curvature of the roof, with no windows or doors.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the plain wall and the roof's central seam.",
+    "category": "chapel",
+    "height": 3.5,
+    "max_dimension": 4.5,
+    "materials": [
+        "stone",
+        "concrete",
+        "marble",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "shelter",
+        "worship",
+        "display"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "altar",
+        "columns"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "white",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Romanesque",
+    "attribute_religious_symbols": [],
+    "attribute_stained_glass_windows": "None.",
+    "attribute_steeple_or_bell_tower": "None.",
+    "attribute_entrance_door_design": "There is no visible entrance door; the front is an open archway supported by two columns, with no decorative elements or door hardware.",
+    "uid": "b620032a34d14de5bef789cbdf0528a9",
+    "near_synsets": {
+        "chapel.n.01": 0.46322446980916865,
+        "side_chapel.n.01": 0.49498410445672586,
+        "lady_chapel.n.01": 0.5157586722382732,
+        "ribbed_vault.n.01": 0.5194809225610827,
+        "chapel_service.n.01": 0.5200126057887691
+    },
+    "synset": "chapel_service.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b620032a34d14de5bef789cbdf0528a9",
+        "creator_username": "CyGhost",
+        "creator_display_name": "CyGhost",
+        "creator_profile_url": "https://sketchfab.com/CyGhost"
+    },
+    "filename": "std_b620032a34d14de5bef789cbdf0528a9.glb",
+    "length": 2.610091209411621,
+    "width": 3.0847612619400024
+}

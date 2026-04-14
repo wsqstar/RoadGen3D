@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a Kalashnikov-style assault rifle, featuring a black metal receiver and barrel assembly with a wooden handguard and pistol grip. The rifle is equipped with a folding metal stock, which is visible in its extended position, providing stability during firing. The magazine is a curved, detachable box type, typical for this class of firearm, and is finished in black. The front and rear iron sights are mounted along the top of the barrel and receiver, allowing for precise aiming. The muzzle end of the barrel includes a slanted flash hider, a common feature for reducing visible muzzle flash. The overall design is robust and utilitarian, with a combination of wood and metal materials that are both functional and visually distinctive.",
+    "description": "A Kalashnikov-style assault rifle with a black metal body, wooden handguard and grip, folding metal stock, and a curved detachable magazine.",
+    "description_view_0": "Front view showing the barrel, front sight, and flash hider aligned with the wooden handguard and the narrow profile of the rifle.",
+    "description_view_1": "Side view displaying the full length of the rifle, the folding metal stock, wooden handguard, pistol grip, and curved magazine.",
+    "description_view_2": "Rear view highlighting the end of the folding stock, rear sight, and the slim profile of the receiver and barrel.",
+    "description_view_3": "Opposite side view showing the same features as view 1, with clear visibility of the folding stock, magazine, and wooden components.",
+    "category": "rifle",
+    "height": 0.22,
+    "max_dimension": 0.88,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 35,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "foldable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "trigger",
+        "magazine",
+        "safety lever",
+        "charging handle",
+        "iron sights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "folding",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "flash hider",
+    "uid": "114e29f502e0484890c4614aa0dbbaaa",
+    "near_synsets": {
+        "kalashnikov.n.01": 0.4194335635298582,
+        "assault_rifle.n.01": 0.49178906860829014,
+        "kalashnikov_culture.n.01": 0.5229184996245814,
+        "garand_rifle.n.01": 0.5241839242970091,
+        "light_arm.n.01": 0.5301830919976351,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/114e29f502e0484890c4614aa0dbbaaa",
+        "creator_username": "ikagogava",
+        "creator_display_name": "24fpsboy",
+        "creator_profile_url": "https://sketchfab.com/ikagogava"
+    },
+    "filename": "std_114e29f502e0484890c4614aa0dbbaaa.glb",
+    "length": 0.8583173453807831,
+    "width": 0.06729412823915482
+}

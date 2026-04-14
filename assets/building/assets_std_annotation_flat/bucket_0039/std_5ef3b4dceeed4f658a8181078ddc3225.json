@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a compact, tracked military tank with a low-profile turret and a long, cylindrical main cannon extending from the front. The body is covered in riveted armor plating, with visible hatches and angular surfaces designed for deflection. The tank features wide, robust tracks with multiple road wheels, providing stability and traction over rough terrain. The exterior is painted in a faded, light green color with subtle weathering and rust, giving it a worn, utilitarian appearance. The turret is centrally mounted and appears to be rotatable, with vision ports and possible periscopes on top. No visible military insignia or markings are present, and the vehicle is devoid of external stowage or additional weaponry.",
+    "description": "A compact, tracked military tank with a long cannon, riveted armor, and a weathered green finish. The vehicle features a low-profile turret and wide tracks for rugged mobility.",
+    "description_view_0": "Front view showing the main cannon, sloped armor, and wide tracks.",
+    "description_view_1": "Left side view highlighting the full length of the cannon, turret, and track assembly.",
+    "description_view_2": "Rear view displaying the back armor, hatches, and track ends.",
+    "description_view_3": "Right side view similar to the left, showing the turret and track system.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 90000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "closable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "hatch",
+        "cannon",
+        "track",
+        "vision port"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light green",
+        "gray",
+        "rust brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the turret; no additional weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with riveted steel armor plating, moderately thick, with sloped and angular surfaces for deflection.",
+    "attribute_camouflage_pattern": "Solid light green paint with weathering and rust; no distinct camouflage pattern.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "5ef3b4dceeed4f658a8181078ddc3225",
+    "near_synsets": {
+        "tank.n.01": 0.4542561500560045,
+        "military_vehicle.n.01": 0.49028555520908074,
+        "reconnaissance_vehicle.n.01": 0.5042942644997972,
+        "armored_car.n.02": 0.5112911927149397,
+        "assault_gun.n.02": 0.5184758186726255,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5ef3b4dceeed4f658a8181078ddc3225",
+        "creator_username": "Matthew609",
+        "creator_display_name": "Matthew_Games",
+        "creator_profile_url": "https://sketchfab.com/Matthew609"
+    },
+    "filename": "std_5ef3b4dceeed4f658a8181078ddc3225.glb",
+    "length": 4.85610294342041,
+    "width": 2.2865504026412964
+}

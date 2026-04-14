@@ -1,0 +1,91 @@
+{
+    "description_long": "This shelter is a small, open-framed wooden structure with a gabled roof, resembling the early construction phase of a house or park pavilion. The frame is composed of vertical and horizontal wooden beams, with visible rafters supporting the pitched roof. The roof is partially covered, revealing the underlying truss system and allowing light to pass through the gaps. The shelter features a large, open entryway at the front, and a smaller window-like opening at the rear, both lacking doors or glazing. The floor is open to the ground, and the structure is spacious enough for people to enter and stand inside. The overall appearance is utilitarian, with no decorative elements or visible signage.",
+    "description": "A small, open-framed wooden shelter with a gabled roof and exposed beams, featuring large entry and window openings.",
+    "description_view_0": "Front view shows the main entryway, framed by vertical beams and a partially covered gabled roof.",
+    "description_view_1": "Side view reveals the open framework, exposed rafters, and the depth of the structure with no wall coverings.",
+    "description_view_2": "Rear view highlights a smaller window-like opening and the continuation of the open wooden frame.",
+    "description_view_3": "Opposite side view displays the skeletal structure and the arrangement of roof trusses and beams.",
+    "category": "shelter",
+    "height": 3.0,
+    "max_dimension": 4.5,
+    "materials": [
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.65
+    ],
+    "mass": 650,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "doorway",
+        "window opening"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gabled wooden truss roof with partial plank coverage",
+    "attribute_entryway_design": "large open rectangular entryway framed by vertical wooden beams",
+    "attribute_support_structure": "vertical and horizontal wooden beams with exposed rafters and trusses",
+    "attribute_signage": "none",
+    "attribute_transparency": "mostly open framework with no transparent or translucent materials",
+    "uid": "41707f23bf2d4c098256bd77e2ab9891",
+    "near_synsets": {
+        "shelter.n.02": 0.458803459028877,
+        "shelter.n.01": 0.46291146771962655,
+        "gazebo.n.01": 0.4834400919251799,
+        "shed.n.01": 0.4956895204762829,
+        "birdhouse.n.01": 0.5026269633244719,
+        "protection.n.04": -1000.0,
+        "tax_shelter.n.01": -1000.0,
+        "shelter.n.05": -1000.0
+    },
+    "synset": "shelter.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/41707f23bf2d4c098256bd77e2ab9891",
+        "creator_username": "rafallink",
+        "creator_display_name": "Rafa\u0142 Link",
+        "creator_profile_url": "https://sketchfab.com/rafallink"
+    },
+    "filename": "std_41707f23bf2d4c098256bd77e2ab9891.glb",
+    "length": 2.6550647020339966,
+    "width": 3.511536717414856
+}

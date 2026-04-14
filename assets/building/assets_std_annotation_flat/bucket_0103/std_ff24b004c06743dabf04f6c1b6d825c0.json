@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a compact locomotive with a robust, angular body painted primarily in red and gray. The front and rear are equipped with heavy-duty metal guards and railings, suggesting it is designed for industrial or freight use. The cab is centrally located, featuring a large, dark window on each side for operator visibility. The undercarriage is fitted with six large black wheels, and the sides display a pattern of grilles and steps for maintenance access. The roof is flat and slightly raised above the cab, with visible exhaust or vent structures. The overall design is utilitarian, emphasizing durability and function over aesthetics.",
+    "description": "A compact, red and gray locomotive with metal guards, central cab, and large black wheels. It features side grilles, steps, and a robust industrial design.",
+    "description_view_0": "Front view showing the metal guard, central cab, and grille details.",
+    "description_view_1": "Side view highlighting the large window, steps, and wheel arrangement.",
+    "description_view_2": "Rear view similar to the front, with visible guard and roof details.",
+    "description_view_3": "Opposite side view showing the window, steps, and industrial features.",
+    "category": "train",
+    "height": 3.8,
+    "max_dimension": 10.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 70000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "steps",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "gray",
+        "black",
+        "white",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.4,
+        0.4,
+        0.15,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_train_type": "freight train",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end",
+    "attribute_window_arrangement": "single large window on each side of cab",
+    "uid": "ff24b004c06743dabf04f6c1b6d825c0",
+    "near_synsets": {
+        "train.n.01": 0.4969856795868737,
+        "train_set.n.01": 0.5042641169882063,
+        "steam_locomotive.n.01": 0.514417049803707,
+        "car_train.n.01": 0.5226457966767677,
+        "locomotive.n.01": 0.5231248811521263,
+        "string.n.04": -1000.0,
+        "train.n.04": -1000.0,
+        "caravan.n.01": -1000.0,
+        "train.n.05": -1000.0,
+        "gearing.n.01": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/ff24b004c06743dabf04f6c1b6d825c0",
+        "creator_username": "TobiBenzi",
+        "creator_display_name": "TobiBenzi",
+        "creator_profile_url": "https://sketchfab.com/TobiBenzi"
+    },
+    "filename": "std_ff24b004c06743dabf04f6c1b6d825c0.glb",
+    "length": 6.839144229888916,
+    "width": 2.467131018638611
+}

@@ -1,0 +1,109 @@
+{
+    "description_long": "This tram features a classic, vintage design with a rounded front and rear, painted in a vibrant yellow with a contrasting dark roof and maroon undercarriage. The body is adorned with large, rectangular windows along both sides, separated by vertical frames, allowing ample light into the passenger compartment. The roof is equipped with a metallic, single-arm pantograph and several rooftop fixtures, likely for ventilation and electrical systems. The front and rear each have two large, arched windows and a central headlight, with small red lights below. The tram sits on a set of visible wheels and axles, with steps at the entry points. The overall construction suggests a robust metal frame with glass windows and painted exterior panels.",
+    "description": "A vintage yellow tram with a rounded front, large side windows, and a single-arm pantograph on the roof. The tram features a metallic roof, maroon undercarriage, and prominent headlight and window details.",
+    "description_view_0": "Front view showing the rounded yellow face, two large arched windows, central headlight, and metallic roof details.",
+    "description_view_1": "Side view highlighting the series of large rectangular windows, yellow body, maroon undercarriage, and the single-arm pantograph on the roof.",
+    "description_view_2": "Rear view mirroring the front, with rounded yellow panel, two arched windows, and rear lights visible.",
+    "description_view_3": "Opposite side view similar to view 1, showing the window arrangement, pantograph, and undercarriage details.",
+    "category": "tram",
+    "height": 3.2,
+    "max_dimension": 9.5,
+    "materials": [
+        "steel",
+        "glass",
+        "paint",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.04,
+        0.01,
+        0.05
+    ],
+    "mass": 14000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 35000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "pantograph",
+        "headlight",
+        "wheel",
+        "step"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "gray",
+        "maroon",
+        "black",
+        "white",
+        "silver"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.08,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_pantograph_type": "single-arm",
+    "attribute_door_configuration": "two sliding doors on the right side, centrally located",
+    "attribute_window_arrangement": "Six large, evenly spaced rectangular windows per side, separated by vertical frames, with arched windows at the front and rear ends",
+    "attribute_route_number_display": "none",
+    "attribute_front_signage": "none",
+    "uid": "cb48f890fe6c4459ae884305684f5a17",
+    "near_synsets": {
+        "streetcar.n.01": 0.5574522462485144,
+        "tramway.n.01": 0.561083698938226,
+        "boxcar.n.01": 0.5648773449655948,
+        "gondola_car.n.01": 0.5681822076701079,
+        "current_collector.n.01": 0.5721627498721538,
+        "tramcar.n.01": -1000.0
+    },
+    "synset": "tramcar.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cb48f890fe6c4459ae884305684f5a17",
+        "creator_username": "davihoff",
+        "creator_display_name": "davihoff",
+        "creator_profile_url": "https://sketchfab.com/davihoff"
+    },
+    "filename": "std_cb48f890fe6c4459ae884305684f5a17.glb",
+    "length": 4.20715069770813,
+    "width": 1.4630366563796997
+}

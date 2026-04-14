@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a boxy, utilitarian ambulance vehicle with a weathered, gray exterior and a maroon horizontal stripe running along its sides. The front features a large windshield and side mirrors, with a slightly sloped hood and visible headlights. The sides display a rectangular window and a bold, stylized marking, but lack prominent emergency signage or medical symbols. The rear of the vehicle has two square windows and what appear to be two hinged doors for access to the patient compartment. The wheels are robust and suited for urban streets, while the overall surface appears aged and slightly dirty, suggesting heavy use. The vehicle's design prioritizes function and capacity, typical of ambulances used in city environments.",
+    "description": "A weathered, gray ambulance with a maroon stripe, boxy shape, and two rear doors, showing signs of heavy urban use.",
+    "description_view_0": "Front view shows the windshield, hood, headlights, and side mirrors, emphasizing the vehicle's boxy cab.",
+    "description_view_1": "Left side view highlights the maroon stripe, a rectangular window, and a stylized marking, with visible wheels and door details.",
+    "description_view_2": "Rear view displays two square windows and two hinged compartment doors, with the maroon stripe wrapping around the back.",
+    "description_view_3": "Right side view mirrors the left, with a rectangular window and maroon stripe, but less visible signage.",
+    "category": "ambulance",
+    "height": 2.6,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 4,
+    "movable": true,
+    "required_force": 7000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "mirror",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "maroon",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_emergency_light_bar": false,
+    "attribute_ambulance_signage": "No clear ambulance-specific signage visible; only a stylized marking on the side.",
+    "attribute_medical_cross_symbol": false,
+    "attribute_siren": false,
+    "attribute_rear_compartment_doors": "two hinged doors",
+    "uid": "a485e38dfdf847dda0697fd171c026ef",
+    "near_synsets": {
+        "ambulance.n.01": 0.5019773865396917,
+        "funny_wagon.n.01": 0.5143875495741804,
+        "police_van.n.01": 0.5727559769435469,
+        "military_vehicle.n.01": 0.5760026061029794,
+        "panda_car.n.01": 0.578591533096914
+    },
+    "synset": "ambulance.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a485e38dfdf847dda0697fd171c026ef",
+        "creator_username": "andruha1801",
+        "creator_display_name": "andruha1801",
+        "creator_profile_url": "https://sketchfab.com/andruha1801"
+    },
+    "filename": "std_a485e38dfdf847dda0697fd171c026ef.glb",
+    "length": 5.8355560302734375,
+    "width": 2.5422210693359375
+}

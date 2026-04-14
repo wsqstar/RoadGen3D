@@ -1,0 +1,90 @@
+{
+    "description_long": "This object is a compact shotgun featuring a single, cylindrical black barrel and a robust wooden grip. The barrel is smooth and unadorned, extending from a black metal receiver that houses the firing mechanism. The grip is ergonomically shaped, made of a brown wood material, and appears to be designed for one-handed use, lacking a full shoulder stock. The trigger is protected by a rounded metal guard, and the overall design is minimalistic with no visible external magazine, pump, or lever. The top of the receiver and barrel are flat, with no visible ribbing or venting. The shotgun's size and construction suggest it is intended for close-quarters use, possibly as a sawed-off or pistol-grip variant.",
+    "description": "A compact, single-barrel shotgun with a black metal barrel and a curved wooden grip, featuring a rounded trigger guard and minimal external features.",
+    "description_view_0": "Side view showing the full length of the black barrel, the wooden grip, and the rounded trigger guard.",
+    "description_view_1": "Front view highlighting the circular barrel opening and the symmetrical alignment of the grip and receiver.",
+    "description_view_2": "Opposite side view mirroring view 0, displaying the barrel, grip, and trigger guard from the other side.",
+    "description_view_3": "Top-down view revealing the flat top of the barrel and receiver, and the broad, smooth surface of the wooden grip.",
+    "category": "shotgun",
+    "height": 0.15,
+    "max_dimension": 0.4,
+    "materials": [
+        "wood",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.45,
+        0.05
+    ],
+    "mass": 2.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 22,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "graspable",
+        "triggerable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "trigger guard",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.45
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, smooth, no visible ribbing or venting",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "break-action",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized, enclosing the trigger with a smooth contour",
+    "uid": "89fcd105c05849109695462b29762559",
+    "near_synsets": {
+        "sawed-off_shotgun.n.01": 0.44623226372383923,
+        "shotgun.n.01": 0.4541939240515673,
+        "shotgun_shell.n.01": 0.49297613483750746,
+        "gun.n.01": 0.5113537445725691,
+        "bird_shot.n.01": 0.5168442948086303
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/89fcd105c05849109695462b29762559",
+        "creator_username": "JeanPierreCarreteroHerrera",
+        "creator_display_name": "SonHagen",
+        "creator_profile_url": "https://sketchfab.com/JeanPierreCarreteroHerrera"
+    },
+    "filename": "std_89fcd105c05849109695462b29762559.glb",
+    "length": 0.41929544508457184,
+    "width": 0.0762345939874649
+}

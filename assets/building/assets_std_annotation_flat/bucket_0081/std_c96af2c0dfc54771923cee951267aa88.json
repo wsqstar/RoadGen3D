@@ -1,0 +1,99 @@
+{
+    "description_long": "This ATM is a freestanding, rectangular kiosk with a robust, metallic exterior and a slightly angled upper section housing a digital screen. The front face features a prominent display, a card slot, and a cash dispenser, all arranged for ergonomic user access. The body is mounted on a wide, flat base plate, likely for stability and to prevent tampering or unauthorized movement. The side views reveal a solid, boxy structure with minimal external features, emphasizing security and durability. The color scheme is primarily a light beige or off-white, with some darker accents around the interactive components. The overall design is utilitarian, focusing on functionality and resistance to vandalism, suitable for placement in public urban environments.",
+    "description": "A sturdy, freestanding ATM kiosk with a digital screen, card slot, and cash dispenser on a wide base, finished in light beige tones. Its design is robust and functional, ideal for urban public spaces.",
+    "description_view_0": "Front view showing the digital screen, card slot, and cash dispenser, all easily accessible to users.",
+    "description_view_1": "Left side view displaying the solid, rectangular body and the angled upper section with minimal external features.",
+    "description_view_2": "Rear view highlighting the plain, secure back panel and the wide base plate for stability.",
+    "description_view_3": "Right side view similar to the left, emphasizing the kiosk's boxy, tamper-resistant construction.",
+    "category": "atm",
+    "height": 1.5,
+    "max_dimension": 1.8,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "electronic components",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 250,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "insertable",
+        "withdrawable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "screen",
+        "card slot",
+        "cash dispenser",
+        "receipt slot",
+        "button panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_screen_interface": "A medium-sized rectangular screen is centrally placed on the upper front face, slightly angled for user visibility. The screen appears to be touch-capable or display-only, with no visible physical buttons directly on the screen.",
+    "attribute_card_slot": "A single horizontal card slot is located below the screen on the front face, with a rectangular opening and a slight recess for card insertion.",
+    "attribute_keypad_layout": "None visible.",
+    "attribute_bank_branding": "None visible.",
+    "attribute_receipt_dispenser": "A small rectangular slot, likely for receipts, is positioned below the card slot on the front face, with a subtle outline but no visible labeling.",
+    "uid": "c96af2c0dfc54771923cee951267aa88",
+    "near_synsets": {
+        "cash_machine.n.01": 0.5098240739668638,
+        "automat.n.01": 0.5626792944535486,
+        "cash_register.n.01": 0.5822395759443689,
+        "vending_machine.n.01": 0.5844299286509533,
+        "automat.n.02": 0.5939332682070906,
+        "asynchronous_transfer_mode.n.01": -1000.0,
+        "standard_atmosphere.n.01": -1000.0
+    },
+    "synset": "standard_atmosphere.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c96af2c0dfc54771923cee951267aa88",
+        "creator_username": "zhaochenghuang",
+        "creator_display_name": "zhaochenghuang",
+        "creator_profile_url": "https://sketchfab.com/zhaochenghuang"
+    },
+    "filename": "std_c96af2c0dfc54771923cee951267aa88.glb",
+    "length": 1.4900696873664856,
+    "width": 1.4900693893432617
+}

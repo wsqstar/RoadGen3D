@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a three-story brick warehouse with a weathered, industrial appearance, featuring exposed red-brown brickwork and patches of peeling paint. The facade includes boarded-up windows, graffiti, and a main entrance with double doors, suggesting disuse or abandonment. A prominent wooden fire escape zigzags across one side, with broken and missing planks, and is supported by metal brackets. Utility poles with tangled overhead wires run alongside the building, adding to the urban, gritty atmosphere. The flat roof is bare except for a small ladder and some minor rooftop details, while the ground level is cluttered with debris, a trash can, and a wooden pallet. The overall structure is robust, with heavy use of masonry and wood, and the building sits on a concrete sidewalk base.",
+    "description": "A weathered, three-story brick warehouse with boarded windows, graffiti, a wooden fire escape, and utility poles with tangled wires, exuding an abandoned urban feel.",
+    "description_view_0": "Side view showing the wooden fire escape, graffiti, trash can, and utility poles running parallel to the building.",
+    "description_view_1": "Front view highlighting the main entrance with double doors, boarded windows, graffiti, and the cluttered sidewalk area.",
+    "description_view_2": "Rear view displaying the flat, unadorned brick wall, open floor levels, and utility poles, with minimal architectural features.",
+    "description_view_3": "Opposite side view revealing the zigzagging fire escape, exposed floor slabs, and rooftop ladder, with less street-level clutter.",
+    "category": "warehouse",
+    "height": 12.0,
+    "max_dimension": 15.0,
+    "materials": [
+        "brick",
+        "wood",
+        "concrete",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "fire escape",
+        "windows",
+        "ladder"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "black",
+        "red",
+        "beige"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main facade is constructed of aged red-brown brick with patches of peeling paint, featuring boarded-up windows, graffiti, and a set of double doors as the main entrance. Decorative elements are minimal, with the focus on utilitarian features such as the wooden fire escape and scattered urban debris.",
+    "attribute_loading_dock_presence": false,
+    "attribute_signage_type": [
+        "graffiti"
+    ],
+    "attribute_roof_structure": "The roof is flat and constructed from concrete, with a small metal ladder leading to the edge and no visible skylights or HVAC units. The surface appears weathered and unadorned.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "05ad0ac87d954dd3abf7bd6f50163857",
+    "near_synsets": {
+        "artist's_loft.n.01": 0.5472224513399909,
+        "ruin.n.02": 0.5500968478295597,
+        "loft.n.01": 0.5524831714124069,
+        "warehouse.n.01": 0.560339480334455,
+        "rattrap.n.02": 0.562380383186663
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/05ad0ac87d954dd3abf7bd6f50163857",
+        "creator_username": "dwbuchmiller",
+        "creator_display_name": "David Buchmiller",
+        "creator_profile_url": "https://sketchfab.com/dwbuchmiller"
+    },
+    "filename": "std_05ad0ac87d954dd3abf7bd6f50163857.glb",
+    "length": 8.194172859191895,
+    "width": 6.855347394943237
+}

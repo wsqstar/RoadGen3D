@@ -1,0 +1,104 @@
+{
+    "description_long": "This combat tactical vehicle features a low-profile, angular hull with a matte olive-green finish, designed for stealth and deflection of projectiles. The body is heavily armored with sloped panels and reinforced sections, especially at the front and sides, providing maximum protection. Multiple weapon mounts are visible, including spherical turrets on each side and spiked protrusions, suggesting advanced defensive and offensive capabilities. The cockpit area is covered with armored glass panels, and the rear section displays a set of illuminated exhaust ports, indicating a powerful propulsion system. The vehicle lacks visible wheels, instead featuring a hovering or anti-gravity design, with aerodynamic fins and vents for maneuverability. Its overall appearance is futuristic and intimidating, suitable for urban combat scenarios requiring both mobility and heavy firepower.",
+    "description": "A futuristic, heavily armored combat vehicle with angular, matte olive-green plating, side-mounted turrets, and a hovering design. It features spiked defensive elements, armored glass, and illuminated rear exhausts.",
+    "description_view_0": "Top-down view showing the angular, armored hull, spiked protrusions, and the full width of the vehicle.",
+    "description_view_1": "Side perspective highlighting the sloped armor, side-mounted spherical turrets, and aerodynamic fins.",
+    "description_view_2": "Rear view displaying the illuminated exhaust ports, rear armor, and the symmetry of the vehicle's design.",
+    "description_view_3": "Opposite side perspective, mirroring view 1, with clear visibility of the side turrets and angular bodywork.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "armored steel",
+        "bulletproof glass",
+        "composite alloys",
+        "synthetic polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.1,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 8500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "turret",
+        "cockpit canopy",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "black",
+        "gray",
+        "orange (lights)"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Four visible weapon mounts: two spherical turrets on each side of the vehicle, and two spiked mounts on the front corners.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating; reinforced at the front and sides with angular, modular panels.",
+    "attribute_camouflage_pattern": "Solid matte olive-green color with no visible camouflage pattern.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "d971e740a76148d7914dd74c38b57ea0",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.5264677191473012,
+        "tank.n.01": 0.5372630232942986,
+        "reconnaissance_vehicle.n.01": 0.5438780577974717,
+        "armored_car.n.02": 0.5464273056498203,
+        "assault_gun.n.02": 0.5478645362381533,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d971e740a76148d7914dd74c38b57ea0",
+        "creator_username": "VertaScan",
+        "creator_display_name": "VertaScan",
+        "creator_profile_url": "https://sketchfab.com/VertaScan"
+    },
+    "filename": "std_d971e740a76148d7914dd74c38b57ea0.glb",
+    "length": 5.4315290451049805,
+    "width": 3.304959297180176
+}

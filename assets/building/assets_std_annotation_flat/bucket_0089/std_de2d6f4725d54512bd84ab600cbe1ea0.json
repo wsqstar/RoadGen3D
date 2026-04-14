@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a low-poly, modern main battle tank with a broad, angular hull and a prominent, octagonal turret mounted centrally. The turret features a long, cylindrical main cannon extending forward, and the tank's body is characterized by sloped armor panels on the front and sides, enhancing its defensive profile. The vehicle sits on wide, continuous tracks that are partially covered by side skirts, providing both protection and mobility over rough terrain. Subtle green highlights are visible on the front and sides, possibly indicating lights or sensors. The tank's exterior is finished in a solid, light gray color scheme with darker gray and black accents, giving it a utilitarian and robust appearance. No visible markings, camouflage, or additional weapon mounts are present beyond the main cannon.",
+    "description": "A modern, angular main battle tank with a large turret, long cannon, and sloped armor panels in a solid gray color scheme with green highlights.",
+    "description_view_0": "Front view shows the wide, sloped glacis plate, central turret, and the tank's tracks partially visible beneath the hull.",
+    "description_view_1": "Left side view highlights the long main cannon, the octagonal turret, and the continuous tracks with side skirts.",
+    "description_view_2": "Rear view displays the back of the turret, rear hull, and the green highlights on the rear panels and tracks.",
+    "description_view_3": "Right side view mirrors the left, showing the main cannon, turret, and the tank's angular side armor.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 55000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "track",
+        "side skirt"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "green"
+    ],
+    "colors_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the center of the turret; no other weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with sloped armor panels on the front, sides, and turret; thickness appears substantial, with no visible modular or reactive panels.",
+    "attribute_camouflage_pattern": "None visible; solid gray color scheme.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "de2d6f4725d54512bd84ab600cbe1ea0",
+    "near_synsets": {
+        "tank.n.01": 0.4721788811181365,
+        "assault_gun.n.02": 0.5145730161699694,
+        "military_vehicle.n.01": 0.5176902811137417,
+        "panzer.n.01": 0.52685579493866,
+        "tank_destroyer.n.01": 0.5281781568702919,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/de2d6f4725d54512bd84ab600cbe1ea0",
+        "creator_username": "gravitowl",
+        "creator_display_name": "gravitowl",
+        "creator_profile_url": "https://sketchfab.com/gravitowl"
+    },
+    "filename": "std_de2d6f4725d54512bd84ab600cbe1ea0.glb",
+    "length": 2.930867552757263,
+    "width": 1.6626920700073242
+}

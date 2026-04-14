@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a large, rectangular red dumpster with a split black plastic lid, one half of which is open and the other closed. The body is constructed from metal, featuring reinforced horizontal bars and a slightly weathered finish. On the front and sides, there are white recycling symbols and a prominent yellow warning label. The lid is ribbed for strength and is attached with visible hinges, allowing it to be lifted for depositing waste. Metal handles run horizontally along the front and sides, likely for maneuvering or securing the dumpster. The dumpster stands on four short legs, elevating it slightly above the ground, and the interior is spacious and open for waste collection.",
+    "description": "A large red metal dumpster with a split black ribbed lid, recycling symbols, and warning labels, designed for urban waste collection. It features horizontal metal handles and a spacious open interior.",
+    "description_view_0": "Front view showing the open left half of the black ribbed lid, yellow warning label, and horizontal metal handle.",
+    "description_view_1": "Left side view highlighting the recycling symbol, partially open lid, and side handle bar.",
+    "description_view_2": "Rear view with the closed right half of the lid, yellow warning label, and no visible handles.",
+    "description_view_3": "Right side view showing the recycling symbol, open left lid, and side handle bar.",
+    "category": "dumpster",
+    "height": 1.3,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "white",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "split, hinged, ribbed plastic lid with two sections; one section open, one closed; no visible locking mechanism",
+    "attribute_wheel_presence": false,
+    "attribute_handle_design": "horizontal bar handles on front and both sides, made of metal",
+    "attribute_warning_labels": [
+        {
+            "color": "yellow",
+            "shape": "rectangular",
+            "content": "warning text and symbols"
+        },
+        {
+            "color": "white",
+            "shape": "recycling symbol",
+            "content": "recycling"
+        }
+    ],
+    "attribute_placement_location": "outdoor commercial area or residential alley",
+    "uid": "fe8494ae99c6433da5d259e33a5e1259",
+    "near_synsets": {
+        "dumpster.n.01": 0.4418653235665556,
+        "recycling_bin.n.01": 0.4989594317073486,
+        "garbage.n.03": 0.5126057666355148,
+        "garbage_truck.n.01": 0.5305462283813523,
+        "wastepaper_basket.n.01": 0.5419220374704511
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/fe8494ae99c6433da5d259e33a5e1259",
+        "creator_username": "Stirio",
+        "creator_display_name": "Mistiriodi",
+        "creator_profile_url": "https://sketchfab.com/Stirio"
+    },
+    "filename": "std_fe8494ae99c6433da5d259e33a5e1259.glb",
+    "length": 0.9787597060203552,
+    "width": 1.1803038716316223
+}

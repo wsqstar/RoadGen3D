@@ -1,0 +1,92 @@
+{
+    "description_long": "This object is a heavily damaged and partially deconstructed airplane fuselage, with a cylindrical nose section and a long, tapering tail. The cockpit area is exposed, showing structural framework and missing panels, while the main body is riddled with holes and jagged edges, suggesting significant wear or destruction. The wings are either missing or severely fragmented, with only remnants of their attachment points visible along the sides. The tail section is elongated and appears twisted, with structural elements protruding irregularly. The surface is uniformly colored in a teal or blue-green hue, likely due to scanning or rendering artifacts. The overall appearance is skeletal, with much of the internal structure visible through the gaps in the outer skin.",
+    "description": "A damaged, skeletal airplane fuselage with exposed framework, missing panels, and a long, tapering tail. The surface is teal and the wings are absent or fragmented.",
+    "description_view_0": "Front-left view showing the exposed cockpit, fragmented fuselage, and the start of the elongated tail.",
+    "description_view_1": "Left-side view highlighting the cylindrical nose, open cockpit, and the full length of the damaged tail.",
+    "description_view_2": "Rear view emphasizing the twisted, skeletal tail section and the hollowed-out fuselage.",
+    "description_view_3": "Front-right view focusing on the cockpit opening and the jagged, incomplete structure of the main body.",
+    "category": "airplane",
+    "height": 2.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 3,
+    "movable": true,
+    "required_force": 11760,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit controls",
+        "door frame",
+        "fuselage hatch",
+        "window frame"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "teal"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with wings missing or severely fragmented; no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "No visible engines present on the fuselage.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers, though heavily damaged.",
+    "attribute_landing_gear_type": "No visible landing gear present.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with significant structural exposure and missing panels.",
+    "uid": "293277dd22814a5e95837d1299341e5e",
+    "near_synsets": {
+        "airframe.n.01": 0.5359812245996617,
+        "fuselage.n.01": 0.5374414547695677,
+        "aircraft.n.01": 0.5382005589246035,
+        "airplane_mechanics.n.01": 0.5647577733108186,
+        "monoplane.n.01": 0.5663711539713636,
+        "airplane.n.01": -1000.0
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/293277dd22814a5e95837d1299341e5e",
+        "creator_username": "divertom80",
+        "creator_display_name": "divertom80",
+        "creator_profile_url": "https://sketchfab.com/divertom80"
+    },
+    "filename": "std_293277dd22814a5e95837d1299341e5e.glb",
+    "length": 6.287564039230347,
+    "width": 6.033853054046631
+}

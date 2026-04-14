@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a compact Jungheinrich-branded forklift with a robust yellow and gray body, designed for maneuvering in tight urban or industrial spaces. The vehicle features a protective overhead guard, an open operator cabin with a single seat, and a steering wheel. The front is equipped with two long, parallel steel fork arms for lifting and transporting pallets or heavy loads. The mast is sturdy and vertically oriented, supporting the fork arms and allowing for vertical movement. The wheels are solid and positioned for stability, with the front wheels larger to support heavy loads. The overall design emphasizes safety, visibility, and efficient operation in environments such as warehouses, loading docks, or construction sites.",
+    "description": "A yellow and gray Jungheinrich forklift with a protective overhead guard, open operator cabin, and long steel fork arms for lifting heavy loads.",
+    "description_view_0": "Side view showing the open operator cabin, steering wheel, and the full length of the fork arms extending forward.",
+    "description_view_1": "Front view highlighting the parallel fork arms, the mast, and the protective overhead guard above the operator area.",
+    "description_view_2": "Opposite side view displaying the operator seat, steering wheel, and the mast structure with visible branding.",
+    "description_view_3": "Rear view showing the solid yellow back panel, the overhead guard, and the back of the operator seat.",
+    "category": "forklift",
+    "height": 2.2,
+    "max_dimension": 3.2,
+    "materials": [
+        "steel",
+        "rubber",
+        "plastic",
+        "glass",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.07,
+        0.03,
+        0.02,
+        0.03
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 15680,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "liftable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "steering wheel",
+        "seat",
+        "fork arms",
+        "mast",
+        "pedals",
+        "levers",
+        "wheels"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_fork_arms": "Two long, parallel steel fork arms extend forward from the front of the vehicle, rectangular in cross-section, with a flat upper surface and squared tips. They are robust, straight, and appear to be approximately 1.2 meters in length and about 8 centimeters thick. The arms are mounted close together, spaced to accommodate standard pallets, and show no visible attachments or signs of wear.",
+    "attribute_overhead_guard": "The overhead guard is a sturdy, rectangular steel frame with horizontal bars, providing full coverage above the operator's seat. It is painted gray and designed to protect the operator from falling objects, with open sides for visibility and access.",
+    "attribute_mast": "The mast is a double-stage vertical steel structure, painted gray, with visible branding and robust construction. It features two main vertical rails and a central lifting mechanism, with no visible hydraulic lines or chains but clear support for vertical movement of the fork arms.",
+    "attribute_operator_seat": "The operator seat is a single, contoured black seat with a low backrest, made of molded plastic or vinyl. It is positioned centrally in the cabin, with no visible armrests, headrest, or seatbelt, and appears to be sized for one adult.",
+    "attribute_warning_lights": "No visible warning lights are present on the exterior or overhead guard in any of the provided views.",
+    "uid": "d659c366e24643f0b72ad0fe1ef1a60b",
+    "near_synsets": {
+        "forklift.n.01": 0.47553999668118874,
+        "hoist.n.01": 0.5516278963875444,
+        "lifting_device.n.01": 0.5538836520956363,
+        "stacker_crane.n.01": 0.5579369940964547,
+        "crane.n.04": 0.5647235279750337
+    },
+    "synset": "forklift.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d659c366e24643f0b72ad0fe1ef1a60b",
+        "creator_username": "aardque",
+        "creator_display_name": "aardque",
+        "creator_profile_url": "https://sketchfab.com/aardque"
+    },
+    "filename": "std_d659c366e24643f0b72ad0fe1ef1a60b.glb",
+    "length": 3.3996678590774536,
+    "width": 1.2034140825271606
+}

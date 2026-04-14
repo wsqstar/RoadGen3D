@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a compact Caterpillar skid steer excavator, model 242D, designed for urban construction and landscaping tasks. The machine features a robust yellow steel frame with a black operator cab, which is enclosed with protective metal mesh on the sides and a large glass windshield at the front. The excavator is equipped with four large, rugged rubber tires for mobility on paved and unpaved surfaces. Its front-mounted standard digging bucket is attached to a loader arm with visible hydraulic pistons, allowing for efficient scooping and lifting of materials. The rear of the vehicle displays the CAT logo and has vented panels for engine cooling. The cab is centrally positioned, providing the operator with clear visibility and access to controls.",
+    "description": "A compact yellow Caterpillar skid steer excavator with a front digging bucket, enclosed cab, and four large rubber wheels, designed for urban construction tasks.",
+    "description_view_0": "Front view showing the wide digging bucket, large glass windshield, and central operator cab.",
+    "description_view_1": "Left side view highlighting the loader arm, hydraulic pistons, mesh-protected cab, and visible CAT branding.",
+    "description_view_2": "Rear view displaying the vented engine panel, CAT logo, and the back of the cab structure.",
+    "description_view_3": "Right side view showing the loader arm, hydraulic system, mesh cab, and bucket attachment.",
+    "category": "excavator",
+    "height": 2.1,
+    "max_dimension": 3.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.12,
+        0.05,
+        0.03
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 31360,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "bucket",
+        "loader arm",
+        "hydraulic piston",
+        "control lever"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "gray",
+        "red"
+    ],
+    "colors_composition": [
+        0.65,
+        0.25,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_boom_type": "mono boom",
+    "attribute_cab_position": "centered",
+    "attribute_track_or_wheel_type": "wheeled",
+    "attribute_bucket_design": "standard digging bucket",
+    "attribute_brand_logo": "Caterpillar",
+    "uid": "859a64d242314ec3af5bfb449bdfa673",
+    "near_synsets": {
+        "backhoe.n.01": 0.4948539878800047,
+        "caterpillar.n.02": 0.49751604098064767,
+        "excavator.n.01": 0.5103327243150338,
+        "power_shovel.n.01": 0.5125599333384574,
+        "scoop.n.05": 0.5273303503709313
+    },
+    "synset": "excavator.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/859a64d242314ec3af5bfb449bdfa673",
+        "creator_username": "EddyNL",
+        "creator_display_name": "EddyNL",
+        "creator_profile_url": "https://sketchfab.com/EddyNL"
+    },
+    "filename": "std_859a64d242314ec3af5bfb449bdfa673.glb",
+    "length": 3.1245845556259155,
+    "width": 1.4526684880256653
+}

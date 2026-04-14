@@ -1,0 +1,106 @@
+{
+    "description_long": "This structure is a multi-level solar energy installation featuring three stacked platforms, each supported by a central column. The topmost level is covered by a large, flat solar panel roof, which provides shade and houses the photovoltaic cells. The middle and lower levels are open platforms, possibly for maintenance access or equipment housing, with railings and stairs visible for safe movement between levels. The base is a wide, textured platform that stabilizes the entire structure and may serve as a foundation or access area. The materials appear to be a combination of metal for the frame and supports, glass or composite for the solar panel, and possibly concrete or composite for the platforms. The design is modern and functional, suitable for urban environments such as parks, plazas, or public spaces.",
+    "description": "A modern, multi-level solar energy structure with a large flat solar panel roof, open platforms, and a sturdy central support column.",
+    "description_view_0": "Front view showing the stairway, railings, and open access to the lower and middle platforms beneath the solar panel roof.",
+    "description_view_1": "Rear view highlighting the solid central column and the layered platforms, with the solar panel roof extending overhead.",
+    "description_view_2": "Side view displaying the stacked arrangement of the platforms and the solid back of the central support column.",
+    "description_view_3": "Opposite side view showing the layered platforms and the overhanging solar panel roof, with the central column visible.",
+    "category": "solar energy infrastructure",
+    "height": 6.0,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "glass",
+        "composite",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "supportive",
+        "shadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "stairs",
+        "railings",
+        "platforms"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "beige",
+        "black"
+    ],
+    "colors_composition": [
+        0.4,
+        0.2,
+        0.25,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_panel_orientation": "flat, horizontal, fixed orientation",
+    "attribute_mounting_structure_type": "elevated, multi-level steel frame mounting structure",
+    "attribute_electrical_inverter_presence": false,
+    "attribute_cabling_visibility": "not visible",
+    "attribute_array_configuration": "single large flat panel forming the roof",
+    "uid": "dea05f118c574a7faeb60b1f950105ab",
+    "near_synsets": {
+        "solar_array.n.01": 0.5104911658356023,
+        "solar_house.n.01": 0.5160717299807869,
+        "solar_thermal_system.n.01": 0.5378905290804961,
+        "solar_energy.n.01": 0.5450828906873318,
+        "solar_cell.n.01": 0.5589972082826595,
+        "energy.n.05": -1000.0,
+        "energy.n.02": -1000.0,
+        "energy.n.03": -1000.0,
+        "infrastructure.n.01": -1000.0,
+        "energy.n.01": -1000.0,
+        "infrastructure.n.02": -1000.0,
+        "department_of_energy.n.01": -1000.0,
+        "energy.n.06": -1000.0,
+        "energy.n.04": -1000.0
+    },
+    "synset": "solar_array.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dea05f118c574a7faeb60b1f950105ab",
+        "creator_username": "mingri1",
+        "creator_display_name": "Mindaugas XTrapp",
+        "creator_profile_url": "https://sketchfab.com/mingri1"
+    },
+    "filename": "std_dea05f118c574a7faeb60b1f950105ab.glb",
+    "length": 6.225891828536987,
+    "width": 5.606388092041016
+}

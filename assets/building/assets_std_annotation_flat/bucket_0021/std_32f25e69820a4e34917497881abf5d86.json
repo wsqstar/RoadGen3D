@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a single-story wooden cabin with a prominent gable roof covered in gray shingles and a stone foundation. The exterior walls are clad in horizontal red siding, giving it a classic rustic appearance. The front facade features a wide covered porch with wooden railings and steps leading up to the entrance, providing a welcoming entryway. Windows are symmetrically placed on the visible sides, with two on the main facade and one on each gable end, all rectangular in shape. A small chimney protrudes from the roof, suggesting the presence of a fireplace or stove inside. The cabin's design is simple yet functional, suitable for residential use in suburban or park-like urban settings.",
+    "description": "A red wooden cabin with a gray gable roof, stone foundation, and a wide covered front porch with wooden railings.",
+    "description_view_0": "This view shows the side of the cabin with two rectangular windows and the main entrance porch partially visible.",
+    "description_view_1": "This view highlights the gable end with a single window and the side extension of the porch wrapping around the cabin.",
+    "description_view_2": "This is the front view, showcasing the full width of the covered porch, central entrance, and two front windows.",
+    "description_view_3": "This view displays the opposite gable end, which is solid with no windows or doors, and the roof's overhang.",
+    "category": "cabin",
+    "height": 5.5,
+    "max_dimension": 13.0,
+    "materials": [
+        "wood",
+        "asphalt_shingles",
+        "stone",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.12,
+        0.1,
+        0.05,
+        0.01,
+        0.07
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "porch railing",
+        "steps"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "gray",
+        "brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gable roof with moderate overhangs, covered in gray asphalt shingles, featuring a single chimney",
+    "attribute_window_arrangement": "Four rectangular windows: two symmetrically placed on the front facade, one on each gable end; all windows are of similar size and evenly distributed",
+    "attribute_door_placement": "Single exterior door centered on the front facade, accessed via the covered porch",
+    "attribute_porch_presence": true,
+    "attribute_architectural_style": "rustic",
+    "uid": "32f25e69820a4e34917497881abf5d86",
+    "near_synsets": {
+        "cabin.n.02": 0.4417521565383452,
+        "log_cabin.n.01": 0.4580057593253351,
+        "front_porch.n.01": 0.5247035630885728,
+        "farmhouse.n.01": 0.5253809711044851,
+        "gazebo.n.01": 0.5323201057605341,
+        "cabin.n.03": -1000.0,
+        "cabin.n.01": -1000.0
+    },
+    "synset": "cabin.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/32f25e69820a4e34917497881abf5d86",
+        "creator_username": "astroarch",
+        "creator_display_name": "astroarch",
+        "creator_profile_url": "https://sketchfab.com/astroarch"
+    },
+    "filename": "std_32f25e69820a4e34917497881abf5d86.glb",
+    "length": 10.848828315734863,
+    "width": 9.559639930725098
+}

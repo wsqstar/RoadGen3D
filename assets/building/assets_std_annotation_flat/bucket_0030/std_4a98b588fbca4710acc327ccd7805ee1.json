@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a compact manual wheelchair with a robust, angular frame and four wheels. The two large rear wheels feature a spoked design with a dark, metallic finish, while the smaller front caster wheels are similarly styled but smaller in diameter. The seat and backrest are solid, flat panels, providing a supportive sitting area, and the backrest extends upward with a squared-off top. The footrest is a single, flat platform integrated into the lower front of the frame, offering a stable place for the user's feet. The overall construction appears sturdy, with a matte black finish accented by metallic highlights on the wheels and fasteners. The wheelchair lacks visible push rims and has a minimalist, functional design suitable for urban environments.",
+    "description": "A compact, angular manual wheelchair with large spoked rear wheels, small front casters, and a solid black frame. The seat and backrest are flat panels, and the design is sturdy and minimalist.",
+    "description_view_0": "Side view showing the large spoked rear wheel, small front caster, and the flat seat and backrest panels.",
+    "description_view_1": "Front view highlighting the wide seat, flat footrest, and the symmetrical placement of the wheels.",
+    "description_view_2": "Opposite side view, mirroring the large rear wheel and small front caster, with the backrest profile visible.",
+    "description_view_3": "Rear view showing the backrest's squared-off top, the rear wheels, and the frame's angular structure.",
+    "category": "wheelchair",
+    "height": 1.1,
+    "max_dimension": 1.2,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 25,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "pushable",
+        "drivable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "footrest",
+        "handle"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "gold"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.08,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_wheel_type": "Spoked wheels; two large rear wheels and two smaller front caster wheels, all with metallic rims and dark centers.",
+    "attribute_frame_design": "Rigid frame with angular, straight tubing and integrated seat and backrest panels; no visible folding mechanism.",
+    "attribute_presence_of_push_rims": false,
+    "attribute_footrest_style": "Fixed, single flat platform integrated into the lower front of the frame.",
+    "attribute_handlebar_configuration": "Standard push handles, straight and extending from the top rear of the backrest, with a simple rectangular profile.",
+    "uid": "4a98b588fbca4710acc327ccd7805ee1",
+    "near_synsets": {
+        "wheelchair.n.01": 0.5080937943099211,
+        "motorized_wheelchair.n.01": 0.5252251067333817,
+        "wheel.n.01": 0.5575379217168465,
+        "bath_chair.n.01": 0.5588022272365024,
+        "chair.n.01": 0.5780670852720557
+    },
+    "synset": "motorized_wheelchair.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4a98b588fbca4710acc327ccd7805ee1",
+        "creator_username": "chaitanyak",
+        "creator_display_name": "Chaitanya Krishnan",
+        "creator_profile_url": "https://sketchfab.com/chaitanyak"
+    },
+    "filename": "std_4a98b588fbca4710acc327ccd7805ee1.glb",
+    "length": 1.3934988379478455,
+    "width": 1.1430188417434692
+}

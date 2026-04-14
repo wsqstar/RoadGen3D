@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a compact, green military tank with a robust, angular hull and a prominent cylindrical turret mounted centrally on top. The turret features a long, black cannon barrel extending forward, and a red star insignia is visible on its side. The tank's body is heavily armored with sloped panels, and the front includes vent-like details and reinforced sections. The rear of the vehicle displays two circular exhaust ports and a mesh grille, while the sides are equipped with continuous black treads for mobility. The overall design is utilitarian, with minimal external accessories, emphasizing protection and firepower. The tank's surface is finished in a solid green paint, giving it a classic military appearance.",
+    "description": "A compact green military tank with a central turret, long cannon, and black treads, featuring a red star insignia and robust armored panels.",
+    "description_view_0": "Front view showing the sloped armored hull, vent details, and the base of the turret with the cannon barrel pointing away.",
+    "description_view_1": "Left side view highlighting the full length of the cannon, the red star insignia on the turret, and the continuous black treads.",
+    "description_view_2": "Rear view displaying the mesh grille, two circular exhaust ports, and the back ends of the treads.",
+    "description_view_3": "Right side view showing the turret and cannon from the opposite side, with the tank's angular body and treads visible.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 25000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "treads"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted on the central turret; no other weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating; reinforced front and turret, no modular or reactive panels visible.",
+    "attribute_camouflage_pattern": "Solid green color with no visible camouflage pattern.",
+    "attribute_military_markings": "Red star emblem on the side of the turret; no other markings visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "aec9887a87954a21a97a5d574d537e9e",
+    "near_synsets": {
+        "tank.n.01": 0.45034617685548434,
+        "military_vehicle.n.01": 0.4856641779000581,
+        "reconnaissance_vehicle.n.01": 0.5196330054651734,
+        "assault_gun.n.02": 0.5217041411394847,
+        "armored_car.n.02": 0.5222712304168654,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/aec9887a87954a21a97a5d574d537e9e",
+        "creator_username": "yisus35",
+        "creator_display_name": "JesusSf",
+        "creator_profile_url": "https://sketchfab.com/yisus35"
+    },
+    "filename": "std_aec9887a87954a21a97a5d574d537e9e.glb",
+    "length": 4.754685163497925,
+    "width": 2.8819254636764526
+}

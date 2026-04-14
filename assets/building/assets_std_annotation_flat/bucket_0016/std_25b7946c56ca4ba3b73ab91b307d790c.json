@@ -1,0 +1,108 @@
+{
+    "description_long": "This object consists of five compact, vintage-style minivans arranged in a row, each displaying a distinct, weathered paint job with visible rust and patina. The minivans feature a boxy silhouette, rounded edges, and small wheels, reminiscent of classic European city cars from the mid-20th century. The exteriors show significant wear, with faded colors ranging from yellow and red to green and blue, and the roofs are uniformly discolored, suggesting prolonged exposure to the elements. Each vehicle has prominent front and rear bumpers, simple headlight and taillight designs, and blacked-out windows, giving them an abandoned or derelict appearance. The side profiles reveal two doors per side and a compact, utilitarian form, with no visible branding or manufacturer logos. The overall impression is of a group of old, possibly non-functional minivans that might be found in an urban junkyard or as set dressing in a post-apocalyptic city scene.",
+    "description": "A group of five weathered, vintage minivans with faded, rusted exteriors in various colors and blacked-out windows, evoking an abandoned urban setting.",
+    "description_view_0": "Front view showing the grilles, headlights, and the distinct color differences between each minivan.",
+    "description_view_1": "Rear view highlighting the taillights, rear bumpers, and the boxy shape of the minivans.",
+    "description_view_2": "Opposite front view with a clear look at the front bumpers and the progression of colors from blue to yellow.",
+    "description_view_3": "Frontal perspective emphasizing the windshields, roof discoloration, and the arrangement of the minivans side by side.",
+    "category": "minivan",
+    "height": 1.5,
+    "max_dimension": 3.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air",
+        "fabric"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 900,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 4000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "handle",
+        "bumper"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "red",
+        "green",
+        "blue",
+        "brown",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.18,
+        0.18,
+        0.18,
+        0.18,
+        0.12,
+        0.08,
+        0.08
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_number_of_sliding_doors": 0,
+    "attribute_window_configuration": "Each minivan has a front windshield, two side windows per side, and a rear window; all windows are rectangular with rounded corners and are blacked out.",
+    "attribute_roof_rack_presence": false,
+    "uid": "25b7946c56ca4ba3b73ab91b307d790c",
+    "near_synsets": {
+        "minivan.n.01": 0.5327914106190635,
+        "van.n.05": 0.5517210754596842,
+        "passenger_van.n.01": 0.5593086598897729,
+        "van.n.04": 0.5635076933983959,
+        "car_window.n.01": 0.5642336973247097
+    },
+    "synset": "minivan.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/25b7946c56ca4ba3b73ab91b307d790c",
+        "creator_username": "1608609",
+        "creator_display_name": "emily groth",
+        "creator_profile_url": "https://sketchfab.com/1608609"
+    },
+    "filename": "std_25b7946c56ca4ba3b73ab91b307d790c.glb",
+    "length": 13.449952125549316,
+    "width": 3.6369341611862183
+}

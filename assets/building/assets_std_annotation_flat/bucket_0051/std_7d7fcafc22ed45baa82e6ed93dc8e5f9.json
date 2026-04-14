@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a small, elongated train station structure with a single, low-lying building situated at the center of a long, straight railway track. The building appears to be rectangular and compact, likely serving as a waiting area or ticket office, and is constructed from materials resembling concrete or stone with a flat roof. The railway track extends symmetrically in both directions from the building, suggesting a simple, rural or suburban station layout. There are no visible canopies, signage, or ticket vending machines, and the station lacks any elaborate architectural features. The overall design is utilitarian, with the focus on functionality rather than decorative elements. The station is surrounded by open space, with no adjacent structures or platforms visible.",
+    "description": "A small, utilitarian train station with a central building and a single, long railway track extending on both sides. The structure is simple, with no visible canopies, signage, or decorative features.",
+    "description_view_0": "From this view, the station appears as a small building centered on a long, thin railway track, with the building barely visible above the track.",
+    "description_view_1": "This side view shows the thin profile of the railway track and the compact, rectangular building attached to it.",
+    "description_view_2": "From above, the station is seen as a central block with the railway track extending symmetrically in both directions.",
+    "description_view_3": "This opposite side view mirrors view 1, showing the slim profile of the track and the small building.",
+    "category": "train station",
+    "height": 3.5,
+    "max_dimension": 80.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.05,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "waitable",
+        "boardable",
+        "alightable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "beige",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_platform_canopies": "none",
+    "attribute_station_signage": "none",
+    "attribute_ticket_vending_machines": "none",
+    "attribute_railway_tracks": "One long, straight railway track made of steel, running through the center of the station with no visible switches or adjacent platforms.",
+    "attribute_architectural_style": "unknown",
+    "uid": "7d7fcafc22ed45baa82e6ed93dc8e5f9",
+    "near_synsets": {
+        "platform.n.06": 0.4905903647913828,
+        "railway_station.n.01": 0.5005759593146657,
+        "monorail.n.01": 0.5175318562055656,
+        "subway_station.n.01": 0.5273224317438403,
+        "train.n.01": 0.5409376156394394,
+        "train.n.05": -1000.0,
+        "station.n.03": -1000.0,
+        "string.n.04": -1000.0,
+        "post.n.01": -1000.0,
+        "station.n.01": -1000.0,
+        "train.n.04": -1000.0,
+        "place.n.10": -1000.0,
+        "gearing.n.01": -1000.0,
+        "station.n.05": -1000.0,
+        "caravan.n.01": -1000.0
+    },
+    "synset": "railway_station.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7d7fcafc22ed45baa82e6ed93dc8e5f9",
+        "creator_username": "upto21",
+        "creator_display_name": "Dolores",
+        "creator_profile_url": "https://sketchfab.com/upto21"
+    },
+    "filename": "std_7d7fcafc22ed45baa82e6ed93dc8e5f9.glb",
+    "length": 231.5069580078125,
+    "width": 236.25411224365234
+}

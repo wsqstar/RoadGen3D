@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a large, cylindrical metal kettle with a dark, weathered finish, likely made of iron or steel. The main body is a wide, open-topped cylinder, connected by two thin rods to a tall, narrower cylindrical chamber with a bulbous midsection and a domed cap at the top. The domed cap appears to serve as a lid, and the overall construction suggests an industrial or utilitarian design, possibly for boiling or heating large quantities of liquid. The surface is uniformly dark with visible signs of rust and patina, giving it an aged, robust appearance. There are no visible spouts or ornate decorations, and the handle is absent, replaced by the structural rods connecting the two main sections. The base is flat and sturdy, designed to rest securely on the ground.",
+    "description": "A large, industrial-style metal kettle with a cylindrical body, domed lid, and weathered, dark finish. It features a robust, utilitarian design with no visible spout or handle.",
+    "description_view_0": "The front view shows the tall, narrow chamber with a domed cap and the cylindrical body partially obscured behind it.",
+    "description_view_1": "This side view reveals the full cylindrical body and the connecting rods, with the tall chamber and domed cap to the left.",
+    "description_view_2": "The rear view highlights the open-topped cylindrical body, with the domed cap and narrow chamber visible behind it.",
+    "description_view_3": "Another side view, mirroring view 1, with the cylindrical body on the left and the tall chamber with domed cap on the right.",
+    "category": "kettle",
+    "height": 1.0,
+    "max_dimension": 1.0,
+    "materials": [
+        "iron",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "liftable",
+        "pourable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "lid",
+        "main body",
+        "connecting rods"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark brown",
+        "black",
+        "rust"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_spout_presence": false,
+    "attribute_handle_type": "absent",
+    "attribute_lid_design": "domed removable lid with knob",
+    "attribute_base_style": "flat",
+    "attribute_decorative_patterns": [
+        "none"
+    ],
+    "uid": "c9eeb15646514482961510ce64b84088",
+    "near_synsets": {
+        "kettle.n.01": 0.44672424053973575,
+        "teakettle.n.01": 0.5047030196443677,
+        "kettle.n.04": 0.5055732091785575,
+        "pot.n.01": 0.5110187491757348,
+        "dixie.n.02": 0.5150614678030417,
+        "kettle.n.02": -1000.0,
+        "kettle_hole.n.01": -1000.0
+    },
+    "synset": "kettle_hole.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c9eeb15646514482961510ce64b84088",
+        "creator_username": "toivo",
+        "creator_display_name": "toivo",
+        "creator_profile_url": "https://sketchfab.com/toivo"
+    },
+    "filename": "std_c9eeb15646514482961510ce64b84088.glb",
+    "length": 0.5889959931373596,
+    "width": 0.3455629050731659
+}

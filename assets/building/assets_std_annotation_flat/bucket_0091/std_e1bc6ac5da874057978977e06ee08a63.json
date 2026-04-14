@@ -1,0 +1,102 @@
+{
+    "description_long": "This vending machine features a bold red exterior with black accents and a geometric design. The front side includes a transparent product display window, a keypad interface angled for user interaction, and a product retrieval slot below the keypad. The left side has a partially open, patterned door, while the right and rear sides are solid red panels with black vent and access panels. The machine stands on a sturdy black base, and its overall form is rectangular with a slightly slanted front face. The materials appear to be primarily metal and glass, with some plastic components for the keypad and display.",
+    "description": "A red and black vending machine with a transparent front window, keypad, and product retrieval slot, featuring geometric lines and a sturdy base.",
+    "description_view_0": "Front view showing the transparent product window, angled keypad, and product retrieval slot, with a patterned door partially open on the left.",
+    "description_view_1": "Left side view highlighting the solid red panel and the edge of the open patterned door, with minimal visible features.",
+    "description_view_2": "Rear view displaying solid red panels, a black vent, and access panels, with no interactive elements visible.",
+    "description_view_3": "Right side view showing a plain red panel and the edge of the open door, with no visible interactive features.",
+    "category": "vending machine",
+    "height": 1.7,
+    "max_dimension": 0.9,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.15,
+        0.05
+    ],
+    "mass": 140,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "pressable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "keypad",
+        "door",
+        "product retrieval slot",
+        "display window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A rectangular display panel is integrated above the keypad on the front, featuring a dark screen area likely for digital information.",
+    "attribute_payment_interface": "A keypad and possible card slot are visible on the angled front panel, suggesting card or code-based payment; no coin or bill acceptor is visible.",
+    "attribute_product_selection_buttons": "A numeric keypad with multiple square buttons is present on the front, arranged in a grid for product selection.",
+    "attribute_product_retrieval_slot": "A rectangular product retrieval slot is located below the keypad on the front, with a recessed opening.",
+    "attribute_branding_or_signage": "None.",
+    "uid": "e1bc6ac5da874057978977e06ee08a63",
+    "near_synsets": {
+        "vending_machine.n.01": 0.45698476283572553,
+        "automat.n.01": 0.5037027853637629,
+        "slot_machine.n.01": 0.5601001778950936,
+        "fruit_machine.n.01": 0.5608430176561842,
+        "coin_box.n.01": 0.5622902968353702,
+        "machine.n.03": -1000.0,
+        "machine.n.05": -1000.0,
+        "machine.n.01": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.02": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e1bc6ac5da874057978977e06ee08a63",
+        "creator_username": "KianJCondon",
+        "creator_display_name": "KianJCondon",
+        "creator_profile_url": "https://sketchfab.com/KianJCondon"
+    },
+    "filename": "std_e1bc6ac5da874057978977e06ee08a63.glb",
+    "length": 1.0232948064804077,
+    "width": 1.2369633913040161
+}

@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a detached residential garage with a gabled roof and brick-textured exterior walls. The front features two garage doors, one of which is open, revealing a spacious interior suitable for vehicle storage. A red sports car is parked on a striped driveway that leads directly to the garage entrances. The roof is covered with gray shingles, and the side and rear walls are solid with no visible windows or doors. The driveway is composed of alternating black and white stripes with green grass in between, adding a modern touch. The overall structure is robust and utilitarian, designed to accommodate vehicles and provide secure storage.",
+    "description": "A brick residential garage with a gabled roof, two garage doors, and a striped driveway with a red sports car parked in front.",
+    "description_view_0": "Front view showing two garage doors, one open, and a red sports car on a striped driveway.",
+    "description_view_1": "Side view displaying the length of the garage, the gabled roof, and the car parked on the driveway.",
+    "description_view_2": "Rear view showing the solid brick wall and the sloped roof, with no doors or windows visible.",
+    "description_view_3": "Opposite side view with the garage's solid wall and the red sports car on the driveway.",
+    "category": "garage",
+    "height": 4.0,
+    "max_dimension": 9.0,
+    "materials": [
+        "brick",
+        "asphalt shingle",
+        "metal",
+        "concrete",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "garage door",
+        "driveway"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black",
+        "white",
+        "green",
+        "beige"
+    ],
+    "colors_composition": [
+        0.35,
+        0.15,
+        0.15,
+        0.15,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_garage_door_type": "single panel",
+    "attribute_number_of_garage_doors": 2,
+    "attribute_presence_of_driveway": true,
+    "attribute_door_hardware_style": "none",
+    "attribute_architectural_style": "modern",
+    "uid": "c5d92b29741240ff8df68372411498cc",
+    "near_synsets": {
+        "garage.n.01": 0.47083148424802085,
+        "carport.n.01": 0.49467095111286985,
+        "garage.n.02": 0.540145516553232,
+        "car_door.n.01": 0.5478006019039833,
+        "parking.n.01": 0.5604311451488294
+    },
+    "synset": "garage.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c5d92b29741240ff8df68372411498cc",
+        "creator_username": "tekkenblade",
+        "creator_display_name": "tekkenblade",
+        "creator_profile_url": "https://sketchfab.com/tekkenblade"
+    },
+    "filename": "std_c5d92b29741240ff8df68372411498cc.glb",
+    "length": 11.580212593078613,
+    "width": 5.240320205688477
+}

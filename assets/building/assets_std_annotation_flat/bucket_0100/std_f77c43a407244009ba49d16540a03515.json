@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a large, rectangular metal dumpster with a weathered green exterior, covered in various graffiti and markings. The top features a split, hinged black lid made of what appears to be heavy-duty plastic or composite, with visible wear and rust on the metal edges. The front displays a recycling label with the words 'URBANO SECCO' and a recycling symbol, while the sides and back are adorned with graffiti art, including a train, a stylized face, and warning text. The dumpster sits on short metal feet, and there are angular metal handles on each side for maneuvering. The surface is matte and rough, with visible stains, rust, and signs of prolonged outdoor exposure. This type of dumpster is commonly found in urban environments, such as alleys, parking lots, or near commercial buildings.",
+    "description": "A large, weathered green metal dumpster with a split black lid, graffiti, and side handles, designed for outdoor waste collection in urban settings.",
+    "description_view_0": "Front view showing the split black lid, recycling label, and the main access side.",
+    "description_view_1": "Left side view with visible graffiti art, including a train and other markings, and a side handle.",
+    "description_view_2": "Rear view displaying extensive rust, stains, and the graffiti text 'BEWARE OF THE 6!'.",
+    "description_view_3": "Right side view with red graffiti, a stylized face, and another side handle.",
+    "category": "dumpster",
+    "height": 1.3,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "red",
+        "white",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.04,
+        0.04,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "split, hinged, flat lid made of black plastic or composite, two sections, no visible locking mechanism",
+    "attribute_wheel_presence": false,
+    "attribute_handle_design": "two angular metal bar handles, one on each side near the top edge",
+    "attribute_warning_labels": [
+        {
+            "color": "purple and white",
+            "shape": "rectangle",
+            "content": "recycling symbol and 'URBANO SECCO'"
+        }
+    ],
+    "attribute_placement_location": "outdoor commercial area, alley, or parking lot",
+    "uid": "f77c43a407244009ba49d16540a03515",
+    "near_synsets": {
+        "dumpster.n.01": 0.42164379464993224,
+        "garbage.n.03": 0.4880771466599387,
+        "garbage_truck.n.01": 0.49725875519854684,
+        "recycling_bin.n.01": 0.5162505039975059,
+        "dump.n.02": 0.5198007433901921
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f77c43a407244009ba49d16540a03515",
+        "creator_username": "Michele.Passerino",
+        "creator_display_name": "Michele.Passerino",
+        "creator_profile_url": "https://sketchfab.com/Michele.Passerino"
+    },
+    "filename": "std_f77c43a407244009ba49d16540a03515.glb",
+    "length": 1.0648425221443176,
+    "width": 1.6227068305015564
+}

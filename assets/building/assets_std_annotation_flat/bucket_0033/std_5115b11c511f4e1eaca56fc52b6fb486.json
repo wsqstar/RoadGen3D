@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a classic hand grenade, specifically resembling the iconic 'pineapple' style fragmentation grenade. Its body is oval-shaped with a textured, segmented surface designed to enhance grip and fragment upon detonation. The upper section features a robust metal safety lever and a prominent pull ring attached to a safety pin, both of which are dark metallic in color and show signs of wear. The grenade's surface is predominantly a dark, weathered green with patches of rust and yellow markings, indicating age and use. The top mechanism is constructed from a different, shinier metal, likely steel, and is attached securely to the main body. The overall appearance is rugged and utilitarian, with visible scratches and scuffs that suggest it has been handled or stored in harsh conditions.",
+    "description": "A rugged, oval-shaped hand grenade with a textured, segmented body, dark green coloration, and a metallic safety lever and pull ring. The surface shows signs of wear, rust, and yellow markings.",
+    "description_view_0": "Front view showing the segmented body, yellow markings, and the safety lever and pull ring clearly visible on top.",
+    "description_view_1": "Side view highlighting the curvature of the grenade, the full arc of the pull ring, and the length of the safety lever.",
+    "description_view_2": "Top-down view emphasizing the rectangular metal safety mechanism and the alignment of the lever and pin.",
+    "description_view_3": "Opposite side view showing more of the grenade's body texture, with the safety lever and ring partially obscured.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.12,
+    "materials": [
+        "steel",
+        "cast iron",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.03,
+        0.02
+    ],
+    "mass": 0.4,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "throwable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "safety pin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "yellow",
+        "silver",
+        "rust brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the safety pin and releasing the safety lever, which triggers an internal fuse mechanism.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "5115b11c511f4e1eaca56fc52b6fb486",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.502446466539011,
+        "grenade.n.01": 0.5259246049588953,
+        "rifle_grenade.n.01": 0.5497816246734424,
+        "general-purpose_bomb.n.01": 0.570102203666014,
+        "bomb.n.01": 0.5718919296032604,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5115b11c511f4e1eaca56fc52b6fb486",
+        "creator_username": "MrM0lten",
+        "creator_display_name": "MrM0lten",
+        "creator_profile_url": "https://sketchfab.com/MrM0lten"
+    },
+    "filename": "std_5115b11c511f4e1eaca56fc52b6fb486.glb",
+    "length": 0.0832786038517952,
+    "width": 0.07454031705856323
+}

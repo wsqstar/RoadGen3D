@@ -1,0 +1,99 @@
+{
+    "description_long": "This kiosk is a freestanding retail display stand designed for showcasing and selling batteries, as indicated by the prominent 'PILAS' sign with a green lightning bolt at the top. The structure consists of a sturdy, angled back panel supporting multiple rows of horizontal metal rods, each holding several rectangular product packages. The base is wide and solid, providing stability, while the main body is constructed from metal or coated wood, with a matte gray finish. The front-facing area is organized into a 3x3 grid of product slots, each with a clear, accessible display. The overall design is functional and modern, with minimal decorative elements aside from the signage, making it suitable for placement in urban commercial environments such as sidewalks, convenience stores, or transit stations.",
+    "description": "A modern, freestanding retail kiosk for batteries with a gray angled display, metal rods for product hanging, and a prominent 'PILAS' sign with a green lightning bolt at the top.",
+    "description_view_0": "Side view showing the angled back panel, multiple rows of metal rods, and the depth of the product display.",
+    "description_view_1": "Front view highlighting the 3x3 grid of product slots, the 'PILAS' sign, and the organized display of hanging packages.",
+    "description_view_2": "Opposite side view mirroring the structure of view 0, emphasizing the layered arrangement of rods and products.",
+    "description_view_3": "Rear view showing the plain, solid back panel and the supporting legs, with the top of the 'PILAS' sign partially visible.",
+    "category": "kiosk",
+    "height": 1.8,
+    "max_dimension": 1.0,
+    "materials": [
+        "metal",
+        "plastic",
+        "wood",
+        "paper",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "hangable",
+        "displayable",
+        "label_readable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "product hooks",
+        "signage panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "blue",
+        "green",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "Printed sign with raised lettering and a green lightning bolt symbol, placed at the top front above the product display; text reads 'PILAS'.",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "none",
+    "attribute_roof_design": "Flat, solid top with a slight overhang for the signage; constructed from the same material as the main body.",
+    "attribute_architectural_style": "Modern utilitarian with minimalist, functional design and clean lines.",
+    "uid": "58c87eb1f68747dcae131f7c8b96cef7",
+    "near_synsets": {
+        "storage_battery.n.01": 0.597124580260773,
+        "flashlight_battery.n.01": 0.6015275905868529,
+        "newsstand.n.01": 0.6035136074036089,
+        "vending_machine.n.01": 0.6036538518442567,
+        "toyshop.n.01": 0.6036713005953959,
+        "booth.n.02": -1000.0
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/58c87eb1f68747dcae131f7c8b96cef7",
+        "creator_username": "arteurbano",
+        "creator_display_name": "ArteURBANO",
+        "creator_profile_url": "https://sketchfab.com/arteurbano"
+    },
+    "filename": "std_58c87eb1f68747dcae131f7c8b96cef7.glb",
+    "length": 0.9119348227977753,
+    "width": 1.0563188791275024
+}

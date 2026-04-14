@@ -1,0 +1,91 @@
+{
+    "description_long": "This object is a rectangular section of sidewalk featuring a cobblestone or pebble-embedded surface, typical of urban pedestrian pathways. The surface is composed of numerous small, rounded stones set into a concrete or cement base, creating a visually textured and tactile walking area. The edges are straight and uniform, with no visible curb or raised boundary, suggesting a flush transition to adjacent surfaces. The coloration is predominantly gray with scattered darker and lighter stones, giving it a natural, weathered appearance. The sidewalk is flat and level, designed to support foot traffic and potentially lightweight objects. There are no visible features such as tactile paving, street furniture, or embedded utilities.",
+    "description": "A flat, rectangular sidewalk section with a cobblestone-embedded gray surface and flush edges, typical for urban pedestrian areas.",
+    "description_view_0": "The sidewalk is seen from a long side, showing its flat, pebble-textured surface and straight edge.",
+    "description_view_1": "Viewed from a short end, the rectangular shape and dense pebble pattern are prominent.",
+    "description_view_2": "Another long-side view, nearly identical to view 0, highlighting the uniform surface and edge.",
+    "description_view_3": "From the opposite short end, the flush edge and consistent cobblestone pattern are visible.",
+    "category": "sidewalk",
+    "height": 0.1,
+    "max_dimension": 2.5,
+    "materials": [
+        "concrete",
+        "stone",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "dividable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "dark gray",
+        "light gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.0,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": false,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "flush",
+    "attribute_adjacent_street_type": "residential",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "04dbe2471a134bd68f5b8d8d4af95aae",
+    "near_synsets": {
+        "sidewalk.n.01": 0.4353567366212736,
+        "cobble.n.01": 0.47791614742011884,
+        "curb.n.01": 0.4998750669426867,
+        "street.n.01": 0.5009381674680695,
+        "curbside.n.01": 0.5107228372424062
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/04dbe2471a134bd68f5b8d8d4af95aae",
+        "creator_username": "joeshu",
+        "creator_display_name": "joeshu",
+        "creator_profile_url": "https://sketchfab.com/joeshu"
+    },
+    "filename": "std_04dbe2471a134bd68f5b8d8d4af95aae.glb",
+    "length": 2.817134380340576,
+    "width": 4.887237548828125
+}

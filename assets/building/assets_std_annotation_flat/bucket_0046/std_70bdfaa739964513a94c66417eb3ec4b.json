@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a large, multi-barreled anti-aircraft or heavy machine gun emplacement, mounted on a circular base with four prominent barrels extending forward. The structure features two operator seats with backrests and footrests, positioned on either side of the central firing mechanism, and a complex arrangement of levers, wheels, and mechanical linkages for aiming and operation. The barrels are long and robust, with reinforced sections and visible muzzle devices at the tips. The main body is constructed from dark metal, with some brown elements on the seats and possibly on the grips or handles. The base is wide and sturdy, designed to support the weight and recoil of the weapon system. The overall appearance suggests a fixed, crew-served weapon intended for defensive or anti-aircraft use in an urban or military setting.",
+    "description": "A large, multi-barreled heavy weapon system with operator seats, mounted on a circular base and featuring complex mechanical controls. The structure is primarily dark metal with brown seating and long, reinforced barrels.",
+    "description_view_0": "Side view showing the length of the four barrels, the operator seat, and the mechanical linkages along the side.",
+    "description_view_1": "Front view highlighting the four aligned barrels, both operator seats, and the symmetrical arrangement of controls.",
+    "description_view_2": "Opposite side view displaying the other operator seat, the full length of the barrels, and additional mechanical details.",
+    "description_view_3": "Rear view focusing on the back of the weapon, the operator seats, and the main control wheels and levers.",
+    "category": "rifle",
+    "height": 1.4,
+    "max_dimension": 2.5,
+    "materials": [
+        "steel",
+        "wood",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "pullable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel",
+        "trigger",
+        "seat",
+        "control wheel",
+        "lever",
+        "footrest"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "muzzle brake",
+    "uid": "70bdfaa739964513a94c66417eb3ec4b",
+    "near_synsets": {
+        "rifle.n.01": 0.48804060233043334,
+        "gatling_gun.n.01": 0.5092480503883432,
+        "browning_automatic_rifle.n.01": 0.5153723931875608,
+        "automatic_rifle.n.01": 0.5156950939958624,
+        "sniper_rifle.n.01": 0.5175803210068246
+    },
+    "synset": "sniper_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/70bdfaa739964513a94c66417eb3ec4b",
+        "creator_username": "trolosqlfod",
+        "creator_display_name": "trolosqlfod",
+        "creator_profile_url": "https://sketchfab.com/trolosqlfod"
+    },
+    "filename": "std_70bdfaa739964513a94c66417eb3ec4b.glb",
+    "length": 2.559726595878601,
+    "width": 2.2288092374801636
+}

@@ -1,0 +1,96 @@
+{
+    "description_long": "This humanoid robot features a glossy black exterior with a stylized, human-like form, including a rounded head topped with a wide-brimmed hat, a torso with spherical joints, and long, outstretched arms. The arms are straight and horizontal, ending in flat, paddle-like hands, one of which holds a small blue and white card or device. The robot's body is mounted on a robust, wheeled base with two large wheels and a central support, suggesting mobility. Cables or tubes are visible connecting the torso to the arms, adding to its mechanical appearance. The overall design is sleek and minimalistic, with smooth surfaces and a futuristic aesthetic. The robot's face is simple, with no visible expressive features or display screens.",
+    "description": "A glossy black humanoid robot with a wide-brimmed hat, outstretched arms, and a wheeled base, featuring a minimalistic and futuristic design.",
+    "description_view_0": "Front view shows the robot's symmetrical form, wide-brimmed hat, outstretched arms, and a blue and white card held in its left hand.",
+    "description_view_1": "Left side view highlights the robot's profile, the thickness of the torso, and the structure of the wheeled base.",
+    "description_view_2": "Rear view displays the back of the head, arms, and the full width of the wheeled base, with both hands visible.",
+    "description_view_3": "Right side view shows the profile from the opposite side, with the blue and white card now in the right hand and the arm structure clearly visible.",
+    "category": "humanoid robot",
+    "height": 1.6,
+    "max_dimension": 2.0,
+    "materials": [
+        "plastic",
+        "metal",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "arm",
+        "hand",
+        "card/device"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "blue",
+        "white"
+    ],
+    "colors_composition": [
+        0.93,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.12,
+    "surface_finish": "glossy",
+    "reflectivity": 0.65,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.15,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms extended horizontally to the sides, head facing forward, and torso upright on a wheeled base.",
+    "attribute_clothing_style": "No visible clothing; the robot has integrated panels and a wide-brimmed hat as part of its structure.",
+    "attribute_facial_features": "The face is minimalistic with no visible eyes, mouth, or nose; no expressive elements or display screens are present.",
+    "attribute_limb_articulation": "Arms have at least two visible joints (shoulder and elbow) with possible hinge or rotary articulation; hands are flat and paddle-like; no visible legs, as the base is wheeled.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "546cd194c5484bfa9d39cc78aa79194d",
+    "near_synsets": {
+        "android.n.01": 0.5420319714621388,
+        "robotics_equipment.n.01": 0.5567222815424665,
+        "automaton.n.02": 0.5602533936206259,
+        "cyborg.n.01": 0.5642037788455408,
+        "automaton.n.03": 0.5742175676265476
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/546cd194c5484bfa9d39cc78aa79194d",
+        "creator_username": "fusedmaker",
+        "creator_display_name": "FusedMaker",
+        "creator_profile_url": "https://sketchfab.com/fusedmaker"
+    },
+    "filename": "std_546cd194c5484bfa9d39cc78aa79194d.glb",
+    "length": 0.4027760624885559,
+    "width": 1.9270604848861694
+}

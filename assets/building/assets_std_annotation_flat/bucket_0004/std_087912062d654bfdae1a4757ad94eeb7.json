@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a large, rectangular brick factory building with a flat, dark roof featuring multiple skylights, vents, and industrial equipment. The facade is characterized by rows of large industrial windows and brickwork, giving it a robust, utilitarian appearance. Attached to one side is a cylindrical white storage tank, connected by pipes and ladders, and several vertical silos are visible on another side. The rear of the building features multiple large loading dock doors, suitable for freight access, and the roof is populated with various mechanical installations. The structure is primarily constructed from brick and metal, with some concrete and glass elements. The overall design reflects a classic industrial style, emphasizing function and durability.",
+    "description": "A large brick and metal factory building with industrial windows, rooftop machinery, and attached silos and storage tanks. The structure features loading dock doors and a utilitarian, industrial design.",
+    "description_view_0": "Side view showing the brick facade, large industrial windows, and attached cylindrical storage tank with connecting pipes.",
+    "description_view_1": "Rear view highlighting multiple large loading dock doors, a flat roof with vents, and the absence of the storage tank.",
+    "description_view_2": "Opposite side view similar to view 0, showing the brick facade and rooftop machinery, but with the storage tank and silos less visible.",
+    "description_view_3": "End view displaying the attached silos, cylindrical storage tank, and a metal door, with rooftop machinery visible.",
+    "category": "factory building",
+    "height": 12,
+    "max_dimension": 40,
+    "materials": [
+        "brick",
+        "steel",
+        "concrete",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 1200000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "loading dock door",
+        "window",
+        "silo hatch",
+        "roof vent"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 5,
+    "asset_composition_type": "single",
+    "attribute_number_of_large_industrial_windows": 8,
+    "attribute_presence_of_smokestacks": true,
+    "attribute_loading_dock_doors": 3,
+    "attribute_rooftop_machinery": true,
+    "attribute_architectural_style": "Early 20th Century Industrial",
+    "uid": "087912062d654bfdae1a4757ad94eeb7",
+    "near_synsets": {
+        "factory.n.01": 0.5259457909028096,
+        "farm_building.n.01": 0.5357962338503643,
+        "plant.n.01": 0.5417860875617014,
+        "loft.n.01": 0.5553024709788266,
+        "building.n.01": 0.5659924485762744,
+        "construction.n.07": -1000.0,
+        "building.n.04": -1000.0,
+        "construction.n.01": -1000.0
+    },
+    "synset": "factory.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/087912062d654bfdae1a4757ad94eeb7",
+        "creator_username": "novusod",
+        "creator_display_name": "novusod",
+        "creator_profile_url": "https://sketchfab.com/novusod"
+    },
+    "filename": "std_087912062d654bfdae1a4757ad94eeb7.glb",
+    "length": 23.110325813293457,
+    "width": 36.427669525146484
+}

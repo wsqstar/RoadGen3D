@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a classic steam locomotive with a cylindrical black boiler at the front, a prominent smokestack, and a metallic red body extending to the cab. The locomotive features six large spoked wheels on each side, with a smaller leading wheel at the front. The cab is boxy and enclosed, painted in a deep red color, and sits at the rear of the engine. The front of the train has a circular face with a central headlamp and a cowcatcher at the base. The surface of the train is glossy, reflecting light and giving it a polished metallic appearance. There are no visible doors or windows on the cab, and the train appears to be a single engine unit without additional carriages.",
+    "description": "A glossy, metallic red and black steam locomotive with large spoked wheels, a cylindrical boiler, and an enclosed cab at the rear. The train has a polished finish and classic steam engine features.",
+    "description_view_0": "Front view showing the circular face, central headlamp, and cowcatcher beneath the cylindrical black boiler.",
+    "description_view_1": "Side view displaying the full length of the locomotive, six large spoked wheels, and the transition from the black boiler to the red cab.",
+    "description_view_2": "Rear view highlighting the boxy, deep red cab and the back of the train with no visible windows or doors.",
+    "description_view_3": "Opposite side view mirroring view 1, showing the wheels, boiler, and cab from the other side.",
+    "category": "train",
+    "height": 2.8,
+    "max_dimension": 12.0,
+    "materials": [
+        "steel",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 60000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "door",
+        "smokestack",
+        "headlamp"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.5,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "steam locomotive",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "no visible doors",
+    "attribute_window_arrangement": "no visible windows",
+    "uid": "6196e5cec5b24ffa971d86e11a419403",
+    "near_synsets": {
+        "steam_locomotive.n.01": 0.46089688680270324,
+        "locomotive.n.01": 0.4879316305340722,
+        "train.n.01": 0.4880737325394085,
+        "train_set.n.01": 0.5107609796782177,
+        "diesel_locomotive.n.01": 0.5143536597901348,
+        "caravan.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "gearing.n.01": -1000.0,
+        "train.n.05": -1000.0,
+        "train.n.04": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6196e5cec5b24ffa971d86e11a419403",
+        "creator_username": "cgbilz",
+        "creator_display_name": "cgbilz",
+        "creator_profile_url": "https://sketchfab.com/cgbilz"
+    },
+    "filename": "std_6196e5cec5b24ffa971d86e11a419403.glb",
+    "length": 6.0743207931518555,
+    "width": 2.019410729408264
+}

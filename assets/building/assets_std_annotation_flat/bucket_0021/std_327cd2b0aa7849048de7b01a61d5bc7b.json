@@ -1,0 +1,89 @@
+{
+    "description_long": "This object is a rectangular section of urban sidewalk composed of interlocking concrete pavers arranged in a grid pattern. The surface features a repeating geometric motif, with subtle variations in color and occasional small yellow spots, likely representing dirt or debris. The pavers are mostly a muted brownish-gray, with some areas showing slight discoloration or wear, suggesting exposure to weather and foot traffic. The edges are straight and clean, with no visible curb or raised border, indicating a flush transition to adjacent surfaces. There are no embedded features such as tactile paving, drainage grates, or street furniture. The overall appearance is typical of a utilitarian sidewalk found in residential or mixed-use urban neighborhoods.",
+    "description": "A rectangular, brownish-gray concrete sidewalk section with interlocking paver patterns and subtle surface wear. The edges are flush, and the surface is mostly uniform with minor discolorations.",
+    "description_view_0": "The sidewalk is seen from a low angle, highlighting the grid pattern and some discoloration in the lower left corner.",
+    "description_view_1": "This view shows the sidewalk from the opposite side, with the grid pattern more centered and a faint greenish patch in the upper left.",
+    "description_view_2": "The sidewalk appears more uniform in this view, with the grid pattern and minor yellow spots distributed across the surface.",
+    "description_view_3": "From this angle, the sidewalk's right edge is more visible, showing a consistent pattern and a few scattered yellow marks.",
+    "category": "sidewalk",
+    "height": 0.08,
+    "max_dimension": 3.0,
+    "materials": [
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.98,
+        0.02
+    ],
+    "mass": 1440,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "walkable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "gray",
+        "yellow",
+        "green"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": false,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "flush",
+    "attribute_adjacent_street_type": "residential",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "327cd2b0aa7849048de7b01a61d5bc7b",
+    "near_synsets": {
+        "sidewalk.n.01": 0.518046874045028,
+        "paved_surface.n.01": 0.5215532313602868,
+        "paving_stone.n.01": 0.5479283057671974,
+        "cobble.n.01": 0.5537308564957435,
+        "cement.n.01": 0.556531094906694
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/327cd2b0aa7849048de7b01a61d5bc7b",
+        "creator_username": "joeshu",
+        "creator_display_name": "joeshu",
+        "creator_profile_url": "https://sketchfab.com/joeshu"
+    },
+    "filename": "std_327cd2b0aa7849048de7b01a61d5bc7b.glb",
+    "length": 2.8807469606399536,
+    "width": 3.188375473022461
+}

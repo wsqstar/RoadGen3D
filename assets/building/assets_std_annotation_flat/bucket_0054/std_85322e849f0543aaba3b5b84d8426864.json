@@ -1,0 +1,96 @@
+{
+    "description_long": "This warehouse is a single-story rectangular building with a flat, concrete roof and light wood-paneled exterior walls. The facade features a series of rectangular windows with white and brown shutters, and several plain gray doors spaced along the longer sides. The structure sits on a slightly raised concrete base, giving it a sturdy, industrial appearance. The windows are evenly distributed, providing natural light, while the doors suggest multiple access points for personnel or small equipment. The overall design is simple and functional, with no visible decorative elements or signage. The building's utilitarian form and materials are typical for storage or light industrial use in urban environments.",
+    "description": "A rectangular, single-story warehouse with a flat concrete roof, wood-paneled walls, and multiple windows and doors. The design is simple, functional, and industrial.",
+    "description_view_0": "This view shows a short side of the warehouse with three windows, two with brown shutters and one with white shutters, and no visible doors.",
+    "description_view_1": "This view displays the longer side of the warehouse, featuring four windows with alternating white and brown shutters and two gray doors spaced apart.",
+    "description_view_2": "This view presents the opposite short side, with one gray door and two windows, one with a brown shutter and one with a white shutter.",
+    "description_view_3": "This view shows the other long side, with four windows, two with brown shutters and two with white shutters, and no visible doors.",
+    "category": "warehouse",
+    "height": 3.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "wood",
+        "concrete",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 65000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "shutter"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light brown",
+        "gray",
+        "white",
+        "dark brown"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main facade is clad in horizontal light wood panels, punctuated by evenly spaced rectangular windows with a mix of white and brown shutters, and plain gray entry doors. The design is minimalistic, with no decorative trim or signage, emphasizing function over ornamentation.",
+    "attribute_loading_dock_presence": false,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is flat and appears to be constructed from concrete, with a smooth, unadorned surface and no visible skylights, HVAC units, or other rooftop features.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "85322e849f0543aaba3b5b84d8426864",
+    "near_synsets": {
+        "warehouse.n.01": 0.5184078917353525,
+        "loft.n.01": 0.5265802794661948,
+        "storehouse.n.01": 0.557802618165097,
+        "shop_floor.n.01": 0.5595686171203775,
+        "farm_building.n.01": 0.5658826343908138
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/85322e849f0543aaba3b5b84d8426864",
+        "creator_username": "laid",
+        "creator_display_name": "laid",
+        "creator_profile_url": "https://sketchfab.com/laid"
+    },
+    "filename": "std_85322e849f0543aaba3b5b84d8426864.glb",
+    "length": 14.198707580566406,
+    "width": 18.81201934814453
+}

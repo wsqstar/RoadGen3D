@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a four-way road intersection with a cross-shaped layout, featuring two perpendicular primary roads intersecting at the center. The road surface is dark asphalt with white dashed lane markings running along the center of each road segment, indicating standard traffic lanes. Each road segment is bordered by a light gray strip, likely representing curbs or road edges, which are slightly raised above the main road surface. The intersection is devoid of any visible signage, lighting fixtures, or pedestrian crossings. The surface appears flat and suitable for vehicular traffic, with no obstructions or special features such as turn lanes or bike paths. The overall design is utilitarian, intended for urban or suburban environments where multiple roads meet.",
+    "description": "A cross-shaped four-way intersection with dark asphalt, white dashed lane markings, and light gray curbs along the edges. The surface is flat and designed for vehicular traffic.",
+    "description_view_0": "Front view showing the intersection with clear white dashed lane markings and prominent gray curbs on all four sides.",
+    "description_view_1": "Side view highlighting the length of the intersection and the continuous dashed lane markings, with visible gray curbs.",
+    "description_view_2": "Rear view displaying the intersection's symmetry, dashed lane markings, and the consistent curb design.",
+    "description_view_3": "Opposite side view emphasizing the cross layout, lane markings, and the raised gray curbs along the road edges.",
+    "category": "road",
+    "height": 0.15,
+    "max_dimension": 8.0,
+    "materials": [
+        "asphalt",
+        "concrete",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "car",
+        "bicycle",
+        "motorcycle",
+        "bus",
+        "truck"
+    ],
+    "colors": [
+        "black",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_lane_markings": "White dashed lane markings, one per lane in each direction, no solid or double lines, no special markings.",
+    "attribute_signage": "none",
+    "attribute_curb_presence": true,
+    "attribute_lighting_fixtures": "none",
+    "attribute_pedestrian_crossings": "none",
+    "uid": "b413fa9910da40e0a5973b57f15697c7",
+    "near_synsets": {
+        "intersection.n.02": 0.48863048156919275,
+        "crossing.n.05": 0.4943603214418674,
+        "cross_street.n.01": 0.5076917828695411,
+        "road_surface.n.01": 0.5102225465573254,
+        "two-way_street.n.01": 0.5103677622594206,
+        "road.n.01": -1000.0,
+        "road.n.02": -1000.0
+    },
+    "synset": "road.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b413fa9910da40e0a5973b57f15697c7",
+        "creator_username": "Evanbl",
+        "creator_display_name": "Evanbl",
+        "creator_profile_url": "https://sketchfab.com/Evanbl"
+    },
+    "filename": "std_b413fa9910da40e0a5973b57f15697c7.glb",
+    "length": 8.016722679138184,
+    "width": 7.0028321743011475
+}

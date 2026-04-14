@@ -1,0 +1,86 @@
+{
+    "description_long": "This tunnel structure is a long, rectangular form with a smooth, uniform exterior surface, likely constructed from reinforced concrete or metal. The tunnel features a series of evenly spaced rectangular openings along its length, which may serve as ventilation or access points. Both ends of the tunnel are open, revealing a hollow interior that appears to be designed for passage. The overall design is utilitarian, with minimal decorative elements and a focus on function. The surface is a consistent light gray, suggesting a protective coating or paint. The tunnel's proportions and features indicate it is intended for vehicular or pedestrian transit in an urban environment.",
+    "description": "A long, rectangular, light gray tunnel with open ends and evenly spaced rectangular side openings, featuring a smooth, utilitarian exterior.",
+    "description_view_0": "End-on view showing the open rectangular entrance and the tunnel's hollow interior.",
+    "description_view_1": "Side view displaying the elongated body and a row of evenly spaced rectangular openings along the length.",
+    "description_view_2": "Opposite end-on view, similar to view 0, showing the open entrance and interior.",
+    "description_view_3": "Side view identical to view 1, highlighting the row of rectangular side openings.",
+    "category": "tunnel",
+    "height": 0.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "reinforced concrete",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.2
+    ],
+    "mass": 4200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "passage"
+    ],
+    "support_surface": false,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "car"
+    ],
+    "colors": [
+        "light gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "smooth",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "Rectangular open ends constructed from reinforced concrete or metal, with no doors or gates, and a plain, functional appearance.",
+    "attribute_lighting_fixtures": [],
+    "attribute_signage": [],
+    "attribute_surrounding_infrastructure": "No visible surrounding infrastructure; the tunnel is isolated in the images with no adjacent roads, tracks, or buildings.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "9b480f75199945eeac602c98ed21fabe",
+    "near_synsets": {
+        "tunnel.n.01": 0.4857564112439531,
+        "railroad_tunnel.n.01": 0.4865195570197244,
+        "corridor.n.01": 0.5324020723696246,
+        "well.n.04": 0.5436212680417419,
+        "passageway.n.01": 0.5480809579252552,
+        "burrow.n.01": -1000.0
+    },
+    "synset": "railroad_tunnel.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9b480f75199945eeac602c98ed21fabe",
+        "creator_username": "dartuchiwa",
+        "creator_display_name": "dartuchiwa",
+        "creator_profile_url": "https://sketchfab.com/dartuchiwa"
+    },
+    "filename": "std_9b480f75199945eeac602c98ed21fabe.glb",
+    "length": 7.507119655609131,
+    "width": 0.9272811412811279
+}

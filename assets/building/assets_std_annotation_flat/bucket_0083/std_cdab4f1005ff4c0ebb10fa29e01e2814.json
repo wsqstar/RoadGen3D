@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a large, classic sailing ship with a wooden hull and three tall masts, each rigged with multiple white sails and blue flags. The hull features a pronounced bow with a decorative figurehead and a slightly raised stern, both accented in blue. The deck is open and appears to be loaded with blue cargo or barrels, and the ship's sides are lined with blue railings and trim. The rigging is simple, with ropes connecting the masts and sails, and the ship sits low in the water, suggesting a displacement hull. There are no visible cabins or enclosed superstructure, emphasizing the open-deck design typical of historical merchant or exploration vessels. The overall color palette is dominated by wood brown, white, and blue, giving the ship a striking and clean appearance.",
+    "description": "A large, classic wooden sailing ship with three masts, white sails, blue trim, and an open deck loaded with blue cargo. The hull is brown with blue accents and a decorative figurehead at the bow.",
+    "description_view_0": "Front view showing the pointed bow, decorative figurehead, and the full height of the three masts with white sails.",
+    "description_view_1": "Side view highlighting the length of the hull, blue cargo on the deck, and the arrangement of sails and masts.",
+    "description_view_2": "Rear view displaying the stern's blue accents, the open deck, and the alignment of the masts and sails.",
+    "description_view_3": "Opposite side view similar to view 1, showing the hull's profile, blue deck cargo, and sail configuration.",
+    "category": "ship",
+    "height": 18.0,
+    "max_dimension": 45.0,
+    "materials": [
+        "wood",
+        "fabric",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 120000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1800000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "steerable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sails",
+        "masts",
+        "rigging",
+        "deck",
+        "cargo",
+        "figurehead",
+        "railings"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "white",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a pointed bow and a slightly raised stern. It features a decorative figurehead at the bow, blue trim along the gunwales, and a flat open deck. No keels or bulbous bows are visible, and the hull appears robust and streamlined for sailing.",
+    "attribute_superstructure_layout": "The ship has an open deck layout with no visible enclosed cabins or superstructure. The deck is loaded with blue cargo, and the masts are evenly spaced along the centerline. There are no bridges or towers present.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "cargo",
+        "masts",
+        "sails",
+        "rigging",
+        "figurehead",
+        "railings"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "cdab4f1005ff4c0ebb10fa29e01e2814",
+    "near_synsets": {
+        "bark.n.03": 0.47970275644092286,
+        "galleon.n.01": 0.49492193372939614,
+        "sailing_vessel.n.01": 0.49641684857842744,
+        "cargo_ship.n.01": 0.49999419787345095,
+        "windjammer.n.01": 0.5054835625876013,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cdab4f1005ff4c0ebb10fa29e01e2814",
+        "creator_username": "andrejrosmany",
+        "creator_display_name": "andrejrosmany",
+        "creator_profile_url": "https://sketchfab.com/andrejrosmany"
+    },
+    "filename": "std_cdab4f1005ff4c0ebb10fa29e01e2814.glb",
+    "length": 28.08546257019043,
+    "width": 8.08355712890625
+}

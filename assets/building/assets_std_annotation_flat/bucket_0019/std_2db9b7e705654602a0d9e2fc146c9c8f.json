@@ -1,0 +1,112 @@
+{
+    "description_long": "This bus shelter features a sturdy wooden frame with a gabled blue roof that extends well beyond the shelter's footprint, providing ample protection from the elements. The shelter has three solid wooden walls\u2014two sides and a back\u2014constructed from horizontal wooden planks, while the front is open for easy access. Inside, a wooden bench is fixed to the back wall, offering seating for waiting passengers. The shelter is mounted on a rectangular concrete base, ensuring stability and durability. Adjacent to the shelter is a striped pole with a red and white bus stop sign, clearly marking the location for public transit users. The overall design is functional and inviting, suitable for placement along urban streets or in neighborhood settings.",
+    "description": "A wooden bus shelter with a blue gabled roof, three enclosed sides, and a built-in bench, accompanied by a red bus stop sign on a striped pole.",
+    "description_view_0": "Front view showing the open entrance, interior bench, and adjacent bus stop sign.",
+    "description_view_1": "Rear view highlighting the fully enclosed back wall and the overhanging blue roof.",
+    "description_view_2": "Side view displaying the solid side wall, the roof's overhang, and the bus stop sign from behind.",
+    "description_view_3": "Opposite side view showing the other solid side wall and the bus stop sign's profile.",
+    "category": "bus shelter",
+    "height": 2.4,
+    "max_dimension": 2.8,
+    "materials": [
+        "wood",
+        "metal",
+        "concrete",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.1,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "shelterable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench",
+        "sign pole"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "blue",
+        "gray",
+        "red",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.2,
+        0.1,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_roof_type": "gabled blue roof",
+    "attribute_seating_presence": true,
+    "attribute_advertisement_panel": false,
+    "attribute_shelter_enclosure_level": "partially enclosed",
+    "attribute_signage": [
+        "route sign"
+    ],
+    "uid": "2db9b7e705654602a0d9e2fc146c9c8f",
+    "near_synsets": {
+        "bus_stop.n.01": 0.5134898452622514,
+        "school_bus.n.01": 0.5372168518893796,
+        "shelter.n.02": 0.5387628553225335,
+        "shuttle_bus.n.01": 0.5407672980114375,
+        "street_sign.n.01": 0.5426859405901555,
+        "bus_topology.n.01": -1000.0,
+        "shelter.n.01": -1000.0,
+        "bus.n.04": -1000.0,
+        "shelter.n.05": -1000.0,
+        "protection.n.04": -1000.0,
+        "bus.n.01": -1000.0,
+        "tax_shelter.n.01": -1000.0,
+        "busbar.n.01": -1000.0
+    },
+    "synset": "shelter.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2db9b7e705654602a0d9e2fc146c9c8f",
+        "creator_username": "YANGGA",
+        "creator_display_name": "YANGGA",
+        "creator_profile_url": "https://sketchfab.com/YANGGA"
+    },
+    "filename": "std_2db9b7e705654602a0d9e2fc146c9c8f.glb",
+    "length": 2.3754419088363647,
+    "width": 2.8574180603027344
+}

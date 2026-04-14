@@ -1,0 +1,84 @@
+{
+    "description_long": "This object is a wooden model of a classic biplane, featuring two parallel wings stacked one above the other and connected by vertical struts. The fuselage is slender and tapers towards the tail, which includes a rounded vertical stabilizer and a horizontal stabilizer with a simple, flat design. At the front, a large, two-bladed propeller is mounted on a cylindrical nose, and the landing gear consists of two main wheels and a small tail wheel. The surface is unfinished, light-colored wood, giving it a natural, matte appearance. The construction is visibly modular, with interlocking flat pieces forming the wings, fuselage, and tail. The overall design is reminiscent of early 20th-century aircraft, such as those used in the era of barnstorming or World War I.",
+    "description": "A light wooden biplane model with stacked wings, a front propeller, and simple landing gear. The surface is natural, matte wood with visible interlocking construction.",
+    "description_view_0": "Front view showing the dual stacked wings, large propeller, and symmetrical landing gear.",
+    "description_view_1": "Side view highlighting the elongated fuselage, open cockpit area, and the tail's rounded stabilizer.",
+    "description_view_2": "Rear view displaying the tail assembly, horizontal and vertical stabilizers, and the full wingspan.",
+    "description_view_3": "Opposite side view showing the same features as view 1 but from the other side, with clear visibility of the landing gear and propeller.",
+    "category": "airplane",
+    "height": 0.18,
+    "max_dimension": 0.35,
+    "materials": [
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.08
+    ],
+    "mass": 0.45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 5,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "propeller",
+        "wheels"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light beige"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Biplane configuration with two straight, parallel wings stacked vertically and connected by struts; no winglets or dihedral/anhedral angles visible.",
+    "attribute_engine_type": "Single front-mounted piston propeller engine (model representation, no visible engine details).",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizer.",
+    "attribute_landing_gear_type": "Taildragger configuration with two main fixed wheels and a single small tail wheel.",
+    "attribute_cockpit_placement": "Forward-mounted, open cockpit located just behind the propeller, single-seat configuration.",
+    "uid": "5874b24c5d8c4b469bb9fe76e524aaaa",
+    "near_synsets": {
+        "biplane.n.01": 0.5006491653114026,
+        "airplane.n.01": 0.5191145257583963,
+        "monoplane.n.01": 0.5265056626179989,
+        "aircraft.n.01": 0.5371564542607564,
+        "propeller_plane.n.01": 0.5422810295480724
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5874b24c5d8c4b469bb9fe76e524aaaa",
+        "creator_username": "scb3d",
+        "creator_display_name": "Stichting Consortium Beroepsonderwijs",
+        "creator_profile_url": "https://sketchfab.com/scb3d"
+    },
+    "filename": "std_5874b24c5d8c4b469bb9fe76e524aaaa.glb",
+    "length": 0.3736252784729004,
+    "width": 0.3941105306148529
+}

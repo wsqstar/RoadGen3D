@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a rugged, heavy-duty semi-truck with a boxy, angular design and a weathered, industrial appearance. The cab is painted primarily black with rust and dirt textures, featuring metallic silver accents on the grille and exhaust stacks. The number '74' is prominently displayed in red on the side of the cab, adding a distinctive identifier. The truck has six wheels, with dual rear axles and large, robust tires suitable for hauling heavy loads. The rear section is a chassis cab, designed for attaching trailers or cargo beds, and features red tail lights and a visible fifth wheel coupling. The overall look suggests a vehicle built for tough urban or industrial environments, with a utilitarian and slightly aggressive aesthetic.",
+    "description": "A weathered black semi-truck with metallic accents, red '74' markings, and a chassis cab rear for trailer attachment. It features six wheels, dual exhaust stacks, and a rugged, industrial design.",
+    "description_view_0": "Front view shows the prominent silver grille, dual exhaust stacks, and the angular hood with weathered textures.",
+    "description_view_1": "Left side view highlights the red '74' marking, dual rear axles, and the exposed fifth wheel coupling at the back.",
+    "description_view_2": "Rear view displays the chassis cab configuration, red tail lights, and the central fifth wheel for trailer attachment.",
+    "description_view_3": "Right side view mirrors the left, showing the '74' marking, dual axles, and the exhaust stack, with more detail on the cab's side.",
+    "category": "truck",
+    "height": 3.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 8500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "exhaust stack",
+        "fifth wheel coupling",
+        "headlight",
+        "taillight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "silver",
+        "red",
+        "orange",
+        "brown",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.55,
+        0.15,
+        0.1,
+        0.07,
+        0.08,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "day cab",
+    "attribute_cargo_bed_type": "chassis cab",
+    "attribute_wheelbase": "3.8",
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "b1c89b2a86b64fe285b31d05c3d869d8",
+    "near_synsets": {
+        "trailer_truck.n.01": 0.548432789241785,
+        "truck.n.01": 0.5508158317095011,
+        "tandem_trailer.n.01": 0.5614981844631779,
+        "van.n.05": 0.5635627176267435,
+        "tractor.n.02": 0.5650449708582236,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b1c89b2a86b64fe285b31d05c3d869d8",
+        "creator_username": "Geedtopia",
+        "creator_display_name": "Geedtopia",
+        "creator_profile_url": "https://sketchfab.com/Geedtopia"
+    },
+    "filename": "std_b1c89b2a86b64fe285b31d05c3d869d8.glb",
+    "length": 7.011688232421875,
+    "width": 3.668825626373291
+}

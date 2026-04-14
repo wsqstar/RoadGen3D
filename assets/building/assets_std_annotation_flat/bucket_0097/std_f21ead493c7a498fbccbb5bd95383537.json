@@ -1,0 +1,102 @@
+{
+    "description_long": "This humanoid robot features a robust, angular red body with black and metallic gray accents, giving it a modern and industrial appearance. Its torso is broad and armored, with a prominent glossy black dome on the upper chest or head area, likely serving as a sensor or visual interface. The arms are segmented with flexible, ribbed black joints at the elbows, and end in articulated hands with visible fingers. The legs are sturdy and mechanical, with red armored plating and black joints, designed for stability and mobility. The back and sides reveal reinforced shoulder and hip joints, emphasizing durability and strength. The overall design suggests a utilitarian robot built for urban environments, capable of interacting with objects and navigating complex terrain.",
+    "description": "A red, armored humanoid robot with a glossy black dome on its chest or head, flexible ribbed joints, and articulated hands and legs, designed for urban utility.",
+    "description_view_0": "Front view shows the broad red torso, glossy black dome, articulated arms, and detailed hands.",
+    "description_view_1": "Left side view highlights the ribbed elbow joint, angular chest, and the profile of the dome.",
+    "description_view_2": "Rear view reveals the wide back, reinforced shoulder joints, and the back of the legs.",
+    "description_view_3": "Right side view mirrors the left, showing the ribbed arm joint and the side profile of the head dome.",
+    "category": "humanoid robot",
+    "height": 1.7,
+    "max_dimension": 1.1,
+    "materials": [
+        "painted metal",
+        "polymer",
+        "glass",
+        "rubber",
+        "air",
+        "electronics"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.07,
+        0.07,
+        0.03,
+        0.03
+    ],
+    "mass": 110,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "dome",
+        "arms",
+        "hands",
+        "fingers",
+        "legs"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "gray",
+        "glossy black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms relaxed and slightly bent at the elbows, hands hanging down, legs straight and parallel, torso facing forward.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated red and black armored panels with metallic and polymer coverings.",
+    "attribute_facial_features": "No traditional facial features; a single glossy black dome is present where a head or face would be, with no visible eyes, mouth, or nose.",
+    "attribute_limb_articulation": "Arms have visible rotary or hinge joints at the shoulders and elbows, with flexible ribbed sections; hands have articulated fingers. Legs have hinge joints at hips, knees, and ankles, allowing for walking motion.",
+    "attribute_presence_of_sensors": "Glossy black dome on the upper torso or head likely serves as a visual or multi-sensor array; no other sensors visible.",
+    "uid": "f21ead493c7a498fbccbb5bd95383537",
+    "near_synsets": {
+        "android.n.01": 0.5038864052376667,
+        "robotics_equipment.n.01": 0.5339012061674105,
+        "automaton.n.02": 0.5351674414984852,
+        "cyborg.n.01": 0.5367667453996082,
+        "robotics.n.01": 0.557626219301896
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f21ead493c7a498fbccbb5bd95383537",
+        "creator_username": "Bearbones98",
+        "creator_display_name": "Bearbones98",
+        "creator_profile_url": "https://sketchfab.com/Bearbones98"
+    },
+    "filename": "std_f21ead493c7a498fbccbb5bd95383537.glb",
+    "length": 0.6341153681278229,
+    "width": 1.582706332206726
+}

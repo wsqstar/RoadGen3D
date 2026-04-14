@@ -1,0 +1,88 @@
+{
+    "description_long": "This object is a flat, rectangular chessboard with a classic checkered pattern of alternating light and dark squares. The board appears to be made from a solid, hard material, likely wood or plastic, with a smooth, matte finish. The checkered pattern is composed of evenly sized squares arranged in a regular grid, with no visible decorative elements or inscriptions on the playing surface. The edges of the board are straight and unadorned, with a thin, uniform border that matches the thickness of the board itself. The board is relatively thin compared to its width and length, making it lightweight and easy to move. There are no visible chess pieces or additional features present on the board.",
+    "description": "A flat, rectangular chessboard with a classic checkered pattern of alternating light and dark squares, featuring a smooth, unadorned border.",
+    "description_view_0": "The chessboard is seen from a slightly elevated angle, showing the full checkered surface and the thin, uniform border.",
+    "description_view_1": "This view is similar to view 0, with the checkered pattern and border visible, but from a slightly rotated perspective.",
+    "description_view_2": "The board is shown from another rotated angle, maintaining the visibility of the checkered pattern and the thin border.",
+    "description_view_3": "This view mirrors the previous ones, displaying the checkered surface and border from a different side.",
+    "category": "chessboard",
+    "height": 0.03,
+    "max_dimension": 0.5,
+    "materials": [
+        "plastic",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "playable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light blue",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.5
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_board_pattern": "The playing surface features a regular grid of alternating light blue and white squares, arranged in a classic checkered pattern with no decorative elements or markings.",
+    "attribute_square_grid": "8x8",
+    "attribute_alternating_light_and_dark_squares": true,
+    "attribute_presence_of_chess_pieces": false,
+    "attribute_border_design": "The border is thin, flat, and unadorned, matching the thickness of the board and lacking any ornamentation, inscriptions, or color variation.",
+    "uid": "561600ef2e4f4480b7b09f1f52a280e0",
+    "near_synsets": {
+        "chessboard.n.01": 0.37675420702462453,
+        "checkerboard.n.01": 0.42283485117887476,
+        "chess_set.n.01": 0.43091496558051084,
+        "check.n.10": 0.4586541003264848,
+        "checkers.n.01": 0.4774720402959704
+    },
+    "synset": "chessboard.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/561600ef2e4f4480b7b09f1f52a280e0",
+        "creator_username": "TracyChen",
+        "creator_display_name": "TracyChen",
+        "creator_profile_url": "https://sketchfab.com/TracyChen"
+    },
+    "filename": "std_561600ef2e4f4480b7b09f1f52a280e0.glb",
+    "length": 2.339975595474243,
+    "width": 2.339975357055664
+}

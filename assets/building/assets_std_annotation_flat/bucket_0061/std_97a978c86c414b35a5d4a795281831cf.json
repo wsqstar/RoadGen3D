@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a compact, cylindrical bomb with a reinforced metal shaft and a hexagonal head composed of three tightly packed cylindrical elements, likely representing explosive charges. The shaft is wrapped with two brown bands, possibly for grip or structural reinforcement, and the head is secured with a dark metal strap. The head's front face reveals the ends of the three cylindrical charges, each with a beige, wood-like texture, while the sides show the metal strap holding them together. The overall construction suggests a robust, industrial design, with a focus on durability and secure containment of the explosive elements. The materials and form factor indicate it is designed for manual placement or throwing, rather than remote deployment.",
+    "description": "A compact, cylindrical bomb with a hexagonal head of three beige charges, reinforced by a metal shaft and brown grip bands.",
+    "description_view_0": "Front view showing the hexagonal head with three beige cylindrical charges tightly packed and visible.",
+    "description_view_1": "Side view revealing the length of the metal shaft, brown grip bands, and the dark metal strap securing the head.",
+    "description_view_2": "Rear view similar to the front, displaying the ends of the three cylindrical charges in a hexagonal arrangement.",
+    "description_view_3": "Opposite side view showing the shaft, brown grip bands, and the side profile of the strapped head.",
+    "category": "bomb",
+    "height": 0.55,
+    "max_dimension": 0.55,
+    "materials": [
+        "steel",
+        "wood",
+        "leather",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip bands",
+        "head",
+        "strap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "beige",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.2,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The bomb appears to be manually triggered, likely by impact or a concealed fuse mechanism within the head, as no external buttons, switches, or wires are visible.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "97a978c86c414b35a5d4a795281831cf",
+    "near_synsets": {
+        "pipe_bomb.n.01": 0.5149132832021625,
+        "bomb.n.01": 0.5151288830821334,
+        "briefcase_bomb.n.01": 0.5209241612156479,
+        "plastic_bomb.n.01": 0.5387419367565957,
+        "remote-control_bomb.n.01": 0.5468583313203254,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/97a978c86c414b35a5d4a795281831cf",
+        "creator_username": "Mastersilver18",
+        "creator_display_name": "Mastersilver18",
+        "creator_profile_url": "https://sketchfab.com/Mastersilver18"
+    },
+    "filename": "std_97a978c86c414b35a5d4a795281831cf.glb",
+    "length": 0.09808095544576645,
+    "width": 0.051111819222569466
+}

@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a small, weathered kiosk with a boxy, rectangular structure and a flat, overhanging metal roof. The exterior is heavily rusted and stained, with blue and brown hues dominating the corroded metal panels. The front features a faded, partially illegible sign above a large open window, suggesting it once served as a ticket booth or small vendor stand. Inside, there are shelves and counters cluttered with old papers and debris, visible through the broken or missing glass panes on all sides. The structure is compact, with multiple rectangular window openings and a single open entryway at the rear. The overall appearance is dilapidated and abandoned, fitting an urban or post-apocalyptic environment.",
+    "description": "A small, rusted metal kiosk with a flat overhanging roof, broken windows, and a faded sign, appearing abandoned and cluttered inside.",
+    "description_view_0": "Front view showing the faded sign, large open window, and cluttered interior with visible papers and debris.",
+    "description_view_1": "Side view highlighting the rusted metal panels, broken window frames, and partial view of the interior shelves.",
+    "description_view_2": "Rear view with a wide open entryway, more visible interior clutter, and additional broken windows.",
+    "description_view_3": "Opposite side view showing more rusted surfaces, window openings, and a glimpse of the interior's disarray.",
+    "category": "kiosk",
+    "height": 2.2,
+    "max_dimension": 2.8,
+    "materials": [
+        "metal",
+        "glass",
+        "wood",
+        "paper",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.02,
+        0.1
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "window",
+        "counter",
+        "doorway",
+        "sign"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "brown",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "Printed sign above entrance, faded and partially illegible, rectangular in shape.",
+    "attribute_window_presence": "Multiple rectangular windows on all sides, some broken or missing glass.",
+    "attribute_door_configuration": "Single open entryway at rear, no visible door.",
+    "attribute_roof_design": "Flat metal roof with overhangs on all sides, visibly rusted and weathered.",
+    "attribute_architectural_style": "Industrial, utilitarian, with heavy weathering and signs of neglect.",
+    "uid": "61646de1c5e5446da5f37306b792f714",
+    "near_synsets": {
+        "junk_shop.n.01": 0.5460839605749139,
+        "booth.n.02": 0.560701344812979,
+        "estaminet.n.01": 0.5607116154867944,
+        "ruin.n.02": 0.5712400180232646,
+        "fleapit.n.01": 0.5745569978076767
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/61646de1c5e5446da5f37306b792f714",
+        "creator_username": "blenderist",
+        "creator_display_name": "blenderist",
+        "creator_profile_url": "https://sketchfab.com/blenderist"
+    },
+    "filename": "std_61646de1c5e5446da5f37306b792f714.glb",
+    "length": 2.4423160552978516,
+    "width": 2.539386510848999
+}

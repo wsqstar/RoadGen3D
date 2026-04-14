@@ -1,0 +1,97 @@
+{
+    "description_long": "This object consists of a group of five bottles of varying shapes, sizes, and colors, arranged side by side. The bottles include both tall and short forms, with cylindrical and slightly tapered bodies, and each has a distinct neck and cap. The colors range from deep green, red, and amber to clear and smoky gray, with each bottle featuring a dark, rectangular label area on its body. The caps are mostly cylindrical and colored to match or contrast with the bottle body, with some appearing as screw caps. The glass material is semi-transparent, allowing some visibility of the interior, but no clear liquid is visible. The overall appearance suggests these are beverage or liquor bottles, commonly found in urban settings such as bars, restaurants, or discarded on sidewalks.",
+    "description": "A group of five semi-transparent glass bottles in various colors and shapes, each with a dark label and colored cap. The bottles are arranged side by side, resembling typical beverage or liquor containers.",
+    "description_view_0": "A direct end-on view showing the bottles aligned in a row, with the tallest green bottle and a red bottle most visible in front.",
+    "description_view_1": "A frontal view displaying all five bottles clearly, highlighting their different heights, shapes, and colors.",
+    "description_view_2": "A rear end-on view, with the amber and gray bottles most prominent and the others partially obscured behind.",
+    "description_view_3": "A reverse frontal view, showing the backs of all five bottles, with the amber bottle on the left and the red bottle on the right.",
+    "category": "bottle",
+    "height": 0.35,
+    "max_dimension": 0.45,
+    "materials": [
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 2.5,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 15,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "graspable",
+        "pourable",
+        "openable",
+        "closable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "red",
+        "amber",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.25,
+        0.2,
+        0.2,
+        0.2,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "group",
+    "attribute_label_or_branding": "none",
+    "attribute_cap_type": "screw cap",
+    "attribute_transparency": "translucent",
+    "attribute_presence_of_liquid": "absent",
+    "attribute_damage_or_deformation": "none",
+    "uid": "7355e8b965b54cdeb924e529595b063a",
+    "near_synsets": {
+        "bottle_collection.n.01": 0.46431385145109916,
+        "bottle.n.01": 0.4659707906875903,
+        "beer_bottle.n.01": 0.49948415421534287,
+        "glass.n.02": 0.5036851088715161,
+        "whiskey_bottle.n.01": 0.5087481180854392,
+        "bottle.n.02": -1000.0,
+        "bottle.n.03": -1000.0
+    },
+    "synset": "bottle.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7355e8b965b54cdeb924e529595b063a",
+        "creator_username": "rojeitox3",
+        "creator_display_name": "rojeitox3",
+        "creator_profile_url": "https://sketchfab.com/rojeitox3"
+    },
+    "filename": "std_7355e8b965b54cdeb924e529595b063a.glb",
+    "length": 0.09708501026034355,
+    "width": 0.5025805532932281
+}

@@ -1,0 +1,99 @@
+{
+    "description_long": "This forklift features a robust, industrial design with a predominantly orange and blue exterior, showing visible signs of wear and paint chipping, indicative of heavy use. The vehicle is equipped with two thick, black fork arms at the front, designed for lifting and transporting pallets or heavy loads. The operator's compartment includes a black seat, a steering wheel, and a protective overhead guard constructed from sturdy metal bars. The mast assembly at the front is tall and reinforced, supporting the fork arms and providing vertical lift capability. Large, solid wheels with blue hubs and black tires support the vehicle, suitable for maneuvering on urban surfaces. The overall structure is compact yet powerful, optimized for navigating tight spaces in warehouses, loading docks, or construction sites.",
+    "description": "A worn orange and blue forklift with visible fork arms, a protective overhead guard, and a black operator seat, designed for lifting and transporting heavy loads in urban environments.",
+    "description_view_0": "Front view showing the wide orange bumper, fork arms partially visible below, and the operator seat and steering wheel behind the protective guard.",
+    "description_view_1": "Left side view highlighting the full length of the fork arms, the mast assembly, the operator seat, and the large wheels.",
+    "description_view_2": "Rear view displaying the back of the overhead guard, the seat, and the rear wheels, with the mast and fork arms visible through the frame.",
+    "description_view_3": "Right side view similar to the left, showing the fork arms, mast, operator seat, and wheels, with more detail on the seat and steering wheel.",
+    "category": "forklift",
+    "height": 2.2,
+    "max_dimension": 3.2,
+    "materials": [
+        "steel",
+        "rubber",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.07,
+        0.01,
+        0.05
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 15680,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "liftable",
+        "steerable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "steering wheel",
+        "seat",
+        "fork arms",
+        "mast",
+        "wheels",
+        "overhead guard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_fork_arms": "Two parallel, straight black fork arms extend forward from the base of the mast, each appearing thick and sturdy with a rectangular cross-section. The arms are of moderate length, suitable for standard pallets, and show some surface wear and scuff marks. They are positioned close together and aligned horizontally, with no visible attachments or extensions.",
+    "attribute_overhead_guard": "The overhead guard is constructed from thick, black metal bars forming a rectangular frame above the operator's seat. It provides full coverage over the seating area, with vertical and horizontal supports for structural integrity. The guard is designed to protect the operator from falling objects and shows signs of wear consistent with heavy use.",
+    "attribute_mast": "The mast is a tall, black, double-stage structure with reinforced vertical rails and cross-bracing. It supports the fork arms and allows for vertical lifting. The mast appears robust, with visible mounting points and guide slots, but no detailed hydraulic components or chains are visible.",
+    "attribute_operator_seat": "The operator seat is black, moderately padded, and has a simple, utilitarian design. It features a backrest and a flat seat base, with no visible armrests, headrest, or seatbelt. The seat is positioned centrally within the operator compartment and appears to be made of durable plastic or vinyl.",
+    "attribute_warning_lights": "No visible warning lights are present on the exterior of the forklift in any of the provided views.",
+    "uid": "f550f917394449578f5930a46512f169",
+    "near_synsets": {
+        "forklift.n.01": 0.43272612016737416,
+        "lifting_device.n.01": 0.5261750499153766,
+        "stacker_crane.n.01": 0.5475136792363994,
+        "fork.n.04": 0.5562683562053504,
+        "hoist.n.01": 0.5622621660051242
+    },
+    "synset": "forklift.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f550f917394449578f5930a46512f169",
+        "creator_username": "FFeller",
+        "creator_display_name": "FFeller",
+        "creator_profile_url": "https://sketchfab.com/FFeller"
+    },
+    "filename": "std_f550f917394449578f5930a46512f169.glb",
+    "length": 3.1477564573287964,
+    "width": 1.4752514958381653
+}

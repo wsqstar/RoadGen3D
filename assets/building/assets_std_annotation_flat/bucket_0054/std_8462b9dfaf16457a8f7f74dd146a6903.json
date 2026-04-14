@@ -1,0 +1,94 @@
+{
+    "description_long": "This object depicts a rugged, rocky depression filled with water, resembling a small sea or large pond set within a natural stone basin. The water surface is dark and reflective, with subtle highlights suggesting depth and a calm, undisturbed state. The surrounding rocky terrain is uneven, with jagged edges and a rough texture, giving the impression of a naturally formed geological feature. The coloration is predominantly dark gray and blue, with lighter patches where the water reflects ambient light. The depression is shallow relative to its width, and the water appears to be contained entirely within the rocky boundary. There are no visible man-made structures, vegetation, or additional features present.",
+    "description": "A rocky, uneven basin filled with dark, reflective water, resembling a small sea or pond set in natural stone. The surface is rough and jagged, with deep blue and gray tones.",
+    "description_view_0": "A low, side view showing the shallow depth of the water and the wide, rocky perimeter.",
+    "description_view_1": "A top-down perspective highlighting the circular water-filled depression and the rough, stone texture around it.",
+    "description_view_2": "Another side view from the opposite direction, emphasizing the broad, flat expanse and the reflective water surface.",
+    "description_view_3": "A slightly angled view showing the irregular edge of the rocky basin and the central water area.",
+    "category": "sea",
+    "height": 0.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "rock",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 70000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "containable",
+        "swimmable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "boat"
+    ],
+    "colors": [
+        "dark gray",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.33,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.0,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_hull_type": "none",
+    "attribute_deck_features": [],
+    "attribute_presence_of_navigation_lights": false,
+    "attribute_registration_markings": "none",
+    "attribute_anchor_equipment": [],
+    "uid": "8462b9dfaf16457a8f7f74dd146a6903",
+    "near_synsets": {
+        "basin.n.03": 0.5049685926031354,
+        "seascape.n.01": 0.5240299719313045,
+        "body_of_water.n.01": 0.5258960087379948,
+        "bed.n.03": 0.5265156354430048,
+        "beach.n.01": 0.5313312841780826,
+        "ocean.n.02": -1000.0,
+        "sea.n.03": -1000.0,
+        "sea.n.01": -1000.0
+    },
+    "synset": "sea.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8462b9dfaf16457a8f7f74dd146a6903",
+        "creator_username": "toy_meister",
+        "creator_display_name": "Mark Burginger architect",
+        "creator_profile_url": "https://sketchfab.com/toy_meister"
+    },
+    "filename": "std_8462b9dfaf16457a8f7f74dd146a6903.glb",
+    "length": 22.54157829284668,
+    "width": 12.146573066711426
+}

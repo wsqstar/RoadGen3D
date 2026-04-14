@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a heavy, tripod-mounted rifle with a robust, industrial design, likely intended for sustained fire in defensive or support roles. The main body is constructed from dark metallic materials, featuring a long barrel and a prominent ammunition belt feeding into the chamber from a large, boxy magazine on the side. The rifle is supported by a sturdy bipod or tripod, providing stability for accurate firing. The ammunition belt is visible, with several brass-colored rounds ready for use, and the receiver area is angular and reinforced. The rear section lacks a traditional stock, instead featuring a mechanical or utilitarian structure, possibly for mounting or transport. The overall appearance suggests a weapon designed for urban defense or suppression, with a focus on durability and firepower.",
+    "description": "A heavy, tripod-mounted rifle with a visible ammunition belt and large side-mounted magazine, built from dark metal and designed for sustained fire. Its industrial, robust design emphasizes stability and firepower.",
+    "description_view_0": "Side view showing the full length of the rifle, the ammunition belt, and the large box magazine attached to the side.",
+    "description_view_1": "Front view highlighting the barrel, bipod legs, and the alignment of the ammunition belt feeding into the chamber.",
+    "description_view_2": "Opposite side view displaying the magazine and the rear mechanical structure, with the ammunition belt visible on the far side.",
+    "description_view_3": "Rear view focusing on the back of the magazine and the mechanical rear section, with the bipod legs extending forward.",
+    "category": "rifle",
+    "height": 0.45,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "brass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "magazine",
+        "ammunition belt",
+        "bipod",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "silver",
+        "brass",
+        "green"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "none",
+    "uid": "32e25838cb304ea7941e58f989080092",
+    "near_synsets": {
+        "light_arm.n.01": 0.5097361191362337,
+        "sniper_rifle.n.01": 0.5115342906208333,
+        "rifle.n.01": 0.5136340062698209,
+        "automatic_rifle.n.01": 0.5218570620253817,
+        "assault_rifle.n.01": 0.5272558653743069
+    },
+    "synset": "assault_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/32e25838cb304ea7941e58f989080092",
+        "creator_username": "rocketlaunch6",
+        "creator_display_name": "Brent Loncher",
+        "creator_profile_url": "https://sketchfab.com/rocketlaunch6"
+    },
+    "filename": "std_32e25838cb304ea7941e58f989080092.glb",
+    "length": 0.8035002648830414,
+    "width": 0.29263530671596527
+}

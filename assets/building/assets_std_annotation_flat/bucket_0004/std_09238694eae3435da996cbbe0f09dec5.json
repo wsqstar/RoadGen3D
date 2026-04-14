@@ -1,0 +1,94 @@
+{
+    "description_long": "This cowshed is a simple, open-sided agricultural structure with a rectangular footprint and a single-pitch shed roof. The roof is covered with what appears to be corrugated metal sheets, providing weather protection, and is supported by a wooden frame consisting of vertical posts and triangular trusses. The structure is open on all sides, allowing for maximum ventilation and easy access for livestock. The floor appears to be a solid, flat surface, likely concrete or compacted earth, suitable for supporting the weight of animals and equipment. There are no visible doors or windows, emphasizing its utilitarian design for easy movement of cattle. The overall appearance is functional and robust, typical of rural or peri-urban agricultural buildings.",
+    "description": "A rectangular, open-sided cowshed with a sloped metal roof and wooden frame, designed for livestock shelter. The structure is utilitarian, airy, and accessible from all sides.",
+    "description_view_0": "The cowshed is seen from a corner angle, highlighting the sloped metal roof and open front with visible wooden trusses.",
+    "description_view_1": "This view shows the open side of the cowshed, with evenly spaced vertical wooden posts and a clear view through the structure.",
+    "description_view_2": "The opposite corner view emphasizes the rear open side and the roof's overhang, with trusses visible inside.",
+    "description_view_3": "A direct side view of the cowshed, showing the full expanse of the roof and the open, unobstructed interior.",
+    "category": "cowshed",
+    "height": 3.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "wood",
+        "metal",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.2
+    ],
+    "mass": 3200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "shelter_providing",
+        "animal_housing",
+        "weather_protection"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "livestock"
+    ],
+    "colors": [
+        "brown",
+        "gray",
+        "rust"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "shed",
+    "attribute_door_style": "no doors; open-sided structure",
+    "attribute_window_presence": "no windows; fully open sides",
+    "attribute_ventilation_features": "open eaves and sides for natural ventilation",
+    "attribute_architectural_style": "traditional rural",
+    "uid": "09238694eae3435da996cbbe0f09dec5",
+    "near_synsets": {
+        "cowbarn.n.01": 0.4354389386256256,
+        "shed.n.01": 0.48586817065263466,
+        "stockyard.n.01": 0.4933257489685874,
+        "barn.n.01": 0.5018682420720272,
+        "farm_building.n.01": 0.5138928712292568
+    },
+    "synset": "cowbarn.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/09238694eae3435da996cbbe0f09dec5",
+        "creator_username": "alyona.u",
+        "creator_display_name": "alyona.u",
+        "creator_profile_url": "https://sketchfab.com/alyona.u"
+    },
+    "filename": "std_09238694eae3435da996cbbe0f09dec5.glb",
+    "length": 4.232154846191406,
+    "width": 3.89597225189209
+}

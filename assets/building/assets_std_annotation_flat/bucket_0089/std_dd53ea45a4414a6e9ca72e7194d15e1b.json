@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a large, modern apartment complex arranged in a rectangular block with multiple high-rise towers. The buildings are clustered around a central courtyard or open space, which is covered with a reddish surface, possibly representing communal or recreational areas. The exterior facades are primarily light gray, with some green and orange accents, and the windows are regularly spaced, giving the complex a uniform and organized appearance. The complex is bordered by wide roads on all sides, and there are green spaces, possibly parks or gardens, along one edge. The overall design is contemporary, with clean lines and a focus on maximizing residential density while providing shared outdoor amenities. The structure appears to be made of concrete and glass, typical of urban residential developments.",
+    "description": "A modern, high-rise apartment complex with multiple towers arranged around a central courtyard, bordered by roads and green spaces. The buildings feature light gray facades, regular window patterns, and contemporary design elements.",
+    "description_view_0": "This view shows the apartment complex from a corner angle, highlighting the central courtyard and the surrounding high-rise towers, with roads and green spaces visible on the periphery.",
+    "description_view_1": "From this side view, the linear arrangement of the buildings and the green space along one edge are prominent, with the main entrance area likely facing the foreground.",
+    "description_view_2": "The top-down perspective reveals the full layout of the complex, including the central courtyard, the symmetrical arrangement of towers, and the bordering roads.",
+    "description_view_3": "This rear view emphasizes the back side of the complex, with the green space and the uniformity of the building facades clearly visible.",
+    "category": "apartment building",
+    "height": 40,
+    "max_dimension": 120,
+    "materials": [
+        "concrete",
+        "glass",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.1
+    ],
+    "mass": 1200000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "balcony"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "green",
+        "orange",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 10,
+    "asset_composition_type": "scene",
+    "attribute_number_of_floors": 12,
+    "attribute_balcony_presence": true,
+    "attribute_window_arrangement": "Windows are arranged in a regular, grid-like pattern across all facades, with consistent spacing and alignment, contributing to a symmetrical and orderly appearance.",
+    "attribute_entrance_type": "multiple entrances",
+    "attribute_architectural_style": "Contemporary",
+    "uid": "dd53ea45a4414a6e9ca72e7194d15e1b",
+    "near_synsets": {
+        "high-rise.n.01": 0.4873495220089848,
+        "apartment_building.n.01": 0.4903826608782879,
+        "block.n.05": 0.5291612526152311,
+        "housing_development.n.01": 0.5308880295634731,
+        "suite.n.02": 0.5320204136197786,
+        "building.n.01": -1000.0,
+        "construction.n.01": -1000.0,
+        "construction.n.07": -1000.0,
+        "apartment.n.01": -1000.0,
+        "building.n.04": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dd53ea45a4414a6e9ca72e7194d15e1b",
+        "creator_username": "sambrari95",
+        "creator_display_name": "Kyrylo Ilnitskyi",
+        "creator_profile_url": "https://sketchfab.com/sambrari95"
+    },
+    "filename": "std_dd53ea45a4414a6e9ca72e7194d15e1b.glb",
+    "length": 440.10028076171875,
+    "width": 475.6484375
+}

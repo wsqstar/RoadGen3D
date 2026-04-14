@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a cylindrical bomb with a robust, industrial design, featuring a matte black body encased in metallic gray armor plating at the base and top. The top section is equipped with a prominent, angular handle mechanism, which includes a visible red button or pin and a thick, black safety ring attached to the side. A thin red line encircles the upper portion of the cylinder, adding a visual accent and possibly indicating a seam or functional division. The handle assembly appears reinforced and is likely used for both carrying and arming the device. The overall construction suggests a heavy, solid build, with the metallic components providing both protection and structural integrity. The bomb's design is utilitarian, with minimal decorative elements, emphasizing function and durability.",
+    "description": "A heavy, cylindrical bomb with a matte black body, metallic gray armor, and a reinforced handle featuring a red button and safety ring. The design is industrial and functional, with a visible red accent line near the top.",
+    "description_view_0": "The front view shows the cylindrical body with the handle mechanism centered at the top, and the safety ring partially visible on the right side.",
+    "description_view_1": "This side view highlights the handle's angular design, the red button, and the full safety ring hanging from the top, as well as the metallic base.",
+    "description_view_2": "The rear view displays the back of the handle and a solid metallic strip running vertically down the bomb, with the safety ring looped to the left.",
+    "description_view_3": "This side view mirrors view 1 but from the opposite side, showing the handle, red button, and the attachment point of the safety ring.",
+    "category": "bomb",
+    "height": 0.25,
+    "max_dimension": 0.12,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 2.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "safety ring",
+        "red button/pin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The bomb appears to be armed or triggered by pulling the safety ring and pressing the red button or pin located on the handle assembly.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "ecc07dc87a894c79919bab953eddac2f",
+    "near_synsets": {
+        "bomb.n.01": 0.52752725094757,
+        "cherry_bomb.n.01": 0.5377925769646911,
+        "general-purpose_bomb.n.01": 0.5429640091873429,
+        "pipe_bomb.n.01": 0.543544581191096,
+        "briefcase_bomb.n.01": 0.5437571072887212,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ecc07dc87a894c79919bab953eddac2f",
+        "creator_username": "mercurio22",
+        "creator_display_name": "mercurio22",
+        "creator_profile_url": "https://sketchfab.com/mercurio22"
+    },
+    "filename": "std_ecc07dc87a894c79919bab953eddac2f.glb",
+    "length": 0.1330372542142868,
+    "width": 0.1291632205247879
+}

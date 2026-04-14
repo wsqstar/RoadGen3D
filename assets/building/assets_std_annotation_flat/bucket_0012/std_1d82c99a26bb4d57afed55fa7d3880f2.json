@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a tall, vertical metal structure anchored to a square concrete base, supporting a set of electrical insulators and crossarms at its top. The upper section features multiple insulator stacks arranged horizontally, with metallic crossarms extending outward to support high-voltage power lines. At the base, there is a compact transformer unit housed within a protective enclosure, accompanied by additional electrical components and cabling. Several power lines are attached to the crossarms, extending outward and supported by tension wires. The structure is primarily metallic, with visible ceramic or composite insulators and a concrete foundation. The overall appearance is industrial, robust, and designed for outdoor installation in urban or suburban environments.",
+    "description": "A tall metal tower with crossarms and insulators at the top, mounted on a concrete base with a transformer unit and attached power lines.",
+    "description_view_0": "The front view shows the full height of the tower, the transformer unit at the base, and power lines extending to the right.",
+    "description_view_1": "This side view highlights the square base, the transformer enclosure, and the alignment of the crossarms and insulators.",
+    "description_view_2": "The rear view displays the back of the transformer unit and the power lines extending to the left.",
+    "description_view_3": "This side view shows the tower's height, the transformer at the base, and the crossarms extending outward.",
+    "category": "transformer tower",
+    "height": 14.0,
+    "max_dimension": 15.0,
+    "materials": [
+        "steel",
+        "ceramic",
+        "concrete",
+        "copper",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.1,
+        0.1,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "connectable",
+        "mountable",
+        "electrifiable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "crossarm",
+        "insulator stack",
+        "transformer enclosure",
+        "power line attachment point"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "group",
+    "attribute_number_of_insulator_stacks": 3,
+    "attribute_arrangement_of_crossarms": "There is a single horizontal crossarm at the top, supporting insulator stacks spaced evenly along its length.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "transformer",
+        "insulator",
+        "crossarm"
+    ],
+    "attribute_configuration_of_attached_power_lines": "Three power lines are attached in a parallel, three-phase configuration, routed horizontally outward from the crossarm.",
+    "uid": "1d82c99a26bb4d57afed55fa7d3880f2",
+    "near_synsets": {
+        "pylon.n.02": 0.4953838935312913,
+        "transformer.n.01": 0.5388079401165622,
+        "telephone_pole.n.01": 0.5401284082306573,
+        "tower.n.01": 0.540277160668671,
+        "cascade_transformer.n.01": 0.5471616068415205,
+        "column.n.04": -1000.0,
+        "tugboat.n.01": -1000.0
+    },
+    "synset": "pylon.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1d82c99a26bb4d57afed55fa7d3880f2",
+        "creator_username": "vislaw",
+        "creator_display_name": "vislaw",
+        "creator_profile_url": "https://sketchfab.com/vislaw"
+    },
+    "filename": "std_1d82c99a26bb4d57afed55fa7d3880f2.glb",
+    "length": 3.656810760498047,
+    "width": 9.509073257446289
+}

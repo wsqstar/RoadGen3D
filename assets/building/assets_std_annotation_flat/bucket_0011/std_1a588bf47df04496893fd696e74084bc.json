@@ -1,0 +1,118 @@
+{
+    "description_long": "This object is a rectangular outdoor tennis facility featuring six blue tennis courts arranged side by side, each separated by white lines and surrounded by a low, gray boundary wall. Along one long edge, a row of evenly spaced green trees provides a natural border, while the opposite side includes a small building structure, likely serving as a clubhouse or amenities area, with adjacent paved walkways and landscaped greenery. The courts are marked with standard white tennis lines, and each court appears to have a central net supported by posts. The surface of the courts is smooth and hard, typical of acrylic or concrete tennis surfaces. There is no visible fencing or lighting fixtures around the courts, giving the area an open and accessible feel. The overall design is functional and modern, with a focus on utility and organized layout.",
+    "description": "A modern outdoor tennis facility with six blue courts, white markings, a row of trees, and a small clubhouse structure. The courts are open, with no visible fencing or lighting, and feature a clean, organized layout.",
+    "description_view_0": "A wide view showing all six blue tennis courts, the row of trees along the far edge, and the clubhouse area on the left.",
+    "description_view_1": "A narrow end-on view highlighting the length of the courts, the row of trees on the left, and the clubhouse at the far end.",
+    "description_view_2": "A mirrored wide view with the row of trees in the foreground, all six courts visible, and the clubhouse on the right.",
+    "description_view_3": "A narrow end-on view from the opposite side, showing the courts' width, the trees on the right, and the clubhouse at the far end.",
+    "category": "tennis court",
+    "height": 3.5,
+    "max_dimension": 60.0,
+    "materials": [
+        "concrete",
+        "acrylic",
+        "paint",
+        "metal",
+        "glass",
+        "wood",
+        "vegetation",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.05,
+        0.01,
+        0.01,
+        0.05,
+        0.03
+    ],
+    "mass": 450000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "playable",
+        "net-attachable",
+        "line-markable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "net",
+        "net posts",
+        "clubhouse door"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "blue",
+        "white",
+        "gray",
+        "green",
+        "brown"
+    ],
+    "colors_composition": [
+        0.45,
+        0.1,
+        0.25,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.1,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "scene",
+    "attribute_net_type": "Standard braided nylon tennis nets, black color, supported by metal posts at each court's centerline.",
+    "attribute_court_line_markings": "All standard tennis lines are present in white, with clear and complete baselines, sidelines, service lines, and center marks, approximately 5 cm wide.",
+    "attribute_surrounding_fence": "none",
+    "attribute_lighting_fixtures": "none",
+    "attribute_architectural_style": "modern utilitarian, with clean lines, functional layout, and minimal decorative elements.",
+    "uid": "1a588bf47df04496893fd696e74084bc",
+    "near_synsets": {
+        "tennis_court.n.01": 0.4542824502225096,
+        "tennis_club.n.01": 0.5256836086015019,
+        "badminton_court.n.01": 0.534245262263614,
+        "tennis.n.01": 0.5438156416244757,
+        "course.n.09": 0.5452155149593597,
+        "court.n.02": -1000.0,
+        "court.n.08": -1000.0,
+        "court.n.10": -1000.0,
+        "court.n.01": -1000.0,
+        "court.n.05": -1000.0,
+        "motor_hotel.n.01": -1000.0,
+        "court.n.03": -1000.0,
+        "court.n.09": -1000.0,
+        "court.n.06": -1000.0,
+        "court.n.04": -1000.0
+    },
+    "synset": "tennis_court.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/1a588bf47df04496893fd696e74084bc",
+        "creator_username": "homedesign3d",
+        "creator_display_name": "Home Design 3D",
+        "creator_profile_url": "https://sketchfab.com/homedesign3d"
+    },
+    "filename": "std_1a588bf47df04496893fd696e74084bc.glb",
+    "length": 19.15370750427246,
+    "width": 42.567405700683594
+}

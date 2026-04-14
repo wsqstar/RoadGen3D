@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a large cargo container ship with a white and red hull, designed for transporting shipping containers across water. The vessel features a flat deck loaded with multiple rows of colorful rectangular containers in blue, green, red, and brown, stacked in a single layer. The superstructure is positioned toward the rear, rising above the deck and housing the bridge and crew quarters, with several windows and a visible antenna or mast. The bow is sharply pointed, while the stern is squared off, typical of modern container ships. The hull sits low in the water, indicating a displacement-type design for stability and heavy loads. No visible lifeboats, cranes, or other deck equipment are present aside from the containers and superstructure.",
+    "description": "A large white and red cargo container ship with a flat deck stacked with colorful shipping containers and a tall superstructure at the rear.",
+    "description_view_0": "Side view showing the full length of the ship, the stacked containers, and the superstructure at the rear.",
+    "description_view_1": "Rear view highlighting the stern, the width of the ship, and the arrangement of containers and superstructure.",
+    "description_view_2": "Opposite side view similar to view 0, showing the containers and superstructure from the other side.",
+    "description_view_3": "Front view displaying the pointed bow, the alignment of containers along the deck, and the superstructure in the background.",
+    "category": "ship",
+    "height": 25,
+    "max_dimension": 200,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 35000000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bridge",
+        "doors",
+        "container doors",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "blue",
+        "green",
+        "brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.08,
+        0.08,
+        0.09
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 20,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a sharply pointed bow and a squared stern, featuring a flat deck for container storage and a red lower section indicating the waterline. No bulbous bow or keels are visible.",
+    "attribute_superstructure_layout": "The superstructure is located at the rear of the ship, rising above the deck with multiple levels, windows, and an antenna or mast on top. It appears to house the bridge and crew quarters.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [],
+    "attribute_registration_markings": "none",
+    "uid": "6362d3e9b11e4396aaafa854c3aa6f06",
+    "near_synsets": {
+        "container_ship.n.01": 0.43952018447288954,
+        "cargo_ship.n.01": 0.4591988426288863,
+        "cargo_container.n.01": 0.4729290803393113,
+        "car_carrier.n.02": 0.48870176517770403,
+        "ship.n.01": 0.49115078796580147
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6362d3e9b11e4396aaafa854c3aa6f06",
+        "creator_username": "588276",
+        "creator_display_name": "Styx",
+        "creator_profile_url": "https://sketchfab.com/588276"
+    },
+    "filename": "std_6362d3e9b11e4396aaafa854c3aa6f06.glb",
+    "length": 67.53360748291016,
+    "width": 11.06633186340332
+}

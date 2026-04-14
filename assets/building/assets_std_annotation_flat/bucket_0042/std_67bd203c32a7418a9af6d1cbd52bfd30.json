@@ -1,0 +1,91 @@
+{
+    "description_long": "This is a tall, wooden observation ladder structure with a staircase of evenly spaced rectangular steps leading up to a raised platform. The platform is supported by four sturdy cylindrical posts, with additional diagonal braces for stability. The top platform features partial railings on three sides, providing some safety for users standing or working at the top. The wood appears to be unfinished or lightly stained, giving it a natural brown color. The construction is open, with visible gaps between the steps and no risers, and the overall design suggests it is intended for outdoor use, such as in parks or urban lookout points. The structure is robust and utilitarian, prioritizing function and stability over decorative elements.",
+    "description": "A tall, brown wooden observation ladder with a staircase leading to a raised platform supported by four posts and partial railings. The design is open and sturdy, suitable for outdoor urban environments.",
+    "description_view_0": "Top-down view showing the rectangular platform, partial railings, and the full length of the staircase.",
+    "description_view_1": "Angled side view highlighting the staircase, supporting posts, diagonal braces, and the open platform with railings.",
+    "description_view_2": "Rear view focusing on the supporting posts, diagonal braces, and the underside of the platform.",
+    "description_view_3": "Opposite angled side view showing the staircase, platform, and structural supports from a different perspective.",
+    "category": "ladder",
+    "height": 3.0,
+    "max_dimension": 4.0,
+    "materials": [
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 60,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 250,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "climbable",
+        "grippable",
+        "standable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "steps",
+        "platform",
+        "railings"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "brown"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rungs": 13,
+    "attribute_rung_spacing": 0.23,
+    "attribute_side_rail_profile": "round wooden",
+    "attribute_mounting_position": "freestanding",
+    "attribute_presence_of_safety_features": [
+        "handrails"
+    ],
+    "uid": "67bd203c32a7418a9af6d1cbd52bfd30",
+    "near_synsets": {
+        "extension_ladder.n.01": 0.5269350121814117,
+        "ladder.n.01": 0.5295309394171746,
+        "step_ladder.n.01": 0.5428574450217558,
+        "stairhead.n.01": 0.5431221105715025,
+        "articulated_ladder.n.01": 0.5431745416164286,
+        "ladder.n.02": -1000.0,
+        "run.n.13": -1000.0
+    },
+    "synset": "ladder.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/67bd203c32a7418a9af6d1cbd52bfd30",
+        "creator_username": "stefan.lengyel1",
+        "creator_display_name": "Pixel",
+        "creator_profile_url": "https://sketchfab.com/stefan.lengyel1"
+    },
+    "filename": "std_67bd203c32a7418a9af6d1cbd52bfd30.glb",
+    "length": 1.5353127717971802,
+    "width": 2.50408673286438
+}

@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a rectangular section of sidewalk composed of large, roughly rectangular stone or concrete pavers arranged in a grid pattern. The surface is uneven, with some stones slightly raised or sunken, and the gaps between the stones are filled with dirt, debris, and small bits of organic material such as leaves. The edges of the sidewalk section are irregular and appear somewhat eroded, with loose soil and debris visible along the perimeter. The color of the stones is a weathered gray, with patches of brown and tan from accumulated dirt and organic matter. The overall appearance suggests an outdoor urban or residential setting, possibly an older sidewalk with signs of wear and exposure to the elements. There are no visible curbs, tactile paving, or street furniture present in the immediate vicinity.",
+    "description": "A weathered, rectangular sidewalk section made of large gray stone or concrete pavers with dirt and debris in the joints and along the edges. The surface is uneven and shows signs of age and outdoor exposure.",
+    "description_view_0": "The sidewalk section is seen from a low angle, highlighting the uneven surface and the accumulation of debris along the left and right edges.",
+    "description_view_1": "Viewed from above, the grid pattern of the pavers is clearly visible, with dirt and organic debris filling the joints between the stones.",
+    "description_view_2": "This side view emphasizes the length of the sidewalk section and the irregular, slightly eroded edges, with less visible debris compared to other views.",
+    "description_view_3": "From this angle, the paver grid is again prominent, and the right edge shows more accumulated debris and organic material.",
+    "category": "sidewalk",
+    "height": 0.08,
+    "max_dimension": 1.2,
+    "materials": [
+        "concrete",
+        "stone",
+        "soil",
+        "organic_matter",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.04,
+        0.01
+    ],
+    "mass": 210,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "segmentable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "brown",
+        "tan"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": false,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "undefined",
+    "attribute_adjacent_street_type": "residential",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "efebab00029d46f5ae6afcf39c5e3859",
+    "near_synsets": {
+        "sidewalk.n.01": 0.4753679681277485,
+        "paving_stone.n.01": 0.5121416371269248,
+        "paved_surface.n.01": 0.5210023114985103,
+        "cobble.n.01": 0.5265300415982018,
+        "macadam.n.01": 0.5354200061834224
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/efebab00029d46f5ae6afcf39c5e3859",
+        "creator_username": "chbenj1975",
+        "creator_display_name": "Benjam\u00edn P\u00e1ez",
+        "creator_profile_url": "https://sketchfab.com/chbenj1975"
+    },
+    "filename": "std_efebab00029d46f5ae6afcf39c5e3859.glb",
+    "length": 0.3570142686367035,
+    "width": 0.24128033220767975
+}

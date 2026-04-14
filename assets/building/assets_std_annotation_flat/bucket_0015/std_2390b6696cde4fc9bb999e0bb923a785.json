@@ -1,0 +1,107 @@
+{
+    "description_long": "This vending machine features a retro design with a rectangular body, rounded edges, and a two-tone color scheme of muted blue and orange. The front panel displays a glass window with two visible dispensing nozzles and a small orange compartment to the left, likely for payment or product retrieval. A circular illuminated sign sits atop the machine, displaying branding text, while the base is metallic and slightly raised. The machine is powered by a visible black electrical cord and plug extending from the back. Vents and a circular access panel are present on the rear, suggesting internal cooling or mechanical components. The overall appearance is robust, with metallic and plastic materials dominating the construction.",
+    "description": "A retro-style vending machine with a blue and orange color scheme, glass dispensing window, and prominent circular branding sign on top.",
+    "description_view_0": "Side view showing the machine's depth, rounded top, and the power cord extending from the base.",
+    "description_view_1": "Rear view displaying a circular vent, access panel, and the power cord with plug, as well as the back of the illuminated sign.",
+    "description_view_2": "Opposite side view revealing a protruding orange compartment and additional venting near the base.",
+    "description_view_3": "Front view highlighting the glass dispensing window, two nozzles, orange payment compartment, and the 'Fuel' branding sign.",
+    "category": "vending machine",
+    "height": 1.5,
+    "max_dimension": 0.8,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 9,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "compartment",
+        "dispensing nozzle",
+        "retrieval slot",
+        "payment slot"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "blue",
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.35,
+        0.35,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A rectangular glass window on the front, medium-sized, showing two dispensing nozzles and some interior details.",
+    "attribute_payment_interface": "A small orange compartment on the front left, likely for payment, but no specific coin slot, bill acceptor, or card reader is visibly detailed.",
+    "attribute_product_selection_buttons": "Two round buttons visible inside the glass window, placed above the dispensing nozzles.",
+    "attribute_product_retrieval_slot": "A rectangular slot below the glass window on the front, integrated into the orange panel, likely for retrieving dispensed products.",
+    "attribute_branding_or_signage": "A circular illuminated sign on top with the word 'Fuel' in stylized script, and the phrase 'Drink Fuel in Bottles' on the front orange panel.",
+    "uid": "2390b6696cde4fc9bb999e0bb923a785",
+    "near_synsets": {
+        "vending_machine.n.01": 0.47254391354640607,
+        "automat.n.01": 0.5180880548876684,
+        "soda_fountain.n.02": 0.5639997643864031,
+        "fruit_machine.n.01": 0.5742268534591235,
+        "soda_fountain.n.01": 0.5795977424772739,
+        "machine.n.04": -1000.0,
+        "machine.n.02": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.05": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2390b6696cde4fc9bb999e0bb923a785",
+        "creator_username": "Ebethrone",
+        "creator_display_name": "Steven Janes",
+        "creator_profile_url": "https://sketchfab.com/Ebethrone"
+    },
+    "filename": "std_2390b6696cde4fc9bb999e0bb923a785.glb",
+    "length": 0.588224858045578,
+    "width": 1.5119962692260742
+}

@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a large, industrial excavator mounted on a flatbed railcar, commonly used for heavy construction and earthmoving tasks in urban environments. The excavator features a robust, articulated mono boom with hydraulic cylinders, a spacious operator cab positioned on the left side, and a standard digging bucket attached at the end of the arm. The undercarriage consists of wide steel tracks, providing stability and traction on rough terrain. The body is predominantly painted in a tan color with black and gray accents, and visible hydraulic lines run along the boom and arm. The flatbed railcar is equipped with tie-down cables securing the excavator, and the entire assembly is designed for transport between job sites.",
+    "description": "A tan and black tracked excavator with a mono boom and standard digging bucket, secured on a flatbed railcar for transport. Features a left-side cab, visible hydraulic lines, and robust steel tracks.",
+    "description_view_0": "Front view showing the bucket, boom, and the width of the tracks, with the cab partially visible behind the arm.",
+    "description_view_1": "Side profile highlighting the full length of the boom, arm, and bucket, as well as the left-side cab and the excavator's position on the railcar.",
+    "description_view_2": "Rear view displaying the back of the cab, engine compartment, and the rear of the flatbed railcar.",
+    "description_view_3": "Opposite side profile showing the right side of the excavator, the tracks, and the hydraulic lines along the boom.",
+    "category": "excavator",
+    "height": 3.2,
+    "max_dimension": 11.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.82,
+        0.04,
+        0.05,
+        0.03,
+        0.03,
+        0.03
+    ],
+    "mass": 35000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 343000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "liftable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cab door",
+        "control levers",
+        "boom",
+        "arm",
+        "bucket",
+        "tracks",
+        "engine cover",
+        "hydraulic lines"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "black",
+        "gray",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "group",
+    "attribute_boom_type": "mono boom",
+    "attribute_cab_position": "left side",
+    "attribute_track_or_wheel_type": "steel tracks",
+    "attribute_bucket_design": "standard digging bucket",
+    "attribute_brand_logo": "none",
+    "uid": "dab99241a6294b6292a69ef9a2ee0e72",
+    "near_synsets": {
+        "backhoe.n.01": 0.5098320026207102,
+        "power_shovel.n.01": 0.5287021432901039,
+        "excavator.n.01": 0.5322262290848487,
+        "scoop.n.05": 0.5498838192006374,
+        "caterpillar.n.02": 0.5537703058461028
+    },
+    "synset": "excavator.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dab99241a6294b6292a69ef9a2ee0e72",
+        "creator_username": "romcad",
+        "creator_display_name": "Berger Studio",
+        "creator_profile_url": "https://sketchfab.com/romcad"
+    },
+    "filename": "std_dab99241a6294b6292a69ef9a2ee0e72.glb",
+    "length": 11.925236701965332,
+    "width": 2.230963110923767
+}

@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a compact quadcopter drone with a robust, rectangular central body and four extended arms, each supporting a single rotor with blue-tipped propeller blades. The front of the drone features two prominent camera lenses, suggesting stereoscopic vision for advanced navigation or imaging. The arms are symmetrically arranged, giving the drone stability and maneuverability in flight. The landing gear consists of two sturdy, rectangular skids that provide a stable base for takeoff and landing. The body appears to be constructed primarily from dark-colored composite materials, with some metallic and plastic elements visible. The overall design is functional and modern, suitable for urban aerial tasks such as surveillance, delivery, or inspection.",
+    "description": "A modern quadcopter drone with blue-tipped propellers, dual front cameras, and sturdy rectangular landing skids. Its dark, composite body is designed for urban aerial operations.",
+    "description_view_0": "Front view shows dual camera lenses, symmetrical arms, and blue-tipped propellers extending outward.",
+    "description_view_1": "Side view highlights the rectangular body, one landing skid, and the arm structure with visible propeller.",
+    "description_view_2": "Rear view reveals the back of the central body, both landing skids, and the symmetrical rotor arrangement.",
+    "description_view_3": "Opposite side view displays the other landing skid, arm, and propeller, mirroring the first side.",
+    "category": "drone",
+    "height": 0.25,
+    "max_dimension": 0.6,
+    "materials": [
+        "carbon fiber composite",
+        "plastic",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 1.8,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 18,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "flyable",
+        "liftable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "camera",
+        "landing skid",
+        "arm",
+        "power button"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "blue",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 4,
+    "attribute_rotor_configuration": "quadcopter X",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": true,
+    "attribute_propeller_guard_presence": false,
+    "uid": "356451ae1719461c8ff5d40361530bd7",
+    "near_synsets": {
+        "drone.n.04": 0.5299771135580902,
+        "orthopter.n.01": 0.5773766432335259,
+        "aircraft.n.01": 0.5873724811740156,
+        "skyhook.n.01": 0.5875408669267264,
+        "helicopter.n.01": 0.5903730155923725,
+        "drone.n.05": -1000.0,
+        "dawdler.n.01": -1000.0,
+        "monotone.n.01": -1000.0,
+        "drone.n.01": -1000.0
+    },
+    "synset": "drone.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/356451ae1719461c8ff5d40361530bd7",
+        "creator_username": "xonoderax",
+        "creator_display_name": "xonoderax",
+        "creator_profile_url": "https://sketchfab.com/xonoderax"
+    },
+    "filename": "std_356451ae1719461c8ff5d40361530bd7.glb",
+    "length": 0.5984541177749634,
+    "width": 1.0241789817810059
+}

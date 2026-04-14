@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a large, rectangular stone castle with high, crenellated walls and four prominent corner towers. The walls are constructed from gray stone blocks, with visible weathering and patches of moss, giving it an ancient and fortified appearance. The front wall features a central arched entrance flanked by two round towers, and above the entrance is a raised section with additional battlements. Arrow slits are evenly spaced along the walls, providing defensive positions for archers. The interior is an open courtyard, accessible through the main gate and a secondary arched opening on the opposite wall. The structure is robust and imposing, designed for defense and visibility in a medieval or fantasy urban setting.",
+    "description": "A large, rectangular stone castle with crenellated walls, four corner towers, and an open central courtyard. Features include arched entrances, arrow slits, and weathered stonework.",
+    "description_view_0": "Front view showing the main arched entrance, two round corner towers, and a raised central battlement above the gate.",
+    "description_view_1": "Rear view highlighting the back wall with a secondary arched opening and two rear towers, with the courtyard visible.",
+    "description_view_2": "Front view similar to view 0, emphasizing the main entrance and the symmetry of the towers and battlements.",
+    "description_view_3": "Rear view similar to view 1, focusing on the back wall and towers, with the open courtyard clearly visible.",
+    "category": "castle",
+    "height": 15.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "stone",
+        "mortar",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 1200000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "defendable",
+        "climbable",
+        "guardable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "gate",
+        "towers",
+        "battlements",
+        "arrow slits"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "gray",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Medieval Gothic",
+    "attribute_presence_of_battlements": true,
+    "attribute_presence_of_towers": true,
+    "attribute_presence_of_arrow_slits": true,
+    "attribute_presence_of_drawbridge": false,
+    "uid": "0187538094694a47b9de4d1c1f61464a",
+    "near_synsets": {
+        "castle.n.02": 0.47191828645682654,
+        "battlement.n.01": 0.5084425326712353,
+        "bailey.n.03": 0.5332831106597448,
+        "church_tower.n.01": 0.5368724331498448,
+        "chateau.n.01": 0.5375769393553759,
+        "palace.n.01": -1000.0,
+        "castle.n.03": -1000.0,
+        "castle.n.04": -1000.0
+    },
+    "synset": "castle.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0187538094694a47b9de4d1c1f61464a",
+        "creator_username": "Medhatelo",
+        "creator_display_name": "Medhatelo",
+        "creator_profile_url": "https://sketchfab.com/Medhatelo"
+    },
+    "filename": "std_0187538094694a47b9de4d1c1f61464a.glb",
+    "length": 64.27246475219727,
+    "width": 55.415283203125
+}

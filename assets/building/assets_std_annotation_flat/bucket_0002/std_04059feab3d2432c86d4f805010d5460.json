@@ -1,0 +1,99 @@
+{
+    "description_long": "This humanoid robot features a sleek, dark metallic body with a distinctly animal-inspired head, resembling a mouse or rat, complete with large rounded ears, a pointed snout, and prominent whiskers. Its torso is robust and slightly angular, with a chest plate that appears reinforced and a subtle blue accent at the center. The limbs are segmented and jointed, allowing for a wide range of motion, and the hands are detailed with articulated fingers, suggesting dexterity. The feet are broad and flat, providing stability, and the overall build is both sturdy and agile. The robot's surface is glossy and reflective, with a hard, smooth finish that highlights its mechanical construction. No visible clothing or external accessories are present, and the design is utilitarian yet expressive, suitable for urban environments.",
+    "description": "A glossy, dark metallic humanoid robot with a mouse-like head, articulated limbs, and a robust, agile build. Its design is sleek, expressive, and well-suited for urban settings.",
+    "description_view_0": "Front view shows the mouse-like head with large ears, whiskers, and a prominent chest plate with a blue accent.",
+    "description_view_1": "Left side view highlights the profile of the snout, the curvature of the torso, and the articulation of the limbs.",
+    "description_view_2": "Rear view displays the smooth, rounded back, the back of the head and ears, and the symmetrical limb structure.",
+    "description_view_3": "Right side view mirrors the left, showing the side profile of the head, torso, and articulated limbs.",
+    "category": "humanoid robot",
+    "height": 1.7,
+    "max_dimension": 0.7,
+    "materials": [
+        "metal",
+        "plastic",
+        "synthetic rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head",
+        "arms",
+        "hands",
+        "fingers",
+        "legs",
+        "feet"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "blue"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.12,
+    "surface_finish": "glossy",
+    "reflectivity": 0.7,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.15,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms slightly bent at the elbows and hands relaxed at the sides, legs straight and feet flat on the ground, head facing forward.",
+    "attribute_clothing_style": "Unclothed; exterior consists of integrated metallic and plastic panels with no visible clothing or decorative coverings.",
+    "attribute_facial_features": "Face features a pointed snout, large rounded ears, and prominent whiskers; lacks visible eyes, mouth, or expressive elements.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible joints, likely ball or hinge types at shoulders, elbows, wrists, hips, knees, and ankles; hands have articulated fingers, feet are rigid.",
+    "attribute_presence_of_sensors": "None visible",
+    "uid": "04059feab3d2432c86d4f805010d5460",
+    "near_synsets": {
+        "android.n.01": 0.5329511076362781,
+        "automaton.n.02": 0.5558105455066001,
+        "cyborg.n.01": 0.5587135194663951,
+        "robotics_equipment.n.01": 0.5670135610193553,
+        "animatronics.n.01": 0.5756954313214968
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/04059feab3d2432c86d4f805010d5460",
+        "creator_username": "glichtrap",
+        "creator_display_name": "glitchtrap",
+        "creator_profile_url": "https://sketchfab.com/glichtrap"
+    },
+    "filename": "std_04059feab3d2432c86d4f805010d5460.glb",
+    "length": 0.4505767822265625,
+    "width": 1.0361328125
+}

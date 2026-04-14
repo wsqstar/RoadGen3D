@@ -1,0 +1,104 @@
+{
+    "description_long": "This object is a triple-compartment outdoor trash bin constructed primarily from weathered wooden planks arranged vertically. The front side features three distinct sections, each with a large, clear label indicating the type of waste accepted: glass, recyclables, and general waste, with corresponding pictograms and color-coded backgrounds. The top of each compartment is open, lined with a visible plastic or metal liner to hold trash bags and facilitate easy waste disposal. The wood exterior shows signs of exposure to the elements, with some greenish discoloration near the base, suggesting use in parks or public spaces. The sides and back are plain, with no visible handles, wheels, or additional features. The overall design is robust and utilitarian, blending functionality with a rustic aesthetic suitable for urban or natural environments.",
+    "description": "A triple-compartment outdoor trash bin made of weathered wood with clear waste-type labels and open tops, designed for recycling and general waste in public spaces.",
+    "description_view_0": "Front view showing three labeled compartments for different waste types, each with a pictogram and color-coded signage.",
+    "description_view_1": "Side view revealing the depth of the bin and the vertical wooden plank construction, with no visible signage or handles.",
+    "description_view_2": "Rear view displaying the plain wooden back with no labels, signage, or interactive features.",
+    "description_view_3": "Opposite side view similar to view 1, showing the vertical wood planks and the open tops of the compartments.",
+    "category": "trash bin",
+    "height": 1.0,
+    "max_dimension": 1.5,
+    "materials": [
+        "wood",
+        "plastic",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 55,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "compartment opening",
+        "liner"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "green",
+        "white",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_lid_type": "no lid",
+    "attribute_opening_mechanism": "open-top",
+    "attribute_presence_of_wheels": false,
+    "attribute_handle_design": "absent",
+    "attribute_labeling_or_signage": "Each compartment has a large, clear label with recycling symbols, waste type labels, and pictograms indicating the type of waste accepted.",
+    "uid": "00c5e0fda9414b36a2c12399501d9429",
+    "near_synsets": {
+        "recycling_bin.n.01": 0.4921074325859353,
+        "litterbin.n.01": 0.5107569739193134,
+        "garbage.n.03": 0.513797383645464,
+        "dumpster.n.01": 0.5200840620636853,
+        "wastepaper_basket.n.01": 0.5286781004939907,
+        "bank_identification_number.n.01": -1000.0,
+        "trash.n.02": -1000.0,
+        "methamphetamine.n.01": -1000.0,
+        "ashcan.n.01": -1000.0,
+        "bin.n.02": -1000.0,
+        "rubbish.n.01": -1000.0,
+        "folderol.n.01": -1000.0,
+        "bin.n.01": -1000.0
+    },
+    "synset": "litterbin.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/00c5e0fda9414b36a2c12399501d9429",
+        "creator_username": "bimage",
+        "creator_display_name": "bimage",
+        "creator_profile_url": "https://sketchfab.com/bimage"
+    },
+    "filename": "std_00c5e0fda9414b36a2c12399501d9429.glb",
+    "length": 0.6155322194099426,
+    "width": 1.7886656522750854
+}

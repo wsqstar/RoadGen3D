@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a stylized, low-poly red biplane with a prominent double-wing structure and a single open cockpit. The fuselage is streamlined and tapers towards the tail, which features a distinctive, jagged-edged vertical stabilizer and horizontal stabilizers. The front of the airplane is equipped with a two-blade propeller and a visible machine gun mounted above the nose, suggesting a vintage, possibly World War I-inspired design. The landing gear consists of two main wheels and a smaller tail wheel, all fixed and exposed. The cockpit is open and centrally located, with a single seat and no visible canopy. The overall appearance is cartoonish, with exaggerated features and simplified geometry, making it suitable for urban-themed games or playful environments.",
+    "description": "A stylized red biplane with double wings, an open cockpit, and a front-mounted propeller and machine gun. The tail has jagged stabilizers and the landing gear is fixed and exposed.",
+    "description_view_0": "Front view showing the double wings, open cockpit, front propeller, and machine gun mounted above the nose.",
+    "description_view_1": "Left side view highlighting the streamlined fuselage, fixed landing gear, and jagged tail stabilizers.",
+    "description_view_2": "Rear view displaying the twin horizontal stabilizers, jagged vertical stabilizer, and the tail wheel.",
+    "description_view_3": "Right side view similar to the left, with clear visibility of the cockpit, propeller, and machine gun.",
+    "category": "airplane",
+    "height": 1.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "painted metal",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.1,
+        0.1
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "cockpit",
+        "wheels",
+        "machine gun",
+        "control stick"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "gray",
+        "black",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 6.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Biplane configuration with two straight, staggered wings; no winglets or dihedral/anhedral angles visible.",
+    "attribute_engine_type": "Single front-mounted piston engine with a two-blade propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers, featuring jagged edges.",
+    "attribute_landing_gear_type": "Fixed taildragger landing gear with two main wheels and a single tail wheel.",
+    "attribute_cockpit_placement": "Open, single-seat cockpit located forward on the fuselage, behind the propeller and machine gun.",
+    "uid": "06dff4fa4da84887bd8bcdb4162be51a",
+    "near_synsets": {
+        "biplane.n.01": 0.49221476603208675,
+        "airplane.n.01": 0.5025350319072769,
+        "propeller_plane.n.01": 0.5192178964974382,
+        "aircraft.n.01": 0.5207642190756425,
+        "monoplane.n.01": 0.5251534781255423
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/06dff4fa4da84887bd8bcdb4162be51a",
+        "creator_username": "remdwaas",
+        "creator_display_name": "remdwaas",
+        "creator_profile_url": "https://sketchfab.com/remdwaas"
+    },
+    "filename": "std_06dff4fa4da84887bd8bcdb4162be51a.glb",
+    "length": 2.5387028455734253,
+    "width": 1.050252914428711
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This parking meter is a rectangular, upright metal device with a weathered, beige finish and visible signs of rust and wear, suggesting long-term outdoor use. The front face features a recessed payment slot, several square buttons, and a display area, with faded text above reading 'WESTL?K/LIFE' and a red arrow pointing toward the slot. The left side has a prominent vented panel with horizontal slats, likely for ventilation or speaker output, while the right side has a protruding box-like component. The back and sides are mostly plain, with the right side showing a rectangular protrusion and the left side dominated by the vent. The base and lower front have additional venting or grille details, and the overall construction appears robust and industrial. The object is designed to be interacted with from the front, where all user interfaces are located.",
+    "description": "A weathered, beige metal parking meter with a front payment slot, buttons, and vented side panels, showing signs of rust and outdoor use.",
+    "description_view_0": "The left side view shows a large vented panel with horizontal slats and a weathered, stained surface.",
+    "description_view_1": "The back view is plain and featureless, with visible rust and a simple rectangular shape.",
+    "description_view_2": "The front view displays the payment slot, buttons, faded text, and venting details, making it the primary interaction side.",
+    "description_view_3": "The right side view features a rectangular protruding box and a plain, rusted surface.",
+    "category": "parking meter",
+    "height": 1.2,
+    "max_dimension": 0.5,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "insertable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "button",
+        "payment slot",
+        "vent panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "gray",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_payment_interface": "A recessed payment slot is present on the front, accompanied by several square buttons above it. The interface appears to accept coins, with no visible card or contactless options.",
+    "attribute_coin_slot": "A rectangular coin slot is present on the front, below the buttons and above a recessed compartment, marked by a red arrow.",
+    "attribute_digital_display": "None.",
+    "attribute_identification_number": "None.",
+    "attribute_mounting_post": "None.",
+    "uid": "47e71403a92345fe8ad6011bf5ef04ef",
+    "near_synsets": {
+        "parking_meter.n.01": 0.4919600030752779,
+        "parking_ticket.n.01": 0.5551660448859538,
+        "parking.n.01": 0.5637628974074771,
+        "water_meter.n.01": 0.5815320731542452,
+        "parking_space.n.01": 0.5825479744522731,
+        "meter.n.01": -1000.0,
+        "parking.n.02": -1000.0,
+        "meter.n.04": -1000.0,
+        "meter.n.03": -1000.0,
+        "meter.n.02": -1000.0
+    },
+    "synset": "parking_meter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/47e71403a92345fe8ad6011bf5ef04ef",
+        "creator_username": "leviathann1",
+        "creator_display_name": "leviathann1",
+        "creator_profile_url": "https://sketchfab.com/leviathann1"
+    },
+    "filename": "std_47e71403a92345fe8ad6011bf5ef04ef.glb",
+    "length": 0.38374319672584534,
+    "width": 0.6645982265472412
+}

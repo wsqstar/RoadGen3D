@@ -1,0 +1,94 @@
+{
+    "description_long": "This warehouse is a rectangular, industrial-style building with a prominent gabled roof featuring multiple skylights and red accent lines running along its length. The facade is composed of a grid of large, evenly spaced windows and solid wall panels, providing both natural light and structural integrity. The front and rear elevations display a geometric truss pattern above wide entryways, suggesting reinforced support and possible vehicle access. The roof is constructed from metal panels, punctuated by regularly spaced skylights that allow daylight to penetrate the interior. The exterior is primarily finished in shades of gray, with subtle red highlights adding visual interest. The overall design is functional and robust, suitable for storage or light industrial use in an urban environment.",
+    "description": "A rectangular warehouse with a gabled metal roof, skylights, and a grid of large windows, accented by red lines and geometric truss patterns on the facades.",
+    "description_view_0": "Front view showing a wide entryway, geometric truss pattern above the door, and the gabled roof with skylights and red accents.",
+    "description_view_1": "Side view highlighting the long row of windows, solid wall panels, and the full length of the gabled roof with skylights.",
+    "description_view_2": "Rear view similar to the front, with a geometric truss pattern and a wide entryway, but with less pronounced entry detailing.",
+    "description_view_3": "Opposite side view mirroring view 1, showing the same window grid and roof features.",
+    "category": "warehouse",
+    "height": 7.5,
+    "max_dimension": 30.0,
+    "materials": [
+        "metal",
+        "glass",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "mass": 120000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "skylight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main facade features a geometric truss pattern above a wide entryway, with a grid of large rectangular windows and solid wall panels below. The design is accented by red lines and a combination of metal and glass materials, giving it a functional yet visually structured appearance.",
+    "attribute_loading_dock_presence": false,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is a steeply pitched gabled structure made of metal panels, with multiple rectangular skylights evenly spaced along its length and red accent lines running parallel to the ridge.",
+    "attribute_architectural_style": "modern industrial",
+    "uid": "7d00bcc9eae849c0b608ce603def7fde",
+    "near_synsets": {
+        "warehouse.n.01": 0.534341353637291,
+        "loft.n.01": 0.539823823622567,
+        "french_roof.n.01": 0.5446721617148431,
+        "ribbed_vault.n.01": 0.5469212804070577,
+        "artist's_loft.n.01": 0.5609832074270016
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7d00bcc9eae849c0b608ce603def7fde",
+        "creator_username": "aaronopenshaw",
+        "creator_display_name": "Aaron Openshaw",
+        "creator_profile_url": "https://sketchfab.com/aaronopenshaw"
+    },
+    "filename": "std_7d00bcc9eae849c0b608ce603def7fde.glb",
+    "length": 25.07014560699463,
+    "width": 13.19196891784668
+}

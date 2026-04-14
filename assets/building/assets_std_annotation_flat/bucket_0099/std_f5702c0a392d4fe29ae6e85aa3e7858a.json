@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a medium-sized, traditional sailing ship with a robust wooden hull painted in dark gray and brown tones. The vessel features a raised stern with a covered deck area, open midsection, and a slightly pointed bow. Two prominent masts are visible, one with a large, curved sail unfurled and the other with rigging but no sail deployed. The deck is equipped with railings, rigging lines, and a few structural elements such as posts and beams, suggesting areas for navigation and crew activity. The ship's hull is rounded and deep, designed for stability and cargo or passenger capacity. No modern equipment or markings are visible, giving it a classic, historical appearance.",
+    "description": "A classic wooden sailing ship with two masts, a dark hull, and a raised stern deck, featuring traditional rigging and a large sail.",
+    "description_view_0": "Side view showing the full length of the ship, both masts, the large sail, and the raised stern deck.",
+    "description_view_1": "Front view highlighting the pointed bow, the curvature of the hull, and the central mast with its sail.",
+    "description_view_2": "Opposite side view displaying the hull's rounded shape, the open deck, and the stern's covered area.",
+    "description_view_3": "Rear view focusing on the stern's structure, the covered deck, and the alignment of the masts and rigging.",
+    "category": "ship",
+    "height": 13,
+    "max_dimension": 32,
+    "materials": [
+        "wood",
+        "canvas",
+        "metal",
+        "rope",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "steerable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sail",
+        "mast",
+        "rigging",
+        "deck",
+        "railing",
+        "rudder"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "brown",
+        "beige",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 10,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a rounded, deep profile, a pointed bow, and a slightly raised stern. The sides are smooth with visible planking, and there is no evidence of a bulbous bow or external keels.",
+    "attribute_superstructure_layout": "The superstructure consists of a raised stern deck with a covered section, an open main deck, and minimal additional structures. There are no visible cabins or bridges, only railings and posts.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "sail",
+        "mast",
+        "rigging",
+        "railing"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "f5702c0a392d4fe29ae6e85aa3e7858a",
+    "near_synsets": {
+        "sailing_vessel.n.01": 0.46190537039797214,
+        "bark.n.03": 0.46234675791581076,
+        "brig.n.01": 0.4635256053755284,
+        "sailboat.n.01": 0.4747119219050989,
+        "fore-and-after.n.01": 0.4799490548689167,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f5702c0a392d4fe29ae6e85aa3e7858a",
+        "creator_username": "hospis",
+        "creator_display_name": "hasp",
+        "creator_profile_url": "https://sketchfab.com/hospis"
+    },
+    "filename": "std_f5702c0a392d4fe29ae6e85aa3e7858a.glb",
+    "length": 17.732476234436035,
+    "width": 13.78005838394165
+}

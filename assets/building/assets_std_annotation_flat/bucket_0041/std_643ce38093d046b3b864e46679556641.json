@@ -1,0 +1,93 @@
+{
+    "description_long": "This object consists of two stacked cubic parcels, one brown and one black. The brown parcel is made of cardboard and is sealed on top with a strip of silver duct tape, featuring bold black arrows and the text 'THIS WAY UP' on one side. The black parcel is plain except for one side, which also displays a 'THIS WAY UP' label with arrows. Both boxes have sharp, well-defined edges and flat surfaces, typical of shipping or storage parcels. The brown box appears slightly smaller and is placed on top of the black box. The overall appearance suggests these are standard shipping parcels commonly found in urban delivery or storage settings.",
+    "description": "Two stacked cubic parcels, one brown cardboard with tape and 'THIS WAY UP' markings, and one plain black box with a similar label.",
+    "description_view_0": "Front view showing the top of the brown parcel with silver tape and the plain top of the black parcel.",
+    "description_view_1": "Side view highlighting the 'THIS WAY UP' label and arrows on both parcels, with the brown box on top.",
+    "description_view_2": "Rear view showing the plain black parcel and the taped top of the brown parcel.",
+    "description_view_3": "Opposite side view with a clear view of the 'THIS WAY UP' label and arrows on the brown parcel.",
+    "category": "parcels",
+    "height": 0.6,
+    "max_dimension": 0.6,
+    "materials": [
+        "cardboard",
+        "tape",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 2.5,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "tape"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.45,
+        0.5,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 4000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "group",
+    "attribute_architectural_style": "",
+    "attribute_car_model": "",
+    "attribute_building_number": "",
+    "attribute_storefront_signage": "THIS WAY UP",
+    "attribute_street_name": "",
+    "uid": "643ce38093d046b3b864e46679556641",
+    "near_synsets": {
+        "packing_box.n.02": 0.5552418153361837,
+        "carton.n.02": 0.571339333743255,
+        "box.n.05": 0.5745253876101435,
+        "parcel_post.n.01": 0.5773467360988066,
+        "package.n.02": 0.5774662415823898,
+        "package.n.01": -1000.0,
+        "tract.n.01": -1000.0,
+        "parcel.n.02": -1000.0
+    },
+    "synset": "package.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/643ce38093d046b3b864e46679556641",
+        "creator_username": "SheaCousins",
+        "creator_display_name": "SheaCousins",
+        "creator_profile_url": "https://sketchfab.com/SheaCousins"
+    },
+    "filename": "std_643ce38093d046b3b864e46679556641.glb",
+    "length": 1.6691365242004395,
+    "width": 0.5787115097045898
+}

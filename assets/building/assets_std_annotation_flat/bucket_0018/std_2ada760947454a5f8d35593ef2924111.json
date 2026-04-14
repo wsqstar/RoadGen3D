@@ -1,0 +1,106 @@
+{
+    "description_long": "This object is a tall, vertical metal structure anchored to a rectangular concrete base, supporting a set of electrical insulators and crossarms at its top. The upper section features multiple insulator stacks arranged around a central pole, with metallic crossarms extending horizontally to support attached power lines. At the base, there is a compact transformer unit housed within a protective enclosure, along with additional electrical components and cabling. Power lines are visibly connected to the crossarms, extending outward and supported by tension wires. The structure is primarily metallic, with ceramic or composite insulators and a concrete foundation. The overall appearance is industrial, robust, and designed for high-voltage electrical distribution in urban environments.",
+    "description": "A tall metal tower with insulators and crossarms at the top, mounted on a concrete base with a transformer unit and attached power lines. The structure is robust and industrial, supporting high-voltage electrical distribution.",
+    "description_view_0": "The tower is seen from the side, showing the transformer unit at the base and power lines extending to the right.",
+    "description_view_1": "A direct view of the crossarms and insulator stacks, with the transformer enclosure and cabling clearly visible at the base.",
+    "description_view_2": "The opposite side of the tower, highlighting the power lines extending to the left and the transformer unit at the base.",
+    "description_view_3": "A rear view focusing on the vertical pole, with the transformer unit partially obscured and power lines visible to the side.",
+    "category": "transformer tower",
+    "height": 12.0,
+    "max_dimension": 13.0,
+    "materials": [
+        "steel",
+        "concrete",
+        "ceramic",
+        "copper",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "connectable",
+        "mountable",
+        "supportive"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "insulator stack",
+        "crossarm",
+        "transformer enclosure",
+        "power line connector"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.01,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "group",
+    "attribute_number_of_insulator_stacks": 3,
+    "attribute_arrangement_of_crossarms": "There is a single horizontal crossarm at the top, supporting insulator stacks symmetrically on either side of the central pole.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "transformer",
+        "insulator",
+        "power line connector"
+    ],
+    "attribute_configuration_of_attached_power_lines": "The power lines are arranged in a parallel configuration, likely supporting a three-phase circuit, with lines extending horizontally from the crossarms and routed outward in a straight, tensioned manner.",
+    "uid": "2ada760947454a5f8d35593ef2924111",
+    "near_synsets": {
+        "pylon.n.02": 0.508945163862459,
+        "tower.n.01": 0.5460429725402592,
+        "transformer.n.01": 0.5491890996340638,
+        "substation.n.01": 0.5510672684091666,
+        "supporting_tower.n.01": 0.5545798193663077,
+        "column.n.04": -1000.0,
+        "tugboat.n.01": -1000.0
+    },
+    "synset": "pylon.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2ada760947454a5f8d35593ef2924111",
+        "creator_username": "vislaw",
+        "creator_display_name": "vislaw",
+        "creator_profile_url": "https://sketchfab.com/vislaw"
+    },
+    "filename": "std_2ada760947454a5f8d35593ef2924111.glb",
+    "length": 8.15063762664795,
+    "width": 3.1344075202941895
+}

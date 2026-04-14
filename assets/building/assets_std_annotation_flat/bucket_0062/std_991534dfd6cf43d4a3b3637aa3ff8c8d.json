@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a cylindrical bomb with a robust, industrial design, featuring a central barrel flanked by reinforced end caps. The main body is encircled by yellow and black hazard stripes, suggesting caution and high risk. One end of the bomb has a cluster of six barrel-like protrusions, possibly representing a detonation or dispersal mechanism, while the opposite end is solid and features a circular panel with two central indents. Along the sides, there are vent-like structures and a prominent handle or lever, which may serve as an arming or activation device. The surface is predominantly matte black with metallic accents, and the construction appears to be primarily metal, indicating durability and weight. The overall appearance is that of a high-explosive or specialized ordinance device, suitable for urban sabotage or demolition scenarios.",
+    "description": "A heavy, cylindrical bomb with hazard stripes, metallic vents, and a multi-barrel detonation end, featuring a prominent handle and industrial design.",
+    "description_view_0": "Front view shows the six-barrel detonation mechanism and the handle/lever extending to the side.",
+    "description_view_1": "Side view reveals the cylindrical body, hazard stripes, vented panels, and the handle/lever's full length.",
+    "description_view_2": "Rear view displays the solid end cap with two central indents and the hazard-striped body.",
+    "description_view_3": "Opposite side view highlights the cylindrical form, vented panels, and the handle/lever from a different angle.",
+    "category": "bomb",
+    "height": 0.45,
+    "max_dimension": 0.7,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.8,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 32,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 320,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "lever",
+        "detonation barrels",
+        "end cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "yellow",
+        "gray",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.13,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The bomb features a prominent handle or lever, likely used to arm or activate the device, and a multi-barrel end that may serve as the detonation or dispersal point.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": true,
+    "uid": "991534dfd6cf43d4a3b3637aa3ff8c8d",
+    "near_synsets": {
+        "bomb.n.01": 0.5039151417951837,
+        "pipe_bomb.n.01": 0.5167447800086244,
+        "briefcase_bomb.n.01": 0.5221891727885729,
+        "dirty_bomb.n.01": 0.5310631266277245,
+        "general-purpose_bomb.n.01": 0.5314268789427801,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/991534dfd6cf43d4a3b3637aa3ff8c8d",
+        "creator_username": "vladruz2005",
+        "creator_display_name": "KrayDay",
+        "creator_profile_url": "https://sketchfab.com/vladruz2005"
+    },
+    "filename": "std_991534dfd6cf43d4a3b3637aa3ff8c8d.glb",
+    "length": 1.0648863315582275,
+    "width": 0.4250701516866684
+}

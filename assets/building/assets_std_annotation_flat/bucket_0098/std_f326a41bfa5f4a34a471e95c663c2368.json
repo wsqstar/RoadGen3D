@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a twin-engine, propeller-driven airplane with a streamlined fuselage and a classic WWII-era design. The wings are straight and mounted at a mid-level on the fuselage, with two engines housed in nacelles on each wing. The cockpit is positioned at the front of the fuselage and features a multi-panel canopy with visible framing, suggesting an enclosed, multi-seat configuration. The tail section consists of a conventional single vertical stabilizer and horizontal stabilizers, forming a standard tail assembly. The landing gear is not visible, implying it may be retractable or not modeled in this representation. The exterior is finished in a muted, military-style gray-green color scheme with subtle panel lines and minimal markings.",
+    "description": "A twin-engine, propeller-driven airplane with a streamlined fuselage, mid-mounted straight wings, and a classic military gray-green finish. Features an enclosed, multi-panel cockpit and a conventional tail assembly.",
+    "description_view_0": "Front view shows the twin propellers, the streamlined nose, and the symmetrical mid-mounted wings.",
+    "description_view_1": "Left side view highlights the elongated fuselage, cockpit canopy, and the engine nacelle on the wing.",
+    "description_view_2": "Rear view displays the single vertical stabilizer, horizontal stabilizers, and the tail cone.",
+    "description_view_3": "Right side view mirrors the left, showing the other engine nacelle and the full length of the fuselage.",
+    "category": "airplane",
+    "height": 3.8,
+    "max_dimension": 16.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "air",
+        "plastic"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.05,
+        0.1,
+        0.02
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 25000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "cockpit canopy",
+        "door",
+        "engine nacelle",
+        "control surfaces"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray-green",
+        "light gray",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing configuration with straight wings, no visible winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "Twin piston engines mounted on the wings, each with a visible propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "Landing gear not visible; likely retractable or not modeled.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a multi-panel canopy, likely multi-seat.",
+    "uid": "f326a41bfa5f4a34a471e95c663c2368",
+    "near_synsets": {
+        "airplane.n.01": 0.47310080857000725,
+        "propjet.n.01": 0.483760561313089,
+        "twinjet.n.01": 0.4871146219925458,
+        "propeller_plane.n.01": 0.4917070902261383,
+        "multiengine_airplane.n.01": 0.5009025105696248
+    },
+    "synset": "multiengine_airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f326a41bfa5f4a34a471e95c663c2368",
+        "creator_username": "Jec_Games",
+        "creator_display_name": "Jec",
+        "creator_profile_url": "https://sketchfab.com/Jec_Games"
+    },
+    "filename": "std_f326a41bfa5f4a34a471e95c663c2368.glb",
+    "length": 14.308807373046875,
+    "width": 18.034618377685547
+}

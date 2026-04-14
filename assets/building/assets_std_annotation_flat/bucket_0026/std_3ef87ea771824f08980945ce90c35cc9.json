@@ -1,0 +1,97 @@
+{
+    "description_long": "This humanoid robot features a metallic, rounded head with two prominent hexagonal yellow eye panels, giving it a distinct and expressive appearance. Its body is composed of segmented, cylindrical components with a slightly tapered torso and articulated joints at the shoulders, elbows, hips, and knees, allowing for a wide range of motion. The arms and legs are mechanical, ending in simplified, finger-like appendages and broad, sturdy feet, suggesting stability and dexterity. The robot's surface is primarily a matte gray metal, with subtle panel lines and bolts visible, indicating a robust construction. The back of the head and torso show additional mechanical detailing, such as a central rear bolt and joint connectors. Overall, the design is functional yet stylized, suitable for urban environments where interaction with humans and objects is required.",
+    "description": "A stylized humanoid robot with a rounded metallic head, yellow hexagonal eyes, articulated limbs, and a robust gray metal body with visible joints and panel lines.",
+    "description_view_0": "Front view shows the robot's face with yellow hexagonal eyes, symmetrical arms, and legs in a neutral standing pose.",
+    "description_view_1": "Left side view highlights the rounded head, visible joint articulation, and the profile of the limbs and torso.",
+    "description_view_2": "Rear view reveals the back of the head with a central bolt, mechanical detailing on the torso, and the backs of the arms and legs.",
+    "description_view_3": "Right side view mirrors the left, showing the head's curvature, limb articulation, and the robot's overall profile.",
+    "category": "humanoid robot",
+    "height": 1.4,
+    "max_dimension": 0.6,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 55,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "eyes",
+        "arms",
+        "hands",
+        "legs",
+        "feet",
+        "head"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms relaxed and slightly bent at the elbows, legs straight and feet flat on the ground, head facing forward.",
+    "attribute_clothing_style": "Unclothed; only integrated metallic panels and mechanical components are visible, with no decorative coverings.",
+    "attribute_facial_features": "Face consists of two large hexagonal yellow eye panels; no visible mouth, nose, or expressive elements beyond the eyes.",
+    "attribute_limb_articulation": "Arms and legs have visible hinge and ball joints at shoulders, elbows, hips, and knees, allowing for flexible movement; hands have simplified finger-like extensions.",
+    "attribute_presence_of_sensors": "Visible sensors include the two yellow eye panels on the front of the head, likely functioning as cameras or visual sensors; none others visible.",
+    "uid": "3ef87ea771824f08980945ce90c35cc9",
+    "near_synsets": {
+        "android.n.01": 0.534074597645259,
+        "cyborg.n.01": 0.5502785421799062,
+        "robotics_equipment.n.01": 0.5633799340112671,
+        "automaton.n.02": 0.567632850402984,
+        "human_head.n.01": 0.5783580745392443
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3ef87ea771824f08980945ce90c35cc9",
+        "creator_username": "samansalili",
+        "creator_display_name": "SamanSalili",
+        "creator_profile_url": "https://sketchfab.com/samansalili"
+    },
+    "filename": "std_3ef87ea771824f08980945ce90c35cc9.glb",
+    "length": 0.4780772030353546,
+    "width": 0.7209217548370361
+}

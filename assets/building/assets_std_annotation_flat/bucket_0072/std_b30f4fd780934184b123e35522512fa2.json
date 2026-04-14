@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a classic propeller-driven airplane with a streamlined fuselage and a rounded nose, featuring two engines mounted on the leading edges of its straight, low-mounted wings. The aircraft is painted primarily white with blue accents and has visible passenger windows along the side, suggesting it is designed for transport. The tail section includes a single vertical stabilizer and horizontal stabilizers in a conventional arrangement. The landing gear is visible and appears to be of the taildragger type, with two main wheels under the wings and a smaller wheel at the tail. The cockpit is located at the front of the fuselage, with multiple windows providing visibility for the pilots. The overall design is reminiscent of mid-20th-century passenger or cargo aircraft, suitable for both urban and regional airfields.",
+    "description": "A white, twin-propeller airplane with blue accents, low-mounted straight wings, and a conventional tail, designed for passenger or cargo transport.",
+    "description_view_0": "Side view showing the full fuselage, passenger windows, and both engines with propellers clearly visible.",
+    "description_view_1": "Rear view highlighting the tail section, horizontal and vertical stabilizers, and the full wingspan.",
+    "description_view_2": "Opposite side view displaying the other side of the fuselage, engines, and landing gear.",
+    "description_view_3": "Front view emphasizing the rounded nose, cockpit windows, and the twin propeller engines.",
+    "category": "airplane",
+    "height": 4.0,
+    "max_dimension": 20.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air",
+        "steel"
+    ],
+    "materials_composition": [
+        0.7,
+        0.08,
+        0.07,
+        0.05,
+        0.08,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "propeller",
+        "landing gear",
+        "cockpit window",
+        "engine",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 25.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with straight wings and no visible winglets; moderate dihedral angle.",
+    "attribute_engine_type": "Twin piston engines mounted on the wings, each with a visible propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Taildragger configuration with two main wheels under the wings and a single tail wheel; fixed landing gear.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with multiple windows, likely multi-seat.",
+    "uid": "b30f4fd780934184b123e35522512fa2",
+    "near_synsets": {
+        "airplane.n.01": 0.43890284434980353,
+        "propeller_plane.n.01": 0.4773016137936699,
+        "aircraft.n.01": 0.49170662387240094,
+        "propjet.n.01": 0.4929802755834662,
+        "airliner.n.01": 0.5008604669106966
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b30f4fd780934184b123e35522512fa2",
+        "creator_username": "helijah",
+        "creator_display_name": "helijah",
+        "creator_profile_url": "https://sketchfab.com/helijah"
+    },
+    "filename": "std_b30f4fd780934184b123e35522512fa2.glb",
+    "length": 10.964921474456787,
+    "width": 16.341495513916016
+}

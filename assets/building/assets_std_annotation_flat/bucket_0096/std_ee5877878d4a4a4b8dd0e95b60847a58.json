@@ -1,0 +1,102 @@
+{
+    "description_long": "This humanoid robot features a sleek, futuristic design with a predominantly white body accented by red and gray highlights at the joints and extremities. Its head is rounded with two antennae and a dark, rectangular faceplate that likely serves as a display or sensor area, illuminated by blue lights. The torso is robust and tapers at the waist, while the limbs are segmented and jointed, allowing for a wide range of motion. The arms are equipped with elongated, blade-like extensions, and the legs are digitigrade, ending in broad, flat feet for stability. The robot's overall form is athletic and agile, suggesting it is designed for dynamic movement in urban environments. The surface appears smooth and hard, with a matte to slightly glossy finish.",
+    "description": "A sleek, white humanoid robot with red and gray accents, jointed limbs, antennae, and blade-like arm extensions, designed for agile movement.",
+    "description_view_0": "Front view shows the robot's faceplate, antennae, broad chest, and both arms extended with blade-like attachments.",
+    "description_view_1": "Left side view highlights the profile of the head, torso, and the full extension of the right arm's blade.",
+    "description_view_2": "Rear view reveals the back of the head, torso, and legs, with red joint accents and the backs of the arm blades visible.",
+    "description_view_3": "Right side view displays the head profile, torso, and the left arm's blade extension, with the left leg slightly forward.",
+    "category": "humanoid robot",
+    "height": 1.85,
+    "max_dimension": 2.3,
+    "materials": [
+        "plastic",
+        "metal",
+        "glass",
+        "synthetic rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "pushable",
+        "pullable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "faceplate",
+        "antennae",
+        "arm blades",
+        "joints"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "gray",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.12,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both legs straight, torso erect, head facing forward, left arm bent at the elbow with blade extended upward, right arm extended outward with blade parallel to the ground.",
+    "attribute_clothing_style": "Unclothed; exterior consists of integrated white panels with red and gray accents, no separate clothing or coverings.",
+    "attribute_facial_features": "Face consists of a dark, rectangular faceplate with blue illuminated elements, no visible mouth or nose, and two antennae protruding from the top of the head.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible joints, including ball and hinge types at shoulders, elbows, hips, and knees; hands and feet are simplified, with articulated fingers and toes not visible; limbs appear highly flexible.",
+    "attribute_presence_of_sensors": "Visible sensors include a faceplate area likely containing cameras or visual sensors, and possible additional sensors in the antennae.",
+    "uid": "ee5877878d4a4a4b8dd0e95b60847a58",
+    "near_synsets": {
+        "android.n.01": 0.5202896477824399,
+        "cyborg.n.01": 0.5334619728639745,
+        "automaton.n.02": 0.5499479596061694,
+        "robotics_equipment.n.01": 0.550861582267342,
+        "robotics.n.01": 0.5720616750415533
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ee5877878d4a4a4b8dd0e95b60847a58",
+        "creator_username": "lois.brinkhuis",
+        "creator_display_name": "lois.brinkhuis",
+        "creator_profile_url": "https://sketchfab.com/lois.brinkhuis"
+    },
+    "filename": "std_ee5877878d4a4a4b8dd0e95b60847a58.glb",
+    "length": 0.9235784560441971,
+    "width": 1.5859236121177673
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a push-style lawn mower with a robust metal frame and a rectangular engine housing mounted above a circular cutting deck. The mower features a U-shaped handlebar that extends upward and backward, allowing for easy maneuvering. Four equal-sized wheels are attached at the corners of the deck, providing stability and smooth movement across grassy surfaces. The engine housing is metallic and sits centrally on the deck, with visible details such as a fuel cap and venting. There is no visible grass collection bag attached to the rear or sides. The overall appearance suggests a classic, utilitarian design suitable for residential or urban lawn maintenance.",
+    "description": "A classic push lawn mower with a U-shaped handlebar, central engine housing, and four wheels, designed for manual operation on grassy surfaces.",
+    "description_view_0": "Front view showing the U-shaped handlebar, central engine housing, and two front wheels.",
+    "description_view_1": "Side view highlighting the length of the handlebar, the profile of the engine housing, and the arrangement of the wheels.",
+    "description_view_2": "Rear view displaying the back of the engine housing, the absence of a grass collection bag, and the rear wheels.",
+    "description_view_3": "Opposite side view showing the handlebar angle, engine housing, and wheel configuration.",
+    "category": "lawn mower",
+    "height": 1.0,
+    "max_dimension": 1.3,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.15,
+        0.05
+    ],
+    "mass": 28,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "pressable",
+        "rotatable",
+        "liftable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "engine housing",
+        "fuel cap",
+        "cutting deck"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "silver",
+        "red"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_handlebar_type": "U-shaped",
+    "attribute_cutting_deck_presence": true,
+    "attribute_wheel_configuration": "four equal-sized wheels",
+    "attribute_grass_collection_bag": false,
+    "attribute_engine_housing": "rectangular housing above the cutting deck",
+    "uid": "0b63793c9cc44cd589938f940f9a0df6",
+    "near_synsets": {
+        "lawn_mower.n.01": 0.43121405721666317,
+        "hand_mower.n.01": 0.4321274405877885,
+        "power_mower.n.01": 0.45075678871084435,
+        "riding_mower.n.01": 0.458984084652284,
+        "garden_tool.n.01": 0.5138960178304649,
+        "lawn.n.01": -1000.0
+    },
+    "synset": "lawn_mower.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0b63793c9cc44cd589938f940f9a0df6",
+        "creator_username": "sixpence",
+        "creator_display_name": "sixpence",
+        "creator_profile_url": "https://sketchfab.com/sixpence"
+    },
+    "filename": "std_0b63793c9cc44cd589938f940f9a0df6.glb",
+    "length": 1.3627209663391113,
+    "width": 0.6141113638877869
+}

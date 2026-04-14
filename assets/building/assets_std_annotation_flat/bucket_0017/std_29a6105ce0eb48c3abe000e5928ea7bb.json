@@ -1,0 +1,92 @@
+{
+    "description_long": "This is a two-story wooden warehouse with a simple, rectangular structure and a gabled roof. The exterior is clad in weathered wooden planks, giving it a rustic, utilitarian appearance. There are four windows with dark frames, two on each floor, and a single wooden door on the ground level. The building sits on a wide wooden platform, which extends outward and is scattered with several barrels and crates, suggesting storage or shipping activity. The roof is steeply pitched and overhangs the facade, providing some shelter to the entryway and platform. The overall design is functional, with minimal decorative elements, emphasizing practicality and storage capacity.",
+    "description": "A two-story wooden warehouse with a gabled roof, weathered plank exterior, and a wide platform scattered with barrels and crates.",
+    "description_view_0": "Front view showing the main entrance, two windows, and a collection of barrels and crates on the wooden platform.",
+    "description_view_1": "Side view highlighting the depth of the building, the overhanging roof, and additional barrels along the platform.",
+    "description_view_2": "Rear view displaying the back wall with no visible doors or windows, and a few crates and barrels on the platform.",
+    "description_view_3": "Opposite side view showing the building's length, roof slope, and more barrels near the side of the platform.",
+    "category": "warehouse",
+    "height": 7.5,
+    "max_dimension": 13.0,
+    "materials": [
+        "wood",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.07
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "storable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "windows"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main facade features weathered horizontal wooden planks, two symmetrically placed windows with dark frames, and a central wooden door. The entryway is flanked by barrels and crates, and the overhanging gabled roof provides a sheltered area above the platform.",
+    "attribute_loading_dock_presence": false,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is steeply gabled, constructed from wooden planks, and extends beyond the building's walls to create a protective overhang. No skylights, HVAC units, or other rooftop features are visible.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "29a6105ce0eb48c3abe000e5928ea7bb",
+    "near_synsets": {
+        "warehouse.n.01": 0.5027471306160594,
+        "lumberyard.n.01": 0.5306185756278343,
+        "loft.n.01": 0.5310283798692113,
+        "cellarage.n.02": 0.5315812857541312,
+        "farm_building.n.01": 0.5405913300845931
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/29a6105ce0eb48c3abe000e5928ea7bb",
+        "creator_username": "madway17",
+        "creator_display_name": "madway17",
+        "creator_profile_url": "https://sketchfab.com/madway17"
+    },
+    "filename": "std_29a6105ce0eb48c3abe000e5928ea7bb.glb",
+    "length": 6.8275463581085205,
+    "width": 6.825742721557617
+}

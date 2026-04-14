@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a two-story stone building with a prominent striped awning mounted above a storefront window on the ground floor. The awning features alternating green and white stripes and extends outward, providing shade to the large display window below, which is filled with flowers. The building facade is constructed from textured stone blocks, and the upper floor has two large arched openings, suggesting a balcony or open-air space. A set of stone stairs runs along the left side, leading to the upper level, and a glass door provides entry to the ground floor. The roof is covered with reddish-brown tiles, and the overall structure is robust and traditional in appearance.",
+    "description": "A stone building with a green and white striped awning shading a flower-filled storefront window, featuring arched upper openings and a tiled roof.",
+    "description_view_0": "Front view showing the striped awning, glass door, large display window with flowers, and the tiled roof.",
+    "description_view_1": "Right side view highlighting the stone wall, the depth of the awning, and the arched upper opening.",
+    "description_view_2": "Rear/left view showing the stone staircase, a small window with flowers, a utility panel, and the upper arches.",
+    "description_view_3": "Left side view focusing on the stone wall and the upper arched opening, with the awning edge visible.",
+    "category": "awning",
+    "height": 5.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "stone",
+        "fabric",
+        "glass",
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.08,
+        0.05,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "shade_providing",
+        "weather_protecting"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "awning canopy"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "green",
+        "white",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.12,
+        0.12,
+        0.1,
+        0.06
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_mounting_location": "attached to the facade above the ground-floor storefront window",
+    "attribute_canopy_pattern": "alternating green and white vertical stripes",
+    "attribute_edge_trim_style": "straight edge with no visible decorative trim",
+    "attribute_branding_or_signage": "none",
+    "attribute_support_structure_type": "fixed frame mounted to the building facade",
+    "uid": "b06f34dedd3b4167ac151fbc83d29b50",
+    "near_synsets": {
+        "window.n.07": 0.546073929940706,
+        "window_shade.n.01": 0.5471169939214012,
+        "gazebo.n.01": 0.5486157126036688,
+        "window_dressing.n.02": 0.5531525666306959,
+        "fenestration.n.01": 0.5573285694518967,
+        "awning.n.01": -1000.0
+    },
+    "synset": "awning.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b06f34dedd3b4167ac151fbc83d29b50",
+        "creator_username": "Tulkens_Oscar",
+        "creator_display_name": "Oscar Tulkens",
+        "creator_profile_url": "https://sketchfab.com/Tulkens_Oscar"
+    },
+    "filename": "std_b06f34dedd3b4167ac151fbc83d29b50.glb",
+    "length": 4.048566579818726,
+    "width": 7.068317890167236
+}

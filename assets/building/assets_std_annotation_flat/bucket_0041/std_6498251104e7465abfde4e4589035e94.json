@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a medium-sized, yellow utility truck with a boxy cargo compartment mounted on its chassis. The cab is compact, featuring a single row of windows and a sloped front windshield, with side mirrors extending outward for visibility. The cargo area is enclosed, suggesting it is designed for transporting goods or materials securely, and the rear is squared off with no visible tailgate or open bed. The truck rides on two axles with four visible wheels, and the tires are robust, suitable for urban and light industrial environments. The exterior is primarily painted yellow, with black trim and metallic accents on the wheels and mirrors. There are no visible manufacturer logos or distinctive markings, and the overall design is utilitarian and functional.",
+    "description": "A yellow, boxy utility truck with an enclosed cargo compartment and a compact cab, designed for urban transport. It features two axles, robust tires, and a utilitarian appearance.",
+    "description_view_0": "Front view showing the sloped windshield, compact cab, and side mirrors.",
+    "description_view_1": "Side view highlighting the length of the cargo compartment and the two-axle wheel setup.",
+    "description_view_2": "Rear view displaying the squared-off cargo area and absence of a visible tailgate.",
+    "description_view_3": "Opposite side view showing the cab profile and the full length of the truck.",
+    "category": "truck",
+    "height": 2.7,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.08,
+        0.07,
+        0.02
+    ],
+    "mass": 4200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "mirror",
+        "cargo compartment door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "box",
+    "attribute_wheelbase": 3.5,
+    "attribute_number_of_axles": 2,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "6498251104e7465abfde4e4589035e94",
+    "near_synsets": {
+        "van.n.05": 0.45885527591672354,
+        "truck.n.01": 0.46372818370185764,
+        "delivery_truck.n.01": 0.4988004540617843,
+        "lorry.n.02": 0.5113262226548412,
+        "pickup.n.01": 0.5132634765808086,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6498251104e7465abfde4e4589035e94",
+        "creator_username": "Cubic_Studio",
+        "creator_display_name": "Cubic Studio",
+        "creator_profile_url": "https://sketchfab.com/Cubic_Studio"
+    },
+    "filename": "std_6498251104e7465abfde4e4589035e94.glb",
+    "length": 8.187217235565186,
+    "width": 7.87227201461792
+}

@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a large, classic wooden sailing ship with three prominent masts, each rigged with multiple white sails. The hull is dark brown and features a rounded bow and a squared stern, with rows of circular gunports along both sides, suggesting a historical warship or galleon design. The deck is multi-leveled, with the stern rising higher and featuring orange-brown accents, possibly representing railings or decorative elements. The ship's rigging is simplified, with no visible ropes or detailed fittings, and the masts are topped with crow's nests. The overall structure is robust, with a wide beam and a deep hull, indicating a displacement-type vessel designed for stability and cargo or crew capacity. No modern equipment or markings are visible, reinforcing its historical appearance.",
+    "description": "A large, classic wooden sailing ship with three masts, white sails, and a dark brown hull featuring rows of gunports. The stern is squared and elevated, with orange-brown accents and a robust, historical design.",
+    "description_view_0": "Front view showing the pointed bow, three stacked white sails, and the narrowest profile of the hull.",
+    "description_view_1": "Starboard side view revealing the full length of the hull, three masts with sails, and rows of gunports along the side.",
+    "description_view_2": "Rear view displaying the squared stern with orange-brown accents and the alignment of the masts and sails.",
+    "description_view_3": "Port side view similar to view 1, showing the opposite side's gunports and the ship's overall length.",
+    "category": "ship",
+    "height": 22.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "wood",
+        "fabric",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1800000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sails",
+        "masts",
+        "deck",
+        "gunports",
+        "rudder"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "white",
+        "orange",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a rounded bow and a squared, elevated stern. It features a deep, wide beam and rows of circular gunports along both sides. The hull is smooth with no visible keels or bulbous bows.",
+    "attribute_superstructure_layout": "The superstructure consists of multiple open decks, with the stern deck elevated and accented in orange-brown. There are no visible cabins, bridges, or towers, and the design is open and functional.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [],
+    "attribute_registration_markings": "none",
+    "uid": "d9953f66583340c4879a3770f6d09a37",
+    "near_synsets": {
+        "bark.n.03": 0.47200879172652477,
+        "galleon.n.01": 0.4986309442262793,
+        "sailing_vessel.n.01": 0.500824342820601,
+        "windjammer.n.01": 0.506321977784702,
+        "schooner.n.02": 0.5087590594124788,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d9953f66583340c4879a3770f6d09a37",
+        "creator_username": "anagvf",
+        "creator_display_name": "Ana Vassallo",
+        "creator_profile_url": "https://sketchfab.com/anagvf"
+    },
+    "filename": "std_d9953f66583340c4879a3770f6d09a37.glb",
+    "length": 29.90104866027832,
+    "width": 10.442789077758789
+}

@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a medium-sized, upright cylindrical storage tank, commonly recognized as a liquefied petroleum gas (LPG) cylinder. The tank is constructed from metal and painted in a weathered red color, with visible patches of rust and wear, indicating prolonged outdoor use. The top features a protective metal collar with two large rectangular cutouts, encircling a central valve assembly. On one side of the tank, a yellow flammable warning symbol is clearly visible, signifying the hazardous contents. The base is slightly wider and faceted, providing stability and resistance to tipping. The overall design is utilitarian, prioritizing safety and durability for urban or residential storage of pressurized gas.",
+    "description": "A weathered red metal LPG cylinder with a protective collar, central valve, and a visible flammable warning symbol. The tank shows signs of rust and is designed for safe storage of pressurized gas.",
+    "description_view_0": "The tank's side is visible, showing the red, rusted surface and the protective collar, but no warning symbol.",
+    "description_view_1": "The front view displays the yellow flammable warning symbol and the central valve within the protective collar.",
+    "description_view_2": "Another side view similar to view 0, with the red, weathered surface and collar, but no warning symbol.",
+    "description_view_3": "The back view also shows the flammable warning symbol, with the collar and valve visible from a different angle.",
+    "category": "storage tank",
+    "height": 0.6,
+    "max_dimension": 0.35,
+    "materials": [
+        "steel",
+        "paint",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.02,
+        0.08
+    ],
+    "mass": 15,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 150,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "valve",
+        "protective collar"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "yellow",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.05,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_location": "urban garage",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [
+        "valve"
+    ],
+    "attribute_warning_signage": true,
+    "attribute_architectural_style": "cylindrical vertical",
+    "uid": "bc7174ebc38341cc9fa80b905709904f",
+    "near_synsets": {
+        "liquefied_petroleum_gas.n.01": 0.5332859176397553,
+        "gas_tank.n.01": 0.5339201182252502,
+        "tank.n.02": 0.535022915268109,
+        "gas_holder.n.01": 0.5664920422314579,
+        "propane.n.01": 0.5672738674658294,
+        "storage.n.03": -1000.0,
+        "tank.n.03": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "repositing.n.01": -1000.0,
+        "cooler.n.03": -1000.0,
+        "storage.n.01": -1000.0,
+        "memory.n.04": -1000.0,
+        "storage.n.04": -1000.0,
+        "tank.n.01": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bc7174ebc38341cc9fa80b905709904f",
+        "creator_username": "380660711785",
+        "creator_display_name": "Ricardo Sanchez",
+        "creator_profile_url": "https://sketchfab.com/380660711785"
+    },
+    "filename": "std_bc7174ebc38341cc9fa80b905709904f.glb",
+    "length": 0.332624226808548,
+    "width": 0.34974172711372375
+}

@@ -1,0 +1,111 @@
+{
+    "description_long": "This is a modern city bus with a rectangular body, primarily painted in white, green, and orange, with a distinctive green leaf symbol and the code 'E456' on the roof and rear. The bus features large, rectangular side windows arranged in a row, separated by vertical pillars, and two sets of passenger doors on the left side. The front and rear both display digital signage, with the rear showing accessibility symbols and route information. The bus has black wheels, rooftop air conditioning units, and various decals, including 'Non-Stop Bus' and Japanese text. The overall design suggests a low-floor, accessible public transport vehicle suitable for urban environments.",
+    "description": "A modern, low-floor city bus with white, green, and orange livery, large side windows, and digital route signage. Features accessibility markings and rooftop equipment.",
+    "description_view_0": "Side view showing the full length of the bus, two passenger doors, large windows, and detailed livery with 'Non-Stop Bus' text.",
+    "description_view_1": "Rear view displaying the green leaf symbol, 'E456' code, digital signage, and accessibility symbols.",
+    "description_view_2": "Opposite side view with large windows and no visible doors, highlighting the bus's streamlined shape and color scheme.",
+    "description_view_3": "Front view showing the windshield, headlights, digital route sign, and entry door with accessibility markings.",
+    "category": "bus",
+    "height": 3.1,
+    "max_dimension": 11.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air",
+        "fabric"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.07,
+        0.07,
+        0.04,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "drivable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "button",
+        "display panel",
+        "mirror"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "green",
+        "orange",
+        "black",
+        "gray",
+        "blue"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 2,
+    "attribute_window_arrangement": "Seven large, rectangular windows evenly spaced along each side, separated by vertical pillars, with consistent size and shape throughout.",
+    "attribute_route_number_or_destination_sign": "E456",
+    "attribute_bus_manufacturer_logo": "No distinct manufacturer logo is visible; only route and accessibility markings are present.",
+    "attribute_passenger_entry_step_height": 0.35,
+    "uid": "654cd8ac7cc84c2e9b1ceb14ca0e6dee",
+    "near_synsets": {
+        "minibus.n.01": 0.5452300638020154,
+        "bus.n.01": 0.5504488388131259,
+        "bus_traffic.n.01": 0.5553288691645429,
+        "bus_route.n.01": 0.5562682765174519,
+        "school_bus.n.01": 0.5608847463473129,
+        "busbar.n.01": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "bus.n.04": -1000.0
+    },
+    "synset": "bus.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/654cd8ac7cc84c2e9b1ceb14ca0e6dee",
+        "creator_username": "VRC-IW",
+        "creator_display_name": "VRC-IW",
+        "creator_profile_url": "https://sketchfab.com/VRC-IW"
+    },
+    "filename": "std_654cd8ac7cc84c2e9b1ceb14ca0e6dee.glb",
+    "length": 10.841649055480957,
+    "width": 2.893219232559204
+}

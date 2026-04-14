@@ -1,0 +1,91 @@
+{
+    "description_long": "This humanoid robot features a skeletal, mechanical frame with exposed joints and components, giving it an industrial, utilitarian appearance. Its head is boxy with two prominent circular elements resembling eyes and a rectangular mouth-like opening, suggesting basic facial expressiveness. The arms are long and segmented, extending horizontally with visible wiring and joint mechanisms, while the legs are robust and end in wide, flat feet designed for stability. The torso is composed of interconnected rods and mechanical parts, with a central core that appears to house structural and possibly functional elements. The entire structure is predominantly black, with a matte finish that reduces glare and highlights the mechanical details. The robot's design emphasizes articulation and mobility, suitable for tasks requiring dexterity and movement in urban environments.",
+    "description": "A black, skeletal humanoid robot with exposed joints, a boxy head with circular eyes, and long articulated limbs, designed for mobility and dexterity.",
+    "description_view_0": "Front view shows the robot's symmetrical, mechanical frame, boxy head with two circular eyes, and outstretched arms.",
+    "description_view_1": "Side view reveals the thin profile, layered mechanical components, and the depth of the head and torso.",
+    "description_view_2": "Rear view highlights the back structure, exposed wiring, and the robust legs and feet.",
+    "description_view_3": "Opposite side view mirrors the other side, showing the arm and leg articulation and the mechanical depth.",
+    "category": "humanoid robot",
+    "height": 1.8,
+    "max_dimension": 2.0,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 95,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 950,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "legs",
+        "head",
+        "joints"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms extended horizontally to the sides, legs straight and feet flat on the ground, head facing forward.",
+    "attribute_clothing_style": "Unclothed; only integrated mechanical panels and exposed structural components are visible.",
+    "attribute_facial_features": "Boxy head with two large circular eye-like components and a rectangular mouth-like opening; no nose or expressive features.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints, allowing for a wide range of motion; limbs appear rigid but highly articulated.",
+    "attribute_presence_of_sensors": "Two circular elements on the head likely function as visual sensors (cameras); no other sensors are visibly apparent.",
+    "uid": "eb26723a5eb543b2aa29f4dd088b94e6",
+    "near_synsets": {
+        "android.n.01": 0.5181419263614498,
+        "cyborg.n.01": 0.5300735530933564,
+        "robotics_equipment.n.01": 0.543161951940966,
+        "automaton.n.02": 0.54644501742279,
+        "automaton.n.03": 0.5657291201790353
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/eb26723a5eb543b2aa29f4dd088b94e6",
+        "creator_username": "DaSaltyBoi",
+        "creator_display_name": "Domer",
+        "creator_profile_url": "https://sketchfab.com/DaSaltyBoi"
+    },
+    "filename": "std_eb26723a5eb543b2aa29f4dd088b94e6.glb",
+    "length": 0.7597544193267822,
+    "width": 1.9768605828285217
+}

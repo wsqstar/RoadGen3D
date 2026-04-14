@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a compact, dark-colored shotgun with a distinctive sci-fi or custom design, featuring a short barrel and a prominent scope mounted on top. The body appears to be constructed primarily from metal, with a matte black finish and some visible wear, suggesting frequent use. The grip and stock area are made of a darker, possibly wooden or polymer material, shaped ergonomically for one-handed operation. The trigger guard is rounded and substantial, providing protection for the trigger mechanism. There are metallic rings and attachments at both the front and rear ends, possibly for slings or carrying straps. The overall design is robust and functional, with a tactical appearance suitable for urban environments.",
+    "description": "A compact, dark shotgun with a mounted scope, ergonomic grip, and robust, tactical design. Features metallic and polymer components with visible attachment rings.",
+    "description_view_0": "Side view showing the full profile, including the scope, ergonomic grip, and both front and rear attachment rings.",
+    "description_view_1": "Front view highlighting the barrel opening, scope alignment, and the circular shape of the muzzle.",
+    "description_view_2": "Opposite side view displaying the scope, grip, and attachment rings, with more detail on the trigger guard and body contours.",
+    "description_view_3": "Rear view focusing on the stock, grip curvature, and the alignment of the scope with the barrel.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.55,
+    "materials": [
+        "steel",
+        "polymer",
+        "wood",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "aimable",
+        "triggerable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "trigger guard",
+        "barrel",
+        "scope",
+        "attachment rings"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, short length, no visible ribbing or venting",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "semi-automatic",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized, fully enclosing the trigger with a smooth contour",
+    "uid": "c64196fec3a549f79476fbc5c782138e",
+    "near_synsets": {
+        "dragunov.n.01": 0.541150910557332,
+        "sawed-off_shotgun.n.01": 0.5421898594305495,
+        "telescopic_sight.n.01": 0.5452110578299452,
+        "shotgun.n.01": 0.5453005586755301,
+        "peep_sight.n.01": 0.5502478223808533
+    },
+    "synset": "shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c64196fec3a549f79476fbc5c782138e",
+        "creator_username": "chrisg4919",
+        "creator_display_name": "chrisg4919",
+        "creator_profile_url": "https://sketchfab.com/chrisg4919"
+    },
+    "filename": "std_c64196fec3a549f79476fbc5c782138e.glb",
+    "length": 0.48672105371952057,
+    "width": 0.17830438911914825
+}

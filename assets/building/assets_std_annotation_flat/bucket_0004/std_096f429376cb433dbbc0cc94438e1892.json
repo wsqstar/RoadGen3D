@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a large, turret-like rifle mounted on a robust, four-legged base, designed for stationary use in urban environments. The main body is constructed from dark, metallic materials with angular, industrial features and reinforced structural elements. The barrel is thick and protrudes forward, suggesting a heavy-duty or high-caliber function, while the rear section is bulkier and features a geometric, open-ended stock area. The base is wide and stable, with four splayed supports that anchor the weapon to the ground, indicating it is intended to remain fixed during operation. Various mechanical details, such as bolts, panels, and a circular central mechanism, are visible, giving the object a rugged, utilitarian appearance. The overall design is reminiscent of automated or crew-served weaponry used for defense or area denial in urban settings.",
+    "description": "A heavy, turret-mounted rifle with a dark metallic finish, angular body, and four-legged base, designed for stationary use in urban defense scenarios.",
+    "description_view_0": "Side view showing the full length of the barrel, the circular central mechanism, and the angular, open-ended stock.",
+    "description_view_1": "Front view highlighting the muzzle, symmetrical supports, and the central mounting axis.",
+    "description_view_2": "Opposite side view revealing the rear stock structure and the mechanical details on the body.",
+    "description_view_3": "Rear view focusing on the back of the stock and the robust mounting base.",
+    "category": "rifle",
+    "height": 1.1,
+    "max_dimension": 1.6,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel",
+        "trigger area",
+        "mounting base",
+        "stock",
+        "sight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "096f429376cb433dbbc0cc94438e1892",
+    "near_synsets": {
+        "light_arm.n.01": 0.503896023237307,
+        "sniper_rifle.n.01": 0.5052370825417991,
+        "rifle.n.01": 0.508213081148627,
+        "turret.n.01": 0.5122963443787281,
+        "gun_enclosure.n.01": 0.5140640604226605
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/096f429376cb433dbbc0cc94438e1892",
+        "creator_username": "tylerlherring",
+        "creator_display_name": "tylerlherring",
+        "creator_profile_url": "https://sketchfab.com/tylerlherring"
+    },
+    "filename": "std_096f429376cb433dbbc0cc94438e1892.glb",
+    "length": 1.6672015190124512,
+    "width": 1.23954439163208
+}

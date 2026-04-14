@@ -1,0 +1,116 @@
+{
+    "description_long": "This is a small pedestrian stone bridge with a gently arched deck made of rectangular cobblestones, supported by robust stone beams and posts. The bridge features a simple, rustic railing composed of evenly spaced stone posts connected by horizontal stone beams. Adjacent to the bridge is a small urban setup including a wooden table, a bicycle, a streetlamp, and a blue-and-white striped umbrella, all placed on a tiled surface. The bridge appears to be designed for foot traffic, with enough width for pedestrians and possibly bicycles. The stone construction gives it a sturdy, durable appearance suitable for parks or urban walkways. The overall scene evokes a quaint, European-inspired public space.",
+    "description": "A small arched stone pedestrian bridge with rustic stone railings, set beside a streetlamp, table, bicycle, and umbrella on a tiled area.",
+    "description_view_0": "Front view showing the bridge's arch, stone railings, and adjacent urban elements including the streetlamp, table, bicycle, and umbrella.",
+    "description_view_1": "Angled view highlighting the bridge's cobblestone deck, stone posts, and the urban setup to the left.",
+    "description_view_2": "Rear view focusing on the bridge's arch and railings, with the umbrella, lamp, and bicycle visible in the background.",
+    "description_view_3": "Side view showing the bridge's length, the stone railing design, and the proximity of the streetlamp, bicycle, and umbrella.",
+    "category": "bridge",
+    "height": 1.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "stone",
+        "wood",
+        "metal",
+        "fabric",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "leanable",
+        "restable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "railing",
+        "table",
+        "umbrella",
+        "bicycle",
+        "lamp post"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "bicycle"
+    ],
+    "colors": [
+        "gray",
+        "white",
+        "blue",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.1,
+        0.08,
+        0.1,
+        0.07
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_support_type": "arch, beam",
+    "attribute_railing_design": "stone posts with horizontal stone beams, simple and rustic",
+    "attribute_arch_presence": true,
+    "attribute_lighting_fixtures": [
+        "lamp post"
+    ],
+    "attribute_architectural_style": "rustic",
+    "uid": "c1952b9aa8554904845156efa463e928",
+    "near_synsets": {
+        "footbridge.n.01": 0.5064014772368219,
+        "trestle_bridge.n.01": 0.5104496689720399,
+        "covered_bridge.n.01": 0.5282945124396319,
+        "steel_arch_bridge.n.01": 0.5310150687065299,
+        "bridge.n.01": 0.5334855432146706,
+        "bridge.n.02": -1000.0,
+        "bridge.n.09": -1000.0,
+        "bridge.n.06": -1000.0,
+        "bridge.n.03": -1000.0,
+        "bridge.n.07": -1000.0,
+        "bridge.n.04": -1000.0,
+        "bridge.n.05": -1000.0,
+        "bridge.n.08": -1000.0
+    },
+    "synset": "bridge.n.08",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c1952b9aa8554904845156efa463e928",
+        "creator_username": "JorenDresselaers",
+        "creator_display_name": "JorenDresselaers",
+        "creator_profile_url": "https://sketchfab.com/JorenDresselaers"
+    },
+    "filename": "std_c1952b9aa8554904845156efa463e928.glb",
+    "length": 1.9339983463287354,
+    "width": 1.84066903591156
+}

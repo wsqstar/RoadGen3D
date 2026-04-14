@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a large, rectangular, industrial shipping container with a weathered, rusted exterior. The container is primarily constructed from corrugated metal panels, giving it a ribbed texture along its sides and top. Its surface is predominantly a faded reddish-brown with patches of black corrosion and a faint horizontal gray stripe, indicating prolonged outdoor exposure. One end features large, double doors that are partially open, revealing a spacious, empty interior with a metal floor. The doors are reinforced with vertical metal bars and heavy-duty hinges, suitable for secure closure and transport. Faint white alphanumeric markings are visible on the side, suggesting identification or inventory codes.",
+    "description": "A large, rusted metal shipping container with double doors and visible weathering, featuring faded markings and a ribbed exterior.",
+    "description_view_0": "The end of the container is visible, showing a solid, closed panel with heavy rust and no visible openings.",
+    "description_view_1": "The side and partially open double doors are visible, revealing the container's empty interior and faded white markings on the side.",
+    "description_view_2": "The opposite end of the container is shown with both doors fully open, exposing the entire entryway and interior space.",
+    "description_view_3": "The side view with both doors open, showing the ribbed metal surface, faded markings, and the open entry at one end.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.08
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hinge",
+        "locking bar"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "rusty red",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.01,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "faint white alphanumeric markings on the side",
+    "attribute_handles_or_grips": "vertical locking bars on doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "b310fc5675454cc28f7944f083475f76",
+    "near_synsets": {
+        "cargo_container.n.01": 0.4915958950463464,
+        "container.n.01": 0.4982822222305116,
+        "cargo_door.n.01": 0.541553089910084,
+        "drum.n.04": 0.546637272340061,
+        "dumpster.n.01": 0.5487979201014073
+    },
+    "synset": "container.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b310fc5675454cc28f7944f083475f76",
+        "creator_username": "sergeytrifanov1980",
+        "creator_display_name": "SergeyShinkevich",
+        "creator_profile_url": "https://sketchfab.com/sergeytrifanov1980"
+    },
+    "filename": "std_b310fc5675454cc28f7944f083475f76.glb",
+    "length": 6.961527585983276,
+    "width": 2.326301336288452
+}

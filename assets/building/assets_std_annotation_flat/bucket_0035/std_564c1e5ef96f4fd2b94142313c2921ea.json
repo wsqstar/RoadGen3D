@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a dark gray subway train car with a rectangular, elongated body and a flat roof featuring ventilation grilles. The sides display three large, rectangular windows and two sets of sliding doors, each marked with visible handles and signage. The front and rear ends are slightly tapered, with headlights and coupling mechanisms visible, as well as small windows for the operator. The exterior is primarily metallic, with subtle panel lines and surface details suggesting reinforced construction. The train's undercarriage includes visible wheels and suspension components, typical of urban rail vehicles. The overall design is utilitarian, optimized for high passenger capacity and frequent stops in a city environment.",
+    "description": "A dark gray, rectangular subway train car with large windows, sliding doors, and detailed metallic features. The design is utilitarian and suited for urban passenger transport.",
+    "description_view_0": "Front view showing the tapered end, operator windows, headlights, and coupling mechanism.",
+    "description_view_1": "Side view displaying three large windows, two sets of sliding doors, and detailed paneling.",
+    "description_view_2": "Rear view with a similar tapered end, small windows, and rear coupling details.",
+    "description_view_3": "Opposite side view, mirroring the window and door arrangement of the other side.",
+    "category": "train",
+    "height": 3.5,
+    "max_dimension": 20.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "mass": 35000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "headlight",
+        "coupler",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "blue"
+    ],
+    "colors_composition": [
+        0.85,
+        0.13,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "subway",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "evenly spaced along both sides",
+    "attribute_window_arrangement": "spaced rectangular windows",
+    "uid": "564c1e5ef96f4fd2b94142313c2921ea",
+    "near_synsets": {
+        "subway_train.n.01": 0.4508133996072668,
+        "train.n.01": 0.4954429224252034,
+        "car_train.n.01": 0.4955091621965372,
+        "passenger_train.n.01": 0.5101505204821565,
+        "metro.n.01": 0.5239466913950903,
+        "string.n.04": -1000.0,
+        "train.n.04": -1000.0,
+        "gearing.n.01": -1000.0,
+        "caravan.n.01": -1000.0,
+        "train.n.05": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/564c1e5ef96f4fd2b94142313c2921ea",
+        "creator_username": "yarankepang",
+        "creator_display_name": "yarankepang",
+        "creator_profile_url": "https://sketchfab.com/yarankepang"
+    },
+    "filename": "std_564c1e5ef96f4fd2b94142313c2921ea.glb",
+    "length": 19.37077236175537,
+    "width": 2.808301091194153
+}

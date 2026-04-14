@@ -1,0 +1,100 @@
+{
+    "description_long": "This humanoid robot features a robust, industrial design with a predominantly yellow, weathered exterior, suggesting heavy-duty use. Its body is rounded and armored, with a helmet-like head that has a dark, visor-like faceplate, giving it a protective and utilitarian appearance. The arms are asymmetrical: the left arm ends in a cylindrical tool resembling a pipe or rod, while the right arm holds a green rake-like implement, indicating possible utility or maintenance functions. The legs are thick and jointed, with visible springs or shock absorbers at the knees and ankles, enhancing stability and mobility. The surface is marked with scratches and dirt, emphasizing its use in rugged urban environments. The overall form is compact and functional, with no visible clothing or decorative elements beyond its utilitarian shell.",
+    "description": "A yellow, weathered humanoid robot with a helmeted head, tool-equipped arms, and jointed, spring-supported legs, designed for rugged urban tasks.",
+    "description_view_0": "Front view shows the helmeted head, dark visor, both arms with tools, and the full frontal armor plating.",
+    "description_view_1": "Left-side view highlights the cylindrical tool on the left arm and the rounded, bulky torso.",
+    "description_view_2": "Rear view reveals the back armor, jointed legs, and the green rake tool extending from the right arm.",
+    "description_view_3": "Right-side view emphasizes the green rake tool and the articulated joints of the legs and arms.",
+    "category": "humanoid robot",
+    "height": 1.5,
+    "max_dimension": 1.1,
+    "materials": [
+        "painted metal",
+        "plastic",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "rotatable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "visor",
+        "left arm tool",
+        "right arm rake",
+        "joints"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "gray",
+        "green"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both legs straight and slightly apart, left arm extended forward holding a cylindrical tool, right arm bent at the elbow holding a rake-like implement, head facing forward.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated, weathered yellow armor panels with a helmet-like head covering.",
+    "attribute_facial_features": "Face consists of a dark, opaque visor with no visible eyes, mouth, or nose; no expressive or display elements present.",
+    "attribute_limb_articulation": "Arms and legs have visible hinge and rotary joints at shoulders, elbows, hips, and knees; hands are replaced by tools; limbs appear rigid but jointed for movement.",
+    "attribute_presence_of_sensors": "None visible",
+    "uid": "dcd75033e8e64ce3ad2599fbcea9e90f",
+    "near_synsets": {
+        "android.n.01": 0.5223025287995843,
+        "robotics_equipment.n.01": 0.5268197187159486,
+        "cyborg.n.01": 0.5423582553420827,
+        "automaton.n.02": 0.5558128857451964,
+        "robotics.n.01": 0.5614312182069047
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dcd75033e8e64ce3ad2599fbcea9e90f",
+        "creator_username": "Inky0891",
+        "creator_display_name": "Inky0891",
+        "creator_profile_url": "https://sketchfab.com/Inky0891"
+    },
+    "filename": "std_dcd75033e8e64ce3ad2599fbcea9e90f.glb",
+    "length": 1.2223330736160278,
+    "width": 1.2483764290809631
+}

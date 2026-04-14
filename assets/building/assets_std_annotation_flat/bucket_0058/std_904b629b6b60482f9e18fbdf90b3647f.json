@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a mid-rise apartment building with a red brick facade and five stories, each featuring regularly spaced windows with white trim. The front of the building is distinguished by a prominent black metal fire escape running vertically between the windows, providing emergency access to each floor. The ground level has a double-door entrance, flanked by large windows, and the lower portion of the building is accentuated with horizontal beige and red brick bands. The side and rear walls are plain, constructed from red brick with no windows or architectural embellishments, emphasizing the utilitarian design. The flat roof is dark and slightly overhangs the building's edges, typical of urban apartment blocks. The overall appearance suggests a classic early 20th-century urban residential style, commonly found in dense city neighborhoods.",
+    "description": "A five-story red brick apartment building with a black fire escape on the front, white-trimmed windows, and a flat dark roof. The facade features horizontal brick bands and a double-door entrance at street level.",
+    "description_view_0": "Front view showing the main facade with five rows of windows, a central black fire escape, and a double-door entrance at the base.",
+    "description_view_1": "Side view displaying a plain red brick wall with horizontal bands at the bottom and no windows or architectural features.",
+    "description_view_2": "Rear view revealing a completely flat red brick wall with horizontal bands at the base and no windows or doors.",
+    "description_view_3": "Opposite side view, similar to the other side, with a plain red brick wall and horizontal bands at the bottom.",
+    "category": "apartment building",
+    "height": 18.0,
+    "max_dimension": 20.0,
+    "materials": [
+        "brick",
+        "concrete",
+        "glass",
+        "metal",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.2,
+        0.1,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 1200000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "fire escape",
+        "stairs"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 5,
+    "attribute_balcony_presence": false,
+    "attribute_window_arrangement": "The windows are symmetrically arranged in vertical columns, evenly spaced across each floor, with each floor having a consistent number and alignment of windows.",
+    "attribute_entrance_type": "double doors",
+    "attribute_architectural_style": "Early 20th-century Urban",
+    "uid": "904b629b6b60482f9e18fbdf90b3647f",
+    "near_synsets": {
+        "apartment_building.n.01": 0.5115745683293491,
+        "fire_escape.n.01": 0.5483478990055192,
+        "block.n.05": 0.5527075745876694,
+        "building.n.04": 0.5535249474438962,
+        "high-rise.n.01": 0.5566877134856674,
+        "apartment.n.01": -1000.0,
+        "building.n.01": -1000.0,
+        "construction.n.07": -1000.0,
+        "construction.n.01": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/904b629b6b60482f9e18fbdf90b3647f",
+        "creator_username": "genesisgateway",
+        "creator_display_name": "Genesis Gateway",
+        "creator_profile_url": "https://sketchfab.com/genesisgateway"
+    },
+    "filename": "std_904b629b6b60482f9e18fbdf90b3647f.glb",
+    "length": 5.761490821838379,
+    "width": 10.259315967559814
+}

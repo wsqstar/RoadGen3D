@@ -1,0 +1,97 @@
+{
+    "description_long": "This trolleybus features a boxy, utilitarian design with a predominantly gray and brown exterior, suggesting a robust metal construction. The sides are lined with large, rectangular panel doors, likely for passenger entry and maintenance access, and the roof is ribbed for structural reinforcement. The front windshield is wide and slightly slanted, with a visible crack and signage in both Latin and stylized script, giving it a weathered, urban appearance. The cab area is compact, with angular lines and a small side window, while the rear is flat with double doors, possibly for emergency exit or cargo. The wheels are partially covered by the lower body panels, enhancing the streamlined, industrial look. Subtle details like the signage, weathering, and utilitarian features suggest this vehicle is designed for heavy use in city environments.",
+    "description": "A boxy, weathered trolleybus with gray and brown metal panels, large side doors, and a cracked front windshield, designed for urban public transport.",
+    "description_view_0": "Rear view showing double doors and ribbed roof, with minimal detailing and no visible windows.",
+    "description_view_1": "Left side view highlighting multiple large panel doors, covered wheels, and the angular cab front.",
+    "description_view_2": "Front view displaying a wide, cracked windshield, signage, and the brown cab area.",
+    "description_view_3": "Right side view similar to the left, with large panel doors and a clear view of the cab and wheel covers.",
+    "category": "trolleybus",
+    "height": 3.2,
+    "max_dimension": 10.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "windshield",
+        "panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.3,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_pantograph_poles": false,
+    "attribute_overhead_wire_connection": false,
+    "attribute_route_number_display": false,
+    "attribute_articulated_body_sections": 1,
+    "attribute_passenger_entry_doors": 6,
+    "uid": "a67af65739c24eacb4141df6805afe29",
+    "near_synsets": {
+        "trolleybus.n.01": 0.4645023156635476,
+        "trolley_line.n.01": 0.488710168632939,
+        "bus.n.01": 0.5153317448490431,
+        "boxcar.n.01": 0.5235733741006363,
+        "bus.n.04": 0.5391467857168937
+    },
+    "synset": "trolleybus.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/a67af65739c24eacb4141df6805afe29",
+        "creator_username": "kryik1023",
+        "creator_display_name": "Renafox",
+        "creator_profile_url": "https://sketchfab.com/kryik1023"
+    },
+    "filename": "std_a67af65739c24eacb4141df6805afe29.glb",
+    "length": 5.976903438568115,
+    "width": 2.6802780628204346
+}

@@ -1,0 +1,110 @@
+{
+    "description_long": "This combat tactical vehicle features a robust, angular body with a matte green finish and reinforced armor plating covering the entire exterior. The vehicle is equipped with four large, off-road tires with deep treads, designed for enhanced traction and durability. The front section is sloped and houses a pair of visible weapon mounts above the hood, while the rear compartment is slightly raised and features a yellow hatch. The cabin is open on the sides, revealing a utilitarian interior with visible seating and control mechanisms. The vehicle's design emphasizes protection and mobility, with thick, faceted panels and minimal exposed surfaces. Distinctive orange-yellow panels are present on the roof and rear, adding visual contrast to the otherwise military green body.",
+    "description": "A heavily armored, angular green combat vehicle with large off-road tires, visible weapon mounts, and orange-yellow roof panels.",
+    "description_view_0": "Front view shows the sloped armored nose, dual weapon mounts above the hood, and rugged front tires.",
+    "description_view_1": "Left side view reveals the open cabin, interior seating, and the raised rear compartment with a yellow hatch.",
+    "description_view_2": "Rear view highlights the orange-yellow roof panel, rear armor, and the wide stance of the vehicle.",
+    "description_view_3": "Right side view mirrors the left, showing the open cabin, interior details, and rear compartment.",
+    "category": "combat tactical  vehicle",
+    "height": 1.8,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 16000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "hatch",
+        "seat",
+        "steering wheel",
+        "weapon mount"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "yellow-orange",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.95,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Two weapon mounts visible above the hood at the front of the vehicle.",
+    "attribute_armor_plating": "Full body coverage with thick, angular, sloped armor plating; reinforced panels on all sides.",
+    "attribute_camouflage_pattern": "Solid matte green with orange-yellow accent panels; no camouflage pattern visible.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "Four large off-road tires with deep, aggressive tread pattern; appear reinforced for rugged terrain.",
+    "uid": "f57d06029b62409383f8eb11ecd4f50c",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4844426762456579,
+        "tank.n.01": 0.5049835127639972,
+        "reconnaissance_vehicle.n.01": 0.5076202968101236,
+        "armored_car.n.02": 0.5123729074242921,
+        "assault_gun.n.02": 0.5169051047176069,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f57d06029b62409383f8eb11ecd4f50c",
+        "creator_username": "bzachhuff",
+        "creator_display_name": "bzachhuff",
+        "creator_profile_url": "https://sketchfab.com/bzachhuff"
+    },
+    "filename": "std_f57d06029b62409383f8eb11ecd4f50c.glb",
+    "length": 5.863635063171387,
+    "width": 2.975862741470337
+}

@@ -1,0 +1,91 @@
+{
+    "description_long": "This is a long, straight staircase-style ladder with a series of evenly spaced steps and a continuous handrail running along one side. The structure appears to be made primarily of a light-colored, solid material, likely painted metal or concrete, giving it a sturdy and durable appearance. The steps are broad and flat, suitable for safe foot placement, and the handrail is supported by regularly spaced vertical balusters. The overall design is utilitarian, with clean lines and a uniform finish, making it suitable for public or urban environments such as parks, pedestrian overpasses, or building access points. The underside of the ladder is solid, with no visible hollow sections, suggesting a robust construction. The color is a consistent light gray or white, contributing to a modern and neutral aesthetic.",
+    "description": "A long, straight staircase-style ladder with a continuous handrail and broad, evenly spaced steps, finished in a light gray or white color. The design is sturdy and utilitarian, suitable for urban environments.",
+    "description_view_0": "The ladder is seen from an angled perspective, clearly showing the steps, handrail, and supporting balusters along one side.",
+    "description_view_1": "A top-down view reveals the full length of the steps and the linear alignment of the handrail, emphasizing the ladder's width and step arrangement.",
+    "description_view_2": "This view from below highlights the solid underside and the uniformity of the step structure, with the handrail visible along one edge.",
+    "description_view_3": "A side profile shows the height and thickness of the ladder, with the handrail extending above the steps and the solid base beneath.",
+    "category": "ladder",
+    "height": 3.5,
+    "max_dimension": 5.0,
+    "materials": [
+        "painted metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "climbable",
+        "grippable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "steps",
+        "handrail"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rungs": 18,
+    "attribute_rung_spacing": 0.2,
+    "attribute_side_rail_profile": "rectangular painted metal",
+    "attribute_mounting_position": "fixed wall-mounted",
+    "attribute_presence_of_safety_features": [
+        "handrails"
+    ],
+    "uid": "639e7bcc8c794fdf9a797fa723668fc3",
+    "near_synsets": {
+        "ladder.n.01": 0.49778490798215225,
+        "stairway.n.01": 0.5037820234817959,
+        "extension_ladder.n.01": 0.5156870781705759,
+        "step_ladder.n.01": 0.5227478091058338,
+        "ladder.n.02": 0.5236758291085403,
+        "run.n.13": -1000.0
+    },
+    "synset": "ladder.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/639e7bcc8c794fdf9a797fa723668fc3",
+        "creator_username": "roqqq",
+        "creator_display_name": "roqqq",
+        "creator_profile_url": "https://sketchfab.com/roqqq"
+    },
+    "filename": "std_639e7bcc8c794fdf9a797fa723668fc3.glb",
+    "length": 2.869367241859436,
+    "width": 5.425316333770752
+}

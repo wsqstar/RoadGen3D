@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a rustic wooden cabin with a prominent gable roof, set on a grassy plot. The structure features a covered front porch supported by posts, and a small balcony above the entrance. The exterior walls are clad in horizontal wooden planks, and the roof is finished with what appears to be corrugated metal or shingles. Multiple windows of varying sizes are distributed asymmetrically, with some grouped together and others standing alone. The cabin is elevated slightly above the ground, with visible steps leading up to the porch, and the overall design suggests a cozy, traditional dwelling suitable for a natural or suburban setting.",
+    "description": "A rustic wooden cabin with a gable roof, covered porch, and balcony, featuring asymmetrical windows and wood plank siding.",
+    "description_view_0": "View 0 shows the cabin from above and slightly to the side, highlighting the covered porch, balcony, and grassy surroundings.",
+    "description_view_1": "View 1 presents the cabin from the gable end, emphasizing the steep roof pitch and the depth of the structure.",
+    "description_view_2": "View 2 displays the side of the cabin, revealing the horizontal wood siding and a cluster of windows.",
+    "description_view_3": "View 3 offers a direct look at the front facade, showcasing the porch, balcony, and main entrance.",
+    "category": "cabin",
+    "height": 6.0,
+    "max_dimension": 10.0,
+    "materials": [
+        "wood",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "porch",
+        "balcony"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gable roof with moderate pitch and overhanging eaves, likely metal or shingle-clad",
+    "attribute_window_arrangement": "Multiple windows of varying sizes, mostly rectangular, arranged asymmetrically with some grouped and others isolated, including a prominent window on the upper balcony and several on the main facade",
+    "attribute_door_placement": "Single main door centered on the front facade beneath the balcony, accessible via the porch",
+    "attribute_porch_presence": true,
+    "attribute_architectural_style": "rustic",
+    "uid": "a0711c6dad874407b161625405d140d7",
+    "near_synsets": {
+        "cabin.n.02": 0.4320562529146541,
+        "log_cabin.n.01": 0.45866234381611903,
+        "chalet.n.01": 0.5180430216641435,
+        "gazebo.n.01": 0.5233129082975719,
+        "farmhouse.n.01": 0.5330386791361504,
+        "cabin.n.03": -1000.0,
+        "cabin.n.01": -1000.0
+    },
+    "synset": "cabin.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a0711c6dad874407b161625405d140d7",
+        "creator_username": "brxa",
+        "creator_display_name": "brxa",
+        "creator_profile_url": "https://sketchfab.com/brxa"
+    },
+    "filename": "std_a0711c6dad874407b161625405d140d7.glb",
+    "length": 21.575718879699707,
+    "width": 21.57572364807129
+}

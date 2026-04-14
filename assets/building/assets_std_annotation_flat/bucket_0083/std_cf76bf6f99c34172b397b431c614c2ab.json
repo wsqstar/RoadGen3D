@@ -1,0 +1,96 @@
+{
+    "description_long": "This shotgun features a robust, angular design with a predominantly gray body accented by black and orange highlights. The stock is geometric and solid, leading into a pistol-style grip and a squared trigger guard. The barrel assembly is thick and blocky, with three distinct muzzle ports visible at the front, each surrounded by orange rings, suggesting a multi-barrel or clustered configuration. The top of the weapon has a raised rail or sighting system, and the sides are adorned with linear orange detailing and paneling. The overall construction appears to be metallic, with a matte finish and minimal surface texturing, giving it a modern, industrial appearance. The shotgun's proportions and features suggest it is designed for heavy-duty use in urban environments.",
+    "description": "A modern, angular shotgun with a gray, black, and orange color scheme, featuring a blocky multi-port barrel and a pistol grip. Its industrial design is accented by geometric lines and a sturdy stock.",
+    "description_view_0": "Side view showing the full length, angular stock, pistol grip, and detailed orange and black paneling.",
+    "description_view_1": "Front view highlighting the three orange-ringed barrel ports and the weapon's wide, blocky muzzle.",
+    "description_view_2": "Opposite side view displaying the same geometric features, with visible panel lines and grip details.",
+    "description_view_3": "Rear view showing the squared stock end and the alignment of the top rail and grip.",
+    "category": "shotgun",
+    "height": 0.25,
+    "max_dimension": 0.9,
+    "materials": [
+        "metal",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 5.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 54,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "aimable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "pistol grip",
+        "trigger",
+        "trigger guard",
+        "barrel",
+        "muzzle",
+        "top rail"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "orange"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "triple-barrel, clustered configuration with three parallel muzzles visible at the front",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "semi-automatic",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rectangular, squared trigger guard with a flat profile and no visible finger grooves",
+    "uid": "cf76bf6f99c34172b397b431c614c2ab",
+    "near_synsets": {
+        "shotgun.n.01": 0.5117130567133782,
+        "sawed-off_shotgun.n.01": 0.5198883614635794,
+        "shotgun_shell.n.01": 0.5495526412791008,
+        "gas_gun.n.01": 0.5586885384035549,
+        "gun.n.01": 0.560640726193891
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cf76bf6f99c34172b397b431c614c2ab",
+        "creator_username": "ismeteavee",
+        "creator_display_name": "ismeteavee",
+        "creator_profile_url": "https://sketchfab.com/ismeteavee"
+    },
+    "filename": "std_cf76bf6f99c34172b397b431c614c2ab.glb",
+    "length": 0.7272074222564697,
+    "width": 0.14083584398031235
+}

@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a large, weathered city bus with a boxy, rectangular shape and a flat roof. The exterior is predominantly white with extensive rust, dirt, and faded red streaks, giving it a heavily used, almost abandoned appearance. The bus features a series of rectangular windows along both sides, separated by metal pillars, and a single main passenger door located near the front on the right side. The front of the bus has a large windshield, prominent headlights, and a grill, while the rear displays taillights and a rear window with graffiti. The wheels are large and robust, suitable for supporting the vehicle's considerable weight. The overall design suggests an older model, possibly repurposed or left unused for some time.",
+    "description": "A large, rusted, and weathered city bus with rectangular windows, faded white and red exterior, and a single main passenger door near the front.",
+    "description_view_0": "Side view showing the right side of the bus with a long row of rectangular windows, a single main passenger door near the front, and extensive rust and weathering.",
+    "description_view_1": "Front view displaying the large windshield, headlights, grill, and the bus's boxy front profile.",
+    "description_view_2": "Side view of the left side, similar to the right but without a visible passenger door, showing the full length of windows and heavy rust.",
+    "description_view_3": "Rear view showing the back window with graffiti, taillights, and the flat rear surface of the bus.",
+    "category": "bus",
+    "height": 3.2,
+    "max_dimension": 11.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 11000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "step",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "gray",
+        "black",
+        "rust-brown"
+    ],
+    "colors_composition": [
+        0.5,
+        0.15,
+        0.1,
+        0.1,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 1,
+    "attribute_window_arrangement": "Rectangular windows arranged in a single row along each side, separated by metal pillars, with consistent size and spacing except for a shorter window at the rear.",
+    "attribute_route_number_or_destination_sign": "",
+    "attribute_bus_manufacturer_logo": "",
+    "attribute_passenger_entry_step_height": 0.45,
+    "uid": "813debd2486a45f3b448bcb8e30d0cbf",
+    "near_synsets": {
+        "bus.n.04": 0.51411352220621,
+        "bus.n.01": 0.5185127880522163,
+        "school_bus.n.01": 0.5196881448236238,
+        "bus_traffic.n.01": 0.5330993804815171,
+        "bus_route.n.01": 0.5539172541208511,
+        "bus_topology.n.01": -1000.0,
+        "busbar.n.01": -1000.0
+    },
+    "synset": "busbar.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/813debd2486a45f3b448bcb8e30d0cbf",
+        "creator_username": "gaelinix",
+        "creator_display_name": "gaelinix",
+        "creator_profile_url": "https://sketchfab.com/gaelinix"
+    },
+    "filename": "std_813debd2486a45f3b448bcb8e30d0cbf.glb",
+    "length": 11.062061309814453,
+    "width": 3.380757689476013
+}

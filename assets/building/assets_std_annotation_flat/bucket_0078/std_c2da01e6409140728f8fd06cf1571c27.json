@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a compact, tan-colored combat tactical vehicle with a robust, angular body and reinforced armor plating. The front features a prominent cannon barrel mounted on a rotating turret, flanked by thick, modular armor panels. On the upper left side, there is a four-tube missile launcher, while the right side displays a cylindrical device, possibly a sensor or secondary weapon. The vehicle moves on wide, black treads suitable for urban terrain, and has several hatches, vents, and a visible antenna for communication. Markings such as 'M2' and geometric symbols are stenciled on the lower panels, and the surface shows minor wear and scuffing, indicating operational use.",
+    "description": "A tan, heavily-armored tracked combat vehicle with a turret-mounted cannon, missile launcher, and visible 'M2' markings.",
+    "description_view_0": "Front view shows the main cannon, thick frontal armor, and the left-side missile launcher.",
+    "description_view_1": "Left side view highlights the missile launcher, turret, and side armor details, as well as the antenna.",
+    "description_view_2": "Rear view displays the back armor, treads, and the 'M2' marking on the lower panel.",
+    "description_view_3": "Right side view reveals a cylindrical device, side armor, and the rear of the missile launcher.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 3.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 9500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "missile launcher",
+        "antenna",
+        "hatches",
+        "treads"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon on the turret front, one four-tube missile launcher on the upper left side, and a cylindrical device (possible secondary weapon or sensor) on the right side.",
+    "attribute_armor_plating": "Full body coverage with thick, modular armor panels; reinforced on the front and sides, with visible wear and sloped surfaces for deflection.",
+    "attribute_camouflage_pattern": "Solid tan paint scheme with minor gray and black accents; no complex camouflage pattern visible.",
+    "attribute_military_markings": "White 'M2' stenciled on lower side panels, geometric arrow symbol above 'M2', and a small colored flag on the right side near the antenna.",
+    "attribute_tire_type": "not applicable",
+    "uid": "c2da01e6409140728f8fd06cf1571c27",
+    "near_synsets": {
+        "tank.n.01": 0.4876127831406795,
+        "military_vehicle.n.01": 0.48981081400818266,
+        "weapons_carrier.n.01": 0.5160221095065719,
+        "armored_car.n.02": 0.5243742984485449,
+        "assault_gun.n.02": 0.5292119477192676,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/c2da01e6409140728f8fd06cf1571c27",
+        "creator_username": "GAZPERRY",
+        "creator_display_name": "GAZPERRY",
+        "creator_profile_url": "https://sketchfab.com/GAZPERRY"
+    },
+    "filename": "std_c2da01e6409140728f8fd06cf1571c27.glb",
+    "length": 2.2194435596466064,
+    "width": 2.540705680847168
+}

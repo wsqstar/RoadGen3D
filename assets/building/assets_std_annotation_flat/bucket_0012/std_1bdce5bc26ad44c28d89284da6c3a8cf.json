@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a cylindrical bomb with a robust metallic body, featuring two symmetrical end caps and a central rectangular module. The main body is predominantly gray, with two prominent orange-brown mounting brackets encircling the cylinder near each end. The central section displays a red label marked '05-8' and is flanked by two greenish compartments, possibly for electronics or explosives. Several bolts, seams, and a few exposed black wires are visible, suggesting access points and electrical connectivity. The surface appears industrial, with a matte finish and some signs of wear, indicating it is designed for durability and secure mounting.",
+    "description": "A cylindrical, metallic bomb with orange-brown mounting brackets, a central module labeled '05-8', and visible wiring and compartments.",
+    "description_view_0": "The bomb is viewed head-on from one end, showing a circular end cap and the orange-brown mounting brackets symmetrically on either side.",
+    "description_view_1": "A side view reveals the full cylindrical body, central module with the '05-8' label, greenish compartments, and visible wiring beneath.",
+    "description_view_2": "The opposite end view mirrors view 0, showing the other circular end cap and mounting brackets, with less detail of the central module.",
+    "description_view_3": "Another side view, similar to view 1 but from the opposite side, showing the cylindrical body, mounting brackets, and central module without the visible label.",
+    "category": "bomb",
+    "height": 0.25,
+    "max_dimension": 1.0,
+    "materials": [
+        "steel",
+        "plastic",
+        "copper",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "mounting bracket",
+        "central module",
+        "wires"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "orange-brown",
+        "green",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The bomb features visible wiring and a central module, suggesting detonation could be triggered electrically or via a remote signal, possibly through the central compartment.",
+    "attribute_wiring_visibility": true,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": true,
+    "uid": "1bdce5bc26ad44c28d89284da6c3a8cf",
+    "near_synsets": {
+        "briefcase_bomb.n.01": 0.5260896075550572,
+        "bomb.n.01": 0.530896753018637,
+        "pipe_bomb.n.01": 0.5343896041651115,
+        "plastic_bomb.n.01": 0.5550116042369142,
+        "remote-control_bomb.n.01": 0.5564400366195575,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1bdce5bc26ad44c28d89284da6c3a8cf",
+        "creator_username": "TertiumOrganum",
+        "creator_display_name": "TertiumOrganum",
+        "creator_profile_url": "https://sketchfab.com/TertiumOrganum"
+    },
+    "filename": "std_1bdce5bc26ad44c28d89284da6c3a8cf.glb",
+    "length": 0.24032876640558243,
+    "width": 0.9029430449008942
+}

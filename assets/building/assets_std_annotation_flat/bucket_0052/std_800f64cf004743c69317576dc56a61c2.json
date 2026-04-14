@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a small, rustic windmill with a weathered appearance, featuring a central tower constructed from what appears to be wood and possibly some metal framework. The windmill has four large, flat blades attached to a central hub, with the blades made from corrugated material that resembles aged wood or metal sheeting. The tower is detailed with window-like panels and structural supports, and the base is set on a roughly circular, textured platform that mimics a patch of ground. Some parts of the structure appear slightly bent or damaged, giving it a worn, utilitarian look. The color palette is dominated by earthy browns, grays, and muted metallic tones, with some lighter highlights on the windows and base. This windmill would likely be found in a park, garden, or as a decorative feature in an urban neighborhood.",
+    "description": "A small, rustic windmill with four large blades and a weathered wooden tower, set on a circular base with window-like details and earthy tones.",
+    "description_view_0": "Front view showing the main entrance, window panels, and two prominent windmill blades.",
+    "description_view_1": "Side view highlighting the corrugated blade structure and the angled roof, with less detail on the tower.",
+    "description_view_2": "Rear view displaying the back window panel and the attachment of the blades to the central hub.",
+    "description_view_3": "Opposite side view showing the angled roof, side window, and the base's textured surface.",
+    "category": "windmill",
+    "height": 0.7,
+    "max_dimension": 0.8,
+    "materials": [
+        "wood",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 4,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "blades",
+        "door",
+        "windows"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "beige",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_blades": 4,
+    "attribute_blade_orientation": "horizontal-axis",
+    "attribute_tower_structure_type": "wooden post",
+    "attribute_presence_of_nacelle": false,
+    "attribute_mounting_location": "ground-mounted",
+    "uid": "800f64cf004743c69317576dc56a61c2",
+    "near_synsets": {
+        "windmill.n.01": 0.4441884652328614,
+        "windmill.n.02": 0.5101055190170602,
+        "wind_turbine.n.01": 0.5179716407613985,
+        "water_mill.n.01": 0.5233889706158998,
+        "wind_farm.n.01": 0.5461352668530003
+    },
+    "synset": "windmill.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/800f64cf004743c69317576dc56a61c2",
+        "creator_username": "mcchua2",
+        "creator_display_name": "Mcchua2",
+        "creator_profile_url": "https://sketchfab.com/mcchua2"
+    },
+    "filename": "std_800f64cf004743c69317576dc56a61c2.glb",
+    "length": 0.6405723094940186,
+    "width": 0.6406270861625671
+}

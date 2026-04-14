@@ -1,0 +1,84 @@
+{
+    "description_long": "This object is a blocky, stylized airplane with a geometric, voxel-like design. The fuselage is thick and angular, with a prominent vertical stabilizer at the rear and a large, octagonal nose section. The wings are straight and extend horizontally from the midsection, with boxy engine nacelles or support structures attached beneath each wing. The tail section features a tall, upright fin and a horizontal stabilizer, giving the rear a distinctive T-tail appearance. The surface is uniformly gray, with no visible windows, doors, or detailed markings, and the overall form is highly simplified, suggesting a digital or toy-like representation.",
+    "description": "A blocky, gray, voxel-style airplane with a thick fuselage, straight wings, and a prominent T-tail. The design is highly geometric and simplified, with no visible windows or markings.",
+    "description_view_0": "The airplane is seen from the front, highlighting the octagonal nose, central fuselage, and the vertical stabilizer at the rear.",
+    "description_view_1": "A top-down view reveals the straight wings extending from the midsection and the boxy structures beneath them, as well as the T-tail configuration.",
+    "description_view_2": "The rear view emphasizes the vertical stabilizer and the symmetry of the tail section, with the wings and fuselage visible in profile.",
+    "description_view_3": "An angled top-rear view shows the relationship between the wings, tail, and fuselage, with the blocky engine nacelles or supports clearly visible.",
+    "category": "airplane",
+    "height": 3.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.15
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 4,
+    "movable": true,
+    "required_force": 3200,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit",
+        "wings",
+        "tail",
+        "engine nacelles"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing configuration with straight, rectangular wings and no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Twin blocky nacelles under each wing, engine type not visually specified.",
+    "attribute_tail_design": "T-tail configuration with a single vertical stabilizer and a high-mounted horizontal stabilizer.",
+    "attribute_landing_gear_type": "No visible landing gear present.",
+    "attribute_cockpit_placement": "Forward-mounted cockpit, enclosed, with no visible windows or canopy details.",
+    "uid": "dd0c97c5e06b4c63bc6377857c6d5041",
+    "near_synsets": {
+        "aircraft.n.01": 0.5273055865277787,
+        "airplane.n.01": 0.5406775224060508,
+        "monoplane.n.01": 0.5537593832595668,
+        "fuselage.n.01": 0.5595026446149066,
+        "biplane.n.01": 0.5646493406657128
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dd0c97c5e06b4c63bc6377857c6d5041",
+        "creator_username": "neilken",
+        "creator_display_name": "neilken",
+        "creator_profile_url": "https://sketchfab.com/neilken"
+    },
+    "filename": "std_dd0c97c5e06b4c63bc6377857c6d5041.glb",
+    "length": 2.5754716396331787,
+    "width": 1.5188677310943604
+}

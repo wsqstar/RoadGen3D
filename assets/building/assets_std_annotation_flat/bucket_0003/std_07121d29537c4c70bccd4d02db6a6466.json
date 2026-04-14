@@ -1,0 +1,111 @@
+{
+    "description_long": "This is a compact, boxy all-terrain vehicle with a robust green body and a contrasting black roof, designed for rugged use in urban and off-road environments. The front features a protective grille guard, rectangular headlights, and a wide windshield with dual wipers. The sides display pronounced wheel arches, sturdy side mirrors, and visible door outlines, while the rear includes a mounted spare tire and a rear license plate. The wheels are thick and fitted with all-terrain tires, suitable for a variety of surfaces. The vehicle's windows are tinted, and the overall build suggests a steel frame with reinforced bumpers and undercarriage. The design is reminiscent of classic utility vehicles, prioritizing durability and functionality.",
+    "description": "A green, boxy all-terrain vehicle with a black roof, protective grille, and rugged tires, designed for both urban and off-road use.",
+    "description_view_0": "Front view showing the grille guard, rectangular headlights, wide windshield, and front license plate.",
+    "description_view_1": "Left side view highlighting the two-door configuration, pronounced wheel arches, and sturdy tires.",
+    "description_view_2": "Rear view displaying the mounted spare tire, rear lights, and rear license plate.",
+    "description_view_3": "Right side view similar to the left, showing the door, wheel arches, and rugged tires.",
+    "category": "all-terrain vehicle",
+    "height": 1.9,
+    "max_dimension": 4.2,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air",
+        "fabric"
+    ],
+    "materials_composition": [
+        0.65,
+        0.1,
+        0.1,
+        0.07,
+        0.04,
+        0.02,
+        0.02
+    ],
+    "mass": 1850,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 9000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "handle",
+        "window",
+        "mirror",
+        "grille guard",
+        "spare tire"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.07,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 5,
+    "attribute_tire_tread_pattern": "The tires have a blocky, all-terrain tread pattern with deep grooves, designed for traction on both paved and unpaved surfaces.",
+    "attribute_suspension_type": "solid axle",
+    "attribute_presence_of_roll_cage": false,
+    "attribute_handlebar_or_steering_wheel_type": "round steering wheel",
+    "uid": "07121d29537c4c70bccd4d02db6a6466",
+    "near_synsets": {
+        "sport_utility.n.01": 0.5158279866894813,
+        "military_vehicle.n.01": 0.5251713678843815,
+        "reconnaissance_vehicle.n.01": 0.530866397931953,
+        "jeep.n.01": 0.532377099139732,
+        "armored_vehicle.n.01": 0.5393715950655072,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "jeep.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/07121d29537c4c70bccd4d02db6a6466",
+        "creator_username": "David_Holiday",
+        "creator_display_name": "David_Holiday",
+        "creator_profile_url": "https://sketchfab.com/David_Holiday"
+    },
+    "filename": "std_07121d29537c4c70bccd4d02db6a6466.glb",
+    "length": 4.298869848251343,
+    "width": 2.151655435562134
+}

@@ -1,0 +1,109 @@
+{
+    "description_long": "This object consists of a group of six military-style combat tactical vehicles, each with distinct shapes and features. The vehicles are primarily colored in dark green, brown, and black, with some having visible turrets, missile pods, or armored plating. The first vehicle on the left appears to be a spider-like robot with multiple legs and a missile launcher on top. The next two vehicles are tracked, with one featuring a turret and the other a low-profile armored body. The remaining three vehicles are larger, with elongated bodies and multiple wheels or tracks, resembling armored personnel carriers or supply trucks. The surfaces are matte and hard, with visible paneling and some raised details suggesting reinforced armor. No visible windows or doors are present, emphasizing their tactical and armored nature.",
+    "description": "A group of six armored combat tactical vehicles, including tracked, wheeled, and spider-like robotic forms, all in dark military colors with visible turrets and missile pods.",
+    "description_view_0": "Front view showing the distinct shapes of all six vehicles, with visible turrets, missile pods, and armored fronts.",
+    "description_view_1": "Side view highlighting the length and wheel/tracked arrangements of the vehicles, as well as the spider-like legs of the first vehicle.",
+    "description_view_2": "Rear view displaying the back armor and exhausts of the vehicles, with less detail on weaponry.",
+    "description_view_3": "Opposite side view showing the vehicles' profiles, including the raised turrets and missile pods.",
+    "category": "combat tactical  vehicle",
+    "height": 1.8,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "track",
+        "turret",
+        "missile pod",
+        "hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "brown",
+        "black",
+        "gray",
+        "orange"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "group",
+    "attribute_weapon_mounts": "Three visible weapon mounts: one missile pod on the spider-like vehicle (front left), one turret on the second vehicle (front center-left), and one missile pod on the third vehicle (front center). All are roof-mounted.",
+    "attribute_armor_plating": "All vehicles have visible armor plating covering the full body, with some featuring sloped and modular panels. The armor appears thick and reinforced, especially on the front and sides.",
+    "attribute_camouflage_pattern": "Woodland camouflage pattern with dark green, brown, and black irregular shapes.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable; vehicles use tracks or mechanical legs.",
+    "uid": "739e91ef6d554713943a4d5e322884eb",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.497574439839582,
+        "tank.n.01": 0.5009164178306783,
+        "armored_car.n.02": 0.5069440506400974,
+        "reconnaissance_vehicle.n.01": 0.5129026904432322,
+        "armored_vehicle.n.01": 0.531371566062819,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/739e91ef6d554713943a4d5e322884eb",
+        "creator_username": "dartuchiwa",
+        "creator_display_name": "dartuchiwa",
+        "creator_profile_url": "https://sketchfab.com/dartuchiwa"
+    },
+    "filename": "std_739e91ef6d554713943a4d5e322884eb.glb",
+    "length": 7.893674612045288,
+    "width": 10.151704788208008
+}

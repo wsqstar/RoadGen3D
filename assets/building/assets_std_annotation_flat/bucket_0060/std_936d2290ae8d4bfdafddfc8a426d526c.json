@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a compact, armored combat vehicle with a low-profile turret mounted centrally on its chassis. The hull is angular, with sloped armor panels on the front and sides, and features a set of six large road wheels on each side, typical of tracked vehicles. The turret is equipped with two visible gun barrels extending forward, suggesting dual armament, and has several hatches and vision ports. The rear section of the vehicle is boxy, with what appear to be engine grilles or vents on the top surface. The exterior is finished in a solid, matte gray color, with no visible camouflage or military markings. The overall design is utilitarian, emphasizing protection and firepower for urban or tactical operations.",
+    "description": "A compact, gray armored combat vehicle with a central turret, dual gun barrels, and sloped armor panels. It features six large road wheels per side and a matte finish.",
+    "description_view_0": "Side view showing the full length of the vehicle, six large road wheels, and the central turret with dual barrels.",
+    "description_view_1": "Front view highlighting the sloped frontal armor, the two gun barrels, and the narrow profile of the vehicle.",
+    "description_view_2": "Opposite side view, mirroring view 0, with clear visibility of the turret, road wheels, and rear engine grilles.",
+    "description_view_3": "Rear view displaying the boxy back, engine grilles, and the rear armor plate.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 90000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "gun barrel",
+        "wheel",
+        "vision port"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Two gun barrels mounted on the front of the turret; no other visible mounts.",
+    "attribute_armor_plating": "Full body coverage with sloped armor panels on the front and sides; armor appears thick and continuous with no modular or reactive features visible.",
+    "attribute_camouflage_pattern": "None visible; solid matte gray paint scheme.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable; vehicle uses continuous tracks with six large road wheels per side.",
+    "uid": "936d2290ae8d4bfdafddfc8a426d526c",
+    "near_synsets": {
+        "armored_car.n.02": 0.4918352098731572,
+        "tank.n.01": 0.4973337807458554,
+        "military_vehicle.n.01": 0.497412208429755,
+        "reconnaissance_vehicle.n.01": 0.5119001102151997,
+        "assault_gun.n.02": 0.519413667399731,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/936d2290ae8d4bfdafddfc8a426d526c",
+        "creator_username": "vatterger",
+        "creator_display_name": "vatterger",
+        "creator_profile_url": "https://sketchfab.com/vatterger"
+    },
+    "filename": "std_936d2290ae8d4bfdafddfc8a426d526c.glb",
+    "length": 5.584409952163696,
+    "width": 2.539334535598755
+}

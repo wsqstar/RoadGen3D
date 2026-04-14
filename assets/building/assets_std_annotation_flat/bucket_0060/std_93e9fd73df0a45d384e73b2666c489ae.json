@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a double-barreled shotgun with a short, sawed-off design, featuring two parallel barrels and a dark wooden or synthetic stock. The barrels are side-by-side, and the receiver and trigger assembly are robust, with a visible break-action hinge beneath the barrels. The shotgun is accompanied by several red shotgun shells with brass bases, placed nearby. The stock is compact, lacking a full shoulder rest, and the grip is curved for handheld use. The metal surfaces show some wear and a matte finish, while the trigger guard is rounded and encloses two triggers. The overall appearance suggests a utilitarian, close-quarters firearm suitable for urban environments.",
+    "description": "A short, side-by-side double-barreled shotgun with a dark stock and several red shotgun shells. The compact design features a rounded trigger guard and visible break-action hinge.",
+    "description_view_0": "Front view showing the twin barrels and the compact grip, with shotgun shells visible beside the stock.",
+    "description_view_1": "Side profile highlighting the side-by-side barrels, break-action hinge, and the arrangement of shotgun shells below.",
+    "description_view_2": "Rear view focusing on the open ends of the barrels and the back of the receiver, with shells to the side.",
+    "description_view_3": "Opposite side profile displaying the full length of the barrels, the grip, and the trigger guard.",
+    "category": "shotgun",
+    "height": 0.15,
+    "max_dimension": 0.55,
+    "materials": [
+        "steel",
+        "wood",
+        "plastic",
+        "brass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "unloadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "trigger guard",
+        "barrels",
+        "break-action hinge",
+        "grip",
+        "shells"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "red",
+        "brass"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_barrel_configuration": "side-by-side double-barrel, no visible ribbing or venting, short barrel length",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "break-action",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized, fully enclosing the triggers with no visible finger grooves or reinforcement",
+    "uid": "93e9fd73df0a45d384e73b2666c489ae",
+    "near_synsets": {
+        "shotgun.n.01": 0.4632636541893548,
+        "sawed-off_shotgun.n.01": 0.4665178709013116,
+        "shotgun_shell.n.01": 0.5159503566670659,
+        "bird_shot.n.01": 0.519946206869185,
+        "pump_action.n.01": 0.5204781868349584
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/93e9fd73df0a45d384e73b2666c489ae",
+        "creator_username": "Keita-sama",
+        "creator_display_name": "Keita-sama",
+        "creator_profile_url": "https://sketchfab.com/Keita-sama"
+    },
+    "filename": "std_93e9fd73df0a45d384e73b2666c489ae.glb",
+    "length": 0.5659279227256775,
+    "width": 0.1421663537621498
+}

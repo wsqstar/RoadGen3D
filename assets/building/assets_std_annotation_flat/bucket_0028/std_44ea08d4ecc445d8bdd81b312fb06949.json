@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a large, rectangular above-ground jacuzzi with a wooden panel exterior and a bright blue water interior. The jacuzzi features a set of wooden steps with a metal handrail at one end, providing easy access to the water. On the opposite end, there are two visible orange filtration or pump units, likely for water circulation and cleaning. The structure is supported by multiple concrete or stone footings along its base, ensuring stability. The water appears clean and nearly fills the entire basin, with the surface reflecting the sky. The overall design is robust and suitable for outdoor urban environments such as parks, backyards, or recreational areas.",
+    "description": "A large, rectangular above-ground jacuzzi with wooden paneling, blue water, access steps, and visible filtration units. The jacuzzi is sturdy and designed for outdoor use.",
+    "description_view_0": "Front view showing the wooden steps and metal handrail leading into the jacuzzi, with the blue water surface clearly visible.",
+    "description_view_1": "Side view highlighting the length of the jacuzzi, the wooden paneling, and the absence of steps or filtration units on this side.",
+    "description_view_2": "Rear view displaying two orange filtration or pump units and the supporting footings beneath the jacuzzi.",
+    "description_view_3": "Opposite side view similar to view 1, showing the wooden paneling and a small section of the handrail at the far end.",
+    "category": "jacuzzi",
+    "height": 1.2,
+    "max_dimension": 5.0,
+    "materials": [
+        "wood",
+        "metal",
+        "plastic",
+        "water",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.1,
+        0.1,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "swimmable",
+        "soakable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "steps",
+        "handrail",
+        "filtration unit",
+        "water surface"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "blue",
+        "orange",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_jets": [],
+    "attribute_control_panel": "none visible",
+    "attribute_water_level": "nearly full, water surface close to the top edge",
+    "attribute_cover": false,
+    "attribute_steps": [
+        {
+            "location": "front",
+            "number_of_steps": 3,
+            "material": "wood"
+        }
+    ],
+    "uid": "44ea08d4ecc445d8bdd81b312fb06949",
+    "near_synsets": {
+        "hot_tub.n.01": 0.5236000311562692,
+        "bath_water.n.01": 0.5755907599791068,
+        "bathtub.n.01": 0.5802750809082377,
+        "swimming_pool.n.01": 0.5921667844441185,
+        "lido_deck.n.01": 0.5934391083800203
+    },
+    "synset": "hot_tub.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/44ea08d4ecc445d8bdd81b312fb06949",
+        "creator_username": "trzyde.com",
+        "creator_display_name": "trzyde.com",
+        "creator_profile_url": "https://sketchfab.com/trzyde.com"
+    },
+    "filename": "std_44ea08d4ecc445d8bdd81b312fb06949.glb",
+    "length": 6.572248935699463,
+    "width": 4.522575855255127
+}

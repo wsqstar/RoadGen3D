@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a large, turret-like rifle with a robust, industrial design, featuring two parallel barrels extending from a rectangular, armored housing. The main body is constructed from a combination of metallic and brass-colored materials, with visible bolts and rivets accentuating its mechanical nature. The base is wide and octagonal, providing stability, and is finished in a gold and black color scheme. On one side, decorative gear motifs suggest a steampunk or mechanical aesthetic, while the barrels themselves are reinforced and appear to be made of copper or brass. The housing is topped with a flat, riveted plate, and the entire structure is mounted on a rotating platform, indicating it is designed for stationary, defensive use. The overall appearance is imposing and engineered for durability, likely intended for automated or remote operation in an urban defense scenario.",
+    "description": "A large, dual-barreled turret rifle with a metallic and brass finish, mounted on a sturdy octagonal base and adorned with gear motifs. Its industrial design suggests stationary, defensive use in urban environments.",
+    "description_view_0": "Side view showing the two parallel barrels extending from the armored housing and the wide, gold-accented base.",
+    "description_view_1": "Rear view highlighting the gear motifs on the housing and the symmetrical, octagonal base.",
+    "description_view_2": "Opposite side view with a clear look at the barrels and the flat, riveted top plate of the housing.",
+    "description_view_3": "Front view directly down the barrels, emphasizing the twin-barrel configuration and the reinforced muzzle ends.",
+    "category": "rifle",
+    "height": 1.2,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "brass",
+        "copper",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "barrel",
+        "housing",
+        "base",
+        "rotating platform",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gold",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "none",
+    "attribute_muzzle_device": "none",
+    "uid": "832efb079b5749acbdfca19b183a9437",
+    "near_synsets": {
+        "gun_enclosure.n.01": 0.5200258193123337,
+        "rifle.n.01": 0.5272458150028065,
+        "turret.n.01": 0.5295557734655303,
+        "garand_rifle.n.01": 0.5297521631846257,
+        "assault_rifle.n.01": 0.5368397263076169
+    },
+    "synset": "assault_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/832efb079b5749acbdfca19b183a9437",
+        "creator_username": "GoddHoward",
+        "creator_display_name": "Todor",
+        "creator_profile_url": "https://sketchfab.com/GoddHoward"
+    },
+    "filename": "std_832efb079b5749acbdfca19b183a9437.glb",
+    "length": 2.4769917726516724,
+    "width": 2.1189022064208984
+}

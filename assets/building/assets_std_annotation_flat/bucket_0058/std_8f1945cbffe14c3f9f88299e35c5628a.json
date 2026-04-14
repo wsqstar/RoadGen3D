@@ -1,0 +1,99 @@
+{
+    "description_long": "This humanoid robot features a heavily armored, angular exoskeleton with a rugged, metallic appearance reminiscent of advanced military technology. Its body is composed of interlocking, jagged plates of dark metal, with prominent mechanical joints and reinforced limbs. The robot's head is helmet-like, with a narrow visor and no visible mouth, giving it an imposing, expressionless look. Red circular elements, possibly sensors or lights, are embedded in the chest, shoulders, and head, adding to its intimidating presence. One arm is equipped with a large, blade-like attachment, suggesting combat functionality, while the other arm is robust and articulated. The overall design is bulky and robust, with a stance that conveys strength and readiness for action.",
+    "description": "A heavily armored, jagged humanoid robot with dark metallic plating, red sensor lights, and a large blade arm. Its design is robust, intimidating, and combat-ready.",
+    "description_view_0": "The left side view highlights the jagged armor plating, the large blade attachment on the left arm, and the layered mechanical structure of the torso and legs.",
+    "description_view_1": "The rear view reveals the broad, armored back, red circular lights on the shoulders and lower back, and the full extent of the robot's powerful limbs.",
+    "description_view_2": "The right side view shows the angular armor, mechanical joints, and the absence of the blade on this side, emphasizing the asymmetry of the arm attachments.",
+    "description_view_3": "The front view displays the helmeted head, chest armor with a central red sensor, and the imposing stance with both arms visible, including the blade arm.",
+    "category": "humanoid robot",
+    "height": 2.5,
+    "max_dimension": 2.7,
+    "materials": [
+        "steel",
+        "composite polymer",
+        "glass",
+        "copper",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 9,
+    "movable": true,
+    "required_force": 4120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "blade arm",
+        "joints",
+        "sensor lights",
+        "head"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "red",
+        "copper"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with legs apart, arms slightly bent at the elbows, left arm extended forward with a blade attachment, head facing forward, and torso squared.",
+    "attribute_clothing_style": "No clothing; the robot is covered in integrated, jagged metal armor plating with some copper and glass elements, giving a militaristic and utilitarian appearance.",
+    "attribute_facial_features": "The face is helmet-like with a narrow, dark visor and no visible mouth or nose; a red circular sensor is present in the center of the head, with no expressive or display features.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints at the shoulders, elbows, hips, and knees, allowing for a wide range of motion; hands are not clearly defined, and the left arm ends in a large blade.",
+    "attribute_presence_of_sensors": "Red circular sensors are visible on the head, chest, and shoulders, likely functioning as cameras or visual sensors; no other sensors are clearly visible.",
+    "uid": "8f1945cbffe14c3f9f88299e35c5628a",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5503674809364306,
+        "android.n.01": 0.555472692741663,
+        "cyborg.n.01": 0.5611582645626154,
+        "automaton.n.02": 0.5851084853807703,
+        "robotics.n.01": 0.587760066479501
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8f1945cbffe14c3f9f88299e35c5628a",
+        "creator_username": "brotasticman",
+        "creator_display_name": "Brotastic",
+        "creator_profile_url": "https://sketchfab.com/brotasticman"
+    },
+    "filename": "std_8f1945cbffe14c3f9f88299e35c5628a.glb",
+    "length": 1.0564240217208862,
+    "width": 2.4155871868133545
+}

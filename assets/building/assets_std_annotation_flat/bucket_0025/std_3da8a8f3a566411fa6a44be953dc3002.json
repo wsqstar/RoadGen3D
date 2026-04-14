@@ -1,0 +1,91 @@
+{
+    "description_long": "This is a partially destroyed modern skyscraper with a rectangular footprint and a grid-like glass and steel facade. The building's upper floors are heavily damaged, with a large section of the structure collapsed and debris spilling out, exposing internal steel reinforcements and broken concrete. The remaining intact portion features a repetitive window pattern, typical of commercial office towers, and the roof is flat with some visible structural deformation. The debris field consists of twisted metal rods, shattered glass, and concrete fragments, suggesting a catastrophic structural failure. The facade is primarily composed of reflective glass panels set within a metallic grid, giving it a sleek, contemporary appearance. No visible signage or branding is present on the exterior.",
+    "description": "A modern skyscraper with a grid-patterned glass facade, partially collapsed with extensive debris and exposed steel reinforcements. The structure shows severe upper-floor damage and a large debris field.",
+    "description_view_0": "The front-left view highlights the collapsed section, with debris and exposed steel rods spilling out from the building's side.",
+    "description_view_1": "The side view shows the intact grid facade and the full extent of the debris field projecting outward from the building.",
+    "description_view_2": "The rear-left view emphasizes the damaged upper floors and the dense cluster of twisted metal and rubble.",
+    "description_view_3": "The rear view displays the gaping hole in the facade and the chaotic debris pile at the building's base.",
+    "category": "skyscraper",
+    "height": 45.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "glass",
+        "steel",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.4,
+        0.3,
+        0.25,
+        0.05
+    ],
+    "mass": 1800000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "breakable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "doors",
+        "windows",
+        "debris"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Modernist",
+    "attribute_number_of_floors": 12,
+    "attribute_facade_design": "The facade features a regular grid of reflective glass panels framed by metallic mullions, with visible structural damage and exposed steel reinforcements in the collapsed section. The overall appearance is sleek but marred by the chaotic debris and broken elements.",
+    "attribute_window_pattern": "checkerboard",
+    "attribute_building_signage": "none",
+    "uid": "3da8a8f3a566411fa6a44be953dc3002",
+    "near_synsets": {
+        "skyscraper.n.01": 0.49286111954120654,
+        "ruin.n.02": 0.565820650446112,
+        "high-rise.n.01": 0.5728707271040889,
+        "debris_surge.n.01": 0.5733071006250458,
+        "cityscape.n.01": 0.5813468158794668
+    },
+    "synset": "skyscraper.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3da8a8f3a566411fa6a44be953dc3002",
+        "creator_username": "143215collection",
+        "creator_display_name": "143215collection",
+        "creator_profile_url": "https://sketchfab.com/143215collection"
+    },
+    "filename": "std_3da8a8f3a566411fa6a44be953dc3002.glb",
+    "length": 62.01076126098633,
+    "width": 66.27098846435547
+}

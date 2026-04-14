@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a modern naval ship with a sleek, angular hull painted in gray and red, featuring a prominent superstructure with multiple levels and a central bridge. The bow is sharply pointed, and the stern is equipped with a helicopter landing pad, where a helicopter is visibly stationed. The ship is outfitted with various antennas and radar masts, as well as a large gun turret at the front and additional equipment along the deck. The superstructure includes several windows and hatches, and a flag is mounted atop the highest point. The vessel's design suggests a focus on both defense and operational versatility, with ample deck space and robust construction. The overall appearance is utilitarian and militaristic, suitable for patrol or combat roles.",
+    "description": "A modern gray and red naval ship with a helicopter pad, radar masts, and a large gun turret, featuring a multi-level superstructure and a prominent flag.",
+    "description_view_0": "Front view showing the pointed bow, central gun turret, and forward superstructure with radar masts.",
+    "description_view_1": "Side view highlighting the full length of the ship, helicopter on the stern pad, and the flag atop the superstructure.",
+    "description_view_2": "Rear view displaying the stern, helicopter pad, and the arrangement of the superstructure and masts.",
+    "description_view_3": "Opposite side view showing the ship's profile, helicopter, and deck equipment, with the flag visible.",
+    "category": "ship",
+    "height": 18,
+    "max_dimension": 120,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.01,
+        0.05
+    ],
+    "mass": 350000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "gun turret",
+        "radar mast",
+        "helicopter pad",
+        "flagpole"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 20,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a sharply pointed bow and a flat stern, painted red below the waterline and gray above. The sides are straight with a slight flare, and the deck is level from bow to stern, with no visible keels or bulbous bows.",
+    "attribute_superstructure_layout": "The superstructure is multi-leveled, centrally located, and rises above the main deck with a bridge, several decks, and a tower supporting radar and antennas. The stern features a helicopter pad, and the front has a large gun turret.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "helicopter",
+        "radar",
+        "antenna",
+        "gun turret",
+        "flagpole"
+    ],
+    "attribute_registration_markings": "flag",
+    "uid": "e80be6101b9649a3b020215614a44f1d",
+    "near_synsets": {
+        "naval_radar.n.01": 0.5154758464537192,
+        "three-decker.n.03": 0.5210088216419574,
+        "surface_ship.n.01": 0.5243389881095588,
+        "flagship.n.02": 0.5307532430486804,
+        "ensign.n.03": 0.5339178149394281,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e80be6101b9649a3b020215614a44f1d",
+        "creator_username": "madexc",
+        "creator_display_name": "madexc",
+        "creator_profile_url": "https://sketchfab.com/madexc"
+    },
+    "filename": "std_e80be6101b9649a3b020215614a44f1d.glb",
+    "length": 36.53479766845703,
+    "width": 6.953143358230591
+}

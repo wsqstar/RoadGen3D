@@ -1,0 +1,103 @@
+{
+    "description_long": "This object is a compact urban gas station complex featuring five distinct building units arranged in a row. Each unit has a flat roof, with some roofs displaying additional structures such as vents, signage, or small towers. One unit is topped with a tall, thin signpost and a lamp, while another displays a prominent 'GAS' sign. The buildings are set on rectangular bases, and the overall design is blocky and utilitarian, with minimal decorative elements. The station appears to lack a large canopy, and the fueling area is not clearly demarcated. The color is uniformly dark, giving the station a monolithic appearance.",
+    "description": "A row of five blocky, dark-colored gas station buildings with flat roofs, signage, and minimal decorative features. The station is compact, with no visible canopy or clear fueling area.",
+    "description_view_0": "Front view showing all five building units, with visible signage, a lamp post, and rooftop details.",
+    "description_view_1": "Side view emphasizing the depth and alignment of the buildings, with rooftops and bases visible in profile.",
+    "description_view_2": "Rear view displaying the backs of the buildings, with the 'GAS' sign and lamp post more prominent.",
+    "description_view_3": "Opposite side view showing the narrow profile of the buildings and the alignment of their rooftops.",
+    "category": "gas station",
+    "height": 4.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "concrete",
+        "metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.08,
+        0.04,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "pressable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "sign",
+        "lamp",
+        "roof vent"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 6.0,
+    "asset_composition_type": "group",
+    "attribute_fuel_pumps": "none visible",
+    "attribute_canopy_structure": "none visible",
+    "attribute_station_signage": "One large 'GAS' sign is visible on the roof of the leftmost building, composed of block letters. No other signage or branding is apparent.",
+    "attribute_price_display_board": "none visible",
+    "attribute_convenience_store_entrance": "none visible",
+    "uid": "62c995b8d0b347269e30a92e2f88267c",
+    "near_synsets": {
+        "gasoline_station.n.01": 0.5367809739943651,
+        "service_station.n.01": 0.5388461567124224,
+        "gas_pump.n.01": 0.5662141114064583,
+        "gas_tank.n.01": 0.5815115874092662,
+        "subtopia.n.01": 0.5870931264853799,
+        "natural_gas.n.01": -1000.0,
+        "gas.n.01": -1000.0,
+        "station.n.03": -1000.0,
+        "gas.n.02": -1000.0,
+        "gasoline.n.01": -1000.0,
+        "place.n.10": -1000.0,
+        "flatulence.n.01": -1000.0,
+        "station.n.05": -1000.0,
+        "station.n.01": -1000.0,
+        "post.n.01": -1000.0,
+        "accelerator.n.01": -1000.0
+    },
+    "synset": "gasoline_station.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/62c995b8d0b347269e30a92e2f88267c",
+        "creator_username": "Choopa",
+        "creator_display_name": "Choopa",
+        "creator_profile_url": "https://sketchfab.com/Choopa"
+    },
+    "filename": "std_62c995b8d0b347269e30a92e2f88267c.glb",
+    "length": 3.7214454412460327,
+    "width": 19.860000610351562
+}

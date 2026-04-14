@@ -1,0 +1,100 @@
+{
+    "description_long": "This humanoid robot features a sleek, angular body with a predominantly black exterior and metallic accents. Its head is a rectangular module with a dark screen or visor, possibly for visual sensors or display, and is mounted atop a narrow neck. The robot's arms are long, thin, and cross above its head, ending in rounded tips with antenna-like protrusions, suggesting possible communication or sensory functions. The torso is broad and tapers downward, with a geometric, cape-like structure extending behind. The legs are robust and mechanical, with visible joints and large, blocky feet designed for stability. The overall design is futuristic and utilitarian, with a focus on mobility and interaction in urban environments.",
+    "description": "A futuristic humanoid robot with a black, angular body, crossed antenna-tipped arms, and sturdy mechanical legs. Its head features a dark visor and the design emphasizes mobility and sensory capability.",
+    "description_view_0": "Front view shows the robot's rectangular head, crossed arms above, and broad, angular torso with two sturdy legs.",
+    "description_view_1": "Side view highlights the elongated, cape-like back structure and the thin, extended arms with antennae.",
+    "description_view_2": "Rear view reveals the crisscrossed arms, the back of the head, and the wide, angular back panel.",
+    "description_view_3": "Angled side view emphasizes the robot's protruding back, the mechanical detail of the legs, and the antenna-tipped arms.",
+    "category": "humanoid robot",
+    "height": 1.7,
+    "max_dimension": 2.1,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 95,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head/display",
+        "arms",
+        "legs",
+        "antenna",
+        "buttons/panels"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "white",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "sleek",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.12,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is standing upright with its arms crossed above its head, legs straight and slightly apart, and head facing forward.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated panels and angular coverings as part of its body structure.",
+    "attribute_facial_features": "The face consists of a rectangular, dark visor or screen with no visible eyes, mouth, or nose; no expressive elements are present.",
+    "attribute_limb_articulation": "The robot has articulated arms with at least two joints (shoulder and elbow), articulated legs with visible knee and ankle joints, and rigid, blocky feet. The arms appear to have rotary or hinge joints, while the legs have hinge joints.",
+    "attribute_presence_of_sensors": "Visible sensors include a possible camera or display in the head/visor area and antennae on the arms, likely for communication or environmental sensing.",
+    "uid": "777b5ecd9c484702986be9f9f1083b60",
+    "near_synsets": {
+        "android.n.01": 0.5269364149319176,
+        "cyborg.n.01": 0.5301486661989605,
+        "robotics_equipment.n.01": 0.5531049371829907,
+        "automaton.n.02": 0.5749990231665213,
+        "robotics.n.01": 0.5802872780549173
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/777b5ecd9c484702986be9f9f1083b60",
+        "creator_username": "Callen1",
+        "creator_display_name": "Colton Allen",
+        "creator_profile_url": "https://sketchfab.com/Callen1"
+    },
+    "filename": "std_777b5ecd9c484702986be9f9f1083b60.glb",
+    "length": 2.2686883211135864,
+    "width": 3.589128851890564
+}

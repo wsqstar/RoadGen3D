@@ -1,0 +1,109 @@
+{
+    "description_long": "This delivery robot features a compact, boxy body with a squared head and torso, both finished in a glossy black material. The robot is equipped with four large, rugged wheels, each with deep treads and orange highlights, designed for traversing urban terrain such as sidewalks and streets. The front of the robot displays a prominent circular sensor or camera, along with several buttons and indicator lights, suggesting interactive and navigational capabilities. The rear side includes access panels with warning labels and what appears to be a charging or maintenance port. The robot's body is accented with metallic fasteners and small yellow details, giving it a robust, industrial appearance. Its overall design is functional and sturdy, optimized for carrying and delivering small packages in urban environments.",
+    "description": "A compact, black delivery robot with a boxy body, four rugged wheels, and visible sensors and access panels, designed for urban package transport.",
+    "description_view_0": "Front and side view showing the robot's sensor/camera, control buttons, and rugged wheels.",
+    "description_view_1": "Rear and side view highlighting the access panels, warning labels, and wheel configuration.",
+    "description_view_2": "Front angle emphasizing the main sensor/camera and control interface.",
+    "description_view_3": "Back view displaying the access panel, warning label, and rear wheel arrangement.",
+    "category": "delivery robot",
+    "height": 0.7,
+    "max_dimension": 0.8,
+    "materials": [
+        "plastic",
+        "rubber",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.2,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 35,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "button",
+        "access panel",
+        "sensor/camera"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "orange",
+        "yellow",
+        "gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "glossy",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_brand_logo": "none",
+    "attribute_sensor_array": [
+        "circular camera or optical sensor on the front of the head",
+        "possible additional sensors on the front torso (small round elements)"
+    ],
+    "attribute_wheel_configuration": "Four large, rugged drive wheels with deep treads, arranged in pairs on each side (front and rear), suitable for urban terrain.",
+    "attribute_compartment_access_panel": "Rectangular access panel on the rear torso, featuring a handle, hinges, and warning label; likely used for accessing the cargo compartment.",
+    "attribute_display_screen": "none",
+    "uid": "2b3331585ca5431f81be336f3e7ad79b",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5483066944482375,
+        "automaton.n.02": 0.577083428472405,
+        "wheeled_vehicle.n.01": 0.5790956504878505,
+        "deliveryman.n.01": 0.5792858991497672,
+        "delivery_truck.n.01": 0.5821154333917894,
+        "delivery.n.04": -1000.0,
+        "pitch.n.02": -1000.0,
+        "delivery.n.07": -1000.0,
+        "rescue.n.01": -1000.0,
+        "manner_of_speaking.n.01": -1000.0,
+        "delivery.n.02": -1000.0,
+        "delivery.n.01": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2b3331585ca5431f81be336f3e7ad79b",
+        "creator_username": "nikita.nt.1998",
+        "creator_display_name": "Nekitron",
+        "creator_profile_url": "https://sketchfab.com/nikita.nt.1998"
+    },
+    "filename": "std_2b3331585ca5431f81be336f3e7ad79b.glb",
+    "length": 1.4415314197540283,
+    "width": 1.0459985136985779
+}

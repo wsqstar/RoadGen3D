@@ -1,0 +1,90 @@
+{
+    "description_long": "This object is a cylindrical windmill with a metallic, conical roof and a set of four large, black lattice-style blades attached to a central hub on the upper side of the cylinder. The main body of the windmill is constructed from a series of horizontal, ribbed segments, giving it a robust, industrial appearance. The blades are thin and grid-like, extending outward in a cross pattern, and are likely made of metal or reinforced material. The roof is a smooth, metallic cone, slightly weathered, and sits atop the cylindrical structure. The windmill lacks visible windows or doors, suggesting it is primarily functional rather than residential. The overall color palette is dominated by shades of gray, silver, and black, with a slightly reflective finish on the metal surfaces.",
+    "description": "A cylindrical, ribbed windmill with a metallic conical roof and four large, black lattice blades extending from the upper side. The structure is primarily gray and silver, with a robust, industrial look.",
+    "description_view_0": "The windmill is seen from a front angle, showing the conical roof, cylindrical ribbed body, and the full cross-pattern of the four black lattice blades.",
+    "description_view_1": "This view highlights the side of the windmill, with the blades appearing more foreshortened and the ribbed cylindrical body clearly visible.",
+    "description_view_2": "The back of the windmill is visible, showing the smooth, metallic cone roof and the cylindrical body with pronounced horizontal segments; the blades are seen edge-on.",
+    "description_view_3": "A rear-side view, emphasizing the conical roof and the cylindrical structure, with the lattice blades extending outward and partially obscured by the body.",
+    "category": "windmill",
+    "height": 7.0,
+    "max_dimension": 8.5,
+    "materials": [
+        "steel",
+        "aluminum",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "blades",
+        "rotor hub"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "silver",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "smooth",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_blades": 4,
+    "attribute_blade_orientation": "horizontal-axis",
+    "attribute_tower_structure_type": "tubular",
+    "attribute_presence_of_nacelle": false,
+    "attribute_mounting_location": "ground-mounted",
+    "uid": "9b7d68bb7ef64c97aa9a8a46effa040f",
+    "near_synsets": {
+        "windmill.n.01": 0.48649923709306225,
+        "windmill.n.02": 0.5245991751141156,
+        "wind_turbine.n.01": 0.5479314851195427,
+        "millwheel.n.01": 0.5568651135857263,
+        "fan_blade.n.01": 0.5575353898803053
+    },
+    "synset": "windmill.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/9b7d68bb7ef64c97aa9a8a46effa040f",
+        "creator_username": "Rob007",
+        "creator_display_name": "Robert",
+        "creator_profile_url": "https://sketchfab.com/Rob007"
+    },
+    "filename": "std_9b7d68bb7ef64c97aa9a8a46effa040f.glb",
+    "length": 5.557332992553711,
+    "width": 3.9101028442382812
+}

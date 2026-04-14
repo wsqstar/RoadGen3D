@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a heavily armored, black tactical vehicle designed for law enforcement or military use, featuring a robust, angular body with reinforced panels and bulletproof glass. The vehicle has six large, rugged off-road tires and a high ground clearance, suitable for urban and rough terrain operations. The front displays a prominent yellow insignia and a reinforced bumper with multiple lights, while the sides are marked with 'S.W.A.T' and 'SHERIFF'S COUNTY OFFICE' in bold yellow letters. The roof is equipped with a weapon mount and antenna, and the rear has a secure, armored door with a deployable step for entry. The vehicle's exterior is matte black with yellow highlights, and it is fitted with side mirrors, roof rails, and various tactical equipment mounts. Its design emphasizes protection, mobility, and tactical deployment in high-risk urban scenarios.",
+    "description": "A black, heavily armored SWAT tactical vehicle with six rugged tires, yellow markings, and a roof-mounted weapon station, built for urban law enforcement operations.",
+    "description_view_0": "Front view showing the reinforced bumper, yellow insignia on the hood, bulletproof windshield, and roof-mounted equipment.",
+    "description_view_1": "Left side view highlighting the 'S.W.A.T' and 'SHERIFF'S COUNTY OFFICE' markings, three large off-road tires, side door, and roof weapon mount.",
+    "description_view_2": "Rear view displaying the armored rear door, deployable step, and rear lights, with visible roof antenna.",
+    "description_view_3": "Right side view similar to the left, showing the tactical markings, side door, and full length of the vehicle with roof equipment.",
+    "category": "combat tactical  vehicle",
+    "height": 2.8,
+    "max_dimension": 7.0,
+    "materials": [
+        "armored steel",
+        "bulletproof glass",
+        "rubber",
+        "plastic",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.1,
+        0.03,
+        0.03,
+        0.01
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "handle",
+        "step",
+        "mirror",
+        "weapon mount",
+        "antenna",
+        "light"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "yellow",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible weapon mount on the roof, centrally located, suitable for a machine gun or similar armament.",
+    "attribute_armor_plating": "Full body coverage with thick, angular armored plating, including reinforced doors, hood, and rear; sloped panels for deflection.",
+    "attribute_camouflage_pattern": "None visible; solid matte black paint with yellow highlights.",
+    "attribute_military_markings": "Yellow insignia on the hood, 'S.W.A.T' and 'SHERIFF'S COUNTY OFFICE' in yellow on both sides.",
+    "attribute_tire_type": "Six large off-road tires with deep tread pattern, reinforced sidewalls, suitable for rough terrain.",
+    "uid": "42dd6663e3dc474e80f9d948fdb5cc1c",
+    "near_synsets": {
+        "swat_team.n.01": 0.5164084469962597,
+        "military_vehicle.n.01": 0.5203347504284589,
+        "reconnaissance_vehicle.n.01": 0.5353384317599595,
+        "technical.n.01": 0.5492497916794963,
+        "assault_gun.n.02": 0.5500424274165412,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/42dd6663e3dc474e80f9d948fdb5cc1c",
+        "creator_username": "xSimplyP",
+        "creator_display_name": "xSimplyP",
+        "creator_profile_url": "https://sketchfab.com/xSimplyP"
+    },
+    "filename": "std_42dd6663e3dc474e80f9d948fdb5cc1c.glb",
+    "length": 3.2933194637298584,
+    "width": 1.205263614654541
+}

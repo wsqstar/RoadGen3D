@@ -1,0 +1,96 @@
+{
+    "description_long": "This kiosk features a bold, striped red and black exterior with a prominent overhanging roof that provides shelter to the front-facing service area. The front is equipped with a service counter, shelving, and what appears to be a cash register, suggesting its use for retail or ticketing purposes. The sides are mostly solid black with a small vent or grille near the base, indicating possible ventilation for interior equipment. The rear is fully enclosed with horizontal red and black stripes, providing security and privacy. The roof is flat with alternating red and black stripes, extending outward to form a protective awning. The overall design is compact and functional, suitable for placement on sidewalks or in parks.",
+    "description": "A compact, striped red and black kiosk with a flat overhanging roof, front service counter, and solid sides. Designed for retail or ticketing in urban environments.",
+    "description_view_0": "Front view showing the service counter, shelving, cash register, and the deep overhang of the striped roof.",
+    "description_view_1": "Left side view displaying the solid black panel with a small vent near the bottom and the striped roof overhang.",
+    "description_view_2": "Rear view revealing a fully enclosed back with horizontal red and black stripes and no visible openings.",
+    "description_view_3": "Right side view similar to the left, with a solid black panel and a vent near the base, plus the striped roof overhang.",
+    "category": "kiosk",
+    "height": 2.5,
+    "max_dimension": 2.8,
+    "materials": [
+        "painted metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "counter",
+        "shelving",
+        "cash register",
+        "vent"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.45,
+        0.45,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "digital display above the service counter integrated into the structure; no visible text or symbols discernible",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "none",
+    "attribute_roof_design": "flat roof with bold red and black stripes, deep overhang forming an awning, constructed from solid panels",
+    "attribute_architectural_style": "modern with minimalist and utilitarian influences",
+    "uid": "3f6fb93612f74ad2b2cab3f64c193c76",
+    "near_synsets": {
+        "booth.n.02": 0.5238909900376879,
+        "box_office.n.02": 0.5518966681926477,
+        "booth.n.04": 0.5552754630577879,
+        "telephone_booth.n.01": 0.5561096945159298,
+        "ticket_window.n.01": 0.5584698862251574
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3f6fb93612f74ad2b2cab3f64c193c76",
+        "creator_username": "Moderneating.no",
+        "creator_display_name": "Moderneating",
+        "creator_profile_url": "https://sketchfab.com/Moderneating.no"
+    },
+    "filename": "std_3f6fb93612f74ad2b2cab3f64c193c76.glb",
+    "length": 2.0000003576278687,
+    "width": 1.382568359375
+}

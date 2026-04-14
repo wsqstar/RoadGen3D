@@ -1,0 +1,91 @@
+{
+    "description_long": "This object is a classic cartoon-style spherical bomb, featuring a matte black metal body with a smooth, slightly reflective surface. The bomb is nearly perfectly round, with a short cylindrical neck at the top where a thick, twisted brown fuse is inserted. The fuse is made of a fibrous material and is coiled in a loose arc, suggesting it is ready to be lit. There are no visible seams, markings, or warning labels on the bomb's surface, giving it a simple and iconic appearance. The overall design is reminiscent of early 20th-century explosives often depicted in animation and comics. Its size and construction suggest it could be carried by hand and placed in various urban environments.",
+    "description": "A matte black, spherical bomb with a short cylindrical neck and a thick, twisted brown fuse protruding from the top. The surface is smooth and unmarked, giving it a classic, cartoonish appearance.",
+    "description_view_0": "The bomb is seen from the front, showing the full round body and the fuse curving slightly to the left.",
+    "description_view_1": "The bomb is rotated, with the fuse now curving more prominently to the right, revealing more of the fuse's length and texture.",
+    "description_view_2": "The bomb is viewed from another angle, with the fuse arcing backward and the body maintaining its smooth, spherical appearance.",
+    "description_view_3": "The bomb is seen with the fuse curving forward and to the left, emphasizing the cylindrical neck and the attachment point of the fuse.",
+    "category": "bomb",
+    "height": 0.32,
+    "max_dimension": 0.32,
+    "materials": [
+        "steel",
+        "gunpowder",
+        "cotton",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 35,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable",
+        "ignitable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "fuse"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The bomb is equipped with a thick, twisted fuse that can be ignited to initiate detonation after a short delay.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "2bafad6b952942d6bdf43aea2016f503",
+    "near_synsets": {
+        "pipe_bomb.n.01": 0.5269732970273884,
+        "bomb.n.01": 0.5281381630619469,
+        "plastic_bomb.n.01": 0.5330057099350073,
+        "briefcase_bomb.n.01": 0.536007043166452,
+        "smoke_bomb.n.01": 0.5432545472992858,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2bafad6b952942d6bdf43aea2016f503",
+        "creator_username": "incg5764",
+        "creator_display_name": "Incg5764",
+        "creator_profile_url": "https://sketchfab.com/incg5764"
+    },
+    "filename": "std_2bafad6b952942d6bdf43aea2016f503.glb",
+    "length": 0.2658858001232147,
+    "width": 0.23930776119232178
+}

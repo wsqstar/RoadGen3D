@@ -1,0 +1,101 @@
+{
+    "description_long": "This shelter is a two-story, rectangular structure with a weathered, utilitarian appearance, featuring a mix of corrugated metal and wooden planks for its exterior walls. The roof is flat with several large, irregularly shaped openings and metal panels, some of which appear partially detached or damaged. Windows are rectangular and asymmetrically placed, with some boarded up or missing glass, contributing to a rundown look. The front features a metal awning above a recessed entryway, and a wooden ramp leads up to the entrance. Metal railings and platforms extend from the sides, suggesting access points or balconies. The lower level is partially open, with visible support columns and a mix of enclosed and open spaces, indicating a semi-sheltered area beneath the main floor.",
+    "description": "A weathered, two-story shelter with a flat, damaged metal roof, wooden plank walls, and irregular windows. Features include metal awnings, side platforms, and a partially open lower level.",
+    "description_view_0": "Front view shows the main entry with a metal awning, a wooden ramp, and two large windows above the entrance.",
+    "description_view_1": "Side view reveals the open lower level, a side platform with railing, and a mix of boarded and open windows.",
+    "description_view_2": "Rear view highlights additional windows, a side metal staircase, and the weathered, patchy roof structure.",
+    "description_view_3": "Opposite side view displays a large open section on the lower level, a side platform, and multiple roof openings.",
+    "category": "shelter",
+    "height": 5.0,
+    "max_dimension": 10.0,
+    "materials": [
+        "wood",
+        "corrugated metal",
+        "steel",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 8000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "coverable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "awning",
+        "ramp",
+        "railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "rust orange",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "flat corrugated metal roof with irregular openings and patchwork panels",
+    "attribute_entryway_design": "recessed entry with a metal awning and wooden ramp",
+    "attribute_support_structure": "wooden beams and columns with metal reinforcements",
+    "attribute_signage": "small circular sign with a symbol on the lower right side",
+    "attribute_transparency": "mostly opaque with some open or missing window sections",
+    "uid": "cf93dfd6da1640f08ebe051ba280426d",
+    "near_synsets": {
+        "shelter.n.02": 0.46295772140951696,
+        "shelter.n.01": 0.5003368199457031,
+        "shelter.n.05": 0.5126454564770202,
+        "shed.n.01": 0.5132335813726704,
+        "half-dugout.n.01": 0.5144282925206042,
+        "tax_shelter.n.01": -1000.0,
+        "protection.n.04": -1000.0
+    },
+    "synset": "tax_shelter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cf93dfd6da1640f08ebe051ba280426d",
+        "creator_username": "erroratten",
+        "creator_display_name": "Erroratten",
+        "creator_profile_url": "https://sketchfab.com/erroratten"
+    },
+    "filename": "std_cf93dfd6da1640f08ebe051ba280426d.glb",
+    "length": 10.380977630615234,
+    "width": 6.452935218811035
+}

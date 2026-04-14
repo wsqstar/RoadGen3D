@@ -1,0 +1,98 @@
+{
+    "description_long": "This gatehouse is a small, rectangular stone structure with a red-tiled gable roof, set on a slightly sloped terrain. The building features thick, rough-hewn stone walls and a prominent walled courtyard area attached to one side, enclosed by a lower stone wall. The main entryway is a simple rectangular opening in the front wall, lacking a visible door, and there are minimal window openings, emphasizing a fortified appearance. The roof is constructed from terracotta tiles, giving it a traditional, rustic look. The ground around the gatehouse is uneven, with patches of bare earth and stone visible. The overall design suggests a utilitarian, defensive function typical of medieval or rural gatehouses.",
+    "description": "A small, rectangular stone gatehouse with a red-tiled gable roof and an attached walled courtyard, featuring a simple rectangular entryway and minimal windows.",
+    "description_view_0": "Front-left view showing the main entryway, the attached walled courtyard, and the sloped terrain.",
+    "description_view_1": "Rear-left view highlighting the full extent of the courtyard enclosure and the back of the building.",
+    "description_view_2": "Direct rear view displaying the long stone wall of the building and the absence of windows or doors on this side.",
+    "description_view_3": "Rear-right view showing the side entry and the connection between the building and the courtyard wall.",
+    "category": "gatehouse",
+    "height": 3.5,
+    "max_dimension": 12.0,
+    "materials": [
+        "stone",
+        "terracotta",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "doorway",
+        "gate"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "red-brown",
+        "brown"
+    ],
+    "colors_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Medieval",
+    "attribute_roof_type": "gable",
+    "attribute_entryway_design": "Rectangular stone doorway with no visible door.",
+    "attribute_window_placement": "Minimal small openings, mostly absent or limited to one side.",
+    "attribute_security_features": [
+        "thick stone walls",
+        "enclosed courtyard",
+        "limited entry points"
+    ],
+    "uid": "52f2839d934e4c2d8e3390d3788756c5",
+    "near_synsets": {
+        "gatehouse.n.01": 0.4325015908473521,
+        "lodge.n.03": 0.4723954150284623,
+        "portcullis.n.01": 0.5111597052147924,
+        "bailey.n.03": 0.534173862678082,
+        "gate.n.01": 0.5389565453164342
+    },
+    "synset": "gatehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/52f2839d934e4c2d8e3390d3788756c5",
+        "creator_username": "carolien",
+        "creator_display_name": "Carolien Bijvoet",
+        "creator_profile_url": "https://sketchfab.com/carolien"
+    },
+    "filename": "std_52f2839d934e4c2d8e3390d3788756c5.glb",
+    "length": 11.196969985961914,
+    "width": 11.038387298583984
+}

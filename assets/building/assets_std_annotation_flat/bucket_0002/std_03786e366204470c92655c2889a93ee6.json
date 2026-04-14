@@ -1,0 +1,102 @@
+{
+    "description_long": "This gatehouse is a robust stone structure featuring a central cylindrical tower flanked by fortified walls and arched gateways. The main tower is crenellated at the top, with visible battlements and a partially broken parapet, suggesting historical wear. The walls are constructed from rough-hewn stone blocks, with ivy or moss growth visible on some sections, adding to its aged appearance. There are arched entryways at the base of the tower and on both sides, allowing passage through the structure. Small, narrow windows and arrow slits are distributed along the walls, typical of defensive medieval architecture. The overall form is imposing and defensive, designed to control access and provide a vantage point for surveillance.",
+    "description": "A weathered stone gatehouse with a central round tower, arched gateways, and crenellated battlements, showing signs of age and overgrowth.",
+    "description_view_0": "Front view showing the main cylindrical tower, central arched gateway, and flanking walls with battlements.",
+    "description_view_1": "Side view highlighting the thickness of the central tower and the narrowness of the structure from this angle.",
+    "description_view_2": "Rear view displaying the back of the tower, additional stonework, and more visible overgrowth on the left wall.",
+    "description_view_3": "Opposite side view focusing on the rear of the tower and the secondary arched entryway.",
+    "category": "gatehouse",
+    "height": 8.0,
+    "max_dimension": 18.0,
+    "materials": [
+        "stone",
+        "mortar",
+        "air",
+        "vegetation"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "defensible",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "doorway",
+        "archway",
+        "windows",
+        "battlements"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "green",
+        "brown"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Medieval",
+    "attribute_roof_type": "crenellated parapet",
+    "attribute_entryway_design": "Large arched stone gateway with no visible doors.",
+    "attribute_window_placement": "Small, narrow windows and arrow slits irregularly spaced along the tower and walls.",
+    "attribute_security_features": [
+        "battlements",
+        "thick stone walls",
+        "arrow slits",
+        "elevated tower"
+    ],
+    "uid": "03786e366204470c92655c2889a93ee6",
+    "near_synsets": {
+        "gatehouse.n.01": 0.486675885976887,
+        "portcullis.n.01": 0.5297412152468312,
+        "clock_tower.n.01": 0.5332622758585773,
+        "bailey.n.03": 0.5397166526957806,
+        "lodge.n.03": 0.539941342943226
+    },
+    "synset": "gatehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "cc0",
+        "uri": "https://api.sketchfab.com/v3/models/03786e366204470c92655c2889a93ee6",
+        "creator_username": "galway3d",
+        "creator_display_name": "galway3d",
+        "creator_profile_url": "https://sketchfab.com/galway3d"
+    },
+    "filename": "std_03786e366204470c92655c2889a93ee6.glb",
+    "length": 4.791399240493774,
+    "width": 18.882518768310547
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This factory building is a compact, enclosed industrial cell surrounded by yellow safety fencing, featuring two large robotic arms and a central overhead gantry structure. The fencing is made of transparent panels supported by metal posts, creating a secure perimeter around the machinery. Inside, the robotic arms are positioned for automated manufacturing or assembly tasks, with a control console and several equipment cabinets located near one side. The floor is a flat, gray industrial surface, and the overall layout is optimized for safety and workflow efficiency. The structure lacks traditional architectural features such as windows or doors, focusing instead on functional, modular design. The visual emphasis is on the machinery and safety barriers, typical of modern automated factory environments.",
+    "description": "A compact, fenced industrial cell with yellow safety barriers, robotic arms, and a central gantry, designed for automated manufacturing. The structure is utilitarian, with transparent panels and visible machinery inside.",
+    "description_view_0": "View 0 shows the factory cell from an angled perspective, highlighting the yellow safety fencing, two robotic arms, and the central gantry structure.",
+    "description_view_1": "View 1 presents a straight-on view of the fenced enclosure, emphasizing the length of the cell and the alignment of the machinery inside.",
+    "description_view_2": "View 2 displays the side of the enclosure, clearly showing the transparent panels and the arrangement of the robotic arms within the fenced area.",
+    "description_view_3": "View 3 offers a direct view from the opposite end, focusing on the entry point and the machinery layout inside the safety barriers.",
+    "category": "factory building",
+    "height": 2.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "control panel",
+        "robotic arm",
+        "fence gate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "gray",
+        "white",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_number_of_large_industrial_windows": 0,
+    "attribute_presence_of_smokestacks": false,
+    "attribute_loading_dock_doors": 0,
+    "attribute_rooftop_machinery": false,
+    "attribute_architectural_style": "Modern Industrial",
+    "uid": "a58a0584c879432f958210642cbee2ea",
+    "near_synsets": {
+        "factory.n.01": 0.5237055347027951,
+        "shop_floor.n.01": 0.5260106087189279,
+        "assembly_plant.n.01": 0.5565560665737836,
+        "facility.n.01": 0.5592509645552863,
+        "automation.n.03": 0.559501590170535,
+        "construction.n.01": -1000.0,
+        "building.n.01": -1000.0,
+        "building.n.04": -1000.0,
+        "construction.n.07": -1000.0
+    },
+    "synset": "factory.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a58a0584c879432f958210642cbee2ea",
+        "creator_username": "bluoppVR",
+        "creator_display_name": "bluoppVR",
+        "creator_profile_url": "https://sketchfab.com/bluoppVR"
+    },
+    "filename": "std_a58a0584c879432f958210642cbee2ea.glb",
+    "length": 3.9373849630355835,
+    "width": 4.9233386516571045
+}

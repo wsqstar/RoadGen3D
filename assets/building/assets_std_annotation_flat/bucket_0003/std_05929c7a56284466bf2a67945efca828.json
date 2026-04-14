@@ -1,0 +1,93 @@
+{
+    "description_long": "This kiosk features a compact, rectangular structure with a flat roof and a prominent open counter area, likely intended for customer interaction. The exterior is composed of smooth, solid panels, with a large overhanging awning or canopy at the front, providing shelter and visual emphasis. The interior is divided into several compartments or rooms, suggesting dedicated spaces for service, storage, or staff. The front-facing section is open, possibly for serving food, tickets, or information, while the rear and sides are enclosed for privacy and security. The overall design is minimalist and functional, with clean lines and a monochromatic color scheme. There are no visible decorative elements, signage, or windows, emphasizing utility over ornamentation.",
+    "description": "A minimalist, rectangular kiosk with a flat roof, open front counter, and enclosed sides and rear, designed for functional urban use.",
+    "description_view_0": "Side view showing the long, solid exterior wall and the overhanging front awning.",
+    "description_view_1": "Front view highlighting the open counter area and the canopy above, with visible entry space.",
+    "description_view_2": "Top-down view revealing the internal compartment layout and the open front section.",
+    "description_view_3": "Rear view displaying the enclosed back and side walls, with no visible openings.",
+    "category": "kiosk",
+    "height": 2.7,
+    "max_dimension": 6.0,
+    "materials": [
+        "painted metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.05,
+        0.15
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "serving"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "counter",
+        "door",
+        "awning"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "none",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "single door, standard type, located at the front behind the counter",
+    "attribute_roof_design": "flat roof with a projecting awning at the front, constructed from the same solid material as the walls",
+    "attribute_architectural_style": "modern minimalist",
+    "uid": "05929c7a56284466bf2a67945efca828",
+    "near_synsets": {
+        "booth.n.02": 0.5010328657855908,
+        "shopfront.n.01": 0.5314226623781455,
+        "counter.n.01": 0.5503079367937691,
+        "telephone_booth.n.01": 0.5578073591489396,
+        "sentry_box.n.01": 0.5579892312746483
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/05929c7a56284466bf2a67945efca828",
+        "creator_username": "locazho",
+        "creator_display_name": "locazho",
+        "creator_profile_url": "https://sketchfab.com/locazho"
+    },
+    "filename": "std_05929c7a56284466bf2a67945efca828.glb",
+    "length": 10.399226665496826,
+    "width": 3.9149645566940308
+}

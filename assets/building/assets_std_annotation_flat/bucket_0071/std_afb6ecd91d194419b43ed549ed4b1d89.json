@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a large, futuristic airplane with a broad, delta-shaped wing and a smooth, streamlined fuselage. The upper surface is predominantly light gray with dark accents, and the underside is almost entirely black. Three large, cylindrical jet engines are mounted at the rear, each with visible red turbine interiors. The tail features a single, tall vertical stabilizer, and the wings are sharply swept back, blending seamlessly into the body. The cockpit is located at the front, with a row of windows spanning the forward section, and the landing gear consists of two main wheels and a nose wheel, all extended.",
+    "description": "A sleek, delta-wing airplane with three rear jet engines, a tall single tail fin, and a forward cockpit with multiple windows.",
+    "description_view_0": "Top-down view showing the broad delta wing, three rear jet engines, and the cockpit windows at the front.",
+    "description_view_1": "Side view highlighting the tall vertical stabilizer, extended landing gear, and the cylindrical jet engines at the rear.",
+    "description_view_2": "Bottom view displaying the black underside, retracted landing gear bays, and the full span of the delta wing.",
+    "description_view_3": "Opposite side view similar to view 1, showing the vertical stabilizer, landing gear, and engine arrangement.",
+    "category": "airplane",
+    "height": 6.0,
+    "max_dimension": 32.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "mass": 65000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit door",
+        "landing gear",
+        "engine",
+        "windows",
+        "control surfaces"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "gray",
+        "red"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.04,
+    "recommended_clearance": 40.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, delta configuration with sharply swept wings and no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Three rear-mounted jet engines integrated into the fuselage.",
+    "attribute_tail_design": "Single vertical stabilizer with a conventional tail configuration.",
+    "attribute_landing_gear_type": "Tricycle landing gear with two main gear units and a single nose gear, all fixed and extended.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a multi-seat window array spanning the front section of the fuselage.",
+    "uid": "afb6ecd91d194419b43ed549ed4b1d89",
+    "near_synsets": {
+        "delta_wing.n.01": 0.48838044118328205,
+        "aircraft.n.01": 0.5107828005600494,
+        "monoplane.n.01": 0.5126130317981682,
+        "airplane.n.01": 0.5135308565701527,
+        "jet.n.01": 0.5243730149664085
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/afb6ecd91d194419b43ed549ed4b1d89",
+        "creator_username": "figfogg",
+        "creator_display_name": "Fig Fogg",
+        "creator_profile_url": "https://sketchfab.com/figfogg"
+    },
+    "filename": "std_afb6ecd91d194419b43ed549ed4b1d89.glb",
+    "length": 2.872799038887024,
+    "width": 3.9335992336273193
+}

@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a classic hand grenade, featuring a robust, segmented olive-green metal body with a slightly textured surface. The top section is capped with a metallic safety lever and a prominent pull ring, both rendered in a dark, gunmetal finish. A yellow band encircles the upper portion of the grenade, indicating a typical marking for identification. The body is divided into raised rectangular segments, providing grip and structural integrity. The safety lever is attached with a visible hinge and pin mechanism, which is designed to be pulled to arm the device. The overall appearance is utilitarian, with minor scuffs and wear suggesting it is a functional, military-grade explosive device.",
+    "description": "A military-style hand grenade with an olive-green segmented body, yellow band, and metallic safety lever and pull ring.",
+    "description_view_0": "The grenade is shown with the safety lever and pull ring clearly visible on the left side, highlighting the yellow band and textured segments.",
+    "description_view_1": "A direct front view displays the symmetrical, oval shape and the yellow band encircling the top, with the safety lever partially obscured.",
+    "description_view_2": "The pull ring is prominently looped outward, and the safety lever is seen from the opposite side, emphasizing the grenade's mechanical components.",
+    "description_view_3": "A side profile shows the grenade's narrowest aspect, with the safety lever and pull ring aligned, and the segmented body visible in cross-section.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.12,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 0.4,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 4,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety_lever",
+        "pull_ring",
+        "safety_pin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "yellow",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.08,
+        0.15,
+        0.07
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The grenade is armed by pulling the safety pin and releasing the safety lever, which triggers an internal fuse mechanism for detonation.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "4332145bd08647a68452e585edabbf82",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.4909760886012304,
+        "grenade.n.01": 0.5069762110096272,
+        "rifle_grenade.n.01": 0.5393873801088213,
+        "pipe_bomb.n.01": 0.546904272843619,
+        "bomb.n.01": 0.5470836011830589,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4332145bd08647a68452e585edabbf82",
+        "creator_username": "bcfbox",
+        "creator_display_name": "Mark Bai",
+        "creator_profile_url": "https://sketchfab.com/bcfbox"
+    },
+    "filename": "std_4332145bd08647a68452e585edabbf82.glb",
+    "length": 0.057876963168382645,
+    "width": 0.07186972349882126
+}

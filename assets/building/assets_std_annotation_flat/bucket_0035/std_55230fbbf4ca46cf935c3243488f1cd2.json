@@ -1,0 +1,99 @@
+{
+    "description_long": "This kiosk features a hexagonal base with a large, circular blue gradient platform at its center, surrounded by modular white partition walls. The partitions are interspersed with transparent panels displaying abstract graphics and diagrams, giving the structure a modern, open feel. Above the kiosk, bold blue 3D text signage hovers, prominently displaying a name. The kiosk is open on all sides, with no visible doors or windows, allowing for easy access and interaction from multiple directions. The materials appear to be primarily lightweight composite panels and acrylic or glass for the transparent sections, with a smooth, clean finish. The overall design is sleek and contemporary, suitable for exhibitions, information points, or temporary urban installations.",
+    "description": "A modern, open-sided kiosk with a hexagonal base, central blue platform, modular white partitions, and floating blue 3D text signage above.",
+    "description_view_0": "View 0 shows the kiosk from an angled perspective, highlighting the central blue platform, surrounding white partitions, and the floating blue signage above.",
+    "description_view_1": "View 1 presents the kiosk from the rear, emphasizing the transparent panels with graphics and the open, accessible layout.",
+    "description_view_2": "View 2 displays the kiosk from the opposite rear angle, showing the arrangement of partitions and the blue platform's gradient effect.",
+    "description_view_3": "View 3 offers a frontal view, focusing on the open entryway, central platform, and the prominent blue signage overhead.",
+    "category": "kiosk",
+    "height": 2.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "composite panel",
+        "acrylic",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "displayable",
+        "partitionable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "partition panel",
+        "display panel",
+        "signage"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "white",
+        "blue",
+        "gray",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_signage_type": "3D printed sign, floating above the kiosk, displaying the name 'PUMPONG WIWATTANAKUNKIT' in bold blue letters",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "none; open entryways on all sides",
+    "attribute_roof_design": "none; open-air with floating signage above",
+    "attribute_architectural_style": "modern, minimalist, exhibition-style",
+    "uid": "55230fbbf4ca46cf935c3243488f1cd2",
+    "near_synsets": {
+        "booth.n.02": 0.5477111929592996,
+        "counter.n.01": 0.5828669966169483,
+        "shopfront.n.01": 0.5854200510963794,
+        "booth.n.01": 0.5884932725968354,
+        "telephone_booth.n.01": 0.5886915238869537
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/55230fbbf4ca46cf935c3243488f1cd2",
+        "creator_username": "palmputtipong",
+        "creator_display_name": "palmputtipong",
+        "creator_profile_url": "https://sketchfab.com/palmputtipong"
+    },
+    "filename": "std_55230fbbf4ca46cf935c3243488f1cd2.glb",
+    "length": 3.361080288887024,
+    "width": 3.3481414318084717
+}

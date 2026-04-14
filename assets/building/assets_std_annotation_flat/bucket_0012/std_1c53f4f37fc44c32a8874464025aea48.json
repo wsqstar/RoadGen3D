@@ -1,0 +1,103 @@
+{
+    "description_long": "This storage locker is a large, rectangular structure with a modern, industrial appearance, featuring a prominent gabled roof with dark, ribbed metal panels. The exterior walls are clad in light gray, grid-patterned panels, giving it a clean and utilitarian look. The front side includes a row of windows and a large, segmented door, likely for access to the storage area, as well as a smaller side extension with additional windows. The rear side is simpler, with a single door and a vertical vent, suggesting ventilation for the interior. The overall design is robust and secure, suitable for protecting valuable items or equipment. The structure appears to be made primarily of metal and concrete, with glass elements in the windows.",
+    "description": "A large, modern storage locker with a ribbed metal roof, grid-patterned walls, and multiple access points including windows and doors.",
+    "description_view_0": "The side view shows the gabled roof and plain, grid-patterned wall with minimal features.",
+    "description_view_1": "The front view highlights the main access door, a row of windows, and a side extension with additional windows.",
+    "description_view_2": "The rear view displays a single door, a vertical vent, and a plain wall surface.",
+    "description_view_3": "The opposite side view shows the full width of the ribbed roof and a featureless wall.",
+    "category": "storage locker",
+    "height": 4.0,
+    "max_dimension": 10.0,
+    "materials": [
+        "metal",
+        "concrete",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.1
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "vent"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "white",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 2,
+    "attribute_locking_mechanism_type": "no lock visible",
+    "attribute_ventilation_pattern": "vertical slits",
+    "attribute_handle_design": "no handle visible",
+    "attribute_placement_location": "outdoor",
+    "uid": "1c53f4f37fc44c32a8874464025aea48",
+    "near_synsets": {
+        "storage_space.n.01": 0.5340259417604727,
+        "vault.n.02": 0.5436229399210242,
+        "cabinet.n.03": 0.5570936094954053,
+        "cellarage.n.02": 0.5621688089938432,
+        "chest.n.02": 0.5623187830689556,
+        "locker.n.02": -1000.0,
+        "footlocker.n.01": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "storage.n.03": -1000.0,
+        "memory.n.04": -1000.0,
+        "storage.n.01": -1000.0,
+        "repositing.n.01": -1000.0,
+        "storage.n.04": -1000.0
+    },
+    "synset": "cabinet.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1c53f4f37fc44c32a8874464025aea48",
+        "creator_username": "reckzilla",
+        "creator_display_name": "Morrissey Alexander",
+        "creator_profile_url": "https://sketchfab.com/reckzilla"
+    },
+    "filename": "std_1c53f4f37fc44c32a8874464025aea48.glb",
+    "length": 6.667898893356323,
+    "width": 6.467102766036987
+}

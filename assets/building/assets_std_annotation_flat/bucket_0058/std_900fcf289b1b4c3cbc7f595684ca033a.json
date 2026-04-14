@@ -1,0 +1,100 @@
+{
+    "description_long": "This tram features a streamlined, elongated body with a predominantly dark exterior and ribbed metallic side panels. The sides are punctuated by rectangular windows and what appear to be sliding doors, with some panels displaying signage or advertisements. The roof is smooth and slightly curved, with a raised central section that may house electrical or ventilation equipment. The front and rear ends are slightly tapered, each with visible headlight and taillight assemblies, and the undercarriage is enclosed. The tram's design suggests a modern, urban public transport vehicle, likely constructed from metal and glass with reinforced structural elements. The overall appearance is robust and functional, suitable for high-capacity passenger service in city environments.",
+    "description": "A modern, elongated tram with ribbed metallic sides, dark roof, and rectangular windows, designed for urban passenger transport. Features include sliding doors, visible signage, and streamlined front and rear ends.",
+    "description_view_0": "Front view showing the tapered nose, headlight assemblies, and a side-mounted platform or step.",
+    "description_view_1": "Side view highlighting the ribbed metallic panels, rectangular windows, and central door area.",
+    "description_view_2": "Rear view with taillights, a slightly tapered end, and a side platform visible.",
+    "description_view_3": "Opposite side view with ribbed panels, windows, and visible signage or advertisements.",
+    "category": "tram",
+    "height": 3.2,
+    "max_dimension": 22.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 38000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "button",
+        "pantograph",
+        "headlight",
+        "taillight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_pantograph_type": "uncertain",
+    "attribute_door_configuration": "Two sliding doors on the right side, centrally located",
+    "attribute_window_arrangement": "Four large rectangular windows per side, evenly spaced with ribbed paneling between, separated panes",
+    "attribute_route_number_display": "none",
+    "attribute_front_signage": "none",
+    "uid": "900fcf289b1b4c3cbc7f595684ca033a",
+    "near_synsets": {
+        "tramway.n.01": 0.5335245995535377,
+        "streetcar.n.01": 0.5345535829354375,
+        "tramline.n.01": 0.5423894449608393,
+        "metro.n.01": 0.5473708386635426,
+        "trolleybus.n.01": 0.5480733636498859,
+        "tramcar.n.01": -1000.0
+    },
+    "synset": "tramcar.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/900fcf289b1b4c3cbc7f595684ca033a",
+        "creator_username": "hippostance",
+        "creator_display_name": "HippoStance",
+        "creator_profile_url": "https://sketchfab.com/hippostance"
+    },
+    "filename": "std_900fcf289b1b4c3cbc7f595684ca033a.glb",
+    "length": 16.47457504272461,
+    "width": 4.563716411590576
+}

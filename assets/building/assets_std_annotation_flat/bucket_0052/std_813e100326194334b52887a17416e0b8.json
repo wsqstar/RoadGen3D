@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a heavily armored tracked combat vehicle with a low, angular profile and a long, forward-mounted cannon. The hull is covered in sloped armor plating, with visible hatches and engine grilles on the upper surfaces. The vehicle features six large road wheels on each side, supporting continuous metal tracks for off-road mobility. Its exterior is painted in a disruptive camouflage pattern of tan and brown stripes, designed to break up its outline. The front of the vehicle is dominated by the prominent gun barrel, while the rear shows engine access panels and exhaust ports. No visible external markings or insignia are present, and the vehicle lacks traditional tires, relying entirely on its tracked system.",
+    "description": "A low-profile, heavily armored tracked combat vehicle with a long cannon and tan-brown striped camouflage. It features sloped armor, six road wheels per side, and no visible military markings.",
+    "description_view_0": "Side view showing the full length of the cannon, sloped armor, and six large road wheels with continuous tracks.",
+    "description_view_1": "Front view highlighting the narrow, angular hull, centrally mounted cannon, and sloped frontal armor.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the engine deck and rear hatches.",
+    "description_view_3": "Rear view displaying engine grilles, exhaust ports, and the back ends of the tracks.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.01,
+        0.05,
+        0.01
+    ],
+    "mass": 45000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "closable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "cannon",
+        "track",
+        "wheel",
+        "engine cover",
+        "exhaust port"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted centrally on the front hull; no other weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped steel armor plating; prominent on the front, sides, and upper surfaces.",
+    "attribute_camouflage_pattern": "Tan and brown striped camouflage in an irregular, disruptive pattern.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "813e100326194334b52887a17416e0b8",
+    "near_synsets": {
+        "reconnaissance_vehicle.n.01": 0.4938471940245042,
+        "military_vehicle.n.01": 0.49646292527978564,
+        "tank.n.01": 0.49986708386841366,
+        "armored_car.n.02": 0.5074987556016748,
+        "weapons_carrier.n.01": 0.5202977153117114,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/813e100326194334b52887a17416e0b8",
+        "creator_username": "salphytheunemployed",
+        "creator_display_name": "PolyDucky",
+        "creator_profile_url": "https://sketchfab.com/salphytheunemployed"
+    },
+    "filename": "std_813e100326194334b52887a17416e0b8.glb",
+    "length": 7.7793169021606445,
+    "width": 2.707383155822754
+}

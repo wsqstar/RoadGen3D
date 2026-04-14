@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a double-action revolver with a robust, matte black metal frame and a medium-length barrel. The grip is made of wood, featuring a warm brown tone with a diamond-shaped textured inlay and a visible screw, providing both visual contrast and ergonomic support. The cylinder is prominent and can hold multiple rounds, with clear fluting and a solid, industrial appearance. The trigger guard is rounded and thick, offering ample space for finger placement, while the hammer is exposed and textured for manual cocking. The barrel is unadorned, with a slight taper and a front sight post for aiming. The overall design is utilitarian, with no visible engravings or decorative markings, emphasizing function over ornamentation.",
+    "description": "A matte black metal revolver with a brown wooden grip, featuring a robust frame, medium barrel, and a diamond-inlaid handle.",
+    "description_view_0": "Side view showing the full profile of the revolver, including the wooden grip, cylinder, and barrel.",
+    "description_view_1": "Rear view highlighting the width of the grip and the alignment of the barrel and sights.",
+    "description_view_2": "Opposite side view displaying the grip's diamond inlay and the revolver's mechanical details.",
+    "description_view_3": "Front view focusing on the barrel's muzzle and the front sight post.",
+    "category": "handgun",
+    "height": 0.15,
+    "max_dimension": 0.28,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.2,
+        0.03,
+        0.02
+    ],
+    "mass": 1.1,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 15,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "rotatable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "cylinder",
+        "hammer",
+        "barrel",
+        "trigger guard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.28,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_grip_design": "The grip is contoured for ergonomic handling, crafted from brown wood with a smooth finish and a diamond-shaped textured inlay at its center. A single screw is visible within the inlay, securing the grip panels. The grip's shape gently flares at the base, providing a comfortable palm rest, and the surface appears slightly polished but not glossy. There are no visible finger grooves, logos, or additional embellishments beyond the diamond pattern.",
+    "attribute_trigger_guard_style": "The trigger guard is robust and rounded, with a thick profile that offers ample protection for the trigger. It is smoothly contoured without any undercuts or squared-off edges, and there are no visible texturing or integrated accessories. The design is utilitarian, prioritizing durability and finger clearance.",
+    "attribute_barrel_type": "The barrel is of medium length, straight and unthreaded, with a smooth, matte black finish. It features a slight taper towards the muzzle and is free of external ports, compensators, or fluting. A simple front sight post is mounted on top, and there are no visible markings or decorative elements on the barrel exterior.",
+    "attribute_slide_markings": "There are no visible markings, engravings, or inscriptions on the revolver's frame or barrel. The surfaces are plain, lacking manufacturer logos, model names, serial numbers, or caliber designations.",
+    "attribute_magazine_base_shape": "As a revolver, this object does not have a detachable magazine or magazine base. The grip base is rounded and smooth, with no extensions, flares, or finger rests, and features only the diamond-shaped inlay and securing screw.",
+    "uid": "130b638be70948dcb7cc18ce5a78bf97",
+    "near_synsets": {
+        "colt.n.02": 0.4896516367370572,
+        "pistol.n.01": 0.5020167667945545,
+        "revolver.n.01": 0.5056673896245999,
+        "pistol_grip.n.01": 0.5175567940719398,
+        "firearm.n.01": 0.524810445878215
+    },
+    "synset": "revolver.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/130b638be70948dcb7cc18ce5a78bf97",
+        "creator_username": "dhaimadoshi",
+        "creator_display_name": "Nicolas Gerard",
+        "creator_profile_url": "https://sketchfab.com/dhaimadoshi"
+    },
+    "filename": "std_130b638be70948dcb7cc18ce5a78bf97.glb",
+    "length": 0.26279400289058685,
+    "width": 0.045998601242899895
+}

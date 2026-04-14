@@ -1,0 +1,121 @@
+{
+    "description_long": "This is a Siemens SIPROTEC control cabinet, typically used in power distribution and automation systems. The front panel features a large green display area, numerous labeled buttons, indicator lights, and rotary switches, all set within a light gray and blue frame. The rear side is densely populated with multiple terminal blocks for electrical connections, each labeled for organized wiring. The cabinet is constructed from sturdy sheet metal, likely steel, with a matte finish and minimal surface texture. Small warning and information labels are visible on the front, indicating operational and safety information. The overall design is boxy and robust, suitable for installation in technical rooms or substations.",
+    "description": "A Siemens SIPROTEC control cabinet with a gray and blue metal body, front panel controls, and rear terminal blocks for power automation.",
+    "description_view_0": "Front view showing the control panel with display, buttons, indicator lights, and labels.",
+    "description_view_1": "Side view revealing the cabinet's depth and the protruding rear terminal blocks.",
+    "description_view_2": "Rear view displaying multiple terminal blocks for electrical connections.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the cabinet's solid side and rear connectors.",
+    "category": "control cabinets",
+    "height": 0.45,
+    "max_dimension": 0.7,
+    "materials": [
+        "painted steel",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 32,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "rotary switch",
+        "display",
+        "terminal block",
+        "indicator light"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "blue",
+        "green",
+        "black",
+        "red",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.03,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_door_handle_type": "rotary latch",
+    "attribute_lock_mechanism_presence": true,
+    "attribute_ventilation_grille_pattern": "none",
+    "attribute_warning_or_information_labels": [
+        "manufacturer label",
+        "emergency stop",
+        "status indicator labels"
+    ],
+    "attribute_mounting_style": "floor-standing",
+    "uid": "dfa76a53346e4a04a8578a54069e339e",
+    "near_synsets": {
+        "control_panel.n.01": 0.5909464539333523,
+        "cabinet.n.04": 0.5949808962997025,
+        "corner_cabinet.n.01": 0.618639436758094,
+        "automation.n.03": 0.6224209579088178,
+        "control_system.n.01": 0.6318672014812883,
+        "control_condition.n.01": -1000.0,
+        "cabinet.n.03": -1000.0,
+        "control.n.05": -1000.0,
+        "cabinet.n.01": -1000.0,
+        "control.n.10": -1000.0,
+        "restraint.n.02": -1000.0,
+        "dominance.n.02": -1000.0,
+        "control.n.11": -1000.0,
+        "cabinet.n.02": -1000.0,
+        "control.n.02": -1000.0,
+        "control.n.09": -1000.0,
+        "control.n.03": -1000.0,
+        "command.n.06": -1000.0,
+        "control.n.01": -1000.0
+    },
+    "synset": "control_panel.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dfa76a53346e4a04a8578a54069e339e",
+        "creator_username": "MiViz",
+        "creator_display_name": "Ilya Maksimov",
+        "creator_profile_url": "https://sketchfab.com/MiViz"
+    },
+    "filename": "std_dfa76a53346e4a04a8578a54069e339e.glb",
+    "length": 0.4563862681388855,
+    "width": 0.7612780332565308
+}

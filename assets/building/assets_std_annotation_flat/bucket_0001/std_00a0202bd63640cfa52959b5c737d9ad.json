@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a medium-sized, conical tent with a muted blue-gray fabric exterior and a single, prominent entrance at the front. The tent features a steeply sloped roof that extends outward to form a wide base, providing ample interior space and effective rain runoff. A small, low cot or bench is positioned adjacent to the tent, suggesting its use for camping or temporary shelter in urban parks or event spaces. The tent's fabric appears weathered at the base, indicating outdoor use, and there are visible ventilation openings near the top for airflow. A geometric logo or emblem is printed on one side of the tent, adding a distinctive visual element. The structure is likely supported by internal or external poles, with guy lines implied but not clearly visible.",
+    "description": "A blue-gray conical tent with a wide base, single front entrance, and a small adjacent cot or bench. Features a geometric logo and ventilation openings near the roof.",
+    "description_view_0": "Front view showing the main entrance, interior shadow, and the adjacent cot or bench.",
+    "description_view_1": "Rear-left view highlighting the tent's sloped back and the cot or bench partially visible behind.",
+    "description_view_2": "Direct rear view displaying the tent's full conical shape and the cot or bench to the right.",
+    "description_view_3": "Rear-right view with the geometric logo visible on the tent's side and the cot or bench fully in view.",
+    "category": "tent",
+    "height": 2.2,
+    "max_dimension": 3.5,
+    "materials": [
+        "polyester fabric",
+        "aluminum",
+        "plastic",
+        "air",
+        "wood",
+        "foam"
+    ],
+    "materials_composition": [
+        0.65,
+        0.12,
+        0.05,
+        0.1,
+        0.06,
+        0.02
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "sittable",
+        "foldable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "entrance flap",
+        "cot/bench",
+        "ventilation opening"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "blue-gray",
+        "dark blue",
+        "brown"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.48,
+    "youngs_modulus": 1500,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_entrance_type": "Single front flap entrance, centrally located, with a triangular opening and no visible zipper or mesh.",
+    "attribute_number_of_poles": 4,
+    "attribute_guy_line_configuration": "Guy lines are not clearly visible, but likely attached at four corners or base points for stability.",
+    "attribute_ventilation_openings": [
+        "Two small mesh roof vents near the peak on opposite sides."
+    ],
+    "attribute_branding_or_logo": "A geometric logo is visible on the right side of the tent, featuring interlocking lines in a circular pattern; no readable text.",
+    "uid": "00a0202bd63640cfa52959b5c737d9ad",
+    "near_synsets": {
+        "sibley_tent.n.01": 0.46145336221675565,
+        "field_tent.n.01": 0.5106545615766646,
+        "cottage_tent.n.01": 0.5112964126944199,
+        "bell_tent.n.01": 0.5167554686573881,
+        "mountain_tent.n.01": 0.5199867236315718,
+        "tent.n.02": -1000.0,
+        "tent.n.01": -1000.0
+    },
+    "synset": "tent.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/00a0202bd63640cfa52959b5c737d9ad",
+        "creator_username": "TheFiklPikl",
+        "creator_display_name": "TheFiklPikl",
+        "creator_profile_url": "https://sketchfab.com/TheFiklPikl"
+    },
+    "filename": "std_00a0202bd63640cfa52959b5c737d9ad.glb",
+    "length": 2.9317303895950317,
+    "width": 2.8374290466308594
+}

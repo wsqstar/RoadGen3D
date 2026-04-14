@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a single-story bungalow with a rectangular footprint, featuring a prominent front porch supported by columns and a set of steps leading up to the main entrance. The exterior walls are finished in a light color, and the roof appears flat or minimally sloped, with visible chimneys at the rear corners. Multiple rooms are visible through the open plan, including a central living area furnished with sofas, a dining table, and several smaller rooms branching off, likely bedrooms and utility spaces. The windows are arranged in a regular pattern along the exterior walls, providing ample natural light. Interior furnishings include wooden cabinets, desks, and beds, suggesting a fully equipped residential space. The overall design is functional and straightforward, with a focus on comfort and accessibility.",
+    "description": "A single-story, light-colored bungalow with a front porch, flat roof, and regularly spaced windows, featuring a central living area and multiple furnished rooms.",
+    "description_view_0": "View 0 shows the rear and one side of the bungalow, highlighting the back rooms, visible chimneys, and some interior furnishings.",
+    "description_view_1": "View 1 presents the main entrance and front porch, with the central living area and dining space clearly visible through the open doorway.",
+    "description_view_2": "View 2 displays the opposite rear and side, emphasizing the symmetrical window arrangement and additional interior rooms.",
+    "description_view_3": "View 3 offers a direct look at the front facade, showcasing the porch, main entrance, and the symmetrical window layout on either side.",
+    "category": "bungalow",
+    "height": 3.5,
+    "max_dimension": 15.0,
+    "materials": [
+        "concrete",
+        "wood",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 65000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "porch",
+        "chimney"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_architectural_style": "Ranch",
+    "attribute_roof_type": "flat",
+    "attribute_number_of_stories": 1,
+    "attribute_porch_presence": true,
+    "attribute_window_arrangement": "symmetrical front-facing windows",
+    "uid": "2984d32d04ed44a5bf8e295c6aee59ab",
+    "near_synsets": {
+        "bungalow.n.01": 0.3787526987395868,
+        "front_porch.n.01": 0.5182518428331229,
+        "ranch_house.n.01": 0.5202453903125587,
+        "porch.n.01": 0.5317661119345621,
+        "villa.n.02": 0.5374793037018409
+    },
+    "synset": "bungalow.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/2984d32d04ed44a5bf8e295c6aee59ab",
+        "creator_username": "homedesign3d",
+        "creator_display_name": "Home Design 3D",
+        "creator_profile_url": "https://sketchfab.com/homedesign3d"
+    },
+    "filename": "std_2984d32d04ed44a5bf8e295c6aee59ab.glb",
+    "length": 16.984333992004395,
+    "width": 16.73717212677002
+}

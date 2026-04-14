@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a tall, ornate clock tower modeled after the iconic Elizabeth Tower, commonly known as Big Ben, in London. The structure features a square base and shaft with vertical stonework detailing, rising to a clock chamber with four large clock faces, each adorned with Roman numerals and ornate hands. Above the clock chamber, the tower transitions into a steep, blue-gray spire with decorative gold accents and small spirelets at the corners. The exterior is primarily constructed from stone or masonry, with metallic elements on the clock faces and roof. The tower stands on a textured ground plane, suggesting an urban plaza or public square setting. The overall design is highly detailed, with architectural flourishes and a sense of historical grandeur.",
+    "description": "A tall, ornate stone clock tower with four large Roman numeral clock faces and a steep, blue-gray spire, reminiscent of London's Big Ben.",
+    "description_view_0": "Front view showing the main clock face, detailed stonework, and the full height of the spire, with a small sunken area in the ground nearby.",
+    "description_view_1": "Side view revealing the clock face, the spire's profile, and a sunken ground feature to the left of the tower.",
+    "description_view_2": "Rear view with another clock face visible, showing the tower's symmetry and the textured ground extending behind.",
+    "description_view_3": "Opposite side view with a clear look at the clock face and a sunken ground feature to the right.",
+    "category": "clock tower",
+    "height": 96.0,
+    "max_dimension": 96.0,
+    "materials": [
+        "stone",
+        "metal",
+        "glass",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.05,
+        0.03,
+        0.05
+    ],
+    "mass": 250000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "viewable",
+        "time-telling"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "clock face",
+        "clock hands",
+        "entry door (implied)"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "gray",
+        "blue",
+        "gold",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.0,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_clock_face_design": "The clock faces are large, circular, and bordered with ornate gold trim. Each face features black Roman numerals, minute markings, and two prominent black hands. The background is white, and the faces are set into a decorative stone frame with intricate detailing.",
+    "attribute_number_of_clock_faces": 4,
+    "attribute_tower_roof_type": "steep spire with corner spirelets",
+    "attribute_presence_of_bells_or_chimes": true,
+    "attribute_architectural_style": "Gothic Revival",
+    "uid": "3638ec4cc3de4564be23919a3ecb9b17",
+    "near_synsets": {
+        "clock_tower.n.01": 0.4087650902028,
+        "church_tower.n.01": 0.4849124200864549,
+        "turret_clock.n.01": 0.5253876151238333,
+        "bell_tower.n.01": 0.5262269464597356,
+        "clock_face.n.01": 0.5459600361745859,
+        "clock.n.01": -1000.0,
+        "tugboat.n.01": -1000.0,
+        "column.n.04": -1000.0,
+        "tower.n.01": -1000.0
+    },
+    "synset": "clock_tower.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3638ec4cc3de4564be23919a3ecb9b17",
+        "creator_username": "mysteriouspeter",
+        "creator_display_name": "mysteriouspeter",
+        "creator_profile_url": "https://sketchfab.com/mysteriouspeter"
+    },
+    "filename": "std_3638ec4cc3de4564be23919a3ecb9b17.glb",
+    "length": 112.2535171508789,
+    "width": 112.25348663330078
+}

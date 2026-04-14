@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a hospital stretcher with a robust metal frame and four caster wheels for mobility. The stretcher features a segmented, brown cushioned surface that is adjustable to support different patient positions, with visible joints for reclining the back and leg sections. Two vertical IV poles are attached at the head and foot ends, each with hooks for hanging medical fluids. The stretcher is equipped with side rails for patient safety, which can be raised or lowered as needed. At the foot end, a crank mechanism is present, likely for adjusting the height or angle of the bed. The overall design is utilitarian, prioritizing function and patient safety in medical or emergency urban environments.",
+    "description": "A metal-framed hospital stretcher with brown segmented cushions, side rails, IV poles, and four caster wheels for mobility and patient safety.",
+    "description_view_0": "Side view showing the segmented brown cushion, adjustable sections, side rails, IV poles, and crank mechanism at the foot.",
+    "description_view_1": "Front view highlighting the width, dual IV poles, and the raised side rails flanking the brown cushioned surface.",
+    "description_view_2": "Opposite side view displaying the segmented cushion, frame structure, and the undercarriage with visible wheels.",
+    "description_view_3": "Rear view showing the footboard, crank mechanism, and the alignment of the IV poles and side rails.",
+    "category": "stretcher",
+    "height": 1.2,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "synthetic leather",
+        "foam",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.12,
+        0.08,
+        0.05,
+        0.05
+    ],
+    "mass": 55,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 35,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "adjustable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "side rail",
+        "crank",
+        "IV pole",
+        "cushion section"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "silver",
+        "black"
+    ],
+    "colors_composition": [
+        0.4,
+        0.4,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_wheels": true,
+    "attribute_collapsible_frame": true,
+    "attribute_side_rails": true,
+    "attribute_handles": false,
+    "attribute_mattress_pad": true,
+    "uid": "bd69f5a963714cb2b2c08ee098a03aab",
+    "near_synsets": {
+        "stretcher.n.03": 0.49550309774429796,
+        "hospital_bed.n.01": 0.5047886300774076,
+        "gurney.n.01": 0.508783457009688,
+        "stretcher_party.n.01": 0.5459638080562729,
+        "stretcher.n.01": 0.5530950262408523,
+        "capstone.n.02": -1000.0,
+        "stretcher.n.02": -1000.0
+    },
+    "synset": "stretcher.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bd69f5a963714cb2b2c08ee098a03aab",
+        "creator_username": "Odlab",
+        "creator_display_name": "Odlab",
+        "creator_profile_url": "https://sketchfab.com/Odlab"
+    },
+    "filename": "std_bd69f5a963714cb2b2c08ee098a03aab.glb",
+    "length": 2.118146300315857,
+    "width": 1.0129581689834595
+}

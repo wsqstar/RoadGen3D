@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a compact, futuristic shotgun with a robust, cylindrical black metal barrel assembly and a dark brown ergonomic grip. The barrel section appears to house multiple chambers, suggesting a multi-shot capacity, and is constructed from matte-finished metal with visible seams and reinforcement bands. The grip is contoured and textured, likely made from wood or a wood-like composite, providing a secure hold. The trigger and trigger guard are integrated into the frame, with the guard being rounded and moderately sized. The front of the shotgun features three distinct barrel openings, indicating a triple-barrel configuration. The overall design is utilitarian and sturdy, suitable for close-quarters use in urban environments.",
+    "description": "A compact, triple-barrel shotgun with a matte black metal body and a textured brown grip, featuring a robust, utilitarian design.",
+    "description_view_0": "Side view showing the full length of the shotgun, highlighting the cylindrical black barrel assembly and the brown ergonomic grip.",
+    "description_view_1": "Front view displaying three distinct barrel openings, emphasizing the triple-barrel configuration and the reinforced muzzle.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the barrel assembly and grip contours.",
+    "description_view_3": "Rear view focusing on the brown grip and the back of the frame, with the trigger guard and handle curvature visible.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.38,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "trigger guard",
+        "barrel",
+        "chamber"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.75,
+        0.25
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "triple-barrel, horizontally aligned with three distinct barrel openings and no visible ribbing or venting",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "break-action",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with a smooth contour and no visible finger grooves or reinforcement",
+    "uid": "da7dbe6d40404487b4c2ff3712f4620a",
+    "near_synsets": {
+        "shotgun.n.01": 0.49260525685182005,
+        "sawed-off_shotgun.n.01": 0.49782050674230044,
+        "shotgun_shell.n.01": 0.536861232710191,
+        "maxim_gun.n.01": 0.5405633687884954,
+        "gun.n.01": 0.5501703372485811
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/da7dbe6d40404487b4c2ff3712f4620a",
+        "creator_username": "vintar",
+        "creator_display_name": "Vintar",
+        "creator_profile_url": "https://sketchfab.com/vintar"
+    },
+    "filename": "std_da7dbe6d40404487b4c2ff3712f4620a.glb",
+    "length": 0.3558621406555176,
+    "width": 0.12361717224121094
+}

@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a heavily armored, six-wheeled combat tactical vehicle with a weathered, pale green exterior and visible rust patches. The front features a reinforced grille and mesh protection over the windshield, suggesting a focus on defense against debris or small arms fire. The vehicle's bed is open and flat, with high side panels and a mounted heavy machine gun or autocannon on a rotating turret above the cab, indicating its use in urban combat or patrol scenarios. The cab is boxy and robust, with metal grates and additional armor on the doors and roof. The tires are large and rugged, designed for off-road or rough urban terrain, and the vehicle's overall build is utilitarian, prioritizing function and survivability. No visible military insignia or camouflage patterns are present, but the vehicle's design is clearly intended for tactical operations.",
+    "description": "A rugged, six-wheeled armored combat vehicle with a mounted heavy weapon, reinforced cab, and open rear bed, finished in weathered pale green with rust patches.",
+    "description_view_0": "Front view shows the reinforced grille, mesh windshield protection, and armored cab.",
+    "description_view_1": "Left side view highlights the six large tires, open rear bed, and prominent roof-mounted weapon.",
+    "description_view_2": "Rear view reveals the open cargo bed, high side panels, and rear armor details.",
+    "description_view_3": "Right side view displays the vehicle's length, rusted panels, and weapon mount above the cab.",
+    "category": "combat tactical  vehicle",
+    "height": 2.6,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.82,
+        0.04,
+        0.08,
+        0.03,
+        0.03
+    ],
+    "mass": 8500,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "gun turret",
+        "hatch",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "pale green",
+        "rust brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.65,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One heavy weapon mount on the roof above the cab, equipped with a large-caliber machine gun or autocannon.",
+    "attribute_armor_plating": "Visible armor plating covers the front grille, windshield, cab doors, and roof, with reinforced mesh and thick metal panels; side and rear panels are also armored but appear slightly thinner.",
+    "attribute_camouflage_pattern": "None visible; vehicle is painted in a solid, weathered pale green with rust patches.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Six large off-road tires with deep tread patterns, designed for rugged terrain; no visible reinforcement or chains.",
+    "uid": "a9a6555b9cf949d3a01003c3bed6dac8",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4712025326690759,
+        "reconnaissance_vehicle.n.01": 0.4751650787915115,
+        "tank.n.01": 0.4943321991620876,
+        "armored_car.n.02": 0.5053939952695402,
+        "assault_gun.n.02": 0.5093615395676366,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "armored_car.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a9a6555b9cf949d3a01003c3bed6dac8",
+        "creator_username": "HugoVilladiego",
+        "creator_display_name": "Hugo Armando Villadiego A",
+        "creator_profile_url": "https://sketchfab.com/HugoVilladiego"
+    },
+    "filename": "std_a9a6555b9cf949d3a01003c3bed6dac8.glb",
+    "length": 6.618644714355469,
+    "width": 4.971971750259399
+}

@@ -1,0 +1,92 @@
+{
+    "description_long": "This is a large, rectangular industrial container with a robust red metal exterior and a flat, light gray top surface featuring several evenly spaced black square openings. The container has a solid, corrugated metal construction with reinforced corners and a visible access door on one of the long sides, accompanied by a small control panel and signage. The top is partially open with a raised perimeter frame, suggesting it is designed for ventilation or access, and the interior is divided by a central support beam. The short ends of the container display warning or instruction labels, and the overall design is utilitarian, suitable for secure storage or housing of equipment. The structure appears weather-resistant and is likely intended for outdoor or industrial urban environments. Its size and features indicate it could be used for storage, waste management, or as a utility enclosure.",
+    "description": "A large, red industrial metal container with a flat, vented top and multiple black square openings, featuring a side access door and warning labels.",
+    "description_view_0": "Front view showing the access door, control panel, and signage on the long side, with the open top and interior supports visible.",
+    "description_view_1": "Short end view highlighting the flat top with black square openings and two warning labels, no visible door.",
+    "description_view_2": "Opposite long side view, similar to view 0 but without the door or control panel, showing the open top and interior structure.",
+    "description_view_3": "Opposite short end view, mirroring view 1 with warning labels and the flat top with openings.",
+    "category": "container",
+    "height": 2.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 3200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "control panel",
+        "lid openings"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "flat fixed top with multiple square openings",
+    "attribute_opening_mechanism": "door with latch, open top with fixed frame",
+    "attribute_labeling_or_signage": "warning and instruction labels on short ends and signage on front near door",
+    "attribute_handles_or_grips": "none",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "695d32e19a6e4547bf136a66f47641a5",
+    "near_synsets": {
+        "container.n.01": 0.4998914338707054,
+        "box.n.01": 0.5192933740640548,
+        "bin.n.01": 0.5336717857656478,
+        "cargo_container.n.01": 0.5356934504652909,
+        "can.n.01": 0.5357826762601265
+    },
+    "synset": "cargo_container.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/695d32e19a6e4547bf136a66f47641a5",
+        "creator_username": "lange",
+        "creator_display_name": "RedGuard",
+        "creator_profile_url": "https://sketchfab.com/lange"
+    },
+    "filename": "std_695d32e19a6e4547bf136a66f47641a5.glb",
+    "length": 5.544818162918091,
+    "width": 9.100834846496582
+}

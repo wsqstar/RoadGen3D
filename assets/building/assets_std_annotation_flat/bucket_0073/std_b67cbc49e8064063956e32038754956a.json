@@ -1,0 +1,106 @@
+{
+    "description_long": "This object is a compact single-board computer, featuring a green printed circuit board densely populated with various electronic components. On one side, there are multiple ports including USB, Ethernet, HDMI, and audio/video jacks, as well as a prominent yellow RCA connector and a blue 3.5mm audio jack. The board is covered with surface-mounted chips, capacitors, resistors, and pin headers, with a visible Raspberry Pi logo indicating its identity. The reverse side reveals solder points, traces, and a microSD card slot for storage expansion. The board is constructed primarily from fiberglass-reinforced epoxy laminate, with metallic connectors and plastic port housings. This device is typically used for educational, prototyping, or embedded computing applications in urban environments.",
+    "description": "A compact green single-board computer with multiple ports, chips, and connectors, including USB, Ethernet, HDMI, and audio jacks. The board is densely packed with electronic components and features a visible Raspberry Pi logo.",
+    "description_view_0": "The front view shows the main ports (USB, Ethernet, HDMI, RCA, and audio jack) and the central processing chips, with the Raspberry Pi logo clearly visible.",
+    "description_view_1": "This angled rear view highlights the solder points, traces, and the microSD card slot, with the ports visible on the left edge.",
+    "description_view_2": "The back view focuses on the green PCB, soldered components, and the microSD card slot, with minimal visibility of the main ports.",
+    "description_view_3": "This side view again shows the main ports and connectors, with a clear look at the pin headers and the yellow RCA connector.",
+    "category": "other electronics",
+    "height": 0.02,
+    "max_dimension": 0.09,
+    "materials": [
+        "fiberglass",
+        "copper",
+        "plastic",
+        "silicon",
+        "tin",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 0.045,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "connectable",
+        "programmable",
+        "pluggable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "USB port",
+        "Ethernet port",
+        "HDMI port",
+        "audio jack",
+        "RCA connector",
+        "microSD slot",
+        "GPIO pins"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "silver",
+        "yellow",
+        "blue"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.55,
+    "youngs_modulus": 20000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.05,
+    "asset_composition_type": "single",
+    "attribute_brand": "Raspberry Pi",
+    "attribute_display_type": "none",
+    "attribute_control_interface": "none",
+    "attribute_power_source": "USB",
+    "attribute_mounting_location": "desktop",
+    "uid": "b67cbc49e8064063956e32038754956a",
+    "near_synsets": {
+        "module.n.03": 0.5661478678302637,
+        "terminal.n.04": 0.5806140827805071,
+        "circuit_board.n.01": 0.5835517707026617,
+        "interface.n.04": 0.5843031211551771,
+        "cpu_board.n.01": 0.5864608487059231,
+        "electronics.n.01": -1000.0
+    },
+    "synset": "cpu_board.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b67cbc49e8064063956e32038754956a",
+        "creator_username": "kimbo",
+        "creator_display_name": "kimbo",
+        "creator_profile_url": "https://sketchfab.com/kimbo"
+    },
+    "filename": "std_b67cbc49e8064063956e32038754956a.glb",
+    "length": 0.022145035676658154,
+    "width": 0.023653686046600342
+}

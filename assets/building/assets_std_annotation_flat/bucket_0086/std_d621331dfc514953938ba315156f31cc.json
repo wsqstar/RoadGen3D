@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a white and gray spaceplane-style airplane with a streamlined fuselage and sharply pointed nose, reminiscent of the Chinese Shenlong or similar orbital vehicles. The wings are delta-shaped and smoothly integrated into the body, with visible black markings and text on the upper surfaces. Two cylindrical blue-gray engine nacelles are mounted near the rear, flanking a set of three black rocket nozzles. The tail features a single vertical stabilizer adorned with a red flag and yellow star insignia. The landing gear is deployed, with two main wheels under the wings and a single nose wheel. The cockpit is forward-mounted, with a black canopy and several small windows.",
+    "description": "A white and gray delta-winged spaceplane with blue-gray rear engines, a single vertical tail, and a forward black cockpit canopy.",
+    "description_view_0": "Side view showing the full length of the fuselage, the single vertical tail with insignia, and the deployed landing gear.",
+    "description_view_1": "Rear view highlighting the three black rocket nozzles, blue-gray engine nacelles, and the wide delta wings.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the landing gear and engine placement.",
+    "description_view_3": "Front view displaying the pointed nose, black cockpit canopy, and the broad delta wing shape.",
+    "category": "airplane",
+    "height": 6.0,
+    "max_dimension": 37.0,
+    "materials": [
+        "aluminum",
+        "titanium",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 80000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "closable",
+        "openable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "landing gear",
+        "doors",
+        "engine nozzles",
+        "control surfaces"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "black",
+        "blue",
+        "red",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.12,
+    "surface_finish": "sleek",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.03,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-mounted delta wings with no visible winglets, smoothly blended into the fuselage, exhibiting a straight leading edge and broad span.",
+    "attribute_engine_type": "Three rear-mounted jet or rocket engines, with two cylindrical nacelles flanking a central nozzle.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and no visible horizontal stabilizers extending beyond the delta wing.",
+    "attribute_landing_gear_type": "Tricycle landing gear with two main gear units under the wings and a single nose gear, all deployed.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a black canopy and multiple small windows, likely multi-seat.",
+    "uid": "d621331dfc514953938ba315156f31cc",
+    "near_synsets": {
+        "delta_wing.n.01": 0.4857790688967572,
+        "aircraft.n.01": 0.5138589589373012,
+        "monoplane.n.01": 0.5189561330238387,
+        "airplane.n.01": 0.5210140893750492,
+        "biplane.n.01": 0.5351614590068922
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d621331dfc514953938ba315156f31cc",
+        "creator_username": "victory_mirosya",
+        "creator_display_name": "victory_mirosya",
+        "creator_profile_url": "https://sketchfab.com/victory_mirosya"
+    },
+    "filename": "std_d621331dfc514953938ba315156f31cc.glb",
+    "length": 11.852017402648926,
+    "width": 7.606360912322998
+}

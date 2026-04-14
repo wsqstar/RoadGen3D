@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a stylized, pixel-art representation of a semi-automatic handgun, closely resembling the iconic Desert Eagle. The frame and slide are rendered in a light gray color with bold, black outlines, giving it a blocky, digital appearance. The grip is dark with a textured pattern, suggesting a checkered or stippled surface for improved handling. The trigger guard is robust and angular, with a squared-off lower edge and a prominent trigger visible within. The barrel is long and rectangular, with a flat top and minimal external features, while the slide features a circular marking near the rear, possibly representing a safety or manufacturer logo. The overall design is simplified but retains key elements of a modern handgun, making it easily recognizable in urban-themed environments.",
+    "description": "A pixel-art style semi-automatic handgun with a long, rectangular barrel, textured dark grip, and bold black outlines. The design is simplified but clearly depicts a modern handgun.",
+    "description_view_0": "Side view showing the full profile of the handgun, including the detailed grip texture, trigger, and slide markings.",
+    "description_view_1": "Front-on view displaying the narrow muzzle and the rectangular shape of the barrel, with minimal visible detail.",
+    "description_view_2": "Opposite side view mirroring view 0, showing the grip, trigger, and slide details from the other side.",
+    "description_view_3": "Rear view highlighting the back of the grip and slide, with the hammer and rear sight visible.",
+    "category": "handgun",
+    "height": 0.15,
+    "max_dimension": 0.27,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 1.8,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 18,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "pressable",
+        "pullable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "slide",
+        "magazine",
+        "safety",
+        "hammer"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_grip_design": "The grip is rectangular with a slightly flared base and features a dark, checkered or stippled pattern for enhanced traction. Its surface appears textured, likely to improve ergonomics and prevent slippage. The grip is visually distinct from the rest of the handgun due to its darker color and patterned design. No visible finger grooves or logos are present, but the patterning suggests a focus on secure handling.",
+    "attribute_trigger_guard_style": "The trigger guard is thick, angular, and squared-off at the bottom, providing ample space for the trigger finger. It lacks undercuts or additional texturing but stands out due to its bold, blocky outline. The design is utilitarian, with no integrated accessories or embellishments.",
+    "attribute_barrel_type": "The barrel is long, rectangular, and flat-topped, with no visible threading, porting, or compensator features. Its exterior is smooth and unadorned, matching the stylized, minimalist aesthetic of the object.",
+    "attribute_slide_markings": "A single circular marking is visible near the rear of the slide, possibly representing a manufacturer logo or safety indicator. No other engravings, serial numbers, or decorative patterns are present, in keeping with the simplified design.",
+    "attribute_magazine_base_shape": "The magazine base is flat and flush with the bottom of the grip, with no visible extensions, flaring, or finger rests. Its design is simple and functional, lacking logos or additional texturing.",
+    "uid": "7152a283c4ef449eb96bf58c90a6db7b",
+    "near_synsets": {
+        "pistol.n.01": 0.5066424909058395,
+        "firearm.n.01": 0.5289272587176682,
+        "semiautomatic_pistol.n.01": 0.529837515701521,
+        "submachine_gun.n.01": 0.5335240195751657,
+        "pistol_grip.n.01": 0.5340048325169707
+    },
+    "synset": "semiautomatic_pistol.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7152a283c4ef449eb96bf58c90a6db7b",
+        "creator_username": "salatis",
+        "creator_display_name": "salatis",
+        "creator_profile_url": "https://sketchfab.com/salatis"
+    },
+    "filename": "std_7152a283c4ef449eb96bf58c90a6db7b.glb",
+    "length": 0.23389828950166702,
+    "width": 0.015254285652190447
+}

@@ -1,0 +1,103 @@
+{
+    "description_long": "This shelter features a modern, minimalist design composed of two intersecting rectangular volumes, one clad in light wood and the other in smooth gray concrete. The structure includes a prominent gabled roof section with large, black-framed glass panels at each end, allowing natural light to flood the interior. A set of concrete steps leads up to a small platform, suggesting an elevated entryway. The wood-clad section has a small, rectangular window and a cantilevered platform, while the concrete section is more monolithic and windowless. The overall form is geometric and clean, with sharp lines and a clear distinction between the wood and concrete materials. The shelter appears suitable for use as a small urban pavilion, bus stop, or park structure.",
+    "description": "A modern shelter with intersecting wood and concrete volumes, featuring gabled glass ends and a minimalist, geometric design.",
+    "description_view_0": "Front view shows the juxtaposition of the wood and concrete volumes, the entry steps, and the cantilevered platform.",
+    "description_view_1": "Side view highlights the gabled glass facade framed in black, with the concrete section in the foreground.",
+    "description_view_2": "Rear view displays the wood-clad volume with a small window and the cantilevered platform, with the concrete block behind.",
+    "description_view_3": "Opposite gabled end view reveals the wood-clad glass facade and the platform, with the concrete section receding.",
+    "category": "shelter",
+    "height": 4.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "wood",
+        "concrete",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.4,
+        0.35,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 22000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "shelterable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "steps",
+        "platform"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light wood",
+        "gray",
+        "black",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.45,
+        0.35,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gabled roof with wood cladding and concrete slab sections",
+    "attribute_entryway_design": "stepped entry with a small platform and large glass doors",
+    "attribute_support_structure": "reinforced concrete walls and wood-framed gabled roof",
+    "attribute_signage": "none",
+    "attribute_transparency": "partially transparent glass panels at both gabled ends",
+    "uid": "7673b27223a2451c8d09bfe6c517b9a2",
+    "near_synsets": {
+        "shelter.n.01": 0.5092427439165731,
+        "shelter.n.02": 0.5273489137950379,
+        "shelter.n.05": 0.5507130198115541,
+        "house.n.12": 0.5544289417932066,
+        "rendering.n.06": 0.5555601421332796,
+        "protection.n.04": -1000.0,
+        "tax_shelter.n.01": -1000.0
+    },
+    "synset": "tax_shelter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7673b27223a2451c8d09bfe6c517b9a2",
+        "creator_username": "bearsdraw",
+        "creator_display_name": "bearsdraw",
+        "creator_profile_url": "https://sketchfab.com/bearsdraw"
+    },
+    "filename": "std_7673b27223a2451c8d09bfe6c517b9a2.glb",
+    "length": 4.779053449630737,
+    "width": 9.43994140625
+}

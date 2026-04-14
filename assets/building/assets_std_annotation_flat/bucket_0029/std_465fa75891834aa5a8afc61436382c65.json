@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a grouped set of industrial containers and materials, including a bundle of large black corrugated pipes, a wooden pallet, a metal drum, a stack of wooden boards, a gray crate, and a greenish metal cage. The pipes are bound together with blue straps and are the largest component, centrally positioned. The wooden pallet and boards are stacked neatly, while the metal drum is placed upright next to the boards. The gray crate and metal cage are both cubic, with the crate featuring a grid pattern and a red marking on top. The overall arrangement suggests storage or transport of construction or utility materials, commonly found in urban or industrial environments. The surfaces show signs of wear and utilitarian use, with muted, earthy tones dominating the palette.",
+    "description": "A group of industrial containers and materials, including large black pipes, a wooden pallet, a metal drum, wooden boards, a gray crate, and a metal cage, arranged for storage or transport.",
+    "description_view_0": "Front view showing the open ends of the black pipes, with the wooden pallet, crate, drum, boards, and metal cage lined up beside them.",
+    "description_view_1": "Side view highlighting the length of the pipes and the stacked arrangement of the boards, crate, and cage behind and in front.",
+    "description_view_2": "Rear view with the closed ends of the pipes visible, and the other containers arranged in a mirrored order from the front.",
+    "description_view_3": "Opposite side view showing the pipes' length and the crate and cage on either end, with the boards and drum in the center.",
+    "category": "container",
+    "height": 1.2,
+    "max_dimension": 3.5,
+    "materials": [
+        "plastic",
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.25,
+        0.05
+    ],
+    "mass": 650,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "stackable",
+        "openable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "pallet slats",
+        "pipe openings"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "gray",
+        "green"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_lid_type": "removable flat lid (on crate and drum), none (pipes, pallet, boards, cage)",
+    "attribute_opening_mechanism": "lift-off (crate, drum), no opening (pipes, pallet, boards, cage)",
+    "attribute_labeling_or_signage": "red marking on top of gray crate, none on other items",
+    "attribute_handles_or_grips": "no handles visible",
+    "attribute_placement_location": "outdoor ground, construction site, or industrial yard",
+    "uid": "465fa75891834aa5a8afc61436382c65",
+    "near_synsets": {
+        "container.n.01": 0.4274264781107401,
+        "cargo_container.n.01": 0.46731790313057586,
+        "drum.n.04": 0.499334480568694,
+        "packing_box.n.02": 0.5073752671115912,
+        "pallet.n.02": 0.5099512409280895
+    },
+    "synset": "cargo_container.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/465fa75891834aa5a8afc61436382c65",
+        "creator_username": "jcvalentinart",
+        "creator_display_name": "Jacques C. Valentin",
+        "creator_profile_url": "https://sketchfab.com/jcvalentinart"
+    },
+    "filename": "std_465fa75891834aa5a8afc61436382c65.glb",
+    "length": 5.100501775741577,
+    "width": 7.2840895652771
+}

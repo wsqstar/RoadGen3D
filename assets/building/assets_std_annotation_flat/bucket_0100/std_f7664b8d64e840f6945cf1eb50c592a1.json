@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a small, open-sided pavilion with a hexagonal base, elevated on a platform accessed by a short flight of stairs. The structure features a prominent, single-tiered roof with upward-curving eaves, covered in a pattern resembling traditional ceramic tiles. The roof is supported by six slender columns, painted a deep red, and capped with a decorative finial at the apex. The railing encircling the platform is also red, with geometric cutouts, and the floor area is spacious enough for several people to stand or sit. The base and stairs are rendered in a muted tan color, contrasting with the vibrant roof and railings. This type of structure is commonly found in East Asian parks, gardens, or urban plazas, serving as a shaded resting spot or ornamental focal point.",
+    "description": "A hexagonal, red and tan pavilion with a single-tiered, upward-curving tiled roof and decorative finial, elevated on a platform with stairs.",
+    "description_view_0": "Side view showing the hexagonal platform, red railings, and the stairs leading up to the pavilion.",
+    "description_view_1": "Frontal view highlighting the central staircase, open entryway, and symmetrical roof structure.",
+    "description_view_2": "Opposite side view displaying the stairs and the open, column-supported design of the pavilion.",
+    "description_view_3": "Rear view focusing on the hexagonal base, red railings, and the full expanse of the tiled roof.",
+    "category": "pagoda",
+    "height": 4.5,
+    "max_dimension": 5.5,
+    "materials": [
+        "wood",
+        "ceramic tile",
+        "stone",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "shelter"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "stairs",
+        "platform",
+        "railing"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "red",
+        "tan",
+        "brown"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_tiered_roof_structure": false,
+    "attribute_upward-curving_eaves": true,
+    "attribute_ornamental_finial": true,
+    "attribute_multiple_stories": 1,
+    "attribute_architectural_style": "Chinese",
+    "uid": "f7664b8d64e840f6945cf1eb50c592a1",
+    "near_synsets": {
+        "pagoda.n.01": 0.4457857501535747,
+        "minaret.n.01": 0.536047812166372,
+        "pavilion.n.01": 0.5463424400447068,
+        "pediment.n.01": 0.5628694791589413,
+        "pagoda_tree.n.02": 0.5687172037463271
+    },
+    "synset": "pagoda_tree.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f7664b8d64e840f6945cf1eb50c592a1",
+        "creator_username": "VerdeSepia",
+        "creator_display_name": "VerdeSepia",
+        "creator_profile_url": "https://sketchfab.com/VerdeSepia"
+    },
+    "filename": "std_f7664b8d64e840f6945cf1eb50c592a1.glb",
+    "length": 3.7683322429656982,
+    "width": 3.5212676525115967
+}

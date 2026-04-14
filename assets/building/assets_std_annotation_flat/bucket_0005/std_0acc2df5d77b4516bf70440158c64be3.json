@@ -1,0 +1,95 @@
+{
+    "description_long": "This humanoid robot features a geometric, angular design with a predominantly gray body and blue accents, particularly on its head and torso. The robot's head is hexagonal with a blue faceplate, suggesting a display or sensor area, and is mounted on a short neck. The torso is broad at the shoulders and tapers down, with two arm units and two leg units that are detached from the main body, each appearing as simple cylindrical segments with jointed ends. The limbs are separated from the torso, indicating modularity or assembly in progress. The overall form is minimalist, with no visible hands or feet, and the robot's surfaces are smooth and hard, likely made from metal or composite materials. The design is functional and utilitarian, suitable for urban environments where durability and clear visual signaling are important.",
+    "description": "A gray, angular humanoid robot with blue accents, modular limbs, and a hexagonal head with a blue faceplate. The design is minimalist and functional, with smooth, hard surfaces.",
+    "description_view_0": "Front view showing the hexagonal blue faceplate, broad shoulders, and separated limbs arranged around the torso.",
+    "description_view_1": "Side view highlighting the depth of the torso, the blue panel on the head, and the cylindrical, jointed limbs.",
+    "description_view_2": "Rear view displaying the back of the head and torso, with the limbs positioned outward and no visible facial features.",
+    "description_view_3": "Opposite side view showing the blue faceplate from an angle and the arrangement of the limbs relative to the torso.",
+    "category": "humanoid robot",
+    "height": 1.6,
+    "max_dimension": 1.8,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.1
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 150,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head",
+        "arms",
+        "legs",
+        "torso",
+        "faceplate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "smooth",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_pose": "The robot is in a neutral, upright pose with its head and torso aligned vertically and its arms and legs separated from the body, as if in a disassembled or modular state.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated panels and geometric coverings as part of its structural design.",
+    "attribute_facial_features": "The face consists of a blue, hexagonal faceplate with no visible eyes, mouth, or nose; the faceplate may serve as a display or sensor area.",
+    "attribute_limb_articulation": "Each arm and leg segment appears to have at least one hinge or rotary joint at the connection point, allowing for basic articulation; limbs are rigid and lack hands or feet.",
+    "attribute_presence_of_sensors": "A blue faceplate on the head likely contains visual or optical sensors; no other sensors are visibly apparent.",
+    "uid": "0acc2df5d77b4516bf70440158c64be3",
+    "near_synsets": {
+        "android.n.01": 0.547598141855146,
+        "robotics_equipment.n.01": 0.5724200195504416,
+        "cyborg.n.01": 0.5724438337770682,
+        "automaton.n.02": 0.5860332170243738,
+        "robotics.n.01": 0.591067054133979
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0acc2df5d77b4516bf70440158c64be3",
+        "creator_username": "jonathan.jay",
+        "creator_display_name": "jonathan.jay",
+        "creator_profile_url": "https://sketchfab.com/jonathan.jay"
+    },
+    "filename": "std_0acc2df5d77b4516bf70440158c64be3.glb",
+    "length": 4.613807439804077,
+    "width": 6.895468235015869
+}

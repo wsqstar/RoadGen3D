@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a military-style aerial bomb, cylindrical in shape with a rounded nose and a set of four stabilizing tail fins at the rear. The main body is painted olive green with a yellow band encircling the nose and another near the tail, typical of ordnance markings. The surface appears metallic and robust, with visible stenciled text indicating technical specifications and warnings. The tail section features angular fins arranged in a cross pattern, designed to stabilize the bomb during flight. The nose is blunt and solid, lacking any visible fuse or protruding trigger mechanism. The overall construction suggests a heavy, solid device intended for deployment from an aircraft.",
+    "description": "A cylindrical olive green aerial bomb with yellow bands and four stabilizing tail fins, featuring stenciled markings and a robust metallic surface.",
+    "description_view_0": "Front view showing the rounded nose with a yellow band and the cylindrical body extending backward.",
+    "description_view_1": "Side view displaying the full length of the bomb, stenciled text, and the cross-shaped tail fins.",
+    "description_view_2": "Rear view highlighting the four angular tail fins and the open tail structure.",
+    "description_view_3": "Opposite side view showing the uninterrupted cylindrical body and tail fins, with minimal visible markings.",
+    "category": "bomb",
+    "height": 0.4,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.3,
+        0.03,
+        0.02
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1176,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "tail fins"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [
+        "CLUSTER BOMB",
+        "FRAG. 4LB. M83",
+        "FUZES, BOMB M129"
+    ],
+    "attribute_detonation_mechanism": "The bomb appears to use an impact or proximity fuse mechanism, as suggested by the lack of visible external triggers or wiring and the presence of stenciled fuse information.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "7c75efe6973549ec9c7a2f113f079c38",
+    "near_synsets": {
+        "bomber.n.01": 0.5511749151526067,
+        "buzz_bomb.n.01": 0.555512575650196,
+        "plastic_bomb.n.01": 0.5567329079061151,
+        "cluster_bomb.n.01": 0.5570522087187418,
+        "pipe_bomb.n.01": 0.5699720759805645,
+        "turkey.n.05": -1000.0,
+        "bomb.n.01": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7c75efe6973549ec9c7a2f113f079c38",
+        "creator_username": "andrej.grave",
+        "creator_display_name": "Andrej Grave",
+        "creator_profile_url": "https://sketchfab.com/andrej.grave"
+    },
+    "filename": "std_7c75efe6973549ec9c7a2f113f079c38.glb",
+    "length": 1.5795557498931885,
+    "width": 0.399999737739563
+}

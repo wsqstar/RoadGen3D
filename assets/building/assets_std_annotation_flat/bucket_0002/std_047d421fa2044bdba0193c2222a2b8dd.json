@@ -1,0 +1,99 @@
+{
+    "description_long": "This forklift features a compact, blocky design with a predominantly tan and black color scheme. The vehicle has two large wheels on each side and a pair of robust fork arms extending forward, designed for lifting and transporting pallets or heavy loads. The overhead guard is a sturdy black frame that provides protection for the operator, with a mounted light or beacon on top. The operator's compartment is enclosed on three sides, with a visible seat and control area. The mast is integrated into the front structure, supporting the fork arms and allowing for vertical movement. The overall appearance is utilitarian, with clear functional elements for industrial or warehouse use.",
+    "description": "A compact tan and black forklift with robust fork arms, a protective overhead guard, and a clearly defined operator compartment.",
+    "description_view_0": "Front view showing the wide fork arms, headlights, and the protective overhead guard with a mounted light.",
+    "description_view_1": "Side view highlighting the length of the fork arms, the large wheels, and the operator compartment with visible seat.",
+    "description_view_2": "Rear view displaying the back of the overhead guard, the rear structure, and the back wheels.",
+    "description_view_3": "Opposite side view showing the fork arms, wheels, and the operator area from a different angle.",
+    "category": "forklift",
+    "height": 2.0,
+    "max_dimension": 3.2,
+    "materials": [
+        "painted steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 16000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "fork arms",
+        "wheels",
+        "operator seat",
+        "overhead guard",
+        "mast",
+        "control panel",
+        "warning light"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_fork_arms": "There are two parallel fork arms, rectangular in shape, extending forward from the front of the vehicle. They are long, flat, and moderately thick, positioned close to the ground for easy lifting of pallets. The tips are squared off, and the arms appear robust and capable of supporting heavy loads.",
+    "attribute_overhead_guard": "The overhead guard is a solid black rectangular frame that arches over the operator's seat, providing protection from falling objects. It is constructed from thick, sturdy bars and covers the entire operator area, with a mounted light or beacon on top for visibility.",
+    "attribute_mast": "The mast is a single-stage vertical structure integrated at the front, supporting the fork arms. It is constructed from thick, tan-colored metal and features a simple, robust design without visible hydraulic components or lift chains.",
+    "attribute_operator_seat": "The operator seat is centrally located within the compartment, rectangular in shape, and appears to be made of a solid material. It is tan in color, matching the vehicle, and does not show visible armrests, headrest, or seatbelt.",
+    "attribute_warning_lights": "A single round warning light or beacon is mounted on top of the overhead guard, black in color with a lighter lens, and does not appear illuminated.",
+    "uid": "047d421fa2044bdba0193c2222a2b8dd",
+    "near_synsets": {
+        "forklift.n.01": 0.4709111841187837,
+        "stacker_crane.n.01": 0.5719518863086573,
+        "lifting_device.n.01": 0.5764786482632889,
+        "crane.n.04": 0.5859017927847905,
+        "hayfork.n.01": 0.5866837682537063
+    },
+    "synset": "forklift.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/047d421fa2044bdba0193c2222a2b8dd",
+        "creator_username": "neilken",
+        "creator_display_name": "neilken",
+        "creator_profile_url": "https://sketchfab.com/neilken"
+    },
+    "filename": "std_047d421fa2044bdba0193c2222a2b8dd.glb",
+    "length": 3.3961726427078247,
+    "width": 1.9600932598114014
+}

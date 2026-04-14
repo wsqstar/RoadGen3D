@@ -1,0 +1,94 @@
+{
+    "description_long": "This is a robust industrial platform trolley with a rectangular flat loading surface bordered by a red metal frame. The trolley features a sturdy, upright handlebar at one end, constructed from tubular metal and painted red, with two horizontal support bars for added strength. The platform itself appears to be made of a dark, heavy-duty material, likely metal or reinforced composite, designed to withstand significant weight. Four small wheels are attached at the corners beneath the platform, allowing for smooth movement across flat surfaces. The trolley's utilitarian design is typical for use in warehouses, garages, or urban delivery settings, where heavy or bulky items need to be transported efficiently. There are no visible baskets, signage, or branding elements on the trolley.",
+    "description": "A heavy-duty red metal platform trolley with a flat black loading surface, upright handlebar, and four wheels for easy transport.",
+    "description_view_0": "Front view shows the wide flat platform and the upright red handlebar with two horizontal bars.",
+    "description_view_1": "Side view highlights the length of the platform, the handlebar's angle, and two visible wheels.",
+    "description_view_2": "Rear view displays the handlebar's full width and the platform's rectangular shape, with all four wheels visible.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the platform's length and the handlebar's structure.",
+    "category": "trolley",
+    "height": 1.1,
+    "max_dimension": 1.4,
+    "materials": [
+        "steel",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 32,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 18,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "platform"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.3,
+        0.7
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_handle_type": "single bar handle, rectangular looped shape, made of red-painted tubular steel, with two horizontal support bars for rigidity",
+    "attribute_number_of_wheels": 4,
+    "attribute_wheel_arrangement": "four wheels, one at each corner, likely all swivel for maneuverability",
+    "attribute_basket_or_platform_presence": "platform",
+    "attribute_branding_or_signage": "none",
+    "uid": "fcedc57affa34dba9870cefd9668e8fe",
+    "near_synsets": {
+        "dolly.n.02": 0.5251761211121019,
+        "hand_truck.n.01": 0.5348562248519368,
+        "laundry_cart.n.01": 0.5376010046408175,
+        "trolley_line.n.01": 0.5393201236441028,
+        "trundle.n.02": 0.5420228988237462,
+        "streetcar.n.01": -1000.0
+    },
+    "synset": "trolley_line.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fcedc57affa34dba9870cefd9668e8fe",
+        "creator_username": "louir-muir",
+        "creator_display_name": "louis-muir",
+        "creator_profile_url": "https://sketchfab.com/louir-muir"
+    },
+    "filename": "std_fcedc57affa34dba9870cefd9668e8fe.glb",
+    "length": 1.4548729062080383,
+    "width": 0.8857097625732422
+}

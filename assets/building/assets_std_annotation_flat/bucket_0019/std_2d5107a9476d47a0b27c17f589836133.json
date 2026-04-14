@@ -1,0 +1,88 @@
+{
+    "description_long": "This object is a realistic representation of a sushi piece, specifically a gunkan-maki style sushi. The base is a cylindrical form wrapped in a dark green seaweed sheet, which has a slightly glossy and crinkled texture. The top is filled with a dense layer of white, oval-shaped rice grains, each individually modeled for detail. At the center of the rice sits a rectangular slice of orange fish, likely salmon, with visible marbling lines that mimic the natural fat streaks of the fish. The overall appearance is clean and appetizing, with the contrast between the dark seaweed, white rice, and vibrant orange fish creating a visually appealing effect. There are no visible garnishes, chopsticks, or packaging, and the sushi is placed directly on a neutral, flat surface.",
+    "description": "A cylindrical gunkan-maki sushi with glossy dark seaweed, detailed white rice, and a marbled orange salmon topping.",
+    "description_view_0": "Front view showing the glossy seaweed wrap, detailed rice grains, and the marbled salmon topping clearly centered.",
+    "description_view_1": "Slightly rotated view with the salmon topping still visible, highlighting the roundness and texture of the seaweed wrap.",
+    "description_view_2": "Direct rear view with the seaweed's smooth surface and the rice and salmon topping still visible from above.",
+    "description_view_3": "Side view emphasizing the cylindrical shape, the crinkled seaweed, and the layered rice beneath the salmon.",
+    "category": "sushi",
+    "height": 0.045,
+    "max_dimension": 0.05,
+    "materials": [
+        "seaweed",
+        "rice",
+        "salmon",
+        "air"
+    ],
+    "materials_composition": [
+        0.25,
+        0.5,
+        0.2,
+        0.05
+    ],
+    "mass": 0.035,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0.4,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "white",
+        "orange"
+    ],
+    "colors_composition": [
+        0.3,
+        0.5,
+        0.2
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.3,
+    "surface_finish": "glossy",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 10,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.1,
+    "asset_composition_type": "single",
+    "attribute_type_of_sushi": "gunkan",
+    "attribute_presence_of_chopsticks": false,
+    "attribute_packaging_style": "no packaging",
+    "attribute_placement_location": "flat surface",
+    "attribute_garnish_or_topping": [],
+    "uid": "2d5107a9476d47a0b27c17f589836133",
+    "near_synsets": {
+        "sushi.n.01": 0.4463419181879183,
+        "sashimi.n.01": 0.5022718746880975,
+        "sushi_bar.n.01": 0.5255745071982159,
+        "striped_marlin.n.01": 0.5442359674649886,
+        "sukiyaki.n.01": 0.5468131033306105
+    },
+    "synset": "sushi_bar.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2d5107a9476d47a0b27c17f589836133",
+        "creator_username": "Just8",
+        "creator_display_name": "Just8",
+        "creator_profile_url": "https://sketchfab.com/Just8"
+    },
+    "filename": "std_2d5107a9476d47a0b27c17f589836133.glb",
+    "length": 0.0452839620411396,
+    "width": 0.046835970133543015
+}

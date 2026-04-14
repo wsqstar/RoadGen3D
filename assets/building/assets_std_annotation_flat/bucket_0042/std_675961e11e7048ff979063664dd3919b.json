@@ -1,0 +1,93 @@
+{
+    "description_long": "This kiosk is a small, rectangular commercial structure with a flat roof and a simple, utilitarian facade. The exterior walls are finished in a light, possibly painted concrete or stucco, with visible panel lines and subtle weathering. The front features three distinct doorways, each with a recessed entry and a small overhang above, suggesting individual service windows or access points. Minimal decorative elements are present, emphasizing function over form, and the windows and doors are symmetrically arranged. The roof appears flat and solid, with no visible skylights or significant overhangs, and the overall design is compact and boxy. The structure is likely intended for use as a street-side kiosk or small retail booth in an urban environment.",
+    "description": "A compact, rectangular kiosk with a flat roof, light-colored walls, and three front doorways, designed for functional urban use.",
+    "description_view_0": "Front view showing three recessed doorways with small overhangs and a plain, light-colored facade.",
+    "description_view_1": "Side view revealing a solid wall with minimal features and a single doorway near the center.",
+    "description_view_2": "Rear view displaying a plain wall with two doorways and no windows or decorative elements.",
+    "description_view_3": "Opposite side view with a similar configuration to the other side, featuring a single doorway and a plain surface.",
+    "category": "kiosk",
+    "height": 3.0,
+    "max_dimension": 6.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "none",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "three single doors on the front, one single door on each side, two single doors on the rear",
+    "attribute_roof_design": "flat roof, solid surface, no visible overhangs or decorative features",
+    "attribute_architectural_style": "utilitarian, minimalist urban style",
+    "uid": "675961e11e7048ff979063664dd3919b",
+    "near_synsets": {
+        "booth.n.02": 0.4914584641708038,
+        "telephone_booth.n.01": 0.5437332206353981,
+        "shopfront.n.01": 0.5462348317018163,
+        "shoebox.n.01": 0.5591046363756669,
+        "wicket.n.04": 0.5598216439151821
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/675961e11e7048ff979063664dd3919b",
+        "creator_username": "johnbel",
+        "creator_display_name": "johnbel",
+        "creator_profile_url": "https://sketchfab.com/johnbel"
+    },
+    "filename": "std_675961e11e7048ff979063664dd3919b.glb",
+    "length": 8.61160135269165,
+    "width": 12.308254718780518
+}

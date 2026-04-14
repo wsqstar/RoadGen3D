@@ -1,0 +1,94 @@
+{
+    "description_long": "This is a large, industrial shipping container constructed primarily from corrugated metal panels, exhibiting significant weathering and rust along its edges and surfaces. The container features reinforced corner fittings for stacking and transport, and its exterior is marked with faded paint, including yellow directional arrows and white stenciled text in Japanese. One end of the container has double doors with visible locking bars and warning labels, while the opposite end is solid and ribbed for structural integrity. The top and sides show heavy wear, with scratches and patches of rust, indicating prolonged outdoor exposure. The overall appearance suggests it is used for secure storage or transport of goods in urban or industrial environments.",
+    "description": "A weathered, corrugated metal shipping container with rust, faded paint, and stenciled markings, featuring double doors on one end and reinforced corners.",
+    "description_view_0": "The side view shows corrugated metal panels with rust, faded white Japanese text, and yellow arrow markings.",
+    "description_view_1": "The end view displays the double doors with locking bars, warning labels, and visible wear.",
+    "description_view_2": "The opposite side view highlights a large yellow arrow and more stenciled text, with heavy rust and weathering.",
+    "description_view_3": "The solid end view reveals ribbed metal panels with no openings or markings, showing significant rust.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.03,
+        0.05
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 15000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking bar",
+        "corner fitting"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "rust brown",
+        "yellow",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 2.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "faded white stenciled Japanese text and yellow arrows on both long sides, warning labels on door end",
+    "attribute_handles_or_grips": "locking bars and integrated door handles on the double doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "731960026f8240b1b5952dec3ec339fa",
+    "near_synsets": {
+        "container.n.01": 0.4884029798067838,
+        "cargo_container.n.01": 0.4984216523723553,
+        "crate.n.01": 0.5382712575067287,
+        "can.n.01": 0.5395372684801276,
+        "drum.n.04": 0.5443333492060499
+    },
+    "synset": "cargo_container.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/731960026f8240b1b5952dec3ec339fa",
+        "creator_username": "gaftstudio",
+        "creator_display_name": "Igor Gafton",
+        "creator_profile_url": "https://sketchfab.com/gaftstudio"
+    },
+    "filename": "std_731960026f8240b1b5952dec3ec339fa.glb",
+    "length": 6.21491813659668,
+    "width": 2.68237042427063
+}

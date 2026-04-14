@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a heavily armored, tracked military vehicle resembling a World War II German super-heavy tank, specifically the Jagdtiger. The exterior is covered in a mottled camouflage paint scheme with green, brown, and tan patches, designed for concealment in forested or urban environments. The vehicle features a long, prominent main cannon extending from a sloped, reinforced front hull, with thick armor plating and angular surfaces for deflecting projectiles. The sides display large, continuous metal tracks with visible road wheels and return rollers, suitable for traversing rough terrain. The rear includes exhaust ports, tow hooks, and additional armor plating, while the top has hatches, periscopes, and ventilation grilles. The overall construction is robust, with steel as the primary material, and the design prioritizes protection, firepower, and off-road mobility.",
+    "description": "A camouflaged, heavily armored tracked military vehicle with a long cannon, thick steel plating, and robust tracks for all-terrain mobility.",
+    "description_view_0": "Front view shows the sloped armor, central main cannon, and wide tracks flanking the hull.",
+    "description_view_1": "Left side view highlights the full length of the cannon, the arrangement of road wheels, and the camouflage pattern.",
+    "description_view_2": "Rear view reveals exhaust ports, rear armor, and tow hooks, with the cannon visible extending forward.",
+    "description_view_3": "Right side view mirrors the left, showing the tracks, wheels, and camouflage, with the cannon extending forward.",
+    "category": "all-terrain vehicle",
+    "height": 3.0,
+    "max_dimension": 10.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 70000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "cannon",
+        "track",
+        "wheel",
+        "door",
+        "periscope",
+        "exhaust port"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "tan",
+        "black"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.0,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 16,
+    "attribute_tire_tread_pattern": "The tracks feature a blocky, all-terrain tread pattern with raised metal cleats for maximum traction on rough and uneven surfaces.",
+    "attribute_suspension_type": "torsion bar",
+    "attribute_presence_of_roll_cage": false,
+    "attribute_handlebar_or_steering_wheel_type": "round steering wheel",
+    "uid": "f23650309a294143a7811737ca314219",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.44728861202546355,
+        "tank.n.01": 0.45554594883249283,
+        "armored_vehicle.n.01": 0.46194378970457206,
+        "reconnaissance_vehicle.n.01": 0.4627232414398973,
+        "armored_car.n.02": 0.48712081784625966,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f23650309a294143a7811737ca314219",
+        "creator_username": "maximus0075550",
+        "creator_display_name": "TimeTo3D",
+        "creator_profile_url": "https://sketchfab.com/maximus0075550"
+    },
+    "filename": "std_f23650309a294143a7811737ca314219.glb",
+    "length": 9.672912120819092,
+    "width": 3.672795534133911
+}

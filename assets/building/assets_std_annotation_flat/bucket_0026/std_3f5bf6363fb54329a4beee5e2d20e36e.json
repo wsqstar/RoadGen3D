@@ -1,0 +1,108 @@
+{
+    "description_long": "This object is a circular solar energy infrastructure installation featuring a central open area surrounded by six evenly spaced, angular solar panel arrays. Each array is mounted on a raised platform with a dark, likely glassy surface, and is supported by a robust structural base. The installation includes a prominent entryway or tunnel-like structure extending from one side, possibly for maintenance or access. The solar panels are tilted outward from the center, optimizing sunlight capture, and are separated by small gaps, suggesting modularity. The overall structure appears to be constructed from a combination of metal, glass, and concrete, with the central area possibly serving as a service or control hub. The design is modern and functional, suitable for urban parks, plazas, or as a dedicated solar power station.",
+    "description": "A circular solar energy installation with six outward-tilted solar panel arrays on raised platforms, featuring a central hub and a tunnel-like entryway.",
+    "description_view_0": "Front view showing the main entryway or tunnel leading to the central hub, with three solar panel arrays visible on each side.",
+    "description_view_1": "Side view highlighting the circular arrangement of the six solar panel arrays and the extended entry structure on the left.",
+    "description_view_2": "Rear view displaying the back of the central hub and the symmetrical layout of the solar panel arrays.",
+    "description_view_3": "Opposite side view with the entryway now on the right, again emphasizing the radial symmetry of the solar panel arrays.",
+    "category": "solar energy infrastructure",
+    "height": 4.0,
+    "max_dimension": 22.0,
+    "materials": [
+        "metal",
+        "glass",
+        "concrete",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.4,
+        0.25,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "toggleable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "solar panel array",
+        "entryway door",
+        "maintenance hatch"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "black",
+        "white",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_panel_orientation": "Panels are tilted outward at approximately 30 degrees from the horizontal, arranged radially, with fixed orientation.",
+    "attribute_mounting_structure_type": "ground-mounted with robust metal or concrete platforms supporting each solar panel array.",
+    "attribute_electrical_inverter_presence": false,
+    "attribute_cabling_visibility": "not visible",
+    "attribute_array_configuration": "Six-panel radial cluster, each panel on its own platform, evenly spaced around a central hub.",
+    "uid": "3f5bf6363fb54329a4beee5e2d20e36e",
+    "near_synsets": {
+        "solar_array.n.01": 0.5295831588782572,
+        "solar_thermal_system.n.01": 0.5394470315876047,
+        "solar_house.n.01": 0.5442997004947177,
+        "solar_energy.n.01": 0.5581873541856996,
+        "solar_system.n.01": 0.5708963694082795,
+        "energy.n.06": -1000.0,
+        "department_of_energy.n.01": -1000.0,
+        "infrastructure.n.02": -1000.0,
+        "energy.n.01": -1000.0,
+        "energy.n.05": -1000.0,
+        "energy.n.04": -1000.0,
+        "energy.n.03": -1000.0,
+        "infrastructure.n.01": -1000.0,
+        "energy.n.02": -1000.0
+    },
+    "synset": "solar_array.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3f5bf6363fb54329a4beee5e2d20e36e",
+        "creator_username": "Khaisan.Hafiq",
+        "creator_display_name": "Khaisan.Hafiq",
+        "creator_profile_url": "https://sketchfab.com/Khaisan.Hafiq"
+    },
+    "filename": "std_3f5bf6363fb54329a4beee5e2d20e36e.glb",
+    "length": 32.56064987182617,
+    "width": 20.50290584564209
+}

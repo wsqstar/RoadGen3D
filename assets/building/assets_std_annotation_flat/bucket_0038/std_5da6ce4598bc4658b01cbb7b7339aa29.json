@@ -1,0 +1,104 @@
+{
+    "description_long": "This object consists of a group of four large, cylindrical metal barrels with a rusted, weathered appearance, arranged on a wooden pallet. The barrels are accompanied by two smaller, white cylindrical containers, also showing signs of wear and some red markings. Behind the barrels, there is a large, slatted wooden barrier and two stacked wooden crates with reinforced corners, all exhibiting a rough, aged texture. The barrels have visible metal banding around their circumference, and the entire set is placed on a circular platform. The scene suggests an industrial or storage setting, with the objects likely used for storing or transporting liquids or materials.",
+    "description": "A set of four rusted metal barrels on a wooden pallet, flanked by weathered crates, a slatted barrier, and two smaller white containers, all with an industrial, aged look.",
+    "description_view_0": "Front view showing four rusted barrels on a pallet, two small white containers in front, and crates and a wooden barrier behind.",
+    "description_view_1": "Rear view dominated by the slatted wooden barrier and stacked crates, with barrels partially visible behind.",
+    "description_view_2": "Side view highlighting the stacked crates, the edge of the wooden barrier, and the barrels on the pallet.",
+    "description_view_3": "Opposite side view with a clear look at the tops of the barrels, pallet surface, and one white container to the right.",
+    "category": "barrel or bucket",
+    "height": 1.1,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "wood",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.35,
+        0.05,
+        0.1
+    ],
+    "mass": 180,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 800,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "liftable",
+        "pushable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "barrel body",
+        "barrel lid (implied)",
+        "pallet",
+        "crate",
+        "barrier"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "rust brown",
+        "gray",
+        "white",
+        "wood brown",
+        "red"
+    ],
+    "colors_composition": [
+        0.45,
+        0.15,
+        0.1,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_lid_presence": false,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "metal hoops",
+    "attribute_labeling_or_markings": "none",
+    "attribute_placement_location": "industrial",
+    "uid": "5da6ce4598bc4658b01cbb7b7339aa29",
+    "near_synsets": {
+        "barrel.n.02": 0.4814614039784161,
+        "barrels.n.01": 0.4946208011153908,
+        "barrel.n.03": 0.5124640804899119,
+        "beer_barrel.n.01": 0.5167987242238629,
+        "barrel.n.04": 0.5255779665346082,
+        "barrel.n.01": -1000.0,
+        "barrel.n.05": -1000.0,
+        "bucket.n.01": -1000.0,
+        "bucket.n.02": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5da6ce4598bc4658b01cbb7b7339aa29",
+        "creator_username": "oliver325374",
+        "creator_display_name": "oliver325374",
+        "creator_profile_url": "https://sketchfab.com/oliver325374"
+    },
+    "filename": "std_5da6ce4598bc4658b01cbb7b7339aa29.glb",
+    "length": 3.087095856666565,
+    "width": 3.087095022201538
+}

@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a compact, industrial forklift with a yellow and black color scheme, designed for material handling in urban and warehouse environments. The vehicle features two robust steel fork arms at the front, attached to a tall, reinforced mast with visible hydraulic components for lifting. The operator's compartment is protected by a sturdy overhead guard, and the seat is positioned centrally with a steering wheel and control levers within easy reach. The rear of the forklift houses a large cylindrical gas tank, indicating it is likely powered by LPG. The wheels are solid and durable, suitable for both indoor and outdoor surfaces, and the body shows signs of wear and use, such as scuffs and scratches. Safety features include side mirrors and warning lights mounted on the overhead guard.",
+    "description": "A yellow and black industrial forklift with steel fork arms, a protective overhead guard, and an LPG tank at the rear. The vehicle shows signs of use and is equipped with safety features like mirrors and warning lights.",
+    "description_view_0": "Front view showing the two parallel steel fork arms, the mast, and the protective overhead guard.",
+    "description_view_1": "Left side view highlighting the operator's seat, control area, and the full length of the fork arms and mast.",
+    "description_view_2": "Rear view displaying the large cylindrical LPG tank, rear body panel, and the back wheels.",
+    "description_view_3": "Right side view showing the operator's compartment, overhead guard, and the mast with fork arms extended forward.",
+    "category": "forklift",
+    "height": 2.1,
+    "max_dimension": 3.2,
+    "materials": [
+        "steel",
+        "rubber",
+        "plastic",
+        "glass",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.07,
+        0.03,
+        0.02,
+        0.03
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 16000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "liftable",
+        "pressable",
+        "rotatable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "fork arms",
+        "steering wheel",
+        "control levers",
+        "seat",
+        "pedals",
+        "door handle",
+        "warning lights",
+        "mirrors",
+        "wheels"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.55,
+        0.35,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_fork_arms": "Two parallel steel fork arms extend forward from the base, each straight and rectangular in shape, with moderate length and thickness suitable for pallet lifting. The arms show visible wear and scuff marks, and are positioned symmetrically at the front of the vehicle.",
+    "attribute_overhead_guard": "The overhead guard is a robust, rectangular steel frame with horizontal and vertical bars, providing full coverage above the operator's seat. It is painted black and includes side supports for structural integrity, with mounted warning lights and mirrors for safety.",
+    "attribute_mast": "The mast is a double-stage steel structure, tall and reinforced, with visible hydraulic cylinders and lift chains for vertical movement. It is painted black and features rollers and guide rails for smooth operation.",
+    "attribute_operator_seat": "The operator seat is a contoured, black seat with a high backrest, made of durable plastic or vinyl material. It is wide enough for comfort, with visible seatbelt and adjustment levers on the side.",
+    "attribute_warning_lights": "There are two small, round warning lights mounted on the top corners of the overhead guard, one on each side. They are orange in color and do not appear to be illuminated in the images.",
+    "uid": "ce8b2c714b2f472bbac58c6eab088ba2",
+    "near_synsets": {
+        "forklift.n.01": 0.46063530896474497,
+        "lifting_device.n.01": 0.5732772962703815,
+        "stacker_crane.n.01": 0.579792403700206,
+        "aerial_ladder.n.01": 0.5890367016474028,
+        "ladder_truck.n.01": 0.5916735461239679
+    },
+    "synset": "forklift.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ce8b2c714b2f472bbac58c6eab088ba2",
+        "creator_username": "ezbreneman",
+        "creator_display_name": "ezbreneman",
+        "creator_profile_url": "https://sketchfab.com/ezbreneman"
+    },
+    "filename": "std_ce8b2c714b2f472bbac58c6eab088ba2.glb",
+    "length": 2.8065654039382935,
+    "width": 0.9288593828678131
+}

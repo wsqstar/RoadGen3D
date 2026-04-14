@@ -1,0 +1,104 @@
+{
+    "description_long": "This is an old, weathered white sedan with significant signs of neglect and damage. The body is covered in rust patches, dents, and peeling paint, especially on the roof and hood, indicating prolonged exposure to the elements. The windows are either missing or broken, and the interior appears gutted or heavily vandalized. The wheels are mismatched, with one front wheel missing its hubcap and the rear wheels showing signs of wear. Vegetation is visible around the base, suggesting the car has been stationary for a long time. The overall appearance is that of an abandoned vehicle, likely found in a derelict urban area or junkyard.",
+    "description": "A heavily damaged, abandoned white sedan with rust, broken windows, and mismatched wheels.",
+    "description_view_0": "Front view shows a dented hood, broken windshield, and missing front grille details.",
+    "description_view_1": "Left side view reveals rust patches, missing hubcap on the front wheel, and broken windows.",
+    "description_view_2": "Rear view displays a damaged trunk, broken rear windshield, and a faded license plate.",
+    "description_view_3": "Right side view highlights more rust, mismatched wheels, and extensive roof damage.",
+    "category": "sedan",
+    "height": 1.4,
+    "max_dimension": 4.6,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.12,
+        0.1,
+        0.07,
+        0.03,
+        0.03
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 4,
+    "movable": true,
+    "required_force": 6000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "trunk",
+        "hood",
+        "mirror"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "gray",
+        "rust"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_number_of_doors": 4,
+    "attribute_license_plate": "Rear license plate present, faded, unreadable text.",
+    "attribute_wheel_design": "Steel wheels, one missing hubcap, simple design, black and rusted.",
+    "uid": "ec6f31deffd3416a82783195222816ff",
+    "near_synsets": {
+        "car_window.n.01": 0.5474044356579859,
+        "boneshaker.n.01": 0.5477819054719412,
+        "bus.n.04": 0.5649114433488513,
+        "wreck.n.01": 0.5685090218278085,
+        "sedan.n.01": 0.5696087553684747,
+        "sedan.n.02": -1000.0
+    },
+    "synset": "sedan.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ec6f31deffd3416a82783195222816ff",
+        "creator_username": "kryik1023",
+        "creator_display_name": "Renafox",
+        "creator_profile_url": "https://sketchfab.com/kryik1023"
+    },
+    "filename": "std_ec6f31deffd3416a82783195222816ff.glb",
+    "length": 2.5112277269363403,
+    "width": 2.2378607988357544
+}

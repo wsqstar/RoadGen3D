@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a small, single-propeller seaplane with a high-wing configuration and twin floats for water landings. The fuselage is primarily painted in red and white, with a blue accent on the tail and a wooden propeller at the nose. The wings are straight and mounted above the fuselage, providing stability and good visibility for the cockpit, which is located at the front of the aircraft and features multiple windows. The tail section includes a conventional vertical stabilizer and horizontal stabilizers, with the rudder and elevators clearly visible. The floats are attached beneath the fuselage and wings, allowing the airplane to take off and land on water surfaces. The overall design suggests a lightweight, general aviation aircraft suitable for short-range flights and access to remote or aquatic locations.",
+    "description": "A small, red and white high-wing seaplane with twin floats, a single front propeller, and a blue-accented tail. The cockpit is forward-mounted with multiple windows, and the airplane is designed for water landings.",
+    "description_view_0": "Side view showing the red and white fuselage, twin floats, and blue tail accent, with the propeller and cockpit windows visible.",
+    "description_view_1": "Front view highlighting the high-mounted straight wing, twin floats, and the single propeller at the nose.",
+    "description_view_2": "Opposite side view similar to view 0, showing the red and white color scheme, floats, and blue tail, with the propeller and cockpit windows visible.",
+    "description_view_3": "Rear view displaying the tail section, horizontal and vertical stabilizers, and the twin floats extending forward.",
+    "category": "airplane",
+    "height": 2.8,
+    "max_dimension": 10.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.08,
+        0.07,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "cockpit door",
+        "windows",
+        "floats",
+        "control surfaces",
+        "landing gear struts"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "gray",
+        "blue",
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.35,
+        0.35,
+        0.15,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 12.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "High-wing, straight configuration with no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Single front-mounted piston engine with a two-blade propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "Twin fixed floats for water landings, no visible wheels.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with multiple windows, likely single or dual seat.",
+    "uid": "0dc504d11c284f648d93efd6b0e8495b",
+    "near_synsets": {
+        "floatplane.n.01": 0.4682173591203271,
+        "seaplane.n.01": 0.476885089978189,
+        "pontoon.n.02": 0.4849608392487298,
+        "flying_boat.n.01": 0.49164381052026185,
+        "airplane.n.01": 0.5057444474830155
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0dc504d11c284f648d93efd6b0e8495b",
+        "creator_username": "helijah",
+        "creator_display_name": "helijah",
+        "creator_profile_url": "https://sketchfab.com/helijah"
+    },
+    "filename": "std_0dc504d11c284f648d93efd6b0e8495b.glb",
+    "length": 6.222149848937988,
+    "width": 8.042556762695312
+}

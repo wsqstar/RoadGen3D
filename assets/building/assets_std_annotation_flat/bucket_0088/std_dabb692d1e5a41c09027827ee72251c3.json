@@ -1,0 +1,114 @@
+{
+    "description_long": "This is a robust, rectangular yellow newspaper stand commonly found in urban environments. The main body is made of metal, featuring a large transparent display window on the front, showcasing a newspaper behind a protective pane. The upper section has a pull-down door with a lock and a clearly labeled 'PULL' instruction, as well as a coin slot for payment. Graffiti and stickers are visible on several sides, adding to its urban character. The base is reinforced with metal feet for stability, and the overall structure is designed to withstand outdoor conditions.",
+    "description": "A sturdy yellow metal newspaper stand with a front display window, pull-down door, and coin slot, marked by urban graffiti.",
+    "description_view_0": "Front view showing graffiti, two metal feet, and the lower section of the stand.",
+    "description_view_1": "Rear view with less graffiti, a solid metal panel, and ventilation holes near the base.",
+    "description_view_2": "Opposite front view with a visible lock, 'PULL' label, and more graffiti.",
+    "description_view_3": "Main interactive side with a transparent display window, coin slot, and pull-down door.",
+    "category": "newspaper stand",
+    "height": 1.3,
+    "max_dimension": 0.7,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 55,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 9,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "pullable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "pull-down door",
+        "coin slot",
+        "display window",
+        "lock"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "gray",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_display_window_presence": true,
+    "attribute_newspaper_title_signage": "printed sign with 'NEWS' and newspaper icon",
+    "attribute_publication_racks": [
+        "angled shelf"
+    ],
+    "attribute_payment_mechanism": "coin slot",
+    "attribute_location_relative_to_street": "on sidewalk",
+    "uid": "dabb692d1e5a41c09027827ee72251c3",
+    "near_synsets": {
+        "newsstand.n.01": 0.48176902570721153,
+        "news_item.n.01": 0.5379097283173817,
+        "want_ad.n.01": 0.5487823833826947,
+        "magazine_rack.n.01": 0.5515664049955782,
+        "newspaper.n.03": 0.5527011131625125,
+        "stand.n.04": -1000.0,
+        "newspaper.n.01": -1000.0,
+        "stand.n.02": -1000.0,
+        "bandstand.n.01": -1000.0,
+        "base.n.08": -1000.0,
+        "stand.n.03": -1000.0,
+        "stand.n.06": -1000.0,
+        "stand.n.10": -1000.0,
+        "stand.n.09": -1000.0,
+        "stand.n.12": -1000.0,
+        "newspaper.n.02": -1000.0,
+        "stall.n.03": -1000.0,
+        "rack.n.04": -1000.0,
+        "newspaper.n.04": -1000.0,
+        "point_of_view.n.01": -1000.0
+    },
+    "synset": "newsstand.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dabb692d1e5a41c09027827ee72251c3",
+        "creator_username": "heymrwho",
+        "creator_display_name": "heymrwho",
+        "creator_profile_url": "https://sketchfab.com/heymrwho"
+    },
+    "filename": "std_dabb692d1e5a41c09027827ee72251c3.glb",
+    "length": 0.5291840434074402,
+    "width": 0.8555539846420288
+}

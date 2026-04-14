@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a large, heavy-duty plow truck designed for urban and municipal snow removal. The vehicle features a robust white cab with a prominent orange dump bed for salt or sand, and a large, curved orange plow blade mounted at the front. The truck is equipped with dual rear wheels for added stability and traction, and its chassis sits higher than standard vehicles, indicating off-road or heavy-duty capability. The cab has visible side mirrors and headlights, and the dump bed is vented for material dispersal. The overall construction is primarily metal, with rubber tires and glass windows, and the truck is built to withstand harsh winter conditions.",
+    "description": "A heavy-duty plow truck with a white cab, orange dump bed, and a large orange front plow blade, designed for urban snow removal. The vehicle has a high chassis, dual rear wheels, and robust construction.",
+    "description_view_0": "Rear view showing the orange dump bed and the back of the chassis.",
+    "description_view_1": "Side view highlighting the white cab, orange dump bed, and large front plow blade.",
+    "description_view_2": "Front view displaying the plow blade, headlights, and grille.",
+    "description_view_3": "Opposite side view with clear visibility of the plow blade and dump bed.",
+    "category": "plow truck",
+    "height": 3.2,
+    "max_dimension": 8.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 9500,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "steerable",
+        "loadable",
+        "dumpable",
+        "plowable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "plow blade",
+        "dump bed",
+        "mirror",
+        "headlight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.35,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_plow_blade_attachment": true,
+    "attribute_warning_lights": [],
+    "attribute_heavy-duty_front_grille": true,
+    "attribute_utility_markings_or_decals": [],
+    "attribute_elevated_chassis": true,
+    "uid": "ea50c83418b2428fbfcb26282f0f277a",
+    "near_synsets": {
+        "snowplow.n.01": 0.4705868849092036,
+        "plow.n.01": 0.5247857308192788,
+        "truck.n.01": 0.5382398975690749,
+        "dump_truck.n.01": 0.543039725555123,
+        "snow_thrower.n.01": 0.5517953327399335,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "snowplow.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ea50c83418b2428fbfcb26282f0f277a",
+        "creator_username": "staks.ru",
+        "creator_display_name": "Staks",
+        "creator_profile_url": "https://sketchfab.com/staks.ru"
+    },
+    "filename": "std_ea50c83418b2428fbfcb26282f0f277a.glb",
+    "length": 13.12108039855957,
+    "width": 3.3843271732330322
+}

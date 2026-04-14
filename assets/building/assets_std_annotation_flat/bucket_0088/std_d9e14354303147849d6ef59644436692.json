@@ -1,0 +1,164 @@
+{
+    "description_long": "This object is a small graveyard ensemble featuring several distinct tombstones, grave markers, and a section of cemetery fencing. The set includes a prominent Celtic cross monument, two rectangular gravestones with raised platforms, a smaller upright headstone, and a flat grave slab. A wrought iron fence section with stone pillars and a cross-topped post marks the cemetery boundary, adding a sense of enclosure. The surfaces are weathered, with a mossy, aged stone appearance and darkened metal on the fence. The overall arrangement suggests a historical or traditional cemetery, with each element crafted from stone or metal and showing signs of exposure to the elements.",
+    "description": "A small, weathered graveyard set with multiple stone tombstones, a Celtic cross, and a wrought iron fence section with stone pillars.",
+    "description_view_0": "Front view showing all tombstones, the large Celtic cross, and the cemetery fence section with its cross-topped pillar.",
+    "description_view_1": "Side view highlighting the depth of the grave markers and the thickness of the fence and stone bases.",
+    "description_view_2": "Rear view displaying the backs of the tombstones, the reverse of the cross, and the inside of the fence section.",
+    "description_view_3": "Opposite side view showing the length of the grave markers and the profile of the fence and cross.",
+    "category": "grave yard",
+    "height": 1.8,
+    "max_dimension": 5.0,
+    "materials": [
+        "stone",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "gate",
+        "cross",
+        "grave marker"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "dark green",
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_tombstone_inscriptions": [],
+    "attribute_crosses": [
+        {
+            "style": "Celtic",
+            "height": 1.8,
+            "material": "stone"
+        },
+        {
+            "style": "Latin",
+            "height": 0.5,
+            "material": "metal"
+        }
+    ],
+    "attribute_grave_markers": [
+        {
+            "type": "headstone",
+            "material": "stone",
+            "dimensions": [
+                0.7,
+                0.4,
+                0.2
+            ]
+        },
+        {
+            "type": "headstone",
+            "material": "stone",
+            "dimensions": [
+                0.8,
+                0.5,
+                0.3
+            ]
+        },
+        {
+            "type": "Celtic cross",
+            "material": "stone",
+            "dimensions": [
+                1.8,
+                0.7,
+                0.3
+            ]
+        },
+        {
+            "type": "grave slab",
+            "material": "stone",
+            "dimensions": [
+                0.2,
+                1.0,
+                0.5
+            ]
+        }
+    ],
+    "attribute_mausoleums": [],
+    "attribute_cemetery_gates": [
+        {
+            "type": "wrought iron",
+            "primary_materials": [
+                "metal",
+                "stone"
+            ],
+            "dimensions": [
+                1.2,
+                2.5
+            ],
+            "decorative_elements": [
+                "cross finial",
+                "stone pillars"
+            ]
+        }
+    ],
+    "uid": "d9e14354303147849d6ef59644436692",
+    "near_synsets": {
+        "cairn.n.01": 0.4965592851690812,
+        "gravestone.n.01": 0.4972557990535209,
+        "grave.n.02": 0.5038319243681998,
+        "cemetery.n.01": 0.5094485998909011,
+        "celtic_cross.n.01": 0.533633741008283,
+        "yard.n.06": -1000.0,
+        "yard.n.07": -1000.0,
+        "yard.n.03": -1000.0,
+        "cubic_yard.n.01": -1000.0,
+        "yard.n.08": -1000.0,
+        "yard.n.02": -1000.0,
+        "thousand.n.01": -1000.0,
+        "yard.n.09": -1000.0,
+        "yard.n.01": -1000.0
+    },
+    "synset": "cemetery.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/d9e14354303147849d6ef59644436692",
+        "creator_username": "kifir",
+        "creator_display_name": "KIFIR",
+        "creator_profile_url": "https://sketchfab.com/kifir"
+    },
+    "filename": "std_d9e14354303147849d6ef59644436692.glb",
+    "length": 2.226245164871216,
+    "width": 6.1303722858428955
+}

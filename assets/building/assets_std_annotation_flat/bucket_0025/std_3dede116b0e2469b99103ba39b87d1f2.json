@@ -1,0 +1,101 @@
+{
+    "description_long": "This humanoid robot features a rounded, gray and white body with a large, oval-shaped head that has glowing blue accents and a smooth, visor-like faceplate. Its torso is compact and tapers toward the waist, with two articulated arms: the left arm ends in a three-fingered hand, while the right arm has a more mechanical, claw-like appendage. The robot's lower body is supported by a pair of wide, tank-like treads, providing stability and mobility on urban surfaces. Blue highlights are present on the head and back, adding a futuristic aesthetic. The robot's joints and limbs are visibly segmented, suggesting a range of motion for both arms. The overall design is sleek and functional, with no visible clothing or external accessories.",
+    "description": "A sleek, gray and white humanoid robot with blue accents, articulated arms, and tank-like treads for mobility. Its large head features glowing blue details and a smooth faceplate.",
+    "description_view_0": "Front view shows the robot's large head with blue glowing accents, articulated arms, and tank treads.",
+    "description_view_1": "Left side view highlights the blue panel on the back of the head, the segmented arm, and the tread profile.",
+    "description_view_2": "Rear view displays the smooth back of the head, the back panel, and both arms with their different end effectors.",
+    "description_view_3": "Right side view emphasizes the blue back panel, the mechanical claw arm, and the tread structure.",
+    "category": "humanoid robot",
+    "height": 1.2,
+    "max_dimension": 0.8,
+    "materials": [
+        "plastic",
+        "metal",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arm",
+        "hand",
+        "claw",
+        "tread",
+        "head",
+        "faceplate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "sleek",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 7000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is standing upright with its torso vertical, both arms slightly bent at the elbows and positioned at its sides, and its head facing forward. The treads are parallel and flat on the ground.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated panels and smooth, colored coverings as part of its body design.",
+    "attribute_facial_features": "The face consists of a smooth, dark visor-like surface with two glowing blue eye-like lights and no visible mouth or nose. The head is rounded with blue accent lines.",
+    "attribute_limb_articulation": "Both arms have visible segmented joints at the shoulder, elbow, and wrist, allowing for multi-axis movement. The left hand has three articulated fingers, while the right ends in a mechanical claw. The treads serve as the lower limbs, with no visible knees or feet.",
+    "attribute_presence_of_sensors": "Visible sensors include two blue eye-like elements on the faceplate, likely functioning as cameras or visual sensors.",
+    "uid": "3dede116b0e2469b99103ba39b87d1f2",
+    "near_synsets": {
+        "android.n.01": 0.5527092586062244,
+        "cyborg.n.01": 0.565497678160724,
+        "robotics_equipment.n.01": 0.5681645754778754,
+        "automaton.n.02": 0.5692829195475526,
+        "automaton.n.03": 0.5904490889356048
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3dede116b0e2469b99103ba39b87d1f2",
+        "creator_username": "alexvladimircm",
+        "creator_display_name": "alexvladimircm",
+        "creator_profile_url": "https://sketchfab.com/alexvladimircm"
+    },
+    "filename": "std_3dede116b0e2469b99103ba39b87d1f2.glb",
+    "length": 0.5159867107868195,
+    "width": 0.6948486268520355
+}

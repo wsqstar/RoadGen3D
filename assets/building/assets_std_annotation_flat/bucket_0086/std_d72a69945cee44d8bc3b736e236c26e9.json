@@ -1,0 +1,87 @@
+{
+    "description_long": "This object is a tall, lattice-structured metallic tower with a triangular base that tapers as it rises. It features three prominent horizontal crossarms, each extending symmetrically from the central shaft, and each crossarm is equipped with insulator stacks for supporting high-voltage power lines. The structure is constructed from a network of steel beams, forming a rigid and open framework that allows air to pass through. The metallic surface is predominantly gray, with a matte finish that reduces glare. No visible warning signage or mounted electrical equipment is present, and the tower is designed to be a fixed, immovable infrastructure element. Its overall appearance is industrial and utilitarian, suitable for supporting electrical transmission lines in urban or suburban environments.",
+    "description": "A tall, gray, lattice steel tower with three horizontal crossarms and insulator stacks, designed for supporting high-voltage power lines. The structure is open-framed and industrial in appearance.",
+    "description_view_0": "The tower is seen from a narrow end, showing the triangular base and the vertical lattice structure with minimal crossarm visibility.",
+    "description_view_1": "The tower is viewed from the broad side, clearly displaying all three horizontal crossarms and the symmetrical arrangement of insulator stacks.",
+    "description_view_2": "Similar to view 0, this angle shows the narrow profile of the tower, emphasizing the vertical lattice and base geometry.",
+    "description_view_3": "This view matches view 1, highlighting the full width of the crossarms and the overall symmetry of the structure.",
+    "category": "transformer tower",
+    "height": 28.0,
+    "max_dimension": 32.0,
+    "materials": [
+        "steel",
+        "ceramic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 9500,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [],
+    "support_surface": false,
+    "interactive_parts": [
+        "insulator stack",
+        "crossarm"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.01,
+    "recommended_clearance": 6.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_insulator_stacks": 6,
+    "attribute_arrangement_of_crossarms": "There are three horizontal crossarms arranged in parallel at different heights, each extending symmetrically from the central shaft. The crossarms are evenly spaced vertically, forming a tiered configuration.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [],
+    "attribute_configuration_of_attached_power_lines": "The power lines are attached in a three-phase parallel configuration, with each crossarm supporting two insulator stacks for a total of six attachment points. The lines are routed horizontally and spaced evenly across the crossarms.",
+    "uid": "d72a69945cee44d8bc3b736e236c26e9",
+    "near_synsets": {
+        "pylon.n.02": 0.5044732925569787,
+        "tower.n.01": 0.5568202853434218,
+        "trestle.n.01": 0.5599103274277251,
+        "tesla_coil.n.01": 0.5665473120617676,
+        "supporting_tower.n.01": 0.5665580321382304,
+        "transformer.n.01": -1000.0,
+        "tugboat.n.01": -1000.0,
+        "column.n.04": -1000.0
+    },
+    "synset": "pylon.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d72a69945cee44d8bc3b736e236c26e9",
+        "creator_username": "combine_soldier",
+        "creator_display_name": "combine_soldier",
+        "creator_profile_url": "https://sketchfab.com/combine_soldier"
+    },
+    "filename": "std_d72a69945cee44d8bc3b736e236c26e9.glb",
+    "length": 50.455448150634766,
+    "width": 50.4554443359375
+}

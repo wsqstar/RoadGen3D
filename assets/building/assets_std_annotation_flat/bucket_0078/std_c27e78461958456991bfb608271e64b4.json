@@ -1,0 +1,120 @@
+{
+    "description_long": "This car wash structure features a large, flat roof supported by two thick side walls, creating two wide drive-through bays for vehicles. The front facade includes a sign reading 'Car Center' in yellow lettering on the left wall, and a central flagpole with a red and white flag mounted on a raised concrete planter. The driveways are paved in dark asphalt, bordered by green grass strips, and separated by a central median. Each bay is equipped with a horizontal barrier arm at the entrance, and a human figure is visible near the right bay, suggesting scale and access. The rear of the structure is plain, with minimal detailing and a single door, while the sides are solid and unadorned.",
+    "description": "A modern, dual-bay car wash with a flat roof, side walls, entrance barriers, and a central flagpole planter, featuring clear drive-through lanes and minimalistic design.",
+    "description_view_0": "Front view showing two vehicle bays, entrance barriers, a flagpole planter, and the 'Car Center' sign on the left wall.",
+    "description_view_1": "Left side view highlighting the solid side wall, the edge of the roof, and the flagpole planter in front.",
+    "description_view_2": "Rear view displaying the plain back wall, a single door, and the open vehicle bays with a human figure for scale.",
+    "description_view_3": "Right side view showing the solid wall, the roof overhang, and the flagpole planter in the foreground.",
+    "category": "car wash",
+    "height": 4.5,
+    "max_dimension": 15.0,
+    "materials": [
+        "concrete",
+        "asphalt",
+        "metal",
+        "glass",
+        "plastic",
+        "air",
+        "grass"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.1,
+        0.05,
+        0.03,
+        0.07,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "barrier arm",
+        "door"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "car"
+    ],
+    "colors": [
+        "white",
+        "gray",
+        "black",
+        "green",
+        "yellow",
+        "red"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.15,
+        0.08,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "scene",
+    "attribute_signage": "Painted yellow lettering on the left front wall reading 'Car Center'.",
+    "attribute_entrance_structure": "Flat roof canopy supported by thick concrete side walls, with horizontal barrier arms at each vehicle bay entrance and a central concrete planter with a flagpole.",
+    "attribute_washing_equipment": [],
+    "attribute_water_spray": "None",
+    "attribute_vehicle_queue": "Two white cars are present, one in each bay, with a human figure near the right bay.",
+    "uid": "c27e78461958456991bfb608271e64b4",
+    "near_synsets": {
+        "service_area.n.01": 0.5616289616511381,
+        "carport.n.01": 0.5672917161959787,
+        "drive-in.n.01": 0.5732190315961834,
+        "drive-thru.n.01": 0.5812604763452123,
+        "porte-cochere.n.02": 0.5834222791383991,
+        "car.n.03": -1000.0,
+        "cable_car.n.01": -1000.0,
+        "wash.n.02": -1000.0,
+        "wash.n.06": -1000.0,
+        "laundry.n.01": -1000.0,
+        "car.n.02": -1000.0,
+        "wash.n.03": -1000.0,
+        "washout.n.02": -1000.0,
+        "wash.n.01": -1000.0,
+        "slipstream.n.01": -1000.0,
+        "car.n.04": -1000.0,
+        "wash.n.08": -1000.0,
+        "car.n.01": -1000.0
+    },
+    "synset": "drive-in.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/c27e78461958456991bfb608271e64b4",
+        "creator_username": "fauzanalfi",
+        "creator_display_name": "fauzanalfi",
+        "creator_profile_url": "https://sketchfab.com/fauzanalfi"
+    },
+    "filename": "std_c27e78461958456991bfb608271e64b4.glb",
+    "length": 10.59230899810791,
+    "width": 12.011536121368408
+}

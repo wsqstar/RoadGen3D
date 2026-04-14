@@ -1,0 +1,112 @@
+{
+    "description_long": "This is a large, urban town bus with a rectangular body, painted primarily white with a red roof and yellow and orange accent stripes along the sides. The bus features large, rectangular windows evenly spaced along both sides, providing ample visibility for passengers. The wheels are painted blue, and the bus has a prominent front windshield with black framing and side mirrors. The rear of the bus is flat and features a set of tail lights and a rear window. The side of the bus is labeled 'TOWN BUS' in bold white letters, indicating its public transportation function. The roof has two rectangular skylights or ventilation panels, and the entry doors are located on the right side near the front.",
+    "description": "A white and red town bus with large side windows, blue wheels, and 'TOWN BUS' written on the side. It features a red roof with skylights and yellow-orange accent stripes.",
+    "description_view_0": "Side view showing the left side of the bus with large windows, blue wheels, and yellow-orange stripes.",
+    "description_view_1": "Front view displaying the wide windshield, black framing, side mirrors, and the red roof with skylights.",
+    "description_view_2": "Side view showing the right side with 'TOWN BUS' text, large windows, blue wheels, and the main passenger door near the front.",
+    "description_view_3": "Rear view highlighting the flat back, rear window, tail lights, and the red roof with skylights.",
+    "category": "bus",
+    "height": 3.2,
+    "max_dimension": 11.0,
+    "materials": [
+        "metal",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.12,
+        0.08,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "mass": 11000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 10,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "seat",
+        "steering wheel",
+        "button",
+        "mirror"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "yellow",
+        "orange",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.18,
+        0.08,
+        0.05,
+        0.08,
+        0.06
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 1,
+    "attribute_window_arrangement": "Large, rectangular windows are evenly spaced along both sides of the bus, separated by vertical pillars, with a consistent size and shape for each window.",
+    "attribute_route_number_or_destination_sign": "",
+    "attribute_bus_manufacturer_logo": "",
+    "attribute_passenger_entry_step_height": 0.45,
+    "uid": "14fe03d792914d51b6c6250b393c44fd",
+    "near_synsets": {
+        "school_bus.n.01": 0.5253593767003326,
+        "bus.n.01": 0.5348956848889634,
+        "bus_traffic.n.01": 0.5475019004470509,
+        "minibus.n.01": 0.5521621711918926,
+        "bus_route.n.01": 0.5705500594743274,
+        "bus_topology.n.01": -1000.0,
+        "busbar.n.01": -1000.0,
+        "bus.n.04": -1000.0
+    },
+    "synset": "bus.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/14fe03d792914d51b6c6250b393c44fd",
+        "creator_username": "own.guest",
+        "creator_display_name": "own.guest",
+        "creator_profile_url": "https://sketchfab.com/own.guest"
+    },
+    "filename": "std_14fe03d792914d51b6c6250b393c44fd.glb",
+    "length": 12.932124614715576,
+    "width": 3.1510101556777954
+}

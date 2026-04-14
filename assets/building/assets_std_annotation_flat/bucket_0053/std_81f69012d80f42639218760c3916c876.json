@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a vintage-style Coca-Cola vending machine with a tall, rectangular form and rounded edges, painted in a bright red color. The front features a large glass window displaying several shelves stocked with Coca-Cola cans, and the iconic Coca-Cola logo is prominently displayed in white at the top. Below the window, the words 'ICE COLD' are written in white on a red panel. The sides are smooth and unadorned, while the back has a vented panel and a visible fan for cooling. A single Coca-Cola can is placed next to the machine for scale, emphasizing its height and retro design. The machine appears to be made primarily of metal with glass and plastic components, and is designed for public, urban environments.",
+    "description": "A tall, retro Coca-Cola vending machine in bright red with a glass front window displaying cans and prominent white branding.",
+    "description_view_0": "Side view showing the smooth, unadorned red metal surface and a Coca-Cola can placed next to the base.",
+    "description_view_1": "Rear view displaying a vented panel with a fan and a small information label, highlighting the machine's cooling system.",
+    "description_view_2": "Opposite side view, similar to view 0, with the edge of the front window and a can partially visible.",
+    "description_view_3": "Front view featuring the glass display window with visible Coca-Cola cans, the large white Coca-Cola logo, and the 'ICE COLD' panel at the bottom.",
+    "category": "vending machine",
+    "height": 1.7,
+    "max_dimension": 1.7,
+    "materials": [
+        "painted metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 9,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "pressable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "button",
+        "product retrieval slot"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "silver",
+        "black",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "none",
+    "attribute_payment_interface": "none",
+    "attribute_product_selection_buttons": "none",
+    "attribute_product_retrieval_slot": "A rectangular slot located at the bottom front of the machine, beneath the glass window, likely with a flap or door for retrieving cans.",
+    "attribute_branding_or_signage": "Large white Coca-Cola logo at the top front, 'ICE COLD' in white letters on a red panel at the bottom front, and Coca-Cola branding on the visible cans inside.",
+    "uid": "81f69012d80f42639218760c3916c876",
+    "near_synsets": {
+        "vending_machine.n.01": 0.49165090541675727,
+        "coca_cola.n.01": 0.5283276924381158,
+        "automat.n.01": 0.531288338493274,
+        "soda_fountain.n.02": 0.5517889342166327,
+        "soda_can.n.01": 0.5573560577904616,
+        "machine.n.03": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.02": -1000.0,
+        "machine.n.04": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.05": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/81f69012d80f42639218760c3916c876",
+        "creator_username": "kuckbert",
+        "creator_display_name": "kuckbert",
+        "creator_profile_url": "https://sketchfab.com/kuckbert"
+    },
+    "filename": "std_81f69012d80f42639218760c3916c876.glb",
+    "length": 1.3478005528450012,
+    "width": 0.7144342660903931
+}

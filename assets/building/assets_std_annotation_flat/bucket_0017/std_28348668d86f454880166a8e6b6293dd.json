@@ -1,0 +1,98 @@
+{
+    "description_long": "This mud patch is a roughly rectangular section of ground with a slightly uneven, compacted surface, typical of urban environments where soil and dirt accumulate. The surface is predominantly a muted brownish-gray, with subtle variations in color and texture indicating areas of denser or looser soil. Small pebbles and fine gravel are scattered across the top, giving it a gritty appearance, while the edges are irregular and slightly raised in some places, suggesting minor erosion or disturbance. The patch appears dry, with no visible signs of standing water or significant dampness, and there are no clear impressions such as footprints or tire marks. The boundaries blend somewhat into the surrounding ground, lacking sharp definition but still distinguishable from adjacent surfaces. No debris such as leaves, trash, or sticks is visible on or around the patch.",
+    "description": "A rectangular, slightly uneven mud patch with a gritty, brownish-gray surface and scattered small pebbles. The edges are irregular and blend into the surrounding ground, with no visible debris or water.",
+    "description_view_0": "The mud patch appears rectangular with a slightly raised, uneven front edge and a gritty, compacted surface.",
+    "description_view_1": "From this angle, the surface looks flatter and the left edge appears more irregular, with subtle texture variations.",
+    "description_view_2": "This view highlights the patch's gentle slope and the rough, granular texture across the surface.",
+    "description_view_3": "The mud patch looks most level from this side, with the cleanest and most defined edge visible.",
+    "category": "mud patch",
+    "height": 0.08,
+    "max_dimension": 1.2,
+    "materials": [
+        "soil",
+        "gravel",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "coverable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.07,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 50,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_location": "urban roadside or construction site",
+    "attribute_boundary_definition": "The boundaries are irregular and blend gradually into the surrounding ground, with no sharp transitions.",
+    "attribute_presence_of_footprints_or_tire_marks": "none visible",
+    "attribute_water_accumulation": "none visible",
+    "attribute_surrounding_debris": "none visible",
+    "uid": "28348668d86f454880166a8e6b6293dd",
+    "near_synsets": {
+        "mud_puddle.n.01": 0.5004857729745191,
+        "mud_stain.n.01": 0.5278040705846617,
+        "mud.n.01": 0.5338343271609367,
+        "gravel.n.01": 0.5518175825201045,
+        "mud_flat.n.01": 0.5519891003563143,
+        "bandage.n.01": -1000.0,
+        "mend.n.01": -1000.0,
+        "mud.n.02": -1000.0,
+        "patch.n.05": -1000.0,
+        "patch.n.03": -1000.0,
+        "while.n.01": -1000.0,
+        "spot.n.05": -1000.0,
+        "temporary_hookup.n.01": -1000.0,
+        "plot.n.02": -1000.0,
+        "eyepatch.n.01": -1000.0
+    },
+    "synset": "mud.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/28348668d86f454880166a8e6b6293dd",
+        "creator_username": "Zhoslen.Makoev",
+        "creator_display_name": "Zhoslen.Makoev",
+        "creator_profile_url": "https://sketchfab.com/Zhoslen.Makoev"
+    },
+    "filename": "std_28348668d86f454880166a8e6b6293dd.glb",
+    "length": 1.1600407361984253,
+    "width": 1.1403545141220093
+}

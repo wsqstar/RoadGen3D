@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a tactical shotgun with a matte black finish and a robust, utilitarian design. It features a long, cylindrical barrel with a vented muzzle and a prominent pump-action fore-end, which is ribbed for grip. The stock is adjustable and includes a pistol grip for enhanced control, as well as a shell holder mounted on the side, loaded with red shotgun shells. The receiver and barrel are constructed from metal, while the stock and fore-end appear to be made from high-strength polymer. The trigger guard is rounded and slightly elongated, providing ample space for gloved fingers. Overall, the shotgun is designed for durability and quick handling, suitable for urban tactical scenarios.",
+    "description": "A tactical, pump-action shotgun with a matte black finish, adjustable stock, pistol grip, and side-mounted shell holder. The design is robust and optimized for urban use.",
+    "description_view_0": "Front view showing the narrow muzzle, ribbed pump fore-end, and the alignment of the barrel.",
+    "description_view_1": "Side profile highlighting the full length of the barrel, adjustable stock, pistol grip, and visible shell holder with red shells.",
+    "description_view_2": "Rear view focusing on the stock, pistol grip, and the back of the receiver.",
+    "description_view_3": "Opposite side profile showing the pump fore-end, shell holder, and the overall tactical configuration.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "polymer",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "pumpable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "pistol grip",
+        "pump fore-end",
+        "trigger",
+        "trigger guard",
+        "barrel",
+        "shell holder",
+        "safety switch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "red",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, long with vented muzzle and ribbing",
+    "attribute_stock_type": "adjustable stock with pistol grip",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "rounded and elongated, providing ample space for gloved fingers",
+    "uid": "a4cb85ebf36c40f9af47dd3e38d340a2",
+    "near_synsets": {
+        "pump_action.n.01": 0.5096647725039617,
+        "shotgun.n.01": 0.5451853182885571,
+        "gas_gun.n.01": 0.5483559933450679,
+        "sawed-off_shotgun.n.01": 0.5490711285566269,
+        "pistol.n.01": 0.564254104430802
+    },
+    "synset": "sawed-off_shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a4cb85ebf36c40f9af47dd3e38d340a2",
+        "creator_username": "drcrazzie",
+        "creator_display_name": "drcrazzie",
+        "creator_profile_url": "https://sketchfab.com/drcrazzie"
+    },
+    "filename": "std_a4cb85ebf36c40f9af47dd3e38d340a2.glb",
+    "length": 0.9681197106838226,
+    "width": 0.08041863143444061
+}

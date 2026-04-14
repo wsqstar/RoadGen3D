@@ -1,0 +1,106 @@
+{
+    "description_long": "This vending machine features a rectangular, boxy structure with a wood-toned exterior and metallic trim. The front face displays a grid of circular product compartments, likely for dispensing spherical items such as eggs or balls, with a transparent cover for visibility. To the right of the product grid is a vertical control panel, which includes a digital display, a numeric keypad, and a payment slot. The lower section of the front has a horizontal retrieval slot labeled 'PUSH' for collecting purchased items. The sides and top are plain, while the back has a service panel with ventilation and safety symbols. The overall design is utilitarian, with a focus on function and durability for urban environments.",
+    "description": "A wood-toned vending machine with a grid of circular product compartments, a control panel with keypad and display, and a front retrieval slot.",
+    "description_view_0": "Front view showing the product grid, control panel with keypad and display, and the retrieval slot at the bottom.",
+    "description_view_1": "Left side view, plain wood-toned surface with no visible features or openings.",
+    "description_view_2": "Rear view with a service panel, ventilation grill, and safety symbols.",
+    "description_view_3": "Right side view, plain wood-toned surface with no visible features or openings.",
+    "category": "vending machine",
+    "height": 1.7,
+    "max_dimension": 0.8,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "wood laminate",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "keypad",
+        "display panel",
+        "payment slot",
+        "product retrieval slot",
+        "product compartment doors"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A small rectangular digital display is located on the upper right section of the front control panel, showing red digits.",
+    "attribute_payment_interface": "A vertical slot below the keypad on the right front panel, likely for bills or cards, with no visible coin slot.",
+    "attribute_product_selection_buttons": "A numeric keypad with 12 square buttons arranged in a 3x4 grid, located to the right of the product grid.",
+    "attribute_product_retrieval_slot": "A wide horizontal slot labeled 'PUSH' at the bottom center of the front face, with a metallic flap.",
+    "attribute_branding_or_signage": "Faint text or logo is visible at the top left of the front panel, but it is not clearly legible.",
+    "uid": "9974acbcd8794694987f1e69924f80d9",
+    "near_synsets": {
+        "vending_machine.n.01": 0.43973884720788725,
+        "automat.n.01": 0.49855850125428963,
+        "coin_box.n.01": 0.5480696421330152,
+        "fruit_machine.n.01": 0.552590914848072,
+        "slot_machine.n.01": 0.5531425167257097,
+        "car.n.01": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.05": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.02": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9974acbcd8794694987f1e69924f80d9",
+        "creator_username": "hectopod",
+        "creator_display_name": "hectopod",
+        "creator_profile_url": "https://sketchfab.com/hectopod"
+    },
+    "filename": "std_9974acbcd8794694987f1e69924f80d9.glb",
+    "length": 0.9861482679843903,
+    "width": 0.9728732705116272
+}

@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a large, modern cruise ship with a streamlined white hull and multiple decks stacked above the waterline. The ship features a pointed bow and a rounded stern, with rows of windows and balconies along the sides. The superstructure includes several open decks, sunbathing areas, and a prominent bridge located near the front. The upper decks are equipped with lifeboats, visible safety railings, and various deck equipment. The vessel sits on a blue base, simulating water, and displays intricate details such as lifeboats, deck furniture, and communication equipment. The overall design suggests a luxurious passenger liner built for long voyages.",
+    "description": "A detailed, multi-deck white cruise ship with a streamlined hull, balconies, lifeboats, and a prominent bridge, set on a blue water-like base.",
+    "description_view_0": "Front view showing the pointed bow, tiered decks, and the ship's bridge at the top.",
+    "description_view_1": "Side view highlighting the length of the ship, rows of windows and balconies, and lifeboats along the upper decks.",
+    "description_view_2": "Rear view displaying the rounded stern, open deck areas, and the ship's layered superstructure.",
+    "description_view_3": "Opposite side view mirroring view 1, with visible lifeboats, windows, and the full length of the vessel.",
+    "category": "ship",
+    "height": 18,
+    "max_dimension": 320,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 110000000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "dockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "lifeboat",
+        "bridge",
+        "deck railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.04,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a sharply pointed bow and a rounded stern, featuring a smooth, continuous sheer line and a deep draft. The hull sides are vertical with multiple rows of windows and balconies, and there is no visible bulbous bow or external keel.",
+    "attribute_superstructure_layout": "The superstructure consists of several stacked decks with open areas, a central bridge near the bow, and lifeboats mounted along the upper sides. There are multiple levels of passenger cabins and open sun decks, with railings and deck furniture visible.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "lifeboat",
+        "antenna",
+        "radar",
+        "deck railing"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "37dfa76b858c46de854ac68af2afedad",
+    "near_synsets": {
+        "cruise_ship.n.01": 0.4839322451843078,
+        "passenger_ship.n.01": 0.5096635205712547,
+        "bridge.n.09": 0.5122395459646163,
+        "cargo_ship.n.01": 0.5130018685472924,
+        "three-decker.n.02": 0.5153000881715011,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/37dfa76b858c46de854ac68af2afedad",
+        "creator_username": "P_4_N_D_A",
+        "creator_display_name": "P_4_N_D_A",
+        "creator_profile_url": "https://sketchfab.com/P_4_N_D_A"
+    },
+    "filename": "std_37dfa76b858c46de854ac68af2afedad.glb",
+    "length": 68.59022521972656,
+    "width": 11.896490573883057
+}

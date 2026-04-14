@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a dilapidated wooden cabin with a partially collapsed gable roof made of corrugated metal sheets, featuring large holes and missing sections. The exterior walls are constructed from weathered wooden planks, some of which are broken or missing, exposing the interior framework. The cabin has several windows, most of which are either broken or missing panes, and a single main entrance with a small overhang. Debris, such as loose planks and broken boards, is scattered around the perimeter, emphasizing its abandoned state. The structure appears to have once been a modest residential building, now in severe disrepair. The overall appearance is rustic and aged, with a strong sense of neglect and exposure to the elements.",
+    "description": "A weathered, partially collapsed wooden cabin with a damaged corrugated metal gable roof, broken windows, and scattered debris, exuding a rustic, abandoned look.",
+    "description_view_0": "Front view showing the main entrance, a small overhang, broken windows, and significant roof damage with large holes.",
+    "description_view_1": "Side view highlighting the long wooden wall, a side window, and extensive roof collapse with debris on the ground.",
+    "description_view_2": "Rear view displaying a mostly intact wooden wall with a large hole in the roof and minimal window openings.",
+    "description_view_3": "Opposite side view revealing more roof collapse, broken wall sections, and a cluster of window openings with missing panes.",
+    "category": "cabin",
+    "height": 4.5,
+    "max_dimension": 11.0,
+    "materials": [
+        "wood",
+        "corrugated metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.18,
+        0.02,
+        0.1
+    ],
+    "mass": 9500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "windows"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.3,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gable roof with corrugated metal sheets, heavily damaged with large holes and missing sections",
+    "attribute_window_arrangement": "multiple small rectangular windows, asymmetrically distributed, with some grouped and others isolated; most are broken or missing panes",
+    "attribute_door_placement": "single exterior door located on the front facade, slightly offset to the right beneath a small overhang",
+    "attribute_porch_presence": true,
+    "attribute_architectural_style": "rustic",
+    "uid": "5489d066519d4f5c920762001a352f98",
+    "near_synsets": {
+        "cabin.n.02": 0.4809844543371253,
+        "log_cabin.n.01": 0.4997638409352304,
+        "ruin.n.02": 0.533251535215121,
+        "cottage_tent.n.01": 0.5632342113877027,
+        "lodge.n.04": 0.5635011617171523,
+        "cabin.n.03": -1000.0,
+        "cabin.n.01": -1000.0
+    },
+    "synset": "cabin.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5489d066519d4f5c920762001a352f98",
+        "creator_username": "Ashwani-Tyagi",
+        "creator_display_name": "Ashwani-Tyagi",
+        "creator_profile_url": "https://sketchfab.com/Ashwani-Tyagi"
+    },
+    "filename": "std_5489d066519d4f5c920762001a352f98.glb",
+    "length": 9.184238910675049,
+    "width": 10.912672519683838
+}

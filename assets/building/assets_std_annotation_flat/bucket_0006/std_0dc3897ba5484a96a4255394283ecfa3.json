@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a modern semi-automatic handgun with a matte black finish, featuring a rectangular slide and a cylindrical suppressor attached to the barrel. The grip is ergonomically contoured and appears to be made of a polymer material, with a smooth surface and subtle texturing for improved handling. The magazine is partially ejected, revealing brass-colored cartridges, and the trigger guard is rounded and robust, providing ample space for finger placement. The slide has minimal visible markings, maintaining a sleek and utilitarian appearance. The suppressor is long and matches the color of the handgun, contributing to a tactical aesthetic. The overall design is compact, functional, and typical of handguns used in urban environments.",
+    "description": "A matte black semi-automatic handgun with a suppressor, ergonomic grip, and partially ejected magazine showing brass cartridges. The design is sleek, modern, and tactical.",
+    "description_view_0": "Side view showing the full length of the handgun, suppressor, and partially ejected magazine with visible cartridges.",
+    "description_view_1": "Angled view highlighting the grip, trigger guard, and the open magazine well with cartridges visible.",
+    "description_view_2": "Opposite side view focusing on the slide, suppressor, and the ejection port, with the magazine and cartridges below.",
+    "description_view_3": "Rear-angled view emphasizing the back of the grip, the magazine base, and the alignment of the suppressor.",
+    "category": "handgun",
+    "height": 0.14,
+    "max_dimension": 0.32,
+    "materials": [
+        "polymer",
+        "steel",
+        "brass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "mass": 1.1,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 15,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "unloadable",
+        "attachable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "magazine",
+        "slide",
+        "suppressor",
+        "trigger guard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brass",
+        "silver"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_grip_design": "The grip is ergonomically contoured with a smooth, matte black polymer surface, featuring subtle texturing for enhanced handling. Its shape is slightly curved to fit the palm comfortably, with a gentle swell at the backstrap and a flat base. There are no visible finger grooves, logos, or embellishments, giving it a minimalist and functional appearance.",
+    "attribute_trigger_guard_style": "The trigger guard is rounded and robust, with a thick profile and ample space for finger placement. It lacks undercuts or squared-off edges, maintaining a classic oval shape without visible texturing or reinforcement. The design is straightforward and functional, without integrated accessories or distinctive styling.",
+    "attribute_barrel_type": "The barrel is extended and fitted with a cylindrical suppressor, giving it a tactical profile. The suppressor is smooth, matte black, and matches the finish of the handgun. No external markings or fluting are visible on the barrel or suppressor.",
+    "attribute_slide_markings": "The slide appears to have minimal or no visible markings, engravings, or inscriptions. There are no prominent manufacturer logos, model names, or caliber designations visible in the images, contributing to a clean and utilitarian look.",
+    "attribute_magazine_base_shape": "The magazine base is flat and rectangular, with a smooth surface and no visible finger rests, logos, or texturing. Its design is simple and flush with the grip, lacking any flared or beveled features.",
+    "uid": "0dc3897ba5484a96a4255394283ecfa3",
+    "near_synsets": {
+        "pistol.n.01": 0.5353121882933762,
+        "submachine_gun.n.01": 0.5390115178136481,
+        "holster.n.01": 0.5415676320585073,
+        "tommy_gun.n.01": 0.5419413036529588,
+        "semiautomatic_pistol.n.01": 0.5446993862115269
+    },
+    "synset": "semiautomatic_pistol.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0dc3897ba5484a96a4255394283ecfa3",
+        "creator_username": "chemicalX3D",
+        "creator_display_name": "chemicalX",
+        "creator_profile_url": "https://sketchfab.com/chemicalX3D"
+    },
+    "filename": "std_0dc3897ba5484a96a4255394283ecfa3.glb",
+    "length": 0.676655501127243,
+    "width": 1.4577255249023438
+}

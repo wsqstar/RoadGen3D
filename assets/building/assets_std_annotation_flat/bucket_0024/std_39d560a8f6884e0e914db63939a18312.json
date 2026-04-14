@@ -1,0 +1,101 @@
+{
+    "description_long": "This object consists of two rectangular, dark-colored blocks stacked and tightly bound together with two wide, metallic-looking bands. On top of the blocks sits a black rectangular device featuring a prominent red button and a protruding cylindrical rod, which may serve as a detonator or trigger. Two colored wires, one red and one blue, extend from the device and run along the surface of the blocks, suggesting an electrical connection. The overall construction is compact and utilitarian, with a focus on functionality rather than concealment. The materials appear to be a combination of dense, solid blocks (possibly plastic explosives), metal bands, and a plastic or metal triggering device. The object is visually reminiscent of an improvised explosive device commonly depicted in urban threat scenarios.",
+    "description": "A compact, rectangular bomb with two stacked blocks, metallic bands, a black trigger device with a red button, and visible red and blue wires.",
+    "description_view_0": "Front view showing the ends of the two colored wires and the face of the black trigger device.",
+    "description_view_1": "Side view displaying the full length of the stacked blocks, metallic bands, and the protruding cylindrical rod from the trigger device.",
+    "description_view_2": "Rear view highlighting the back of the trigger device and the wires looping over the blocks.",
+    "description_view_3": "Opposite side view showing the stacked blocks, metallic bands, and the cylindrical rod extending from the trigger device.",
+    "category": "bomb",
+    "height": 0.15,
+    "max_dimension": 0.35,
+    "materials": [
+        "plastic explosive",
+        "metal",
+        "plastic",
+        "copper",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 2.8,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 35,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "wires",
+        "detonator rod"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "red",
+        "blue",
+        "silver"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.07,
+        0.07,
+        0.06
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.55,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The device features a prominent red button and a protruding rod, with visible red and blue wires connecting the trigger device to the main body, suggesting a manual or remote electrical detonation mechanism.",
+    "attribute_wiring_visibility": true,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "39d560a8f6884e0e914db63939a18312",
+    "near_synsets": {
+        "bomb.n.01": 0.49184953421186417,
+        "briefcase_bomb.n.01": 0.5034192155026401,
+        "pipe_bomb.n.01": 0.5057747944044463,
+        "remote-control_bomb.n.01": 0.5160313621350446,
+        "cherry_bomb.n.01": 0.5257688882146866,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/39d560a8f6884e0e914db63939a18312",
+        "creator_username": "LM3D",
+        "creator_display_name": "Luciano O. Mollo",
+        "creator_profile_url": "https://sketchfab.com/LM3D"
+    },
+    "filename": "std_39d560a8f6884e0e914db63939a18312.glb",
+    "length": 0.3620212972164154,
+    "width": 0.118259958922863
+}

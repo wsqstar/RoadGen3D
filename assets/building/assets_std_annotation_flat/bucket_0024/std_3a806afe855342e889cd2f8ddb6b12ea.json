@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a heavily armored tracked combat vehicle, featuring a low-profile turret with a long, prominent main cannon extending from the front. The hull and turret are covered in angular, sloped armor panels, providing enhanced protection against projectiles. The exterior is finished in a dark, irregular camouflage pattern, blending shades of gray and black. The vehicle rides on a set of large, rugged road wheels and continuous tracks, suitable for traversing rough terrain. On the turret roof, there are two circular hatches and additional small fixtures, likely for crew access and observation. The overall design is robust and utilitarian, optimized for battlefield durability and firepower.",
+    "description": "A camouflaged, heavily armored tracked combat vehicle with a long main cannon and sloped armor panels, designed for battlefield use.",
+    "description_view_0": "Front view shows the long main cannon, sloped frontal armor, and the symmetrical arrangement of the tracks and wheels.",
+    "description_view_1": "Left side view highlights the length of the cannon, the full set of road wheels, and the low, angular turret profile.",
+    "description_view_2": "Rear view reveals the back of the turret, two circular hatches, and the rear armor plating.",
+    "description_view_3": "Right side view mirrors the left, showing the track system, turret, and cannon from the opposite side.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "closable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "track",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large main cannon mounted on the turret front; no additional weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating on the hull and turret; no modular or reactive panels visible.",
+    "attribute_camouflage_pattern": "Dark gray and black irregular camouflage pattern with large, organic shapes.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "3a806afe855342e889cd2f8ddb6b12ea",
+    "near_synsets": {
+        "tank.n.01": 0.45219508649565615,
+        "military_vehicle.n.01": 0.45654485592225447,
+        "reconnaissance_vehicle.n.01": 0.4759526751690084,
+        "armored_car.n.02": 0.48376331211504675,
+        "armored_vehicle.n.01": 0.489450440410275,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3a806afe855342e889cd2f8ddb6b12ea",
+        "creator_username": "lm9241221",
+        "creator_display_name": "lm9241221",
+        "creator_profile_url": "https://sketchfab.com/lm9241221"
+    },
+    "filename": "std_3a806afe855342e889cd2f8ddb6b12ea.glb",
+    "length": 8.475764274597168,
+    "width": 7.663415431976318
+}

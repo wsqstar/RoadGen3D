@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a towed anti-tank artillery gun, featuring a long, slender barrel mounted on a two-wheeled carriage. The main body is protected by an angular armored shield, which covers the breech and provides some frontal protection for the crew. Two long, spindly trails extend from the rear, used for stabilization during firing and for towing the gun behind a vehicle. The wheels are solid and robust, designed to support the weight and facilitate movement across various terrains. The overall construction is primarily metallic, with a utilitarian, military green finish. No visible crew compartments or powered propulsion are present, indicating it is manually positioned and towed.",
+    "description": "A towed anti-tank artillery gun with a long barrel, armored shield, and two stabilizing trails, finished in military green. It is mounted on two solid wheels for mobility.",
+    "description_view_0": "Side view showing the full length of the barrel, armored shield, wheels, and extended trails.",
+    "description_view_1": "Front view highlighting the muzzle, armored shield, and the spread of the trails for stabilization.",
+    "description_view_2": "Opposite side view, mirroring the features of view 0 with clear visibility of the barrel and trails.",
+    "description_view_3": "Rear view focusing on the breech area, armored shield, and the converging trails.",
+    "category": "combat tactical  vehicle",
+    "height": 1.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "rotatable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "trails",
+        "barrel",
+        "gun shield",
+        "breech"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One fixed cannon barrel mounted centrally on the carriage.",
+    "attribute_armor_plating": "Angular armored shield covering the front and breech area, moderate thickness, sloped for deflection.",
+    "attribute_camouflage_pattern": "Solid olive green paint, no visible camouflage pattern.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "Two solid rubber tires with minimal tread, designed for durability rather than off-road traction.",
+    "uid": "cdb57b4e3100452d8163ad85caac0065",
+    "near_synsets": {
+        "tank.n.01": 0.4727117889458839,
+        "assault_gun.n.02": 0.4881179616359285,
+        "tank_destroyer.n.01": 0.4941375786561617,
+        "military_vehicle.n.01": 0.494155745555785,
+        "armored_car.n.02": 0.5124181298848449,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cdb57b4e3100452d8163ad85caac0065",
+        "creator_username": "MilanDobrita",
+        "creator_display_name": "MilanDobrita",
+        "creator_profile_url": "https://sketchfab.com/MilanDobrita"
+    },
+    "filename": "std_cdb57b4e3100452d8163ad85caac0065.glb",
+    "length": 7.596984148025513,
+    "width": 3.2237510681152344
+}

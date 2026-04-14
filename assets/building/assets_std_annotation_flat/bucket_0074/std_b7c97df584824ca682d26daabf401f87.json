@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a large cargo ship with a prominent orange hull and a white and gray superstructure. The vessel features a flat deck with multiple rectangular cargo holds covered by hatches, and two large cranes positioned amidships for loading and unloading cargo. The bow is streamlined and slightly raised, while the stern houses a tall, black-and-orange funnel and a multi-level bridge structure. The ship's deck is equipped with various fixtures, including antennas and winches, and the overall design suggests it is built for transporting bulk goods or containers. The hull sits low in the water, indicating a displacement-type design suitable for heavy loads and long voyages.",
+    "description": "A large orange-hulled cargo ship with a white superstructure, two cranes, and multiple cargo holds on its deck.",
+    "description_view_0": "Side view showing the full length of the ship, the orange hull, white superstructure, and two cranes over the cargo holds.",
+    "description_view_1": "Front view highlighting the pointed bow, the symmetry of the deck cranes, and the width of the ship.",
+    "description_view_2": "Opposite side view displaying the stern's funnel, bridge, and the arrangement of deck equipment and cargo holds.",
+    "description_view_3": "Rear view focusing on the stern, the tall funnel, and the superstructure's multi-level design.",
+    "category": "ship",
+    "height": 18,
+    "max_dimension": 120,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.01,
+        0.05
+    ],
+    "mass": 9000000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "crane",
+        "hatch",
+        "door",
+        "ladder",
+        "antenna",
+        "winch",
+        "funnel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "white",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.2,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a long, flat bottom and a slightly raised, pointed bow. The stern is squared off and supports a large funnel. The hull appears robust, designed for heavy loads, and lacks visible keels or bulbous bows.",
+    "attribute_superstructure_layout": "The superstructure is located toward the stern, featuring a multi-level bridge and accommodation block. The bridge is topped with antennas and communication equipment, and the superstructure is compact, maximizing deck space for cargo.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "crane",
+        "antenna",
+        "winch"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "b7c97df584824ca682d26daabf401f87",
+    "near_synsets": {
+        "cargo_ship.n.01": 0.4582051735507258,
+        "container_ship.n.01": 0.4730988559195952,
+        "ship.n.01": 0.48547162336681376,
+        "car_carrier.n.02": 0.4948114388687331,
+        "bottom.n.07": 0.5084581996294969
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b7c97df584824ca682d26daabf401f87",
+        "creator_username": "hungry_drifter",
+        "creator_display_name": "hungry_drifter",
+        "creator_profile_url": "https://sketchfab.com/hungry_drifter"
+    },
+    "filename": "std_b7c97df584824ca682d26daabf401f87.glb",
+    "length": 57.54611015319824,
+    "width": 8.72063159942627
+}

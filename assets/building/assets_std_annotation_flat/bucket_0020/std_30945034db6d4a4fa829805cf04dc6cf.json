@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a medium-sized naval ship with a streamlined hull and a flat deck, featuring multiple raised superstructure sections along its length. The hull is painted in a combination of gray and brown, with a black bow and stern, and the deck is detailed with lighter gray and white elements. The superstructure includes several blocky towers and domes, likely representing bridges, radar, or communication equipment, and there are visible hatches and platforms distributed along the deck. The ship's profile is low and angular, suggesting a design optimized for stability and stealth. There are no visible lifeboats, cranes, or heavy weaponry, but the deck is equipped with several fixtures and possible antennae. The overall appearance is that of a modern military or patrol vessel, built primarily from metal with some composite or plastic elements.",
+    "description": "A modern, medium-sized naval ship with a streamlined gray and brown hull, flat deck, and multiple raised superstructure sections. The ship features blocky towers, domes, and deck fixtures, giving it a functional, military appearance.",
+    "description_view_0": "Front view showing the pointed bow, layered deck levels, and central superstructure rising above the hull.",
+    "description_view_1": "Side view highlighting the ship's elongated hull, flat deck, and the arrangement of superstructure towers and domes along its length.",
+    "description_view_2": "Rear view displaying the stern's angular shape, the stepped deck, and the back of the superstructure.",
+    "description_view_3": "Opposite side view similar to view 1, showing the hull's length, deck fixtures, and superstructure layout from the other side.",
+    "category": "ship",
+    "height": 12.0,
+    "max_dimension": 110.0,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.01,
+        0.04
+    ],
+    "mass": 250000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 3000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "radar",
+        "antenna",
+        "bridge controls"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a pointed bow and angular stern, featuring a flat deck and no visible keels or bulbous bows. The sides are straight and the hull sits low in the water, optimized for stability and speed.",
+    "attribute_superstructure_layout": "The superstructure consists of several blocky, raised sections along the centerline, including a main bridge, secondary towers, and domed elements, with open deck space between them. The design is functional, with minimal ornamentation and clear separation between operational areas.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "antenna",
+        "radar",
+        "hatch"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "30945034db6d4a4fa829805cf04dc6cf",
+    "near_synsets": {
+        "surface_ship.n.01": 0.4975811779154473,
+        "cargo_ship.n.01": 0.5055369680434874,
+        "small_ship.n.01": 0.5087808453726471,
+        "frigate.n.01": 0.5171369169260489,
+        "light_cruiser.n.01": 0.5187725663858614,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/30945034db6d4a4fa829805cf04dc6cf",
+        "creator_username": "dartuchiwa",
+        "creator_display_name": "dartuchiwa",
+        "creator_profile_url": "https://sketchfab.com/dartuchiwa"
+    },
+    "filename": "std_30945034db6d4a4fa829805cf04dc6cf.glb",
+    "length": 47.74326705932617,
+    "width": 6.310598850250244
+}

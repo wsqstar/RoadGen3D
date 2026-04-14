@@ -1,0 +1,93 @@
+{
+    "description_long": "This warehouse complex consists of three rectangular, single-story structures arranged side by side, each with a low-pitched, corrugated metal roof. The exterior walls are clad in weathered, grayish panels, giving the buildings an industrial and utilitarian appearance. Small, evenly spaced windows are present along the longer facades, while the shorter ends feature minimal detailing and a few access doors. The roofs show signs of age and exposure, with subtle discoloration and surface irregularities. The overall design is functional, prioritizing storage capacity and ease of access over decorative elements. The buildings are likely constructed with a steel frame and metal sheeting, typical of urban warehouse facilities.",
+    "description": "A set of three rectangular, gray metal warehouses with corrugated roofs and small windows, designed for industrial storage. The structures have a weathered, utilitarian appearance and minimal exterior detailing.",
+    "description_view_0": "Front view showing the three warehouses side by side, with visible windows and doors on the main facades.",
+    "description_view_1": "Side view highlighting the narrow ends of the warehouses, with minimal windows and a single door visible.",
+    "description_view_2": "Top-down view displaying the corrugated metal roofs and the overall rectangular footprint of the buildings.",
+    "description_view_3": "Rear view showing the plain back sides of the warehouses, with no visible doors and fewer windows.",
+    "category": "warehouse",
+    "height": 4.5,
+    "max_dimension": 30.0,
+    "materials": [
+        "corrugated metal",
+        "steel",
+        "glass",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "group",
+    "attribute_facade_design": "The main facade features a series of small, rectangular windows set into weathered gray metal panels, with simple access doors and no decorative trim. The design is strictly functional, with a repetitive window pattern and minimal architectural embellishment.",
+    "attribute_loading_dock_presence": false,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is low-pitched and constructed from corrugated metal panels, showing signs of weathering and slight discoloration. There are no visible skylights, HVAC units, or other rooftop features.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "320c272513a94c0482dbb3c4e79d61f5",
+    "near_synsets": {
+        "warehouse.n.01": 0.5074163221066321,
+        "storehouse.n.01": 0.536937337847408,
+        "loft.n.01": 0.5598114860726072,
+        "shed.n.01": 0.5696304329614729,
+        "shoebox.n.01": 0.5703708991146349
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/320c272513a94c0482dbb3c4e79d61f5",
+        "creator_username": "Islide",
+        "creator_display_name": "Islide",
+        "creator_profile_url": "https://sketchfab.com/Islide"
+    },
+    "filename": "std_320c272513a94c0482dbb3c4e79d61f5.glb",
+    "length": 10.707011699676514,
+    "width": 48.742088317871094
+}

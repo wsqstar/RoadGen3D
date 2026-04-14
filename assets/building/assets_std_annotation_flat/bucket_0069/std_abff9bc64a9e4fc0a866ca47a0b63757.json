@@ -1,0 +1,83 @@
+{
+    "description_long": "This object is a rectangular section of sidewalk, featuring a flat, slightly uneven surface with subtle textural variations typical of poured concrete. The edges are irregular and not sharply defined, suggesting wear or natural weathering over time. The surface displays a consistent gray coloration with faint striping or banding, likely from the finishing process or repeated use. There are no visible curbs, tactile paving, or embedded features such as manhole covers or drainage grates. The sidewalk appears to be a standalone segment, suitable for placement in an urban or residential environment. Its overall appearance is utilitarian, designed for pedestrian use and capable of supporting moderate loads.",
+    "description": "A flat, gray concrete sidewalk segment with irregular edges and a slightly rough, weathered surface. It is utilitarian and suitable for pedestrian use in urban settings.",
+    "description_view_0": "The sidewalk is seen from a low angle, highlighting its flat surface and the irregularity of the front edge.",
+    "description_view_1": "This view shows the sidewalk from the opposite side, emphasizing the subtle surface texture and the straightness of the far edge.",
+    "description_view_2": "The segment is viewed from another side, with the surface texture and banding most visible, and the edge appearing slightly uneven.",
+    "description_view_3": "From this angle, the sidewalk's surface roughness and the irregularity of the edge are again apparent, similar to view 1 but from a different perspective.",
+    "category": "sidewalk",
+    "height": 0.08,
+    "max_dimension": 3.0,
+    "materials": [
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.98,
+        0.02
+    ],
+    "mass": 540,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "walkable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": false,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "flush",
+    "attribute_adjacent_street_type": "residential",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "abff9bc64a9e4fc0a866ca47a0b63757",
+    "near_synsets": {
+        "sidewalk.n.01": 0.45895305790321017,
+        "paved_surface.n.01": 0.5323238329303612,
+        "curb.n.01": 0.5336523904940473,
+        "street.n.01": 0.5345785819961307,
+        "curbside.n.01": 0.535585206557258
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/abff9bc64a9e4fc0a866ca47a0b63757",
+        "creator_username": "slls666",
+        "creator_display_name": "slls666",
+        "creator_profile_url": "https://sketchfab.com/slls666"
+    },
+    "filename": "std_abff9bc64a9e4fc0a866ca47a0b63757.glb",
+    "length": 3.9756433963775635,
+    "width": 3.8605127334594727
+}

@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a fragmented and partially reconstructed airplane, with several disconnected sections of the fuselage, wings, and tail visible. The main body appears to be light gray with some blue and white areas, possibly representing the cockpit or passenger section. The wings are separated from the fuselage and are positioned at different angles, with some showing hints of control surfaces. The tail section is also detached, with a vertical stabilizer visible in some views. The overall structure is incomplete, with large gaps and missing components, giving it a skeletal appearance. The materials suggest a combination of metal and composite, typical of modern aircraft construction.",
+    "description": "A fragmented, partially reconstructed airplane with visible fuselage, wings, and tail sections in gray, blue, and white. The structure is incomplete and skeletal, with several disconnected parts.",
+    "description_view_0": "View 0 shows the airplane from an oblique angle, highlighting the separation between the fuselage, wings, and tail, with blue and gray colors most prominent.",
+    "description_view_1": "View 1 presents a side profile, emphasizing the flatness and disconnection of the main components, with the blue cockpit area more visible.",
+    "description_view_2": "View 2 offers a rear oblique perspective, showing the tail section and the spread of the wings, with the fragmented nature of the object clear.",
+    "description_view_3": "View 3 displays the airplane from the opposite side, focusing on the blue cockpit area and the arrangement of the wings and tail.",
+    "category": "airplane",
+    "height": 0.6,
+    "max_dimension": 2.2,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 35,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 2,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit",
+        "wing",
+        "tail",
+        "fuselage"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.08,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with straight wings, no visible winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "No visible engines present on the structure.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "No visible landing gear present.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a blue-tinted canopy, likely single-seat.",
+    "uid": "eea21fca8a924da6bcda4f7fe696acdd",
+    "near_synsets": {
+        "aircraft.n.01": 0.5197141315679702,
+        "fuselage.n.01": 0.5293834779265397,
+        "airplane.n.01": 0.5369818237979139,
+        "airframe.n.01": 0.5431223924314137,
+        "biplane.n.01": 0.5526103575821724
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/eea21fca8a924da6bcda4f7fe696acdd",
+        "creator_username": "katrin.hornek1",
+        "creator_display_name": "katrin.hornek1",
+        "creator_profile_url": "https://sketchfab.com/katrin.hornek1"
+    },
+    "filename": "std_eea21fca8a924da6bcda4f7fe696acdd.glb",
+    "length": 4.368048667907715,
+    "width": 2.174614667892456
+}

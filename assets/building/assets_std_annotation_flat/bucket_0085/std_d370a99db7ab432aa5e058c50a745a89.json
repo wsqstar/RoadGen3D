@@ -1,0 +1,95 @@
+{
+    "description_long": "This humanoid robot features a playful, cat-inspired head with pointed ears and a round face, finished in a soft lavender and purple color scheme. Its body is a simple, boxy torso with a subtle white emblem on the chest, and the limbs are composed of cylindrical segments connected by dark spherical joints, allowing for a wide range of motion. The robot's arms and legs are segmented in different shades of purple, with the lower legs and forearms slightly darker, and the feet and hands are minimalistic, block-like shapes. The head has two round, dark eyes and a small, circular nose, giving it a friendly and approachable appearance. The overall design is stylized and geometric, with smooth surfaces and a matte finish, suggesting a lightweight, approachable companion for urban environments. The robot's proportions and posture evoke a sense of dynamic movement, as if it is mid-stride or running.",
+    "description": "A stylized, cat-themed humanoid robot with a boxy lavender torso, segmented purple limbs, and a friendly, expressive face. Its smooth, matte surfaces and playful design make it suitable for urban interaction.",
+    "description_view_0": "Front view shows the cat-like head, expressive face, chest emblem, and raised right arm and left leg in a dynamic pose.",
+    "description_view_1": "Left side view highlights the profile of the head, the segmentation of the limbs, and the forward stride of the left leg.",
+    "description_view_2": "Rear view displays the back of the head and torso, with both arms and legs visible in a running motion.",
+    "description_view_3": "Right side view emphasizes the right arm's backward swing and the right leg's forward stride, showing limb articulation.",
+    "category": "humanoid robot",
+    "height": 1.3,
+    "max_dimension": 1.5,
+    "materials": [
+        "plastic",
+        "metal",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 28,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "legs",
+        "head"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "lavender",
+        "purple",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.48,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.22,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is in a dynamic running pose, with the right arm bent and raised, left arm extended backward, right leg lifted forward, and left leg extended behind. The head is upright and facing forward, and the torso is slightly tilted.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated panels and decorative elements such as a chest emblem and cat-like head details.",
+    "attribute_facial_features": "The face has two round, dark eyes and a small circular nose, with no visible mouth or expressive display. The head is topped with two pointed cat ears, enhancing its friendly appearance.",
+    "attribute_limb_articulation": "Each arm and leg is segmented with visible spherical joints at the shoulders, elbows, hips, and knees, suggesting hinge or ball joint articulation. The limbs appear rigid but capable of a wide range of motion.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "d370a99db7ab432aa5e058c50a745a89",
+    "near_synsets": {
+        "android.n.01": 0.5458043267296602,
+        "animatronics.n.01": 0.586348838448236,
+        "cyborg.n.01": 0.592193201502037,
+        "robotics_equipment.n.01": 0.5963673769544244,
+        "automaton.n.02": 0.5997027099604132
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d370a99db7ab432aa5e058c50a745a89",
+        "creator_username": "nat.animation",
+        "creator_display_name": "nat.animation",
+        "creator_profile_url": "https://sketchfab.com/nat.animation"
+    },
+    "filename": "std_d370a99db7ab432aa5e058c50a745a89.glb",
+    "length": 1.224273145198822,
+    "width": 0.6038082242012024
+}

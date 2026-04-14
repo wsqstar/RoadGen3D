@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a large commercial jet airliner with a streamlined fuselage, swept-back low-mounted wings, and two sizable turbofan engines mounted under each wing. The aircraft features a conventional tail design with a single vertical stabilizer and a horizontal stabilizer at the rear. The landing gear is a tricycle configuration, with two main gear units under the wings and a nose gear at the front. The cockpit is positioned at the forward end of the fuselage and is enclosed with multiple windows for pilot visibility. The exterior is predominantly white with blue accents, and the tail fin displays a bold '787' marking. The overall design is optimized for aerodynamic efficiency and passenger transport.",
+    "description": "A large, white commercial jet airliner with swept low-mounted wings, twin underwing turbofan engines, and a blue-marked tail fin. Features a forward cockpit, tricycle landing gear, and a streamlined fuselage.",
+    "description_view_0": "Top-down view showing the full wingspan, twin underwing engines, and the streamlined fuselage with the tail fin visible.",
+    "description_view_1": "Side profile highlighting the nose, cockpit windows, engine nacelles, and the vertical tail fin with '787' marking.",
+    "description_view_2": "Bottom-up view displaying the undercarriage, landing gear bays, and the underside of the wings and engines.",
+    "description_view_3": "Opposite side profile showing the other side of the fuselage, engines, and the tail fin.",
+    "category": "airplane",
+    "height": 5.5,
+    "max_dimension": 60.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 9,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "closable",
+        "openable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "engine",
+        "landing gear",
+        "cockpit controls"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.12,
+    "surface_finish": "sleek",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.02,
+    "recommended_clearance": 70.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with swept-back wings and upward-angled blended winglets at the tips.",
+    "attribute_engine_type": "Twin turbofan underwing",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers",
+    "attribute_landing_gear_type": "Tricycle retractable landing gear with two main gear units and one nose gear",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed multi-seat cockpit with multiple windows",
+    "uid": "38afc4c821a845f7a667408a1e005583",
+    "near_synsets": {
+        "airplane.n.01": 0.4638359866266353,
+        "fanjet.n.01": 0.4916899095225157,
+        "jet.n.01": 0.4985712502625482,
+        "aircraft.n.01": 0.4988407629651673,
+        "propjet.n.01": 0.5003704635353748
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/38afc4c821a845f7a667408a1e005583",
+        "creator_username": "surveytown",
+        "creator_display_name": "surveytown",
+        "creator_profile_url": "https://sketchfab.com/surveytown"
+    },
+    "filename": "std_38afc4c821a845f7a667408a1e005583.glb",
+    "length": 1.6181124448776245,
+    "width": 5.8191022872924805
+}

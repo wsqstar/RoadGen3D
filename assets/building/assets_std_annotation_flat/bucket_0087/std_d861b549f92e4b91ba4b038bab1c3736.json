@@ -1,0 +1,108 @@
+{
+    "description_long": "This object is a complex electronic circuit board, likely a motherboard or control board, featuring a dense array of integrated circuits, capacitors, resistors, and connectors. The surface is populated with various chips, including a prominent heatsink and fan assembly, as well as multiple ports for data and power connections. Metallic shielding covers some sections, indicating areas of electromagnetic sensitivity or high-frequency operation. The board is mounted on a flat, rigid substrate, with visible solder points and traces interconnecting the components. Several connectors and slots are present along the edges, suggesting expandability or modularity. The overall construction is typical of high-performance computing or networking equipment found in urban infrastructure or industrial settings.",
+    "description": "A densely populated electronic circuit board with chips, heatsink, fan, and multiple connectors, typical of a motherboard or control board. Features metallic shielding, edge ports, and a rigid substrate.",
+    "description_view_0": "The board is viewed from a low angle, highlighting the heatsink, fan, and several edge connectors, with a clear view of the metallic shielding and component density.",
+    "description_view_1": "This side view emphasizes the length of the board, showing the arrangement of ports and connectors along the edge, as well as the fan and heatsink assembly.",
+    "description_view_2": "A frontal view displaying the full array of chips, capacitors, and connectors, with the heatsink and fan centrally located and metallic shielding visible.",
+    "description_view_3": "Another side view, showing the opposite edge with additional connectors and a clear look at the board's layered construction and component layout.",
+    "category": "other electronics",
+    "height": 0.05,
+    "max_dimension": 0.35,
+    "materials": [
+        "fiberglass",
+        "copper",
+        "plastic",
+        "aluminum",
+        "steel",
+        "silicon",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.2,
+        0.15,
+        0.1,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 7,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "plug-in",
+        "unplug"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "fan",
+        "ports",
+        "connectors",
+        "slots",
+        "buttons"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "silver",
+        "black",
+        "blue",
+        "yellow",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.55,
+    "youngs_modulus": 20000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.15,
+    "asset_composition_type": "single",
+    "attribute_brand": "unknown",
+    "attribute_display_type": "none",
+    "attribute_control_interface": "physical buttons, ports",
+    "attribute_power_source": "AC mains",
+    "attribute_mounting_location": "desktop",
+    "uid": "d861b549f92e4b91ba4b038bab1c3736",
+    "near_synsets": {
+        "printed_circuit.n.01": 0.4913548835100032,
+        "circuit_board.n.01": 0.4999705410526156,
+        "cpu_board.n.01": 0.5045128600517054,
+        "module.n.03": 0.5193324211983652,
+        "pc_board.n.01": 0.5208474091414704,
+        "electronics.n.01": -1000.0
+    },
+    "synset": "cpu_board.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/d861b549f92e4b91ba4b038bab1c3736",
+        "creator_username": "alex.harvey",
+        "creator_display_name": "alex.harvey",
+        "creator_profile_url": "https://sketchfab.com/alex.harvey"
+    },
+    "filename": "std_d861b549f92e4b91ba4b038bab1c3736.glb",
+    "length": 0.20782425999641418,
+    "width": 0.13352099061012268
+}

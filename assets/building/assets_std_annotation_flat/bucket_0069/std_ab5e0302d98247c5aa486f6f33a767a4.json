@@ -1,0 +1,101 @@
+{
+    "description_long": "This object consists of nine modular road segments arranged in a grid, each featuring different configurations such as straight stretches, curves, and intersections. The road surfaces are primarily dark gray with white dashed lane markings, and some segments are bordered by green areas representing grass or roadside verges. The segments include both single and double-lane roads, as well as T-junctions and curved corners, allowing for flexible assembly in an urban environment. The road edges are clean and defined, with no visible curbs or barriers. The surface appears flat and suitable for vehicular traffic, with no elevation changes or obstacles. There are no visible road signs, lighting fixtures, or pedestrian crossings present on any segment.",
+    "description": "A set of nine modular, dark gray road segments with white dashed lane markings and green roadside verges, including straight, curved, and intersection pieces.",
+    "description_view_0": "View 0 shows the road segments from a slightly elevated angle, highlighting the green verges and the variety of road shapes, including curves and intersections.",
+    "description_view_1": "View 1 presents the segments from a more top-down perspective, making the lane markings and road layouts more visible and emphasizing the grid arrangement.",
+    "description_view_2": "View 2 displays the segments from the opposite side, showing the continuity of the road surfaces and the distribution of green verges along the edges.",
+    "description_view_3": "View 3 offers a rear angle, focusing on the curved and straight segments with green verges, and provides a clear view of the road network's modularity.",
+    "category": "road",
+    "height": 0.05,
+    "max_dimension": 9.0,
+    "materials": [
+        "asphalt",
+        "concrete",
+        "paint",
+        "soil",
+        "grass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "car",
+        "bicycle",
+        "motorcycle",
+        "bus",
+        "truck"
+    ],
+    "colors": [
+        "gray",
+        "white",
+        "green"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_lane_markings": "White dashed lane markings, single per lane, no double or solid lines, no special markings such as arrows or bicycle lanes.",
+    "attribute_signage": "none",
+    "attribute_curb_presence": false,
+    "attribute_lighting_fixtures": "none",
+    "attribute_pedestrian_crossings": "none",
+    "uid": "ab5e0302d98247c5aa486f6f33a767a4",
+    "near_synsets": {
+        "white_line.n.01": 0.5242829449139743,
+        "road_map.n.02": 0.5347358504642129,
+        "road_construction.n.01": 0.535380676508633,
+        "lane.n.01": 0.5377692984256182,
+        "traffic_lane.n.01": 0.538273541302385,
+        "road.n.02": -1000.0,
+        "road.n.01": -1000.0
+    },
+    "synset": "road.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ab5e0302d98247c5aa486f6f33a767a4",
+        "creator_username": "Islide",
+        "creator_display_name": "Islide",
+        "creator_profile_url": "https://sketchfab.com/Islide"
+    },
+    "filename": "std_ab5e0302d98247c5aa486f6f33a767a4.glb",
+    "length": 1.3599951267242432,
+    "width": 1.8399932384490967
+}

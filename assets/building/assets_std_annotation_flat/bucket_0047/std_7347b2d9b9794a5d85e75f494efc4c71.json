@@ -1,0 +1,104 @@
+{
+    "description_long": "This ferry features a broad, flat deck with white railings and a blue non-slip surface, designed to accommodate both passengers and vehicles. The superstructure is centrally located and includes a small bridge or control cabin with windows and a visible antenna. The hull is painted white with a prominent red stripe along the waterline, giving it a classic maritime appearance. The rear section displays two large rectangular windows and a staircase leading to the upper deck, suggesting access between levels. The ferry is robustly built, likely from steel, with functional elements such as railings, stairs, and entry points for boarding. Its design is utilitarian, prioritizing safety and capacity for urban water transport.",
+    "description": "A robust, white and red ferry with blue deck surfaces, central superstructure, and rear staircase, designed for urban water transport. Features include railings, large windows, and multiple access points.",
+    "description_view_0": "The ferry is seen from the bow, showing a solid white hull, blue deck, and central superstructure with a single window.",
+    "description_view_1": "The stern view reveals two large rectangular windows, a staircase to the upper deck, and railings outlining the rear platform.",
+    "description_view_2": "Similar to view 0, this bow perspective highlights the white hull, blue deck, and central superstructure, with minimal visible openings.",
+    "description_view_3": "This stern view again shows the two large windows, rear staircase, and detailed railings, emphasizing the ferry's access points.",
+    "category": "ferry",
+    "height": 8.0,
+    "max_dimension": 35.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "steerable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "staircase",
+        "railing",
+        "control cabin"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "white",
+        "red",
+        "blue",
+        "gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.1,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_passenger_decks": 1,
+    "attribute_vehicle_loading_ramps": false,
+    "attribute_large_windows": true,
+    "attribute_multiple_entry_points": true,
+    "attribute_prominent_smokestack": false,
+    "uid": "7347b2d9b9794a5d85e75f494efc4c71",
+    "near_synsets": {
+        "ferry.n.01": 0.49234684524192124,
+        "car-ferry.n.01": 0.5111438565649092,
+        "ferry.n.02": 0.5127612516160467,
+        "ferryman.n.01": 0.5417433434549015,
+        "wherry.n.02": 0.5511794795346318
+    },
+    "synset": "ferryman.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7347b2d9b9794a5d85e75f494efc4c71",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_7347b2d9b9794a5d85e75f494efc4c71.glb",
+    "length": 17.36299705505371,
+    "width": 17.786778450012207
+}

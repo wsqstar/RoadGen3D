@@ -1,0 +1,107 @@
+{
+    "description_long": "This object consists of two adjacent beverage vending machines placed on a reddish textured ground. The left machine features a vibrant blue front panel with abstract white graphics and the word 'ENERGY' in bold, stylized letters, while the right machine displays an orange-themed panel with the text 'FIZZ ROY' and an image of a soda can splashing into liquid. Both machines have black, glossy exteriors with rectangular shapes and slightly beveled edges. The front panels are equipped with vertical rows of colorful product selection buttons, a payment interface, and a rectangular product retrieval slot at the bottom. Scattered around the base are several blue and orange beverage cans, suggesting recent use. The machines are robust, likely constructed from metal and plastic, and are designed for public urban environments such as sidewalks or parks.",
+    "description": "A pair of glossy black beverage vending machines with colorful branded front panels, product selection buttons, and payment interfaces, set on a reddish ground with scattered cans.",
+    "description_view_0": "Rear view showing the plain black backs of both vending machines, with no visible branding or interactive features.",
+    "description_view_1": "Side view highlighting the blue 'ENERGY' branding and abstract graphics on the left machine, with some scattered cans visible on the ground.",
+    "description_view_2": "Frontal view displaying both vending machines' branded panels, product selection buttons, payment interfaces, and product retrieval slots, as well as numerous cans on the ground.",
+    "description_view_3": "Side view focusing on the orange 'FIZZ ROY' branding and soda can imagery on the right machine, with a few cans visible on the ground.",
+    "category": "vending machine",
+    "height": 1.8,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "aluminum",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1800,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "payment interface",
+        "product retrieval slot",
+        "display panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "blue",
+        "orange",
+        "white",
+        "silver"
+    ],
+    "colors_composition": [
+        0.5,
+        0.18,
+        0.18,
+        0.08,
+        0.06
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_display_panel": "Both machines have a rectangular display panel above the product selection buttons on the front, with the left panel showing blue graphics and the right panel showing orange graphics and a soda can image.",
+    "attribute_payment_interface": "Both machines feature a payment interface on the upper right of the front panel, including a coin slot and bill acceptor; no card reader or contactless terminal is visible.",
+    "attribute_product_selection_buttons": "Each machine has a vertical row of individual, rectangular product selection buttons, color-coded and placed to the right of the main branding panel.",
+    "attribute_product_retrieval_slot": "A rectangular product retrieval slot is located at the bottom center of each machine's front panel, slightly recessed and sized to fit a beverage can.",
+    "attribute_branding_or_signage": "The left machine displays 'ENERGY' in bold white letters on a blue background, while the right machine features 'FIZZ ROY' in large orange letters with a soda can image; both are prominently located on the front panels.",
+    "uid": "0aab0bb3f4d1442bbae1ff99a5a6fb01",
+    "near_synsets": {
+        "vending_machine.n.01": 0.4445847184460732,
+        "automat.n.01": 0.5074911916864324,
+        "soda_fountain.n.02": 0.5583501576463316,
+        "automat.n.02": 0.5613183271072568,
+        "soda_fountain.n.01": 0.5662926769017219,
+        "machine.n.05": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.01": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.02": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0aab0bb3f4d1442bbae1ff99a5a6fb01",
+        "creator_username": "toomanydemons",
+        "creator_display_name": "TooManyDemons",
+        "creator_profile_url": "https://sketchfab.com/toomanydemons"
+    },
+    "filename": "std_0aab0bb3f4d1442bbae1ff99a5a6fb01.glb",
+    "length": 2.8253461122512817,
+    "width": 2.8253458738327026
+}

@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a large, cylindrical industrial storage tank with a domed roof and a prominent vertical exhaust or vent pipe extending from the top. The tank features three circular catwalk platforms with safety railings, wrapping around its circumference at different heights. Several large, rusted pipes are attached to the tank, running vertically and horizontally, likely serving as inlet and outlet conduits for fluids or gases. The surface of the tank is heavily weathered, showing a reddish-brown rusted metal texture, indicative of prolonged outdoor exposure. A spiral staircase is attached to the side, providing access to the upper platforms. The overall construction suggests it is designed for heavy-duty storage in an industrial or utility setting.",
+    "description": "A large, rusted cylindrical storage tank with a domed roof, multiple catwalks, and attached pipes, featuring a spiral staircase and weathered metal surfaces.",
+    "description_view_0": "The tank's domed roof, main vertical pipe, and two levels of catwalks with railings are visible, along with a side-mounted spiral staircase.",
+    "description_view_1": "The front view highlights the central vertical pipe, the spiral staircase, and the symmetry of the catwalks encircling the tank.",
+    "description_view_2": "This side view shows the rear vertical exhaust pipe, the catwalks, and the connection points of the pipes more clearly.",
+    "description_view_3": "The tank's top vent pipe is centered, with the spiral staircase and catwalks visible, emphasizing the tank's layered structure.",
+    "category": "storage tank",
+    "height": 8.0,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "iron",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "turnable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "catwalk",
+        "spiral staircase",
+        "pipes",
+        "railings"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "rusty brown",
+        "dark brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": true,
+    "attribute_valve_or_pipe_attachments": [
+        "inlet pipe",
+        "outlet pipe",
+        "vent pipe"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_architectural_style": "cylindrical vertical with domed roof",
+    "uid": "7b927c5fb2ec413680c17c02901ad481",
+    "near_synsets": {
+        "tank.n.02": 0.51218427599034,
+        "tank_farm.n.01": 0.5258013545724303,
+        "reservoir.n.03": 0.5400861586627645,
+        "water_tower.n.01": 0.5426881729058447,
+        "bunker.n.02": 0.543789309781048,
+        "repositing.n.01": -1000.0,
+        "storage.n.03": -1000.0,
+        "tank.n.03": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "cooler.n.03": -1000.0,
+        "storage.n.04": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "tank.n.01": -1000.0,
+        "storage.n.01": -1000.0,
+        "memory.n.04": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7b927c5fb2ec413680c17c02901ad481",
+        "creator_username": "ZZeronnx",
+        "creator_display_name": "ZZeronnx",
+        "creator_profile_url": "https://sketchfab.com/ZZeronnx"
+    },
+    "filename": "std_7b927c5fb2ec413680c17c02901ad481.glb",
+    "length": 4.572039604187012,
+    "width": 5.221971035003662
+}

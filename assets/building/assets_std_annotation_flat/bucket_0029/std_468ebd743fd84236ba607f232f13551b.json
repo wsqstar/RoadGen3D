@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a small, wooden rowboat-style raft with a flat bottom and slightly raised bow and stern, constructed from interlocking wooden planks. The interior features two bench seats and a ribbed framework for structural support. Resting across the raft is a single oar with a yellow grip, suggesting manual propulsion. Adjacent to the raft is a wooden barrel topped with a lantern, which may serve as a mooring point or accessory. The wood appears weathered, giving the raft a rustic, utilitarian appearance. The raft is open-topped, allowing for easy entry and exit, and is designed to float on water.",
+    "description": "A small, rustic wooden raft with two bench seats, a single oar, and a nearby barrel with a lantern. The raft is open-topped and built for manual rowing.",
+    "description_view_0": "The raft is seen from the side, showing the full length, the oar resting across it, and the barrel with a lantern nearby.",
+    "description_view_1": "Viewed from the stern, the two bench seats and the ribbed wooden interior are visible, with the oar and barrel in the background.",
+    "description_view_2": "The bow of the raft is prominent, with the oar and barrel with lantern clearly visible to the right.",
+    "description_view_3": "The raft is seen from the opposite side, highlighting the barrel and lantern in the foreground and the open interior of the raft.",
+    "category": "raft",
+    "height": 0.5,
+    "max_dimension": 2.5,
+    "materials": [
+        "wood",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 60,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "rowable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "oar",
+        "bench seat",
+        "barrel",
+        "lantern"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "brown",
+        "yellow",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.85,
+        0.05,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_presence_of_flotation_devices": false,
+    "attribute_number_of_seats": 2,
+    "attribute_type_of_propulsion": "oar",
+    "attribute_safety_markings": [],
+    "attribute_attachment_points": 2,
+    "uid": "468ebd743fd84236ba607f232f13551b",
+    "near_synsets": {
+        "rowing_boat.n.01": 0.46820323648406265,
+        "raft.n.01": 0.5179160886990342,
+        "canoe.n.01": 0.5209579775350776,
+        "boat.n.01": 0.5246071059780348,
+        "wherry.n.02": 0.5261258514117518,
+        "raft_foundation.n.01": -1000.0,
+        "batch.n.02": -1000.0
+    },
+    "synset": "raft_foundation.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/468ebd743fd84236ba607f232f13551b",
+        "creator_username": "yusuf.turhan",
+        "creator_display_name": "yusuf.turhan",
+        "creator_profile_url": "https://sketchfab.com/yusuf.turhan"
+    },
+    "filename": "std_468ebd743fd84236ba607f232f13551b.glb",
+    "length": 1.3745213747024536,
+    "width": 1.5132126808166504
+}

@@ -1,0 +1,107 @@
+{
+    "description_long": "This hamburger features a soft, lightly browned bun with a smooth, matte finish. The top bun sits atop a generous layer of fresh green leaf lettuce, followed by thick slices of ripe red tomato and rings of white onion. A slice of melted yellow cheese drapes over a well-cooked beef patty, which is nestled above the bottom bun. The ingredients are neatly stacked, with the lettuce and tomato providing a vibrant contrast to the golden cheese and dark patty. No sesame seeds or packaging are visible, and the overall appearance is appetizing and classic.",
+    "description": "A classic hamburger with a plain, soft bun, fresh lettuce, tomato, onion, melted cheese, and a beef patty, all neatly layered.",
+    "description_view_0": "Front view showing the full stack of lettuce, tomato, onion, cheese, and patty beneath a smooth, plain bun.",
+    "description_view_1": "Slightly rotated view highlighting the melted cheese and visible onion rings, with the lettuce and tomato peeking out.",
+    "description_view_2": "Side view emphasizing the thickness of the patty and the even layering of cheese, tomato, and lettuce.",
+    "description_view_3": "Angled view showing the glossy tomato slices, cheese, and crisp lettuce, with the bun's smooth surface prominent.",
+    "category": "hamburger",
+    "height": 0.1,
+    "max_dimension": 0.12,
+    "materials": [
+        "bread",
+        "beef",
+        "lettuce",
+        "tomato",
+        "cheese",
+        "onion",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.25,
+        0.15,
+        0.1,
+        0.1,
+        0.04,
+        0.01
+    ],
+    "mass": 0.22,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "graspable",
+        "separable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "top bun",
+        "bottom bun",
+        "patty",
+        "lettuce",
+        "tomato",
+        "cheese",
+        "onion"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "green",
+        "red",
+        "yellow",
+        "white"
+    ],
+    "colors_composition": [
+        0.4,
+        0.18,
+        0.15,
+        0.15,
+        0.12
+    ],
+    "surface_hardness": "soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_bun_type": "plain white bun",
+    "attribute_patty_visibility": "fully visible",
+    "attribute_topping_arrangement": "Lettuce forms the base layer above the bottom bun, followed by tomato slices, onion rings, and a slice of cheese melted over the beef patty, all stacked neatly beneath the top bun.",
+    "attribute_packaging_presence": false,
+    "attribute_sesame_seed_presence": false,
+    "uid": "b4cc15417d58445ebb698229d6161e61",
+    "near_synsets": {
+        "hamburger.n.01": 0.43330301943443233,
+        "cheeseburger.n.01": 0.46159224431264395,
+        "hamburger_bun.n.01": 0.49285919416443164,
+        "ground_beef.n.01": 0.5152001201893449,
+        "bacon-lettuce-tomato_sandwich.n.01": 0.5234722380344335
+    },
+    "synset": "hamburger_bun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b4cc15417d58445ebb698229d6161e61",
+        "creator_username": "rodrigogelmi",
+        "creator_display_name": "gelmi.com.br",
+        "creator_profile_url": "https://sketchfab.com/rodrigogelmi"
+    },
+    "filename": "std_b4cc15417d58445ebb698229d6161e61.glb",
+    "length": 0.1360441893339157,
+    "width": 0.1426953375339508
+}

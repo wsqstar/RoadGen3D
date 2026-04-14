@@ -1,0 +1,107 @@
+{
+    "description_long": "This humanoid robot features a robust, armored exoskeleton with a predominantly gray and black color scheme, accented by metallic and yellow highlights. The front displays a mechanical face with a stern, mask-like visage, flanked by angular shoulder armor and large, cylindrical forearm components. The back is equipped with two prominent yellow canisters marked with radiation symbols, suggesting a power or fuel source, and additional mechanical detailing. The limbs are heavily jointed, with visible actuators and reinforced plating, giving the robot a powerful and industrial appearance. The overall build is bulky and imposing, with a design that suggests both strength and advanced technology. The surface finish is mostly matte with some glossy metallic elements, and the robot appears to be constructed from a combination of metal alloys and composite materials.",
+    "description": "A heavily armored, gray and black humanoid robot with yellow canisters on its back and a mechanical, mask-like face. Its design is bulky, industrial, and highly detailed, suggesting strength and advanced technology.",
+    "description_view_0": "Front view shows the robot's mask-like face, broad armored shoulders, and detailed chest plating.",
+    "description_view_1": "Left side view highlights the depth of the shoulder armor, cylindrical forearm components, and the protruding yellow canisters on the back.",
+    "description_view_2": "Rear view reveals two large yellow canisters with radiation symbols, mechanical back detailing, and reinforced leg plating.",
+    "description_view_3": "Right side view mirrors the left, showing the arm and leg articulation, and the side profile of the canisters and shoulder armor.",
+    "category": "humanoid robot",
+    "height": 2.3,
+    "max_dimension": 1.6,
+    "materials": [
+        "steel",
+        "aluminum",
+        "composite polymer",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.18,
+        0.15,
+        0.05,
+        0.04,
+        0.03
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 4120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arm",
+        "hand",
+        "leg",
+        "head",
+        "canister",
+        "shoulder panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "yellow",
+        "white",
+        "red",
+        "silver"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.08,
+        0.05,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.22,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.08,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is standing upright with both arms relaxed at its sides and legs straight, head facing forward, and torso aligned vertically.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated armor panels and mechanical coverings with industrial and utilitarian styling.",
+    "attribute_facial_features": "The face is mask-like and mechanical, with angular contours, a central visor or eye area, and no visible mouth or expressive features.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints at the shoulders, elbows, wrists, hips, knees, and ankles, allowing for a wide range of motion; limbs appear rigid and robust.",
+    "attribute_presence_of_sensors": "Possible visual sensors in the head/face area, but none clearly visible; no other sensors are apparent.",
+    "uid": "af06907a795d46b29b40d99ddb3ff48c",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5487735569475212,
+        "android.n.01": 0.5519375755756012,
+        "cyborg.n.01": 0.559325046338808,
+        "automaton.n.02": 0.5664843240949423,
+        "automaton.n.03": 0.5927809414965104
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/af06907a795d46b29b40d99ddb3ff48c",
+        "creator_username": "Primus03",
+        "creator_display_name": "Primus03",
+        "creator_profile_url": "https://sketchfab.com/Primus03"
+    },
+    "filename": "std_af06907a795d46b29b40d99ddb3ff48c.glb",
+    "length": 1.0663943886756897,
+    "width": 1.8021421432495117
+}

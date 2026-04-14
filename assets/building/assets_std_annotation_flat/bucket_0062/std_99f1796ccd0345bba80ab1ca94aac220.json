@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a mid-rise urban hotel with a classic brick facade, featuring five stories and a flat roof topped with two large cylindrical water towers. The exterior walls are constructed from red and beige bricks, with rows of rectangular windows on each floor, some equipped with air conditioning units. Fire escapes run along the sides of the building, providing emergency access between floors. The ground level includes a main entrance flanked by vending machines, signage, and some graffiti, giving the building a lived-in, metropolitan feel. The roof is detailed with metal railings and utility structures, while the side walls display additional signage and external staircases. The overall appearance suggests a utilitarian yet historic architectural style commonly found in dense city neighborhoods.",
+    "description": "A five-story brick hotel with rooftop water towers, fire escapes, and a detailed urban facade featuring vending machines and signage at street level.",
+    "description_view_0": "Front view showing the main entrance, vending machines, and two rooftop water towers.",
+    "description_view_1": "Side view highlighting the fire escape stairs, a single rooftop water tower, and side signage.",
+    "description_view_2": "Rear view with two water towers, more windows, and additional signage visible.",
+    "description_view_3": "Opposite side view with fire escapes, a single water tower, and visible graffiti at the base.",
+    "category": "hotel",
+    "height": 18.0,
+    "max_dimension": 20.0,
+    "materials": [
+        "brick",
+        "concrete",
+        "glass",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.2,
+        0.1,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 950000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "fire escape",
+        "vending machine",
+        "signage"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "beige",
+        "gray",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_hotel_signage": "vertical illuminated sign on the side of the building, white letters, visible in views 2 and 3",
+    "attribute_number_of_windows": 24,
+    "attribute_entrance_canopy": "none",
+    "attribute_presence_of_doorman_or_bellhop": false,
+    "attribute_architectural_style": "Early 20th Century Urban",
+    "uid": "99f1796ccd0345bba80ab1ca94aac220",
+    "near_synsets": {
+        "skyscraper.n.01": 0.5593793909322292,
+        "high-rise.n.01": 0.5608573336457356,
+        "hotel.n.01": 0.56327569711159,
+        "hotel-casino.n.02": 0.563764134455285,
+        "ritz.n.03": 0.5652149750064783
+    },
+    "synset": "hotel-casino.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/99f1796ccd0345bba80ab1ca94aac220",
+        "creator_username": "yrdoes",
+        "creator_display_name": "Yaroslav Dubovikov",
+        "creator_profile_url": "https://sketchfab.com/yrdoes"
+    },
+    "filename": "std_99f1796ccd0345bba80ab1ca94aac220.glb",
+    "length": 9.147313117980957,
+    "width": 9.651501655578613
+}

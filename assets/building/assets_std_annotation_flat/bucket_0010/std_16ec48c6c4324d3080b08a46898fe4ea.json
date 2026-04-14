@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a straight segment of urban roadway, featuring a dark gray asphalt surface with a pair of solid yellow lines running along each edge. The center of the road is marked by a dashed white line, dividing the road into two lanes for opposing traffic. The road surface appears slightly textured, typical of asphalt, and the edges are sharply defined, giving the impression of a raised or modular road section. There are no visible curbs, sidewalks, or additional features such as signage, lighting, or pedestrian crossings. The road is designed for vehicular traffic and is suitable for placement in city streets, neighborhoods, or as part of a modular road network. The overall appearance is clean and utilitarian, with clear lane demarcations for safe vehicle navigation.",
+    "description": "A straight, dark gray asphalt road segment with solid yellow edge lines and a dashed white center line, designed for urban vehicular traffic.",
+    "description_view_0": "Front view showing the road's width, solid yellow edge lines, and dashed white center line.",
+    "description_view_1": "Side view highlighting the road's length and thickness, with visible yellow edge lines but no lane markings.",
+    "description_view_2": "Rear view, visually identical to the front, showing the road's width and lane markings.",
+    "description_view_3": "Opposite side view, again emphasizing the road's length and thickness, with yellow edge lines visible.",
+    "category": "road",
+    "height": 0.2,
+    "max_dimension": 8.0,
+    "materials": [
+        "asphalt",
+        "concrete",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "car",
+        "bicycle",
+        "motorcycle",
+        "bus",
+        "truck"
+    ],
+    "colors": [
+        "gray",
+        "white",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.53,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_lane_markings": "One dashed white center line dividing two lanes, with solid yellow lines on each edge; no special markings.",
+    "attribute_signage": "none",
+    "attribute_curb_presence": false,
+    "attribute_lighting_fixtures": "none",
+    "attribute_pedestrian_crossings": "none",
+    "uid": "16ec48c6c4324d3080b08a46898fe4ea",
+    "near_synsets": {
+        "white_line.n.01": 0.4529536443960321,
+        "traffic_lane.n.01": 0.4755939716251901,
+        "road_surface.n.01": 0.500408815765778,
+        "one-way_street.n.02": 0.5018867663675112,
+        "highway.n.01": 0.5094543930040007,
+        "road.n.02": -1000.0,
+        "road.n.01": -1000.0
+    },
+    "synset": "road.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/16ec48c6c4324d3080b08a46898fe4ea",
+        "creator_username": "Tamik_777",
+        "creator_display_name": "Tamik_777",
+        "creator_profile_url": "https://sketchfab.com/Tamik_777"
+    },
+    "filename": "std_16ec48c6c4324d3080b08a46898fe4ea.glb",
+    "length": 3.8728392124176025,
+    "width": 1.0043781995773315
+}

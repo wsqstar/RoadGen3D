@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a compact, modern quadcopter drone with a sleek, matte dark gray body and four extended arms, each supporting a rotor with black propeller blades tipped in orange. The central fuselage is streamlined, housing a forward-facing camera gimbal beneath the nose, which is protected by a slightly protruding shell. The arms are robust and angular, designed for stability and efficient aerodynamics, with visible joints where they connect to the main body. The landing gear consists of short, fixed legs at the ends of the arms, providing ground clearance for the camera and body. The drone's surface is mostly smooth with subtle panel lines and a few access ports or covers on the sides. The overall design suggests durability and advanced technology, suitable for aerial photography or surveillance in urban environments.",
+    "description": "A sleek, dark gray quadcopter drone with orange-tipped propellers, a forward camera, and fixed landing legs. Its streamlined body and robust arms suggest advanced functionality and durability.",
+    "description_view_0": "Front view showing the forward-facing camera gimbal, central body, and symmetrical arm layout with propellers.",
+    "description_view_1": "Angled side view highlighting the drone's arm extension, propeller blades, and side access port.",
+    "description_view_2": "Rear view displaying the back of the central body, arm attachment points, and the full span of the propellers.",
+    "description_view_3": "Opposite angled side view, similar to view 1, showing the other side's access port and arm structure.",
+    "category": "drone",
+    "height": 0.09,
+    "max_dimension": 0.35,
+    "materials": [
+        "plastic",
+        "aluminum",
+        "glass",
+        "rubber",
+        "air",
+        "electronic_components"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.05,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 0.9,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable",
+        "toggleable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "camera gimbal",
+        "power button",
+        "battery compartment",
+        "landing legs"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "orange"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.13,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.12,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 4,
+    "attribute_rotor_configuration": "quadcopter X",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": true,
+    "attribute_propeller_guard_presence": false,
+    "uid": "e29628f7c3b64c1daf238fd0a807ad93",
+    "near_synsets": {
+        "drone.n.04": 0.5348138070171379,
+        "orthopter.n.01": 0.5736256545160403,
+        "aircraft.n.01": 0.5857795055925592,
+        "single-rotor_helicopter.n.01": 0.5976511308164129,
+        "buzz_bomb.n.01": 0.5981193345086714,
+        "monotone.n.01": -1000.0,
+        "drone.n.01": -1000.0,
+        "drone.n.05": -1000.0,
+        "dawdler.n.01": -1000.0
+    },
+    "synset": "drone.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/e29628f7c3b64c1daf238fd0a807ad93",
+        "creator_username": "yigeshichen",
+        "creator_display_name": "yigeshichen",
+        "creator_profile_url": "https://sketchfab.com/yigeshichen"
+    },
+    "filename": "std_e29628f7c3b64c1daf238fd0a807ad93.glb",
+    "length": 0.3946278542280197,
+    "width": 0.3688756227493286
+}

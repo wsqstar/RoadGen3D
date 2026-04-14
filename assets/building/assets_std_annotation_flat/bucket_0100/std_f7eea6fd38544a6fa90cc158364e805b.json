@@ -1,0 +1,92 @@
+{
+    "description_long": "This humanoid robot features a sleek, streamlined body with a predominantly blue and black color scheme. Its form is highly anthropomorphic, with a rounded helmet-like head, broad shoulders, and segmented limbs that suggest robust articulation. The torso and joints are reinforced with black armor-like plating, while the arms and legs are blue and smoothly contoured. The hands are black and appear to have individual fingers, and the feet are large and rounded, providing stability. The surface is glossy and hard, reflecting light and giving the robot a polished, modern appearance.",
+    "description": "A glossy blue and black humanoid robot with a rounded helmet, segmented limbs, and armor-like plating, designed for urban environments.",
+    "description_view_0": "Front view showing the rounded helmet, broad chest, and outstretched arms with black hands and large feet.",
+    "description_view_1": "Left side view highlighting the smooth contour of the limbs, the helmet's curvature, and the segmented joints.",
+    "description_view_2": "Rear view displaying the back armor plating, the symmetry of the limbs, and the robust build of the legs and feet.",
+    "description_view_3": "Right side view mirroring the left, emphasizing the arm and leg articulation and the helmet's profile.",
+    "category": "humanoid robot",
+    "height": 1.8,
+    "max_dimension": 2.0,
+    "materials": [
+        "plastic",
+        "metal",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "hands",
+        "legs",
+        "head"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.4
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.2,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms extended horizontally to the sides, legs straight and feet flat on the ground, head facing forward.",
+    "attribute_clothing_style": "No separate clothing; the robot is covered in integrated blue and black armor-like panels with a glossy finish.",
+    "attribute_facial_features": "The face is fully covered by a smooth, rounded helmet with no visible eyes, mouth, or other facial features.",
+    "attribute_limb_articulation": "Arms and legs are segmented at the shoulders, elbows, hips, and knees, suggesting hinge or ball joints; hands have articulated fingers, and feet are solid and rounded.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "f7eea6fd38544a6fa90cc158364e805b",
+    "near_synsets": {
+        "android.n.01": 0.5263987739912946,
+        "cyborg.n.01": 0.5322127041056423,
+        "robotics_equipment.n.01": 0.5493994432981063,
+        "automaton.n.02": 0.5583458410587366,
+        "robotics.n.01": 0.5703163146809437
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f7eea6fd38544a6fa90cc158364e805b",
+        "creator_username": "James.Pham",
+        "creator_display_name": "James.Pham",
+        "creator_profile_url": "https://sketchfab.com/James.Pham"
+    },
+    "filename": "std_f7eea6fd38544a6fa90cc158364e805b.glb",
+    "length": 0.491229772567749,
+    "width": 1.9364967346191406
+}

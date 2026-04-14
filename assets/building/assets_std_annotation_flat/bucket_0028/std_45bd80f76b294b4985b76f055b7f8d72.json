@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a sleek, modern canoe with a streamlined black hull and two visible seats inside. The canoe is equipped with two pairs of oars, each mounted on either side, suggesting it is designed for rowing by two people. The interior features thwarts for structural support and stability, and the gunwales run along the top edges, providing reinforcement and a place to grip. The exterior is smooth and hard, likely made from a composite material such as fiberglass or plastic, with metallic oar shafts and plastic or rubber oar blades. The canoe is open-topped, allowing easy entry and exit, and is large enough to accommodate at least two adults. No registration numbers or identification markings are visible on the hull.",
+    "description": "A modern black canoe with two seats, mounted oars, and a smooth, streamlined hull. The canoe features visible thwarts and gunwales, with a hard, glossy exterior.",
+    "description_view_0": "Side view showing the full length of the canoe, both oars extended outward, and the open seating area.",
+    "description_view_1": "Top-down view highlighting the interior layout, two seats, thwarts, and the symmetrical placement of the oars.",
+    "description_view_2": "Opposite side view similar to view 0, showing the length, oars, and open seating area from the other side.",
+    "description_view_3": "Top-down view from the opposite end, again showing the interior, seats, thwarts, and oar arrangement.",
+    "category": "canoe",
+    "height": 0.5,
+    "max_dimension": 4.0,
+    "materials": [
+        "fiberglass",
+        "plastic",
+        "metal",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 38,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "rowable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "seat",
+        "oar",
+        "thwart",
+        "gunwale"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "glossy",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 7000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_presence_of_seats": true,
+    "attribute_presence_of_thwarts": true,
+    "attribute_presence_of_gunwales": true,
+    "attribute_presence_of_carrying_handles": false,
+    "attribute_presence_of_registration_numbers": false,
+    "uid": "45bd80f76b294b4985b76f055b7f8d72",
+    "near_synsets": {
+        "canoe.n.01": 0.45700180843812777,
+        "kayak.n.01": 0.5117749692020882,
+        "canoeist.n.01": 0.5307344991983909,
+        "dugout_canoe.n.01": 0.5310773756726135,
+        "rowing_boat.n.01": 0.5318540726254799
+    },
+    "synset": "dugout_canoe.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/45bd80f76b294b4985b76f055b7f8d72",
+        "creator_username": "gozdemrl",
+        "creator_display_name": "gozdemrl",
+        "creator_profile_url": "https://sketchfab.com/gozdemrl"
+    },
+    "filename": "std_45bd80f76b294b4985b76f055b7f8d72.glb",
+    "length": 0.9543601274490356,
+    "width": 0.8773456811904907
+}

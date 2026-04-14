@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a stylized red double-decker bus reminiscent of the classic London Routemaster, featuring two levels of large rectangular windows along each side. The bus has a rounded front with two prominent headlights and a distinctive grille, while the rear is flat with a single window on the upper deck. The wheels are simple and black, with the lower deck windows slightly larger than those on the upper deck. A white horizontal stripe runs around the bus, separating the two levels visually. The entry door is located at the rear on the lower deck, and the bus has a robust, boxy structure typical of public transit vehicles.",
+    "description": "A red double-decker bus with large rectangular windows, a rounded front, and a rear entry door. It features a white stripe and classic urban transit styling.",
+    "description_view_0": "Front view showing the rounded front, two headlights, grille, and upper and lower deck windows.",
+    "description_view_1": "Side view displaying two rows of large rectangular windows, the white stripe, and the rear entry door.",
+    "description_view_2": "Rear view with a single upper window, flat back, and partial view of the entry area.",
+    "description_view_3": "Opposite side view with two rows of windows and no visible entry door.",
+    "category": "bus",
+    "height": 4.3,
+    "max_dimension": 8.5,
+    "materials": [
+        "painted metal",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.05,
+        0.02,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "headlight",
+        "grille"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "white",
+        "yellow",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.03,
+        0.07
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 1,
+    "attribute_window_arrangement": "Two rows of large, evenly spaced rectangular windows on each side; four on the lower deck and four on the upper deck, separated by vertical pillars.",
+    "attribute_route_number_or_destination_sign": "",
+    "attribute_bus_manufacturer_logo": "",
+    "attribute_passenger_entry_step_height": 0.45,
+    "uid": "2f2a6a6f30f64fc38fca1c662903b591",
+    "near_synsets": {
+        "bus.n.01": 0.5051709133504078,
+        "school_bus.n.01": 0.536903262555372,
+        "minibus.n.01": 0.5390198241181436,
+        "bus_route.n.01": 0.5443232040430017,
+        "public_transit.n.01": 0.5451528117945832,
+        "bus_topology.n.01": -1000.0,
+        "busbar.n.01": -1000.0,
+        "bus.n.04": -1000.0
+    },
+    "synset": "bus.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2f2a6a6f30f64fc38fca1c662903b591",
+        "creator_username": "scailman",
+        "creator_display_name": "scailman",
+        "creator_profile_url": "https://sketchfab.com/scailman"
+    },
+    "filename": "std_2f2a6a6f30f64fc38fca1c662903b591.glb",
+    "length": 5.0036516189575195,
+    "width": 2.2032413482666016
+}

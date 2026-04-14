@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a medium-sized, streamlined ship with a light gray metallic hull and a tan deck, featuring a low-profile superstructure. The hull is sleek and elongated, with a pointed bow and a squared-off stern, suggesting a design optimized for speed and maneuverability. The deck is equipped with various fixtures, including what appear to be hatches, railings, and small raised structures, likely for navigation or crew operations. The superstructure is compact and centrally located, with minimal vertical extension, and there are visible elements such as antennas or masts. The ship's exterior shows signs of weathering and use, with subtle rust marks along the waterline. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A streamlined, gray metallic ship with a tan deck, compact superstructure, and visible deck fixtures. The hull is elongated and pointed at the bow, with subtle weathering details.",
+    "description_view_0": "Side view showing the full length of the ship, the pointed bow, squared stern, and the compact superstructure with deck fixtures.",
+    "description_view_1": "Front view highlighting the narrow, pointed bow and the symmetry of the deck layout.",
+    "description_view_2": "Opposite side view displaying the hull's length, low superstructure, and deck details similar to view 0.",
+    "description_view_3": "Top-down view revealing the full deck layout, placement of fixtures, and the overall shape of the hull and superstructure.",
+    "category": "ship",
+    "height": 2.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.01,
+        0.04
+    ],
+    "mass": 22000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "pressable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "door",
+        "railing",
+        "antenna",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "tan",
+        "black",
+        "rust"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single, elongated displacement type with a pointed bow and squared stern, featuring a smooth, continuous surface and low freeboard. There are no visible keels or bulbous bows, and the hull sides are straight with subtle curvature toward the bow.",
+    "attribute_superstructure_layout": "The superstructure is low and centrally located, with a single main deck and a compact raised section amidships. There are minimal vertical extensions, and the layout is streamlined for functionality, with visible hatches and railings.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "antenna",
+        "hatch",
+        "railing"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "e759cb35865c480f8db77c91020e8f6c",
+    "near_synsets": {
+        "superstructure.n.01": 0.5343535213690462,
+        "surface_ship.n.01": 0.5347853864912956,
+        "hull.n.06": 0.5394378368181996,
+        "deck-house.n.01": 0.5423625709893298,
+        "small_ship.n.01": 0.5473356267712426,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/e759cb35865c480f8db77c91020e8f6c",
+        "creator_username": "ThomasBeerens",
+        "creator_display_name": "ThomasBeerens",
+        "creator_profile_url": "https://sketchfab.com/ThomasBeerens"
+    },
+    "filename": "std_e759cb35865c480f8db77c91020e8f6c.glb",
+    "length": 8.446568965911865,
+    "width": 2.214585304260254
+}

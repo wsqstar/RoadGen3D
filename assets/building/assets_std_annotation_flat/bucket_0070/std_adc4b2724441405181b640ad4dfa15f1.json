@@ -1,0 +1,102 @@
+{
+    "description_long": "This humanoid robot features a playful, cartoon-like design with a predominantly purple and white color scheme. Its head is stylized with two upward-curving pigtails, a smooth face with large, expressive eyes, and a small mouth, giving it a friendly appearance. The torso is compact and rounded, with a decorative collar and shoulder pads, while the arms are long, slender, and extend horizontally, ending in flat, paddle-like hands. The lower body transitions into a wheeled base with two large black wheels and a purple skirt-like covering, suggesting mobility. Several cables or tubes connect the torso to the arms, hinting at functional articulation. The overall design is sleek and approachable, suitable for urban environments where interaction with people is expected.",
+    "description": "A friendly, purple-and-white humanoid robot with pigtails, expressive facial features, and a wheeled base for mobility.",
+    "description_view_0": "Front view showing the robot's face, pigtails, decorative collar, outstretched arms, and wheeled base.",
+    "description_view_1": "Left side view highlighting the robot's profile, arm extension, and the depth of the wheeled base.",
+    "description_view_2": "Rear view displaying the back of the head, pigtails, back of the torso, and the structure of the wheeled base.",
+    "description_view_3": "Right side view showing the robot's profile, arm extension, and the wheel's structure from the opposite side.",
+    "category": "humanoid robot",
+    "height": 1.5,
+    "max_dimension": 1.8,
+    "materials": [
+        "plastic",
+        "metal",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "hands",
+        "wheels",
+        "head",
+        "torso",
+        "cables"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "purple",
+        "white",
+        "black",
+        "pink",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms fully extended horizontally to the sides, head facing forward, and torso upright on a wheeled base.",
+    "attribute_clothing_style": "No separate clothing; the robot features integrated decorative panels and a stylized collar, all made from colored plastic.",
+    "attribute_facial_features": "The face is smooth and white with large, oval, expressive eyes, a small mouth, and no visible nose; the head is adorned with two pink pigtail-like structures.",
+    "attribute_limb_articulation": "Arms have visible joints at the shoulders and elbows, allowing for rotation and extension; hands are paddle-like with no visible fingers; the base has two large wheels for movement.",
+    "attribute_presence_of_sensors": "Possible visual sensors in the eyes; no other sensors are visibly apparent.",
+    "uid": "adc4b2724441405181b640ad4dfa15f1",
+    "near_synsets": {
+        "android.n.01": 0.549315632069011,
+        "animatronics.n.01": 0.5735050627029911,
+        "robotics_equipment.n.01": 0.5805862247100817,
+        "automaton.n.02": 0.5854796821918815,
+        "cyborg.n.01": 0.5855421462597536
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/adc4b2724441405181b640ad4dfa15f1",
+        "creator_username": "dashr-lol",
+        "creator_display_name": "Shadow-Drop",
+        "creator_profile_url": "https://sketchfab.com/dashr-lol"
+    },
+    "filename": "std_adc4b2724441405181b640ad4dfa15f1.glb",
+    "length": 0.2989141345024109,
+    "width": 1.7608203887939453
+}

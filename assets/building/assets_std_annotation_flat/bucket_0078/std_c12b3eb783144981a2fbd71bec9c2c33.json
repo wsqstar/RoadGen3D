@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a bolt-action sniper rifle with a green camouflage-patterned stock and a prominent thumbhole grip. The rifle features a long, slender barrel and is equipped with a high-magnification telescopic scope mounted on top. The stock appears to be made of a composite material, with a black rubberized buttpad for recoil absorption. The bolt handle is visible on the right side, indicating a right-handed configuration. The magazine is not clearly visible, suggesting it may be an internal or flush-fit design. The overall design is sleek and utilitarian, suitable for precision shooting in urban or field environments.",
+    "description": "A green camouflaged bolt-action sniper rifle with a thumbhole stock and mounted telescopic scope, featuring a long barrel and black buttpad.",
+    "description_view_0": "Side view showing the full length of the rifle, green camo stock, thumbhole grip, and mounted scope.",
+    "description_view_1": "Front view highlighting the barrel's muzzle, scope alignment, and narrow profile.",
+    "description_view_2": "Opposite side view displaying the bolt handle, stock details, and scope mount.",
+    "description_view_3": "Top-down view revealing the scope, bolt handle, and overall rifle layout.",
+    "category": "rifle",
+    "height": 0.18,
+    "max_dimension": 1.2,
+    "materials": [
+        "polymer",
+        "steel",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.35,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 6.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "aimable",
+        "triggerable",
+        "loadable",
+        "adjustable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "bolt handle",
+        "trigger",
+        "scope",
+        "stock",
+        "barrel",
+        "magazine (implied)",
+        "safety lever (implied)"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "thumbhole",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "scope",
+    "attribute_muzzle_device": "none",
+    "uid": "c12b3eb783144981a2fbd71bec9c2c33",
+    "near_synsets": {
+        "dragunov.n.01": 0.45729652491043776,
+        "sniper_rifle.n.01": 0.5093775414939553,
+        "light_arm.n.01": 0.5155435827811449,
+        "rifle.n.01": 0.5183027199023454,
+        "garand_rifle.n.01": 0.5229330339842847
+    },
+    "synset": "garand_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c12b3eb783144981a2fbd71bec9c2c33",
+        "creator_username": "dessierror",
+        "creator_display_name": "dessierror",
+        "creator_profile_url": "https://sketchfab.com/dessierror"
+    },
+    "filename": "std_c12b3eb783144981a2fbd71bec9c2c33.glb",
+    "length": 0.9266479909420013,
+    "width": 0.0791340172290802
+}

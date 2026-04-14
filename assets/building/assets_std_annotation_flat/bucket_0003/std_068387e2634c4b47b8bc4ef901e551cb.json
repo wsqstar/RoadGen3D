@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a large, cylindrical aerial bomb with a matte olive green body and two distinct yellow bands encircling its circumference near the nose and tail. The bomb features a rounded nose and a tapered tail section equipped with four stabilizing fins arranged in a cross pattern, which are painted in a darker shade. There is visible stenciled yellow text on the side, likely indicating identification or safety information. The surface appears metallic and robust, with no visible seams or openings except for the fin assembly at the rear. The overall design is streamlined for aerodynamic stability during free-fall deployment. The bomb's size and construction suggest it is intended for military use and would be highly conspicuous in an urban environment.",
+    "description": "A large, olive green cylindrical bomb with yellow bands, stenciled markings, and four stabilizing tail fins. The surface is metallic and robust, designed for aerodynamic stability.",
+    "description_view_0": "The bomb is seen head-on, showing the rounded nose and the symmetrical arrangement of the four tail fins.",
+    "description_view_1": "A side profile reveals the full length of the bomb, the yellow bands, and the stenciled text along the body.",
+    "description_view_2": "The rear view highlights the cross-shaped tail fin assembly and the opening at the tail end.",
+    "description_view_3": "The opposite side profile shows the bomb's smooth, uninterrupted surface and the yellow banding, with no visible text.",
+    "category": "bomb",
+    "height": 0.4,
+    "max_dimension": 1.5,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.3,
+        0.03,
+        0.02
+    ],
+    "mass": 250,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2450,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "tail fins"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.01,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The bomb appears to have a nose section that may house an impact or proximity fuse, but no external triggering devices, buttons, or wires are visible.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "068387e2634c4b47b8bc4ef901e551cb",
+    "near_synsets": {
+        "buzz_bomb.n.01": 0.5546460027720939,
+        "stabilizer.n.02": 0.5596873762834143,
+        "bomber.n.01": 0.5608959418515396,
+        "plastic_bomb.n.01": 0.5619675533970557,
+        "cluster_bomb.n.01": 0.5691734389238152,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0,
+        "bomb.n.01": -1000.0
+    },
+    "synset": "bomb.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/068387e2634c4b47b8bc4ef901e551cb",
+        "creator_username": "andrej.grave",
+        "creator_display_name": "Andrej Grave",
+        "creator_profile_url": "https://sketchfab.com/andrej.grave"
+    },
+    "filename": "std_068387e2634c4b47b8bc4ef901e551cb.glb",
+    "length": 1.9139614701271057,
+    "width": 0.39822179079055786
+}

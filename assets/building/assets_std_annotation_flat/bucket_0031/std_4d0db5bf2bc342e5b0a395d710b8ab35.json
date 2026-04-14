@@ -1,0 +1,104 @@
+{
+    "description_long": "This humanoid robot features a skeletal, mechanical frame with exposed joints and components, giving it an industrial and utilitarian appearance. Its head is large and rounded with prominent, expressive blue eyes, a segmented jaw, and protruding ears, evoking a slightly animalistic look. The arms and legs are constructed from a series of cylindrical segments and springs, suggesting a high degree of articulation and flexibility. The hands are pointed and claw-like, while the feet are broad and blocky, providing stability. The torso is composed of interconnected rods and discs, with visible wiring and mechanical details throughout. The overall design is both functional and slightly whimsical, making it suitable for urban environments where interaction with humans or other robots is expected.",
+    "description": "A skeletal, mechanical humanoid robot with expressive blue eyes, articulated limbs, and exposed industrial components. Its design is both functional and slightly whimsical, with animal-like facial features and robust, spring-loaded joints.",
+    "description_view_0": "Front view shows the robot's expressive face, blue eyes, prominent ears, and symmetrical, articulated limbs with visible springs and blocky feet.",
+    "description_view_1": "Side view highlights the depth of the head, the layered construction of the torso, and the spring-loaded arms and legs, with the claw-like hand visible.",
+    "description_view_2": "Rear view reveals the back of the head, symmetrical mechanical structure, and the exposed framework of the arms and legs.",
+    "description_view_3": "Opposite side view emphasizes the cylindrical segments of the limbs, the mechanical spine, and the robust, blocky feet.",
+    "category": "humanoid robot",
+    "height": 1.6,
+    "max_dimension": 1.6,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head",
+        "arms",
+        "hands",
+        "legs",
+        "feet",
+        "eyes",
+        "jaw"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "blue",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is standing upright with arms relaxed at its sides and legs straight. The head is facing forward, and the torso is aligned vertically. Hands are pointed downward, and feet are flat on the ground.",
+    "attribute_clothing_style": "The robot is unclothed, with only integrated mechanical panels and exposed components visible. No decorative coverings or clothing are present.",
+    "attribute_facial_features": "The face features large, round blue eyes, a segmented jaw with visible teeth, and prominent, rounded ears. There is no visible nose, and the mouth is mechanical and slightly open, giving an expressive appearance.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints, with spring-like segments suggesting a wide range of motion. Hands are claw-like with articulated fingers, and feet are blocky with possible articulation at the ankles.",
+    "attribute_presence_of_sensors": "Visible sensors include two large blue eyes on the head, likely functioning as cameras or visual sensors. No other sensors are clearly visible.",
+    "uid": "4d0db5bf2bc342e5b0a395d710b8ab35",
+    "near_synsets": {
+        "android.n.01": 0.5438993012462399,
+        "cyborg.n.01": 0.554963383168107,
+        "automaton.n.02": 0.5616174068066074,
+        "robotics_equipment.n.01": 0.5621351217483466,
+        "animatronics.n.01": 0.5669705534967318
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4d0db5bf2bc342e5b0a395d710b8ab35",
+        "creator_username": "lissandroamorarios",
+        "creator_display_name": "lissandroamorarios",
+        "creator_profile_url": "https://sketchfab.com/lissandroamorarios"
+    },
+    "filename": "std_4d0db5bf2bc342e5b0a395d710b8ab35.glb",
+    "length": 0.3578159213066101,
+    "width": 0.6648184955120087
+}

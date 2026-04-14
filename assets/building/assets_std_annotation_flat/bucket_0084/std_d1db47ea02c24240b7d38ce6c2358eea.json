@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a heavily armored, four-wheeled combat tactical vehicle with a distinct angular hull and turret, designed for urban and battlefield operations. The exterior is covered in a multi-tone camouflage pattern consisting of white, brown, and gray geometric shapes, providing visual disruption. The front features a sloped glacis plate, headlamps, and a prominent gun barrel mounted on a rotating turret. The sides display large, rugged tires with deep treads, reinforced wheel arches, and access hatches. The rear includes storage compartments, exhaust outlets, and a license plate, while the roof is equipped with periscopes, antennae, and additional hatches. The vehicle's construction suggests a steel or composite armored shell, with visible rivets and panel lines indicating modular armor sections.",
+    "description": "A four-wheeled, angular armored combat vehicle with a multi-tone camouflage pattern, turret-mounted gun, and rugged off-road tires.",
+    "description_view_0": "Front view shows the sloped armor, headlamps, and the main gun protruding from the turret.",
+    "description_view_1": "Left side view highlights the large, rugged tires, side hatches, and the full length of the turret and hull.",
+    "description_view_2": "Rear view reveals storage compartments, exhausts, and a license plate, with the angular armor extending to the back.",
+    "description_view_3": "Right side view mirrors the left, showing the tires, side panels, and turret details.",
+    "category": "combat tactical  vehicle",
+    "height": 2.3,
+    "max_dimension": 5.2,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.82,
+        0.03,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 8500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "wheel",
+        "turret",
+        "gun barrel",
+        "headlamp",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "brown",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.35,
+        0.3,
+        0.3,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible turret-mounted gun barrel on the roof; no other weapon mounts or hardpoints visible.",
+    "attribute_armor_plating": "Full body coverage with thick, angular steel armor plating; sloped panels on the front, sides, and rear; visible modular sections and reinforced wheel arches.",
+    "attribute_camouflage_pattern": "Geometric camouflage pattern in white, brown, and gray with sharp, angular shapes.",
+    "attribute_military_markings": "White license plate with black alphanumeric code on the rear; no other visible insignia or symbols.",
+    "attribute_tire_type": "Four large off-road tires with deep, rugged tread pattern; reinforced sidewalls visible.",
+    "uid": "d1db47ea02c24240b7d38ce6c2358eea",
+    "near_synsets": {
+        "reconnaissance_vehicle.n.01": 0.47496901246328654,
+        "military_vehicle.n.01": 0.4829923035958723,
+        "tank.n.01": 0.49270068199466266,
+        "armored_car.n.02": 0.49766682119057215,
+        "humvee.n.01": 0.5122022904242837,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "armored_car.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d1db47ea02c24240b7d38ce6c2358eea",
+        "creator_username": "LucaKawe",
+        "creator_display_name": "Luca Kawe",
+        "creator_profile_url": "https://sketchfab.com/LucaKawe"
+    },
+    "filename": "std_d1db47ea02c24240b7d38ce6c2358eea.glb",
+    "length": 4.633574962615967,
+    "width": 2.3109302520751953
+}

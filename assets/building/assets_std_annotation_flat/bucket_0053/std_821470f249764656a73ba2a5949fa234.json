@@ -1,0 +1,102 @@
+{
+    "description_long": "This mud patch features a rough, uneven surface with a mix of compacted earth and loose, clumpy soil. The coloration is predominantly grayish-brown, with scattered darker patches indicating areas of higher moisture or denser mud. Several distinct impressions, likely from shoes or boots, are visible in the central region, suggesting recent foot traffic. The edges of the patch are irregular and blend gradually into the surrounding ground, with some small rocks and debris embedded within the mud. The surface appears semi-soft and slightly damp, with no visible standing water but a clear indication of recent wetness. This patch would typically be found in an urban alleyway, construction site, or roadside area where soil is exposed and subject to foot or light vehicle traffic.",
+    "description": "A grayish-brown, irregular mud patch with visible footprints and embedded debris, featuring a rough, semi-soft surface and gradual, uneven edges.",
+    "description_view_0": "A wide, low-angle view showing the irregular, rocky edges and overall flatness of the mud patch.",
+    "description_view_1": "A top-down perspective highlighting two clear, deep footprints in the center of the patch.",
+    "description_view_2": "A side view emphasizing the depth and definition of the footprints, as well as the uneven, clumpy texture.",
+    "description_view_3": "A rear view showing more subtle surface undulations and scattered debris, with less prominent impressions.",
+    "category": "mud patch",
+    "height": 0.08,
+    "max_dimension": 1.2,
+    "materials": [
+        "mud",
+        "soil",
+        "small rocks",
+        "organic debris",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "imprintable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "brown",
+        "dark brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 0.05,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_location": "urban roadside or construction site",
+    "attribute_boundary_definition": "The boundaries are irregular and blend gradually into the surrounding ground, with no sharp transitions between mud and adjacent surfaces.",
+    "attribute_presence_of_footprints_or_tire_marks": "Two clear, deep footprints are visible in the central area, with well-defined edges.",
+    "attribute_water_accumulation": "None visible; the surface appears damp but without standing water or puddles.",
+    "attribute_surrounding_debris": "Small rocks and minor organic debris are scattered across the surface.",
+    "uid": "821470f249764656a73ba2a5949fa234",
+    "near_synsets": {
+        "mud_puddle.n.01": 0.5031785609174683,
+        "mud_stain.n.01": 0.5033588656595238,
+        "mud.n.01": 0.5307176944964953,
+        "footprint_evidence.n.01": 0.5336075163598912,
+        "squish.n.01": 0.5477203969298026,
+        "while.n.01": -1000.0,
+        "temporary_hookup.n.01": -1000.0,
+        "mud.n.02": -1000.0,
+        "plot.n.02": -1000.0,
+        "mend.n.01": -1000.0,
+        "patch.n.05": -1000.0,
+        "eyepatch.n.01": -1000.0,
+        "spot.n.05": -1000.0,
+        "bandage.n.01": -1000.0,
+        "patch.n.03": -1000.0
+    },
+    "synset": "mud_puddle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/821470f249764656a73ba2a5949fa234",
+        "creator_username": "GlobalDigitalHeritage",
+        "creator_display_name": "Global Digital Heritage",
+        "creator_profile_url": "https://sketchfab.com/GlobalDigitalHeritage"
+    },
+    "filename": "std_821470f249764656a73ba2a5949fa234.glb",
+    "length": 0.23819082975387573,
+    "width": 0.14235801249742508
+}

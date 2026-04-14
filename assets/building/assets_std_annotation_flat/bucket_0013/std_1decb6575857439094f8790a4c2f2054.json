@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a large, rectangular blue metal dumpster with a split, ribbed black plastic lid on top. The exterior is weathered, showing rust streaks, grime, and some graffiti, indicating prolonged outdoor use. The front features a faded sticker and visible scuff marks, while the sides have robust, horizontal bar handles for maneuvering. The lid is slightly sloped, divided into two sections, and appears to be hinged for easy opening. No wheels are visible, suggesting it is designed to remain stationary. The overall construction is heavy-duty, suitable for holding large volumes of waste in urban environments.",
+    "description": "A large, blue metal dumpster with a split black plastic lid, weathered exterior, and sturdy side handles. It shows signs of rust, grime, and graffiti, indicating outdoor urban use.",
+    "description_view_0": "Front view showing the split black lid, blue metal body, rust streaks, and a faded sticker.",
+    "description_view_1": "Right side view highlighting the sloped lid, a prominent bar handle, and a yellow sticker.",
+    "description_view_2": "Rear view displaying more rust, grime, and graffiti, with no visible handles or stickers.",
+    "description_view_3": "Left side view with a bar handle, graffiti, and the sloped lid visible.",
+    "category": "dumpster",
+    "height": 1.3,
+    "max_dimension": 2.1,
+    "materials": [
+        "steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 250,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black",
+        "gray",
+        "red",
+        "yellow",
+        "green"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.07,
+        0.03,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "split, sloped, ribbed plastic lid with two hinged sections; no visible locking mechanism",
+    "attribute_wheel_presence": false,
+    "attribute_handle_design": "Two horizontal bar handles, made of steel, located on each side",
+    "attribute_warning_labels": [
+        {
+            "color": "yellow",
+            "shape": "rectangle",
+            "content": "faded text or symbol"
+        },
+        {
+            "color": "red",
+            "shape": "rectangle",
+            "content": "faded text or symbol"
+        }
+    ],
+    "attribute_placement_location": "outdoor commercial area or residential alley",
+    "uid": "1decb6575857439094f8790a4c2f2054",
+    "near_synsets": {
+        "dumpster.n.01": 0.46124017648230087,
+        "garbage.n.03": 0.5311476098075164,
+        "garbage_truck.n.01": 0.5459455971492667,
+        "recycling_bin.n.01": 0.5516855288520259,
+        "dump.n.02": 0.5598693647782107
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1decb6575857439094f8790a4c2f2054",
+        "creator_username": "sdevericks",
+        "creator_display_name": "sdevericks",
+        "creator_profile_url": "https://sketchfab.com/sdevericks"
+    },
+    "filename": "std_1decb6575857439094f8790a4c2f2054.glb",
+    "length": 1.3574894666671753,
+    "width": 1.6546377539634705
+}

@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a large, modern commercial airplane with a streamlined fuselage and a pair of swept-back wings mounted low on the body. The wings feature upward-angled winglets at their tips, enhancing aerodynamic efficiency. The fuselage is primarily white with blue and teal accents, and the tail fin is decorated with a gradient blue pattern. Two large turbofan engines are mounted under the wings, and the landing gear is visible beneath the fuselage, with a tricycle configuration. The cockpit is located at the forward end of the fuselage, with a row of windows running along the sides for passengers.",
+    "description": "A modern commercial airplane with swept-back low wings, underwing turbofan engines, and a blue-white color scheme.",
+    "description_view_0": "Front view showing the nose, cockpit windows, and the full wingspan with upward-angled winglets.",
+    "description_view_1": "Left side view highlighting the blue gradient tail fin, passenger windows, and underwing engines.",
+    "description_view_2": "Rear view displaying the tail fin, horizontal stabilizers, and the trailing edges of the wings.",
+    "description_view_3": "Right side view showing the right wing, engines, and the landing gear beneath the fuselage.",
+    "category": "airplane",
+    "height": 6.5,
+    "max_dimension": 38.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.1,
+        0.05,
+        0.02
+    ],
+    "mass": 65000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "landing gear",
+        "engine",
+        "cockpit window",
+        "passenger window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "teal",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 15.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with swept-back wings and upward-angled winglets at the tips.",
+    "attribute_engine_type": "Twin turbofan underwing engines.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Tricycle landing gear with two main units and a single nose gear, all fixed and visible.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with multiple windows at the front of the fuselage.",
+    "uid": "f9b74e48bf0d4f9d869a70db01772b3a",
+    "near_synsets": {
+        "airplane.n.01": 0.4979811475921554,
+        "aircraft.n.01": 0.5065790865152779,
+        "propjet.n.01": 0.511874968325384,
+        "fanjet.n.01": 0.5126546044569598,
+        "twinjet.n.01": 0.5213127550341751
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f9b74e48bf0d4f9d869a70db01772b3a",
+        "creator_username": "madexc",
+        "creator_display_name": "madexc",
+        "creator_profile_url": "https://sketchfab.com/madexc"
+    },
+    "filename": "std_f9b74e48bf0d4f9d869a70db01772b3a.glb",
+    "length": 16.13793659210205,
+    "width": 16.1379337310791
+}

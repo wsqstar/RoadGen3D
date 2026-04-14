@@ -1,0 +1,92 @@
+{
+    "description_long": "This is a large, rectangular, industrial shipping container with a weathered red exterior. The surface shows signs of rust, dirt, and wear, with graffiti and a yellow warning symbol visible on one side. The container features corrugated metal walls and a flat roof, typical of intermodal freight containers. One end is equipped with double doors secured by vertical locking bars and metal latches, while the opposite end is solid and featureless. The container is constructed primarily from steel, designed for durability and secure storage or transport of goods. Its size and robust build make it suitable for placement in shipping yards, construction sites, or urban storage areas.",
+    "description": "A large, weathered red steel shipping container with graffiti, warning signage, and secure double doors on one end. The exterior is corrugated and shows signs of heavy use.",
+    "description_view_0": "The side view displays the red corrugated metal surface, graffiti, and a yellow warning symbol.",
+    "description_view_1": "The end view shows the double doors with vertical locking bars and latches, as well as some labeling.",
+    "description_view_2": "The opposite side is plain, with no visible markings, graffiti, or doors.",
+    "description_view_3": "The solid end view reveals a featureless, flat metal surface with no openings or markings.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 12.0,
+    "materials": [
+        "steel",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.92,
+        0.07,
+        0.01
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 15000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking bar",
+        "latch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "yellow",
+        "white"
+    ],
+    "colors_composition": [
+        0.95,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "graffiti and yellow warning symbol on side, white labeling on door",
+    "attribute_handles_or_grips": "vertical locking bars and latches on doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "b3821aa14cfe411789503ba193c065e5",
+    "near_synsets": {
+        "cargo_container.n.01": 0.48277909390571594,
+        "container.n.01": 0.494519305441764,
+        "cargo_door.n.01": 0.5415401770717144,
+        "container_ship.n.01": 0.5536642747893835,
+        "crate.n.01": 0.560132631002568
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b3821aa14cfe411789503ba193c065e5",
+        "creator_username": "malekabdeltwab",
+        "creator_display_name": "malekabdeltwab",
+        "creator_profile_url": "https://sketchfab.com/malekabdeltwab"
+    },
+    "filename": "std_b3821aa14cfe411789503ba193c065e5.glb",
+    "length": 7.8467326164245605,
+    "width": 2.4120391607284546
+}

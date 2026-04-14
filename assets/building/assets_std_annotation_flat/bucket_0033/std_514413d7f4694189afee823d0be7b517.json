@@ -1,0 +1,104 @@
+{
+    "description_long": "This object resembles a heavily modified, stripped-down racing vehicle with a low, aerodynamic profile and exposed mechanical components. The body is primarily black with orange accents and visible branding or text along the side panels. The front features two large wheels and an open chassis, revealing intricate wiring, tubing, and structural elements. The cockpit area is open, lacking a windshield or roof, and the rear tapers to a point, suggesting a streamlined design. The surface appears charred or damaged, with rough, uneven textures and some metallic shine. The overall appearance is rugged, with a mix of metal, rubber, and possibly composite materials.",
+    "description": "A stripped-down, black and orange racing vehicle with exposed mechanical parts and a rugged, damaged surface.",
+    "description_view_0": "Side view showing the orange-accented body, exposed front wheel, and open cockpit.",
+    "description_view_1": "Front view highlighting the open chassis, visible wiring, and both front wheels.",
+    "description_view_2": "Angled front-side view emphasizing the exposed mechanical components and damaged textures.",
+    "description_view_3": "Rear-side view showing the tapered back, rear wheel, and overall streamlined shape.",
+    "category": "bomb",
+    "height": 1.1,
+    "max_dimension": 2.8,
+    "materials": [
+        "steel",
+        "rubber",
+        "plastic",
+        "glass",
+        "composite",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.02,
+        0.05,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 5,
+    "movable": true,
+    "required_force": 1800,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "steering column",
+        "pedal",
+        "switch",
+        "lever"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "orange",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The object features exposed wiring and mechanical components near the front, suggesting a possible remote or mechanical triggering mechanism, but no clear button or timer is visible.",
+    "attribute_wiring_visibility": true,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "514413d7f4694189afee823d0be7b517",
+    "near_synsets": {
+        "car_bomb.n.01": 0.536721454134182,
+        "bomb.n.01": 0.5382972501729056,
+        "remote-control_bomb.n.01": 0.5522932290312627,
+        "dirty_bomb.n.01": 0.5531631936250976,
+        "bomb_blast.n.01": 0.5577864348039846,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/514413d7f4694189afee823d0be7b517",
+        "creator_username": "gurpreetsinghpreet",
+        "creator_display_name": "Gurpreet Singh",
+        "creator_profile_url": "https://sketchfab.com/gurpreetsinghpreet"
+    },
+    "filename": "std_514413d7f4694189afee823d0be7b517.glb",
+    "length": 1.296080231666565,
+    "width": 1.0303415656089783
+}

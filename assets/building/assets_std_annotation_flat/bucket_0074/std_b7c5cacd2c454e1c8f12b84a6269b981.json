@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a stylized, multi-masted sailing ship with a dark brown hull and three prominent masts, each rigged with large, angular gray sails. The ship features a raised stern and bow, with the hull exhibiting a faceted, polygonal design. Red flags are mounted atop each mast, and a network of rigging lines connects the masts and sails, adding to the ship's classic maritime appearance. The deck is open and lacks visible cabins or superstructure, emphasizing the vessel's streamlined, old-world silhouette. The ship's overall form suggests a historical galleon or clipper, designed for ocean travel and cargo or passenger transport. No modern equipment or markings are visible, reinforcing its period-specific aesthetic.",
+    "description": "A stylized, multi-masted sailing ship with angular gray sails, a dark brown faceted hull, and red flags atop each mast. The vessel has a classic, open-deck design reminiscent of historical galleons.",
+    "description_view_0": "Side view showing the full length of the ship, three masts with sails, rigging, and the raised bow and stern.",
+    "description_view_1": "Front view highlighting the pointed bow, forward-facing sails, and the alignment of the masts.",
+    "description_view_2": "Opposite side view, mirroring view 0, with clear visibility of the hull's shape and sail arrangement.",
+    "description_view_3": "Rear view focusing on the stern, the aft sails, and the symmetry of the masts and rigging.",
+    "category": "ship",
+    "height": 18.0,
+    "max_dimension": 45.0,
+    "materials": [
+        "wood",
+        "fabric",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 120000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 3000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sails",
+        "masts",
+        "rigging",
+        "deck"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single, continuous displacement type with a faceted, polygonal structure, a pronounced raised bow and stern, and no visible keels or bulbous bows. The sides are angular, and the bottom appears flat, typical of stylized historical sailing ships.",
+    "attribute_superstructure_layout": "There is no visible superstructure; the deck is open and uninterrupted, with no cabins, bridges, or towers present. The design is minimalistic, focusing on the masts and sails.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [],
+    "attribute_registration_markings": "none",
+    "uid": "b7c5cacd2c454e1c8f12b84a6269b981",
+    "near_synsets": {
+        "galleon.n.01": 0.47842423318129124,
+        "sailing_vessel.n.01": 0.5004698635359646,
+        "galley.n.01": 0.5077058601937668,
+        "cargo_ship.n.01": 0.5081246499497201,
+        "sail.n.03": 0.508949666284021,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b7c5cacd2c454e1c8f12b84a6269b981",
+        "creator_username": "VitSh",
+        "creator_display_name": "VitSh",
+        "creator_profile_url": "https://sketchfab.com/VitSh"
+    },
+    "filename": "std_b7c5cacd2c454e1c8f12b84a6269b981.glb",
+    "length": 22.966984748840332,
+    "width": 7.066125869750977
+}

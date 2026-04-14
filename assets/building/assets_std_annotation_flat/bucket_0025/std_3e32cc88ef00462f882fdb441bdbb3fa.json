@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a classic revolver-style handgun featuring a long, cylindrical barrel and a robust, rounded frame. The barrel and main body are finished in a matte black, while the grip is crafted from a wood-textured material with a rich brown hue, providing a visual contrast. The trigger guard is smoothly curved and encloses a black trigger, while the hammer is prominently positioned at the rear of the frame. The cylinder, which holds the ammunition, is visible and slightly protrudes from the main body, characteristic of traditional revolvers. The overall design is utilitarian yet elegant, with no visible engravings or decorative markings, emphasizing function over ornamentation.",
+    "description": "A classic black revolver with a long barrel and a brown wooden grip, featuring a smooth, robust frame and a curved trigger guard.",
+    "description_view_0": "Side view showing the full length of the black barrel, the rounded cylinder, and the brown wooden grip.",
+    "description_view_1": "Front view highlighting the circular muzzle opening, the alignment of the barrel, and the narrow profile of the grip.",
+    "description_view_2": "Opposite side view displaying the barrel, cylinder, and grip, mirroring the details of the first side.",
+    "description_view_3": "Rear view focusing on the back of the grip, the hammer, and the rear sight alignment.",
+    "category": "handgun",
+    "height": 0.15,
+    "max_dimension": 0.32,
+    "materials": [
+        "steel",
+        "wood",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.18,
+        0.05,
+        0.02
+    ],
+    "mass": 1.1,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "rotatable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "hammer",
+        "cylinder",
+        "barrel",
+        "trigger guard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.75,
+        0.25
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_grip_design": "The grip is made of a brown wood-textured material, smoothly contoured to fit the hand comfortably. It features a gentle curve and a slightly flared base for improved ergonomics, with a polished finish that highlights the natural wood grain. There are no visible finger grooves, checkering, or stippling, giving it a classic, unembellished appearance. The grip appears solid and robust, with no logos or decorative inlays present.",
+    "attribute_trigger_guard_style": "The trigger guard is rounded and moderately thick, providing ample space for finger placement. It has a smooth, continuous curve with no undercuts or squared-off edges, and lacks any visible texturing or reinforcement. The design is simple and functional, with no integrated accessories or distinctive embellishments.",
+    "attribute_barrel_type": "The barrel is long and cylindrical, with a smooth, unadorned profile and no visible threading, ports, or compensators. It extends well beyond the frame, characteristic of traditional revolvers, and has a matte black finish. There are no external markings or fluting on the barrel.",
+    "attribute_slide_markings": "There are no visible markings, engravings, or inscriptions on the slide or frame. The surfaces are plain and unmarked, with no manufacturer logos, model names, serial numbers, or decorative patterns apparent.",
+    "attribute_magazine_base_shape": "As a revolver, this handgun does not feature a traditional magazine base or floorplate. The grip base is smoothly rounded and flared, with no extensions, finger rests, logos, or texturing visible.",
+    "uid": "3e32cc88ef00462f882fdb441bdbb3fa",
+    "near_synsets": {
+        "colt.n.02": 0.4819184942552627,
+        "revolver.n.01": 0.4836634404352694,
+        "pistol.n.01": 0.49645421351098046,
+        "pistol_grip.n.01": 0.5217701157232365,
+        "firearm.n.01": 0.5226380774808589
+    },
+    "synset": "revolver.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3e32cc88ef00462f882fdb441bdbb3fa",
+        "creator_username": "afun1996",
+        "creator_display_name": "afun1996",
+        "creator_profile_url": "https://sketchfab.com/afun1996"
+    },
+    "filename": "std_3e32cc88ef00462f882fdb441bdbb3fa.glb",
+    "length": 0.3191164433956146,
+    "width": 0.050345420837402344
+}

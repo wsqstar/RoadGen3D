@@ -1,0 +1,99 @@
+{
+    "description_long": "This humanoid robot features a robust, metallic body with a rounded, dome-shaped torso and two large cylindrical tanks mounted on its back. Its arms are heavily jointed and mechanical, with one arm raised and ending in a pincer-like claw, while the other arm is bent and also terminates in a claw. The legs are thick and mechanical, with visible joints and wide, stable feet designed for support and movement. The surface is predominantly a dark, bronzed metal with visible bolts, seams, and industrial detailing, giving it a steampunk aesthetic. The front of the torso has a circular panel with intricate mechanical features, and the head is integrated into the torso with a single, small lens or sensor on the front. The overall design suggests durability and functionality, suitable for urban environments requiring strength and resilience.",
+    "description": "A steampunk-inspired humanoid robot with a domed torso, large back-mounted tanks, articulated arms ending in claws, and sturdy mechanical legs. Its bronzed metallic surface and industrial details convey strength and durability.",
+    "description_view_0": "Front view showing the domed torso, circular chest panel, raised right arm with claw, and both legs clearly visible.",
+    "description_view_1": "Side view highlighting the cylindrical back tank, the profile of the domed torso, and the extended right arm.",
+    "description_view_2": "Rear view displaying both large cylindrical tanks, the back of the arms, and the mechanical structure of the legs.",
+    "description_view_3": "Opposite side view showing the left tank, the bent left arm, and the mechanical details of the leg and arm joints.",
+    "category": "humanoid robot",
+    "height": 1.6,
+    "max_dimension": 1.1,
+    "materials": [
+        "metal",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 210,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 2100,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "rotatable",
+        "pushable",
+        "pullable",
+        "grippable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "claw",
+        "arm joint",
+        "chest panel",
+        "leg joint",
+        "sensor lens"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "bronze",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "glossy",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with torso facing forward, right arm raised and bent at the elbow, left arm bent downward, both legs straight and feet planted firmly.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated metallic panels and industrial components with a steampunk aesthetic.",
+    "attribute_facial_features": "No traditional face; a single small lens or sensor is present on the front of the dome-shaped torso, with no visible eyes, mouth, or nose.",
+    "attribute_limb_articulation": "Arms have multiple hinge and rotary joints at the shoulder, elbow, and wrist, ending in articulated claws; legs have hinge joints at the hip, knee, and ankle, with wide, stable feet.",
+    "attribute_presence_of_sensors": "Single lens or camera sensor on the front of the torso; no other visible sensors.",
+    "uid": "dd1da8b32b0b43ad8c4060c86dc8d93c",
+    "near_synsets": {
+        "cyborg.n.01": 0.5490622999907214,
+        "android.n.01": 0.5533804463481181,
+        "automaton.n.02": 0.5623895297417492,
+        "steampunk.n.01": 0.5633408438889871,
+        "robotics_equipment.n.01": 0.5784222758360705
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dd1da8b32b0b43ad8c4060c86dc8d93c",
+        "creator_username": "benedict416",
+        "creator_display_name": "Benedict Chew",
+        "creator_profile_url": "https://sketchfab.com/benedict416"
+    },
+    "filename": "std_dd1da8b32b0b43ad8c4060c86dc8d93c.glb",
+    "length": 0.9094444811344147,
+    "width": 1.4638019800186157
+}

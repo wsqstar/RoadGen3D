@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a medium-sized urban truck with a bright red cab and a beige open cargo bed. The cab features a large, slightly tinted windshield, side mirrors, and angular headlights, giving it a modern, utilitarian appearance. The truck has six-spoke wheels with visible black tires and a simple, boxy design for the cargo area, which is open and bordered by low side panels. The front grille is wide and horizontal, with integrated headlights and indicator lights on either side. The rear of the truck is flat, with a small bumper and no visible tailgate or rear doors. The overall design suggests a vehicle intended for transporting goods or materials within city environments.",
+    "description": "A red-cab urban truck with a beige open cargo bed and six-spoke wheels, designed for transporting goods in city settings.",
+    "description_view_0": "Front view showing the red cab, wide windshield, grille, and headlights.",
+    "description_view_1": "Left side view highlighting the full length of the beige cargo bed and the cab's profile.",
+    "description_view_2": "Rear view displaying the open cargo bed and rear bumper, with no tailgate visible.",
+    "description_view_3": "Right side view similar to the left, showing the cargo bed and cab from the opposite side.",
+    "category": "truck",
+    "height": 2.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.08,
+        0.08,
+        0.07,
+        0.05,
+        0.02
+    ],
+    "mass": 3500,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "mirror",
+        "cargo bed"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "beige",
+        "black",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.35,
+        0.3,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "flatbed",
+    "attribute_wheelbase": 3.5,
+    "attribute_number_of_axles": 2,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "3fb4343374304f51ae190d2a3625a302",
+    "near_synsets": {
+        "van.n.05": 0.5000346364286682,
+        "truck.n.01": 0.512528930288064,
+        "flatbed.n.02": 0.523055437760533,
+        "delivery_truck.n.01": 0.5280794043408079,
+        "pickup.n.01": 0.5287422033316923,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3fb4343374304f51ae190d2a3625a302",
+        "creator_username": "businessyuen",
+        "creator_display_name": "businessyuen",
+        "creator_profile_url": "https://sketchfab.com/businessyuen"
+    },
+    "filename": "std_3fb4343374304f51ae190d2a3625a302.glb",
+    "length": 5.14365291595459,
+    "width": 1.7080591917037964
+}

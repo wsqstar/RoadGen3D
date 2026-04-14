@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a large, multi-barreled rotary rifle resembling a minigun or Gatling-style weapon, featuring a cylindrical barrel cluster at the front and a prominent drum-shaped component beneath the main body. The exterior is primarily matte black with some metallic gray elements, and it includes a robust carrying handle and a visible trigger assembly. The rear section has a distinctive, angular support structure, likely for mounting or stabilization, and the overall build is heavy and industrial. The barrel cluster is perforated, suggesting cooling or weight reduction, and the drum component likely serves as an ammunition feed. The weapon is constructed from metal, with some polymer or composite parts for the handle and grip. Its design is utilitarian, built for sustained fire and durability in urban combat scenarios.",
+    "description": "A heavy, multi-barreled rotary rifle with a drum magazine and robust carrying handle, finished in matte black and metallic gray. The design is industrial and built for high durability.",
+    "description_view_0": "Front view showing the circular cluster of barrels and the perforated muzzle, with the drum magazine partially visible below.",
+    "description_view_1": "Side view highlighting the length of the barrel cluster, the large drum magazine, and the angular support structure at the rear.",
+    "description_view_2": "Rear view displaying the back of the support structure, the handle, and the alignment of the barrels.",
+    "description_view_3": "Opposite side view showing the drum magazine, barrel assembly, and the mounting or carrying handle.",
+    "category": "rifle",
+    "height": 0.35,
+    "max_dimension": 0.85,
+    "materials": [
+        "steel",
+        "polymer",
+        "aluminum",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 16,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "trigger",
+        "barrel cluster",
+        "drum magazine",
+        "mounting bracket"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "rotary",
+    "attribute_magazine_type": "drum",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "c9402a1edc29445eb21aa3f1287723bf",
+    "near_synsets": {
+        "rifle.n.01": 0.510250341374535,
+        "garand_rifle.n.01": 0.5235790723391441,
+        "carbine.n.01": 0.5313846247643014,
+        "automatic_rifle.n.01": 0.5318766195922887,
+        "gatling_gun.n.01": 0.5361730941974036
+    },
+    "synset": "automatic_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c9402a1edc29445eb21aa3f1287723bf",
+        "creator_username": "welormit",
+        "creator_display_name": "welormit",
+        "creator_profile_url": "https://sketchfab.com/welormit"
+    },
+    "filename": "std_c9402a1edc29445eb21aa3f1287723bf.glb",
+    "length": 0.5894326865673065,
+    "width": 0.2116667479276657
+}

@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a military jet aircraft with a distinctive delta wing configuration and a camouflage paint scheme of green and gray, accented by roundels and insignia typical of the Royal Air Force. The aircraft features a sharply pointed nose, a bubble canopy cockpit positioned forward on the fuselage, and a prominent vertical stabilizer with a red star insignia. Under the wings, there are visible external fuel tanks or ordnance pods, and the landing gear is deployed, showing a tricycle arrangement. The twin jet engines are mounted at the rear, with large exhaust nozzles visible from the back. The surface is mostly matte with some smooth, hard metallic and composite textures, and the overall design is optimized for high-speed flight and maneuverability.",
+    "description": "A military jet aircraft with delta wings, camouflage paint, twin rear jet engines, and a forward bubble canopy cockpit. It features external ordnance and a tricycle landing gear.",
+    "description_view_0": "Front-left view showing the pointed nose, bubble canopy, deployed landing gear, and underwing ordnance.",
+    "description_view_1": "Rear-left view highlighting the twin jet engine exhausts, delta wing shape, and vertical stabilizer.",
+    "description_view_2": "Rear-right view displaying the right wing's roundel, external ordnance, and the aircraft's broad delta wing.",
+    "description_view_3": "Front-right view focusing on the cockpit, nose, landing gear, and the symmetry of the delta wings.",
+    "category": "airplane",
+    "height": 4.5,
+    "max_dimension": 16.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 176400,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "landing gear",
+        "control stick",
+        "throttle",
+        "engine throttle",
+        "external ordnance mounts",
+        "wheels",
+        "doors"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "gray",
+        "black",
+        "white",
+        "red",
+        "blue"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-mounted delta wings with a moderate anhedral angle and no visible winglets; wings are sharply swept back.",
+    "attribute_engine_type": "Twin jet engines mounted at the rear fuselage.",
+    "attribute_tail_design": "Conventional tail with a single large vertical stabilizer and no horizontal stabilizers extending beyond the delta wing.",
+    "attribute_landing_gear_type": "Tricycle retractable landing gear with two main gear units and one nose gear unit.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed bubble canopy cockpit, likely single or tandem seat, with clear visibility panels.",
+    "uid": "70e14795a74d4cc28ccc225b80645455",
+    "near_synsets": {
+        "delta_wing.n.01": 0.5059882255827213,
+        "aircraft.n.01": 0.5159880243700558,
+        "warplane.n.01": 0.5435834409586175,
+        "twinjet.n.01": 0.5459246570126575,
+        "airplane.n.01": 0.5466364947972282
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/70e14795a74d4cc28ccc225b80645455",
+        "creator_username": "manilov.ap",
+        "creator_display_name": "manilov.ap",
+        "creator_profile_url": "https://sketchfab.com/manilov.ap"
+    },
+    "filename": "std_70e14795a74d4cc28ccc225b80645455.glb",
+    "length": 18.441086769104004,
+    "width": 18.797980308532715
+}

@@ -1,0 +1,84 @@
+{
+    "description_long": "This object is a wall-mounted radiator with a rectangular backplate and a series of six vertical, evenly spaced heating fins. The radiator is constructed primarily from metal, likely steel or aluminum, and features two visible pipe connection points on the right side, each fitted with a valve. The front face of the radiator is composed of flat, vertical panels with a slight curvature, giving it a modern and streamlined appearance. The backplate is a solid, flat panel that serves as the mounting interface with the wall. The overall color is a uniform light gray, and the surface appears smooth and hard, with a subtle matte finish. The radiator is designed for fixed installation and is not intended to be moved or traversed.",
+    "description": "A modern, wall-mounted radiator with six vertical metal fins and two side-mounted valves, finished in light gray with a smooth, matte surface.",
+    "description_view_0": "Front view showing six vertical fins, the flat backplate, and two valves on the right side.",
+    "description_view_1": "Side view revealing the radiator's depth, the curvature of the fins, and the protrusion from the wall.",
+    "description_view_2": "Rear view displaying only the solid, flat backplate with no visible fins or valves.",
+    "description_view_3": "Opposite side view showing the radiator's profile and the alignment of the fins, with valves less visible.",
+    "category": "radiator",
+    "height": 0.6,
+    "max_dimension": 0.9,
+    "materials": [
+        "steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "turnable",
+        "adjustable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "valve"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "single",
+    "attribute_mounting_location": "wall-mounted",
+    "attribute_pipe_connections": "two, right side, horizontal entry",
+    "attribute_fin_arrangement": "vertical columns",
+    "attribute_valve_type": "manual",
+    "attribute_grille_pattern": "solid vertical panels",
+    "uid": "4bd88ffe2b1e4ed88249a86f4f6304c2",
+    "near_synsets": {
+        "radiator.n.03": 0.516641360406856,
+        "radiator.n.01": 0.5199236663198072,
+        "radiator.n.02": 0.5313810767768312,
+        "panel_heating.n.01": 0.54373554838034,
+        "grille.n.02": 0.5526920382412248
+    },
+    "synset": "radiator.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4bd88ffe2b1e4ed88249a86f4f6304c2",
+        "creator_username": "termagroup",
+        "creator_display_name": "termagroup",
+        "creator_profile_url": "https://sketchfab.com/termagroup"
+    },
+    "filename": "std_4bd88ffe2b1e4ed88249a86f4f6304c2.glb",
+    "length": 0.12131360545754433,
+    "width": 0.7324350476264954
+}

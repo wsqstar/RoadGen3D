@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a long, rectangular bomb with a rugged, industrial appearance, featuring a patchwork of dark green, brown, and metallic tones. The surface is weathered and appears to be constructed primarily from metal, with some areas showing signs of rust or wear. The bomb has a boxy, segmented structure, with one end slightly protruding and possibly housing a triggering or detonation mechanism. There are no visible wires or external buttons, but the construction suggests internal complexity, likely containing explosive material. The overall form is utilitarian, with no decorative elements, and it appears designed for concealment or placement in urban environments. Its size and shape suggest it could be hidden along walls, under vehicles, or in alleyways.",
+    "description": "A long, rectangular, weathered metal bomb with a rugged, industrial look and muted green-brown coloration. The object features a segmented structure and a protruding end, likely for detonation.",
+    "description_view_0": "The bomb is seen from the side, showing its full length, segmented body, and a slightly protruding end on the right.",
+    "description_view_1": "A narrow end-on view, revealing the bomb's slim profile and the protruding component at the bottom.",
+    "description_view_2": "The opposite side view, displaying the length and boxy structure, with less visible detail on the protruding end.",
+    "description_view_3": "Another end-on view, showing the width and thickness of the bomb, with the protruding end now on the left.",
+    "category": "bomb",
+    "height": 0.15,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "protruding_end",
+        "body_panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "brown",
+        "metallic gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The protruding end likely houses a mechanical or electronic triggering device, but no external buttons, switches, or wires are visible.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": true,
+    "uid": "e25f2ca8ee584548b01213d08cf5b016",
+    "near_synsets": {
+        "bomb.n.01": 0.5166320746593888,
+        "pipe_bomb.n.01": 0.5261078827907851,
+        "plastic_bomb.n.01": 0.5372370438313857,
+        "cluster_bomb.n.01": 0.5380815517337502,
+        "general-purpose_bomb.n.01": 0.5458883067172611,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e25f2ca8ee584548b01213d08cf5b016",
+        "creator_username": "tsnym",
+        "creator_display_name": "sunayama studio",
+        "creator_profile_url": "https://sketchfab.com/tsnym"
+    },
+    "filename": "std_e25f2ca8ee584548b01213d08cf5b016.glb",
+    "length": 0.14132308959960938,
+    "width": 1.1674418449401855
+}

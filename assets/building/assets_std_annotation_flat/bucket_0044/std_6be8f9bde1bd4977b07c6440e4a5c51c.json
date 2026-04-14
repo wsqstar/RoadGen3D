@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a large, blue, wheeled recycling bin commonly found in urban environments for waste management. The bin features a hinged lid that can be lifted open, revealing a spacious interior partially filled with recyclable materials such as paper. Prominently displayed on the front and sides are white stenciled labels, including the word 'RECYCLE', a recycling symbol, and a serial number for identification. The bin is constructed primarily from durable molded plastic, with two robust black wheels at the rear for easy maneuverability. A sturdy horizontal handle is integrated at the rear, allowing users to tilt and roll the bin. The surface shows signs of outdoor use, with some weathering and dirt, typical for bins placed on sidewalks or in alleys.",
+    "description": "A large blue plastic recycling bin with a hinged lid, wheels, and prominent recycling labels. It features a rear handle and is designed for easy mobility and outdoor use.",
+    "description_view_0": "Side view showing the open hinged lid, visible recycling label, and one black wheel.",
+    "description_view_1": "Rear view highlighting the integrated handle, both wheels, and a serial number on the lid.",
+    "description_view_2": "Opposite side view with the lid open, recycling label, and one wheel visible.",
+    "description_view_3": "Front view displaying the open lid, recycling symbol, and the bin's interior with recyclables.",
+    "category": "trash bin",
+    "height": 1.1,
+    "max_dimension": 0.7,
+    "materials": [
+        "plastic",
+        "metal",
+        "rubber",
+        "air",
+        "paper"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 15,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 10,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable",
+        "liftable",
+        "rollable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "handle",
+        "wheels"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "hinged",
+    "attribute_opening_mechanism": "hand lift",
+    "attribute_presence_of_wheels": true,
+    "attribute_handle_design": "integrated rear handle",
+    "attribute_labeling_or_signage": "recycling symbol, 'RECYCLE' label, serial number, and instructions",
+    "uid": "6be8f9bde1bd4977b07c6440e4a5c51c",
+    "near_synsets": {
+        "recycling_bin.n.01": 0.475820091458739,
+        "bin_liner.n.01": 0.5081768685593726,
+        "dumpster.n.01": 0.5157665902398023,
+        "garbage.n.03": 0.5309160023013274,
+        "litterbin.n.01": 0.5418350729948538,
+        "methamphetamine.n.01": -1000.0,
+        "bank_identification_number.n.01": -1000.0,
+        "rubbish.n.01": -1000.0,
+        "ashcan.n.01": -1000.0,
+        "trash.n.02": -1000.0,
+        "folderol.n.01": -1000.0,
+        "bin.n.01": -1000.0,
+        "bin.n.02": -1000.0
+    },
+    "synset": "recycling_bin.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6be8f9bde1bd4977b07c6440e4a5c51c",
+        "creator_username": "nathanmlange",
+        "creator_display_name": "N8",
+        "creator_profile_url": "https://sketchfab.com/nathanmlange"
+    },
+    "filename": "std_6be8f9bde1bd4977b07c6440e4a5c51c.glb",
+    "length": 0.4833684116601944,
+    "width": 0.4168850779533386
+}

@@ -1,0 +1,104 @@
+{
+    "description_long": "This object is a solar energy infrastructure installation situated on the roof of a residential building. The structure features a pitched roof with reddish-orange tiles, and a blue-tinted solar panel array is mounted prominently on one section of the roof. The solar panels are rectangular and appear to be fixed at an angle, optimized for sunlight exposure. The building is surrounded by other houses and urban infrastructure, indicating its integration into a neighborhood setting. The mounting structure for the solar panels is likely metallic, supporting the panels securely above the roof tiles. No visible cabling or inverter components are apparent from the exterior views.",
+    "description": "A residential building with a pitched, tiled roof and a blue solar panel array mounted on top, integrated into an urban neighborhood.",
+    "description_view_0": "The building's pitched roof and blue solar panel array are visible, with the panel mounted on the upper left section of the roof.",
+    "description_view_1": "A top-down perspective highlights the rectangular solar panel and its placement on the roof, with the surrounding neighborhood in view.",
+    "description_view_2": "The solar panel is clearly seen on the right side of the roof, and the building's rectangular footprint is evident.",
+    "description_view_3": "The pitched roof and solar panel are visible from the rear, showing the panel's tilt and integration with the roof tiles.",
+    "category": "solar energy infrastructure",
+    "height": 6.0,
+    "max_dimension": 12.0,
+    "materials": [
+        "ceramic tile",
+        "glass",
+        "aluminum",
+        "steel",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.15,
+        0.1,
+        0.05,
+        0.15,
+        0.05
+    ],
+    "mass": 35000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "energy_generation"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "solar panel array"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "blue",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_panel_orientation": "tilted at approximately 30 degrees, facing toward the upper left in the images, orientation appears fixed",
+    "attribute_mounting_structure_type": "roof-mounted, likely supported by an aluminum or steel frame integrated with the roof tiles",
+    "attribute_electrical_inverter_presence": false,
+    "attribute_cabling_visibility": "not visible",
+    "attribute_array_configuration": "single rectangular panel or a small cluster, mounted in a single row on the roof",
+    "uid": "70ad55a2f08e4ca399d78801fe18022e",
+    "near_synsets": {
+        "solar_house.n.01": 0.506132645587934,
+        "solar_array.n.01": 0.519246019012265,
+        "solar_thermal_system.n.01": 0.5392471921181495,
+        "solar_energy.n.01": 0.5474295818949948,
+        "radiant_heating.n.01": 0.5616561937182636,
+        "energy.n.03": -1000.0,
+        "energy.n.06": -1000.0,
+        "infrastructure.n.02": -1000.0,
+        "energy.n.05": -1000.0,
+        "infrastructure.n.01": -1000.0,
+        "energy.n.04": -1000.0,
+        "department_of_energy.n.01": -1000.0,
+        "energy.n.01": -1000.0,
+        "energy.n.02": -1000.0
+    },
+    "synset": "solar_house.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/70ad55a2f08e4ca399d78801fe18022e",
+        "creator_username": "pedrocristo",
+        "creator_display_name": "pedrocristo",
+        "creator_profile_url": "https://sketchfab.com/pedrocristo"
+    },
+    "filename": "std_70ad55a2f08e4ca399d78801fe18022e.glb",
+    "length": 85.8814468383789,
+    "width": 84.87474060058594
+}

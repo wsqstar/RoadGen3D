@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a large, rectangular cowshed with a classic barn-like appearance, featuring red vertical siding and a prominent, gently sloped gable roof in light gray. The structure includes a covered open area supported by yellow posts along one long side, providing shelter for livestock or equipment. A single blue-framed window is visible on one end, while a large sliding barn door is present on the opposite end, allowing for easy access. Atop the roof sits a small ventilation cupola, painted red and white, which aids in air circulation within the building. The overall construction suggests a mix of wood and metal materials, typical for agricultural utility buildings. The design is utilitarian, prioritizing function and durability for rural or peri-urban environments.",
+    "description": "A large red cowshed with a gray gable roof, open side shelter, sliding barn door, and a small roof cupola for ventilation.",
+    "description_view_0": "End view showing the red siding, a blue-framed window, and the open covered shelter area supported by yellow posts.",
+    "description_view_1": "Side view highlighting the long covered open area with multiple yellow posts and the expansive gray gable roof.",
+    "description_view_2": "Opposite end view featuring the large sliding barn door and the small roof cupola, with the open shelter area partially visible.",
+    "description_view_3": "Rear view displaying a solid red wall with no windows or doors, and the gray gable roof with the cupola centered.",
+    "category": "cowshed",
+    "height": 7.0,
+    "max_dimension": 30.0,
+    "materials": [
+        "wood",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.02,
+        0.08
+    ],
+    "mass": 35000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "shelterable",
+        "storeable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sliding barn door",
+        "window",
+        "ventilation cupola"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "livestock"
+    ],
+    "colors": [
+        "red",
+        "gray",
+        "yellow",
+        "white",
+        "blue"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gable",
+    "attribute_door_style": "sliding barn door, likely wood or metal construction",
+    "attribute_window_presence": "one rectangular window on the end wall, blue-framed",
+    "attribute_ventilation_features": "ventilation cupola on roof",
+    "attribute_architectural_style": "traditional rural",
+    "uid": "c930ac30ffb443a4a31cea4994e58f2a",
+    "near_synsets": {
+        "cowbarn.n.01": 0.4179879443398661,
+        "barn.n.01": 0.491322524320039,
+        "stockyard.n.01": 0.4963684995032242,
+        "farm_building.n.01": 0.49675594147828667,
+        "shed.n.01": 0.49727158598604865
+    },
+    "synset": "cowbarn.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c930ac30ffb443a4a31cea4994e58f2a",
+        "creator_username": "mechnech046d",
+        "creator_display_name": "Legacybarnco",
+        "creator_profile_url": "https://sketchfab.com/mechnech046d"
+    },
+    "filename": "std_c930ac30ffb443a4a31cea4994e58f2a.glb",
+    "length": 20.645030975341797,
+    "width": 17.044926643371582
+}

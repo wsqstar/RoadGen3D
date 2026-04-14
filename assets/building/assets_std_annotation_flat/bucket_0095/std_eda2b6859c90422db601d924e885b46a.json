@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a small, open wooden rowboat with a flat-bottomed hull and pointed bow, designed for use on calm waters such as lakes or slow-moving rivers. The boat features three wooden bench seats running across its width, providing seating for multiple passengers. The interior and seats are constructed from a lighter-toned wood, while the exterior hull is a darker wood, with a metallic or painted gray section at the bow for reinforcement or protection. The boat's sides are straight and the transom is flat, giving it a simple, utilitarian appearance. There are no visible oarlocks, motors, or sails, suggesting it is intended for manual rowing or paddling. The overall craftsmanship is clean and functional, suitable for recreational or utility use in an urban park or waterfront setting.",
+    "description": "A small, open wooden rowboat with three bench seats and a reinforced gray bow, featuring a flat-bottomed hull and simple, functional design.",
+    "description_view_0": "Top-down view showing the full interior layout with three wooden benches and the pointed bow.",
+    "description_view_1": "Side view highlighting the flat-bottomed hull, straight sides, and the arrangement of the three benches.",
+    "description_view_2": "Front view displaying the pointed bow, reinforced gray section, and the alignment of the benches.",
+    "description_view_3": "Opposite side view mirroring view 1, showing the flat bottom and bench arrangement from the other side.",
+    "category": "boat",
+    "height": 0.5,
+    "max_dimension": 3.0,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 60,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 7,
+    "movable": true,
+    "required_force": 250,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench seat"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "light brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_hull_type": "flat-bottom",
+    "attribute_propulsion_type": "oars",
+    "attribute_registration_number": "none",
+    "attribute_presence_of_trailer": false,
+    "attribute_visible_boat_name": "none",
+    "uid": "eda2b6859c90422db601d924e885b46a",
+    "near_synsets": {
+        "rowing_boat.n.01": 0.448073392391291,
+        "boat.n.01": 0.4573315108519435,
+        "small_boat.n.01": 0.46245482064492555,
+        "dinghy.n.01": 0.4911341676761853,
+        "canoe.n.01": 0.4962440927869014,
+        "gravy_boat.n.01": -1000.0
+    },
+    "synset": "gravy_boat.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/eda2b6859c90422db601d924e885b46a",
+        "creator_username": "ASoaresGonzalez",
+        "creator_display_name": "ASoaresGonzalez",
+        "creator_profile_url": "https://sketchfab.com/ASoaresGonzalez"
+    },
+    "filename": "std_eda2b6859c90422db601d924e885b46a.glb",
+    "length": 2.4328367710113525,
+    "width": 1.1562097072601318
+}

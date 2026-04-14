@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a large, cylindrical red barrel with a solid, seamless body and two prominent horizontal reinforcement rings\u2014one near the top and one near the bottom. The barrel features a flat, slightly recessed lid with a small circular bung or cap visible on the top surface. On one side, there is a yellow triangular warning label with a black exclamation mark, indicating that the contents may be hazardous or require caution. The surface appears to be made of metal, likely steel, with a matte to semi-gloss finish, and the object is robust and industrial in design. There are no visible handles or spouts, and the barrel is closed, suggesting it is used for storage or transport of liquids or materials. The overall appearance is typical of barrels found in urban, industrial, or construction environments.",
+    "description": "A large red metal barrel with reinforcement rings and a warning label, featuring a flat lid with a small cap. The design is industrial and robust, suitable for hazardous material storage.",
+    "description_view_0": "The barrel is shown from a side angle, highlighting its cylindrical shape, red color, and the two reinforcement rings; the lid is fully visible but no warning label is seen.",
+    "description_view_1": "This view displays the front of the barrel with a prominent yellow warning label and the small cap on the lid visible in the upper left.",
+    "description_view_2": "The barrel is rotated to show the side opposite the warning label, with only a partial edge of the label visible and the lid's cap centered.",
+    "description_view_3": "The back side of the barrel is shown, with the lid's cap clearly visible in the upper right and no warning label present.",
+    "category": "barrel or bucket",
+    "height": 0.9,
+    "max_dimension": 0.6,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "cap/bung"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.92,
+        0.06,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "metal reinforcement rings at top and bottom",
+    "attribute_labeling_or_markings": "yellow warning triangle with exclamation mark",
+    "attribute_placement_location": "industrial",
+    "uid": "fbdc93148173405f8611f65601a94120",
+    "near_synsets": {
+        "barrel.n.02": 0.4695423864760052,
+        "barrel.n.03": 0.4944906621828541,
+        "bucket.n.01": 0.5150640812910238,
+        "barrel.n.05": 0.5163833610265445,
+        "barrel.n.04": 0.5166645741130322,
+        "barrel.n.01": -1000.0,
+        "bucket.n.02": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fbdc93148173405f8611f65601a94120",
+        "creator_username": "rickrossome",
+        "creator_display_name": "rickrossome",
+        "creator_profile_url": "https://sketchfab.com/rickrossome"
+    },
+    "filename": "std_fbdc93148173405f8611f65601a94120.glb",
+    "length": 0.5811976790428162,
+    "width": 0.5811977982521057
+}

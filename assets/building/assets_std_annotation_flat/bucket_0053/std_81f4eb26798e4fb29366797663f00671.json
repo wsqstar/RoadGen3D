@@ -1,0 +1,105 @@
+{
+    "description_long": "This object consists of a group of five distinct swords, each with unique blade shapes and handle designs, arranged upright in a row. The central sword is the largest, featuring a broad, double-edged blade, a prominent gold crossguard with circular side rings, and a dark handle capped with a rounded pommel. Flanking it are two medium-length swords: one with a straight blade and a simple crossguard, and another with a slightly ornate hilt and a jewel-like pommel. On the far left is a slender, dark sword with a twisted handle and a small, rounded guard, while the far right sword has a gently curved blade and a knuckle guard, reminiscent of a saber. The materials appear to be primarily metal for the blades and guards, with some handles wrapped or decorated in darker materials. The overall appearance suggests a collection of historical or fantasy-inspired swords, each with distinct functional and decorative features.",
+    "description": "A set of five visually distinct swords, each with unique blade shapes, guards, and handle designs, arranged upright in a row.",
+    "description_view_0": "Frontal view showing all five swords side by side, highlighting their varying blade shapes, guard styles, and handle designs.",
+    "description_view_1": "Side view focused on the central sword, revealing the thickness of the blades and the circular side rings of the central guard.",
+    "description_view_2": "Rear view of the swords, displaying the backs of the handles and the curvature of the rightmost blade.",
+    "description_view_3": "Opposite side view, again centered on the main sword, showing the profile of the guards and the handles' contours.",
+    "category": "knife or sword",
+    "height": 1.1,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "brass",
+        "wood",
+        "leather",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.04,
+        0.01
+    ],
+    "mass": 7.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "graspable",
+        "cuttable",
+        "stab-able",
+        "swingable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "blade",
+        "handle",
+        "guard",
+        "pommel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "silver",
+        "gold",
+        "black",
+        "brown",
+        "red",
+        "blue"
+    ],
+    "colors_composition": [
+        0.55,
+        0.15,
+        0.15,
+        0.08,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_blade_type": "mixed: straight double-edged, straight single-edged, curved single-edged",
+    "attribute_handle_design": "varied: wrapped, contoured, straight, some with pommels, one with a knuckle guard, some with decorative elements",
+    "attribute_guard_presence": true,
+    "attribute_ornamentation": "decorative guards, colored pommels, jewel-like accents, some engraved patterns",
+    "attribute_sheath_presence": false,
+    "uid": "81f4eb26798e4fb29366797663f00671",
+    "near_synsets": {
+        "sword.n.01": 0.4725195098922588,
+        "fencing_sword.n.01": 0.49486736987939334,
+        "knife_blade.n.01": 0.5072689204305625,
+        "knife.n.02": 0.5091183969931987,
+        "saber.n.01": 0.511906674667188,
+        "tongue.n.03": -1000.0,
+        "knife.n.01": -1000.0
+    },
+    "synset": "knife.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/81f4eb26798e4fb29366797663f00671",
+        "creator_username": "3dsegar",
+        "creator_display_name": "3dsegar",
+        "creator_profile_url": "https://sketchfab.com/3dsegar"
+    },
+    "filename": "std_81f4eb26798e4fb29366797663f00671.glb",
+    "length": 0.21371570974588394,
+    "width": 1.8040088415145874
+}

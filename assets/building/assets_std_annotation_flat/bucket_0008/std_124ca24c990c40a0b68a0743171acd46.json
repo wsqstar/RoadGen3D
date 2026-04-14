@@ -1,0 +1,103 @@
+{
+    "description_long": "This object consists of two connected components: a field artillery cannon and a limber, both mounted on large wooden-spoked wheels. The cannon features a long, cylindrical barrel with a metallic finish, mounted on a robust carriage with reinforced side panels and a trail for stability. The limber, attached behind the cannon, is a rectangular box-like structure designed for carrying ammunition or supplies, also supported by similar large wheels. Both components are constructed primarily from metal and wood, with visible bolts, axles, and bracing for durability. The surfaces show a weathered, matte finish with muted green and brown tones, suggesting utilitarian military use. The overall design is functional, with no visible armor plating or camouflage, and the wheels are suitable for rough terrain.",
+    "description": "A field artillery cannon with a limber, both on large wooden-spoked wheels, featuring a long metal barrel and a utilitarian, weathered finish.",
+    "description_view_0": "Front view showing the cannon barrel facing forward and the limber behind, highlighting the robust carriage and wheel structure.",
+    "description_view_1": "Side view displaying the full length of the cannon barrel, the connecting trail, and the limber's boxy form with both sets of wheels visible.",
+    "description_view_2": "Rear view focusing on the back of the limber and the cannon's breech, with the wheels and connecting hardware clearly visible.",
+    "description_view_3": "Opposite side view showing the length of the cannon and limber, emphasizing the connecting trail and wheel alignment.",
+    "category": "combat tactical  vehicle",
+    "height": 1.3,
+    "max_dimension": 3.5,
+    "materials": [
+        "steel",
+        "wood",
+        "iron",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.05,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "cannon barrel",
+        "trail",
+        "limber box",
+        "axle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_weapon_mounts": "One visible cannon barrel mounted at the front of the carriage; no additional mounts or hardpoints visible.",
+    "attribute_armor_plating": "None visible; the carriage and limber are constructed from exposed metal and wood with no reinforced or sloped armor panels.",
+    "attribute_camouflage_pattern": "None visible; surfaces are painted in solid, muted olive green and brown tones.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable; vehicle uses large wooden-spoked wheels with metal rims.",
+    "uid": "124ca24c990c40a0b68a0743171acd46",
+    "near_synsets": {
+        "cannon.n.01": 0.46779640067781225,
+        "cannon.n.02": 0.48959170524546347,
+        "artillery.n.01": 0.4929062602107832,
+        "caisson.n.02": 0.49782601635513846,
+        "military_vehicle.n.01": 0.498257582189768,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "cannon.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/124ca24c990c40a0b68a0743171acd46",
+        "creator_username": "artfletch",
+        "creator_display_name": "artfletch",
+        "creator_profile_url": "https://sketchfab.com/artfletch"
+    },
+    "filename": "std_124ca24c990c40a0b68a0743171acd46.glb",
+    "length": 4.521007537841797,
+    "width": 2.928504705429077
+}

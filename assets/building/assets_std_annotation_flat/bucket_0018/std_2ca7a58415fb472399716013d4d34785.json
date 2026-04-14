@@ -1,0 +1,105 @@
+{
+    "description_long": "This object is a towed anti-tank artillery gun, featuring a long, slender barrel mounted on a robust carriage with two large rubber-tired wheels for mobility. The central chassis includes a gun shield for limited crew protection and a complex arrangement of mechanical linkages, aiming controls, and stabilizing arms. The rear of the carriage has a towing arm and additional support legs that can be deployed for stability during firing. The gun's breech and sighting mechanisms are visible behind the shield, and the overall construction is primarily metal, with some rubber components on the wheels. The finish is a matte, sand-colored paint, likely for reduced visibility, and the structure is utilitarian, with exposed bolts, rivets, and mechanical parts. No visible crew compartments or enclosed spaces are present, emphasizing its function as a field-deployed weapon system.",
+    "description": "A towed anti-tank artillery gun with a long barrel, gun shield, and two large rubber-tired wheels, finished in matte sand color.",
+    "description_view_0": "Front view showing the gun barrel head-on, the gun shield, and both large wheels symmetrically.",
+    "description_view_1": "Side view highlighting the full length of the barrel, the gun shield, carriage, and towing arm extended to the rear.",
+    "description_view_2": "Rear view displaying the breech, aiming controls, and the structure of the carriage with wheels and support arms.",
+    "description_view_3": "Opposite side view showing the barrel, gun shield, and the towing arm, with the support legs more visible.",
+    "category": "combat tactical  vehicle",
+    "height": 1.5,
+    "max_dimension": 5.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pushable",
+        "pullable",
+        "aimable",
+        "fireable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "towing arm",
+        "gun barrel",
+        "gun shield",
+        "breech",
+        "aiming controls",
+        "support legs"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "sand",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One fixed cannon mount at the center of the carriage, protected by a gun shield.",
+    "attribute_armor_plating": "Gun shield provides partial frontal armor; appears to be a single steel plate of moderate thickness, covering the crew area directly behind the gun.",
+    "attribute_camouflage_pattern": "Solid sand color paint scheme; no visible camouflage pattern.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Two large rubber tires with a basic tread pattern, suitable for field towing; no special reinforcements or chains visible.",
+    "uid": "2ca7a58415fb472399716013d4d34785",
+    "near_synsets": {
+        "assault_gun.n.02": 0.48526428782169956,
+        "tank.n.01": 0.4894877848759623,
+        "tank_destroyer.n.01": 0.49497140719591853,
+        "military_vehicle.n.01": 0.5011204269821389,
+        "armored_car.n.02": 0.5152115731205217,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2ca7a58415fb472399716013d4d34785",
+        "creator_username": "artfletch",
+        "creator_display_name": "artfletch",
+        "creator_profile_url": "https://sketchfab.com/artfletch"
+    },
+    "filename": "std_2ca7a58415fb472399716013d4d34785.glb",
+    "length": 4.622168302536011,
+    "width": 1.3012824058532715
+}

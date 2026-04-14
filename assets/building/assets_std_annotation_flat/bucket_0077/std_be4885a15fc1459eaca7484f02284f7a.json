@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a rectangular, enclosed structure with high, solid walls and a flat, grassy interior surface. The exterior features a combination of concrete and brick materials, with a black metal fence running along the top perimeter for added security or separation. One side includes a small, arched entryway with a barred gate, while the opposite side has a protruding, box-like section. The interior is open and covered with a green, grass-like texture, suggesting it may serve as a secure outdoor area. The overall design is utilitarian, with minimal decorative elements and a focus on containment and separation.",
+    "description": "A long, rectangular enclosure with high concrete and brick walls, topped by a black metal fence and featuring a grassy interior and a single arched entryway.",
+    "description_view_0": "Front view showing the arched entryway with a barred gate and the solid wall structure.",
+    "description_view_1": "Side view highlighting the length of the enclosure, the grassy interior, and the metal fence along the top.",
+    "description_view_2": "Rear view displaying the continuous wall, the metal fence, and the grassy area inside.",
+    "description_view_3": "Opposite side view showing the protruding box-like section and the open grassy interior.",
+    "category": "train",
+    "height": 2.5,
+    "max_dimension": 15.0,
+    "materials": [
+        "concrete",
+        "brick",
+        "metal",
+        "grass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 35000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "containable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "gate",
+        "fence"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "brown",
+        "green"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "none",
+    "attribute_number_of_carriages": 0,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "single arched entryway on one side",
+    "attribute_window_arrangement": "single barred window above entryway",
+    "uid": "be4885a15fc1459eaca7484f02284f7a",
+    "near_synsets": {
+        "train.n.01": 0.5081674542668364,
+        "subway_train.n.01": 0.5096789894301162,
+        "car_train.n.01": 0.5174727450784569,
+        "train_set.n.01": 0.5234558666513313,
+        "mail_train.n.01": 0.5324127575861621,
+        "string.n.04": -1000.0,
+        "caravan.n.01": -1000.0,
+        "train.n.05": -1000.0,
+        "train.n.04": -1000.0,
+        "gearing.n.01": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/be4885a15fc1459eaca7484f02284f7a",
+        "creator_username": "gunnarcorrea",
+        "creator_display_name": "Gunnar Correa",
+        "creator_profile_url": "https://sketchfab.com/gunnarcorrea"
+    },
+    "filename": "std_be4885a15fc1459eaca7484f02284f7a.glb",
+    "length": 0.9402466118335724,
+    "width": 2.69696044921875
+}

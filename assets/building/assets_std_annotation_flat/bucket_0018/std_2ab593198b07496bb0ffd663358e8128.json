@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a large, rectangular steel shipping container with a weathered, industrial appearance. The exterior is predominantly dark blue with visible rust patches and a faded, reddish-brown roof, indicating prolonged outdoor exposure. The front features double doors with heavy-duty locking mechanisms, hinges, and a visible number marking, typical of standard ISO containers. The sides are corrugated for structural strength, and the container sits on a patch of rough ground or grass, suggesting outdoor placement. Two tall, thin metal rods or antennas extend vertically from the corners, possibly for identification or security purposes. The container is robust and utilitarian, designed for secure storage or transport of goods in urban or industrial environments.",
+    "description": "A large, weathered steel shipping container with double front doors, dark blue corrugated sides, and a rusted roof, sitting on rough ground with two vertical metal rods at the corners.",
+    "description_view_0": "Front view showing double doors with locking bars, hinges, and a number marking, plus two vertical rods at the corners.",
+    "description_view_1": "Side view displaying the long, corrugated blue wall and the rusted roof, with both rods visible at the ends.",
+    "description_view_2": "Rear view showing a plain, corrugated steel wall and the rusted roof, with one rod visible at the far end.",
+    "description_view_3": "Opposite side view with a long, corrugated blue wall and rusted roof, both rods visible at the ends.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "air",
+        "paint",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.92,
+        0.06,
+        0.01,
+        0.01
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking bar",
+        "hinge",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark blue",
+        "rust brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "number marking on front doors",
+    "attribute_handles_or_grips": "two vertical handles on front doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "2ab593198b07496bb0ffd663358e8128",
+    "near_synsets": {
+        "container.n.01": 0.47728675263563497,
+        "cargo_container.n.01": 0.48110061307614926,
+        "cargo_door.n.01": 0.532350321532802,
+        "boxcar.n.01": 0.5387350760465986,
+        "crate.n.01": 0.5448819759027663
+    },
+    "synset": "cargo_container.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2ab593198b07496bb0ffd663358e8128",
+        "creator_username": "Johndoh",
+        "creator_display_name": "Johndoh",
+        "creator_profile_url": "https://sketchfab.com/Johndoh"
+    },
+    "filename": "std_2ab593198b07496bb0ffd663358e8128.glb",
+    "length": 4.257096767425537,
+    "width": 3.703692317008972
+}

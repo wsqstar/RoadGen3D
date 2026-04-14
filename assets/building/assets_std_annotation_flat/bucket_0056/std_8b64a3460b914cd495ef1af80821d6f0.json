@@ -1,0 +1,92 @@
+{
+    "description_long": "This handcart features a rectangular wooden cargo box with high, solid side panels and an open top, suitable for carrying various loads. The cart is supported by two large, spoked metal wheels mounted on either side near the rear, providing stability and ease of movement. Extending from the front are two long, straight wooden handles designed for manual pushing or pulling. The wood appears weathered, giving the cart a rustic, utilitarian appearance, while the metal wheels add durability and strength. The interior of the cart is spacious and unobstructed, allowing for the transport of bulky or heavy items. This type of handcart is commonly seen in urban environments for tasks such as gardening, street vending, or light cargo transport.",
+    "description": "A rustic wooden handcart with a deep box, two large spoked metal wheels, and long straight handles for manual transport.",
+    "description_view_0": "Front view showing the open cargo box, both handles extending forward, and the two large wheels on either side.",
+    "description_view_1": "Side view highlighting the depth of the cargo box, the length of the handles, and the full profile of one spoked wheel.",
+    "description_view_2": "Rear view displaying the solid back panel of the cart and both wheels, with the handles extending away from view.",
+    "description_view_3": "Opposite side view similar to view 1, showing the other wheel and the open cargo area.",
+    "category": "handcart",
+    "height": 0.9,
+    "max_dimension": 1.8,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 32,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "cargo box"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.8,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 2,
+    "attribute_handle_type": "dual straight handles",
+    "attribute_wheel_position": "side-mounted near rear",
+    "attribute_presence_of_side_rails": true,
+    "attribute_load_platform_design": "deep solid-walled box",
+    "uid": "8b64a3460b914cd495ef1af80821d6f0",
+    "near_synsets": {
+        "hand_truck.n.01": 0.4494228601389699,
+        "handcart.n.01": 0.4497575245247373,
+        "cart.n.01": 0.4644892486790208,
+        "shopping_cart.n.01": 0.4682501365653494,
+        "serving_cart.n.01": 0.4698465962114887
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8b64a3460b914cd495ef1af80821d6f0",
+        "creator_username": "TruePham",
+        "creator_display_name": "TruePham",
+        "creator_profile_url": "https://sketchfab.com/TruePham"
+    },
+    "filename": "std_8b64a3460b914cd495ef1af80821d6f0.glb",
+    "length": 1.5992412567138672,
+    "width": 0.973301887512207
+}

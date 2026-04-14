@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a cylindrical M18 smoke grenade with a military green body, a red top and bottom, and a prominent white band encircling its midsection. The top features a classic grenade safety lever and pull ring, both metallic, with the lever extending down the side of the cylinder. The front of the cylinder is clearly labeled with 'M18 SMOKE RED' and a serial number, indicating its function as a smoke-emitting device. The surface shows signs of wear and slight weathering, giving it a realistic, used appearance. The construction appears to be primarily metal, with a painted exterior and a likely internal payload of smoke-generating chemicals. The object is compact and portable, designed for manual deployment in urban or tactical scenarios.",
+    "description": "A military-style M18 smoke grenade with a green cylindrical body, red ends, and a white band, featuring a metal safety lever and pull ring.",
+    "description_view_0": "The rear view shows the full length of the safety lever running vertically down the cylinder, with the pull ring partially visible at the top.",
+    "description_view_1": "This angled side view highlights the metallic safety lever and the red top, with the white band and green body clearly visible.",
+    "description_view_2": "The opposite side view displays the top mechanism and lever from a different angle, with minimal text visible.",
+    "description_view_3": "The front view prominently displays the 'M18 SMOKE RED' label, serial number, and the pull ring and lever assembly.",
+    "category": "bomb",
+    "height": 0.15,
+    "max_dimension": 0.15,
+    "materials": [
+        "steel",
+        "paint",
+        "chemical smoke compound",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.15,
+        0.05
+    ],
+    "mass": 0.6,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 6,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pull ring",
+        "safety lever",
+        "top cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "red",
+        "white",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the metal ring, which releases the safety lever and ignites the internal smoke compound.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "d0614d2c359e4e5ba4e14064dc2c8d59",
+    "near_synsets": {
+        "smoke_bomb.n.01": 0.5336132926656186,
+        "hand_grenade.n.01": 0.5374408045507869,
+        "pipe_bomb.n.01": 0.551046763369507,
+        "gas_shell.n.01": 0.5551739687621846,
+        "grenade.n.01": 0.5553657601013139,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0,
+        "bomb.n.01": -1000.0
+    },
+    "synset": "bomb.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d0614d2c359e4e5ba4e14064dc2c8d59",
+        "creator_username": "Ericwallbank",
+        "creator_display_name": "Eric Wallbank",
+        "creator_profile_url": "https://sketchfab.com/Ericwallbank"
+    },
+    "filename": "std_d0614d2c359e4e5ba4e14064dc2c8d59.glb",
+    "length": 0.06317699700593948,
+    "width": 0.07474815100431442
+}

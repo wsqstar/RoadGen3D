@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a lush cluster of flowering plants with broad, ovate leaves and multiple tall, slender stems. Atop each stem sits a large, rounded inflorescence composed of numerous small, delicate blue petals, resembling hydrangea blooms. The leaves are a muted green, providing a dense, leafy base that contrasts with the vibrant blue of the flowers. The flowers are arranged in prominent, terminal clusters, each forming a nearly spherical head. The stems are straight and support the weight of the flower heads, which are slightly tilted in various directions. The overall appearance is ornamental and well-suited for urban parks, gardens, or landscaped sidewalks.",
+    "description": "A dense cluster of blue, spherical flower heads atop tall stems, surrounded by broad green leaves. The plant has a lush, ornamental appearance with prominent terminal blooms.",
+    "description_view_0": "Several blue flower heads are visible, with stems and broad leaves forming a dense base; some flowers are angled away.",
+    "description_view_1": "The cluster appears fuller, with more flower heads facing forward and the leaves densely packed beneath.",
+    "description_view_2": "Side view shows the elongated stems and the spherical shape of the flower heads, with leaves extending outward.",
+    "description_view_3": "Most flower heads are visible from the front, with the dense foliage and upright stems clearly shown.",
+    "category": "flower",
+    "height": 0.7,
+    "max_dimension": 0.9,
+    "materials": [
+        "plant_fiber",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 2.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pluckable",
+        "cuttable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stem",
+        "leaf",
+        "flower_head"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "green",
+        "blue"
+    ],
+    "colors_composition": [
+        0.65,
+        0.35
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.38,
+    "youngs_modulus": 50,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "group",
+    "attribute_petal_arrangement": "The petals are arranged in dense, radial clusters forming a globular inflorescence, with individual petals overlapping and layered in a whorled pattern, creating a symmetrical, rounded appearance.",
+    "attribute_number_of_petals": 80,
+    "attribute_stem_presence": true,
+    "attribute_leaf_shape": "ovate",
+    "attribute_flower_location": "terminal",
+    "uid": "6bd1bfaadc28413eb313a522f330c14b",
+    "near_synsets": {
+        "blue-eyed_grass.n.01": 0.45886480403844937,
+        "capitulum.n.01": 0.48976695167202156,
+        "flower_cluster.n.01": 0.4907595842478414,
+        "flower_head.n.01": 0.49792322123633526,
+        "clustered_bellflower.n.01": 0.5079359852453855,
+        "flower.n.02": -1000.0,
+        "flower.n.01": -1000.0,
+        "flower.n.03": -1000.0
+    },
+    "synset": "flower.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6bd1bfaadc28413eb313a522f330c14b",
+        "creator_username": "cailenlp",
+        "creator_display_name": "cailenlp",
+        "creator_profile_url": "https://sketchfab.com/cailenlp"
+    },
+    "filename": "std_6bd1bfaadc28413eb313a522f330c14b.glb",
+    "length": 0.8530594408512115,
+    "width": 0.8259913623332977
+}

@@ -1,0 +1,103 @@
+{
+    "description_long": "This humanoid robot features a large, rectangular head with rounded edges and two prominent circular blue eyes, giving it a friendly and approachable appearance. Its body is compact and robust, with a white exterior accented by black joints and mechanical details, and a red cross symbol on its chest, suggesting a medical or service function. The arms are segmented with visible articulation at the shoulders, elbows, and wrists, ending in black, claw-like hands. The legs are similarly jointed, with broad, flat feet designed for stability and mobility. The back of the head and torso display geometric paneling and subtle mechanical features, while the overall design is sleek and functional, with minimal decorative elements. Blue circular lights and panel lines add a touch of technological sophistication to its otherwise utilitarian form.",
+    "description": "A white, humanoid robot with blue eyes, a red cross on its chest, and articulated limbs, designed with a sleek, functional appearance and subtle blue lighting accents.",
+    "description_view_0": "Front view shows the robot's expressive blue eyes, red cross on the chest, and detailed arm and hand structure.",
+    "description_view_1": "Left side view highlights the robot's head profile, arm articulation, and the geometric panel on the side of the head.",
+    "description_view_2": "Rear view reveals the back paneling, mechanical joints, and the structure of the legs and feet.",
+    "description_view_3": "Right side view mirrors the left, showing the arm and leg articulation and the side head panel.",
+    "category": "humanoid robot",
+    "height": 1.5,
+    "max_dimension": 0.8,
+    "materials": [
+        "plastic",
+        "metal",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "eyes",
+        "arms",
+        "hands",
+        "legs",
+        "feet",
+        "chest panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "blue",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.03,
+        0.04
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is in a walking pose with one leg forward and one arm slightly extended, head upright, and torso facing forward.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated white and black panels with blue lighting accents and a red cross symbol.",
+    "attribute_facial_features": "The face consists of two large, circular blue eyes and a small central panel, with no visible mouth or nose, giving it a simple, expressive look.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge joints at the shoulders, elbows, wrists, hips, knees, and ankles, allowing for a wide range of motion; hands have articulated fingers.",
+    "attribute_presence_of_sensors": "Visible sensors include two blue circular eye-like cameras on the face and a possible sensor on the chest panel.",
+    "uid": "e10e1cbe6b5749398bab1a71b00925a0",
+    "near_synsets": {
+        "android.n.01": 0.553368477949859,
+        "robotics_equipment.n.01": 0.553590552631119,
+        "cyborg.n.01": 0.5599468415220189,
+        "automaton.n.02": 0.575630477170264,
+        "robotics.n.01": 0.5782021980321913
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e10e1cbe6b5749398bab1a71b00925a0",
+        "creator_username": "gorik",
+        "creator_display_name": "gorik",
+        "creator_profile_url": "https://sketchfab.com/gorik"
+    },
+    "filename": "std_e10e1cbe6b5749398bab1a71b00925a0.glb",
+    "length": 0.7482047975063324,
+    "width": 0.8409683704376221
+}

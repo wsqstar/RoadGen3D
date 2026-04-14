@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a concrete jersey barrier with a rectangular base and six vertical metal rods protruding from the top. Affixed to the rods are several yellow, weathered warning signs, each displaying different hazard symbols such as a gas mask, radiation, heat, and general caution, as well as a striped caution sign and a 'CLOSE' sign. The signs are bent, rusted, and appear to be loosely attached, giving the barrier a rugged, heavily used appearance. The concrete base is gray and textured, showing signs of wear and minor chipping. The overall construction suggests it is intended to block or restrict access while providing clear visual warnings. This type of barrier is commonly found in hazardous or restricted urban areas, construction zones, or near dangerous sites.",
+    "description": "A concrete jersey barrier with metal rods holding multiple weathered yellow warning signs, featuring various hazard symbols and visible wear.",
+    "description_view_0": "Front view showing all attached warning signs and the full face of the concrete base.",
+    "description_view_1": "Side view revealing the thin profile of the signs and rods, with minimal visibility of the warning symbols.",
+    "description_view_2": "Rear view displaying the backs of the signs and rods, with the concrete base fully visible and no symbols apparent.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the edge profile of the signs and rods.",
+    "category": "jersey barrier",
+    "height": 1.1,
+    "max_dimension": 1.6,
+    "materials": [
+        "concrete",
+        "steel",
+        "aluminum",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 900,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "blockable",
+        "signage_attachable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "warning signs"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "yellow",
+        "black",
+        "orange",
+        "white"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_presence_of_reflective_strips": false,
+    "attribute_presence_of_graffiti_or_markings": true,
+    "attribute_placement_relative_to_road_or_sidewalk": "roadside",
+    "attribute_presence_of_warning_signs_or_symbols": true,
+    "attribute_visible_damage_or_wear": "moderate chipping",
+    "uid": "e2aa7b313d144375898f20bf292856be",
+    "near_synsets": {
+        "street_sign.n.01": 0.5562166406288264,
+        "crash_barrier.n.01": 0.5565668605021147,
+        "barrier.n.01": 0.5638861225623752,
+        "barrier.n.03": 0.5684756042401686,
+        "movable_barrier.n.01": 0.571166180059936,
+        "barrier.n.02": -1000.0,
+        "jersey.n.02": -1000.0,
+        "new_jersey.n.01": -1000.0,
+        "jersey.n.04": -1000.0,
+        "jersey.n.03": -1000.0,
+        "jersey.n.05": -1000.0
+    },
+    "synset": "crash_barrier.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e2aa7b313d144375898f20bf292856be",
+        "creator_username": "leoxx300",
+        "creator_display_name": "leoxx300",
+        "creator_profile_url": "https://sketchfab.com/leoxx300"
+    },
+    "filename": "std_e2aa7b313d144375898f20bf292856be.glb",
+    "length": 0.38396234810352325,
+    "width": 1.245592474937439
+}

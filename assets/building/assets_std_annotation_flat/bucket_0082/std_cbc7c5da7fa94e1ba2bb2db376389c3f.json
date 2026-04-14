@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a boxy, open-top military vehicle with a matte olive green finish, designed for tactical operations. The vehicle features a flat, angular hood with a slotted front grille and two large, rugged wheels on each side, suitable for off-road terrain. The cabin is open with a simple roof canopy, visible steering wheel, and minimalistic dashboard, while the rear includes a mounted spare tire. The doors and body panels are flat and utilitarian, with no visible armor reinforcements or weapon mounts. The vehicle's design prioritizes functionality and ease of access, with ample space for personnel or cargo in the rear. There are no visible military markings, camouflage patterns, or specialized equipment attached to the exterior.",
+    "description": "A matte olive green, open-top tactical vehicle with rugged wheels, a flat hood, and a simple canopy roof. The design is utilitarian, with a mounted spare tire and no visible armor or weapon mounts.",
+    "description_view_0": "Rear view showing the mounted spare tire, flat rear panel, and partial view of the open cabin.",
+    "description_view_1": "Left side view highlighting the open cabin, canopy roof, four large wheels, and visible steering wheel.",
+    "description_view_2": "Front view displaying the slotted grille, flat hood, and two front wheels with angular fenders.",
+    "description_view_3": "Right side view similar to the left, showing the open cabin, canopy roof, and four wheels.",
+    "category": "combat tactical  vehicle",
+    "height": 1.8,
+    "max_dimension": 4.2,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.12,
+        0.05,
+        0.05,
+        0.03,
+        0.05
+    ],
+    "mass": 2100,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 5,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "rotatable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "steering wheel",
+        "spare tire",
+        "seat"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "none visible.",
+    "attribute_armor_plating": "none visible.",
+    "attribute_camouflage_pattern": "none visible.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "Four large, rugged off-road tires with angular tread pattern; one spare tire mounted at the rear.",
+    "uid": "cbc7c5da7fa94e1ba2bb2db376389c3f",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.5173515323004788,
+        "reconnaissance_vehicle.n.01": 0.5322027324001455,
+        "weapons_carrier.n.01": 0.5510517625804623,
+        "tank.n.01": 0.5516397113681155,
+        "assault_gun.n.02": 0.5560817475486655,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cbc7c5da7fa94e1ba2bb2db376389c3f",
+        "creator_username": "LoneMatt",
+        "creator_display_name": "Lone Matt",
+        "creator_profile_url": "https://sketchfab.com/LoneMatt"
+    },
+    "filename": "std_cbc7c5da7fa94e1ba2bb2db376389c3f.glb",
+    "length": 3.4988555908203125,
+    "width": 1.5979017615318298
+}

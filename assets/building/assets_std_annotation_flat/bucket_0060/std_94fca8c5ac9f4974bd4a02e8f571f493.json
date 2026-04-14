@@ -1,0 +1,104 @@
+{
+    "description_long": "This telephone booth features a rectangular, upright structure with a sturdy frame, primarily composed of metal and glass panels. The front and rear sides have large transparent sections, allowing visibility into the booth, with a prominent phone icon displayed on the upper glass panels. The side panels are more opaque, with one side featuring a red horizontal accent, likely indicating the door handle or entry mechanism. The roof is flat and solid, providing full coverage from above, while the back panel is entirely opaque, offering privacy and structural support. The overall design is modern and functional, suitable for urban environments, and the booth appears to be fully enclosed for weather protection.",
+    "description": "A modern, fully enclosed telephone booth with large glass panels, a phone icon on the front, and a red accent on the side. The structure is sturdy, combining metal and glass for urban use.",
+    "description_view_0": "Side view showing a mostly opaque panel with a red horizontal accent, likely the door handle.",
+    "description_view_1": "Front view with a large glass panel, phone icon, and visible entry area.",
+    "description_view_2": "Rear view with a fully opaque, solid panel providing privacy and support.",
+    "description_view_3": "Rear or alternate front view, similar to view 1, with a glass panel and phone icon.",
+    "category": "telephone booth",
+    "height": 2.2,
+    "max_dimension": 2.2,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.05,
+        0.15
+    ],
+    "mass": 320,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "telephone",
+        "button"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "gray",
+        "black",
+        "red",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.05,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_enclosure_type": "fully enclosed",
+    "attribute_door_presence": true,
+    "attribute_window_configuration": "two large glass panels on front and rear, one mostly opaque side panel, one fully opaque back panel",
+    "attribute_signage_or_labeling": "white phone icon on upper front and rear glass panels, red accent on side",
+    "attribute_handset_visibility": false,
+    "uid": "94fca8c5ac9f4974bd4a02e8f571f493",
+    "near_synsets": {
+        "telephone_booth.n.01": 0.4494998469157564,
+        "booth.n.02": 0.5574240730948986,
+        "telephone_pole.n.01": 0.5633922291742528,
+        "desk_phone.n.01": 0.5682411305943066,
+        "handset.n.01": 0.5690409961059548,
+        "telephone.n.01": -1000.0,
+        "booth.n.03": -1000.0,
+        "booth.n.01": -1000.0,
+        "telephone.n.02": -1000.0,
+        "booth.n.04": -1000.0
+    },
+    "synset": "telephone_booth.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/94fca8c5ac9f4974bd4a02e8f571f493",
+        "creator_username": "Mountrise",
+        "creator_display_name": "Mountrise",
+        "creator_profile_url": "https://sketchfab.com/Mountrise"
+    },
+    "filename": "std_94fca8c5ac9f4974bd4a02e8f571f493.glb",
+    "length": 0.9149062931537628,
+    "width": 0.9484949111938477
+}

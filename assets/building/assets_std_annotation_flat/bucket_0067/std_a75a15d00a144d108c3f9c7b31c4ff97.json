@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a sleek, modern quadcopter drone with a central fuselage and four extended arms, each ending in a large circular rotor housing. The body is predominantly dark gray with metallic and matte finishes, and the rotors are encased in protective rings for safety and stability. The central section features a compact, angular cockpit area with a transparent canopy and visible landing gear beneath. The arms are reinforced and slightly angled, giving the drone a robust and aerodynamic appearance. Small antennae and sensor modules are mounted on the top of the fuselage, suggesting advanced navigation or communication capabilities. The overall design is streamlined, with minimal external protrusions aside from the rotors and landing gear.",
+    "description": "A modern quadcopter drone with four large circular rotors, a compact central fuselage, and a transparent cockpit canopy. The design is sleek, angular, and metallic, with visible landing gear and sensor modules.",
+    "description_view_0": "Front view showing the angular cockpit canopy, two forward rotors, and the landing gear beneath the central fuselage.",
+    "description_view_1": "Angled side view highlighting the side profile of the cockpit, the arm structure, and the rear rotors.",
+    "description_view_2": "Rear view displaying the back of the fuselage, rear landing gear, and the symmetrical arrangement of the rotors.",
+    "description_view_3": "Opposite angled side view showing the other side of the cockpit, arm structure, and the front rotors.",
+    "category": "airplane",
+    "height": 0.4,
+    "max_dimension": 1.2,
+    "materials": [
+        "carbon fiber",
+        "aluminum",
+        "plastic",
+        "glass",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 6,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotor",
+        "landing gear",
+        "cockpit canopy",
+        "antenna",
+        "sensor module"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "silver",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "sleek",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Quadrotor configuration with four straight, low-mounted arms extending from the central fuselage, each arm supporting a circular rotor housing; no winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Four electric motors, each mounted at the end of an arm within the rotor housings.",
+    "attribute_tail_design": "No conventional tail; stability and control are provided by the distributed quadrotor configuration.",
+    "attribute_landing_gear_type": "Fixed landing gear with two main skids positioned beneath the central fuselage.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit integrated into the front of the central fuselage, with a transparent canopy.",
+    "uid": "a75a15d00a144d108c3f9c7b31c4ff97",
+    "near_synsets": {
+        "drone.n.04": 0.5284039035896737,
+        "single-rotor_helicopter.n.01": 0.5418099627825791,
+        "rotor.n.03": 0.5428805063909234,
+        "helicopter.n.01": 0.5442506752662979,
+        "aircraft.n.01": 0.5487684905161571,
+        "airplane.n.01": -1000.0
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a75a15d00a144d108c3f9c7b31c4ff97",
+        "creator_username": "Km_VPs",
+        "creator_display_name": "Km_VPs",
+        "creator_profile_url": "https://sketchfab.com/Km_VPs"
+    },
+    "filename": "std_a75a15d00a144d108c3f9c7b31c4ff97.glb",
+    "length": 1.7380579113960266,
+    "width": 1.7380580306053162
+}

@@ -1,0 +1,85 @@
+{
+    "description_long": "This object is a skeletal model of an airplane, constructed primarily from a light wood or wood-like material, with an open framework revealing the internal structure of the fuselage, wings, and tail. The wings are long and straight, attached at the midsection of the fuselage, and feature a series of evenly spaced ribs and spars. The nose of the airplane is fitted with a two-blade propeller, and the tail section includes a vertical stabilizer and horizontal stabilizers in a conventional arrangement. The landing gear is not visible, suggesting it may be omitted or retracted in this model. The overall appearance is that of a classic, vintage single-propeller aircraft, likely intended as a display model or for educational purposes. The surface finish is matte, and the color is a uniform light tan, typical of unfinished or lightly varnished wood.",
+    "description": "A skeletal, wooden model of a classic single-propeller airplane with a visible internal framework and a matte tan finish.",
+    "description_view_0": "Oblique view showing the propeller, mid-mounted wings, and open ribbed structure of the fuselage and tail.",
+    "description_view_1": "Top-down view highlighting the full wingspan, symmetrical wing structure, and tail assembly.",
+    "description_view_2": "Opposite oblique view displaying the propeller, mid-mounted wings, and open framework of the fuselage and tail.",
+    "description_view_3": "Frontal view emphasizing the propeller, narrow fuselage, and the straight alignment of the wings.",
+    "category": "airplane",
+    "height": 0.18,
+    "max_dimension": 0.75,
+    "materials": [
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.65
+    ],
+    "mass": 0.6,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 6,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "wings",
+        "tail"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 11000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing configuration with straight, unswept wings and no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Single front-mounted piston propeller engine.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Landing gear not visible.",
+    "attribute_cockpit_placement": "Forward-mounted, open cockpit with no enclosure or canopy visible.",
+    "uid": "2c1531eb90be46a78368442d8b51483f",
+    "near_synsets": {
+        "airplane.n.01": 0.48516403169241157,
+        "aircraft.n.01": 0.500810788554747,
+        "propeller_plane.n.01": 0.5017983343490632,
+        "monoplane.n.01": 0.507758257517163,
+        "biplane.n.01": 0.5142617474307317
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2c1531eb90be46a78368442d8b51483f",
+        "creator_username": "sannazzareno",
+        "creator_display_name": "sannazzareno",
+        "creator_profile_url": "https://sketchfab.com/sannazzareno"
+    },
+    "filename": "std_2c1531eb90be46a78368442d8b51483f.glb",
+    "length": 0.48318979144096375,
+    "width": 0.5756416916847229
+}

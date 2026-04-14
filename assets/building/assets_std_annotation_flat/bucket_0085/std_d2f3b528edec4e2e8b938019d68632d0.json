@@ -1,0 +1,112 @@
+{
+    "description_long": "This futuristic caravan features a streamlined, aerodynamic body with a predominantly white exterior accented by large blue solar panels on both sides. The front showcases three large, tinted windows with angular frames, flanked by robust headlights and a prominent sensor mast equipped with cameras and antennas. The sides are fitted with circular, metallic entry hatches and six rugged wheels with deep treads, supported by visible suspension components in a bronze finish. The rear is smooth and enclosed, with no visible windows, emphasizing the vehicle's insulated and secure design. The roof is equipped with a ribbed skylight or ventilation panel and a tall communications mast, suggesting advanced onboard systems. The overall design blends high-tech utility with comfort, making it suitable for extended urban or off-grid travel.",
+    "description": "A sleek, high-tech caravan with a white body, blue solar panels, large tinted windows, and six rugged wheels. It features a sensor mast, circular side hatches, and advanced roof equipment.",
+    "description_view_0": "Front view shows three large, angular tinted windows, robust headlights, and a tall sensor mast with cameras and antennas.",
+    "description_view_1": "Left side view highlights the blue solar panel, circular entry hatch, and three rugged wheels with visible suspension.",
+    "description_view_2": "Rear view reveals a smooth, windowless back with the continuation of the blue solar panels and the ribbed roof vent.",
+    "description_view_3": "Right side view mirrors the left, with a blue solar panel, circular hatch, and three wheels, plus a clear view of the roof mast.",
+    "category": "caravan",
+    "height": 3.2,
+    "max_dimension": 7.5,
+    "materials": [
+        "composite_fiber",
+        "glass",
+        "aluminum",
+        "rubber",
+        "plastic",
+        "copper",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.15,
+        0.15,
+        0.1,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 5200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "antenna",
+        "headlight",
+        "solar panel",
+        "hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "black",
+        "bronze",
+        "gray"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.1,
+        0.06,
+        0.04
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "sleek",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.07,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_windows": 5,
+    "attribute_door_placement": "left side, center; right side, center",
+    "attribute_wheel_configuration": "three axles, six single wheels",
+    "attribute_roof_features": [
+        "sensor mast",
+        "vent/skylight",
+        "solar panels"
+    ],
+    "attribute_branding_or_logo": "none",
+    "uid": "d2f3b528edec4e2e8b938019d68632d0",
+    "near_synsets": {
+        "van.n.04": 0.534156326974881,
+        "camper_trailer.n.01": 0.553622009129232,
+        "reconnaissance_vehicle.n.01": 0.5584815507870339,
+        "caravan.n.01": 0.5626380518505446,
+        "car_window.n.01": 0.5645226240143508
+    },
+    "synset": "caravan.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d2f3b528edec4e2e8b938019d68632d0",
+        "creator_username": "MarcoRomero",
+        "creator_display_name": "Marco_Romero",
+        "creator_profile_url": "https://sketchfab.com/MarcoRomero"
+    },
+    "filename": "std_d2f3b528edec4e2e8b938019d68632d0.glb",
+    "length": 3.573347806930542,
+    "width": 2.4417171478271484
+}

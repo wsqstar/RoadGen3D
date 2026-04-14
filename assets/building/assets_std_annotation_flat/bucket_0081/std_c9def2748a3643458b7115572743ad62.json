@@ -1,0 +1,102 @@
+{
+    "description_long": "This object consists of four distinct flowering plants arranged in a row, each with a tall, slender green stem and multiple green leaves. Three of the flowers are roses, displaying pink, white, and red blooms with tightly layered, whorled petals. The fourth flower is a sunflower, characterized by a large, round, yellow inflorescence with a textured central disk and radiating yellow petals. The leaves are ovate and attached alternately along the stems, with the sunflower's leaves being larger and broader than those of the roses. The overall appearance is naturalistic, with each flower standing upright and the stems and leaves exhibiting a realistic organic curvature. This grouping would be commonly found in urban parks, gardens, or decorative sidewalk planters.",
+    "description": "A group of three colorful roses and one sunflower, each with green stems and ovate leaves, arranged in a natural, upright manner. The flowers display vibrant pink, white, red, and yellow hues.",
+    "description_view_0": "Front view showing all four flowers side by side, with the sunflower on the right and the roses in pink, white, and red to the left.",
+    "description_view_1": "Side view revealing the depth of the arrangement, with the flowers aligned one behind the other and the sunflower's disk visible in profile.",
+    "description_view_2": "Rear view with the sunflower now on the left and the roses on the right, showing the backs of the flower heads and the arrangement of leaves.",
+    "description_view_3": "Opposite side view, similar to view 1, with the flowers stacked in depth and the sunflower's disk again visible in profile.",
+    "category": "flower",
+    "height": 1.1,
+    "max_dimension": 1.2,
+    "materials": [
+        "plant_fiber",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 0.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 5,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stem",
+        "leaves",
+        "petals",
+        "flower_head"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "green",
+        "pink",
+        "white",
+        "red",
+        "yellow",
+        "brown"
+    ],
+    "colors_composition": [
+        0.55,
+        0.1,
+        0.08,
+        0.08,
+        0.15,
+        0.04
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.38,
+    "youngs_modulus": 20,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "group",
+    "attribute_petal_arrangement": "The rose petals are arranged in a dense, whorled, and overlapping spiral pattern, creating a layered effect with radial symmetry. The sunflower petals are arranged in a single radial whorl around a central disk, with each petal radiating outward evenly.",
+    "attribute_number_of_petals": 40,
+    "attribute_stem_presence": true,
+    "attribute_leaf_shape": "ovate",
+    "attribute_flower_location": "terminal",
+    "uid": "c9def2748a3643458b7115572743ad62",
+    "near_synsets": {
+        "flower_arrangement.n.01": 0.4996514461893524,
+        "flower.n.01": 0.5193669620480371,
+        "flower.n.02": 0.5212132724597058,
+        "spray.n.03": 0.5239058105776991,
+        "rockrose.n.01": 0.5292176933719714,
+        "flower.n.03": -1000.0
+    },
+    "synset": "flower.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c9def2748a3643458b7115572743ad62",
+        "creator_username": "nick2046",
+        "creator_display_name": "nick2046",
+        "creator_profile_url": "https://sketchfab.com/nick2046"
+    },
+    "filename": "std_c9def2748a3643458b7115572743ad62.glb",
+    "length": 0.7072859406471252,
+    "width": 2.3063008785247803
+}

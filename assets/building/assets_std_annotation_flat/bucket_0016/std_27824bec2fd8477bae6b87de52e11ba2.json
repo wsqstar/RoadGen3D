@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a large, futuristic ferry terminal designed to accommodate both water and air-based vehicles. Its structure features a broad, flat landing deck with marked runways and multiple circular landing pads, suggesting support for vertical takeoff and landing craft. The terminal includes a prominent control tower and several raised platforms, likely for operations and passenger management. The exterior appears to be constructed from robust, metallic materials with reinforced sections and integrated lighting. The overall design is streamlined, with aerodynamic contours and a symmetrical layout, indicating advanced engineering. The terminal is sizable, with ample space for vehicles, passengers, and operational equipment.",
+    "description": "A large, futuristic ferry terminal with a flat landing deck, circular landing pads, and a prominent control tower, built from metallic materials.",
+    "description_view_0": "Side view showing the elongated body, circular landing pads, and the raised control tower at the rear.",
+    "description_view_1": "Front view highlighting the wide landing deck, runway markings, and symmetrical arrangement of landing pads.",
+    "description_view_2": "Opposite side view displaying the terminal's length, landing pads, and the control tower's profile.",
+    "description_view_3": "Rear view focusing on the control tower, rear deck area, and the overall width of the terminal.",
+    "category": "ferry terminal",
+    "height": 18.0,
+    "max_dimension": 120.0,
+    "materials": [
+        "steel",
+        "glass",
+        "concrete",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.1,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 350000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "control tower",
+        "landing pad",
+        "runway",
+        "platform",
+        "lighting system"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "blue"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 30.0,
+    "asset_composition_type": "single",
+    "attribute_ferry_dock_signage": false,
+    "attribute_passenger_waiting_area": false,
+    "attribute_ticket_booth_or_kiosk": false,
+    "attribute_boarding_ramps_or_gangways": false,
+    "attribute_water_access_with_mooring_structures": false,
+    "uid": "27824bec2fd8477bae6b87de52e11ba2",
+    "near_synsets": {
+        "dock.n.05": 0.5422911460236535,
+        "terminal.n.01": 0.5496734820434671,
+        "ferry.n.02": 0.5568819296856361,
+        "landing_stage.n.01": 0.5600702297506905,
+        "flight_deck.n.01": 0.5605176678175621,
+        "end.n.01": -1000.0,
+        "terminal.n.04": -1000.0,
+        "terminal.n.02": -1000.0
+    },
+    "synset": "terminal.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/27824bec2fd8477bae6b87de52e11ba2",
+        "creator_username": "emby",
+        "creator_display_name": "emby",
+        "creator_profile_url": "https://sketchfab.com/emby"
+    },
+    "filename": "std_27824bec2fd8477bae6b87de52e11ba2.glb",
+    "length": 64.28569030761719,
+    "width": 35.99999237060547
+}

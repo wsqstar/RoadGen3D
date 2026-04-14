@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a delicate flower with a single, upright green stem supporting a solitary bloom. The flower head features multiple overlapping petals in a soft, pale pink hue, with a dark central disc that appears almost black or deep purple. The petals are arranged in a radial pattern, forming a rounded, layered appearance with subtle gradations of color from the center outward. Beneath the bloom, a whorl of green, lobed sepals encircles the base, adding texture and contrast to the flower's structure. The stem is slender and slightly curved, giving the flower a natural, organic posture. This type of flower is commonly found in urban parks, gardens, or as part of decorative landscaping.",
+    "description": "A pale pink, multi-petaled flower with a dark center, supported by a slender green stem and surrounded by green sepals. The bloom is rounded and layered, with a natural, elegant appearance.",
+    "description_view_0": "Front view showing the full face of the flower, with all petals and the dark central disc clearly visible.",
+    "description_view_1": "Side view revealing the flower's profile, the curvature of the stem, and the layered arrangement of petals.",
+    "description_view_2": "Rear view displaying the back of the petals and the green sepals encircling the base of the bloom.",
+    "description_view_3": "Opposite side view highlighting the stem's curve and the petal layering from a different angle.",
+    "category": "flower",
+    "height": 0.35,
+    "max_dimension": 0.35,
+    "materials": [
+        "plant tissue",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 0.015,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 0.1,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stem",
+        "petals",
+        "sepals"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "pink",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "soft",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.38,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.1,
+    "asset_composition_type": "single",
+    "attribute_petal_arrangement": "The petals are arranged in a radial, whorled pattern around the central disc, with overlapping layers creating a rounded, symmetrical bloom typical of many ornamental flowers.",
+    "attribute_number_of_petals": 12,
+    "attribute_stem_presence": true,
+    "attribute_leaf_shape": "palmate",
+    "attribute_flower_location": "terminal",
+    "uid": "97309509f40c48e9a51aa4de9cd3047c",
+    "near_synsets": {
+        "petal.n.01": 0.5037358947873517,
+        "pink.n.02": 0.517149073246916,
+        "maiden_pink.n.01": 0.5184549511322305,
+        "flower.n.01": 0.5278848715729074,
+        "ground_pink.n.01": 0.5297991278197665,
+        "flower.n.02": -1000.0,
+        "flower.n.03": -1000.0
+    },
+    "synset": "flower.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/97309509f40c48e9a51aa4de9cd3047c",
+        "creator_username": "heyyodd",
+        "creator_display_name": "heyyodd",
+        "creator_profile_url": "https://sketchfab.com/heyyodd"
+    },
+    "filename": "std_97309509f40c48e9a51aa4de9cd3047c.glb",
+    "length": 0.2097640037536621,
+    "width": 0.07395392656326294
+}

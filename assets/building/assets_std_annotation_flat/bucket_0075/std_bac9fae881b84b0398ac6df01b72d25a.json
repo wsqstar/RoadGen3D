@@ -1,0 +1,91 @@
+{
+    "description_long": "This is a wooden ladder with a series of evenly spaced rungs, supported by two side rails that are slightly curved for ergonomic grip. The ladder is mounted against a tall, rectangular, solid structure, likely for stability or as part of a fixed installation. The rungs have cut-out handholds, making it easier to grip and climb. The base of the ladder rests on a flat platform, which provides additional support and prevents slipping. The wood has a natural finish, contrasting with the smooth, light gray surface of the supporting structure. There are no visible safety features such as anti-slip feet or handrails, and the design is simple and utilitarian.",
+    "description": "A wooden ladder with cut-out handholds, mounted against a tall, smooth, light gray structure. The ladder features evenly spaced rungs and a natural wood finish.",
+    "description_view_0": "Front view showing the full length of the ladder, all rungs, and the cut-out handholds.",
+    "description_view_1": "Side view highlighting the ladder's angle against the tall, rectangular support structure and the thickness of the wooden rails.",
+    "description_view_2": "Rear view showing only the solid, light gray support structure, with the ladder mostly hidden.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the ladder's profile and its attachment to the support structure.",
+    "category": "ladder",
+    "height": 2.0,
+    "max_dimension": 2.1,
+    "materials": [
+        "wood",
+        "painted concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.45,
+        0.05
+    ],
+    "mass": 28,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "climbable",
+        "grippable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "rungs",
+        "side rails"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "light brown",
+        "light gray"
+    ],
+    "colors_composition": [
+        0.55,
+        0.45
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_number_of_rungs": 9,
+    "attribute_rung_spacing": 0.22,
+    "attribute_side_rail_profile": "rectangular wooden",
+    "attribute_mounting_position": "fixed wall-mounted",
+    "attribute_presence_of_safety_features": [],
+    "uid": "bac9fae881b84b0398ac6df01b72d25a",
+    "near_synsets": {
+        "ladder.n.01": 0.48570360227038606,
+        "articulated_ladder.n.01": 0.5152404811343868,
+        "rope_ladder.n.01": 0.516027616980728,
+        "extension_ladder.n.01": 0.5252391329301241,
+        "step_ladder.n.01": 0.5353847511656028,
+        "run.n.13": -1000.0,
+        "ladder.n.02": -1000.0
+    },
+    "synset": "ladder.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bac9fae881b84b0398ac6df01b72d25a",
+        "creator_username": "cs_adam",
+        "creator_display_name": "cs_adam",
+        "creator_profile_url": "https://sketchfab.com/cs_adam"
+    },
+    "filename": "std_bac9fae881b84b0398ac6df01b72d25a.glb",
+    "length": 1.2768170833587646,
+    "width": 1.2344404458999634
+}

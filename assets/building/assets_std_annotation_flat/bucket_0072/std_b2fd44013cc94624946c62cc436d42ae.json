@@ -1,0 +1,90 @@
+{
+    "description_long": "This object is a compact shotgun with a short, double-barrel configuration and a wooden pistol grip. The barrels are finished in a matte black, giving a robust and utilitarian appearance, and are aligned side-by-side. The grip and fore-end are made of a medium-brown wood, smoothly contoured for ergonomic handling. The trigger guard is rounded and encloses a single trigger, with no visible safety or selector switch. The overall design is minimalistic, with no visible ribbing or venting on the barrels, and the stock is truncated to a pistol grip, making the weapon highly maneuverable. The shotgun's size and features suggest it is intended for close-quarters use, typical in urban environments.",
+    "description": "A compact, side-by-side double-barrel shotgun with a matte black finish and a wooden pistol grip, designed for close-quarters use.",
+    "description_view_0": "Front view showing the twin black barrels aligned side-by-side and the rounded wooden grip below.",
+    "description_view_1": "Left side view highlighting the short double barrels, wooden grip, and rounded trigger guard.",
+    "description_view_2": "Muzzle view displaying the two barrel openings and the compact width of the shotgun.",
+    "description_view_3": "Right side view showing the wooden grip, double barrels, and the trigger guard from the opposite side.",
+    "category": "shotgun",
+    "height": 0.15,
+    "max_dimension": 0.45,
+    "materials": [
+        "steel",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "mass": 2.5,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "barrel",
+        "grip",
+        "trigger guard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.4
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "side-by-side double-barrel, no visible ribbing or venting, short barrel length",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "break-action",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with smooth edges and no finger grooves",
+    "uid": "b2fd44013cc94624946c62cc436d42ae",
+    "near_synsets": {
+        "shotgun.n.01": 0.4525166996082145,
+        "sawed-off_shotgun.n.01": 0.46843850570975754,
+        "pistol.n.01": 0.5063181882480277,
+        "machine_gun.n.01": 0.5189321639278228,
+        "submachine_gun.n.01": 0.5244129507055254
+    },
+    "synset": "sawed-off_shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b2fd44013cc94624946c62cc436d42ae",
+        "creator_username": "IronCladMax501",
+        "creator_display_name": "ironcladmax501",
+        "creator_profile_url": "https://sketchfab.com/IronCladMax501"
+    },
+    "filename": "std_b2fd44013cc94624946c62cc436d42ae.glb",
+    "length": 0.5623754262924194,
+    "width": 0.05922366864979267
+}

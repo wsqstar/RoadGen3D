@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a medium-sized truss bridge spanning over a body of water, set within an octagonal concrete-bordered base. The bridge features a black metal truss superstructure with triangular cross-bracing, supported by two robust stone or concrete piers that rise from the water. The deck appears to be flat and solid, likely made of metal or reinforced concrete, and is flanked by the truss framework which also serves as a guardrail. The water below is rendered with a realistic blue, wavy texture, and the entire scene is contained within a geometric, urban-style platform. The bridge is utilitarian in design, with no visible decorative elements or lighting fixtures, emphasizing function over ornamentation. Its structure suggests it is intended for pedestrian or light vehicular use in an urban park or cityscape setting.",
+    "description": "A black metal truss bridge with stone piers spans a blue waterway, all set within an octagonal concrete-bordered base. The design is utilitarian and industrial, with a focus on structural function.",
+    "description_view_0": "Front angled view showing the full truss structure, both stone piers, and the water surface beneath.",
+    "description_view_1": "Side view highlighting the bridge's length, the thickness of the piers, and the octagonal water base.",
+    "description_view_2": "Rear angled view mirroring the front, displaying the truss framework and water, with both piers visible.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the bridge's deck and supporting pier from the other end.",
+    "category": "bridge",
+    "height": 2.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "steel",
+        "concrete",
+        "stone",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 35000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "traversable",
+        "supportive"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "bicycle",
+        "motorcycle",
+        "small_vehicle"
+    ],
+    "colors": [
+        "black",
+        "gray",
+        "blue",
+        "white"
+    ],
+    "colors_composition": [
+        0.35,
+        0.3,
+        0.3,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_support_type": "truss",
+    "attribute_railing_design": "black metal truss framework with triangular cross-bracing serving as guardrails",
+    "attribute_arch_presence": false,
+    "attribute_lighting_fixtures": [],
+    "attribute_architectural_style": "industrial",
+    "uid": "409aab8e108b4d32ba318f256d11860a",
+    "near_synsets": {
+        "truss_bridge.n.01": 0.4928057939824739,
+        "steel_arch_bridge.n.01": 0.5065982854709034,
+        "trestle_bridge.n.01": 0.5213780168346547,
+        "pier.n.03": 0.5281368253305088,
+        "bridge.n.01": 0.5349548054487661,
+        "bridge.n.02": -1000.0,
+        "bridge.n.05": -1000.0,
+        "bridge.n.04": -1000.0,
+        "bridge.n.07": -1000.0,
+        "bridge.n.08": -1000.0,
+        "bridge.n.06": -1000.0,
+        "bridge.n.09": -1000.0,
+        "bridge.n.03": -1000.0
+    },
+    "synset": "bridge.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/409aab8e108b4d32ba318f256d11860a",
+        "creator_username": "filmngai",
+        "creator_display_name": "FiLmNgai",
+        "creator_profile_url": "https://sketchfab.com/filmngai"
+    },
+    "filename": "std_409aab8e108b4d32ba318f256d11860a.glb",
+    "length": 8.609079360961914,
+    "width": 8.609077453613281
+}

@@ -1,0 +1,107 @@
+{
+    "description_long": "This delivery robot features a robust, boxy chassis with a flat, rectangular roof topped by a blue solar panel, likely for power generation. The vehicle is supported by four large, black wheels, providing stability and traction for urban navigation. On one side, a blue box with a cable attached is mounted, possibly housing electronics or sensors, while the opposite side has a compartment with orange-banded cargo, suggesting storage for deliveries. The frame is reinforced with black rails and bars, giving it a rugged, utilitarian appearance suitable for outdoor environments. The interior is partially visible, showing a divided space that could accommodate packages or equipment. The overall design emphasizes durability, functionality, and autonomous operation in city settings.",
+    "description": "A rugged, boxy delivery robot with a blue solar panel, large black wheels, and side-mounted cargo and electronics compartments. Its reinforced frame and visible storage area suggest it is built for autonomous urban deliveries.",
+    "description_view_0": "Front view shows the wide, flat face with the blue solar panel on top and the blue electronics box on the left side.",
+    "description_view_1": "Left side view highlights the blue solar panel, the open interior, and the orange-banded cargo compartment at the rear.",
+    "description_view_2": "Rear view displays the back of the cargo compartment and the symmetrical wheel arrangement.",
+    "description_view_3": "Right side view reveals the blue electronics box with a cable and the open frame structure, as well as the cargo compartment on the opposite side.",
+    "category": "delivery robot",
+    "height": 1.2,
+    "max_dimension": 2.2,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.12,
+        0.03,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "drivable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "solar panel",
+        "cargo compartment",
+        "access panel",
+        "sensor box"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "blue",
+        "orange"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_brand_logo": "none",
+    "attribute_sensor_array": [],
+    "attribute_wheel_configuration": "Four large, solid wheels, likely drive wheels, arranged at each corner of the chassis for stability and traction.",
+    "attribute_compartment_access_panel": "A visible access panel is present on the left side at the rear, marked by orange bands, likely serving as the cargo compartment door.",
+    "attribute_display_screen": "none",
+    "uid": "b47e2e74cf154665a33a16bb9a83c5ec",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5611282471041369,
+        "delivery_truck.n.01": 0.5786369227781153,
+        "laundry_truck.n.01": 0.591412353329018,
+        "van.n.05": 0.5961229962643739,
+        "cargo_container.n.01": 0.5991671429927525,
+        "delivery.n.07": -1000.0,
+        "rescue.n.01": -1000.0,
+        "pitch.n.02": -1000.0,
+        "delivery.n.02": -1000.0,
+        "delivery.n.01": -1000.0,
+        "manner_of_speaking.n.01": -1000.0,
+        "automaton.n.02": -1000.0,
+        "delivery.n.04": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b47e2e74cf154665a33a16bb9a83c5ec",
+        "creator_username": "SubSlimeCrafter",
+        "creator_display_name": "SubSlimeCrafter",
+        "creator_profile_url": "https://sketchfab.com/SubSlimeCrafter"
+    },
+    "filename": "std_b47e2e74cf154665a33a16bb9a83c5ec.glb",
+    "length": 1.8734184503555298,
+    "width": 1.2811629176139832
+}

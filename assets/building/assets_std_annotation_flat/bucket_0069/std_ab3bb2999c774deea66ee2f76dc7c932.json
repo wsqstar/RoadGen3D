@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is an old-fashioned naval cannon mounted on a wooden wheeled carriage. The cannon barrel is long, cylindrical, and made of dark, rusted metal, featuring a slightly flared muzzle and decorative elements near the breech. The carriage is constructed from heavy wooden planks, reinforced with metal bands and bolts, and is supported by four solid wooden wheels. The entire assembly shows signs of age and weathering, with rust patches on the metal and worn, splintered wood. The cannon is fixed to the carriage with metal brackets and rings, and there are no visible modern features or controls. This type of cannon would have been used historically for defense or combat, typically seen in fortifications or on ships.",
+    "description": "A weathered, rusted metal cannon mounted on a sturdy wooden wheeled carriage, showing signs of age and historical use. The assembly features a long barrel and reinforced wooden structure.",
+    "description_view_0": "Side view showing the full length of the cannon barrel and the wooden carriage with four wheels.",
+    "description_view_1": "Front view highlighting the circular muzzle of the cannon and the alignment of the wheels beneath the carriage.",
+    "description_view_2": "Opposite side view, similar to view 0, displaying the length of the barrel and carriage details.",
+    "description_view_3": "Rear view focusing on the breech of the cannon and the back of the wooden carriage.",
+    "category": "combat tactical  vehicle",
+    "height": 1.0,
+    "max_dimension": 2.5,
+    "materials": [
+        "iron",
+        "wood",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.4,
+        0.03,
+        0.02
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheels",
+        "cannon barrel",
+        "carriage",
+        "metal rings"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "dark gray",
+        "rust red"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 120000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One fixed cannon barrel mounted centrally on a wooden carriage.",
+    "attribute_armor_plating": "None visible.",
+    "attribute_camouflage_pattern": "None visible; surfaces are weathered with natural wood and rusted metal tones.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "ab3bb2999c774deea66ee2f76dc7c932",
+    "near_synsets": {
+        "cannon.n.02": 0.5134421675371941,
+        "cannon.n.01": 0.5217994514385418,
+        "military_vehicle.n.01": 0.5247670247500437,
+        "weapons_carrier.n.01": 0.5286109370318761,
+        "caisson.n.02": 0.531315203125517,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "cannon.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ab3bb2999c774deea66ee2f76dc7c932",
+        "creator_username": "pmweintraub",
+        "creator_display_name": "pmweintraub",
+        "creator_profile_url": "https://sketchfab.com/pmweintraub"
+    },
+    "filename": "std_ab3bb2999c774deea66ee2f76dc7c932.glb",
+    "length": 2.720862865447998,
+    "width": 1.1082716584205627
+}

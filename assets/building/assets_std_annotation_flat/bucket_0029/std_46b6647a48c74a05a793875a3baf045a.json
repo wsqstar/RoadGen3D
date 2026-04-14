@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a cylindrical, arched tunnel structure with a segmented, stone or concrete exterior featuring a repeating pattern of rectangular panels. The tunnel is cut open on two sides, revealing a detailed interior with dual rail tracks running through the center, flanked by tiled walkways and various industrial elements such as pipes, benches, and utility boxes. The interior walls are lined with large cylindrical pipes and metallic fixtures, giving the space a utilitarian, infrastructural feel. Overhead, there are embedded lighting fixtures spaced along the ceiling, providing illumination for the interior. The tunnel entrances are open and unobstructed, with no visible doors or gates, and the floor is designed to accommodate both pedestrian and rail traffic. The overall appearance suggests a modern, functional design typical of urban subway or utility tunnels.",
+    "description": "A cylindrical, arched tunnel with a segmented stone or concrete exterior and an open interior featuring rail tracks, walkways, and industrial fixtures. The design is utilitarian and modern, with embedded lighting and exposed pipes.",
+    "description_view_0": "The exterior of the tunnel is visible, showing a seamless, arched surface with a repeating pattern of rectangular stone or concrete panels.",
+    "description_view_1": "The tunnel is cut open, revealing the interior with dual rail tracks, tiled walkways, large pipes, benches, and overhead lighting fixtures.",
+    "description_view_2": "Similar to view 0, this side shows the exterior arched surface with the same segmented panel pattern, emphasizing the tunnel's cylindrical form.",
+    "description_view_3": "The interior is visible from the opposite end, showing rail tracks, walkways, industrial elements, and a red utility box, with lighting fixtures overhead.",
+    "category": "tunnel",
+    "height": 5.0,
+    "max_dimension": 10.0,
+    "materials": [
+        "concrete",
+        "metal",
+        "stone",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 120000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "pressable",
+        "operable",
+        "switchable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench",
+        "utility box",
+        "lighting fixture",
+        "pipes"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "train"
+    ],
+    "colors": [
+        "gray",
+        "dark gray",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "Arched, open-ended entrances constructed from reinforced concrete or stone, with no doors or gates and a wide, unobstructed opening.",
+    "attribute_lighting_fixtures": [
+        "Overhead lamps: 4, embedded in the ceiling, industrial style, evenly spaced along the tunnel interior."
+    ],
+    "attribute_signage": [],
+    "attribute_surrounding_infrastructure": "Dual rail tracks run through the tunnel, flanked by tiled walkways and large industrial pipes; benches and utility boxes are present along the sides.",
+    "attribute_architectural_style": "Utilitarian, modern industrial",
+    "uid": "46b6647a48c74a05a793875a3baf045a",
+    "near_synsets": {
+        "railroad_tunnel.n.01": 0.49528052383306653,
+        "tunnel.n.01": 0.5088277654295585,
+        "well.n.04": 0.553551156082268,
+        "steel_arch_bridge.n.01": 0.5677986316296684,
+        "underpass.n.01": 0.5710595033897065,
+        "burrow.n.01": -1000.0
+    },
+    "synset": "tunnel.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/46b6647a48c74a05a793875a3baf045a",
+        "creator_username": "nofaced3d",
+        "creator_display_name": "nofaced3d",
+        "creator_profile_url": "https://sketchfab.com/nofaced3d"
+    },
+    "filename": "std_46b6647a48c74a05a793875a3baf045a.glb",
+    "length": 5.166229963302612,
+    "width": 5.0009765625
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This humanoid robot features a sleek, industrial design with a metallic blue and black color scheme. Its body is composed of segmented panels and cylindrical joints, with a ribbed midsection suggesting flexibility or shock absorption. The head is rounded and compact, with what appears to be a single sensor or camera on the front. The arms and legs are long and slender, each with multiple visible articulation points, and the hands are simple, lacking detailed fingers. The overall build is utilitarian, with exposed mechanical elements and a robust, functional appearance suitable for urban environments.",
+    "description": "A metallic blue and black humanoid robot with a segmented, industrial design and articulated limbs. It has a compact head with a visible sensor and a ribbed torso for flexibility.",
+    "description_view_0": "Rear view showing the back of the head, segmented shoulder panels, ribbed midsection, and the backs of the arms and legs.",
+    "description_view_1": "Left side view highlighting the robot's profile, cylindrical joints, and the ribbed torso's depth.",
+    "description_view_2": "Front view displaying the compact head with a visible sensor, ribbed torso, and the front of the articulated limbs.",
+    "description_view_3": "Right side view mirroring the left, showing the profile and mechanical details of the limbs and torso.",
+    "category": "humanoid robot",
+    "height": 1.85,
+    "max_dimension": 2.0,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 95,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "legs",
+        "head",
+        "torso",
+        "joints",
+        "sensor"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.55,
+        0.3,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "sleek",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms extended outward at an angle, legs straight and parallel, head facing forward, and torso upright.",
+    "attribute_clothing_style": "Unclothed; features only integrated metallic and plastic panels with no decorative coverings.",
+    "attribute_facial_features": "The face consists of a compact, rounded head with a single visible sensor or camera on the front; no mouth, nose, or expressive features are present.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints at the shoulders, elbows, hips, and knees, allowing for a wide range of motion; limbs appear rigid but highly articulated.",
+    "attribute_presence_of_sensors": "A single visible sensor or camera is located on the front of the head; no other sensors are visible.",
+    "uid": "c3e9002b22d847f0a30a9035080f1273",
+    "near_synsets": {
+        "android.n.01": 0.5563849582300698,
+        "robotics_equipment.n.01": 0.562242600192424,
+        "cyborg.n.01": 0.5684631531716781,
+        "automaton.n.02": 0.5872487012463888,
+        "robotics.n.01": 0.5923813153856038
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c3e9002b22d847f0a30a9035080f1273",
+        "creator_username": "Scarecrow_original",
+        "creator_display_name": "Scarecrow_original",
+        "creator_profile_url": "https://sketchfab.com/Scarecrow_original"
+    },
+    "filename": "std_c3e9002b22d847f0a30a9035080f1273.glb",
+    "length": 0.3475997745990753,
+    "width": 1.6535784602165222
+}

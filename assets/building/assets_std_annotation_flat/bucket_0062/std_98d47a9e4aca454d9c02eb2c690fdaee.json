@@ -1,0 +1,92 @@
+{
+    "description_long": "This object is a long, narrow train with a streamlined, uniform profile and a metallic exterior. The surface appears to be segmented, possibly indicating the presence of multiple carriages joined together. There are no visible windows or doors along the sides, giving it a very minimalistic and utilitarian appearance. The train is primarily gray, with a slightly textured finish that suggests a metal construction. Its proportions are consistent with a modern commuter or subway train, designed for efficient travel through urban environments. The overall design is simple, with no decorative elements or external features such as pantographs or overhead wires.",
+    "description": "A long, metallic, gray train with a segmented, minimalist exterior and no visible windows or doors.",
+    "description_view_0": "Side view showing the full length of the train, highlighting its segmented, metallic surface.",
+    "description_view_1": "End view showing the narrow profile and the uniform, rectangular cross-section.",
+    "description_view_2": "Opposite side view, similar to view 0, displaying the train's length and segmentation.",
+    "description_view_3": "Opposite end view, mirroring view 1, with the same narrow, rectangular profile.",
+    "category": "train",
+    "height": 3.5,
+    "max_dimension": 40.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 80000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "coupler"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "commuter train",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "no visible doors",
+    "attribute_window_arrangement": "no visible windows",
+    "uid": "98d47a9e4aca454d9c02eb2c690fdaee",
+    "near_synsets": {
+        "subway_train.n.01": 0.5246622777097184,
+        "streamliner.n.01": 0.5277106670557213,
+        "car_train.n.01": 0.532629282355946,
+        "train.n.01": 0.5383491083291504,
+        "passenger_train.n.01": 0.5391961902357766,
+        "caravan.n.01": -1000.0,
+        "gearing.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "train.n.05": -1000.0,
+        "train.n.04": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/98d47a9e4aca454d9c02eb2c690fdaee",
+        "creator_username": "own.guest",
+        "creator_display_name": "own.guest",
+        "creator_profile_url": "https://sketchfab.com/own.guest"
+    },
+    "filename": "std_98d47a9e4aca454d9c02eb2c690fdaee.glb",
+    "length": 131.30178833007812,
+    "width": 1.9354086518287659
+}

@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a large, multi-engine airplane with a broad, straight wing configuration and a robust fuselage. The wings are mounted high on the fuselage and feature four visible propeller engines, two on each side. The tail section is distinctive, with a horizontal stabilizer mounted atop a single vertical fin, forming a T-tail design. The landing gear appears to be fixed and is visible beneath the wings and tail. The cockpit is positioned at the front of the fuselage and is enclosed, likely accommodating multiple crew members. The exterior is primarily a light gray color with dark accents along the engine nacelles and wing roots.",
+    "description": "A large, high-wing, multi-engine propeller airplane with a T-tail and fixed landing gear, finished in light gray with dark accents.",
+    "description_view_0": "Top-down view showing the broad high-mounted wings, four propeller engines, and the T-tail configuration.",
+    "description_view_1": "Front view highlighting the straight wingspan, four propeller engines, and the prominent cockpit at the nose.",
+    "description_view_2": "Top-down view from the opposite side, again showing the wing and engine arrangement, as well as the T-tail.",
+    "description_view_3": "Rear view emphasizing the T-tail structure, the span of the wings, and the rear landing gear.",
+    "category": "airplane",
+    "height": 5.5,
+    "max_dimension": 32.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "mass": 24000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 235000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "door",
+        "cockpit window",
+        "landing gear",
+        "engine nacelle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 40.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "High-wing, straight configuration with no visible winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "Four piston engines mounted on the wings, each with a visible propeller.",
+    "attribute_tail_design": "T-tail configuration with a single vertical stabilizer and a high-mounted horizontal stabilizer.",
+    "attribute_landing_gear_type": "Fixed landing gear with two main units under the wings and a single tail gear unit.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit at the nose of the fuselage, likely multi-seat with multiple windows.",
+    "uid": "c09104e8a2954db7bb8b1137377aa78a",
+    "near_synsets": {
+        "airplane.n.01": 0.4542159825373823,
+        "propjet.n.01": 0.46348215877374127,
+        "propeller_plane.n.01": 0.4724391889127501,
+        "aircraft.n.01": 0.49520292963736917,
+        "jet.n.01": 0.501325018883429
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c09104e8a2954db7bb8b1137377aa78a",
+        "creator_username": "helijah",
+        "creator_display_name": "helijah",
+        "creator_profile_url": "https://sketchfab.com/helijah"
+    },
+    "filename": "std_c09104e8a2954db7bb8b1137377aa78a.glb",
+    "length": 18.47102165222168,
+    "width": 34.060333251953125
+}

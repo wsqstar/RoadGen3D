@@ -1,0 +1,107 @@
+{
+    "description_long": "This object is a rectangular printed circuit board (PCB) populated with a variety of electronic components, including integrated circuits, capacitors, resistors, relays, and connectors. The board features several large black chips, likely microcontrollers or processors, as well as blue, yellow, and red cylindrical components that are likely capacitors and fuses. Multiple white and black terminal blocks and pin headers are present along the edges, providing connection points for external wiring. The surface is covered with a green solder mask, with visible traces and silkscreen markings indicating component placement and circuit paths. The board is designed for integration into a larger electrical system, possibly for control or automation purposes in an urban infrastructure context.",
+    "description": "A green printed circuit board densely populated with integrated circuits, capacitors, connectors, and relays, designed for electrical control or automation.",
+    "description_view_0": "This view highlights the front left corner, showing large black chips, blue capacitors, and several terminal blocks.",
+    "description_view_1": "This angle emphasizes the long edge with multiple connectors and a clear view of the main integrated circuits and relays.",
+    "description_view_2": "This perspective shows the right edge with a concentration of white terminal blocks and pin headers, as well as a variety of small components.",
+    "description_view_3": "This view focuses on the back left corner, displaying more of the board's connectors and the arrangement of chips and capacitors.",
+    "category": "other electronics",
+    "height": 0.03,
+    "max_dimension": 0.22,
+    "materials": [
+        "fiberglass",
+        "copper",
+        "plastic",
+        "silicon",
+        "tin",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 0.35,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "connectable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "connector",
+        "pin header",
+        "relay"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "white",
+        "blue",
+        "yellow",
+        "red",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.12,
+        0.07,
+        0.04,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.55,
+    "youngs_modulus": 20000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.1,
+    "asset_composition_type": "single",
+    "attribute_brand": "unknown",
+    "attribute_display_type": "none",
+    "attribute_control_interface": "physical buttons, connectors",
+    "attribute_power_source": "AC mains",
+    "attribute_mounting_location": "desktop",
+    "uid": "b5f6f1ab2754459cbe57469f74565158",
+    "near_synsets": {
+        "printed_circuit.n.01": 0.5010164002062795,
+        "circuitry.n.01": 0.5086024922960592,
+        "circuit_board.n.01": 0.5181455005402935,
+        "integrated_circuit.n.01": 0.5264267430029397,
+        "computer_circuit.n.01": 0.5278194485593433,
+        "electronics.n.01": -1000.0
+    },
+    "synset": "printed_circuit.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b5f6f1ab2754459cbe57469f74565158",
+        "creator_username": "mosheca",
+        "creator_display_name": "Moshe Caine",
+        "creator_profile_url": "https://sketchfab.com/mosheca"
+    },
+    "filename": "std_b5f6f1ab2754459cbe57469f74565158.glb",
+    "length": 0.18403875827789307,
+    "width": 0.16538308560848236
+}

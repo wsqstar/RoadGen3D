@@ -1,0 +1,101 @@
+{
+    "description_long": "This object consists of several tall tower cranes, each with a lattice boom and a fixed base, arranged in a row. The cranes feature long, truss-like jibs extending horizontally, with counterweights visible at the rear of the booms. The main structures are composed of steel lattice frameworks, painted in blue, gray, and some red, with the bases anchored to the ground. The cranes have vertical masts that support the horizontal jibs, and some show visible operator cabins near the top of the mast. The lifting mechanisms at the end of the booms are not clearly visible, but the cranes are designed for hoisting heavy loads on construction sites. The overall appearance is industrial and robust, suitable for large-scale urban construction projects.",
+    "description": "A group of tall, steel lattice tower cranes with fixed bases and long horizontal jibs, painted in blue, gray, and red, designed for heavy lifting on construction sites.",
+    "description_view_0": "The cranes are seen from an elevated angle, highlighting the length of the booms and the arrangement of the bases on the ground.",
+    "description_view_1": "A side view showing the full height of the cranes, the vertical masts, and the different boom angles and lengths.",
+    "description_view_2": "A frontal view emphasizing the alignment of the cranes and the symmetry of their booms and bases.",
+    "description_view_3": "A rear side view displaying the counterweights and the structural details of the crane bases and masts.",
+    "category": "crane",
+    "height": 45.0,
+    "max_dimension": 65.0,
+    "materials": [
+        "steel",
+        "paint",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "operator cabin",
+        "boom",
+        "counterweight",
+        "lifting cable",
+        "base"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.01,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "group",
+    "attribute_boom_type": "lattice boom",
+    "attribute_counterweight_presence": true,
+    "attribute_operator_cabin_visibility": true,
+    "attribute_hook_or_lifting_mechanism": "none visible",
+    "attribute_support_structure_design": "fixed base",
+    "uid": "9392d027a71a477b87dd21692da3e5b2",
+    "near_synsets": {
+        "crane.n.04": 0.455818954714047,
+        "derrick.n.02": 0.5155089098434734,
+        "stacker_crane.n.01": 0.5172978709504866,
+        "transporter.n.02": 0.5326423537767362,
+        "crane.n.05": 0.5347348564243504,
+        "crane.n.01": -1000.0,
+        "crane.n.02": -1000.0,
+        "grus.n.01": -1000.0
+    },
+    "synset": "crane.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9392d027a71a477b87dd21692da3e5b2",
+        "creator_username": "Saju.Sathish",
+        "creator_display_name": "Saju.Sathish",
+        "creator_profile_url": "https://sketchfab.com/Saju.Sathish"
+    },
+    "filename": "std_9392d027a71a477b87dd21692da3e5b2.glb",
+    "length": 77.19062042236328,
+    "width": 61.712162017822266
+}

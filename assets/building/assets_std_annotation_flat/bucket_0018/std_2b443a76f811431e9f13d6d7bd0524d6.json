@@ -1,0 +1,94 @@
+{
+    "description_long": "This is a small wooden cabin with a gable roof covered in green shingles, giving it a rustic and weathered appearance. The walls are constructed from horizontal wooden planks, framed by lighter-colored vertical beams at the corners and roof edges. The front facade features a single, pentagon-shaped entrance without a visible door, leading into a simple, open interior. The roof overhangs slightly on all sides, providing some shelter to the entrance and walls. There are no visible windows or decorative elements, emphasizing a utilitarian and functional design. The overall structure is compact, likely intended for use as a small shelter or animal house in an urban or suburban setting.",
+    "description": "A compact wooden cabin with a green gable roof, open pentagon-shaped entrance, and no visible windows or porch. The design is rustic and utilitarian, with horizontal plank walls and simple framing.",
+    "description_view_0": "Top-down view showing the green shingled gable roof with a clear pattern and slight overhangs.",
+    "description_view_1": "Front view displaying the pentagon-shaped entrance, framed by light-colored beams, and the gable roof above.",
+    "description_view_2": "Rear top-down view similar to view 0, showing the roof's texture and overhang, but no entrance or openings.",
+    "description_view_3": "Back view showing a plain wooden wall with no openings, framed by vertical beams and the gable roof above.",
+    "category": "cabin",
+    "height": 1.2,
+    "max_dimension": 1.5,
+    "materials": [
+        "wood",
+        "asphalt_shingle",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 90,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "shelter_providing"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "entrance"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "animal"
+    ],
+    "colors": [
+        "brown",
+        "green",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gable roof with green asphalt shingles and moderate overhangs",
+    "attribute_window_arrangement": "No windows are visible on any side of the cabin",
+    "attribute_door_placement": "Single entrance centered on the front facade, pentagon-shaped and open",
+    "attribute_porch_presence": false,
+    "attribute_architectural_style": "rustic",
+    "uid": "2b443a76f811431e9f13d6d7bd0524d6",
+    "near_synsets": {
+        "cabin.n.02": 0.4530855953639028,
+        "log_cabin.n.01": 0.46914682432181287,
+        "cottage_tent.n.01": 0.533651695063197,
+        "gazebo.n.01": 0.5405057987096288,
+        "cabin.n.01": 0.5459839779932396,
+        "cabin.n.03": -1000.0
+    },
+    "synset": "cabin.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2b443a76f811431e9f13d6d7bd0524d6",
+        "creator_username": "Oldfarmer",
+        "creator_display_name": "Oldfarmer",
+        "creator_profile_url": "https://sketchfab.com/Oldfarmer"
+    },
+    "filename": "std_2b443a76f811431e9f13d6d7bd0524d6.glb",
+    "length": 1.3816701769828796,
+    "width": 1.2625012397766113
+}

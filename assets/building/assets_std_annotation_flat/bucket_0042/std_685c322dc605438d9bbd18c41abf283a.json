@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a compact, double-barreled shotgun with a side-by-side barrel configuration. The barrels are made of dark metal, appearing robust and slightly reflective, with a smooth cylindrical finish. The stock and grip are crafted from wood, featuring a natural brown color and a polished texture, shaped ergonomically for handheld use. The trigger guard is metallic and rounded, with a yellowish tint, and encloses a single visible trigger. The shotgun lacks a full shoulder stock, instead featuring a pistol grip for easier maneuverability in close quarters. The overall design is utilitarian, with minimal decorative elements, emphasizing function and durability.",
+    "description": "A compact, side-by-side double-barreled shotgun with a wooden pistol grip and dark metal barrels. It features a rounded yellowish trigger guard and a utilitarian, close-quarters design.",
+    "description_view_0": "Front view showing the twin barrels side-by-side and the wooden grip extending downward.",
+    "description_view_1": "Left side view displaying the full length of the barrels, the wooden pistol grip, and the rounded trigger guard.",
+    "description_view_2": "Muzzle view highlighting the two barrel openings and the symmetry of the shotgun's front end.",
+    "description_view_3": "Right side view showing the barrels, grip, and trigger guard from the opposite side, mirroring view 1.",
+    "category": "shotgun",
+    "height": 0.15,
+    "max_dimension": 0.45,
+    "materials": [
+        "steel",
+        "wood",
+        "brass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 2.7,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "trigger guard",
+        "barrels",
+        "pistol grip",
+        "break-action lever"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "side-by-side double-barrel, no visible ribbing or venting, barrels are short and of equal length",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "break-action",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized, metallic with a smooth finish and no finger grooves",
+    "uid": "685c322dc605438d9bbd18c41abf283a",
+    "near_synsets": {
+        "shotgun.n.01": 0.4612365010925076,
+        "sawed-off_shotgun.n.01": 0.4778109114632281,
+        "pistol.n.01": 0.5240608637278523,
+        "pump_action.n.01": 0.5340283947864206,
+        "shotgun_shell.n.01": 0.5349896721587
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/685c322dc605438d9bbd18c41abf283a",
+        "creator_username": "CohiTrippy",
+        "creator_display_name": "CohiTrippy",
+        "creator_profile_url": "https://sketchfab.com/CohiTrippy"
+    },
+    "filename": "std_685c322dc605438d9bbd18c41abf283a.glb",
+    "length": 0.5815348029136658,
+    "width": 0.07341865450143814
+}

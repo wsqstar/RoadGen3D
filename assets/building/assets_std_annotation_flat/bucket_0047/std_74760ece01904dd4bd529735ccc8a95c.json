@@ -1,0 +1,97 @@
+{
+    "description_long": "This humanoid robot features a sleek, modern design with a predominantly red and black color scheme. Its head is large and rounded, with two prominent circular eye-like features on the front and concentric ring patterns on the sides and back. The torso is segmented and slightly tapered, connecting to articulated arms and legs with visible joint structures, suggesting a high degree of mobility. The hands are composed of three fingers each, and the feet are broad and stable, designed for balance. The robot's surface appears smooth and hard, with integrated panels rather than external clothing. Overall, the design is both functional and visually striking, suitable for urban environments.",
+    "description": "A red and black humanoid robot with a rounded head, articulated limbs, and a smooth, modern exterior.",
+    "description_view_0": "Front view shows the robot's face with two large circular eye-like features, segmented torso, and articulated limbs.",
+    "description_view_1": "Left side view highlights the circular ring pattern on the head and the profile of the articulated arms and legs.",
+    "description_view_2": "Rear view reveals the back of the head with concentric rings, segmented back, and the structure of the legs and feet.",
+    "description_view_3": "Right side view mirrors the left, showing the head's ring pattern and the side profile of the limbs.",
+    "category": "humanoid robot",
+    "height": 1.5,
+    "max_dimension": 0.7,
+    "materials": [
+        "plastic",
+        "metal",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "rotatable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head",
+        "arms",
+        "hands",
+        "legs",
+        "feet",
+        "torso"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.4
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.15,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms slightly bent at the elbows and legs straight, head facing forward, hands relaxed at the sides.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated red and black panels with a smooth, hard finish.",
+    "attribute_facial_features": "Face has two large, circular eye-like features with no visible mouth or nose; overall expression is neutral and non-expressive.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible joints, including ball and hinge types at shoulders, elbows, hips, and knees; hands have three articulated fingers each, and feet are rigid.",
+    "attribute_presence_of_sensors": "Two large circular features on the face likely serve as visual sensors; no other sensors are visibly apparent.",
+    "uid": "74760ece01904dd4bd529735ccc8a95c",
+    "near_synsets": {
+        "android.n.01": 0.5249458595272866,
+        "cyborg.n.01": 0.548358634204015,
+        "robotics_equipment.n.01": 0.5567541218090103,
+        "automaton.n.02": 0.5640590519981628,
+        "robotics.n.01": 0.5691859942043602
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/74760ece01904dd4bd529735ccc8a95c",
+        "creator_username": "sleepwalker77",
+        "creator_display_name": "sleepwalker77",
+        "creator_profile_url": "https://sketchfab.com/sleepwalker77"
+    },
+    "filename": "std_74760ece01904dd4bd529735ccc8a95c.glb",
+    "length": 1.5296006202697754,
+    "width": 1.1205139756202698
+}

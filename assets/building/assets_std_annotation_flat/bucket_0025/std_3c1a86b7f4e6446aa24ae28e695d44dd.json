@@ -1,0 +1,91 @@
+{
+    "description_long": "This object is a stylized airplane with a cylindrical fuselage painted in a weathered red-orange color, accented by a blue nose cone and tail fin. The wings are straight and extend horizontally from the midsection, finished in a muted yellow-green shade, and each wing supports a large, rounded engine nacelle. The tail assembly features a single vertical stabilizer and a horizontal stabilizer, both in the same yellow-green and blue color scheme. The surface texture appears rough and slightly distressed, giving the impression of a wooden or painted model rather than a real aircraft. There are no visible windows, doors, or landing gear, and the overall form is simplified with blocky, geometric shapes. The airplane's proportions and lack of fine detail suggest it is intended as a toy or decorative object rather than a functional vehicle.",
+    "description": "A stylized, blocky airplane with a red-orange fuselage, yellow-green wings and tail, and blue accents, featuring two large engine nacelles and a rough, weathered surface.",
+    "description_view_0": "Front view shows the rounded blue nose, twin engine nacelles under the yellow-green wings, and the vertical tail fin behind the fuselage.",
+    "description_view_1": "Side view highlights the elongated red-orange fuselage, blue nose, and the straight yellow-green wings with attached engines, as well as the blue-tipped tail fin.",
+    "description_view_2": "Rear view displays the yellow-green horizontal stabilizer, the blue vertical tail fin, and the back of the engine nacelles.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the blocky fuselage, engine nacelles, and the tail assembly from the other side.",
+    "category": "airplane",
+    "height": 0.25,
+    "max_dimension": 1.0,
+    "materials": [
+        "wood",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 35,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "engine nacelle",
+        "wing",
+        "tail fin",
+        "fuselage"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red-orange",
+        "yellow-green",
+        "blue"
+    ],
+    "colors_composition": [
+        0.55,
+        0.35,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing, straight wings with no visible dihedral or winglets.",
+    "attribute_engine_type": "Twin engine nacelles mounted under each wing; engine type not visually specified.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizer.",
+    "attribute_landing_gear_type": "No visible landing gear.",
+    "attribute_cockpit_placement": "No visible cockpit; presumed forward placement, but no windows or canopy are present.",
+    "uid": "3c1a86b7f4e6446aa24ae28e695d44dd",
+    "near_synsets": {
+        "aircraft.n.01": 0.516671569814837,
+        "airplane.n.01": 0.5220646186220267,
+        "fuselage.n.01": 0.542159853626542,
+        "biplane.n.01": 0.5423819016394839,
+        "wings.n.02": 0.545540043247579
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3c1a86b7f4e6446aa24ae28e695d44dd",
+        "creator_username": "granite18louis",
+        "creator_display_name": "granite18louis",
+        "creator_profile_url": "https://sketchfab.com/granite18louis"
+    },
+    "filename": "std_3c1a86b7f4e6446aa24ae28e695d44dd.glb",
+    "length": 0.6323560774326324,
+    "width": 0.6581305861473083
+}

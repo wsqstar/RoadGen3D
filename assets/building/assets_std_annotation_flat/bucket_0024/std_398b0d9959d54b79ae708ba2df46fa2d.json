@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a classic red trolleybus with a rectangular body, featuring large windows along both sides and a silver roof equipped with a pantograph pole for overhead electric wire connection. The front and rear ends are rounded, with a prominent sign above the windshield displaying the route name 'WILAN\u00d3W' and a circular 'W' emblem. The trolleybus has black grilles and steps at the entry points, and the undercarriage is detailed with visible suspension and wheel components. The roof includes raised ventilation or electrical housings, and the pantograph pole is mounted towards the rear, extending upward and backward. The body is primarily red with black and silver accents, and the windows are dark, suggesting a spacious passenger interior. The overall design is reminiscent of early to mid-20th-century European electric street vehicles, built for urban public transport.",
+    "description": "A vintage red trolleybus with large side windows, a silver roof, and a pantograph pole for overhead electric wires. It features a rounded front with a route sign and detailed entry steps.",
+    "description_view_0": "Side view showing the full length of the trolleybus, large windows, and the pantograph pole on the roof.",
+    "description_view_1": "Front view highlighting the rounded face, route sign 'WILAN\u00d3W', and entry steps.",
+    "description_view_2": "Opposite side view similar to view 0, showing windows, undercarriage, and pantograph pole.",
+    "description_view_3": "Rear/front view similar to view 1, with the route sign and rounded end visible.",
+    "category": "trolleybus",
+    "height": 3.2,
+    "max_dimension": 10.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "pantograph pole",
+        "step",
+        "route sign"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "silver",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_pantograph_poles": true,
+    "attribute_overhead_wire_connection": true,
+    "attribute_route_number_display": true,
+    "attribute_articulated_body_sections": 1,
+    "attribute_passenger_entry_doors": 2,
+    "uid": "398b0d9959d54b79ae708ba2df46fa2d",
+    "near_synsets": {
+        "trolleybus.n.01": 0.4749124454721745,
+        "trolley_line.n.01": 0.5155785128365662,
+        "current_collector.n.01": 0.5485398301225208,
+        "streetcar.n.01": 0.5669286427075944,
+        "bus.n.01": 0.5833263757397674
+    },
+    "synset": "trolleybus.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/398b0d9959d54b79ae708ba2df46fa2d",
+        "creator_username": "mitkrakow",
+        "creator_display_name": "Museum of Engineering and Technology, Krakow",
+        "creator_profile_url": "https://sketchfab.com/mitkrakow"
+    },
+    "filename": "std_398b0d9959d54b79ae708ba2df46fa2d.glb",
+    "length": 7.457517147064209,
+    "width": 1.7437394857406616
+}

@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a futuristic, angular airplane with a predominantly metallic gray exterior and teal-tinted cockpit windows. The wings are mid-mounted and swept back, each featuring a circular teal accent near the tips. The fuselage is compact and tapers sharply at the nose, with a prominent vertical stabilizer at the rear. Twin jet engines are mounted beneath the wings, with visible exhausts at the back. The airplane is marked with the identifier 'IX-04' on the side, and the overall design suggests a high-speed, possibly unmanned or advanced piloted craft.",
+    "description": "A sleek, metallic gray airplane with swept mid-mounted wings, teal cockpit windows, and twin rear jet engines.",
+    "description_view_0": "Front view showing the sharp nose, angular fuselage, and teal-tinted cockpit window, with jet engine exhausts visible at the rear.",
+    "description_view_1": "Side view highlighting the 'IX-04' marking, swept-back wings with teal accents, and the compact, angular body.",
+    "description_view_2": "Rear view displaying the large central exhaust, wing configuration, and the vertical stabilizer.",
+    "description_view_3": "Opposite side view mirroring view 1, showing the wing and engine arrangement, as well as the angular tail design.",
+    "category": "airplane",
+    "height": 1.8,
+    "max_dimension": 7.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "composite",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.12,
+        0.15,
+        0.05,
+        0.03
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 32000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "engine",
+        "wing",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "teal",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "sleek",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.07,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing configuration with swept wings and circular inboard accents; no visible winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "Twin jet engines mounted under the wings near the rear fuselage.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers extending from the rear fuselage.",
+    "attribute_landing_gear_type": "No visible landing gear in the images.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a single canopy and teal-tinted window.",
+    "uid": "e1d7f0dd183f468fa4e845f32501f989",
+    "near_synsets": {
+        "aircraft.n.01": 0.5030053315280408,
+        "airplane.n.01": 0.5206777692500316,
+        "twinjet.n.01": 0.5246731778030937,
+        "monoplane.n.01": 0.5316360527719267,
+        "jet.n.01": 0.5387540133255997
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e1d7f0dd183f468fa4e845f32501f989",
+        "creator_username": "Glyus",
+        "creator_display_name": "Glyus",
+        "creator_profile_url": "https://sketchfab.com/Glyus"
+    },
+    "filename": "std_e1d7f0dd183f468fa4e845f32501f989.glb",
+    "length": 4.863982677459717,
+    "width": 3.885679244995117
+}

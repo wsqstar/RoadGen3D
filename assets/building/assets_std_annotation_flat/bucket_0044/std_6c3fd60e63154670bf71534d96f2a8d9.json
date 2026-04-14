@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a single-story bungalow with a gable roof, situated on a rectangular plot with a driveway leading to a detached garage. The house features a covered front porch supported by columns, and the main entrance is centrally located. The exterior walls are light-colored, likely clad in siding, and the roof is a muted gray. There are multiple windows on the front and sides, arranged symmetrically on the facade. The property includes a driveway, a small car, and several cylindrical water tanks or bins near the side. The surrounding yard is mostly grass, bordered by low fencing or walls.",
+    "description": "A single-story bungalow with a gable roof, front porch, symmetrical windows, and a detached garage on a grassy lot.",
+    "description_view_0": "Oblique view showing the side yard, detached garage, and the rear of the bungalow with visible water tanks.",
+    "description_view_1": "Frontal view highlighting the covered porch, main entrance, driveway, and symmetrical front windows.",
+    "description_view_2": "Side view displaying the garage, driveway, and the arrangement of water tanks near the house.",
+    "description_view_3": "Rear view showing the backyard, back of the bungalow, and the side driveway leading to the garage.",
+    "category": "bungalow",
+    "height": 5.5,
+    "max_dimension": 25.0,
+    "materials": [
+        "wood",
+        "concrete",
+        "glass",
+        "asphalt",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.08,
+        0.1,
+        0.02,
+        0.1
+    ],
+    "mass": 65000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "garage door",
+        "porch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "green",
+        "black",
+        "beige"
+    ],
+    "colors_composition": [
+        0.35,
+        0.25,
+        0.3,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_architectural_style": "Ranch",
+    "attribute_roof_type": "gable",
+    "attribute_number_of_stories": 1,
+    "attribute_porch_presence": true,
+    "attribute_window_arrangement": "symmetrical front-facing windows",
+    "uid": "6c3fd60e63154670bf71534d96f2a8d9",
+    "near_synsets": {
+        "bungalow.n.01": 0.4249835846769653,
+        "villa.n.02": 0.49708428267627613,
+        "ranch_house.n.01": 0.5176179063610697,
+        "semi-detached_house.n.01": 0.5262751822369923,
+        "farmhouse.n.01": 0.5341949971345767
+    },
+    "synset": "bungalow.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6c3fd60e63154670bf71534d96f2a8d9",
+        "creator_username": "tbystrican",
+        "creator_display_name": "tbystrican",
+        "creator_profile_url": "https://sketchfab.com/tbystrican"
+    },
+    "filename": "std_6c3fd60e63154670bf71534d96f2a8d9.glb",
+    "length": 27.08981227874756,
+    "width": 14.826493740081787
+}

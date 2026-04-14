@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a compact submachine gun with a boxy, utilitarian design and a digital camouflage pattern covering its exterior. It features a prominent folding wire stock at the rear, a rectangular receiver, and a short barrel protruding from the front. The magazine is inserted vertically into the grip, which is positioned below the main body. The top of the receiver has simple iron sights, and the overall construction appears to be primarily metal with a rugged, matte finish. The weapon's compact size and robust build suggest it is designed for close-quarters use in urban environments. The surface is mostly gray with lighter streaks, giving it a modern, tactical appearance.",
+    "description": "A compact, boxy submachine gun with a folding wire stock, digital camouflage finish, and a vertical magazine in the grip. The weapon is primarily gray with a rugged, matte metal surface.",
+    "description_view_0": "Side view showing the full length of the gun, folding wire stock, and vertical magazine.",
+    "description_view_1": "Front view highlighting the short barrel, front sight, and the narrow profile of the receiver.",
+    "description_view_2": "Opposite side view displaying the folding stock and magazine, with the ejection port visible.",
+    "description_view_3": "Rear view focusing on the wire stock and the back of the receiver.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 0.45,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 2.8,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "foldable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "magazine",
+        "stock",
+        "safety selector",
+        "charging handle",
+        "iron sights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "light gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "folding",
+    "attribute_barrel_type": "short",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "3ca691de21ac46918b146d459148c02e",
+    "near_synsets": {
+        "submachine_gun.n.01": 0.48674708680928097,
+        "carbine.n.01": 0.5037170142371495,
+        "sten_gun.n.01": 0.5040622541784386,
+        "kalashnikov.n.01": 0.5041548405359371,
+        "tommy_gun.n.01": 0.5067653876076136,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3ca691de21ac46918b146d459148c02e",
+        "creator_username": "Cordeirox",
+        "creator_display_name": "Cordeirox",
+        "creator_profile_url": "https://sketchfab.com/Cordeirox"
+    },
+    "filename": "std_3ca691de21ac46918b146d459148c02e.glb",
+    "length": 0.3777525722980499,
+    "width": 0.04324531555175781
+}

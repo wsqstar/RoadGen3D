@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a compact firearm with a metallic body and a wooden grip, resembling a classic revolver rather than a traditional shotgun. The barrel is long and cylindrical, with a metallic sheen, and the cylinder is visible, suggesting a rotating mechanism for loading rounds. Several metallic cartridges are scattered nearby, indicating the firearm's ammunition type. The grip features a wood grain texture, contrasting with the otherwise metallic construction. The trigger and trigger guard are clearly visible, with the guard being rounded and proportionate to the handle. The overall design is reminiscent of a historical or Western-style revolver, with detailed engravings and a robust build.",
+    "description": "A compact, metallic revolver-style firearm with a wooden grip and visible cartridges, featuring a long barrel and detailed engravings.",
+    "description_view_0": "The firearm is seen from the side, showing the full length of the barrel, the wooden grip, and the cylinder, with cartridges nearby.",
+    "description_view_1": "Viewed from an angle above the grip, the cylinder and trigger guard are prominent, and the cartridges are more clearly visible.",
+    "description_view_2": "The opposite side of the firearm is visible, highlighting the length of the barrel and the curvature of the grip.",
+    "description_view_3": "A front-facing view shows the barrel's opening, the rounded trigger guard, and the arrangement of cartridges in front of the grip.",
+    "category": "shotgun",
+    "height": 0.07,
+    "max_dimension": 0.32,
+    "materials": [
+        "steel",
+        "wood",
+        "brass",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "cylinder",
+        "barrel",
+        "hammer"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "silver",
+        "brown",
+        "gold"
+    ],
+    "colors_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_barrel_configuration": "single-barrel, long and cylindrical with no visible ribbing or venting",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "revolver-action",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with smooth edges and no finger grooves",
+    "uid": "f5dc6b1e7f82405f95347ab5d742cfee",
+    "near_synsets": {
+        "shotgun.n.01": 0.46153945656472584,
+        "sawed-off_shotgun.n.01": 0.47136913147559667,
+        "colt.n.02": 0.4805177265142745,
+        "firearm.n.01": 0.4850876296982907,
+        "revolver.n.01": 0.49258518699321446
+    },
+    "synset": "sawed-off_shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f5dc6b1e7f82405f95347ab5d742cfee",
+        "creator_username": "cschulz",
+        "creator_display_name": "Cschulz",
+        "creator_profile_url": "https://sketchfab.com/cschulz"
+    },
+    "filename": "std_f5dc6b1e7f82405f95347ab5d742cfee.glb",
+    "length": 1.4149904251098633,
+    "width": 1.414990782737732
+}

@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a small, rectangular barn with a curved, Quonset-style roof, situated on a flat green base that resembles a grassy field. The barn features a prominent arched roof made of corrugated panels, giving it a utilitarian and industrial appearance. The front facade includes a large, central sliding door flanked by two small windows, providing both access and natural light. The sides and rear of the barn are solid, with no visible windows or doors, emphasizing its simple and functional design. The exterior siding appears to be composed of horizontal metal panels, contributing to its durability and weather resistance. Overall, the structure is compact and practical, suitable for storage or agricultural use in an urban or peri-urban setting.",
+    "description": "A compact barn with a curved Quonset roof, metal panel siding, and a large central sliding door flanked by two small windows on the front.",
+    "description_view_0": "The barn is seen from the rear, showing a solid wall with no doors or windows, and the curved roof is clearly visible.",
+    "description_view_1": "The front view displays the main sliding door and two small windows, highlighting the barn's entry point and symmetrical facade.",
+    "description_view_2": "The barn is viewed from the rear again, similar to view 0, with the arched roof and solid back wall visible.",
+    "description_view_3": "The front view is shown again, with the sliding door and two windows clearly visible, mirroring view 1.",
+    "category": "barn",
+    "height": 4.0,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "glass",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.05,
+        0.15,
+        0.1
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sliding door",
+        "windows"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "Quonset (arched, semicircular roof)",
+    "attribute_siding_pattern": "horizontal metal panels",
+    "attribute_door_style": "single large sliding door, centrally placed",
+    "attribute_window_arrangement": "two small windows flanking the main door on the front facade",
+    "attribute_architectural_style": "Quonset hut barn",
+    "uid": "66503c2030be489490ee687875a79930",
+    "near_synsets": {
+        "barn_door.n.01": 0.4827146797142277,
+        "barn.n.01": 0.5098670081119115,
+        "farm_building.n.01": 0.5200105917796465,
+        "barnyard.n.01": 0.52646645778813,
+        "cowbarn.n.01": 0.5282389692652315,
+        "barn.n.02": -1000.0
+    },
+    "synset": "barn.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/66503c2030be489490ee687875a79930",
+        "creator_username": "gregoire.chamberland",
+        "creator_display_name": "gregoire.chamberland",
+        "creator_profile_url": "https://sketchfab.com/gregoire.chamberland"
+    },
+    "filename": "std_66503c2030be489490ee687875a79930.glb",
+    "length": 116.33091735839844,
+    "width": 116.3309097290039
+}

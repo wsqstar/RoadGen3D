@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a large, turret-mounted, dual-barreled rifle system with a robust, industrial design. The main body is composed of two parallel rectangular housings, each featuring visible wear and tear, painted in a combination of yellow and black. The barrels are long and reinforced, extending forward from the main housing, and are supported by a mechanical armature that connects to a circular, tripod-like base. The base has four articulated legs with wide, stable feet, suggesting it is designed for stationary deployment on urban surfaces. Mechanical joints and exposed components indicate adjustability and heavy-duty use, while the overall construction appears to be primarily metal with some synthetic elements. The design is utilitarian, with visible bolts, warning markings, and a rugged finish suitable for urban defense or security scenarios.",
+    "description": "A heavy, dual-barreled, turret-mounted rifle system with a yellow and black industrial finish, supported by a four-legged mechanical base. The design is robust, with visible wear, mechanical joints, and reinforced barrels.",
+    "description_view_0": "Side view showing the dual rectangular housings, long barrels, and mechanical armature connecting to the circular base with four articulated legs.",
+    "description_view_1": "Front view highlighting the twin barrels, symmetrical housing, and the wide stance of the four-legged base.",
+    "description_view_2": "Opposite side view, mirroring view 0, with clear visibility of the mechanical joints and base structure.",
+    "description_view_3": "Rear view displaying the back of the housings, the connection points to the base, and the symmetrical arrangement of the legs.",
+    "category": "rifle",
+    "height": 1.2,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "aluminum",
+        "synthetic polymer",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "aimable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel",
+        "mount",
+        "base",
+        "control panel",
+        "legs",
+        "joint"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "none",
+    "uid": "235502ad66ec49b68b9041b7915666de",
+    "near_synsets": {
+        "gatling_gun.n.01": 0.5257292973187514,
+        "light_arm.n.01": 0.5303564481492803,
+        "rifle.n.01": 0.5318166101635154,
+        "automatic_rifle.n.01": 0.5321622043713998,
+        "shotgun.n.01": 0.5327006426936555
+    },
+    "synset": "automatic_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/235502ad66ec49b68b9041b7915666de",
+        "creator_username": "peterwolf",
+        "creator_display_name": "peterwolf",
+        "creator_profile_url": "https://sketchfab.com/peterwolf"
+    },
+    "filename": "std_235502ad66ec49b68b9041b7915666de.glb",
+    "length": 2.064941644668579,
+    "width": 2.0649404525756836
+}

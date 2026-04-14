@@ -1,0 +1,91 @@
+{
+    "description_long": "This humanoid robot features a pair of sleek, white legs with black joint coverings and angular, futuristic contours. The legs are segmented at the knees and ankles, suggesting advanced articulation for walking or running. The feet are broad and flat, providing stability, and the knee and ankle joints are reinforced with black, possibly rubberized or metallic, protective pads. The overall design is streamlined and minimalistic, with no visible wiring or external mechanisms, indicating a high level of integration. The surface appears smooth and hard, likely constructed from a durable composite or metal alloy. There are no visible sensors, clothing, or decorative elements, emphasizing a utilitarian, functional aesthetic.",
+    "description": "A pair of sleek, white humanoid robot legs with black joint coverings and angular, futuristic contours. The design is minimalistic and highly articulated, with reinforced joints and broad, stable feet.",
+    "description_view_0": "Front view showing both legs with prominent knee and ankle joints, and broad, flat feet.",
+    "description_view_1": "Three-quarter view highlighting the angular contours and the depth of the knee and ankle joints.",
+    "description_view_2": "Rear view displaying the back of the legs and the heel structure of the feet.",
+    "description_view_3": "Side/rear angle emphasizing the calf shape and the articulation at the ankle and knee.",
+    "category": "humanoid robot",
+    "height": 1.1,
+    "max_dimension": 1.1,
+    "materials": [
+        "composite polymer",
+        "metal alloy",
+        "synthetic rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "mass": 28,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "knee joint",
+        "ankle joint",
+        "foot"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "sleek",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.2,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both legs straight and slightly apart, knees and ankles aligned, no visible arms or torso.",
+    "attribute_clothing_style": "Unclothed; only integrated white and black panels with no decorative elements or coverings.",
+    "attribute_facial_features": "No face or head present; only legs are visible.",
+    "attribute_limb_articulation": "Each leg has visible hinge joints at the knee and ankle, allowing for bending and rotation; joints appear robust and designed for a wide range of motion.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "7f25aede515445068bf8326980fe7bff",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5660345537229909,
+        "android.n.01": 0.5661756370368194,
+        "cyborg.n.01": 0.5730611667839294,
+        "robotics.n.01": 0.5810371917355783,
+        "automaton.n.02": 0.5875942567580219
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7f25aede515445068bf8326980fe7bff",
+        "creator_username": "Hmstudio",
+        "creator_display_name": "Hmstudio",
+        "creator_profile_url": "https://sketchfab.com/Hmstudio"
+    },
+    "filename": "std_7f25aede515445068bf8326980fe7bff.glb",
+    "length": 1.8508644104003906,
+    "width": 3.221597194671631
+}

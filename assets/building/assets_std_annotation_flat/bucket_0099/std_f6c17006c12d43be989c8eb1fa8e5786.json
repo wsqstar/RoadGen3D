@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a single-story bungalow with a gable roof, set on a rectangular plot of land bordered by a low brick wall. The front facade features a covered porch with wooden railings and steps leading up to the main entrance, while the rear side includes a patio area with outdoor seating. The roof is dark gray with multiple chimneys and skylights, and the exterior walls are finished in a light color with wooden accents. Large windows are distributed along the front and back, providing ample natural light to the interior. The property includes a driveway and paved walkways, with a spacious lawn surrounding the building. The overall design is simple and functional, typical of suburban residential neighborhoods.",
+    "description": "A single-story bungalow with a gable roof, covered porch, and large windows, set on a rectangular lawn with a driveway and patio.",
+    "description_view_0": "Front view showing the covered porch, main entrance, driveway, and a large lawn.",
+    "description_view_1": "Side view highlighting the gable roof, wooden porch railings, and side entrance.",
+    "description_view_2": "Rear view displaying the patio area with outdoor seating and multiple windows.",
+    "description_view_3": "Opposite side view showing a single window and the driveway extending to the back.",
+    "category": "bungalow",
+    "height": 5.5,
+    "max_dimension": 22.0,
+    "materials": [
+        "concrete",
+        "wood",
+        "glass",
+        "brick",
+        "asphalt_shingles",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.18,
+        0.1,
+        0.1,
+        0.1,
+        0.02,
+        0.05
+    ],
+    "mass": 95000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "porch railing",
+        "steps",
+        "chimney"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "brown",
+        "green",
+        "red"
+    ],
+    "colors_composition": [
+        0.3,
+        0.25,
+        0.15,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Ranch",
+    "attribute_roof_type": "gable",
+    "attribute_number_of_stories": 1,
+    "attribute_porch_presence": true,
+    "attribute_window_arrangement": "asymmetrical with grouped front and rear windows",
+    "uid": "f6c17006c12d43be989c8eb1fa8e5786",
+    "near_synsets": {
+        "bungalow.n.01": 0.3906480463408947,
+        "ranch_house.n.01": 0.4999980503166318,
+        "front_porch.n.01": 0.5150358046240129,
+        "villa.n.02": 0.5176667423391571,
+        "gazebo.n.01": 0.5230664396082872
+    },
+    "synset": "bungalow.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f6c17006c12d43be989c8eb1fa8e5786",
+        "creator_username": "volegv",
+        "creator_display_name": "Oleh Volyk",
+        "creator_profile_url": "https://sketchfab.com/volegv"
+    },
+    "filename": "std_f6c17006c12d43be989c8eb1fa8e5786.glb",
+    "length": 19.42753314971924,
+    "width": 28.14054012298584
+}

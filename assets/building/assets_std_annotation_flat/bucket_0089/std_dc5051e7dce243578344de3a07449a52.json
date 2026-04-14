@@ -1,0 +1,111 @@
+{
+    "description_long": "This gas station features a large, T-shaped layout with a prominent fueling area extending outward from the main building. The structure is primarily composed of light-colored brick walls and a flat, light gray roof, with green accents along the canopy edge. The fueling area is supported by several sturdy columns, and the main building includes multiple garage-style doors and large glass windows, suggesting a service or convenience area. There is a small annex on one side, possibly for storage or office use, and a green awning above one of the windows. The overall design is modern and functional, with clean lines and minimal decorative elements. No visible signage or branding is present on the exterior.",
+    "description": "A modern, T-shaped gas station with a large fueling canopy, brick main building, and green accents. Features include garage doors, glass windows, and a small annex.",
+    "description_view_0": "Side view showing the long main building, the annex, and the underside of the fueling canopy with visible support columns.",
+    "description_view_1": "Front view highlighting the wide fueling area, large glass windows, green awning, and the main entrance facade.",
+    "description_view_2": "Opposite side view displaying the canopy's extension, support columns, and the side of the main building.",
+    "description_view_3": "Rear view showing multiple garage-style doors and the back of the annex, with the canopy extending outward.",
+    "category": "gas station",
+    "height": 5.0,
+    "max_dimension": 32.0,
+    "materials": [
+        "concrete",
+        "brick",
+        "glass",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.1,
+        0.1,
+        0.02,
+        0.08
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "refuelable",
+        "serviceable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "garage door",
+        "window",
+        "fueling area",
+        "awning"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "green",
+        "beige",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.1,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.03,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_fuel_pumps": "None visible.",
+    "attribute_canopy_structure": "A large, flat, rectangular canopy covers the fueling area, supported by four robust columns. The canopy is light gray with a green trim along the edge and appears to be constructed from concrete or metal. No visible lighting or signage is attached to the canopy.",
+    "attribute_station_signage": "None visible.",
+    "attribute_price_display_board": "None visible.",
+    "attribute_convenience_store_entrance": "A main entrance is visible on the front facade, featuring large glass windows and a green awning. The entrance appears to be a single or double manual glass door, but no specific signage or branding is visible above or near the entrance.",
+    "uid": "dc5051e7dce243578344de3a07449a52",
+    "near_synsets": {
+        "service_station.n.01": 0.5161326086294646,
+        "gasoline_station.n.01": 0.5304498858476545,
+        "gas_pump.n.01": 0.5504751395994256,
+        "service_area.n.01": 0.5667256191470941,
+        "gas_tank.n.01": 0.5673569876409147,
+        "flatulence.n.01": -1000.0,
+        "gas.n.02": -1000.0,
+        "place.n.10": -1000.0,
+        "accelerator.n.01": -1000.0,
+        "station.n.05": -1000.0,
+        "station.n.01": -1000.0,
+        "gas.n.01": -1000.0,
+        "natural_gas.n.01": -1000.0,
+        "post.n.01": -1000.0,
+        "station.n.03": -1000.0,
+        "gasoline.n.01": -1000.0
+    },
+    "synset": "gasoline_station.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dc5051e7dce243578344de3a07449a52",
+        "creator_username": "mertbbicak",
+        "creator_display_name": "mertbbicak",
+        "creator_profile_url": "https://sketchfab.com/mertbbicak"
+    },
+    "filename": "std_dc5051e7dce243578344de3a07449a52.glb",
+    "length": 34.35097885131836,
+    "width": 32.02099609375
+}

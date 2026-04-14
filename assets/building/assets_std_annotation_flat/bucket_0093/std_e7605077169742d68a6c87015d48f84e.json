@@ -1,0 +1,97 @@
+{
+    "description_long": "This shotgun features a robust, tactical design with a predominantly matte black finish and metallic accents. The barrel is thick and appears to have venting holes along the top, with a cylindrical metallic section near the receiver. A prominent optical sight is mounted on the top rail, and the body includes a number of mechanical details such as screws, rails, and a visible trigger assembly. The grip is ergonomic and angled, resembling a pistol grip, and the overall build suggests a modern, urban combat application. The trigger guard is rounded and substantial, providing ample space for finger placement. The shotgun's construction appears to be primarily metal with some polymer components, giving it a solid and durable appearance.",
+    "description": "A modern, tactical shotgun with a matte black finish, metallic accents, and an optical sight mounted on top. It features a pistol grip, vented barrel, and robust mechanical details.",
+    "description_view_0": "Front view showing the circular muzzle, vented barrel, and optical sight aligned above the barrel.",
+    "description_view_1": "Side view revealing the full length of the barrel, optical sight, metallic receiver, and ergonomic pistol grip.",
+    "description_view_2": "Rear view highlighting the back of the optical sight, the top rail, and the grip's alignment.",
+    "description_view_3": "Opposite side view displaying the shotgun's mechanical details, grip, and the side profile of the optical sight.",
+    "category": "shotgun",
+    "height": 0.22,
+    "max_dimension": 0.85,
+    "materials": [
+        "steel",
+        "polymer",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 4.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 42,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "aimable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "grip",
+        "barrel",
+        "optical sight",
+        "trigger guard",
+        "magazine/receiver"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "silver",
+        "red"
+    ],
+    "colors_composition": [
+        0.85,
+        0.12,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel with venting holes along the top and a thick, short profile",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with a smooth contour and no visible finger grooves",
+    "uid": "e7605077169742d68a6c87015d48f84e",
+    "near_synsets": {
+        "sawed-off_shotgun.n.01": 0.5294265505991765,
+        "pump_action.n.01": 0.5432653458891229,
+        "shotgun.n.01": 0.5476268787929433,
+        "gas_gun.n.01": 0.5521331031479578,
+        "gun.n.01": 0.561396042938129
+    },
+    "synset": "shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e7605077169742d68a6c87015d48f84e",
+        "creator_username": "scarlequin",
+        "creator_display_name": "scarlequin",
+        "creator_profile_url": "https://sketchfab.com/scarlequin"
+    },
+    "filename": "std_e7605077169742d68a6c87015d48f84e.glb",
+    "length": 0.37264154851436615,
+    "width": 0.04163197800517082
+}

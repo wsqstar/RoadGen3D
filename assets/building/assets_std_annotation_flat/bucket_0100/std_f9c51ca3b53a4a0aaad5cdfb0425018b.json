@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a large, rectangular, multi-compartment trash bin designed for waste separation in public urban environments. The front face features three distinct sections, each labeled with colored text and icons indicating the type of waste: blue for paper, yellow for plastic, and red for general waste. The top of the bin has three open rectangular slots, each corresponding to a compartment below, with colored inserts matching the waste categories. The body is made of sturdy metal with a matte gray finish and has a grid of ventilation or decorative square holes on all sides. There are no visible handles or wheels, and the bin appears to be designed for stationary placement. The overall construction suggests durability and suitability for high-traffic areas such as parks, sidewalks, or public squares.",
+    "description": "A large, gray, metal multi-compartment trash bin with color-coded openings and waste type labels for public recycling and waste separation.",
+    "description_view_0": "Front view showing three labeled compartments with colored icons and text for paper, plastic, and general waste.",
+    "description_view_1": "Side view revealing the depth of the bin and the colored compartment dividers visible from the top.",
+    "description_view_2": "Rear view displaying the plain back with three columns of square holes and no labels or signage.",
+    "description_view_3": "Opposite side view showing the bin's depth and colored dividers, similar to view 1.",
+    "category": "trash bin",
+    "height": 1.0,
+    "max_dimension": 1.2,
+    "materials": [
+        "painted_steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "compartment opening"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "yellow",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.04,
+        0.04,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "flat",
+    "attribute_opening_mechanism": "open-top",
+    "attribute_presence_of_wheels": false,
+    "attribute_handle_design": "absent",
+    "attribute_labeling_or_signage": "Recycling symbols and waste type labels in blue, yellow, and red with corresponding icons and text.",
+    "uid": "f9c51ca3b53a4a0aaad5cdfb0425018b",
+    "near_synsets": {
+        "recycling_bin.n.01": 0.4476478980812232,
+        "garbage.n.03": 0.4794610666141565,
+        "dumpster.n.01": 0.49209785138585954,
+        "litterbin.n.01": 0.5022850419543013,
+        "wastepaper_basket.n.01": 0.5108471838916826,
+        "bin.n.02": -1000.0,
+        "bin.n.01": -1000.0,
+        "folderol.n.01": -1000.0,
+        "bank_identification_number.n.01": -1000.0,
+        "rubbish.n.01": -1000.0,
+        "ashcan.n.01": -1000.0,
+        "trash.n.02": -1000.0,
+        "methamphetamine.n.01": -1000.0
+    },
+    "synset": "recycling_bin.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f9c51ca3b53a4a0aaad5cdfb0425018b",
+        "creator_username": "kalena.b512",
+        "creator_display_name": "kalena.b512",
+        "creator_profile_url": "https://sketchfab.com/kalena.b512"
+    },
+    "filename": "std_f9c51ca3b53a4a0aaad5cdfb0425018b.glb",
+    "length": 0.40713420510292053,
+    "width": 1.0407582521438599
+}

@@ -1,0 +1,98 @@
+{
+    "description_long": "This cathedral features a tall, narrow structure with two prominent towers flanking a central pointed archway, characteristic of Gothic architecture. The facade is adorned with alternating dark and light horizontal bands, creating a striking striped pattern. The upper section reveals exposed trusses and a triangular gable, while the lower section includes large arched entryways. The side views show the depth of the towers and the intricate support structures within. The building appears to be constructed primarily from stone, with visible masonry and open interior spaces. The overall design is imposing and monumental, suitable for a central urban landmark.",
+    "description": "A tall, striped Gothic cathedral with twin towers, pointed arches, and exposed trusses, built mainly from stone. The facade is visually striking with alternating dark and light bands.",
+    "description_view_0": "Front view showing the twin towers, central pointed arch, and striped facade.",
+    "description_view_1": "Side view highlighting the depth of the towers and the roof's truss structure.",
+    "description_view_2": "Rear view similar to the front, with visible arches and striped pattern.",
+    "description_view_3": "Opposite side view, again showing the tower depth and roof structure.",
+    "category": "cathedral",
+    "height": 32.0,
+    "max_dimension": 38.0,
+    "materials": [
+        "stone",
+        "concrete",
+        "glass",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 95000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "shelter",
+        "gathering",
+        "worship"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "archway"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Gothic",
+    "attribute_facade_ornamentation": "The facade features bold horizontal striping and pointed arches, with minimal sculptural ornamentation. Structural elements such as trusses and arches are visually prominent.",
+    "attribute_stained_glass_windows": "none",
+    "attribute_bell_tower_presence": true,
+    "attribute_entry_portal_design": "The main entry portal is a large pointed arch, typical of Gothic design, with no visible doors or elaborate sculptures. The entry is flanked by the two towers and framed by the striped masonry.",
+    "uid": "3d944f2eac0a4dd8956bfd45eb0868b8",
+    "near_synsets": {
+        "church_tower.n.01": 0.47311827047366617,
+        "cathedral.n.01": 0.47412732709125,
+        "cathedral.n.02": 0.47549904307734275,
+        "gothic.n.03": 0.48599782774708705,
+        "pointed_arch.n.01": 0.520143205105383
+    },
+    "synset": "cathedral.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3d944f2eac0a4dd8956bfd45eb0868b8",
+        "creator_username": "mdzhang",
+        "creator_display_name": "Myles Zhang",
+        "creator_profile_url": "https://sketchfab.com/mdzhang"
+    },
+    "filename": "std_3d944f2eac0a4dd8956bfd45eb0868b8.glb",
+    "length": 21.870413780212402,
+    "width": 22.824316024780273
+}

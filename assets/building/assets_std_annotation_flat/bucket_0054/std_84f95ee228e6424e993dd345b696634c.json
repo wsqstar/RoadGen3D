@@ -1,0 +1,101 @@
+{
+    "description_long": "This awning structure features a sloped red canopy supported by a robust frame, providing shelter over a partially enclosed area. The canopy is made of a solid material, likely metal or corrugated plastic, and is supported by vertical posts and beams. Beneath the awning, there is a furnished space with tables and chairs, suggesting its use as an outdoor seating or dining area. The flooring beneath the awning is striped in alternating red and white, adding a decorative touch and visual contrast. The structure is attached to a partial wall on one side, with open access on the other, allowing easy entry and exit. The overall design is functional and visually striking, suitable for urban environments such as cafes, patios, or sidewalk seating areas.",
+    "description": "A sloped red awning with a fixed frame shelters a furnished, striped-floor seating area, partially enclosed by walls and open on one side. The structure is visually bold and designed for outdoor urban use.",
+    "description_view_0": "Side view showing the sloped red canopy, partial wall, and open entryway.",
+    "description_view_1": "Front view revealing the furnished seating area, striped flooring, and full canopy coverage.",
+    "description_view_2": "Opposite side view highlighting the canopy's slope, interior furnishings, and open access.",
+    "description_view_3": "Rear view displaying the solid back wall and the extent of the striped flooring.",
+    "category": "awning",
+    "height": 2.5,
+    "max_dimension": 5.0,
+    "materials": [
+        "metal",
+        "plastic",
+        "wood",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shelter",
+        "shade",
+        "supporting"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "canopy",
+        "posts",
+        "beams",
+        "furniture"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "red",
+        "white",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_mounting_location": "attached to a partial wall and supported by posts on a patio or sidewalk",
+    "attribute_canopy_pattern": "solid red with no visible decorative motifs",
+    "attribute_edge_trim_style": "straight edge with no decorative trim",
+    "attribute_branding_or_signage": "none",
+    "attribute_support_structure_type": "fixed frame with vertical posts and horizontal beams",
+    "uid": "84f95ee228e6424e993dd345b696634c",
+    "near_synsets": {
+        "awning.n.01": 0.5298614149811594,
+        "gazebo.n.01": 0.5319865971208116,
+        "umbrella_tent.n.01": 0.5411047066831053,
+        "canopy.n.03": 0.5449854420184091,
+        "shelter.n.02": 0.5480481031018994
+    },
+    "synset": "awning.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/84f95ee228e6424e993dd345b696634c",
+        "creator_username": "arech",
+        "creator_display_name": "arech",
+        "creator_profile_url": "https://sketchfab.com/arech"
+    },
+    "filename": "std_84f95ee228e6424e993dd345b696634c.glb",
+    "length": 5.069561958312988,
+    "width": 5.807030439376831
+}

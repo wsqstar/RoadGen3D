@@ -1,0 +1,89 @@
+{
+    "description_long": "This is a robust, industrial-style barrow constructed primarily from rusted metal, giving it a weathered, utilitarian appearance. The main body is a deep, rectangular tray with thick walls, suitable for carrying heavy loads such as rocks, coal, or debris. It is supported by two large, spoked metal wheels mounted on a solid axle beneath the tray, allowing for movement across rough surfaces. The surface of the barrow is heavily textured with visible rust and pitting, indicating prolonged exposure to the elements. There are no visible handles, suggesting it may be pushed or pulled by gripping the tray itself. The interior is spacious and open, making it effective for transporting bulk materials in urban or industrial settings.",
+    "description": "A heavy-duty, rusted metal barrow with a deep rectangular tray and two large spoked wheels, designed for transporting bulk materials. Its surface is rough and weathered, emphasizing its industrial utility.",
+    "description_view_0": "Front view showing the wide, open tray and both large spoked wheels beneath the body.",
+    "description_view_1": "Side view highlighting the deep, rectangular tray and the rounded front profile, with one wheel partially visible.",
+    "description_view_2": "Rear view similar to the front, displaying the tray's open back and both wheels clearly.",
+    "description_view_3": "Opposite side view, again showing the tray's depth and the rounded rear profile, with one wheel visible.",
+    "category": "barrow",
+    "height": 0.8,
+    "max_dimension": 1.2,
+    "materials": [
+        "rusted metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "tray"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "rust brown",
+        "dark brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 2,
+    "attribute_handle_type": "none visible",
+    "attribute_wheel_position": "dual side-mounted beneath tray",
+    "attribute_tray_depth": 0.6,
+    "attribute_presence_of_support_legs": false,
+    "uid": "82b490fd735e472db2220f3b12d3e47e",
+    "near_synsets": {
+        "barrow.n.03": 0.45948313998946433,
+        "cart.n.01": 0.5169711192581667,
+        "crowbar.n.01": 0.5226668273894205,
+        "barrow.n.01": 0.5305262649749415,
+        "handbarrow.n.01": 0.5310292342215185,
+        "burial_mound.n.01": -1000.0
+    },
+    "synset": "handbarrow.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/82b490fd735e472db2220f3b12d3e47e",
+        "creator_username": "Mehrus",
+        "creator_display_name": "Mateus Schwaab",
+        "creator_profile_url": "https://sketchfab.com/Mehrus"
+    },
+    "filename": "std_82b490fd735e472db2220f3b12d3e47e.glb",
+    "length": 0.6883367300033569,
+    "width": 1.1794379949569702
+}

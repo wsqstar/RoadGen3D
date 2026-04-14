@@ -1,0 +1,117 @@
+{
+    "description_long": "This object is a covered storage tank installation featuring two large cylindrical tanks and a rectangular tank, all housed under a pitched red metal roof supported by wooden posts. The tanks are connected by a network of blue pipes, with visible inlet and outlet connections, and a prominent valve at the front. The structure sits on a solid black base, likely concrete, providing stability and elevation. The tanks appear to be made of metal or heavy-duty plastic, with the roof and pipes also constructed from metal or plastic materials. The setup is designed for outdoor use, offering protection from the elements and facilitating fluid storage and distribution. The overall design suggests utility in urban or semi-industrial environments, such as water or chemical storage.",
+    "description": "A covered storage tank system with two large cylindrical tanks and a rectangular tank, connected by blue pipes and housed under a red pitched roof on a solid base.",
+    "description_view_0": "Front view showing the rectangular tank, blue piping, and a prominent valve beneath the pitched roof.",
+    "description_view_1": "Side view highlighting the two large red cylindrical tanks and the connecting blue pipes.",
+    "description_view_2": "Rear view displaying the back of the rectangular tank and the wooden support structure under the roof.",
+    "description_view_3": "Opposite side view with the two cylindrical tanks and a greenish box-like component visible.",
+    "category": "storage tank",
+    "height": 2.2,
+    "max_dimension": 3.0,
+    "materials": [
+        "metal",
+        "plastic",
+        "wood",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 650,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "valve",
+        "pipe",
+        "tank lid",
+        "roof"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "blue",
+        "gray",
+        "brown",
+        "black",
+        "green"
+    ],
+    "colors_composition": [
+        0.35,
+        0.15,
+        0.25,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_location": "urban rooftop",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [
+        "inlet pipe",
+        "outlet valve",
+        "connecting pipe"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_architectural_style": "rectangular horizontal with pitched roof",
+    "uid": "02e6bb4187324e32bbb641ff14748f57",
+    "near_synsets": {
+        "tank.n.02": 0.5057087912379901,
+        "tank_farm.n.01": 0.5249737086053446,
+        "reservoir.n.03": 0.5310653951386022,
+        "water_tower.n.01": 0.542707079806679,
+        "cistern.n.03": 0.5479470754457905,
+        "storage.n.03": -1000.0,
+        "storage.n.04": -1000.0,
+        "storage.n.01": -1000.0,
+        "repositing.n.01": -1000.0,
+        "cooler.n.03": -1000.0,
+        "memory.n.04": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "tank.n.03": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "tank.n.01": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/02e6bb4187324e32bbb641ff14748f57",
+        "creator_username": "AnshiNoWara",
+        "creator_display_name": "AnshiNoWara",
+        "creator_profile_url": "https://sketchfab.com/AnshiNoWara"
+    },
+    "filename": "std_02e6bb4187324e32bbb641ff14748f57.glb",
+    "length": 2.3745977878570557,
+    "width": 1.696459412574768
+}

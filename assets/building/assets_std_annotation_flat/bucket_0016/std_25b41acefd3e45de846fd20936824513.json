@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a sleek, angular airplane with a predominantly red exterior and a futuristic, stealth-inspired design. The fuselage is sharply contoured, with a pointed nose and a canopy set near the front, featuring black and orange geometric accents. The wings are sharply swept back and positioned low on the fuselage, giving the aircraft an aggressive, high-speed appearance. Twin engine nacelles are integrated into the body, and the tail section features a single vertical stabilizer with pronounced horizontal stabilizers. The surface is smooth and hard, with minimal visible panel lines or rivets, suggesting advanced composite construction. The overall design is reminiscent of modern fighter jets, optimized for aerodynamic efficiency and maneuverability.",
+    "description": "A red, angular, stealth-inspired airplane with swept-back low wings, a pointed nose, and a single vertical tail fin. The design features black and orange accents and a smooth, hard surface.",
+    "description_view_0": "Front view shows the pointed nose, forward canopy, and sharply swept low wings extending outward.",
+    "description_view_1": "Side view highlights the low-wing configuration, angular fuselage, and integrated engine nacelles.",
+    "description_view_2": "Rear view displays the single vertical stabilizer, horizontal stabilizers, and the streamlined tail section.",
+    "description_view_3": "Opposite side view reveals the wing sweep, engine placement, and the overall aerodynamic profile.",
+    "category": "airplane",
+    "height": 2.5,
+    "max_dimension": 15.0,
+    "materials": [
+        "composite",
+        "aluminum",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "canopy",
+        "cockpit controls",
+        "landing gear",
+        "engine access panels"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "orange",
+        "gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "sleek",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, sharply swept wings with no visible winglets or dihedral/anhedral angles; design is optimized for high-speed performance.",
+    "attribute_engine_type": "Twin jet engines integrated into the fuselage sides.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "Retractable landing gear; specific gear units not visible.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a single canopy, likely single-seat based on size and design.",
+    "uid": "25b41acefd3e45de846fd20936824513",
+    "near_synsets": {
+        "aircraft.n.01": 0.518736005568231,
+        "stealth_aircraft.n.01": 0.5372535134614228,
+        "airplane.n.01": 0.5388457015646767,
+        "delta_wing.n.01": 0.5501763673293558,
+        "monoplane.n.01": 0.5549693405725592
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/25b41acefd3e45de846fd20936824513",
+        "creator_username": "countdowntozero",
+        "creator_display_name": "Shmupfreak",
+        "creator_profile_url": "https://sketchfab.com/countdowntozero"
+    },
+    "filename": "std_25b41acefd3e45de846fd20936824513.glb",
+    "length": 6.351235389709473,
+    "width": 5.142672061920166
+}

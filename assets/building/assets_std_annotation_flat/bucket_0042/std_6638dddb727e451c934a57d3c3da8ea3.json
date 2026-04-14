@@ -1,0 +1,106 @@
+{
+    "description_long": "This humanoid robot features a robust, industrial design with a predominantly orange armored exterior, accented by white markings and serial numbers. Its upper body is broad and angular, with two large, multi-barreled rotary cannons mounted on each arm, suggesting heavy-duty or combat functionality. The legs are mechanical and jointed, designed for stability and mobility, with visible hydraulic components and reinforced feet. The back of the robot displays coiled cables and what appear to be exhaust vents or cooling fins, as well as two prominent antennae or sensor masts extending upward. The front torso is detailed with warning labels and a central chest plate, while the head is integrated into the body, lacking a distinct neck. The overall appearance is utilitarian and militaristic, suitable for urban patrol or defense scenarios.",
+    "description": "A heavily armored, orange humanoid robot with dual rotary cannons, mechanical legs, and prominent antennae, designed for urban combat or patrol. Its industrial build features visible hydraulics, warning labels, and reinforced plating.",
+    "description_view_0": "Front view shows the robot's broad chest, integrated head, dual rotary cannons, and upright antennae, with visible warning labels and serial numbers.",
+    "description_view_1": "Left side view highlights the length of the rotary cannons, the angular torso, and the mechanical structure of the legs and arms.",
+    "description_view_2": "Rear view reveals coiled cables, cooling fins, and the back of the armored plating, with both legs and arms visible from behind.",
+    "description_view_3": "Right side view mirrors the left, showing the rotary cannons, arm mechanisms, and the side profile of the torso and legs.",
+    "category": "humanoid robot",
+    "height": 2.4,
+    "max_dimension": 2.8,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "glass",
+        "rubber",
+        "copper",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.18,
+        0.1,
+        0.03,
+        0.05,
+        0.04,
+        0.05
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 9500,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotary cannon",
+        "antenna",
+        "arm joint",
+        "leg joint",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "black",
+        "white",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.12,
+        0.08,
+        0.06,
+        0.04
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.32,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms extended forward, rotary cannons parallel to the ground, legs straight and feet planted firmly. Antennae are raised vertically from the back.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated armored panels with industrial markings and warning labels.",
+    "attribute_facial_features": "No distinct facial features; head is integrated into the torso with a flat, armored front and no visible eyes, mouth, or nose.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints, allowing for a wide range of motion. Limbs appear robust and rigid, designed for strength rather than flexibility.",
+    "attribute_presence_of_sensors": "Possible sensors on the front torso and arm mounts, as well as antennae on the back, but no explicit cameras or microphones are visible.",
+    "uid": "6638dddb727e451c934a57d3c3da8ea3",
+    "near_synsets": {
+        "android.n.01": 0.539077269244859,
+        "cyborg.n.01": 0.5510441339595146,
+        "robotics_equipment.n.01": 0.554720673208703,
+        "automaton.n.02": 0.5581555301317096,
+        "automaton.n.03": 0.5910173766552612
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6638dddb727e451c934a57d3c3da8ea3",
+        "creator_username": "Abllom",
+        "creator_display_name": "Abllom",
+        "creator_profile_url": "https://sketchfab.com/Abllom"
+    },
+    "filename": "std_6638dddb727e451c934a57d3c3da8ea3.glb",
+    "length": 2.048255443572998,
+    "width": 1.6348824501037598
+}

@@ -1,0 +1,88 @@
+{
+    "description_long": "This object consists of two interlinked oval loops, resembling a robust chain link or a double-looped hanger. The loops are elongated and have a smooth, rounded profile, with one loop slightly larger than the other. The material appears to be a solid, dark metal, giving it a sturdy and industrial look. The surface is uniform in color and finish, with no visible seams or joints, suggesting it is manufactured as a single piece or welded seamlessly. The object is hollow in the center of each loop, allowing for attachment or suspension of other items. Its design is minimalistic, functional, and suitable for use in urban environments such as garages, utility rooms, or public spaces for hanging or securing objects.",
+    "description": "A pair of interlinked, oval-shaped metal loops with a smooth, dark finish, resembling a heavy-duty hanger or chain link.",
+    "description_view_0": "A top-down view showing the larger oval loop with its hollow center.",
+    "description_view_1": "A side view displaying both interlinked loops, clearly showing their connection and relative sizes.",
+    "description_view_2": "A bottom-up view similar to view 0, focusing on the larger loop's hollow center.",
+    "description_view_3": "A side view from the opposite direction, again showing both interlinked loops and their connection.",
+    "category": "hanger",
+    "height": 0.08,
+    "max_dimension": 0.25,
+    "materials": [
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 0.6,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 6,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "hangable",
+        "attachable",
+        "linkable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "large loop",
+        "small loop"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.0,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "single",
+    "attribute_location_relative_to_buildings": "isolated",
+    "attribute_presence_of_signage": "none",
+    "attribute_entryway_type": "not visible",
+    "attribute_roof_structure": "not visible",
+    "attribute_door_size": "not visible",
+    "uid": "97a69962dec9452791f17446345000e9",
+    "near_synsets": {
+        "hanger.n.02": 0.44675775522412936,
+        "hanger.n.01": 0.47989284404376,
+        "coat_hanger.n.01": 0.4924931507644902,
+        "irons.n.01": 0.518228507551509,
+        "hang.n.02": 0.5273639093715587
+    },
+    "synset": "coat_hanger.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/97a69962dec9452791f17446345000e9",
+        "creator_username": "lunev1996.al",
+        "creator_display_name": "Lunev",
+        "creator_profile_url": "https://sketchfab.com/lunev1996.al"
+    },
+    "filename": "std_97a69962dec9452791f17446345000e9.glb",
+    "length": 0.08000006899237633,
+    "width": 0.20811989903450012
+}

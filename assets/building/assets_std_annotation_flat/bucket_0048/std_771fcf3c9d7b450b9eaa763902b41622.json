@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a large, cylindrical vertical storage tank with a rusted, weathered metal exterior and a reinforced concrete base. The tank features a prominent circular railing at the top, enclosing a hatch or access port, and is equipped with several thick, industrial pipes running vertically and horizontally along its sides. The pipes appear to serve as inlet and outlet conduits, with some sections extending from the top to the base, and others branching off at various heights. The surface of the tank is marked by visible seams, rivets, and patches of discoloration, suggesting long-term exposure to the elements. The lower section is encased in a rough, gray concrete collar, providing stability and protection. This type of tank is commonly found in industrial or utility settings, where it is used to store liquids or gases.",
+    "description": "A large, rusted cylindrical storage tank with a concrete base and multiple industrial pipes attached to its sides. The tank features a top railing and weathered metal surface, typical of urban or industrial environments.",
+    "description_view_0": "Front view showing the main cylindrical body, top railing, and a prominent vertical pipe running along the right side.",
+    "description_view_1": "Side view highlighting multiple pipes attached to the tank, including a curved pipe extending from the top and another running down to the base.",
+    "description_view_2": "Rear view displaying two circular access ports and additional piping, with the concrete base clearly visible.",
+    "description_view_3": "Opposite side view showing the tank's cylindrical form, top railing, and a single long pipe extending vertically.",
+    "category": "storage tank",
+    "height": 3.2,
+    "max_dimension": 1.8,
+    "materials": [
+        "steel",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 3200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "connectable",
+        "fillable",
+        "drainable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pipe",
+        "hatch",
+        "access port"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [
+        "inlet pipe",
+        "outlet pipe"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_architectural_style": "cylindrical vertical",
+    "uid": "771fcf3c9d7b450b9eaa763902b41622",
+    "near_synsets": {
+        "tank.n.02": 0.5054178302779805,
+        "tank_farm.n.01": 0.5308877790765348,
+        "reservoir.n.03": 0.5389819795738708,
+        "water_tower.n.01": 0.5599419095096768,
+        "gas_tank.n.01": 0.5653987949868869,
+        "storage.n.04": -1000.0,
+        "tank.n.01": -1000.0,
+        "memory.n.04": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "storage.n.01": -1000.0,
+        "repositing.n.01": -1000.0,
+        "storage.n.03": -1000.0,
+        "cooler.n.03": -1000.0,
+        "tank.n.03": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/771fcf3c9d7b450b9eaa763902b41622",
+        "creator_username": "scinnyfinny",
+        "creator_display_name": "Fruit_Route",
+        "creator_profile_url": "https://sketchfab.com/scinnyfinny"
+    },
+    "filename": "std_771fcf3c9d7b450b9eaa763902b41622.glb",
+    "length": 1.8080411553382874,
+    "width": 1.9280223846435547
+}

@@ -1,0 +1,111 @@
+{
+    "description_long": "This is an ornate wrought iron gate flanked by two large stone pillars, each topped with a decorative finial. The gate features intricate scrollwork and pointed spikes along the top, suggesting both security and elegance. The pillars are connected to low stone walls extending outward on both sides, providing a sense of enclosure. In front of the gate, there are two classic street lamps with multiple lanterns, mounted on square stone bases. The overall design is reminiscent of grand entrances to estates, parks, or historic urban properties. The materials and craftsmanship evoke a sense of permanence and sophistication, suitable for prestigious urban settings.",
+    "description": "An ornate wrought iron gate with stone pillars, decorative finials, and classic street lamps, evoking a grand urban entrance.",
+    "description_view_0": "Front view showing the full gate, both stone pillars, ornate ironwork, and two street lamps.",
+    "description_view_1": "Side view highlighting the depth of the stone pillar and the alignment of the street lamps.",
+    "description_view_2": "Rear view of the gate and pillars, with less detail on the ironwork and lamps visible.",
+    "description_view_3": "Opposite side view showing the other pillar's depth and the street lamps' arrangement.",
+    "category": "gate",
+    "height": 3.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "stone",
+        "wrought iron",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 8000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "gate doors",
+        "handle",
+        "lock",
+        "lamp"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "bicycle",
+        "car"
+    ],
+    "colors": [
+        "gray",
+        "black",
+        "white",
+        "gold"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_gate_type": "driveway gate",
+    "attribute_opening_mechanism": "manual swing",
+    "attribute_decorative_elements": [
+        "ornate scrollwork",
+        "spikes",
+        "finials"
+    ],
+    "attribute_locking_system": "latch",
+    "attribute_surrounding_structure": "stone pillars and stone wall",
+    "uid": "4507b043551345adb03933844db60241",
+    "near_synsets": {
+        "portcullis.n.01": 0.5128781532305896,
+        "gateway.n.01": 0.5161184214541807,
+        "portal.n.01": 0.5312891503482351,
+        "lock-gate.n.01": 0.5332064333560115,
+        "portiere.n.01": 0.5394457109609612,
+        "gate.n.03": -1000.0,
+        "gate.n.02": -1000.0,
+        "gate.n.04": -1000.0,
+        "gate.n.01": -1000.0
+    },
+    "synset": "gate.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4507b043551345adb03933844db60241",
+        "creator_username": "dannik",
+        "creator_display_name": "Dannik",
+        "creator_profile_url": "https://sketchfab.com/dannik"
+    },
+    "filename": "std_4507b043551345adb03933844db60241.glb",
+    "length": 3.5882004499435425,
+    "width": 7.995219707489014
+}

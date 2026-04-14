@@ -1,0 +1,101 @@
+{
+    "description_long": "This object consists of two parallel metallic rails, each a solid gray color, mounted atop a series of evenly spaced, rectangular wooden sleepers. The rails are straight and run the full length of the object, while the sleepers are arranged perpendicular to the rails, providing structural support. The wood of the sleepers displays a range of brown tones, suggesting a natural, untreated finish. There is no visible ballast bed or gravel beneath the sleepers, and the rails are not embedded in any pavement. The object is compact, representing a short segment of standard railway track, and lacks any additional features such as signage or electrical components. The overall construction is robust, with the rails and sleepers tightly joined.",
+    "description": "A short segment of railway track with two parallel gray metal rails mounted on brown wooden sleepers, without ballast or pavement.",
+    "description_view_0": "Front view showing the ends of the rails and the full width of the wooden sleepers.",
+    "description_view_1": "Side view highlighting the length of the rails and the narrow profile of the sleepers.",
+    "description_view_2": "Rear view similar to the front, showing the opposite ends of the rails and sleepers.",
+    "description_view_3": "Opposite side view, again emphasizing the rails' length and the sleepers' arrangement.",
+    "category": "railway track",
+    "height": 0.15,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.45,
+        0.05
+    ],
+    "mass": 60,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "guiding"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "rails",
+        "sleepers"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.5,
+        0.5
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_parallel_metal_rails": true,
+    "attribute_wooden_or_concrete_sleepers": "wood",
+    "attribute_ballast_bed": false,
+    "attribute_embedded_in_pavement": false,
+    "attribute_railway_crossing_signage": false,
+    "uid": "e5a71540d31940408366252c7c7c55df",
+    "near_synsets": {
+        "railroad_bed.n.01": 0.4386465255507295,
+        "track.n.09": 0.4623962281480688,
+        "line.n.14": 0.4646665635727882,
+        "railroad_track.n.01": 0.4720712373704818,
+        "switch.n.04": 0.48041797640851197,
+        "track.n.07": -1000.0,
+        "track.n.10": -1000.0,
+        "cut.n.08": -1000.0,
+        "path.n.04": -1000.0,
+        "racetrack.n.01": -1000.0,
+        "track.n.03": -1000.0,
+        "track.n.08": -1000.0,
+        "track.n.11": -1000.0,
+        "track.n.06": -1000.0,
+        "lead.n.03": -1000.0,
+        "railway.n.01": -1000.0
+    },
+    "synset": "track.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e5a71540d31940408366252c7c7c55df",
+        "creator_username": "JDanielHE",
+        "creator_display_name": "JDanielHE",
+        "creator_profile_url": "https://sketchfab.com/JDanielHE"
+    },
+    "filename": "std_e5a71540d31940408366252c7c7c55df.glb",
+    "length": 1.1999984979629517,
+    "width": 1.199998378753662
+}

@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a Soviet-era T-34 medium tank, characterized by its low, sloped armor profile and robust construction. The vehicle features a large cylindrical turret with a prominent long-barreled cannon extending forward, and the hull is covered in thick, angled armor plating. The tank rides on wide tracks supported by multiple large road wheels, providing stability and traction over rough terrain. Visible details include external fuel tanks, storage boxes, and handrails along the sides, as well as a hatch and periscopes on the turret. The exterior is painted in a dark green color with white stenciled numbers on the turret, and the surface finish appears matte with some weathering. The tank's design is utilitarian, with minimal decorative elements and a focus on battlefield durability.",
+    "description": "A dark green Soviet T-34 tank with a long cannon, sloped armor, and white stenciled numbers on the turret. It features wide tracks, multiple road wheels, and a robust, utilitarian design.",
+    "description_view_0": "Front view showing the sloped glacis plate, central cannon, and the tank's compact, armored profile.",
+    "description_view_1": "Left side view highlighting the long barrel, turret with '314' marking, and the full set of road wheels and tracks.",
+    "description_view_2": "Rear view displaying the engine deck, rear armor, and exhaust outlets, with the cannon pointing away.",
+    "description_view_3": "Right side view showing the mirrored features of the left, including the turret number and track system.",
+    "category": "combat tactical  vehicle",
+    "height": 2.4,
+    "max_dimension": 6.7,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.01,
+        0.05,
+        0.01
+    ],
+    "mass": 26000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "wheels",
+        "tracks",
+        "periscope",
+        "fuel tank",
+        "storage box"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.05,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the turret; no additional weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped steel armor plating; turret and hull both heavily armored with no visible modular or reactive panels.",
+    "attribute_camouflage_pattern": "Solid dark green paint with no visible camouflage pattern.",
+    "attribute_military_markings": "White stenciled number '314' on both sides of the turret.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "95ed16e23e0445b5b6fe621e0c582d40",
+    "near_synsets": {
+        "tank.n.01": 0.4945185448503993,
+        "military_vehicle.n.01": 0.5341077647895506,
+        "tank_destroyer.n.01": 0.5435733726779743,
+        "reconnaissance_vehicle.n.01": 0.5497788193192352,
+        "panzer.n.01": 0.5499333962370261,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/95ed16e23e0445b5b6fe621e0c582d40",
+        "creator_username": "Brozuca",
+        "creator_display_name": "Brozuca",
+        "creator_profile_url": "https://sketchfab.com/Brozuca"
+    },
+    "filename": "std_95ed16e23e0445b5b6fe621e0c582d40.glb",
+    "length": 6.68676495552063,
+    "width": 2.3532508611679077
+}

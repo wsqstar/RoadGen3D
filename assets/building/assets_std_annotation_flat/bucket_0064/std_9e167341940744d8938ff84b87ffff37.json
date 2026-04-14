@@ -1,0 +1,100 @@
+{
+    "description_long": "This humanoid robot features a blocky, pixelated design reminiscent of retro or voxel art styles, with a predominantly metallic gray exterior. Its head is a rectangular prism with a single vertical antenna on top, and the face displays expressive, cartoon-like eyes and a rectangular mouth set into a beige panel. The torso is a simple rectangular box, and the arms and legs are segmented, suggesting mechanical joints for articulation. The hands are claw-like with three prongs each, and the feet are flat and square, providing stability. The robot's overall appearance is utilitarian yet playful, with visible seams and joints that hint at mechanical construction.",
+    "description": "A blocky, metallic gray humanoid robot with expressive eyes, segmented limbs, and claw-like hands, styled in a retro voxel art aesthetic.",
+    "description_view_0": "The back of the robot is visible, showing the rectangular torso, segmented arms, and legs, with the antenna on top of the head.",
+    "description_view_1": "The left side profile highlights the arm's articulation and the flat, square foot, with the antenna and head shape clearly visible.",
+    "description_view_2": "The front view reveals the robot's expressive face, including large eyes and a rectangular mouth, as well as the detailed hands and feet.",
+    "description_view_3": "The right side profile mirrors the left, showing the arm's segments, the side of the head, and the antenna.",
+    "category": "humanoid robot",
+    "height": 1.6,
+    "max_dimension": 0.7,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 7,
+    "movable": true,
+    "required_force": 650,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "rotatable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "antenna",
+        "arms",
+        "hands",
+        "legs",
+        "eyes",
+        "mouth"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "beige",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms slightly bent at the elbows and hands angled inward, legs straight and feet flat on the ground, head facing forward.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated metallic panels and mechanical joints with no decorative coverings.",
+    "attribute_facial_features": "The face has large, rectangular, cartoon-like eyes with black pupils and a beige background, a rectangular mouth, and no visible nose; the features are expressive and stylized.",
+    "attribute_limb_articulation": "Arms and legs are segmented with visible hinge-like joints at the shoulders, elbows, hips, and knees; hands have three articulated prongs each, and feet are rigid and flat.",
+    "attribute_presence_of_sensors": "None visible",
+    "uid": "9e167341940744d8938ff84b87ffff37",
+    "near_synsets": {
+        "android.n.01": 0.5666282161616152,
+        "cyborg.n.01": 0.5872815508996106,
+        "automaton.n.02": 0.5954658246400726,
+        "robotics_equipment.n.01": 0.6041504450557476,
+        "animatronics.n.01": 0.6055603322123118
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9e167341940744d8938ff84b87ffff37",
+        "creator_username": "FinchyMcFinch",
+        "creator_display_name": "Finchy",
+        "creator_profile_url": "https://sketchfab.com/FinchyMcFinch"
+    },
+    "filename": "std_9e167341940744d8938ff84b87ffff37.glb",
+    "length": 0.46420425176620483,
+    "width": 1.0543755292892456
+}

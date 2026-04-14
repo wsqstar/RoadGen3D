@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a single-story bungalow with a rectangular footprint, featuring a light-colored exterior with horizontal siding and multiple large windows with decorative shutters. The front facade includes a main entrance with a small step and a set of windows symmetrically arranged on either side. A spacious garage is attached to one side, with a visible car parked inside and a wide driveway leading up to it. The roof is flat and extends over the entire structure, with a clear separation between the main living area and the garage. The rear of the bungalow features double glass doors opening onto a patio area, and the interior layout is divided into several rooms, including bedrooms, bathrooms, and communal spaces. The overall design is simple and functional, with a focus on accessibility and open living spaces.",
+    "description": "A single-story, light-colored bungalow with a flat roof, attached garage, and large windows with shutters. The layout is open and accessible, with a prominent front entrance and rear patio doors.",
+    "description_view_0": "Front view showing the main entrance, symmetrical windows with shutters, and the attached garage with a visible car.",
+    "description_view_1": "Rear angled view highlighting the back entrance, patio area, and the separation between the garage and main living spaces.",
+    "description_view_2": "Back view displaying double glass doors leading to a patio, with windows and the garage visible on the right.",
+    "description_view_3": "Side view focusing on the garage doors, parked car, and the arrangement of rooms along the side of the bungalow.",
+    "category": "bungalow",
+    "height": 4.0,
+    "max_dimension": 22.0,
+    "materials": [
+        "wood",
+        "glass",
+        "concrete",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 95000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "garage door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "beige",
+        "brown"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Ranch",
+    "attribute_roof_type": "flat",
+    "attribute_number_of_stories": 1,
+    "attribute_porch_presence": false,
+    "attribute_window_arrangement": "symmetrical front-facing windows with grouped side and rear windows",
+    "uid": "0f96bb5533a349328927ae534a67f5ef",
+    "near_synsets": {
+        "bungalow.n.01": 0.41486232119824157,
+        "ranch_house.n.01": 0.5147632317187464,
+        "villa.n.02": 0.5200800604652701,
+        "semi-detached_house.n.01": 0.5422904395317144,
+        "shed.n.01": 0.546145177717067
+    },
+    "synset": "bungalow.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/0f96bb5533a349328927ae534a67f5ef",
+        "creator_username": "homedesign3d",
+        "creator_display_name": "Home Design 3D",
+        "creator_profile_url": "https://sketchfab.com/homedesign3d"
+    },
+    "filename": "std_0f96bb5533a349328927ae534a67f5ef.glb",
+    "length": 24.12666606903076,
+    "width": 24.958900451660156
+}

@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a medium-sized multirotor drone with a robust, circular central body and six evenly spaced arms, each supporting a single rotor with two blades. The drone features fixed, tubular landing gear that extends downward, providing stability during takeoff and landing. A gimbal-mounted camera is visible beneath the central body, indicating its use for aerial photography or surveillance. The overall structure appears to be constructed from lightweight composite materials, likely carbon fiber or reinforced plastic, with some metallic components for strength. The drone's design is utilitarian, with minimal decorative elements and a focus on functionality and durability. Its dark, matte finish helps reduce glare and visual detection in urban environments.",
+    "description": "A six-rotor drone with a circular body, fixed tubular landing gear, and a gimbal-mounted camera beneath. The design is utilitarian, with a dark matte finish and robust construction.",
+    "description_view_0": "Front view showing the circular body, six rotors, fixed landing gear, and the gimbal-mounted camera clearly visible beneath.",
+    "description_view_1": "Angled top-down view highlighting the rotor arrangement and the tubular landing gear extending below the body.",
+    "description_view_2": "Rear view displaying the symmetrical rotor arms and the landing gear, with the camera less visible from this angle.",
+    "description_view_3": "Angled rear-top view emphasizing the rotor configuration and the landing gear, with the camera partially visible.",
+    "category": "drone",
+    "height": 0.45,
+    "max_dimension": 0.85,
+    "materials": [
+        "carbon fiber",
+        "plastic",
+        "aluminum",
+        "glass",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.05,
+        0.08,
+        0.02
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotor",
+        "landing gear",
+        "camera gimbal",
+        "battery compartment"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 6,
+    "attribute_rotor_configuration": "hexacopter '+'",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": true,
+    "attribute_propeller_guard_presence": false,
+    "uid": "aaca7f2247e2461f85c800feb6710043",
+    "near_synsets": {
+        "single-rotor_helicopter.n.01": 0.5507822627796479,
+        "rotor.n.03": 0.5612293787855088,
+        "drone.n.04": 0.5620518914713236,
+        "skyhook.n.01": 0.5790110293538618,
+        "main_rotor.n.01": 0.5798106691554804,
+        "dawdler.n.01": -1000.0,
+        "drone.n.01": -1000.0,
+        "monotone.n.01": -1000.0,
+        "drone.n.05": -1000.0
+    },
+    "synset": "drone.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/aaca7f2247e2461f85c800feb6710043",
+        "creator_username": "umkhero",
+        "creator_display_name": "umkhero",
+        "creator_profile_url": "https://sketchfab.com/umkhero"
+    },
+    "filename": "std_aaca7f2247e2461f85c800feb6710043.glb",
+    "length": 0.5505703240633011,
+    "width": 0.9036650955677032
+}

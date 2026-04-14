@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a modern naval warship with a sleek, angular hull and a large, flat deck area at the stern, likely designed for helicopter operations. The hull is painted gray with a red lower section, and the number '15' is prominently displayed on the bow. The superstructure is compact and angular, featuring a central bridge tower with multiple radar and communication arrays. The deck is marked with a white landing circle and lines, and there are various fixtures such as antennas and possible weapon mounts. The ship's bow is sharp and streamlined, while the stern is squared off to accommodate the flight deck. The overall design suggests a vessel built for both speed and versatility in maritime operations.",
+    "description": "A modern gray naval warship with a large helicopter deck, angular superstructure, and visible radar and communication equipment.",
+    "description_view_0": "Rear view showing the wide helicopter landing deck with white markings and the squared-off stern.",
+    "description_view_1": "Side view highlighting the ship's length, angular superstructure, and the number '15' on the bow.",
+    "description_view_2": "Front view displaying the sharp bow, central superstructure, and symmetrical deck layout.",
+    "description_view_3": "Opposite side view showing the full length of the ship, helicopter deck, and superstructure details.",
+    "category": "ship",
+    "height": 18,
+    "max_dimension": 120,
+    "materials": [
+        "steel",
+        "aluminum",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.01,
+        0.04
+    ],
+    "mass": 3500000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "radar",
+        "antenna",
+        "bridge controls"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a sharp, streamlined bow and a squared-off stern to support a large helicopter deck. The hull sides are vertical with a slight flare, and the lower section is painted red, indicating the waterline. No bulbous bow or visible keels are present.",
+    "attribute_superstructure_layout": "The superstructure is compact and angular, located centrally with a single main bridge tower. It features multiple decks, radar arrays, and communication equipment, with the bridge positioned forward and a large open deck aft for helicopter operations.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "radar",
+        "antenna",
+        "helicopter landing markings"
+    ],
+    "attribute_registration_markings": "Number '15' on the bow",
+    "uid": "644999231c034c959c6091b00ed6c50f",
+    "near_synsets": {
+        "naval_radar.n.01": 0.486254969202259,
+        "surface_ship.n.01": 0.49702814355322317,
+        "three-decker.n.03": 0.5076029283151793,
+        "naval_equipment.n.01": 0.5166429134765017,
+        "guard_ship.n.01": 0.5194488894098931,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/644999231c034c959c6091b00ed6c50f",
+        "creator_username": "fxmdeveloper",
+        "creator_display_name": "fxmdeveloper",
+        "creator_profile_url": "https://sketchfab.com/fxmdeveloper"
+    },
+    "filename": "std_644999231c034c959c6091b00ed6c50f.glb",
+    "length": 52.173160552978516,
+    "width": 10.491106986999512
+}

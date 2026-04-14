@@ -1,0 +1,104 @@
+{
+    "description_long": "This humanoid robot features a robust, industrial design with a heavily armored torso and large, cylindrical limbs. The body is primarily constructed from weathered, dark gray metal with visible rust and wear, giving it a rugged, utilitarian appearance. Its head is small and rounded, with minimal facial features, and is flanked by two spring-like coils protruding from the shoulders. The arms and legs are segmented with visible mechanical joints, and the hands end in claw-like pincers. The legs are thick and blocky, designed for stability, and the feet are wide and flat, suitable for supporting the robot's weight. A red star insignia is visible on one shoulder, suggesting a possible military or industrial origin.",
+    "description": "A heavily armored, weathered humanoid robot with a blocky build, claw-like hands, and a red star insignia on its shoulder.",
+    "description_view_0": "Front view showing the robot's broad chest, spring-like coils on the shoulders, and symmetrical, cylindrical limbs.",
+    "description_view_1": "Side view highlighting the robot's thick, segmented limbs, protruding shoulder coil, and the flat, blocky feet.",
+    "description_view_2": "Rear view displaying the back of the head, shoulder coils, and the red star insignia on the left shoulder.",
+    "description_view_3": "Opposite side view showing the same limb structure and mechanical joints as the other side, with visible wear and rust.",
+    "category": "humanoid robot",
+    "height": 2.2,
+    "max_dimension": 1.4,
+    "materials": [
+        "steel",
+        "iron",
+        "copper",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.07,
+        0.02,
+        0.03
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 4200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "pullable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "hands",
+        "legs",
+        "head",
+        "shoulder coils"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "rust brown",
+        "black",
+        "red",
+        "silver"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is standing upright with both arms hanging straight down at its sides and legs positioned parallel, feet flat on the ground. The head is facing forward, and the torso is upright and centered.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated metal panels and mechanical components with visible bolts and rusted surfaces. No decorative coverings or fabric elements are present.",
+    "attribute_facial_features": "The face is minimalistic, with a smooth, rounded surface and no visible eyes, mouth, or nose. There are no expressive elements or display screens on the head.",
+    "attribute_limb_articulation": "The robot has visible hinge joints at the shoulders, elbows, hips, and knees, allowing for basic arm and leg movement. The hands are claw-like with simple rotary joints, and the feet are rigid and blocky.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "1b483c004d29448b91d62a45ec38519c",
+    "near_synsets": {
+        "android.n.01": 0.5483860427691614,
+        "robotics_equipment.n.01": 0.5580091464563222,
+        "cyborg.n.01": 0.5671336363415986,
+        "toy_soldier.n.01": 0.5830753287769247,
+        "automaton.n.02": 0.584075454890237
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1b483c004d29448b91d62a45ec38519c",
+        "creator_username": "jbtremblay",
+        "creator_display_name": "jbtremblay",
+        "creator_profile_url": "https://sketchfab.com/jbtremblay"
+    },
+    "filename": "std_1b483c004d29448b91d62a45ec38519c.glb",
+    "length": 0.5882983803749084,
+    "width": 1.1786882877349854
+}

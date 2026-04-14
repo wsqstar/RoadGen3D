@@ -1,0 +1,110 @@
+{
+    "description_long": "A round, baked pizza sits atop a rectangular wooden pizza peel, which is placed on a patterned, dark-colored mat. The pizza features a golden-brown crust and is generously topped with melted cheese, sliced mushrooms, green bell peppers, red bell peppers, and pieces of chicken or sausage. The toppings are distributed unevenly, giving the pizza a rustic, homemade appearance. The pizza peel is light-colored wood with visible grain, and the mat beneath has a geometric circular pattern in shades of gray and brown. No packaging or branding is visible, and the pizza appears freshly made and ready to serve.",
+    "description": "A rustic, round pizza with cheese, mushrooms, green and red peppers, and meat sits on a wooden pizza peel over a patterned mat. The pizza has a golden-brown crust and a homemade look.",
+    "description_view_0": "The pizza is seen from a slightly elevated angle, showing the full round shape, toppings, and the wooden pizza peel beneath it.",
+    "description_view_1": "This side view emphasizes the thickness of the crust and the toppings, with the pizza peel extending out to the left.",
+    "description_view_2": "A lower angle highlights the pizza's edge and the distribution of toppings, with the pizza peel and mat clearly visible.",
+    "description_view_3": "The pizza is viewed more from the top, showing the arrangement of toppings and the full circular shape, with the pizza peel extending to the right.",
+    "category": "pizza",
+    "height": 0.05,
+    "max_dimension": 0.35,
+    "materials": [
+        "bread",
+        "cheese",
+        "vegetables",
+        "meat",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.12,
+        0.08,
+        0.08,
+        0.02
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 15,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "cuttable",
+        "edible",
+        "sliceable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "crust",
+        "toppings",
+        "pizza peel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "golden brown",
+        "white",
+        "red",
+        "green",
+        "brown",
+        "beige"
+    ],
+    "colors_composition": [
+        0.35,
+        0.25,
+        0.15,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_topping_type": [
+        "cheese",
+        "mushroom",
+        "green pepper",
+        "red pepper",
+        "chicken"
+    ],
+    "attribute_slice_count": 8,
+    "attribute_crust_style": "hand-tossed",
+    "attribute_packaging_presence": false,
+    "attribute_brand_logo": "None",
+    "uid": "6ec3ad35f98a42cc983da7de346569d1",
+    "near_synsets": {
+        "pepperoni_pizza.n.01": 0.4880057064032046,
+        "cheese_pizza.n.01": 0.5081797797253097,
+        "pizza.n.01": 0.5113327015121027,
+        "sicilian_pizza.n.01": 0.5191665106242446,
+        "sausage_pizza.n.01": 0.5292670227101113
+    },
+    "synset": "sausage_pizza.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6ec3ad35f98a42cc983da7de346569d1",
+        "creator_username": "iliesaya",
+        "creator_display_name": "iliesaya",
+        "creator_profile_url": "https://sketchfab.com/iliesaya"
+    },
+    "filename": "std_6ec3ad35f98a42cc983da7de346569d1.glb",
+    "length": 0.3192691206932068,
+    "width": 0.2577248215675354
+}

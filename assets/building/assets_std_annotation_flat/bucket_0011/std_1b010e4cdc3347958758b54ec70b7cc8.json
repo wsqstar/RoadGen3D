@@ -1,0 +1,123 @@
+{
+    "description_long": "This object is a quadrupedal robot dog with a robust, industrial design, primarily colored in yellow with black and metallic accents. Its body is rectangular and features multiple access panels, vents, and what appear to be sensor housings along the sides and front. The four articulated legs are jointed and end in rounded feet, suggesting stability and adaptability to various terrains. The front section houses a prominent sensor array, likely including cameras and other detection equipment, and there are visible LED indicators for status feedback. The overall construction appears to be a mix of metal and high-strength polymer, with visible mechanical joints at the hips and knees. The design is reminiscent of advanced urban robotics used for inspection, delivery, or security tasks.",
+    "description": "A yellow, industrial-style quadrupedal robot dog with articulated legs, sensor arrays, and visible LED indicators, designed for urban environments.",
+    "description_view_0": "Front view showing the sensor array, LED indicators, and the rectangular head with visible mechanical joints on the legs.",
+    "description_view_1": "Side view highlighting the elongated body, access panels, and the full articulation of all four legs.",
+    "description_view_2": "Rear view displaying the back panel, leg joints, and the symmetrical design of the legs and body.",
+    "description_view_3": "Opposite side view showing additional access panels, mechanical joints, and the overall robust construction.",
+    "category": "robot dog",
+    "height": 0.7,
+    "max_dimension": 1.1,
+    "materials": [
+        "metal",
+        "polymer",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 35,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "sensor array",
+        "LED indicator",
+        "leg joint",
+        "access panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "gray",
+        "white",
+        "blue"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "sleek",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_mechanical_joints": [
+        "rotary joint",
+        "hinge joint",
+        "linear actuator"
+    ],
+    "attribute_visible_sensors": [
+        "camera",
+        "lidar"
+    ],
+    "attribute_led_indicators": [
+        "status LED"
+    ],
+    "attribute_articulated_limbs": [
+        "front left leg",
+        "front right leg",
+        "rear left leg",
+        "rear right leg"
+    ],
+    "attribute_robotic_face": false,
+    "uid": "1b010e4cdc3347958758b54ec70b7cc8",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5560667941149489,
+        "robotics.n.01": 0.5789405651838063,
+        "quadruped.n.01": 0.587637964362554,
+        "android.n.01": 0.5985555543154569,
+        "dog_collar.n.01": 0.5989730909708227,
+        "automaton.n.02": -1000.0,
+        "cad.n.01": -1000.0,
+        "dog.n.03": -1000.0,
+        "frump.n.01": -1000.0,
+        "andiron.n.01": -1000.0,
+        "dog.n.01": -1000.0,
+        "pawl.n.01": -1000.0,
+        "frank.n.01": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1b010e4cdc3347958758b54ec70b7cc8",
+        "creator_username": "shogo.gfx",
+        "creator_display_name": "shogo.gfx",
+        "creator_profile_url": "https://sketchfab.com/shogo.gfx"
+    },
+    "filename": "std_1b010e4cdc3347958758b54ec70b7cc8.glb",
+    "length": 0.9757987558841705,
+    "width": 0.5430824160575867
+}

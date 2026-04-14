@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a tall, metal locker-style wardrobe with three vertical compartments, each featuring a vented door. The surface is heavily weathered, showing patches of rust and chipped paint, giving it a distressed, industrial appearance. The leftmost compartment is open, revealing several shelves, a book, and a wire basket containing a yellow object. The doors have recessed handles and some have visible labels or markings, adding to the utilitarian look. The wardrobe is constructed from thick sheet metal, with visible hinges and a robust, boxy form. Its overall design suggests it is intended for secure storage in urban environments such as garages, workshops, or public facilities.",
+    "description": "A weathered, metal locker-style wardrobe with three vented doors, showing rust and chipped paint, and featuring shelves and storage inside.",
+    "description_view_0": "Front view showing three vented doors, one open to reveal shelves, a book, and a wire basket with a yellow object.",
+    "description_view_1": "Side view highlighting the thickness of the metal and the partially open door, with minimal detail visible on the side panel.",
+    "description_view_2": "Rear view displaying a flat, rusted metal surface with no openings or features.",
+    "description_view_3": "Side view showing the rightmost door and the weathered, rusted texture of the metal exterior.",
+    "category": "wardrobe",
+    "height": 1.8,
+    "max_dimension": 1.0,
+    "materials": [
+        "steel",
+        "air",
+        "glass",
+        "paper",
+        "plastic"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.02,
+        0.02,
+        0.01
+    ],
+    "mass": 85,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pullable",
+        "pushable",
+        "storable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "door",
+        "shelf",
+        "wire basket"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark brown",
+        "rust",
+        "gray",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 3,
+    "attribute_handle_type": "recessed",
+    "attribute_presence_of_mirrors": false,
+    "attribute_lock_mechanism": "none",
+    "attribute_door_style": "hinged",
+    "uid": "81eed9f7c9194fa4ab7ceadc6171dbda",
+    "near_synsets": {
+        "coat_closet.n.01": 0.48877487367912464,
+        "wardrobe.n.01": 0.5013151289921681,
+        "cabinet.n.03": 0.5202178809376975,
+        "dresser.n.05": 0.5208617922008887,
+        "armoire.n.01": 0.5228916355282586,
+        "wardrobe.n.03": -1000.0,
+        "wardrobe.n.02": -1000.0
+    },
+    "synset": "wardrobe.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/81eed9f7c9194fa4ab7ceadc6171dbda",
+        "creator_username": "gozdemrl",
+        "creator_display_name": "gozdemrl",
+        "creator_profile_url": "https://sketchfab.com/gozdemrl"
+    },
+    "filename": "std_81eed9f7c9194fa4ab7ceadc6171dbda.glb",
+    "length": 0.7089585065841675,
+    "width": 1.4316978454589844
+}

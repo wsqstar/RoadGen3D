@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a modern, low-floor city bus with a predominantly light green and white color scheme, featuring black window frames and detailing. The bus has large, rectangular side windows arranged in a row, providing ample visibility for passengers. The front displays an electronic route sign above the windshield, and accessibility symbols are visible, indicating wheelchair access. The side panels include two wide passenger doors, one at the front and one in the middle, both with large glass panes. The rear of the bus features a digital display and emergency exit markings, while the roof is smooth and unadorned. The overall design is sleek and functional, typical of urban public transportation vehicles.",
+    "description": "A sleek, modern city bus in green and white with large side windows, digital route displays, and dual passenger doors for urban transit.",
+    "description_view_0": "Side view showing the right side of the bus with large windows, a single rear wheel, and the 'Toei Bus' branding.",
+    "description_view_1": "Front view displaying the windshield, digital route sign, and accessibility symbols above the headlights.",
+    "description_view_2": "Side view showing the left side with two passenger doors, large windows, and a single rear wheel.",
+    "description_view_3": "Rear view featuring a digital display, emergency exit markings, and the bus's taillights.",
+    "category": "bus",
+    "height": 3.0,
+    "max_dimension": 11.0,
+    "materials": [
+        "metal",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.07,
+        0.07,
+        0.03,
+        0.03
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "button",
+        "display panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 2,
+    "attribute_window_arrangement": "Six large, rectangular passenger windows per side, evenly spaced with black frames, separated by vertical pillars; windows are uniform in size and shape.",
+    "attribute_route_number_or_destination_sign": "\u90fd\u55b6\u30d0\u30b9 (Toei Bus)",
+    "attribute_bus_manufacturer_logo": "The text 'Toei Bus' is visible on the side, but no distinct manufacturer logo is present.",
+    "attribute_passenger_entry_step_height": 0.35,
+    "uid": "050e8acd0bbc4da0902a8a874ef10fca",
+    "near_synsets": {
+        "bus.n.01": 0.5011232185200054,
+        "bus_traffic.n.01": 0.516751175511787,
+        "public_transit.n.01": 0.516996587405096,
+        "school_bus.n.01": 0.5171385591038339,
+        "minibus.n.01": 0.5230579543872944,
+        "bus.n.04": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "busbar.n.01": -1000.0
+    },
+    "synset": "busbar.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/050e8acd0bbc4da0902a8a874ef10fca",
+        "creator_username": "own.guest",
+        "creator_display_name": "own.guest",
+        "creator_profile_url": "https://sketchfab.com/own.guest"
+    },
+    "filename": "std_050e8acd0bbc4da0902a8a874ef10fca.glb",
+    "length": 11.079012393951416,
+    "width": 2.6302318572998047
+}

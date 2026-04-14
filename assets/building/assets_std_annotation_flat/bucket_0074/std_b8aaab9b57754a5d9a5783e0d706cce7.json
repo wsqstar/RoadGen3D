@@ -1,0 +1,115 @@
+{
+    "description_long": "This object is a large electrical substation complex featuring a prominent lattice steel tower at its center, supporting multiple high-voltage power lines. The site is enclosed by a perimeter road and contains several fenced-off areas with electrical transformers, switchgear, and other substation equipment. There are multiple rows of insulator stacks and crossarms on the main tower, with power lines extending outward to additional pylons at the edge of the property. A small building, likely for control or maintenance, is situated near the entrance, accompanied by utility poles and smaller electrical components. The ground is covered with green grass, and the entire facility is set on a circular base, simulating a section of urban or suburban land. The overall structure is highly industrial, with metallic and concrete elements dominating the visual appearance.",
+    "description": "A large electrical substation complex with a central lattice steel tower, multiple transformers, and extensive high-voltage power lines, set on a grassy circular base.",
+    "description_view_0": "The central lattice tower and its crossarms are prominent, with power lines extending outward and the fenced substation equipment clearly visible.",
+    "description_view_1": "The view highlights the small building near the entrance and shows the power lines connecting to a distant pylon, with the substation layout more apparent.",
+    "description_view_2": "The main tower is seen from the opposite side, with the fenced equipment and multiple rows of electrical components in the foreground.",
+    "description_view_3": "This angle emphasizes the parallel arrangement of power lines and the spatial relationship between the main tower, substation equipment, and the building.",
+    "category": "transformer tower",
+    "height": 28.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "steel",
+        "concrete",
+        "ceramic",
+        "glass",
+        "copper",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.18,
+        0.1,
+        0.05,
+        0.06,
+        0.03,
+        0.03
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "switchable",
+        "maintainable",
+        "inspectable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "switchgear",
+        "control building door",
+        "transformer access panels",
+        "circuit breakers"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "green",
+        "brown",
+        "white",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.45,
+        0.3,
+        0.1,
+        0.08,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "scene",
+    "attribute_number_of_insulator_stacks": 12,
+    "attribute_arrangement_of_crossarms": "There are three main levels of crossarms arranged horizontally, with each level supporting multiple insulator stacks in a parallel configuration.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "transformer",
+        "circuit breaker",
+        "switchgear",
+        "lightning arrester"
+    ],
+    "attribute_configuration_of_attached_power_lines": "Multiple three-phase circuits are attached, with power lines arranged in parallel and stacked vertically on the crossarms, routing outward to adjacent pylons and substation equipment.",
+    "uid": "b8aaab9b57754a5d9a5783e0d706cce7",
+    "near_synsets": {
+        "substation.n.01": 0.4852070419717925,
+        "pylon.n.02": 0.5147122074066937,
+        "power_system.n.01": 0.5310466870584062,
+        "power_station.n.01": 0.5504535693714544,
+        "cascade_transformer.n.01": 0.5522360972251725,
+        "tower.n.01": -1000.0,
+        "tugboat.n.01": -1000.0,
+        "column.n.04": -1000.0,
+        "transformer.n.01": -1000.0
+    },
+    "synset": "substation.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b8aaab9b57754a5d9a5783e0d706cce7",
+        "creator_username": "arturarakelov",
+        "creator_display_name": "arturarakelov",
+        "creator_profile_url": "https://sketchfab.com/arturarakelov"
+    },
+    "filename": "std_b8aaab9b57754a5d9a5783e0d706cce7.glb",
+    "length": 81.19141006469727,
+    "width": 81.19140625
+}

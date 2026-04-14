@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a large, tracked combat vehicle resembling a World War II-era German Panther tank, featuring a long-barreled main cannon mounted on a rotating turret. The hull and turret are covered in angular, sloped armor plating, with visible hatches, periscopes, and exhaust ports. The vehicle rides on a set of interleaved road wheels and continuous metal tracks, providing high mobility over rough terrain. The exterior is finished in a dusty, weathered tan color with subtle streaks and marks, suggesting extensive field use. There are visible military insignia and markings on the turret and hull sides. The overall design emphasizes protection, firepower, and battlefield survivability.",
+    "description": "A large, tan, tracked combat vehicle with a long cannon, sloped armor, and visible military markings. It features interleaved road wheels and a weathered exterior.",
+    "description_view_0": "Front view shows the sloped glacis plate, central driver's hatch, and the prominent tracks on either side.",
+    "description_view_1": "Left side view highlights the long main cannon, turret profile, and the full set of interleaved road wheels and tracks.",
+    "description_view_2": "Rear view displays the engine deck, exhaust ports, and rear armor plate, with the tracks and road wheels visible.",
+    "description_view_3": "Right side view mirrors the left, showing the cannon, turret, and running gear, with additional details of the hull and markings.",
+    "category": "combat tactical  vehicle",
+    "height": 3.0,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 45000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 441000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "periscope",
+        "track",
+        "wheel",
+        "exhaust port"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted on the turret; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped steel armor on the hull and turret; reinforced front glacis and turret face.",
+    "attribute_camouflage_pattern": "Solid dusty tan paint with weathering and subtle streaks; no distinct camouflage pattern.",
+    "attribute_military_markings": "Faint cross insignia on the turret and hull sides; no other visible numbers or symbols.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "f76129fb212e4f70b76dbb34d770d823",
+    "near_synsets": {
+        "tank.n.01": 0.47357352810630554,
+        "military_vehicle.n.01": 0.48487874308862877,
+        "reconnaissance_vehicle.n.01": 0.5013200891038536,
+        "armored_car.n.02": 0.5125572526361846,
+        "assault_gun.n.02": 0.5188021039822663,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f76129fb212e4f70b76dbb34d770d823",
+        "creator_username": "dan11l11l",
+        "creator_display_name": "brow.wes",
+        "creator_profile_url": "https://sketchfab.com/dan11l11l"
+    },
+    "filename": "std_f76129fb212e4f70b76dbb34d770d823.glb",
+    "length": 8.20745849609375,
+    "width": 3.0987106561660767
+}

@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a large, modern main battle tank with a low-profile, angular hull and a prominent rotating turret. The vehicle features a long, smoothbore main cannon extending from the front of the turret, with additional hatches and periscopes visible on the turret roof. The hull is equipped with side skirts covering the suspension and tracks, providing extra protection and a streamlined appearance. The rear of the vehicle has storage racks and grilles, likely for engine ventilation and equipment storage. The tank is painted in a uniform desert tan color, with no visible camouflage patterns or military markings. The overall design emphasizes heavy armor protection, mobility on tracks, and significant firepower.",
+    "description": "A modern desert tan main battle tank with a long cannon, angular armored hull, and side-skirted tracks. The vehicle is robust, heavily armored, and designed for combat operations.",
+    "description_view_0": "Side view showing the full length of the tank, the long main cannon, side skirts, and the detailed track system.",
+    "description_view_1": "Front view highlighting the sloped glacis plate, the width of the hull, and the main cannon pointing forward.",
+    "description_view_2": "Opposite side view displaying the turret, cannon, side skirts, and rear storage racks.",
+    "description_view_3": "Rear view showing the back of the turret, engine grilles, storage racks, and the rear of the tracks.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 9.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "air",
+        "plastic"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.08,
+        0.04,
+        0.03,
+        0.02
+    ],
+    "mass": 62000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "track",
+        "storage rack",
+        "periscope"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large main cannon mounted on the turret; no other visible weapon mounts or hardpoints.",
+    "attribute_armor_plating": "Full body armor plating with sloped and angular surfaces, including side skirts and reinforced turret; thickness appears substantial, typical of main battle tanks.",
+    "attribute_camouflage_pattern": "Solid desert tan color; no camouflage pattern visible.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "0dbd8bab50a1429caa5e9828ac14f5dd",
+    "near_synsets": {
+        "tank.n.01": 0.47054723330335724,
+        "tank_destroyer.n.01": 0.516704134903065,
+        "military_vehicle.n.01": 0.5195659991970636,
+        "assault_gun.n.02": 0.5247643671628976,
+        "panzer.n.01": 0.5343903320955239,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0dbd8bab50a1429caa5e9828ac14f5dd",
+        "creator_username": "matthewanlnbehunin",
+        "creator_display_name": "matthewanlnbehunin",
+        "creator_profile_url": "https://sketchfab.com/matthewanlnbehunin"
+    },
+    "filename": "std_0dbd8bab50a1429caa5e9828ac14f5dd.glb",
+    "length": 8.237876415252686,
+    "width": 3.1455856561660767
+}

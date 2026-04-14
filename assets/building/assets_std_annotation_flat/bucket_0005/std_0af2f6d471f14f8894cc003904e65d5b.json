@@ -1,0 +1,94 @@
+{
+    "description_long": "This warehouse features a rectangular main structure with a prominent, lower extension at the front, both topped with pitched roofs. The main building is finished in a light gray color, while the front extension has a red roof, creating a clear visual distinction. The facade includes a large entryway, likely for vehicles or loading, and a smaller side section that may serve as an office or utility area. The exterior walls are smooth and unadorned, emphasizing function over decoration. The rooflines are simple, with the main roof being gabled and the extension's roof slightly sloped. The overall design suggests a utilitarian, industrial purpose, suitable for storage or logistics operations.",
+    "description": "A utilitarian warehouse with a light gray main structure and a red-roofed front extension, featuring a large entryway and simple, functional design.",
+    "description_view_0": "Side view showing the long, light gray main building and the red-roofed front extension.",
+    "description_view_1": "Rear view highlighting the gabled roof and the uninterrupted expanse of the main structure.",
+    "description_view_2": "Opposite side view with the main building and the red-roofed extension visible, emphasizing the building's length.",
+    "description_view_3": "Front view displaying the large entryway, red roof, and smaller side section, suggesting the main access point.",
+    "category": "warehouse",
+    "height": 6.0,
+    "max_dimension": 20.0,
+    "materials": [
+        "concrete",
+        "metal",
+        "roof_tile",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main facade features a large, central entryway suitable for vehicles, flanked by smooth, unadorned walls and a smaller side section. The red roof of the extension contrasts with the light gray walls, and there are minimal decorative elements, emphasizing functionality.",
+    "attribute_loading_dock_presence": false,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The building has a gabled main roof in gray and a lower, sloped red roof over the front extension, both constructed from what appears to be metal or tile. No skylights or rooftop equipment are visible.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "0af2f6d471f14f8894cc003904e65d5b",
+    "near_synsets": {
+        "warehouse.n.01": 0.5177760480116322,
+        "loft.n.01": 0.5551197469190443,
+        "storehouse.n.01": 0.5656272642298861,
+        "storage_space.n.01": 0.5667132018585238,
+        "workroom.n.01": 0.5689239956755643
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0af2f6d471f14f8894cc003904e65d5b",
+        "creator_username": "coperfi",
+        "creator_display_name": "coperfi",
+        "creator_profile_url": "https://sketchfab.com/coperfi"
+    },
+    "filename": "std_0af2f6d471f14f8894cc003904e65d5b.glb",
+    "length": 34.03127670288086,
+    "width": 30.605212211608887
+}

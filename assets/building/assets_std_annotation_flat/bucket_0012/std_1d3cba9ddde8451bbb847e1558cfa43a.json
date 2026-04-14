@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a modern, angular combat tactical vehicle with a low-profile, sloped armored hull and a large, forward-mounted cannon. The vehicle is painted in a matte desert tan color with dark diagonal striping along the sides and additional metallic accents. The turret is centrally located and features a prominent main gun, as well as several antennae and a small hatch on top. The sides of the vehicle display what appear to be modular armor panels and vented grilles, while the front and rear are sharply faceted for deflection. The vehicle rides on a set of concealed wheels or treads, giving it a streamlined, futuristic appearance. Visible details include military insignia, hatches, and various surface textures indicating reinforced armor.",
+    "description": "A low-profile, angular combat vehicle with a large cannon, desert tan paint, and modular armor panels. Features include a central turret, antennae, and military markings.",
+    "description_view_0": "Side view showing the long cannon, sloped armor, side striping, and modular panels.",
+    "description_view_1": "Front view highlighting the sharply angled armor, central turret, and dual antennae.",
+    "description_view_2": "Opposite side view with similar features to view 0, showing the cannon and side details.",
+    "description_view_3": "Rear view displaying the back armor, vented grilles, and rear surface details.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.05,
+        0.06,
+        0.01,
+        0.05
+    ],
+    "mass": 48000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 250000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "closable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "antenna",
+        "wheel",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "black",
+        "gray",
+        "red"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.03,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted on the central turret, with possible secondary mounts for small arms or sensors on the turret roof.",
+    "attribute_armor_plating": "Full body coverage with sloped, modular armor panels; thick, angular plating on the front, sides, and rear; visible vented grilles and reinforced sections.",
+    "attribute_camouflage_pattern": "Matte desert tan base with dark diagonal striping along the sides; no complex camouflage pattern.",
+    "attribute_military_markings": "Star emblem and insignia on the turret and side panels; small unit markings near the rear.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "1d3cba9ddde8451bbb847e1558cfa43a",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.5202600399466251,
+        "tank.n.01": 0.5232901544775213,
+        "reconnaissance_vehicle.n.01": 0.5292283752726297,
+        "assault_gun.n.02": 0.5305976639229788,
+        "weapons_carrier.n.01": 0.53424199588725,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1d3cba9ddde8451bbb847e1558cfa43a",
+        "creator_username": "Planetrix23",
+        "creator_display_name": "Peter Primini",
+        "creator_profile_url": "https://sketchfab.com/Planetrix23"
+    },
+    "filename": "std_1d3cba9ddde8451bbb847e1558cfa43a.glb",
+    "length": 7.03333592414856,
+    "width": 3.2187085151672363
+}

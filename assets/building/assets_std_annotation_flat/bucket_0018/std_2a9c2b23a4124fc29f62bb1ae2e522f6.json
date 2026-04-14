@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a detailed model of a NASA Space Shuttle orbiter, featuring a white fuselage with black thermal protection tiles along the nose, wing edges, and underbelly. The wings are delta-shaped and mid-mounted, with a slight upward dihedral and no visible winglets. The rear section houses three large main engines flanked by two smaller orbital maneuvering system (OMS) pods, and a vertical stabilizer with a distinctive swept-back design. The cockpit is located at the forward end, with multiple black-framed windows and a sharply pointed nose. The landing gear is partially visible, with a nose wheel and main gear doors on the underside. The surface appears smooth and hard, with a combination of matte and slightly glossy finishes.",
+    "description": "A NASA Space Shuttle orbiter with a white body, black thermal tiles, delta wings, and three large rear engines. The cockpit is forward-mounted with multiple windows and a swept vertical tail.",
+    "description_view_0": "Front view showing the pointed nose, cockpit windows, and the broad delta wings extending outward.",
+    "description_view_1": "Left side view highlighting the length of the fuselage, the cockpit, and the three main engines at the rear.",
+    "description_view_2": "Rear view displaying the three large main engines, two OMS pods, and the vertical stabilizer.",
+    "description_view_3": "Right side view similar to the left, showing the fuselage, cockpit, and rear propulsion system.",
+    "category": "airplane",
+    "height": 5.0,
+    "max_dimension": 37.0,
+    "materials": [
+        "aluminum",
+        "titanium",
+        "carbon composite",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.1,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 78000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 765000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cockpit door",
+        "landing gear",
+        "engine nozzle",
+        "cargo bay doors",
+        "control surfaces"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 45.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing delta configuration with slight upward dihedral and no winglets.",
+    "attribute_engine_type": "Three rear-mounted jet engines with two additional OMS pods.",
+    "attribute_tail_design": "Conventional tail with a single swept vertical stabilizer and no horizontal stabilizers visible.",
+    "attribute_landing_gear_type": "Tricycle retractable landing gear with visible nose and main gear doors.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed multi-seat cockpit with multiple black-framed windows.",
+    "uid": "2a9c2b23a4124fc29f62bb1ae2e522f6",
+    "near_synsets": {
+        "space_shuttle.n.01": 0.49985884297250494,
+        "space_rocket.n.01": 0.5607778220922359,
+        "astrogator.n.01": 0.565680833639148,
+        "delta_wing.n.01": 0.5666088277434498,
+        "heat_shield.n.01": 0.566977785904119,
+        "airplane.n.01": -1000.0
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2a9c2b23a4124fc29f62bb1ae2e522f6",
+        "creator_username": "CREATRBOI",
+        "creator_display_name": "CREATRBOI",
+        "creator_profile_url": "https://sketchfab.com/CREATRBOI"
+    },
+    "filename": "std_2a9c2b23a4124fc29f62bb1ae2e522f6.glb",
+    "length": 10.44014835357666,
+    "width": 6.848236560821533
+}

@@ -1,0 +1,111 @@
+{
+    "description_long": "This is a large, industrial garbage truck painted primarily in light blue, with a robust, boxy body designed for urban waste collection. The vehicle features a cab at the front for the driver and crew, and a large enclosed compartment at the rear for storing collected waste. Along the sides, there are visible access panels, safety signage, and a company logo reading 'Consolidated Disposal Service.' The rear of the truck is equipped with a loading mechanism and hydraulic arms for lifting and emptying dumpsters, as well as warning signage and reflective safety markings. The truck rides on six heavy-duty wheels, and the exterior is constructed from metal with some plastic and rubber components. Several large dumpsters are positioned alongside the truck, indicating its operational context.",
+    "description": "A large, light blue garbage truck with hydraulic lifting arms, safety signage, and a rear loading mechanism, designed for urban waste collection.",
+    "description_view_0": "Side view showing the cab, company logo, and three dumpsters lined up next to the truck.",
+    "description_view_1": "Rear view highlighting the loading mechanism, hydraulic arms, and warning signage, with dumpsters positioned to the left.",
+    "description_view_2": "Opposite side view displaying the truck's body, wheels, and access panels, with no dumpsters visible.",
+    "description_view_3": "Front view showing the cab, grille, and the alignment of dumpsters along the right side.",
+    "category": "garbage truck",
+    "height": 3.5,
+    "max_dimension": 9.0,
+    "materials": [
+        "steel",
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.05,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 14000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 35000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "hydraulic arm",
+        "loading hopper",
+        "control panel",
+        "mirror",
+        "step"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "white",
+        "black",
+        "red",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.08,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "group",
+    "attribute_waste_container_attachment": "The truck features two large hydraulic arms at the rear, designed to lift and empty dumpsters. These arms are robust, metallic, and extend outward to interface with the side handles of standard dumpsters. The attachment points are reinforced and positioned at the upper rear corners of the truck, allowing for secure engagement and lifting.",
+    "attribute_hydraulic_lift_mechanism": "There are two visible hydraulic lift mechanisms at the rear of the truck, each consisting of large cylinders and pistons connected to the lifting arms. The mechanisms are integrated into the truck's rear frame, with hoses and joints visible, indicating a functional and heavy-duty design for lifting full dumpsters.",
+    "attribute_rear_loading_hopper": "A rear loading hopper is present, occupying the lower central section of the truck's rear. It is rectangular, with a reinforced frame and a wide opening for receiving waste from dumpsters. The hopper includes flaps and a cover mechanism, making it accessible for loading waste.",
+    "attribute_warning_signage": "Warning signage is visible on the rear of the truck, including red and white caution labels, 'Stay Back' text, and hazard icons. These are placed prominently near the loading area and hydraulic arms.",
+    "attribute_reflective_safety_markings": "Reflective safety markings are present as red and white striped panels on the rear and sides of the truck, as well as chevron patterns near the lower rear corners. These markings enhance visibility and safety during operation.",
+    "uid": "21d0c35687894e3aa2ee2814da21fcf2",
+    "near_synsets": {
+        "garbage_truck.n.01": 0.46267795271872175,
+        "dumpster.n.01": 0.4952103196731034,
+        "laundry_truck.n.01": 0.5201070426668626,
+        "dump_truck.n.01": 0.52501092770026,
+        "garbage.n.03": 0.5427053223786142,
+        "truck.n.01": -1000.0,
+        "garbage.n.01": -1000.0,
+        "hand_truck.n.01": -1000.0,
+        "drivel.n.01": -1000.0
+    },
+    "synset": "garbage_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/21d0c35687894e3aa2ee2814da21fcf2",
+        "creator_username": "Trashbulldogproductions",
+        "creator_display_name": "Trashbulldogproductions",
+        "creator_profile_url": "https://sketchfab.com/Trashbulldogproductions"
+    },
+    "filename": "std_21d0c35687894e3aa2ee2814da21fcf2.glb",
+    "length": 10.028347492218018,
+    "width": 5.856293678283691
+}

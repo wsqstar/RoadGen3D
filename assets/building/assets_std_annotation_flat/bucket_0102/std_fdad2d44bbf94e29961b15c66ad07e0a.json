@@ -1,0 +1,118 @@
+{
+    "description_long": "This object consists of two distinct grave markers set on a rectangular concrete or stone base. On the left, there is a rectangular chest tomb with a flat lid, weathered with moss and dark stains, suggesting age and exposure to the elements. On the right, an obelisk-style monument rises from a circular stone border, featuring engraved panels that may once have held inscriptions, though they are now largely unreadable. The obelisk is tall and slender, with a pointed top and visible weathering, while the chest tomb is more squat and solid. The base is a flat, paved surface, likely concrete or stone, with some dirt and debris around the monuments. The overall appearance is somber and aged, typical of a small urban graveyard plot.",
+    "description": "A weathered graveyard plot featuring a rectangular chest tomb and a tall obelisk monument on a stone base, both showing signs of age and exposure.",
+    "description_view_0": "View of the chest tomb on the left and the obelisk monument on the right, both set on a rectangular stone base.",
+    "description_view_1": "Obelisk monument is prominent in the foreground, showing engraved panels, with the chest tomb visible behind it.",
+    "description_view_2": "Rear view of the obelisk and the back of the chest tomb, highlighting the flat surfaces and weathered textures.",
+    "description_view_3": "Chest tomb is in the foreground with its mossy lid, while the obelisk stands behind, partially obscured.",
+    "category": "grave yard",
+    "height": 1.6,
+    "max_dimension": 2.2,
+    "materials": [
+        "stone",
+        "concrete",
+        "soil",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "memorializable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "green",
+        "brown"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_tombstone_inscriptions": [],
+    "attribute_crosses": [],
+    "attribute_grave_markers": [
+        {
+            "type": "chest tomb",
+            "material": "stone",
+            "dimensions": [
+                0.9,
+                1.2,
+                0.7
+            ]
+        },
+        {
+            "type": "obelisk",
+            "material": "stone",
+            "dimensions": [
+                1.6,
+                0.4,
+                0.4
+            ]
+        }
+    ],
+    "attribute_mausoleums": [],
+    "attribute_cemetery_gates": [],
+    "uid": "fdad2d44bbf94e29961b15c66ad07e0a",
+    "near_synsets": {
+        "grave.n.02": 0.4923079766757525,
+        "gravestone.n.01": 0.5024922235094242,
+        "cemetery.n.01": 0.5162812455106787,
+        "burial_mound.n.01": 0.5346402186873286,
+        "repository.n.03": 0.5350109065143075,
+        "cubic_yard.n.01": -1000.0,
+        "yard.n.08": -1000.0,
+        "thousand.n.01": -1000.0,
+        "yard.n.01": -1000.0,
+        "yard.n.07": -1000.0,
+        "yard.n.09": -1000.0,
+        "yard.n.06": -1000.0,
+        "yard.n.02": -1000.0,
+        "yard.n.03": -1000.0
+    },
+    "synset": "grave.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fdad2d44bbf94e29961b15c66ad07e0a",
+        "creator_username": "artfletch",
+        "creator_display_name": "artfletch",
+        "creator_profile_url": "https://sketchfab.com/artfletch"
+    },
+    "filename": "std_fdad2d44bbf94e29961b15c66ad07e0a.glb",
+    "length": 2.9645252227783203,
+    "width": 1.7794127464294434
+}

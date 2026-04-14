@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a classic steam locomotive with a cylindrical black and brown boiler, a prominent red cowcatcher at the front, and large spoked wheels with red and silver accents. The cab is boxy with a curved red roof and blue-framed rectangular windows, while the smokestack and two domes sit atop the boiler. Brass and gold details accentuate the piping and fixtures, giving it a vintage, industrial look. The front features a large circular faceplate and a headlamp, while the rear is flat with a small window and no visible doors. The train is compact, with only a single carriage visible, and is designed for rail transport. Its overall appearance is colorful and stylized, reminiscent of 19th-century steam engines.",
+    "description": "A stylized, vintage steam locomotive with a red roof, black and brown body, large red wheels, and brass details. It features a prominent cowcatcher, smokestack, and blue-framed windows.",
+    "description_view_0": "Side view showing the full length of the locomotive, including the red roof, blue windows, large spoked wheels, and detailed piping.",
+    "description_view_1": "Front view highlighting the circular faceplate, smokestack, headlamp, and red cowcatcher.",
+    "description_view_2": "Opposite side view, similar to view 0, with visible wheels, domes, and window arrangement.",
+    "description_view_3": "Rear view showing the flat back of the cab with a small window and no visible doors.",
+    "category": "train",
+    "height": 2.8,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "glass",
+        "brass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "door",
+        "window",
+        "smokestack",
+        "cowcatcher",
+        "headlamp"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "brown",
+        "blue",
+        "gold",
+        "silver"
+    ],
+    "colors_composition": [
+        0.28,
+        0.32,
+        0.18,
+        0.08,
+        0.08,
+        0.06
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_train_type": "steam locomotive",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "no visible doors",
+    "attribute_window_arrangement": "two rectangular windows on each side of the cab",
+    "uid": "84ca7f756f26443aa8bd925ea6f13d77",
+    "near_synsets": {
+        "steam_locomotive.n.01": 0.47985596271971115,
+        "train.n.01": 0.5064853644508309,
+        "train_set.n.01": 0.5189002227162419,
+        "locomotive.n.01": 0.5256407011536967,
+        "diesel_locomotive.n.01": 0.5312918200736244,
+        "string.n.04": -1000.0,
+        "train.n.04": -1000.0,
+        "gearing.n.01": -1000.0,
+        "caravan.n.01": -1000.0,
+        "train.n.05": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/84ca7f756f26443aa8bd925ea6f13d77",
+        "creator_username": "Hansalex",
+        "creator_display_name": "Hansalex",
+        "creator_profile_url": "https://sketchfab.com/Hansalex"
+    },
+    "filename": "std_84ca7f756f26443aa8bd925ea6f13d77.glb",
+    "length": 4.407902717590332,
+    "width": 1.688673496246338
+}

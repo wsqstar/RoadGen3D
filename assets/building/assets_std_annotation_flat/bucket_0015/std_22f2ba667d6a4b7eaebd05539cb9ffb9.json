@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a compact quadcopter drone featuring a lightweight carbon fiber frame with four extended arms, each supporting a yellow motor and a red, three-bladed propeller. The central body houses electronic components, visible wiring, and a battery pack secured with a red strap. A prominent red and yellow dome-shaped antenna is mounted on top, likely for enhanced signal reception. The frame is perforated for weight reduction and heat dissipation, and the overall build suggests durability and agility for urban flight. The drone lacks propeller guards and has fixed landing legs integrated into the frame, making it suitable for rapid deployment and maneuverability in tight spaces.",
+    "description": "A compact quadcopter drone with a carbon fiber frame, red propellers, yellow motors, and a prominent red antenna. The design is lightweight and built for agile urban flight.",
+    "description_view_0": "Front view showing the central body, red antenna, and symmetrical arm layout with all four propellers visible.",
+    "description_view_1": "Angled side view highlighting the battery pack, visible wiring, and the side profile of the antenna and motors.",
+    "description_view_2": "Rear view displaying the back of the central body, antenna, and the rear pair of propellers and motors.",
+    "description_view_3": "Opposite side view emphasizing the battery pack, wiring, and the side structure of the frame and motors.",
+    "category": "drone",
+    "height": 0.18,
+    "max_dimension": 0.35,
+    "materials": [
+        "carbon fiber",
+        "plastic",
+        "metal",
+        "rubber",
+        "air",
+        "electronic components"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable",
+        "toggleable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "motor",
+        "antenna",
+        "battery pack",
+        "wiring",
+        "frame"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 4,
+    "attribute_rotor_configuration": "quadcopter X",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": false,
+    "attribute_propeller_guard_presence": false,
+    "uid": "22f2ba667d6a4b7eaebd05539cb9ffb9",
+    "near_synsets": {
+        "drone.n.04": 0.5453221979289614,
+        "orthopter.n.01": 0.584806797456305,
+        "aircraft.n.01": 0.5968130798381736,
+        "skyhook.n.01": 0.6045600737269984,
+        "buzz_bomb.n.01": 0.6047370381470057,
+        "drone.n.01": -1000.0,
+        "dawdler.n.01": -1000.0,
+        "drone.n.05": -1000.0,
+        "monotone.n.01": -1000.0
+    },
+    "synset": "drone.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/22f2ba667d6a4b7eaebd05539cb9ffb9",
+        "creator_username": "jbabs",
+        "creator_display_name": "jbabs",
+        "creator_profile_url": "https://sketchfab.com/jbabs"
+    },
+    "filename": "std_22f2ba667d6a4b7eaebd05539cb9ffb9.glb",
+    "length": 0.3251923769712448,
+    "width": 0.45709851384162903
+}

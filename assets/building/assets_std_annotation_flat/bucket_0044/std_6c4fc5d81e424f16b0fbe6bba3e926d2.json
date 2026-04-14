@@ -1,0 +1,99 @@
+{
+    "description_long": "This humanoid robot features a rounded, barrel-shaped torso with a smooth, metallic blue exterior. Its single, large, expressive eye is set into the upper front of the body, surrounded by a lighter blue ring, giving it a cyclopean appearance. The robot's arms are robust and mechanical, with visible joints and claw-like hands, while its legs are short and cylindrical, supporting the body in a stable, upright stance. Spiked protrusions are visible on the top of its head, suggesting either decorative elements or possible sensors. The robot's surface is matte with some subtle texturing, and its limbs and joints are accented with lighter, metallic components. Overall, the design is both functional and whimsical, suitable for urban environments where interaction with humans or other robots is likely.",
+    "description": "A barrel-shaped, blue humanoid robot with a single large eye, spiked head, and mechanical arms ending in claw-like hands. Its design is sturdy and expressive, with matte metallic surfaces and short, cylindrical legs.",
+    "description_view_0": "Front view showing the large single eye, spiked head, and both arms raised with claw-like hands visible.",
+    "description_view_1": "Side profile revealing the robot's narrow depth, rounded torso, and the alignment of its arms and legs.",
+    "description_view_2": "Rear three-quarter view similar to the front, with the eye and spiked head visible, but the left arm is more prominent.",
+    "description_view_3": "Opposite side profile, showing the slim silhouette and the cylindrical shape of the legs and torso.",
+    "category": "humanoid robot",
+    "height": 1.2,
+    "max_dimension": 0.8,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "eye",
+        "arms",
+        "hands",
+        "spikes"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "white",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms raised, one arm bent at the elbow and the other extended outward, legs apart for stability, and head facing forward.",
+    "attribute_clothing_style": "No visible clothing; the robot is covered in integrated metallic and plastic panels with some decorative spiked elements on the head.",
+    "attribute_facial_features": "Single large circular eye with a blue iris and white sclera, no visible mouth or nose, and a smooth faceplate with no expressive features except the eye.",
+    "attribute_limb_articulation": "Arms have visible rotary and hinge joints at the shoulders and elbows, hands are claw-like with articulated fingers, legs are cylindrical with possible hinge joints at the hips and knees, limbs appear rigid but jointed.",
+    "attribute_presence_of_sensors": "One large optical sensor (eye) on the front of the head; no other visible sensors.",
+    "uid": "6c4fc5d81e424f16b0fbe6bba3e926d2",
+    "near_synsets": {
+        "android.n.01": 0.5633875391400394,
+        "robotics_equipment.n.01": 0.5661922801750454,
+        "automaton.n.02": 0.578373345443119,
+        "cyborg.n.01": 0.5822201360509505,
+        "automaton.n.03": 0.5967413903135527
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6c4fc5d81e424f16b0fbe6bba3e926d2",
+        "creator_username": "CretorGames79",
+        "creator_display_name": "CretorGames79",
+        "creator_profile_url": "https://sketchfab.com/CretorGames79"
+    },
+    "filename": "std_6c4fc5d81e424f16b0fbe6bba3e926d2.glb",
+    "length": 0.12368901818990707,
+    "width": 1.1655734181404114
+}

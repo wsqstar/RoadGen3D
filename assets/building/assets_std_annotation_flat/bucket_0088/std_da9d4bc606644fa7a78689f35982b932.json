@@ -1,0 +1,112 @@
+{
+    "description_long": "This is a heavily modified snowplow vehicle with a rugged, post-apocalyptic design, featuring a large, armored cab and a rear module resembling a mobile shelter or greenhouse. The front section is equipped with a robust plow blade, reinforced bumper, and heavy-duty treads for traversing snowy or rough terrain. The rear module is octagonal, with solar panels, wind turbines, and rooftop gardens, suggesting self-sufficiency and sustainability. Various tools, barrels, and supplies are attached to the exterior, including a pickaxe, shovels, and crates. The vehicle's surfaces are primarily weathered metal and wood, with visible hatches, ladders, and windows for access and visibility. The overall appearance is utilitarian, with a focus on durability, off-grid living, and snow-clearing capability.",
+    "description": "A rugged, post-apocalyptic snowplow with a reinforced cab, large plow blade, heavy treads, and a rear module featuring solar panels, rooftop gardens, and utility tools. The vehicle is built for durability, self-sufficiency, and snow removal in harsh environments.",
+    "description_view_0": "Front view shows the large plow blade, reinforced bumper, and armored cab with attached supplies and rooftop details.",
+    "description_view_1": "Side view highlights the heavy-duty treads, the connection between the cab and rear module, and the extensive rooftop garden and solar panels.",
+    "description_view_2": "Rear view reveals the octagonal rear module with rooftop gardens, wind turbines, and a central access hatch with a ladder.",
+    "description_view_3": "Opposite side view displays additional solar panels, utility tools, and the rugged construction of both the cab and rear module.",
+    "category": "snowplow",
+    "height": 3.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "plastic",
+        "rubber",
+        "soil",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.05,
+        0.05,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "plow blade",
+        "ladder",
+        "hatch",
+        "wheel",
+        "tread",
+        "solar panel",
+        "wind turbine"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "green",
+        "black",
+        "silver",
+        "blue"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.1,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "group",
+    "attribute_front-mounted_plow_blade": true,
+    "attribute_warning_lights": false,
+    "attribute_heavy-duty_chassis": true,
+    "attribute_large_wheels_or_treads": true,
+    "attribute_vehicle_branding_or_markings": [],
+    "uid": "da9d4bc606644fa7a78689f35982b932",
+    "near_synsets": {
+        "snowplow.n.01": 0.4840659364622884,
+        "snowmobile.n.01": 0.54503017735995,
+        "snow_thrower.n.01": 0.5492464590388403,
+        "plow.n.01": 0.5525948311899405,
+        "bulldozer.n.01": 0.5725554032463844
+    },
+    "synset": "snowplow.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/da9d4bc606644fa7a78689f35982b932",
+        "creator_username": "julienchambriard",
+        "creator_display_name": "Julien Chambriard",
+        "creator_profile_url": "https://sketchfab.com/julienchambriard"
+    },
+    "filename": "std_da9d4bc606644fa7a78689f35982b932.glb",
+    "length": 5.839609622955322,
+    "width": 2.770196557044983
+}

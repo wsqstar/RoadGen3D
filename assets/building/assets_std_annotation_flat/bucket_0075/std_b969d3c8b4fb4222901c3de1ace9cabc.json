@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a small pedestrian bridge constructed primarily from wood and supported by a dark, robust frame. The bridge features a gently sloped deck with three distinct flat sections, creating a zigzag or angular pathway. The walking surface is made of wooden planks arranged horizontally, giving it a natural and rustic appearance. Sturdy railings run along both sides, constructed from thick, dark beams that provide safety and structural integrity. The bridge is compact and designed for foot traffic, suitable for parks, gardens, or urban walkways. Its simple, functional design emphasizes practicality and blends well with outdoor environments.",
+    "description": "A compact wooden pedestrian bridge with dark, sturdy railings and a zigzag deck, ideal for parks or urban walkways.",
+    "description_view_0": "Front view showing the full width and angular layout of the bridge with all three deck sections and both railings visible.",
+    "description_view_1": "Side view highlighting the depth and slope of the bridge, with the wooden planks and railings seen from the end.",
+    "description_view_2": "Rear view mirroring the front, displaying the bridge's angular deck and railings from the opposite side.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the bridge's depth, slope, and railing structure from the other end.",
+    "category": "bridge",
+    "height": 1.2,
+    "max_dimension": 5.0,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "crossable",
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "railing"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "dark brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_support_type": "beam",
+    "attribute_railing_design": "dark wood or metal horizontal bars with vertical posts, simple and functional",
+    "attribute_arch_presence": false,
+    "attribute_lighting_fixtures": [],
+    "attribute_architectural_style": "utilitarian",
+    "uid": "b969d3c8b4fb4222901c3de1ace9cabc",
+    "near_synsets": {
+        "footbridge.n.01": 0.4798029762557893,
+        "trestle_bridge.n.01": 0.5202167139654443,
+        "bridge.n.01": 0.5276505642390539,
+        "covered_bridge.n.01": 0.5357816637434166,
+        "bridge.n.03": 0.5380047028270238,
+        "bridge.n.09": -1000.0,
+        "bridge.n.05": -1000.0,
+        "bridge.n.04": -1000.0,
+        "bridge.n.08": -1000.0,
+        "bridge.n.02": -1000.0,
+        "bridge.n.06": -1000.0,
+        "bridge.n.07": -1000.0
+    },
+    "synset": "bridge.n.07",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b969d3c8b4fb4222901c3de1ace9cabc",
+        "creator_username": "gunnarcorrea",
+        "creator_display_name": "Gunnar Correa",
+        "creator_profile_url": "https://sketchfab.com/gunnarcorrea"
+    },
+    "filename": "std_b969d3c8b4fb4222901c3de1ace9cabc.glb",
+    "length": 1.3725128173828125,
+    "width": 4.17327880859375
+}

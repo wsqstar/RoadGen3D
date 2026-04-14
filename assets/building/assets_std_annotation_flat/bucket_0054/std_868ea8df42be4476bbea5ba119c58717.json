@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a small, naturalistic pond surrounded by lush vegetation and rocky outcrops, with a wooden footbridge crossing one edge. The water is clear and blue-green, with visible aquatic plants such as lily pads and reeds emerging from the surface and edges. The banks are irregular, featuring a mix of grass, tall reeds, and clusters of rocks, giving the pond a wild, organic appearance. The pond is set within a patch of grassy terrain, with the surrounding area blending seamlessly into the landscape. The wooden bridge provides a crossing point and visual interest, while the water contains hints of aquatic life. The overall scene evokes a tranquil, park-like setting suitable for urban green spaces.",
+    "description": "A natural pond with clear water, surrounded by grass, reeds, rocks, and a wooden footbridge. Aquatic plants and lush vegetation create a tranquil, park-like atmosphere.",
+    "description_view_0": "From this angle, the pond's rocky edge and dense vegetation are prominent, with the wooden bridge visible on the left side.",
+    "description_view_1": "This view highlights the pond's open water, with tall reeds and rocks framing the foreground and the bridge receding into the background.",
+    "description_view_2": "The wooden bridge is clearly visible crossing the pond's edge, with lily pads and aquatic plants dotting the water's surface.",
+    "description_view_3": "Looking across the pond, the bridge is in the foreground, and the dense reeds and rocks are concentrated on the right side.",
+    "category": "pond",
+    "height": 0.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "water",
+        "soil",
+        "rock",
+        "wood",
+        "plant",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 9000,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "crossable",
+        "fishable",
+        "viewable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wooden bridge"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [
+        "drone"
+    ],
+    "colors": [
+        "green",
+        "blue",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.33,
+    "youngs_modulus": 10000000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.0,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_water_presence": true,
+    "attribute_surrounding_vegetation": [
+        "grass",
+        "reeds",
+        "aquatic plants"
+    ],
+    "attribute_edge_treatment": "The pond edge is defined by natural banks with clusters of rocks, tall reeds, and a wooden footbridge crossing one side.",
+    "attribute_reflections": true,
+    "attribute_wildlife_activity": [
+        "fish"
+    ],
+    "uid": "868ea8df42be4476bbea5ba119c58717",
+    "near_synsets": {
+        "fishpond.n.01": 0.4907012386102769,
+        "watercress.n.02": 0.5460775388036063,
+        "horsepond.n.01": 0.5541789093897361,
+        "riparian_forest.n.01": 0.5543284700618257,
+        "aquatic.n.01": 0.5603334746252362,
+        "pond.n.01": -1000.0
+    },
+    "synset": "pond.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/868ea8df42be4476bbea5ba119c58717",
+        "creator_username": "reramil",
+        "creator_display_name": "reramil",
+        "creator_profile_url": "https://sketchfab.com/reramil"
+    },
+    "filename": "std_868ea8df42be4476bbea5ba119c58717.glb",
+    "length": 1.6640931963920593,
+    "width": 2.073322296142578
+}

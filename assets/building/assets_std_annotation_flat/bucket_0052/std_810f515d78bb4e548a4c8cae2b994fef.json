@@ -1,0 +1,91 @@
+{
+    "description_long": "This is a rectangular section of sidewalk featuring three wide, shallow steps made from light gray stone or concrete pavers. The steps are bordered on both sides by narrow strips of green grass, which are slightly raised above the level of the pavers. The pavers are arranged in a neat, interlocking pattern, giving the surface a uniform and orderly appearance. The edges of the sidewalk are defined by a low curb, separating the paved area from the grassy borders. The overall structure appears robust and is typical of pedestrian walkways found in residential neighborhoods or parks. There are no visible street furniture or tactile paving elements present.",
+    "description": "A rectangular sidewalk segment with three stone steps, bordered by grass strips and defined by low curbs. The pavers are light gray and arranged in a neat pattern.",
+    "description_view_0": "The steps and grassy borders are clearly visible, with the curb and paver pattern prominent in the foreground.",
+    "description_view_1": "The steps are seen from a lower angle, emphasizing the depth and elevation change between each step.",
+    "description_view_2": "The sidewalk is viewed from the top, showing the full length of the paver pattern and the parallel grass strips.",
+    "description_view_3": "The steps are visible from the opposite side, with the curb and grass strips framing the paver surface.",
+    "category": "sidewalk",
+    "height": 0.3,
+    "max_dimension": 2.5,
+    "materials": [
+        "concrete",
+        "stone",
+        "soil",
+        "grass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "mass": 900,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "stepable",
+        "supportive"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "green"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": true,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "curb",
+    "attribute_adjacent_street_type": "residential",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "810f515d78bb4e548a4c8cae2b994fef",
+    "near_synsets": {
+        "sidewalk.n.01": 0.4978198112766678,
+        "curb.n.01": 0.5186621619959223,
+        "curbside.n.01": 0.5272221484538623,
+        "curbstone.n.01": 0.5302246839377283,
+        "paving_stone.n.01": 0.5309443860494422
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/810f515d78bb4e548a4c8cae2b994fef",
+        "creator_username": "2w",
+        "creator_display_name": "Forest Run Forever",
+        "creator_profile_url": "https://sketchfab.com/2w"
+    },
+    "filename": "std_810f515d78bb4e548a4c8cae2b994fef.glb",
+    "length": 7.44210147857666,
+    "width": 6.535730361938477
+}

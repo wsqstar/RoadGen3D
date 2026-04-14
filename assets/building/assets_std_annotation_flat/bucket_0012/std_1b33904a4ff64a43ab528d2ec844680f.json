@@ -1,0 +1,102 @@
+{
+    "description_long": "This combat tactical vehicle is a boxy, armored four-wheeled vehicle with a robust, utilitarian design. Its exterior is covered in a multi-tone camouflage pattern, primarily in green, black, and tan, with angular shapes for concealment. The vehicle features reinforced windows and doors, suggesting protection for occupants, and a flat, sloped hood with visible panel lines and detailing. The wheels are large, rugged, and equipped with deep-tread off-road tires, suitable for traversing rough urban or semi-urban terrain. The roof is flat and appears solid, with no visible weapon mounts or hatches. There are no visible military markings or insignia, and the vehicle's overall appearance emphasizes durability and protection.",
+    "description": "A boxy, armored combat tactical vehicle with a green-black-tan camouflage pattern and rugged off-road tires. It features reinforced windows and doors, a flat roof, and no visible weapon mounts or markings.",
+    "description_view_0": "Side view showing the vehicle's four doors, camouflage pattern, and two large off-road tires.",
+    "description_view_1": "Front view highlighting the reinforced windshield, sloped hood, and robust bumper.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the other side's doors and tires.",
+    "description_view_3": "Rear view displaying the flat back panel and continuation of the camouflage pattern.",
+    "category": "combat tactical  vehicle",
+    "height": 2.1,
+    "max_dimension": 5.2,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.1,
+        0.02,
+        0.05
+    ],
+    "mass": 4200,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 21000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "hood"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "tan"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "none visible.",
+    "attribute_armor_plating": "Full body coverage with visibly thick, flat armor panels on all sides, including reinforced doors and hood; no modular or reactive panels visible.",
+    "attribute_camouflage_pattern": "Woodland-style camouflage with irregular green, black, and tan shapes.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "Four large off-road tires with deep tread pattern; no visible reinforcement or chains.",
+    "uid": "1b33904a4ff64a43ab528d2ec844680f",
+    "near_synsets": {
+        "reconnaissance_vehicle.n.01": 0.5043169870582257,
+        "military_vehicle.n.01": 0.508591817454121,
+        "tank.n.01": 0.5214744251591785,
+        "assault_gun.n.02": 0.5378188493602014,
+        "armored_car.n.02": 0.5391280569200803,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1b33904a4ff64a43ab528d2ec844680f",
+        "creator_username": "haykal12321",
+        "creator_display_name": "haykal12321",
+        "creator_profile_url": "https://sketchfab.com/haykal12321"
+    },
+    "filename": "std_1b33904a4ff64a43ab528d2ec844680f.glb",
+    "length": 4.7042295932769775,
+    "width": 2.1556187868118286
+}

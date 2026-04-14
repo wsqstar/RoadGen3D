@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a medium-sized hexacopter drone with six extended arms, each supporting a rotor at its tip. The central body is rectangular and robust, likely housing the main electronics, battery, and control systems. The drone features fixed landing legs that extend downward, providing stability during takeoff and landing. The surface appears to be primarily matte black, with some subtle blue and purple accents visible on the body and undercarriage. The rotors are evenly spaced in a circular configuration, and the arms are slightly angled for optimal lift and stability. There is no visible camera or propeller guards attached to the frame.",
+    "description": "A matte black hexacopter drone with six rotors, fixed landing legs, and a rectangular central body, accented with blue and purple details.",
+    "description_view_0": "Front view showing the central body, two forward-facing rotors, and the landing legs clearly.",
+    "description_view_1": "Side view highlighting the length of the arms and the rectangular body, with landing legs visible in profile.",
+    "description_view_2": "Rear view displaying the back of the central body, two rear rotors, and the landing legs.",
+    "description_view_3": "Opposite side view similar to view 1, showing the arm span and landing gear from the other side.",
+    "category": "drone",
+    "height": 0.35,
+    "max_dimension": 0.75,
+    "materials": [
+        "plastic",
+        "carbon fiber",
+        "metal",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.08,
+        0.02
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 5,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotor",
+        "landing leg",
+        "battery compartment",
+        "power button"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "blue",
+        "purple"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.08,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 6,
+    "attribute_rotor_configuration": "hexacopter '+'",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": false,
+    "attribute_propeller_guard_presence": false,
+    "uid": "2e6bed02900e46cf921ddf7c9ac0810f",
+    "near_synsets": {
+        "single-rotor_helicopter.n.01": 0.5559444922804967,
+        "drone.n.04": 0.557672430818956,
+        "orthopter.n.01": 0.5762201476413757,
+        "rotor.n.03": 0.579678186553176,
+        "main_rotor.n.01": 0.5799249605794599,
+        "dawdler.n.01": -1000.0,
+        "monotone.n.01": -1000.0,
+        "drone.n.01": -1000.0,
+        "drone.n.05": -1000.0
+    },
+    "synset": "drone.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2e6bed02900e46cf921ddf7c9ac0810f",
+        "creator_username": "Theworkings",
+        "creator_display_name": "Theworkings",
+        "creator_profile_url": "https://sketchfab.com/Theworkings"
+    },
+    "filename": "std_2e6bed02900e46cf921ddf7c9ac0810f.glb",
+    "length": 0.5156250596046448,
+    "width": 0.583984375
+}

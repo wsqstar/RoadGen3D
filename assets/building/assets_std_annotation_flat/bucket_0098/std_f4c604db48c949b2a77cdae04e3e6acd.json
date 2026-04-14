@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a large, classic sailing ship with a long, narrow hull painted primarily white with a red lower section and black waterline. The vessel features three tall masts, each rigged with an intricate network of ropes and spars, indicating a full-rigged ship design. The deck is detailed with multiple raised structures, likely cabins or deckhouses, and there are visible hatches and railings along the perimeter. The bow is sharply pointed, while the stern is rounded and slightly elevated, both typical of traditional sailing vessels. The ship's rigging is extensive, with lines running between masts and to the hull, and the deck appears to be made of wood with some metallic fittings. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A large, classic three-masted sailing ship with a white and red hull, detailed rigging, and multiple deck structures. The vessel features a pointed bow, rounded stern, and extensive ropework.",
+    "description_view_0": "Side view showing the full length of the ship, three masts with rigging, and the detailed deck structures.",
+    "description_view_1": "Front (bow) view highlighting the sharp, narrow bow and the symmetrical arrangement of the masts and rigging.",
+    "description_view_2": "Opposite side view displaying the hull's curvature, masts, and deck features similar to view 0.",
+    "description_view_3": "Top-down view revealing the layout of the deck, placement of cabins, and the arrangement of the rigging and masts.",
+    "category": "ship",
+    "height": 18,
+    "max_dimension": 60,
+    "materials": [
+        "wood",
+        "metal",
+        "rope",
+        "paint",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.04,
+        0.01,
+        0.02
+    ],
+    "mass": 350000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3500000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "steerable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "hatch",
+        "door",
+        "mast",
+        "rigging",
+        "deckhouse"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 10,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a traditional displacement type with a long, narrow profile, sharply pointed bow, and rounded stern. The hull sits low in the water, with a visible keel line and no bulbous bow or catamaran features. The waterline is marked by a black stripe, and the lower hull is painted red.",
+    "attribute_superstructure_layout": "The superstructure consists of multiple raised deckhouses and cabins distributed along the main deck, with open walkways and railings. There are no large bridges or towers, but several small structures are present amidships and aft.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "rigging",
+        "hatch",
+        "deckhouse",
+        "railings"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "f4c604db48c949b2a77cdae04e3e6acd",
+    "near_synsets": {
+        "bark.n.03": 0.4654126871264961,
+        "galleon.n.01": 0.48231370811056673,
+        "sailing_vessel.n.01": 0.4905491580192742,
+        "schooner.n.02": 0.4969934192300387,
+        "three-decker.n.02": 0.4992149052124269,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f4c604db48c949b2a77cdae04e3e6acd",
+        "creator_username": "Karumaki",
+        "creator_display_name": "Karumaki",
+        "creator_profile_url": "https://sketchfab.com/Karumaki"
+    },
+    "filename": "std_f4c604db48c949b2a77cdae04e3e6acd.glb",
+    "length": 31.090362548828125,
+    "width": 7.926190137863159
+}

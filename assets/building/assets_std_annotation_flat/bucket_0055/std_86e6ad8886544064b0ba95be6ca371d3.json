@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a weathered, derelict airplane with a broken fuselage and missing or detached components, resting on a patch of grass. The main body is largely intact but shows significant signs of rust, corrosion, and surface damage, with several panels missing or open. One wing is still attached to the fuselage, while the other is separated and lies on the ground nearby, along with a detached vertical stabilizer and wheel assembly. The cockpit is located at the front of the fuselage, with its canopy missing or broken, exposing the interior. The airplane's surface is predominantly a dull, faded gray, with patches of dirt and discoloration, and the landing gear appears partially deployed or damaged.",
+    "description": "A heavily weathered, broken airplane with a detached wing and tail section, resting on grass. The fuselage is corroded and missing panels, with a front cockpit exposed.",
+    "description_view_0": "Side view showing the main fuselage, attached left wing, and detached right wing and tail section lying on the ground.",
+    "description_view_1": "Front angle highlighting the exposed cockpit, nose damage, and the separated wing and tail assembly to the left.",
+    "description_view_2": "Opposite side view displaying the right side of the fuselage, attached wing, and the rear stabilizer area.",
+    "description_view_3": "Rear angle showing the tail end of the fuselage, the attached left wing, and the detached components on the ground.",
+    "category": "airplane",
+    "height": 2.5,
+    "max_dimension": 11.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 4200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "inspectable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cockpit",
+        "landing gear",
+        "wing",
+        "fuselage panel",
+        "tail section"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "green"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "group",
+    "attribute_wingspan_configuration": "Low-wing, straight wings with no visible winglets or pronounced dihedral/anhedral angles; one wing detached and lying separately.",
+    "attribute_engine_type": "Single jet engine, mid-fuselage intake visible; no engine currently present in the mount.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers; vertical stabilizer detached and lying on the ground.",
+    "attribute_landing_gear_type": "Tricycle landing gear, partially deployed and damaged, with one main gear and nose gear visible.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with missing or broken canopy, single-seat configuration.",
+    "uid": "86e6ad8886544064b0ba95be6ca371d3",
+    "near_synsets": {
+        "aircraft.n.01": 0.5207357423993547,
+        "airplane.n.01": 0.5390224267062064,
+        "fuselage.n.01": 0.546990321928018,
+        "airplane_mechanics.n.01": 0.5489646847959605,
+        "hangar_queen.n.01": 0.5514538579638412
+    },
+    "synset": "airplane_mechanics.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/86e6ad8886544064b0ba95be6ca371d3",
+        "creator_username": "nixic.alexandar",
+        "creator_display_name": "\u041d\u0438\u043a\u0448\u0438\u045b \u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0430\u0440",
+        "creator_profile_url": "https://sketchfab.com/nixic.alexandar"
+    },
+    "filename": "std_86e6ad8886544064b0ba95be6ca371d3.glb",
+    "length": 5.451609373092651,
+    "width": 4.51412034034729
+}

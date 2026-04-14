@@ -1,0 +1,100 @@
+{
+    "description_long": "This humanoid robot features a weathered, industrial design with a predominantly yellow and orange color scheme, accented by patches of rust and wear. Its head is rounded and slightly oversized, with two prominent circular elements resembling eyes and a few visible bolts, mounted on a spring-like neck. The torso is boxy with mechanical detailing, including exposed springs and jointed segments at the shoulders, elbows, and knees, suggesting a high degree of articulation. The arms and legs are slender, with visible mechanical joints and pistons, and the hands and feet are blocky, designed for stability rather than dexterity. The surface is metallic, showing signs of aging and use, with a matte, slightly rough finish. Overall, the robot exudes a utilitarian, retro-futuristic aesthetic suitable for urban environments.",
+    "description": "A weathered, yellow-orange humanoid robot with a spring-mounted head, exposed joints, and a retro-industrial design. Its metallic body shows signs of wear and mechanical articulation.",
+    "description_view_0": "Side view showing the spring-like neck, rounded head, and the layered, jointed limbs with visible mechanical details.",
+    "description_view_1": "Front view highlighting the robot's symmetrical design, circular eye-like features, and the full articulation of arms and legs.",
+    "description_view_2": "Opposite side view revealing the same spring neck, with more visible wear on the arm and leg panels.",
+    "description_view_3": "Rear view displaying the back of the head, torso, and legs, with mechanical joints and exposed springs clearly visible.",
+    "category": "humanoid robot",
+    "height": 1.6,
+    "max_dimension": 1.6,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head",
+        "arms",
+        "legs",
+        "joints",
+        "torso"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "orange",
+        "gray",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.4,
+        0.25,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms relaxed at the sides, legs straight and parallel, head facing forward.",
+    "attribute_clothing_style": "Unclothed; exterior consists of integrated metallic and plastic panels with visible bolts and mechanical joints.",
+    "attribute_facial_features": "Face features two large, circular eye-like elements and several bolts; no visible mouth or nose, and no expressive or display elements.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints at shoulders, elbows, hips, and knees, allowing for a wide range of motion; limbs appear rigid but highly articulated.",
+    "attribute_presence_of_sensors": "None visible",
+    "uid": "5ce96a64503d48d99693e2fb00287191",
+    "near_synsets": {
+        "android.n.01": 0.5548743399306622,
+        "robotics_equipment.n.01": 0.560497259233929,
+        "cyborg.n.01": 0.5775034272158143,
+        "automaton.n.02": 0.5843906931297357,
+        "automaton.n.03": 0.5921766397721511
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5ce96a64503d48d99693e2fb00287191",
+        "creator_username": "alexandrmail256",
+        "creator_display_name": "Alexandr",
+        "creator_profile_url": "https://sketchfab.com/alexandrmail256"
+    },
+    "filename": "std_5ce96a64503d48d99693e2fb00287191.glb",
+    "length": 0.32823996245861053,
+    "width": 0.7482463121414185
+}

@@ -1,0 +1,89 @@
+{
+    "description_long": "This object is a stylized model of an airplane mounted on a coiled spring stand, resembling a whimsical playground ride or decorative piece. The airplane features a rounded fuselage with a blunt nose, a single propeller at the front, and two short, straight wings extending from the midsection. The tail section includes a single vertical stabilizer and horizontal stabilizers, with a small, pointed tail cone. The landing gear consists of two stubby, fixed wheels positioned under the wings, and the cockpit is represented by a simple, forward-facing opening. The entire object is rendered in a uniform, matte dark color, giving it a playful and cartoonish appearance.",
+    "description": "A stylized, cartoon-like airplane with a propeller, mounted on a spring stand, featuring short wings and a simple cockpit opening.",
+    "description_view_0": "Rear three-quarter view showing the tail, single vertical stabilizer, and the spring stand attachment.",
+    "description_view_1": "Front view highlighting the propeller, rounded nose, cockpit opening, and symmetrical wing placement.",
+    "description_view_2": "Side three-quarter view displaying the wing profile, landing gear, and the spring base connection.",
+    "description_view_3": "Top-down view emphasizing the wing span, fuselage shape, and tail configuration.",
+    "category": "airplane",
+    "height": 0.6,
+    "max_dimension": 0.8,
+    "materials": [
+        "painted metal",
+        "plastic",
+        "steel (spring)",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "mass": 7.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "spring base",
+        "wheels"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.3,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing configuration with straight, short wings and no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Single front-mounted propeller (piston engine implied by propeller presence).",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "Fixed tricycle landing gear with two main wheels and a nose wheel.",
+    "attribute_cockpit_placement": "Forward-mounted, open cockpit represented by a simple opening at the front of the fuselage.",
+    "uid": "f0056f20775c4c47804f6d3ef6499226",
+    "near_synsets": {
+        "airplane.n.01": 0.4774508718978804,
+        "propeller_plane.n.01": 0.48079073756204654,
+        "airplane_propeller.n.01": 0.5080384443624955,
+        "aircraft.n.01": 0.5080502412396097,
+        "propjet.n.01": 0.5122554729981822
+    },
+    "synset": "airplane_propeller.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f0056f20775c4c47804f6d3ef6499226",
+        "creator_username": "aqpetteri",
+        "creator_display_name": "aqpetteri",
+        "creator_profile_url": "https://sketchfab.com/aqpetteri"
+    },
+    "filename": "std_f0056f20775c4c47804f6d3ef6499226.glb",
+    "length": 0.41540302336215973,
+    "width": 0.6389258205890656
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a large L-shaped office desk with a modern design, featuring a wood-textured surface and white metal legs. The desk includes a set of three drawers on one side, providing ample storage for office supplies and documents. A rectangular cable management grommet is visible on the main work surface, allowing for organized routing of electronic cables. The desk's structure is reinforced with black modesty panels beneath the work surfaces, adding both stability and privacy. The overall finish is sleek and professional, suitable for a contemporary workspace. The combination of wood, metal, and black accents gives it a sturdy yet stylish appearance.",
+    "description": "A modern L-shaped office desk with wood-textured surfaces, white metal legs, black modesty panels, and integrated drawers for storage.",
+    "description_view_0": "Front view showing the main work surface, white legs, and the drawer unit on the left side.",
+    "description_view_1": "Angled view highlighting the drawers, cable grommet, and the open leg space beneath the desk.",
+    "description_view_2": "Rear view displaying the black modesty panel running along the back and the L-shaped configuration.",
+    "description_view_3": "Top-down view emphasizing the L-shape, wood grain surface, and the position of the drawers and cable grommet.",
+    "category": "desk",
+    "height": 0.75,
+    "max_dimension": 2.0,
+    "materials": [
+        "wood",
+        "steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "supportable",
+        "storable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "drawer",
+        "handle",
+        "cable grommet"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light brown",
+        "white",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 8000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_location": "office",
+    "attribute_orientation": "The user-facing side is the longer section with the drawers and open leg space, while the shorter return provides additional workspace to the right. The cable grommet and drawers indicate the front and primary working area.",
+    "attribute_condition": "new",
+    "attribute_presence_of_attached_objects": [
+        "drawer",
+        "cable grommet",
+        "modesty panel"
+    ],
+    "attribute_usage_context": "computer workstation or executive office desk",
+    "uid": "14e88f986fde44c1b0d458eece68c0b5",
+    "near_synsets": {
+        "desk.n.01": 0.44796621588244484,
+        "office_furniture.n.01": 0.4775736889052038,
+        "desktop.n.01": 0.5079636617660306,
+        "writing_desk.n.02": 0.5254801041831862,
+        "writing_desk.n.01": 0.5323090798225502
+    },
+    "synset": "writing_desk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/14e88f986fde44c1b0d458eece68c0b5",
+        "creator_username": "egu.styloffice",
+        "creator_display_name": "Styloffice",
+        "creator_profile_url": "https://sketchfab.com/egu.styloffice"
+    },
+    "filename": "std_14e88f986fde44c1b0d458eece68c0b5.glb",
+    "length": 3.877548336982727,
+    "width": 3.8775476217269897
+}

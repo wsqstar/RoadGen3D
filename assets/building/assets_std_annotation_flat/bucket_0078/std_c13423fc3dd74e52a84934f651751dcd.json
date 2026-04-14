@@ -1,0 +1,110 @@
+{
+    "description_long": "This object is a large, horizontally-oriented cylindrical storage tank mounted on a rectangular platform with a series of parallel grooves or slats. The tank features a smooth metallic surface with visible end caps and several attached pipes and valves, suggesting it is designed for the storage and transfer of liquids or gases. The tank is elevated slightly above the platform, supported by structural mounts, and is accompanied by a small access platform or control area adjacent to one side. The platform itself is expansive and flat, likely intended to provide stability and access for maintenance or inspection. The tank's fittings and attachments are concentrated on one side, indicating a primary operational interface. The overall design is utilitarian and industrial, with a focus on function and durability.",
+    "description": "A large, horizontal cylindrical storage tank with metallic fittings, mounted on a grooved rectangular platform and equipped with pipes and valves for fluid transfer.",
+    "description_view_0": "The tank is seen from the side, showing its cylindrical body, end caps, and the attached pipes and valves on the right side.",
+    "description_view_1": "The tank is viewed from the end, highlighting the circular end cap and the alignment of the platform's grooves.",
+    "description_view_2": "A side view showing the length of the tank, the supporting mounts, and the attached operational fittings.",
+    "description_view_3": "The opposite end of the tank is visible, with fewer attachments and a clear view of the platform's surface.",
+    "category": "storage tank",
+    "height": 2.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.02,
+        0.08
+    ],
+    "mass": 9500,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "valve",
+        "pipe",
+        "access hatch",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "blue",
+        "red"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [
+        "inlet pipe",
+        "outlet valve"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_architectural_style": "cylindrical horizontal",
+    "uid": "c13423fc3dd74e52a84934f651751dcd",
+    "near_synsets": {
+        "tank.n.02": 0.4425158927268757,
+        "reservoir.n.03": 0.4999390211082909,
+        "tank_farm.n.01": 0.5054802704803182,
+        "gas_holder.n.01": 0.5079968779911989,
+        "gas_tank.n.01": 0.5195874557486073,
+        "repositing.n.01": -1000.0,
+        "storage.n.03": -1000.0,
+        "tank.n.01": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "cooler.n.03": -1000.0,
+        "storage.n.01": -1000.0,
+        "tank.n.03": -1000.0,
+        "memory.n.04": -1000.0,
+        "storage.n.04": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c13423fc3dd74e52a84934f651751dcd",
+        "creator_username": "filoufilou",
+        "creator_display_name": "filoufilou",
+        "creator_profile_url": "https://sketchfab.com/filoufilou"
+    },
+    "filename": "std_c13423fc3dd74e52a84934f651751dcd.glb",
+    "length": 11.021963596343994,
+    "width": 16.237548828125
+}

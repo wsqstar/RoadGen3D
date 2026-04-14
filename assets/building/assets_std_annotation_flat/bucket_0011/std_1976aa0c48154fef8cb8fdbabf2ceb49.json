@@ -1,0 +1,99 @@
+{
+    "description_long": "This delivery robot features a robust, boxy main body mounted atop four articulated mechanical legs, each ending in a wide, rounded foot for stability on urban surfaces. The legs are jointed, suggesting advanced mobility and the ability to navigate uneven terrain such as curbs or steps. The main compartment is rectangular and likely houses the cargo, with smooth, flat surfaces and minimal external detailing. The exterior is predominantly matte black, giving it a sleek, modern appearance suitable for blending into city environments. There are no visible windows, screens, or branding, and the design emphasizes durability and function over ornamentation. The overall construction suggests a focus on secure, autonomous delivery in public spaces.",
+    "description": "A matte black, four-legged delivery robot with a boxy cargo compartment and articulated legs for urban navigation.",
+    "description_view_0": "Front view shows the rectangular cargo compartment and two forward-facing legs with wide, rounded feet.",
+    "description_view_1": "Side/rear angle highlights the jointed legs splayed outward and the solid, unadorned side panels of the main body.",
+    "description_view_2": "Rear view reveals the back of the cargo compartment and the symmetrical arrangement of the rear legs.",
+    "description_view_3": "Opposite side/rear angle, similar to view 1, showing the articulated legs and the smooth, featureless body panels.",
+    "category": "delivery robot",
+    "height": 0.7,
+    "max_dimension": 1.1,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "air",
+        "electronics"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 38,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "compartment door",
+        "legs",
+        "feet"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.08,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_brand_logo": "none",
+    "attribute_sensor_array": [],
+    "attribute_wheel_configuration": "none",
+    "attribute_compartment_access_panel": "A large, flat access panel is implied on the front or top of the main compartment, but no visible handles, hinges, or locking mechanisms are present.",
+    "attribute_display_screen": "none",
+    "uid": "1976aa0c48154fef8cb8fdbabf2ceb49",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5694581420448711,
+        "automaton.n.02": 0.5886530525782102,
+        "automaton.n.03": 0.5988589090012766,
+        "robotics.n.01": 0.5992126372189774,
+        "dogcart.n.01": 0.6025189371550546,
+        "manner_of_speaking.n.01": -1000.0,
+        "delivery.n.07": -1000.0,
+        "pitch.n.02": -1000.0,
+        "delivery.n.01": -1000.0,
+        "delivery.n.04": -1000.0,
+        "rescue.n.01": -1000.0,
+        "delivery.n.02": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1976aa0c48154fef8cb8fdbabf2ceb49",
+        "creator_username": "bulgakov",
+        "creator_display_name": "nikita.bulgakov",
+        "creator_profile_url": "https://sketchfab.com/bulgakov"
+    },
+    "filename": "std_1976aa0c48154fef8cb8fdbabf2ceb49.glb",
+    "length": 1.0719479322433472,
+    "width": 0.6105983853340149
+}

@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a large, military-style ship with a sleek, elongated hull painted in a blue and gray camouflage pattern. The vessel features a prominent superstructure amidships, with multiple turrets and deck fixtures distributed along its length. The deck is equipped with various equipment, including what appear to be gun turrets, antennae, and possibly lifeboats or small structures. The ship has a pointed bow and a slightly tapered stern, with visible masts and a central funnel rising above the deck. The hull sits low in the water, suggesting a displacement-type design typical of naval warships. The overall appearance is robust and functional, designed for maritime operations and likely capable of supporting crew and equipment.",
+    "description": "A large, blue and gray camouflaged military ship with multiple turrets, a central superstructure, and visible masts and funnel. The vessel features a pointed bow, a tapered stern, and is equipped for naval operations.",
+    "description_view_0": "Top-down view showing the ship's narrow, elongated hull, central superstructure, and symmetrical arrangement of turrets and deck fixtures.",
+    "description_view_1": "Side profile highlighting the ship's low-slung hull, blue-gray camouflage, central funnel, and the distribution of superstructure and deck equipment.",
+    "description_view_2": "Top-down view from the opposite end, emphasizing the pointed bow and the arrangement of equipment along the deck.",
+    "description_view_3": "Opposite side profile, mirroring view 1, with clear visibility of the hull's shape, superstructure, and deck details.",
+    "category": "ship",
+    "height": 15,
+    "max_dimension": 150,
+    "materials": [
+        "steel",
+        "glass",
+        "wood",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.01,
+        0.05
+    ],
+    "mass": 8000000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 160000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "door",
+        "hatch",
+        "antenna",
+        "funnel",
+        "mast"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a long, narrow profile, a sharply pointed bow, and a slightly tapered stern. The sides are straight with a low freeboard, and the hull is painted in a blue and gray camouflage pattern. No bulbous bow or visible keels are apparent, and the hull appears robust and streamlined for efficient movement through water.",
+    "attribute_superstructure_layout": "The superstructure is centrally located with a single main deckhouse, a prominent funnel, and several smaller structures distributed fore and aft. Multiple turrets and deck fixtures are symmetrically arranged, and there are visible masts and antennae rising above the deck.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "turret",
+        "antenna",
+        "funnel",
+        "mast"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "34aa1be9ef214fc2846d6c08d37f623d",
+    "near_synsets": {
+        "transport_ship.n.01": 0.5065088721930576,
+        "troopship.n.01": 0.5090562404668538,
+        "cargo_ship.n.01": 0.5096806983854604,
+        "battleship.n.01": 0.5122045747109035,
+        "navy.n.01": 0.5149713706903182,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/34aa1be9ef214fc2846d6c08d37f623d",
+        "creator_username": "lxyun_2",
+        "creator_display_name": "\u5168\u6597\u7115",
+        "creator_profile_url": "https://sketchfab.com/lxyun_2"
+    },
+    "filename": "std_34aa1be9ef214fc2846d6c08d37f623d.glb",
+    "length": 63.52496147155762,
+    "width": 8.069793224334717
+}

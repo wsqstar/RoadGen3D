@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a standard vehicle wheel featuring a robust black rubber tire mounted on a dark metallic rim. The rim displays a multi-spoke design with visible ventilation slots and a central hub area, which is covered by a circular cap. The tire appears to be smooth, with minimal or no visible tread pattern, suggesting it may be intended for urban or indoor use, such as on a compact car, utility cart, or trailer. The wheel's sidewalls are thick and rounded, providing structural support and durability. The central hub area is fitted with a set of lug nuts arranged in a circular pattern, and the overall finish of the rim is matte to semi-glossy, with subtle highlights. The wheel is designed to be both functional and visually understated, suitable for a variety of urban vehicles.",
+    "description": "A black vehicle wheel with a smooth rubber tire and a dark multi-spoke metallic rim, featuring a central hubcap and circular lug nut arrangement. The design is robust and utilitarian, suitable for urban vehicles.",
+    "description_view_0": "Side profile of the wheel, showing the thick, rounded tire and a slight protrusion of the central hub area.",
+    "description_view_1": "Front view displaying the multi-spoke rim, central hubcap, and evenly spaced lug nuts, with ventilation slots visible around the rim.",
+    "description_view_2": "Opposite side profile, similar to view 0, with the central hub area slightly visible.",
+    "description_view_3": "Rear view showing the back of the rim, with the central hub area less detailed and no visible lug nuts.",
+    "category": "vehicle wheel",
+    "height": 0.6,
+    "max_dimension": 0.6,
+    "materials": [
+        "rubber",
+        "steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 12,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "tire",
+        "rim",
+        "hubcap",
+        "lug nuts"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 10000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.4,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_spoke_pattern": "Eight evenly spaced spokes in a radial arrangement, each with a rectangular cross-section and ventilation slots between them.",
+    "attribute_rim_design": "The rim has a deep-dish profile with a slightly concave face, featuring rectangular ventilation slots between the spokes and a central circular hub area with a smooth cap.",
+    "attribute_hubcap_presence": true,
+    "attribute_lug_nut_configuration": "Five lug nuts arranged in a circular, evenly spaced pattern around the central hubcap.",
+    "attribute_tire_tread_pattern": "The tire tread appears smooth with no visible grooves, blocks, or sipes, indicating a slick or minimal tread pattern.",
+    "uid": "24ec443d833c48caaca60d38642c3bfb",
+    "near_synsets": {
+        "car_wheel.n.01": 0.4192525174157474,
+        "car_tire.n.01": 0.47917056628889676,
+        "hubcap.n.01": 0.49730641795515,
+        "bicycle_wheel.n.01": 0.5042780613127736,
+        "wheel.n.01": 0.5165385420911317,
+        "fomite.n.01": -1000.0,
+        "bicycle.n.01": -1000.0,
+        "roulette_wheel.n.01": -1000.0,
+        "wheel.n.03": -1000.0,
+        "wheel.n.04": -1000.0,
+        "rack.n.03": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "steering_wheel.n.01": -1000.0
+    },
+    "synset": "car_wheel.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/24ec443d833c48caaca60d38642c3bfb",
+        "creator_username": "ministephen",
+        "creator_display_name": "Fishboe",
+        "creator_profile_url": "https://sketchfab.com/ministephen"
+    },
+    "filename": "std_24ec443d833c48caaca60d38642c3bfb.glb",
+    "length": 0.3685060888528824,
+    "width": 0.5215237140655518
+}

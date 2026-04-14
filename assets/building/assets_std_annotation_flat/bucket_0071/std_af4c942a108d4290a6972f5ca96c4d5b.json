@@ -1,0 +1,91 @@
+{
+    "description_long": "This object is a classic red balloon with a glossy, smooth surface, appearing fully inflated and spherical in shape. A thin string or tether is attached to the bottom center of the balloon, suggesting it is meant to be held or anchored. The balloon's surface is free of any visible printed patterns, graphics, or text, maintaining a solid, vibrant red color. The material appears to be latex or a similar flexible polymer, with the interior likely filled with air or helium. The balloon is lightweight and would float or move easily with minimal force. Its surface reflects light, giving it a shiny, almost mirror-like appearance under direct illumination.",
+    "description": "A fully inflated, glossy red balloon with a thin string attached at the bottom center and a smooth, reflective surface.",
+    "description_view_0": "Side view showing the thin profile of the red balloon and the attached string.",
+    "description_view_1": "Front view displaying the full round shape of the red balloon, the string hanging below, and a blue sky with clouds as background.",
+    "description_view_2": "Opposite side view similar to view 0, showing the balloon's thin profile and string.",
+    "description_view_3": "Rear view with the balloon mostly obscured, showing primarily the sky and clouds.",
+    "category": "balloon",
+    "height": 0.35,
+    "max_dimension": 0.35,
+    "materials": [
+        "latex",
+        "air",
+        "string"
+    ],
+    "materials_composition": [
+        0.08,
+        0.9,
+        0.02
+    ],
+    "mass": 0.004,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 0.01,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pullable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "string"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.97,
+        0.03
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.05,
+    "surface_finish": "glossy",
+    "reflectivity": 0.7,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 1.5,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.85,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_string_or_tether_presence": true,
+    "attribute_inflation_level": "fully inflated",
+    "attribute_printed_patterns_or_graphics": [],
+    "attribute_transparency": "opaque",
+    "attribute_attachment_point": "bottom center",
+    "uid": "af4c942a108d4290a6972f5ca96c4d5b",
+    "near_synsets": {
+        "balloon.n.02": 0.48174886916569387,
+        "balloon.n.01": 0.5075035230330575,
+        "hot-air_balloon.n.01": 0.5305885816512147,
+        "ballooning.n.01": 0.5323501004654541,
+        "balloonist.n.01": 0.5465231036649061
+    },
+    "synset": "balloonist.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/af4c942a108d4290a6972f5ca96c4d5b",
+        "creator_username": "k.loren",
+        "creator_display_name": "k.loren",
+        "creator_profile_url": "https://sketchfab.com/k.loren"
+    },
+    "filename": "std_af4c942a108d4290a6972f5ca96c4d5b.glb",
+    "length": 0.11090828478336334,
+    "width": 0.6067942976951599
+}

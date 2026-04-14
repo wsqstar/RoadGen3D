@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a medium-sized flatbed truck with a single cab, designed for transporting goods in urban environments. The cab is compact and streamlined, featuring large, tinted windows for visibility and side mirrors for maneuvering. The front grille is adorned with a Chevrolet logo, and the headlights are rectangular with amber turn signals. The flatbed cargo area is open and spacious, bordered by low side rails, making it suitable for carrying a variety of loads. The truck rides on two axles with robust tires, and the rear features a license plate and tail lights. The overall color scheme is a light gray, giving it a utilitarian and professional appearance.",
+    "description": "A light gray Chevrolet flatbed truck with a single cab and open cargo bed, designed for urban goods transport. It features large windows, side mirrors, and robust tires.",
+    "description_view_0": "Front view shows the Chevrolet logo, large windshield, rectangular headlights, and side mirrors.",
+    "description_view_1": "Left side view highlights the single cab, long flatbed cargo area, and two visible wheels.",
+    "description_view_2": "Rear view displays the open flatbed, tail lights, license plate, and rear bumper.",
+    "description_view_3": "Right side view mirrors the left, showing the cab, flatbed, and wheels from the opposite side.",
+    "category": "truck",
+    "height": 2.3,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 3200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 16000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "mirror",
+        "headlight",
+        "tail light",
+        "flatbed",
+        "bumper"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "blue",
+        "orange",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.07,
+        0.03,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "flatbed",
+    "attribute_wheelbase": 3.6,
+    "attribute_number_of_axles": 2,
+    "attribute_manufacturer_logo": "Chevrolet",
+    "uid": "27a0aaa34e7d4ea7877393178d82b01c",
+    "near_synsets": {
+        "flatbed.n.02": 0.4464290833646657,
+        "pickup.n.01": 0.5008008738934582,
+        "flatcar.n.01": 0.5046623883428857,
+        "van.n.05": 0.50713285091168,
+        "delivery_truck.n.01": 0.509710831278397,
+        "truck.n.01": -1000.0,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/27a0aaa34e7d4ea7877393178d82b01c",
+        "creator_username": "Medhatelo",
+        "creator_display_name": "Medhatelo",
+        "creator_profile_url": "https://sketchfab.com/Medhatelo"
+    },
+    "filename": "std_27a0aaa34e7d4ea7877393178d82b01c.glb",
+    "length": 6.244323253631592,
+    "width": 2.4641919136047363
+}

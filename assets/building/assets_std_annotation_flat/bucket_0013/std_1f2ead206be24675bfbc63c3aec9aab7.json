@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a commercial passenger airplane with a streamlined fuselage painted in blue, green, and white, featuring the 'airflorida' livery and logo. The aircraft has a low-wing configuration with swept-back wings and two underwing turbofan engines. The tail section is conventional, with a single vertical stabilizer and horizontal stabilizers extending from either side. The cockpit is located at the forward end of the fuselage, with multiple windows visible along the side for passengers. The landing gear is in a tricycle configuration, with the main gear under the wings and a nose gear at the front. A passenger boarding stairway is deployed at the front left door, indicating access for boarding or deplaning.",
+    "description": "A blue, green, and white commercial passenger airplane with swept low wings, twin underwing engines, and a conventional tail, featuring 'airflorida' branding and a deployed boarding stairway.",
+    "description_view_0": "Side view showing the full fuselage, 'airflorida' branding, deployed boarding stairway, and both wings with engines visible.",
+    "description_view_1": "Front view highlighting the nose, cockpit windows, forward fuselage, and the symmetrical spread of the wings and engines.",
+    "description_view_2": "Opposite side view displaying the tail logo, passenger windows, and the clean lines of the fuselage and wings without the stairway visible.",
+    "description_view_3": "Top-down view revealing the blue and green livery pattern on the fuselage and wings, as well as the stairway at the front left door.",
+    "category": "airplane",
+    "height": 4.0,
+    "max_dimension": 30.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "composite",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.7,
+        0.05,
+        0.05,
+        0.05,
+        0.05,
+        0.08,
+        0.02
+    ],
+    "mass": 35000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 343000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "boarding stairway",
+        "cockpit window",
+        "passenger window",
+        "landing gear",
+        "engine",
+        "wing",
+        "tail fin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "green",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.4,
+        0.2,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 35.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, swept-back wings with slight dihedral and no visible winglets.",
+    "attribute_engine_type": "Twin turbofan underwing",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers",
+    "attribute_landing_gear_type": "Tricycle landing gear with two main units and one nose gear, retractable",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with multiple windows",
+    "uid": "1f2ead206be24675bfbc63c3aec9aab7",
+    "near_synsets": {
+        "airliner.n.01": 0.5187882363414456,
+        "airline.n.02": 0.5321240281666691,
+        "airplane.n.01": 0.5365198748679911,
+        "aircraft.n.01": 0.5444422102679123,
+        "plane_seat.n.01": 0.544746840427883
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1f2ead206be24675bfbc63c3aec9aab7",
+        "creator_username": "adim09",
+        "creator_display_name": "Shawn 684 M",
+        "creator_profile_url": "https://sketchfab.com/adim09"
+    },
+    "filename": "std_1f2ead206be24675bfbc63c3aec9aab7.glb",
+    "length": 10.151764869689941,
+    "width": 10.05132007598877
+}

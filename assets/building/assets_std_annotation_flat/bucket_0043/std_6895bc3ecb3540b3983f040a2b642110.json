@@ -1,0 +1,91 @@
+{
+    "description_long": "This structure is a tall, lattice-framed tower constructed primarily from dark metal beams arranged in a geometric, truss-like pattern. The base is wide and tapers upward, supporting a Y-shaped upper section with two prominent horizontal crossarms extending outward. At the ends of each crossarm, there are insulator stacks designed to suspend high-voltage power lines. The overall design is open and skeletal, allowing for minimal wind resistance and efficient support of electrical infrastructure. The surface appears metallic and industrial, with a matte finish and visible structural joints. No warning signage or decorative elements are present, emphasizing its utilitarian function in urban power distribution.",
+    "description": "A tall, dark metal lattice tower with a Y-shaped upper section and two horizontal crossarms supporting insulator stacks for power lines. The structure is open, skeletal, and industrial in appearance.",
+    "description_view_0": "Frontal view showing the wide base, Y-shaped upper section, and both crossarms with insulator stacks clearly visible.",
+    "description_view_1": "Side view revealing the narrow profile of the tower and the depth of the lattice framework, with crossarms seen edge-on.",
+    "description_view_2": "Rear view, nearly identical to the front, displaying the symmetrical Y-shaped structure and crossarms with insulators.",
+    "description_view_3": "Opposite side view, mirroring view 1, showing the slim profile and truss construction.",
+    "category": "transformer tower",
+    "height": 28.0,
+    "max_dimension": 32.0,
+    "materials": [
+        "steel",
+        "ceramic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 14500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "supporting_power_lines"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "insulator stack",
+        "crossarm"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "light gray"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.01,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_insulator_stacks": 4,
+    "attribute_arrangement_of_crossarms": "There are two horizontal crossarms arranged in a single tier, forming a wide Y-shape at the top of the structure. The crossarms are symmetrically positioned and extend outward from the central support.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "insulator stack"
+    ],
+    "attribute_configuration_of_attached_power_lines": "Power lines are attached in a parallel configuration, with two circuits supported by the crossarms and insulator stacks at each end, likely arranged for three-phase transmission.",
+    "uid": "6895bc3ecb3540b3983f040a2b642110",
+    "near_synsets": {
+        "pylon.n.02": 0.49524341924029025,
+        "tower.n.01": 0.5493457931982257,
+        "trestle.n.01": 0.5600830446146386,
+        "supporting_tower.n.01": 0.5643158744450444,
+        "telephone_pole.n.01": 0.5652545411406965,
+        "tugboat.n.01": -1000.0,
+        "column.n.04": -1000.0,
+        "transformer.n.01": -1000.0
+    },
+    "synset": "pylon.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6895bc3ecb3540b3983f040a2b642110",
+        "creator_username": "bingo_bongo",
+        "creator_display_name": "bingo_bongo",
+        "creator_profile_url": "https://sketchfab.com/bingo_bongo"
+    },
+    "filename": "std_6895bc3ecb3540b3983f040a2b642110.glb",
+    "length": 5.7727131843566895,
+    "width": 19.94491958618164
+}

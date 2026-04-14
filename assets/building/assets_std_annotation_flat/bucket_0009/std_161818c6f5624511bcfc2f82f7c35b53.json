@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a classic cartoon-style spherical bomb, featuring a smooth, glossy black metal shell. At the top, there is a short, thick, twisted fuse made of a light-colored rope material, which is inserted into a metallic cap. The cap is a dull bronze or brass color and sits flush with the top of the bomb, securing the fuse in place. The bomb's surface is highly reflective, with a pronounced specular highlight indicating a hard, polished finish. There are no visible seams, markings, or warning labels on the exterior, giving it a simple and iconic appearance. The overall design suggests it is a compact, hand-held explosive device, commonly depicted in animated or stylized urban scenarios.",
+    "description": "A glossy black spherical bomb with a metallic cap and a twisted rope fuse, featuring a highly polished surface and no visible markings.",
+    "description_view_0": "The bomb is seen from the front, showing the full round body, metallic cap, and the fuse curving slightly to the left.",
+    "description_view_1": "The bomb is rotated, with the fuse now curving more directly forward and the cap's edge more visible.",
+    "description_view_2": "The fuse appears to curve slightly backward, and the cap is seen from a different angle, with the bomb's body still fully visible.",
+    "description_view_3": "The fuse is upright and slightly twisted, with the cap and bomb body similar to previous views but the fuse's tip is more centered.",
+    "category": "bomb",
+    "height": 0.22,
+    "max_dimension": 0.22,
+    "materials": [
+        "steel",
+        "brass",
+        "cotton",
+        "air",
+        "explosive_compound"
+    ],
+    "materials_composition": [
+        0.7,
+        0.08,
+        0.02,
+        0.05,
+        0.15
+    ],
+    "mass": 2.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable",
+        "ignitable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "fuse",
+        "cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "bronze",
+        "beige"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.08,
+    "surface_finish": "glossy",
+    "reflectivity": 0.6,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The bomb appears to be ignited by lighting the exposed cotton fuse, which would burn down to the interior and trigger detonation.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "161818c6f5624511bcfc2f82f7c35b53",
+    "near_synsets": {
+        "pipe_bomb.n.01": 0.5313211194405039,
+        "bomb.n.01": 0.5327341905649196,
+        "plastic_bomb.n.01": 0.5345992096215797,
+        "cherry_bomb.n.01": 0.5359386999348618,
+        "briefcase_bomb.n.01": 0.5397277212228775,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/161818c6f5624511bcfc2f82f7c35b53",
+        "creator_username": "marvelmaster",
+        "creator_display_name": "marvelmaster",
+        "creator_profile_url": "https://sketchfab.com/marvelmaster"
+    },
+    "filename": "std_161818c6f5624511bcfc2f82f7c35b53.glb",
+    "length": 0.16429049521684647,
+    "width": 0.16428756713867188
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a fictional starfighter with a sleek, elongated fuselage and four distinct wings arranged in an X-formation, each equipped with a cylindrical engine and laser cannon at the tip. The body is primarily white with red and gray markings, showing signs of weathering and battle damage. The cockpit is forward-mounted, enclosed with a transparent canopy, and features a single seat, with a small astromech droid socketed behind it. The rear of the craft displays four prominent engine exhausts, and the wings are mid-mounted with a slight dihedral angle, lacking winglets. The tail section is minimal, with a single vertical stabilizer integrated into the fuselage. No visible landing gear is present, suggesting a retractable or fictional landing system.",
+    "description": "A white and red starfighter with four X-shaped wings, forward cockpit, and four rear engines, featuring weathered surfaces and laser cannons on each wing.",
+    "description_view_0": "Front view showing the pointed nose, forward cockpit canopy, and the symmetrical X-formation of the wings with laser cannons.",
+    "description_view_1": "Side view highlighting the elongated fuselage, cockpit placement, and the stacked engine arrangement at the rear.",
+    "description_view_2": "Rear view displaying the four large engine exhausts, the X-wing configuration, and the astromech droid socket.",
+    "description_view_3": "Opposite side view mirroring view 1, showing the fuselage profile, cockpit, and wing-mounted weaponry.",
+    "category": "airplane",
+    "height": 3.0,
+    "max_dimension": 12.5,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.1,
+        0.02,
+        0.05
+    ],
+    "mass": 9500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 95000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "control stick",
+        "engine throttle",
+        "landing gear lever",
+        "astromech socket",
+        "laser cannon"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 15.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing, X-configuration with four straight wings, each equipped with a laser cannon at the tip and a slight dihedral angle; no winglets present.",
+    "attribute_engine_type": "Four cylindrical jet engines, one mounted at the base of each wing.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer integrated into the rear fuselage.",
+    "attribute_landing_gear_type": "No visible landing gear; likely retractable or fictional landing system.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed single-seat cockpit with a transparent canopy and an astromech droid socket directly behind.",
+    "uid": "3b9d8da388a7445e9d273eca15e8bc53",
+    "near_synsets": {
+        "aircraft.n.01": 0.5268674332830914,
+        "delta_wing.n.01": 0.5316706427429472,
+        "star.n.05": 0.5336274970293959,
+        "fighter.n.02": 0.5342802475111944,
+        "wings.n.02": 0.5364777764734227,
+        "airplane.n.01": -1000.0
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3b9d8da388a7445e9d273eca15e8bc53",
+        "creator_username": "MorgenKell",
+        "creator_display_name": "MorgenKell",
+        "creator_profile_url": "https://sketchfab.com/MorgenKell"
+    },
+    "filename": "std_3b9d8da388a7445e9d273eca15e8bc53.glb",
+    "length": 11.269332885742188,
+    "width": 9.016533374786377
+}

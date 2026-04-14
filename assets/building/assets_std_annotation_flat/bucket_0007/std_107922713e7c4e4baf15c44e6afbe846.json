@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a classic black steam locomotive with a robust, boxy body and a cylindrical boiler at the front, mounted on a set of metal railway tracks. The locomotive features a prominent smokestack, headlamp, and red buffer beams at both ends, with visible wheels and connecting rods along the sides. The body is mostly matte black with some metallic and red accents, and the undercarriage is detailed with pipes and mechanical components. The train appears to be a single engine unit without any attached carriages, designed for pulling passenger or freight cars. There are no visible doors or windows on the sides, suggesting it is an older steam engine model. The tracks are made of wooden ties and metal rails, extending beyond the length of the locomotive.",
+    "description": "A black steam locomotive with red accents, detailed wheels, and a prominent smokestack, sitting on metal railway tracks. The engine is robust and classic in design, with no visible carriages or side doors.",
+    "description_view_0": "Front view showing the locomotive's smokestack, headlamp, and red buffer beam, with the tracks extending forward.",
+    "description_view_1": "Side view displaying the full length of the locomotive, visible wheels, connecting rods, and mechanical details along the undercarriage.",
+    "description_view_2": "Rear view highlighting the back of the locomotive and the end of the tracks, with red buffer beams visible.",
+    "description_view_3": "Opposite side view similar to view 1, showing the locomotive's length, wheels, and mechanical features.",
+    "category": "train",
+    "height": 3.8,
+    "max_dimension": 12.0,
+    "materials": [
+        "steel",
+        "iron",
+        "glass",
+        "wood",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.01,
+        0.04
+    ],
+    "mass": 65000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "door",
+        "headlamp",
+        "smokestack",
+        "buffer beam",
+        "control lever"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "silver",
+        "brown"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_train_type": "steam locomotive",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "no visible doors",
+    "attribute_window_arrangement": "no visible windows",
+    "uid": "107922713e7c4e4baf15c44e6afbe846",
+    "near_synsets": {
+        "steam_locomotive.n.01": 0.4470352300356782,
+        "train.n.01": 0.4809987812024734,
+        "locomotive.n.01": 0.4830653530771978,
+        "diesel_locomotive.n.01": 0.4955267591416071,
+        "train_set.n.01": 0.49792485454729407,
+        "train.n.04": -1000.0,
+        "caravan.n.01": -1000.0,
+        "gearing.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "train.n.05": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/107922713e7c4e4baf15c44e6afbe846",
+        "creator_username": "Hsu.Pei.Ge",
+        "creator_display_name": "Basic Hsu",
+        "creator_profile_url": "https://sketchfab.com/Hsu.Pei.Ge"
+    },
+    "filename": "std_107922713e7c4e4baf15c44e6afbe846.glb",
+    "length": 25.76659870147705,
+    "width": 2.558241367340088
+}

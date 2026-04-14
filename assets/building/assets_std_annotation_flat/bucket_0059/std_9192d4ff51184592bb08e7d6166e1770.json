@@ -1,0 +1,104 @@
+{
+    "description_long": "This object is a detailed model of a NASA Space Shuttle orbiter, featuring a streamlined white fuselage with black thermal protection tiles along the nose, wing edges, and underbelly. The wings are delta-shaped and low-mounted, with a slight upward dihedral and black leading edges. At the rear, three large main engines are visible, flanked by two smaller orbital maneuvering system pods and a vertical stabilizer with a black tip. The cockpit is located at the forward end, with a distinctive black windshield and window arrangement. The landing gear is partially visible, with the main gear under the wings and a nose gear at the front. The surface is smooth and glossy, with visible panel lines and NASA insignia.",
+    "description": "A NASA Space Shuttle orbiter with a white fuselage, black-tipped delta wings, and three large rear engines. The cockpit is forward-mounted with a black windshield, and the surface is smooth and glossy.",
+    "description_view_0": "Top-down view showing the full delta wing shape, black leading edges, and the forward cockpit windows.",
+    "description_view_1": "Left side view highlighting the length of the fuselage, the wing profile, and the rear engine cluster.",
+    "description_view_2": "Rear view displaying the three main engines, two maneuvering pods, and the vertical stabilizer.",
+    "description_view_3": "Right side view similar to the left, showing the opposite wing and engine arrangement.",
+    "category": "airplane",
+    "height": 5.0,
+    "max_dimension": 37.0,
+    "materials": [
+        "aluminum",
+        "titanium",
+        "reinforced carbon-carbon",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.1,
+        0.1,
+        0.05,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 78000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 765000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cockpit door",
+        "landing gear",
+        "engine nozzle",
+        "cargo bay doors",
+        "control surfaces",
+        "windows"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.08,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.02,
+    "recommended_clearance": 40.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing delta configuration with slight upward dihedral and black leading edges; no visible winglets.",
+    "attribute_engine_type": "Three rear-mounted jet engines with two additional maneuvering pods flanking the main engines.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and no horizontal stabilizers visible apart from the wing's trailing edge.",
+    "attribute_landing_gear_type": "Tricycle retractable landing gear with two main gear units under the wings and a single nose gear.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed multi-seat cockpit with a black windshield and multiple windows.",
+    "uid": "9192d4ff51184592bb08e7d6166e1770",
+    "near_synsets": {
+        "space_shuttle.n.01": 0.5021432440535006,
+        "space_rocket.n.01": 0.5593080363872585,
+        "aircraft.n.01": 0.5599304266773677,
+        "delta_wing.n.01": 0.5631929884657848,
+        "canopy.n.01": 0.5677071889360797,
+        "airplane.n.01": -1000.0
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9192d4ff51184592bb08e7d6166e1770",
+        "creator_username": "hasansalim",
+        "creator_display_name": "hasansalim",
+        "creator_profile_url": "https://sketchfab.com/hasansalim"
+    },
+    "filename": "std_9192d4ff51184592bb08e7d6166e1770.glb",
+    "length": 18.60918426513672,
+    "width": 6.129374265670776
+}

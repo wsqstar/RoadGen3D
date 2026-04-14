@@ -1,0 +1,103 @@
+{
+    "description_long": "This humanoid robot features a metallic, bronze-colored exterior with a rounded head, cylindrical torso, and articulated limbs. Its head is equipped with two large, circular blue eyes and a small, central blue light on the forehead, suggesting possible sensor or camera placement. The arms and legs are segmented with visible joints, allowing for a wide range of motion, and the hands are designed with mechanical fingers. The robot's body is accented with silver and blue highlights, giving it a functional yet stylized appearance. The overall build is robust, with a slightly industrial aesthetic, and the surface appears smooth and hard. The robot stands upright with arms extended horizontally, resembling a T-pose.",
+    "description": "A bronze and silver humanoid robot with blue highlights, articulated limbs, and a rounded head featuring prominent blue eyes. The design is robust, industrial, and highly articulated.",
+    "description_view_0": "Front view shows the robot's face with blue eyes, central blue forehead light, and outstretched arms, highlighting the chest and symmetrical limb design.",
+    "description_view_1": "Left side view reveals the robot's profile, showing the curvature of the head, segmented arm and leg joints, and the mechanical hand structure.",
+    "description_view_2": "Rear view displays the back of the head, torso, and legs, with visible joint mechanisms and the symmetrical design of the limbs.",
+    "description_view_3": "Right side view mirrors the left, showing the profile of the head, arm, and leg articulation, and the mechanical hand details.",
+    "category": "humanoid robot",
+    "height": 1.7,
+    "max_dimension": 2.0,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 95,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "rotatable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "eyes",
+        "head",
+        "arms",
+        "hands",
+        "legs",
+        "joints",
+        "torso lights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "bronze",
+        "silver",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright in a T-pose with both arms extended horizontally to the sides, legs straight and parallel, head facing forward, and torso upright.",
+    "attribute_clothing_style": "No visible clothing; the robot is covered in integrated metallic and plastic panels with decorative blue highlights.",
+    "attribute_facial_features": "The face features two large, circular blue eyes, a small blue light on the forehead, and a smooth, expressionless metallic surface with no visible mouth or nose.",
+    "attribute_limb_articulation": "Arms and legs are segmented with visible hinge and rotary joints at the shoulders, elbows, wrists, hips, knees, and ankles, allowing for flexible movement; hands have articulated fingers.",
+    "attribute_presence_of_sensors": "Visible sensors include two large blue eyes and a central blue forehead light, likely functioning as cameras or visual sensors.",
+    "uid": "bd6ee1bdf11f40faade7196add4a93a3",
+    "near_synsets": {
+        "android.n.01": 0.5620312802317948,
+        "cyborg.n.01": 0.5668931142423169,
+        "robotics_equipment.n.01": 0.5734263029159494,
+        "automaton.n.02": 0.5791292252576888,
+        "bronze.n.02": 0.586729982008978
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bd6ee1bdf11f40faade7196add4a93a3",
+        "creator_username": "Tezz",
+        "creator_display_name": "tezz",
+        "creator_profile_url": "https://sketchfab.com/Tezz"
+    },
+    "filename": "std_bd6ee1bdf11f40faade7196add4a93a3.glb",
+    "length": 0.3550376743078232,
+    "width": 2.2842254638671875
+}

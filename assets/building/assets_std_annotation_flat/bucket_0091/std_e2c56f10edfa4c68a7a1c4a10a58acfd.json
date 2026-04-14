@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a heavily armored, tracked combat vehicle with a low, angular profile and a matte olive-green finish. The vehicle features a prominent dual-barrel turret mounted on top, with reinforced housings and visible muzzle details, suggesting heavy weaponry. The hull is covered in sloped armor plating, with several access panels and hatches along the sides, as well as small, reinforced windows at the front. The sides display circular insignia and warning markings, while the surface shows signs of weathering and operational wear. The vehicle's wide, flat tracks are partially shielded by side skirts, enhancing its defensive capabilities. Overall, the design emphasizes protection, firepower, and urban combat readiness.",
+    "description": "A low-profile, olive-green armored combat vehicle with a dual-barrel turret and sloped, reinforced plating. Marked with insignia and weathered for urban operations.",
+    "description_view_0": "Side view showing the dual-barrel turret, sloped armor, side hatches, and visible insignia on the hull.",
+    "description_view_1": "Front view highlighting the wide, flat hull, reinforced windows, and the imposing twin barrels of the turret.",
+    "description_view_2": "Opposite side view with similar features to view 0, including access panels and side insignia, but mirrored.",
+    "description_view_3": "Rear view displaying the back of the turret, rear armor plating, and additional reinforced windows.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "hatch",
+        "window",
+        "track",
+        "barrel",
+        "panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "black",
+        "gray",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.03,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Two large-caliber cannon mounts on the central turret located on the roof.",
+    "attribute_armor_plating": "Full-body sloped armor plating with reinforced panels on the front, sides, and rear; appears thick and robust with visible access hatches.",
+    "attribute_camouflage_pattern": "Solid olive-green paint with weathered, worn patches and subtle gray discoloration.",
+    "attribute_military_markings": "Circular insignia and warning symbols on the side panels; yellow caution markings on the barrels and hull.",
+    "attribute_tire_type": "not applicable",
+    "uid": "e2c56f10edfa4c68a7a1c4a10a58acfd",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.5097708855044918,
+        "reconnaissance_vehicle.n.01": 0.5352530277245937,
+        "armored_car.n.02": 0.536945339784354,
+        "weapons_carrier.n.01": 0.5408002443255339,
+        "armored_vehicle.n.01": 0.541190252986374,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "armored_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/e2c56f10edfa4c68a7a1c4a10a58acfd",
+        "creator_username": "Panodile",
+        "creator_display_name": "Panodile",
+        "creator_profile_url": "https://sketchfab.com/Panodile"
+    },
+    "filename": "std_e2c56f10edfa4c68a7a1c4a10a58acfd.glb",
+    "length": 4.5323662757873535,
+    "width": 3.7578967809677124
+}

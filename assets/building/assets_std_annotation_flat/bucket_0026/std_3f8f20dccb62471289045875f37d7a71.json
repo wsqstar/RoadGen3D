@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a stylized, armored truck with a boxy, robust design, painted in a matte gray color. The front features a prominent grille, two round headlights, and a reinforced bumper, giving it a tough, utilitarian appearance. The sides have small, barred windows and a single door, suggesting secure transport, possibly for valuables or prisoners. The roof is flat with visible handles and rivets, indicating reinforced construction and potential for rooftop access or storage. The rear has double doors and red tail lights, further emphasizing its function as a secure transport vehicle. The wheels are thick and sturdy, suitable for urban environments and heavy loads.",
+    "description": "A stylized, armored gray truck with barred windows, reinforced panels, and a boxy, secure design.",
+    "description_view_0": "Front view shows a wide grille, two round headlights, and a reinforced bumper.",
+    "description_view_1": "Left side view reveals a single door, barred window, and thick wheels.",
+    "description_view_2": "Rear view displays double doors, red tail lights, and a license plate.",
+    "description_view_3": "Right side view mirrors the left, with a door and barred window visible.",
+    "category": "truck",
+    "height": 2.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.1,
+        0.05,
+        0.02
+    ],
+    "mass": 3500,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "wheel",
+        "window",
+        "headlight",
+        "taillight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "white",
+        "red"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "box",
+    "attribute_wheelbase": 2.2,
+    "attribute_number_of_axles": 2,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "3f8f20dccb62471289045875f37d7a71",
+    "near_synsets": {
+        "armored_car.n.01": 0.5003312492764946,
+        "van.n.05": 0.509478138969297,
+        "technical.n.01": 0.5352600306283558,
+        "military_vehicle.n.01": 0.5388861674506978,
+        "weapons_carrier.n.01": 0.5396971449674337,
+        "truck.n.01": -1000.0,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3f8f20dccb62471289045875f37d7a71",
+        "creator_username": "Danish337",
+        "creator_display_name": "Danish337",
+        "creator_profile_url": "https://sketchfab.com/Danish337"
+    },
+    "filename": "std_3f8f20dccb62471289045875f37d7a71.glb",
+    "length": 3.409525156021118,
+    "width": 2.2955960035324097
+}

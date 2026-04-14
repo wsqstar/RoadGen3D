@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a large, rectangular vending machine with a teal-colored metal exterior and a prominent illuminated display panel on the front. The front face features a transparent window showcasing a variety of beverages, with product selection buttons and a payment interface to the right. The sides of the machine are decorated with a large, stylized floral or geometric logo and the words 'MULTI+VEN' in bold, colorful letters. The machine has a sturdy, industrial build, typical of urban vending machines found on sidewalks or in public spaces. The lower front section includes a product retrieval slot and additional branding. The back of the machine is plain and unadorned, with no visible openings or features.",
+    "description": "A teal metal vending machine with a large front display, product window, and bold 'MULTI+VEN' branding on the sides. Features include a payment interface, selection buttons, and a product retrieval slot.",
+    "description_view_0": "Side view showing the large 'MULTI+VEN' logo and teal metal surface, with no visible functional components.",
+    "description_view_1": "Front view displaying the illuminated product window, selection buttons, payment interface, retrieval slot, and branding.",
+    "description_view_2": "Opposite side view, mirroring view 0 with the same 'MULTI+VEN' logo and teal finish.",
+    "description_view_3": "Rear view, plain and featureless with a solid teal surface and no visible openings or branding.",
+    "category": "vending machine",
+    "height": 1.8,
+    "max_dimension": 1.8,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "electronic components",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.1,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 220,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "payment slot",
+        "product retrieval slot",
+        "display panel",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "teal",
+        "white",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.08,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A large, rectangular illuminated display panel is located on the upper front of the machine, showing product images and branding.",
+    "attribute_payment_interface": "Multiple payment interfaces are present on the right side of the front face, including a coin slot, bill acceptor, and card reader.",
+    "attribute_product_selection_buttons": "A vertical row of individual product selection buttons is located to the right of the display panel, each labeled for a specific product.",
+    "attribute_product_retrieval_slot": "A rectangular product retrieval slot with a flap is located on the lower front section of the machine.",
+    "attribute_branding_or_signage": "Large 'MULTI+VEN' branding with a stylized geometric logo is present on both sides and the lower front, in white, yellow, and teal colors.",
+    "uid": "db2d16ff97324bc7ab52a4c686c7b482",
+    "near_synsets": {
+        "vending_machine.n.01": 0.49837333139097373,
+        "automat.n.01": 0.5519389210773344,
+        "meat_counter.n.01": 0.6057067743059872,
+        "fruit_machine.n.01": 0.6077185791818157,
+        "coin_slot.n.01": 0.6182522041053476,
+        "machine.n.05": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.01": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.02": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/db2d16ff97324bc7ab52a4c686c7b482",
+        "creator_username": "bolinas",
+        "creator_display_name": "bolinas",
+        "creator_profile_url": "https://sketchfab.com/bolinas"
+    },
+    "filename": "std_db2d16ff97324bc7ab52a4c686c7b482.glb",
+    "length": 0.6858651638031006,
+    "width": 0.9937777519226074
+}

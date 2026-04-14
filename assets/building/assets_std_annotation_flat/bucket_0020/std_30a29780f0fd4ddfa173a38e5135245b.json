@@ -1,0 +1,85 @@
+{
+    "description_long": "This is a wooden ladder with five evenly spaced rectangular rungs and two vertical side rails that slightly flare outward at the base. The ladder is constructed from a warm, light-brown wood, giving it a natural and sturdy appearance. The rungs are flat and wide enough to provide stable footing, while the side rails are straight and robust, likely designed to support the weight of a person climbing. There are no visible safety features such as anti-slip feet or handrails, and the ladder appears to be intended for freestanding or leaning use. The surface finish is matte, with a subtle wood grain texture visible throughout. This type of ladder is commonly found in urban environments such as garages, workshops, or for maintenance tasks in public spaces.",
+    "description": "A sturdy, light-brown wooden ladder with five flat rungs and slightly flared side rails, featuring a matte wood grain finish.",
+    "description_view_0": "Front view showing five evenly spaced rungs and the outward flare of the side rails.",
+    "description_view_1": "Side profile revealing the thin, flat nature of the ladder and the uniform thickness of the rails.",
+    "description_view_2": "Rear view, visually similar to the front, displaying the rungs and side rails from the opposite side.",
+    "description_view_3": "Opposite side profile, again showing the slim profile and straight rails.",
+    "category": "ladder",
+    "height": 1.8,
+    "max_dimension": 1.8,
+    "materials": [
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 7.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 25,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "climbable",
+        "liftable",
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "rung",
+        "side rail"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light brown"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rungs": 5,
+    "attribute_rung_spacing": 0.32,
+    "attribute_side_rail_profile": "rectangular wooden",
+    "attribute_mounting_position": "freestanding",
+    "attribute_presence_of_safety_features": [],
+    "uid": "30a29780f0fd4ddfa173a38e5135245b",
+    "near_synsets": {
+        "ladder.n.01": 0.47952431538569823,
+        "rope_ladder.n.01": 0.5063605760687621,
+        "step_ladder.n.01": 0.520238207342763,
+        "extension_ladder.n.01": 0.5254545749849404,
+        "ladder.n.02": 0.534585836788859,
+        "run.n.13": -1000.0
+    },
+    "synset": "ladder.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/30a29780f0fd4ddfa173a38e5135245b",
+        "creator_username": "guillermot",
+        "creator_display_name": "Guillermo T",
+        "creator_profile_url": "https://sketchfab.com/guillermot"
+    },
+    "filename": "std_30a29780f0fd4ddfa173a38e5135245b.glb",
+    "length": 0.08947933465242386,
+    "width": 0.6225060820579529
+}

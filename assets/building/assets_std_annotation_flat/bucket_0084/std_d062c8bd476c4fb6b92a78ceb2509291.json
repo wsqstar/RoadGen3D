@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a large, rectangular metal dumpster with a visibly weathered and rusted exterior, featuring a predominantly green base color with patches of brown and rust. The top consists of two flat, split metal lids, each showing significant discoloration and surface wear, likely from prolonged outdoor exposure. Graffiti and faded markings are present on the sides, adding to its urban, well-used appearance. The structure is robust, with reinforced edges and no visible wheels or handles, suggesting it is designed to remain stationary. There are no visible locking mechanisms or warning labels, but the lids appear to be manually openable. The overall form and finish indicate it is intended for heavy-duty waste collection in public or commercial outdoor environments.",
+    "description": "A large, weathered green metal dumpster with two flat, split lids and graffiti on its sides. The surface is rusted and worn, giving it a rugged, urban appearance.",
+    "description_view_0": "Front-left view showing the split lids, graffiti, and rusted green panels; the lids' seam and surface wear are prominent.",
+    "description_view_1": "Rear-left view highlighting the broad, flat lids and extensive rust; graffiti is visible on the left side.",
+    "description_view_2": "Rear-right view emphasizing the length of the dumpster, the seam between the lids, and heavy rusting on the right panel.",
+    "description_view_3": "Front-right view showing the flat lids, green and rusted panels, and the absence of visible handles or wheels.",
+    "category": "dumpster",
+    "height": 1.1,
+    "max_dimension": 3.0,
+    "materials": [
+        "steel",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.92,
+        0.07,
+        0.01
+    ],
+    "mass": 420,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "rust",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "flat, split metal lids (2 sections), no visible hinges or locking mechanisms, likely manually openable",
+    "attribute_wheel_presence": false,
+    "attribute_handle_design": "none",
+    "attribute_warning_labels": [],
+    "attribute_placement_location": "outdoor commercial area or residential alley",
+    "uid": "d062c8bd476c4fb6b92a78ceb2509291",
+    "near_synsets": {
+        "dumpster.n.01": 0.46027992379765603,
+        "garbage.n.03": 0.5252967711670136,
+        "scrapheap.n.02": 0.5340660106506906,
+        "garbage_truck.n.01": 0.534819431245346,
+        "dump.n.02": 0.5420752596596714
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d062c8bd476c4fb6b92a78ceb2509291",
+        "creator_username": "randombug",
+        "creator_display_name": "randombug",
+        "creator_profile_url": "https://sketchfab.com/randombug"
+    },
+    "filename": "std_d062c8bd476c4fb6b92a78ceb2509291.glb",
+    "length": 4.9617462158203125,
+    "width": 4.797353744506836
+}

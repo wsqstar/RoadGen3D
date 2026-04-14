@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a medium-sized passenger ferry with a streamlined hull painted blue and a white superstructure. The vessel features a raised cabin area with large, dark-tinted windows on both sides, providing ample visibility for passengers. The deck is finished in a wood-like material, with metal railings running along the perimeter for safety. The upper section includes a tan canopy or roof, likely offering shade or shelter for an outdoor seating area. At the stern, there is an open deck space, possibly for boarding or outdoor activities, and the bow is pointed for efficient movement through water. The ferry is equipped with navigational equipment, including an antenna and radar mast, and appears designed for short to medium urban waterway routes.",
+    "description": "A blue and white passenger ferry with a wood-finished deck, large side windows, and a tan canopy, featuring open and enclosed areas for passengers.",
+    "description_view_0": "Side view showing the full length of the ferry, large windows, and the tan canopy over the upper deck.",
+    "description_view_1": "Front view highlighting the pointed bow, wraparound railings, and the width of the ferry.",
+    "description_view_2": "Opposite side view displaying the superstructure, windows, and open rear deck area.",
+    "description_view_3": "Rear view showing the open stern deck, entry points, and the arrangement of the upper canopy and railings.",
+    "category": "ferry",
+    "height": 4.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "fiberglass",
+        "metal",
+        "glass",
+        "wood",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "steering wheel",
+        "railing",
+        "canopy",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "tan",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 7000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_passenger_decks": 1,
+    "attribute_vehicle_loading_ramps": false,
+    "attribute_large_windows": true,
+    "attribute_multiple_entry_points": true,
+    "attribute_prominent_smokestack": false,
+    "uid": "6fa4866e00a64b3786db985ff1a99d8b",
+    "near_synsets": {
+        "ferry.n.01": 0.4882616687759741,
+        "ferry.n.02": 0.49650377767043574,
+        "car-ferry.n.01": 0.4990720032820495,
+        "passenger_ship.n.01": 0.5052486383731035,
+        "cabin_liner.n.01": 0.5063049140336496
+    },
+    "synset": "car-ferry.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6fa4866e00a64b3786db985ff1a99d8b",
+        "creator_username": "earthlaomao66",
+        "creator_display_name": "earthlaomao66",
+        "creator_profile_url": "https://sketchfab.com/earthlaomao66"
+    },
+    "filename": "std_6fa4866e00a64b3786db985ff1a99d8b.glb",
+    "length": 10.665246486663818,
+    "width": 2.785675048828125
+}

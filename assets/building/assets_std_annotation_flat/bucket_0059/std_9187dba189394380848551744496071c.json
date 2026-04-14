@@ -1,0 +1,113 @@
+{
+    "description_long": "This all-terrain vehicle features a rugged, utilitarian design with a weathered metallic exterior and robust construction. The vehicle is equipped with four large, cylindrical wheels that appear reinforced for off-road travel, and the undercarriage is elevated for ground clearance. The front section includes a protective grille, dual headlights, and a reinforced bumper, while the rear is fitted with a flat cargo platform and a mechanical mount, possibly for equipment or cargo. The roof is covered with a grid of solar panels, suggesting hybrid or electric power capabilities, and the side panels display angular, armored contours with visible access hatches. The cockpit is enclosed with a transparent windshield and flanked by side mirrors, and the dashboard is detailed with control panels and indicator lights. The overall finish is matte and slightly corroded, indicating heavy use in harsh environments.",
+    "description": "A rugged, solar-equipped all-terrain vehicle with armored panels, a flat cargo platform, and four reinforced wheels, designed for off-road and urban utility.",
+    "description_view_0": "Front view shows the protective grille, dual headlights, and the elevated cockpit with a transparent windshield.",
+    "description_view_1": "Left side view highlights the solar panel array on the roof, angular armored panels, and the flat cargo platform at the rear.",
+    "description_view_2": "Rear view reveals the cargo platform, mechanical mount, and the grid of solar panels covering the roof.",
+    "description_view_3": "Right side view displays the same armored contours, visible access hatches, and the robust wheel assemblies.",
+    "category": "all-terrain vehicle",
+    "height": 2.2,
+    "max_dimension": 5.0,
+    "materials": [
+        "metal",
+        "glass",
+        "rubber",
+        "plastic",
+        "solar panel",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.08,
+        0.12,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "mass": 2100,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4200,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "steering wheel",
+        "dashboard",
+        "solar panel",
+        "headlight",
+        "side mirror",
+        "cargo mount"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "red",
+        "blue",
+        "green",
+        "orange"
+    ],
+    "colors_composition": [
+        0.6,
+        0.18,
+        0.07,
+        0.08,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.65,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.07,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 4,
+    "attribute_tire_tread_pattern": "The tires have a blocky, all-terrain tread pattern with deep grooves and pronounced lugs, suitable for gripping uneven and loose surfaces.",
+    "attribute_suspension_type": "independent",
+    "attribute_presence_of_roll_cage": true,
+    "attribute_handlebar_or_steering_wheel_type": "round steering wheel",
+    "uid": "9187dba189394380848551744496071c",
+    "near_synsets": {
+        "sport_utility.n.01": 0.5133576202444317,
+        "reconnaissance_vehicle.n.01": 0.515471728261178,
+        "armored_vehicle.n.01": 0.5216617984382153,
+        "military_vehicle.n.01": 0.5261302387255323,
+        "assault_gun.n.02": 0.5428692354529188,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "armored_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9187dba189394380848551744496071c",
+        "creator_username": "Moonlastic",
+        "creator_display_name": "Moonlastic",
+        "creator_profile_url": "https://sketchfab.com/Moonlastic"
+    },
+    "filename": "std_9187dba189394380848551744496071c.glb",
+    "length": 4.866692543029785,
+    "width": 2.4432551860809326
+}

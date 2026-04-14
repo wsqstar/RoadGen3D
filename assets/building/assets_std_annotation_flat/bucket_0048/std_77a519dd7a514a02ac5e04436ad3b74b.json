@@ -1,0 +1,93 @@
+{
+    "description_long": "This kiosk consists of two identical open structures, each featuring a pitched gabled roof with a reddish-brown tile texture supported by four wooden posts. The posts are anchored into square brick bases, providing stability and a touch of rustic charm. The roof is framed with light-colored wooden beams, forming a triangular truss visible from the front and back. The open design allows for easy passage beneath the roof, making it suitable for use as a small market stall, information booth, or shelter in an urban park or sidewalk. There are no visible walls, windows, or doors, emphasizing its function as a semi-sheltered, accessible structure. The overall appearance is clean and functional, with a blend of traditional and utilitarian architectural elements.",
+    "description": "A pair of open, gabled-roof kiosks with wooden frames, brick bases, and reddish-brown tiled roofs. The design is open on all sides, providing shelter while allowing easy access.",
+    "description_view_0": "Front view showing the open entryways, triangular roof trusses, and brick bases of both kiosks.",
+    "description_view_1": "Side view highlighting the length of the reddish-brown gabled roofs and the alignment of the supporting posts.",
+    "description_view_2": "Rear view similar to the front, displaying the open backs and roof trusses of both kiosks.",
+    "description_view_3": "Opposite side view, again showing the roofs' length and the brick bases from a different angle.",
+    "category": "kiosk",
+    "height": 2.5,
+    "max_dimension": 3.2,
+    "materials": [
+        "wood",
+        "brick",
+        "roof_tile",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shelter",
+        "shadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "red",
+        "yellow",
+        "orange"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_signage_type": "none",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "open archway, front and back, no doors",
+    "attribute_roof_design": "Gabled roof with reddish-brown tiles, wooden truss framing, moderate overhangs, no decorative elements.",
+    "attribute_architectural_style": "Traditional utilitarian with rustic influences",
+    "uid": "77a519dd7a514a02ac5e04436ad3b74b",
+    "near_synsets": {
+        "gazebo.n.01": 0.512820632652571,
+        "loggia.n.01": 0.5512736832285094,
+        "sentry_box.n.01": 0.5521182379165258,
+        "gable_roof.n.01": 0.5587384849614194,
+        "booth.n.02": 0.5623568301981134
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/77a519dd7a514a02ac5e04436ad3b74b",
+        "creator_username": "crownoakbuildingsdesigns",
+        "creator_display_name": "crownoakbuildingsdesigns",
+        "creator_profile_url": "https://sketchfab.com/crownoakbuildingsdesigns"
+    },
+    "filename": "std_77a519dd7a514a02ac5e04436ad3b74b.glb",
+    "length": 1.088085412979126,
+    "width": 4.524578809738159
+}

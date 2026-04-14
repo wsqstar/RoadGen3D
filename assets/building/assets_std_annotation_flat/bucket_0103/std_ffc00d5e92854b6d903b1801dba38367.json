@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a large, heavily armored tracked combat vehicle resembling a World War II-era German tank destroyer. Its hull and turret are covered in angular, sloped armor plates, with a long, prominent main cannon extending from the front. The exterior is finished in a blue-gray digital camouflage pattern, and the vehicle features multiple road wheels and tracks for traversing rough terrain. On the sides of the turret, a white cross insignia is visible, indicating military affiliation. The vehicle's design is utilitarian, with minimal external accessories and a focus on protection and firepower. The overall appearance is imposing, with a low profile and robust construction.",
+    "description": "A large, blue-gray camouflaged tracked combat vehicle with a long cannon and sloped armor, featuring military insignia on the turret.",
+    "description_view_0": "Side view showing the full length of the cannon, the sloped turret, and the white cross insignia on the side.",
+    "description_view_1": "Rear view highlighting the back armor, exhaust ports, and the width of the tracks.",
+    "description_view_2": "Opposite side view displaying the other side of the turret, tracks, and the main gun.",
+    "description_view_3": "Front view emphasizing the long barrel, sloped frontal armor, and the vehicle's low, wide stance.",
+    "category": "combat tactical  vehicle",
+    "height": 3.0,
+    "max_dimension": 10.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.01,
+        0.05,
+        0.01
+    ],
+    "mass": 70000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "track",
+        "wheel",
+        "viewports",
+        "exhaust port"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue-gray",
+        "dark gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted on the front of the turret; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped steel armor plating; turret and hull both heavily armored with no visible modular or reactive panels.",
+    "attribute_camouflage_pattern": "Blue-gray digital camouflage pattern with pixelated shapes in various shades of blue and gray.",
+    "attribute_military_markings": "White cross insignia on the sides of the turret.",
+    "attribute_tire_type": "not applicable",
+    "uid": "ffc00d5e92854b6d903b1801dba38367",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4628401559558749,
+        "tank.n.01": 0.47442248078122434,
+        "reconnaissance_vehicle.n.01": 0.48484621851894116,
+        "assault_gun.n.02": 0.5098639701290875,
+        "armored_car.n.02": 0.5117988253231093,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ffc00d5e92854b6d903b1801dba38367",
+        "creator_username": "den44",
+        "creator_display_name": "Den44",
+        "creator_profile_url": "https://sketchfab.com/den44"
+    },
+    "filename": "std_ffc00d5e92854b6d903b1801dba38367.glb",
+    "length": 10.927254676818848,
+    "width": 3.6954421997070312
+}

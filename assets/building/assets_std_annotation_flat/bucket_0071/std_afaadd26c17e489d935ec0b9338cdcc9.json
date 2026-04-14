@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a classic parking meter with a rounded top and a rectangular body, commonly found on city streets. The front face features a prominent display window with a semicircular gauge, clearly marked with the word 'EXPIRED' in red, indicating the meter's status. Below the display, there is a coin slot and a circular button, both slightly raised for tactile feedback. The back of the meter is plain, with a smooth surface and no visible interactive elements. The sides are narrow and ribbed, providing structural reinforcement and a secure fit to the mounting post. The base of the meter is cylindrical, connecting the main body to a sturdy mounting post, likely made of metal for durability.",
+    "description": "A classic, gray parking meter with a rounded top, a visible 'EXPIRED' gauge, coin slot, and a sturdy cylindrical mounting post. The front features interactive elements, while the back and sides are plain and reinforced.",
+    "description_view_0": "Front view showing the 'EXPIRED' gauge, coin slot, button, and main interactive features.",
+    "description_view_1": "Side view revealing the narrow, ribbed profile and the thickness of the meter body.",
+    "description_view_2": "Rear view displaying a plain, smooth surface with no visible interactive elements.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the ribbed edge and mounting post connection.",
+    "category": "parking meter",
+    "height": 1.2,
+    "max_dimension": 1.2,
+    "materials": [
+        "painted metal",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "insertable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "coin slot",
+        "button",
+        "display window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "red",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.04,
+        0.01
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_payment_interface": "A coin slot is present on the front face, along with a circular button below it. No card, contactless, or mobile app interfaces are visible.",
+    "attribute_coin_slot": "Present on the front face, rectangular in shape, located above the button, with a small slot for coin insertion.",
+    "attribute_digital_display": "none",
+    "attribute_identification_number": "none",
+    "attribute_mounting_post": "A cylindrical metal mounting post is visible at the base, painted gray, securely connecting to the main body.",
+    "uid": "afaadd26c17e489d935ec0b9338cdcc9",
+    "near_synsets": {
+        "parking_meter.n.01": 0.48594277914190903,
+        "parking_ticket.n.01": 0.578242144600406,
+        "parking.n.01": 0.5804447294717956,
+        "postage_meter.n.01": 0.5892967851562807,
+        "street_sign.n.01": 0.5988425524980058,
+        "parking.n.02": -1000.0,
+        "meter.n.01": -1000.0,
+        "meter.n.03": -1000.0,
+        "meter.n.04": -1000.0,
+        "meter.n.02": -1000.0
+    },
+    "synset": "parking_meter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/afaadd26c17e489d935ec0b9338cdcc9",
+        "creator_username": "stefan63w",
+        "creator_display_name": "stefan63w",
+        "creator_profile_url": "https://sketchfab.com/stefan63w"
+    },
+    "filename": "std_afaadd26c17e489d935ec0b9338cdcc9.glb",
+    "length": 0.3985796719789505,
+    "width": 0.5886960029602051
+}

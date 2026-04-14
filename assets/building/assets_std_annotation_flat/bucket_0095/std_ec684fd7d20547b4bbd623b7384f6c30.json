@@ -1,0 +1,98 @@
+{
+    "description_long": "This humanoid robot features a simplified, stylized design with a rounded head, smooth facial surface, and circular ear-like structures on each side. Its body is composed of a light gray torso and darker gray limbs, with visible joint segments at the shoulders, elbows, hips, and knees, suggesting a high degree of articulation. The hands are flat and paddle-shaped, while the feet are large, rectangular, and colored in a distinct blue with white soles, resembling sneakers. The robot's face is minimalistic, with two circular eye shapes and no visible mouth or nose, giving it a neutral, approachable appearance. The overall construction appears to be primarily plastic or composite material, with metallic elements likely used for internal joints and support. The robot's proportions and posture are reminiscent of a human in a T-pose, suitable for various urban interaction scenarios.",
+    "description": "A stylized humanoid robot with a rounded head, minimal facial features, articulated dark gray limbs, and blue sneaker-like feet. Its design is simple, approachable, and well-suited for urban environments.",
+    "description_view_0": "Front view shows the robot's symmetrical face, outstretched arms, and blue feet, highlighting its humanoid proportions.",
+    "description_view_1": "Left side view reveals the robot's profile, rounded head, and the thickness of its limbs and torso.",
+    "description_view_2": "Rear view displays the back of the head, torso, and limbs, with the blue feet visible from behind.",
+    "description_view_3": "Right side view mirrors the left, showing the profile and limb articulation from the opposite side.",
+    "category": "humanoid robot",
+    "height": 1.3,
+    "max_dimension": 1.7,
+    "materials": [
+        "plastic",
+        "metal",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 38,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "legs",
+        "hands",
+        "feet",
+        "head"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "dark gray",
+        "blue",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.18,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright in a T-pose with arms extended horizontally to the sides, legs straight and parallel, head facing forward, and torso upright.",
+    "attribute_clothing_style": "Unclothed; the robot has integrated panels and colored segments, with blue sections resembling shoes.",
+    "attribute_facial_features": "Face is smooth and minimalistic with two circular eye shapes, no visible mouth or nose, and no expressive elements.",
+    "attribute_limb_articulation": "Arms and legs have visible hinge or rotary joints at shoulders, elbows, hips, and knees, allowing for a wide range of motion; hands and feet are rigid and paddle-shaped.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "ec684fd7d20547b4bbd623b7384f6c30",
+    "near_synsets": {
+        "android.n.01": 0.5285960091939491,
+        "cyborg.n.01": 0.5577365933844083,
+        "automaton.n.02": 0.5722528491603698,
+        "robotics_equipment.n.01": 0.5790675311667742,
+        "robotics.n.01": 0.5798906986625924
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ec684fd7d20547b4bbd623b7384f6c30",
+        "creator_username": "buerkestefan",
+        "creator_display_name": "buerkestefan",
+        "creator_profile_url": "https://sketchfab.com/buerkestefan"
+    },
+    "filename": "std_ec684fd7d20547b4bbd623b7384f6c30.glb",
+    "length": 0.2421846091747284,
+    "width": 1.4911595582962036
+}

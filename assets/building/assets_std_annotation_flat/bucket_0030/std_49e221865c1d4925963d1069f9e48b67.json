@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a long, precision-style rifle with a prominent barrel and a fixed stock, designed for stability and accuracy. It features a bipod mounted near the front for steady aiming, and a telescopic scope is attached to the top rail, indicating its use for long-range targeting. The rifle has a detachable box magazine located just in front of the trigger guard, and the overall build is robust, likely constructed from metal with some polymer components. The muzzle end appears to have a device, possibly a suppressor or muzzle brake, for recoil or flash reduction. The stock is solid and ergonomically shaped for shoulder support, and the grip is integrated into the stock for a secure hold. The rifle's design is utilitarian, with minimal decorative elements, focusing on function and durability.",
+    "description": "A long, precision rifle with a fixed stock, bipod, telescopic scope, and detachable box magazine, built for stability and long-range accuracy. The robust metal construction and utilitarian design emphasize function over form.",
+    "description_view_0": "Front view showing the bipod extended and the muzzle device at the barrel's end.",
+    "description_view_1": "Side view highlighting the full length of the barrel, the fixed stock, scope, and detachable magazine.",
+    "description_view_2": "Rear view focusing on the stock and grip, with the scope and bipod visible in alignment.",
+    "description_view_3": "Opposite side view displaying the rifle's profile, including the scope, magazine, and bipod.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 1.3,
+    "materials": [
+        "steel",
+        "polymer",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 6.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "rotatable",
+        "pushable",
+        "pullable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "trigger",
+        "magazine",
+        "scope",
+        "bipod",
+        "bolt handle",
+        "safety",
+        "muzzle device"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "scope",
+    "attribute_muzzle_device": "suppressor",
+    "uid": "49e221865c1d4925963d1069f9e48b67",
+    "near_synsets": {
+        "sniper_rifle.n.01": 0.4769046856629915,
+        "rifle.n.01": 0.493975259512823,
+        "dragunov.n.01": 0.5165553424388898,
+        "telescopic_sight.n.01": 0.5275516219043674,
+        "light_arm.n.01": 0.5306020206321009
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/49e221865c1d4925963d1069f9e48b67",
+        "creator_username": "417000",
+        "creator_display_name": "417000",
+        "creator_profile_url": "https://sketchfab.com/417000"
+    },
+    "filename": "std_49e221865c1d4925963d1069f9e48b67.glb",
+    "length": 1.05653977394104,
+    "width": 0.5977769494056702
+}

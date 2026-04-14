@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a large, rectangular, industrial shipping container with a weathered blue exterior and visible rust patches along the edges and corners. The container features corrugated metal sides and top, providing structural strength and a rugged appearance. Prominently displayed on the side is the word 'UMBRA' in large, white, stenciled letters, accompanied by a shield-like logo. The front face has two large doors, each with visible hinges and a locking mechanism, as well as faded white stenciled text indicating specifications such as 'MAX GR. CAP.' and 'TARE'. The surface is heavily worn, with dirt, scratches, and rust suggesting long-term outdoor use. This type of container is commonly found in shipping yards, construction sites, or urban storage areas.",
+    "description": "A large, blue, weathered metal shipping container with rust, stenciled markings, and double front doors. Prominent 'UMBRA' logo and industrial wear suggest heavy outdoor use.",
+    "description_view_0": "Front view showing two large, blue metal doors with faded white stenciled text and visible rust, including a handle and locking bar.",
+    "description_view_1": "Side view displaying the full length of the container, with the 'UMBRA' logo and shield in white, and extensive rust and dirt on the corrugated surface.",
+    "description_view_2": "Rear view, visually identical to the front, with two doors, faded markings, and significant weathering.",
+    "description_view_3": "Opposite side view, again showing the 'UMBRA' logo and shield, with similar weathering and rust as the other side.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.92,
+        0.07,
+        0.01
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "locking bar",
+        "hinge"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "rust brown",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "large white 'UMBRA' logo and shield on sides, faded white stenciled text on doors",
+    "attribute_handles_or_grips": "one handle per door on the front face",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "dc80a5c8daaf4354bbcfe4f4d5c38cd6",
+    "near_synsets": {
+        "container.n.01": 0.5239472688455509,
+        "cargo_container.n.01": 0.534793087582306,
+        "box.n.01": 0.5770389429568468,
+        "drum.n.04": 0.5814295092324256,
+        "dumpster.n.01": 0.5857136092356973
+    },
+    "synset": "cargo_container.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dc80a5c8daaf4354bbcfe4f4d5c38cd6",
+        "creator_username": "Facubazzano",
+        "creator_display_name": "Facubazzano",
+        "creator_profile_url": "https://sketchfab.com/Facubazzano"
+    },
+    "filename": "std_dc80a5c8daaf4354bbcfe4f4d5c38cd6.glb",
+    "length": 5.0987091064453125,
+    "width": 2.6017407178878784
+}

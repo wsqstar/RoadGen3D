@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a pump-action shotgun with a long, cylindrical barrel and a robust, rectangular receiver. The barrel is black and extends significantly forward, with a ribbed pump grip located beneath it for manual cycling. The stock is a compact pistol grip style, featuring a camouflage pattern that contrasts with the matte black metal of the main body. The trigger guard is rounded and encloses a single trigger, with the trigger itself clearly visible. The overall design is utilitarian, with minimal embellishments, and the materials suggest a combination of metal and polymer for durability and reduced weight. The shotgun's form and features are consistent with tactical or law enforcement use in urban environments.",
+    "description": "A pump-action shotgun with a long black barrel, ribbed pump grip, and a camouflage-patterned pistol grip stock. The design is utilitarian and robust, suitable for tactical use.",
+    "description_view_0": "Side view showing the full length of the shotgun, including the long barrel, ribbed pump grip, and camouflage pistol grip stock.",
+    "description_view_1": "Front view displaying the circular barrel opening and the narrow profile of the shotgun.",
+    "description_view_2": "Opposite side view mirroring view 0, highlighting the same features from the other side.",
+    "description_view_3": "Rear view showing the end of the pistol grip stock and the alignment of the barrel and receiver.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "pumpable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pump grip",
+        "trigger",
+        "trigger guard",
+        "pistol grip",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "camouflage green",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, long cylindrical barrel with no visible ribbing or venting",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with a smooth contour and no visible finger grooves or reinforcement",
+    "uid": "2221a5081f6d4ef9a1977d8d09d72941",
+    "near_synsets": {
+        "pump_action.n.01": 0.49589258142376047,
+        "shotgun.n.01": 0.5249692056677652,
+        "sawed-off_shotgun.n.01": 0.5291464380811143,
+        "pistol_grip.n.01": 0.545855188916143,
+        "gas_gun.n.01": 0.5546274385026065
+    },
+    "synset": "sawed-off_shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2221a5081f6d4ef9a1977d8d09d72941",
+        "creator_username": "animefunzone",
+        "creator_display_name": "animefunzone",
+        "creator_profile_url": "https://sketchfab.com/animefunzone"
+    },
+    "filename": "std_2221a5081f6d4ef9a1977d8d09d72941.glb",
+    "length": 0.7330704033374786,
+    "width": 0.0298004150390625
+}

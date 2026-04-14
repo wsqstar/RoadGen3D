@@ -1,0 +1,95 @@
+{
+    "description_long": "This cowshed is a rectangular, single-story agricultural structure with a steeply pitched gable roof covered in reddish-brown shingles. The exterior walls are constructed from horizontal wooden planks, supported by visible timber framing, and the building is elevated on sturdy wooden posts. The front features an open bay supported by four posts, providing easy access for livestock or equipment, while the rear and one side are enclosed with solid wooden walls. A single square window is present on one gable end, allowing natural light into the interior. The ground around the structure is covered in grass, and the overall design is simple yet functional, typical of rural utility buildings. The shed's construction and open front suggest it is designed for sheltering animals or storing agricultural materials.",
+    "description": "A wooden cowshed with a steep gable roof, open front bay, and enclosed sides, set on a grassy base. Features timber framing, reddish-brown shingles, and a single window on one end.",
+    "description_view_0": "Front view showing the open bay supported by four wooden posts and the gable end with timber framing.",
+    "description_view_1": "Side view dominated by the large, steeply pitched shingle roof and open front, with no windows or doors visible.",
+    "description_view_2": "Rear gable end with a single square window and fully enclosed wooden wall, showing the timber frame details.",
+    "description_view_3": "Opposite side view with a partially enclosed wall featuring two large horizontal wooden doors and an open bay section.",
+    "category": "cowshed",
+    "height": 5.0,
+    "max_dimension": 10.0,
+    "materials": [
+        "wood",
+        "roof shingles",
+        "glass",
+        "air",
+        "metal"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.01,
+        0.13,
+        0.01
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "shelterable",
+        "storeable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.3,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gable",
+    "attribute_door_style": "double horizontal wooden plank doors, sliding or hinged",
+    "attribute_window_presence": "one square window on the rear gable end",
+    "attribute_ventilation_features": "open front bay, possible gaps in timber framing",
+    "attribute_architectural_style": "traditional rural",
+    "uid": "28fd556e13d84a818f5a8940e80ba949",
+    "near_synsets": {
+        "cowbarn.n.01": 0.4379684069223306,
+        "shed.n.01": 0.49847524195360726,
+        "woodshed.n.01": 0.5008075580122724,
+        "barn.n.01": 0.5066029315494998,
+        "farm_building.n.01": 0.5091535515154476
+    },
+    "synset": "cowbarn.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/28fd556e13d84a818f5a8940e80ba949",
+        "creator_username": "MikeFoxDesign",
+        "creator_display_name": "Mike Fox",
+        "creator_profile_url": "https://sketchfab.com/MikeFoxDesign"
+    },
+    "filename": "std_28fd556e13d84a818f5a8940e80ba949.glb",
+    "length": 10.027587890625,
+    "width": 10.027419090270996
+}

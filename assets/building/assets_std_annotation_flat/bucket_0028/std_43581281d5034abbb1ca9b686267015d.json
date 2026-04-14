@@ -1,0 +1,105 @@
+{
+    "description_long": "This object is a set of four cylindrical trash bins mounted on a horizontal metal frame, each topped with a distinctively colored domed lid: red, green, blue, and yellow. The bins are elevated above the ground on short legs and are separated by a central support bar. Each bin features a clear white pictogram on the front, indicating the type of waste it is intended for, such as general waste, recyclables, or compost. The domed lids are supported by vertical poles matching the lid color, providing partial coverage and easy access for depositing trash. The bins are constructed primarily from metal, with plastic lids and signage, and are designed for public use in urban environments like parks or sidewalks. The overall design is robust, weather-resistant, and visually organized to encourage proper waste sorting.",
+    "description": "A set of four cylindrical public trash bins with red, green, blue, and yellow domed lids, each labeled for different waste types and mounted on a sturdy metal frame. The bins are elevated, color-coded, and designed for easy access and waste separation.",
+    "description_view_0": "Front view showing all four bins with their colored domed lids and clear waste-type pictograms on each bin.",
+    "description_view_1": "Side view highlighting the alignment of the bins and the sequential arrangement of the colored lids from red to yellow.",
+    "description_view_2": "Rear view displaying the back of the bins and the supporting frame, with the colored lids visible from behind.",
+    "description_view_3": "Opposite side view showing the bins in a row, with the domed lids open towards the viewer and the supporting structure visible.",
+    "category": "trash bin",
+    "height": 1.1,
+    "max_dimension": 2.0,
+    "materials": [
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "lid",
+        "bin body"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "green",
+        "blue",
+        "yellow",
+        "white"
+    ],
+    "colors_composition": [
+        0.55,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.13
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_lid_type": "domed, hinged",
+    "attribute_opening_mechanism": "hand lift",
+    "attribute_presence_of_wheels": false,
+    "attribute_handle_design": "absent",
+    "attribute_labeling_or_signage": "Each bin has a white pictogram label indicating waste type.",
+    "uid": "43581281d5034abbb1ca9b686267015d",
+    "near_synsets": {
+        "recycling_bin.n.01": 0.49934492332428093,
+        "litterbin.n.01": 0.5195885657436554,
+        "dumpster.n.01": 0.5246322665401616,
+        "garbage.n.03": 0.533546935435082,
+        "garbage_truck.n.01": 0.5409776512455446,
+        "trash.n.02": -1000.0,
+        "rubbish.n.01": -1000.0,
+        "bin.n.02": -1000.0,
+        "bank_identification_number.n.01": -1000.0,
+        "ashcan.n.01": -1000.0,
+        "methamphetamine.n.01": -1000.0,
+        "folderol.n.01": -1000.0,
+        "bin.n.01": -1000.0
+    },
+    "synset": "recycling_bin.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/43581281d5034abbb1ca9b686267015d",
+        "creator_username": "emijar",
+        "creator_display_name": "emijar",
+        "creator_profile_url": "https://sketchfab.com/emijar"
+    },
+    "filename": "std_43581281d5034abbb1ca9b686267015d.glb",
+    "length": 0.47601890563964844,
+    "width": 1.9806724786758423
+}

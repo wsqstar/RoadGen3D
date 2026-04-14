@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a large, cylindrical metal drum with a rusty brown exterior, featuring two prominent horizontal reinforcement bands near the top and bottom. The surface is weathered, showing scratches, scuffs, and areas of corrosion, suggesting prolonged outdoor exposure. A black liquid appears to be leaking from the top edge, running down the side, adding to the sense of hazardous contents. One side of the drum displays a large, distressed yellow and black radioactive warning symbol, partially stained and faded. The top of the drum is sealed, with a small circular cap or bung visible, likely used for filling or emptying the contents. The overall construction is robust, designed to contain and store dangerous or toxic materials securely.",
+    "description": "A weathered, rusty brown cylindrical metal drum with a radioactive warning symbol and black liquid stains, featuring reinforced bands and a sealed top with a small cap.",
+    "description_view_0": "The drum is shown with black liquid streaks running down from the top and part of the radioactive warning symbol visible on the side.",
+    "description_view_1": "This view highlights the full radioactive warning symbol, with visible corrosion and stains, and the top cap slightly off-center.",
+    "description_view_2": "The drum's side is mostly plain, with only a small portion of the warning symbol visible and no liquid streaks apparent.",
+    "description_view_3": "The rear of the drum is shown, with no warning symbol or liquid stains, only the rusty brown surface and reinforcement bands.",
+    "category": "storage tank",
+    "height": 0.9,
+    "max_dimension": 0.6,
+    "materials": [
+        "steel",
+        "paint",
+        "air",
+        "liquid (unknown, possibly hazardous)"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 35,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 343,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cap",
+        "drum body"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "yellow",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [],
+    "attribute_warning_signage": true,
+    "attribute_architectural_style": "cylindrical vertical",
+    "uid": "c0e17242379740e99afed19eabe2f4ce",
+    "near_synsets": {
+        "tank.n.02": 0.544427124146773,
+        "reservoir.n.03": 0.5533892719331628,
+        "drum.n.04": 0.56144909853354,
+        "radioactive_material.n.01": 0.5636061927116273,
+        "tank_farm.n.01": 0.567531835254531,
+        "storehouse.n.01": -1000.0,
+        "tank.n.01": -1000.0,
+        "storage.n.04": -1000.0,
+        "memory.n.04": -1000.0,
+        "storage.n.01": -1000.0,
+        "cooler.n.03": -1000.0,
+        "tank.n.03": -1000.0,
+        "repositing.n.01": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "storage.n.03": -1000.0
+    },
+    "synset": "drum.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c0e17242379740e99afed19eabe2f4ce",
+        "creator_username": "Lizarlfos",
+        "creator_display_name": "Lizarlfos",
+        "creator_profile_url": "https://sketchfab.com/Lizarlfos"
+    },
+    "filename": "std_c0e17242379740e99afed19eabe2f4ce.glb",
+    "length": 0.5811973810195923,
+    "width": 0.5811976194381714
+}

@@ -1,0 +1,89 @@
+{
+    "description_long": "This kiosk is a rectangular, freestanding structure with a grid of sixteen open cubby-like compartments on its front face, each with a small green label or latch. The upper section features the 'SinLegoo' logo prominently displayed above the compartments, while the base is a solid green platform with the same logo. The sides and rear are plain, with no visible openings or features, emphasizing a clean, utilitarian design. The overall color scheme is white and green, giving it a modern and branded appearance. The kiosk appears to be constructed primarily from rigid materials, likely metal or plastic, with a smooth, hard finish. Its design suggests it is intended for organized storage or display, possibly for parcels, products, or informational materials in an urban environment.",
+    "description": "A modern, rectangular kiosk with a grid of sixteen open compartments on the front, branded with the 'SinLegoo' logo and a green base. The sides and rear are plain, emphasizing a clean, functional design.",
+    "description_view_0": "Front view showing sixteen open cubby compartments, green latches, and the 'SinLegoo' logo above and on the base.",
+    "description_view_1": "Left side view showing a plain, solid surface with no openings or features.",
+    "description_view_2": "Rear view displaying a flat, featureless back with the logo mirrored at the top.",
+    "description_view_3": "Right side view, identical to the left, with a plain, solid surface and no visible compartments.",
+    "category": "kiosk",
+    "height": 2.0,
+    "max_dimension": 2.0,
+    "materials": [
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "mass": 120,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "storable",
+        "labelable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "compartment door",
+        "label/latch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "green"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "printed sign; logo 'SinLegoo' on front above compartments and on green base",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "sixteen small compartment doors on front; no main entry door",
+    "attribute_roof_design": "flat roof, solid white material, no overhangs or decorative features",
+    "attribute_architectural_style": "modern, minimalist, utilitarian",
+    "uid": "171b632dc70246748129dc29ec1aaf83",
+    "near_synsets": {
+        "lego.n.01": 0.5730636653492475,
+        "booth.n.02": 0.5940231609286558,
+        "shopfront.n.01": 0.604799053655109,
+        "parsons_table.n.01": 0.6061411415997662,
+        "wicket.n.04": 0.6086038376071452
+    },
+    "synset": "lego.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/171b632dc70246748129dc29ec1aaf83",
+        "creator_username": "ardhyaska",
+        "creator_display_name": "ardhyaska",
+        "creator_profile_url": "https://sketchfab.com/ardhyaska"
+    },
+    "filename": "std_171b632dc70246748129dc29ec1aaf83.glb",
+    "length": 0.6716196835041046,
+    "width": 0.939453125
+}

@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a large, rectangular metal dumpster with a weathered, greenish-blue exterior and visible rust patches, indicating prolonged outdoor use. The front features two prominent warning and notice labels, one blue and white and the other yellow and red, affixed to the center panel. The top is equipped with a split, hinged black plastic lid, with one half open and the other closed, allowing access to the interior. The sides have robust, boxy metal reinforcements, likely for mechanical lifting by garbage trucks. The interior is spacious and open, designed to hold significant volumes of waste. The overall construction is heavy-duty, suitable for urban waste management in public or commercial spaces.",
+    "description": "A large, weathered metal dumpster with a split black plastic lid, warning labels, and reinforced sides for mechanical lifting.",
+    "description_view_0": "Front view showing the open left lid, two warning labels, and the main access panel.",
+    "description_view_1": "Left side view highlighting the open lid section and a large, boxy metal reinforcement.",
+    "description_view_2": "Rear view displaying the plain, rusted metal back with no labels or openings.",
+    "description_view_3": "Right side view with the open lid and another large metal reinforcement visible.",
+    "category": "dumpster",
+    "height": 1.3,
+    "max_dimension": 2.1,
+    "materials": [
+        "steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "reinforcement bar"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "rust brown",
+        "white",
+        "yellow",
+        "blue",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.03,
+        0.02,
+        0.01,
+        0.01
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "split, hinged, flat plastic lid with two sections; no visible locking mechanism",
+    "attribute_wheel_presence": false,
+    "attribute_handle_design": "none",
+    "attribute_warning_labels": [
+        {
+            "color": "blue and white",
+            "shape": "rectangle",
+            "content": "NOTICE PRIVATE DUMPSTER NOT FOR PUBLIC USE"
+        },
+        {
+            "color": "yellow and red",
+            "shape": "rectangle",
+            "content": "DO NOT BLOCK and other cautionary information"
+        }
+    ],
+    "attribute_placement_location": "outdoor commercial area or residential alley",
+    "uid": "15e01b41d44f412a842cf393d4eb73ca",
+    "near_synsets": {
+        "dumpster.n.01": 0.47477741980030885,
+        "scrapheap.n.02": 0.5390188252596952,
+        "garbage.n.03": 0.550250749559179,
+        "recycling_bin.n.01": 0.5508483445187865,
+        "garbage_truck.n.01": 0.5555998353401482
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/15e01b41d44f412a842cf393d4eb73ca",
+        "creator_username": "thethieme",
+        "creator_display_name": "thethieme",
+        "creator_profile_url": "https://sketchfab.com/thethieme"
+    },
+    "filename": "std_15e01b41d44f412a842cf393d4eb73ca.glb",
+    "length": 0.878041684627533,
+    "width": 1.3295685052871704
+}

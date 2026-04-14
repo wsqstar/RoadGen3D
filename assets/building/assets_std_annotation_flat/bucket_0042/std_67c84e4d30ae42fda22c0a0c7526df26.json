@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a weathered, mid-sized four-door sedan with a boxy, utilitarian design and a faded blue exterior. The body shows signs of age and wear, with visible rust and grime along the lower panels and around the wheel wells. The windows are slightly opaque, suggesting either dirt or aged glass, and the trim is minimal, with black side mirrors and door handles. The front features a simple grille and rectangular headlights, while the rear has understated taillights and a basic bumper. The wheels are steel with basic hubcaps, and the tires appear worn. Overall, the car has a distinctly used, urban look, suitable for a city street or residential neighborhood.",
+    "description": "A worn, blue four-door sedan with visible rust, faded paint, and basic steel wheels, showing signs of heavy urban use.",
+    "description_view_0": "Front view shows a faded hood, simple grille, and rectangular headlights.",
+    "description_view_1": "Left side view highlights four doors, rust along the lower panels, and basic steel wheels.",
+    "description_view_2": "Rear view displays the trunk, basic taillights, and a plain bumper.",
+    "description_view_3": "Right side view mirrors the left, with visible rust, four doors, and worn wheels.",
+    "category": "sedan",
+    "height": 1.45,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.12,
+        0.08,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 1300,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 5,
+    "movable": true,
+    "required_force": 4000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "trunk",
+        "hood",
+        "side mirror"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black",
+        "gray",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.13,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_number_of_doors": 4,
+    "attribute_license_plate": "none",
+    "attribute_wheel_design": "Steel wheels with basic, circular hubcaps, no visible spokes, and a dull gray finish.",
+    "uid": "67c84e4d30ae42fda22c0a0c7526df26",
+    "near_synsets": {
+        "used-car.n.01": 0.5452973873301054,
+        "sedan.n.01": 0.5489166531079559,
+        "car_door.n.01": 0.5606865304560605,
+        "boneshaker.n.01": 0.5616312090945837,
+        "bus.n.04": 0.5622017628403735,
+        "sedan.n.02": -1000.0
+    },
+    "synset": "sedan.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/67c84e4d30ae42fda22c0a0c7526df26",
+        "creator_username": "Oliv1e",
+        "creator_display_name": "Oliv1e",
+        "creator_profile_url": "https://sketchfab.com/Oliv1e"
+    },
+    "filename": "std_67c84e4d30ae42fda22c0a0c7526df26.glb",
+    "length": 4.806027173995972,
+    "width": 2.129343271255493
+}

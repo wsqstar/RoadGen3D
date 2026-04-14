@@ -1,0 +1,110 @@
+{
+    "description_long": "This object is a set of three vertically oriented traffic signal housings, each mounted on a rectangular backplate. The front face displays three columns of circular signal lights, with the left and center columns showing illuminated red left-turn arrows, while the right column is unlit. The housing appears to be made of a dark, matte-finished metal or plastic, with each signal light encased in a cylindrical visor to shield from sunlight. The back and sides are solid and featureless, suggesting a robust, weather-resistant construction. The overall design is typical for urban intersections, providing clear directional signals for vehicular traffic.",
+    "description": "A triple-column traffic light with vertical stacks of circular signal lights, two of which display red left-turn arrows. The housing is dark and robust, with cylindrical visors over each light.",
+    "description_view_0": "Front view showing three columns of signal lights, with the left and center columns displaying illuminated red left-turn arrows.",
+    "description_view_1": "Side view revealing the depth of the housing and the protruding cylindrical visors of the signal lights.",
+    "description_view_2": "Rear view showing the solid, featureless backplates of the three traffic light housings.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the depth and cylindrical visors from the other side.",
+    "category": "traffic light",
+    "height": 1.2,
+    "max_dimension": 1.2,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.1
+    ],
+    "mass": 35,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "signal lights",
+        "lenses",
+        "visors"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_number_of_signal_lights": 9,
+    "attribute_signal_orientation": "vertical",
+    "attribute_mounting_type": "wall-mounted",
+    "attribute_presence_of_pedestrian_signals": false,
+    "attribute_control_box_visibility": false,
+    "uid": "a62e0d58af074f76a7f3685d5e0a42c6",
+    "near_synsets": {
+        "traffic_light.n.01": 0.49880087055135824,
+        "stoplight.n.01": 0.5608395684501293,
+        "traffic_circle.n.01": 0.5612060827841961,
+        "yellow_light.n.01": 0.5628223110770681,
+        "light.n.14": 0.5688978981606212,
+        "light.n.02": -1000.0,
+        "lighter.n.02": -1000.0,
+        "traffic.n.02": -1000.0,
+        "light.n.05": -1000.0,
+        "light.n.12": -1000.0,
+        "light.n.09": -1000.0,
+        "dealings.n.01": -1000.0,
+        "traffic.n.03": -1000.0,
+        "light.n.06": -1000.0,
+        "inner_light.n.01": -1000.0,
+        "light.n.08": -1000.0,
+        "sparkle.n.01": -1000.0,
+        "luminosity.n.01": -1000.0,
+        "light.n.03": -1000.0,
+        "traffic.n.01": -1000.0,
+        "light.n.07": -1000.0,
+        "light.n.10": -1000.0,
+        "light.n.01": -1000.0
+    },
+    "synset": "traffic_light.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a62e0d58af074f76a7f3685d5e0a42c6",
+        "creator_username": "curitis7",
+        "creator_display_name": "\u674e\u5bfb\u5f25",
+        "creator_profile_url": "https://sketchfab.com/curitis7"
+    },
+    "filename": "std_a62e0d58af074f76a7f3685d5e0a42c6.glb",
+    "length": 0.45004691183567047,
+    "width": 1.829999566078186
+}

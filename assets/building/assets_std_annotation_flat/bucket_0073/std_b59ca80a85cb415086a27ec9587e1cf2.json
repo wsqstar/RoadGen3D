@@ -1,0 +1,92 @@
+{
+    "description_long": "This structure is a rectangular barn with a flat, gently sloped roof bordered by low brick walls on the sides. The roof surface appears to be made of gray shingles or tiles, and there are wooden railings running along the upper edges of the brick walls. A single vertical wooden post is positioned centrally on the roof, possibly for structural or functional purposes. The brickwork is laid in a standard running bond pattern, giving the barn a sturdy, urban appearance. There are no visible doors or windows, and the overall design is utilitarian, with minimal decorative elements.",
+    "description": "A rectangular barn with brick side walls, a flat shingled roof, and wooden railings, featuring a central vertical post and no visible doors or windows.",
+    "description_view_0": "Side view showing the brick wall, sloped roof, and wooden railings, with the central post visible.",
+    "description_view_1": "Top-down view highlighting the flat, shingled roof, central post, and the full length of the brick side walls.",
+    "description_view_2": "Opposite side view similar to view 0, showing the brick wall, roof, and railings from the other side.",
+    "description_view_3": "Front or rear view showing the full width of the barn, brick end walls, and the central post on the roof.",
+    "category": "barn",
+    "height": 2.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "brick",
+        "wood",
+        "roofing_tile",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.1
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportable",
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "railing",
+        "central post"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 20000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "flat roof",
+    "attribute_siding_pattern": "horizontal brickwork in running bond pattern",
+    "attribute_door_style": "no visible doors",
+    "attribute_window_arrangement": "no visible windows",
+    "attribute_architectural_style": "utilitarian urban barn",
+    "uid": "b59ca80a85cb415086a27ec9587e1cf2",
+    "near_synsets": {
+        "barn.n.01": 0.47876568997550845,
+        "farm_building.n.01": 0.4954576937937009,
+        "barn_door.n.01": 0.5096852112871881,
+        "barnyard.n.01": 0.5232069062707964,
+        "cowbarn.n.01": 0.524361137407218,
+        "barn.n.02": -1000.0
+    },
+    "synset": "barn.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b59ca80a85cb415086a27ec9587e1cf2",
+        "creator_username": "suskunbilgetr",
+        "creator_display_name": "suskunbilgetr",
+        "creator_profile_url": "https://sketchfab.com/suskunbilgetr"
+    },
+    "filename": "std_b59ca80a85cb415086a27ec9587e1cf2.glb",
+    "length": 2.912826895713806,
+    "width": 8.827539443969727
+}

@@ -1,0 +1,100 @@
+{
+    "description_long": "This rifle features a long, robust barrel with a prominent muzzle brake at the front, designed to reduce recoil. The main body is constructed from dark metal, with a wooden or polymer fixed stock and a pistol grip for ergonomic handling. A large scope is mounted on top, indicating the rifle is intended for precision shooting at long distances. The magazine is a detachable box type, positioned just ahead of the trigger guard. The overall design is angular and utilitarian, with visible mechanical components such as the bolt and trigger assembly. The finish is mostly matte black with some brown accents on the stock and grip.",
+    "description": "A long, matte black rifle with a fixed stock, large scope, and prominent muzzle brake, designed for precision shooting. Features a detachable box magazine and ergonomic pistol grip.",
+    "description_view_0": "Side view showing the full length of the rifle, including the scope, fixed stock, pistol grip, and muzzle brake.",
+    "description_view_1": "Front view highlighting the circular muzzle brake and the alignment of the barrel, with the scope and stock barely visible.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the scope, stock, and magazine from the other side.",
+    "description_view_3": "Rear view focusing on the buttstock and the alignment of the barrel, with the scope and muzzle brake visible in profile.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 1.4,
+    "materials": [
+        "steel",
+        "polymer",
+        "wood",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 13,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 130,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pullable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "magazine",
+        "bolt",
+        "scope",
+        "safety",
+        "stock",
+        "pistol grip"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "scope",
+    "attribute_muzzle_device": "muzzle brake",
+    "uid": "552dc8b0397e4884a2234f795b5aa0fe",
+    "near_synsets": {
+        "rifle.n.01": 0.4998909042269839,
+        "garand_rifle.n.01": 0.519722605647765,
+        "dragunov.n.01": 0.5227871729470608,
+        "sniper_rifle.n.01": 0.5273913466910456,
+        "musket.n.01": 0.5305782431347644
+    },
+    "synset": "sniper_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/552dc8b0397e4884a2234f795b5aa0fe",
+        "creator_username": "DenisKorablyov",
+        "creator_display_name": "DenisKorablyov",
+        "creator_profile_url": "https://sketchfab.com/DenisKorablyov"
+    },
+    "filename": "std_552dc8b0397e4884a2234f795b5aa0fe.glb",
+    "length": 1.1681575179100037,
+    "width": 0.08624433353543282
+}

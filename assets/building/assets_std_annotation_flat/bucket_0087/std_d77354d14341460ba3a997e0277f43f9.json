@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a commercial passenger airplane with a sleek, elongated fuselage painted primarily in white with a dark blue tail and underbelly, accented by red and silver stripes. The aircraft features a low-wing configuration with swept-back wings and prominent winglets at the tips. Two jet engines are mounted at the rear of the fuselage, just below the T-tail, which consists of a horizontal stabilizer mounted atop a single vertical fin. The cockpit is located at the very front of the fuselage, with multiple windows providing visibility for the flight crew. The landing gear is a tricycle type, with the main gear under the wings and a nose gear beneath the cockpit. The livery displays the Aeroflot branding, indicating it is modeled after a real-world airline.",
+    "description": "A sleek, white commercial passenger airplane with a blue and red tail, rear-mounted engines, and a T-tail design. The aircraft features swept low wings with winglets and Aeroflot branding.",
+    "description_view_0": "Side view showing the full length of the fuselage, swept low wings, rear-mounted engines, and the Aeroflot livery.",
+    "description_view_1": "Rear view highlighting the T-tail, twin rear-mounted engines, and the full wingspan with visible winglets.",
+    "description_view_2": "Opposite side view displaying the same features as view 0, with clear visibility of the tail and engine placement.",
+    "description_view_3": "Top-down view showing the overall planform, wing sweep, winglets, and the arrangement of the engines and tail.",
+    "category": "airplane",
+    "height": 8.5,
+    "max_dimension": 36.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "composite",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.05,
+        0.05,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 24000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit window",
+        "landing gear",
+        "engine",
+        "control panel",
+        "passenger window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "red",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.12,
+    "surface_finish": "sleek",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 40.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with swept-back wings and upward-angled winglets at the tips.",
+    "attribute_engine_type": "Twin jet engines mounted at the rear fuselage, below the tail.",
+    "attribute_tail_design": "T-tail configuration with a single vertical stabilizer and a horizontal stabilizer mounted at the top.",
+    "attribute_landing_gear_type": "Tricycle retractable landing gear with two main gear units and a single nose gear.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with multiple windows at the front of the fuselage.",
+    "uid": "d77354d14341460ba3a997e0277f43f9",
+    "near_synsets": {
+        "airplane.n.01": 0.5164124735902594,
+        "airliner.n.01": 0.5169185407002113,
+        "aircraft.n.01": 0.5261785016616292,
+        "propjet.n.01": 0.5495304574356608,
+        "narrowbody_aircraft.n.01": 0.5505349620523161
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d77354d14341460ba3a997e0277f43f9",
+        "creator_username": "adim09",
+        "creator_display_name": "Shawn 684 M",
+        "creator_profile_url": "https://sketchfab.com/adim09"
+    },
+    "filename": "std_d77354d14341460ba3a997e0277f43f9.glb",
+    "length": 26.487242698669434,
+    "width": 33.859073638916016
+}

@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a firearm with a sleek, elongated barrel and a dark metallic finish, featuring a textured brown grip panel on the handle. The frame is robust and angular, with a prominent trigger guard and a visible trigger. The slide is smooth and unadorned, lacking any ribbing or venting, and the muzzle is circular and slightly recessed. The grip appears to be made of a different material, likely wood or a polymer, with a diamond-patterned texture for improved handling. The rear of the object shows a hammer and rear sight, while the front view reveals a simple, round barrel opening. The overall design is compact and utilitarian, with no visible external magazine tube or pump mechanism.",
+    "description": "A dark metallic firearm with a long barrel, brown textured grip, and a simple, utilitarian design. The object features a rounded trigger guard and a smooth slide.",
+    "description_view_0": "Side view showing the full length of the barrel, brown textured grip, and the trigger guard.",
+    "description_view_1": "Rear view highlighting the hammer, rear sight, and the narrow profile of the slide.",
+    "description_view_2": "Opposite side view displaying the grip texture, trigger, and the overall slimness of the frame.",
+    "description_view_3": "Front view focusing on the circular barrel opening and the smooth, unadorned slide.",
+    "category": "shotgun",
+    "height": 0.15,
+    "max_dimension": 0.22,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "mass": 1.1,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 15,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "pressable",
+        "pullable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "trigger guard",
+        "hammer",
+        "slide",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, no ribbing or venting visible, standard barrel length",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "semi-automatic",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with smooth edges and no finger grooves",
+    "uid": "b2cb2e51561b4ee88fa2153ea6f9d616",
+    "near_synsets": {
+        "shotgun.n.01": 0.4754184449826119,
+        "gun.n.01": 0.5007820963928403,
+        "sawed-off_shotgun.n.01": 0.5034653959804903,
+        "shotgun_shell.n.01": 0.5161342106557755,
+        "gun_muzzle.n.01": 0.5254947679157745
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b2cb2e51561b4ee88fa2153ea6f9d616",
+        "creator_username": "fozieus",
+        "creator_display_name": "fozieus",
+        "creator_profile_url": "https://sketchfab.com/fozieus"
+    },
+    "filename": "std_b2cb2e51561b4ee88fa2153ea6f9d616.glb",
+    "length": 0.2366766333580017,
+    "width": 0.03468165919184685
+}

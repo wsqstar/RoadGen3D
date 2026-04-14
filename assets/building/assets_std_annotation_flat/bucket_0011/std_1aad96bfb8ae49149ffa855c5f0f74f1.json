@@ -1,0 +1,82 @@
+{
+    "description_long": "This object is a rectangular section of sidewalk composed of interlocking rectangular tiles arranged in a staggered, geometric pattern. The tiles are a muted green color, giving the surface a distinctive and uniform appearance. The joints between the tiles are clearly defined, creating a grid-like effect across the entire surface. The surface appears flat and even, suitable for pedestrian use in urban environments. There are no visible curbs, tactile paving, or street furniture present along the edges or on the surface. The edges of the sidewalk are flush, blending seamlessly with the surrounding ground level.",
+    "description": "A flat, green-tiled sidewalk section with a staggered rectangular pattern and flush edges.",
+    "description_view_0": "The sidewalk is seen from a low angle, highlighting the rectangular tile pattern and flush edge.",
+    "description_view_1": "This view shows the sidewalk from the opposite side, maintaining the same tile arrangement and flatness.",
+    "description_view_2": "The sidewalk is viewed from a slightly different angle, with the tile pattern and flush edge still prominent.",
+    "description_view_3": "From this perspective, the uniformity of the green tiles and the flush edge are clearly visible.",
+    "category": "sidewalk",
+    "height": 0.08,
+    "max_dimension": 4.0,
+    "materials": [
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.98,
+        0.02
+    ],
+    "mass": 750,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "green"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": false,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "flush",
+    "attribute_adjacent_street_type": "residential",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "1aad96bfb8ae49149ffa855c5f0f74f1",
+    "near_synsets": {
+        "sidewalk.n.01": 0.5002556287624603,
+        "curbside.n.01": 0.5384382902820523,
+        "paved_surface.n.01": 0.5402451031526654,
+        "street.n.01": 0.5418822068384851,
+        "curb.n.01": 0.546278821077729
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1aad96bfb8ae49149ffa855c5f0f74f1",
+        "creator_username": "DolmosStudio",
+        "creator_display_name": "DolmosStudio",
+        "creator_profile_url": "https://sketchfab.com/DolmosStudio"
+    },
+    "filename": "std_1aad96bfb8ae49149ffa855c5f0f74f1.glb",
+    "length": 595420.6875,
+    "width": 595420.3125
+}

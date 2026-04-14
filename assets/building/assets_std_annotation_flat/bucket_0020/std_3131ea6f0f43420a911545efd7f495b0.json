@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a large, industrial locomotive train with a robust, angular body and a prominent cab at one end. The exterior is primarily painted in blue and white, with the number '260' clearly marked on the cab, suggesting it is a specific engine unit. The train features a long, vented engine compartment with visible exhaust stacks and side grilles, as well as handrails running along both sides for safety. The undercarriage is equipped with multiple sets of large, black wheels and detailed bogies, indicating it is designed for heavy-duty rail transport. There are steps and platforms at both ends, allowing access to the cab and walkways. The overall design and lack of passenger windows suggest this is a freight locomotive, built for hauling cargo rather than people.",
+    "description": "A blue and white freight locomotive with a detailed engine compartment, handrails, and the number '260' on the cab. It features multiple wheels, side grilles, and access steps at both ends.",
+    "description_view_0": "Front view showing the narrow cab face, front platform, and steps, with the blue engine compartment extending behind.",
+    "description_view_1": "Side view displaying the full length of the locomotive, the number '260' on the cab, side grilles, handrails, and all visible wheels.",
+    "description_view_2": "Rear view highlighting the back platform, steps, and the tapered end of the engine compartment.",
+    "description_view_3": "Opposite side view similar to view 1, showing the engine compartment, handrails, and wheels, but with different grille and vent details.",
+    "category": "train",
+    "height": 4.5,
+    "max_dimension": 20.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.04,
+        0.03,
+        0.02,
+        0.03,
+        0.03
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1800000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "steps",
+        "handrail",
+        "wheel",
+        "window",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.45,
+        0.35,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "freight train",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end",
+    "attribute_window_arrangement": "spaced rectangular windows on the cab only",
+    "uid": "3131ea6f0f43420a911545efd7f495b0",
+    "near_synsets": {
+        "steam_locomotive.n.01": 0.5156535204483075,
+        "locomotive.n.01": 0.5168963866964494,
+        "train.n.01": 0.5245190221989011,
+        "diesel_locomotive.n.01": 0.5292844473134749,
+        "train_set.n.01": 0.5331911062432574,
+        "caravan.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "gearing.n.01": -1000.0,
+        "train.n.05": -1000.0,
+        "train.n.04": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/3131ea6f0f43420a911545efd7f495b0",
+        "creator_username": "kastle",
+        "creator_display_name": "Kastle",
+        "creator_profile_url": "https://sketchfab.com/kastle"
+    },
+    "filename": "std_3131ea6f0f43420a911545efd7f495b0.glb",
+    "length": 15.450555324554443,
+    "width": 3.581801176071167
+}

@@ -1,0 +1,111 @@
+{
+    "description_long": "This is a large, historic-style warship with a broad, rounded hull painted primarily in light gray with a prominent red lower section along the waterline. The deck is detailed with multiple turrets, gun emplacements, and a series of three tall, yellow funnels spaced evenly along the centerline. The superstructure features several masts, rigging, and lookout platforms, as well as smaller deck structures and lifeboats. The bow is pointed and reinforced, while the stern is rounded and slightly elevated. The ship's surface is mostly metallic, with visible rivets and plating, and the deck is lined with various fixtures and equipment. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A large, historic warship with a rounded gray and red hull, three yellow funnels, and detailed deck equipment including turrets and masts.",
+    "description_view_0": "Side view showing the full length of the ship, three yellow funnels, and the red lower hull.",
+    "description_view_1": "Front (bow) view highlighting the pointed bow, deck turrets, and symmetrical arrangement of funnels and masts.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the stern and deck details.",
+    "description_view_3": "Rear (stern) view showing the rounded stern, rear deck equipment, and alignment of the superstructure.",
+    "category": "ship",
+    "height": 12,
+    "max_dimension": 120,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "door",
+        "hatch",
+        "ladder",
+        "lifeboat",
+        "mast",
+        "funnel",
+        "anchor"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "yellow",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 20,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a broad, rounded beam and a pointed bow. The lower hull is painted red, indicating the waterline, and the stern is rounded and slightly elevated. No bulbous bow or visible keels are present, and the hull features riveted plating.",
+    "attribute_superstructure_layout": "The superstructure consists of three tall, evenly spaced funnels along the centerline, two main masts fore and aft, and several smaller deck structures including turrets and lookout platforms. The deck is open with visible lifeboats and equipment.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "turret",
+        "lifeboat",
+        "anchor",
+        "mast",
+        "funnel",
+        "ladder"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "5a5609fcb79f404d9afaec4ed6980984",
+    "near_synsets": {
+        "three-decker.n.03": 0.47168065784983493,
+        "battleship.n.01": 0.4994130491555334,
+        "troopship.n.01": 0.5003500055405072,
+        "sailing_warship.n.01": 0.5007535822030877,
+        "treasure_ship.n.01": 0.502911800759102,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5a5609fcb79f404d9afaec4ed6980984",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_5a5609fcb79f404d9afaec4ed6980984.glb",
+    "length": 57.991872787475586,
+    "width": 10.662211894989014
+}

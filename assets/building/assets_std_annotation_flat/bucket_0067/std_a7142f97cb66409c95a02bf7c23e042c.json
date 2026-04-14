@@ -1,0 +1,104 @@
+{
+    "description_long": "This object is a pixel-art style submachine gun, reminiscent of classic firearms like the Uzi or MP40, rendered in a blocky, low-resolution aesthetic. The body is primarily composed of dark gray and black tones, with a straight, cylindrical barrel extending from the front. The weapon features a prominent vertical magazine well beneath the receiver, and a long, angular stock extending from the rear, likely for shoulder support. The grip is positioned below the main body, with a trigger guard visible. Minimal surface detailing is present, emphasizing the stylized, simplified form, and there are no visible attachments or complex mechanisms beyond the basic firearm silhouette.",
+    "description": "A pixel-art submachine gun with a dark gray body, straight barrel, vertical magazine, and angular rear stock. The design is blocky and stylized, with minimal detailing.",
+    "description_view_0": "Side view showing the full length of the gun, including the straight barrel, vertical magazine, and extended angular stock.",
+    "description_view_1": "Front view displaying the narrow profile of the barrel and stock, with minimal visible detail.",
+    "description_view_2": "Opposite side view, mirroring view 0, with the same features visible from the other side.",
+    "description_view_3": "Rear view showing the end of the stock and the slim profile of the gun's body.",
+    "category": "machine gun",
+    "height": 0.25,
+    "max_dimension": 0.65,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "magazine",
+        "trigger",
+        "grip"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_type": "standard cylindrical barrel",
+    "attribute_stock_design": "folding metal stock",
+    "attribute_magazine_type": "box magazine",
+    "attribute_mounting_mechanism": "no mounting mechanism visible",
+    "attribute_iron_sight_configuration": "no iron sights visible",
+    "uid": "a7142f97cb66409c95a02bf7c23e042c",
+    "near_synsets": {
+        "submachine_gun.n.01": 0.4647545317748772,
+        "light_machine_gun.n.01": 0.4969774452453045,
+        "sten_gun.n.01": 0.5226072050695804,
+        "burp_gun.n.01": 0.5277323650983047,
+        "machine_gun.n.01": 0.5284178333963266,
+        "machine.n.04": -1000.0,
+        "machine.n.01": -1000.0,
+        "artillery.n.01": -1000.0,
+        "gunman.n.02": -1000.0,
+        "machine.n.03": -1000.0,
+        "car.n.01": -1000.0,
+        "gun.n.07": -1000.0,
+        "accelerator.n.01": -1000.0,
+        "machine.n.02": -1000.0,
+        "grease_gun.n.01": -1000.0,
+        "gunman.n.01": -1000.0,
+        "gun.n.01": -1000.0,
+        "machine.n.05": -1000.0
+    },
+    "synset": "machine_gun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/a7142f97cb66409c95a02bf7c23e042c",
+        "creator_username": "salatis",
+        "creator_display_name": "salatis",
+        "creator_profile_url": "https://sketchfab.com/salatis"
+    },
+    "filename": "std_a7142f97cb66409c95a02bf7c23e042c.glb",
+    "length": 0.645161360502243,
+    "width": 0.02419365756213665
+}

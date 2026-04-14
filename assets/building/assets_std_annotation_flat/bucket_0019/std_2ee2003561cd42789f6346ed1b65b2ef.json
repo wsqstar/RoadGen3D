@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a single slice of pizza with a classic triangular shape, featuring a thin, slightly browned crust along the wide edge. The surface is covered with a layer of melted mozzarella cheese, which is lightly browned in spots, and a visible spread of tomato sauce beneath the cheese, giving the slice a mottled red and white appearance. The cheese coverage is even, with some areas showing more sauce peeking through, especially toward the tip. The crust appears to be thin and crisp, with a subtle puffiness and a golden-brown coloration, suggesting a traditional New York-style pizza. There are no visible toppings other than cheese and sauce, and the slice has a realistic, slightly uneven texture typical of hand-tossed pizza. The underside of the crust is not visible, but the overall appearance suggests a freshly baked, appetizing slice suitable for street food or casual dining.",
+    "description": "A single, triangular slice of cheese pizza with a thin, golden-brown crust and a mottled layer of melted cheese and tomato sauce.",
+    "description_view_0": "Top-down view showing the full triangular shape, even cheese and sauce coverage, and the broad, thin crust edge.",
+    "description_view_1": "Angled side view highlighting the thickness of the crust and the gentle slope of the slice toward the tip.",
+    "description_view_2": "Rear view focusing on the rounded, slightly puffed crust and the transition to the flat body of the slice.",
+    "description_view_3": "Opposite angled side view, showing the thinness of the slice and the even distribution of cheese and sauce.",
+    "category": "pizza",
+    "height": 0.025,
+    "max_dimension": 0.28,
+    "materials": [
+        "bread",
+        "cheese",
+        "tomato sauce",
+        "oil",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.15,
+        0.03,
+        0.02
+    ],
+    "mass": 0.13,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "white",
+        "red",
+        "golden brown"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.1,
+    "asset_composition_type": "single",
+    "attribute_topping_type": [
+        "cheese",
+        "tomato sauce"
+    ],
+    "attribute_slice_count": 1,
+    "attribute_crust_style": "thin crust",
+    "attribute_packaging_presence": false,
+    "attribute_brand_logo": "None",
+    "uid": "2ee2003561cd42789f6346ed1b65b2ef",
+    "near_synsets": {
+        "pepperoni_pizza.n.01": 0.4558995465946812,
+        "cheese_pizza.n.01": 0.46010406779098584,
+        "pizza.n.01": 0.4720998714795016,
+        "sausage_pizza.n.01": 0.48903367020863414,
+        "sicilian_pizza.n.01": 0.49252402494705017
+    },
+    "synset": "sicilian_pizza.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2ee2003561cd42789f6346ed1b65b2ef",
+        "creator_username": "AaronXRdev",
+        "creator_display_name": "Aaron XR Dev",
+        "creator_profile_url": "https://sketchfab.com/AaronXRdev"
+    },
+    "filename": "std_2ee2003561cd42789f6346ed1b65b2ef.glb",
+    "length": 0.17512206733226776,
+    "width": 0.1656164899468422
+}

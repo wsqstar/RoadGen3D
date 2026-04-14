@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a heavily damaged, brown sedan with extensive signs of wear and destruction. The hood is crumpled and partially open, exposing the engine compartment, while the roof is caved in and torn, especially towards the rear. The front and rear doors on the driver's side are ajar or missing, and the trunk is severely bent upwards, revealing the empty interior. The windows are shattered or missing, and the body panels are dented, rusted, and covered in dirt. The wheels are partially visible, with at least one appearing misaligned or broken, and the overall structure suggests the car has been abandoned for a long time.",
+    "description": "A wrecked, brown sedan with a crumpled hood, caved-in roof, and extensive body damage. Doors and trunk are open or missing, and the car is covered in dirt and rust.",
+    "description_view_0": "Front view showing the crumpled hood, open front door, and damaged windshield.",
+    "description_view_1": "Driver's side view highlighting both open doors, caved-in roof, and bent trunk.",
+    "description_view_2": "Rear view with the trunk lid bent upwards, missing rear lights, and visible interior damage.",
+    "description_view_3": "Passenger side view showing the collapsed roof, open front door, and damaged side panels.",
+    "category": "sedan",
+    "height": 1.4,
+    "max_dimension": 4.7,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.08,
+        0.07,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "mass": 1100,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hood",
+        "trunk",
+        "wheel",
+        "window",
+        "steering wheel",
+        "seat"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "gray",
+        "rust"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_number_of_doors": 4,
+    "attribute_license_plate": "none",
+    "attribute_wheel_design": "unknown",
+    "uid": "483fe7f26336463fba66638ca4200c5a",
+    "near_synsets": {
+        "wreck.n.01": 0.5385414105776917,
+        "wreckage.n.01": 0.5483352037963459,
+        "sedan.n.01": 0.5523259534023316,
+        "car_door.n.01": 0.5544418371442801,
+        "car_window.n.01": 0.5727739439503995,
+        "sedan.n.02": -1000.0
+    },
+    "synset": "sedan.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/483fe7f26336463fba66638ca4200c5a",
+        "creator_username": "kryik1023",
+        "creator_display_name": "Renafox",
+        "creator_profile_url": "https://sketchfab.com/kryik1023"
+    },
+    "filename": "std_483fe7f26336463fba66638ca4200c5a.glb",
+    "length": 3.773681163787842,
+    "width": 2.126725196838379
+}

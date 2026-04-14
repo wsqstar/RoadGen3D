@@ -1,0 +1,103 @@
+{
+    "description_long": "This forklift features a robust, industrial design with a predominantly red body and black structural elements. The vehicle is equipped with two long, parallel steel fork arms at the front, designed for lifting and transporting heavy loads. Its operator compartment includes a blue seat, a steering wheel, and simple control levers, all protected by a sturdy black overhead guard. The forklift rides on four large, rugged tires suitable for urban and industrial surfaces. The mast assembly at the front is reinforced and includes visible hydraulic components for vertical movement of the forks. The overall appearance suggests durability and functionality, with visible wear and utilitarian finishes.",
+    "description": "A red and black industrial forklift with long steel fork arms, a blue operator seat, and a protective overhead guard, designed for lifting and transporting heavy loads.",
+    "description_view_0": "Side view showing the full length of the red body, blue seat, black overhead guard, and the two fork arms extending forward.",
+    "description_view_1": "Rear view highlighting the broad red back panel, the blue seat, and the black overhead guard structure.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the fork arms, wheels, and operator compartment.",
+    "description_view_3": "Front view focusing on the two steel fork arms, the mast assembly, and the operator seat positioned behind the mast.",
+    "category": "forklift",
+    "height": 2.2,
+    "max_dimension": 3.2,
+    "materials": [
+        "steel",
+        "rubber",
+        "plastic",
+        "fabric",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.05,
+        0.03,
+        0.02,
+        0.03
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 16000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "liftable",
+        "sittable",
+        "steerable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "steering wheel",
+        "seat",
+        "fork arms",
+        "mast",
+        "wheels",
+        "control levers"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "blue",
+        "gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.25,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_fork_arms": "The forklift has two parallel, straight steel fork arms at the front, each approximately 1.2 meters long and moderately thick. The arms are flat, rectangular in cross-section, and extend horizontally from the mast, with slightly tapered tips for easier insertion under loads. No visible attachments or significant wear are present.",
+    "attribute_overhead_guard": "The overhead guard is a rectangular, black steel frame that arches over the operator's seat, providing full coverage above the operator. It consists of four vertical posts connected by horizontal bars, forming a protective cage. The structure appears solid and is designed to shield the operator from falling objects.",
+    "attribute_mast": "The mast is a double-stage vertical assembly at the front, constructed from heavy-duty black steel. It features two main vertical rails with visible hydraulic cylinders and lift chains, allowing the fork arms to move up and down. The mast is robust and reinforced for stability during lifting operations.",
+    "attribute_operator_seat": "The operator seat is a single, contoured unit with a blue fabric or vinyl covering. It is medium-sized, lacks visible armrests or headrest, and is mounted centrally behind the steering wheel. The seat appears to have a simple, functional design with no visible seatbelt or adjustment levers.",
+    "attribute_warning_lights": "No visible warning lights are present on the forklift in any of the provided views.",
+    "uid": "d40cae50e04145dd997cdca415cd72ad",
+    "near_synsets": {
+        "forklift.n.01": 0.3989928484988679,
+        "lifting_device.n.01": 0.5091261500076669,
+        "stacker_crane.n.01": 0.5292316363721368,
+        "hoist.n.01": 0.537788843047032,
+        "hayfork.n.01": 0.5408006763073847
+    },
+    "synset": "forklift.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d40cae50e04145dd997cdca415cd72ad",
+        "creator_username": "mansta9",
+        "creator_display_name": "Mantas Stankaitis",
+        "creator_profile_url": "https://sketchfab.com/mansta9"
+    },
+    "filename": "std_d40cae50e04145dd997cdca415cd72ad.glb",
+    "length": 3.1000759601593018,
+    "width": 1.1510436534881592
+}

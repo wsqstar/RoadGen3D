@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a small, A-frame barn structure with a steeply pitched gable roof covered in dark, shingle-like tiles. The front features a wide, open entrance with a pair of swinging doors made from vertically aligned logs, and above the entrance is a circular decorative element resembling a pink nest with a skull motif. The barn's walls are constructed from vertical wooden planks, and the side and rear views show the roof extending almost to the ground, providing substantial coverage. The interior appears open and airy, with no visible windows or internal partitions. The overall design is rustic and compact, suitable for storage or shelter in a rural or themed urban setting.",
+    "description": "A small, rustic A-frame barn with a steep shingled roof, log doors, and a decorative pink nest with a skull above the entrance. The structure is made of wood planks and logs, with an open, windowless design.",
+    "description_view_0": "Front view showing the open log doors, vertical plank walls, and a pink nest with a skull above the entrance.",
+    "description_view_1": "Side view dominated by the steep, dark shingled roof extending nearly to the ground, with no visible openings.",
+    "description_view_2": "Rear view revealing the vertical plank wall and the A-frame roof structure, with no doors or windows.",
+    "description_view_3": "Opposite side view similar to view 1, showing the shingled roof and the log base, with no visible entry points.",
+    "category": "barn",
+    "height": 3.5,
+    "max_dimension": 4.5,
+    "materials": [
+        "wood",
+        "roof shingles",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "mass": 1200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "dark brown",
+        "pink",
+        "white",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.08,
+        0.06,
+        0.03,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "steep gable roof",
+    "attribute_siding_pattern": "vertical board and batten",
+    "attribute_door_style": "double swinging doors made of vertical logs",
+    "attribute_window_arrangement": "no visible windows",
+    "attribute_architectural_style": "rustic A-frame barn",
+    "uid": "261597b0ce3e487cb5f7dbde14529f35",
+    "near_synsets": {
+        "farmhouse.n.01": 0.5378508942951102,
+        "barn.n.01": 0.5426455292261635,
+        "barn_door.n.01": 0.5470782693122543,
+        "birdhouse.n.01": 0.550805766952968,
+        "farm_building.n.01": 0.555347817423758,
+        "barn.n.02": -1000.0
+    },
+    "synset": "barn.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/261597b0ce3e487cb5f7dbde14529f35",
+        "creator_username": "saltoc",
+        "creator_display_name": "saltoc in training",
+        "creator_profile_url": "https://sketchfab.com/saltoc"
+    },
+    "filename": "std_261597b0ce3e487cb5f7dbde14529f35.glb",
+    "length": 3.4996509552001953,
+    "width": 3.343397378921509
+}

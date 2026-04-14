@@ -1,0 +1,103 @@
+{
+    "description_long": "This object resembles a large, rounded burlap sack with a tightly cinched top, secured by a white band. The main body is textured with a woven, brown pattern, giving it the appearance of a rough, fibrous material. Around the base, a dark, metallic-looking band encircles the sack, suggesting reinforcement or containment. On one side, a hexagonal green gem or panel is embedded, possibly serving as an indicator or activation interface. Another side features a small, circular white component, which could be a trigger or fuse mechanism. The overall design is utilitarian, with a mix of rustic and modern elements, making it stand out in an urban environment.",
+    "description": "A large, burlap-textured bomb with a cinched top, metallic base, and a green hexagonal panel on one side. It features a white band and a small circular component, blending rustic and modern design cues.",
+    "description_view_0": "The side view shows the brown, woven texture and the cinched top, with a white circular component visible on the right.",
+    "description_view_1": "The rear view highlights the full, rounded body and the cinched top, with no visible panels or components.",
+    "description_view_2": "This side view mirrors view 0 but without the white circular component, showing only the woven texture and cinched top.",
+    "description_view_3": "The front view displays the green hexagonal panel prominently, set into the woven body, with the cinched top and metallic base visible.",
+    "category": "bomb",
+    "height": 0.5,
+    "max_dimension": 0.5,
+    "materials": [
+        "burlap",
+        "metal",
+        "plastic",
+        "glass",
+        "explosive_compound",
+        "air"
+    ],
+    "materials_composition": [
+        0.4,
+        0.2,
+        0.1,
+        0.05,
+        0.2,
+        0.05
+    ],
+    "mass": 6,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "liftable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "green panel",
+        "white circular component",
+        "cinched top"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "white",
+        "black",
+        "green",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 500,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The bomb appears to have a green hexagonal panel that may function as an activation or control interface, and a white circular component that could serve as a trigger or fuse.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": true,
+    "uid": "7a0a048978df49078ed4b0f1f4f44fb6",
+    "near_synsets": {
+        "bomb.n.01": 0.5343955514390052,
+        "pipe_bomb.n.01": 0.538688086002536,
+        "briefcase_bomb.n.01": 0.5482278563757476,
+        "plastic_bomb.n.01": 0.5524034137824657,
+        "general-purpose_bomb.n.01": 0.5538467610801256,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7a0a048978df49078ed4b0f1f4f44fb6",
+        "creator_username": "linkWindcrafter",
+        "creator_display_name": "linkwindcrafter",
+        "creator_profile_url": "https://sketchfab.com/linkWindcrafter"
+    },
+    "filename": "std_7a0a048978df49078ed4b0f1f4f44fb6.glb",
+    "length": 0.34136962890625,
+    "width": 0.4937744140625
+}

@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a large, heavily armored tracked combat vehicle resembling a World War II-era German heavy tank, specifically the Tiger II (King Tiger). The vehicle features a long, prominent main cannon mounted on a rotating turret, with a sloped frontal glacis and thick side armor. The hull and turret are covered in a dusty, sand-colored paint, and the tracks are wide and robust, designed for traversing rough terrain. Visible details include hatches, periscopes, and a German cross insignia on the turret. The vehicle's exterior is rugged, with various storage boxes, exhausts, and spare track links attached to the sides and rear. The overall design emphasizes protection, firepower, and battlefield survivability.",
+    "description": "A large, sand-colored, heavily armored tracked tank with a long main cannon and German cross insignia, featuring sloped armor and robust tracks.",
+    "description_view_0": "Front view showing the sloped glacis plate, thick frontal armor, and the main cannon protruding from the turret.",
+    "description_view_1": "Left side view highlighting the length of the main gun, the turret profile, and the full length of the tracks and side armor.",
+    "description_view_2": "Rear view displaying the back of the turret, engine deck, exhausts, and rear armor details.",
+    "description_view_3": "Right side view showing the turret, cannon, and track system, with visible storage boxes and spare track links.",
+    "category": "combat tactical  vehicle",
+    "height": 3.0,
+    "max_dimension": 10.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.85,
+        0.07,
+        0.01,
+        0.05,
+        0.02
+    ],
+    "mass": 69000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "track",
+        "wheel",
+        "periscope",
+        "storage box",
+        "exhaust"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "sand",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted on the turret; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body armor plating with thick, sloped frontal and side armor; turret and hull are heavily armored with visible reinforced panels.",
+    "attribute_camouflage_pattern": "Solid sand-colored paint with weathering and dust effects; no distinct camouflage pattern.",
+    "attribute_military_markings": "German cross insignia visible on the turret sides.",
+    "attribute_tire_type": "not applicable",
+    "uid": "468e585df1b04c859eb6972614a7d8a4",
+    "near_synsets": {
+        "tank.n.01": 0.4782629813388637,
+        "panzer.n.01": 0.4987791278905081,
+        "assault_gun.n.02": 0.5070917881728613,
+        "military_vehicle.n.01": 0.5080470484416995,
+        "tank_destroyer.n.01": 0.5183656823235608,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/468e585df1b04c859eb6972614a7d8a4",
+        "creator_username": "willprogamer",
+        "creator_display_name": "WillTheArtist",
+        "creator_profile_url": "https://sketchfab.com/willprogamer"
+    },
+    "filename": "std_468e585df1b04c859eb6972614a7d8a4.glb",
+    "length": 7.256635665893555,
+    "width": 2.72928249835968
+}

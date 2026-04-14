@@ -1,0 +1,99 @@
+{
+    "description_long": "This kiosk is a small, rectangular structure with large open window-like cutouts on three sides, allowing clear visibility and interaction from the exterior. The front facade features a classic white panel design with three large rectangular openings, each topped with a black lamp fixture, giving it a slightly traditional yet urban appearance. The interior walls are adorned with colorful posters or advertisements, suggesting its use for information, ticketing, or retail purposes. The floor appears to be made of light wood or laminate, and the structure is framed with a combination of white and black materials, possibly metal or painted wood. The roof is flat and unadorned, with no visible overhangs or decorative elements. The overall design is functional, with a blend of modern and traditional influences, suitable for placement on sidewalks, plazas, or parks.",
+    "description": "A rectangular kiosk with large open windows on three sides, white paneled front, black framing, and colorful interior posters. The design blends traditional and modern urban elements.",
+    "description_view_0": "View 0 shows the side with three large open windows and interior posters visible through the cutouts.",
+    "description_view_1": "View 1 displays the front facade with white paneling, three large rectangular openings, and black lamp fixtures above each opening.",
+    "description_view_2": "View 2 highlights the opposite side with three open windows and more visible interior posters.",
+    "description_view_3": "View 3 shows the rear with a solid black wall and three rectangular cutouts, as well as the side panel with posters.",
+    "category": "kiosk",
+    "height": 2.5,
+    "max_dimension": 4.0,
+    "materials": [
+        "wood",
+        "metal",
+        "glass",
+        "plastic",
+        "paper",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "window opening",
+        "poster",
+        "lamp fixture"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "gray",
+        "multicolor"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 10000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "Printed posters and advertisements mounted on interior walls and visible through window openings; no digital or illuminated signage.",
+    "attribute_window_presence": "Three large rectangular open windows on the front, three on the rear, and additional open cutouts on the sides.",
+    "attribute_door_configuration": "No visible door; open entry via large window cutouts.",
+    "attribute_roof_design": "Flat roof with no visible overhangs or decorative elements; appears to be constructed from the same material as the main structure.",
+    "attribute_architectural_style": "Modern with traditional paneling and urban influences.",
+    "uid": "83570ea374704e56aa0cbc2149bc8d04",
+    "near_synsets": {
+        "shopfront.n.01": 0.5307321271288061,
+        "booth.n.02": 0.5455920102358438,
+        "window.n.07": 0.5467454288472133,
+        "display_window.n.01": 0.5519704936924072,
+        "picture_window.n.01": 0.5560386363244852
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/83570ea374704e56aa0cbc2149bc8d04",
+        "creator_username": "ilmelograno",
+        "creator_display_name": "Il Melograno Art Gallery",
+        "creator_profile_url": "https://sketchfab.com/ilmelograno"
+    },
+    "filename": "std_83570ea374704e56aa0cbc2149bc8d04.glb",
+    "length": 3.7123886346817017,
+    "width": 5.718959093093872
+}

@@ -1,0 +1,103 @@
+{
+    "description_long": "This machine gun features a robust, blocky construction with a rectangular receiver and a prominent, squared-off barrel assembly. The body is composed of angular, geometric shapes, giving it a utilitarian and industrial appearance. The stock is solid and straight, extending from the rear in a fixed position, while the grip and trigger area are integrated into the lower section of the receiver. A box-shaped magazine is visible beneath the central body, suggesting a high-capacity feed system. The surface is uniformly dark gray, with a matte finish that reduces glare. There are no visible iron sights or mounting mechanisms, emphasizing a minimalist, functional design.",
+    "description": "A blocky, industrial-style machine gun with a fixed stock, box magazine, and matte dark gray finish. The design is angular and utilitarian, lacking visible sights or mounting hardware.",
+    "description_view_0": "Front view showing the squared-off barrel and the symmetrical, blocky profile of the receiver.",
+    "description_view_1": "Side view revealing the full length of the machine gun, including the fixed stock, box magazine, and angular grip area.",
+    "description_view_2": "Rear view highlighting the solid stock and the rectangular shape of the receiver.",
+    "description_view_3": "Opposite side view, mirroring view 1, with clear visibility of the magazine and overall length.",
+    "category": "machine gun",
+    "height": 0.25,
+    "max_dimension": 1.0,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "mass": 10,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 100,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "magazine",
+        "trigger",
+        "grip"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_type": "standard rectangular barrel with no visible cooling features",
+    "attribute_stock_design": "fixed blocky stock with straight, angular profile",
+    "attribute_magazine_type": "box magazine",
+    "attribute_mounting_mechanism": "no mounting mechanism visible",
+    "attribute_iron_sight_configuration": "no iron sights visible",
+    "uid": "97af0dda95fb4025905e9b134c3b1627",
+    "near_synsets": {
+        "machine_gun.n.01": 0.4991160045945137,
+        "submachine_gun.n.01": 0.5029486937181166,
+        "gatling_gun.n.01": 0.5252923868834891,
+        "shotgun.n.01": 0.529133582382368,
+        "maxim_gun.n.01": 0.5334528104791978,
+        "grease_gun.n.01": -1000.0,
+        "machine.n.02": -1000.0,
+        "gun.n.07": -1000.0,
+        "machine.n.05": -1000.0,
+        "artillery.n.01": -1000.0,
+        "gunman.n.02": -1000.0,
+        "accelerator.n.01": -1000.0,
+        "machine.n.01": -1000.0,
+        "gun.n.01": -1000.0,
+        "gunman.n.01": -1000.0,
+        "machine.n.04": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.03": -1000.0
+    },
+    "synset": "submachine_gun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/97af0dda95fb4025905e9b134c3b1627",
+        "creator_username": "Maks48",
+        "creator_display_name": "fizikoldun",
+        "creator_profile_url": "https://sketchfab.com/Maks48"
+    },
+    "filename": "std_97af0dda95fb4025905e9b134c3b1627.glb",
+    "length": 0.6632652878761292,
+    "width": 0.19387753307819366
+}

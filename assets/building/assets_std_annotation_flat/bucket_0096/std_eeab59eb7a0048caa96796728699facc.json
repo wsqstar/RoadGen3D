@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a large, heavily armored turret featuring three long, cylindrical barrels extending from a robust, angular housing. The main body is constructed from dark, metallic panels with visible seams, bolts, and reinforced plating, suggesting a military-grade design. The turret is adorned with various geometric details, including raised sections, hatches, and what appear to be access panels or maintenance ports. Markings such as the number '51' are stenciled on the sides, adding to its utilitarian, industrial appearance. The barrels are arranged in parallel, each with detailed muzzle ends and subtle color variations indicating wear or heat treatment. The overall structure is massive and imposing, clearly designed for fixed emplacement rather than portability.",
+    "description": "A large, armored triple-barrel turret with dark metallic plating, industrial markings, and reinforced construction.",
+    "description_view_0": "Front view showing three parallel barrels protruding from a robust, angular turret housing.",
+    "description_view_1": "Side view highlighting the length of the barrels, the angular armor plating, and stenciled markings.",
+    "description_view_2": "Rear view displaying the back armor, access panels, and the base of the turret.",
+    "description_view_3": "Opposite side view with similar features to view 1, emphasizing the turret's width and structural details.",
+    "category": "rifle",
+    "height": 1.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel",
+        "hatch",
+        "access panel",
+        "turret base"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "metallic brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "none",
+    "uid": "eeab59eb7a0048caa96796728699facc",
+    "near_synsets": {
+        "rifle.n.01": 0.5304932249049459,
+        "light_arm.n.01": 0.532265522550259,
+        "cannon.n.02": 0.5357915677509117,
+        "assault_gun.n.02": 0.5366238144158737,
+        "jacket.n.05": 0.5411062885601889
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/eeab59eb7a0048caa96796728699facc",
+        "creator_username": "Planetrix23",
+        "creator_display_name": "Peter Primini",
+        "creator_profile_url": "https://sketchfab.com/Planetrix23"
+    },
+    "filename": "std_eeab59eb7a0048caa96796728699facc.glb",
+    "length": 5.115809440612793,
+    "width": 2.4563196897506714
+}

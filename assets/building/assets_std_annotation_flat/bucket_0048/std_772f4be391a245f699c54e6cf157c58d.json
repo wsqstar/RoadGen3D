@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a large, industrial shipping container constructed primarily from corrugated steel panels, painted in a weathered dark gray color. The container features reinforced corners and a ribbed roof for structural integrity, with visible signs of wear and scuffing along its surfaces. One end of the container has double doors, one of which is open, revealing a spacious, empty interior with a wooden floor. The front face displays bold white signage reading 'COBARK LOGISTICS PTY LTD.' with a large directional arrow, indicating its use for commercial or logistical purposes. The doors are equipped with heavy-duty locking bars and hinges, designed for secure closure and transport. This type of container is commonly found in shipping yards, industrial sites, or urban storage areas.",
+    "description": "A large, weathered steel shipping container with double doors, bold white logistics signage, and a visible wooden floor inside. The exterior is dark gray with reinforced corners and heavy-duty locking mechanisms.",
+    "description_view_0": "Front view showing the open double doors, white 'COBARK LOGISTICS PTY LTD.' signage, and the interior wooden floor.",
+    "description_view_1": "Side view with one door open, revealing the empty interior and the thickness of the steel walls.",
+    "description_view_2": "Rear view displaying the plain, ribbed steel back with no signage or openings.",
+    "description_view_3": "Opposite end view showing the closed double doors with locking bars and no visible signage.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "wood",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.06,
+        0.01
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "loadable",
+        "unloadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking bar",
+        "hinge"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "dark gray",
+        "white",
+        "brown"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "white painted logo and arrow on front face reading 'COBARK LOGISTICS PTY LTD.'",
+    "attribute_handles_or_grips": "integrated steel locking bars and handles on doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "772f4be391a245f699c54e6cf157c58d",
+    "near_synsets": {
+        "cargo_container.n.01": 0.46490539606912173,
+        "container.n.01": 0.47569579383066757,
+        "cargo_door.n.01": 0.51032211460215,
+        "container_ship.n.01": 0.5375420977509232,
+        "shipping_room.n.01": 0.5562254444731806
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/772f4be391a245f699c54e6cf157c58d",
+        "creator_username": "Sebastian.Hamish.Webster",
+        "creator_display_name": "Sebastian Webster",
+        "creator_profile_url": "https://sketchfab.com/Sebastian.Hamish.Webster"
+    },
+    "filename": "std_772f4be391a245f699c54e6cf157c58d.glb",
+    "length": 3.275800943374634,
+    "width": 6.502892971038818
+}

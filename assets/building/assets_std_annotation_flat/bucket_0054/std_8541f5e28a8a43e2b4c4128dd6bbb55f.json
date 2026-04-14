@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a classic yellow tram positioned on a section of track next to a covered tram stop with a bench and street lamp. The tram features a rounded front with large windows, a black roof with rooftop equipment, and a long pantograph extending above for overhead power collection. The body is primarily yellow with white and black accents, and the windows are evenly spaced along the sides, providing ample visibility for passengers. The tram stop structure is made of wood and metal, offering shelter and seating for waiting passengers. The entire scene is set on a black base simulating an urban street environment, with visible tram tracks and pavement details.",
+    "description": "A yellow and white tram with a black roof and overhead pantograph, positioned on tracks beside a covered urban tram stop with a bench and street lamp.",
+    "description_view_0": "The side view shows the tram's length, the pantograph, and the full tram stop shelter with its wooden slats and bench.",
+    "description_view_1": "The front view highlights the tram's rounded face, large front windows, and the entrance to the tram stop with the street lamp visible.",
+    "description_view_2": "The rear side view displays the tram's side windows, the pantograph, and the back of the tram stop shelter.",
+    "description_view_3": "The opposite front view shows the tram's face, the shelter's side, and the bench, with the street lamp in the foreground.",
+    "category": "tram",
+    "height": 3.2,
+    "max_dimension": 10.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "wood",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "pantograph",
+        "control panel",
+        "button",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "white",
+        "black",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.45,
+        0.18,
+        0.2,
+        0.12,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.22,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_pantograph_type": "single-arm",
+    "attribute_door_configuration": "two sliding doors on the right side, centrally located",
+    "attribute_window_arrangement": "six large rectangular windows evenly spaced along each side, separated by vertical frames, with a continuous band appearance",
+    "attribute_route_number_display": "present, front, mechanical, visible above windshield",
+    "attribute_front_signage": "destination board with white text on black background, mechanical, placed above the front windows",
+    "uid": "8541f5e28a8a43e2b4c4128dd6bbb55f",
+    "near_synsets": {
+        "tramline.n.01": 0.5221757412872647,
+        "train.n.01": 0.5367595573881317,
+        "trolley_line.n.01": 0.5405688098291794,
+        "streetcar.n.01": 0.5406586018107353,
+        "trolleybus.n.01": 0.5413961449169844,
+        "tramcar.n.01": -1000.0,
+        "tramway.n.01": -1000.0
+    },
+    "synset": "tramway.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8541f5e28a8a43e2b4c4128dd6bbb55f",
+        "creator_username": "nadiaconsty",
+        "creator_display_name": "nadiaconsty",
+        "creator_profile_url": "https://sketchfab.com/nadiaconsty"
+    },
+    "filename": "std_8541f5e28a8a43e2b4c4128dd6bbb55f.glb",
+    "length": 7.770105361938477,
+    "width": 6.554661273956299
+}

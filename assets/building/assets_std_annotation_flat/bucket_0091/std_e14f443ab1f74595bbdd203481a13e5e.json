@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a heavily armored police tactical vehicle with a boxy, angular body and reinforced steel plating covering all sides. The vehicle features four large, rugged tires with deep treads, suitable for urban and off-road environments. The exterior is painted in a matte gray finish with red wheels and displays the word 'POLISI' in bold yellow letters on the side, along with a red triangular insignia. The roof is equipped with multiple hatches, periscopes, and what appear to be mounts for additional equipment or weaponry. Small, reinforced windows and side doors provide limited visibility and access, while the front and rear are fitted with protective grilles and lights. The overall design emphasizes protection, mobility, and law enforcement presence in urban scenarios.",
+    "description": "A heavily armored, gray police tactical vehicle with red wheels, reinforced steel plating, and visible insignia. It features roof hatches, rugged tires, and bold 'POLISI' markings.",
+    "description_view_0": "Side view showing 'POLISI' text, red triangular insignia, four red wheels, and armored body panels.",
+    "description_view_1": "Rear view displaying dual exhausts, rear lights, license plate, and 'POLISI' marking on the back door.",
+    "description_view_2": "Opposite side view with similar features as view 0, including 'POLISI' text and insignia, but mirrored.",
+    "description_view_3": "Front view highlighting the sloped armored windshield, 'KORPS BRIMOB' marking, headlights, and reinforced bumper.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 8500,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "hatch",
+        "window",
+        "light",
+        "mirror"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible roof mount on top, likely for a machine gun or similar weapon; no other mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped steel armor plating, including reinforced doors and roof hatches.",
+    "attribute_camouflage_pattern": "Solid matte gray paint with no visible camouflage pattern.",
+    "attribute_military_markings": "Yellow 'POLISI' text on both sides, red triangular insignia on doors, 'KORPS BRIMOB' on front, and license plate on rear.",
+    "attribute_tire_type": "Four large, deep-tread off-road tires with reinforced sidewalls, painted red.",
+    "uid": "e14f443ab1f74595bbdd203481a13e5e",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.5203019764669428,
+        "panda_car.n.01": 0.5410895259945683,
+        "armored_car.n.02": 0.5471954109987986,
+        "armored_vehicle.n.01": 0.5554068512311321,
+        "cruiser.n.01": 0.5566400858318603,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "armored_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e14f443ab1f74595bbdd203481a13e5e",
+        "creator_username": "drcrazzie",
+        "creator_display_name": "drcrazzie",
+        "creator_profile_url": "https://sketchfab.com/drcrazzie"
+    },
+    "filename": "std_e14f443ab1f74595bbdd203481a13e5e.glb",
+    "length": 5.647613763809204,
+    "width": 2.3722755908966064
+}

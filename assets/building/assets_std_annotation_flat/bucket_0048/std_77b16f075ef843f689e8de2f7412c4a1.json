@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a large, steel-hulled warship with a streamlined, elongated body and a pointed bow, typical of early 20th-century naval vessels. The deck is painted in a muted yellowish-brown with gray superstructure elements, and the hull features a dark red lower section and a black waterline. The ship is equipped with multiple gun turrets, two tall cylindrical funnels, and several masts with rigging and antennae. The superstructure is compact, with a bridge and observation platforms located centrally, and various deck equipment such as lifeboats and cranes are visible. The overall design suggests a vessel built for both speed and firepower, with a displacement hull and a pronounced stern. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A large, steel warship with a pointed bow, dual funnels, multiple gun turrets, and a streamlined hull painted in gray, yellow-brown, and red.",
+    "description_view_0": "Top-down view showing the ship's elongated deck, gun turrets, and the symmetrical arrangement of superstructure and masts.",
+    "description_view_1": "Side profile highlighting the ship's dual funnels, raised bridge, and the full length of the hull with visible deck equipment.",
+    "description_view_2": "Top-down view from the opposite end, emphasizing the stern shape and the arrangement of turrets and superstructure.",
+    "description_view_3": "Opposite side profile, mirroring view 1, with clear visibility of the hull's curvature and superstructure layout.",
+    "category": "ship",
+    "height": 18,
+    "max_dimension": 120,
+    "materials": [
+        "steel",
+        "glass",
+        "wood",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.03,
+        0.05,
+        0.02,
+        0.05
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "gun turret",
+        "ladder",
+        "funnel",
+        "mast",
+        "lifeboat",
+        "crane"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "yellow-brown",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 20,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a sharp, pointed bow and a rounded stern, featuring a continuous sheer line and a pronounced keel. The hull sides are smooth with no visible bulbous bow or catamaran structure, and the waterline is marked by a black stripe above a red lower hull.",
+    "attribute_superstructure_layout": "The superstructure is centrally located with two tall funnels, a raised bridge, and several smaller deckhouses. There are multiple gun turrets fore and aft, and the deck is equipped with lifeboats and cranes. Masts and antennae are positioned fore and aft of the superstructure.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "gun turret",
+        "lifeboat",
+        "crane",
+        "mast",
+        "antenna",
+        "funnel"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "77b16f075ef843f689e8de2f7412c4a1",
+    "near_synsets": {
+        "battleship.n.01": 0.4764569628523644,
+        "capital_ship.n.01": 0.48885046902660567,
+        "surface_ship.n.01": 0.49025173485449924,
+        "naval_weaponry.n.01": 0.4915735710366877,
+        "warship.n.01": 0.49659022975045025,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/77b16f075ef843f689e8de2f7412c4a1",
+        "creator_username": "XPP",
+        "creator_display_name": "XPP",
+        "creator_profile_url": "https://sketchfab.com/XPP"
+    },
+    "filename": "std_77b16f075ef843f689e8de2f7412c4a1.glb",
+    "length": 5.900831699371338,
+    "width": 48.774959564208984
+}

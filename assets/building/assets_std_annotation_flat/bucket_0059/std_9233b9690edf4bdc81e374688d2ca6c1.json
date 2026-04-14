@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a large, rectangular metal shipping container with a weathered red exterior and a prominent white and red circular design on the top, reminiscent of the Japanese flag. The front face features bold, black graffiti-style markings, adding an urban, vandalized character. The container's surface is ribbed for structural strength, and the corners are reinforced with metallic fittings for stacking and transport. One end displays a set of vertical locking bars and hinges, indicating the presence of large double doors for access. The overall finish is matte with visible signs of wear, rust, and paint chipping, suggesting long-term outdoor use. This type of container is commonly found in shipping yards, construction sites, or as temporary storage in urban environments.",
+    "description": "A weathered red metal shipping container with graffiti on the front and a white-and-red circular design on top, featuring reinforced corners and large double doors on one end.",
+    "description_view_0": "The front view shows the ribbed red surface with bold black graffiti and reinforced corners.",
+    "description_view_1": "The side view highlights the length of the container and the white-and-red circular design on the top.",
+    "description_view_2": "The rear view displays a plain ribbed red surface without graffiti or doors.",
+    "description_view_3": "The opposite end view reveals the double doors with vertical locking bars and hinges, as well as the top design.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.03,
+        0.05
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking bar",
+        "hinge"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "black graffiti on front, large white-and-red circular design on top",
+    "attribute_handles_or_grips": "vertical locking bars with integrated handles on door end",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "9233b9690edf4bdc81e374688d2ca6c1",
+    "near_synsets": {
+        "container.n.01": 0.4875850630949774,
+        "cargo_container.n.01": 0.49914823848669315,
+        "sentry_box.n.01": 0.5434286306680075,
+        "can.n.01": 0.5493539824837149,
+        "box.n.01": 0.5535117869101794
+    },
+    "synset": "cargo_container.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9233b9690edf4bdc81e374688d2ca6c1",
+        "creator_username": "hbvr",
+        "creator_display_name": "David SEVE",
+        "creator_profile_url": "https://sketchfab.com/hbvr"
+    },
+    "filename": "std_9233b9690edf4bdc81e374688d2ca6c1.glb",
+    "length": 2.4651306867599487,
+    "width": 5.973788261413574
+}

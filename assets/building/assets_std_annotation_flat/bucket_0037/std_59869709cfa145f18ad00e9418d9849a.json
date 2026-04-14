@@ -1,0 +1,88 @@
+{
+    "description_long": "This is a rustic wooden handcart with two large spoked wheels mounted on either side of a rectangular cargo bed. The cart features long, straight wooden handles extending from the front, designed for manual pulling or pushing. The cargo area is constructed from horizontal wooden slats, providing a sturdy yet slightly open platform for carrying goods. The sides of the cart are framed with vertical wooden boards, acting as low barriers to help contain items during transport. The wheels are robust and reinforced with wooden spokes, suitable for traversing uneven urban surfaces. The overall appearance is utilitarian, evoking traditional carts used in markets or for personal transport of goods.",
+    "description": "A traditional wooden handcart with two large spoked wheels, long handles, and a slatted cargo bed with low side barriers.",
+    "description_view_0": "Front view showing the open cargo bed, low side rails, and the two large wheels flanking the cart.",
+    "description_view_1": "Angled side view highlighting the spoked wheel, slatted bed, and the full length of the handles.",
+    "description_view_2": "Rear view displaying the slatted cargo platform, side rails, and the handles extending outward.",
+    "description_view_3": "Opposite angled side view showing the other wheel, the wooden frame, and the open structure of the bed.",
+    "category": "handcart",
+    "height": 0.9,
+    "max_dimension": 2.0,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 35,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "cargo bed"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 2,
+    "attribute_handle_type": "dual straight handles",
+    "attribute_wheel_position": "side-mounted",
+    "attribute_presence_of_side_rails": true,
+    "attribute_load_platform_design": "open slats",
+    "uid": "59869709cfa145f18ad00e9418d9849a",
+    "near_synsets": {
+        "hand_truck.n.01": 0.4312165575882926,
+        "handcart.n.01": 0.4349025976346806,
+        "shopping_cart.n.01": 0.4539336681868941,
+        "cart.n.01": 0.4588053260014186,
+        "serving_cart.n.01": 0.4678746181730772
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/59869709cfa145f18ad00e9418d9849a",
+        "creator_username": "LordCinn",
+        "creator_display_name": "Cinnamine3D",
+        "creator_profile_url": "https://sketchfab.com/LordCinn"
+    },
+    "filename": "std_59869709cfa145f18ad00e9418d9849a.glb",
+    "length": 1.8224946856498718,
+    "width": 0.9003174901008606
+}

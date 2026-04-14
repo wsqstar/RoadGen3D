@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is the heavily burned and rusted shell of a sedan, with its entire structure exposed and most of its original features destroyed. The body panels are warped and corroded, with large holes where windows and doors once were, and the metal is discolored with shades of brown, orange, and black from fire damage. The front and rear ends are both severely deformed, with the rear trunk area twisted upwards and the front bumper area partially collapsed. The interior is completely gutted, revealing the skeletal frame and remnants of the seating and dashboard, with no upholstery or plastic components remaining. The wheels are either missing or reduced to deformed metal hubs, and the undercarriage is visible through the gaping holes in the floor. This sedan appears abandoned and unrecognizable, likely the result of a severe fire or prolonged exposure to harsh elements.",
+    "description": "A severely burned and rusted sedan shell with warped, corroded metal and large holes where windows and doors once were. The structure is gutted, twisted, and missing most original features.",
+    "description_view_0": "Side view showing the elongated, rusted body with large holes and a twisted rear section.",
+    "description_view_1": "Front view revealing the collapsed, hollow front end and exposed skeletal frame.",
+    "description_view_2": "Opposite side view highlighting the warped trunk area and missing wheels.",
+    "description_view_3": "Rear view displaying the deformed trunk, open interior, and lack of rear features.",
+    "category": "sedan",
+    "height": 1.3,
+    "max_dimension": 4.7,
+    "materials": [
+        "steel",
+        "rust",
+        "ash",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 400,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "pushable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "trunk",
+        "hood",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "rust brown",
+        "orange",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_number_of_doors": 4,
+    "attribute_license_plate": "none",
+    "attribute_wheel_design": "unknown",
+    "uid": "2653de1b29b2464ab682f5f0d377421e",
+    "near_synsets": {
+        "car_window.n.01": 0.567411987112258,
+        "sedan.n.01": 0.5715125834470399,
+        "body.n.11": 0.5751169090497826,
+        "car_door.n.01": 0.5788947570045503,
+        "chop_shop.n.01": 0.580508132496071,
+        "sedan.n.02": -1000.0
+    },
+    "synset": "sedan.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/2653de1b29b2464ab682f5f0d377421e",
+        "creator_username": "ubermeisters",
+        "creator_display_name": "ubermeisters",
+        "creator_profile_url": "https://sketchfab.com/ubermeisters"
+    },
+    "filename": "std_2653de1b29b2464ab682f5f0d377421e.glb",
+    "length": 3.80423641204834,
+    "width": 2.072145462036133
+}

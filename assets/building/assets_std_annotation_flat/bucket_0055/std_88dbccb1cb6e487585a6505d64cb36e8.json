@@ -1,0 +1,105 @@
+{
+    "description_long": "This all-terrain vehicle features a robust, octagonal body with a dark blue metallic exterior, supported by four heavy-duty legs that terminate in wide, treaded footpads for stability on uneven surfaces. The vehicle is elevated above the ground, suggesting it is designed for traversing rough or hazardous terrain, and is accessed via ladders on either side. Two prominent hatches or doors are visible on the front and rear, likely serving as entry points for occupants or cargo. The structure includes several angular panels and reinforced edges, with small windows or viewports integrated into the upper section for visibility. A cable extends from the front, possibly for towing or anchoring, and the overall design is utilitarian, prioritizing durability and protection. The vehicle's undercarriage and suspension system are built to absorb shocks, making it suitable for urban exploration or emergency response in challenging environments.",
+    "description": "A rugged, blue, octagonal all-terrain vehicle with elevated legs, ladders for access, and reinforced panels, designed for stability and protection on rough surfaces.",
+    "description_view_0": "Side view showing the octagonal body, two ladders, wide footpads, and a cable extending from the left side.",
+    "description_view_1": "Front view highlighting the central hatch, cable attachment, and the symmetrical placement of the support legs.",
+    "description_view_2": "Opposite side view mirroring view 0, with ladders and footpads visible, but the cable is less prominent.",
+    "description_view_3": "Rear view displaying the rear hatch, support legs, and the absence of the cable seen in the front view.",
+    "category": "all-terrain vehicle",
+    "height": 3.2,
+    "max_dimension": 7.5,
+    "materials": [
+        "metal",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.05,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 5200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "ladder",
+        "hatch",
+        "window",
+        "cable",
+        "footpad"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.07,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 0,
+    "attribute_tire_tread_pattern": "No visible tires; the vehicle uses wide, treaded footpads with a blocky, all-terrain pattern for stability on rough surfaces.",
+    "attribute_suspension_type": "independent",
+    "attribute_presence_of_roll_cage": true,
+    "attribute_handlebar_or_steering_wheel_type": "round steering wheel",
+    "uid": "88dbccb1cb6e487585a6505d64cb36e8",
+    "near_synsets": {
+        "jeep.n.01": 0.5440222546514075,
+        "military_vehicle.n.01": 0.5445822388930299,
+        "reconnaissance_vehicle.n.01": 0.5475799619872199,
+        "sport_utility.n.01": 0.5534292976307987,
+        "armored_vehicle.n.01": 0.5596456430223286,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "jeep.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/88dbccb1cb6e487585a6505d64cb36e8",
+        "creator_username": "lages.miguel",
+        "creator_display_name": "Andre Lages",
+        "creator_profile_url": "https://sketchfab.com/lages.miguel"
+    },
+    "filename": "std_88dbccb1cb6e487585a6505d64cb36e8.glb",
+    "length": 8.130565166473389,
+    "width": 3.1900460720062256
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This kiosk features a compact, rectangular structure with teal-colored walls and a flat roof. The front side is equipped with a service counter, two benches, and a table, suggesting a small food or ticket booth setup. The interior wall displays a digital screen, a clock, and several storage cabinets, while the lighting is bright and modern, illuminating the space from below. The side and rear walls are solid, providing privacy and security, with no visible windows. The materials appear to be a combination of painted metal or composite panels for the walls, wood for the counter and benches, and glass or plastic for the screen and clock. The overall design is functional and modern, suitable for urban environments such as parks, sidewalks, or transit stations.",
+    "description": "A modern, teal-colored kiosk with a front service counter, benches, and digital screen, designed for urban use.",
+    "description_view_0": "Front view showing the service counter, benches, table, digital screen, clock, and storage cabinets.",
+    "description_view_1": "Side view highlighting the solid teal wall and the wooden counter extending outward.",
+    "description_view_2": "Rear view displaying a plain, solid teal wall with no openings or features.",
+    "description_view_3": "Opposite side view with another solid teal wall, minimal visible features.",
+    "category": "kiosk",
+    "height": 2.5,
+    "max_dimension": 3.5,
+    "materials": [
+        "painted metal",
+        "wood",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "sittable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "counter",
+        "bench",
+        "table",
+        "cabinet",
+        "screen",
+        "clock"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "teal",
+        "wood brown",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "digital display mounted on the interior wall; no exterior signage visible",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "none",
+    "attribute_roof_design": "flat roof, teal-colored, no visible overhangs or decorative elements",
+    "attribute_architectural_style": "modern, minimalist",
+    "uid": "53b79e8f83a145be98834a755538d39c",
+    "near_synsets": {
+        "booth.n.02": 0.5506011318606816,
+        "booth.n.01": 0.5640754829678861,
+        "desktop.n.01": 0.5672584166386807,
+        "counter.n.01": 0.5689369082031295,
+        "telephone_booth.n.01": 0.5694423180418042
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/53b79e8f83a145be98834a755538d39c",
+        "creator_username": "rekkless",
+        "creator_display_name": "rekkless",
+        "creator_profile_url": "https://sketchfab.com/rekkless"
+    },
+    "filename": "std_53b79e8f83a145be98834a755538d39c.glb",
+    "length": 2.0233277082443237,
+    "width": 2.7438502311706543
+}

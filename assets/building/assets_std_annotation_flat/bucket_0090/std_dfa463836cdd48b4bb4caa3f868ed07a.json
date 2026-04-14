@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a large, armored vehicle-mounted weapon system, resembling a modern main battle tank with a long, prominent cannon extending from a heavily armored turret. The hull is rectangular and robust, with visible track systems on both sides for all-terrain mobility. The turret features angular surfaces and a hatch, with additional details such as periscopes or sensors and a rear-mounted storage rack. The cannon is exceptionally long and dominates the silhouette, suggesting a high-caliber main gun. The exterior appears to be constructed primarily from dark, matte-finished metal, with some smaller components possibly made from rubber or composite materials. The overall design is utilitarian, built for durability and combat effectiveness in urban or battlefield environments.",
+    "description": "A large, dark-colored armored vehicle with a long cannon, heavy tracks, and a robust turret, resembling a modern main battle tank.",
+    "description_view_0": "Front view shows the long cannon barrel extending outward, with the rectangular hull and turret directly behind it.",
+    "description_view_1": "Side view highlights the length of the cannon, the detailed track system, and the angular turret with visible hatches and equipment.",
+    "description_view_2": "Rear view reveals the back of the turret, the storage rack, and the open space between the tracks at the rear of the hull.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the track system, turret profile, and the full length of the cannon.",
+    "category": "rifle",
+    "height": 2.5,
+    "max_dimension": 8.5,
+    "materials": [
+        "steel",
+        "composite",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 55000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "rotatable",
+        "drivable",
+        "pressable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cannon",
+        "turret",
+        "hatch",
+        "tracks",
+        "storage rack"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "none",
+    "uid": "dfa463836cdd48b4bb4caa3f868ed07a",
+    "near_synsets": {
+        "tank.n.01": 0.45403969052036003,
+        "assault_gun.n.02": 0.46131288896638484,
+        "military_vehicle.n.01": 0.47293870572359953,
+        "cannon.n.02": 0.4799766178572551,
+        "armored_vehicle.n.01": 0.482305500212479,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dfa463836cdd48b4bb4caa3f868ed07a",
+        "creator_username": "Azora_C",
+        "creator_display_name": "Azora_C",
+        "creator_profile_url": "https://sketchfab.com/Azora_C"
+    },
+    "filename": "std_dfa463836cdd48b4bb4caa3f868ed07a.glb",
+    "length": 8.750773429870605,
+    "width": 2.6650147438049316
+}

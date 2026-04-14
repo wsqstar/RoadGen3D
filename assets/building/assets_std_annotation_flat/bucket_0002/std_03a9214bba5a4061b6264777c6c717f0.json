@@ -1,0 +1,102 @@
+{
+    "description_long": "This humanoid robot features a spherical head with a single large, circular eye-like sensor at its center, surrounded by a weathered, rusty metallic surface with greenish patina. The torso is composed of two stacked, rounded segments, separated by a green horizontal band, and connected to thin, jointed arms and legs. The arms are slender rods with visible elbow joints and end in claw-like hands with three articulated fingers each. The legs are similarly thin, with knee joints and broad, wedge-shaped feet, all mounted on a square platform base. The robot's overall appearance is utilitarian and industrial, with exposed mechanical joints and a worn, aged finish. Its design suggests mobility and dexterity, suitable for urban environments where interaction with objects and people is required.",
+    "description": "A weathered, humanoid robot with a spherical head, single central eye, thin articulated limbs, and claw-like hands, finished in rusty metal with green patina.",
+    "description_view_0": "Front view shows the robot's single large eye, symmetrical arms and legs, and claw-like hands, highlighting the green patina and weathered metal surface.",
+    "description_view_1": "Side view reveals the robot's rounded torso segments, thin limbs, and the depth of its wedge-shaped feet, emphasizing the layered body structure.",
+    "description_view_2": "Rear view displays the back of the spherical head and torso, the alignment of the arms and legs, and the mechanical joints, with less detail on the face.",
+    "description_view_3": "Opposite side view shows the same layered torso and limb articulation as view 1, with a clear profile of the head and the robot's stance.",
+    "category": "humanoid robot",
+    "height": 1.6,
+    "max_dimension": 1.6,
+    "materials": [
+        "steel",
+        "copper",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "rotatable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "eye sensor",
+        "arms",
+        "hands",
+        "fingers",
+        "legs",
+        "feet"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "rusty brown",
+        "green",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms slightly bent at the elbows and hanging down, legs straight and feet flat on the base, head facing forward.",
+    "attribute_clothing_style": "Unclothed; exterior consists of integrated metallic panels with a weathered, industrial finish and green patina.",
+    "attribute_facial_features": "Face consists of a single large, circular eye-like sensor in the center of the spherical head; no visible mouth, nose, or expressive features.",
+    "attribute_limb_articulation": "Arms and legs have visible hinge or rotary joints at shoulders, elbows, hips, and knees; hands have three articulated fingers each; limbs appear rigid but jointed for movement.",
+    "attribute_presence_of_sensors": "Single large eye-like sensor in the center of the head; no other visible sensors.",
+    "uid": "03a9214bba5a4061b6264777c6c717f0",
+    "near_synsets": {
+        "android.n.01": 0.5460686097236462,
+        "robotics_equipment.n.01": 0.5582944744273366,
+        "cyborg.n.01": 0.5614218164515785,
+        "automaton.n.02": 0.5697778279431692,
+        "automaton.n.03": 0.5819558263363388
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/03a9214bba5a4061b6264777c6c717f0",
+        "creator_username": "r0904709",
+        "creator_display_name": "Lukas Parton",
+        "creator_profile_url": "https://sketchfab.com/r0904709"
+    },
+    "filename": "std_03a9214bba5a4061b6264777c6c717f0.glb",
+    "length": 0.775030791759491,
+    "width": 0.7750306129455566
+}

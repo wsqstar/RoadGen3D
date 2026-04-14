@@ -1,0 +1,94 @@
+{
+    "description_long": "This traffic barricade consists of a long, rectangular horizontal bar supported by two sturdy, block-like legs. The front face of the bar is painted white with bold, diagonal red stripes, a common pattern for high-visibility warning barriers in urban environments. The legs are solid and dark-colored, likely made of a heavy material to provide stability and prevent easy displacement. The surface of the bar appears smooth and hard, with a matte finish that reduces glare but enhances visibility under various lighting conditions. There are no visible lights, signage, or attachment fixtures on the barricade, and the design is simple and utilitarian. The barricade is intended to serve as a physical and visual obstacle to control or restrict access in streets, parking lots, or construction zones.",
+    "description": "A long, rectangular traffic barricade with white and red diagonal stripes on the front, supported by two solid dark legs. The surface is smooth and matte, designed for high visibility and stability.",
+    "description_view_0": "A narrow side view showing only the thin edge of the barricade and one leg, with no visible striping.",
+    "description_view_1": "A frontal view displaying the full length of the barricade, with prominent white and red diagonal stripes and both support legs visible.",
+    "description_view_2": "A narrow side view identical to view 0, showing only the thin edge and one leg.",
+    "description_view_3": "A rear view similar to the front, but without visible striping, showing the plain back surface and both support legs.",
+    "category": "traffic barricade",
+    "height": 0.9,
+    "max_dimension": 2.0,
+    "materials": [
+        "plastic",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bar",
+        "legs"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_reflective_striping_pattern": "Diagonal red and white stripes, evenly spaced, running from top left to bottom right across the front face.",
+    "attribute_warning_signage": [],
+    "attribute_number_of_support_legs": 2,
+    "attribute_attachment_fixtures": [],
+    "attribute_presence_of_lights": false,
+    "uid": "e8cc11529b7b4833acb0891787ca92ba",
+    "near_synsets": {
+        "white_line.n.01": 0.5180778548622756,
+        "roadblock.n.02": 0.5423079890154069,
+        "crash_barrier.n.01": 0.5423455722409443,
+        "pedestrian_crossing.n.01": 0.5501684887574385,
+        "traffic_lane.n.01": 0.5509490033038076,
+        "traffic.n.01": -1000.0,
+        "traffic.n.03": -1000.0,
+        "dealings.n.01": -1000.0,
+        "traffic.n.02": -1000.0,
+        "barricade.n.02": -1000.0
+    },
+    "synset": "roadblock.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e8cc11529b7b4833acb0891787ca92ba",
+        "creator_username": "pravda2033",
+        "creator_display_name": "Pravda",
+        "creator_profile_url": "https://sketchfab.com/pravda2033"
+    },
+    "filename": "std_e8cc11529b7b4833acb0891787ca92ba.glb",
+    "length": 0.24254656583070755,
+    "width": 5.137582063674927
+}

@@ -1,0 +1,92 @@
+{
+    "description_long": "This handcart features a rectangular wooden load bed with raised side panels and a flat base, designed for carrying goods or materials. It is supported by two large, spoked wheels mounted on either side near the rear, allowing for easy maneuverability. The front of the cart extends into two long, parallel handles, which are used for pushing or pulling the cart. The side panels act as barriers to prevent items from falling off during transport. The overall construction appears robust, with all visible components made from a dark, matte-finished wood. The design is utilitarian, suitable for use in urban environments such as markets, parks, or residential areas.",
+    "description": "A sturdy wooden handcart with two large rear wheels, raised side panels, and long front handles for pushing or pulling. The load platform is flat and enclosed by side barriers.",
+    "description_view_0": "Front view showing the two long handles extending outward and the open front of the cart.",
+    "description_view_1": "Side view highlighting the large spoked wheel, the length of the handles, and the raised side panels.",
+    "description_view_2": "Rear view displaying the flat load platform, the side panels, and the open back of the cart.",
+    "description_view_3": "Opposite side view similar to view 1, showing the other wheel and the overall length of the cart.",
+    "category": "handcart",
+    "height": 1.0,
+    "max_dimension": 2.2,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 38,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "load platform",
+        "side panel"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 2,
+    "attribute_handle_type": "dual straight bars",
+    "attribute_wheel_position": "rear-mounted",
+    "attribute_presence_of_side_rails": true,
+    "attribute_load_platform_design": "flat solid surface",
+    "uid": "d8477e4e73d143308dcd23d9d20a5b5e",
+    "near_synsets": {
+        "handcart.n.01": 0.41886936188967255,
+        "hand_truck.n.01": 0.43202619076747684,
+        "serving_cart.n.01": 0.4699140662031691,
+        "cart.n.01": 0.47351226672898566,
+        "shopping_cart.n.01": 0.47647154414635917
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d8477e4e73d143308dcd23d9d20a5b5e",
+        "creator_username": "kyan0s",
+        "creator_display_name": "Kyan0s",
+        "creator_profile_url": "https://sketchfab.com/kyan0s"
+    },
+    "filename": "std_d8477e4e73d143308dcd23d9d20a5b5e.glb",
+    "length": 3.418370842933655,
+    "width": 1.2394568920135498
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This humanoid robot features a robust, angular design with a predominantly gray and black color scheme accented by orange highlights. Its head is helmet-like with a central crest and a visor area, giving it a futuristic, armored appearance. The shoulders are broad and equipped with large, wing-like protrusions, while the arms and legs are heavily segmented and reinforced, suggesting strength and durability. The back displays a prominent orange spike and additional mechanical details, enhancing its mechanical and combat-ready look. The hands and feet are blocky, with visible joints and mechanical components, indicating articulated movement. Overall, the robot's design is reminiscent of a mecha or combat android, built for urban environments and possibly for defense or patrol duties.",
+    "description": "A heavily armored, angular humanoid robot with gray, black, and orange accents, featuring wing-like shoulders and a helmeted head. Its design is robust and mechanical, suggesting strength and advanced articulation.",
+    "description_view_0": "Front view shows the helmeted head, broad chest, wing-like shoulder protrusions, and articulated arms and legs.",
+    "description_view_1": "Side view highlights the depth of the shoulder wings, the central crest, and the orange spike extending from the back.",
+    "description_view_2": "Rear view reveals the prominent orange back spike, mechanical details on the back, and the symmetrical design of the legs and arms.",
+    "description_view_3": "Opposite side view mirrors the other side, showing the profile of the head, shoulder, and leg armor, as well as the back spike.",
+    "category": "humanoid robot",
+    "height": 2.2,
+    "max_dimension": 2.6,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "rotatable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "legs",
+        "hands",
+        "head",
+        "shoulder wings",
+        "back spike"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "orange",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms slightly bent at the elbows and legs straight. The head is facing forward, and the torso is erect. Shoulder wings are extended outward.",
+    "attribute_clothing_style": "No visible clothing; the robot is covered in integrated armor panels and mechanical components with angular, decorative elements.",
+    "attribute_facial_features": "The face consists of a helmet-like structure with a central crest and a dark visor area, lacking a visible mouth or nose. No expressive features are present.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints at the shoulders, elbows, wrists, hips, knees, and ankles, allowing for a wide range of motion. Limbs appear robust and articulated.",
+    "attribute_presence_of_sensors": "Possible visual sensor in the visor area of the head; no other sensors are visibly apparent.",
+    "uid": "48371f76a0f042f8ad29a7325650490c",
+    "near_synsets": {
+        "android.n.01": 0.5193712730000418,
+        "cyborg.n.01": 0.5458429095877247,
+        "robotics_equipment.n.01": 0.5638543401367799,
+        "automaton.n.02": 0.5667395955709272,
+        "helmet.n.01": 0.5899932194430741
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/48371f76a0f042f8ad29a7325650490c",
+        "creator_username": "NeonZaku",
+        "creator_display_name": "NeonZaku",
+        "creator_profile_url": "https://sketchfab.com/NeonZaku"
+    },
+    "filename": "std_48371f76a0f042f8ad29a7325650490c.glb",
+    "length": 1.1819673776626587,
+    "width": 1.715745210647583
+}

@@ -1,0 +1,106 @@
+{
+    "description_long": "This object consists of two large, vertically-oriented cylindrical tanks with domed tops, mounted side by side on a sturdy rectangular metal frame. The tanks are connected at the top by a horizontal pipe, suggesting a system for transferring or equalizing contents between them. The lower portions of the tanks are encased in protective metal grilles, and a warning sign indicating hazardous chemicals is prominently displayed on the front. The surface of the tanks is dark, weathered metal, showing signs of industrial use and exposure. The overall construction is robust, designed for secure storage and handling of dangerous substances in an urban or industrial environment.",
+    "description": "A pair of large, domed metal storage tanks on a metal frame, connected by a pipe and marked with hazardous chemical warnings.",
+    "description_view_0": "Front view showing one tank head-on, with the connecting pipe visible at the top and protective grilles at the base.",
+    "description_view_1": "Side view displaying both tanks in full, the connecting pipe, and the symmetrical structure of the frame.",
+    "description_view_2": "Rear view similar to the front, but without visible warning signage, showing the back of one tank and the frame.",
+    "description_view_3": "Main front view with both tanks, clear hazardous chemical warning signs, and a central caution sign between the tanks.",
+    "category": "storage tank",
+    "height": 2.2,
+    "max_dimension": 2.8,
+    "materials": [
+        "steel",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.92,
+        0.07,
+        0.01
+    ],
+    "mass": 950,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "connectable",
+        "fillable",
+        "drainable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pipe",
+        "protective grille"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "yellow",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_location": "chemical plant",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [
+        "pipe"
+    ],
+    "attribute_warning_signage": true,
+    "attribute_architectural_style": "cylindrical vertical",
+    "uid": "63c001e74ff5402fbcf1338479c9c0c5",
+    "near_synsets": {
+        "tank.n.02": 0.4940620263125372,
+        "tank_farm.n.01": 0.5234767607862577,
+        "reservoir.n.03": 0.5461510660651789,
+        "water_tower.n.01": 0.5474700477144283,
+        "gas_tank.n.01": 0.5556520718131399,
+        "storage.n.01": -1000.0,
+        "cooler.n.03": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "tank.n.01": -1000.0,
+        "storage.n.03": -1000.0,
+        "repositing.n.01": -1000.0,
+        "storage.n.04": -1000.0,
+        "tank.n.03": -1000.0,
+        "memory.n.04": -1000.0,
+        "tank_car.n.01": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/63c001e74ff5402fbcf1338479c9c0c5",
+        "creator_username": "ixMkc1",
+        "creator_display_name": "ixMkc1",
+        "creator_profile_url": "https://sketchfab.com/ixMkc1"
+    },
+    "filename": "std_63c001e74ff5402fbcf1338479c9c0c5.glb",
+    "length": 1.0613031387329102,
+    "width": 2.4040952920913696
+}

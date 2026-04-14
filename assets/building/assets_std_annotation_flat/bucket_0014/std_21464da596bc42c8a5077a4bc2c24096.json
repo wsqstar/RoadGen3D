@@ -1,0 +1,99 @@
+{
+    "description_long": "This mud patch consists of a roughly rectangular area of uneven, soft earth with two prominent mounds or clumps rising from its surface. The texture is highly irregular, with visible clods, depressions, and scattered small stones embedded throughout. The coloration is predominantly dark gray to brown, suggesting wet or recently disturbed soil, and the surface appears moist and sticky. The edges of the patch are jagged and blend gradually into the surrounding ground, lacking any sharp boundary. There are no clear signs of standing water, but the surface glistens slightly, indicating dampness. Small bits of debris, such as pebbles and possibly organic matter, are scattered across the patch.",
+    "description": "A damp, uneven mud patch with two raised mounds, scattered stones, and a rough, irregular surface blending into the ground.",
+    "description_view_0": "From this angle, the larger central mound and the uneven, clod-filled surface are most prominent, with the patch's irregular edges visible.",
+    "description_view_1": "This view highlights both mounds side by side, showing their relative size and the scattered stones embedded in the mud.",
+    "description_view_2": "The perspective emphasizes the lower mound in the foreground and the gradual slope of the mud patch's surface.",
+    "description_view_3": "Here, the patch appears flatter, with both mounds visible but less pronounced, and the rough, debris-strewn surface is clear.",
+    "category": "mud patch",
+    "height": 0.25,
+    "max_dimension": 1.5,
+    "materials": [
+        "mud",
+        "stone",
+        "organic_matter",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 450,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportable",
+        "imprintable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "dark gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 0.05,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_location": "urban roadside or construction site",
+    "attribute_boundary_definition": "The boundaries are irregular and blend gradually into the surrounding ground, with no sharp transitions.",
+    "attribute_presence_of_footprints_or_tire_marks": "none visible",
+    "attribute_water_accumulation": "none visible",
+    "attribute_surrounding_debris": "small stones, possible organic matter",
+    "uid": "21464da596bc42c8a5077a4bc2c24096",
+    "near_synsets": {
+        "mud_puddle.n.01": 0.49338975600216683,
+        "mud.n.01": 0.505237259642647,
+        "mud_stain.n.01": 0.5106466522362428,
+        "mud_flat.n.01": 0.5417087959996935,
+        "mottle.n.01": 0.5507206190057493,
+        "spot.n.05": -1000.0,
+        "eyepatch.n.01": -1000.0,
+        "bandage.n.01": -1000.0,
+        "temporary_hookup.n.01": -1000.0,
+        "mend.n.01": -1000.0,
+        "patch.n.03": -1000.0,
+        "patch.n.05": -1000.0,
+        "mud.n.02": -1000.0,
+        "plot.n.02": -1000.0,
+        "while.n.01": -1000.0
+    },
+    "synset": "spot.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/21464da596bc42c8a5077a4bc2c24096",
+        "creator_username": "saeedkhalili.ir",
+        "creator_display_name": "saeed khalili",
+        "creator_profile_url": "https://sketchfab.com/saeedkhalili.ir"
+    },
+    "filename": "std_21464da596bc42c8a5077a4bc2c24096.glb",
+    "length": 1.1827571392059326,
+    "width": 1.3024160265922546
+}

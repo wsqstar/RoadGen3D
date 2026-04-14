@@ -1,0 +1,96 @@
+{
+    "description_long": "This handcart is constructed primarily from rough-hewn wooden logs, giving it a rustic and sturdy appearance. The frame consists of two long wooden beams running parallel, connected by crossbars and reinforced with metal brackets at the front. Two large, spoked wooden wheels are mounted on either side near the rear, allowing for easy rolling over uneven surfaces. The load platform is open and formed by spaced wooden slats, with raised side rails made from thick logs to prevent cargo from falling out. The front of the cart features extended wooden handles, designed for manual pulling or pushing. The overall finish is weathered, with visible wood grain and a dark, earthy coloration, suggesting frequent outdoor use.",
+    "description": "A rustic wooden handcart with large spoked wheels, open slat platform, and sturdy log side rails, finished in dark, weathered wood.",
+    "description_view_0": "Front view showing the extended wooden handles and metal brackets, with the open slat platform and side rails clearly visible.",
+    "description_view_1": "Angled side view highlighting the large spoked wheel and the connection between the handles and the frame.",
+    "description_view_2": "Rear view focusing on the open end of the platform, the side rails, and the full profile of the wheels.",
+    "description_view_3": "Top-down angled view displaying the arrangement of the wooden slats, side rails, and the overall structure of the cart.",
+    "category": "handcart",
+    "height": 1.0,
+    "max_dimension": 2.0,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "load platform",
+        "side rail"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "dark brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 2,
+    "attribute_handle_type": "dual straight wooden beams",
+    "attribute_wheel_position": "side-mounted near rear",
+    "attribute_presence_of_side_rails": true,
+    "attribute_load_platform_design": "open slats",
+    "uid": "4ba22946bb5b4f66a03d7343ea9488f1",
+    "near_synsets": {
+        "cart.n.01": 0.4783664517695345,
+        "serving_cart.n.01": 0.47984481209821067,
+        "handcart.n.01": 0.4840932521844551,
+        "shopping_cart.n.01": 0.49006567502362375,
+        "hand_truck.n.01": 0.4922857936660279
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4ba22946bb5b4f66a03d7343ea9488f1",
+        "creator_username": "chris4894",
+        "creator_display_name": "Christopher Eilertsen",
+        "creator_profile_url": "https://sketchfab.com/chris4894"
+    },
+    "filename": "std_4ba22946bb5b4f66a03d7343ea9488f1.glb",
+    "length": 1.7756470441818237,
+    "width": 1.5194892883300781
+}

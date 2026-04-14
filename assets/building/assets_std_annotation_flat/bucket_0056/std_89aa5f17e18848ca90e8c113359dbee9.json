@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a full-sized urban town bus with a rectangular body, primarily white with a red roof and yellow and orange accent stripes along the sides. The bus features large, rectangular side windows for passenger visibility, and blue wheels that stand out against the otherwise neutral color scheme. The front of the bus has a wide windshield, black trim, and a yellow accent stripe, while the rear is more plain with minimal detailing. The side of the bus is labeled 'TOWN BUS' in bold white letters, indicating its public transportation function. The roof has two rectangular skylights or ventilation panels, and the interior is visible through the windows, showing rows of red seats. The bus is designed for street use, with entry doors and steps for passenger boarding.",
+    "description": "A white and red urban town bus with large side windows, blue wheels, and 'TOWN BUS' labeling, designed for public transportation.",
+    "description_view_0": "Side view showing the left side of the bus with large windows, a single entry door near the front, and yellow-orange stripes.",
+    "description_view_1": "Front view displaying the wide windshield, black trim, yellow accent stripe, and side mirrors.",
+    "description_view_2": "Side view of the right side with 'TOWN BUS' text, large windows, and blue wheels.",
+    "description_view_3": "Rear view showing the plain back of the bus with minimal detailing and two roof skylights visible.",
+    "category": "bus",
+    "height": 3.2,
+    "max_dimension": 11.0,
+    "materials": [
+        "metal",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.12,
+        0.08,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "mass": 11000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 25000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "seat",
+        "steering wheel",
+        "mirror"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "yellow",
+        "orange",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.18,
+        0.08,
+        0.05,
+        0.07,
+        0.07
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 1,
+    "attribute_window_arrangement": "The bus has a series of large, rectangular windows evenly spaced along both sides, separated by vertical pillars. There are six main passenger windows per side, with a smaller window at the rear and a window in the door at the front.",
+    "attribute_route_number_or_destination_sign": "",
+    "attribute_bus_manufacturer_logo": "",
+    "attribute_passenger_entry_step_height": 0.4,
+    "uid": "89aa5f17e18848ca90e8c113359dbee9",
+    "near_synsets": {
+        "bus.n.01": 0.483993381371412,
+        "school_bus.n.01": 0.495340209634038,
+        "bus_company.n.01": 0.5230404527427372,
+        "bus_traffic.n.01": 0.5247661518712197,
+        "public_transit.n.01": 0.5301289568106073,
+        "busbar.n.01": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "bus.n.04": -1000.0
+    },
+    "synset": "bus.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/89aa5f17e18848ca90e8c113359dbee9",
+        "creator_username": "pp123",
+        "creator_display_name": "pp123",
+        "creator_profile_url": "https://sketchfab.com/pp123"
+    },
+    "filename": "std_89aa5f17e18848ca90e8c113359dbee9.glb",
+    "length": 12.93212080001831,
+    "width": 3.1510099172592163
+}

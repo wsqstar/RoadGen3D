@@ -1,0 +1,86 @@
+{
+    "description_long": "This humanoid robot features a smooth, egg-shaped body with a seamless, glossy exterior. The front displays a large, oval-shaped black panel that likely serves as a face or interface, contrasting with the otherwise white surface. The body is symmetrical and tapers towards the bottom, giving it a streamlined, modern appearance. There are no visible limbs, joints, or appendages, suggesting a minimalist design focused on simplicity and elegance. The surface appears hard and highly reflective, indicating a shell made from polished plastic or composite material. The overall form is compact and monolithic, with no visible seams or openings except for the front panel.",
+    "description": "A sleek, egg-shaped humanoid robot with a glossy white body and a large black oval panel on the front. The design is minimalist, with no visible limbs or joints.",
+    "description_view_0": "Front view showing a prominent black oval panel set into the smooth white body, likely representing the robot's face or interface.",
+    "description_view_1": "Side view revealing the curvature of the body and the edge of the black panel, with the rest of the surface remaining glossy white.",
+    "description_view_2": "Rear view displaying a continuous, unbroken white surface with no visible features or panels.",
+    "description_view_3": "Opposite side view similar to view 1, showing the curvature and partial edge of the black panel.",
+    "category": "humanoid robot",
+    "height": 1.2,
+    "max_dimension": 1.2,
+    "materials": [
+        "plastic",
+        "composite",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "mass": 25,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "front panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.05,
+    "surface_finish": "glossy",
+    "reflectivity": 0.7,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.3,
+    "bounciness": 0.2,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is in a neutral, upright standing pose with no visible limbs or articulated body parts. The body is monolithic and symmetrical.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only a smooth, integrated shell with no decorative elements or coverings.",
+    "attribute_facial_features": "The face consists of a large, black oval panel with no visible eyes, mouth, or nose. There are no expressive or display elements apparent.",
+    "attribute_limb_articulation": "No limbs or articulation points are visible; the body appears rigid and seamless with no joints.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "5da3637249074ed79f44fd958889c2ac",
+    "near_synsets": {
+        "android.n.01": 0.5438624892195153,
+        "cyborg.n.01": 0.5633372992631254,
+        "robotics_equipment.n.01": 0.5679466677059961,
+        "automaton.n.02": 0.5700524461690569,
+        "automaton.n.03": 0.5830961185967924
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5da3637249074ed79f44fd958889c2ac",
+        "creator_username": "lucasquincoses",
+        "creator_display_name": "Lucas Quincoses Toledo",
+        "creator_profile_url": "https://sketchfab.com/lucasquincoses"
+    },
+    "filename": "std_5da3637249074ed79f44fd958889c2ac.glb",
+    "length": 0.6765421032905579,
+    "width": 0.676541805267334
+}

@@ -1,0 +1,100 @@
+{
+    "description_long": "This humanoid robot features a sleek, metallic body with a rounded head and two large, articulated arms ending in three-pronged claw-like hands. Its torso is cylindrical, connecting to two long, jointed legs that terminate in wide, flat feet, giving it a stable stance. The arms are extended outward, showcasing multiple visible joints and mechanical linkages, while the legs are slightly bent at the knees. The head is smooth and helmet-like, with no visible facial features, and is flanked by small antennae or sensor protrusions. The robot's color palette consists mainly of dark gray, silver, and subtle yellow accents at the joints. Its overall design suggests a utilitarian, industrial function suitable for urban environments.",
+    "description": "A sleek, metallic humanoid robot with articulated arms ending in claw-like hands, a rounded head, and jointed legs, primarily in dark gray and silver with yellow accents.",
+    "description_view_0": "Front view showing the robot's rounded head, extended arms with claw hands, and jointed legs in a wide stance.",
+    "description_view_1": "Side view highlighting the robot's slim profile, curved back, and the mechanical structure of its limbs.",
+    "description_view_2": "Rear view displaying the back of the head, symmetrical arm extension, and the mechanical details of the legs and joints.",
+    "description_view_3": "Opposite side view, similar to view 1, emphasizing the arm and leg articulation from the other side.",
+    "category": "humanoid robot",
+    "height": 1.7,
+    "max_dimension": 2.2,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 95,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "graspable",
+        "pressable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "claw hand",
+        "arm joint",
+        "leg joint",
+        "head",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "silver",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "sleek",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.12,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms fully extended horizontally to the sides, legs slightly bent and spaced apart, head facing forward.",
+    "attribute_clothing_style": "No visible clothing; the robot is covered in integrated metallic and plastic panels with some decorative yellow accents.",
+    "attribute_facial_features": "The face is a smooth, rounded dome with no visible eyes, mouth, or nose; small antennae or sensor protrusions are present on the sides of the head.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints, allowing for a wide range of motion; hands are articulated with three-pronged claws, and feet are broad and flat.",
+    "attribute_presence_of_sensors": "Possible sensors on the head and antennae, but none clearly visible.",
+    "uid": "bc226c92334a4c48849dc438c7244039",
+    "near_synsets": {
+        "android.n.01": 0.5253838014334636,
+        "cyborg.n.01": 0.5431647902457961,
+        "robotics_equipment.n.01": 0.553429776005243,
+        "automaton.n.02": 0.5554503561309718,
+        "robotics.n.01": 0.5761209055259888
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bc226c92334a4c48849dc438c7244039",
+        "creator_username": "ttorion",
+        "creator_display_name": "Terran Orion",
+        "creator_profile_url": "https://sketchfab.com/ttorion"
+    },
+    "filename": "std_bc226c92334a4c48849dc438c7244039.glb",
+    "length": 0.479400172829628,
+    "width": 3.241896152496338
+}

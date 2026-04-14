@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a compact quadcopter drone with a streamlined, aerodynamic body primarily colored in shades of gray and black. It features four extended arms, each supporting a single rotor with two blades, arranged symmetrically around the central body. The drone is equipped with a visible camera mounted on a gimbal at the front, suggesting capabilities for aerial photography or video capture. The landing gear consists of four fixed legs, providing stability during takeoff and landing. The body appears to be constructed from lightweight composite materials, likely plastic and metal, with some internal electronic components. The overall design is modern and functional, suitable for urban aerial operations such as surveillance, mapping, or recreational flying.",
+    "description": "A modern quadcopter drone with four rotors, a front-facing camera, and fixed landing legs, finished in gray and black. Its streamlined body and visible gimbal suggest it is designed for aerial imaging in urban environments.",
+    "description_view_0": "Front view showing the camera gimbal, streamlined body, and all four rotors clearly.",
+    "description_view_1": "Side view highlighting the drone's slim profile, fixed landing legs, and the camera protruding beneath the body.",
+    "description_view_2": "Rear view displaying the back of the drone, the symmetry of the arms, and the absence of a rear camera.",
+    "description_view_3": "Opposite side view similar to view 1, showing the landing legs and the camera's position under the body.",
+    "category": "drone",
+    "height": 0.12,
+    "max_dimension": 0.35,
+    "materials": [
+        "plastic",
+        "metal",
+        "glass",
+        "electronic_components",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.05,
+        0.15,
+        0.05
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable",
+        "toggleable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotor",
+        "propeller",
+        "camera gimbal",
+        "landing leg",
+        "power button",
+        "battery compartment"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.32,
+    "bounciness": 0.08,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 4,
+    "attribute_rotor_configuration": "quadcopter X",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": true,
+    "attribute_propeller_guard_presence": false,
+    "uid": "7f45d17c14714474803446e017965d33",
+    "near_synsets": {
+        "drone.n.04": 0.5376008521881507,
+        "single-rotor_helicopter.n.01": 0.5626587209938332,
+        "rotor.n.03": 0.5798323624412965,
+        "orthopter.n.01": 0.5875774222755114,
+        "main_rotor.n.01": 0.5883429503598497,
+        "drone.n.01": -1000.0,
+        "drone.n.05": -1000.0,
+        "dawdler.n.01": -1000.0,
+        "monotone.n.01": -1000.0
+    },
+    "synset": "drone.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7f45d17c14714474803446e017965d33",
+        "creator_username": "science.tle999",
+        "creator_display_name": "ScienceTle",
+        "creator_profile_url": "https://sketchfab.com/science.tle999"
+    },
+    "filename": "std_7f45d17c14714474803446e017965d33.glb",
+    "length": 1.5278818607330322,
+    "width": 1.7238089442253113
+}

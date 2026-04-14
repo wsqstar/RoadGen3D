@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a robust vehicle wheel featuring a thick, black rubber tire with a pronounced tread pattern suitable for urban and possibly light industrial use. The tire is mounted on a metallic rim with a silver finish, which displays a utilitarian design with multiple circular holes and a central hub. The tread pattern consists of large, interlocking hexagonal blocks, providing enhanced grip and durability on paved surfaces. The rim is equipped with a set of evenly spaced lug nuts, ensuring secure attachment to a vehicle axle. The overall construction suggests it is designed for heavy-duty vehicles such as vans, trucks, or utility vehicles commonly found in urban environments. The wheel's materials and build indicate a focus on strength, longevity, and safety.",
+    "description": "A heavy-duty vehicle wheel with a thick, black rubber tire and a silver metallic rim featuring multiple holes and a secure lug nut configuration. The tread is composed of large, interlocking hexagonal blocks for enhanced grip.",
+    "description_view_0": "Front view showing the full face of the metallic rim with multiple circular holes and the central hub, surrounded by the black tire.",
+    "description_view_1": "Side profile highlighting the tire's width and the pronounced hexagonal tread pattern, with the rim edge slightly visible.",
+    "description_view_2": "Rear view of the wheel, displaying the opposite side of the rim and tire, with fewer visible rim details compared to the front.",
+    "description_view_3": "Side profile similar to view 1, emphasizing the tire's thickness and tread pattern, with the rim edge partially visible.",
+    "category": "vehicle wheel",
+    "height": 0.7,
+    "max_dimension": 0.7,
+    "materials": [
+        "rubber",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.3,
+        0.05
+    ],
+    "mass": 22,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "tire",
+        "rim",
+        "lug nuts"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.7,
+    "surface_finish": "grippy",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 10000,
+    "friction_coefficient": 0.95,
+    "bounciness": 0.25,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "single",
+    "attribute_spoke_pattern": "The wheel features a utilitarian steel rim with 8 large, evenly spaced circular holes arranged radially around the central hub, serving as ventilation and weight reduction rather than traditional spokes.",
+    "attribute_rim_design": "The rim has a deep-dish profile with a smooth, slightly convex face, multiple large circular cutouts, and a robust central hub area. The design is functional, lacking decorative elements, and prioritizes strength and durability.",
+    "attribute_hubcap_presence": false,
+    "attribute_lug_nut_configuration": "Six lug nuts are evenly spaced in a circular pattern around the central hub, exposed and not covered by a cap.",
+    "attribute_tire_tread_pattern": "The tire tread is symmetrical, featuring large, interlocking hexagonal blocks with deep grooves for enhanced traction and durability.",
+    "uid": "7afb7c8ab9274e979a31897b793b4bf0",
+    "near_synsets": {
+        "car_wheel.n.01": 0.4850073216808178,
+        "wagon_tire.n.01": 0.49386662458397246,
+        "car_tire.n.01": 0.49865772030902666,
+        "tire.n.01": 0.5156118295134662,
+        "bicycle_wheel.n.01": 0.5272890692136712,
+        "bicycle.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "roulette_wheel.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "wheel.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "wheel.n.04": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "wheel.n.03": -1000.0,
+        "rack.n.03": -1000.0,
+        "steering_wheel.n.01": -1000.0
+    },
+    "synset": "car_wheel.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7afb7c8ab9274e979a31897b793b4bf0",
+        "creator_username": "automundial",
+        "creator_display_name": "automundial",
+        "creator_profile_url": "https://sketchfab.com/automundial"
+    },
+    "filename": "std_7afb7c8ab9274e979a31897b793b4bf0.glb",
+    "length": 0.6805757284164429,
+    "width": 0.6912252902984619
+}

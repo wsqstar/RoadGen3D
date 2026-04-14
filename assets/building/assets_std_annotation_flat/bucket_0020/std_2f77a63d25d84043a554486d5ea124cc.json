@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a rectangular, lidded parcel box with rounded corners and a slightly domed lid. The exterior is covered in a reddish-brown color with a repeating pattern of small, dark triangles, giving it a decorative and somewhat modern appearance. The box features a visible seam where the lid meets the base, and one side displays a metallic label holder, likely for identification or address information. Another side is detailed with a vertical row of metallic rivets or fasteners, suggesting a reinforced or hinged section for durability. The surface appears to be made of a sturdy material, possibly metal or reinforced cardboard, with a matte finish. The overall design is utilitarian yet stylish, suitable for use as a storage or delivery parcel in urban environments.",
+    "description": "A rectangular, lidded parcel box with rounded corners, reddish-brown patterned exterior, and metallic details including a label holder and rivets.",
+    "description_view_0": "The front view shows the smooth, patterned surface of the box with no visible hardware or label.",
+    "description_view_1": "This side view highlights a vertical row of metallic rivets or fasteners along the seam, suggesting reinforcement or a hinge.",
+    "description_view_2": "This view displays a metallic label holder on the box, likely for identification or address purposes.",
+    "description_view_3": "Similar to view 1, this side also features a vertical row of metallic rivets or fasteners, but no label holder is visible.",
+    "category": "parcels",
+    "height": 0.32,
+    "max_dimension": 0.45,
+    "materials": [
+        "metal",
+        "cardboard",
+        "paper",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.1
+    ],
+    "mass": 2.2,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 22,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "label holder"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "reddish-brown",
+        "dark gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "",
+    "attribute_car_model": "",
+    "attribute_building_number": "",
+    "attribute_storefront_signage": "",
+    "attribute_street_name": "",
+    "uid": "2f77a63d25d84043a554486d5ea124cc",
+    "near_synsets": {
+        "box.n.01": 0.5006622660127983,
+        "pillar_box.n.01": 0.5116711290029219,
+        "box.n.05": 0.52342332485849,
+        "shoebox.n.02": 0.532156857733359,
+        "packing_box.n.02": 0.535938109528266,
+        "package.n.02": -1000.0,
+        "tract.n.01": -1000.0,
+        "parcel.n.02": -1000.0,
+        "package.n.01": -1000.0
+    },
+    "synset": "box.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2f77a63d25d84043a554486d5ea124cc",
+        "creator_username": "Raffey",
+        "creator_display_name": "Raphael Escamilla",
+        "creator_profile_url": "https://sketchfab.com/Raffey"
+    },
+    "filename": "std_2f77a63d25d84043a554486d5ea124cc.glb",
+    "length": 0.4853014051914215,
+    "width": 0.485239177942276
+}

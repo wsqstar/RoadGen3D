@@ -1,0 +1,90 @@
+{
+    "description_long": "This object is a realistic representation of a crab, featuring a broad, slightly domed carapace with a rough, matte texture. The crab has two prominent claws (chelae) at the front, each with a distinct pincer shape, and a total of eight walking legs that are jointed and curve outward from the body. Its eyes are mounted on short stalks, protruding above the carapace, and two slender antennae are visible between the eyes. The coloration is predominantly a dark, earthy brown with subtle variations and hints of gray, giving it a natural, camouflaged appearance suitable for urban or coastal environments. The underside and leg joints show lighter, muted tones, while the surface appears hard and slightly rough to the touch. The overall form is compact and robust, typical of crabs found near urban waterfronts or in seafood markets.",
+    "description": "A dark brown crab with a rough, matte shell, two large claws, eight jointed legs, and stalked eyes. Its surface is hard and slightly textured, with natural coloration and realistic anatomical features.",
+    "description_view_0": "Front view showing both large claws, stalked eyes, and antennae clearly visible.",
+    "description_view_1": "Rear angled view highlighting the domed carapace and the curvature of the legs, with claws less visible.",
+    "description_view_2": "Direct rear view displaying the broad carapace and all eight legs splayed outward, with claws mostly hidden.",
+    "description_view_3": "Rear angled view from the opposite side, showing the back of the carapace and the arrangement of the legs.",
+    "category": "crustacean",
+    "height": 0.08,
+    "max_dimension": 0.18,
+    "materials": [
+        "chitin",
+        "protein",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 0.25,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 3,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "graspable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "claws",
+        "legs",
+        "antennae"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark brown",
+        "gray",
+        "light brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.56,
+    "youngs_modulus": 4000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "single",
+    "attribute_number_of_legs": 8,
+    "attribute_presence_of_claws": true,
+    "attribute_body_segmentation": "cephalothorax and abdomen",
+    "attribute_antennae_visibility": true,
+    "attribute_eye_placement": "on stalks",
+    "uid": "229e0899376b4b10aa924225f0cfcb49",
+    "near_synsets": {
+        "crab.n.01": 0.43899111544248315,
+        "crayfish.n.03": 0.4818212010864467,
+        "crustacean.n.01": 0.48197396949570775,
+        "soft-shell_crab.n.01": 0.4883908848662009,
+        "soft-shell_crab.n.02": 0.4911533378864436
+    },
+    "synset": "crustacean.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/229e0899376b4b10aa924225f0cfcb49",
+        "creator_username": "59330271",
+        "creator_display_name": "Sawaporn Tipparat",
+        "creator_profile_url": "https://sketchfab.com/59330271"
+    },
+    "filename": "std_229e0899376b4b10aa924225f0cfcb49.glb",
+    "length": 0.13876250386238098,
+    "width": 0.1667741760611534
+}

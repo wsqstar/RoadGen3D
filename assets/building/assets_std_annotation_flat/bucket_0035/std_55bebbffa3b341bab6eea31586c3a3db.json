@@ -1,0 +1,100 @@
+{
+    "description_long": "This crane features a robust, angular base that supports a mechanical arm with multiple articulated joints, allowing for a wide range of motion. The arm extends horizontally and is equipped with a long, straight boom, which appears to be of a telescopic design. At the end of the boom, a small, precise lifting mechanism is visible, suitable for handling loads in confined urban spaces. The structure is predominantly metallic, with a smooth, industrial finish and visible mechanical linkages. There is no visible operator cabin, suggesting remote or automated operation. The overall design is compact, making it ideal for use in urban construction or maintenance scenarios.",
+    "description": "A compact, articulated crane with a telescopic boom and a small lifting mechanism, mounted on a solid base. The design is metallic and industrial, with no visible operator cabin.",
+    "description_view_0": "Front view showing the narrow profile of the boom and the central alignment of the arm with the base.",
+    "description_view_1": "Side view highlighting the articulated joints of the arm and the full length of the telescopic boom.",
+    "description_view_2": "Rear view displaying the back of the base and the straight alignment of the arm and boom.",
+    "description_view_3": "Opposite side view showing the arm's articulation and the boom's extension from a different angle.",
+    "category": "crane",
+    "height": 1.2,
+    "max_dimension": 2.5,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "liftable",
+        "extendable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "boom",
+        "arm joints",
+        "lifting mechanism",
+        "base"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_boom_type": "telescopic boom",
+    "attribute_counterweight_presence": false,
+    "attribute_operator_cabin_visibility": false,
+    "attribute_hook_or_lifting_mechanism": "single hook",
+    "attribute_support_structure_design": "fixed base",
+    "uid": "55bebbffa3b341bab6eea31586c3a3db",
+    "near_synsets": {
+        "crane.n.04": 0.4328040340421751,
+        "derrick.n.02": 0.4900261917573081,
+        "forklift.n.01": 0.5366723028697362,
+        "stacker_crane.n.01": 0.5382189265388163,
+        "transporter.n.02": 0.5436590104392544,
+        "crane.n.02": -1000.0,
+        "crane.n.01": -1000.0,
+        "crane.n.05": -1000.0,
+        "grus.n.01": -1000.0
+    },
+    "synset": "crane.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/55bebbffa3b341bab6eea31586c3a3db",
+        "creator_username": "darkfrei",
+        "creator_display_name": "darkfrei",
+        "creator_profile_url": "https://sketchfab.com/darkfrei"
+    },
+    "filename": "std_55bebbffa3b341bab6eea31586c3a3db.glb",
+    "length": 1.3002317547798157,
+    "width": 0.38352493941783905
+}

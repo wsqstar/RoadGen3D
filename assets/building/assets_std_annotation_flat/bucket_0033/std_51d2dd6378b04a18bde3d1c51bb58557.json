@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a small, standalone kiosk with a square footprint and a steep, hipped roof covered in greenish, weathered tiles. The structure features a prominent black door with white framing and an arched window above, flanked by two white columns. The exterior walls are divided into black and white panels, with windows on three sides\u2014one of which displays a 'FOOTPATH CLOSED' sign. The kiosk sits on a concrete base surrounded by a patch of grass and a paved walkway. Moss and dirt are visible on the roof and base, indicating age and exposure to the elements. The overall appearance is utilitarian with a touch of traditional British architectural influence.",
+    "description": "A small, weathered kiosk with a hipped, mossy tile roof, black-and-white paneled walls, and a central door, set on a concrete and grass base.",
+    "description_view_0": "Front view showing the main black door with an arched window above, flanked by white columns and a concrete path leading up.",
+    "description_view_1": "Side view revealing a windowless black panel and a partial view of a red sign, with the mossy roof and grassy base visible.",
+    "description_view_2": "Rear view featuring two blacked-out windows, one with a prominent 'FOOTPATH CLOSED' sign, and a small vent above.",
+    "description_view_3": "Opposite side view with a black panel, a small white notice on the window, and the concrete base extending outward.",
+    "category": "kiosk",
+    "height": 2.6,
+    "max_dimension": 2.8,
+    "materials": [
+        "wood",
+        "glass",
+        "ceramic tile",
+        "concrete",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.1,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "displayable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "signage",
+        "vent"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "green",
+        "gray",
+        "red"
+    ],
+    "colors_composition": [
+        0.35,
+        0.3,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "Printed sign; one large red and white 'FOOTPATH CLOSED' sign on the rear window, one small white notice on the side window.",
+    "attribute_window_presence": "Three windows: one arched above the door (front), one rectangular on the rear, one rectangular on the side; all are rectangular except the arched front window.",
+    "attribute_door_configuration": "Single hinged door, centrally located on the front face.",
+    "attribute_roof_design": "Steep hipped roof with overlapping greenish ceramic tiles, visible moss and weathering, moderate overhang.",
+    "attribute_architectural_style": "Traditional British utilitarian with simple paneled construction and a classic hipped roof.",
+    "uid": "51d2dd6378b04a18bde3d1c51bb58557",
+    "near_synsets": {
+        "booth.n.02": 0.5300691416030497,
+        "gazebo.n.01": 0.5556222246644436,
+        "sentry_box.n.01": 0.5560753886872201,
+        "tile_roof.n.01": 0.5664708289832476,
+        "slate_roof.n.01": 0.5681517231322453
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/51d2dd6378b04a18bde3d1c51bb58557",
+        "creator_username": "artfletch",
+        "creator_display_name": "artfletch",
+        "creator_profile_url": "https://sketchfab.com/artfletch"
+    },
+    "filename": "std_51d2dd6378b04a18bde3d1c51bb58557.glb",
+    "length": 2.067964553833008,
+    "width": 2.2903614044189453
+}

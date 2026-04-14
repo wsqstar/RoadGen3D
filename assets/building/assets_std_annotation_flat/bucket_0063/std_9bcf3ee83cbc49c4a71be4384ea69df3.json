@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a shotgun with a robust, utilitarian design, featuring a full-length stock and a prominent cylindrical barrel assembly. The stock appears to be made of a matte, light-colored material, possibly polymer or wood, with a textured butt plate for shoulder support. The receiver and barrel assembly are darker, likely constructed from metal, and include a visible tubular magazine beneath the main barrel. A large, rounded pump mechanism is mounted forward of the trigger guard, suggesting a pump-action operation. The trigger guard is rounded and moderately sized, enclosing a single trigger, and the overall build is compact yet sturdy, suitable for urban environments.",
+    "description": "A pump-action shotgun with a full stock, matte light-colored body, and a prominent cylindrical barrel and pump assembly. The design is robust and functional, with a rounded trigger guard and visible tubular magazine.",
+    "description_view_0": "Side view showing the full stock, pump mechanism, and the length of the barrel assembly.",
+    "description_view_1": "Front view highlighting the circular barrel opening and the alignment of the tubular magazine beneath.",
+    "description_view_2": "Opposite side view displaying the stock, pump, and barrel, mirroring the features of view 0.",
+    "description_view_3": "Rear view focusing on the butt of the stock and the alignment of the barrel and receiver.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.95,
+    "materials": [
+        "steel",
+        "polymer",
+        "wood",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "pumpable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "pump",
+        "trigger",
+        "trigger guard",
+        "barrel",
+        "magazine tube"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.4
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel with a visible tubular magazine beneath; no ribbing or venting apparent",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with a smooth contour and no visible finger grooves or reinforcement",
+    "uid": "9bcf3ee83cbc49c4a71be4384ea69df3",
+    "near_synsets": {
+        "pump_action.n.01": 0.45780741771158173,
+        "sawed-off_shotgun.n.01": 0.5310110308580016,
+        "shotgun.n.01": 0.5321000795130347,
+        "gas_gun.n.01": 0.5503028049219331,
+        "carbine.n.01": 0.5525669345207316
+    },
+    "synset": "shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9bcf3ee83cbc49c4a71be4384ea69df3",
+        "creator_username": "ghost3",
+        "creator_display_name": "ghost3",
+        "creator_profile_url": "https://sketchfab.com/ghost3"
+    },
+    "filename": "std_9bcf3ee83cbc49c4a71be4384ea69df3.glb",
+    "length": 0.5356679558753967,
+    "width": 0.09419776499271393
+}

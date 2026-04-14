@@ -1,0 +1,108 @@
+{
+    "description_long": "This object is a municipal pumping station assembly, featuring a prominent blue central valve body flanked by two large rust-red metal pipes. The pipes are supported by vertical posts and are anchored to a concrete base, with the lower sections wrapped in protective material. Two large handwheel valves are mounted on top, connected by a metal chain and a red lockout tag for security. The setup includes various smaller fittings and a pressure gauge, all designed for water flow control in urban infrastructure. The surrounding ground is covered with soil and concrete, and a green utility cover is visible nearby.",
+    "description": "A robust urban pumping station with blue and rust-red pipes, handwheel valves, and a concrete base, secured with a chain and lockout tag.",
+    "description_view_0": "Front view showing the blue valve body, two large handwheel valves, red lockout tag, and full pipe assembly.",
+    "description_view_1": "Side view highlighting the alignment of the pipes and handwheels, with less visibility of the blue valve body.",
+    "description_view_2": "Rear view mirroring the front, showing the blue valve, handwheels, and pipe supports from the opposite side.",
+    "description_view_3": "Opposite side view focusing on the pipe's end and the green utility cover, with the handwheels in profile.",
+    "category": "pumping station",
+    "height": 1.2,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "iron",
+        "rubber",
+        "plastic",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.05,
+        0.03,
+        0.1,
+        0.02
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handwheel valve",
+        "lockout tag",
+        "pressure gauge"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "rust-red",
+        "blue",
+        "gray",
+        "black",
+        "green",
+        "red"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_building_signage": "Red lockout tag with white text attached to the chain between the handwheel valves; text is not fully legible.",
+    "attribute_ventilation_grilles": "none",
+    "attribute_security_fencing": "none",
+    "attribute_access_hatches": "One green rectangular utility cover on the ground near the right pipe, likely metal or composite.",
+    "attribute_warning_lights": "none",
+    "uid": "95c3f04915b940b58f32c9970fae506a",
+    "near_synsets": {
+        "pump_house.n.01": 0.5381869146589447,
+        "hand_pump.n.01": 0.5617378241326807,
+        "water_tower.n.01": 0.5628966085604585,
+        "pump_well.n.01": 0.5763574779842562,
+        "pump_room.n.01": 0.5768082295978035,
+        "station.n.03": -1000.0,
+        "station.n.05": -1000.0,
+        "station.n.01": -1000.0,
+        "place.n.10": -1000.0,
+        "post.n.01": -1000.0
+    },
+    "synset": "pump_house.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/95c3f04915b940b58f32c9970fae506a",
+        "creator_username": "smallpoly",
+        "creator_display_name": "Smallpoly",
+        "creator_profile_url": "https://sketchfab.com/smallpoly"
+    },
+    "filename": "std_95c3f04915b940b58f32c9970fae506a.glb",
+    "length": 0.6339728832244873,
+    "width": 1.620180368423462
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This structure is a large wooden dam-like object with a curved, bowl-shaped interior reminiscent of a skateboarding half-pipe, featuring a smooth plywood surface and metal railings along the top edges for safety. The exterior walls are vertical and flat, with a rectangular opening on one side and a painted mural of a face. The interior base is decorated with a colorful graffiti-style artwork. On one end, a tall, narrow staircase with metal railings leads up to a platform that overlooks the main structure. The entire object is elevated on wooden supports, giving it a raised appearance. The construction is primarily wood, with visible grain patterns and a natural finish, complemented by metallic safety railings.",
+    "description": "A large, wooden dam-like structure with a curved, bowl-shaped interior, metal railings, and a staircase leading to an elevated platform. The exterior features murals and the interior is decorated with graffiti art.",
+    "description_view_0": "The front view shows the flat exterior wall with a rectangular opening and a mural of a face, as well as the top railings and the start of the staircase.",
+    "description_view_1": "This view highlights the curved, bowl-shaped interior with graffiti art, the full extent of the metal railings, and the staircase leading up to the platform.",
+    "description_view_2": "The rear view displays the back wall with a rectangular opening, the elevated platform supported by tall wooden posts, and the continuation of the railings.",
+    "description_view_3": "This angle emphasizes the interior bowl, the graffiti artwork, and the staircase/platform structure on the left side.",
+    "category": "dam",
+    "height": 6.0,
+    "max_dimension": 18.0,
+    "materials": [
+        "wood",
+        "metal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "descendable",
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "staircase",
+        "platform",
+        "railings"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "light brown",
+        "gray",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_spillway_presence": false,
+    "attribute_control_gates": [
+        "none"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_water_outflow": "none",
+    "attribute_perimeter_fencing": true,
+    "uid": "5e446a22dc234df0a4beab5969c56c85",
+    "near_synsets": {
+        "dam.n.01": 0.5187627655290763,
+        "flashboard.n.01": 0.5617336782142881,
+        "aqueduct.n.01": 0.5658600942633535,
+        "milldam.n.01": 0.5681821436256165,
+        "elevation.n.07": 0.5721291098054477,
+        "decameter.n.01": -1000.0,
+        "dam.n.03": -1000.0
+    },
+    "synset": "dam.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5e446a22dc234df0a4beab5969c56c85",
+        "creator_username": "iankahlil",
+        "creator_display_name": "iankahlil",
+        "creator_profile_url": "https://sketchfab.com/iankahlil"
+    },
+    "filename": "std_5e446a22dc234df0a4beab5969c56c85.glb",
+    "length": 13.872634887695312,
+    "width": 15.192499160766602
+}

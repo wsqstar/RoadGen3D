@@ -1,0 +1,94 @@
+{
+    "description_long": "This is a modern, multi-story skyscraper with three distinct floors, each separated by wide, flat overhanging slabs that create a tiered appearance. The structure features a central vertical core, likely housing elevators or staircases, with open stairwells visible on the front side. The exterior is finished in a light, smooth material, possibly concrete or composite panels, and the building sits on a tiled, rectangular base that mimics an urban plaza or sidewalk. The uppermost floor is partially enclosed, while the lower levels are more open, suggesting a mix of indoor and outdoor spaces. The rear of the building is mostly solid, with a single vertical panel that may represent a service or emergency exit. There are no visible windows or decorative elements, giving the building a minimalist, functional look.",
+    "description": "A minimalist, three-story skyscraper with wide overhanging floors, a central core, and open stairwells, set on a tiled urban base. The facade is smooth and light-colored, with a functional, modern design.",
+    "description_view_0": "Front view showing open stairwells, railings, and the tiered structure of the three floors.",
+    "description_view_1": "Side view highlighting the depth of the overhanging floors and the solid central core.",
+    "description_view_2": "Rear view displaying a mostly solid facade with minimal openings and a vertical panel.",
+    "description_view_3": "Opposite side view showing the back panel and the offset alignment of the floors.",
+    "category": "skyscraper",
+    "height": 12.0,
+    "max_dimension": 14.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "staircase",
+        "railing",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Modernist",
+    "attribute_number_of_floors": 3,
+    "attribute_facade_design": "The facade is composed of smooth, light-colored panels with wide, flat overhangs separating each floor. Minimal ornamentation and exposed stairwells contribute to a clean, functional aesthetic.",
+    "attribute_window_pattern": "none",
+    "attribute_building_signage": "none",
+    "uid": "0e7e981664904981a1026046ee0eb979",
+    "near_synsets": {
+        "skyscraper.n.01": 0.4759782070309031,
+        "high-rise.n.01": 0.529510733919859,
+        "subtopia.n.01": 0.5632428244993924,
+        "cityscape.n.02": 0.565506667664413,
+        "well.n.04": 0.5664211793083508
+    },
+    "synset": "skyscraper.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0e7e981664904981a1026046ee0eb979",
+        "creator_username": "jan.arvidsson.staircon",
+        "creator_display_name": "jan.arvidsson.staircon",
+        "creator_profile_url": "https://sketchfab.com/jan.arvidsson.staircon"
+    },
+    "filename": "std_0e7e981664904981a1026046ee0eb979.glb",
+    "length": 11.043125629425049,
+    "width": 13.402134418487549
+}

@@ -1,0 +1,106 @@
+{
+    "description_long": "This object is a multi-level solar energy infrastructure installation, featuring four stacked platforms with a central vertical core. Each platform is constructed from what appears to be a marble or stone-like material, with the topmost level supporting a large, flat solar panel. The central core is clad in a metallic or concrete finish and contains a staircase visible through open cutouts, suggesting access between levels. The structure is mounted on a broad, square base that matches the platforms' material, providing stability. A thin pole or antenna extends from the top, possibly for monitoring or communication purposes. The overall design is modern and utilitarian, suitable for urban environments where vertical space is maximized for solar collection.",
+    "description": "A multi-level solar energy tower with stacked marble-like platforms, a central core, and a large flat solar panel on top. The structure is modern, with visible staircases and a sturdy square base.",
+    "description_view_0": "Front view showing the spiral staircase, open cutouts, and the layered platforms with the solar panel on top.",
+    "description_view_1": "Side view highlighting the solid central core and the offset arrangement of the platforms.",
+    "description_view_2": "Rear view displaying the back of the central core and the uniform alignment of the platforms.",
+    "description_view_3": "Opposite side view with minimal visible staircase, focusing on the core and the layered structure.",
+    "category": "solar energy infrastructure",
+    "height": 8.0,
+    "max_dimension": 8.0,
+    "materials": [
+        "marble",
+        "concrete",
+        "steel",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "supportive",
+        "mountable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "staircase",
+        "platform",
+        "solar panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "blue",
+        "brown"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "smooth",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_panel_orientation": "flat, horizontal, fixed orientation",
+    "attribute_mounting_structure_type": "building-integrated, supported by a central concrete or steel core with marble platforms",
+    "attribute_electrical_inverter_presence": false,
+    "attribute_cabling_visibility": "not visible",
+    "attribute_array_configuration": "single large panel on top, no visible array configuration",
+    "uid": "88edd1beb84e4dcfb0b972b072c98f50",
+    "near_synsets": {
+        "solar_house.n.01": 0.5470319904532795,
+        "solar_array.n.01": 0.5492150892477377,
+        "solar_thermal_system.n.01": 0.5570385468344607,
+        "solar_energy.n.01": 0.5658610980334493,
+        "solar_telescope.n.01": 0.5779990883401811,
+        "energy.n.05": -1000.0,
+        "energy.n.01": -1000.0,
+        "department_of_energy.n.01": -1000.0,
+        "infrastructure.n.01": -1000.0,
+        "infrastructure.n.02": -1000.0,
+        "energy.n.03": -1000.0,
+        "energy.n.06": -1000.0,
+        "energy.n.04": -1000.0,
+        "energy.n.02": -1000.0
+    },
+    "synset": "solar_array.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/88edd1beb84e4dcfb0b972b072c98f50",
+        "creator_username": "paul7732",
+        "creator_display_name": "Excel Stairs Ltd",
+        "creator_profile_url": "https://sketchfab.com/paul7732"
+    },
+    "filename": "std_88edd1beb84e4dcfb0b972b072c98f50.glb",
+    "length": 5.5039873123168945,
+    "width": 6.250864267349243
+}

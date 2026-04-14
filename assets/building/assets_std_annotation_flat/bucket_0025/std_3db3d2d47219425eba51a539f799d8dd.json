@@ -1,0 +1,112 @@
+{
+    "description_long": "This object is a group of urban traffic control elements, including a large red plastic barricade, two orange-and-white traffic cones, and a construction warning sign mounted on a gray metal pole with a concrete base. The barricade features a ribbed design for structural strength and stability, with a flat top and slightly tapered sides. The traffic cones are conical with a wide base for stability and have alternating orange and white reflective bands. The warning sign is triangular, yellow with a black border, and displays a construction worker symbol, mounted on a bent metal pole anchored in a heavy, square concrete base. The materials suggest durability and visibility for use in roadwork or restricted access areas. The overall composition is designed to alert, guide, and physically block or redirect pedestrian and vehicular traffic.",
+    "description": "A set of urban traffic control objects: a red ribbed barricade, two orange-and-white cones, and a yellow construction warning sign on a concrete base.",
+    "description_view_0": "Front view showing the red barricade, two cones, and the yellow construction sign clearly.",
+    "description_view_1": "Angled view from behind the barricade, highlighting the back of the sign and the base of the cones.",
+    "description_view_2": "Rear view showing the back of the barricade, the fallen cone, and the sign's pole and base.",
+    "description_view_3": "Side view focusing on the sign's pole and base, with the barricade and cones in the background.",
+    "category": "traffic barricade",
+    "height": 1.7,
+    "max_dimension": 2.0,
+    "materials": [
+        "plastic",
+        "metal",
+        "concrete",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "barricade",
+        "cone",
+        "sign",
+        "pole"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "orange",
+        "white",
+        "yellow",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.45,
+        0.18,
+        0.12,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_reflective_striping_pattern": "The cones have horizontal white reflective stripes of medium width, alternating with orange bands; the barricade and sign have no reflective striping.",
+    "attribute_warning_signage": [
+        {
+            "content": "construction worker symbol",
+            "color": "black on yellow",
+            "placement": "front of triangular sign"
+        }
+    ],
+    "attribute_number_of_support_legs": 1,
+    "attribute_attachment_fixtures": [],
+    "attribute_presence_of_lights": false,
+    "uid": "3db3d2d47219425eba51a539f799d8dd",
+    "near_synsets": {
+        "roadblock.n.02": 0.49208023475942303,
+        "traffic_control.n.01": 0.510771956333761,
+        "traffic_light.n.01": 0.5136960213048521,
+        "traffic_island.n.01": 0.5299661124138471,
+        "traffic_cop.n.01": 0.5302047041537886,
+        "dealings.n.01": -1000.0,
+        "traffic.n.01": -1000.0,
+        "barricade.n.02": -1000.0,
+        "traffic.n.02": -1000.0,
+        "traffic.n.03": -1000.0
+    },
+    "synset": "roadblock.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3db3d2d47219425eba51a539f799d8dd",
+        "creator_username": "ugarychev",
+        "creator_display_name": "ugarychev",
+        "creator_profile_url": "https://sketchfab.com/ugarychev"
+    },
+    "filename": "std_3db3d2d47219425eba51a539f799d8dd.glb",
+    "length": 0.9691207110881805,
+    "width": 1.7127618789672852
+}

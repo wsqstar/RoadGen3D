@@ -1,0 +1,111 @@
+{
+    "description_long": "This bus shelter features a sturdy metal frame with a gently arched, opaque roof providing weather protection. The shelter includes a bench for seating, supported by metal legs, and is accompanied by a freestanding bus stop sign and a trash bin nearby. Transparent side and back panels offer partial enclosure while allowing visibility and light. The structure is painted in muted tones, with the roof in a light greenish hue and the frame in dark gray. The shelter also includes a dedicated advertisement panel integrated into one of the side panels. The overall design is functional and modern, suitable for urban streetscapes.",
+    "description": "A modern bus shelter with an arched roof, transparent side panels, a bench, a bus stop sign, and an advertisement panel.",
+    "description_view_0": "Front view showing the bench, transparent panels, and the bus stop sign to the left.",
+    "description_view_1": "Side view highlighting the arched roof, advertisement panel, and the trash bin near the shelter.",
+    "description_view_2": "Rear view displaying the back panel, bench, and the structure's overall width.",
+    "description_view_3": "Opposite side view showing the bus stop sign, trash bin, and the shelter's open entry.",
+    "category": "bus shelter",
+    "height": 2.3,
+    "max_dimension": 3.5,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "leanable",
+        "readable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench",
+        "advertisement panel",
+        "bus stop sign",
+        "trash bin"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "green",
+        "transparent",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_roof_type": "arched opaque",
+    "attribute_seating_presence": true,
+    "attribute_advertisement_panel": true,
+    "attribute_shelter_enclosure_level": "partially enclosed",
+    "attribute_signage": [
+        "route sign"
+    ],
+    "uid": "dd56cd44aeb540e8b29201bbc2e1d4a0",
+    "near_synsets": {
+        "bus_stop.n.01": 0.5342575281887091,
+        "street_sign.n.01": 0.5484551498958573,
+        "signboard.n.01": 0.5540839858907223,
+        "bus_traffic.n.01": 0.5556536161700633,
+        "shelter.n.02": 0.5592622975224266,
+        "shelter.n.01": -1000.0,
+        "protection.n.04": -1000.0,
+        "tax_shelter.n.01": -1000.0,
+        "bus.n.01": -1000.0,
+        "busbar.n.01": -1000.0,
+        "bus.n.04": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "shelter.n.05": -1000.0
+    },
+    "synset": "shelter.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dd56cd44aeb540e8b29201bbc2e1d4a0",
+        "creator_username": "karnauhov.pg",
+        "creator_display_name": "karnauhov.pg",
+        "creator_profile_url": "https://sketchfab.com/karnauhov.pg"
+    },
+    "filename": "std_dd56cd44aeb540e8b29201bbc2e1d4a0.glb",
+    "length": 2.6240562200546265,
+    "width": 17.06959342956543
+}

@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a compact, submachine gun-style handgun with a boxy, utilitarian design and a detachable suppressor positioned in front of the barrel. The main body is constructed from matte black metal, featuring a rectangular receiver, a prominent trigger guard, and a straight magazine extending downward. The grip is robust and slightly contoured, designed for a secure hold, while the rear of the gun includes a simple wire stock. The suppressor is cylindrical and attaches to the threaded barrel, enhancing the weapon's stealth profile. Minimal external markings are visible, emphasizing a functional, tactical appearance. The overall silhouette is compact, making it suitable for close-quarters urban environments.",
+    "description": "A compact, black submachine gun-style handgun with a detachable suppressor, boxy receiver, and straight magazine. Its design is utilitarian and tactical, with minimal markings and a robust grip.",
+    "description_view_0": "Side view showing the full length of the handgun, the straight magazine, and the suppressor detached in front of the threaded barrel.",
+    "description_view_1": "Front-on view highlighting the narrow profile, with the suppressor and barrel aligned and the magazine visible below.",
+    "description_view_2": "Opposite side view displaying the wire stock, grip, and the suppressor separated from the barrel.",
+    "description_view_3": "Rear view focusing on the alignment of the suppressor with the barrel and the straight magazine extending downward.",
+    "category": "handgun",
+    "height": 0.25,
+    "max_dimension": 0.4,
+    "materials": [
+        "steel",
+        "polymer",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 2.8,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "attachable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "magazine",
+        "suppressor",
+        "slide",
+        "safety",
+        "stock"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_grip_design": "The grip is robust and rectangular with subtle ergonomic contouring for a secure hold. Its surface appears to be made of textured polymer or rubber, providing a non-slip finish. There are no visible finger grooves, logos, or embellishments, emphasizing a utilitarian and functional design. The grip's sides are smooth with a slight matte sheen, and the base is flat, aligning with the overall boxy aesthetic.",
+    "attribute_trigger_guard_style": "The trigger guard is thick, rounded, and generously sized, forming a protective loop around the trigger. It features a simple, utilitarian design with no undercuts or squared-off edges, and lacks any visible texturing or reinforcement. The guard is integrated seamlessly into the lower receiver, prioritizing durability and ease of access.",
+    "attribute_barrel_type": "The barrel is short and threaded, designed to accommodate a suppressor or other muzzle device. Its profile is cylindrical and smooth, with the threading clearly visible at the muzzle end. The suppressor itself is also cylindrical, matching the barrel's diameter, and both components have a matte black finish with no visible markings.",
+    "attribute_slide_markings": "There are no visible markings, engravings, or inscriptions on the slide. The exterior is plain and unadorned, contributing to the weapon's minimalist and tactical appearance.",
+    "attribute_magazine_base_shape": "The magazine base is flat and rectangular, extending directly downward from the grip. It lacks any flaring, finger rests, or texturing, and there are no visible logos or embellishments. The design is simple and functional, consistent with the overall utilitarian style.",
+    "uid": "5819ea5d7e694156bbceb798bd805f99",
+    "near_synsets": {
+        "submachine_gun.n.01": 0.49083434334158615,
+        "tommy_gun.n.01": 0.5053721802033495,
+        "uzi.n.01": 0.5316550660301386,
+        "pistol.n.01": 0.5339044120642193,
+        "derringer.n.01": 0.5346400728722875
+    },
+    "synset": "pistol.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5819ea5d7e694156bbceb798bd805f99",
+        "creator_username": "Ivan.Konrad",
+        "creator_display_name": "Ivan.Konrad",
+        "creator_profile_url": "https://sketchfab.com/Ivan.Konrad"
+    },
+    "filename": "std_5819ea5d7e694156bbceb798bd805f99.glb",
+    "length": 0.43023917078971863,
+    "width": 0.035214273259043694
+}

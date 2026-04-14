@@ -1,0 +1,108 @@
+{
+    "description_long": "This object consists of a modular array of solar photovoltaic panels mounted on a robust metallic frame. The panels are rectangular, featuring a grid of blue-black photovoltaic cells protected by a glass surface, and are supported by a series of angled brackets and rails. The mounting structure appears to be made of extruded aluminum or steel, with visible clamps and support feet for stability. The panels are arranged in two parallel rows, each row containing two large panels, and are tilted at an angle to optimize sunlight capture. The underside of the panels reveals mounting hardware and possible inverter housings, but no visible cabling. The overall design is typical for ground-mounted solar installations in urban or commercial environments.",
+    "description": "A modular ground-mounted solar panel array with two parallel rows of blue-black photovoltaic panels on a metallic frame, tilted for optimal sunlight capture.",
+    "description_view_0": "Front view showing two parallel rows of solar panels with metallic frames and support feet.",
+    "description_view_1": "Angled side view highlighting the tilt of the panels and the supporting brackets beneath.",
+    "description_view_2": "Top-down view displaying the full rectangular arrangement of four solar panels in two rows.",
+    "description_view_3": "Opposite angled side view, again showing the tilt and the mounting structure details.",
+    "category": "solar energy infrastructure",
+    "height": 0.5,
+    "max_dimension": 4.0,
+    "materials": [
+        "glass",
+        "aluminum",
+        "silicon",
+        "plastic",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.4,
+        0.25,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "power_generation",
+        "mountable",
+        "connectable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "panel surface",
+        "mounting brackets",
+        "support feet"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_panel_orientation": "tilted at approximately 25-30 degrees, orientation appears fixed",
+    "attribute_mounting_structure_type": "ground-mounted with aluminum or steel frame and support feet",
+    "attribute_electrical_inverter_presence": true,
+    "attribute_cabling_visibility": "not visible",
+    "attribute_array_configuration": "two parallel rows of two panels each, total of four panels in a rectangular configuration",
+    "uid": "59d7385429b24d329fa6c8a868f3e52f",
+    "near_synsets": {
+        "solar_array.n.01": 0.4984763928191004,
+        "solar_thermal_system.n.01": 0.5265446118611365,
+        "solar_house.n.01": 0.5495734644995022,
+        "solar_cell.n.01": 0.5542177996201091,
+        "solar_energy.n.01": 0.5558673088964419,
+        "department_of_energy.n.01": -1000.0,
+        "energy.n.04": -1000.0,
+        "infrastructure.n.01": -1000.0,
+        "energy.n.06": -1000.0,
+        "energy.n.03": -1000.0,
+        "energy.n.05": -1000.0,
+        "infrastructure.n.02": -1000.0,
+        "energy.n.02": -1000.0,
+        "energy.n.01": -1000.0
+    },
+    "synset": "solar_array.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/59d7385429b24d329fa6c8a868f3e52f",
+        "creator_username": "one80solar",
+        "creator_display_name": "One80 Solar",
+        "creator_profile_url": "https://sketchfab.com/one80solar"
+    },
+    "filename": "std_59d7385429b24d329fa6c8a868f3e52f.glb",
+    "length": 4.966776132583618,
+    "width": 5.980912208557129
+}

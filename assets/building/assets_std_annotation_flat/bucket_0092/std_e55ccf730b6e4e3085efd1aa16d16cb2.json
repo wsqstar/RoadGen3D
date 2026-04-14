@@ -1,0 +1,98 @@
+{
+    "description_long": "This kiosk is a compact, open-sided structure with a flat, angular roof and partial walls, designed for public or commercial use in urban environments. The main enclosure consists of three solid wall segments, with one side featuring a large display panel and another side showing a wall with shelving or display fixtures. The interior is open and accessible, with ample floor space for staff or customers. The roof is flat and slightly overhangs the walls, providing some shelter. The color scheme is predominantly white, with some signage and display graphics visible on the interior walls.",
+    "description": "A modern, open-sided kiosk with partial walls, a flat roof, and interior display panels, primarily white in color.",
+    "description_view_0": "View 0 shows the kiosk from a corner angle, highlighting the open entryway and partial side walls.",
+    "description_view_1": "View 1 reveals the main display wall with a large graphic panel and the angular shape of the roof.",
+    "description_view_2": "View 2 focuses on the interior shelving or display fixtures and the solid rear wall.",
+    "description_view_3": "View 3 provides a clear look at the open entry and the interior wall with shelving or display elements.",
+    "category": "kiosk",
+    "height": 2.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "painted metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.05,
+        0.15
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "display panel",
+        "shelving",
+        "counter"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "white",
+        "gray",
+        "green",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "3D logo sign above the kiosk, printed display panel on interior wall",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "none; open entryway without doors",
+    "attribute_roof_design": "Flat roof with angular edges, slight overhang, appears to be made of metal or composite panels",
+    "attribute_architectural_style": "modern minimalist",
+    "uid": "e55ccf730b6e4e3085efd1aa16d16cb2",
+    "near_synsets": {
+        "booth.n.02": 0.5006636505518,
+        "shopfront.n.01": 0.523912688815438,
+        "window.n.07": 0.5473877235143498,
+        "display_window.n.01": 0.5474636025058816,
+        "booth.n.04": 0.5508776186633144
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e55ccf730b6e4e3085efd1aa16d16cb2",
+        "creator_username": "premmika.taechavarangkul",
+        "creator_display_name": "Premmika Taechavarangkul",
+        "creator_profile_url": "https://sketchfab.com/premmika.taechavarangkul"
+    },
+    "filename": "std_e55ccf730b6e4e3085efd1aa16d16cb2.glb",
+    "length": 3.75339412689209,
+    "width": 3.753394842147827
+}

@@ -1,0 +1,109 @@
+{
+    "description_long": "This object is a standard urban traffic light mounted on a cylindrical pole. The signal head features three circular lenses arranged vertically, with the top lens illuminated red, indicating a stop signal. The housing and pole are primarily matte black or dark gray, with a robust, industrial design suitable for outdoor environments. The lenses are slightly recessed within the housing, providing some protection from the elements and glare. The pole is thick and sturdy, likely made of metal, and includes a base section for mounting into the ground or a foundation. No pedestrian signals or control boxes are visible, and the overall design is functional and utilitarian, typical for city intersections.",
+    "description": "A vertical, pole-mounted traffic light with three circular signal lenses and a sturdy, dark-colored housing. The top lens is illuminated red, and the design is robust for urban outdoor use.",
+    "description_view_0": "Front view showing all three vertically stacked signal lenses, with the top lens illuminated red.",
+    "description_view_1": "Side view highlighting the depth of the signal housing and the cylindrical pole, with the lenses protruding slightly.",
+    "description_view_2": "Rear view displaying the back of the signal housing and the full length of the pole, with no visible lenses.",
+    "description_view_3": "Opposite side view showing the profile of the signal housing and pole, similar to view 1 but from the other side.",
+    "category": "traffic light",
+    "height": 2.2,
+    "max_dimension": 2.2,
+    "materials": [
+        "painted steel",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "mass": 38,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "signal lenses",
+        "maintenance panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_signal_lights": 3,
+    "attribute_signal_orientation": "vertical",
+    "attribute_mounting_type": "pole-mounted",
+    "attribute_presence_of_pedestrian_signals": false,
+    "attribute_control_box_visibility": false,
+    "uid": "30f361478c8143fbb463dcf9b2a0cb61",
+    "near_synsets": {
+        "traffic_light.n.01": 0.49435109387703075,
+        "stoplight.n.01": 0.538050188767597,
+        "taillight.n.01": 0.5426480668741882,
+        "streetlight.n.01": 0.5445441926371287,
+        "light.n.14": 0.5467409134289747,
+        "light.n.09": -1000.0,
+        "traffic.n.01": -1000.0,
+        "light.n.08": -1000.0,
+        "light.n.05": -1000.0,
+        "light.n.12": -1000.0,
+        "light.n.06": -1000.0,
+        "lighter.n.02": -1000.0,
+        "light.n.07": -1000.0,
+        "light.n.01": -1000.0,
+        "light.n.02": -1000.0,
+        "sparkle.n.01": -1000.0,
+        "traffic.n.03": -1000.0,
+        "luminosity.n.01": -1000.0,
+        "light.n.10": -1000.0,
+        "inner_light.n.01": -1000.0,
+        "dealings.n.01": -1000.0,
+        "light.n.03": -1000.0,
+        "traffic.n.02": -1000.0
+    },
+    "synset": "traffic_light.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/30f361478c8143fbb463dcf9b2a0cb61",
+        "creator_username": "daniel.brueck",
+        "creator_display_name": "Daniel Br\u00fcck",
+        "creator_profile_url": "https://sketchfab.com/daniel.brueck"
+    },
+    "filename": "std_30f361478c8143fbb463dcf9b2a0cb61.glb",
+    "length": 0.35406503081321716,
+    "width": 0.26882241666316986
+}

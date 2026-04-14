@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a flatbed platform trolley with a sturdy rectangular blue platform bordered by a lighter trim, designed for transporting goods in urban environments such as warehouses, sidewalks, or garages. The trolley features a robust, metallic handlebar that arches upward and is attached securely to the rear of the platform, allowing for easy pushing or pulling. The handlebar is constructed from tubular metal and is painted white, with a horizontal support bar for added stability. The trolley is equipped with four large wheels, two on each side, which appear to be made of hard rubber or plastic and are mounted to allow smooth rolling over flat surfaces. The platform itself is textured for grip and is spacious enough to accommodate various items, from boxes to equipment. There are no visible baskets or compartments, emphasizing its use for carrying larger, bulkier loads.",
+    "description": "A blue flatbed platform trolley with a white metal handlebar and four large wheels, designed for transporting goods. The platform is textured and bordered, with no basket or compartments.",
+    "description_view_0": "Side view showing the full length of the blue platform, the white handlebar, and two visible wheels.",
+    "description_view_1": "Front view highlighting the width of the platform, the handlebar's upright position, and both front wheels.",
+    "description_view_2": "Opposite side view mirroring view 0, showing the handlebar and two wheels from the other side.",
+    "description_view_3": "Rear view focusing on the handlebar's attachment points and the back edge of the platform, with both rear wheels visible.",
+    "category": "trolley",
+    "height": 1.0,
+    "max_dimension": 1.2,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 25,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "supportive"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "platform"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "blue",
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_handle_type": "single bar handle, tubular metal, painted white, ergonomic with a horizontal support bar",
+    "attribute_number_of_wheels": 4,
+    "attribute_wheel_arrangement": "four wheels, all at the corners of the platform, likely all swivel for maneuverability",
+    "attribute_basket_or_platform_presence": "platform",
+    "attribute_branding_or_signage": "none",
+    "uid": "2683aee10df1409dadda68084a798464",
+    "near_synsets": {
+        "flatbed.n.02": 0.5260492757579653,
+        "dolly.n.02": 0.5339188643662881,
+        "hand_truck.n.01": 0.5365313451826499,
+        "flatcar.n.01": 0.5379297748240527,
+        "trolley_line.n.01": 0.539287661845915,
+        "streetcar.n.01": -1000.0
+    },
+    "synset": "trolley_line.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2683aee10df1409dadda68084a798464",
+        "creator_username": "businessyuen",
+        "creator_display_name": "businessyuen",
+        "creator_profile_url": "https://sketchfab.com/businessyuen"
+    },
+    "filename": "std_2683aee10df1409dadda68084a798464.glb",
+    "length": 1.1071603298187256,
+    "width": 0.6808595061302185
+}

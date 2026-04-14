@@ -1,0 +1,83 @@
+{
+    "description_long": "This object is a rectangular section of sidewalk composed of small, hexagonal concrete tiles arranged in a regular pattern. The surface displays a mix of light and medium gray tones, with subtle variations in shading that suggest weathering and use. The hexagonal tiling provides both visual interest and increased traction for pedestrians. The edges of the sidewalk are straight and flush, with no visible curb or raised border. The surface appears hard and durable, suitable for supporting foot traffic and light loads. There are no visible features such as tactile paving, street furniture, or decorative elements.",
+    "description": "A rectangular, gray sidewalk section made of hexagonal concrete tiles with a hard, weathered surface and flush edges.",
+    "description_view_0": "The sidewalk is seen from a short end, highlighting the hexagonal tile pattern and the flush, straight edge.",
+    "description_view_1": "A wide side view shows the full length of the sidewalk and the consistent tile pattern across its surface.",
+    "description_view_2": "The opposite short end view again emphasizes the hexagonal tiling and the uniform, flush edge.",
+    "description_view_3": "A second wide side view, similar to view 1, showing the length and continuous tile pattern.",
+    "category": "sidewalk",
+    "height": 0.08,
+    "max_dimension": 4.0,
+    "materials": [
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.98,
+        0.02
+    ],
+    "mass": 770,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "traversable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": false,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "flush",
+    "attribute_adjacent_street_type": "undefined",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "e70be512c694495596575b0d4ceea0b0",
+    "near_synsets": {
+        "sidewalk.n.01": 0.5088756431333057,
+        "paved_surface.n.01": 0.5372969176208218,
+        "cobble.n.01": 0.5443493650497837,
+        "macadam.n.01": 0.5493045975005645,
+        "curbside.n.01": 0.5503720671249669
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e70be512c694495596575b0d4ceea0b0",
+        "creator_username": "joeshu",
+        "creator_display_name": "joeshu",
+        "creator_profile_url": "https://sketchfab.com/joeshu"
+    },
+    "filename": "std_e70be512c694495596575b0d4ceea0b0.glb",
+    "length": 13.59072494506836,
+    "width": 9.033916473388672
+}

@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a mid-rise apartment building with six stories, featuring a flat, tiled roof with several raised sections and utility structures. The facade is painted white and is punctuated by rows of symmetrically arranged windows and balconies, many of which display personal items such as laundry and plants. The building has two main wings connected by a central corridor, creating a partially open space in the middle. The front and rear sides are characterized by multiple balconies with metal railings, while the sides are mostly plain with minimal window openings. The ground level includes several entrances, some with small staircases leading up to them, and a few landscaped areas with shrubs. The overall appearance is functional and residential, typical of urban apartment complexes built in the late 20th century.",
+    "description": "A six-story white apartment building with symmetrical balconies, flat tiled roof, and multiple entrances, typical of urban residential complexes.",
+    "description_view_0": "View 0 shows the building from an angled top-down perspective, highlighting the central open corridor and the roof's raised sections.",
+    "description_view_1": "View 1 presents the front facade with rows of balconies, windows, and visible entrances at ground level.",
+    "description_view_2": "View 2 displays the plain side of the building, with minimal windows and no balconies, emphasizing the building's depth.",
+    "description_view_3": "View 3 shows the rear facade, similar to the front, with symmetrical balconies and windows, and additional ground-level entrances.",
+    "category": "apartment building",
+    "height": 18.0,
+    "max_dimension": 32.0,
+    "materials": [
+        "reinforced concrete",
+        "glass",
+        "metal",
+        "ceramic tile",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.05,
+        0.02,
+        0.05
+    ],
+    "mass": 950000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "balcony railing",
+        "staircase"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "brown",
+        "green"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 6,
+    "attribute_balcony_presence": true,
+    "attribute_window_arrangement": "The windows are arranged in symmetrical vertical columns, evenly spaced across the facade, with each floor having a consistent pattern. Most windows are paired with balconies, creating a regular and organized appearance.",
+    "attribute_entrance_type": "multiple entrances",
+    "attribute_architectural_style": "Contemporary",
+    "uid": "4972c78e756044b68db0878f1d1aab57",
+    "near_synsets": {
+        "apartment_building.n.01": 0.45256231389329205,
+        "high-rise.n.01": 0.4959770890305583,
+        "suite.n.02": 0.5023641635519743,
+        "apartment.n.01": 0.5045730269944336,
+        "condominium.n.02": 0.5113974260727139,
+        "construction.n.01": -1000.0,
+        "building.n.04": -1000.0,
+        "construction.n.07": -1000.0,
+        "building.n.01": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4972c78e756044b68db0878f1d1aab57",
+        "creator_username": "ugoerr",
+        "creator_display_name": "ugoerr",
+        "creator_profile_url": "https://sketchfab.com/ugoerr"
+    },
+    "filename": "std_4972c78e756044b68db0878f1d1aab57.glb",
+    "length": 15.799557209014893,
+    "width": 25.161532402038574
+}

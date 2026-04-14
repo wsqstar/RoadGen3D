@@ -1,0 +1,103 @@
+{
+    "description_long": "This object is a classic British police telephone box, most famously known as the TARDIS from Doctor Who. It features a rectangular, upright structure with a deep blue painted wooden exterior, paneled doors, and a flat roof topped with a small black lantern. The front side displays a prominent black sign with white lettering reading 'POLICE PUBLIC CALL BOX' above the double doors, and a white instruction panel on the left door. The windows are arranged in two rows of six small glass panes on each door and side, framed in white. The surface has a matte, slightly textured finish, and the booth appears large enough for a person to enter. The overall design is iconic, evoking a sense of historical urban infrastructure.",
+    "description": "A blue, paneled police telephone box with white-paned windows, a black lantern on top, and 'POLICE PUBLIC CALL BOX' signage. The booth is large, upright, and fully enclosed, with a classic British design.",
+    "description_view_0": "The front view shows the double doors with two rows of six white-paned windows each and the 'POLICE PUBLIC CALL BOX' sign above, but no instruction panel is visible.",
+    "description_view_1": "This view reveals the front with the instruction panel on the left door, the police box sign, and a circular emblem on the right door, making it the most detailed and interactive-facing side.",
+    "description_view_2": "The rear view mirrors the front but lacks the instruction panel and emblem, showing only the windows and signage.",
+    "description_view_3": "This side view is similar to the other non-front sides, with paneled doors and windows but no signage or instruction panel.",
+    "category": "telephone booth",
+    "height": 2.6,
+    "max_dimension": 2.6,
+    "materials": [
+        "wood",
+        "glass",
+        "metal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 420,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "signage panel",
+        "lantern",
+        "instruction panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_enclosure_type": "fully enclosed",
+    "attribute_door_presence": true,
+    "attribute_window_configuration": "two rows of six small rectangular windows on each door and side",
+    "attribute_signage_or_labeling": "Black sign with white 'POLICE PUBLIC CALL BOX' text above doors; white instruction panel on left door",
+    "attribute_handset_visibility": false,
+    "uid": "576b10bd7fb64af987c4f59e3ba475cd",
+    "near_synsets": {
+        "telephone_booth.n.01": 0.46082849515703384,
+        "pillar_box.n.01": 0.5574324853753112,
+        "telephone_pole.n.01": 0.5637835338531728,
+        "signal_box.n.01": 0.5650093441902353,
+        "postbox.n.01": 0.570997209715335,
+        "booth.n.04": -1000.0,
+        "booth.n.03": -1000.0,
+        "booth.n.02": -1000.0,
+        "booth.n.01": -1000.0,
+        "telephone.n.02": -1000.0,
+        "telephone.n.01": -1000.0
+    },
+    "synset": "telephone_booth.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/576b10bd7fb64af987c4f59e3ba475cd",
+        "creator_username": "andrewsha",
+        "creator_display_name": "Andrewsha",
+        "creator_profile_url": "https://sketchfab.com/andrewsha"
+    },
+    "filename": "std_576b10bd7fb64af987c4f59e3ba475cd.glb",
+    "length": 1.3165743350982666,
+    "width": 1.3165740370750427
+}

@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a weathered, wooden cabin with a partially collapsed, rusted metal gable roof and exposed rafters. The exterior walls are clad in aged, horizontal wooden planks, some of which are missing or broken, revealing the interior framework. Several windows with white frames are distributed unevenly around the structure, some with missing panes. The cabin sits on a slightly raised foundation with a small set of steps leading to a single door. The ground around the cabin is bare earth, and the overall appearance suggests long-term abandonment and significant structural decay. The roof features large holes and sagging sections, contributing to the dilapidated look.",
+    "description": "A dilapidated wooden cabin with a rusted, partially collapsed gable roof, broken windows, and exposed framework, sitting on a raised foundation.",
+    "description_view_0": "The rear or side of the cabin shows a large expanse of rusted, damaged roof and a single window on a wooden wall, with much of the roof structure exposed.",
+    "description_view_1": "This side reveals the most windows, including three on the lower level and one in the attic, as well as the most intact section of the wall and roof.",
+    "description_view_2": "The opposite long side displays three windows and a door, with significant roof damage and missing planks, highlighting the cabin's interior.",
+    "description_view_3": "This view shows the entrance with a small set of steps, a partially collapsed roof, and a mix of intact and broken wall sections.",
+    "category": "cabin",
+    "height": 5.0,
+    "max_dimension": 10.0,
+    "materials": [
+        "wood",
+        "metal",
+        "glass",
+        "air",
+        "soil"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "white",
+        "rust red"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gable roof with extensive rusted metal sheeting, large holes, and exposed rafters",
+    "attribute_window_arrangement": "Multiple rectangular windows of varying sizes, asymmetrically distributed with three on one long side, one on the short side, and one in the attic; some windows are missing panes or frames.",
+    "attribute_door_placement": "Single exterior door located on the short side of the cabin, accessed by a small set of steps, offset from the center.",
+    "attribute_porch_presence": false,
+    "attribute_architectural_style": "rustic",
+    "uid": "065cb734d68446ec90e3b43da86a5530",
+    "near_synsets": {
+        "cabin.n.02": 0.4653257334729762,
+        "log_cabin.n.01": 0.4764813000748513,
+        "ruin.n.02": 0.5305052761601148,
+        "cabin.n.01": 0.5490120439373457,
+        "farmhouse.n.01": 0.5534364549947232,
+        "cabin.n.03": -1000.0
+    },
+    "synset": "cabin.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/065cb734d68446ec90e3b43da86a5530",
+        "creator_username": "tomich516",
+        "creator_display_name": "Nikolay Fedorov",
+        "creator_profile_url": "https://sketchfab.com/tomich516"
+    },
+    "filename": "std_065cb734d68446ec90e3b43da86a5530.glb",
+    "length": 8.14235782623291,
+    "width": 7.812175750732422
+}

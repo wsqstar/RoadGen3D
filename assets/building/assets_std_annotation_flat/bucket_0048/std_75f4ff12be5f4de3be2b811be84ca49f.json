@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a classic hand grenade, featuring a robust, segmented metal body with a dark, matte finish. The main body is oval-shaped and heavily textured with a grid pattern for grip, and it is topped with a prominent safety lever and a visible pull ring. A yellow band encircles the neck of the grenade, indicating a typical marking for identification. The safety lever is attached to the top and curves downward, while the pull ring is looped through a pin mechanism, both made of metal. The grenade's surface appears hard and slightly rough, with subtle wear and a utilitarian design. The overall appearance suggests a military-style fragmentation grenade, commonly seen in urban conflict scenarios.",
+    "description": "A dark, oval-shaped hand grenade with a textured metal body, yellow band, safety lever, and pull ring. The surface is hard, matte, and slightly worn.",
+    "description_view_0": "Two grenades are visible, one upright showing the safety lever and pull ring, and the other lying on its side, highlighting the textured body and yellow band.",
+    "description_view_1": "The upright grenade is viewed from the side, emphasizing the thickness of the safety lever and the curvature of the pull ring, while the second grenade is partially obscured.",
+    "description_view_2": "The front of the upright grenade is prominent, with the safety lever and pull ring clearly visible, and the second grenade lies horizontally, showing the grid texture.",
+    "description_view_3": "The grenades are seen from behind, focusing on the rounded base and the yellow band, with less detail visible on the safety mechanism.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.16,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 0.4,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "pin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "group",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the ring to remove the safety pin, releasing the lever and triggering the internal fuse.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "75f4ff12be5f4de3be2b811be84ca49f",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.4992465034840366,
+        "grenade.n.01": 0.516307091284625,
+        "pipe_bomb.n.01": 0.551682136879375,
+        "bomb.n.01": 0.5543474297569463,
+        "rifle_grenade.n.01": 0.5591240452326094,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/75f4ff12be5f4de3be2b811be84ca49f",
+        "creator_username": "strov",
+        "creator_display_name": "Ilya Ostrovsky",
+        "creator_profile_url": "https://sketchfab.com/strov"
+    },
+    "filename": "std_75f4ff12be5f4de3be2b811be84ca49f.glb",
+    "length": 0.47200891375541687,
+    "width": 0.4720087945461273
+}

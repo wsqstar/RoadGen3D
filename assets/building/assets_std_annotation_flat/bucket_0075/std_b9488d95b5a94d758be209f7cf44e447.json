@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a modern quadcopter drone with a sleek, white plastic body and four extended arms, each supporting a rotor with two-blade propellers. The arms are accented with gold stripes near the motor mounts, adding a touch of visual distinction. The drone features fixed landing gear in the form of two sturdy, U-shaped legs, providing stability during takeoff and landing. A camera module is mounted centrally beneath the main body, suggesting capabilities for aerial photography or video recording. The rotors are exposed, with no visible propeller guards, and the overall design is compact and aerodynamic. The construction appears lightweight, likely utilizing plastic and metal components for durability and performance.",
+    "description": "A white quadcopter drone with gold accents, four exposed rotors, fixed landing gear, and a central camera module beneath the body.",
+    "description_view_0": "Front-left view showing the camera module, two gold-striped arms, and the full landing gear.",
+    "description_view_1": "Front-right view highlighting the camera, gold accents, and the right-side landing leg.",
+    "description_view_2": "Rear-right view with a clear look at the back arms, rotors, and the rear of the landing gear.",
+    "description_view_3": "Rear-left view focusing on the back of the drone, the landing gear, and the left-side rotors.",
+    "category": "drone",
+    "height": 0.18,
+    "max_dimension": 0.45,
+    "materials": [
+        "plastic",
+        "metal",
+        "glass",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.05,
+        0.1,
+        0.02
+    ],
+    "mass": 1.6,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 16,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "landing gear",
+        "camera",
+        "battery compartment"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gold",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.32,
+    "bounciness": 0.08,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 4,
+    "attribute_rotor_configuration": "quadcopter X",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": true,
+    "attribute_propeller_guard_presence": false,
+    "uid": "b9488d95b5a94d758be209f7cf44e447",
+    "near_synsets": {
+        "drone.n.04": 0.5452102336625322,
+        "single-rotor_helicopter.n.01": 0.569590124222528,
+        "orthopter.n.01": 0.5775267529447774,
+        "rotor.n.03": 0.578066230345563,
+        "main_rotor.n.01": 0.5866999865425453,
+        "dawdler.n.01": -1000.0,
+        "drone.n.05": -1000.0,
+        "monotone.n.01": -1000.0,
+        "drone.n.01": -1000.0
+    },
+    "synset": "drone.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b9488d95b5a94d758be209f7cf44e447",
+        "creator_username": "akiko_yoshino",
+        "creator_display_name": "akiko_yoshino",
+        "creator_profile_url": "https://sketchfab.com/akiko_yoshino"
+    },
+    "filename": "std_b9488d95b5a94d758be209f7cf44e447.glb",
+    "length": 0.49947595596313477,
+    "width": 0.43375302851200104
+}

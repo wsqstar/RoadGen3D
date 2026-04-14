@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a military-style tracked all-terrain vehicle resembling a Soviet T-34 tank, featuring a robust armored hull and a large rotating turret with a long barrel cannon. The vehicle is equipped with six large road wheels on each side, supported by continuous metal tracks for superior off-road mobility. Cylindrical fuel tanks are mounted externally along the rear sides, and the upper hull is sloped for deflection and protection. The turret has visible hatches and periscopes, and the front glacis plate is sharply angled. The overall exterior is finished in a matte, military green color, with minimal surface ornamentation and a utilitarian design. This vehicle is designed for rugged environments and can traverse a variety of urban and off-road terrains.",
+    "description": "A military-style tracked all-terrain vehicle with a rotating turret, long barrel, and six large road wheels per side, finished in matte green.",
+    "description_view_0": "Front view shows the sloped glacis plate, central barrel, and cylindrical side tanks.",
+    "description_view_1": "Left side view highlights the six large road wheels, continuous tracks, and the full length of the barrel.",
+    "description_view_2": "Rear view displays the back of the turret, rear hull, and cylindrical tanks on both sides.",
+    "description_view_3": "Right side view mirrors the left, showing the wheels, tracks, and turret profile.",
+    "category": "all-terrain vehicle",
+    "height": 2.4,
+    "max_dimension": 6.7,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air",
+        "plastic"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.03,
+        0.01
+    ],
+    "mass": 26000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "barrel",
+        "wheel",
+        "track",
+        "door",
+        "periscope"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 12,
+    "attribute_tire_tread_pattern": "The tracks have a blocky, all-terrain tread pattern designed for traction on both soft and hard surfaces, with prominent raised sections for grip.",
+    "attribute_suspension_type": "independent",
+    "attribute_presence_of_roll_cage": false,
+    "attribute_handlebar_or_steering_wheel_type": "round steering wheel",
+    "uid": "2ee073a782b149f88c3cb223293feaaf",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.47341415470772813,
+        "reconnaissance_vehicle.n.01": 0.5005677341950907,
+        "tank.n.01": 0.5181312847089049,
+        "assault_gun.n.02": 0.5209944128084332,
+        "tracked_vehicle.n.01": 0.5230398255449478,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2ee073a782b149f88c3cb223293feaaf",
+        "creator_username": "heirohindrima",
+        "creator_display_name": "DedRam",
+        "creator_profile_url": "https://sketchfab.com/heirohindrima"
+    },
+    "filename": "std_2ee073a782b149f88c3cb223293feaaf.glb",
+    "length": 7.459862232208252,
+    "width": 2.8041861057281494
+}

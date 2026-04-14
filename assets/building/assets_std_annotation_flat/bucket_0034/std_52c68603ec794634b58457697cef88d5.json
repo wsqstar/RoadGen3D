@@ -1,0 +1,103 @@
+{
+    "description_long": "This object is a blue, rectangular police telephone box reminiscent of the iconic British TARDIS. The structure features a flat roof with a small black lamp on top and prominent signage reading 'POLICE PUBLIC CALL BOX' above the door. The front side has two large window panels with multiple panes, and a single door with a round handle and a small notice panel. The door is slightly ajar in one view, revealing the booth's interior. The exterior is primarily blue with white window panes and black signage, and the overall construction appears to be sturdy and weather-resistant, suitable for outdoor urban environments.",
+    "description": "A blue, rectangular police telephone box with white-paned windows, black signage, and a single door, reminiscent of classic British street furniture.",
+    "description_view_0": "Front view showing the closed door, two large window panels, and the 'POLICE PUBLIC CALL BOX' sign.",
+    "description_view_1": "Front-right view with the door slightly open, revealing the interior and the notice panel on the door.",
+    "description_view_2": "Front view similar to view 0, with the door closed and both window panels visible.",
+    "description_view_3": "Front-left view, showing the closed door and the left window panel more prominently.",
+    "category": "telephone booth",
+    "height": 2.5,
+    "max_dimension": 1.2,
+    "materials": [
+        "painted wood",
+        "glass",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 350,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "window",
+        "signage panel"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "blue",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 9000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_enclosure_type": "fully enclosed",
+    "attribute_door_presence": true,
+    "attribute_window_configuration": "two large rectangular window panels with multiple panes on the front side",
+    "attribute_signage_or_labeling": "Black and white 'POLICE PUBLIC CALL BOX' sign above the door; small white notice panel on the door",
+    "attribute_handset_visibility": false,
+    "uid": "52c68603ec794634b58457697cef88d5",
+    "near_synsets": {
+        "telephone_booth.n.01": 0.4488855630219813,
+        "pillar_box.n.01": 0.5433144484310986,
+        "telephone_pole.n.01": 0.5507241704557982,
+        "pay-phone.n.01": 0.5530380068069838,
+        "booth.n.02": 0.5571563948047527,
+        "telephone.n.01": -1000.0,
+        "booth.n.03": -1000.0,
+        "booth.n.01": -1000.0,
+        "booth.n.04": -1000.0,
+        "telephone.n.02": -1000.0
+    },
+    "synset": "telephone_booth.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/52c68603ec794634b58457697cef88d5",
+        "creator_username": "Synthetix",
+        "creator_display_name": "Synthetix",
+        "creator_profile_url": "https://sketchfab.com/Synthetix"
+    },
+    "filename": "std_52c68603ec794634b58457697cef88d5.glb",
+    "length": 1.281186819076538,
+    "width": 1.2811864614486694
+}

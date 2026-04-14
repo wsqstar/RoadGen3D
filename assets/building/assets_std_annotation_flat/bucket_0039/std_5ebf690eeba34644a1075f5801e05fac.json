@@ -1,0 +1,107 @@
+{
+    "description_long": "This object is a tall, vertical utility structure composed primarily of a wooden or metal pole supporting a crossarm at the top, which holds four insulator stacks. Below the crossarm, a large transformer box is mounted, with visible electrical wiring and connectors attached to its side. The crossarm is reinforced with a secondary, shorter arm and bracing elements, providing stability and support for the insulators and power lines. The transformer box is rectangular and features several protruding components, likely for electrical connections and safety mechanisms. The surface of the pole and crossarms appears weathered, with a dark brown coloration, while the transformer box is a darker, metallic shade. No warning signage is visible, and the structure is designed to support and distribute electrical power in an urban environment.",
+    "description": "A tall utility pole with a crossarm supporting four insulator stacks and a large mounted transformer box, featuring visible wiring and bracing elements. The structure is primarily brown with metallic components and is built for electrical power distribution.",
+    "description_view_0": "Frontal view showing the full crossarm with four insulator stacks and the transformer box mounted below, with visible wiring and bracing.",
+    "description_view_1": "Side view revealing the narrow profile of the pole, the depth of the transformer box, and attached wiring components.",
+    "description_view_2": "Rear view displaying the back of the transformer box, the crossarm, and the arrangement of insulators from behind.",
+    "description_view_3": "Opposite side view highlighting the transformer box's side profile and the attached electrical wiring.",
+    "category": "transformer tower",
+    "height": 4.5,
+    "max_dimension": 4.5,
+    "materials": [
+        "wood",
+        "steel",
+        "ceramic",
+        "copper",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.2,
+        0.1,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "connectable",
+        "mountable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "insulator stack",
+        "transformer box",
+        "wiring connector",
+        "crossarm"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "dark gray",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_insulator_stacks": 4,
+    "attribute_arrangement_of_crossarms": "There is a single main horizontal crossarm at the top, with a secondary, shorter crossarm mounted below it for reinforcement. Both are perpendicular to the pole and parallel to each other.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "transformer",
+        "insulator",
+        "wiring connector"
+    ],
+    "attribute_configuration_of_attached_power_lines": "Four power lines are attached in a parallel configuration, likely supporting a three-phase circuit with an additional neutral or ground line, routed horizontally along the crossarm.",
+    "uid": "5ebf690eeba34644a1075f5801e05fac",
+    "near_synsets": {
+        "pylon.n.02": 0.5181536598661194,
+        "telephone_pole.n.01": 0.5272633169978563,
+        "power_line.n.01": 0.556946896299826,
+        "power_system.n.01": 0.5581930299110923,
+        "substation.n.01": 0.559009660489542,
+        "tugboat.n.01": -1000.0,
+        "column.n.04": -1000.0,
+        "transformer.n.01": -1000.0,
+        "tower.n.01": -1000.0
+    },
+    "synset": "pylon.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5ebf690eeba34644a1075f5801e05fac",
+        "creator_username": "xiamilisite",
+        "creator_display_name": "xiamilisite",
+        "creator_profile_url": "https://sketchfab.com/xiamilisite"
+    },
+    "filename": "std_5ebf690eeba34644a1075f5801e05fac.glb",
+    "length": 0.5158182978630066,
+    "width": 1.0770955085754395
+}

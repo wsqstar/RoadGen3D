@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a tall, rectangular apartment building with a modern, high-rise design. The facade features a regular grid of windows and balconies, with vertical and horizontal lines accentuating the structure's height. The building is primarily clad in light gray materials, with darker accents on the balcony railings and window frames. The uppermost section has a slightly recessed area with additional window groupings, giving the roofline a stepped appearance. The overall look is sleek and functional, typical of contemporary urban residential towers. The building appears to have multiple floors, each with a consistent arrangement of windows and balconies.",
+    "description": "A tall, modern apartment building with a grid of windows and balconies, clad in light gray materials and featuring a stepped roofline.",
+    "description_view_0": "This view shows the narrow side of the building with a vertical alignment of windows and balconies, and a stepped section at the top right.",
+    "description_view_1": "This view reveals a slightly wider facade with more visible balconies and a consistent window pattern, as well as the stepped roof detail.",
+    "description_view_2": "This view is similar to view 0 but from the opposite side, showing the vertical window and balcony arrangement and the stepped roof on the left.",
+    "description_view_3": "This is the broadest view, displaying the main facade with the most windows and balconies, and a prominent stepped section at the top center.",
+    "category": "apartment building",
+    "height": 90.0,
+    "max_dimension": 90.0,
+    "materials": [
+        "reinforced concrete",
+        "glass",
+        "steel",
+        "aluminum",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 3500000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "balcony railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "dark gray",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 28,
+    "attribute_balcony_presence": true,
+    "attribute_window_arrangement": "The windows are arranged in a highly regular, vertical grid pattern, with each floor featuring evenly spaced windows and balconies. The arrangement is symmetrical and consistent across all visible facades.",
+    "attribute_entrance_type": "multiple entrances",
+    "attribute_architectural_style": "Contemporary",
+    "uid": "a9893a8f60ec4a3a801eadf710b933ae",
+    "near_synsets": {
+        "apartment_building.n.01": 0.4772068483963586,
+        "high-rise.n.01": 0.5028351739299027,
+        "skyscraper.n.01": 0.5034402782012585,
+        "block.n.05": 0.5201002097684824,
+        "penthouse.n.01": 0.5235698989468582,
+        "apartment.n.01": -1000.0,
+        "building.n.04": -1000.0,
+        "construction.n.07": -1000.0,
+        "construction.n.01": -1000.0,
+        "building.n.01": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a9893a8f60ec4a3a801eadf710b933ae",
+        "creator_username": "sambrari95",
+        "creator_display_name": "Kyrylo Ilnitskyi",
+        "creator_profile_url": "https://sketchfab.com/sambrari95"
+    },
+    "filename": "std_a9893a8f60ec4a3a801eadf710b933ae.glb",
+    "length": 25.492688179016113,
+    "width": 36.13300132751465
+}

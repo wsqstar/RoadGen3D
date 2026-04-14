@@ -1,0 +1,108 @@
+{
+    "description_long": "This object is a solar energy infrastructure installation composed of eight rectangular blue photovoltaic panels arranged in a 2x4 grid. The panels are framed with metallic borders and are mounted on a robust central support structure, which appears to be a pole with a cylindrical base. Electrical cabling is visible, running from the underside of the panels down the support pole, suggesting a connection to an inverter or power distribution unit. The surface of the panels is smooth and glossy, with a grid of fine lines indicating individual solar cells. The mounting structure is likely made of metal, providing stability and durability for outdoor urban environments.",
+    "description": "A large 2x4 grid of blue solar panels mounted on a central pole with visible cabling and a sturdy metallic frame.",
+    "description_view_0": "Angled view showing the blue solar panels' grid pattern and the central support pole beneath.",
+    "description_view_1": "Direct underside view highlighting the black cabling, central mounting structure, and the panel arrangement from below.",
+    "description_view_2": "Angled view similar to view 0 but from the opposite side, showing the cabling and support pole.",
+    "description_view_3": "Top-down view displaying the full 2x4 grid of blue solar panels and their metallic frames.",
+    "category": "solar energy infrastructure",
+    "height": 2.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "tempered glass",
+        "aluminum",
+        "silicon",
+        "steel",
+        "copper",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.1,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "panel surface",
+        "mounting pole",
+        "cabling"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.5,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_panel_orientation": "tilted at approximately 30 degrees, orientation appears fixed",
+    "attribute_mounting_structure_type": "pole-mounted with a central steel or aluminum support structure",
+    "attribute_electrical_inverter_presence": false,
+    "attribute_cabling_visibility": "black and red cables visible running from the underside of the panels down the central pole",
+    "attribute_array_configuration": "2x4 grid of solar panels arranged in two rows and four columns",
+    "uid": "532d597059764bd5829a494e894ef974",
+    "near_synsets": {
+        "solar_array.n.01": 0.5193559660778336,
+        "solar_house.n.01": 0.5439695102794363,
+        "solar_thermal_system.n.01": 0.552785062337887,
+        "solar_energy.n.01": 0.5581432790787999,
+        "solar_cell.n.01": 0.5702284370079438,
+        "energy.n.05": -1000.0,
+        "energy.n.01": -1000.0,
+        "energy.n.03": -1000.0,
+        "department_of_energy.n.01": -1000.0,
+        "energy.n.02": -1000.0,
+        "infrastructure.n.02": -1000.0,
+        "energy.n.04": -1000.0,
+        "energy.n.06": -1000.0,
+        "infrastructure.n.01": -1000.0
+    },
+    "synset": "solar_array.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/532d597059764bd5829a494e894ef974",
+        "creator_username": "intandp",
+        "creator_display_name": "Intan DP",
+        "creator_profile_url": "https://sketchfab.com/intandp"
+    },
+    "filename": "std_532d597059764bd5829a494e894ef974.glb",
+    "length": 3.175784945487976,
+    "width": 2.3833608627319336
+}

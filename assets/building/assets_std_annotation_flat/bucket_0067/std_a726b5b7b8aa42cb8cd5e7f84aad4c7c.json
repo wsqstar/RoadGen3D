@@ -1,0 +1,88 @@
+{
+    "description_long": "This humanoid robot features a segmented, mechanical body with a distinctly industrial design. Its head is rectangular with pronounced, gear-like details and what appear to be two large, circular eye sockets, giving it a mechanical face. The torso is composed of stacked, cylindrical segments, and the arms and legs are made up of multiple jointed sections, resembling a series of connected rods and spheres. The hands are flat and paddle-shaped, while the feet are wide and forked, providing stability. The entire structure is uniform in color and texture, with a matte metallic finish and no visible coverings or decorations. The robot's overall appearance is utilitarian, with exposed joints and mechanical components suggesting functionality over aesthetics.",
+    "description": "A segmented, industrial humanoid robot with a rectangular head, jointed limbs, and paddle-shaped hands, all in a matte metallic finish. Its design is utilitarian, with exposed mechanical details and no coverings.",
+    "description_view_0": "Front view shows the robot's rectangular head with two large eye sockets, outstretched arms, and forked feet.",
+    "description_view_1": "Side view highlights the thin profile, segmented limbs, and the depth of the head and torso.",
+    "description_view_2": "Rear view reveals the back of the head, cylindrical torso, and symmetrical limb structure.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the mechanical joints and the flatness of the hands and feet.",
+    "category": "humanoid robot",
+    "height": 1.8,
+    "max_dimension": 2.2,
+    "materials": [
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "hands",
+        "legs",
+        "head"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms extended horizontally to the sides in a T-pose, legs straight and feet flat on the ground, head facing forward.",
+    "attribute_clothing_style": "Unclothed; only integrated mechanical panels and components are visible.",
+    "attribute_facial_features": "Rectangular head with two large, circular eye sockets and gear-like details; no visible mouth or nose; face is mechanical and expressionless.",
+    "attribute_limb_articulation": "Multiple visible articulation points on arms and legs, including rotary and hinge joints at shoulders, elbows, hips, and knees; hands and feet appear rigid with minimal articulation.",
+    "attribute_presence_of_sensors": "None visible",
+    "uid": "a726b5b7b8aa42cb8cd5e7f84aad4c7c",
+    "near_synsets": {
+        "android.n.01": 0.5441317678345422,
+        "robotics_equipment.n.01": 0.5525613769169653,
+        "cyborg.n.01": 0.556229588488685,
+        "automaton.n.02": 0.5632697029988999,
+        "robotics.n.01": 0.5690106171386325
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a726b5b7b8aa42cb8cd5e7f84aad4c7c",
+        "creator_username": "tylermonster101",
+        "creator_display_name": "tylermonster101",
+        "creator_profile_url": "https://sketchfab.com/tylermonster101"
+    },
+    "filename": "std_a726b5b7b8aa42cb8cd5e7f84aad4c7c.glb",
+    "length": 0.40443678200244904,
+    "width": 2.2290267944335938
+}

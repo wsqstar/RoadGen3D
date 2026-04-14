@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a heavily armored combat tactical vehicle resembling a main battle tank, featuring a large, centrally mounted turret with a long barrel cannon extending forward. The hull is robust and angular, with sloped armor panels on the front and sides for increased protection. The exterior is covered in a multi-tone camouflage pattern of green, brown, black, and white, designed to break up its outline. The vehicle rides on wide, continuous tracks with multiple road wheels visible along the lower hull, providing excellent off-road mobility. Several hatches, periscopes, and antennae are visible on the turret and hull, indicating crew access and communication capabilities. The number '08' is painted in white on the turret sides, serving as a military marking.",
+    "description": "A camouflaged, heavily armored tank with a large turret, long cannon, and continuous tracks, marked with the number '08' on the turret.",
+    "description_view_0": "Front view shows the sloped frontal armor, the main cannon projecting forward, and the rounded turret with visible hatches and antennae.",
+    "description_view_1": "Left side view highlights the length of the cannon, the number '08' on the turret, and the full set of road wheels and tracks.",
+    "description_view_2": "Rear view displays the back of the turret, rear armor, and the exhaust area, with the cannon facing away.",
+    "description_view_3": "Right side view mirrors the left, showing the tracks, turret, and cannon, with the number '08' also visible.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 48000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "closable",
+        "openable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "antenna",
+        "periscope",
+        "track",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted on the turret; possible secondary mounts on the turret roof, but only the main cannon is clearly visible.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating on the front, sides, and turret; no modular or reactive panels are visible.",
+    "attribute_camouflage_pattern": "Woodland-style camouflage with irregular patches of green, brown, black, and white in a disruptive pattern.",
+    "attribute_military_markings": "White number '08' painted on both sides of the turret.",
+    "attribute_tire_type": "not applicable",
+    "uid": "f4d703fbe17c4cccaac68eec2952988f",
+    "near_synsets": {
+        "tank.n.01": 0.46962099130456325,
+        "military_vehicle.n.01": 0.5071752488290264,
+        "assault_gun.n.02": 0.5219556018312986,
+        "armored_car.n.02": 0.5228125934126867,
+        "reconnaissance_vehicle.n.01": 0.5239418146993341,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f4d703fbe17c4cccaac68eec2952988f",
+        "creator_username": "lm9241221",
+        "creator_display_name": "lm9241221",
+        "creator_profile_url": "https://sketchfab.com/lm9241221"
+    },
+    "filename": "std_f4d703fbe17c4cccaac68eec2952988f.glb",
+    "length": 6.579207181930542,
+    "width": 5.714818477630615
+}

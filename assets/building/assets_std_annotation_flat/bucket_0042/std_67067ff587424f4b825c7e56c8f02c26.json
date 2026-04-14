@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a large, L-shaped wooden gate structure with a series of vertical wooden panels framed by dark horizontal and vertical beams. The top of the gate is capped with a corrugated metal or tiled roof, providing both weather protection and a distinct visual accent. The gate includes a main entry section and two perpendicular side extensions, forming a partial enclosure. The wood appears to be treated or stained, giving it a natural yet refined appearance, while the dark framing adds structural strength and contrast. There is a prominent post at one end, likely serving as a hinge or support for the main gate panel. The overall design is utilitarian with minimal decorative elements, suitable for urban or residential access control.",
+    "description": "A large, L-shaped wooden gate with dark framing and a corrugated roof, featuring a main entry and side extensions for access control.",
+    "description_view_0": "Top-down view showing the full L-shaped layout, the corrugated roof, and the arrangement of the main gate and side extensions.",
+    "description_view_1": "Angled view highlighting the thickness of the panels and the separation between the main gate and side sections.",
+    "description_view_2": "Side view displaying the length of the main gate section and the perpendicular side extensions with their roofs.",
+    "description_view_3": "Reverse angled view focusing on the back of the gate and the supporting post structure.",
+    "category": "gate",
+    "height": 2.2,
+    "max_dimension": 7.0,
+    "materials": [
+        "wood",
+        "metal",
+        "tile",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "gate panel",
+        "handle",
+        "hinge",
+        "latch"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "dark brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.55,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_gate_type": "swing gate",
+    "attribute_opening_mechanism": "manual swing",
+    "attribute_decorative_elements": [],
+    "attribute_locking_system": "latch",
+    "attribute_surrounding_structure": "wooden posts and framed wooden panels",
+    "uid": "67067ff587424f4b825c7e56c8f02c26",
+    "near_synsets": {
+        "gate.n.01": 0.48370860962466705,
+        "lock-gate.n.01": 0.48445694972307685,
+        "gateway.n.01": 0.4875198504257241,
+        "portcullis.n.01": 0.491433467981326,
+        "door.n.01": 0.5155642601338449,
+        "gate.n.03": -1000.0,
+        "gate.n.04": -1000.0,
+        "gate.n.02": -1000.0
+    },
+    "synset": "gate.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/67067ff587424f4b825c7e56c8f02c26",
+        "creator_username": "FatFreeBeefCake",
+        "creator_display_name": "Mizuchi Sensei",
+        "creator_profile_url": "https://sketchfab.com/FatFreeBeefCake"
+    },
+    "filename": "std_67067ff587424f4b825c7e56c8f02c26.glb",
+    "length": 7.215152263641357,
+    "width": 8.890769958496094
+}

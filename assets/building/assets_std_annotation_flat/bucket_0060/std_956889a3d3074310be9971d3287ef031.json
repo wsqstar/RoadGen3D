@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a compact shotgun with a short barrel and a robust, utilitarian design. The receiver and barrel are finished in a dark, matte metal, while the grip and fore-end are covered in a textured blue material, likely rubber or polymer, for improved handling. The stock is absent, replaced by a pistol grip that is ergonomically shaped and wrapped for comfort and control. The pump-action mechanism is clearly visible beneath the barrel, with a tubular magazine running parallel to the barrel. The trigger guard is rounded and moderately sized, providing protection for the trigger while allowing easy access. Overall, the shotgun has a rugged, tactical appearance suitable for close-quarters use in urban environments.",
+    "description": "A compact, pump-action shotgun with a blue pistol grip, short barrel, and matte metal finish, designed for tactical use.",
+    "description_view_0": "Side view showing the blue pistol grip, wooden receiver, and the full length of the short barrel and pump.",
+    "description_view_1": "Front view highlighting the circular barrel opening and the alignment of the pump and grip beneath.",
+    "description_view_2": "Opposite side view displaying the blue grip, wooden receiver, and the pump-action mechanism.",
+    "description_view_3": "Rear view focusing on the blue pistol grip and the back of the receiver, with the barrel receding away.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.7,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "pumpable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pistol grip",
+        "pump",
+        "trigger",
+        "trigger guard",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.25,
+        0.25,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, no visible ribbing or venting, short barrel length",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with smooth edges and no finger grooves",
+    "uid": "956889a3d3074310be9971d3287ef031",
+    "near_synsets": {
+        "pump_action.n.01": 0.4826553503159368,
+        "sawed-off_shotgun.n.01": 0.5011468139507181,
+        "shotgun.n.01": 0.5059930020909199,
+        "gas_gun.n.01": 0.5140013353713421,
+        "pistol.n.01": 0.5149193754658448
+    },
+    "synset": "shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/956889a3d3074310be9971d3287ef031",
+        "creator_username": "mazagacka",
+        "creator_display_name": "mazagacka",
+        "creator_profile_url": "https://sketchfab.com/mazagacka"
+    },
+    "filename": "std_956889a3d3074310be9971d3287ef031.glb",
+    "length": 0.9561161994934082,
+    "width": 0.0934983678162098
+}

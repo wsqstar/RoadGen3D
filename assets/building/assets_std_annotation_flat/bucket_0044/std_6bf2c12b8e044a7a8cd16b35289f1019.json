@@ -1,0 +1,98 @@
+{
+    "description_long": "This humanoid robot features a rounded, dome-shaped torso with a glossy finish, predominantly colored in deep blue and vibrant pink. Its head is integrated into the torso, with a horizontal green-lit visor or sensor array serving as its eyes. The robot has two robust arms, each ending in a mitten-like hand, and two sturdy legs with wide, boot-like feet, all connected to the torso by metallic rods that suggest mechanical joints. The limbs are segmented with bulbous, rounded joints, giving the robot a playful yet functional appearance. The overall design is sleek and modern, with smooth, continuous surfaces and no visible seams or exposed wiring. The robot's posture and proportions evoke a friendly, approachable character suitable for urban environments.",
+    "description": "A glossy, blue and pink humanoid robot with a rounded torso, green visor eyes, and segmented limbs ending in mitten-like hands and boot-like feet.",
+    "description_view_0": "Front view showing the green visor eyes, rounded torso, and both arms extended outward with mitten-like hands visible.",
+    "description_view_1": "Side view highlighting the depth of the torso, the arm's cylindrical connection, and the profile of the boot-like foot.",
+    "description_view_2": "Rear view displaying the smooth, rounded back of the torso, both arms and legs, and the absence of facial features.",
+    "description_view_3": "Opposite side view focusing on the arm and leg profile, with the green visor partially visible.",
+    "category": "humanoid robot",
+    "height": 1.1,
+    "max_dimension": 1.5,
+    "materials": [
+        "plastic",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 38,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "visor",
+        "arms",
+        "hands",
+        "legs",
+        "feet"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "pink",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.4,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.12,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.18,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing with legs apart for balance, arms extended outward at shoulder height, hands open and facing forward, torso upright, and head integrated into the torso.",
+    "attribute_clothing_style": "No clothing; the robot is covered in integrated, glossy blue and pink panels with decorative striping.",
+    "attribute_facial_features": "Face consists of a horizontal green-lit visor or sensor array; no mouth, nose, or other facial features are present.",
+    "attribute_limb_articulation": "Arms and legs are attached with visible ball joints at the shoulders and hips, hinge joints at elbows and knees, and rotary joints at wrists and ankles, allowing a wide range of motion; hands and feet are mitten-like and appear rigid.",
+    "attribute_presence_of_sensors": "Green visor on the front of the torso likely functions as a visual sensor or camera array; no other sensors are visible.",
+    "uid": "6bf2c12b8e044a7a8cd16b35289f1019",
+    "near_synsets": {
+        "android.n.01": 0.5381175165530466,
+        "cyborg.n.01": 0.5510505643522076,
+        "robotics_equipment.n.01": 0.5620080901800725,
+        "automaton.n.02": 0.5726753234395409,
+        "robotics.n.01": 0.5866276127816835
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6bf2c12b8e044a7a8cd16b35289f1019",
+        "creator_username": "Smurf2cool",
+        "creator_display_name": "Smurf2cool",
+        "creator_profile_url": "https://sketchfab.com/Smurf2cool"
+    },
+    "filename": "std_6bf2c12b8e044a7a8cd16b35289f1019.glb",
+    "length": 0.7844192087650299,
+    "width": 1.8426936864852905
+}

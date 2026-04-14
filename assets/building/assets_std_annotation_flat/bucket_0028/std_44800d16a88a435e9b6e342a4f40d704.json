@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a single, elongated passenger train car with a dark, nearly black roof and a series of evenly spaced rectangular windows along both sides. The roof features several raised rectangular vents or hatches, suggesting ventilation or emergency exits. The undercarriage is detailed with visible wheels, suspension, and mechanical components, typical of modern commuter or intercity rail cars. The sides of the train are smooth, with subtle paneling and a consistent window pattern, but no visible doors. The ends of the car are flat and solid, with minimal detailing, likely for coupling with other train cars. The overall design is streamlined and utilitarian, suitable for urban or suburban rail networks.",
+    "description": "A streamlined, dark-roofed passenger train car with evenly spaced rectangular windows and detailed undercarriage, lacking visible doors.",
+    "description_view_0": "Side view showing a long row of rectangular windows, dark roof with vents, and detailed undercarriage.",
+    "description_view_1": "End view displaying the flat, solid face of the train car with no visible windows or doors.",
+    "description_view_2": "Opposite side view, mirroring the window and roof vent arrangement seen in view 0.",
+    "description_view_3": "Other end view, similar to view 1, showing the flat end of the train car.",
+    "category": "train",
+    "height": 3.8,
+    "max_dimension": 24.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.07,
+        0.03,
+        0.03
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "closable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "vent"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "commuter train",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "no visible doors",
+    "attribute_window_arrangement": "continuous row of rectangular windows",
+    "uid": "44800d16a88a435e9b6e342a4f40d704",
+    "near_synsets": {
+        "passenger_train.n.01": 0.46238259541515986,
+        "train.n.01": 0.4688212000199073,
+        "streamliner.n.01": 0.4688255262090291,
+        "car_train.n.01": 0.4759421014137661,
+        "passenger_car.n.01": 0.4944041756702749,
+        "train.n.04": -1000.0,
+        "caravan.n.01": -1000.0,
+        "gearing.n.01": -1000.0,
+        "train.n.05": -1000.0,
+        "string.n.04": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/44800d16a88a435e9b6e342a4f40d704",
+        "creator_username": "gipc",
+        "creator_display_name": "GIPC",
+        "creator_profile_url": "https://sketchfab.com/gipc"
+    },
+    "filename": "std_44800d16a88a435e9b6e342a4f40d704.glb",
+    "length": 17.252208709716797,
+    "width": 2.6796875
+}

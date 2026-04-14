@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a historical-style cannon mounted on a wooden carriage with four wooden wheels. The cannon barrel is made of dark, heavy metal, featuring reinforcing bands and a slightly flared muzzle. The wooden carriage is constructed from planks with visible wood grain and is reinforced with metal bolts and spherical side fixtures. Cannonballs are stored in the rear compartment of the carriage, visible from the back. The wheels are simple, solid wood discs, and the overall construction suggests durability and mobility for battlefield use. The asset has no visible modern features, focusing on a classic, old-world design.",
+    "description": "A heavy metal cannon mounted on a wooden wheeled carriage, with visible cannonballs stored in the rear compartment.",
+    "description_view_0": "Front view showing the open muzzle of the cannon and the wooden carriage sides.",
+    "description_view_1": "Side view displaying the full length of the cannon barrel, the wooden carriage, and two wheels.",
+    "description_view_2": "Rear view revealing the back of the cannon, the carriage interior, and several cannonballs stored inside.",
+    "description_view_3": "Opposite side view showing the cannon barrel, carriage, and wheels from the other side.",
+    "category": "combat tactical  vehicle",
+    "height": 1.1,
+    "max_dimension": 2.2,
+    "materials": [
+        "iron",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.4,
+        0.05
+    ],
+    "mass": 650,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "rotatable",
+        "loadable",
+        "fireable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheels",
+        "cannon barrel",
+        "cannonball storage compartment"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "beige"
+    ],
+    "colors_composition": [
+        0.5,
+        0.45,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "group",
+    "attribute_weapon_mounts": "One fixed cannon barrel mounted centrally on the wooden carriage.",
+    "attribute_armor_plating": "None visible; the carriage is made of wood and the cannon is exposed metal.",
+    "attribute_camouflage_pattern": "None visible; surfaces are solid black and natural wood colors.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "43e57eb32c3e4df4be221895b6519ea3",
+    "near_synsets": {
+        "cannon.n.02": 0.45337472555413383,
+        "cannon.n.01": 0.4874301024971024,
+        "weapons_carrier.n.01": 0.49500580681056194,
+        "caisson.n.02": 0.4960351257588995,
+        "military_vehicle.n.01": 0.5078770990447278,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "cannon.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/43e57eb32c3e4df4be221895b6519ea3",
+        "creator_username": "mr.Olgerd",
+        "creator_display_name": "mr.Olgerd",
+        "creator_profile_url": "https://sketchfab.com/mr.Olgerd"
+    },
+    "filename": "std_43e57eb32c3e4df4be221895b6519ea3.glb",
+    "length": 1.8937535881996155,
+    "width": 0.6927379369735718
+}

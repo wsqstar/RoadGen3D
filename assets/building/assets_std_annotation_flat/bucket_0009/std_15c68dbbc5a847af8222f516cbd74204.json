@@ -1,0 +1,101 @@
+{
+    "description_long": "This humanoid robot features a robust, industrial design with a predominantly white and gray body accented by blue structural frames and orange panels. Its torso is compact and reinforced, with a visible ribbed section on the back, likely for cooling or structural support. The arms are extended outward, each ending in a simple, rounded hand with black tips, and the legs are jointed for bipedal locomotion, terminating in broad, flat feet for stability. The head is small and encased in a blue protective frame, with an orange visor or sensor array at the front, suggesting the presence of visual or environmental sensors. The robot's overall build is utilitarian, with exposed mechanical joints and a sturdy exoskeleton, indicating it is designed for mobility and interaction in urban environments. The combination of hard surfaces and visible mechanical components gives it a functional, high-tech appearance.",
+    "description": "A robust, white and gray humanoid robot with blue framing, orange sensor panels, and articulated limbs designed for urban mobility and interaction.",
+    "description_view_0": "Front view shows the robot's symmetrical arms outstretched, orange visor or sensor on the head, and broad, stable legs.",
+    "description_view_1": "Left side view highlights the blue structural frame, orange side panel, and the depth of the torso and limbs.",
+    "description_view_2": "Rear view reveals the ribbed back panel, blue exoskeleton, and the mechanical structure of the legs and arms.",
+    "description_view_3": "Right side view mirrors the left, showing the blue frame, orange panel, and the robot's profile.",
+    "category": "humanoid robot",
+    "height": 1.7,
+    "max_dimension": 2.1,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 95,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "hands",
+        "legs",
+        "head",
+        "sensor panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "blue",
+        "orange",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms extended horizontally to the sides, legs straight and parallel, head facing forward, and torso upright.",
+    "attribute_clothing_style": "No clothing; the robot is covered with integrated panels and structural frames in white, gray, blue, and orange.",
+    "attribute_facial_features": "The face consists of an orange visor or sensor array with no visible mouth or nose; facial features are minimal and functional.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible joints, including shoulder, elbow, hip, and knee hinges, allowing for a wide range of motion; hands are simple and rounded.",
+    "attribute_presence_of_sensors": "Visible sensor array or camera on the front of the head within the orange visor.",
+    "uid": "15c68dbbc5a847af8222f516cbd74204",
+    "near_synsets": {
+        "android.n.01": 0.532891819900662,
+        "cyborg.n.01": 0.5567683969792767,
+        "robotics_equipment.n.01": 0.5627174844094055,
+        "robotics.n.01": 0.5639068156494859,
+        "automaton.n.02": 0.5698134231868606
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/15c68dbbc5a847af8222f516cbd74204",
+        "creator_username": "Deacon23",
+        "creator_display_name": "Xenomorph23",
+        "creator_profile_url": "https://sketchfab.com/Deacon23"
+    },
+    "filename": "std_15c68dbbc5a847af8222f516cbd74204.glb",
+    "length": 0.4217165410518646,
+    "width": 1.7236546277999878
+}

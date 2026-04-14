@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a medium-sized, hexagonal tent with a peaked roof and a deep reddish-brown fabric exterior. The tent is supported by six slender poles at each corner, with guy lines extending outward and anchored to the ground for stability. The front features a wide, double-panel flap entrance that can be opened or closed, providing easy access to the interior. The fabric appears to be a durable, weather-resistant material, likely canvas or polyester, suitable for outdoor use in parks or urban green spaces. The tent's structure is simple, with no visible windows or mesh panels, and the guy lines are evenly spaced around the perimeter. There are no visible logos or branding on the exterior.",
+    "description": "A reddish-brown, hexagonal tent with a peaked roof, double-panel flap entrance, and six guy lines anchored at each corner.",
+    "description_view_0": "Front view showing the closed tent with all guy lines visible and the peaked roof.",
+    "description_view_1": "Angled side view highlighting the tent's polygonal shape and the attachment of guy lines.",
+    "description_view_2": "Front view with the entrance flaps open, revealing the tent's interior access.",
+    "description_view_3": "Opposite angled side view, similar to view 1, with guy lines and tent panels visible.",
+    "category": "tent",
+    "height": 2.1,
+    "max_dimension": 2.6,
+    "materials": [
+        "fabric",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.15
+    ],
+    "mass": 14,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "tieable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "entrance flap",
+        "guy line",
+        "pole"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "reddish-brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 500,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "Double-panel flap entrance at the front, opens outward for access, no visible zippers or mesh.",
+    "attribute_number_of_poles": 6,
+    "attribute_guy_line_configuration": "Six guy lines, one at each corner, evenly spaced and anchored outward from the tent's base.",
+    "attribute_ventilation_openings": [],
+    "attribute_branding_or_logo": "none",
+    "uid": "acb06bbe35f44700800638b2ff657c24",
+    "near_synsets": {
+        "sibley_tent.n.01": 0.4716978349809151,
+        "field_tent.n.01": 0.47376389183021494,
+        "wall_tent.n.01": 0.473949006432734,
+        "cottage_tent.n.01": 0.4829345015753097,
+        "two-man_tent.n.01": 0.4831713220268911,
+        "tent.n.02": -1000.0,
+        "tent.n.01": -1000.0
+    },
+    "synset": "tent.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/acb06bbe35f44700800638b2ff657c24",
+        "creator_username": "LucasPresoto",
+        "creator_display_name": "LucasPresoto",
+        "creator_profile_url": "https://sketchfab.com/LucasPresoto"
+    },
+    "filename": "std_acb06bbe35f44700800638b2ff657c24.glb",
+    "length": 3.165124773979187,
+    "width": 3.259481191635132
+}

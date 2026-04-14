@@ -1,0 +1,98 @@
+{
+    "description_long": "This stretcher features a rectangular, textured red platform supported by a robust, metallic scissor-lift frame. The frame is constructed from tubular metal bars and is equipped with four black wheels for mobility, allowing it to be easily moved across flat surfaces. On one side, there is a small drawer and a handle, likely for storing medical supplies and for maneuvering the stretcher. The surface appears to be hard and slightly grippy, with a diamond-patterned texture for added traction. The stretcher lacks visible side rails but has a low-profile design suitable for urban emergency or transport scenarios. Its overall construction suggests durability and ease of use in fast-paced environments.",
+    "description": "A red, diamond-textured stretcher with a metallic scissor-lift frame and four wheels, featuring a side drawer and handle for maneuverability and storage.",
+    "description_view_0": "Side view showing the full length of the stretcher, the scissor-lift frame, four wheels, a side drawer, and a handle.",
+    "description_view_1": "Front view highlighting the narrow width, the diamond-patterned surface, and the alignment of the wheels beneath the frame.",
+    "description_view_2": "Opposite side view displaying the scissor-lift frame, wheels, and the absence of a drawer or handle on this side.",
+    "description_view_3": "Rear view showing the end of the stretcher, the handle, and the supporting frame structure.",
+    "category": "stretcher",
+    "height": 1.0,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 35,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "drawer",
+        "wheel",
+        "scissor-lift frame"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "grippy",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_wheels": true,
+    "attribute_collapsible_frame": true,
+    "attribute_side_rails": false,
+    "attribute_handles": true,
+    "attribute_mattress_pad": false,
+    "uid": "24875ffacb0849248a38c0a0a85304cb",
+    "near_synsets": {
+        "stretcher.n.03": 0.5250163416831394,
+        "gurney.n.01": 0.5270770552404935,
+        "stretcher.n.02": 0.5351208700108668,
+        "stretcher.n.01": 0.5402020033346125,
+        "hospital_bed.n.01": 0.5613751939347094,
+        "capstone.n.02": -1000.0
+    },
+    "synset": "stretcher.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/24875ffacb0849248a38c0a0a85304cb",
+        "creator_username": "alexkrog",
+        "creator_display_name": "Alexander Krogsager",
+        "creator_profile_url": "https://sketchfab.com/alexkrog"
+    },
+    "filename": "std_24875ffacb0849248a38c0a0a85304cb.glb",
+    "length": 1.3744194507598877,
+    "width": 0.6129884123802185
+}

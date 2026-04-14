@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a tall, rectangular vending machine with a metallic gray body and a prominent front panel featuring a colorful display for beverage selection. The front face includes a large product selection area with images of various drinks, a digital display, a payment interface, and a product retrieval slot. The branding 'StoryWay' is visible at the bottom front, accompanied by a cheerful, multicolored logo. The sides and back of the machine are plain, smooth, and metallic, with the back showing some venting and access panels. The machine is designed for dispensing coffee and sweet tea, as indicated by the graphics and text on the front. Its robust construction and size suggest it is intended for public or semi-public urban environments.",
+    "description": "A tall, metallic vending machine with a colorful beverage selection panel, payment interface, and prominent branding on the front. The sides and back are plain and metallic, with the front designed for user interaction.",
+    "description_view_0": "A plain, metallic side view with no visible interactive features or branding.",
+    "description_view_1": "The front view shows the main interactive panel, including product selection buttons, payment interface, digital display, retrieval slot, and colorful branding.",
+    "description_view_2": "The opposite side view is also plain and metallic, with a small portion of the front panel's branding visible at the bottom edge.",
+    "description_view_3": "The back view reveals venting and access panels, with a utilitarian metallic finish and no interactive features.",
+    "category": "vending machine",
+    "height": 1.8,
+    "max_dimension": 0.7,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "electronics",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "display panel",
+        "payment slot",
+        "retrieval slot",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "yellow",
+        "orange",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.08,
+        0.05,
+        0.04,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A rectangular digital display panel is located on the upper front section, above the payment interface, showing product information and possibly instructions.",
+    "attribute_payment_interface": "A payment interface is present on the front, including a card reader, coin slot, and bill acceptor, all clustered below the product selection area.",
+    "attribute_product_selection_buttons": "There are multiple individual product selection buttons arranged in a grid, each labeled with a drink image and text, located centrally on the front panel.",
+    "attribute_product_retrieval_slot": "A rectangular retrieval slot with a flap is located below the payment interface, designed for dispensing selected beverages.",
+    "attribute_branding_or_signage": "The branding 'StoryWay' in orange text and a multicolored circular logo are prominently displayed at the bottom front, with additional beverage graphics and the text 'Coffee & Sweet Tea' above the selection buttons.",
+    "uid": "a238babee5c3457090451189d7da20b8",
+    "near_synsets": {
+        "vending_machine.n.01": 0.47800778588528803,
+        "automat.n.01": 0.5300213290878725,
+        "soda_fountain.n.02": 0.5730457534344632,
+        "automat.n.02": 0.5862274805906854,
+        "soda_fountain.n.01": 0.5867794656568853,
+        "machine.n.02": -1000.0,
+        "machine.n.05": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.01": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a238babee5c3457090451189d7da20b8",
+        "creator_username": "bolinas",
+        "creator_display_name": "bolinas",
+        "creator_profile_url": "https://sketchfab.com/bolinas"
+    },
+    "filename": "std_a238babee5c3457090451189d7da20b8.glb",
+    "length": 0.6067476868629456,
+    "width": 0.7454193234443665
+}

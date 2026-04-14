@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a medium-sized wooden sailing ship with a single central mast and a rectangular sail, reminiscent of historical merchant or military vessels. The hull is robust and angular, with a flat deck featuring multiple cannon ports along both sides, suggesting it is armed for defense or combat. The bow is pointed and slightly raised, while the stern is squared off and features a small raised section, possibly for steering or command. The deck is open and unobstructed, with visible rigging and a rope ladder leading up the mast. The ship's surface is predominantly wood, with metal elements likely present in the cannons and rigging hardware. There are no visible cabins or enclosed superstructures, emphasizing its utilitarian and open design.",
+    "description": "A wooden sailing ship with a single mast, open deck, and multiple cannon ports along the sides. The vessel features a pointed bow, squared stern, and visible rigging.",
+    "description_view_0": "Front view showing the pointed bow, central mast, and open deck layout.",
+    "description_view_1": "Side view highlighting the row of cannon ports, rope ladder, and the ship's elongated hull.",
+    "description_view_2": "Rear view displaying the squared stern, open deck, and central mast with rigging.",
+    "description_view_3": "Opposite side view with cannon ports and the mast's rigging clearly visible.",
+    "category": "ship",
+    "height": 12.0,
+    "max_dimension": 35.0,
+    "materials": [
+        "wood",
+        "metal",
+        "rope",
+        "canvas",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "mass": 18000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "pullable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cannon",
+        "rope ladder",
+        "mast",
+        "sail",
+        "rigging"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "beige",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a pointed bow and squared stern, featuring a flat deck and multiple cannon ports along both sides. The hull sides are straight and vertical, with no visible keels or bulbous bows.",
+    "attribute_superstructure_layout": "The ship has an open deck with no enclosed superstructure, cabins, or bridges. The only raised element is a small section at the stern, likely for steering or command.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "cannon",
+        "rope ladder",
+        "rigging",
+        "mast",
+        "sail"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "48b4f5e4b6f04fa9a13d9df0b7a82309",
+    "near_synsets": {
+        "sailing_vessel.n.01": 0.46349236244504877,
+        "sailboat.n.01": 0.4758161269073318,
+        "fore-and-after.n.01": 0.4846238650995833,
+        "catboat.n.01": 0.4876061786316217,
+        "bark.n.03": 0.4883138779635276,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/48b4f5e4b6f04fa9a13d9df0b7a82309",
+        "creator_username": "Museovirasto",
+        "creator_display_name": "Museovirasto Museiverket Finnish Heritage Agency",
+        "creator_profile_url": "https://sketchfab.com/Museovirasto"
+    },
+    "filename": "std_48b4f5e4b6f04fa9a13d9df0b7a82309.glb",
+    "length": 18.435272216796875,
+    "width": 8.326269149780273
+}

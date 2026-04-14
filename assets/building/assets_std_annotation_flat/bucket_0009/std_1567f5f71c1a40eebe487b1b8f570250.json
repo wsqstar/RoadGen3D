@@ -1,0 +1,103 @@
+{
+    "description_long": "This forklift features a robust industrial design with a predominantly orange and black color scheme, suitable for heavy-duty lifting tasks in urban environments. The vehicle is equipped with two long, parallel fork arms at the front, designed for lifting and transporting pallets or heavy loads. The operator's compartment is protected by a sturdy overhead guard with multiple cutouts for visibility and ventilation, and includes a single black seat, steering wheel, and control levers. The mast is a vertical, reinforced structure with visible hydraulic components and a 'CAUTION' label, supporting the lifting mechanism. The forklift rides on four solid wheels, with the rear wheels slightly smaller and set under a compact counterweight section labeled 'RECOND'. Additional safety features include side mirrors and warning lights mounted on the overhead guard. This vehicle is built for maneuverability and safety in warehouses, loading docks, and construction sites.",
+    "description": "A heavy-duty orange and black forklift with long fork arms, a reinforced mast, and a protected operator's seat under an overhead guard, designed for urban industrial use.",
+    "description_view_0": "Front view showing the two orange fork arms, the protective overhead guard, and the operator's compartment with visible seat and controls.",
+    "description_view_1": "Left side view highlighting the full length of the fork arms, the mast with 'CAUTION' label, the operator's seat, and the rear counterweight section.",
+    "description_view_2": "Rear view displaying the 'RECOND' label on the counterweight, the overhead guard structure, and the back of the operator's seat.",
+    "description_view_3": "Right side view similar to the left, showing the fork arms, mast, operator's seat, and rear wheel, with clear visibility of the overhead guard and warning lights.",
+    "category": "forklift",
+    "height": 2.2,
+    "max_dimension": 3.2,
+    "materials": [
+        "steel",
+        "rubber",
+        "plastic",
+        "glass",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.07,
+        0.03,
+        0.02,
+        0.03
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "liftable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "steering wheel",
+        "seat",
+        "fork arms",
+        "mast",
+        "control levers",
+        "wheels",
+        "side mirrors",
+        "warning lights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.45,
+        0.5,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_fork_arms": "Two straight, parallel fork arms are visible at the front, colored orange, with a rectangular cross-section. They are long, flat, and moderately thick, extending forward from the mast and positioned close together for lifting pallets. The arms appear smooth and robust, with no visible attachments or signs of wear.",
+    "attribute_overhead_guard": "The overhead guard is a black, steel frame structure with multiple rectangular cutouts on the top for ventilation and visibility. It covers the operator's compartment fully, providing protection from falling objects, and features side supports integrated into the vehicle's frame. Mounted warning lights and mirrors are attached to the upper corners.",
+    "attribute_mast": "The mast is a double-stage vertical assembly, constructed from reinforced black steel with visible hydraulic cylinders and lift chains. It extends from the front of the vehicle and supports the fork arms, with a 'CAUTION' label on the side. The mast appears sturdy and is designed for significant lifting height.",
+    "attribute_operator_seat": "The operator seat is a single, contoured black seat with a high backrest, made from molded plastic or vinyl. It is positioned centrally within the operator's compartment, with no visible armrests or headrest, and is accompanied by a steering wheel and control levers within easy reach.",
+    "attribute_warning_lights": "Two small, rectangular amber warning lights are mounted on the upper corners of the overhead guard, one on each side. They are not illuminated in the images and are positioned for maximum visibility to surrounding personnel.",
+    "uid": "1567f5f71c1a40eebe487b1b8f570250",
+    "near_synsets": {
+        "forklift.n.01": 0.4314405385955671,
+        "lifting_device.n.01": 0.5273606707663684,
+        "stacker_crane.n.01": 0.5378225415375018,
+        "hayfork.n.01": 0.5438234809663081,
+        "hoist.n.01": 0.5490196175154706
+    },
+    "synset": "forklift.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1567f5f71c1a40eebe487b1b8f570250",
+        "creator_username": "kray3d",
+        "creator_display_name": "KRAY\u018eD",
+        "creator_profile_url": "https://sketchfab.com/kray3d"
+    },
+    "filename": "std_1567f5f71c1a40eebe487b1b8f570250.glb",
+    "length": 3.8809046745300293,
+    "width": 1.2701730132102966
+}

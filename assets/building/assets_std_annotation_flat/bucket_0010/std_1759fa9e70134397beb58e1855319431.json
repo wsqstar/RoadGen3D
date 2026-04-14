@@ -1,0 +1,93 @@
+{
+    "description_long": "This kiosk is a compact, rectangular structure with a flat roof and a small footprint, designed for urban environments such as sidewalks or plazas. The front features a service window or counter, likely for transactions or customer interaction, flanked by solid side panels for privacy and security. The exterior appears to be constructed primarily from metal or painted steel, with some glass or transparent material at the service window. The roof is flat and slightly overhangs the front, providing minimal shelter for customers. The color scheme is predominantly gray and white, with some darker accents, giving it a modern and utilitarian appearance. There is minimal visible signage, and the overall design is functional, with clean lines and no decorative elements.",
+    "description": "A small, modern kiosk with a flat roof, service window, and solid side panels, finished in gray and white tones.",
+    "description_view_0": "Front view shows the service window or counter and the main access point, with the roof overhang visible.",
+    "description_view_1": "Side view reveals the kiosk's narrow profile and solid side panel, with the service window edge visible.",
+    "description_view_2": "Rear view displays a plain, solid back panel with no windows or doors.",
+    "description_view_3": "Opposite side view mirrors the other side, showing the solid panel and edge of the service window.",
+    "category": "kiosk",
+    "height": 2.5,
+    "max_dimension": 3.0,
+    "materials": [
+        "painted_steel",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "service window",
+        "counter",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "none",
+    "attribute_window_presence": "one window at the front, rectangular",
+    "attribute_door_configuration": "one single door at the rear",
+    "attribute_roof_design": "flat roof, slight overhang at front, metal construction",
+    "attribute_architectural_style": "modern, utilitarian",
+    "uid": "1759fa9e70134397beb58e1855319431",
+    "near_synsets": {
+        "booth.n.02": 0.5310080164322322,
+        "shopfront.n.01": 0.5507844949819379,
+        "window.n.07": 0.5523563726283426,
+        "kitchenette.n.01": 0.5638009568589618,
+        "wicket.n.04": 0.5707476093678567
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1759fa9e70134397beb58e1855319431",
+        "creator_username": "Exhibit-Pros",
+        "creator_display_name": "Exhibit-Pros",
+        "creator_profile_url": "https://sketchfab.com/Exhibit-Pros"
+    },
+    "filename": "std_1759fa9e70134397beb58e1855319431.glb",
+    "length": 40.698415756225586,
+    "width": 37.3994083404541
+}

@@ -1,0 +1,122 @@
+{
+    "description_long": "This is a full-sized basketball court featuring a wooden playing surface with clearly marked lines, including the three-point arc, free throw lanes, and center circle. The court is divided into two symmetrical halves, each with a rectangular glass backboard and an orange basketball hoop mounted on a sturdy support structure. The playing area is bordered by black sidelines and baselines, providing a visual contrast to the lighter wood tones of the court. The court markings are crisp and standard, suitable for regulation play. There are no visible fences or enclosures, and the design suggests an urban outdoor or recreational setting. The overall structure is robust, with the basketball hoops and backboards appearing fixed and durable.",
+    "description": "A regulation-sized basketball court with a wooden surface, black borders, and two glass backboards with hoops. The court features standard basketball markings and is designed for urban outdoor use.",
+    "description_view_0": "Frontal view showing the length of the court, both hoops, and the full set of court markings.",
+    "description_view_1": "Side view highlighting the width of the court, both backboards, and the symmetry of the playing area.",
+    "description_view_2": "Rear view mirroring the frontal perspective, displaying the opposite end of the court and both hoops.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the court's width and both backboards from the other side.",
+    "category": "basketball court",
+    "height": 4.2,
+    "max_dimension": 28.0,
+    "materials": [
+        "wood",
+        "paint",
+        "glass",
+        "metal",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.05,
+        0.05,
+        0.15,
+        0.03,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "playable",
+        "shootable",
+        "throwable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hoop",
+        "backboard",
+        "court surface"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light brown",
+        "black",
+        "white",
+        "orange",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_hoop_presence": true,
+    "attribute_backboard_type": "rectangular glass",
+    "attribute_court_markings": [
+        "three-point line",
+        "free throw line",
+        "center circle",
+        "key",
+        "sidelines",
+        "baseline"
+    ],
+    "attribute_fence_enclosure": false,
+    "attribute_architectural_style": "urban outdoor",
+    "uid": "46ee46afcd484fa5865277898d3728ad",
+    "near_synsets": {
+        "basketball_court.n.01": 0.451515187069561,
+        "basket.n.03": 0.5292070411244192,
+        "volleyball_court.n.01": 0.5299383197683111,
+        "basketball.n.01": 0.5314726348018282,
+        "handball_court.n.01": 0.5318468699005076,
+        "motor_hotel.n.01": -1000.0,
+        "court.n.09": -1000.0,
+        "court.n.10": -1000.0,
+        "court.n.01": -1000.0,
+        "court.n.02": -1000.0,
+        "court.n.06": -1000.0,
+        "court.n.08": -1000.0,
+        "court.n.03": -1000.0,
+        "court.n.04": -1000.0,
+        "court.n.05": -1000.0,
+        "basketball.n.02": -1000.0
+    },
+    "synset": "basketball_court.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/46ee46afcd484fa5865277898d3728ad",
+        "creator_username": "imunic0",
+        "creator_display_name": "imunic0",
+        "creator_profile_url": "https://sketchfab.com/imunic0"
+    },
+    "filename": "std_46ee46afcd484fa5865277898d3728ad.glb",
+    "length": 16.580211639404297,
+    "width": 7.078649997711182
+}

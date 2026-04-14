@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a classic blue steam locomotive pulling two gray passenger carriages, each with a series of evenly spaced rectangular windows along their sides. The locomotive features a prominent smokestack, a black cab, and red detailing on the wheels and buffer beams. The carriages are boxy and uniform, with flat roofs and black undercarriages, connected by visible couplers. The train sits on a set of standard gauge tracks, and the overall design suggests a traditional commuter or regional passenger train. No overhead wires or pantographs are present, indicating it is not electric. The exterior is primarily metal, with glass windows and some plastic or rubber components for detailing.",
+    "description": "A blue steam locomotive with two gray passenger carriages, featuring rectangular windows and red wheel accents. The train has a classic design with a black cab and no visible overhead wires.",
+    "description_view_0": "Front view showing the locomotive's face, smokestack, and the aligned carriages behind it.",
+    "description_view_1": "Side view displaying the full length of the train, the blue locomotive, and two gray carriages with rectangular windows.",
+    "description_view_2": "Rear view highlighting the end of the last carriage and the train's overall length.",
+    "description_view_3": "Opposite side view similar to view 1, showing the locomotive and carriages from the other side.",
+    "category": "train",
+    "height": 3.8,
+    "max_dimension": 22.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.04,
+        0.01,
+        0.02
+    ],
+    "mass": 90000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 250000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "openable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "coupler",
+        "smokestack"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.18,
+        0.6,
+        0.18,
+        0.04
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "group",
+    "attribute_train_type": "commuter train",
+    "attribute_number_of_carriages": 2,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end",
+    "attribute_window_arrangement": "continuous row of rectangular windows",
+    "uid": "f76b059601c444348eb6ccc0db704b15",
+    "near_synsets": {
+        "train.n.01": 0.4716412275557682,
+        "steam_locomotive.n.01": 0.4768694382360995,
+        "car_train.n.01": 0.48766536963021273,
+        "passenger_train.n.01": 0.4975315062523412,
+        "train_set.n.01": 0.5065727734159364,
+        "train.n.05": -1000.0,
+        "string.n.04": -1000.0,
+        "gearing.n.01": -1000.0,
+        "train.n.04": -1000.0,
+        "caravan.n.01": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f76b059601c444348eb6ccc0db704b15",
+        "creator_username": "sealandair",
+        "creator_display_name": "Sea Land Air",
+        "creator_profile_url": "https://sketchfab.com/sealandair"
+    },
+    "filename": "std_f76b059601c444348eb6ccc0db704b15.glb",
+    "length": 26.461674690246582,
+    "width": 2.793064832687378
+}

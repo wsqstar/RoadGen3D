@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a rectangular metal radiator, commonly used for heating in urban environments such as homes, offices, or garages. The main body is composed of a series of vertical panels or fins, which are designed to maximize heat dissipation. On one end, there are two visible pipe connections with red manual valves, allowing for the flow of hot water or steam into and out of the radiator. The top surface features a series of narrow horizontal vents or slats, likely for improved air circulation. The overall finish is smooth and painted in a light gray or white color, giving it a clean, utilitarian appearance. The radiator is designed to be mounted against a wall, with pipe connections extending outward for easy integration into a building's heating system.",
+    "description": "A rectangular metal radiator with vertical fins, dual pipe connections with red manual valves, and a smooth light gray finish. Designed for wall mounting and efficient heat dissipation.",
+    "description_view_0": "The radiator is seen from an angle showing the top vents and the side with two pipe connections and red valves.",
+    "description_view_1": "This view highlights the flat rear panel and the protruding pipe connections with visible red manual valves.",
+    "description_view_2": "The front face with vertical fins and both pipe connections extending outward is clearly visible.",
+    "description_view_3": "The radiator's front panel with vertical fins is shown, with the pipe connections partially visible on the left.",
+    "category": "radiator",
+    "height": 0.6,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "paint",
+        "brass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.01,
+        0.04
+    ],
+    "mass": 25,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 300,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "turnable",
+        "adjustable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "valve",
+        "pipe connection"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "red",
+        "silver"
+    ],
+    "colors_composition": [
+        0.92,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "single",
+    "attribute_mounting_location": "wall-mounted",
+    "attribute_pipe_connections": "two, side entry, horizontally oriented, one at top and one at bottom",
+    "attribute_fin_arrangement": "vertical columns",
+    "attribute_valve_type": "manual",
+    "attribute_grille_pattern": "horizontal slats on top, vertical panels on front",
+    "uid": "cec6a4d3ac3a426e85cedf2ff80aee20",
+    "near_synsets": {
+        "radiator.n.03": 0.5088307617538534,
+        "radiator.n.02": 0.5158852361537436,
+        "radiator.n.01": 0.5358970932955335,
+        "panel_heating.n.01": 0.5479435660186845,
+        "heat_sink.n.01": 0.5495863092044195
+    },
+    "synset": "radiator.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cec6a4d3ac3a426e85cedf2ff80aee20",
+        "creator_username": "yryabchenko",
+        "creator_display_name": "yryabchenko",
+        "creator_profile_url": "https://sketchfab.com/yryabchenko"
+    },
+    "filename": "std_cec6a4d3ac3a426e85cedf2ff80aee20.glb",
+    "length": 1.1916800141334534,
+    "width": 1.0428801774978638
+}

@@ -1,0 +1,94 @@
+{
+    "description_long": "This is a tall, slender skyscraper with a modern, rectilinear form and a predominantly white and gray color palette. The facade features a regular grid of windows, with a striking zigzag vertical element running up one side, adding visual interest and a sense of movement. The base of the building is set on a landscaped platform with paved walkways and green patches, suggesting integration with an urban streetscape. The rooftop includes mechanical structures and what appears to be a small terrace or utility area. The building's exterior is composed mainly of glass and concrete, with metal accents visible on the rooftop and facade details. The overall design is sleek and functional, emphasizing verticality and geometric precision.",
+    "description": "A modern, slender skyscraper with a white and gray grid facade, zigzag vertical accent, and landscaped base. Features regular windows, rooftop structures, and a sleek, geometric design.",
+    "description_view_0": "Front view showing the main entrance, zigzag vertical accent on the right, and landscaped base with walkways.",
+    "description_view_1": "Side view highlighting the zigzag vertical element and the building's narrow profile.",
+    "description_view_2": "Rear view displaying the full grid of windows and rooftop mechanical structures, with minimal landscaping visible.",
+    "description_view_3": "Opposite side view with a clear look at the window grid and a small landscaped area at the base.",
+    "category": "skyscraper",
+    "height": 110.0,
+    "max_dimension": 120.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.1,
+        0.1
+    ],
+    "mass": 6500000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "elevator",
+        "rooftop access"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "green"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Modernist",
+    "attribute_number_of_floors": 32,
+    "attribute_facade_design": "The facade is dominated by a regular grid of rectangular windows set within a white concrete frame, with a bold zigzag vertical accent in gray running up one side. The base features landscaped elements and paved walkways, while the rooftop includes visible mechanical structures.",
+    "attribute_window_pattern": "vertical strips",
+    "attribute_building_signage": "none",
+    "uid": "6e288a3c332e4191aebd591a80fca9c6",
+    "near_synsets": {
+        "skyscraper.n.01": 0.46105168117917983,
+        "high-rise.n.01": 0.5309789633955544,
+        "cityscape.n.01": 0.5531549194490792,
+        "cityscape.n.02": 0.5534116021204667,
+        "rendering.n.06": 0.5582724415148569
+    },
+    "synset": "skyscraper.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6e288a3c332e4191aebd591a80fca9c6",
+        "creator_username": "Lovelyta",
+        "creator_display_name": "Lotte",
+        "creator_profile_url": "https://sketchfab.com/Lovelyta"
+    },
+    "filename": "std_6e288a3c332e4191aebd591a80fca9c6.glb",
+    "length": 57.11954307556152,
+    "width": 57.11953353881836
+}

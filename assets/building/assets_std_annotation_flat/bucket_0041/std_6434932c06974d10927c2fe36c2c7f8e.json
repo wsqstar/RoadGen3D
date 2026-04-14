@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a modern commuter train composed of five connected carriages, each with a streamlined, rectangular profile and a metallic silver exterior. The train features a series of evenly spaced rectangular windows along the length of each carriage, providing ample visibility for passengers. The roof is slightly curved and smooth, with subtle detailing such as ventilation units and rooftop equipment visible on some carriages. The undercarriage is detailed with visible wheels and suspension components, painted in a contrasting darker color. The doors are positioned at regular intervals along the sides, designed for efficient passenger entry and exit. The overall design is sleek and functional, suitable for urban and suburban rail networks.",
+    "description": "A sleek, silver commuter train with five carriages, featuring evenly spaced rectangular windows and regularly positioned side doors. The design is modern and functional, with detailed undercarriage and rooftop elements.",
+    "description_view_0": "Side view showing the full length of the train, with all five carriages, windows, and doors clearly visible.",
+    "description_view_1": "End view showing the narrow front or rear profile of the train, highlighting the width and roof curvature.",
+    "description_view_2": "Opposite side view, similar to view 0, displaying the train's length, windows, and doors from the other side.",
+    "description_view_3": "End view from the opposite end, again showing the narrow profile and roof curvature.",
+    "category": "train",
+    "height": 3.8,
+    "max_dimension": 100.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 220000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "button",
+        "wheel",
+        "pantograph"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "group",
+    "attribute_train_type": "commuter train",
+    "attribute_number_of_carriages": 5,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "evenly spaced along both sides",
+    "attribute_window_arrangement": "continuous row of rectangular windows",
+    "uid": "6434932c06974d10927c2fe36c2c7f8e",
+    "near_synsets": {
+        "streamliner.n.01": 0.49438229459328303,
+        "train.n.01": 0.5055984722107171,
+        "subway_train.n.01": 0.5074456318871908,
+        "car_train.n.01": 0.5111275628455835,
+        "commuter.n.01": 0.5144494090991201,
+        "caravan.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "train.n.04": -1000.0,
+        "gearing.n.01": -1000.0,
+        "train.n.05": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6434932c06974d10927c2fe36c2c7f8e",
+        "creator_username": "own.guest",
+        "creator_display_name": "own.guest",
+        "creator_profile_url": "https://sketchfab.com/own.guest"
+    },
+    "filename": "std_6434932c06974d10927c2fe36c2c7f8e.glb",
+    "length": 62.76235580444336,
+    "width": 2.270884394645691
+}

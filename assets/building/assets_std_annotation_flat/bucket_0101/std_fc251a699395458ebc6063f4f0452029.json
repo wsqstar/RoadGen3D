@@ -1,0 +1,105 @@
+{
+    "description_long": "This object consists of a group of six high-rise office buildings, each exhibiting significant structural damage and partial collapse. The buildings are constructed primarily from reinforced concrete and steel, with exposed frameworks, shattered windows, and missing facade sections. The structures vary in height and width, with some retaining more of their original exterior cladding while others reveal skeletal frameworks and debris. The window patterns are mostly regular, but many panes are broken or missing, and the facades are marked by jagged edges and open floors. The ground levels show large open entryways, some with remnants of doors or awnings, and the overall appearance suggests abandonment or post-disaster conditions. The coloration is dominated by shades of gray and brown, with weathering and soot stains visible throughout.",
+    "description": "A group of six damaged high-rise office buildings with exposed steel frameworks, shattered windows, and partially collapsed facades in gray and brown tones.",
+    "description_view_0": "A narrow end-on view showing the depth of the buildings, with visible structural damage and open floors.",
+    "description_view_1": "A wide frontal view displaying all six buildings, highlighting their varying heights, extensive facade damage, and exposed frameworks.",
+    "description_view_2": "A rear end-on view emphasizing the skeletal structure and missing exterior walls of the buildings.",
+    "description_view_3": "A reverse wide view showing the backs of the buildings, with more visible interior floors and broken window patterns.",
+    "category": "office building",
+    "height": 60.0,
+    "max_dimension": 80.0,
+    "materials": [
+        "reinforced concrete",
+        "steel",
+        "glass",
+        "air",
+        "masonry"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "mass": 1200000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "elevator",
+        "staircase"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "group",
+    "attribute_number_of_floors": 18,
+    "attribute_window_pattern": "Regular vertical and horizontal grid, with many broken or missing panes and irregular gaps due to damage.",
+    "attribute_building_entrance_type": "recessed entry",
+    "attribute_signage_presence": false,
+    "attribute_architectural_style": "Modernist",
+    "uid": "fc251a699395458ebc6063f4f0452029",
+    "near_synsets": {
+        "ruin.n.02": 0.5263223793412775,
+        "office_building.n.01": 0.5439050599190822,
+        "skyscraper.n.01": 0.5614402297727422,
+        "building.n.04": 0.5626325663646914,
+        "high-rise.n.01": 0.5647931210778563,
+        "building.n.01": -1000.0,
+        "function.n.03": -1000.0,
+        "office.n.06": -1000.0,
+        "construction.n.07": -1000.0,
+        "position.n.06": -1000.0,
+        "agency.n.01": -1000.0,
+        "office.n.05": -1000.0,
+        "office.n.04": -1000.0,
+        "construction.n.01": -1000.0,
+        "office.n.01": -1000.0
+    },
+    "synset": "office_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fc251a699395458ebc6063f4f0452029",
+        "creator_username": "Helindu",
+        "creator_display_name": "Helindu",
+        "creator_profile_url": "https://sketchfab.com/Helindu"
+    },
+    "filename": "std_fc251a699395458ebc6063f4f0452029.glb",
+    "length": 25.424949645996094,
+    "width": 191.7918472290039
+}

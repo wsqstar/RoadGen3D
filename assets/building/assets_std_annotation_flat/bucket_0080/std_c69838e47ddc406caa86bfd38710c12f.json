@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a mid-rise office building with a rectangular footprint and a flat, gray roof. The facade features a regular grid of large, dark-tinted windows set within a dark structural frame, separated by lighter stone or concrete columns and lintels. The ground floor includes several large storefront windows and multiple entrances, some with red awnings, suggesting retail or commercial spaces at street level. The rear of the building is plain, with no windows or decorative elements, indicating a utilitarian design. The overall appearance is modern with subtle industrial influences, and the building is likely constructed from reinforced concrete and steel. The presence of signage above the entrances and the uniform window arrangement contribute to its professional, urban character.",
+    "description": "A modern, mid-rise office building with a grid of dark windows, stone accents, and retail entrances with red awnings at street level.",
+    "description_view_0": "Front view showing the main facade with large windows, stone columns, multiple entrances, and red awnings.",
+    "description_view_1": "Side view revealing the building's depth, window grid, and the continuation of the stone and dark frame design.",
+    "description_view_2": "Rear view displaying a plain, windowless wall with a uniform concrete finish.",
+    "description_view_3": "Opposite side view similar to view 1, showing the building's length and repeating window pattern.",
+    "category": "office building",
+    "height": 16.0,
+    "max_dimension": 24.0,
+    "materials": [
+        "reinforced concrete",
+        "glass",
+        "steel",
+        "stone",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.18,
+        0.12,
+        0.1,
+        0.05
+    ],
+    "mass": 420000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "awning"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 4,
+    "attribute_window_pattern": "Regularly spaced, rectangular windows in a grid pattern across all floors except the ground level, separated by vertical and horizontal mullions.",
+    "attribute_building_entrance_type": "recessed entry",
+    "attribute_signage_presence": true,
+    "attribute_architectural_style": "Modernist",
+    "uid": "c69838e47ddc406caa86bfd38710c12f",
+    "near_synsets": {
+        "office_building.n.01": 0.4776525089685729,
+        "high-rise.n.01": 0.5172068638225513,
+        "skyscraper.n.01": 0.5305910270286536,
+        "building.n.04": 0.5451094929185595,
+        "city_hall.n.01": 0.5477283303117242,
+        "position.n.06": -1000.0,
+        "agency.n.01": -1000.0,
+        "office.n.05": -1000.0,
+        "office.n.06": -1000.0,
+        "building.n.01": -1000.0,
+        "construction.n.07": -1000.0,
+        "office.n.01": -1000.0,
+        "office.n.04": -1000.0,
+        "construction.n.01": -1000.0,
+        "function.n.03": -1000.0
+    },
+    "synset": "office_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c69838e47ddc406caa86bfd38710c12f",
+        "creator_username": "nermin",
+        "creator_display_name": "nermin",
+        "creator_profile_url": "https://sketchfab.com/nermin"
+    },
+    "filename": "std_c69838e47ddc406caa86bfd38710c12f.glb",
+    "length": 10.938265323638916,
+    "width": 21.11376953125
+}

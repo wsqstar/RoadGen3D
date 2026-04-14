@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a large, rectangular cardboard box with a brown exterior and a simple, utilitarian design. The box features a rectangular cutout on one of its longer faces, likely serving as an access opening or handle, and a smaller rectangular slot on the top surface. One side of the box displays printed text in both English and Spanish, indicating it is a 'wrap around' packaging alternative for automated packing lines, along with a company logo. The box appears to be made primarily of corrugated cardboard, with visible seams and folds typical of industrial packaging. The interior is hollow, suggesting it is designed to contain or transport goods, and the overall construction is sturdy enough to support moderate weight. The surface finish is matte, with a slightly rough texture characteristic of cardboard.",
+    "description": "A large, brown corrugated cardboard box with a rectangular cutout, a top slot, and printed packaging instructions on one side.",
+    "description_view_0": "Shows the box from an angled top-front perspective, highlighting the rectangular cutout and the top slot.",
+    "description_view_1": "Displays the plain back side of the box with only the top slot visible, no cutouts or text.",
+    "description_view_2": "Similar to view 0, focusing on the front cutout and top slot, but from a slightly different angle.",
+    "description_view_3": "Shows the side with printed instructions and logo, as well as the top slot, but the front cutout is not visible.",
+    "category": "parcels",
+    "height": 0.6,
+    "max_dimension": 0.9,
+    "materials": [
+        "corrugated_cardboard",
+        "air",
+        "ink"
+    ],
+    "materials_composition": [
+        0.92,
+        0.07,
+        0.01
+    ],
+    "mass": 1.5,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 15,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cutout_handle",
+        "top_slot",
+        "front_opening"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.97,
+        0.03
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 4000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "",
+    "attribute_car_model": "",
+    "attribute_building_number": "",
+    "attribute_storefront_signage": "WRAP AROUND: Alternativa para empaque de l\u00edneas automatizadas.",
+    "attribute_street_name": "",
+    "uid": "f59e2a73c3694d3fbed148d53159f3d1",
+    "near_synsets": {
+        "carton.n.02": 0.4894042384538598,
+        "packing_box.n.02": 0.4956962232164619,
+        "box.n.01": 0.5114840847275444,
+        "box.n.05": 0.5134394589236053,
+        "shoebox.n.02": 0.5221932659409676,
+        "package.n.02": -1000.0,
+        "package.n.01": -1000.0,
+        "tract.n.01": -1000.0,
+        "parcel.n.02": -1000.0
+    },
+    "synset": "carton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f59e2a73c3694d3fbed148d53159f3d1",
+        "creator_username": "procolombia",
+        "creator_display_name": "procolombia",
+        "creator_profile_url": "https://sketchfab.com/procolombia"
+    },
+    "filename": "std_f59e2a73c3694d3fbed148d53159f3d1.glb",
+    "length": 0.9482948780059814,
+    "width": 0.9529423713684082
+}

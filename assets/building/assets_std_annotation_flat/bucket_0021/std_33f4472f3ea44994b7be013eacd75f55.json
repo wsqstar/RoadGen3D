@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a large, modern naval ship with a flat, expansive deck that appears suitable for aircraft operations, such as a landing helicopter dock or small aircraft carrier. The hull is streamlined and painted in a combination of gray and black, with a red lower section visible at the waterline. The superstructure is centrally located and features multiple levels, including a bridge and several communication or radar masts. The deck is lined with safety barriers and has visible markings, while the bow is slightly upturned and the stern is squared off. The ship is equipped with various deck fixtures, including antennas and possible lifeboats, and is designed for both transport and operational command at sea.",
+    "description": "A large, modern naval ship with a flat deck, central superstructure, and multiple visible antennas and fixtures, painted in gray, black, and red.",
+    "description_view_0": "Narrow end-on view showing the ship's width, deck barriers, and superstructure details.",
+    "description_view_1": "Side profile revealing the full length of the hull, flat deck, and central superstructure with antennas.",
+    "description_view_2": "Front view highlighting the upturned bow, deck width, and superstructure rising above the deck.",
+    "description_view_3": "Opposite side profile with a clear view of the stern, hull shape, and deck layout.",
+    "category": "ship",
+    "height": 25,
+    "max_dimension": 210,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.01,
+        0.05
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "antenna",
+        "radar",
+        "lifeboat"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a streamlined, elongated profile, a slightly upturned bow, and a squared stern. The hull sides are mostly vertical with a subtle flare at the bow and a red-painted lower section indicating the waterline. No bulbous bow or visible keels are present.",
+    "attribute_superstructure_layout": "The superstructure is centrally located on the deck, rising several levels above the main deck, and includes a bridge, multiple decks, and several masts or antenna towers. The design is compact and functional, with clear separation between the operational bridge and other deck areas.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "antenna",
+        "radar",
+        "lifeboat",
+        "barrier"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "33f4472f3ea44994b7be013eacd75f55",
+    "near_synsets": {
+        "surface_ship.n.01": 0.49273428189664237,
+        "naval_radar.n.01": 0.49878542060302256,
+        "three-decker.n.03": 0.5057143276793915,
+        "cargo_ship.n.01": 0.5057890638759426,
+        "capital_ship.n.01": 0.5069829904758555,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/33f4472f3ea44994b7be013eacd75f55",
+        "creator_username": "dionstra",
+        "creator_display_name": "dionstra",
+        "creator_profile_url": "https://sketchfab.com/dionstra"
+    },
+    "filename": "std_33f4472f3ea44994b7be013eacd75f55.glb",
+    "length": 86.41573715209961,
+    "width": 13.7550368309021
+}

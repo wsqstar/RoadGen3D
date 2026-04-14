@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a classic red trolleybus with a rectangular body and rounded corners, featuring large, grid-patterned windows along both sides. The roof is a smooth, light gray color, contrasting with the deep red body and cream-colored window frames. The trolleybus has four black wheels visible beneath the chassis, and the side panels display white transit symbols and numbers. The front and rear ends are flat with large window panels, but there are no visible pantograph poles or overhead wire connections on the roof. The doors are integrated into the side panels, and the overall design suggests a mid-20th-century urban public transport vehicle. The trolleybus appears to be constructed primarily from metal and glass, with interior space likely filled with seating and air.",
+    "description": "A red, rectangular trolleybus with large grid windows, cream trim, and a smooth gray roof, designed for urban public transport. It features side doors, black wheels, and classic transit markings.",
+    "description_view_0": "Side view showing the full length of the trolleybus, large grid windows, side doors, and transit markings.",
+    "description_view_1": "Front view displaying the flat face with large window panels and rounded corners, no visible pantograph poles.",
+    "description_view_2": "Opposite side view similar to view 0, showing windows, doors, and wheels, with mirrored features.",
+    "description_view_3": "Rear view with flat window panels and rounded corners, matching the front but without a driver's area.",
+    "category": "trolleybus",
+    "height": 3.2,
+    "max_dimension": 11.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "button"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "gray",
+        "cream",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.2,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_pantograph_poles": false,
+    "attribute_overhead_wire_connection": false,
+    "attribute_route_number_display": false,
+    "attribute_articulated_body_sections": 1,
+    "attribute_passenger_entry_doors": 2,
+    "uid": "232ba04a0aaa431983641fe78e4653ae",
+    "near_synsets": {
+        "trolleybus.n.01": 0.47106274174027124,
+        "trolley_line.n.01": 0.47772894286287193,
+        "public_transit.n.01": 0.535910594245188,
+        "bus.n.01": 0.5392015174114022,
+        "streetcar.n.01": 0.5399202027987982
+    },
+    "synset": "trolleybus.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/232ba04a0aaa431983641fe78e4653ae",
+        "creator_username": "xenon777",
+        "creator_display_name": "xenon777",
+        "creator_profile_url": "https://sketchfab.com/xenon777"
+    },
+    "filename": "std_232ba04a0aaa431983641fe78e4653ae.glb",
+    "length": 9.9522705078125,
+    "width": 2.5900585651397705
+}

@@ -1,0 +1,106 @@
+{
+    "description_long": "This object is a large, tripod-mounted anti-aircraft or anti-vehicle automatic cannon, featuring a long, metallic barrel and a robust, circular base. The structure is supported by three extended legs, each reinforced for stability, and the main body is painted in a camouflage pattern with visible wear. A seat and control handles are attached to one side, allowing an operator to aim and fire the weapon, while a large wheel and adjustment levers are present for fine-tuning elevation and traverse. The breech and loading mechanism are exposed, with ammunition magazines or feed trays visible nearby. The overall construction is heavy-duty, primarily composed of metal, with some rubber or plastic components on the seat and grips. This weapon is designed for emplacement in open urban areas, providing a formidable defensive or offensive capability.",
+    "description": "A large, tripod-mounted automatic cannon with a long barrel, camouflage paint, and operator controls, designed for heavy-duty urban defense.",
+    "description_view_0": "Front view showing the circular base, long barrel, and symmetrical tripod legs extending outward.",
+    "description_view_1": "Side view highlighting the operator's seat, control handles, and the full length of the barrel.",
+    "description_view_2": "Rear view displaying the breech, loading mechanism, and attached magazines or feed trays.",
+    "description_view_3": "Angled view revealing the seat, adjustment wheel, and the overall spread of the tripod legs.",
+    "category": "rifle",
+    "height": 1.4,
+    "max_dimension": 2.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1800,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "pullable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel",
+        "trigger",
+        "seat",
+        "control handles",
+        "adjustment wheel",
+        "magazine",
+        "breech"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "black",
+        "silver",
+        "red"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "050a0eb260c9479296f9572bd6a02200",
+    "near_synsets": {
+        "cannon.n.04": 0.4675723604488912,
+        "automatic_rifle.n.01": 0.46973671416642504,
+        "cannon.n.01": 0.4802344333743603,
+        "machine_gun.n.01": 0.4867686015523419,
+        "cannon.n.02": 0.4870009896387812,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/050a0eb260c9479296f9572bd6a02200",
+        "creator_username": "Z3nsiter",
+        "creator_display_name": "Z3nsiter",
+        "creator_profile_url": "https://sketchfab.com/Z3nsiter"
+    },
+    "filename": "std_050a0eb260c9479296f9572bd6a02200.glb",
+    "length": 2.464643716812134,
+    "width": 1.709235668182373
+}

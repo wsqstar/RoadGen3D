@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a heavily armored tracked combat vehicle with a rotating turret and a long-barreled cannon mounted on top. The exterior is painted in a weathered gray-green color, with visible signs of wear, rust, and dirt, suggesting extensive use. The vehicle features thick armor plating covering the entire body, including the turret, sides, and front, with additional storage boxes and equipment mounted along the sides. The tracks are robust, with multiple road wheels and a rugged tread designed for traversing rough terrain. Military markings, such as a white star and 'US ARMY' text, are visible on the sides and front, indicating its military use. The turret is equipped with visible weapon mounts and hatches, and the overall design is utilitarian, prioritizing protection and firepower.",
+    "description": "A weathered, armored tracked combat vehicle with a rotating turret, long cannon, and military markings. Its robust build and thick armor suggest heavy-duty tactical use.",
+    "description_view_0": "Front view shows the thick frontal armor, central turret, and a white star marking on the glacis plate.",
+    "description_view_1": "Left side view highlights the long-barreled cannon, 'US ARMY' text, and the full length of the tracks and road wheels.",
+    "description_view_2": "Rear view displays the back of the turret, rear armor plating, and storage compartments.",
+    "description_view_3": "Right side view mirrors the left, showing the cannon, tracks, and additional side details.",
+    "category": "combat tactical  vehicle",
+    "height": 2.7,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 23000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "track",
+        "wheel",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "green",
+        "white",
+        "black",
+        "rust-brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted on the turret roof, with additional mounts for secondary weapons visible on the turret.",
+    "attribute_armor_plating": "Full body armor plating with significant thickness, covering the front, sides, turret, and rear; features sloped and reinforced sections.",
+    "attribute_camouflage_pattern": "Weathered solid gray-green paint with patches of rust and dirt; no distinct camouflage pattern.",
+    "attribute_military_markings": "White star emblem on the front and turret, 'US ARMY' text on both sides.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "b6690df0e31b408091a0483f846b29a1",
+    "near_synsets": {
+        "tank.n.01": 0.4797998504328267,
+        "military_vehicle.n.01": 0.490964815007333,
+        "reconnaissance_vehicle.n.01": 0.5067775956207176,
+        "armored_car.n.02": 0.510800764089246,
+        "weapons_carrier.n.01": 0.5290389228623044,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b6690df0e31b408091a0483f846b29a1",
+        "creator_username": "pervonharke",
+        "creator_display_name": "pervonharke",
+        "creator_profile_url": "https://sketchfab.com/pervonharke"
+    },
+    "filename": "std_b6690df0e31b408091a0483f846b29a1.glb",
+    "length": 5.32747220993042,
+    "width": 2.7849133014678955
+}

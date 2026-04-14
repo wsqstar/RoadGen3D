@@ -1,0 +1,104 @@
+{
+    "description_long": "This object is a mechanical robot arm with a sturdy, hexagonal base and four articulated segments connected by visible joints. The arm is constructed primarily from metallic materials, featuring a glossy, dark bronze or copper finish with some silver-toned components. At the end of the arm is a two-finger gripper, designed for precision grasping and manipulation of objects. The base is wide and stable, with four rounded feet for secure placement on flat surfaces, and the arm segments are robust, suggesting industrial-grade strength. The joints appear to be revolute, allowing for rotational movement at each connection point. No visible wiring or cabling is present, and the overall design is sleek and functional, suitable for tasks such as assembly, sorting, or handling in urban environments like workshops, garages, or automated facilities.",
+    "description": "A metallic, articulated robot arm with a two-finger gripper and a sturdy hexagonal base, finished in glossy bronze and silver tones. Designed for industrial or urban automation tasks.",
+    "description_view_0": "Front view showing the gripper head-on, with the arm segments aligned and the hexagonal base visible.",
+    "description_view_1": "Side view highlighting the articulated segments, joint structure, and the open two-finger gripper.",
+    "description_view_2": "Rear view displaying the back of the gripper and the symmetrical layout of the base and arm.",
+    "description_view_3": "Opposite side view showing the arm's articulation and the gripper from a different angle.",
+    "category": "robot arm",
+    "height": 0.6,
+    "max_dimension": 0.8,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 28,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "graspable",
+        "rotatable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "gripper",
+        "arm segments",
+        "joints",
+        "base"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "bronze",
+        "silver",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_joint_type": "revolute",
+    "attribute_number_of_segments": 3,
+    "attribute_end_effector_type": "two-finger gripper",
+    "attribute_visible_wiring_or_cabling": false,
+    "attribute_mounting_location": "floor-mounted",
+    "uid": "2370f3522d4446eaabd1a319d10b7e22",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5613855904112259,
+        "grab.n.01": 0.5664494896463259,
+        "automaton.n.02": 0.566965173232648,
+        "android.n.01": 0.596564756569113,
+        "automaton.n.03": 0.597368883730424,
+        "arm.n.01": -1000.0,
+        "arm.n.02": -1000.0,
+        "arm.n.04": -1000.0,
+        "branch.n.01": -1000.0,
+        "weapon.n.01": -1000.0,
+        "sleeve.n.01": -1000.0
+    },
+    "synset": "grab.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2370f3522d4446eaabd1a319d10b7e22",
+        "creator_username": "David06",
+        "creator_display_name": "David06",
+        "creator_profile_url": "https://sketchfab.com/David06"
+    },
+    "filename": "std_2370f3522d4446eaabd1a319d10b7e22.glb",
+    "length": 0.7526454329490662,
+    "width": 0.5485641956329346
+}

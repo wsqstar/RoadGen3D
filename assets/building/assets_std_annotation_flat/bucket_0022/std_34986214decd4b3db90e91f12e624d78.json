@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a military-style attack helicopter with a streamlined, angular fuselage and a camouflage paint scheme. It features a prominent main rotor with four long, straight blades and a tail rotor mounted on the vertical stabilizer. The helicopter is equipped with external weapon pylons under each side, likely for missiles or rockets, and has a robust landing gear system with skids. The cockpit is located at the front, with large, angular, tinted windows providing visibility for the crew. The tail section is elongated and ends with a horizontal stabilizer and a small vertical fin, supporting the tail rotor. The overall design suggests a focus on agility, firepower, and survivability in urban or combat environments.",
+    "description": "A camouflaged, angular attack helicopter with four-blade main and tail rotors, weapon pylons, and a large, tinted cockpit window.",
+    "description_view_0": "Front view showing the four main rotor blades, cockpit windows, and weapon pylons under the fuselage.",
+    "description_view_1": "Left side view highlighting the elongated fuselage, cockpit, landing skids, and external weapon mounts.",
+    "description_view_2": "Rear view displaying the tail boom, tail rotor, and horizontal stabilizer, with the main rotor blades visible from above.",
+    "description_view_3": "Right side view similar to the left, showing cockpit windows, landing skids, and weapon pylons.",
+    "category": "helicopter",
+    "height": 4.2,
+    "max_dimension": 15.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "steel",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 8000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 78400,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit door",
+        "main rotor",
+        "tail rotor",
+        "landing skids",
+        "weapon pylons",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "gray",
+        "blue"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 18.0,
+    "asset_composition_type": "single",
+    "attribute_rotor_blades": "Four long, straight main rotor blades made of composite material, colored dark gray or black, with no visible markings.",
+    "attribute_tail_rotor": "Tail rotor with four short blades mounted vertically on the tail fin, colored dark gray or black, no visible protective shroud.",
+    "attribute_landing_skids": "Two straight, tubular landing skids made of metal, colored dark gray or black, with crossbars for structural support.",
+    "attribute_cockpit_windows": "Three large, angular cockpit windows at the front, tinted blue, with black framing and no visible markings.",
+    "attribute_registration_number": "not visible",
+    "uid": "34986214decd4b3db90e91f12e624d78",
+    "near_synsets": {
+        "helicopter.n.01": 0.5177344063438376,
+        "single-rotor_helicopter.n.01": 0.5342522255372691,
+        "cargo_helicopter.n.01": 0.5354656140501013,
+        "main_rotor.n.01": 0.5362408298215185,
+        "rotor_blade.n.01": 0.5437834950189032
+    },
+    "synset": "cargo_helicopter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/34986214decd4b3db90e91f12e624d78",
+        "creator_username": "salphytheunemployed",
+        "creator_display_name": "PolyDucky",
+        "creator_profile_url": "https://sketchfab.com/salphytheunemployed"
+    },
+    "filename": "std_34986214decd4b3db90e91f12e624d78.glb",
+    "length": 13.526956558227539,
+    "width": 9.72311544418335
+}

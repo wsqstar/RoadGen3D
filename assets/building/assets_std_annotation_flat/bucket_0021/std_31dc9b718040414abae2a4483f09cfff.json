@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a historical artillery cannon mounted on a wooden carriage with four solid wheels. The cannon barrel is long, cylindrical, and made of metal, featuring decorative rings and a slightly flared muzzle. The carriage is constructed from wood, reinforced with metal brackets and bolts, and includes two large cannonballs positioned on either side. The wheels are simple, solid discs, also reinforced with metal, and the carriage base is slightly curved. The overall appearance suggests a design from the early modern period, likely used in fortifications or on city streets during historical conflicts. The surface of the cannon and carriage shows a weathered, metallic finish with some visible wear and patina.",
+    "description": "A historical metal cannon mounted on a wooden carriage with four solid wheels and two cannonballs. The object features a long, decorated barrel and reinforced wooden base.",
+    "description_view_0": "Front view showing the circular muzzle of the cannon barrel and the symmetrical arrangement of the wheels and carriage.",
+    "description_view_1": "Side view highlighting the full length of the cannon barrel, the wooden carriage, and two cannonballs resting beside the wheels.",
+    "description_view_2": "Rear view displaying the breech end of the cannon, the curved wooden carriage base, and the alignment of the wheels.",
+    "description_view_3": "Opposite side view similar to view 1, showing the cannon barrel, carriage, and cannonballs from the other side.",
+    "category": "combat tactical  vehicle",
+    "height": 1.0,
+    "max_dimension": 2.5,
+    "materials": [
+        "steel",
+        "wood",
+        "iron",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.35,
+        0.08,
+        0.02
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "rotatable",
+        "loadable",
+        "aimable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "barrel",
+        "wheels",
+        "carriage",
+        "cannonballs",
+        "lifting rings"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "pinkish-metal"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_weapon_mounts": "One fixed cannon barrel mounted centrally on the carriage; no additional mounts visible.",
+    "attribute_armor_plating": "None visible; the object consists of a metal barrel and wooden carriage without additional armor plating.",
+    "attribute_camouflage_pattern": "None visible; the object has a solid metallic and wood finish.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "31dc9b718040414abae2a4483f09cfff",
+    "near_synsets": {
+        "cannon.n.02": 0.485984575500658,
+        "cannon.n.01": 0.49727248178469824,
+        "caisson.n.02": 0.5155723950022861,
+        "tank_shell.n.01": 0.5266795257278353,
+        "tank.n.01": 0.5278532788225554,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "cannon.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/31dc9b718040414abae2a4483f09cfff",
+        "creator_username": "randomapple",
+        "creator_display_name": "Random Apple",
+        "creator_profile_url": "https://sketchfab.com/randomapple"
+    },
+    "filename": "std_31dc9b718040414abae2a4483f09cfff.glb",
+    "length": 2.780277729034424,
+    "width": 1.0784810781478882
+}

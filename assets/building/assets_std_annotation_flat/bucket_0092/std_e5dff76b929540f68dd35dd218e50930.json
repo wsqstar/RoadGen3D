@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a compact, heavily armored tracked combat vehicle with a low, angular profile and a prominent turret mounted centrally on its chassis. The turret features a long, slender cannon extending forward, and the vehicle's hull is covered in thick, sloped armor plating, especially at the front and sides. The tracks are wide and robust, wrapping around the lower hull and providing significant ground clearance. The exterior is painted in a two-tone camouflage scheme, blending light gray and tan colors with some weathering effects. No visible windows or hatches are present, emphasizing its armored and tactical nature. The vehicle appears designed for urban or close-quarters combat, prioritizing protection and firepower.",
+    "description": "A compact, heavily armored tracked combat vehicle with a central turret and long cannon, finished in a two-tone camouflage scheme.",
+    "description_view_0": "Side view showing the full length of the turret, cannon, and the sloped armor on the hull.",
+    "description_view_1": "Front view highlighting the cannon's length, the thick frontal armor, and the width of the tracks.",
+    "description_view_2": "Top-down view displaying the turret's circular shape, the arrangement of the tracks, and the overall compactness.",
+    "description_view_3": "Rear view showing the back armor, the end of the tracks, and the vehicle's angular rear profile.",
+    "category": "combat tactical  vehicle",
+    "height": 1.5,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.02,
+        0.03
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "track",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "tan",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the central turret; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating on the front, sides, and rear; no visible modular or reactive panels.",
+    "attribute_camouflage_pattern": "Two-tone camouflage with irregular patches of light gray and tan, matte finish.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "e5dff76b929540f68dd35dd218e50930",
+    "near_synsets": {
+        "tank.n.01": 0.46745583365479526,
+        "military_vehicle.n.01": 0.4856647180839226,
+        "reconnaissance_vehicle.n.01": 0.4898581644716816,
+        "armored_car.n.02": 0.4941970356361105,
+        "assault_gun.n.02": 0.5114813247572508,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e5dff76b929540f68dd35dd218e50930",
+        "creator_username": "Koushi475",
+        "creator_display_name": "Koushi475",
+        "creator_profile_url": "https://sketchfab.com/Koushi475"
+    },
+    "filename": "std_e5dff76b929540f68dd35dd218e50930.glb",
+    "length": 3.018229603767395,
+    "width": 1.112846314907074
+}

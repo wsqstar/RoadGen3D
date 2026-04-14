@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a heavily armored combat vehicle with a low, wide profile and a central rotating turret equipped with a large-caliber cannon. The vehicle features two parallel tracks for mobility, each with visible treads and robust side armor. The turret is octagonal and sits atop the main hull, with a prominent gun barrel extending forward. Distinctive white cross insignias are painted on the upper surfaces of both track housings, and the vehicle's exterior is finished in a dark, matte color. The rear section includes a metal rack or grille, likely for storage or additional equipment. The overall design emphasizes protection, firepower, and urban maneuverability.",
+    "description": "A dark, heavily armored tracked combat vehicle with a central turret and large forward-facing cannon, featuring white cross insignias and robust side armor.",
+    "description_view_0": "Front view shows the wide, armored tracks, central turret with cannon, and white cross insignias on the upper surfaces.",
+    "description_view_1": "Left side view highlights the length of the cannon, the octagonal turret, and the rear storage rack.",
+    "description_view_2": "Rear view displays the back of the turret, track mechanisms, and the metal grille at the rear.",
+    "description_view_3": "Right side view mirrors the left, showing the cannon, turret, and side armor with insignia.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 45000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "track",
+        "storage rack"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.0,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large-caliber cannon mounted centrally on the turret; no other weapon mounts visible.",
+    "attribute_armor_plating": "Full body armor plating with thick, sloped panels covering the hull, turret, and track housings; no modular or reactive panels visible.",
+    "attribute_camouflage_pattern": "Solid dark color with no visible camouflage pattern.",
+    "attribute_military_markings": "White cross insignias on the upper surfaces of both track housings.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "5fed1107837945d2baa535291f6ee4cb",
+    "near_synsets": {
+        "tank.n.01": 0.47231226174834035,
+        "military_vehicle.n.01": 0.4831799409020064,
+        "armored_car.n.02": 0.4882277139259444,
+        "reconnaissance_vehicle.n.01": 0.49756232874407164,
+        "assault_gun.n.02": 0.5049076201938749,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5fed1107837945d2baa535291f6ee4cb",
+        "creator_username": "lee.johansson",
+        "creator_display_name": "Lee Alex Johansson",
+        "creator_profile_url": "https://sketchfab.com/lee.johansson"
+    },
+    "filename": "std_5fed1107837945d2baa535291f6ee4cb.glb",
+    "length": 6.629049301147461,
+    "width": 4.72356104850769
+}

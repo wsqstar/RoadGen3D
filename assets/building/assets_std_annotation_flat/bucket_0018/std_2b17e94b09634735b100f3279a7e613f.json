@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a geodesic dome-style tent with a transparent mesh exterior supported by a network of intersecting structural poles, forming a faceted, spherical shape. The tent features a large, polygonal entrance at the front, revealing a wooden floor and a furnished interior with a table, chairs, and a small plant centerpiece. The mesh material allows visibility of the interior from all sides, while the geometric pole framework provides stability and a modern aesthetic. The entrance is wide and open, lacking a visible door or flap, making access easy. The tent appears to be designed for communal or recreational use in urban parks or event spaces, offering shelter while maintaining a connection to the outside environment. No branding or logos are visible on the tent's surface.",
+    "description": "A transparent geodesic dome tent with a polygonal entrance, mesh exterior, and visible interior furnishings including a table and chairs. Supported by a network of intersecting poles, it offers a modern, open shelter for urban environments.",
+    "description_view_0": "The tent is seen head-on with the mesh structure and intersecting poles clearly visible, but the entrance is not prominent from this angle.",
+    "description_view_1": "This view highlights the large polygonal entrance, revealing the interior with a wooden floor, table, chairs, and a plant centerpiece.",
+    "description_view_2": "Similar to view 0, the mesh and pole structure dominate, with the entrance not visible; the interior furnishings are partially obscured.",
+    "description_view_3": "The entrance is again visible, showing the interior setup with furniture and flooring, emphasizing accessibility and openness.",
+    "category": "tent",
+    "height": 2.5,
+    "max_dimension": 4.0,
+    "materials": [
+        "polyester mesh",
+        "aluminum",
+        "wood",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 120,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "closable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "entrance",
+        "mesh panels",
+        "structural poles",
+        "interior furniture"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 7000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_entrance_type": "Large polygonal open entrance at the front, no visible door or flap, providing unobstructed access.",
+    "attribute_number_of_poles": 18,
+    "attribute_guy_line_configuration": "No external guy lines are visible; structural stability is provided by the interconnected pole framework.",
+    "attribute_ventilation_openings": [],
+    "attribute_branding_or_logo": "none",
+    "uid": "2b17e94b09634735b100f3279a7e613f",
+    "near_synsets": {
+        "geodesic_dome.n.01": 0.4720276667776805,
+        "sibley_tent.n.01": 0.5353035196301401,
+        "pop_tent.n.01": 0.5415008846821953,
+        "pyramidal_tent.n.01": 0.5424022742318139,
+        "umbrella_tent.n.01": 0.5439997338934792,
+        "tent.n.01": -1000.0,
+        "tent.n.02": -1000.0
+    },
+    "synset": "tent.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2b17e94b09634735b100f3279a7e613f",
+        "creator_username": "daliadome",
+        "creator_display_name": "daliadome",
+        "creator_profile_url": "https://sketchfab.com/daliadome"
+    },
+    "filename": "std_2b17e94b09634735b100f3279a7e613f.glb",
+    "length": 3.005268931388855,
+    "width": 3.285819172859192
+}

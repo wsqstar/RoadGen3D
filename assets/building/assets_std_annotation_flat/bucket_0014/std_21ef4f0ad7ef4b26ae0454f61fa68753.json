@@ -1,0 +1,94 @@
+{
+    "description_long": "This is a large, semi-cylindrical tent structure with a rounded roof and straight vertical sidewalls, reminiscent of a military or emergency shelter. The exterior is covered in a uniform, muted khaki or olive drab fabric, likely weather-resistant canvas or synthetic material, and is supported by a series of evenly spaced arched poles running the length of the tent. Guy lines extend from both sides and ends, anchored to the ground for stability. The front features a prominent entrance with a roll-up flap secured by straps, while the rear is a solid panel with no visible opening. The tent is spacious enough to accommodate multiple people or equipment, making it suitable for urban emergency response, temporary housing, or event use.",
+    "description": "A large, arched, khaki-colored tent with guy lines and a roll-up front entrance, designed for robust temporary shelter in urban settings.",
+    "description_view_0": "Front view showing the main entrance with a roll-up flap and guy lines extending outward.",
+    "description_view_1": "Side view displaying the long, arched profile, multiple pole segments, and guy lines along the length.",
+    "description_view_2": "Rear view with a solid fabric panel and no visible entrance, plus guy lines at the corners.",
+    "description_view_3": "Opposite side view mirroring the other side, showing the arched structure and guy lines.",
+    "category": "tent",
+    "height": 2.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "fabric",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.05,
+        0.1
+    ],
+    "mass": 90,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "tieable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "entrance flap",
+        "guy lines",
+        "straps",
+        "poles"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "khaki"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 500,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "Roll-up fabric flap entrance at the front, secured with straps; no visible secondary doors or awnings.",
+    "attribute_number_of_poles": 5,
+    "attribute_guy_line_configuration": "Eight guy lines total: two at each corner and two at each side midpoint, anchored outward for stability.",
+    "attribute_ventilation_openings": [],
+    "attribute_branding_or_logo": "none",
+    "uid": "21ef4f0ad7ef4b26ae0454f61fa68753",
+    "near_synsets": {
+        "field_tent.n.01": 0.4543077220552348,
+        "tent.n.01": 0.45624131354559627,
+        "cottage_tent.n.01": 0.47863218664972473,
+        "pop_tent.n.01": 0.4830683595996568,
+        "sibley_tent.n.01": 0.4831309873585318,
+        "tent.n.02": -1000.0
+    },
+    "synset": "tent.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/21ef4f0ad7ef4b26ae0454f61fa68753",
+        "creator_username": "aidancallaghan",
+        "creator_display_name": "Aidan Callaghan",
+        "creator_profile_url": "https://sketchfab.com/aidancallaghan"
+    },
+    "filename": "std_21ef4f0ad7ef4b26ae0454f61fa68753.glb",
+    "length": 12.221550941467285,
+    "width": 7.2758469581604
+}

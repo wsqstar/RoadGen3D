@@ -1,0 +1,98 @@
+{
+    "description_long": "This hamburger features a rounded, light brown bun with a scattering of sesame seeds on its top surface, giving it a classic appearance. The bun is slightly glossy and smooth, with a soft, pillowy texture. A thin layer of yellow cheese is visible, melted and peeking out from beneath the top bun, draping over the edges of the patty. The patty itself is only partially visible, appearing as a brown, textured layer at the base of the sandwich. There are no visible vegetables or additional toppings such as lettuce, tomato, or onions. The hamburger is unwrapped and presented without any packaging, making it ready to eat.",
+    "description": "A classic hamburger with a sesame seed bun, melted cheese, and a partially visible patty, presented without packaging.",
+    "description_view_0": "The front view shows the rounded sesame seed bun with cheese and a hint of the patty visible at the bottom.",
+    "description_view_1": "This side view highlights the smooth bun and the cheese layer extending slightly beyond the bun's edge.",
+    "description_view_2": "The opposite side view displays the bun's curvature, sesame seeds, and a more pronounced cheese overhang.",
+    "description_view_3": "The rear view emphasizes the glossy bun, cheese layer, and the patty's edge peeking out from beneath.",
+    "category": "hamburger",
+    "height": 0.09,
+    "max_dimension": 0.12,
+    "materials": [
+        "bread",
+        "cheese",
+        "beef",
+        "sesame seeds",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 0.18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 2,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "top bun",
+        "cheese layer",
+        "patty",
+        "bottom bun"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light brown",
+        "yellow",
+        "brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.22,
+        0.03
+    ],
+    "surface_hardness": "soft",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.15,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_bun_type": "sesame seed bun",
+    "attribute_patty_visibility": "partially visible",
+    "attribute_topping_arrangement": "A single layer of melted cheese is visible beneath the top bun, with no other toppings apparent. The cheese is evenly distributed and drapes over the patty, which is only partially exposed.",
+    "attribute_packaging_presence": false,
+    "attribute_sesame_seed_presence": true,
+    "uid": "fdb1985ddd1049a6b0747f1a477c6af7",
+    "near_synsets": {
+        "cheeseburger.n.01": 0.48740182487251205,
+        "hamburger.n.01": 0.49175910182809557,
+        "hamburger_bun.n.01": 0.5172829414879264,
+        "sloppy_joe.n.01": 0.5499946287957043,
+        "tunaburger.n.01": 0.551416339152274,
+        "ground_beef.n.01": -1000.0
+    },
+    "synset": "hamburger_bun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fdb1985ddd1049a6b0747f1a477c6af7",
+        "creator_username": "alcapra_testes",
+        "creator_display_name": "alcapra_testes",
+        "creator_profile_url": "https://sketchfab.com/alcapra_testes"
+    },
+    "filename": "std_fdb1985ddd1049a6b0747f1a477c6af7.glb",
+    "length": 0.10646184161305428,
+    "width": 0.10609540343284607
+}

@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a large, industrial street cabinet enclosed within a sturdy metal mesh fence supported by four thick posts at each corner. The cabinet itself is rectangular, constructed from weathered yellow metal, and features several protruding pipes and conduits, some of which are bent at right angles and extend above the cabinet. The top of the cabinet has three vertical metal pipes, likely for ventilation or cable routing. The base of the cabinet is elevated on concrete pads, and the entire enclosure is designed to restrict unauthorized access. Warning signage and labels are visible on the front face of the cabinet, indicating the presence of hazardous or high-voltage equipment inside. The overall structure suggests it is used for housing utility or gas distribution equipment in an urban environment.",
+    "description": "A large yellow metal street cabinet with multiple pipes, enclosed by a mesh fence and supported by concrete pads, featuring warning signage and industrial fittings.",
+    "description_view_0": "Front view shows the mesh fence, the main cabinet body, and two vertical pipes on top, with a warning sign visible through the fence.",
+    "description_view_1": "Side view reveals more of the cabinet's front face, including warning labels, three vertical pipes, and additional piping attached to the side.",
+    "description_view_2": "Rear view highlights the back of the cabinet, the mesh enclosure, and the vertical pipes, with less visible signage.",
+    "description_view_3": "Opposite side view displays the side piping network, mesh fence, and the cabinet's industrial fittings.",
+    "category": "street cabinet",
+    "height": 2.2,
+    "max_dimension": 3.0,
+    "materials": [
+        "steel",
+        "concrete",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "lock",
+        "pipe valve"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_number_of_doors": 1,
+    "attribute_presence_of_ventilation_grilles": false,
+    "attribute_locking_mechanism_type": "latch",
+    "attribute_placement_of_warning_labels_or_signage": "front door",
+    "attribute_presence_of_cable_entry_points": true,
+    "uid": "018a0acfd4b349c6a71e038d596d9afa",
+    "near_synsets": {
+        "street_sign.n.01": 0.5465914169287313,
+        "cabinet.n.04": 0.5632555639421573,
+        "standpipe.n.01": 0.5681383700200201,
+        "fishplate.n.01": 0.5689457478385079,
+        "lamppost.n.01": 0.5706001732640608,
+        "street.n.03": -1000.0,
+        "cabinet.n.01": -1000.0,
+        "street.n.05": -1000.0,
+        "street.n.01": -1000.0,
+        "street.n.04": -1000.0,
+        "cabinet.n.03": -1000.0,
+        "street.n.02": -1000.0,
+        "cabinet.n.02": -1000.0
+    },
+    "synset": "cabinet.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/018a0acfd4b349c6a71e038d596d9afa",
+        "creator_username": "terjke",
+        "creator_display_name": "ti_art",
+        "creator_profile_url": "https://sketchfab.com/terjke"
+    },
+    "filename": "std_018a0acfd4b349c6a71e038d596d9afa.glb",
+    "length": 1.3400580883026123,
+    "width": 2.1338043212890625
+}

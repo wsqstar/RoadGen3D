@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a classic assault rifle with a distinctive combination of wood and metal components. The stock, handguard, and pistol grip are rendered in a reddish-brown wood texture, while the receiver, barrel, and magazine are metallic gray. The rifle features a fixed wooden stock, a curved detachable box magazine, and a standard-length barrel with iron sights mounted on top. The front sight is a post, and the rear sight is a notch, both typical of military rifles. The overall design is robust and utilitarian, with visible screws and seams where the metal and wood meet. The magazine is slightly curved, and the rifle's proportions suggest it is modeled after the iconic AK-47 or similar platform.",
+    "description": "A robust assault rifle with a wooden stock, handguard, and grip, paired with a metallic receiver, barrel, and curved magazine. Features iron sights and a utilitarian design.",
+    "description_view_0": "Side view showing the full profile, including the wooden stock, handguard, grip, and curved magazine.",
+    "description_view_1": "Front view highlighting the barrel end, front sight post, and the narrow profile of the handguard.",
+    "description_view_2": "Opposite side view, mirroring the full profile with clear visibility of the magazine and stock.",
+    "description_view_3": "Top-down view showing the alignment of the barrel, receiver, and the width of the wooden components.",
+    "category": "rifle",
+    "height": 0.18,
+    "max_dimension": 0.88,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 4.3,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 43,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "pistol grip",
+        "magazine",
+        "trigger",
+        "barrel",
+        "sights",
+        "handguard",
+        "safety lever"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.35,
+        0.55,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "3ddb690b0dbd4c3b8ec07c014c50ef56",
+    "near_synsets": {
+        "assault_rifle.n.01": 0.4509616501779033,
+        "garand_rifle.n.01": 0.4912449809126271,
+        "rifle.n.01": 0.49395078689012883,
+        "light_arm.n.01": 0.5144424809770504,
+        "automatic_rifle.n.01": 0.5163651004645657
+    },
+    "synset": "automatic_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3ddb690b0dbd4c3b8ec07c014c50ef56",
+        "creator_username": "kuruzeus",
+        "creator_display_name": "Kuruzeus",
+        "creator_profile_url": "https://sketchfab.com/kuruzeus"
+    },
+    "filename": "std_3ddb690b0dbd4c3b8ec07c014c50ef56.glb",
+    "length": 0.6581772565841675,
+    "width": 0.03101689461618662
+}

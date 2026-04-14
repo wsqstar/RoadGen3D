@@ -1,0 +1,94 @@
+{
+    "description_long": "This handcart features a rectangular wooden frame constructed from long, unevenly cut planks, giving it a rustic and utilitarian appearance. The sides are reinforced with vertical wooden slats and black metal bands, providing structural support and preventing cargo from falling out. The cart is supported by four large, spoked wooden wheels, two on each side, which are attached to the lower frame with visible metal axles. The front and rear ends of the cart are open, with one end featuring a slightly angled plank that likely serves as a handle or pulling point. The wood is stained a warm brown with visible grain patterns, while the metal elements are dark and matte. The overall design is practical for transporting goods in urban or rural settings, with ample space for loading various items.",
+    "description": "A rustic wooden handcart with open slatted sides, reinforced by black metal bands and supported by four large spoked wheels.",
+    "description_view_0": "Front view showing the open end of the cart and the angled plank likely used as a handle.",
+    "description_view_1": "Side view highlighting the long wooden slats, black metal bands, and two large spoked wheels.",
+    "description_view_2": "Rear view displaying the open back and the parallel arrangement of the wooden slats.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the side rails and wheel structure.",
+    "category": "handcart",
+    "height": 1.0,
+    "max_dimension": 2.2,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.1
+    ],
+    "mass": 55,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "side rail",
+        "load platform"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 4,
+    "attribute_handle_type": "angled plank handle",
+    "attribute_wheel_position": "side-mounted",
+    "attribute_presence_of_side_rails": true,
+    "attribute_load_platform_design": "open slats",
+    "uid": "4047c9ac5e224f738bd67f6a409975bb",
+    "near_synsets": {
+        "cart.n.01": 0.46803526051687294,
+        "handcart.n.01": 0.46940197080006063,
+        "serving_cart.n.01": 0.47387644831609216,
+        "shopping_cart.n.01": 0.48482111266157885,
+        "hand_truck.n.01": 0.48871714794721305
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4047c9ac5e224f738bd67f6a409975bb",
+        "creator_username": "Celestial_Otter",
+        "creator_display_name": "Celestial_Otter",
+        "creator_profile_url": "https://sketchfab.com/Celestial_Otter"
+    },
+    "filename": "std_4047c9ac5e224f738bd67f6a409975bb.glb",
+    "length": 2.8690643310546875,
+    "width": 1.5195075273513794
+}

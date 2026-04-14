@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a medium-sized, quad-rotor drone with a robust, angular frame constructed primarily from dark, lightweight materials. The drone features four large propellers mounted on extended arms, each positioned at the corners of the rectangular body, providing stability and lift. The central body houses a compartment with visible wiring and a warning label, suggesting the presence of electronic components and possibly a battery pack. The frame is reinforced with crossbars and has an open, cage-like structure, likely for weight reduction and protection of internal components. The landing gear consists of fixed, sturdy legs integrated into the lower frame, allowing for stable landings on flat surfaces. The overall design is utilitarian, with no visible camera or propeller guards, making it suitable for urban aerial tasks such as delivery or surveillance.",
+    "description": "A robust, angular quadcopter drone with four large propellers, a cage-like frame, and fixed landing legs. The body features visible wiring and a warning label, with no camera or propeller guards present.",
+    "description_view_0": "View 0 shows the drone from a rear-side angle, highlighting the propellers, the open frame, and the warning label on the side.",
+    "description_view_1": "View 1 presents a front-side perspective, revealing the internal wiring and the open cockpit area, as well as the symmetrical rotor arrangement.",
+    "description_view_2": "View 2 displays the opposite rear-side, emphasizing the rectangular body, propeller arms, and another view of the warning label.",
+    "description_view_3": "View 3 offers a direct side view, focusing on the drone's frame structure and the fixed landing legs.",
+    "category": "drone",
+    "height": 0.35,
+    "max_dimension": 0.8,
+    "materials": [
+        "carbon fiber",
+        "plastic",
+        "metal",
+        "electronic components",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "landing gear",
+        "battery compartment",
+        "wiring"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "red",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.12,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 4,
+    "attribute_rotor_configuration": "quadcopter X",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": false,
+    "attribute_propeller_guard_presence": false,
+    "uid": "6fcc05d54b494616872d37aba4c40a18",
+    "near_synsets": {
+        "drone.n.04": 0.522242733192665,
+        "orthopter.n.01": 0.5754123975655531,
+        "single-rotor_helicopter.n.01": 0.5821057288637924,
+        "helicopter.n.01": 0.5829998449770265,
+        "propeller_plane.n.01": 0.5840903567179052,
+        "monotone.n.01": -1000.0,
+        "drone.n.01": -1000.0,
+        "dawdler.n.01": -1000.0,
+        "drone.n.05": -1000.0
+    },
+    "synset": "drone.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6fcc05d54b494616872d37aba4c40a18",
+        "creator_username": "lesik131103",
+        "creator_display_name": "lesik131103",
+        "creator_profile_url": "https://sketchfab.com/lesik131103"
+    },
+    "filename": "std_6fcc05d54b494616872d37aba4c40a18.glb",
+    "length": 0.5771491527557373,
+    "width": 0.5693673193454742
+}

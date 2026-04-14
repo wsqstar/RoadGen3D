@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a large commercial passenger airplane modeled in a white color scheme with blue and red accents, resembling a British Airways livery. The aircraft features a wide fuselage, swept low-mounted wings with four visible underwing engines, and a conventional tail with a single vertical stabilizer. The airplane is positioned on a runway with green grass on either side and a marked threshold area. The cockpit is located at the forward end of the fuselage, with multiple windows visible along the side for passengers. The landing gear is deployed, with two main gear units under the wings and a nose gear at the front. The overall design suggests a modern, long-haul jet airliner suitable for urban airport environments.",
+    "description": "A large, white commercial jet airliner with blue and red accents, four underwing engines, and a conventional tail, positioned on a runway.",
+    "description_view_0": "Side view showing the airplane's full length, low-mounted swept wings, four engines, and British Airways-style tail fin.",
+    "description_view_1": "Front view highlighting the wide fuselage, cockpit windows, and the symmetrical placement of the four engines under the wings.",
+    "description_view_2": "Opposite side view displaying the airplane's length, wing configuration, and runway threshold markings.",
+    "description_view_3": "Rear view showing the tail section, single vertical stabilizer, and the trailing edges of the wings and engines.",
+    "category": "airplane",
+    "height": 7.0,
+    "max_dimension": 70.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2000000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "engine",
+        "landing gear",
+        "cockpit controls"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with long, swept wings and no visible winglets; moderate dihedral angle.",
+    "attribute_engine_type": "Four underwing turbofan engines, two per wing.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "Tricycle landing gear with two main gear units and a single nose gear, all deployed.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with multiple windows, typical of commercial airliners.",
+    "uid": "134dcbc354cf465084f6363ae3230fd8",
+    "near_synsets": {
+        "airplane.n.01": 0.47359269446909047,
+        "aircraft.n.01": 0.4982175312986817,
+        "airliner.n.01": 0.49960825083472576,
+        "jet.n.01": 0.5007046526714173,
+        "jetliner.n.01": 0.5029706690806164
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/134dcbc354cf465084f6363ae3230fd8",
+        "creator_username": "madexc",
+        "creator_display_name": "madexc",
+        "creator_profile_url": "https://sketchfab.com/madexc"
+    },
+    "filename": "std_134dcbc354cf465084f6363ae3230fd8.glb",
+    "length": 36.81121826171875,
+    "width": 23.339863777160645
+}

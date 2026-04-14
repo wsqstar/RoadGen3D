@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a historical steam-powered handcart with a wooden cargo wagon attached. The main body features a cylindrical steam boiler with a tall, crowned smokestack, copper piping, and large spoked iron wheels. The attached wagon is constructed from weathered wooden planks and contains a large wooden barrel, likely for transporting liquids or goods. The handcart's frame is reinforced with metal components, and the wheels are robust, designed for heavy loads. The overall appearance is reminiscent of early industrial-era locomotives, with a utilitarian yet intricate design. The combination of wood and metal gives it a rugged, functional look suitable for urban or industrial settings.",
+    "description": "A steam-powered handcart with a wooden cargo wagon and barrel, featuring large spoked wheels and a tall smokestack. The design blends weathered wood and dark metal for a historical industrial look.",
+    "description_view_0": "Front view showing the crowned smokestack, dual large wheels, and the wooden wagon with a barrel directly behind.",
+    "description_view_1": "Side view highlighting the full length of the handcart, the steam boiler, copper piping, and the wooden wagon with its barrel.",
+    "description_view_2": "Rear view focusing on the back of the wagon, the barrel, and the alignment of the wheels and frame.",
+    "description_view_3": "Opposite side view displaying the steam engine's details, the wagon's wooden slats, and the barrel's position.",
+    "category": "handcart",
+    "height": 2.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "wood",
+        "iron",
+        "copper",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "mass": 650,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "drivable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "handle",
+        "barrel",
+        "smokestack",
+        "wagon"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "copper",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 15000.0,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_number_of_wheels": 6,
+    "attribute_handle_type": "straight bar",
+    "attribute_wheel_position": "front and rear mounted",
+    "attribute_presence_of_side_rails": true,
+    "attribute_load_platform_design": "wooden slatted bed",
+    "uid": "28d392738be7422d966cbfada0b8e079",
+    "near_synsets": {
+        "handcart.n.01": 0.4972337048895215,
+        "hand_truck.n.01": 0.508439771168531,
+        "handcar.n.01": 0.5189923264544305,
+        "laundry_cart.n.01": 0.5233914069221903,
+        "cart.n.01": 0.525092980869252
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/28d392738be7422d966cbfada0b8e079",
+        "creator_username": "Branislav",
+        "creator_display_name": "Branislav",
+        "creator_profile_url": "https://sketchfab.com/Branislav"
+    },
+    "filename": "std_28d392738be7422d966cbfada0b8e079.glb",
+    "length": 3.2015230655670166,
+    "width": 1.022700548171997
+}

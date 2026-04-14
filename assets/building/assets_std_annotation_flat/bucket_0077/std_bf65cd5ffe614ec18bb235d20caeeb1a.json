@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a quadcopter drone designed for urban package delivery, featuring a square central body with a black top panel marked with a white geometric logo and the numbers '10-13'. Four rotors are mounted on extended arms, each with red circular propeller guards for safety. The main body appears to be constructed from lightweight composite materials, with a visible brown package compartment or cargo bay beneath the central housing. The drone includes a small front-facing module, likely for sensors or navigation, and the landing gear consists of simple fixed legs supporting the structure. The overall design is utilitarian, optimized for stability and efficient transport of small parcels in city environments.",
+    "description": "A quadcopter delivery drone with a square black top, red propeller guards, and a brown cargo compartment beneath. It features four rotors and fixed landing legs for urban package transport.",
+    "description_view_0": "Front view showing the square black top with logo, front sensor module, and brown cargo compartment beneath.",
+    "description_view_1": "Angled view highlighting the left side, showing the red propeller guards and the depth of the cargo bay.",
+    "description_view_2": "Rear view displaying the back of the drone, the cargo compartment, and the symmetry of the rotor arms.",
+    "description_view_3": "Angled view from the right, emphasizing the right-side rotors and the overall compactness of the design.",
+    "category": "drone",
+    "height": 0.35,
+    "max_dimension": 0.85,
+    "materials": [
+        "plastic",
+        "carbon fiber",
+        "metal",
+        "glass",
+        "air",
+        "cardboard"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "rotor",
+        "propeller guard",
+        "cargo compartment",
+        "landing leg",
+        "sensor module"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "white",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.35,
+        0.18,
+        0.12,
+        0.2,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.22,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 7000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.12,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 4,
+    "attribute_rotor_configuration": "quadcopter X",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": false,
+    "attribute_propeller_guard_presence": true,
+    "uid": "bf65cd5ffe614ec18bb235d20caeeb1a",
+    "near_synsets": {
+        "drone.n.04": 0.5501989109602452,
+        "cargo_helicopter.n.01": 0.5601406999222016,
+        "single-rotor_helicopter.n.01": 0.5776619337157944,
+        "orthopter.n.01": 0.5892158297768644,
+        "shuttle_helicopter.n.01": 0.5907834735121165,
+        "drone.n.01": -1000.0,
+        "drone.n.05": -1000.0,
+        "dawdler.n.01": -1000.0,
+        "monotone.n.01": -1000.0
+    },
+    "synset": "drone.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bf65cd5ffe614ec18bb235d20caeeb1a",
+        "creator_username": "KonPrineas",
+        "creator_display_name": "KonPrineas",
+        "creator_profile_url": "https://sketchfab.com/KonPrineas"
+    },
+    "filename": "std_bf65cd5ffe614ec18bb235d20caeeb1a.glb",
+    "length": 0.9412775635719299,
+    "width": 0.9254646897315979
+}

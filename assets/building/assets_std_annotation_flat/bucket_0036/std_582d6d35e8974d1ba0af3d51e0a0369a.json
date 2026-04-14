@@ -1,0 +1,106 @@
+{
+    "description_long": "This kiosk is a modern, rectangular commercial structure with a prominent white and blue color scheme. The front features large signage for PROMAFLEX above a wide open entryway, flanked by glass panels and a visible interior with a table and chairs. The side and rear panels are solid white with bold orange and blue MPA Stands branding, and the upper sections are accented with dark blue and black framing. The roof is flat and open, with spotlights mounted along the perimeter, and the overall design is sleek and professional, suitable for trade shows or urban events. The structure appears to be constructed primarily from metal framing, glass, and composite panels, with a spacious, walk-in interior. The kiosk is designed for high visibility and easy access, with clear branding and functional interior space.",
+    "description": "A modern, rectangular kiosk with white, blue, and orange branding, glass panels, and a flat open roof, designed for commercial or event use.",
+    "description_view_0": "Front view showing PROMAFLEX signage, open entryway, glass panels, and interior furnishings.",
+    "description_view_1": "Rear view with solid white panel and large MPA Stands branding, no visible entry or windows.",
+    "description_view_2": "Opposite rear view, similar to view 1, with MPA Stands branding and no entryway.",
+    "description_view_3": "Side view showing solid panels, blue accents, and partial visibility of the front signage and spotlights.",
+    "category": "kiosk",
+    "height": 3.0,
+    "max_dimension": 7.0,
+    "materials": [
+        "metal",
+        "composite panel",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.4,
+        0.3,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "displayable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "doorway",
+        "glass panel",
+        "table",
+        "chair",
+        "signage"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "white",
+        "blue",
+        "black",
+        "orange",
+        "gray",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "Printed and logo signage; large PROMAFLEX sign above entrance, MPA Stands logos on side and rear panels.",
+    "attribute_window_presence": "Two large rectangular glass panels at the front, none on sides or rear.",
+    "attribute_door_configuration": "One wide open entryway at the front, no visible doors.",
+    "attribute_roof_design": "Flat, open roof with perimeter spotlights, no overhangs or decorative elements.",
+    "attribute_architectural_style": "Modern, minimalist commercial style with clean lines and bold branding.",
+    "uid": "582d6d35e8974d1ba0af3d51e0a0369a",
+    "near_synsets": {
+        "booth.n.02": 0.5370022525606876,
+        "telephone_booth.n.01": 0.5703934852178544,
+        "shopfront.n.01": 0.57316868558051,
+        "booth.n.04": 0.5736510186788282,
+        "window.n.07": 0.5779689549267659
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/582d6d35e8974d1ba0af3d51e0a0369a",
+        "creator_username": "treestands",
+        "creator_display_name": "EX8 Studio",
+        "creator_profile_url": "https://sketchfab.com/treestands"
+    },
+    "filename": "std_582d6d35e8974d1ba0af3d51e0a0369a.glb",
+    "length": 3.665993094444275,
+    "width": 4.1270599365234375
+}

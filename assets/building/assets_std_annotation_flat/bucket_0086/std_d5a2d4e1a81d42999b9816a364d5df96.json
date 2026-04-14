@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a small, naturalistic pond set within a cut section of a large tree trunk, surrounded by lush green grass, tall reeds, and tufts of wild vegetation. The pond itself features a shallow water basin with several floating lily pads and delicate purple flowers. The tree trunk forms a partial arch over one side of the pond, with a broken, angled branch extending above, adding a whimsical, woodland character. The pond's edge is irregular and organic, blending seamlessly into the surrounding grass and plant life, with some exposed roots and branches partially encircling the water. The water surface is calm, with no visible ripples, and the overall scene suggests a tranquil, secluded spot in a park or natural urban green space. The combination of wood, water, and plant elements creates a harmonious, inviting environment.",
+    "description": "A small, tranquil pond nestled within a hollowed tree trunk, surrounded by grass, reeds, and floating lily pads with purple flowers. The scene is naturalistic and lush, evoking a peaceful woodland or park setting.",
+    "description_view_0": "The pond is viewed from the front, showing the water, lily pads, purple flowers, and the arching tree trunk with a broken branch overhead.",
+    "description_view_1": "This side view highlights the cut end of the tree trunk, the grassy border, and the pond's irregular shape with visible reeds and plant clusters.",
+    "description_view_2": "The rear view focuses on the solid, circular cross-section of the tree trunk, with less of the pond visible and more emphasis on the trunk's structure and surrounding grass.",
+    "description_view_3": "This angled view shows the pond's water surface, lily pads, and the arching trunk, with a clear view of the reeds and grassy margins.",
+    "category": "pond",
+    "height": 0.7,
+    "max_dimension": 2.0,
+    "materials": [
+        "wood",
+        "water",
+        "soil",
+        "grass",
+        "reeds",
+        "flowers",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.2,
+        0.1,
+        0.1,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 350,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "containable",
+        "plantable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "water surface",
+        "lily pads",
+        "tree trunk rim",
+        "reeds"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "green",
+        "gray",
+        "purple"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.35,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_water_presence": true,
+    "attribute_surrounding_vegetation": [
+        "grass",
+        "reeds",
+        "flowers"
+    ],
+    "attribute_edge_treatment": "The pond edge is defined by the natural, uneven rim of a hollowed tree trunk, with grassy and reedy margins blending into the surrounding vegetation.",
+    "attribute_reflections": false,
+    "attribute_wildlife_activity": [],
+    "uid": "d5a2d4e1a81d42999b9816a364d5df96",
+    "near_synsets": {
+        "lily_pad.n.01": 0.4936120484265998,
+        "fishpond.n.01": 0.5062120398669141,
+        "watercress.n.02": 0.5624954345794023,
+        "horsepond.n.01": 0.5628189817614329,
+        "landscape.n.02": 0.5641103442583573,
+        "pond.n.01": -1000.0
+    },
+    "synset": "pond.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d5a2d4e1a81d42999b9816a364d5df96",
+        "creator_username": "mmeitus",
+        "creator_display_name": "mmeitus",
+        "creator_profile_url": "https://sketchfab.com/mmeitus"
+    },
+    "filename": "std_d5a2d4e1a81d42999b9816a364d5df96.glb",
+    "length": 1.3309455513954163,
+    "width": 1.2540011405944824
+}

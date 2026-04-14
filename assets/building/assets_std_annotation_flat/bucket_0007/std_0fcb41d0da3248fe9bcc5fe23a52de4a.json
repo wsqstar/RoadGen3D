@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a weathered, cylindrical metal trash bin resembling an industrial oil drum, commonly found in urban environments such as alleys, garages, or construction sites. The surface is heavily worn, with visible rust patches, stains, and discoloration, especially near the base and around the rim. The top is slightly deformed and uneven, with a raised, rounded edge and a central circular cap, suggesting it was once sealed. There are no visible handles, wheels, or labeling, and the bin appears to be a single solid piece with no obvious opening mechanism. The color is predominantly a dull, oxidized gray with brownish rust and greenish grime near the bottom. Its robust construction and lack of decorative features indicate it is designed for heavy-duty waste containment rather than public-facing use.",
+    "description": "A weathered, cylindrical metal trash bin with a rusted, uneven top and no visible handles or wheels. The surface is gray with patches of rust and grime, giving it an industrial, utilitarian appearance.",
+    "description_view_0": "Front view shows the deformed, rusted top edge and central cap, with visible grime and rust streaks on the gray metal surface.",
+    "description_view_1": "This side highlights the uneven rim and a large dent on the top, with more pronounced vertical stains and rust patches.",
+    "description_view_2": "The rear view displays the central cap and a smoother surface, with less visible grime but continued rusting along the rim.",
+    "description_view_3": "This angle emphasizes the heavy rusting and discoloration on the lower half, with the top showing multiple dents and a rough texture.",
+    "category": "trash bin",
+    "height": 0.9,
+    "max_dimension": 0.6,
+    "materials": [
+        "steel",
+        "air",
+        "rust"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid/cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "green"
+    ],
+    "colors_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "removable, deformed flat lid",
+    "attribute_opening_mechanism": "hand lift",
+    "attribute_presence_of_wheels": false,
+    "attribute_handle_design": "absent",
+    "attribute_labeling_or_signage": "unmarked",
+    "uid": "0fcb41d0da3248fe9bcc5fe23a52de4a",
+    "near_synsets": {
+        "dumpster.n.01": 0.5236677970062107,
+        "ashcan.n.01": 0.5315901807077319,
+        "recycling_bin.n.01": 0.5345043888725963,
+        "wastepaper_basket.n.01": 0.5402086866618598,
+        "garbage.n.03": 0.5432955784951172,
+        "folderol.n.01": -1000.0,
+        "bank_identification_number.n.01": -1000.0,
+        "trash.n.02": -1000.0,
+        "bin.n.01": -1000.0,
+        "bin.n.02": -1000.0,
+        "methamphetamine.n.01": -1000.0,
+        "rubbish.n.01": -1000.0
+    },
+    "synset": "ashcan.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0fcb41d0da3248fe9bcc5fe23a52de4a",
+        "creator_username": "l.dudzic",
+        "creator_display_name": "LukeD",
+        "creator_profile_url": "https://sketchfab.com/l.dudzic"
+    },
+    "filename": "std_0fcb41d0da3248fe9bcc5fe23a52de4a.glb",
+    "length": 0.587583065032959,
+    "width": 0.5839114189147949
+}

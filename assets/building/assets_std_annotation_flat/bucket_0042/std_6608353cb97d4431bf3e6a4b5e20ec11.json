@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a large, flat-decked cargo ship with a streamlined hull and a reddish-brown deck surface. The hull is painted gray with a red lower section, and the deck features multiple rectangular hatches or cargo holds arranged in two rows along the length of the vessel. The bow is pointed and slightly raised, while the stern is broader and features a superstructure with what appears to be a bridge or control area. The ship lacks visible masts or funnels, and the deck is mostly clear except for some small fixtures and the superstructure at the rear. The overall design suggests a utilitarian vessel intended for transporting bulk goods or containers.",
+    "description": "A large, gray and red cargo ship with a flat deck, multiple rectangular hatches, and a rear superstructure. The vessel is streamlined and built for transporting goods.",
+    "description_view_0": "The ship is seen from the bow, showing the pointed front and the symmetrical arrangement of deck hatches.",
+    "description_view_1": "A side profile reveals the ship's long, flat deck, the red lower hull, and the superstructure at the stern.",
+    "description_view_2": "Viewed from the stern, the broader rear and the superstructure are prominent, with the deck hatches extending forward.",
+    "description_view_3": "The opposite side profile, similar to view 1, highlights the length and flatness of the deck and the rear superstructure.",
+    "category": "ship",
+    "height": 8.0,
+    "max_dimension": 120.0,
+    "materials": [
+        "steel",
+        "paint",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.04,
+        0.02,
+        0.02
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "bridge",
+        "door",
+        "railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a pointed bow and a broad, squared stern. The hull sides are straight and vertical, with a red lower section and no visible keels or bulbous bows. The overall shape is optimized for stability and cargo capacity.",
+    "attribute_superstructure_layout": "The superstructure is located at the stern and consists of a single, compact block that likely houses the bridge and crew quarters. The rest of the deck is open and flat, with no additional decks or towers visible.",
+    "attribute_presence_of_masts_or_funnels": false,
+    "attribute_visible_deck_equipment": [
+        "hatch",
+        "railing"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "6608353cb97d4431bf3e6a4b5e20ec11",
+    "near_synsets": {
+        "cargo_ship.n.01": 0.41371369463374497,
+        "ship.n.01": 0.4481695388629855,
+        "container_ship.n.01": 0.4610923959769907,
+        "car_carrier.n.02": 0.48045710204428527,
+        "bottom.n.07": 0.483554359611702
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6608353cb97d4431bf3e6a4b5e20ec11",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_6608353cb97d4431bf3e6a4b5e20ec11.glb",
+    "length": 76.31451416015625,
+    "width": 15.18019437789917
+}

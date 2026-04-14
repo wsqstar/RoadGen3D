@@ -1,0 +1,93 @@
+{
+    "description_long": "This cowshed is a rectangular brick structure with a prominent gable roof constructed from wooden rafters and beams. The front and rear feature large open entrances, allowing easy access for livestock and equipment. The brick walls are solid and unadorned, providing sturdy support for the timber roof, which is partially exposed to reveal the internal truss system. The roof is unfinished, with visible rafters and no apparent roofing material, suggesting a work-in-progress or utilitarian design. There are no visible windows, but the open ends and gaps between rafters offer natural ventilation. The overall appearance is functional and robust, typical of agricultural outbuildings found on the outskirts of urban areas.",
+    "description": "A brick cowshed with a gable roof of exposed wooden rafters, featuring large open entrances and no windows, designed for practical livestock shelter.",
+    "description_view_0": "Front view showing the wide open entrance framed by brick walls and the full gable roof structure.",
+    "description_view_1": "Side view revealing the exposed wooden rafters, brick wall, and the open interior with visible roof trusses.",
+    "description_view_2": "Rear view with another large open entrance, mirroring the front, and a clear look at the internal roof framework.",
+    "description_view_3": "Opposite side view highlighting the open rafter structure and brick wall, with interior trusses visible.",
+    "category": "cowshed",
+    "height": 4.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "brick",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.35,
+        0.1
+    ],
+    "mass": 18000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shelter",
+        "storage"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "entrance"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "livestock"
+    ],
+    "colors": [
+        "red",
+        "brown",
+        "beige"
+    ],
+    "colors_composition": [
+        0.65,
+        0.3,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 20000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gable",
+    "attribute_door_style": "open entrance, no physical door present",
+    "attribute_window_presence": "no windows",
+    "attribute_ventilation_features": "open eaves and large open entrances",
+    "attribute_architectural_style": "traditional rural",
+    "uid": "ca0878dd95fe45e4b6d95be3fe0ad530",
+    "near_synsets": {
+        "cowbarn.n.01": 0.43753823820671267,
+        "stockyard.n.01": 0.48161736449457015,
+        "shed.n.01": 0.4877765053430018,
+        "barn.n.01": 0.4926404293476061,
+        "farm_building.n.01": 0.49497415990402327
+    },
+    "synset": "cowbarn.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ca0878dd95fe45e4b6d95be3fe0ad530",
+        "creator_username": "codf",
+        "creator_display_name": "Steve @ DWB",
+        "creator_profile_url": "https://sketchfab.com/codf"
+    },
+    "filename": "std_ca0878dd95fe45e4b6d95be3fe0ad530.glb",
+    "length": 6.830357313156128,
+    "width": 6.803569316864014
+}

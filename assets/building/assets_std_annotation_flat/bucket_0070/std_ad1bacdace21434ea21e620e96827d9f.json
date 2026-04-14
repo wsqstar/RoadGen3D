@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a straight segment of a primary road, featuring a dark gray asphalt surface with clearly defined lane markings. The road has a single solid yellow line running down the center, flanked by two solid white lines on each side, indicating separation of lanes and road boundaries. The surface appears flat and smooth, typical of urban or suburban main roads, and is devoid of any visible cracks, potholes, or surface irregularities. There are no visible curbs, sidewalks, or additional features such as signage, lighting, or pedestrian crossings. The road segment is rectangular and elongated, suggesting it is designed for vehicular traffic in both directions. The absence of any raised features or obstacles makes it suitable for driving and walking.",
+    "description": "A straight, flat segment of primary road with a solid yellow center line and solid white edge lines on a dark gray asphalt surface. The road is clean, smooth, and lacks any signage, curbs, or pedestrian crossings.",
+    "description_view_0": "A wide, top-down view showing the full length and width of the road, with all lane markings visible.",
+    "description_view_1": "A narrow, end-on view emphasizing the road's width and the alignment of the lane markings.",
+    "description_view_2": "A similar top-down view as view 0, showing the road's length and lane markings from the opposite side.",
+    "description_view_3": "A narrow, end-on view from the opposite end, again highlighting the road's width and lane markings.",
+    "category": "road",
+    "height": 0.15,
+    "max_dimension": 12.0,
+    "materials": [
+        "asphalt",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.04,
+        0.01
+    ],
+    "mass": 4200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "car",
+        "bicycle",
+        "motorcycle",
+        "bus",
+        "truck"
+    ],
+    "colors": [
+        "gray",
+        "white",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.92,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.53,
+    "youngs_modulus": 8000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_lane_markings": "One solid yellow center line, two solid white edge lines, no dashed or special markings.",
+    "attribute_signage": "none",
+    "attribute_curb_presence": false,
+    "attribute_lighting_fixtures": "none",
+    "attribute_pedestrian_crossings": "none",
+    "uid": "ad1bacdace21434ea21e620e96827d9f",
+    "near_synsets": {
+        "white_line.n.01": 0.48853969194419605,
+        "traffic_lane.n.01": 0.5055821939820205,
+        "road_surface.n.01": 0.5124074127450009,
+        "straightaway.n.01": 0.5239791523214713,
+        "road.n.01": 0.5273928079863601,
+        "road.n.02": -1000.0
+    },
+    "synset": "road.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ad1bacdace21434ea21e620e96827d9f",
+        "creator_username": "cesarmaycon57",
+        "creator_display_name": "Maycon Santos",
+        "creator_profile_url": "https://sketchfab.com/cesarmaycon57"
+    },
+    "filename": "std_ad1bacdace21434ea21e620e96827d9f.glb",
+    "length": 52.1959114074707,
+    "width": 20.799138069152832
+}

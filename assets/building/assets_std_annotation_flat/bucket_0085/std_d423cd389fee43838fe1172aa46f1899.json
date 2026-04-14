@@ -1,0 +1,100 @@
+{
+    "description_long": "This object appears to be a makeshift or heavily damaged airplane, constructed from a variety of materials and surrounded by debris. The fuselage is boxy and irregular, with a red wing mounted across the top, showing signs of wear and dirt. The wings are straight and flat, with no visible control surfaces or engines, and the tail section is either missing or obscured by surrounding objects. The airplane is surrounded by bags, bottles, and other urban refuse, suggesting it is abandoned or used as a form of street art or installation. Two upright poles stand at either end of the scene, possibly acting as boundaries or supports. The overall appearance is rough, improvised, and non-functional, blending elements of urban waste with the recognizable form of an airplane.",
+    "description": "A rough, improvised airplane made from assorted materials and surrounded by urban debris, with a red wing and boxy fuselage. The object is heavily worn and appears abandoned or repurposed.",
+    "description_view_0": "Front view shows the red wing, boxy fuselage, and various debris including bottles and bags in front of the airplane.",
+    "description_view_1": "Side view highlights the length of the wing, the cluttered debris, and the upright poles at either end.",
+    "description_view_2": "Rear-side view reveals a large blue bag and more debris, with the tail section mostly obscured.",
+    "description_view_3": "Back view shows the rear of the fuselage, more debris, and the absence of a clear tail structure.",
+    "category": "airplane",
+    "height": 1.1,
+    "max_dimension": 2.2,
+    "materials": [
+        "wood",
+        "plastic",
+        "fabric",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 35,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 4,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wing",
+        "fuselage",
+        "debris"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "brown",
+        "blue",
+        "white",
+        "orange",
+        "black"
+    ],
+    "colors_composition": [
+        0.3,
+        0.25,
+        0.15,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 15000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_wingspan_configuration": "Straight, high-wing configuration with no visible dihedral or winglets; wings appear flat and roughly attached.",
+    "attribute_engine_type": "No visible engine present.",
+    "attribute_tail_design": "Tail section is missing or obscured; no conventional tail configuration visible.",
+    "attribute_landing_gear_type": "No visible landing gear; object rests directly on the ground and debris.",
+    "attribute_cockpit_placement": "No distinct cockpit visible; fuselage is boxy and irregular with no clear canopy or window features.",
+    "uid": "d423cd389fee43838fe1172aa46f1899",
+    "near_synsets": {
+        "aircraft.n.01": 0.5083626367790649,
+        "airplane.n.01": 0.5205235179653888,
+        "fuselage.n.01": 0.5466320802564029,
+        "airframe.n.01": 0.5472598385375331,
+        "biplane.n.01": 0.5484548381493406
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d423cd389fee43838fe1172aa46f1899",
+        "creator_username": "alban",
+        "creator_display_name": "alban",
+        "creator_profile_url": "https://sketchfab.com/alban"
+    },
+    "filename": "std_d423cd389fee43838fe1172aa46f1899.glb",
+    "length": 2.3489311933517456,
+    "width": 1.6540307998657227
+}

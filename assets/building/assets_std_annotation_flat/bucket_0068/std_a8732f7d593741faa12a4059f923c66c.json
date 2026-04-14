@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a classic hand grenade, specifically resembling the Mk 2 fragmentation grenade, with a robust, olive-green, pineapple-textured metal body. The surface is segmented into raised rectangular sections, providing grip and aiding fragmentation upon detonation. At the top, a metallic safety lever and a circular pull ring are attached to a cylindrical fuse assembly, which is slightly weathered and metallic gray in color. The lever is held in place by the pin, which must be pulled to arm the grenade. The overall finish is matte with some minor scuffing and wear, indicating use or handling. No visible markings or warning labels are present on the exterior.",
+    "description": "A classic olive-green, pineapple-textured hand grenade with a metal safety lever and pull ring, featuring a matte, slightly worn finish.",
+    "description_view_0": "Front view showing the safety lever running vertically down the center and the pin ring partially visible at the top.",
+    "description_view_1": "Angled view highlighting the circular pull ring and the side profile of the safety lever, with the textured body clearly visible.",
+    "description_view_2": "Rear view displaying the back of the grenade body and the top fuse assembly, with the lever less prominent.",
+    "description_view_3": "Side view emphasizing the length of the safety lever and the pin ring, with the grenade's textured segments in clear relief.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.12,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 0.6,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 6,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "throwable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "fuse assembly"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the safety pin and releasing the lever, which activates the internal fuse mechanism.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "a8732f7d593741faa12a4059f923c66c",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.5098227458008819,
+        "grenade.n.01": 0.5326084157593141,
+        "pipe_bomb.n.01": 0.5603023427802387,
+        "plastic_bomb.n.01": 0.5694109103491678,
+        "rifle_grenade.n.01": 0.5700315436625841,
+        "bomb.n.01": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a8732f7d593741faa12a4059f923c66c",
+        "creator_username": "oleg.ratiev",
+        "creator_display_name": "oleg.ratiev",
+        "creator_profile_url": "https://sketchfab.com/oleg.ratiev"
+    },
+    "filename": "std_a8732f7d593741faa12a4059f923c66c.glb",
+    "length": 0.06452367454767227,
+    "width": 0.058314934372901917
+}

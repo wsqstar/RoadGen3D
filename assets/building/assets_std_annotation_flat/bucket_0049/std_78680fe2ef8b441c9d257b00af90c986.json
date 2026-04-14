@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a specialized utility truck with a white cab and a large, articulated boom arm mounted on the rear, likely used for maintenance or construction tasks such as electrical line work or tree trimming. The truck features multiple storage compartments along both sides, with metallic roller doors and visible equipment racks. The boom arm is painted white with orange safety stripes and is currently stowed along the length of the truck. The cab is compact, with large side mirrors and a streamlined front grille. The rear section includes stabilizing outriggers and additional equipment storage, indicating its use for heavy-duty, stationary operations. The overall design is robust, with a focus on functionality and safety in urban or industrial environments.",
+    "description": "A white utility truck with a stowed articulated boom arm, multiple side storage compartments, and orange safety markings, designed for maintenance or construction tasks.",
+    "description_view_0": "Front view showing the cab, large windshield, side mirrors, and the boom arm stowed on top.",
+    "description_view_1": "Left side view highlighting the storage compartments, equipment racks, and the full length of the stowed boom arm.",
+    "description_view_2": "Rear view displaying the end of the boom arm, rear stabilizers, and additional storage features.",
+    "description_view_3": "Right side view showing the cab, storage compartments, and the boom arm's mounting and stowage.",
+    "category": "truck",
+    "height": 3.5,
+    "max_dimension": 9.0,
+    "materials": [
+        "steel",
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.07,
+        0.04,
+        0.02,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "boom arm",
+        "storage compartment",
+        "mirror",
+        "outrigger",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "orange",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "flatbed",
+    "attribute_wheelbase": "4.2",
+    "attribute_number_of_axles": 2,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "78680fe2ef8b441c9d257b00af90c986",
+    "near_synsets": {
+        "truck.n.01": 0.49708273514258944,
+        "trailer_truck.n.01": 0.5225159972034307,
+        "delivery_truck.n.01": 0.5334922550123357,
+        "van.n.05": 0.5356355925547638,
+        "dump_truck.n.01": 0.5377192088617853,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/78680fe2ef8b441c9d257b00af90c986",
+        "creator_username": "stephen.williams",
+        "creator_display_name": "stephen.williams",
+        "creator_profile_url": "https://sketchfab.com/stephen.williams"
+    },
+    "filename": "std_78680fe2ef8b441c9d257b00af90c986.glb",
+    "length": 7.349979877471924,
+    "width": 2.278546094894409
+}

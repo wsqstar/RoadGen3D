@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a rustic, wooden handcart with a flat platform made from weathered wooden planks, supported by four large spoked wheels. The cart is accompanied by a metal water pump, a watering can, a shovel, and a stick, all arranged on a black base. The wheels are robust and appear to be made of wood with metal rims, suitable for rough terrain. The platform is open with visible gaps between the planks, and there are no side rails or barriers. The overall appearance suggests it is an old-fashioned utility cart, possibly used for gardening or transporting goods in an urban or rural setting.",
+    "description": "A weathered wooden handcart with four large spoked wheels, an open slatted platform, and rustic gardening tools nearby.",
+    "description_view_0": "Front-left view showing the handcart's open slatted platform, all four wheels, a metal water pump, watering can, shovel, and stick.",
+    "description_view_1": "Left-side view highlighting the water pump and watering can in front of the handcart, with the wheels and platform visible.",
+    "description_view_2": "Rear view displaying the back of the handcart, the open slatted platform, and the arrangement of the tools.",
+    "description_view_3": "Right-rear view focusing on the handcart's wheels, the open platform, and the water pump positioned at the front.",
+    "category": "handcart",
+    "height": 1.0,
+    "max_dimension": 2.0,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "handle",
+        "platform",
+        "water pump",
+        "watering can",
+        "shovel",
+        "stick"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "gray",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_number_of_wheels": 4,
+    "attribute_handle_type": "simple wooden stick",
+    "attribute_wheel_position": "all corners",
+    "attribute_presence_of_side_rails": false,
+    "attribute_load_platform_design": "open slats",
+    "uid": "6ca27b679256483e85cb37f0b3d87aea",
+    "near_synsets": {
+        "handcart.n.01": 0.4905086390481817,
+        "shopping_cart.n.01": 0.500136994388207,
+        "serving_cart.n.01": 0.5065091639816213,
+        "cart.n.01": 0.509307766592716,
+        "laundry_cart.n.01": 0.5098458224785568
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6ca27b679256483e85cb37f0b3d87aea",
+        "creator_username": "tompauwaert",
+        "creator_display_name": "Tom Pauwaert",
+        "creator_profile_url": "https://sketchfab.com/tompauwaert"
+    },
+    "filename": "std_6ca27b679256483e85cb37f0b3d87aea.glb",
+    "length": 1.9690483808517456,
+    "width": 1.8338727951049805
+}

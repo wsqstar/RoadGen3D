@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a large, cylindrical metal barrel with a weathered, heavily rusted exterior, giving it a rugged and aged appearance. The surface is mottled with reddish-brown rust and some darker patches, indicating prolonged exposure to the elements. Prominently displayed on one side is a black and red warning label reading 'FUEL OIL FLAMMABLE' with a flame symbol, suggesting it is used for storing hazardous or combustible liquids. The barrel features two raised reinforcement bands encircling its body, providing structural strength. The top is flat and sealed with a visible circular lid, which appears to be tightly closed, and a small bung or cap is present for filling or emptying contents. There are no visible handles or spouts, and the overall construction suggests it is designed for industrial or outdoor urban environments.",
+    "description": "A large, rusted metal barrel with a 'FUEL OIL FLAMMABLE' warning label and reinforced bands, sealed with a flat lid and no visible handles.",
+    "description_view_0": "Front view showing the warning label, rusted surface, and the flat, sealed lid with a small bung.",
+    "description_view_1": "Side view with no label visible, highlighting the rust texture and reinforcement bands.",
+    "description_view_2": "Opposite side view, label not visible, showing consistent rust and banding details.",
+    "description_view_3": "Angled view with part of the warning label just visible, emphasizing the cylindrical shape and weathered finish.",
+    "category": "barrel or bucket",
+    "height": 0.9,
+    "max_dimension": 0.6,
+    "materials": [
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 35,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "bung"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "rust brown",
+        "dark brown",
+        "black",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "metal reinforcement bands around body",
+    "attribute_labeling_or_markings": "FUEL OIL FLAMMABLE warning label with flame symbol",
+    "attribute_placement_location": "industrial",
+    "uid": "429718fd432841a98d8b6f966c725cc9",
+    "near_synsets": {
+        "barrel.n.02": 0.4812823622999464,
+        "barrel.n.03": 0.5006724876876893,
+        "beer_barrel.n.01": 0.5111941415863885,
+        "barrel.n.04": 0.5123633606928646,
+        "barrel.n.05": 0.5162175478072001,
+        "bucket.n.01": -1000.0,
+        "bucket.n.02": -1000.0,
+        "barrel.n.01": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/429718fd432841a98d8b6f966c725cc9",
+        "creator_username": "Kane33",
+        "creator_display_name": "Kanedog",
+        "creator_profile_url": "https://sketchfab.com/Kane33"
+    },
+    "filename": "std_429718fd432841a98d8b6f966c725cc9.glb",
+    "length": 0.6336464881896973,
+    "width": 0.6330264806747437
+}

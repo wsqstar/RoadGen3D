@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a heavy, turret-mounted rotary rifle resembling a Gatling gun, with a robust cylindrical barrel cluster and a thick, metallic housing. The main body is constructed from dark green metal with visible weathering and wear, giving it an industrial, utilitarian appearance. The barrel assembly consists of multiple parallel tubes, likely for rapid-fire capability, and is supported by two sturdy, rust-colored side brackets. The base is wide and octagonal, providing stability, and appears to be bolted or fixed to a surface, suggesting a stationary emplacement. The rear of the housing is solid and rounded, with no visible stock or grip, indicating it is not handheld. The overall design is functional and intimidating, suitable for defensive or offensive use in urban environments such as checkpoints or fortified positions.",
+    "description": "A heavy, turret-mounted rotary rifle with multiple barrels and a weathered green metal body, supported by rust-colored brackets and a wide octagonal base. Its industrial design suggests stationary, high-rate-of-fire use.",
+    "description_view_0": "Side view showing the full length of the multi-barrel cluster, cylindrical housing, and the supporting brackets attached to the wide base.",
+    "description_view_1": "Rear view displaying the solid, rounded back of the housing and the symmetrical side brackets, with the base directly beneath.",
+    "description_view_2": "Opposite side view mirroring view 0, highlighting the barrel cluster and the robust mounting structure.",
+    "description_view_3": "Front view focusing on the open ends of the multiple barrels, arranged in a circular pattern, and the supporting brackets on either side.",
+    "category": "rifle",
+    "height": 0.8,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "iron",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel cluster",
+        "mounting brackets",
+        "base",
+        "rotational joint"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "rust red"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "rotary",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "none",
+    "attribute_muzzle_device": "none",
+    "uid": "93fd12e44609464686fede4778664b54",
+    "near_synsets": {
+        "rifle.n.01": 0.49731921764280124,
+        "gatling_gun.n.01": 0.5060611282823703,
+        "browning_automatic_rifle.n.01": 0.5242032931475474,
+        "light_arm.n.01": 0.5271064646294042,
+        "rifle_grenade.n.01": 0.5287435579953415
+    },
+    "synset": "rifle_grenade.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/93fd12e44609464686fede4778664b54",
+        "creator_username": "mhanna",
+        "creator_display_name": "mhanna",
+        "creator_profile_url": "https://sketchfab.com/mhanna"
+    },
+    "filename": "std_93fd12e44609464686fede4778664b54.glb",
+    "length": 0.5709024369716644,
+    "width": 0.7999999821186066
+}

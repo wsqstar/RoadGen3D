@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a World War II-era fighter airplane, visually modeled after the iconic Supermarine Spitfire used by the Royal Air Force. The aircraft features a streamlined fuselage with a single propeller engine at the nose, elliptical low-mounted wings adorned with roundel insignias, and a camouflage paint scheme of brown and green with light underbelly. The cockpit is positioned just behind the engine, enclosed with a clear canopy, and the tail section includes a single vertical stabilizer and horizontal stabilizers. The landing gear is in a taildragger configuration, with two main wheels under the wings and a small tail wheel. Distinctive markings, such as the RAF roundels and squadron codes, are visible on the wings and fuselage.",
+    "description": "A WWII-era fighter airplane with elliptical low-mounted wings, camouflage paint, and RAF insignia, featuring a single propeller engine and enclosed cockpit.",
+    "description_view_0": "Top-down view showing the elliptical wings, roundel insignias, and camouflage pattern.",
+    "description_view_1": "Angled side view highlighting the propeller, cockpit canopy, and taildragger landing gear.",
+    "description_view_2": "Front view emphasizing the propeller, nose, and symmetrical wing shape.",
+    "description_view_3": "Opposite angled side view showing the tail section, vertical stabilizer, and fuselage markings.",
+    "category": "airplane",
+    "height": 3.5,
+    "max_dimension": 9.5,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 2700,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 26460,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "cockpit canopy",
+        "landing gear",
+        "control surfaces",
+        "wheels"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "green",
+        "gray",
+        "white",
+        "red",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.3,
+        0.3,
+        0.15,
+        0.1,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 12.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, elliptical planform with no visible winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "Single nose-mounted piston engine with a three-blade propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "Taildragger configuration with two main fixed gear under the wings and a single tail wheel.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed single-seat cockpit with a clear canopy just behind the engine.",
+    "uid": "a0d1630c64fc4b808347d7058d85aede",
+    "near_synsets": {
+        "aircraft.n.01": 0.5007448551532226,
+        "fighter.n.02": 0.5022778204067833,
+        "warplane.n.01": 0.5049391026354069,
+        "airplane.n.01": 0.5143401631799813,
+        "dogfight.n.03": 0.5159686209496983
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a0d1630c64fc4b808347d7058d85aede",
+        "creator_username": "danielpinhocampos",
+        "creator_display_name": "Daniel Campos",
+        "creator_profile_url": "https://sketchfab.com/danielpinhocampos"
+    },
+    "filename": "std_a0d1630c64fc4b808347d7058d85aede.glb",
+    "length": 12.881794929504395,
+    "width": 14.380053997039795
+}

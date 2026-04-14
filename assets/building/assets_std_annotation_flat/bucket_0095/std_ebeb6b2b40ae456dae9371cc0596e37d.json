@@ -1,0 +1,96 @@
+{
+    "description_long": "This factory building features a large, rectangular main structure with a flat roof, multiple cylindrical storage tanks, and prominent smokestacks rising from the roof. The exterior is composed of geometric, industrial panels and includes several horizontal bands and protruding elements, giving it a modern industrial appearance. On one side, a series of large cylindrical silos are connected by pipes and catwalks, indicating storage or processing functions. The building is surrounded by smaller tanks and spherical containers, likely for raw materials or waste management. Rooftop machinery and vents are visible, suggesting active industrial processes within. The overall color scheme is a uniform gray, emphasizing its utilitarian and functional design.",
+    "description": "A large, modern industrial factory building with flat roofs, smokestacks, and multiple cylindrical storage tanks and silos, all in a uniform gray color.",
+    "description_view_0": "Side view showing the main building, a row of spherical tanks, and the attached silos with connecting pipes.",
+    "description_view_1": "Rear view highlighting the two tall smokestacks, the tops of the silos, and the arrangement of rooftop machinery.",
+    "description_view_2": "Opposite side view displaying the main building, cylindrical silos, and a row of horizontal tanks along the base.",
+    "description_view_3": "Front view featuring the main entrance area, several large tanks, and a clear view of the rooftop equipment and smokestacks.",
+    "category": "factory building",
+    "height": 18,
+    "max_dimension": 45,
+    "materials": [
+        "concrete",
+        "steel",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.1
+    ],
+    "mass": 1200000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "loading dock door",
+        "silo hatch",
+        "rooftop machinery",
+        "vent"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 10,
+    "asset_composition_type": "single",
+    "attribute_number_of_large_industrial_windows": 0,
+    "attribute_presence_of_smokestacks": true,
+    "attribute_loading_dock_doors": 1,
+    "attribute_rooftop_machinery": true,
+    "attribute_architectural_style": "Modern Industrial",
+    "uid": "ebeb6b2b40ae456dae9371cc0596e37d",
+    "near_synsets": {
+        "factory.n.01": 0.5131717631499562,
+        "plant.n.01": 0.533869878335812,
+        "farm_building.n.01": 0.536238139150348,
+        "loft.n.01": 0.5527093872335849,
+        "silo.n.01": 0.5595988332222197,
+        "building.n.01": -1000.0,
+        "building.n.04": -1000.0,
+        "construction.n.01": -1000.0,
+        "construction.n.07": -1000.0
+    },
+    "synset": "factory.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ebeb6b2b40ae456dae9371cc0596e37d",
+        "creator_username": "headwindh",
+        "creator_display_name": "headwindh",
+        "creator_profile_url": "https://sketchfab.com/headwindh"
+    },
+    "filename": "std_ebeb6b2b40ae456dae9371cc0596e37d.glb",
+    "length": 36.76977729797363,
+    "width": 32.401573181152344
+}

@@ -1,0 +1,107 @@
+{
+    "description_long": "This pumping station consists of a rectangular building with a flat roof, mounted on a concrete platform with a visible soil base. The front facade features three distinct sections: a stainless steel sink area, a central workspace with metallic surfaces, and a door with a window, all under a row of industrial lights. Attached to the rear and side of the building are large, dark blue cylindrical tanks and complex metallic piping, likely for fluid processing and ventilation. The left side of the building displays the letters 'SGS' in large, raised characters, serving as a prominent identifier. The exterior materials are primarily metal and concrete, with some glass in the door and windows. The overall structure is robust and industrial, designed for utility and durability in an urban infrastructure context.",
+    "description": "A robust, industrial pumping station with a concrete base, metal-clad building, large blue tanks, and complex piping, featuring a front workspace and 'SGS' signage.",
+    "description_view_0": "Front view showing the main workspace, stainless steel sink, door with window, and overhead lights.",
+    "description_view_1": "Left side view highlighting the 'SGS' signage and the rear tanks and piping.",
+    "description_view_2": "Rear view displaying the large blue tanks, extensive piping, and the back of the building.",
+    "description_view_3": "Right side view showing the plain metal siding and partial view of the tanks and piping.",
+    "category": "pumping station",
+    "height": 3.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "concrete",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.3,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "sink",
+        "control panel",
+        "handle",
+        "light switch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "blue",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.35,
+        0.25,
+        0.2,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "smooth",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_building_signage": "Raised 'SGS' letters on the left exterior wall, large and clearly legible.",
+    "attribute_ventilation_grilles": "none",
+    "attribute_security_fencing": "none",
+    "attribute_access_hatches": "none",
+    "attribute_warning_lights": "none",
+    "uid": "0dd1c7e7b4d24934b675e43e03800ecc",
+    "near_synsets": {
+        "pump_house.n.01": 0.5593509344606411,
+        "gas_system.n.01": 0.5725782180366232,
+        "gas_pump.n.01": 0.5771872757094104,
+        "water_tower.n.01": 0.5808875507072483,
+        "groundwater_pump.n.01": 0.5908886374462102,
+        "station.n.03": -1000.0,
+        "station.n.01": -1000.0,
+        "place.n.10": -1000.0,
+        "post.n.01": -1000.0,
+        "station.n.05": -1000.0
+    },
+    "synset": "pump_house.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0dd1c7e7b4d24934b675e43e03800ecc",
+        "creator_username": "Mr_Herrera",
+        "creator_display_name": "Boris Herrera",
+        "creator_profile_url": "https://sketchfab.com/Mr_Herrera"
+    },
+    "filename": "std_0dd1c7e7b4d24934b675e43e03800ecc.glb",
+    "length": 3.3523380756378174,
+    "width": 4.123392105102539
+}

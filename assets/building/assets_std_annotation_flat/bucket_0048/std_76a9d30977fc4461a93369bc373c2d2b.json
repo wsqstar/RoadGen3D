@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a stylized, blocky sailing ship with a brown wooden hull and two tall masts, each rigged with multiple white sails. The ship features a raised stern with a small cabin structure and a lower bow, both accented with green and yellow details. The vessel is depicted cutting through blue, pixelated water, with white foam and waves forming around the hull, suggesting movement. The deck is open, with visible railings and a few small fixtures, while the masts are equipped with crow's nests and spars for the sails. The ship's bow is slightly pointed, and the stern is rounded, with a red accent at the rear. The overall design is reminiscent of classic sailing ships, rendered in a voxel or pixel-art style.",
+    "description": "A stylized, blocky sailing ship with two tall masts, white sails, and a brown wooden hull, depicted moving through blue, pixelated water.",
+    "description_view_0": "Side view showing the full length of the ship, two masts with sails, and the raised stern cabin; water and foam are visible along the hull.",
+    "description_view_1": "Front view highlighting the pointed bow, symmetrical masts, and the ship's width as it cuts through the water.",
+    "description_view_2": "Opposite side view similar to view 0, showing the hull, masts, and stern details from the other side.",
+    "description_view_3": "Rear view focusing on the rounded stern, red accent, and the alignment of the masts and sails from behind.",
+    "category": "ship",
+    "height": 2.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "wood",
+        "fabric",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 3500,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 35000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "steerable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sails",
+        "masts",
+        "cabin door",
+        "deck railings",
+        "steering wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "white",
+        "blue",
+        "green",
+        "yellow",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.15,
+        0.15,
+        0.07,
+        0.05,
+        0.04,
+        0.04
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a pointed bow and rounded stern, featuring a continuous sheer line and no visible keels or bulbous bows. The hull sides are smooth and slightly curved, with a raised stern section and a lower bow.",
+    "attribute_superstructure_layout": "The superstructure consists of a small, raised cabin at the stern and an open main deck. There are no visible bridges or multiple decks, and the masts rise directly from the deck.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "masts",
+        "sails",
+        "crow's nest",
+        "cabin"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "76a9d30977fc4461a93369bc373c2d2b",
+    "near_synsets": {
+        "sailing_vessel.n.01": 0.5309763410753698,
+        "sail.n.03": 0.5351330456416014,
+        "blue_peter.n.01": 0.5353291901294043,
+        "brig.n.01": 0.5353555077595806,
+        "small_ship.n.01": 0.5361070133253932,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/76a9d30977fc4461a93369bc373c2d2b",
+        "creator_username": "stephenk232",
+        "creator_display_name": "stephenk232",
+        "creator_profile_url": "https://sketchfab.com/stephenk232"
+    },
+    "filename": "std_76a9d30977fc4461a93369bc373c2d2b.glb",
+    "length": 2.9924243688583374,
+    "width": 2.0454559326171875
+}

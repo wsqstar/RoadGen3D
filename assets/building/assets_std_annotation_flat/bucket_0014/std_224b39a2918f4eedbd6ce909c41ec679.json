@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a tactical pump-action shotgun with a compact, robust design, featuring a short barrel and a ventilated heat shield along the top. The receiver and barrel are primarily matte black metal, while the fore-end and pistol grip are made of textured brown polymer or wood for improved handling. The fore-end has a ribbed surface for a secure grip and is positioned beneath the barrel, indicating a pump-action mechanism. The stock is replaced by a pistol grip, making the shotgun more maneuverable in confined urban environments. The trigger guard is rounded and moderately sized, providing protection for the trigger while allowing easy access. The overall appearance suggests a weapon designed for close-quarters use, with utilitarian finishes and minimal decorative elements.",
+    "description": "A compact, pump-action shotgun with a short barrel, ventilated heat shield, and brown pistol grip and fore-end. The design is utilitarian, with matte black metal and textured surfaces for secure handling.",
+    "description_view_0": "Side view showing the full length of the shotgun, including the short barrel, ventilated heat shield, ribbed fore-end, and brown pistol grip.",
+    "description_view_1": "Front view highlighting the circular muzzle, barrel opening, and the alignment of the heat shield and fore-end beneath the barrel.",
+    "description_view_2": "Opposite side view displaying the same features as view 0, with the brown grip and fore-end visible, and the ejection port area on the receiver.",
+    "description_view_3": "Rear view showing the back of the pistol grip and the alignment of the receiver and barrel, with the trigger guard partially visible.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.85,
+    "materials": [
+        "steel",
+        "polymer",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "pumpable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pistol grip",
+        "fore-end (pump)",
+        "trigger",
+        "trigger guard",
+        "barrel",
+        "heat shield"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel with a ventilated heat shield along the top; short barrel length",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "rounded, moderately sized trigger guard with a smooth contour and no visible finger grooves or reinforcement",
+    "uid": "224b39a2918f4eedbd6ce909c41ec679",
+    "near_synsets": {
+        "pump_action.n.01": 0.48486531807159944,
+        "sawed-off_shotgun.n.01": 0.4964351499315616,
+        "shotgun.n.01": 0.5093824454332534,
+        "gas_gun.n.01": 0.525748856446891,
+        "pistol.n.01": 0.5380240006404281
+    },
+    "synset": "shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/224b39a2918f4eedbd6ce909c41ec679",
+        "creator_username": "jesamabin",
+        "creator_display_name": "jesamabin",
+        "creator_profile_url": "https://sketchfab.com/jesamabin"
+    },
+    "filename": "std_224b39a2918f4eedbd6ce909c41ec679.glb",
+    "length": 0.7094050049781799,
+    "width": 0.054656982421875
+}

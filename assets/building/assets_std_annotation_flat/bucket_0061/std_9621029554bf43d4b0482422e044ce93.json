@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a large, rectangular warehouse building with a flat, industrial roof covered in evenly spaced skylights or solar panels. The front facade features a long row of glass windows above a series of red loading dock doors, flanked by two small parking lots with marked spaces and landscaped islands. The exterior walls are primarily gray with horizontal red accent lines, giving the structure a modern, utilitarian appearance. The side and rear elevations are plain, with minimal detailing and no visible windows, emphasizing the building's functional purpose. The roof is expansive and flat, with visible grid-like patterns and subtle rooftop structures, likely for ventilation or utilities. The surrounding area is paved, with driveways and access points for vehicles, supporting the building's role in logistics or storage.",
+    "description": "A large, modern warehouse with a flat roof, glass-fronted entry, red loading docks, and expansive paved surroundings.",
+    "description_view_0": "Front view showing glass windows, red loading dock doors, and two landscaped parking areas.",
+    "description_view_1": "Side view displaying plain gray walls, roof details, and a small parking lot to the left.",
+    "description_view_2": "Rear view with unadorned gray walls and a clear view of the flat, patterned roof.",
+    "description_view_3": "Opposite side view similar to view 1, with visible parking and minimal wall features.",
+    "category": "warehouse",
+    "height": 12,
+    "max_dimension": 90,
+    "materials": [
+        "reinforced concrete",
+        "glass",
+        "steel",
+        "asphalt",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.08,
+        0.12,
+        0.1,
+        0.05
+    ],
+    "mass": 1800000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "loadable",
+        "unloadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "loading dock",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "blue",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 8,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main facade features a long strip of blue-tinted glass windows above a series of red loading dock doors, framed by gray concrete walls with horizontal red accent lines. Two landscaped parking areas with marked spaces and small green islands flank the entry, adding functional and visual interest.",
+    "attribute_loading_dock_presence": true,
+    "attribute_signage_type": [
+        "company logo"
+    ],
+    "attribute_roof_structure": "The roof is flat and expansive, covered with a grid of skylights or solar panels, and includes subtle rooftop structures likely for ventilation or utilities. The surface appears to be made of reinforced concrete or metal panels.",
+    "attribute_architectural_style": "modern industrial",
+    "uid": "9621029554bf43d4b0482422e044ce93",
+    "near_synsets": {
+        "warehouse.n.01": 0.5187537887596849,
+        "loft.n.01": 0.5308239786492315,
+        "shop_floor.n.01": 0.5595104616779212,
+        "storehouse.n.01": 0.5624040111186764,
+        "workroom.n.01": 0.5653162619222445
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9621029554bf43d4b0482422e044ce93",
+        "creator_username": "volegv",
+        "creator_display_name": "Oleh Volyk",
+        "creator_profile_url": "https://sketchfab.com/volegv"
+    },
+    "filename": "std_9621029554bf43d4b0482422e044ce93.glb",
+    "length": 110.73998260498047,
+    "width": 103.37517547607422
+}

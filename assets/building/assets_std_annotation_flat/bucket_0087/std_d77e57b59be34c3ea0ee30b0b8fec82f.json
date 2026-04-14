@@ -1,0 +1,98 @@
+{
+    "description_long": "This handcart features a rustic wooden frame with two large spoked wheels mounted on either side, providing stability and mobility. The load platform is constructed from wooden slats and is partially covered by a striped fabric canopy, which drapes over the top and sides, offering some protection to the contents inside. The front of the cart is equipped with two long wooden handles for manual pushing or pulling, while the rear is open for easy loading and unloading. The wheels are reinforced with metal rims, enhancing durability for urban terrain. The cart's interior is spacious, designed to carry goods or supplies, and the side rails help secure the load. The overall appearance suggests a utilitarian design suitable for markets, street vendors, or light transport in urban environments.",
+    "description": "A wooden handcart with large spoked wheels, a striped fabric canopy, and long handles for manual transport. The cart features a slatted load platform and side rails for securing goods.",
+    "description_view_0": "Front view shows the striped canopy draping over the cart, with the open end and wooden handles partially visible.",
+    "description_view_1": "Side view highlights the large spoked wheel, the slatted wooden platform, and the full length of the handles extending forward.",
+    "description_view_2": "Rear view reveals the open back of the cart, the striped canopy, and the wooden slats inside the load area.",
+    "description_view_3": "Opposite side view displays the other wheel, the handles, and the striped canopy, mirroring the features seen in view 1.",
+    "category": "handcart",
+    "height": 1.1,
+    "max_dimension": 2.2,
+    "materials": [
+        "wood",
+        "fabric",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 55,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "load platform",
+        "side rail",
+        "canopy"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "green",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 2,
+    "attribute_handle_type": "dual straight bars",
+    "attribute_wheel_position": "side-mounted near rear",
+    "attribute_presence_of_side_rails": true,
+    "attribute_load_platform_design": "open wooden slats",
+    "uid": "d77e57b59be34c3ea0ee30b0b8fec82f",
+    "near_synsets": {
+        "handcart.n.01": 0.45507261288030315,
+        "hand_truck.n.01": 0.45573573606194717,
+        "shopping_cart.n.01": 0.4725440682798323,
+        "laundry_cart.n.01": 0.47301730739670367,
+        "serving_cart.n.01": 0.47488848458055527
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d77e57b59be34c3ea0ee30b0b8fec82f",
+        "creator_username": "borcore",
+        "creator_display_name": "Boris Korotkov",
+        "creator_profile_url": "https://sketchfab.com/borcore"
+    },
+    "filename": "std_d77e57b59be34c3ea0ee30b0b8fec82f.glb",
+    "length": 1.5825614929199219,
+    "width": 0.9700603485107422
+}

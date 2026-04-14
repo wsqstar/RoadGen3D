@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a small, shallow pond with a gently irregular outline, filled with clear water and dotted with numerous green lily pads of varying sizes. The water surface is calm, with a few small bubbles or droplets visible above it, suggesting a tranquil environment. The lily pads are supported by thin stems that rise from the water, and some pads are partially submerged or overlapping. The pond lacks any visible hard edging, blending naturally into its surroundings, and there are no rocks, concrete, or artificial borders. The overall appearance is soft and organic, evoking a peaceful, naturalistic water feature often found in urban parks or landscaped gardens. No visible wildlife or additional vegetation types are present beyond the lily pads.",
+    "description": "A small, shallow pond with clear water and numerous green lily pads, featuring a soft, natural edge and a tranquil surface.",
+    "description_view_0": "From this view, the pond's irregular shape and the dense cluster of lily pads across the water are clearly visible, with some pads overlapping and a few small bubbles above the surface.",
+    "description_view_1": "This angle highlights the pond's depth and the distribution of lily pads, showing more of the water's open area and the thin stems supporting the pads.",
+    "description_view_2": "Here, the pond appears slightly wider, with the lily pads spread more evenly and the water surface looking especially calm and undisturbed.",
+    "description_view_3": "This view emphasizes the pond's organic edge and the arrangement of lily pads, with a few pads extending toward the foreground and more open water visible.",
+    "category": "pond",
+    "height": 0.12,
+    "max_dimension": 1.2,
+    "materials": [
+        "water",
+        "plant_matter",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 110,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "containable",
+        "floatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "lily_pad"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "drone"
+    ],
+    "colors": [
+        "green",
+        "light blue",
+        "white"
+    ],
+    "colors_composition": [
+        0.25,
+        0.7,
+        0.05
+    ],
+    "surface_hardness": "soft",
+    "surface_roughness": 0.1,
+    "surface_finish": "smooth",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.33,
+    "youngs_modulus": 0.002,
+    "friction_coefficient": 0.05,
+    "bounciness": 0.0,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_water_presence": true,
+    "attribute_surrounding_vegetation": [
+        "lily pads"
+    ],
+    "attribute_edge_treatment": "The pond has a natural, soft edge with no visible artificial borders or hard landscaping, blending seamlessly into its surroundings.",
+    "attribute_reflections": false,
+    "attribute_wildlife_activity": [],
+    "uid": "529ea8441fdf435591d81ce5e165a38b",
+    "near_synsets": {
+        "lily_pad.n.01": 0.4416279907613512,
+        "fishpond.n.01": 0.47625578637199495,
+        "mere.n.01": 0.5170648482097734,
+        "watercress.n.02": 0.5256137834163833,
+        "spatterdock.n.01": 0.5303091110203438,
+        "pond.n.01": -1000.0
+    },
+    "synset": "pond.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/529ea8441fdf435591d81ce5e165a38b",
+        "creator_username": "dartuchiwa",
+        "creator_display_name": "dartuchiwa",
+        "creator_profile_url": "https://sketchfab.com/dartuchiwa"
+    },
+    "filename": "std_529ea8441fdf435591d81ce5e165a38b.glb",
+    "length": 1.3639084100723267,
+    "width": 6.978495836257935
+}

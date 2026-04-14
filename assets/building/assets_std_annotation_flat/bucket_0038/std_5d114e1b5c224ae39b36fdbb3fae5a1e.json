@@ -1,0 +1,115 @@
+{
+    "description_long": "This object is a quadrupedal robot dog with a sleek, angular yellow body and four articulated legs, each attached at the corners of the main chassis. The body is compact and streamlined, featuring visible branding and what appear to be sensor housings or cameras on the front. The legs are jointed and designed for mobility, with black segments that likely serve as feet or contact points for stability on various surfaces. The overall construction suggests a robust, industrial design suitable for urban environments, with a hard, metallic exterior and possible internal electronics. The robot's form factor and visible features indicate it is built for autonomous or remote-controlled navigation, possibly for inspection, delivery, or security tasks. The finish is smooth and slightly glossy, giving it a modern, high-tech appearance.",
+    "description": "A yellow, quadrupedal robot dog with articulated black legs, a compact body, and visible sensors on the front. Its design is robust and modern, suitable for urban tasks.",
+    "description_view_0": "Front view showing the robot dog's face-like front with sensor housings and branding, and all four legs splayed outward.",
+    "description_view_1": "Top-down view highlighting the rectangular body and the symmetrical arrangement of the four legs around it.",
+    "description_view_2": "Side view displaying the length of the body, the articulation of the legs, and the streamlined profile.",
+    "description_view_3": "Rear view showing the back of the body and the attachment points of the legs, with less detail on the sensors.",
+    "category": "robot dog",
+    "height": 0.45,
+    "max_dimension": 0.85,
+    "materials": [
+        "aluminum",
+        "plastic",
+        "glass",
+        "rubber",
+        "air",
+        "electronic components"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.05,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 90,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "leg",
+        "sensor housing",
+        "power button"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_mechanical_joints": [
+        "rotary joint",
+        "hinge joint"
+    ],
+    "attribute_visible_sensors": [
+        "camera"
+    ],
+    "attribute_led_indicators": [],
+    "attribute_articulated_limbs": [
+        "front left leg",
+        "front right leg",
+        "rear left leg",
+        "rear right leg"
+    ],
+    "attribute_robotic_face": false,
+    "uid": "5d114e1b5c224ae39b36fdbb3fae5a1e",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5538134176987594,
+        "quadruped.n.01": 0.5720538868762785,
+        "robotics.n.01": 0.5815851328313479,
+        "android.n.01": 0.5914467332335622,
+        "foreleg.n.01": 0.5945985968276689,
+        "dog.n.03": -1000.0,
+        "andiron.n.01": -1000.0,
+        "pawl.n.01": -1000.0,
+        "frank.n.01": -1000.0,
+        "frump.n.01": -1000.0,
+        "dog.n.01": -1000.0,
+        "automaton.n.02": -1000.0,
+        "cad.n.01": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5d114e1b5c224ae39b36fdbb3fae5a1e",
+        "creator_username": "cg_material",
+        "creator_display_name": "CG Material",
+        "creator_profile_url": "https://sketchfab.com/cg_material"
+    },
+    "filename": "std_5d114e1b5c224ae39b36fdbb3fae5a1e.glb",
+    "length": 0.5111677646636963,
+    "width": 1.1428322792053223
+}

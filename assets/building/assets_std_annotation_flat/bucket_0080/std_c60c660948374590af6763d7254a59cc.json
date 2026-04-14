@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a long, narrow wooden ship with a single large rectangular sail mounted centrally on a vertical mast. The hull is open and features a flat deck with visible oars extending from both sides, suggesting it is a rowing vessel as well as a sailing one. The bow is slightly upturned and pointed, while the stern is squared off and features a rudder for steering. There is a covered section amidships, likely for cargo or crew shelter, and a small raised structure at the stern that may serve as a steering or command post. The ship's construction appears to be primarily wooden planks, with rigging lines supporting the mast and sail, and various deck fixtures visible throughout.",
+    "description": "A long, narrow wooden ship with a single large sail, oars, and a covered midsection, featuring a pointed bow and squared stern.",
+    "description_view_0": "The ship is seen from a front-side angle, highlighting the pointed bow, central mast with sail, and oars on the starboard side.",
+    "description_view_1": "This rear-side view emphasizes the squared stern, rudder, and the covered midsection, with the sail and rigging clearly visible.",
+    "description_view_2": "A rear angle shows the stern's structure, rudder, and the arrangement of the oars, as well as the covered area amidships.",
+    "description_view_3": "The ship is viewed from the opposite front-side, showing the port-side oars, the mast and sail, and the small stern structure.",
+    "category": "ship",
+    "height": 2.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "wood",
+        "fabric",
+        "metal",
+        "rope",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 6500,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "rowable",
+        "sailable",
+        "steerable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "oar",
+        "sail",
+        "mast",
+        "rudder",
+        "deck cover"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "beige",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a long, narrow displacement type with a pointed bow and squared stern. The sides are straight with a slight upward curve at the bow, and the hull sits low in the water. There is a visible rudder at the stern and no bulbous bow or keel extensions are apparent.",
+    "attribute_superstructure_layout": "The superstructure consists of a single covered section amidships and a small raised platform at the stern. The deck is open with no enclosed cabins or bridges, and the mast is centrally located.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "oar",
+        "sail",
+        "mast",
+        "rudder",
+        "deck cover"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "c60c660948374590af6763d7254a59cc",
+    "near_synsets": {
+        "sailboat.n.01": 0.460569753939595,
+        "sail.n.03": 0.472719450345785,
+        "rowing_boat.n.01": 0.47390264760434075,
+        "schooner.n.02": 0.47556278516264316,
+        "longship.n.01": 0.47696547390614313,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c60c660948374590af6763d7254a59cc",
+        "creator_username": "urszulaczyz",
+        "creator_display_name": "urszulaczyz",
+        "creator_profile_url": "https://sketchfab.com/urszulaczyz"
+    },
+    "filename": "std_c60c660948374590af6763d7254a59cc.glb",
+    "length": 5.275956153869629,
+    "width": 4.543866395950317
+}

@@ -1,0 +1,98 @@
+{
+    "description_long": "This cowshed is a long, rectangular agricultural building with a prominent gable roof, finished in a muted gray color. The front facade features two large red sliding barn doors, flanked by a row of translucent windows that allow natural light into the interior. The side elevations are lined with additional windows, providing ample ventilation and illumination for livestock. The structure sits on a flat base, with the roof overhanging slightly to protect the walls from rain. The end walls are simpler, each with a single door and a small window, and the overall design is utilitarian, prioritizing function over ornamentation. The materials appear to be a combination of metal roofing, concrete or masonry walls, and glass or polycarbonate for the windows.",
+    "description": "A long, rectangular cowshed with a gray gable roof, red sliding barn doors, and rows of translucent windows along the sides. The design is functional and utilitarian, typical of rural agricultural buildings.",
+    "description_view_0": "Front view showing two large red sliding barn doors and a row of windows beneath the roof overhang.",
+    "description_view_1": "Side gable end with a single red door and a small window, highlighting the building's width and roof pitch.",
+    "description_view_2": "Rear view with a similar arrangement to the front, but with brown sliding doors and more windows along the wall.",
+    "description_view_3": "Opposite gable end with a single red door and a small window, mirroring the other end.",
+    "category": "cowshed",
+    "height": 5.0,
+    "max_dimension": 25.0,
+    "materials": [
+        "concrete",
+        "metal",
+        "glass",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 60000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sliding barn door",
+        "side door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "white",
+        "brown",
+        "green"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gable",
+    "attribute_door_style": "sliding barn door, metal, double panel, with visible tracks",
+    "attribute_window_presence": "continuous rows of rectangular windows along both long sides, small windows on gable ends",
+    "attribute_ventilation_features": "open eaves, rows of windows for passive ventilation",
+    "attribute_architectural_style": "traditional rural",
+    "uid": "1a8213368bc54e08ac0eeb76a6561a43",
+    "near_synsets": {
+        "cowbarn.n.01": 0.4341484932144256,
+        "barn.n.01": 0.4925109817197955,
+        "farm_building.n.01": 0.49545079812380977,
+        "shed.n.01": 0.505243853704983,
+        "stockyard.n.01": 0.5125344975929429
+    },
+    "synset": "cowbarn.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1a8213368bc54e08ac0eeb76a6561a43",
+        "creator_username": "denisepp",
+        "creator_display_name": "denisepp",
+        "creator_profile_url": "https://sketchfab.com/denisepp"
+    },
+    "filename": "std_1a8213368bc54e08ac0eeb76a6561a43.glb",
+    "length": 13.309921264648438,
+    "width": 27.684114456176758
+}

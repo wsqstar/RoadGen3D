@@ -1,0 +1,111 @@
+{
+    "description_long": "This object is a large, multi-barreled rotary machine gun, commonly known as a minigun or Gatling-style weapon. It features six cylindrical barrels arranged in a circular cluster, with a prominent central axis and a visible belt-fed ammunition system extending from the side. The main body is robust, constructed from dark metal, and includes a cylindrical motor housing beneath the barrel assembly, likely for powering the rotation. A pistol-style grip and trigger assembly are attached to the rear, with a secondary handle for stabilization. The ammunition belt is clearly visible, feeding into the side of the receiver, and the overall design is utilitarian, with exposed mechanical linkages and mounting points. The finish is predominantly matte black with some metallic highlights, giving it a rugged, industrial appearance.",
+    "description": "A heavy, six-barreled rotary machine gun with a visible belt-fed ammunition system and robust metal construction, featuring a pistol grip and exposed mechanical components.",
+    "description_view_0": "Side view showing the full length of the six-barrel cluster, the main receiver, and the attached grip and motor housing.",
+    "description_view_1": "Rear view highlighting the circular arrangement of the barrels, the cylindrical motor housing, and the protruding ammunition belt.",
+    "description_view_2": "Opposite side view displaying the ammunition belt feeding into the receiver and the overall length of the barrel assembly.",
+    "description_view_3": "Front view focusing on the open ends of the six barrels and the radial symmetry of the barrel cluster.",
+    "category": "machine gun",
+    "height": 0.35,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "polymer",
+        "brass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel cluster",
+        "pistol grip",
+        "trigger",
+        "ammunition belt",
+        "secondary handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray",
+        "brass"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_type": "rotary multi-barrel cluster with standard cylindrical barrels",
+    "attribute_stock_design": "no stock",
+    "attribute_magazine_type": "belt-fed",
+    "attribute_mounting_mechanism": "no mounting mechanism visible",
+    "attribute_iron_sight_configuration": "no iron sights visible",
+    "uid": "9e46e481603d4031a49a9ae9a02ffc24",
+    "near_synsets": {
+        "gatling_gun.n.01": 0.451264157981981,
+        "machine_gun.n.01": 0.4563237995524283,
+        "browning_machine_gun.n.01": 0.46841288694751737,
+        "submachine_gun.n.01": 0.4694152474199584,
+        "shotgun.n.01": 0.5055667241234577,
+        "gunman.n.01": -1000.0,
+        "machine.n.02": -1000.0,
+        "machine.n.04": -1000.0,
+        "artillery.n.01": -1000.0,
+        "machine.n.01": -1000.0,
+        "gunman.n.02": -1000.0,
+        "gun.n.01": -1000.0,
+        "accelerator.n.01": -1000.0,
+        "grease_gun.n.01": -1000.0,
+        "machine.n.05": -1000.0,
+        "gun.n.07": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.03": -1000.0
+    },
+    "synset": "submachine_gun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9e46e481603d4031a49a9ae9a02ffc24",
+        "creator_username": "LongNguyen89",
+        "creator_display_name": "Long Nguy\u1ec5n",
+        "creator_profile_url": "https://sketchfab.com/LongNguyen89"
+    },
+    "filename": "std_9e46e481603d4031a49a9ae9a02ffc24.glb",
+    "length": 1.7925979495048523,
+    "width": 1.2167648673057556
+}

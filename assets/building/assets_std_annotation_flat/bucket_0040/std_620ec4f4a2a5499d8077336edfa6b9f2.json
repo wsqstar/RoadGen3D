@@ -1,0 +1,83 @@
+{
+    "description_long": "This object is a tall, narrow radiator with a pair of vertically aligned, ribbed columns connected at the top and bottom by horizontal bars. The radiator features a series of closely spaced, deep fins running the full length of each column, maximizing surface area for heat dissipation. At the top, there is a small, right-angled pipe connection, while the bottom also has a visible connector, suggesting entry and exit points for water or steam. The overall construction appears robust, likely made from cast iron or steel, with a dark, matte finish. The design is utilitarian, with no decorative grille or cover, and the ribbed pattern is consistent across both columns. This radiator is typical of those found in older urban buildings, garages, or utility spaces.",
+    "description": "A tall, dual-column radiator with deep vertical fins and visible pipe connectors at both ends, finished in a dark, matte color. The design is utilitarian and robust, maximizing heat dissipation.",
+    "description_view_0": "Front view showing both vertical ribbed columns and the connecting bars at the top and bottom.",
+    "description_view_1": "Side view revealing the narrow profile and the right-angled pipe connector at the top.",
+    "description_view_2": "Rear view, visually similar to the front, displaying the dual columns and ribbed structure.",
+    "description_view_3": "Opposite side view, again showing the narrow profile and the pipe connector at the top.",
+    "category": "radiator",
+    "height": 1.2,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.15
+    ],
+    "mass": 22,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "heatable",
+        "connectable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pipe connector",
+        "valve connection point"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "single",
+    "attribute_mounting_location": "floor-standing",
+    "attribute_pipe_connections": "two, one at the top right (right-angled), one at the bottom center",
+    "attribute_fin_arrangement": "vertical columns with deep, closely spaced fins",
+    "attribute_valve_type": "none visible",
+    "attribute_grille_pattern": "none",
+    "uid": "620ec4f4a2a5499d8077336edfa6b9f2",
+    "near_synsets": {
+        "radiator.n.03": 0.5267367791418934,
+        "radiator.n.01": 0.534733091856692,
+        "radiator.n.02": 0.5368495741687619,
+        "heat_sink.n.01": 0.5476580557921572,
+        "grille.n.02": 0.5524639834904298
+    },
+    "synset": "radiator.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/620ec4f4a2a5499d8077336edfa6b9f2",
+        "creator_username": "Marcin.Kwiatkowski",
+        "creator_display_name": "Marcin.Kwiatkowski",
+        "creator_profile_url": "https://sketchfab.com/Marcin.Kwiatkowski"
+    },
+    "filename": "std_620ec4f4a2a5499d8077336edfa6b9f2.glb",
+    "length": 0.06256067752838135,
+    "width": 0.18030956387519836
+}

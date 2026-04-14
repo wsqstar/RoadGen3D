@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a modern military jet airplane with a sleek, aerodynamic fuselage and sharply swept-back wings. The aircraft features twin vertical stabilizers at the tail, a pair of large turbofan engines mounted at the rear, and multiple hardpoints under the wings and fuselage for carrying missiles and external fuel tanks. The cockpit is positioned at the front of the fuselage and is enclosed with a transparent canopy, likely accommodating one or two crew members. The landing gear is of the tricycle type, with a single nose wheel and two main wheels under the wings, all of which appear retractable. The overall surface is finished in a matte gray color, typical of military aircraft for reduced visibility.",
+    "description": "A sleek, gray military jet with swept-back wings, twin vertical stabilizers, and underwing missiles. Features a forward, enclosed cockpit and retractable tricycle landing gear.",
+    "description_view_0": "Front view showing the pointed nose, forward cockpit canopy, and symmetrical swept-back wings with visible missiles and landing gear.",
+    "description_view_1": "Left side view highlighting the profile of the fuselage, underwing stores, and the twin vertical stabilizers at the tail.",
+    "description_view_2": "Rear view displaying the twin engine exhausts, vertical stabilizers, and the full span of the wings.",
+    "description_view_3": "Right side view similar to the left, showing the landing gear, cockpit, and external stores under the wings.",
+    "category": "airplane",
+    "height": 4.5,
+    "max_dimension": 18.5,
+    "materials": [
+        "aluminum alloy",
+        "titanium",
+        "composite materials",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.15,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 176400,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "landing gear",
+        "control stick",
+        "throttle",
+        "missile hardpoints",
+        "engine throttle",
+        "wheels",
+        "flaps",
+        "rudder",
+        "ejection seat"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 25.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with sharply swept-back wings, equipped with multiple hardpoints for external stores and slight anhedral angle; no visible winglets.",
+    "attribute_engine_type": "Twin turbofan engines mounted at the rear fuselage.",
+    "attribute_tail_design": "Conventional tail with twin vertical stabilizers and horizontal stabilizers forming an H-tail configuration.",
+    "attribute_landing_gear_type": "Retractable tricycle landing gear with one nose wheel and two main gear units under the wings.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a bubble canopy, likely configured for one or two seats.",
+    "uid": "635e68b7a0d24ac29c10f5fb9110129f",
+    "near_synsets": {
+        "aircraft.n.01": 0.47689172601231167,
+        "airplane.n.01": 0.4874683783545462,
+        "jet.n.01": 0.5079246524223713,
+        "warplane.n.01": 0.5125938829646549,
+        "biplane.n.01": 0.5245556675198303
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/635e68b7a0d24ac29c10f5fb9110129f",
+        "creator_username": "WTigerTw",
+        "creator_display_name": "Yi Tsung Lee",
+        "creator_profile_url": "https://sketchfab.com/WTigerTw"
+    },
+    "filename": "std_635e68b7a0d24ac29c10f5fb9110129f.glb",
+    "length": 16.18984317779541,
+    "width": 11.619635581970215
+}

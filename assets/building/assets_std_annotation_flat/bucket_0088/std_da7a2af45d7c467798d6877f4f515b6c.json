@@ -1,0 +1,97 @@
+{
+    "description_long": "This mud patch is a roughly spherical mass with a highly irregular, textured surface that mimics the appearance of wet, compacted earth. The surface is mottled with a mix of darker and lighter gray tones, giving the impression of moist, freshly churned mud with some areas appearing slightly glossier, as if still damp. The texture is uneven, with raised, lumpy sections interspersed with smoother, shinier patches that suggest recent water flow or pooling. The overall form is dense and solid, lacking any visible debris or plant matter, and the boundaries are irregular, blending into the surrounding ground. There are no visible impressions such as footprints or tire marks, and the surface appears undisturbed. The coloration and finish suggest a typical urban mud patch, possibly found in a construction site or roadside after rainfall.",
+    "description": "A dense, irregularly textured mud patch with mottled gray tones and a slightly glossy, damp appearance. The surface is uneven and natural, resembling freshly churned urban mud.",
+    "description_view_0": "From this view, the mud patch displays a prominent mix of raised and smooth areas, with a noticeable sheen on the upper left, highlighting its dampness.",
+    "description_view_1": "This angle emphasizes the patch's rough, granular texture, with more pronounced lumpy sections and less visible gloss compared to other views.",
+    "description_view_2": "Here, the surface appears slightly smoother with fewer raised areas, and the glossiness is more evenly distributed across the patch.",
+    "description_view_3": "This view shows a balanced mix of rough and smooth textures, with the glossiness concentrated toward the center, suggesting recent moisture.",
+    "category": "mud patch",
+    "height": 0.15,
+    "max_dimension": 0.18,
+    "materials": [
+        "mud",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.14,
+        0.01
+    ],
+    "mass": 32,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 320,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "dark gray",
+        "light gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.33,
+    "youngs_modulus": 0.05,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "single",
+    "attribute_location": "urban construction site or roadside after rainfall",
+    "attribute_boundary_definition": "The boundaries are irregular and blend gradually into the surrounding ground, with no sharp transitions between mud and adjacent surfaces.",
+    "attribute_presence_of_footprints_or_tire_marks": "none visible",
+    "attribute_water_accumulation": "Some areas appear slightly glossy, suggesting minor surface dampness, but no distinct water pooling or puddles are visible.",
+    "attribute_surrounding_debris": "none visible",
+    "uid": "da7a2af45d7c467798d6877f4f515b6c",
+    "near_synsets": {
+        "mottle.n.01": 0.5062306807942025,
+        "mud_puddle.n.01": 0.5062448597894152,
+        "mud_stain.n.01": 0.5111176068672922,
+        "mud.n.01": 0.5131153055494716,
+        "mottling.n.01": 0.5400947338190268,
+        "mud.n.02": -1000.0,
+        "bandage.n.01": -1000.0,
+        "mend.n.01": -1000.0,
+        "patch.n.03": -1000.0,
+        "eyepatch.n.01": -1000.0,
+        "while.n.01": -1000.0,
+        "plot.n.02": -1000.0,
+        "temporary_hookup.n.01": -1000.0,
+        "spot.n.05": -1000.0,
+        "patch.n.05": -1000.0
+    },
+    "synset": "mud_puddle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/da7a2af45d7c467798d6877f4f515b6c",
+        "creator_username": "d0ggo",
+        "creator_display_name": "d0ggo",
+        "creator_profile_url": "https://sketchfab.com/d0ggo"
+    },
+    "filename": "std_da7a2af45d7c467798d6877f4f515b6c.glb",
+    "length": 0.14917836338281631,
+    "width": 0.14999999105930328
+}

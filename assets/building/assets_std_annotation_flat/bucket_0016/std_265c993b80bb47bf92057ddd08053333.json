@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a large, modern aircraft carrier with a flat, elongated flight deck featuring marked landing and takeoff zones in yellow and white. The hull is broad and robust, painted in dark gray with a red lower section visible along the waterline. The superstructure is offset to one side and includes two prominent towers equipped with radar domes and antennae, as well as various smaller structures. The deck is mostly clear except for a few visible fixtures and equipment, and the bow is sharply angled while the stern is squared off. The ship's surface is hard and metallic, with a matte finish and some subtle surface details. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A large, modern aircraft carrier with a flat flight deck, two superstructure towers, and a robust, dark gray hull with a red lower section.",
+    "description_view_0": "Front view showing the sharply angled bow, the full width of the flight deck, and the superstructure towers on the left side.",
+    "description_view_1": "Side view highlighting the length of the hull, the red lower section, and the two superstructure towers with radar domes.",
+    "description_view_2": "Rear view displaying the squared-off stern, the full length of the flight deck, and the superstructure from behind.",
+    "description_view_3": "Opposite side view showing the hull's profile, the red lower section, and the superstructure towers from a different angle.",
+    "category": "ship",
+    "height": 30,
+    "max_dimension": 320,
+    "materials": [
+        "steel",
+        "aluminum",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.01,
+        0.03
+    ],
+    "mass": 90000000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250000000.0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "radar",
+        "antenna",
+        "control tower",
+        "deck equipment"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "white",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 50,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a broad, flat bottom and a sharply angled bow. The stern is squared off, and the hull features a prominent red lower section along the waterline. No bulbous bow or visible keels are present.",
+    "attribute_superstructure_layout": "The superstructure consists of two large towers positioned on one side of the flight deck, each equipped with radar domes and antennae. The rest of the deck is mostly clear, with minimal additional structures.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "radar",
+        "antenna",
+        "control tower"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "265c993b80bb47bf92057ddd08053333",
+    "near_synsets": {
+        "aircraft_carrier.n.01": 0.4087808541546079,
+        "flight_deck.n.01": 0.49720776423875657,
+        "cargo_ship.n.01": 0.5002543106500593,
+        "surface_ship.n.01": 0.503480363038265,
+        "capital_ship.n.01": 0.5043005436660248,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/265c993b80bb47bf92057ddd08053333",
+        "creator_username": "Usman1684",
+        "creator_display_name": "Uxman",
+        "creator_profile_url": "https://sketchfab.com/Usman1684"
+    },
+    "filename": "std_265c993b80bb47bf92057ddd08053333.glb",
+    "length": 143.33284759521484,
+    "width": 36.58014106750488
+}

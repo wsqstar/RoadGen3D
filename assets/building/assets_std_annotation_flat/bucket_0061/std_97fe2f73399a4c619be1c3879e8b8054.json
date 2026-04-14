@@ -1,0 +1,95 @@
+{
+    "description_long": "This airplane features a sleek, angular fuselage with a sharply pointed nose and a glossy, dark-tinted canopy situated near the front. The wings are broad and sharply swept, extending outward with a slight downward angle and finished in a metallic blue color. The body is predominantly black with blue striping running longitudinally, giving it a futuristic appearance. At the rear, two prominent red circular jet exhausts are visible, suggesting a jet propulsion system. The underside of the wings and fuselage are flat, with no visible landing gear, and the overall design is compact and streamlined. The cockpit appears to be a single-seat, enclosed bubble integrated smoothly into the fuselage.",
+    "description": "A futuristic, angular black and blue airplane with swept wings, a glossy bubble canopy, and twin rear jet exhausts.",
+    "description_view_0": "Side view showing the pointed nose, glossy canopy, and angular swept wing with a flat underside.",
+    "description_view_1": "Front view highlighting the wide, downward-angled wings, central canopy, and sharp nose.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the wing and canopy profile.",
+    "description_view_3": "Rear view displaying the twin red jet exhausts and the broad, angular wing structure.",
+    "category": "airplane",
+    "height": 1.2,
+    "max_dimension": 6.0,
+    "materials": [
+        "composite",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 17640,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "canopy",
+        "jet exhaust",
+        "wing",
+        "cockpit controls"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "blue",
+        "red",
+        "dark teal"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.32,
+    "bounciness": 0.08,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, sharply swept wings with slight anhedral angle and no visible winglets.",
+    "attribute_engine_type": "Twin rear-mounted jet engines integrated into the fuselage.",
+    "attribute_tail_design": "No conventional tail; features a tailless or blended wing-body configuration with no visible vertical or horizontal stabilizers.",
+    "attribute_landing_gear_type": "No visible landing gear.",
+    "attribute_cockpit_placement": "Forward-mounted, single-seat, enclosed bubble canopy integrated into the fuselage.",
+    "uid": "97fe2f73399a4c619be1c3879e8b8054",
+    "near_synsets": {
+        "aircraft.n.01": 0.5019450734101114,
+        "twinjet.n.01": 0.5288965431028075,
+        "airplane.n.01": 0.5322148649971185,
+        "biplane.n.01": 0.5406040164516192,
+        "jet.n.01": 0.5417142839826925
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/97fe2f73399a4c619be1c3879e8b8054",
+        "creator_username": "treyton.cowell",
+        "creator_display_name": "treyton.cowell",
+        "creator_profile_url": "https://sketchfab.com/treyton.cowell"
+    },
+    "filename": "std_97fe2f73399a4c619be1c3879e8b8054.glb",
+    "length": 3.282646894454956,
+    "width": 3.7630245685577393
+}

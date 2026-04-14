@@ -1,0 +1,106 @@
+{
+    "description_long": "This object consists of two modern rifles placed side by side, each featuring a tactical design with angular polymer frames and prominent accessory rails. The left rifle is finished in a matte reddish-brown color, equipped with a long cylindrical suppressor, a vertical foregrip, and a skeletonized stock, giving it a distinctive, high-tech appearance. The right rifle is more compact, with a dark green and black camouflage pattern, a shorter barrel, and a similar vertical foregrip, but lacks the extended suppressor and has a more compact stock. Both rifles have visible detachable box magazines, ergonomic pistol grips, and mounted optical sights, with the left rifle's sight being more prominent. The overall construction suggests a mix of metal and polymer materials, with detailed surface texturing for grip and durability. These rifles are designed for tactical use, likely suitable for urban environments where maneuverability and modularity are important.",
+    "description": "Two modern tactical rifles, one with a long suppressor and reddish finish, the other compact with a green-black camo, both featuring vertical grips and optical sights.",
+    "description_view_0": "Side view showing the narrow profiles of both rifles, highlighting the suppressor on the left rifle and the compactness of the right.",
+    "description_view_1": "Angled view displaying the full length of the left rifle's suppressor, the skeletonized stock, and the camo pattern on the right rifle.",
+    "description_view_2": "Rear view emphasizing the stocks and grips of both rifles, with the suppressor and sighting systems less visible.",
+    "description_view_3": "Front view focusing on the muzzle ends, especially the suppressor on the left rifle and the shorter barrel on the right.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 0.85,
+    "materials": [
+        "polymer",
+        "steel",
+        "aluminum",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 3.8,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable",
+        "attachable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "magazine",
+        "stock",
+        "foregrip",
+        "sight",
+        "barrel",
+        "suppressor",
+        "charging handle",
+        "safety selector"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "reddish-brown",
+        "black",
+        "green",
+        "gray"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_stock_type": "skeletonized",
+    "attribute_barrel_type": "integrally suppressed",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "red dot",
+    "attribute_muzzle_device": "suppressor",
+    "uid": "5d2a5e8bff1445a78aea42c8da7485d8",
+    "near_synsets": {
+        "dragunov.n.01": 0.5143548687352253,
+        "carbine.n.01": 0.5459818718611992,
+        "twenty-two_rifle.n.01": 0.545994249696686,
+        "light_arm.n.01": 0.5465815640123197,
+        "garand_rifle.n.01": 0.5520787403838332,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5d2a5e8bff1445a78aea42c8da7485d8",
+        "creator_username": "NanouJune",
+        "creator_display_name": "NanouJune",
+        "creator_profile_url": "https://sketchfab.com/NanouJune"
+    },
+    "filename": "std_5d2a5e8bff1445a78aea42c8da7485d8.glb",
+    "length": 0.2711182087659836,
+    "width": 0.58758544921875
+}

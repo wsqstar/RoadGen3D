@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a mobile construction crane with a bright yellow body and a long telescopic boom extending horizontally. The crane is mounted on a robust wheeled chassis with four large tires, suitable for urban and construction environments. The boom features a visible single hook at its tip, designed for lifting heavy loads. The operator's cabin is integrated into the main body, providing visibility and control over the crane's functions. A counterweight is present at the rear to balance the load during lifting operations. The overall design is compact yet powerful, optimized for maneuverability and stability on paved surfaces.",
+    "description": "A yellow mobile crane with a telescopic boom, mounted on a wheeled chassis, featuring a single hook and visible operator cabin.",
+    "description_view_0": "Side view showing the full length of the telescopic boom, wheels, operator cabin, and counterweight.",
+    "description_view_1": "Front view highlighting the narrow profile, boom extension, and front wheels.",
+    "description_view_2": "Opposite side view displaying the boom, wheels, and rear counterweight.",
+    "description_view_3": "Rear view focusing on the counterweight and back of the chassis.",
+    "category": "crane",
+    "height": 3.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 90000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "boom",
+        "hook",
+        "wheels",
+        "operator cabin",
+        "counterweight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_boom_type": "telescopic boom",
+    "attribute_counterweight_presence": true,
+    "attribute_operator_cabin_visibility": true,
+    "attribute_hook_or_lifting_mechanism": "single hook",
+    "attribute_support_structure_design": "wheeled chassis",
+    "uid": "966bc126aef54388904653b7532812ab",
+    "near_synsets": {
+        "crane.n.04": 0.4522915447724773,
+        "derrick.n.02": 0.4903905303930492,
+        "skyhook.n.01": 0.5305884364906045,
+        "transporter.n.02": 0.5325395841455036,
+        "stacker_crane.n.01": 0.5357437992285061,
+        "crane.n.02": -1000.0,
+        "crane.n.05": -1000.0,
+        "grus.n.01": -1000.0,
+        "crane.n.01": -1000.0
+    },
+    "synset": "crane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/966bc126aef54388904653b7532812ab",
+        "creator_username": "aptronics",
+        "creator_display_name": "Steven Mai",
+        "creator_profile_url": "https://sketchfab.com/aptronics"
+    },
+    "filename": "std_966bc126aef54388904653b7532812ab.glb",
+    "length": 8.18814754486084,
+    "width": 1.8335911631584167
+}

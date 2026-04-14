@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a large, ancient-style ballista or crossbow-like siege weapon, constructed primarily from dark, weathered wood with visible grain and reinforced by metal fastenings. The main body is a long, rectangular wooden beam, supported by a sturdy tripod base with angled braces for stability. At the rear, a large circular wooden crank with two perpendicular handles is attached, likely used for drawing back the bowstring. The bow arms are thick and robust, with a taut cord spanning between them, and the front features a reinforced wooden block that serves as the launching platform for projectiles. The overall construction is utilitarian, with exposed joints and mechanical parts, evoking a medieval or ancient engineering aesthetic. The finish is rough and matte, with visible wear and a utilitarian, functional design.",
+    "description": "A large, wooden ballista-style siege weapon with a crank mechanism, tripod base, and reinforced bow arms. The surface is rough, dark, and weathered, with visible wood grain and metal fastenings.",
+    "description_view_0": "Side view showing the full length of the ballista, the crank mechanism at the rear, and the tripod support structure.",
+    "description_view_1": "Front view highlighting the bow arms, taut cord, and the reinforced launching platform.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the crank and support braces.",
+    "description_view_3": "Rear view focusing on the crank mechanism and the alignment of the tripod base.",
+    "category": "rifle",
+    "height": 1.2,
+    "max_dimension": 2.2,
+    "materials": [
+        "wood",
+        "metal",
+        "rope",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pullable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "crank handle",
+        "bowstring",
+        "tripod legs",
+        "launch platform"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "none",
+    "attribute_sight_type": "none",
+    "attribute_muzzle_device": "none",
+    "uid": "9f3c81860edb4bd595f613ccd6e01e8e",
+    "near_synsets": {
+        "ballista.n.01": 0.466626517746694,
+        "bow.n.06": 0.5166740342714217,
+        "rifle.n.01": 0.5198395088964851,
+        "musket_ball.n.01": 0.5201662224398528,
+        "musket.n.01": 0.5263254598121551
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9f3c81860edb4bd595f613ccd6e01e8e",
+        "creator_username": "dmoeller",
+        "creator_display_name": "Denis Moeller",
+        "creator_profile_url": "https://sketchfab.com/dmoeller"
+    },
+    "filename": "std_9f3c81860edb4bd595f613ccd6e01e8e.glb",
+    "length": 1.89341139793396,
+    "width": 0.686492919921875
+}

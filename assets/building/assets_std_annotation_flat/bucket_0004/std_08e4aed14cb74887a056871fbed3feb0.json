@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a detailed model of a jet engine, likely from a commercial or military aircraft. The central hub is surrounded by a series of evenly spaced, curved fan blades that radiate outward, forming a circular intake. The blades are metallic and have a dark, slightly reflective finish, with some subtle wear and tear visible on the edges. The intake cone at the center features a spiral marking, a common visual cue for jet engines. The cylindrical housing around the fan is smooth and metallic, with a slight taper toward the rear. The overall appearance suggests a modern turbofan engine, designed for high efficiency and thrust.",
+    "description": "A metallic jet engine with curved fan blades and a spiral-marked intake cone, housed in a smooth cylindrical casing.",
+    "description_view_0": "Front view showing the spiral-marked intake cone and the full array of curved fan blades.",
+    "description_view_1": "Side view highlighting the depth of the engine and the profile of the fan blades within the cylindrical housing.",
+    "description_view_2": "Rear-angled view focusing on the fan blade arrangement and the central intake hub.",
+    "description_view_3": "Opposite side view showing the engine's cylindrical shape and the curvature of the blades.",
+    "category": "airplane",
+    "height": 1.2,
+    "max_dimension": 1.5,
+    "materials": [
+        "aluminum",
+        "titanium",
+        "composite",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 4,
+    "movable": true,
+    "required_force": 3430,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "fan blades",
+        "intake cone",
+        "engine casing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Not applicable; only the engine is present, no wings visible.",
+    "attribute_engine_type": "single turbofan, forward-facing intake",
+    "attribute_tail_design": "Not applicable; tail section not present or visible.",
+    "attribute_landing_gear_type": "Not applicable; landing gear not present or visible.",
+    "attribute_cockpit_placement": "Not applicable; cockpit not present or visible.",
+    "uid": "08e4aed14cb74887a056871fbed3feb0",
+    "near_synsets": {
+        "fanjet.n.01": 0.4877099664137648,
+        "aircraft_engine.n.01": 0.5046878776915273,
+        "fan_blade.n.01": 0.5074664897262242,
+        "jet.n.01": 0.5130891051582502,
+        "jet_engine.n.01": 0.515957593757329,
+        "airplane.n.01": -1000.0
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/08e4aed14cb74887a056871fbed3feb0",
+        "creator_username": "Kevin.Edwards",
+        "creator_display_name": "Kevin.Edwards",
+        "creator_profile_url": "https://sketchfab.com/Kevin.Edwards"
+    },
+    "filename": "std_08e4aed14cb74887a056871fbed3feb0.glb",
+    "length": 0.7061791718006134,
+    "width": 1.2136346101760864
+}

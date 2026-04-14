@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a long, armored combat tactical vehicle resembling a modern military train or armored personnel carrier. Its exterior is covered in a dark, multi-colored camouflage pattern with green, brown, and black tones, designed to blend into urban or forested environments. The vehicle features a streamlined, angular front with reinforced plating and several small, dark windows along its sides, suggesting protected viewing or firing ports. It rides on multiple sets of wheels, indicating it is designed for rail or specialized road use. The surface appears hard and metallic, with no visible weapon mounts or external armaments. There are no visible military insignia or numbers, and the vehicle's design emphasizes stealth and protection.",
+    "description": "A long, armored combat tactical vehicle with a dark camouflage pattern, small windows, and multiple wheels, designed for stealth and protection. The exterior is hard and metallic, with no visible weapon mounts or markings.",
+    "description_view_0": "Front view shows the angular, reinforced nose of the vehicle with a hard, metallic surface and no visible openings or mounts.",
+    "description_view_1": "Side view reveals the length of the vehicle, multiple small windows, and several wheels beneath a camouflaged, armored body.",
+    "description_view_2": "Rear view displays a flat, armored end with no visible doors or features, continuing the camouflage pattern.",
+    "description_view_3": "Opposite side view mirrors the other side, showing windows, wheels, and the continuous camouflage pattern.",
+    "category": "combat tactical  vehicle",
+    "height": 2.8,
+    "max_dimension": 18.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 35000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "closable",
+        "openable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "none visible.",
+    "attribute_armor_plating": "Full body armor plating is visible, with thick, continuous panels covering the entire exterior. The plating appears to be sloped and reinforced, especially at the front.",
+    "attribute_camouflage_pattern": "Woodland-style camouflage with irregular patches of dark green, brown, and black.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "e0355bd69ad742b08533e5b6517749c6",
+    "near_synsets": {
+        "armored_car.n.02": 0.4868126286937711,
+        "military_vehicle.n.01": 0.4881059547634803,
+        "tank.n.01": 0.494641112398832,
+        "reconnaissance_vehicle.n.01": 0.5023143095642691,
+        "armored_vehicle.n.01": 0.5087653376055328,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "armored_car.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e0355bd69ad742b08533e5b6517749c6",
+        "creator_username": "Dumper23",
+        "creator_display_name": "Dumper23",
+        "creator_profile_url": "https://sketchfab.com/Dumper23"
+    },
+    "filename": "std_e0355bd69ad742b08533e5b6517749c6.glb",
+    "length": 17.500450134277344,
+    "width": 1.9019173979759216
+}

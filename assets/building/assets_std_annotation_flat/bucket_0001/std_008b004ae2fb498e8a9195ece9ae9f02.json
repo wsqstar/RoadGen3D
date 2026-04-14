@@ -1,0 +1,97 @@
+{
+    "description_long": "This object consists of two pixelated swords crossed in an 'X' formation, reminiscent of the visual style found in voxel-based games like Minecraft. Each sword features a straight, double-edged blade with a light gray metallic appearance, and a blocky, rectangular cross-section. The hilts are composed of alternating light and dark brown segments, forming a simple cylindrical grip with a square pommel at the end. The crossguards are also blocky, extending perpendicularly from the handle and matching the brown color scheme. The overall design is stylized and geometric, lacking fine details or ornamentation, and the swords appear to be made primarily of metal and wood. The asset is visually striking due to its symmetry and the contrast between the metallic blades and wooden hilts.",
+    "description": "Two pixelated, crossed swords with straight, metallic blades and blocky brown hilts, styled in a geometric, voxel-based design.",
+    "description_view_0": "Front view showing both swords crossed, with full visibility of the blades, hilts, and crossguards.",
+    "description_view_1": "Side view revealing the thinness of the blades and the alignment of the handles, with minimal blade surface visible.",
+    "description_view_2": "Rear view similar to the front, displaying the crossed blades and blocky hilts from the opposite side.",
+    "description_view_3": "Opposite side view, again highlighting the slim profile of the blades and the stacked handles.",
+    "category": "knife or sword",
+    "height": 0.7,
+    "max_dimension": 0.7,
+    "materials": [
+        "steel",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "mass": 2.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 15,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "graspable",
+        "cuttable",
+        "stab-able",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "blade",
+        "handle",
+        "crossguard",
+        "pommel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "light brown",
+        "dark brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_blade_type": "straight, double-edged, rectangular cross-section",
+    "attribute_handle_design": "blocky, cylindrical, alternating light and dark brown segments, square pommel",
+    "attribute_guard_presence": true,
+    "attribute_ornamentation": "none",
+    "attribute_sheath_presence": false,
+    "uid": "008b004ae2fb498e8a9195ece9ae9f02",
+    "near_synsets": {
+        "sword.n.01": 0.5151555184310596,
+        "knife.n.02": 0.5364210419614678,
+        "hilt.n.01": 0.54102886688517,
+        "knife_blade.n.01": 0.5427054602514118,
+        "falchion.n.01": 0.5428455438233462,
+        "knife.n.01": -1000.0,
+        "tongue.n.03": -1000.0
+    },
+    "synset": "sword.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/008b004ae2fb498e8a9195ece9ae9f02",
+        "creator_username": "yunxizheng",
+        "creator_display_name": "YunXi Zheng (SamMi)",
+        "creator_profile_url": "https://sketchfab.com/yunxizheng"
+    },
+    "filename": "std_008b004ae2fb498e8a9195ece9ae9f02.glb",
+    "length": 0.1984030157327652,
+    "width": 0.6879839599132538
+}

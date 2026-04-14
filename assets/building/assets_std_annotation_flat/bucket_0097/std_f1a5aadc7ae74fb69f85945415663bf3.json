@@ -1,0 +1,101 @@
+{
+    "description_long": "This combat tactical vehicle features a futuristic, angular design with a low, wide profile and heavily armored exterior. The body is primarily composed of matte olive-green panels with visible seams and surface wear, suggesting reinforced armor plating. The vehicle has broad, wing-like extensions on either side, likely housing propulsion or weapon systems, and large intakes or exhausts at the rear. The cockpit area is centrally located at the front, with a heavily sloped canopy and multiple viewports, providing limited but protected visibility. The surface is marked by subtle panel lines, hatches, and possible access points, with no visible wheels or tracks, indicating a possible hover or anti-gravity propulsion system. There are no visible military markings, camouflage patterns, or weapon mounts on the exterior.",
+    "description": "A futuristic, heavily armored combat vehicle with a wide, angular body and wing-like extensions, finished in matte olive-green. The design features a sloped cockpit, large rear intakes, and no visible wheels or weapon mounts.",
+    "description_view_0": "Front view shows the sloped cockpit, central canopy, and broad, angular wings extending outward, emphasizing the vehicle's wide stance.",
+    "description_view_1": "Left-side perspective highlights the angular armor plating, wing structure, and large rear exhausts or intakes.",
+    "description_view_2": "Top-down view reveals the full width of the vehicle, the symmetrical wing layout, and the central cockpit placement.",
+    "description_view_3": "Right-side perspective mirrors the left, showing the same angular features, armor plating, and rear intakes.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 12.0,
+    "materials": [
+        "armored steel",
+        "composite armor",
+        "glass",
+        "air",
+        "rubber (seals)"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.05,
+        0.08,
+        0.02
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 176400,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cockpit canopy",
+        "hatch",
+        "access panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "none visible",
+    "attribute_armor_plating": "Full body coverage with thick, angular armor plating; panels are sloped and appear reinforced, with visible seams and surface wear.",
+    "attribute_camouflage_pattern": "none visible",
+    "attribute_military_markings": "none visible",
+    "attribute_tire_type": "not applicable",
+    "uid": "f1a5aadc7ae74fb69f85945415663bf3",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.5222169209731828,
+        "reconnaissance_vehicle.n.01": 0.5344211006411193,
+        "armored_car.n.02": 0.5426497648585444,
+        "tank.n.01": 0.544618299541001,
+        "assault_gun.n.02": 0.5467435180605675,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f1a5aadc7ae74fb69f85945415663bf3",
+        "creator_username": "dunealex",
+        "creator_display_name": "dunealex",
+        "creator_profile_url": "https://sketchfab.com/dunealex"
+    },
+    "filename": "std_f1a5aadc7ae74fb69f85945415663bf3.glb",
+    "length": 2.5173429250717163,
+    "width": 1.8317009806632996
+}

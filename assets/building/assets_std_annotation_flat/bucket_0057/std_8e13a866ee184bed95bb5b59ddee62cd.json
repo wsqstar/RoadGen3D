@@ -1,0 +1,110 @@
+{
+    "description_long": "This object is a compact public toilet setup, featuring a floor-mounted toilet with a hinged lid, a small wall-mounted sink with dual faucets, and visible plumbing beneath. Above the sink, there is a rectangular wall cabinet with a mirrored door, and a soap dispenser is mounted nearby. A green bucket is placed beside the toilet, and a small sign or label is affixed to the wall, possibly indicating instructions or warnings. The toilet unit is made of molded plastic or ceramic, while the sink and plumbing are likely ceramic and metal, respectively. The overall design is utilitarian, suitable for urban environments such as parks, public restrooms, or temporary facilities.",
+    "description": "A compact, utilitarian public toilet setup with a floor-mounted toilet, wall-mounted sink, cabinet, and visible plumbing, designed for urban environments.",
+    "description_view_0": "Side view showing the profile of the toilet, sink, and wall-mounted cabinet, with visible plumbing and the bucket partially obscured.",
+    "description_view_1": "Front view displaying the open toilet, bucket, sink with faucets, wall cabinet, soap dispenser, and a small wall sign, all clearly visible and aligned.",
+    "description_view_2": "Opposite side view highlighting the toilet's lid, the sink's side profile, and the cabinet's depth, with the bucket and plumbing visible underneath.",
+    "description_view_3": "Rear view showing the back of the toilet, the bucket, the rear of the sink and cistern, and the backs of the wall-mounted elements.",
+    "category": "toilets",
+    "height": 1.2,
+    "max_dimension": 1.4,
+    "materials": [
+        "plastic",
+        "ceramic",
+        "metal",
+        "glass",
+        "paper",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 32,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "turnable",
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "toilet lid",
+        "toilet seat",
+        "flush lever/button",
+        "sink faucet",
+        "cabinet door",
+        "soap dispenser",
+        "bucket"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "green",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.4,
+        0.25,
+        0.15,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.8,
+    "asset_composition_type": "group",
+    "attribute_installation_type": "floor-mounted",
+    "attribute_flush_mechanism_visibility": true,
+    "attribute_seat_presence": true,
+    "attribute_cistern_design": "exposed cistern",
+    "attribute_accessibility_features": [],
+    "uid": "8e13a866ee184bed95bb5b59ddee62cd",
+    "near_synsets": {
+        "public_toilet.n.01": 0.44404156326883354,
+        "toilet.n.02": 0.4534386774163408,
+        "toilet.n.01": 0.4627539024494593,
+        "washroom.n.01": 0.48157464160073093,
+        "flush_toilet.n.01": 0.4922580311001383,
+        "gutter.n.02": -1000.0,
+        "toilet.n.04": -1000.0
+    },
+    "synset": "public_toilet.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8e13a866ee184bed95bb5b59ddee62cd",
+        "creator_username": "EvanPetrov",
+        "creator_display_name": "Evan Petrov",
+        "creator_profile_url": "https://sketchfab.com/EvanPetrov"
+    },
+    "filename": "std_8e13a866ee184bed95bb5b59ddee62cd.glb",
+    "length": 0.3650147616863251,
+    "width": 0.9035784006118774
+}

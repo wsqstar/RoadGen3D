@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a large, rectangular metal dumpster with a weathered green exterior, showing extensive rust patches and paint chipping, indicative of prolonged outdoor use. The top is fitted with a black, segmented plastic lid that appears to be split into several hinged sections for easy opening. Both sides of the dumpster feature protruding cylindrical bars, likely for mechanical lifting by garbage trucks, and there are small black wheels at the base for mobility. The front side is more heavily rusted and features a reinforced panel, while the rear is simpler and less detailed. The overall construction is robust, designed to withstand heavy loads and rough handling in urban environments. No visible warning labels or signage are present, and the handles are integrated into the side bars rather than as separate components.",
+    "description": "A large, green, rusted metal dumpster with a black segmented lid and side lifting bars, mounted on small wheels. The surface is heavily weathered, and the design is utilitarian for urban waste collection.",
+    "description_view_0": "Front view showing the reinforced, rusted panel and the segmented black lid, with side bars and wheels visible.",
+    "description_view_1": "Left side view highlighting the cylindrical lifting bar, rust patches, and the sloped black lid.",
+    "description_view_2": "Rear view with a simpler, less detailed green panel, minor rust, and the side bars partially visible.",
+    "description_view_3": "Right side view similar to the left, showing the cylindrical bar, rust, and the sloped lid.",
+    "category": "dumpster",
+    "height": 1.4,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 320,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "wheel",
+        "side bar"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "rust brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.13,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "split, flat, hinged plastic lid with three sections, no visible locking mechanism",
+    "attribute_wheel_presence": true,
+    "attribute_handle_design": "two cylindrical steel side bars, one on each side, integrated for lifting",
+    "attribute_warning_labels": [],
+    "attribute_placement_location": "outdoor commercial area",
+    "uid": "73cbae50a5bc4e70b99299d556b23932",
+    "near_synsets": {
+        "dumpster.n.01": 0.4355602878518027,
+        "garbage.n.03": 0.5190615106590274,
+        "garbage_truck.n.01": 0.5195786877030806,
+        "scrapheap.n.02": 0.5284299020640872,
+        "dump.n.02": 0.5327039737658738
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/73cbae50a5bc4e70b99299d556b23932",
+        "creator_username": "ewba",
+        "creator_display_name": "ewba",
+        "creator_profile_url": "https://sketchfab.com/ewba"
+    },
+    "filename": "std_73cbae50a5bc4e70b99299d556b23932.glb",
+    "length": 1.2128908038139343,
+    "width": 2.219970703125
+}

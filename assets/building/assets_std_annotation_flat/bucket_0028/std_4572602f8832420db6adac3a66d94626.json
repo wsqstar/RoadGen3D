@@ -1,0 +1,129 @@
+{
+    "description_long": "This is a small rural graveyard centered around a stone church with a pitched roof and a square bell tower. The church is surrounded by numerous gravestones of varying shapes and sizes, arranged in rows and clusters, with some headstones appearing weathered and aged. A large tree provides shade to one side of the church, and the graveyard is bordered by a low stone wall or natural boundary. The gravestones are primarily made of stone, with some featuring visible engravings or crosses. The church structure itself is constructed from stone blocks, with arched windows and a main entrance at the base of the tower. The overall scene conveys a peaceful, historic atmosphere typical of countryside cemeteries.",
+    "description": "A stone church with a pitched roof and bell tower sits at the center of a graveyard filled with headstones and bordered by a large tree and low stone wall.",
+    "description_view_0": "View 0 shows the church's long side, the bell tower, and a dense cluster of gravestones to the right, with a large tree partially obscuring the left side.",
+    "description_view_1": "View 1 highlights the church's rear, the pitched roof, and a wide expanse of gravestones, with the tree and boundary wall visible to the left.",
+    "description_view_2": "View 2 provides a clear look at the graveyard's layout, the church's side, and the arrangement of headstones in front of the building.",
+    "description_view_3": "View 3 focuses on the church's main entrance at the base of the bell tower, with the tree and a portion of the graveyard visible to the right.",
+    "category": "grave yard",
+    "height": 8.0,
+    "max_dimension": 35.0,
+    "materials": [
+        "stone",
+        "wood",
+        "glass",
+        "metal",
+        "soil",
+        "vegetation",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.05,
+        0.02,
+        0.01,
+        0.15,
+        0.1,
+        0.02
+    ],
+    "mass": 350000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "memorializing",
+        "sheltering",
+        "worshipping"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "grave marker",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "green",
+        "beige"
+    ],
+    "colors_composition": [
+        0.55,
+        0.15,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.0,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_tombstone_inscriptions": [],
+    "attribute_crosses": [],
+    "attribute_grave_markers": [
+        {
+            "type": "headstone",
+            "material": "stone",
+            "dimensions": [
+                1.0,
+                0.5,
+                0.2
+            ]
+        },
+        {
+            "type": "plaque",
+            "material": "stone",
+            "dimensions": [
+                0.5,
+                0.4,
+                0.1
+            ]
+        }
+    ],
+    "attribute_mausoleums": [],
+    "attribute_cemetery_gates": [],
+    "uid": "4572602f8832420db6adac3a66d94626",
+    "near_synsets": {
+        "church_tower.n.01": 0.5101263246794456,
+        "gravestone.n.01": 0.5260820106715682,
+        "churchyard.n.01": 0.5337855562722985,
+        "grave.n.02": 0.5340872897822266,
+        "cemetery.n.01": 0.5349778416521789,
+        "yard.n.09": -1000.0,
+        "yard.n.01": -1000.0,
+        "yard.n.06": -1000.0,
+        "yard.n.08": -1000.0,
+        "cubic_yard.n.01": -1000.0,
+        "yard.n.02": -1000.0,
+        "thousand.n.01": -1000.0,
+        "yard.n.07": -1000.0,
+        "yard.n.03": -1000.0
+    },
+    "synset": "churchyard.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4572602f8832420db6adac3a66d94626",
+        "creator_username": "Drone720",
+        "creator_display_name": "Drone720",
+        "creator_profile_url": "https://sketchfab.com/Drone720"
+    },
+    "filename": "std_4572602f8832420db6adac3a66d94626.glb",
+    "length": 19.70086669921875,
+    "width": 25.218689918518066
+}

@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a collection of seven distinct airplane models, each varying in size, color, and design. The airplanes range from small single-propeller aircraft to larger jet airliners, with visible differences in wing configuration, tail design, and engine placement. The models include both civilian and possibly military types, with some featuring high-mounted wings and others with low or mid-mounted wings. The color palette includes red, white, gray, and black, with some planes having solid colors and others a combination. The landing gear is visible on several models, with both tricycle and taildragger configurations present. The cockpits are generally forward-mounted and enclosed, with some models showing clear canopy outlines.",
+    "description": "A group of seven airplane models in various sizes and colors, featuring diverse wing, tail, and engine configurations. The collection includes both small propeller planes and larger jets, with visible landing gear and forward-mounted cockpits.",
+    "description_view_0": "Front view showing the nose profiles, propellers, and engine intakes of all seven airplanes, highlighting differences in fuselage width and landing gear stance.",
+    "description_view_1": "Top-down view displaying the full wingspans, tail shapes, and color patterns of each airplane, making the differences in wing configuration and size most apparent.",
+    "description_view_2": "Rear view revealing the tail designs, engine exhausts, and the arrangement of vertical and horizontal stabilizers across the models.",
+    "description_view_3": "Side view showing the fuselage lengths, cockpit placements, and landing gear types, as well as the relative heights of the airplanes.",
+    "category": "airplane",
+    "height": 0.15,
+    "max_dimension": 0.35,
+    "materials": [
+        "plastic",
+        "metal",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 0.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 5,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "wheel",
+        "door",
+        "cockpit canopy"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.35,
+        0.25,
+        0.25,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_wingspan_configuration": "Mixed configurations: high-wing, mid-wing, and low-wing; some with straight wings, others with slight dihedral angles; no visible winglets.",
+    "attribute_engine_type": "Mixed: single and twin piston engines (propeller-driven), and twin jet engines; engines mounted on wings or nose as visible.",
+    "attribute_tail_design": "Conventional tail designs with single vertical stabilizers; some with low horizontal stabilizers, others with mid or high placement.",
+    "attribute_landing_gear_type": "Mixed: tricycle and taildragger configurations; fixed landing gear visible on most models.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpits; mostly single-seat or small multi-seat configurations with visible canopies or windows.",
+    "uid": "74b763ad9f0347fc88b4bff3c96e5df5",
+    "near_synsets": {
+        "airplane.n.01": 0.49077700142065606,
+        "aircraft.n.01": 0.5246225472670896,
+        "multiengine_airplane.n.01": 0.53434526666302,
+        "jet.n.01": 0.5362183635438367,
+        "propjet.n.01": 0.5369779244172266
+    },
+    "synset": "multiengine_airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/74b763ad9f0347fc88b4bff3c96e5df5",
+        "creator_username": "alstrainfinite",
+        "creator_display_name": "Alstra Infinite",
+        "creator_profile_url": "https://sketchfab.com/alstrainfinite"
+    },
+    "filename": "std_74b763ad9f0347fc88b4bff3c96e5df5.glb",
+    "length": 0.1533176526427269,
+    "width": 0.884319007396698
+}

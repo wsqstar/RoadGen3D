@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a large delivery truck with a white cab and a rectangular cargo box. The sides of the cargo box feature a colorful mural with the words 'BADLANDS DISTRIBUTION' and images of parcels, suggesting it is used for logistics or package delivery. The front of the truck displays a prominent black 'B' on the hood, and the rear doors also feature a large 'B' over a background of packages. The truck has two visible axles, with black wheels and a standard day cab configuration. The exterior appears to be primarily metal with some plastic and glass components, and the truck is designed for urban and commercial environments.",
+    "description": "A white delivery truck with 'BADLANDS DISTRIBUTION' graphics and a large cargo box, featuring a bold 'B' on the front and rear.",
+    "description_view_0": "Front view showing the white cab, windshield, grille, and a large black 'B' on the hood.",
+    "description_view_1": "Left side view highlighting the 'BADLANDS DISTRIBUTION' mural, two black wheels, and the full length of the cargo box.",
+    "description_view_2": "Rear view displaying the cargo doors with a large 'B' and images of parcels.",
+    "description_view_3": "Right side view similar to the left, with the same mural and truck features visible.",
+    "category": "truck",
+    "height": 3.8,
+    "max_dimension": 9.5,
+    "materials": [
+        "steel",
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.2,
+        0.08,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "mass": 9000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 25000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "handle",
+        "cargo door",
+        "side mirror"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "blue",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.55,
+        0.15,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "day cab",
+    "attribute_cargo_bed_type": "box",
+    "attribute_wheelbase": 5.5,
+    "attribute_number_of_axles": 2,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "ffb6c1839b544d75b94e78a7ac71e7bc",
+    "near_synsets": {
+        "delivery_truck.n.01": 0.5438448617222212,
+        "van.n.05": 0.5572083800430951,
+        "laundry_truck.n.01": 0.5605473769361927,
+        "tandem_trailer.n.01": 0.5645247362285641,
+        "car_carrier.n.01": 0.567618746574549,
+        "hand_truck.n.01": -1000.0,
+        "truck.n.01": -1000.0
+    },
+    "synset": "truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ffb6c1839b544d75b94e78a7ac71e7bc",
+        "creator_username": "delerioso",
+        "creator_display_name": "delerioso",
+        "creator_profile_url": "https://sketchfab.com/delerioso"
+    },
+    "filename": "std_ffb6c1839b544d75b94e78a7ac71e7bc.glb",
+    "length": 10.443027019500732,
+    "width": 2.5150504112243652
+}

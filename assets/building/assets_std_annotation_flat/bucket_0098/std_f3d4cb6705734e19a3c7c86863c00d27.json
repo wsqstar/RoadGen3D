@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a cylindrical black bomb with a robust, industrial design, featuring a matte black metal body segmented by two horizontal bands. Around its circumference, there are multiple hexagonal bolts or rivets, suggesting reinforced construction. The top section is fitted with a prominent red button or cap, partially encircled by a metallic safety lever, which likely serves as a triggering or arming mechanism. The surface is mostly smooth but interrupted by the protruding bolts, giving it a rugged, utilitarian appearance. The overall form is compact and dense, with no visible seams or openings aside from the mechanical components. There are no visible warning labels or external wiring, and the bomb appears designed for manual handling and deployment.",
+    "description": "A compact, cylindrical black bomb with multiple bolts, a red button on top, and a metallic safety lever, giving it a rugged, industrial look.",
+    "description_view_0": "The bomb is seen at an angle, highlighting the red button and safety lever on top, with bolts clearly visible around the body.",
+    "description_view_1": "This view shows the bomb more upright, emphasizing the symmetry of the bolts and the metallic lever's curve over the top.",
+    "description_view_2": "The bomb is rotated to show the side, with the bolts and the cylindrical form prominent, and the top button partially visible.",
+    "description_view_3": "A slightly angled side view, focusing on the upper section and the lever, with the bolts and matte finish clearly visible.",
+    "category": "bomb",
+    "height": 0.25,
+    "max_dimension": 0.25,
+    "materials": [
+        "steel",
+        "plastic",
+        "explosive_compound",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.1,
+        0.25,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "red button",
+        "safety lever"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "silver"
+    ],
+    "colors_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The bomb appears to be detonated by pressing the red button on top, which is secured by a metallic safety lever that must be moved or released before activation.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "f3d4cb6705734e19a3c7c86863c00d27",
+    "near_synsets": {
+        "bomb.n.01": 0.4957649003743488,
+        "briefcase_bomb.n.01": 0.519461824037654,
+        "cherry_bomb.n.01": 0.5218766753319384,
+        "pipe_bomb.n.01": 0.5244377540757894,
+        "time_bomb.n.02": 0.5266692498510805,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f3d4cb6705734e19a3c7c86863c00d27",
+        "creator_username": "azazeld2",
+        "creator_display_name": "Slayerazazel",
+        "creator_profile_url": "https://sketchfab.com/azazeld2"
+    },
+    "filename": "std_f3d4cb6705734e19a3c7c86863c00d27.glb",
+    "length": 0.2209082916378975,
+    "width": 0.22612281143665314
+}

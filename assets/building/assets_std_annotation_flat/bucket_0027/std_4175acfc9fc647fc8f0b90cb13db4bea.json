@@ -1,0 +1,102 @@
+{
+    "description_long": "This is an old, weathered delivery truck with a boxy cargo compartment and a heavily rusted exterior. The front features a large, curved hood with three red marker lights on top and a prominent, battered grille and bumper. The side profile reveals two doors for the cab and a long, rectangular cargo area with worn, dark paint and visible rust patches. The rear has double cargo doors, suggesting access to the storage area, and a small, faded license plate. The wheels are thick and utilitarian, suited for urban or industrial environments, and the overall appearance suggests the truck has seen extensive use. The truck's design is utilitarian, prioritizing function over aesthetics, and it appears capable of carrying moderate to large loads.",
+    "description": "A heavily rusted, boxy delivery truck with a large cargo compartment and worn, dark exterior. The truck features a battered grille, double rear doors, and utilitarian wheels.",
+    "description_view_0": "Front view showing the curved hood, three red marker lights, battered grille, and rusted bumper.",
+    "description_view_1": "Left side view displaying the long cargo compartment, two cab doors, and worn wheels.",
+    "description_view_2": "Rear view highlighting the double cargo doors, small license plate, and the back bumper.",
+    "description_view_3": "Right side view similar to the left, showing the cargo box, cab, and wheels with visible rust.",
+    "category": "truck",
+    "height": 2.6,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.82,
+        0.06,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 3400,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 17000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "handle",
+        "bumper",
+        "cargo door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark blue",
+        "rust brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "box",
+    "attribute_wheelbase": 3.2,
+    "attribute_number_of_axles": 2,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "4175acfc9fc647fc8f0b90cb13db4bea",
+    "near_synsets": {
+        "van.n.05": 0.5048136912359295,
+        "delivery_truck.n.01": 0.5100032355341618,
+        "truck.n.01": 0.5188407944099872,
+        "cargo_container.n.01": 0.5254972910724369,
+        "laundry_truck.n.01": 0.5367641504947411,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4175acfc9fc647fc8f0b90cb13db4bea",
+        "creator_username": "SkinRender",
+        "creator_display_name": "SkinRender",
+        "creator_profile_url": "https://sketchfab.com/SkinRender"
+    },
+    "filename": "std_4175acfc9fc647fc8f0b90cb13db4bea.glb",
+    "length": 5.28736424446106,
+    "width": 2.5536394119262695
+}

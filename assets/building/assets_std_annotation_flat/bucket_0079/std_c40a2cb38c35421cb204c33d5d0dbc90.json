@@ -1,0 +1,111 @@
+{
+    "description_long": "This kiosk is a small, standalone commercial structure with a steep, red gabled roof and a simple rectangular footprint. The front features a double sliding door, a large illuminated sign with Japanese characters, and a menu board, suggesting it serves food or beverages. Two stools are placed at a counter under the sign, inviting customers to sit and order. The side wall is decorated with graffiti and posters, adding an urban, street-side character. The rear and one side are plain, with no windows or additional features, emphasizing its utilitarian design. The exterior appears to be constructed from painted wood or composite panels, with a tiled roof and some metal or plastic elements for signage and seating.",
+    "description": "A compact urban kiosk with a red gabled roof, sliding doors, illuminated signage, and a counter with stools, featuring graffiti and posters on one side.",
+    "description_view_0": "Side view showing graffiti art and posters, with part of the roof and stools visible.",
+    "description_view_1": "Front view displaying sliding doors, illuminated signage, menu board, and two stools at the counter.",
+    "description_view_2": "Opposite side view with a plain wall and partial view of the stools and roof.",
+    "description_view_3": "Rear view showing a plain wall and the full expanse of the red gabled roof.",
+    "category": "kiosk",
+    "height": 2.8,
+    "max_dimension": 3.5,
+    "materials": [
+        "wood",
+        "composite panel",
+        "metal",
+        "plastic",
+        "glass",
+        "tile",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.2,
+        0.1,
+        0.08,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "sittable",
+        "readable",
+        "orderable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sliding door",
+        "counter",
+        "stool",
+        "menu board",
+        "illuminated sign"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "brown",
+        "black",
+        "gray",
+        "white",
+        "green",
+        "blue"
+    ],
+    "colors_composition": [
+        0.35,
+        0.25,
+        0.15,
+        0.1,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "Illuminated sign with Japanese text above the entrance, printed menu board on the front, and posters/graffiti on the side wall.",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "One double sliding door at the front.",
+    "attribute_roof_design": "Steep gabled roof with red tiles, moderate overhang, no visible skylights or decorative elements.",
+    "attribute_architectural_style": "Modern utilitarian with urban street influences.",
+    "uid": "c40a2cb38c35421cb204c33d5d0dbc90",
+    "near_synsets": {
+        "booth.n.02": 0.5361170726010209,
+        "arcade.n.01": 0.5454910278418806,
+        "pop-up.n.03": 0.551007242585672,
+        "coffee_stall.n.01": 0.553139093377875,
+        "shopfront.n.01": 0.5569746979005753
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c40a2cb38c35421cb204c33d5d0dbc90",
+        "creator_username": "chive",
+        "creator_display_name": "chive",
+        "creator_profile_url": "https://sketchfab.com/chive"
+    },
+    "filename": "std_c40a2cb38c35421cb204c33d5d0dbc90.glb",
+    "length": 2.0456398725509644,
+    "width": 2.54913330078125
+}

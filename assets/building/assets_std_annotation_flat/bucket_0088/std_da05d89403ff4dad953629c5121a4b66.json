@@ -1,0 +1,86 @@
+{
+    "description_long": "This lantern features a rectangular, box-like frame with open sides and a solid top, suspended from a robust, geometric chain. The frame appears to be constructed from dark metal, giving it a modern yet industrial aesthetic suitable for urban environments. The top of the lantern is slightly sloped, leading to a central mounting point where the chain attaches. The interior is hollow, likely designed to house a light source such as an LED or electric bulb, with open faces allowing light to disperse freely. The chain consists of interlocking rectangular links, providing both structural support and a decorative element. The overall design is minimalistic, with no visible decorative motifs or glass panels, emphasizing function and durability.",
+    "description": "A modern, rectangular metal lantern with open sides and a geometric hanging chain, designed for urban lighting. Its minimalist, industrial style features a hollow frame and no visible glass or ornamentation.",
+    "description_view_0": "Front view showing the open rectangular frame and the central chain attachment above.",
+    "description_view_1": "Rear view, nearly identical to the front, with the open frame and chain visible.",
+    "description_view_2": "Side view displaying the depth of the lantern and the open interior, with the chain attachment above.",
+    "description_view_3": "Opposite side view, mirroring view 2, showing the open structure and chain.",
+    "category": "lantern",
+    "height": 0.45,
+    "max_dimension": 0.45,
+    "materials": [
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.15
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 35,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "hangable",
+        "illuminable",
+        "replaceable_bulb"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "chain",
+        "bulb socket"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "single",
+    "attribute_mounting_type": "hanging",
+    "attribute_light_source_type": "LED",
+    "attribute_decorative_elements": [],
+    "attribute_number_of_bulbs": 1,
+    "attribute_glass_enclosure_style": "no glass",
+    "uid": "da05d89403ff4dad953629c5121a4b66",
+    "near_synsets": {
+        "lantern.n.01": 0.4911831795427777,
+        "dark_lantern.n.01": 0.5116015392846676,
+        "lamp.n.02": 0.5273647863756015,
+        "chandelier.n.01": 0.5275886889696251,
+        "chinese_lantern.n.01": 0.5321508590128377
+    },
+    "synset": "chinese_lantern.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/da05d89403ff4dad953629c5121a4b66",
+        "creator_username": "533253",
+        "creator_display_name": "Dina",
+        "creator_profile_url": "https://sketchfab.com/533253"
+    },
+    "filename": "std_da05d89403ff4dad953629c5121a4b66.glb",
+    "length": 0.13527055084705353,
+    "width": 0.13527052104473114
+}

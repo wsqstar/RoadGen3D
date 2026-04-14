@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a large, multi-compartment recycling and waste disposal station, featuring five distinct vertical sections, each with its own color and waste type symbol. The sections are colored gray, blue, red, yellow, and green, with each compartment having a door and a uniquely shaped opening on top for different types of waste such as general trash, paper, plastic, cans, and glass. The top surface displays clear black pictograms indicating the intended waste type for each compartment, aiding in proper sorting. The structure appears to be made primarily of painted metal, with possible plastic or rubber components for the doors and openings. The unit is rectangular and robust, designed for high-traffic urban environments such as parks, sidewalks, or public plazas. The overall design is functional, visually organized, and intended to encourage recycling and waste separation.",
+    "description": "A large, five-compartment recycling and waste bin station with color-coded doors and clear waste-type symbols on top. Each section has a unique opening and door for organized waste sorting.",
+    "description_view_0": "Front view showing all five colored compartments, each with a door and a distinct waste-type symbol and opening on top.",
+    "description_view_1": "Side view showing the green compartment and a small access panel or lock, with minimal detail of other sections.",
+    "description_view_2": "Rear view displaying the plain colored backs of all five compartments, with no visible doors or openings.",
+    "description_view_3": "Opposite side view showing the gray compartment and a small handle or lock, with the rest of the unit receding.",
+    "category": "trash bin",
+    "height": 1.1,
+    "max_dimension": 2.2,
+    "materials": [
+        "painted_steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pullable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "opening",
+        "lock"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "red",
+        "yellow",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.18,
+        0.18,
+        0.18,
+        0.18,
+        0.18,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_lid_type": "flat, fixed with shaped openings",
+    "attribute_opening_mechanism": "manual drop-in through shaped top openings",
+    "attribute_presence_of_wheels": false,
+    "attribute_handle_design": "recessed handles on compartment doors",
+    "attribute_labeling_or_signage": "Each compartment has a black pictogram on top indicating waste type; clear visual signage for recycling and waste separation.",
+    "uid": "94a1aba7103b4e5db8c47ba5ae45d26a",
+    "near_synsets": {
+        "recycling_bin.n.01": 0.4673178932574682,
+        "garbage.n.03": 0.5110462520513123,
+        "wastepaper_basket.n.01": 0.5229580035324626,
+        "dumpster.n.01": 0.5301530255639173,
+        "ashcan.n.01": 0.5493428010788609,
+        "bin.n.02": -1000.0,
+        "bank_identification_number.n.01": -1000.0,
+        "folderol.n.01": -1000.0,
+        "trash.n.02": -1000.0,
+        "methamphetamine.n.01": -1000.0,
+        "bin.n.01": -1000.0,
+        "rubbish.n.01": -1000.0
+    },
+    "synset": "recycling_bin.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/94a1aba7103b4e5db8c47ba5ae45d26a",
+        "creator_username": "a107082062",
+        "creator_display_name": "ALL **** UP",
+        "creator_profile_url": "https://sketchfab.com/a107082062"
+    },
+    "filename": "std_94a1aba7103b4e5db8c47ba5ae45d26a.glb",
+    "length": 0.43971458077430725,
+    "width": 2.10260009765625
+}

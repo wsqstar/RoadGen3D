@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a compact blue printed circuit board (PCB) featuring a microcontroller chip, several smaller integrated circuits, and a USB Mini-B port for data and power connectivity. The board is densely populated with surface-mounted components, including capacitors, resistors, and crystal oscillators, all arranged in a neat, grid-like fashion. White silkscreen labels indicate pin numbers and functions along the edges, making it easy to identify input/output connections. The USB port is mounted at one end, protruding slightly, and is flanked by rows of through-hole solder pads for header pin attachment. The board's surface is glossy, with visible copper traces running beneath the blue solder mask. This type of electronics board is commonly used for prototyping, embedded systems, or as a controller in various urban technology applications.",
+    "description": "A small blue printed circuit board with a microcontroller, USB Mini-B port, and labeled pin headers, densely packed with electronic components. The board features a glossy finish and is designed for prototyping or embedded control.",
+    "description_view_0": "Side view showing the flat blue PCB, the microcontroller chip, and the protruding USB Mini-B port.",
+    "description_view_1": "End-on view highlighting the USB Mini-B port and the symmetrical arrangement of pin headers along the board's length.",
+    "description_view_2": "Opposite side view displaying the microcontroller, crystal oscillator, and the USB port from a different angle.",
+    "description_view_3": "View from the opposite end, focusing on the microcontroller and the rows of labeled pin headers.",
+    "category": "other electronics",
+    "height": 0.008,
+    "max_dimension": 0.07,
+    "materials": [
+        "fiberglass",
+        "copper",
+        "plastic",
+        "silicon",
+        "tin",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.15,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 0.012,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0.2,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "connectable",
+        "programmable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "USB port",
+        "pin headers"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "white",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 20000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.05,
+    "asset_composition_type": "single",
+    "attribute_brand": "Arduino",
+    "attribute_display_type": "none",
+    "attribute_control_interface": "USB port, pin headers",
+    "attribute_power_source": "USB",
+    "attribute_mounting_location": "desktop",
+    "uid": "c32b69f84f874565b9f8ac9a86944ac0",
+    "near_synsets": {
+        "printed_circuit.n.01": 0.5032501900364943,
+        "pc_board.n.01": 0.5339308508220523,
+        "module.n.03": 0.5341401542640325,
+        "microelectronics.n.01": 0.5372531508669066,
+        "circuit_board.n.01": 0.5376772016655846,
+        "electronics.n.01": -1000.0
+    },
+    "synset": "printed_circuit.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c32b69f84f874565b9f8ac9a86944ac0",
+        "creator_username": "rom35076",
+        "creator_display_name": "rom35076",
+        "creator_profile_url": "https://sketchfab.com/rom35076"
+    },
+    "filename": "std_c32b69f84f874565b9f8ac9a86944ac0.glb",
+    "length": 0.05374700017273426,
+    "width": 0.020701169967651367
+}

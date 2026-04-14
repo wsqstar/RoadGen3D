@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a standard metal shopping cart commonly found in supermarkets and urban retail environments. The cart features a large wire basket with a rectangular shape, constructed from a grid of intersecting metal rods, providing both strength and visibility of contents. It is supported by a sturdy metal frame and equipped with four red-rimmed wheels, allowing for smooth maneuverability. The handlebar is straight and reinforced, with a red plastic grip for comfort and control. The cart's open design allows for easy loading and unloading of groceries or other items. There are no visible store logos or branding elements on the cart.",
+    "description": "A metal shopping cart with a wire basket, red-rimmed wheels, and a red plastic handlebar grip. The design is open and utilitarian, suitable for carrying groceries or goods.",
+    "description_view_0": "Side view showing the full length of the wire basket, all four wheels, and the angled handlebar with a red grip.",
+    "description_view_1": "Front view highlighting the open basket mouth, the width of the cart, and the parallel alignment of the front wheels.",
+    "description_view_2": "Opposite side view, similar to view 0, displaying the basket's depth and the supporting frame structure.",
+    "description_view_3": "Rear view focusing on the handlebar with its red grip and the back of the wire basket.",
+    "category": "shopping cart",
+    "height": 1.05,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 25,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "basket",
+        "wheel"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_wire_basket_pattern": "Rectangular grid pattern with medium-density spacing; horizontal and vertical steel rods form a mesh with consistent square openings, providing structural rigidity and visibility.",
+    "attribute_handlebar_design": "Straight steel handlebar with a red plastic grip covering the top section; ergonomic for pushing, no visible branding or additional controls.",
+    "attribute_wheel_configuration": "Four medium-sized wheels, each with a red rim; all wheels appear to swivel for maneuverability, evenly spaced at the corners of the base, no visible locking mechanism.",
+    "attribute_child_seat_presence": "absent",
+    "attribute_store_branding": "none",
+    "uid": "284c71d94e3e4d50a152494129f56d1b",
+    "near_synsets": {
+        "shopping_cart.n.01": 0.4299878505197484,
+        "shopping_basket.n.01": 0.4657203372478366,
+        "cart.n.01": 0.5105582587567653,
+        "shopping_bag.n.01": 0.5123071007388358,
+        "serving_cart.n.01": 0.5147694780889864,
+        "handcart.n.01": -1000.0
+    },
+    "synset": "shopping_cart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/284c71d94e3e4d50a152494129f56d1b",
+        "creator_username": "zeneric9",
+        "creator_display_name": "Zeneric",
+        "creator_profile_url": "https://sketchfab.com/zeneric9"
+    },
+    "filename": "std_284c71d94e3e4d50a152494129f56d1b.glb",
+    "length": 1.2890768647193909,
+    "width": 0.7347736954689026
+}

@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a modern, angular airplane with a sleek, aerodynamic fuselage and sharply swept delta wings. The wings are broad and triangular, seamlessly integrated into the body, and feature subtle control surfaces near the trailing edge. At the rear, two large turbofan engines are mounted side by side, flanked by a pair of vertical stabilizers that are canted outward in a V-tail configuration. The cockpit is positioned at the front of the fuselage, enclosed by a smooth, bubble-like canopy. The landing gear is partially visible beneath the wings and fuselage, suggesting a tricycle configuration with retractable struts. The exterior is finished in a combination of light gray and darker gray panels, with some metallic and black accents around the engines and wingtips.",
+    "description": "A sleek, modern airplane with sharply swept delta wings, twin rear turbofan engines, and a forward, enclosed cockpit. The exterior features a light and dark gray color scheme with angular, aerodynamic lines.",
+    "description_view_0": "Rear view showing twin turbofan engines, outward-canted V-tail stabilizers, and the broad delta wing trailing edge.",
+    "description_view_1": "Left rear-quarter view highlighting the angular wing integration, visible landing gear, and engine nacelles.",
+    "description_view_2": "Front view displaying the pointed nose, forward cockpit canopy, and the full span of the delta wings.",
+    "description_view_3": "Right rear-quarter view emphasizing the wing's sweep, landing gear, and the V-tail configuration.",
+    "category": "airplane",
+    "height": 4.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "closable",
+        "openable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "landing gear",
+        "engine",
+        "control surfaces",
+        "doors"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "dark gray",
+        "black",
+        "metallic silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "sleek",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 25.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, sharply swept delta wings with no visible winglets and slight anhedral angle.",
+    "attribute_engine_type": "Twin turbofan engines mounted at the rear fuselage.",
+    "attribute_tail_design": "V-tail configuration with twin outward-canted vertical stabilizers.",
+    "attribute_landing_gear_type": "Tricycle retractable landing gear with two main gear and one nose gear visible.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed single-seat cockpit with a bubble canopy.",
+    "uid": "d9d8f9e2961e445890c32e82e67fe187",
+    "near_synsets": {
+        "delta_wing.n.01": 0.5242115050829398,
+        "airplane.n.01": 0.5311097668333993,
+        "aircraft.n.01": 0.5338261929871954,
+        "propjet.n.01": 0.5368553634779119,
+        "twinjet.n.01": 0.5464420256469397
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/d9d8f9e2961e445890c32e82e67fe187",
+        "creator_username": "dawnbandit",
+        "creator_display_name": "dawnbandit",
+        "creator_profile_url": "https://sketchfab.com/dawnbandit"
+    },
+    "filename": "std_d9d8f9e2961e445890c32e82e67fe187.glb",
+    "length": 7.706204891204834,
+    "width": 7.412601947784424
+}

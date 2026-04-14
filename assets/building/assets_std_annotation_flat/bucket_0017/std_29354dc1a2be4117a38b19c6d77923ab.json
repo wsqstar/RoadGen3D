@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a heavily armored combat tactical vehicle with a low, angular profile and a long, protruding cannon mounted on a rotating turret. The exterior is covered in a woodland camouflage pattern, blending greens, browns, and blacks in irregular shapes. The vehicle features thick, sloped armor plating across its body, especially prominent on the front and turret, suggesting enhanced protection. On the right side, there is a visible external tool or equipment, possibly a spare track or barricade device. The vehicle lacks visible wheels or tires, indicating a tracked propulsion system, typical for tanks. No military insignia or unit markings are visible on the surface.",
+    "description": "A camouflaged, heavily armored tracked combat vehicle with a long cannon and sloped armor plating, designed for tactical operations.",
+    "description_view_0": "Front view shows the sloped armor, central cannon barrel, and camouflage pattern; the external equipment is visible on the right side.",
+    "description_view_1": "Side view highlights the long cannon, turret shape, and external equipment mounted near the rear; tracks are implied but not detailed.",
+    "description_view_2": "Rear view displays the back armor, rear turret, and the external equipment more clearly; cannon is visible as a thin line.",
+    "description_view_3": "Opposite side view shows the turret and cannon profile, with the rear equipment less visible; camouflage pattern is prominent.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.03,
+        0.07
+    ],
+    "mass": 48000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "external equipment/tool"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible main cannon mounted on the turret; no other weapon mounts or hardpoints are visible.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating, especially reinforced on the front and turret; no modular or reactive panels are visible.",
+    "attribute_camouflage_pattern": "Woodland camouflage pattern with irregular green, brown, and black shapes.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "29354dc1a2be4117a38b19c6d77923ab",
+    "near_synsets": {
+        "tank.n.01": 0.45062378863186925,
+        "military_vehicle.n.01": 0.46519689089148075,
+        "reconnaissance_vehicle.n.01": 0.47890277495996697,
+        "armored_car.n.02": 0.4854392565794105,
+        "armored_vehicle.n.01": 0.4910398861958994,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/29354dc1a2be4117a38b19c6d77923ab",
+        "creator_username": "Bruce_Vanmassenhove",
+        "creator_display_name": "Bruce_Vanmassenhove",
+        "creator_profile_url": "https://sketchfab.com/Bruce_Vanmassenhove"
+    },
+    "filename": "std_29354dc1a2be4117a38b19c6d77923ab.glb",
+    "length": 7.993632793426514,
+    "width": 3.685792922973633
+}

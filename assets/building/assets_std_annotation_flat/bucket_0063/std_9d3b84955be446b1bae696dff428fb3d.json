@@ -1,0 +1,104 @@
+{
+    "description_long": "This warehouse complex features a large, rectangular main building with a flat roof and minimal exterior ornamentation, surrounded by a paved lot filled with numerous parked vehicles of various colors and sizes. The main structure is constructed from concrete or similar industrial materials, with a secondary, smaller building adjacent to it, likely serving as an office or auxiliary storage. The perimeter is defined by fencing, and the lot is organized with clear vehicle lanes and parking spaces, suggesting active logistics or distribution operations. Loading docks and entryways are visible, facilitating the movement of goods in and out of the facility. The roof is flat and unadorned, with no visible skylights or rooftop equipment. The overall design is functional and utilitarian, prioritizing efficiency and accessibility for vehicles and personnel.",
+    "description": "A large, flat-roofed warehouse complex with adjacent parking lots filled with various vehicles, surrounded by fencing and featuring loading docks and auxiliary structures. The design is utilitarian and industrial, emphasizing function over decoration.",
+    "description_view_0": "View 0 shows the warehouse complex from above and to the side, highlighting the main building, adjacent smaller structure, and the extensive parking area with many vehicles.",
+    "description_view_1": "View 1 presents the warehouse from the rear, focusing on the back of the main building and the arrangement of vehicles and fencing along the lot's edge.",
+    "description_view_2": "View 2 offers a frontal perspective, showcasing the main entryways, loading docks, and the organized parking area with a variety of colored vehicles.",
+    "description_view_3": "View 3 displays the side and rear of the warehouse, emphasizing the fenced perimeter, vehicle arrangement, and the relationship between the main and auxiliary buildings.",
+    "category": "warehouse",
+    "height": 8.0,
+    "max_dimension": 45.0,
+    "materials": [
+        "concrete",
+        "metal",
+        "glass",
+        "asphalt",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.18,
+        0.05,
+        0.12,
+        0.02,
+        0.08
+    ],
+    "mass": 950000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "loadable",
+        "unloadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "loading dock",
+        "gate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "black",
+        "red",
+        "blue",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.65,
+        0.12,
+        0.08,
+        0.06,
+        0.05,
+        0.04
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.03,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "scene",
+    "attribute_facade_design": "The main facade is plain and industrial, constructed from concrete panels with minimal window openings and large entryways for vehicles and goods. The exterior is functional, with clear access points and no decorative elements.",
+    "attribute_loading_dock_presence": true,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is flat and expansive, constructed from concrete or metal panels, with no visible skylights, HVAC units, or other rooftop features.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "9d3b84955be446b1bae696dff428fb3d",
+    "near_synsets": {
+        "warehouse.n.01": 0.49068341280750216,
+        "loft.n.01": 0.5200444891970306,
+        "facility.n.04": 0.5467916481391868,
+        "facility.n.01": 0.5501116378130572,
+        "storehouse.n.01": 0.5507371829798464
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/9d3b84955be446b1bae696dff428fb3d",
+        "creator_username": "homedesign3d",
+        "creator_display_name": "Home Design 3D",
+        "creator_profile_url": "https://sketchfab.com/homedesign3d"
+    },
+    "filename": "std_9d3b84955be446b1bae696dff428fb3d.glb",
+    "length": 34.87917137145996,
+    "width": 45.90837097167969
+}

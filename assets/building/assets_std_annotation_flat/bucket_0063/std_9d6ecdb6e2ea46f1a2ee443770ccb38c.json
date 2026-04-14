@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a stylized, heavy-duty cannon mounted on a wooden carriage with four robust wheels. The cannon barrel is predominantly black with metallic silver bands reinforcing its structure, and a fuse protrudes from the rear, indicating it is a muzzle-loading artillery piece. The wooden carriage is angular and reinforced, with visible bolts and hexagonal metal fittings securing the cannon in place. The wheels are hexagonal and appear to be made of solid wood, designed for stability rather than speed. The overall construction suggests durability and the ability to withstand significant recoil. The asset has a rugged, utilitarian appearance, suitable for historical or fantasy urban combat scenarios.",
+    "description": "A stylized black and silver cannon mounted on a reinforced wooden carriage with four hexagonal wheels and metallic fittings.",
+    "description_view_0": "Side view showing the full length of the cannon barrel, metallic bands, fuse, and the angular wooden carriage with two visible wheels.",
+    "description_view_1": "Front view highlighting the cannon's muzzle, the symmetry of the carriage, and the detailed wood grain on the front face.",
+    "description_view_2": "Opposite side view similar to view 0, showing the cannon barrel, metallic bands, and carriage details from the other side.",
+    "description_view_3": "Rear view focusing on the back of the cannon, the fuse, and the rear structure of the wooden carriage.",
+    "category": "combat tactical  vehicle",
+    "height": 1.1,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "wood",
+        "iron",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.35,
+        0.08,
+        0.02
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "rotatable",
+        "loadable",
+        "fireable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheels",
+        "cannon barrel",
+        "fuse",
+        "mounting bolts"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "silver",
+        "brown"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.55,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large fixed cannon barrel mounted centrally on the wooden carriage.",
+    "attribute_armor_plating": "Thick metallic bands reinforce the cannon barrel, providing partial armor; no additional armor plating visible on the carriage.",
+    "attribute_camouflage_pattern": "None visible; the object is painted in solid black, silver, and brown.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "9d6ecdb6e2ea46f1a2ee443770ccb38c",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4980035951503254,
+        "weapons_carrier.n.01": 0.5008575799321504,
+        "cannon.n.02": 0.5059135891783457,
+        "tank.n.01": 0.5095566534335912,
+        "reconnaissance_vehicle.n.01": 0.5111553079421108,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9d6ecdb6e2ea46f1a2ee443770ccb38c",
+        "creator_username": "romanchenko.ksenia",
+        "creator_display_name": "arixxibaby",
+        "creator_profile_url": "https://sketchfab.com/romanchenko.ksenia"
+    },
+    "filename": "std_9d6ecdb6e2ea46f1a2ee443770ccb38c.glb",
+    "length": 1.4462287425994873,
+    "width": 1.2184194326400757
+}

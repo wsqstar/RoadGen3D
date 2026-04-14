@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a large cargo ship with a long, streamlined hull painted in dark gray and red, designed for transporting bulk goods across water. The vessel features a flat deck with two prominent cargo holds, each equipped with large cranes for loading and unloading materials. The bow is sharply pointed, while the stern houses a multi-level superstructure with the bridge, crew quarters, and operational equipment. The superstructure is white and gray, with visible railings, ladders, and communication antennas. The ship's deck is equipped with various fixtures, including cranes and hatches, and the hull sits low in the water, indicating a heavy-duty displacement design. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A large, industrial cargo ship with a dark hull, two cargo holds with cranes, and a multi-level white superstructure at the stern. The vessel is designed for bulk transport and features a streamlined, functional appearance.",
+    "description_view_0": "Front view showing the pointed bow, flat deck, and the alignment of cargo holds and cranes.",
+    "description_view_1": "Side profile highlighting the full length of the hull, the two large cargo holds with cranes, and the multi-level superstructure at the stern.",
+    "description_view_2": "Rear view displaying the stern superstructure, bridge, and operational areas, with deck equipment visible.",
+    "description_view_3": "Opposite side profile similar to view 1, showing the hull, cargo holds, cranes, and superstructure from the other side.",
+    "category": "ship",
+    "height": 25,
+    "max_dimension": 180,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.01,
+        0.05
+    ],
+    "mass": 250000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 5000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "crane",
+        "hatch",
+        "door",
+        "ladder",
+        "railing",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a long, streamlined form, a sharply pointed bow, and a rounded stern. The hull sits low in the water and features a red lower section and a dark gray upper section. No bulbous bow or visible keels are present, and the hull is smooth with minimal external protrusions.",
+    "attribute_superstructure_layout": "The superstructure is located at the stern and consists of multiple stacked decks, including the bridge at the top, with visible railings, ladders, and operational equipment. The design is functional, with a compact, rectangular form and several levels for crew and navigation.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "crane",
+        "antenna",
+        "ladder",
+        "hatch",
+        "railing"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "93c076900f004102b78dfac989efae1d",
+    "near_synsets": {
+        "cargo_ship.n.01": 0.42795016979662803,
+        "container_ship.n.01": 0.43297546306246204,
+        "ship.n.01": 0.4757674374561009,
+        "car_carrier.n.02": 0.4824444432041609,
+        "scow.n.02": 0.49849258461257706
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/93c076900f004102b78dfac989efae1d",
+        "creator_username": "medialog",
+        "creator_display_name": "medialog",
+        "creator_profile_url": "https://sketchfab.com/medialog"
+    },
+    "filename": "std_93c076900f004102b78dfac989efae1d.glb",
+    "length": 100.03895568847656,
+    "width": 17.51391887664795
+}

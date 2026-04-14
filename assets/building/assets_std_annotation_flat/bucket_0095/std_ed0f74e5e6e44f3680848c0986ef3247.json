@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a mid-rise apartment building with four stories, featuring a flat roof equipped with various HVAC units, ducts, and vents. The exterior walls are primarily light gray with a brick base, and the building is adorned with multiple air conditioning units and graffiti on the lower section. Fire escape staircases are attached to the longer sides, providing emergency egress from each floor. Windows are symmetrically arranged in rows, with some illuminated, suggesting occupancy. Large green ventilation ducts run vertically along the facade, and the building has a utilitarian, urban appearance. The main entrance is a single door at the base, and there are garage doors on one side, indicating possible access for vehicles or storage.",
+    "description": "A four-story urban apartment building with a flat roof, fire escapes, and a brick base, featuring symmetrical windows and visible HVAC systems.",
+    "description_view_0": "Front view showing the main entrance door, several windows, and rooftop HVAC units; one window is illuminated.",
+    "description_view_1": "Side view highlighting the fire escape staircases, graffiti on the brick base, and large green ventilation ducts.",
+    "description_view_2": "Rear view with plain walls, visible rooftop equipment, and vertical ducts; no main entrance visible.",
+    "description_view_3": "Opposite side view with additional fire escapes, garage doors at the base, and more windows.",
+    "category": "apartment building",
+    "height": 14.0,
+    "max_dimension": 28.0,
+    "materials": [
+        "concrete",
+        "brick",
+        "glass",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.2,
+        0.1,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 1200000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "fire escape",
+        "garage door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "black",
+        "green",
+        "white",
+        "blue"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.08,
+        0.06,
+        0.04,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 4,
+    "attribute_balcony_presence": false,
+    "attribute_window_arrangement": "Windows are symmetrically arranged in horizontal rows on each floor, evenly spaced and aligned vertically across the facade.",
+    "attribute_entrance_type": "single door",
+    "attribute_architectural_style": "Contemporary",
+    "uid": "ed0f74e5e6e44f3680848c0986ef3247",
+    "near_synsets": {
+        "apartment_building.n.01": 0.48838437166258974,
+        "suite.n.02": 0.5273773566670121,
+        "block.n.05": 0.5301969828627121,
+        "high-rise.n.01": 0.5330225113828206,
+        "penthouse.n.01": 0.5403893596554122,
+        "construction.n.01": -1000.0,
+        "apartment.n.01": -1000.0,
+        "construction.n.07": -1000.0,
+        "building.n.04": -1000.0,
+        "building.n.01": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ed0f74e5e6e44f3680848c0986ef3247",
+        "creator_username": "Lora_o",
+        "creator_display_name": "Lora",
+        "creator_profile_url": "https://sketchfab.com/Lora_o"
+    },
+    "filename": "std_ed0f74e5e6e44f3680848c0986ef3247.glb",
+    "length": 20.28214931488037,
+    "width": 10.133563995361328
+}

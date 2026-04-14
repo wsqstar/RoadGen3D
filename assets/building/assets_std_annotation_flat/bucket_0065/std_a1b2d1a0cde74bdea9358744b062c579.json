@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a historical-style cannon mounted on a wooden wheeled carriage, positioned on a circular patch of ground. The cannon is constructed from dark metal, with a cylindrical barrel secured to the carriage by metal bands and ropes. The carriage is made of wood, featuring four solid wheels and reinforced with metal brackets and bolts. Cannonballs are stacked in small pyramids beside the cannon, indicating its function as an artillery piece. The surface of the cannon is matte and slightly rough, while the wood appears weathered and sturdy. There are no visible modern features, armor plating, or camouflage patterns, and the design is reminiscent of cannons used in the 18th or 19th centuries.",
+    "description": "A historical cannon with a dark metal barrel mounted on a wooden wheeled carriage, accompanied by stacked cannonballs. The object has a weathered, utilitarian appearance with no visible markings or camouflage.",
+    "description_view_0": "Front view showing the open muzzle of the cannon, the wooden carriage, and a stack of cannonballs to the left.",
+    "description_view_1": "Side view highlighting the full length of the cannon barrel, the wooden carriage with four wheels, and the rope securing the barrel.",
+    "description_view_2": "Rear view displaying the back of the cannon barrel, the carriage structure, and a stack of cannonballs to the right.",
+    "description_view_3": "Opposite side view showing the carriage wheels, cannon barrel, and cannonballs positioned to the left.",
+    "category": "combat tactical  vehicle",
+    "height": 1.0,
+    "max_dimension": 2.2,
+    "materials": [
+        "iron",
+        "wood",
+        "rope",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.05,
+        0.05
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "rotatable",
+        "loadable",
+        "fireable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "barrel",
+        "cannonball",
+        "rope"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 120000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "group",
+    "attribute_weapon_mounts": "One fixed cannon barrel mounted centrally on the wooden carriage.",
+    "attribute_armor_plating": "None visible.",
+    "attribute_camouflage_pattern": "None visible.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "a1b2d1a0cde74bdea9358744b062c579",
+    "near_synsets": {
+        "cannon.n.02": 0.4872729999886962,
+        "cannon.n.01": 0.48983386455161104,
+        "caisson.n.02": 0.5088104268410234,
+        "tank.n.01": 0.5164488270863055,
+        "tank_shell.n.01": 0.5186278577341858,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "cannon.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a1b2d1a0cde74bdea9358744b062c579",
+        "creator_username": "Blender3D",
+        "creator_display_name": "Blender3D",
+        "creator_profile_url": "https://sketchfab.com/Blender3D"
+    },
+    "filename": "std_a1b2d1a0cde74bdea9358744b062c579.glb",
+    "length": 2.7219263315200806,
+    "width": 2.721925973892212
+}

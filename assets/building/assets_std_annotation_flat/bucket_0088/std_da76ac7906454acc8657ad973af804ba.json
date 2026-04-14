@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a large, green, metal dumpster situated in a gritty urban alleyway, flanked by a brick wall and a concrete barrier overgrown with vines. The dumpster is heavily weathered, featuring graffiti, scratches, and patches of rust, giving it a well-used appearance. It has a flat, hinged lid with visible grime and a faded 'REFUSE' label on top, and is accompanied by a smaller green waste bin nearby. The surrounding area includes a cracked concrete ground with yellow lines, a security light above the door, and barbed wire atop the wall, suggesting a secure, restricted environment. The dumpster is designed for outdoor use, likely for commercial or multi-unit residential waste collection. Its robust construction and utilitarian design make it suitable for heavy-duty refuse storage and collection.",
+    "description": "A large, weathered green metal dumpster with a flat hinged lid, graffiti, and rust, set in a gritty urban alley with overgrown vines and a smaller waste bin nearby.",
+    "description_view_0": "Front-left view showing the main dumpster, its flat lid, graffiti, and the adjacent smaller bin against a brick wall with vines.",
+    "description_view_1": "Direct front view highlighting the dumpster's lid, the 'REFUSE' label, and the proximity to the brick wall and security light.",
+    "description_view_2": "Rear view focusing on the plain concrete wall, barbed wire, and minimal visibility of the dumpster itself.",
+    "description_view_3": "Top-down view showing the shingled roof of the adjacent structure and the overall layout of the alley, with the dumpster partially visible.",
+    "category": "dumpster",
+    "height": 1.4,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 220,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "handle",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "gray",
+        "yellow",
+        "white"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "scene",
+    "attribute_lid_type": "flat, hinged metal lid with two sections, no visible locking mechanism",
+    "attribute_wheel_presence": true,
+    "attribute_handle_design": "two metal bar handles on the front, horizontally oriented",
+    "attribute_warning_labels": [],
+    "attribute_placement_location": "outdoor commercial alley or residential service area",
+    "uid": "da76ac7906454acc8657ad973af804ba",
+    "near_synsets": {
+        "dumpster.n.01": 0.4574085507501124,
+        "garbage.n.03": 0.5061779292913675,
+        "recycling_bin.n.01": 0.5197685009038322,
+        "scrapheap.n.02": 0.5291647101509367,
+        "dump.n.02": 0.5306737541660178
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/da76ac7906454acc8657ad973af804ba",
+        "creator_username": "elphicksamuel",
+        "creator_display_name": "elphicksamuel",
+        "creator_profile_url": "https://sketchfab.com/elphicksamuel"
+    },
+    "filename": "std_da76ac7906454acc8657ad973af804ba.glb",
+    "length": 1.7174344062805176,
+    "width": 1.9980285167694092
+}

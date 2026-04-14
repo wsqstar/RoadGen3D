@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a light machine gun-style rifle with a long, slender black barrel and a prominent wooden stock and handguard. The rifle features a bipod attached near the muzzle, allowing for stabilized firing from a prone or supported position. A detachable box magazine is mounted beneath the receiver, and the trigger assembly is clearly visible. The rear of the rifle has a fixed wooden stock, ergonomically shaped for shoulder support, while the front handguard is also made of wood, providing a comfortable grip. Iron sights are mounted along the top of the barrel and receiver for aiming. The overall construction combines metal and wood, giving it a robust and utilitarian appearance suitable for military or paramilitary use.",
+    "description": "A long, black metal rifle with a wooden stock and handguard, equipped with a bipod and a detachable box magazine. Features iron sights and a robust, utilitarian design.",
+    "description_view_0": "Side view showing the full length of the rifle, including the wooden stock, handguard, bipod, and box magazine.",
+    "description_view_1": "Front view highlighting the bipod legs, the circular muzzle, and the narrow profile of the handguard and barrel.",
+    "description_view_2": "Opposite side view displaying the wooden stock, handguard, bipod, and box magazine from the other side.",
+    "description_view_3": "Rear view showing the end of the wooden stock and the alignment of the bipod legs and barrel.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 8.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 90,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "deployable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "handguard",
+        "trigger",
+        "magazine",
+        "bipod",
+        "sight",
+        "charging handle",
+        "safety selector"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.28,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "f061e45122da421b82d1484992d83496",
+    "near_synsets": {
+        "rifle.n.01": 0.4937990438718437,
+        "garand_rifle.n.01": 0.507604753641002,
+        "light_arm.n.01": 0.5105300083238989,
+        "dragunov.n.01": 0.5206374875093673,
+        "carbine.n.01": 0.5284366759922495
+    },
+    "synset": "garand_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f061e45122da421b82d1484992d83496",
+        "creator_username": "ConnorNielsen",
+        "creator_display_name": "Connor S. Nielsen",
+        "creator_profile_url": "https://sketchfab.com/ConnorNielsen"
+    },
+    "filename": "std_f061e45122da421b82d1484992d83496.glb",
+    "length": 1.1218482851982117,
+    "width": 0.16629501432180405
+}

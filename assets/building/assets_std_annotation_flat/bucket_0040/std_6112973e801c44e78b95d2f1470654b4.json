@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a vintage-style trolleybus with a rectangular, boxy body and a two-tone exterior featuring a weathered yellow upper half and a rusty red lower half. The trolleybus has two long pantograph poles mounted on the roof, extending rearward for connection to overhead electric wires, and a series of roof-mounted vents and hatches. The windows are rectangular and evenly spaced along the sides, with blacked-out or dark glass, and the front features a flat windshield with dual headlights and a grille. The vehicle rides on four visible wheels, and the side panels show access hatches and a large sliding passenger door. The rear is flat with taillights and additional grilles, while the overall surface appears aged and slightly corroded, suggesting heavy urban use. The trolleybus is designed for public transportation, with entry points for passengers and a robust, utilitarian build.",
+    "description": "A weathered, yellow and red vintage trolleybus with roof-mounted pantograph poles, rectangular windows, and a boxy, utilitarian design. The surface shows signs of age and urban use, with visible vents, doors, and access panels.",
+    "description_view_0": "Rear view showing the flat back, taillights, grilles, and the ends of the pantograph poles.",
+    "description_view_1": "Side view highlighting the long body, rectangular windows, large passenger door, and extended pantograph poles.",
+    "description_view_2": "Front view displaying the flat windshield, dual headlights, grille, and the base of the pantograph poles.",
+    "description_view_3": "Opposite side view with similar features to view 1, showing the length, windows, and pantograph poles from a different angle.",
+    "category": "trolleybus",
+    "height": 3.3,
+    "max_dimension": 11.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.05,
+        0.02,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "pantograph pole",
+        "window",
+        "headlight",
+        "taillight",
+        "vent",
+        "grille",
+        "button",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "red",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_pantograph_poles": true,
+    "attribute_overhead_wire_connection": true,
+    "attribute_route_number_display": false,
+    "attribute_articulated_body_sections": 1,
+    "attribute_passenger_entry_doors": 1,
+    "uid": "6112973e801c44e78b95d2f1470654b4",
+    "near_synsets": {
+        "trolleybus.n.01": 0.5009449743160852,
+        "trolley_line.n.01": 0.5208066213332553,
+        "current_collector.n.01": 0.5559636298559189,
+        "bus.n.04": 0.5781914511437806,
+        "bus.n.01": 0.5796489948194352
+    },
+    "synset": "trolleybus.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6112973e801c44e78b95d2f1470654b4",
+        "creator_username": "Alexander_Malygin",
+        "creator_display_name": "Alexander Malygin",
+        "creator_profile_url": "https://sketchfab.com/Alexander_Malygin"
+    },
+    "filename": "std_6112973e801c44e78b95d2f1470654b4.glb",
+    "length": 6.3899006843566895,
+    "width": 1.8547520637512207
+}

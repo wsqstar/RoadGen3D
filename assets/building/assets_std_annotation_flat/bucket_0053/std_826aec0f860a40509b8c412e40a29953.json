@@ -1,0 +1,107 @@
+{
+    "description_long": "This shopping mall is a tall, multi-tiered structure with a cylindrical base and a series of stacked, angular levels that rise to a pointed spire. The exterior is adorned with a mix of illuminated signage, billboards, and various architectural details, giving it a bustling, high-density urban appearance reminiscent of cyberpunk or futuristic cityscapes. Numerous pipes, antennas, and metallic frameworks are visible, suggesting a complex infrastructure and possibly mixed-use spaces. The facade features a variety of textures and colors, including metallic grays, dark panels, and vibrant signage, with some areas appearing to have glass or transparent elements. The building's lower levels are wrapped with commercial advertisements and shopfronts, while the upper levels are more industrial and technical in design. The overall impression is of a busy, vertical shopping destination integrated into a dense city environment.",
+    "description": "A tall, multi-level shopping mall with a cylindrical base, vibrant signage, and a futuristic, cyberpunk-inspired exterior featuring metallic and glass elements.",
+    "description_view_0": "The view highlights the pointed spire, dense signage, and a mix of pipes and metallic structures on the upper levels.",
+    "description_view_1": "This angle showcases the cylindrical base, prominent billboards, and a concentration of commercial signage on the lower levels.",
+    "description_view_2": "The side view emphasizes the vertical stacking of levels, with visible shopfronts and a variety of surface textures.",
+    "description_view_3": "This perspective reveals the back side with more technical infrastructure, less signage, and a focus on the building's layered construction.",
+    "category": "shopping mall",
+    "height": 60.0,
+    "max_dimension": 35.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "steel",
+        "plastic",
+        "aluminum",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.2,
+        0.2,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "mass": 1200000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "elevator",
+        "escalator",
+        "signage",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "blue",
+        "red",
+        "yellow",
+        "white"
+    ],
+    "colors_composition": [
+        0.4,
+        0.25,
+        0.1,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_storefront_signage": "Multiple illuminated and colorful billboards and signs are present on the lower and mid-levels, featuring a mix of text and logos in various fonts and colors, some with backlighting and metallic frames.",
+    "attribute_number_of_entrances": 3,
+    "attribute_presence_of_large_display_windows": true,
+    "attribute_architectural_style": "futuristic",
+    "attribute_presence_of_parking_lot": false,
+    "uid": "826aec0f860a40509b8c412e40a29953",
+    "near_synsets": {
+        "plaza.n.02": 0.5442422567311769,
+        "hypermarket.n.01": 0.5523800280996841,
+        "arcade.n.01": 0.5614437722555136,
+        "strip_mall.n.01": 0.5636123054126055,
+        "skyscraper.n.01": 0.5751324362603399,
+        "promenade.n.02": -1000.0
+    },
+    "synset": "plaza.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/826aec0f860a40509b8c412e40a29953",
+        "creator_username": "jacky15621419",
+        "creator_display_name": "Solarliu",
+        "creator_profile_url": "https://sketchfab.com/jacky15621419"
+    },
+    "filename": "std_826aec0f860a40509b8c412e40a29953.glb",
+    "length": 28.756805419921875,
+    "width": 31.957024574279785
+}

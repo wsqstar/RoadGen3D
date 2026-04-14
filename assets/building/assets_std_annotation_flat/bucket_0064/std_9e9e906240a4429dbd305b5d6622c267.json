@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a tall, slender tree with a thin, straight trunk and a canopy composed of long, narrow, blade-like leaves. The foliage is arranged in a somewhat chaotic, radiating pattern, with leaves and branches extending outward in multiple directions, creating a spiky and airy appearance. The leaves are predominantly green with some lighter and darker shades, and the trunk appears to be a muted brown or gray, partially obscured by the dense foliage. The branches are thin and flexible, supporting the elongated leaves that overlap and intersect, giving the tree a wild, untamed look. There are no visible flowers or fruit, and the base of the trunk is not clearly shown, making it difficult to determine the presence of any surface roots. The overall structure suggests a tree commonly found in urban parks or streetscapes, possibly resembling a type of palm or ornamental grass tree.",
+    "description": "A tall, slender tree with a thin trunk and a spiky, radiating canopy of long, narrow green leaves. The foliage is dense and chaotic, giving the tree a wild, airy appearance.",
+    "description_view_0": "View 0 shows the tree from above, highlighting the radiating pattern of the long, narrow leaves and the central trunk.",
+    "description_view_1": "View 1 presents a side angle, emphasizing the overlapping leaves and the thin, straight trunk partially visible through the foliage.",
+    "description_view_2": "View 2 offers a top-down perspective, showcasing the dense, spiky arrangement of the leaves and the overall canopy shape.",
+    "description_view_3": "View 3 provides a lower side view, revealing the chaotic layering of leaves and a glimpse of the trunk's base.",
+    "category": "tree",
+    "height": 4.0,
+    "max_dimension": 4.5,
+    "materials": [
+        "wood",
+        "leaf",
+        "air"
+    ],
+    "materials_composition": [
+        0.25,
+        0.5,
+        0.25
+    ],
+    "mass": 60,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 3,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "climbable",
+        "shade_providing"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trunk",
+        "branches",
+        "leaves"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [
+        "drone"
+    ],
+    "colors": [
+        "green",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 10000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_trunk_diameter": 0.12,
+    "attribute_branching_pattern": "monopodial",
+    "attribute_leaf_type": "needle-like",
+    "attribute_canopy_density": "dense",
+    "attribute_root_visibility": false,
+    "uid": "9e9e906240a4429dbd305b5d6622c267",
+    "near_synsets": {
+        "tree.n.01": 0.4935622186310798,
+        "european_larch.n.01": 0.5027570100563794,
+        "sapling.n.01": 0.509473181067957,
+        "tree.n.02": 0.5139183693580448,
+        "cabbage_tree.n.03": 0.5169312820254606,
+        "tree.n.03": -1000.0
+    },
+    "synset": "tree.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9e9e906240a4429dbd305b5d6622c267",
+        "creator_username": "rhcreations",
+        "creator_display_name": "rhcreations",
+        "creator_profile_url": "https://sketchfab.com/rhcreations"
+    },
+    "filename": "std_9e9e906240a4429dbd305b5d6622c267.glb",
+    "length": 17.01799964904785,
+    "width": 15.603240251541138
+}

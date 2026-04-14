@@ -1,0 +1,107 @@
+{
+    "description_long": "This bus shelter features a sturdy metal frame with an arched, corrugated roof that provides protection from the elements. The roof displays visible weathering and dirt marks, suggesting frequent use and exposure. Decorative side panels with swirling patterns add a touch of visual interest and partial enclosure, while the back panel is solid and dark, enhancing privacy and wind protection. A bench-like platform runs along the lower part of the shelter, offering seating for waiting passengers. Adjacent to the shelter is a tall, freestanding signpost with a blue and white route or schedule display. The overall design is functional, durable, and typical of urban transit stops.",
+    "description": "A metal-framed bus shelter with an arched, corrugated roof, decorative side panels, a seating platform, and an adjacent route signpost.",
+    "description_view_0": "Front view showing the arched roof, decorative side panels, and the main seating area beneath the shelter.",
+    "description_view_1": "Rear angled view highlighting the swirling patterned back panel and the adjacent freestanding signpost.",
+    "description_view_2": "Side view displaying the open entry, the full length of the seating platform, and the proximity of the route signpost.",
+    "description_view_3": "Rear angled view focusing on the back panel's decorative design and the shelter's partial enclosure.",
+    "category": "bus shelter",
+    "height": 2.4,
+    "max_dimension": 3.0,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "leanable",
+        "readable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench",
+        "signage panel"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "black",
+        "blue",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_roof_type": "metal arched",
+    "attribute_seating_presence": true,
+    "attribute_advertisement_panel": false,
+    "attribute_shelter_enclosure_level": "partially enclosed",
+    "attribute_signage": [
+        "route sign"
+    ],
+    "uid": "e2dd1c27621647a6a121dd924f62c0ca",
+    "near_synsets": {
+        "bus_stop.n.01": 0.53403114603972,
+        "shelter.n.02": 0.5407466393849363,
+        "shuttle_bus.n.01": 0.5507427750774249,
+        "bus_route.n.01": 0.5567439374468364,
+        "street_sign.n.01": 0.5574034817065691,
+        "shelter.n.01": -1000.0,
+        "shelter.n.05": -1000.0,
+        "tax_shelter.n.01": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "protection.n.04": -1000.0,
+        "bus.n.01": -1000.0,
+        "bus.n.04": -1000.0,
+        "busbar.n.01": -1000.0
+    },
+    "synset": "shelter.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e2dd1c27621647a6a121dd924f62c0ca",
+        "creator_username": "evtushenko",
+        "creator_display_name": "evtushenko",
+        "creator_profile_url": "https://sketchfab.com/evtushenko"
+    },
+    "filename": "std_e2dd1c27621647a6a121dd924f62c0ca.glb",
+    "length": 2.207906723022461,
+    "width": 2.043604254722595
+}

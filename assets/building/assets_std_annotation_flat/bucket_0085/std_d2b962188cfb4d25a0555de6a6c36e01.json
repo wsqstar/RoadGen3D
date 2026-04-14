@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a compact, tracked military vehicle with a rounded turret mounted centrally on its hull. The vehicle features wide, continuous metal tracks on both sides, designed for traversing rough terrain, and a sloped front with a protruding section that may house a weapon or observation device. The hull is angular and armored, with visible rivets and panel lines, and the turret has a small hatch on top. The rear of the vehicle is slightly elevated, and the tracks wrap around large drive sprockets and idler wheels. The overall color is a dark, matte green, typical of early 20th-century armored vehicles, with no visible camouflage or markings. The vehicle appears to be an early tank, likely from the World War I era, with a utilitarian and robust design.",
+    "description": "A compact, dark green tracked military vehicle with a rounded turret and wide metal tracks, featuring a sloped armored hull and no visible markings.",
+    "description_view_0": "Front view shows the narrow, sloped armored hull, central turret, and wide metal tracks on both sides.",
+    "description_view_1": "Left side view highlights the continuous track system, rounded turret, and sloped front section.",
+    "description_view_2": "Rear view displays the elevated back, track ends, and the angular hull shape.",
+    "description_view_3": "Right side view mirrors the left, showing the track system, turret, and sloped front.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.02,
+        0.08,
+        0.05
+    ],
+    "mass": 7000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 35000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "track",
+        "door",
+        "periscope"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible weapon mount on the front right side of the turret, likely for a machine gun or small cannon.",
+    "attribute_armor_plating": "Full body armor plating is visible, with riveted steel panels covering the hull and turret. The armor appears moderately thick and is sloped at the front for deflection.",
+    "attribute_camouflage_pattern": "None visible; the vehicle is painted in a solid dark green color.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "d2b962188cfb4d25a0555de6a6c36e01",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4860794621630451,
+        "tank.n.01": 0.49209041275706394,
+        "armored_car.n.02": 0.51660532387431,
+        "reconnaissance_vehicle.n.01": 0.5167830034948787,
+        "weapons_carrier.n.01": 0.5249231260973308,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d2b962188cfb4d25a0555de6a6c36e01",
+        "creator_username": "diablomj",
+        "creator_display_name": "BoganBoganTheMan",
+        "creator_profile_url": "https://sketchfab.com/diablomj"
+    },
+    "filename": "std_d2b962188cfb4d25a0555de6a6c36e01.glb",
+    "length": 4.529914617538452,
+    "width": 1.7107954621315002
+}

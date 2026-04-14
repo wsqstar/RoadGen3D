@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a robust industrial robot arm with a metallic, bronze-like finish, featuring multiple articulated joints and a sturdy, rectangular base. The arm consists of several cylindrical segments connected by large, circular joints, allowing for a wide range of motion. At the end of the arm is a rectangular, open-frame gripper with evenly spaced teeth, designed for grasping or manipulating objects. The base is broad and stable, likely intended for floor mounting, and the arm's structure suggests it is built for heavy-duty tasks. Some visible cabling runs along the arm, indicating electrical or hydraulic actuation. The overall design is utilitarian, with exposed mechanical components and a focus on durability and functionality.",
+    "description": "A heavy-duty, bronze-colored industrial robot arm with multiple joints and a rectangular gripper, mounted on a solid base.",
+    "description_view_0": "The robot arm is seen from a front angle, showing the articulated segments, large circular joints, and the open-frame gripper with visible teeth.",
+    "description_view_1": "A direct side view highlights the arm's narrow profile, the alignment of the joints, and the rectangular base.",
+    "description_view_2": "The opposite side view displays the arm's mechanical structure and the open-frame gripper, with the joints and cabling visible.",
+    "description_view_3": "A rear view focuses on the circular joint and the back of the base, with the arm's segments aligned in a straight line.",
+    "category": "robot arm",
+    "height": 0.8,
+    "max_dimension": 1.2,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 800,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "graspable",
+        "rotatable",
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "gripper",
+        "joints",
+        "base",
+        "cabling"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "bronze",
+        "black"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "glossy",
+    "reflectivity": 0.5,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_joint_type": "revolute",
+    "attribute_number_of_segments": 3,
+    "attribute_end_effector_type": "rectangular gripper",
+    "attribute_visible_wiring_or_cabling": true,
+    "attribute_mounting_location": "floor-mounted",
+    "uid": "3f010c9478164c3db00cab997fdafa40",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.522605057597694,
+        "grab.n.01": 0.55177330863481,
+        "automaton.n.02": 0.5603449349314928,
+        "automaton.n.03": 0.5799634646585469,
+        "tone_arm.n.01": 0.5854993361242914,
+        "branch.n.01": -1000.0,
+        "arm.n.04": -1000.0,
+        "sleeve.n.01": -1000.0,
+        "arm.n.02": -1000.0,
+        "weapon.n.01": -1000.0,
+        "arm.n.01": -1000.0
+    },
+    "synset": "grab.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3f010c9478164c3db00cab997fdafa40",
+        "creator_username": "Blender3D",
+        "creator_display_name": "Blender3D",
+        "creator_profile_url": "https://sketchfab.com/Blender3D"
+    },
+    "filename": "std_3f010c9478164c3db00cab997fdafa40.glb",
+    "length": 0.2093546912074089,
+    "width": 1.034953236579895
+}

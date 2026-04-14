@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a large, double-hulled canoe structure with four pointed bows, constructed primarily from wood with visible slatted decks and latticework railings. Each hull features a flat deck area with a partial overhead pergola-style covering, providing shade or structural support. The central section connects the two hulls with a wooden bridge, and the open deck spaces are covered by taut, light-colored fabric canopies. The design suggests a focus on stability and group transport, with ample space for multiple passengers or cargo. The wood is a warm brown, and the canopies are a pale gray or white, creating a visually striking contrast. The overall build is robust, with clear walkable surfaces and multiple entry points.",
+    "description": "A large, double-hulled wooden canoe with slatted decks, lattice railings, and pale fabric canopies, designed for group transport and stability.",
+    "description_view_0": "From this view, the pointed bows and the symmetry of the double hulls are prominent, with the canopies and pergola structures clearly visible.",
+    "description_view_1": "This side view highlights the wide, flat decks, the connecting bridge, and the detailed latticework along the sides.",
+    "description_view_2": "The rear view shows the open deck spaces and the parallel arrangement of the hulls, with the canopies stretching across the top.",
+    "description_view_3": "Another side view, similar to view 1, emphasizing the walkable decks, central bridge, and the overall width of the structure.",
+    "category": "canoe",
+    "height": 2.2,
+    "max_dimension": 8.0,
+    "materials": [
+        "wood",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.1
+    ],
+    "mass": 650,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "deck",
+        "canopy",
+        "bridge",
+        "railings"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "light gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_presence_of_seats": true,
+    "attribute_presence_of_thwarts": true,
+    "attribute_presence_of_gunwales": true,
+    "attribute_presence_of_carrying_handles": false,
+    "attribute_presence_of_registration_numbers": false,
+    "uid": "964b92911b4e4fbfbe82360ea1d476d7",
+    "near_synsets": {
+        "canoe.n.01": 0.4241883245847504,
+        "dugout_canoe.n.01": 0.4790296420904156,
+        "kayak.n.01": 0.482954612674375,
+        "gondola.n.02": 0.4997832764298514,
+        "rowing_boat.n.01": 0.5019174722536773
+    },
+    "synset": "dugout_canoe.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/964b92911b4e4fbfbe82360ea1d476d7",
+        "creator_username": "Hielke",
+        "creator_display_name": "Hielke",
+        "creator_profile_url": "https://sketchfab.com/Hielke"
+    },
+    "filename": "std_964b92911b4e4fbfbe82360ea1d476d7.glb",
+    "length": 10.000000476837158,
+    "width": 5.7998046875
+}

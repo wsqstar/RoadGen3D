@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a robust, industrial-style storage tank with a cylindrical body and a slightly domed top, constructed from what appears to be heavy-duty metal. The tank features a protective top guard rail encircling a central valve, which is likely used for controlling the flow of stored gases or liquids. Two prominent yellow-orange panels are affixed to the body, possibly for labeling or warning signage, and the tank's surface is finished in a matte, dark teal color. The base is flat, providing stability, and the overall design is utilitarian, prioritizing function and safety. The tank's size and construction suggest it is intended for storing pressurized substances, such as propane or industrial gases, in urban or semi-industrial environments. The lack of visible access ladders or large hatches indicates it is not meant for human entry but rather for external operation and maintenance.",
+    "description": "A heavy-duty, cylindrical metal storage tank with a domed top, protective rail, central valve, and yellow-orange label panels, finished in matte dark teal.",
+    "description_view_0": "Front view showing the central valve, protective rail, and two yellow-orange panels on the body.",
+    "description_view_1": "Rear angled view highlighting the tank's cylindrical shape and the absence of label panels on this side.",
+    "description_view_2": "Side view focusing on the plain, unadorned surface and the protective rail around the valve.",
+    "description_view_3": "Angled view showing both the central valve and the two yellow-orange panels, with the larger panel more visible.",
+    "category": "storage tank",
+    "height": 1.2,
+    "max_dimension": 0.7,
+    "materials": [
+        "steel",
+        "brass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 90,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "valve",
+        "label panel",
+        "protective rail"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark teal",
+        "yellow-orange",
+        "brass"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_location": "urban garage",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [
+        "valve"
+    ],
+    "attribute_warning_signage": true,
+    "attribute_architectural_style": "cylindrical vertical",
+    "uid": "5569d97509f248d4b587f1bee3dc20aa",
+    "near_synsets": {
+        "tank.n.02": 0.4952965173134767,
+        "tank_farm.n.01": 0.5449398147386713,
+        "reservoir.n.03": 0.5596100590704142,
+        "tank.n.03": 0.5634044203847898,
+        "tank_car.n.01": 0.5637973300520457,
+        "tank.n.01": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "memory.n.04": -1000.0,
+        "repositing.n.01": -1000.0,
+        "storage.n.04": -1000.0,
+        "storage.n.01": -1000.0,
+        "cooler.n.03": -1000.0,
+        "storage.n.03": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5569d97509f248d4b587f1bee3dc20aa",
+        "creator_username": "Rich72rus",
+        "creator_display_name": "Rich72rus",
+        "creator_profile_url": "https://sketchfab.com/Rich72rus"
+    },
+    "filename": "std_5569d97509f248d4b587f1bee3dc20aa.glb",
+    "length": 0.73231041431427,
+    "width": 0.7323094010353088
+}

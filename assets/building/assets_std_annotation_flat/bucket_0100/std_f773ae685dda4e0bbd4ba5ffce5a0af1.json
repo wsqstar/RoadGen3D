@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a firearm with a classic design, featuring a long, cylindrical barrel and a prominent wooden stock and foregrip. The receiver and barrel are constructed from dark metal, with a large, round drum magazine mounted beneath the action, suggesting high ammunition capacity. The wooden stock and foregrip have a polished, reddish-brown finish, providing both aesthetic appeal and ergonomic support. The trigger guard is rounded and encloses a single trigger, while the front sight is mounted at the end of the barrel. The overall build is robust, with visible screws and mechanical details on the receiver. The object is reminiscent of early 20th-century submachine guns, often associated with urban environments.",
+    "description": "A robust, dark metal firearm with a wooden stock and foregrip, featuring a large drum magazine and a long barrel. The design is classic and functional, with a rounded trigger guard and detailed receiver.",
+    "description_view_0": "Side view showing the full length of the firearm, including the wooden stock, foregrip, and large drum magazine.",
+    "description_view_1": "Front view highlighting the circular drum magazine and the barrel's muzzle, with the foregrip visible below.",
+    "description_view_2": "Opposite side view, mirroring view 0, with clear visibility of the wooden components and drum magazine.",
+    "description_view_3": "Rear view focusing on the wooden stock and the back of the receiver, with the drum magazine partially visible.",
+    "category": "shotgun",
+    "height": 0.25,
+    "max_dimension": 0.85,
+    "materials": [
+        "steel",
+        "wood",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 4.8,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 48,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "foregrip",
+        "trigger",
+        "trigger guard",
+        "drum magazine",
+        "barrel",
+        "safety switch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, long cylindrical barrel with no visible ribbing or venting",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "semi-automatic",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with smooth edges and no finger grooves",
+    "uid": "f773ae685dda4e0bbd4ba5ffce5a0af1",
+    "near_synsets": {
+        "shotgun.n.01": 0.5012745718263834,
+        "shotgun_shell.n.01": 0.5241425227971739,
+        "sawed-off_shotgun.n.01": 0.5241733622417696,
+        "stock.n.03": 0.5248806137608074,
+        "gun.n.01": 0.528765718164623
+    },
+    "synset": "sawed-off_shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f773ae685dda4e0bbd4ba5ffce5a0af1",
+        "creator_username": "anathlyst",
+        "creator_display_name": "anathlyst",
+        "creator_profile_url": "https://sketchfab.com/anathlyst"
+    },
+    "filename": "std_f773ae685dda4e0bbd4ba5ffce5a0af1.glb",
+    "length": 0.9873785674571991,
+    "width": 0.1996452808380127
+}

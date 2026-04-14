@@ -1,0 +1,122 @@
+{
+    "description_long": "This bus station features a multi-level structure with a central hexagonal building surrounded by elevated platforms and walkways. Two long, green-and-white articulated buses are positioned on the upper level, supported by concrete pillars and accessed via wide, industrial-style staircases with yellow railings. The main building has large, wraparound glass windows on each floor, providing visibility and natural light. The lower level includes a small market stall, a parked vehicle, and a paved area with road markings, suggesting integration with urban traffic. The upper walkways and bus platforms are partially covered with corrugated metal roofing, some of which appears weathered and rusted. The overall design combines utilitarian concrete, glass, and metal elements, creating a robust and functional urban transportation hub.",
+    "description": "A multi-level urban bus station with a central glass-walled building, elevated bus platforms, and industrial staircases, featuring concrete, metal, and glass construction.",
+    "description_view_0": "View 0 shows the main building with its glass facade, the long staircase leading to the upper bus platform, and the corrugated metal roof covering the walkway.",
+    "description_view_1": "View 1 highlights the two green-and-white buses on the upper level, the supporting concrete pillars, and the open area beneath the platforms.",
+    "description_view_2": "View 2 presents a frontal perspective of the glass-walled building, the staircase, and the bus platforms extending to the left, with a small vehicle visible on the street.",
+    "description_view_3": "View 3 emphasizes the rear staircase, the rusted metal roofing, and the market stall at the base, with the main building's concrete back wall in view.",
+    "category": "bus station",
+    "height": 18.0,
+    "max_dimension": 32.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "steel",
+        "corrugated metal",
+        "plastic",
+        "asphalt",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.18,
+        0.15,
+        0.1,
+        0.05,
+        0.04,
+        0.03
+    ],
+    "mass": 950000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "waitable",
+        "boardable",
+        "shelterable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "stairs",
+        "doors",
+        "benches",
+        "bus doors",
+        "market stall counter"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "green",
+        "white",
+        "yellow",
+        "blue",
+        "rust",
+        "black"
+    ],
+    "colors_composition": [
+        0.45,
+        0.18,
+        0.12,
+        0.08,
+        0.07,
+        0.06,
+        0.04
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.65,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.03,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "scene",
+    "attribute_shelter_structure": "The shelter structure is partially covered, with corrugated metal roofing supported by steel beams and concrete columns. The main building is hexagonal with large glass windows and concrete walls. There are at least four major supporting columns for the elevated platforms, and the roof is flat or slightly sloped with visible weathering.",
+    "attribute_route_signage": "No explicit route signage is visible in the asset. There may be implied signage on the bus platforms or near the entrances, but no clear signs, maps, or schedules are present in the geometry.",
+    "attribute_seating_arrangement": "There are benches visible on the lower platform and possibly inside the main building, oriented parallel to the bus platforms. The benches appear to be made of metal or plastic, with simple, utilitarian designs and no visible armrests or backrests.",
+    "attribute_bus_stop_pole": "No bus stop pole is present in the asset. All bus-related features are integrated into the building and platform structure.",
+    "attribute_transparent_panels": "The main building features multiple large transparent glass panels wrapping around each floor, framed by concrete and metal. These panels provide extensive visibility and natural light, with no visible tinting or decorative elements.",
+    "uid": "a561468dc0024d678adbfa1145002acc",
+    "near_synsets": {
+        "bus_terminal.n.01": 0.5330341303383056,
+        "subway_station.n.01": 0.5378175682597762,
+        "bus_stop.n.01": 0.5395356480026359,
+        "local.n.01": 0.5434582840656312,
+        "platform.n.06": 0.551006426813777,
+        "station.n.03": -1000.0,
+        "bus.n.01": -1000.0,
+        "place.n.10": -1000.0,
+        "station.n.05": -1000.0,
+        "bus.n.04": -1000.0,
+        "busbar.n.01": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "post.n.01": -1000.0,
+        "station.n.01": -1000.0
+    },
+    "synset": "bus_terminal.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a561468dc0024d678adbfa1145002acc",
+        "creator_username": "Immolation",
+        "creator_display_name": "Immolation",
+        "creator_profile_url": "https://sketchfab.com/Immolation"
+    },
+    "filename": "std_a561468dc0024d678adbfa1145002acc.glb",
+    "length": 18.801737785339355,
+    "width": 19.758830070495605
+}

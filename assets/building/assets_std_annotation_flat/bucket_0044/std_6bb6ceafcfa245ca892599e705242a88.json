@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a rectangular chessboard with a classic black-and-white checkered playing surface, set within a thick, glossy, marble-like border. The board is populated with a full set of chess pieces, with one side rendered in a dark, opaque material and the other in a translucent, glass-like finish. The chess pieces are highly detailed, featuring traditional forms such as pawns, knights, bishops, rooks, a queen, and a king, all arranged in their standard starting positions. The border of the board is substantial, with a polished, marbled texture that contrasts with the smooth, reflective squares of the playing area. The overall appearance is elegant and luxurious, suggesting a high-quality, decorative chess set suitable for display in a public park, urban plaza, or upscale recreational area. The materials and finish give the object a sense of weight and permanence, while the reflective surfaces add visual interest.",
+    "description": "A luxurious chessboard with a glossy, marbled border and a classic black-and-white checkered surface, featuring detailed chess pieces in glass-like and dark finishes.",
+    "description_view_0": "The chessboard is seen from a side angle, showing both the dark and translucent chess pieces and the thick, marbled border.",
+    "description_view_1": "A frontal view highlights the full lineup of chess pieces on one side and the reflective, checkered playing surface.",
+    "description_view_2": "The opposite side view displays the arrangement of the chess pieces from the other player's perspective, emphasizing the contrast between the two sets.",
+    "description_view_3": "A direct view from the other end of the board, focusing on the translucent chess pieces and the polished border.",
+    "category": "chessboard",
+    "height": 0.08,
+    "max_dimension": 0.45,
+    "materials": [
+        "marble",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.08,
+        0.02
+    ],
+    "mass": 6.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "playable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "chess pieces",
+        "board squares"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "white",
+        "gray",
+        "clear"
+    ],
+    "colors_composition": [
+        0.35,
+        0.35,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.12,
+    "surface_finish": "glossy",
+    "reflectivity": 0.7,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "group",
+    "attribute_board_pattern": "The playing surface features a regular 8x8 grid of alternating black and white squares, each square being perfectly square-shaped and arranged in a classic checkerboard pattern. The squares are sharply defined, with a high-gloss finish that enhances the contrast between the colors. The border is wide and marbled, providing a decorative frame around the grid.",
+    "attribute_square_grid": "8x8",
+    "attribute_alternating_light_and_dark_squares": true,
+    "attribute_presence_of_chess_pieces": true,
+    "attribute_border_design": "The border is thick and constructed from a polished, dark marbled material with subtle white veining. It is smooth, glossy, and slightly raised above the playing surface, with no visible inscriptions or additional ornamentation.",
+    "uid": "6bb6ceafcfa245ca892599e705242a88",
+    "near_synsets": {
+        "chessboard.n.01": 0.4259515203478985,
+        "chess_set.n.01": 0.443902722124723,
+        "chess.n.02": 0.5013945368152868,
+        "checkerboard.n.01": 0.5038250512608657,
+        "backgammon_board.n.01": 0.5197092014970467
+    },
+    "synset": "chessboard.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6bb6ceafcfa245ca892599e705242a88",
+        "creator_username": "theauditor",
+        "creator_display_name": "Miguel Ad\u00e3o",
+        "creator_profile_url": "https://sketchfab.com/theauditor"
+    },
+    "filename": "std_6bb6ceafcfa245ca892599e705242a88.glb",
+    "length": 0.2600918114185333,
+    "width": 0.2600918263196945
+}

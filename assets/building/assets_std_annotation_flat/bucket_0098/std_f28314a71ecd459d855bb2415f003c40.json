@@ -1,0 +1,104 @@
+{
+    "description_long": "This object is a large, industrial-style fork vehicle with a robust, mechanical design. It features a long, rectangular yellow body mounted on six black wheels, with two prominent wooden fork tines extending forward. The side panels display the name 'Gabelinski,' and the rear section includes a ladder and a boxy compartment. The fork tines are attached to articulated arms, suggesting they can be raised or lowered for lifting tasks. The materials appear to be primarily wood and metal, with some plastic or rubber components on the wheels. The overall appearance is utilitarian, with exposed mechanical joints and a functional, rugged finish.",
+    "description": "A large, yellow industrial fork vehicle with six wheels, articulated wooden tines, and visible mechanical components. The body is robust and functional, with branding on the side panels.",
+    "description_view_0": "Front view showing the two parallel wooden tines and the narrow, elongated body flanked by large wheels.",
+    "description_view_1": "Left side view highlighting the 'Gabelinski' branding, the full length of the body, and the articulated fork arms.",
+    "description_view_2": "Rear view displaying the ladder, boxy rear compartment, and the alignment of the wheels and tines.",
+    "description_view_3": "Right side view similar to the left, with clear visibility of the fork arms and mechanical joints.",
+    "category": "fork",
+    "height": 1.6,
+    "max_dimension": 3.2,
+    "materials": [
+        "wood",
+        "metal",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable",
+        "pullable",
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "tines",
+        "wheels",
+        "ladder",
+        "arms"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_tines": 2,
+    "attribute_handle_design": "The handle is integrated into the main body, rectangular in cross-section, with a smooth, elongated top surface and no visible decorative features.",
+    "attribute_presence_of_branding_or_markings": true,
+    "attribute_tine_alignment": "The tines are parallel to each other, extending straight forward with no visible curvature or splay.",
+    "attribute_location_context": "none",
+    "uid": "f28314a71ecd459d855bb2415f003c40",
+    "near_synsets": {
+        "forklift.n.01": 0.5011448269635179,
+        "carving_fork.n.01": 0.5363277433809175,
+        "tablefork.n.01": 0.5446365586178605,
+        "hayfork.n.01": 0.5538729089866659,
+        "spork.n.01": 0.5685076053098465,
+        "crotch.n.02": -1000.0,
+        "fork.n.04": -1000.0,
+        "fork.n.03": -1000.0,
+        "fork.n.01": -1000.0,
+        "branching.n.01": -1000.0
+    },
+    "synset": "fork.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/f28314a71ecd459d855bb2415f003c40",
+        "creator_username": "florianmehlich",
+        "creator_display_name": "MeisterMehlich",
+        "creator_profile_url": "https://sketchfab.com/florianmehlich"
+    },
+    "filename": "std_f28314a71ecd459d855bb2415f003c40.glb",
+    "length": 3.7103930711746216,
+    "width": 1.4726629257202148
+}

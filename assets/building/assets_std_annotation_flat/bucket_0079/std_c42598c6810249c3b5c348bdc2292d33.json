@@ -1,0 +1,100 @@
+{
+    "description_long": "This is an old-fashioned, military-style flatbed truck with a boxy, utilitarian design and a muted olive-green paint job. The cab is compact, featuring a single door on each side and a small, rectangular windshield. The front end is characterized by a pronounced, squared-off hood and large, round fenders over the front wheels. The cargo bed is open and rectangular, with high wooden side panels and a flat floor, suitable for transporting goods or equipment. The wheels are large and robust, with simple, solid rims and thick tires, indicating off-road or heavy-duty capability. The overall appearance suggests a vehicle built for durability and function rather than comfort or aesthetics.",
+    "description": "A vintage, olive-green flatbed truck with a boxy cab and high-sided open cargo bed, designed for utility and durability.",
+    "description_view_0": "Side view showing the full length of the truck, including the cab, open cargo bed, and both sets of wheels.",
+    "description_view_1": "Front view highlighting the squared hood, small windshield, and prominent front fenders.",
+    "description_view_2": "Opposite side view, similar to view 0, but with slightly different lighting and perspective on the cargo bed and cab.",
+    "description_view_3": "Rear view displaying the open cargo bed with high side panels and the back of the cab.",
+    "category": "truck",
+    "height": 2.2,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.07,
+        0.03
+    ],
+    "mass": 3200,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 16000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "steering wheel",
+        "cargo bed",
+        "hood"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "box",
+    "attribute_wheelbase": "3.8",
+    "attribute_number_of_axles": 2,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "c42598c6810249c3b5c348bdc2292d33",
+    "near_synsets": {
+        "flatbed.n.02": 0.46050685522135726,
+        "van.n.05": 0.5000416717345765,
+        "pickup.n.01": 0.5138702481342318,
+        "flatcar.n.01": 0.5174649510729926,
+        "truck_bed.n.01": 0.5186684809775924,
+        "truck.n.01": -1000.0,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/c42598c6810249c3b5c348bdc2292d33",
+        "creator_username": "tnnv",
+        "creator_display_name": "tnnv",
+        "creator_profile_url": "https://sketchfab.com/tnnv"
+    },
+    "filename": "std_c42598c6810249c3b5c348bdc2292d33.glb",
+    "length": 6.196016788482666,
+    "width": 2.263369917869568
+}

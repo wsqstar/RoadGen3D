@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a rectangular hedge maze with tall, dense green walls forming a complex network of pathways and dead ends. The maze features a prominent stone entrance archway at one end and a similar stone structure at the opposite end, likely serving as an exit. The walls are composed of thick, well-maintained hedges, giving the maze a lush, natural appearance. The pathways inside are open and unobstructed, allowing for easy passage by people. The overall structure is open to the sky, with no overhead coverage visible. The design is reminiscent of traditional European garden mazes, often found in public parks or historical estates.",
+    "description": "A rectangular hedge maze with tall green walls, stone entrance and exit, and a complex network of open pathways. The structure is open to the sky and evokes a classical garden style.",
+    "description_view_0": "Front view showing the main stone entrance archway and the intricate hedge pathways inside.",
+    "description_view_1": "Side view highlighting the length of the maze and the thickness of the hedge walls, with the stone exit visible at the far end.",
+    "description_view_2": "Rear view displaying the stone exit structure and the maze's internal layout from the opposite side.",
+    "description_view_3": "Opposite side view emphasizing the hedge wall texture and the open pathways, with both stone structures visible at the ends.",
+    "category": "maze",
+    "height": 2.2,
+    "max_dimension": 18.0,
+    "materials": [
+        "vegetation",
+        "stone",
+        "soil",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "navigable",
+        "explorable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "entrance archway",
+        "exit archway"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "green",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.38,
+    "youngs_modulus": 100,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_entry_type": "Single entrance located at the center of one short side, marked by a stone archway.",
+    "attribute_wall_pattern": "Dense, uniform hedge walls with a natural leafy texture and occasional stone structures at entry and exit points.",
+    "attribute_path_complexity": "Highly complex, with numerous branches, dead ends, and a non-linear layout visible from above.",
+    "attribute_overhead_coverage": "Fully open to the sky with no visible overhead coverage or roofing.",
+    "attribute_architectural_style": "Classical hedge maze with traditional garden influences and stone architectural accents.",
+    "uid": "b126c32040c24c00bd865b202e348f00",
+    "near_synsets": {
+        "maze.n.01": 0.5145128327541527,
+        "formal_garden.n.01": 0.5652680312962894,
+        "lodge.n.03": 0.5729094719212187,
+        "stone_wall.n.01": 0.5774097303917332,
+        "landscaping.n.02": 0.5786124576756329,
+        "tangle.n.02": -1000.0
+    },
+    "synset": "maze.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b126c32040c24c00bd865b202e348f00",
+        "creator_username": "psychopete",
+        "creator_display_name": "psychopete",
+        "creator_profile_url": "https://sketchfab.com/psychopete"
+    },
+    "filename": "std_b126c32040c24c00bd865b202e348f00.glb",
+    "length": 13.068092823028564,
+    "width": 10.159215927124023
+}

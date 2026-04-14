@@ -1,0 +1,107 @@
+{
+    "description_long": "This is an old, weathered minivan with a boxy, utilitarian design and a faded blue exterior covered in rust patches and dents. The front features a wide, flat grille and rectangular headlights, with a bent front bumper hanging loosely. The side view reveals a large sliding door, missing windows, and visible interior seating, while the rear has an open cargo area with a lowered ramp, suggesting the van is no longer fully enclosed. The wheels are worn and the body panels are heavily dented, indicating years of use and neglect. The interior appears stripped down, with only a few remaining seats and a mostly empty cargo space. The overall appearance suggests this minivan has been abandoned or repurposed, possibly for storage or as a derelict vehicle in an urban environment.",
+    "description": "A heavily rusted, blue minivan with missing windows, a bent bumper, and an open rear cargo area with a ramp. The body is dented and weathered, with a stripped-down, partially empty interior.",
+    "description_view_0": "Front view showing the wide grille, rectangular headlights, and a bent, detached front bumper.",
+    "description_view_1": "Left side view displaying the large sliding door, missing window panels, and visible interior seats.",
+    "description_view_2": "Rear view with the open cargo area and a lowered ramp, exposing the empty interior.",
+    "description_view_3": "Right side view highlighting the open sliding door, interior seating, and the overall boxy shape.",
+    "category": "minivan",
+    "height": 2.1,
+    "max_dimension": 5.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.08,
+        0.07,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "mass": 1700,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 8500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "sliding door",
+        "wheel",
+        "steering wheel",
+        "seat",
+        "ramp"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "blue",
+        "rust brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_number_of_sliding_doors": 1,
+    "attribute_window_configuration": "One large front windshield, one side window on each side, missing or broken rear and side windows, no rear window.",
+    "attribute_roof_rack_presence": false,
+    "uid": "dc17980757b44206af6ad13e9154304a",
+    "near_synsets": {
+        "van.n.05": 0.513147289797338,
+        "minivan.n.01": 0.5266746538791157,
+        "passenger_van.n.01": 0.5370766506025925,
+        "van.n.04": 0.5580873063657878,
+        "police_van.n.01": 0.5686928597017286
+    },
+    "synset": "minivan.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/dc17980757b44206af6ad13e9154304a",
+        "creator_username": "AsG_Alligator",
+        "creator_display_name": "AsG_Alligator",
+        "creator_profile_url": "https://sketchfab.com/AsG_Alligator"
+    },
+    "filename": "std_dc17980757b44206af6ad13e9154304a.glb",
+    "length": 4.812797784805298,
+    "width": 2.177660584449768
+}

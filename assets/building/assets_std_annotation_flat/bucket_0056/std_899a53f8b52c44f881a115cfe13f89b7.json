@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a vintage, compact flatbed tractor truck with a weathered green body, visible rust patches, and a wooden slat cargo bed. The front features a rounded hood with a yellow number '2' badge, circular headlights, and a classic grille. The sides display a 'Route US 66' sign and two small side mirrors, while the cargo bed is loaded with three wooden crates and surrounded by wooden railings. The wheels are small, with yellow hubcaps and black tires, and the cab has a single door and windows on each side. The rear view shows a yellow license plate and the open cargo area, emphasizing the utilitarian design. Scattered bricks and a wooden block are present near the front left wheel, adding to the rustic, workhorse appearance.",
+    "description": "A weathered, vintage green flatbed tractor truck with wooden railings and crates in the cargo bed, featuring rust patches and Route 66 signage.",
+    "description_view_0": "Front view shows the rounded hood, yellow number '2' badge, headlights, grille, and the cab interior through the windshield.",
+    "description_view_1": "Left side view highlights the 'Route US 66' sign, single door, side mirror, wooden cargo bed with crates, and scattered bricks near the front wheel.",
+    "description_view_2": "Rear view displays the open wooden cargo bed with three crates, wooden railings, and a yellow license plate.",
+    "description_view_3": "Right side view shows the cab, door, side mirror, wooden cargo bed, and the overall length of the vehicle.",
+    "category": "tractor",
+    "height": 1.7,
+    "max_dimension": 3.2,
+    "materials": [
+        "metal",
+        "wood",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.05,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "steering wheel",
+        "cargo bed",
+        "side mirror",
+        "headlight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "yellow",
+        "black",
+        "gray",
+        "red"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.08,
+        0.08,
+        0.05,
+        0.04
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_tractor_brand": "unknown",
+    "attribute_tractor_model": "unknown",
+    "attribute_wheel_configuration": "four wheels, all similar size, likely two-wheel drive",
+    "attribute_presence_of_agricultural_implements": false,
+    "attribute_cabin_design": "Enclosed single-seat cabin with windows on all sides, a single door, and basic ergonomic features; no visible ROPS or advanced comfort elements.",
+    "uid": "899a53f8b52c44f881a115cfe13f89b7",
+    "near_synsets": {
+        "tractor.n.02": 0.5334177491509836,
+        "truck.n.01": 0.5494557795714199,
+        "truck_traffic.n.01": 0.5498440707357276,
+        "trailer.n.03": 0.5532532654301237,
+        "trailer_truck.n.01": 0.553319078170536,
+        "tractor.n.01": -1000.0
+    },
+    "synset": "tractor.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/899a53f8b52c44f881a115cfe13f89b7",
+        "creator_username": "kate.petris",
+        "creator_display_name": "Kate Abaeva",
+        "creator_profile_url": "https://sketchfab.com/kate.petris"
+    },
+    "filename": "std_899a53f8b52c44f881a115cfe13f89b7.glb",
+    "length": 2.8304810523986816,
+    "width": 1.2065249681472778
+}

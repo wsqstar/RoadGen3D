@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a rectangular chessboard with a classic 8x8 grid of alternating black and white squares, bordered by a solid black frame. The board is flat and appears to be made from a glossy, hard material, likely plastic or lacquered wood, giving it a reflective surface. The border is slightly raised and uniformly black, providing a clean separation from the playing area. On the board, there are several chess pieces, including a black rook and a yellow-accented king, which are stylized with a modern, glossy finish and gold highlights. The chess pieces are relatively large compared to the board squares, and their bases cast subtle shadows on the board. The overall appearance is sleek and modern, with a high-contrast color scheme and a polished, professional look.",
+    "description": "A glossy black-and-white chessboard with a raised black border and several modern, gold-accented chess pieces. The board has a sleek, reflective finish and a classic 8x8 grid.",
+    "description_view_0": "The chessboard is viewed from a low angle, showing the black and white grid with two chess pieces (a king and a pawn) positioned near the right edge.",
+    "description_view_1": "This view highlights the left side of the board, with the king and pawn more centrally located, and the grid pattern clearly visible.",
+    "description_view_2": "The board is seen from the opposite side, with a black rook and a king positioned near the top left, emphasizing the glossy surface and border.",
+    "description_view_3": "A frontal view of the board, showing the king and rook near the top edge, with the full 8x8 grid and the raised black border in clear view.",
+    "category": "chessboard",
+    "height": 0.05,
+    "max_dimension": 0.45,
+    "materials": [
+        "plastic",
+        "wood",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 2.5,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 15,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "playable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "board surface",
+        "chess pieces"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "white",
+        "yellow",
+        "gold"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.12,
+    "surface_finish": "glossy",
+    "reflectivity": 0.6,
+    "index_of_refraction": 1.55,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "group",
+    "attribute_board_pattern": "The playing surface features a regular grid of 64 squares arranged in an 8x8 pattern, with alternating black and white squares. The squares are perfectly aligned and evenly sized, creating a classic checkerboard appearance. The border is a solid black band that frames the grid, with no visible ornamentation or inscriptions.",
+    "attribute_square_grid": "8x8",
+    "attribute_alternating_light_and_dark_squares": true,
+    "attribute_presence_of_chess_pieces": true,
+    "attribute_border_design": "The border is a simple, solid black frame that is slightly raised above the playing surface. It is uniform in width, smooth, and glossy, with no decorative elements, inscriptions, or markings.",
+    "uid": "1d3b28adaa824db39845d609d13a6b2c",
+    "near_synsets": {
+        "chess_set.n.01": 0.4311035047929958,
+        "chessboard.n.01": 0.45062019463443576,
+        "chess.n.02": 0.48992872051981096,
+        "checkerboard.n.01": 0.5024936333353436,
+        "backgammon_board.n.01": 0.5187361153054098
+    },
+    "synset": "chessboard.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1d3b28adaa824db39845d609d13a6b2c",
+        "creator_username": "Andrew_F.",
+        "creator_display_name": "Andrew_F.",
+        "creator_profile_url": "https://sketchfab.com/Andrew_F."
+    },
+    "filename": "std_1d3b28adaa824db39845d609d13a6b2c.glb",
+    "length": 0.2819357216358185,
+    "width": 0.28193575143814087
+}

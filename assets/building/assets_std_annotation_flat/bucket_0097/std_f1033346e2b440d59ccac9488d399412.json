@@ -1,0 +1,100 @@
+{
+    "description_long": "This humanoid robot is constructed from a stone-like material with metallic gold accents on its joints, shoulders, and head. Its body is robust and angular, with broad shoulders, thick limbs, and a barrel-shaped torso featuring a brown, ribbed midsection. The head is adorned with a gold crest resembling a crown or helmet, and the face has a stern, mask-like appearance with glowing green eyes and a pronounced jawline. The arms and legs are segmented, with visible articulation points at the shoulders, elbows, hips, and knees, and the hands are shaped into three-pronged claws. The back of the robot features a circular, pale green element, possibly an access port or power core, and the overall design suggests durability and strength. The surface texture is rough and stone-like, with metallic elements providing contrast and a sense of advanced engineering.",
+    "description": "A stone-like humanoid robot with gold metallic joints, a crown-like headpiece, and glowing green eyes, featuring robust limbs and a ribbed midsection.",
+    "description_view_0": "Front view shows the robot's stern face, gold crest, broad shoulders, and three-pronged hands.",
+    "description_view_1": "Left side view highlights the robot's thick, segmented limbs and the depth of the torso and head.",
+    "description_view_2": "Rear view reveals the circular green element on the back, ribbed midsection, and the back of the gold crest.",
+    "description_view_3": "Right side view mirrors the left, showing limb segmentation and the profile of the head and torso.",
+    "category": "humanoid robot",
+    "height": 2.2,
+    "max_dimension": 1.4,
+    "materials": [
+        "stone",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 480,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4700,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head",
+        "arms",
+        "hands",
+        "legs",
+        "torso",
+        "back port"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "gold",
+        "brown",
+        "green",
+        "white"
+    ],
+    "colors_composition": [
+        0.65,
+        0.18,
+        0.08,
+        0.06,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.55,
+    "youngs_modulus": 30000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms relaxed at the sides, legs straight and slightly apart, head facing forward, and torso erect.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated stone-like panels with gold metallic accents and a ribbed brown midsection.",
+    "attribute_facial_features": "Face features a mask-like design with glowing green eyes, a pronounced brow, and a strong jawline; no visible mouth or nose.",
+    "attribute_limb_articulation": "Arms and legs have visible hinge joints at shoulders, elbows, hips, and knees; hands are three-pronged claws with limited articulation; limbs appear rigid but segmented for movement.",
+    "attribute_presence_of_sensors": "Visible sensors include glowing green eyes on the face, likely functioning as cameras or visual sensors; no other sensors visible.",
+    "uid": "f1033346e2b440d59ccac9488d399412",
+    "near_synsets": {
+        "android.n.01": 0.538978433559192,
+        "automaton.n.02": 0.563247346645198,
+        "cyborg.n.01": 0.5632901370138677,
+        "robotics_equipment.n.01": 0.5655435190921008,
+        "human_head.n.01": 0.5847092354868458
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f1033346e2b440d59ccac9488d399412",
+        "creator_username": "nighthakw247",
+        "creator_display_name": "Jonathan Mathers",
+        "creator_profile_url": "https://sketchfab.com/nighthakw247"
+    },
+    "filename": "std_f1033346e2b440d59ccac9488d399412.glb",
+    "length": 0.6795280873775482,
+    "width": 1.3809229731559753
+}

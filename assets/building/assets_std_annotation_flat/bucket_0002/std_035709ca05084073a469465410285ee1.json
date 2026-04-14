@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a stack of four metal-framed chairs with curved backs and seats, designed for durability and frequent use in public or urban environments. The frames are constructed from tubular metal, likely steel, with a dark, weathered finish that shows signs of rust and wear. The seat and backrest surfaces are made from a reddish-brown material, possibly painted or coated wood or a composite, with visible stains and discoloration from heavy use. The chairs are designed to nest closely together for efficient storage, with each chair fitting snugly into the next. The legs are slightly splayed for stability, and the overall form is utilitarian, prioritizing function over decorative elements. This type of chair is commonly found in parks, community centers, or outdoor event spaces.",
+    "description": "A stack of four weathered, metal-framed chairs with reddish-brown seats and backs, showing signs of heavy use and rust. The utilitarian design allows the chairs to nest together for compact storage.",
+    "description_view_0": "Rear view showing the curved backs of the stacked chairs and the alignment of the metal frames.",
+    "description_view_1": "Side view highlighting the splayed legs and the way the chairs nest together in a compact stack.",
+    "description_view_2": "Top-down view revealing the seat surfaces and the curvature of the backrests.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the stacked arrangement and the weathered seat surfaces.",
+    "category": "chair",
+    "height": 0.85,
+    "max_dimension": 1.0,
+    "materials": [
+        "steel",
+        "wood",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.05,
+        0.05
+    ],
+    "mass": 22,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "sittable",
+        "stackable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "seat",
+        "backrest",
+        "legs"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "reddish-brown",
+        "dark gray",
+        "rust orange"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_backrest_presence": true,
+    "attribute_armrest_presence": false,
+    "attribute_leg_count": 8,
+    "attribute_seat_pattern": "plain",
+    "attribute_placement_location": "either",
+    "uid": "035709ca05084073a469465410285ee1",
+    "near_synsets": {
+        "deck_chair.n.01": 0.5184623555225948,
+        "camp_chair.n.01": 0.5197402579566615,
+        "folding_chair.n.01": 0.5367829803129254,
+        "seat.n.03": 0.5415259161159278,
+        "lawn_chair.n.01": 0.5425994795097935,
+        "president.n.04": -1000.0,
+        "chair.n.01": -1000.0,
+        "chair.n.05": -1000.0,
+        "professorship.n.01": -1000.0,
+        "electric_chair.n.01": -1000.0
+    },
+    "synset": "electric_chair.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/035709ca05084073a469465410285ee1",
+        "creator_username": "gaelle.balois",
+        "creator_display_name": "gaelle.balois",
+        "creator_profile_url": "https://sketchfab.com/gaelle.balois"
+    },
+    "filename": "std_035709ca05084073a469465410285ee1.glb",
+    "length": 0.43883025646209717,
+    "width": 0.6051180362701416
+}

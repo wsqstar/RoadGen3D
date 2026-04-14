@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a stylized rifle resembling the iconic AK-47, featuring a metallic body with a curved magazine and a wooden foregrip. The receiver and barrel are rendered in a matte gray, giving the weapon a utilitarian appearance. The stock and pistol grip are blocky and angular, with the stock appearing to be a simple, fixed design. The magazine is distinctly curved, typical of rifles designed for intermediate cartridges, and is attached just ahead of the trigger guard. The foregrip and handguard are colored in a dark brown, suggesting a wood or polymer material. The muzzle is plain, with no visible attachments, and the sighting system appears to be a basic iron sight.",
+    "description": "A stylized, metallic rifle with a curved magazine, wooden foregrip, and fixed stock, resembling an AK-47. The finish is matte gray with dark brown accents.",
+    "description_view_0": "Side view showing the full length of the rifle, curved magazine, and wooden foregrip.",
+    "description_view_1": "Front view highlighting the barrel opening and the alignment of the iron sights.",
+    "description_view_2": "Opposite side view displaying the magazine curve and the blocky stock and grip.",
+    "description_view_3": "Rear view focusing on the end of the stock and the back of the receiver.",
+    "category": "rifle",
+    "height": 0.22,
+    "max_dimension": 0.88,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 3.8,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 5,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "magazine",
+        "safety lever",
+        "charging handle",
+        "stock",
+        "pistol grip",
+        "foregrip",
+        "iron sights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "ee67f271b9f2444d911e06e848d64145",
+    "near_synsets": {
+        "kalashnikov.n.01": 0.5118188105172173,
+        "garand_rifle.n.01": 0.5240999289852248,
+        "assault_rifle.n.01": 0.5375451886863637,
+        "dragunov.n.01": 0.5427001930648527,
+        "carbine.n.01": 0.5443043157277123,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ee67f271b9f2444d911e06e848d64145",
+        "creator_username": "Gamebuit",
+        "creator_display_name": "Gamebuit",
+        "creator_profile_url": "https://sketchfab.com/Gamebuit"
+    },
+    "filename": "std_ee67f271b9f2444d911e06e848d64145.glb",
+    "length": 0.5629688203334808,
+    "width": 0.046326348558068275
+}

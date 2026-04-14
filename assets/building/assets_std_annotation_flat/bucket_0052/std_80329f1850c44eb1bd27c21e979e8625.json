@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a large, heavily armored ship with a broad, flat deck and a prominent superstructure located centrally along its length. The hull is painted with a combination of gray, brown, and red, with the red section along the waterline, suggesting a reinforced lower hull. The deck features multiple turrets, likely for large-caliber naval guns, and several smaller fixtures that could be secondary armaments or equipment. The superstructure is multi-tiered, with visible towers and what appear to be observation or command bridges. Railings run along the deck edges, and there are several hatches and access points visible. The overall design is reminiscent of a World War II-era battleship or heavy cruiser, built for durability and firepower.",
+    "description": "A large, armored warship with a broad deck, central superstructure, multiple turrets, and a reinforced hull painted gray, brown, and red. The ship features prominent towers, railings, and various deck equipment.",
+    "description_view_0": "Front view showing the pointed bow, forward turrets, and the central superstructure rising above the deck.",
+    "description_view_1": "Side profile highlighting the ship's length, layered superstructure, and the arrangement of turrets and deck equipment.",
+    "description_view_2": "Top-down view revealing the full deck layout, turret placements, and the symmetrical design of the superstructure.",
+    "description_view_3": "Opposite side profile, similar to view 1, but showing the stern details and additional deck features.",
+    "category": "ship",
+    "height": 18,
+    "max_dimension": 210,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 35000000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000000.0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "hatch",
+        "door",
+        "railing",
+        "bridge",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "red",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.12,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000.0,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.03,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a pointed bow and a rounded stern, featuring a pronounced red lower section for anti-fouling. The sides are straight with a slight flare, and the deck is broad and flat, with no visible keels or bulbous bows.",
+    "attribute_superstructure_layout": "The superstructure is centrally located, multi-tiered, and includes several decks, a main bridge, and multiple towers or observation posts. The design is symmetrical with access points and railings along the deck.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "turret",
+        "antenna",
+        "hatch",
+        "railing"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "80329f1850c44eb1bd27c21e979e8625",
+    "near_synsets": {
+        "battleship.n.01": 0.46945716837572565,
+        "capital_ship.n.01": 0.4784805635930964,
+        "surface_ship.n.01": 0.48196703054949797,
+        "three-decker.n.03": 0.48330189251009475,
+        "warship.n.01": 0.48680653301418453,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/80329f1850c44eb1bd27c21e979e8625",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_80329f1850c44eb1bd27c21e979e8625.glb",
+    "length": 120.98269271850586,
+    "width": 41.70634460449219
+}

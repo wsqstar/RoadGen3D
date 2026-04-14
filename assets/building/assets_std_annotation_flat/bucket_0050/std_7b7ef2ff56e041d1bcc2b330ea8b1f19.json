@@ -1,0 +1,89 @@
+{
+    "description_long": "This object consists of a flat, square patch of ground with five distinct clumps of green grass-like shrubs distributed across its surface. The base is a muted, earthy green, resembling a patch of soil or turf, and each shrub is composed of numerous slender, pointed blades that radiate outward in dense tufts. The blades are a vibrant green, with some variation in hue, giving a natural, slightly wild appearance. The shrubs are spaced irregularly, with some closer to the edges and others more centrally located, mimicking the random growth patterns found in urban green spaces. The overall look is tidy but not overly manicured, suggesting a semi-maintained urban or park environment. There are no visible flowers, fruits, or woody stems, and the foliage appears soft and flexible.",
+    "description": "A square patch of ground with five tufts of dense, green grass-like shrubs spaced irregularly across its surface. The shrubs have slender, pointed blades and a natural, slightly wild appearance.",
+    "description_view_0": "From this angle, three main shrub clumps are visible in the foreground, with two more in the background, showing the density and spread of the blades.",
+    "description_view_1": "This view highlights the side profile of the shrubs, emphasizing the height and upright nature of the blades, with the tufts appearing more separated.",
+    "description_view_2": "Looking from above, all five shrub clumps are clearly visible, showing their irregular spacing and the overall layout on the patch.",
+    "description_view_3": "This angle shows the shrubs from the opposite side, with the tufts appearing more aligned along the diagonal, and the density of the blades is evident.",
+    "category": "shrub",
+    "height": 0.25,
+    "max_dimension": 1.0,
+    "materials": [
+        "plant_fiber",
+        "soil",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "mass": 2.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "green",
+        "brown"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "soft",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.38,
+    "youngs_modulus": 0.02,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_leaf_type": "simple",
+    "attribute_branching_pattern": "irregular",
+    "attribute_flower_presence": "absent",
+    "attribute_location_context": "urban planter",
+    "attribute_maintenance_level": "low",
+    "uid": "7b7ef2ff56e041d1bcc2b330ea8b1f19",
+    "near_synsets": {
+        "grass.n.01": 0.5065013031510119,
+        "sedge.n.01": 0.5145323763148667,
+        "groundcover.n.01": 0.514643027140314,
+        "scrub.n.01": 0.5160516945798089,
+        "shrubbery.n.01": 0.5175067337572277,
+        "shrub.n.01": -1000.0
+    },
+    "synset": "shrub.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7b7ef2ff56e041d1bcc2b330ea8b1f19",
+        "creator_username": "pooiloui2",
+        "creator_display_name": "pooiloui2",
+        "creator_profile_url": "https://sketchfab.com/pooiloui2"
+    },
+    "filename": "std_7b7ef2ff56e041d1bcc2b330ea8b1f19.glb",
+    "length": 1.1454378962516785,
+    "width": 1.1421505808830261
+}

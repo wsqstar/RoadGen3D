@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a modern city transit bus with a predominantly white body accented by bold red graphics and a red front and rear fascia. The bus features large, rectangular side windows arranged in a uniform row, providing ample visibility for passengers. There are two main passenger doors on the right side, one at the front and one in the middle, both equipped with yellow safety markings and accessibility signage. The roof is fitted with several rectangular ventilation or emergency exit hatches, and the bus rides on six wheels with black wheel arches. The front displays a digital route sign above the windshield, and the rear includes tail lights, a license plate, and additional branding. The overall design is sleek and functional, suitable for urban public transportation.",
+    "description": "A modern white and red city bus with large side windows, two passenger doors, and a digital route sign, designed for urban transit.",
+    "description_view_0": "Rear view showing the red back panel, tail lights, license plate, and rear branding.",
+    "description_view_1": "Right side view highlighting the two passenger doors, large windows, and accessibility signage.",
+    "description_view_2": "Front view displaying the red fascia, digital route sign, headlights, and windshield.",
+    "description_view_3": "Left side view with a continuous row of large windows and no visible passenger doors.",
+    "category": "bus",
+    "height": 3.2,
+    "max_dimension": 12.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 10,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "drivable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "button",
+        "handle",
+        "mirror"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "black",
+        "yellow",
+        "gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.08,
+        0.03,
+        0.04
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 2,
+    "attribute_window_arrangement": "A continuous row of large, rectangular windows along both sides, evenly spaced and separated by vertical pillars, with no significant variation in size or shape.",
+    "attribute_route_number_or_destination_sign": "FRH - DK 2020",
+    "attribute_bus_manufacturer_logo": "A logo and text are visible on the front and rear panels, with the rear showing 'DB' and the front displaying a small badge above the grille.",
+    "attribute_passenger_entry_step_height": 0.35,
+    "uid": "dbb5b344102a493185d748f1e9be9bf8",
+    "near_synsets": {
+        "bus.n.01": 0.49151730688731016,
+        "school_bus.n.01": 0.5183211712302155,
+        "bus_route.n.01": 0.5204701205770571,
+        "bus_traffic.n.01": 0.5207605662722997,
+        "public_transit.n.01": 0.520994079825603,
+        "bus_topology.n.01": -1000.0,
+        "busbar.n.01": -1000.0,
+        "bus.n.04": -1000.0
+    },
+    "synset": "bus.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dbb5b344102a493185d748f1e9be9bf8",
+        "creator_username": "frankfkn",
+        "creator_display_name": "FrankFkN",
+        "creator_profile_url": "https://sketchfab.com/frankfkn"
+    },
+    "filename": "std_dbb5b344102a493185d748f1e9be9bf8.glb",
+    "length": 11.539133071899414,
+    "width": 2.710584282875061
+}

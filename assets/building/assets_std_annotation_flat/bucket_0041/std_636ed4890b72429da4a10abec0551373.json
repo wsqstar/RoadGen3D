@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a streamlined steam locomotive with a tender, painted in a dark green livery with gold lining and insignia, reminiscent of classic British express trains such as the LNER Class A4. The locomotive features a sleek, aerodynamic front with a sloped nose and integrated headlamp, and a long, low-slung boiler. The side view reveals large driving wheels, a series of smaller leading and trailing wheels, and a tender attached at the rear, filled with coal. The body is mostly smooth with subtle panel lines and rivets, and the tender bears a prominent emblem. The windows are small and spaced along the cab, with no visible passenger compartments. The overall design emphasizes speed and elegance, typical of mid-20th-century express steam engines.",
+    "description": "A streamlined, dark green steam locomotive with a tender, gold lining, and large driving wheels, evoking classic British express trains. The design is sleek and aerodynamic, with a coal-filled tender and subtle detailing.",
+    "description_view_0": "Front view showing the sloped, aerodynamic nose, central headlamp, and narrow profile of the locomotive.",
+    "description_view_1": "Side view displaying the full length of the locomotive and tender, large driving wheels, gold lining, and emblem on the tender.",
+    "description_view_2": "Rear view highlighting the back of the tender, coal storage area, and the coupling mechanism.",
+    "description_view_3": "Opposite side view similar to view 1, showing the other side of the locomotive and tender with consistent detailing.",
+    "category": "train",
+    "height": 4.2,
+    "max_dimension": 23.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "coal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.03,
+        0.01,
+        0.07,
+        0.03,
+        0.01
+    ],
+    "mass": 140000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3500000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "headlamp",
+        "coupling",
+        "coal hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "gold",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "steam locomotive",
+    "attribute_number_of_carriages": 2,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end of the locomotive cab",
+    "attribute_window_arrangement": "spaced small windows on the cab",
+    "uid": "636ed4890b72429da4a10abec0551373",
+    "near_synsets": {
+        "train.n.01": 0.478872699919495,
+        "streamliner.n.01": 0.4847152243982521,
+        "steam_locomotive.n.01": 0.4860254540160025,
+        "tender.n.04": 0.5016086615145324,
+        "locomotive.n.01": 0.5122465757548876,
+        "train.n.04": -1000.0,
+        "string.n.04": -1000.0,
+        "gearing.n.01": -1000.0,
+        "caravan.n.01": -1000.0,
+        "train.n.05": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/636ed4890b72429da4a10abec0551373",
+        "creator_username": "timblewee",
+        "creator_display_name": "timblewee",
+        "creator_profile_url": "https://sketchfab.com/timblewee"
+    },
+    "filename": "std_636ed4890b72429da4a10abec0551373.glb",
+    "length": 6.187481641769409,
+    "width": 0.7796059548854828
+}

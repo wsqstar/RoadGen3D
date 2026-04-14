@@ -1,0 +1,97 @@
+{
+    "description_long": "This shelter is a small, rustic structure with a gabled roof covered in weathered, mossy shingles. The walls are constructed from rough-hewn stone blocks, giving it a sturdy and traditional appearance. The front features a single rectangular entryway without a door, framed by wooden beams and a wooden threshold. The roof extends beyond the walls, providing extra coverage and protection from the elements. The shelter is elevated slightly above the ground, supported by stone or concrete footings at each corner. There are no visible windows, signage, or decorative elements, emphasizing its utilitarian design.",
+    "description": "A small, stone-walled shelter with a gabled, mossy shingle roof and a single open entryway, elevated on stone footings.",
+    "description_view_0": "Front view showing the open rectangular entryway framed by wood, with the gabled roof and stone wall clearly visible.",
+    "description_view_1": "Side or rear view displaying the solid stone wall and the full expanse of the shingled roof, with no entryway or openings.",
+    "description_view_2": "Back view highlighting the uninterrupted stone wall and the gabled roof, with no visible entry or features.",
+    "description_view_3": "Opposite side or rear view similar to view 1, showing the stone wall and roof, with no entryway.",
+    "category": "shelter",
+    "height": 2.2,
+    "max_dimension": 3.2,
+    "materials": [
+        "stone",
+        "wood",
+        "roof shingles",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shelter",
+        "shade",
+        "protection"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "entryway"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "brown",
+        "green"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gabled shingle roof with weathered, mossy texture",
+    "attribute_entryway_design": "rectangular open entryway framed with wood and no door",
+    "attribute_support_structure": "stone block walls with wooden beams and stone footings",
+    "attribute_signage": "none",
+    "attribute_transparency": "fully opaque",
+    "uid": "58402e2cb58a4b909bb2423456b5360c",
+    "near_synsets": {
+        "shelter.n.01": 0.4609566237184592,
+        "shelter.n.02": 0.4633597542091241,
+        "shed.n.01": 0.47963594619775046,
+        "lean-to.n.01": 0.49520219287894546,
+        "house.n.12": 0.5118563389409106,
+        "protection.n.04": -1000.0,
+        "shelter.n.05": -1000.0,
+        "tax_shelter.n.01": -1000.0
+    },
+    "synset": "tax_shelter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/58402e2cb58a4b909bb2423456b5360c",
+        "creator_username": "PT34",
+        "creator_display_name": "PT34",
+        "creator_profile_url": "https://sketchfab.com/PT34"
+    },
+    "filename": "std_58402e2cb58a4b909bb2423456b5360c.glb",
+    "length": 2.459444046020508,
+    "width": 2.5047364234924316
+}

@@ -1,0 +1,110 @@
+{
+    "description_long": "This vending machine features a rectangular, upright design with a predominantly white and gray body. The front panel displays a transparent window revealing several shelves stocked with cans and bottles, alongside a red vertical section containing product selection buttons and branding for popular beverages like Pepsi and Mountain Dew. The left and right sides are decorated with a large image of a beer bottle labeled 'Bombiero' and the phrase 'A beer for my queen. Now you know Da Wae.' The back of the machine is plain gray with a vented panel near the bottom, likely for cooling. The machine stands on two black rectangular feet, elevating it slightly off the ground. The overall appearance is typical of beverage vending machines found in urban environments, with clear branding and user interfaces for product selection and payment.",
+    "description": "A white and gray beverage vending machine with a transparent front window, red selection panel, and prominent beer-themed branding on the sides.",
+    "description_view_0": "Front view showing the transparent product window, red selection panel with branding, and visible beverage shelves.",
+    "description_view_1": "Left side view featuring a large beer bottle image, branding text, and a faint background illustration.",
+    "description_view_2": "Rear view displaying a plain gray surface with a vented panel at the bottom.",
+    "description_view_3": "Right side view similar to the left, with the same beer bottle image and branding text.",
+    "category": "vending machine",
+    "height": 1.8,
+    "max_dimension": 1.8,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "aluminum",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 220,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "payment slot",
+        "product retrieval slot",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "red",
+        "blue",
+        "green",
+        "orange",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.05,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "smooth",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A vertical red display panel on the front right side, featuring printed beverage branding and product images.",
+    "attribute_payment_interface": "A payment slot is visible on the lower right front panel, likely for coins or bills.",
+    "attribute_product_selection_buttons": "Three individual rectangular buttons are arranged vertically on the red front panel, each labeled with a beverage image.",
+    "attribute_product_retrieval_slot": "A rectangular retrieval slot is located at the bottom center of the front panel, beneath the branding area.",
+    "attribute_branding_or_signage": "Large 'Bombiero' beer bottle images and text on both side panels, with additional beverage branding (Pepsi, Mountain Dew) on the front red panel.",
+    "uid": "42dc0771e4b3432b9252f9547bb132e4",
+    "near_synsets": {
+        "vending_machine.n.01": 0.48758952282906337,
+        "automat.n.01": 0.533352473857888,
+        "beer_bottle.n.01": 0.557491313283361,
+        "soda_fountain.n.02": 0.5687870998716709,
+        "beer_can.n.01": 0.5707719693010646,
+        "machine.n.05": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.02": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/42dc0771e4b3432b9252f9547bb132e4",
+        "creator_username": "harway",
+        "creator_display_name": "harway",
+        "creator_profile_url": "https://sketchfab.com/harway"
+    },
+    "filename": "std_42dc0771e4b3432b9252f9547bb132e4.glb",
+    "length": 0.8077553510665894,
+    "width": 0.8387263715267181
+}

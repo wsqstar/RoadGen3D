@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a classic hand grenade, specifically resembling the M67 fragmentation grenade, with a robust, oval-shaped metal body coated in a dark, mottled green finish. The surface is slightly rough and weathered, showing signs of wear and rust, which adds to its realistic appearance. At the top, a prominent safety lever (spoon) is secured by a circular metal pull ring and pin, both of which are metallic and slightly shinier than the main body. The grenade's body is segmented with shallow grooves and reinforced bands, providing grip and structural integrity. The upper assembly, including the fuse mechanism, is darker and more matte, contrasting with the slightly lighter and more textured lower shell. No visible labels or markings are present, and the object is compact, designed to be easily held and thrown by hand.",
+    "description": "A weathered, green metal hand grenade with a safety lever, pull ring, and segmented body, showing signs of rust and wear.",
+    "description_view_0": "Front view shows the rounded, ribbed body and the top-mounted safety lever and pin, with the pull ring partially visible.",
+    "description_view_1": "Side view highlights the full profile of the safety lever, the circular pull ring, and the detailed grooves on the grenade's body.",
+    "description_view_2": "Rear view displays the back of the safety lever and the pin, with the grenade's oval shape and surface texture clearly visible.",
+    "description_view_3": "Opposite side view reveals the other side of the safety lever and pull ring, emphasizing the grenade's symmetry and rugged surface.",
+    "category": "bomb",
+    "height": 0.11,
+    "max_dimension": 0.11,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 0.4,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable",
+        "throwable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pull ring",
+        "safety lever",
+        "pin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the safety pin and releasing the safety lever, which activates the internal fuse mechanism.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "1d221a8f217a423a985613761e1b703e",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.48910758659812686,
+        "grenade.n.01": 0.5185923194804798,
+        "rifle_grenade.n.01": 0.5478720323178785,
+        "bomb.n.01": 0.5480269221340144,
+        "pipe_bomb.n.01": 0.5522492044861331,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1d221a8f217a423a985613761e1b703e",
+        "creator_username": "skipday",
+        "creator_display_name": "skipday",
+        "creator_profile_url": "https://sketchfab.com/skipday"
+    },
+    "filename": "std_1d221a8f217a423a985613761e1b703e.glb",
+    "length": 0.06372291594743729,
+    "width": 0.05468813702464104
+}

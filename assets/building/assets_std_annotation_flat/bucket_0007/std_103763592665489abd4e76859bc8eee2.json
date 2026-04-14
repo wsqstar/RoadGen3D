@@ -1,0 +1,88 @@
+{
+    "description_long": "This object is a rectangular section of pavement featuring a large, white bicycle symbol painted prominently in the center. The surface appears to be made of concrete or asphalt, with a slightly rough, matte finish typical of urban roadways. The bicycle symbol is clearly defined, with both wheels, frame, handlebars, and pedals visible, serving as a visual indicator for a designated cycleway. The paint used for the symbol is bright and contrasts sharply with the darker gray of the pavement, ensuring high visibility. There are no visible lane markings, barriers, or additional signage present on or around the surface. The object is flat and solid, designed to be walked or cycled over in an urban environment.",
+    "description": "A flat, rectangular concrete or asphalt surface with a large, white painted bicycle symbol in the center, indicating a cycleway.",
+    "description_view_0": "The rectangular surface is seen from a low angle, with the full bicycle symbol clearly visible and centered.",
+    "description_view_1": "Viewed from above one end, the bicycle symbol appears elongated, and the rectangular shape is more pronounced.",
+    "description_view_2": "The opposite side of the rectangle is shown, with the bicycle symbol still visible but from a reversed perspective.",
+    "description_view_3": "From the other end, the bicycle symbol is again visible, with the rectangular surface extending away from the viewer.",
+    "category": "cycleway",
+    "height": 0.1,
+    "max_dimension": 2.5,
+    "materials": [
+        "concrete",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.04,
+        0.01
+    ],
+    "mass": 600,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "rideable",
+        "markable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "bicycle"
+    ],
+    "colors": [
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.92,
+        0.08
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_dedicated_lane_markings": false,
+    "attribute_bicycle_symbols": true,
+    "attribute_physical_separation_from_traffic": false,
+    "attribute_signage_indicating_cycleway": false,
+    "attribute_presence_of_bike-specific_traffic_signals": false,
+    "uid": "103763592665489abd4e76859bc8eee2",
+    "near_synsets": {
+        "bicycle_traffic.n.01": 0.5354870390774389,
+        "road_surface.n.01": 0.544490505166634,
+        "bicycling.n.01": 0.5493041371210619,
+        "cycling.n.01": 0.549850372684379,
+        "traffic_lane.n.01": 0.5583274379644408
+    },
+    "synset": "road_surface.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/103763592665489abd4e76859bc8eee2",
+        "creator_username": "joeshu",
+        "creator_display_name": "joeshu",
+        "creator_profile_url": "https://sketchfab.com/joeshu"
+    },
+    "filename": "std_103763592665489abd4e76859bc8eee2.glb",
+    "length": 7.020413875579834,
+    "width": 11.205394744873047
+}

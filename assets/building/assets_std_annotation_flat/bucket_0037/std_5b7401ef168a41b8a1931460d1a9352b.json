@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a classic revolver-style firearm with a long, cylindrical barrel and a prominent rotating cylinder for ammunition. The frame and barrel are constructed from dark metal, with visible screws and mechanical details along the body. The grip is made of a dark, polished wood, ergonomically shaped for comfortable handling. The trigger guard is rounded and metallic, enclosing a curved trigger. The hammer and loading mechanism are visible above the grip, and the barrel features a tubular under-barrel component, likely for structural reinforcement or loading. The overall design is reminiscent of 19th-century percussion cap revolvers, with a robust and utilitarian appearance.",
+    "description": "A dark metal revolver with a long barrel, wooden grip, and visible rotating cylinder, featuring classic mechanical details and a rounded trigger guard.",
+    "description_view_0": "Front view showing the circular barrel opening and the symmetrical alignment of the under-barrel tube.",
+    "description_view_1": "Side view displaying the full length of the barrel, the wooden grip, the rotating cylinder, and the trigger guard.",
+    "description_view_2": "Rear view highlighting the back of the wooden grip, the hammer, and the top of the cylinder.",
+    "description_view_3": "Opposite side view showing the barrel, grip, and mechanical details from the left side.",
+    "category": "shotgun",
+    "height": 0.15,
+    "max_dimension": 0.38,
+    "materials": [
+        "steel",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "mass": 1.3,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 13,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "rotatable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "cylinder",
+        "hammer",
+        "barrel",
+        "trigger guard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, long cylindrical barrel with an under-barrel tube",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "revolver-action",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized metallic guard with smooth edges and no finger grooves",
+    "uid": "5b7401ef168a41b8a1931460d1a9352b",
+    "near_synsets": {
+        "revolver.n.01": 0.4790046661500702,
+        "colt.n.02": 0.48963489624577033,
+        "shotgun.n.01": 0.49089502323952405,
+        "sawed-off_shotgun.n.01": 0.5065470801806435,
+        "gun.n.01": 0.5143405316990375
+    },
+    "synset": "sawed-off_shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5b7401ef168a41b8a1931460d1a9352b",
+        "creator_username": "Baptiste.Barbe",
+        "creator_display_name": "Baptiste.Barbe",
+        "creator_profile_url": "https://sketchfab.com/Baptiste.Barbe"
+    },
+    "filename": "std_5b7401ef168a41b8a1931460d1a9352b.glb",
+    "length": 0.32570885121822357,
+    "width": 0.048837168142199516
+}

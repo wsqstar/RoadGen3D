@@ -1,0 +1,86 @@
+{
+    "description_long": "This object consists of three rectangular parcels stacked together, each resembling a typical cardboard shipping box. The parcels are of varying sizes, with the largest at the base and the smallest on top, creating a stepped arrangement. The surfaces are smooth and feature subtle color variations, primarily in shades of beige and light brown, mimicking the appearance of corrugated cardboard. The edges are crisp and well-defined, and the boxes appear to be sealed, with no visible openings or flaps. The parcels rest on a flat, dark surface, which provides a stark contrast to their lighter tones. There are no visible labels, markings, or branding on the boxes.",
+    "description": "A group of three beige cardboard parcels of varying sizes stacked together, with smooth surfaces and crisp edges.",
+    "description_view_0": "Three parcels are visible, with the smallest box on top and the stepped arrangement most apparent.",
+    "description_view_1": "The side of the largest parcel is most prominent, with the other two boxes partially obscured behind it.",
+    "description_view_2": "All three parcels are visible from the side, showing their relative sizes and the stepped stacking.",
+    "description_view_3": "The back of the largest parcel is most visible, with the other two boxes mostly hidden behind it.",
+    "category": "parcels",
+    "height": 0.25,
+    "max_dimension": 0.4,
+    "materials": [
+        "cardboard",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.15
+    ],
+    "mass": 2.5,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "liftable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "light brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 4000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "group",
+    "attribute_architectural_style": "",
+    "attribute_car_model": "",
+    "attribute_building_number": "",
+    "attribute_storefront_signage": "",
+    "attribute_street_name": "",
+    "uid": "a1a4229463bb4da695928a794b718013",
+    "near_synsets": {
+        "package.n.01": 0.5411415514756992,
+        "pack.n.02": 0.5469695860872801,
+        "pack.n.03": 0.5530674595482282,
+        "packing_box.n.02": 0.5552607919388837,
+        "carton.n.02": 0.5559970377184428,
+        "parcel.n.02": -1000.0,
+        "tract.n.01": -1000.0,
+        "package.n.02": -1000.0
+    },
+    "synset": "package.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a1a4229463bb4da695928a794b718013",
+        "creator_username": "boltex360",
+        "creator_display_name": "LEX_GFX",
+        "creator_profile_url": "https://sketchfab.com/boltex360"
+    },
+    "filename": "std_a1a4229463bb4da695928a794b718013.glb",
+    "length": 2.9602051973342896,
+    "width": 2.9601593017578125
+}

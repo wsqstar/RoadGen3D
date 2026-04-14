@@ -1,0 +1,103 @@
+{
+    "description_long": "This is an above-ground, octagonal jacuzzi with a wooden exterior frame and a blue water-filled interior. The jacuzzi features a set of wooden steps on one side, providing easy access to the water. Metal handrails are attached near the steps for safety and support. On the opposite side, there is a visible orange filtration or pump unit connected to the jacuzzi, likely for water circulation and cleaning. The water inside appears clean and nearly full, with a smooth, reflective surface. The overall design is robust and suitable for outdoor placement in urban backyards, patios, or recreational areas.",
+    "description": "An octagonal, above-ground jacuzzi with a wooden exterior, blue water, metal handrails, and a set of wooden steps for entry.",
+    "description_view_0": "Front view showing the wooden steps and metal handrails leading into the jacuzzi.",
+    "description_view_1": "Side view highlighting the full length of the jacuzzi, the steps, and the attached orange filtration unit.",
+    "description_view_2": "Rear view focusing on the orange filtration unit and the opposite side of the jacuzzi without steps.",
+    "description_view_3": "Side view showing the uninterrupted wooden exterior and the metal handrails on the far side.",
+    "category": "jacuzzi",
+    "height": 1.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "wood",
+        "metal",
+        "plastic",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.1,
+        0.1,
+        0.25,
+        0.05
+    ],
+    "mass": 600,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "climbable",
+        "graspable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "steps",
+        "handrail",
+        "filtration unit"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "blue",
+        "silver",
+        "orange"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 10000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_jets": [],
+    "attribute_control_panel": "none visible",
+    "attribute_water_level": "nearly full, water close to the top edge",
+    "attribute_cover": false,
+    "attribute_steps": [
+        {
+            "location": "front",
+            "number_of_steps": 4,
+            "material": "wood"
+        }
+    ],
+    "uid": "d7a4540b1ef2419f8ddf29c254a80c89",
+    "near_synsets": {
+        "hot_tub.n.01": 0.5260181281762466,
+        "bath_water.n.01": 0.5631600988291536,
+        "pump_room.n.01": 0.5761375665259636,
+        "bathtub.n.01": 0.5802651644363952,
+        "water_chute.n.01": 0.5851323519895167
+    },
+    "synset": "hot_tub.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/d7a4540b1ef2419f8ddf29c254a80c89",
+        "creator_username": "trzyde.com",
+        "creator_display_name": "trzyde.com",
+        "creator_profile_url": "https://sketchfab.com/trzyde.com"
+    },
+    "filename": "std_d7a4540b1ef2419f8ddf29c254a80c89.glb",
+    "length": 5.686771392822266,
+    "width": 3.888840436935425
+}

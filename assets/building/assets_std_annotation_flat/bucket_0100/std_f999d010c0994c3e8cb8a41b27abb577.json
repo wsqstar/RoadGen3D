@@ -1,0 +1,89 @@
+{
+    "description_long": "This object is a sleek, modern airplane with a sharply pointed nose and a streamlined fuselage, designed for high-speed flight. The wings are sharply swept back in a delta configuration, blending smoothly into the body, and there are no visible engines mounted on the wings or fuselage. The tail features a prominent vertical stabilizer with two angled horizontal stabilizers forming a V-tail arrangement. The surface appears smooth and reflective, suggesting a metallic or composite construction. There are no visible windows, doors, or landing gear, giving it a minimalist, possibly unmanned or stealth-oriented appearance. The overall design is reminiscent of advanced military or experimental aircraft, optimized for aerodynamic efficiency.",
+    "description": "A sleek, delta-wing airplane with a pointed nose, V-tail, and smooth, reflective surface, lacking visible engines or landing gear.",
+    "description_view_0": "Side view showing the sharply swept delta wing, pointed nose, and prominent V-tail with a single vertical stabilizer.",
+    "description_view_1": "Front view highlighting the wide delta wingspan, narrow fuselage, and the V-tail's angled stabilizers extending upward.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the delta wing and V-tail configuration.",
+    "description_view_3": "Rear view displaying the V-tail's full structure, the trailing edge of the delta wing, and the absence of visible engines or landing gear.",
+    "category": "airplane",
+    "height": 1.2,
+    "max_dimension": 8.0,
+    "materials": [
+        "composite",
+        "aluminum",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 17650,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "control surfaces",
+        "tail fins"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.08,
+    "surface_finish": "sleek",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.25,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-mounted, sharply swept delta wings with no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "No visible engines present on the fuselage or wings.",
+    "attribute_tail_design": "V-tail configuration with a single vertical stabilizer and two upward-angled horizontal stabilizers.",
+    "attribute_landing_gear_type": "No visible landing gear present.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a streamlined canopy integrated into the fuselage.",
+    "uid": "f999d010c0994c3e8cb8a41b27abb577",
+    "near_synsets": {
+        "airplane.n.01": 0.4899324250001365,
+        "delta_wing.n.01": 0.4915289870557709,
+        "aircraft.n.01": 0.49405051644423353,
+        "monoplane.n.01": 0.5134664334163501,
+        "nose.n.02": 0.5251387925434317
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f999d010c0994c3e8cb8a41b27abb577",
+        "creator_username": "andre_s",
+        "creator_display_name": "Andre S.",
+        "creator_profile_url": "https://sketchfab.com/andre_s"
+    },
+    "filename": "std_f999d010c0994c3e8cb8a41b27abb577.glb",
+    "length": 3.9692699909210205,
+    "width": 5.353017807006836
+}

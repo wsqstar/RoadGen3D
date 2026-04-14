@@ -1,0 +1,109 @@
+{
+    "description_long": "This object is a large, angular combat tactical vehicle with a complex, multi-level structure, featuring numerous blocky compartments and elevated platforms. The exterior is predominantly brown with some green and gray accents, suggesting reinforced armor and functional elements. Several towers and raised sections are visible, likely for observation or weapon mounting, and there are multiple entry points and ramps for access. The vehicle appears to have integrated defensive positions and possibly internal compartments for personnel or equipment. The design is utilitarian, with flat surfaces and sharp edges, optimized for urban combat scenarios. No visible wheels or tracks are present, indicating it may be a stationary or modular vehicle structure.",
+    "description": "A large, blocky combat tactical vehicle with multiple levels, towers, and reinforced brown armor, accented by green and gray elements. It features ramps, platforms, and defensive positions, suited for urban combat.",
+    "description_view_0": "Front view shows the main entry ramps, central open area, and prominent towers on the left and right sides.",
+    "description_view_1": "Side view highlights the tall central tower with green accents and the layered, stepped structure of the vehicle.",
+    "description_view_2": "Rear view reveals additional blocky compartments, a wide open area, and more defensive positions.",
+    "description_view_3": "Opposite side view displays a large flat wall with a green panel and multiple angular extensions.",
+    "category": "combat tactical  vehicle",
+    "height": 5.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "ramp",
+        "turret",
+        "platform",
+        "ladder"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "green",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Multiple mounts visible: one on the central tower (likely for a heavy weapon), several smaller mounts on elevated platforms and corners, suitable for machine guns or similar armaments.",
+    "attribute_armor_plating": "Full body coverage with thick, angular armor plating; reinforced sections on towers and corners; sloped panels for deflection.",
+    "attribute_camouflage_pattern": "Solid brown color with green and gray accent panels; no distinct camouflage pattern visible.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "e6cfbfd323e54722b829475fca2457b7",
+    "near_synsets": {
+        "tank.n.01": 0.5082583664325913,
+        "military_vehicle.n.01": 0.518938485277079,
+        "assault_gun.n.02": 0.52825285661852,
+        "reconnaissance_vehicle.n.01": 0.5365125171481193,
+        "armored_car.n.02": 0.5477173587980942,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e6cfbfd323e54722b829475fca2457b7",
+        "creator_username": "kgoparaju",
+        "creator_display_name": "kgoparaju",
+        "creator_profile_url": "https://sketchfab.com/kgoparaju"
+    },
+    "filename": "std_e6cfbfd323e54722b829475fca2457b7.glb",
+    "length": 15.123844623565674,
+    "width": 14.878855228424072
+}

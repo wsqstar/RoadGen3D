@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a Soviet T-72M main battle tank, featuring a low-profile turret and a long, prominent main gun barrel. The vehicle is painted in a winter camouflage pattern with irregular white and dark green patches, designed to break up its outline. The tank is equipped with six large road wheels on each side, visible tracks, and a rear engine compartment. On the turret, a mounted machine gun and various hatches are visible, indicating crew access points and weaponry. The hull and turret are covered in thick, sloped armor plating, providing protection from enemy fire. The tank is displayed on a rectangular base labeled with its division and year, adding historical context.",
+    "description": "A Soviet T-72M main battle tank with winter camouflage, sloped armor, and a mounted machine gun on the turret. It features six large road wheels per side and is displayed on a labeled base.",
+    "description_view_0": "Side view showing the tank's six large road wheels, sloped armor, and the full length of the main gun barrel.",
+    "description_view_1": "Front view highlighting the tank's low profile, sloped frontal armor, and the main gun protruding forward.",
+    "description_view_2": "Opposite side view, again showing the six road wheels, tracks, and the tank's rear engine compartment.",
+    "description_view_3": "Rear view displaying the back of the turret, engine deck, and the tank's compact, armored structure.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 9.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "composite armor",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.03,
+        0.1,
+        0.02
+    ],
+    "mass": 41000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 402000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "main gun",
+        "machine gun",
+        "wheels",
+        "tracks",
+        "engine cover"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "dark green",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible machine gun mount on the turret roof; main cannon mounted in the turret front.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped steel armor on the hull and turret; no modular or reactive panels visible.",
+    "attribute_camouflage_pattern": "White and dark green irregular winter camouflage pattern with large, soft-edged patches.",
+    "attribute_military_markings": "White text on the base: '1st Guards Armored Division USSR - 1981'; no visible markings on the tank itself.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "0ea75e9dfec34784a41a4a03066e2943",
+    "near_synsets": {
+        "tank.n.01": 0.5049419652020173,
+        "military_vehicle.n.01": 0.5368392577110357,
+        "assault_gun.n.02": 0.552831090085769,
+        "armored_car.n.02": 0.5568521429582682,
+        "panzer.n.01": 0.5584494682242805,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0ea75e9dfec34784a41a4a03066e2943",
+        "creator_username": "fzeng",
+        "creator_display_name": "fzeng",
+        "creator_profile_url": "https://sketchfab.com/fzeng"
+    },
+    "filename": "std_0ea75e9dfec34784a41a4a03066e2943.glb",
+    "length": 7.070039510726929,
+    "width": 3.1137619018554688
+}

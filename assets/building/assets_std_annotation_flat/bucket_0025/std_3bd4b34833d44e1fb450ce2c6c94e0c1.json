@@ -1,0 +1,105 @@
+{
+    "description_long": "This object is a rectangular section of urban roadway featuring a large roundabout at its center, surrounded by multiple entry and exit lanes. The roundabout itself has a distinct central island, which is visually demarcated by a lighter circular area. The road surface is bordered by green strips, likely representing grass or landscaping, and the asphalt is marked with various lane lines and directional arrows. Entry and exit points are clearly defined, with some solid and dashed lines visible, as well as lane dividers. The overall surface is flat and expansive, designed to accommodate vehicular traffic in an urban setting. No visible signage or pedestrian crosswalks are present in the images.",
+    "description": "A rectangular urban road section with a central roundabout, bordered by green strips and marked with lane lines and arrows. The roundabout features a distinct central island and multiple entry and exit lanes.",
+    "description_view_0": "The roundabout is seen from an angle highlighting the main entry road and the green border on the left side.",
+    "description_view_1": "This view shows the roundabout from a low, side perspective, emphasizing the flatness and the central island.",
+    "description_view_2": "The roundabout is viewed from the opposite end, with the main exit road and green border now on the right.",
+    "description_view_3": "A side view showing the full length of the road section and the roundabout's central island, with lane markings visible.",
+    "category": "roundabout",
+    "height": 0.15,
+    "max_dimension": 40.0,
+    "materials": [
+        "asphalt",
+        "concrete",
+        "paint",
+        "soil",
+        "grass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.03,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 210000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "car",
+        "bus",
+        "bicycle"
+    ],
+    "colors": [
+        "gray",
+        "green",
+        "white",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.85,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "scene",
+    "attribute_central_island_presence": true,
+    "attribute_entry_and_exit_road_markings": [
+        "solid line",
+        "dashed line",
+        "lane arrows"
+    ],
+    "attribute_yield_or_give-way_signage": false,
+    "attribute_pedestrian_crosswalks": false,
+    "attribute_circular_traffic_flow_direction_signage": false,
+    "uid": "3bd4b34833d44e1fb450ce2c6c94e0c1",
+    "near_synsets": {
+        "traffic_circle.n.01": 0.42949974696298926,
+        "beltway.n.01": 0.5301570403507261,
+        "detour.n.01": 0.53162949692331,
+        "traffic_island.n.01": 0.5443693546983751,
+        "intersection.n.02": 0.5451907002755808,
+        "carousel.n.02": -1000.0
+    },
+    "synset": "traffic_circle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3bd4b34833d44e1fb450ce2c6c94e0c1",
+        "creator_username": "echappell",
+        "creator_display_name": "echappell",
+        "creator_profile_url": "https://sketchfab.com/echappell"
+    },
+    "filename": "std_3bd4b34833d44e1fb450ce2c6c94e0c1.glb",
+    "length": 4.780757904052734,
+    "width": 3.20953369140625
+}

@@ -1,0 +1,105 @@
+{
+    "description_long": "This delivery robot features a compact, boxy body with a matte black exterior and large, transparent side windows framed in silver. The vehicle is supported by four robust wheels, each with a solid hub and a low-profile tire, suggesting stability and smooth movement on urban surfaces. The interior is visible through the windows, revealing two upright seats and a steering mechanism, indicating it is designed for either autonomous or remote operation. The front of the robot is slightly sloped, with two small lights or reflectors at the base, while the rear is flat and unadorned. The overall design is minimalistic, with no visible branding or decorative elements, focusing on functionality and ease of access. The materials appear to be primarily plastic or composite for the body, with glass or acrylic for the windows and rubber for the wheels.",
+    "description": "A compact, boxy delivery robot with large transparent side windows, four sturdy wheels, and a minimalistic matte black exterior. The interior features two seats and a steering mechanism, emphasizing functionality and urban mobility.",
+    "description_view_0": "Side view showing the transparent window, two seats inside, and the full length of the four wheels.",
+    "description_view_1": "Rear view displaying the flat, unadorned back and the width of the robot, with both rear wheels visible.",
+    "description_view_2": "Opposite side view mirroring view 0, highlighting the window and interior seating from the other side.",
+    "description_view_3": "Front view showing the sloped front, two small lights or reflectors at the base, and a clear view of the seats and steering mechanism inside.",
+    "category": "delivery robot",
+    "height": 1.3,
+    "max_dimension": 2.2,
+    "materials": [
+        "plastic",
+        "glass",
+        "rubber",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 180,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "steering mechanism",
+        "seat"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.8,
+    "asset_composition_type": "single",
+    "attribute_brand_logo": "none",
+    "attribute_sensor_array": [],
+    "attribute_wheel_configuration": "Four solid wheels, likely drive wheels, positioned at each corner of the rectangular chassis; no visible suspension or treads.",
+    "attribute_compartment_access_panel": "A large transparent side window on each side, likely functioning as a door or access panel, with visible framing but no clear handles or hinges.",
+    "attribute_display_screen": "none",
+    "uid": "b4af74fae3cc46df9a1d38f6bfd996b4",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5729649758965197,
+        "automaton.n.02": 0.6015634782242592,
+        "delivery_truck.n.01": 0.6024877996626173,
+        "wheeled_vehicle.n.01": 0.6061236881337019,
+        "automat.n.01": 0.6062236530233773,
+        "delivery.n.07": -1000.0,
+        "manner_of_speaking.n.01": -1000.0,
+        "rescue.n.01": -1000.0,
+        "delivery.n.04": -1000.0,
+        "delivery.n.02": -1000.0,
+        "pitch.n.02": -1000.0,
+        "delivery.n.01": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b4af74fae3cc46df9a1d38f6bfd996b4",
+        "creator_username": "ezgibakim",
+        "creator_display_name": "ezgi bakim",
+        "creator_profile_url": "https://sketchfab.com/ezgibakim"
+    },
+    "filename": "std_b4af74fae3cc46df9a1d38f6bfd996b4.glb",
+    "length": 2.7459895610809326,
+    "width": 1.5122028589248657
+}

@@ -1,0 +1,92 @@
+{
+    "description_long": "This object is a sleek, modern airplane with a sharply pointed nose and a streamlined fuselage, designed for high-speed flight. The wings are swept back and positioned at a mid-level on the fuselage, giving the aircraft a dynamic, aggressive profile. The tail section features a conventional design with a single vertical stabilizer and horizontal stabilizers extending from either side. The surface appears smooth and glossy, likely constructed from advanced composite materials or metal alloys. The engines are not distinctly visible, suggesting they may be integrated into the fuselage or mounted in a way that minimizes drag. The overall color scheme is predominantly black, contributing to a stealthy and high-performance appearance.",
+    "description": "A sleek, black, swept-wing airplane with a pointed nose, mid-mounted wings, and a conventional tail. Its smooth, glossy surface and streamlined design suggest high speed and advanced construction.",
+    "description_view_0": "From above, the airplane's swept-back wings and pointed nose are clearly visible, emphasizing its aerodynamic shape.",
+    "description_view_1": "The side view highlights the elongated fuselage, pointed nose, and the mid-mounted wings, with the tail and stabilizers visible at the rear.",
+    "description_view_2": "From below, the airplane's undercarriage is visible, showing the clean lines of the fuselage and the symmetry of the wings and tail.",
+    "description_view_3": "The opposite side view mirrors view 1, again showing the streamlined profile and the arrangement of the wings and tail surfaces.",
+    "category": "airplane",
+    "height": 2.5,
+    "max_dimension": 15.0,
+    "materials": [
+        "aluminum",
+        "carbon fiber composite",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 8000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 78400,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "landing gear",
+        "control surfaces",
+        "doors"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.1,
+    "surface_finish": "glossy",
+    "reflectivity": 0.6,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.3,
+    "bounciness": 0.05,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing configuration with swept-back wings and no visible winglets; wings appear to have a slight dihedral angle.",
+    "attribute_engine_type": "Engines not distinctly visible; likely integrated or rear-mounted jet configuration.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "Landing gear not visible; configuration indeterminate from images.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit integrated smoothly into the fuselage.",
+    "uid": "6c6e30d796094ff291ab66c971633a90",
+    "near_synsets": {
+        "airplane.n.01": 0.4891178336849946,
+        "aircraft.n.01": 0.4955398124919106,
+        "monoplane.n.01": 0.511333392151517,
+        "warplane.n.01": 0.5316360560685233,
+        "jet.n.01": 0.5354991977654768
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6c6e30d796094ff291ab66c971633a90",
+        "creator_username": "overevolve",
+        "creator_display_name": "overevolve",
+        "creator_profile_url": "https://sketchfab.com/overevolve"
+    },
+    "filename": "std_6c6e30d796094ff291ab66c971633a90.glb",
+    "length": 14.55490779876709,
+    "width": 70.93309783935547
+}

@@ -1,0 +1,91 @@
+{
+    "description_long": "This is a small, rustic wooden shelter with a gabled roof and a single open entryway at the front. The exterior is constructed from vertically arranged, weathered wooden planks, giving it a natural, aged appearance. The roof is steeply pitched and made from darker wooden boards, providing effective runoff for rain. The interior is hollow and accessible through a large, arched opening, suitable for small animals or as a protective structure for objects. There are no windows, doors, or visible hardware, and the back and sides are fully enclosed with the same wooden planking. The overall design is simple and utilitarian, blending well with natural or urban park environments.",
+    "description": "A small, rustic wooden shelter with a gabled roof and a large open entryway, made from weathered planks. The structure is fully enclosed on three sides and open at the front.",
+    "description_view_0": "Front view showing the large arched entryway and the gabled roof, with weathered wooden planks visible.",
+    "description_view_1": "Top-down view highlighting the dark, wooden gabled roof and the solid back wall with no openings.",
+    "description_view_2": "Side view displaying the triangular profile of the gabled roof and the vertical wooden planks.",
+    "description_view_3": "Rear view showing the fully enclosed back wall made of vertical wooden planks and the roof overhang.",
+    "category": "shelter",
+    "height": 1.1,
+    "max_dimension": 1.3,
+    "materials": [
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.15
+    ],
+    "mass": 45,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shelterable",
+        "hideable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "dog",
+        "cat",
+        "small_robot"
+    ],
+    "colors": [
+        "brown",
+        "dark brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "steep gabled wooden roof with overlapping planks",
+    "attribute_entryway_design": "large open arched entryway with no door or covering",
+    "attribute_support_structure": "vertical wooden plank walls and gabled wooden roof panels",
+    "attribute_signage": "none",
+    "attribute_transparency": "fully opaque",
+    "uid": "fc9e3897b3564f36be62748aaf46adb5",
+    "near_synsets": {
+        "shelter.n.02": 0.4587884740421658,
+        "shelter.n.01": 0.46928447220757086,
+        "shed.n.01": 0.4992144780746652,
+        "gazebo.n.01": 0.50633207003991,
+        "pithouse.n.01": 0.5074748657087548,
+        "tax_shelter.n.01": -1000.0,
+        "shelter.n.05": -1000.0,
+        "protection.n.04": -1000.0
+    },
+    "synset": "shelter.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fc9e3897b3564f36be62748aaf46adb5",
+        "creator_username": "donnichols",
+        "creator_display_name": "donnichols",
+        "creator_profile_url": "https://sketchfab.com/donnichols"
+    },
+    "filename": "std_fc9e3897b3564f36be62748aaf46adb5.glb",
+    "length": 1.0688628554344177,
+    "width": 0.9329897463321686
+}

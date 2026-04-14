@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a historical field cannon, featuring a long, cylindrical bronze or iron barrel mounted on a wooden carriage. The carriage is supported by two large, spoked wooden wheels with metal rims, allowing for mobility across rough terrain. The barrel is reinforced with metal bands and tapers slightly towards the muzzle, which is flared. The rear of the carriage extends backward, forming a sturdy tail for stability and aiming. Rivets and metal fittings are visible along the carriage, providing structural integrity. The overall appearance is weathered, with a dark brown and metallic color palette, evoking a sense of age and use.",
+    "description": "A historical field cannon with a bronze or iron barrel mounted on a wooden carriage, supported by two large spoked wheels and reinforced with metal bands.",
+    "description_view_0": "Side view showing the full length of the cannon barrel, both large spoked wheels, and the extended carriage tail.",
+    "description_view_1": "Front view highlighting the circular muzzle of the barrel, the alignment of the wheels, and the narrow profile of the carriage.",
+    "description_view_2": "Opposite side view similar to view 0, displaying the barrel, wheels, and carriage tail from the other side.",
+    "description_view_3": "Rear view focusing on the breech of the barrel, the wheel alignment, and the riveted carriage tail.",
+    "category": "combat tactical  vehicle",
+    "height": 1.2,
+    "max_dimension": 2.5,
+    "materials": [
+        "wood",
+        "iron",
+        "bronze",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 900,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "barrel",
+        "carriage",
+        "axle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "dark gray",
+        "bronze"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 120000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One fixed cannon barrel mounted centrally on the carriage.",
+    "attribute_armor_plating": "None visible.",
+    "attribute_camouflage_pattern": "None visible.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "b2813a4f1c794466a17ec88a96ef9f3d",
+    "near_synsets": {
+        "cannon.n.01": 0.4843607829082526,
+        "cannon.n.02": 0.48922044844151646,
+        "caisson.n.02": 0.5063836643099044,
+        "tank.n.01": 0.5110674889830289,
+        "military_vehicle.n.01": 0.5140738374498741,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "cannon.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b2813a4f1c794466a17ec88a96ef9f3d",
+        "creator_username": "khalibiorn",
+        "creator_display_name": "\u041d\u0430\u0432\u0456\u0436\u0435\u043d\u0430 \u041b\u044f\u0440\u0432\u0430",
+        "creator_profile_url": "https://sketchfab.com/khalibiorn"
+    },
+    "filename": "std_b2813a4f1c794466a17ec88a96ef9f3d.glb",
+    "length": 1.6942749619483948,
+    "width": 1.5706787109375
+}

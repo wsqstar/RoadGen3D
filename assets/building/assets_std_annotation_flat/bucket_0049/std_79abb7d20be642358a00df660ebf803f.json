@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a large, above-ground octagonal jacuzzi with a wooden exterior frame and a bright blue interior basin. The jacuzzi features a set of wooden steps on one side for easy access, and a metal ladder on the opposite side for entry and exit. An external filtration or pump unit, colored orange and black, is connected to the jacuzzi, indicating a functional water circulation system. The interior is spacious, with smooth blue walls and no visible jets or seating contours. The structure is elevated on small support blocks, keeping it off the ground. The overall design is robust and suitable for outdoor urban environments such as backyards, parks, or communal spaces.",
+    "description": "A large, octagonal above-ground jacuzzi with a wooden exterior, blue interior, access steps, and an external pump unit. It is elevated and designed for outdoor use.",
+    "description_view_0": "Side view showing the wooden steps on the left, the blue interior, and the external pump on the right.",
+    "description_view_1": "End view highlighting the metal ladder inside the jacuzzi and the external pump directly behind.",
+    "description_view_2": "Opposite side view with the pump on the left and the metal ladder visible on the right interior wall.",
+    "description_view_3": "End view with the wooden steps in the foreground and the blue interior clearly visible.",
+    "category": "jacuzzi",
+    "height": 1.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "wood",
+        "plastic",
+        "metal",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.15,
+        0.05
+    ],
+    "mass": 450,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "fillable",
+        "drainable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "steps",
+        "ladder",
+        "pump unit"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "blue",
+        "orange",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_jets": [],
+    "attribute_control_panel": "none visible",
+    "attribute_water_level": "empty",
+    "attribute_cover": false,
+    "attribute_steps": [
+        {
+            "location": "side/front",
+            "number_of_steps": 4,
+            "material": "wood"
+        }
+    ],
+    "uid": "79abb7d20be642358a00df660ebf803f",
+    "near_synsets": {
+        "hot_tub.n.01": 0.5304568070444906,
+        "pump_room.n.01": 0.5844243348524213,
+        "bathtub.n.01": 0.5915273278261871,
+        "bath_water.n.01": 0.5966482293443265,
+        "gazebo.n.01": 0.5976432579997186
+    },
+    "synset": "hot_tub.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/79abb7d20be642358a00df660ebf803f",
+        "creator_username": "brandspot",
+        "creator_display_name": "brandspot",
+        "creator_profile_url": "https://sketchfab.com/brandspot"
+    },
+    "filename": "std_79abb7d20be642358a00df660ebf803f.glb",
+    "length": 2.6124061346054077,
+    "width": 5.161439895629883
+}

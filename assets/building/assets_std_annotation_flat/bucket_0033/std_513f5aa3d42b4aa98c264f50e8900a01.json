@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a medium-sized, industrial locomotive painted in a faded magenta color with pale green railings and black undercarriage. The front features a prominent V-shaped yellow stripe, dual headlights, and a sturdy metal bumper. The side view reveals a single cab with two large rectangular windows and a door, as well as a series of vented panels and a visible serial number 'TFM238-661'. The train rides on six large metal wheels, with visible suspension and undercarriage details. The roof is flat with a raised cab section and a vented compartment at the rear. The overall design suggests a utilitarian, diesel-powered freight or shunting locomotive commonly found in urban rail yards or industrial zones.",
+    "description": "A magenta industrial locomotive with pale green railings, black undercarriage, and a single cab with large windows and vented side panels.",
+    "description_view_0": "Front view showing the V-shaped yellow stripe, dual headlights, and robust metal bumper.",
+    "description_view_1": "Side view displaying the cab with two large windows, a door, vented panels, and the serial number 'TFM238-661'.",
+    "description_view_2": "Alternate front view highlighting the symmetrical window arrangement and the raised cab roof.",
+    "description_view_3": "Opposite side view with similar features to view 1, showing the wheels, railings, and rear compartment.",
+    "category": "train",
+    "height": 3.8,
+    "max_dimension": 12.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 72000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "headlight",
+        "railing",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "magenta",
+        "pale green",
+        "black",
+        "yellow",
+        "gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.1,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_train_type": "freight locomotive",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "single door on one side of the cab",
+    "attribute_window_arrangement": "two large rectangular windows on each side of the cab",
+    "uid": "513f5aa3d42b4aa98c264f50e8900a01",
+    "near_synsets": {
+        "train.n.01": 0.4861626724890828,
+        "car_train.n.01": 0.5046308841481141,
+        "mail_train.n.01": 0.5092933734898851,
+        "tender.n.04": 0.5168873369636088,
+        "train_set.n.01": 0.5175047524009252,
+        "gearing.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "train.n.04": -1000.0,
+        "caravan.n.01": -1000.0,
+        "train.n.05": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/513f5aa3d42b4aa98c264f50e8900a01",
+        "creator_username": "cepi7",
+        "creator_display_name": "CEPI7",
+        "creator_profile_url": "https://sketchfab.com/cepi7"
+    },
+    "filename": "std_513f5aa3d42b4aa98c264f50e8900a01.glb",
+    "length": 9.271528244018555,
+    "width": 3.4733023643493652
+}

@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a large, commercial Coca-Cola delivery truck with a bright red cab and a long, enclosed cargo compartment. The sides of the truck prominently display the Coca-Cola logo in white script against a red background, with metallic framing and access doors along the length. The cab features a chrome grille, side mirrors, and a windshield with visible wipers, while the rear of the truck is solid red with reinforced corners and a loading step. The truck rides on large black wheels with metallic hubcaps, and the overall build suggests a robust steel chassis. The vehicle is designed for urban delivery, with secure, lockable cargo access and a high, boxy profile for maximum storage. The finish is glossy, reflecting light and emphasizing the vibrant branding.",
+    "description": "A glossy red Coca-Cola delivery truck with a boxy cargo compartment, chrome accents, and prominent branding on the sides.",
+    "description_view_0": "Front view showing the red cab, chrome grille, windshield, and side mirrors.",
+    "description_view_1": "Side view displaying the full Coca-Cola logo, cargo doors, and the length of the truck.",
+    "description_view_2": "Rear view highlighting the solid red back, reinforced corners, and loading step.",
+    "description_view_3": "Opposite side view with the Coca-Cola logo and visible cab details.",
+    "category": "truck",
+    "height": 3.5,
+    "max_dimension": 9.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.08,
+        0.05,
+        0.05,
+        0.02
+    ],
+    "mass": 11000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 25000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "mirror",
+        "handle",
+        "step"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "black",
+        "chrome"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "day cab",
+    "attribute_cargo_bed_type": "box",
+    "attribute_wheelbase": 5.0,
+    "attribute_number_of_axles": 2,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "a2dd83a8487945abb643f016c61154c8",
+    "near_synsets": {
+        "delivery_truck.n.01": 0.5293421248041662,
+        "coca_cola.n.01": 0.5399120456081552,
+        "car_carrier.n.01": 0.5550775990688525,
+        "van.n.05": 0.5566804516092388,
+        "boxcar.n.01": 0.5684649559651787,
+        "truck.n.01": -1000.0,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a2dd83a8487945abb643f016c61154c8",
+        "creator_username": "EmanuelRestrepoVelez",
+        "creator_display_name": "e-restrepo1114",
+        "creator_profile_url": "https://sketchfab.com/EmanuelRestrepoVelez"
+    },
+    "filename": "std_a2dd83a8487945abb643f016c61154c8.glb",
+    "length": 12.464619636535645,
+    "width": 3.1071295738220215
+}

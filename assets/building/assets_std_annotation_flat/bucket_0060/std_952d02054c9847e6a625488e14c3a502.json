@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a square, above-ground jacuzzi with a dark wood-paneled exterior and a bright blue interior basin. The jacuzzi features a metal ladder for entry, attached to one side, and a visible external filtration system with an orange pump and blue hoses. The water inside appears clean and nearly fills the basin, with the waterline close to the top edge. The structure is reinforced with vertical and horizontal supports along the exterior panels, giving it a sturdy appearance. No visible jets or control panels are present on the interior walls, and the jacuzzi is uncovered. The overall design is modern and functional, suitable for placement in a backyard, park, or urban recreational area.",
+    "description": "A square, above-ground jacuzzi with wood paneling, blue interior, metal ladder, and an external orange filtration pump. The water is nearly full and the design is modern and sturdy.",
+    "description_view_0": "Front view showing the wood-paneled exterior, blue water, and a metal ladder on the left side with the orange filtration pump on the right.",
+    "description_view_1": "Side view highlighting the metal entry ladder centered at the front and the orange filtration system directly behind it.",
+    "description_view_2": "Rear view displaying the wood paneling, blue water, and the filtration pump and hoses on the left side.",
+    "description_view_3": "Opposite side view with a clear look at the metal ladder for entry and no visible filtration system.",
+    "category": "jacuzzi",
+    "height": 1.2,
+    "max_dimension": 2.5,
+    "materials": [
+        "wood",
+        "plastic",
+        "metal",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.15,
+        0.1,
+        0.2,
+        0.05
+    ],
+    "mass": 350,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "fillable",
+        "drainable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "ladder",
+        "filtration pump",
+        "hose"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "blue",
+        "silver",
+        "orange",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.3,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 10000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_jets": [],
+    "attribute_control_panel": "none visible",
+    "attribute_water_level": "nearly full, water height close to the top edge",
+    "attribute_cover": false,
+    "attribute_steps": [
+        {
+            "location": "front",
+            "number_of_steps": 4,
+            "material": "metal"
+        }
+    ],
+    "uid": "952d02054c9847e6a625488e14c3a502",
+    "near_synsets": {
+        "hot_tub.n.01": 0.5497204287569746,
+        "pump_room.n.01": 0.57877833972376,
+        "bath_water.n.01": 0.5839032565941317,
+        "lido_deck.n.01": 0.5880834524283484,
+        "sun_deck.n.01": 0.6066633020903048
+    },
+    "synset": "hot_tub.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/952d02054c9847e6a625488e14c3a502",
+        "creator_username": "brandspot",
+        "creator_display_name": "brandspot",
+        "creator_profile_url": "https://sketchfab.com/brandspot"
+    },
+    "filename": "std_952d02054c9847e6a625488e14c3a502.glb",
+    "length": 4.287880182266235,
+    "width": 2.570663809776306
+}

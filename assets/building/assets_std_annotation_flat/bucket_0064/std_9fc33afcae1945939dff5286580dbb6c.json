@@ -1,0 +1,103 @@
+{
+    "description_long": "This traffic barricade features three horizontal wooden planks painted with alternating orange and white diagonal stripes, creating a highly visible warning pattern. The planks are mounted on a sturdy black metal A-frame structure, which provides stability and support. At the top of the barricade, there are two rounded finials, one on each side, adding a slight decorative touch and possibly serving as attachment points. The legs are wide-set and reinforced with a horizontal metal bar near the base, ensuring the barricade remains upright and difficult to tip over. The surface of the wood appears slightly textured, with a glossy finish that enhances visibility and weather resistance. The overall design is utilitarian, intended for temporary access control in urban environments such as streets, sidewalks, or construction zones.",
+    "description": "A sturdy A-frame traffic barricade with orange and white diagonal stripes on three wooden planks, supported by a black metal frame and topped with rounded finials.",
+    "description_view_0": "Front view showing three striped planks, black metal legs, and two rounded finials on top.",
+    "description_view_1": "Side view revealing the A-frame structure and the thickness of the planks, with both sides of the barricade visible.",
+    "description_view_2": "Rear view similar to the front, but with the stripes mirrored and the same structural features visible.",
+    "description_view_3": "Opposite side view, again showing the A-frame profile and the arrangement of the planks.",
+    "category": "traffic barricade",
+    "height": 1.0,
+    "max_dimension": 1.2,
+    "materials": [
+        "wood",
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 10,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "plank",
+        "support leg",
+        "finial",
+        "crossbar"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.35,
+        0.35,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "glossy",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_reflective_striping_pattern": "Diagonal orange and white stripes, each stripe approximately equal width, repeating across all three planks.",
+    "attribute_warning_signage": [],
+    "attribute_number_of_support_legs": 4,
+    "attribute_attachment_fixtures": [
+        "finial",
+        "crossbar"
+    ],
+    "attribute_presence_of_lights": false,
+    "uid": "9fc33afcae1945939dff5286580dbb6c",
+    "near_synsets": {
+        "crossbar.n.03": 0.542324959663784,
+        "roadblock.n.02": 0.5548734150326234,
+        "crossbar.n.01": 0.5629455265853216,
+        "white_line.n.01": 0.5631071900580414,
+        "crash_barrier.n.01": 0.563424390575358,
+        "traffic.n.03": -1000.0,
+        "dealings.n.01": -1000.0,
+        "barricade.n.02": -1000.0,
+        "traffic.n.02": -1000.0,
+        "traffic.n.01": -1000.0
+    },
+    "synset": "roadblock.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9fc33afcae1945939dff5286580dbb6c",
+        "creator_username": "LinkBA",
+        "creator_display_name": "Louis",
+        "creator_profile_url": "https://sketchfab.com/LinkBA"
+    },
+    "filename": "std_9fc33afcae1945939dff5286580dbb6c.glb",
+    "length": 0.9851399064064026,
+    "width": 1.6308503150939941
+}

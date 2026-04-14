@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a large, heavy-duty yellow and gray dump truck designed for transporting bulk materials such as gravel, sand, or debris in urban environments. The cab is painted yellow with black accents and features two side mirrors, a front grille, and two rectangular windows on the roof. The rear cargo bed is gray, deep, and open-topped, with reinforced side panels and a visible orange safety marker or equipment piece inside. The truck has three axles with six large wheels, providing stability and support for heavy loads. The overall build is robust, with a high ground clearance and a functional, utilitarian design. The materials and finish suggest durability and resistance to wear, suitable for construction or municipal work.",
+    "description": "A robust yellow and gray dump truck with a deep open cargo bed, three axles, and a utilitarian design for heavy-duty urban transport.",
+    "description_view_0": "Front view showing the yellow cab, black grille, two roof windows, and side mirrors.",
+    "description_view_1": "Left side view highlighting the length of the cargo bed, three axles, and the cab's door and window.",
+    "description_view_2": "Rear view displaying the open cargo bed, orange safety marker, and reinforced side panels.",
+    "description_view_3": "Right side view similar to the left, showing the cargo bed, wheels, and cab details.",
+    "category": "truck",
+    "height": 3.2,
+    "max_dimension": 8.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.82,
+        0.05,
+        0.07,
+        0.03,
+        0.03
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "mirror",
+        "cargo bed",
+        "window",
+        "grille"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "gray",
+        "black",
+        "orange"
+    ],
+    "colors_composition": [
+        0.35,
+        0.55,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "day cab",
+    "attribute_cargo_bed_type": "dump bed",
+    "attribute_wheelbase": 4.5,
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "64152c9997fe495bb239fc7cf9dd25ec",
+    "near_synsets": {
+        "dump_truck.n.01": 0.4844461417074136,
+        "truck.n.01": 0.48531853159860655,
+        "dumpster.n.01": 0.485911161991781,
+        "flatbed.n.02": 0.49125116404722874,
+        "van.n.05": 0.501786396964704,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/64152c9997fe495bb239fc7cf9dd25ec",
+        "creator_username": "anushtup",
+        "creator_display_name": "Phase 1",
+        "creator_profile_url": "https://sketchfab.com/anushtup"
+    },
+    "filename": "std_64152c9997fe495bb239fc7cf9dd25ec.glb",
+    "length": 8.492004871368408,
+    "width": 3.2811779975891113
+}

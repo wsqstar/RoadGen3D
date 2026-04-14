@@ -1,0 +1,94 @@
+{
+    "description_long": "This is a rectangular greenhouse structure with a gently curved, arched roof and a visible metal frame. The frame is constructed from a grid of metal bars, providing support for translucent wall and roof panels that allow sunlight to penetrate the interior. The front features a large, double-door entryway with diagonal bracing for stability, and the roof includes a small vent or hatch for ventilation. The side and rear views reveal evenly spaced vertical and horizontal supports, as well as the continuous curvature of the roof. The structure is elevated slightly above the ground on metal feet, suggesting it is designed for stability and durability in outdoor environments. The overall appearance is utilitarian and modern, optimized for maximum light exposure and efficient use of space.",
+    "description": "A modern, arched greenhouse with a metal frame and translucent panels, featuring a double-door entry and roof vent. The structure is spacious, sturdy, and designed for optimal sunlight exposure.",
+    "description_view_0": "Front view showing the double-door entry, diagonal bracing, and the arched roof structure.",
+    "description_view_1": "Side view highlighting the length of the greenhouse, the evenly spaced metal supports, and the curvature of the roof.",
+    "description_view_2": "Rear view mirroring the front, but without doors, showing the full grid of the metal frame and the arched roof.",
+    "description_view_3": "Opposite side view, similar to view 1, displaying the metal frame and translucent panels along the length.",
+    "category": "greenhouse",
+    "height": 2.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "metal",
+        "polycarbonate",
+        "air"
+    ],
+    "materials_composition": [
+        0.25,
+        0.35,
+        0.4
+    ],
+    "mass": 450,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "ventilatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "door handle",
+        "roof vent"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_transparent_walls": true,
+    "attribute_glass_roof": false,
+    "attribute_metal_frame": true,
+    "attribute_visible_plants_inside": false,
+    "attribute_architectural_style": "modern arched",
+    "uid": "2aa9e782b49a4a46ac4c60859b0a7e09",
+    "near_synsets": {
+        "greenhouse.n.01": 0.4856671547525353,
+        "conservatory.n.03": 0.5331225512105137,
+        "cold_frame.n.01": 0.5404777858540886,
+        "solar_house.n.01": 0.5557382565452523,
+        "french_door.n.01": 0.5598780095665875
+    },
+    "synset": "greenhouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2aa9e782b49a4a46ac4c60859b0a7e09",
+        "creator_username": "sanx78",
+        "creator_display_name": "MinorEarth",
+        "creator_profile_url": "https://sketchfab.com/sanx78"
+    },
+    "filename": "std_2aa9e782b49a4a46ac4c60859b0a7e09.glb",
+    "length": 4.319598436355591,
+    "width": 3.288367748260498
+}

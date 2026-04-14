@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a medium-sized, six-wheeled cargo truck with a weathered, utilitarian appearance. The cab is angular and armored, featuring a sloped front with a large, rusted metal plate and a vented grille, as well as a visible exhaust pipe on the right side. The truck's body is primarily painted in faded green with patches of rust and wear, and the cargo bed is open, constructed from wooden planks with metal framing. The side panels of the cargo bed are reinforced, and the wheels are robust, suitable for urban or industrial environments. There are small details such as a yellow hazard symbol and a metallic badge on the cab, adding to its rugged, functional design. The overall look suggests a vehicle built for heavy-duty transport in challenging urban settings.",
+    "description": "A weathered, six-wheeled cargo truck with a green, rusted cab and an open wooden cargo bed, featuring industrial details and reinforced panels.",
+    "description_view_0": "Rear view showing the open cargo bed with wooden planks and metal framing, and the back of the armored cab.",
+    "description_view_1": "Left side view highlighting the full length of the truck, the open cargo bed, and the armored cab with visible exhaust and hazard symbol.",
+    "description_view_2": "Front view displaying the sloped, armored cab with a rusted metal plate, vented grille, and robust bumper.",
+    "description_view_3": "Right side view showing the open cargo bed, armored cab, and additional side details like the metallic badge.",
+    "category": "truck",
+    "height": 2.2,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "wood",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 4200,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 7,
+    "movable": true,
+    "required_force": 9000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "cargo bed",
+        "exhaust pipe",
+        "bumper"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "black",
+        "gray",
+        "yellow",
+        "red"
+    ],
+    "colors_composition": [
+        0.55,
+        0.2,
+        0.15,
+        0.07,
+        0.02,
+        0.01
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "flatbed",
+    "attribute_wheelbase": 3.8,
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "6a465f04871a4dbc8ca3f683c0f5de29",
+    "near_synsets": {
+        "van.n.05": 0.49121499048152995,
+        "truck.n.01": 0.5177738210323204,
+        "cargo_container.n.01": 0.5230766673325906,
+        "truck_bed.n.01": 0.527112483230327,
+        "cargo_door.n.01": 0.5289629387679428,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6a465f04871a4dbc8ca3f683c0f5de29",
+        "creator_username": "pavelsmith15",
+        "creator_display_name": "Hurricane",
+        "creator_profile_url": "https://sketchfab.com/pavelsmith15"
+    },
+    "filename": "std_6a465f04871a4dbc8ca3f683c0f5de29.glb",
+    "length": 5.07811427116394,
+    "width": 2.3410509824752808
+}

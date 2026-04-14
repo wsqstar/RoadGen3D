@@ -1,0 +1,96 @@
+{
+    "description_long": "This hotel is a mid-rise, modernist building with a boxy, geometric form and a flat roof. The facade features a series of horizontal window bands, suggesting multiple floors of guest rooms. A large, bold sign reading 'HOTEL' is prominently displayed on the upper front facade, with a second, angled sign extending from a platform near the entrance, enhancing street visibility. The structure sits on a raised base with steps or a platform leading up to the main entrance area. The exterior is finished in light gray tones, with darker accents on the roof and signage, giving it a clean, contemporary appearance. Minimal ornamentation and the use of straight lines emphasize a functional, utilitarian design.",
+    "description": "A modern, boxy hotel with horizontal window bands and bold 'HOTEL' signage on the facade and entrance platform, finished in light gray with dark accents.",
+    "description_view_0": "Side view showing the building's rectangular shape, horizontal window bands, and the projecting entrance platform with signage.",
+    "description_view_1": "Front view highlighting the main 'HOTEL' sign on the facade, the angled entrance sign, and the symmetrical window arrangement.",
+    "description_view_2": "Opposite side view displaying the building's depth, window bands, and the side profile of the entrance platform and signage.",
+    "description_view_3": "Direct frontal view focusing on the main facade, large 'HOTEL' sign, and the full width of the window bands.",
+    "category": "hotel",
+    "height": 14.0,
+    "max_dimension": 20.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "sign"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "dark gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_hotel_signage": "Large block-letter 'HOTEL' sign on the upper front facade and a second angled sign on a platform near the entrance.",
+    "attribute_number_of_windows": 16,
+    "attribute_entrance_canopy": "none",
+    "attribute_presence_of_doorman_or_bellhop": false,
+    "attribute_architectural_style": "Modernist",
+    "uid": "e23a4b96b5fe4df4a3f5be969d69c700",
+    "near_synsets": {
+        "marquee.n.02": 0.5606267404689956,
+        "hotel.n.01": 0.5633576979987183,
+        "hotel-casino.n.02": 0.5651411623445214,
+        "hotel_room.n.01": 0.5778348041052872,
+        "hotel-casino.n.01": 0.5823476096334987
+    },
+    "synset": "hotel-casino.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e23a4b96b5fe4df4a3f5be969d69c700",
+        "creator_username": "akolmonen",
+        "creator_display_name": "A3D",
+        "creator_profile_url": "https://sketchfab.com/akolmonen"
+    },
+    "filename": "std_e23a4b96b5fe4df4a3f5be969d69c700.glb",
+    "length": 15.280427932739258,
+    "width": 16.105690002441406
+}

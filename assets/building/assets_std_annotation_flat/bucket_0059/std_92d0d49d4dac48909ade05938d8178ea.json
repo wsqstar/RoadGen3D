@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a vintage, wheeled heavy machine gun emplacement, reminiscent of early 20th-century designs such as the Maxim gun. It features a large, rounded metal shield at the front for operator protection, with a cylindrical barrel protruding through a slot in the shield. The gun is mounted on a two-wheeled carriage with spoked wheels and a pair of long, curved metal trails extending from the rear, likely for stabilization and maneuvering. The surface appears to be made of aged, weathered metal, giving it a rugged, utilitarian look. The overall construction is robust, with visible rivets and mechanical details, and the object is predominantly gray in color.",
+    "description": "A vintage, wheeled heavy machine gun with a large metal shield, spoked wheels, and long rear trails, finished in weathered gray metal.",
+    "description_view_0": "Front-side view showing the cylindrical barrel, large rounded shield, and both spoked wheels with the rear trails extending backward.",
+    "description_view_1": "Rear view highlighting the curved metal trails, the back of the shield, and the mounting structure of the gun.",
+    "description_view_2": "Side view displaying the full length of the barrel, the shield's profile, and the alignment of the wheels and trails.",
+    "description_view_3": "Rear-side view focusing on the attachment of the trails to the carriage and the back of the gun assembly.",
+    "category": "combat tactical  vehicle",
+    "height": 1.1,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "iron",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 250,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "rotatable",
+        "aimable",
+        "fireable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "barrel",
+        "shield",
+        "trails",
+        "elevation mechanism",
+        "trigger"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible weapon mount: a fixed heavy machine gun barrel centrally mounted behind a large frontal shield.",
+    "attribute_armor_plating": "Visible armor plating consists of a large, curved metal shield at the front, providing partial frontal coverage; thickness appears moderate, with no visible modular or reactive features.",
+    "attribute_camouflage_pattern": "None visible; the object is finished in a solid, weathered gray color.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable; the vehicle uses two large spoked metal wheels without rubber tires.",
+    "uid": "92d0d49d4dac48909ade05938d8178ea",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.49311438176964684,
+        "armored_car.n.02": 0.5055694349223827,
+        "tank.n.01": 0.5133556173841988,
+        "assault_gun.n.02": 0.5186391425024489,
+        "weapons_carrier.n.01": 0.5216743219067711,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/92d0d49d4dac48909ade05938d8178ea",
+        "creator_username": "vitebsk3dprint",
+        "creator_display_name": "Center Additive Manufacturing",
+        "creator_profile_url": "https://sketchfab.com/vitebsk3dprint"
+    },
+    "filename": "std_92d0d49d4dac48909ade05938d8178ea.glb",
+    "length": 1.298878014087677,
+    "width": 1.9861947894096375
+}

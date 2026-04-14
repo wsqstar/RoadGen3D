@@ -1,0 +1,111 @@
+{
+    "description_long": "This is a yellow sedan-style taxi cab with a prominent roof-mounted taxi sign and advertising display. The vehicle features black wheels, a black front bumper guard, and clear windows revealing a dark interior. The sides of the taxi display the company name 'Dependable Cab Co.', a phone number, and the vehicle number '3521'. The rear window is marked with the same phone number and company branding, and a license plate is visible at the back. The roof sign is white with 'TAXI' in black letters, and the advertising panel on the roof is pink and white. The overall appearance is clean and professional, suitable for urban passenger transport.",
+    "description": "A yellow sedan taxi with a roof-mounted taxi sign, advertising panel, company branding, and black wheels. The vehicle is marked with a phone number, company name, and license plate.",
+    "description_view_0": "Rear view showing the license plate, rear window with phone number, and the back of the roof-mounted taxi sign.",
+    "description_view_1": "Left side view displaying the company name, phone number, vehicle number, and the side of the roof sign and advertising panel.",
+    "description_view_2": "Front view highlighting the black bumper guard, headlights, front license plate, and the front of the roof-mounted taxi sign.",
+    "description_view_3": "Right side view showing the company branding, phone number, vehicle number, and the advertising panel on the roof.",
+    "category": "taxi",
+    "height": 1.6,
+    "max_dimension": 5.2,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.12,
+        0.08,
+        0.08,
+        0.04,
+        0.03
+    ],
+    "mass": 1700,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "wheel",
+        "window",
+        "trunk",
+        "hood",
+        "roof sign",
+        "advertising panel",
+        "license plate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "white",
+        "pink",
+        "red",
+        "blue"
+    ],
+    "colors_composition": [
+        0.75,
+        0.12,
+        0.06,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.38,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.07,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_taxi_sign": true,
+    "attribute_roof_light": true,
+    "attribute_license_plate": true,
+    "attribute_company_branding": true,
+    "attribute_fare_meter_display": false,
+    "uid": "d4c035d5857f4b49baf2ee27f7051a16",
+    "near_synsets": {
+        "medallion.n.03": 0.5120064891997544,
+        "gypsy_cab.n.01": 0.5263887278267578,
+        "minicab.n.01": 0.536825270247505,
+        "taximeter.n.01": 0.5472488648012984,
+        "cab.n.03": 0.5535836205067931
+    },
+    "synset": "taximeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d4c035d5857f4b49baf2ee27f7051a16",
+        "creator_username": "aduong278",
+        "creator_display_name": "Andrew Duong",
+        "creator_profile_url": "https://sketchfab.com/aduong278"
+    },
+    "filename": "std_d4c035d5857f4b49baf2ee27f7051a16.glb",
+    "length": 4.435080528259277,
+    "width": 1.775239109992981
+}

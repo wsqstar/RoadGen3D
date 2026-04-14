@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a semi-automatic handgun with a compact, angular frame and a metallic finish. The slide appears to be made of steel, featuring subtle grooves for grip and manipulation, and the barrel is short, consistent with a concealed-carry or service pistol. The grip is ergonomically contoured, likely polymer, with visible texturing for improved handling, and the magazine base is slightly extended, providing additional surface area for the user's hand. The trigger guard is rounded and robust, offering ample space for finger placement and possibly accommodating gloved use. Several small, cylindrical objects resembling bullets are positioned nearby, suggesting the handgun is accompanied by ammunition. The overall design is utilitarian, with minimal embellishments and a focus on functionality.",
+    "description": "A compact, metallic semi-automatic handgun with a textured grip, robust trigger guard, and short barrel, accompanied by several bullets. The design is utilitarian and functional, with minimal decorative features.",
+    "description_view_0": "The handgun is seen from above, showing the slide, grip, and barrel, with bullets nearby and the magazine base partially visible.",
+    "description_view_1": "This view highlights the side profile, revealing the slide serrations, trigger guard, and the alignment of the bullets relative to the handgun.",
+    "description_view_2": "The handgun is viewed from the opposite side, emphasizing the grip texture, magazine base, and the overall compactness of the frame.",
+    "description_view_3": "A perspective from the rear, showing the back of the grip, the magazine base, and the arrangement of bullets, with the trigger guard partially visible.",
+    "category": "handgun",
+    "height": 0.13,
+    "max_dimension": 0.22,
+    "materials": [
+        "steel",
+        "polymer",
+        "brass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.08,
+        0.02
+    ],
+    "mass": 0.85,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 10,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "unloadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "slide",
+        "magazine",
+        "trigger guard",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "brass"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_grip_design": "The grip is ergonomically contoured with a slightly flared base, constructed from a matte black polymer material. It features a stippled texture for enhanced traction and control, with subtle finger grooves molded into the surface for improved ergonomics. The sides of the grip are flat with a gentle curve at the rear, and there are no visible logos or embellishments. The overall design prioritizes secure handling and comfort.",
+    "attribute_trigger_guard_style": "The trigger guard is rounded and moderately thick, providing ample space for finger placement. It has a smooth, matte finish with no visible texturing or reinforcement. The curvature is gentle, and the guard appears robust, suitable for both bare and gloved hands. There are no undercuts, squared-off edges, or integrated accessories visible.",
+    "attribute_barrel_type": "The barrel is short and standard in profile, with a smooth, metallic exterior and no visible threading, porting, or compensators. It has a matte finish consistent with the rest of the handgun, and no external markings or fluting are apparent.",
+    "attribute_slide_markings": "There are no clearly visible markings, engravings, or inscriptions on the slide. The surface appears plain, with only functional serrations at the rear for grip, and no manufacturer logos, model names, or caliber designations are discernible.",
+    "attribute_magazine_base_shape": "The magazine base is slightly extended and flat, with a beveled edge for easier insertion and removal. It is constructed from the same black polymer as the grip, with no finger rest, logos, or additional texturing visible. The design is simple and functional, providing a minimal increase in grip length.",
+    "uid": "c016c60c204242cea660732d8d6457d2",
+    "near_synsets": {
+        "pistol.n.01": 0.48179762249202895,
+        "firearm.n.01": 0.490873720261867,
+        "semiautomatic_pistol.n.01": 0.5029136755983173,
+        "submachine_gun.n.01": 0.5135030983441714,
+        "pistol_grip.n.01": 0.5190556856271503
+    },
+    "synset": "semiautomatic_pistol.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c016c60c204242cea660732d8d6457d2",
+        "creator_username": "mique",
+        "creator_display_name": "mique",
+        "creator_profile_url": "https://sketchfab.com/mique"
+    },
+    "filename": "std_c016c60c204242cea660732d8d6457d2.glb",
+    "length": 5.741680383682251,
+    "width": 5.766109466552734
+}

@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a robust, industrial forklift with a predominantly yellow and black color scheme, featuring a large front loader bucket instead of traditional fork arms. The vehicle has four thick, treaded tires designed for stability and traction on rough urban or construction surfaces. The cab is enclosed with glass windows and has side mirrors for enhanced operator visibility and safety. The rear section is rounded and compact, with visible branding and a protective overhead guard. Hydraulic arms and linkages are visible at the front, supporting the loader bucket and enabling lifting and tilting operations. The overall build is heavy-duty, suitable for transporting and loading materials in urban construction or maintenance environments.",
+    "description": "A heavy-duty yellow and black forklift with a large front loader bucket, enclosed cab, and thick treaded tires, designed for urban construction tasks.",
+    "description_view_0": "Front view shows the wide loader bucket, hydraulic arms, and the protective cab with side mirrors.",
+    "description_view_1": "Left side view highlights the loader bucket in a raised position, the large rear wheel, and the enclosed cab.",
+    "description_view_2": "Rear view displays the compact, rounded back with branding and the overhead guard structure.",
+    "description_view_3": "Right side view shows the loader bucket, hydraulic mechanisms, and the full length of the vehicle.",
+    "category": "forklift",
+    "height": 2.7,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.1,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 25000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "loader bucket",
+        "hydraulic arm",
+        "mirror",
+        "operator seat",
+        "control lever"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.55,
+        0.35,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_fork_arms": "Instead of traditional fork arms, this vehicle features a single, wide, curved steel loader bucket at the front, with a reinforced edge and visible wear on the lower surface. The bucket is attached to two robust hydraulic arms and is designed for scooping and lifting bulk materials.",
+    "attribute_overhead_guard": "The overhead guard is a solid, black metal structure extending over the operator cab, providing full coverage and protection from falling objects. It is integrated into the cab frame and features a rear extension for added safety.",
+    "attribute_mast": "The mast consists of two thick, vertical steel supports with hydraulic cylinders and linkages, supporting the loader bucket. The mast is single-stage and features visible hydraulic hoses and pivot points for lifting and tilting the bucket.",
+    "attribute_operator_seat": "The operator seat is centrally positioned within the cab, moderately sized, and appears to be padded with a black covering. It includes a high backrest and is surrounded by control levers and a steering wheel, though armrests and seatbelt are not clearly visible.",
+    "attribute_warning_lights": "There is a single, small, orange warning light mounted on the roof of the cab, centrally positioned and dome-shaped. It does not appear to be illuminated in the images.",
+    "uid": "dd5781133cc54242a9a7a4ba16329c5a",
+    "near_synsets": {
+        "forklift.n.01": 0.4451232030474798,
+        "lifting_device.n.01": 0.5342917580041875,
+        "backhoe.n.01": 0.5420058243325443,
+        "stacker_crane.n.01": 0.543265954357457,
+        "scoop.n.05": 0.549897550281929
+    },
+    "synset": "forklift.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dd5781133cc54242a9a7a4ba16329c5a",
+        "creator_username": "jstratandersen",
+        "creator_display_name": "jstratandersen",
+        "creator_profile_url": "https://sketchfab.com/jstratandersen"
+    },
+    "filename": "std_dd5781133cc54242a9a7a4ba16329c5a.glb",
+    "length": 5.574527263641357,
+    "width": 1.699500322341919
+}

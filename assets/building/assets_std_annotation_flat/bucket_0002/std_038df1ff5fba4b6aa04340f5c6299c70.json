@@ -1,0 +1,110 @@
+{
+    "description_long": "This delivery robot features a cylindrical body with a weathered orange and green color scheme, accented by metallic and mechanical details. The front displays three circular elements vertically aligned, possibly sensors or lights, beneath a large white number '4' and some stenciled text. Four articulated legs with claw-like feet extend from the base, providing stability and mobility, each leg covered with orange armor plating. The rear is equipped with a complex assembly of pipes, tanks, and two vertical antennae, suggesting advanced communication or environmental sensing capabilities. The sides reveal additional mechanical components and tubing, with the left side dominated by a large cylindrical canister and ribbed piping. The overall design is robust and utilitarian, suitable for navigating urban environments and delivering cargo securely.",
+    "description": "A rugged, cylindrical delivery robot with orange and green panels, four articulated legs, and prominent front sensors, designed for urban navigation and cargo transport.",
+    "description_view_0": "Front view shows the three circular sensors or lights, the number '4', and the main access area, with all four legs visible.",
+    "description_view_1": "Left-rear angle highlights the large cylindrical canister, ribbed piping, and rear-mounted antennae, with mechanical details more prominent.",
+    "description_view_2": "Rear view displays the dual antennae, two rectangular access panels, and symmetrical mechanical components, with no visible sensors.",
+    "description_view_3": "Right-rear angle reveals the side piping, canister, and partial view of the front sensors, with the number '4' partially visible.",
+    "category": "delivery robot",
+    "height": 1.1,
+    "max_dimension": 1.2,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 85,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "sensor array",
+        "antenna",
+        "access panel",
+        "legs",
+        "canister",
+        "buttons"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "green",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.45,
+        0.3,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_brand_logo": "On the front upper section, there is a large white number '4' and some stenciled text, but no recognizable brand logo.",
+    "attribute_sensor_array": [
+        "Three circular sensors or lights vertically aligned on the front center panel, likely for navigation or environmental detection."
+    ],
+    "attribute_wheel_configuration": "none",
+    "attribute_compartment_access_panel": "Two rectangular access panels are visible on the rear, each with a recessed area and possible hinge lines, suggesting access to internal compartments.",
+    "attribute_display_screen": "none",
+    "uid": "038df1ff5fba4b6aa04340f5c6299c70",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5601788013284703,
+        "delivery_truck.n.01": 0.5843386059580685,
+        "wheeled_vehicle.n.01": 0.5947152759257295,
+        "laundry_truck.n.01": 0.5964796267812971,
+        "automaton.n.02": 0.5973379852254778,
+        "pitch.n.02": -1000.0,
+        "manner_of_speaking.n.01": -1000.0,
+        "delivery.n.07": -1000.0,
+        "delivery.n.02": -1000.0,
+        "delivery.n.01": -1000.0,
+        "delivery.n.04": -1000.0,
+        "rescue.n.01": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/038df1ff5fba4b6aa04340f5c6299c70",
+        "creator_username": "gamertturtle",
+        "creator_display_name": "gamertturtle",
+        "creator_profile_url": "https://sketchfab.com/gamertturtle"
+    },
+    "filename": "std_038df1ff5fba4b6aa04340f5c6299c70.glb",
+    "length": 0.7852005660533905,
+    "width": 0.7852824926376343
+}

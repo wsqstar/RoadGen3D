@@ -1,0 +1,91 @@
+{
+    "description_long": "This object is a classic cartoon-style spherical bomb, featuring a matte black, nearly perfect sphere as its main body. At the top, a short, thick beige fuse protrudes from a small cylindrical neck, suggesting a traditional ignition method. The surface of the bomb is smooth with a subtle sheen, indicating a hard, metallic material, and it lacks any visible seams, markings, or warning labels. The fuse appears to be made of a fibrous material, possibly cotton or hemp, and is slightly bent, giving it a hand-crafted appearance. The bomb's size is compact, likely small enough to be carried in one hand, and its overall design is simple and iconic, reminiscent of explosives depicted in animated media. There are no visible buttons, wires, or digital components, reinforcing its analog, mechanical detonation style.",
+    "description": "A matte black spherical bomb with a short, beige fuse protruding from the top. The surface is smooth and metallic, with no visible markings or digital components.",
+    "description_view_0": "The bomb is seen from a slight angle, showing the bent beige fuse and the smooth, glossy black surface.",
+    "description_view_1": "A direct top-down view highlights the circular neck and the fuse extending straight upward from the center.",
+    "description_view_2": "This side view displays the fuse at an angle and the uninterrupted, round body of the bomb.",
+    "description_view_3": "A direct front view with the fuse pointing straight toward the viewer, emphasizing the symmetry of the bomb.",
+    "category": "bomb",
+    "height": 0.22,
+    "max_dimension": 0.22,
+    "materials": [
+        "steel",
+        "cotton",
+        "air",
+        "gunpowder"
+    ],
+    "materials_composition": [
+        0.7,
+        0.05,
+        0.1,
+        0.15
+    ],
+    "mass": 2.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 25,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "throwable",
+        "ignitable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "fuse"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "beige"
+    ],
+    "colors_composition": [
+        0.93,
+        0.07
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The bomb appears to be ignited by lighting the exposed fuse at the top, which would burn down to the main body to trigger detonation.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "49157a8749a24a2c9244bf525c8bf7f5",
+    "near_synsets": {
+        "briefcase_bomb.n.01": 0.5236366840877389,
+        "bomb.n.01": 0.5310554296062816,
+        "plastic_bomb.n.01": 0.5327793890427494,
+        "pipe_bomb.n.01": 0.538477953281644,
+        "remote-control_bomb.n.01": 0.5452979256811074,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/49157a8749a24a2c9244bf525c8bf7f5",
+        "creator_username": "anzolin.marcel",
+        "creator_display_name": "anzolin.marcel",
+        "creator_profile_url": "https://sketchfab.com/anzolin.marcel"
+    },
+    "filename": "std_49157a8749a24a2c9244bf525c8bf7f5.glb",
+    "length": 0.16177145391702652,
+    "width": 0.1617714762687683
+}

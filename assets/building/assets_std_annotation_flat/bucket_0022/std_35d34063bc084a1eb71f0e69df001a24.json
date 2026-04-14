@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a single-propeller, camouflage-painted military airplane reminiscent of World War II fighter aircraft, featuring a streamlined fuselage and elliptical wings. The wings are mid-mounted and display roundels, suggesting Royal Air Force (RAF) markings, with a mottled green and brown camouflage pattern for concealment. The nose houses a single piston engine with a three-blade propeller, and the cockpit is positioned just behind the engine, enclosed with a clear canopy. The tail section is conventional, with a single vertical stabilizer and horizontal stabilizers. The landing gear is not visible, likely retracted or modeled in a stowed position. The overall design is optimized for agility and speed, typical of classic fighter planes.",
+    "description": "A camouflage-painted, single-propeller military airplane with elliptical mid-mounted wings, RAF roundels, and a streamlined fuselage.",
+    "description_view_0": "Front view showing the elliptical wingspan, central propeller, and camouflage pattern across the nose and wings.",
+    "description_view_1": "Angled side view highlighting the RAF roundel on the fuselage, cockpit canopy, and the full length of the propeller.",
+    "description_view_2": "Top-down view displaying the full elliptical wings, camouflage pattern, and the alignment of the tail and fuselage.",
+    "description_view_3": "Opposite side view showing the tail, cockpit, and propeller, with the camouflage and roundel on the wing visible.",
+    "category": "airplane",
+    "height": 3.5,
+    "max_dimension": 9.5,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.05,
+        0.05,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 2700,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 26460,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "cockpit canopy",
+        "control stick",
+        "landing gear",
+        "wheels"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "gray",
+        "red",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 12.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing, straight elliptical wings with no visible winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "Single nose-mounted piston engine with a three-blade propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Taildragger configuration, landing gear not visible (likely retracted or modeled in stowed position).",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed single-seat cockpit with a clear canopy just behind the engine.",
+    "uid": "35d34063bc084a1eb71f0e69df001a24",
+    "near_synsets": {
+        "aircraft.n.01": 0.4847501712554543,
+        "airplane.n.01": 0.5132158669919031,
+        "warplane.n.01": 0.5223790984298999,
+        "royal_air_force.n.01": 0.5258009686964945,
+        "monoplane.n.01": 0.5280438687119486
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/35d34063bc084a1eb71f0e69df001a24",
+        "creator_username": "dirkwybe",
+        "creator_display_name": "dirkwybe",
+        "creator_profile_url": "https://sketchfab.com/dirkwybe"
+    },
+    "filename": "std_35d34063bc084a1eb71f0e69df001a24.glb",
+    "length": 11.103257656097412,
+    "width": 12.517583847045898
+}

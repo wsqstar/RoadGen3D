@@ -1,0 +1,92 @@
+{
+    "description_long": "This shelter features a broad, steeply pitched roof in a warm ochre color, extending well beyond the walls to provide ample coverage from the elements. The structure is primarily composed of solid, brown walls with a large, open entryway on one side and a wide, open window on the opposite side, allowing for airflow and visibility. The base is slightly raised, with a subtle trim that adds stability and a finished appearance. The roof appears to be a single, continuous piece, likely constructed from a durable material such as metal or treated wood. The interior is open and unobstructed, suitable for providing temporary refuge or shade in public spaces like parks or bus stops. There are no visible doors, windows with glass, or signage, emphasizing a simple, utilitarian design.",
+    "description": "A simple, brown shelter with a large, overhanging ochre roof, open entryway, and wide window for airflow. The structure is solid and utilitarian, ideal for public spaces.",
+    "description_view_0": "Front view shows a wide, open entryway flanked by solid brown walls and the prominent overhanging roof.",
+    "description_view_1": "Side view displays the solid brown wall beneath the expansive ochre roof, with no visible openings.",
+    "description_view_2": "Rear view reveals a wide, open window spanning most of the back wall, allowing for visibility and ventilation.",
+    "description_view_3": "Opposite side view mirrors the other side, showing a solid wall under the roof with no openings.",
+    "category": "shelter",
+    "height": 2.2,
+    "max_dimension": 3.5,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.2
+    ],
+    "mass": 450,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shelterable",
+        "shadeable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "entryway",
+        "window opening"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "ochre"
+    ],
+    "colors_composition": [
+        0.6,
+        0.4
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "steeply pitched, overhanging gable roof in ochre color, likely wood or metal",
+    "attribute_entryway_design": "large, open rectangular entryway with no door or covering",
+    "attribute_support_structure": "solid brown walls with a raised base and integrated roof supports",
+    "attribute_signage": "none",
+    "attribute_transparency": "fully opaque",
+    "uid": "9e33dc6fc1b04a23a91dd5267ad6a757",
+    "near_synsets": {
+        "shelter.n.01": 0.48393058868937794,
+        "shelter.n.02": 0.48495364785413886,
+        "shelter.n.05": 0.5267926755363581,
+        "shed.n.01": 0.5355159932957677,
+        "birdhouse.n.01": 0.5379129061981276,
+        "protection.n.04": -1000.0,
+        "tax_shelter.n.01": -1000.0
+    },
+    "synset": "tax_shelter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9e33dc6fc1b04a23a91dd5267ad6a757",
+        "creator_username": "artmailfox33",
+        "creator_display_name": "Arthur Barbosa",
+        "creator_profile_url": "https://sketchfab.com/artmailfox33"
+    },
+    "filename": "std_9e33dc6fc1b04a23a91dd5267ad6a757.glb",
+    "length": 3.26474928855896,
+    "width": 3.466465473175049
+}

@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a compact industrial robot arm with a sturdy circular base and multiple articulated joints, designed for precision tasks in urban environments such as workshops or garages. The arm is constructed primarily from dark metallic materials, with visible bolts and joint covers that suggest robust mechanical engineering. At the end of the arm is a two-finger gripper, suitable for grasping and manipulating small to medium-sized objects. Blue cabling is visible along the upper segment, likely for power or control signals, and there are yellow caution symbols indicating electrical or mechanical hazards. The surface finish is mostly matte with some glossy highlights on the joints, and the overall design is utilitarian and functional. The robot arm appears to be floor-mounted and is not intended for human entry or traversal.",
+    "description": "A compact, dark metallic industrial robot arm with a two-finger gripper, visible blue cabling, and a sturdy circular base. It features multiple articulated joints and caution markings, designed for precision tasks in urban settings.",
+    "description_view_0": "Side view showing the full length of the robot arm, the two-finger gripper, blue cabling, and all articulated joints clearly.",
+    "description_view_1": "Front view highlighting the narrow profile of the arm, the blue cable loop, and the circular base with minimal detail on the gripper.",
+    "description_view_2": "Opposite side view similar to view 0, showing the arm's segments, gripper, and base, with the blue cable more visible.",
+    "description_view_3": "Rear view focusing on the back of the joints and base, with the gripper partially obscured and the cabling less prominent.",
+    "category": "robot arm",
+    "height": 0.7,
+    "max_dimension": 0.9,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "copper",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 35,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "rotatable",
+        "actuatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "gripper",
+        "joints",
+        "base",
+        "cabling"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "blue",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_joint_type": "revolute",
+    "attribute_number_of_segments": 2,
+    "attribute_end_effector_type": "two-finger gripper",
+    "attribute_visible_wiring_or_cabling": true,
+    "attribute_mounting_location": "floor-mounted",
+    "uid": "65f4e7688de640aba446286f2843ad17",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5387480519440195,
+        "grab.n.01": 0.5565645520650645,
+        "automaton.n.02": 0.5711923742502617,
+        "robotics.n.01": 0.5893226695666426,
+        "tone_arm.n.01": 0.5901538840905874,
+        "weapon.n.01": -1000.0,
+        "branch.n.01": -1000.0,
+        "arm.n.01": -1000.0,
+        "sleeve.n.01": -1000.0,
+        "arm.n.02": -1000.0,
+        "arm.n.04": -1000.0
+    },
+    "synset": "grab.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/65f4e7688de640aba446286f2843ad17",
+        "creator_username": "Artkalsin",
+        "creator_display_name": "Artkalsin",
+        "creator_profile_url": "https://sketchfab.com/Artkalsin"
+    },
+    "filename": "std_65f4e7688de640aba446286f2843ad17.glb",
+    "length": 0.3532765358686447,
+    "width": 0.6538487076759338
+}

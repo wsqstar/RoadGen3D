@@ -1,0 +1,101 @@
+{
+    "description_long": "This humanoid robot features a blocky, voxel-inspired design with a rectangular head displaying a digital yellow smiley face and circular eyes on a dark screen. Its body is constructed from light gray panels with visible joints and mechanical details at the shoulders, elbows, hips, and knees, suggesting a functional, articulated build. The robot stands upright and interacts with a black electronic keyboard mounted on a cross-legged stand, with its hands positioned over the keys as if playing. The arms and legs are segmented, with clear mechanical separations at the joints, and the hands are shaped to mimic human fingers. The overall appearance is utilitarian yet friendly, with a simple, approachable aesthetic. The robot's exterior is primarily metallic, with some plastic or composite elements, and the keyboard adds a contrasting black accent to the scene.",
+    "description": "A blocky, light gray humanoid robot with a digital smiley face stands at a black keyboard, hands poised to play. Its articulated limbs and mechanical joints give it a functional, friendly appearance.",
+    "description_view_0": "Front view shows the robot's digital smiley face, both arms extended toward the keyboard, and the full width of the keyboard stand.",
+    "description_view_1": "Left side view highlights the robot's profile, arm articulation, and the depth of the keyboard, with the robot's head slightly angled forward.",
+    "description_view_2": "Rear view displays the back of the robot's head and torso, the segmented limbs, and the keyboard's rear edge, with no facial features visible.",
+    "description_view_3": "Right side view mirrors the left, showing the robot's right profile, arm positioning, and the keyboard's side details.",
+    "category": "humanoid robot",
+    "height": 1.4,
+    "max_dimension": 1.6,
+    "materials": [
+        "aluminum",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "keyboard",
+        "keys",
+        "arms",
+        "hands",
+        "head",
+        "display screen"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "black",
+        "yellow",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "group",
+    "attribute_pose": "Standing upright with both arms extended forward, hands positioned over the keyboard as if playing. Legs are straight and parallel, head facing forward.",
+    "attribute_clothing_style": "No clothing or coverings; exterior consists of integrated metallic and plastic panels with visible mechanical joints.",
+    "attribute_facial_features": "Rectangular head with a digital display showing two circular yellow eyes and a smiling mouth; no nose or other facial features present.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge joints at shoulders, elbows, hips, and knees; hands have articulated fingers. Limbs appear rigid but capable of basic human-like motion.",
+    "attribute_presence_of_sensors": "None visible",
+    "uid": "1510292849ab4f5d9de37a01645c47a7",
+    "near_synsets": {
+        "android.n.01": 0.5312696788906571,
+        "automaton.n.02": 0.5643386701874827,
+        "robotics_equipment.n.01": 0.569987339482012,
+        "cyborg.n.01": 0.5710801491378695,
+        "robotics.n.01": 0.5736669173442879
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1510292849ab4f5d9de37a01645c47a7",
+        "creator_username": "empty_mirror",
+        "creator_display_name": "Diego G.",
+        "creator_profile_url": "https://sketchfab.com/empty_mirror"
+    },
+    "filename": "std_1510292849ab4f5d9de37a01645c47a7.glb",
+    "length": 1.0190658569335938,
+    "width": 0.9680860042572021
+}

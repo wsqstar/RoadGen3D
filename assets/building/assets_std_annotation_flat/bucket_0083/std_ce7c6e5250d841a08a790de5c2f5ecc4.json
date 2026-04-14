@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is an olive-drab, oval-shaped hand grenade resembling the classic M26A1 fragmentation grenade. It features a prominent safety lever and a metal pull ring attached to a pin at the top, which are standard safety and arming mechanisms. The body is metallic, with a visible seam running horizontally around its widest point, and shows some wear and scuff marks, indicating use or handling. On one side, stenciled text reads 'GRANADE HAND FRAG M26A1' in yellow, identifying its type and model. The top assembly includes a rectangular fuse housing with visible hinge and pin components. The overall finish is matte with a slightly glossy sheen, and the grenade is compact, designed to be easily held and thrown by hand.",
+    "description": "A military-style, olive-drab hand grenade with a metal safety lever, pull ring, and stenciled identification text. The body is oval, metallic, and shows signs of wear.",
+    "description_view_0": "Side view showing the curved safety lever and the pull ring partially extended, with the seam and matte finish visible.",
+    "description_view_1": "Front view highlighting the top fuse housing, the pull ring, and the symmetrical oval body with no visible text.",
+    "description_view_2": "Angled view displaying the stenciled yellow text 'GRANADE HAND FRAG M26A1' and the full curvature of the safety lever and ring.",
+    "description_view_3": "Rear view showing the flat back of the fuse housing and the full length of the safety lever, with the pull ring looped to the side.",
+    "category": "bomb",
+    "height": 0.11,
+    "max_dimension": 0.12,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.3,
+        0.03,
+        0.02
+    ],
+    "mass": 0.45,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 5,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "fuse housing",
+        "pin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive drab",
+        "yellow",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.85,
+        0.05,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [
+        "GRANADE HAND FRAG M26A1"
+    ],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the metal ring to remove the safety pin, releasing the safety lever, which triggers the internal fuse mechanism.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "ce7c6e5250d841a08a790de5c2f5ecc4",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.5109217865107356,
+        "grenade.n.01": 0.5354714760903118,
+        "rifle_grenade.n.01": 0.5559369185362977,
+        "pipe_bomb.n.01": 0.5588611528552107,
+        "plastic_bomb.n.01": 0.5643189084144439,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0,
+        "bomb.n.01": -1000.0
+    },
+    "synset": "bomb.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ce7c6e5250d841a08a790de5c2f5ecc4",
+        "creator_username": "Pablo88",
+        "creator_display_name": "Pablo88",
+        "creator_profile_url": "https://sketchfab.com/Pablo88"
+    },
+    "filename": "std_ce7c6e5250d841a08a790de5c2f5ecc4.glb",
+    "length": 0.0723753273487091,
+    "width": 0.0766061469912529
+}

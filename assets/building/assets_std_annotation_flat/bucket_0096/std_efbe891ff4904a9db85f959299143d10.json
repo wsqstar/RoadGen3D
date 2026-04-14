@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a simple, utilitarian gate set within a rectangular, flat surface that resembles a paved or tiled ground. The gate itself consists of two vertical white side panels and a central section made of vertical wooden slats, forming a barrier that can be opened or closed. The wooden slats are evenly spaced and attached to horizontal rails, providing a see-through effect while still restricting passage. The side panels appear solid and are likely made of painted or coated metal or composite material, providing structural support for the gate. There are no visible handles, locks, or decorative elements, emphasizing a functional design. The surrounding structure is minimal, with the gate flanked by the two solid panels and embedded in the flat ground surface.",
+    "description": "A simple gate with vertical wooden slats and solid white side panels, set in a flat paved surface. The design is functional and minimal, with no visible decorative elements.",
+    "description_view_0": "Front view showing the wooden slat gate between two white side panels, with the paved ground visible.",
+    "description_view_1": "Rear view showing the solid white back of the side panels, with the gate itself not visible.",
+    "description_view_2": "Opposite front view, again showing the wooden slat gate and side panels from the other side.",
+    "description_view_3": "Rear view similar to view 1, showing the solid white panels from the back.",
+    "category": "gate",
+    "height": 1.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "wood",
+        "painted metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "mass": 80,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "gate panel"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "white",
+        "light brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.4
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 10000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_gate_type": "swing gate",
+    "attribute_opening_mechanism": "manual swing",
+    "attribute_decorative_elements": [],
+    "attribute_locking_system": "no visible lock",
+    "attribute_surrounding_structure": "solid white side panels set in a paved ground surface",
+    "uid": "efbe891ff4904a9db85f959299143d10",
+    "near_synsets": {
+        "gate.n.01": 0.5235065902832629,
+        "lock-gate.n.01": 0.5429395541323828,
+        "gateway.n.01": 0.5464664561591488,
+        "portcullis.n.01": 0.5503869450241214,
+        "slate_fence.n.01": 0.5519496035222905,
+        "gate.n.02": -1000.0,
+        "gate.n.04": -1000.0,
+        "gate.n.03": -1000.0
+    },
+    "synset": "gate.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/efbe891ff4904a9db85f959299143d10",
+        "creator_username": "Trappemakeren",
+        "creator_display_name": "Trappemakeren",
+        "creator_profile_url": "https://sketchfab.com/Trappemakeren"
+    },
+    "filename": "std_efbe891ff4904a9db85f959299143d10.glb",
+    "length": 4.268561840057373,
+    "width": 4.332589626312256
+}

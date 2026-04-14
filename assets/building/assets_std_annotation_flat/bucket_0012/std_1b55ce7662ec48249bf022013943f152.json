@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a flowering plant with broad, elongated green leaves radiating outward from a central point. The leaves have a slightly wavy texture and appear to be thick and somewhat leathery. At one end of the plant, there is a prominent cluster of pinkish-red flowers, each with multiple petals, forming a dense inflorescence. The flower cluster is somewhat spherical and contrasts sharply with the green foliage. The plant's structure suggests a robust stem supporting both the leaves and the flower cluster. The overall appearance is lush and vibrant, making it suitable for decorative use in urban parks or gardens.",
+    "description": "A lush green plant with broad leaves and a dense cluster of pinkish-red flowers at one end. The foliage radiates outward, creating a vibrant and decorative appearance.",
+    "description_view_0": "From this view, the broad green leaves are most prominent, radiating outward and partially obscuring the flower cluster.",
+    "description_view_1": "This angle highlights the elongated leaves and gives a partial side view of the flower cluster, with more leaf detail visible.",
+    "description_view_2": "The pinkish-red flower cluster is clearly visible from this perspective, with the leaves forming a backdrop.",
+    "description_view_3": "The flower cluster is seen from the side, with the leaves extending outward and the stem structure more apparent.",
+    "category": "flower",
+    "height": 0.45,
+    "max_dimension": 0.65,
+    "materials": [
+        "plant_fiber",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 0.6,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 5,
+    "movable": true,
+    "required_force": 6,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "leaves",
+        "flower cluster",
+        "stem"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "green",
+        "pink",
+        "red",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.38,
+    "youngs_modulus": 20,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.15,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "single",
+    "attribute_petal_arrangement": "The petals are arranged in a dense, radial cluster forming a rounded inflorescence, with overlapping and layering visible, suggesting a whorled configuration.",
+    "attribute_number_of_petals": 18,
+    "attribute_stem_presence": true,
+    "attribute_leaf_shape": "lanceolate",
+    "attribute_flower_location": "terminal",
+    "uid": "1b55ce7662ec48249bf022013943f152",
+    "near_synsets": {
+        "greenness.n.01": 0.49578617552639614,
+        "dandelion_green.n.01": 0.4974998211655745,
+        "flower.n.01": 0.5029823154461326,
+        "blue-eyed_grass.n.01": 0.5068097367992873,
+        "bleeding_heart.n.01": 0.5104093155856622,
+        "flower.n.02": -1000.0,
+        "flower.n.03": -1000.0
+    },
+    "synset": "flower.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1b55ce7662ec48249bf022013943f152",
+        "creator_username": "ashlynnicoleee",
+        "creator_display_name": "ashlynnicoleee",
+        "creator_profile_url": "https://sketchfab.com/ashlynnicoleee"
+    },
+    "filename": "std_1b55ce7662ec48249bf022013943f152.glb",
+    "length": 0.40669411420822144,
+    "width": 0.4862035810947418
+}

@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a cylindrical tunnel segment constructed primarily from reinforced concrete, featuring a smooth, slightly weathered exterior with visible panel seams and mounting points. The interior is lined with two sets of parallel metal rails running along the floor, likely for rail transport, and several large utility pipes are mounted along the lower sidewalls. The tunnel is open at both ends, with no visible doors or gates, and the cross-section is a broad arch, providing ample clearance for vehicles or trains. The sidewalls include small, recessed grates or vents, possibly for ventilation or drainage, and there are no visible lighting fixtures or signage. The overall design is utilitarian, emphasizing function and durability, with minimal decorative elements. The structure appears robust and is suitable for use in urban infrastructure such as subways, underpasses, or utility conduits.",
+    "description": "A large, cylindrical concrete tunnel segment with metal rails and utility pipes inside, open at both ends and designed for urban rail or utility passage. The exterior is smooth and utilitarian, with visible seams and mounting points.",
+    "description_view_0": "The tunnel is viewed from one open end, showing the interior rails, utility pipes, and sidewall vents clearly.",
+    "description_view_1": "A side view of the tunnel's exterior, displaying the smooth, curved concrete surface with panel seams and mounting points, but no visible interior details.",
+    "description_view_2": "The opposite open end of the tunnel, similar to view 0, with a clear view of the rails, pipes, and interior structure.",
+    "description_view_3": "Another side view of the tunnel's exterior, nearly identical to view 1, showing the curved concrete surface and exterior features.",
+    "category": "tunnel",
+    "height": 4.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "reinforced concrete",
+        "steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 35000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "support_tracks",
+        "convey_utilities"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "rails",
+        "utility pipes",
+        "vents/grates"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "train"
+    ],
+    "colors": [
+        "gray",
+        "black",
+        "rust brown"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.01,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "Arched, open-ended entrances constructed from reinforced concrete with no doors or gates; the shape is a broad, semi-circular arch.",
+    "attribute_lighting_fixtures": [],
+    "attribute_signage": [],
+    "attribute_surrounding_infrastructure": "The tunnel interior contains dual metal rail tracks and several large utility pipes, with no visible external infrastructure directly attached.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "8434d94cfa514fa6a1c842bf665e787c",
+    "near_synsets": {
+        "railroad_tunnel.n.01": 0.46427175356212497,
+        "tunnel.n.01": 0.4746777733308381,
+        "conduit.n.01": 0.5287092632620237,
+        "metro.n.01": 0.5308474739286337,
+        "underpass.n.01": 0.5367661669239862,
+        "burrow.n.01": -1000.0
+    },
+    "synset": "tunnel.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/8434d94cfa514fa6a1c842bf665e787c",
+        "creator_username": "alphafluff",
+        "creator_display_name": "Gert-Jan van den Boom",
+        "creator_profile_url": "https://sketchfab.com/alphafluff"
+    },
+    "filename": "std_8434d94cfa514fa6a1c842bf665e787c.glb",
+    "length": 5.386539936065674,
+    "width": 5.6365180015563965
+}

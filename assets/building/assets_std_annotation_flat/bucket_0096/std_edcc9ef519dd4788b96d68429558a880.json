@@ -1,0 +1,90 @@
+{
+    "description_long": "This humanoid robot features a sleek, streamlined design with smooth, white exterior panels covering its legs and feet. The legs are anatomically proportioned, with visible joint separations at the knees and ankles, suggesting advanced articulation for walking or running. The feet are broad and flat, likely for stability, and have black accent areas at the heels and ankles, possibly for reinforcement or housing mechanical components. The robot's surface appears to be made of a hard, glossy material, giving it a futuristic and durable appearance. There are no visible wires, clothing, or external accessories, and the design is minimalist, focusing on functional mobility. The upper body, arms, and head are not visible in these views, emphasizing the lower half's mechanical sophistication.",
+    "description": "A sleek, white humanoid robot with articulated legs and feet, featuring black accent joints and a smooth, glossy finish. The design is minimalist and futuristic, emphasizing mobility and stability.",
+    "description_view_0": "Front view of the robot's legs and feet, showing the smooth white panels and black accents at the ankles and heels.",
+    "description_view_1": "Angled side view highlighting the outer contours of the left leg and the broad, flat foot design.",
+    "description_view_2": "Side view focusing on the right leg's articulation and the streamlined shape of the foot.",
+    "description_view_3": "Rear view displaying the back of both legs and the black heel accents, emphasizing the robot's stability.",
+    "category": "humanoid robot",
+    "height": 1.1,
+    "max_dimension": 1.1,
+    "materials": [
+        "plastic",
+        "metal",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 32,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 320,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "knee joint",
+        "ankle joint",
+        "foot"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.12,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.18,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both legs slightly apart, knees straight, and feet flat on the ground. The upper body, arms, and head are not visible.",
+    "attribute_clothing_style": "No visible clothing; the robot is covered in integrated, smooth white panels with black accent areas at the joints.",
+    "attribute_facial_features": "No facial features are visible in these views; only the lower body is shown.",
+    "attribute_limb_articulation": "Visible articulation at the knees and ankles, with hinge-like joints allowing for bending and rotation. The feet appear to have some flexibility at the ankle joint. Limbs are rigid with defined joint separations.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "edcc9ef519dd4788b96d68429558a880",
+    "near_synsets": {
+        "android.n.01": 0.5475399919674012,
+        "cyborg.n.01": 0.5690036442247679,
+        "robotics_equipment.n.01": 0.5712311338587985,
+        "automaton.n.02": 0.5728670248946851,
+        "robotics.n.01": 0.5813313706065768
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/edcc9ef519dd4788b96d68429558a880",
+        "creator_username": "stevencmutter",
+        "creator_display_name": "stevencmutter",
+        "creator_profile_url": "https://sketchfab.com/stevencmutter"
+    },
+    "filename": "std_edcc9ef519dd4788b96d68429558a880.glb",
+    "length": 1.3528980314731598,
+    "width": 0.9871182441711426
+}

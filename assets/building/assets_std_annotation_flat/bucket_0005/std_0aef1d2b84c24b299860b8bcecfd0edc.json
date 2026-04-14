@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a futuristic, combat-style airplane with a sleek, angular fuselage and four prominent wings arranged in an X-formation. The wings are equipped with visible weaponry and yellow-tipped missile pods, suggesting a military or tactical function. The cockpit is centrally located and enclosed with a dark, transparent canopy, providing a streamlined appearance. The engines are mounted at the rear of the fuselage, with exhaust ports visible, and the overall surface is finished in a dark, metallic color scheme with weathered textures. The airplane features detailed panel lines, mechanical components, and reinforced structural elements, giving it a robust and high-tech look. The design is reminiscent of science fiction or advanced aerospace vehicles, with a focus on agility and firepower.",
+    "description": "A dark, angular, X-wing style combat airplane with missile pods, rear-mounted engines, and a central enclosed cockpit, finished in a weathered metallic scheme.",
+    "description_view_0": "Front view showing the X-shaped wing configuration, central cockpit canopy, and prominent missile pods under each wing.",
+    "description_view_1": "Side view highlighting the elongated fuselage, rear-mounted engines, and the profile of the cockpit canopy.",
+    "description_view_2": "Rear view displaying the engine exhausts, the symmetry of the wings, and the angular tail section.",
+    "description_view_3": "Opposite side view mirroring view 1, with clear visibility of the wing-mounted weaponry and overall aircraft profile.",
+    "category": "airplane",
+    "height": 2.5,
+    "max_dimension": 12.0,
+    "materials": [
+        "metal",
+        "glass",
+        "composite",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.1,
+        0.02,
+        0.05
+    ],
+    "mass": 9500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 95000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "landing gear",
+        "missile pods",
+        "control stick",
+        "engine throttle",
+        "wing-mounted weapons"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "yellow",
+        "blue",
+        "metallic silver"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 15.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing, X-configuration with straight wings and no visible winglets; slight dihedral angle for stability.",
+    "attribute_engine_type": "Twin jet engines mounted at the rear fuselage.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Retractable tricycle landing gear, with two main gear units and one nose gear (not fully visible but implied by design).",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed single-seat cockpit with a dark canopy integrated into the fuselage.",
+    "uid": "0aef1d2b84c24b299860b8bcecfd0edc",
+    "near_synsets": {
+        "aircraft.n.01": 0.5080932419509073,
+        "wing.n.04": 0.5101555191253054,
+        "warplane.n.01": 0.5147967603519558,
+        "delta_wing.n.01": 0.5332974074063973,
+        "interceptor.n.01": 0.5362992554442855,
+        "airplane.n.01": -1000.0
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0aef1d2b84c24b299860b8bcecfd0edc",
+        "creator_username": "klopikc",
+        "creator_display_name": "Pavluha",
+        "creator_profile_url": "https://sketchfab.com/klopikc"
+    },
+    "filename": "std_0aef1d2b84c24b299860b8bcecfd0edc.glb",
+    "length": 7.417184591293335,
+    "width": 6.569745063781738
+}

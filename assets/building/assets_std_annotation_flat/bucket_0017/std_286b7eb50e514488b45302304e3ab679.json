@@ -1,0 +1,85 @@
+{
+    "description_long": "This object is a flat, square board with a subtle, textured surface that appears to be made of a composite or stone-like material. The surface is uniformly colored in muted shades of brown and gray, lacking any visible grid or decorative pattern typically associated with a chessboard. The edges are straight and clean, with no visible border, ornamentation, or inscriptions. The board is extremely thin, almost flush with the ground, and does not show any raised or recessed features. Its overall appearance is minimalist and utilitarian, with a matte finish that reduces glare. The object is large enough to be walked on or used as a platform in an urban environment.",
+    "description": "A flat, square, stone-textured board with muted brown-gray coloring and no visible grid or border, featuring a minimalist matte finish.",
+    "description_view_0": "A direct top-down view showing the full square surface with a uniform, textured brown-gray appearance.",
+    "description_view_1": "An angled view revealing the board's thin profile and the subtle surface texture, with no visible grid or border.",
+    "description_view_2": "A side view emphasizing the extreme thinness of the board, making it appear almost as a flat sheet.",
+    "description_view_3": "Another angled view from the opposite side, again highlighting the flatness and uniform surface texture.",
+    "category": "chessboard",
+    "height": 0.01,
+    "max_dimension": 1.0,
+    "materials": [
+        "composite stone",
+        "air"
+    ],
+    "materials_composition": [
+        0.98,
+        0.02
+    ],
+    "mass": 25,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 80,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.4
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_board_pattern": "The playing surface is a continuous, subtly textured expanse with no visible grid, squares, or decorative elements. The color is uniform, blending brown and gray tones, and the surface lacks any markings or ornamentation.",
+    "attribute_square_grid": "1x1",
+    "attribute_alternating_light_and_dark_squares": false,
+    "attribute_presence_of_chess_pieces": false,
+    "attribute_border_design": "There is no distinct border or edge design; the board's edges are straight and unadorned, matching the surface in color and texture, with no visible ornamentation or inscriptions.",
+    "uid": "286b7eb50e514488b45302304e3ab679",
+    "near_synsets": {
+        "chessboard.n.01": 0.4384821144362167,
+        "chess_set.n.01": 0.45826739734431077,
+        "checkerboard.n.01": 0.4696222783385973,
+        "board.n.09": 0.4950941315962906,
+        "board.n.03": 0.5039597280103907
+    },
+    "synset": "chessboard.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/286b7eb50e514488b45302304e3ab679",
+        "creator_username": "bebecole",
+        "creator_display_name": "Bianca",
+        "creator_profile_url": "https://sketchfab.com/bebecole"
+    },
+    "filename": "std_286b7eb50e514488b45302304e3ab679.glb",
+    "length": 0.01841771136969328,
+    "width": 0.020957382395863533
+}

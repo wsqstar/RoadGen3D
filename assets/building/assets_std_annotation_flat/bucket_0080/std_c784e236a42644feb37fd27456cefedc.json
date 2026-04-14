@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a classic stick grenade, commonly known as a 'potato masher' due to its distinctive shape. It features a cylindrical metal head, likely made of steel, with visible stenciled text on its side, and a long, ribbed wooden handle that tapers slightly towards the end. The handle is fitted with a metal cap at the base, which may serve as a screw cap for arming or accessing the fuse. The metal head is attached to the handle with a collar and flange, providing a secure connection. The overall finish is utilitarian, with the metal parts painted in a matte olive drab and the wood showing a natural, varnished grain. This type of grenade was historically used in urban and battlefield environments for its ease of throwing and timed detonation.",
+    "description": "A stick grenade with a cylindrical metal head and a ribbed wooden handle, featuring stenciled text and a utilitarian olive drab finish.",
+    "description_view_0": "The grenade is shown at an angle, highlighting the stenciled text on the metal head and the ribbed detail of the wooden handle.",
+    "description_view_1": "A direct side view displays the full cylindrical head, the flange at the base of the head, and the straight alignment of the handle.",
+    "description_view_2": "This angled view emphasizes the smooth, rounded top of the metal head and the tapering wooden handle.",
+    "description_view_3": "A top-down perspective shows the circular end of the metal head and the straight axis of the handle beneath it.",
+    "category": "bomb",
+    "height": 0.35,
+    "max_dimension": 0.35,
+    "materials": [
+        "steel",
+        "wood",
+        "paint",
+        "explosive_compound",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.35,
+        0.05,
+        0.13,
+        0.02
+    ],
+    "mass": 0.6,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 6,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "throwable",
+        "twistable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "metal cap",
+        "fuse assembly"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive drab",
+        "brown",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 20000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The grenade appears to use a pull-cord or twist-activated fuse mechanism, likely initiated by unscrewing or pulling the metal cap at the base of the handle.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "c784e236a42644feb37fd27456cefedc",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.5032079744819551,
+        "grenade.n.01": 0.5142351427227912,
+        "pipe_bomb.n.01": 0.5145057307613375,
+        "plastic_bomb.n.01": 0.533481420646705,
+        "bomb.n.01": 0.5358050501640805,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c784e236a42644feb37fd27456cefedc",
+        "creator_username": "Purrian",
+        "creator_display_name": "Purrian",
+        "creator_profile_url": "https://sketchfab.com/Purrian"
+    },
+    "filename": "std_c784e236a42644feb37fd27456cefedc.glb",
+    "length": 0.22323613613843918,
+    "width": 0.25128190219402313
+}

@@ -1,0 +1,103 @@
+{
+    "description_long": "This object consists of a group of mid-rise apartment buildings arranged in a loose urban block layout. The buildings are rectangular with flat, dark roofs and facades featuring repetitive window patterns, typical of post-war or utilitarian residential architecture. The exteriors are primarily light gray or beige, with some buildings displaying subtle color variations and photographic textures suggesting balconies and entryways. The structures vary in length and orientation, with one L-shaped building and several linear blocks, indicating a planned residential complex. The windows are symmetrically aligned in rows, and some facades show hints of greenery or small trees at the base, suggesting landscaped surroundings. The overall appearance is functional and uniform, with minimal decorative elements.",
+    "description": "A group of rectangular, mid-rise apartment buildings with flat dark roofs and repetitive window patterns, arranged in a block layout. The facades are light gray or beige, with some photographic details and minimal ornamentation.",
+    "description_view_0": "This view shows the buildings from an elevated angle, highlighting the flat roofs and the overall block arrangement, with the L-shaped building and three linear blocks clearly visible.",
+    "description_view_1": "From this angle, the facades with window patterns and some photographic details, such as balconies and entryways, are more prominent, and the separation between the buildings is evident.",
+    "description_view_2": "This view emphasizes the length of the linear buildings and the L-shaped structure, with the repetitive window patterns and flat roofs dominating the scene.",
+    "description_view_3": "Here, the buildings are seen from the opposite side, showing the rear facades and the overall spatial relationship between the blocks, with the L-shaped building's courtyard area visible.",
+    "category": "apartment building",
+    "height": 15.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "steel",
+        "brick",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 1200000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "balcony"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "beige",
+        "black",
+        "white",
+        "green"
+    ],
+    "colors_composition": [
+        0.55,
+        0.2,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "group",
+    "attribute_number_of_floors": 5,
+    "attribute_balcony_presence": true,
+    "attribute_window_arrangement": "The windows are arranged in evenly spaced, symmetrical rows and columns across the facades, creating a uniform and repetitive pattern typical of apartment blocks.",
+    "attribute_entrance_type": "multiple entrances",
+    "attribute_architectural_style": "Modernist",
+    "uid": "79854cc9d6034519b4670f520bc37204",
+    "near_synsets": {
+        "apartment_building.n.01": 0.48279575014126613,
+        "block.n.05": 0.5052670761376089,
+        "railroad_flat.n.01": 0.5164715602999584,
+        "high-rise.n.01": 0.527476169509762,
+        "suite.n.02": 0.5285850597848377,
+        "construction.n.01": -1000.0,
+        "building.n.04": -1000.0,
+        "construction.n.07": -1000.0,
+        "building.n.01": -1000.0,
+        "apartment.n.01": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/79854cc9d6034519b4670f520bc37204",
+        "creator_username": "neominigan",
+        "creator_display_name": "Neo_minigan",
+        "creator_profile_url": "https://sketchfab.com/neominigan"
+    },
+    "filename": "std_79854cc9d6034519b4670f520bc37204.glb",
+    "length": 133.19032287597656,
+    "width": 126.56179809570312
+}

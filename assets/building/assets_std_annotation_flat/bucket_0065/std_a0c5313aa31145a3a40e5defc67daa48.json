@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a classic hand grenade, specifically resembling the Mk 2 fragmentation grenade, commonly known as the 'pineapple' grenade due to its segmented, textured cast-iron body. The grenade features a dark, metallic body with a grid pattern for grip and fragmentation, and a yellow band near the top indicating its explosive nature. The top section includes a robust metal safety lever (spoon) and a visible pull ring attached to a safety pin, both made of steel. The safety lever is held in place by the pin, which must be removed to arm the grenade. The overall finish is matte with some wear, and the object appears solid and heavy, designed for single-handed use. The grenade is compact, with no visible digital or analog timers, and no external wiring.",
+    "description": "A classic, dark metallic hand grenade with a textured, segmented body, yellow band, and steel safety lever and pin. Compact and robust, it is designed for handheld use.",
+    "description_view_0": "Front view showing the safety lever and pin directly facing forward, highlighting the symmetrical, ribbed body.",
+    "description_view_1": "Angled side view revealing the pull ring, safety lever, and the yellow band near the top, with the lever's hinge visible.",
+    "description_view_2": "Rear view focusing on the back of the grenade, showing the yellow band and the segmented body, with the safety lever and pin less prominent.",
+    "description_view_3": "Opposite angled side view with the pull ring extended outward, clearly displaying the lever's attachment and the grenade's rounded form.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.12,
+    "materials": [
+        "steel",
+        "cast iron",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.03,
+        0.02
+    ],
+    "mass": 0.6,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 6,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "throwable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "safety pin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "yellow",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the safety pin and releasing the safety lever, which triggers an internal timed fuse.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "a0c5313aa31145a3a40e5defc67daa48",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.46596003697178395,
+        "grenade.n.01": 0.49833429362639287,
+        "bomb.n.01": 0.5363476099815743,
+        "general-purpose_bomb.n.01": 0.5380905243829621,
+        "pipe_bomb.n.01": 0.5469088158298427,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a0c5313aa31145a3a40e5defc67daa48",
+        "creator_username": "karen_ololo",
+        "creator_display_name": "Karen Pohosian",
+        "creator_profile_url": "https://sketchfab.com/karen_ololo"
+    },
+    "filename": "std_a0c5313aa31145a3a40e5defc67daa48.glb",
+    "length": 0.07163111865520477,
+    "width": 0.06119818985462189
+}

@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a military tank with a robust, angular hull and a large, cylindrical turret mounted centrally on top. The turret features a long, protruding cannon barrel, angled slightly upward, and the tank's body is supported by a set of six large, black road wheels on each side, partially covered by angular side skirts. The exterior is finished in a metallic, slightly weathered texture, giving it a rugged, utilitarian appearance. The tank's armor appears thick and sloped, especially at the front and sides, enhancing its defensive capabilities. No visible markings, insignia, or camouflage patterns are present on the surface. The vehicle is designed for combat and tactical operations, with features optimized for durability and firepower.",
+    "description": "A metallic, heavily-armored tank with a large turret and long cannon, supported by six black road wheels per side. The exterior is rugged and utilitarian, with no visible markings or camouflage.",
+    "description_view_0": "Side view showing the full length of the cannon, the turret, and all six road wheels on the left side.",
+    "description_view_1": "Front view highlighting the sloped frontal armor, the central turret, and the cannon pointing directly forward.",
+    "description_view_2": "Opposite side view displaying the right side of the tank, the turret, and the cannon, mirroring the left side.",
+    "description_view_3": "Rear view showing the back of the turret and hull, with the cannon extending away from the viewer.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 40000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "road wheels",
+        "tracks"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted on the central turret; no other weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating on the front, sides, and turret; no modular or reactive panels visible.",
+    "attribute_camouflage_pattern": "None visible.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "f92a48e51fb74fa3854d15a88eb13477",
+    "near_synsets": {
+        "tank.n.01": 0.4538850110096671,
+        "military_vehicle.n.01": 0.48103992136323304,
+        "armored_car.n.02": 0.48969624441952603,
+        "reconnaissance_vehicle.n.01": 0.5048305059284893,
+        "assault_gun.n.02": 0.508818392637164,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f92a48e51fb74fa3854d15a88eb13477",
+        "creator_username": "Screiblus",
+        "creator_display_name": "Screiblus",
+        "creator_profile_url": "https://sketchfab.com/Screiblus"
+    },
+    "filename": "std_f92a48e51fb74fa3854d15a88eb13477.glb",
+    "length": 5.828406572341919,
+    "width": 2.7019985914230347
+}

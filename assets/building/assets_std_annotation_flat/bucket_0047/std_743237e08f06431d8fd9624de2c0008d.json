@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a stylized manual wheelchair constructed primarily from light-colored wood with metallic gray accents. It features two large rear wheels with prominent, gear-like gray rims and two smaller front caster wheels for maneuverability. The seat and backrest are flat, angular wooden panels, and the armrests are integrated into the frame, providing a sturdy and supportive structure. The wheelchair's frame is rigid, with a simple, geometric design and no visible folding mechanisms. The footrest is a single, wide wooden platform extending from the front, supported by a gray bracket. The overall appearance is robust and functional, with a playful, almost toy-like aesthetic due to the exaggerated proportions and simplified forms.",
+    "description": "A stylized wooden manual wheelchair with large gear-rimmed rear wheels, small front casters, and a rigid, angular frame. The seat, backrest, and footrest are made of flat wooden panels with metallic gray accents.",
+    "description_view_0": "Side view showing the large rear wheel with a gear-like rim, the small front caster, and the flat wooden seat and backrest.",
+    "description_view_1": "Front view highlighting the wide wooden footrest, the two small front casters, and the flat seat and backrest.",
+    "description_view_2": "Opposite side view mirroring view 0, showing the other large rear wheel and the same structural features.",
+    "description_view_3": "Rear view displaying the backrest, the tops of the large rear wheels, and the absence of push handles.",
+    "category": "wheelchair",
+    "height": 1.0,
+    "max_dimension": 1.2,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 25,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "pushable",
+        "drivable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "footrest",
+        "seat",
+        "backrest"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.25
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_wheel_type": "Solid wheels; two large rear wheels with gear-like rims and two smaller solid front caster wheels; no visible spokes or pneumatic tires.",
+    "attribute_frame_design": "Rigid frame with straight, angular wooden panels and integrated armrests; no folding mechanism; simple geometric structure.",
+    "attribute_presence_of_push_rims": false,
+    "attribute_footrest_style": "Fixed, wide wooden platform footrest extending from the front, supported by a single gray bracket.",
+    "attribute_handlebar_configuration": "Absent; no visible push handles or handlebars on the backrest.",
+    "uid": "743237e08f06431d8fd9624de2c0008d",
+    "near_synsets": {
+        "wheelchair.n.01": 0.49344844282230504,
+        "motorized_wheelchair.n.01": 0.49745607004663855,
+        "cartwheel.n.01": 0.5492006544018921,
+        "handwheel.n.02": 0.5494782709729147,
+        "wheel.n.01": 0.5494871947453026
+    },
+    "synset": "motorized_wheelchair.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/743237e08f06431d8fd9624de2c0008d",
+        "creator_username": "chaitanyak",
+        "creator_display_name": "Chaitanya Krishnan",
+        "creator_profile_url": "https://sketchfab.com/chaitanyak"
+    },
+    "filename": "std_743237e08f06431d8fd9624de2c0008d.glb",
+    "length": 1.2668172717094421,
+    "width": 1.0391079187393188
+}

@@ -1,0 +1,106 @@
+{
+    "description_long": "This ferry terminal features a sprawling, low-profile structure with multiple interconnected platforms and buildings, primarily rendered in shades of gray and blue. The main terminal building is centrally located, with a large, rectangular roof and adjacent open areas that likely serve as waiting zones or passenger gathering spaces. Several distinct platforms extend outward, suggesting boarding ramps or gangways for ferry access, and there are visible parking or drop-off zones marked by lighter gray sections. The terminal is surrounded by broad paved areas, possibly for vehicle access or pedestrian circulation, and the overall layout is optimized for efficient passenger flow. The blue accents highlight key functional areas, such as entrances, boarding points, or sheltered waiting spaces. The design incorporates both open and enclosed spaces, indicating provisions for ticketing, waiting, and boarding activities.",
+    "description": "A large, modern ferry terminal with interconnected platforms, blue-accented buildings, and extensive paved areas for passenger and vehicle access.",
+    "description_view_0": "From this view, the terminal's main building and adjacent platforms are visible, with blue accents highlighting entrances and waiting areas.",
+    "description_view_1": "This angle emphasizes the side platforms and the extended paved area, showing the terminal's layout for vehicle or pedestrian approach.",
+    "description_view_2": "The rear view reveals the full length of the terminal, including the extended boarding ramps and mooring structures along the water's edge.",
+    "description_view_3": "This perspective highlights the parking or drop-off zones and the main entrance, with clear visibility of the terminal's blue-accented roof.",
+    "category": "ferry terminal",
+    "height": 8,
+    "max_dimension": 90,
+    "materials": [
+        "concrete",
+        "glass",
+        "steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.12,
+        0.03,
+        0.05
+    ],
+    "mass": 420000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "ticketing",
+        "waiting",
+        "boarding",
+        "vehicle_dropoff"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "doors",
+        "ticket kiosk",
+        "benches",
+        "boarding ramp",
+        "signage"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "blue",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.65,
+        0.18,
+        0.12,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 15,
+    "asset_composition_type": "scene",
+    "attribute_ferry_dock_signage": true,
+    "attribute_passenger_waiting_area": true,
+    "attribute_ticket_booth_or_kiosk": true,
+    "attribute_boarding_ramps_or_gangways": true,
+    "attribute_water_access_with_mooring_structures": true,
+    "uid": "106bc950e8df4e40b15a4996388d11fd",
+    "near_synsets": {
+        "terminal.n.01": 0.5190989289344007,
+        "ferry.n.01": 0.5277657075905169,
+        "car-ferry.n.01": 0.5303538250888524,
+        "ferry.n.02": 0.532743913818259,
+        "bus_terminal.n.01": 0.5327600847331369,
+        "terminal.n.02": -1000.0,
+        "end.n.01": -1000.0,
+        "terminal.n.04": -1000.0
+    },
+    "synset": "terminal.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/106bc950e8df4e40b15a4996388d11fd",
+        "creator_username": "mrmult30",
+        "creator_display_name": "mrmult30",
+        "creator_profile_url": "https://sketchfab.com/mrmult30"
+    },
+    "filename": "std_106bc950e8df4e40b15a4996388d11fd.glb",
+    "length": 138.08157348632812,
+    "width": 240.62735748291016
+}

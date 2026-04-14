@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a rectangular, upright trash bin with a robust, industrial design, commonly found in urban environments such as city streets or parks. The body is primarily metallic with a smooth, matte finish, and features a prominent front panel adorned with a blue and silver emblem that includes a stylized 'T' and a globe motif, suggesting municipal or transit authority branding. The top section has a recessed opening with angled black arrows indicating where to deposit waste, and the lid is slightly domed for water runoff. The rear and side panels are plain, lacking any handles or additional features, and the base is flat and sturdy for stability. There are no visible wheels or external handles, indicating the bin is designed to remain stationary. The overall appearance is clean, modern, and functional, with a focus on durability and ease of use.",
+    "description": "A sturdy, metallic urban trash bin with a domed lid, front emblem, and recessed waste opening, designed for public spaces.",
+    "description_view_0": "Front view showing the waste slot, black directional arrows, and a blue-silver emblem on the panel.",
+    "description_view_1": "Rear view displaying a plain, unadorned surface with no openings, handles, or signage.",
+    "description_view_2": "Front view identical to view 0, highlighting the waste slot, arrows, and emblem.",
+    "description_view_3": "Rear view identical to view 1, showing a featureless, flat back panel.",
+    "category": "trash bin",
+    "height": 1.1,
+    "max_dimension": 0.7,
+    "materials": [
+        "painted_steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 38,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable",
+        "depositable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "waste_slot"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.13,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "domed, fixed",
+    "attribute_opening_mechanism": "recessed slot, manual deposit",
+    "attribute_presence_of_wheels": false,
+    "attribute_handle_design": "absent",
+    "attribute_labeling_or_signage": "front emblem with stylized 'T' and globe, no recycling or waste type labels",
+    "uid": "1196de786f38467bbf80aab0e11eb84d",
+    "near_synsets": {
+        "dumpster.n.01": 0.49176197293691887,
+        "recycling_bin.n.01": 0.5002842927230549,
+        "garbage.n.03": 0.5089243800093336,
+        "litterbin.n.01": 0.5188224668322392,
+        "garbage_truck.n.01": 0.5219396599589733,
+        "bank_identification_number.n.01": -1000.0,
+        "bin.n.01": -1000.0,
+        "methamphetamine.n.01": -1000.0,
+        "ashcan.n.01": -1000.0,
+        "rubbish.n.01": -1000.0,
+        "folderol.n.01": -1000.0,
+        "trash.n.02": -1000.0,
+        "bin.n.02": -1000.0
+    },
+    "synset": "litterbin.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/1196de786f38467bbf80aab0e11eb84d",
+        "creator_username": "kastle",
+        "creator_display_name": "Kastle",
+        "creator_profile_url": "https://sketchfab.com/kastle"
+    },
+    "filename": "std_1196de786f38467bbf80aab0e11eb84d.glb",
+    "length": 0.6849265396595001,
+    "width": 0.7705420851707458
+}

@@ -1,0 +1,99 @@
+{
+    "description_long": "This humanoid robot features a boxy, rusted metal torso with a prominent green recycling symbol on its chest, suggesting an environmental or utility function. Its head is integrated into the upper torso, with two round, blue-highlighted eye-like sensors giving it a friendly, utilitarian appearance. The robot's arms and legs are constructed from articulated metal segments, with visible joints and mechanical linkages, indicating a high degree of mobility and dexterity. The surface is heavily weathered, with patches of rust and wear, giving it a rugged, industrial look suitable for outdoor urban environments. The legs are digitigrade, with mechanical feet designed for stability, while the arms end in simple, functional grippers. Overall, the robot's design is utilitarian, robust, and purpose-built for tasks in urban settings.",
+    "description": "A weathered, boxy humanoid robot with a rusted metal exterior, green recycling symbol, articulated limbs, and blue eye-like sensors. Its rugged design suggests utility and durability for urban environments.",
+    "description_view_0": "Front view shows the robot's rectangular torso with a green recycling symbol, two blue eye-like sensors, and both articulated arms and legs visible.",
+    "description_view_1": "Left side view highlights the depth of the torso, the mechanical structure of the left arm and leg, and the rounded head integrated into the body.",
+    "description_view_2": "Rear view displays the flat, rusted back panel and the symmetrical arrangement of the legs and arms, with no visible sensors or markings.",
+    "description_view_3": "Right side view reveals the detailed articulation of the right arm and leg, as well as the rounded head and mechanical joints.",
+    "category": "humanoid robot",
+    "height": 1.2,
+    "max_dimension": 0.7,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "legs",
+        "eye sensors",
+        "grippers"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "rust brown",
+        "gray",
+        "green",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is standing upright with both legs straight and slightly apart, arms hanging down at its sides with elbows slightly bent, and the head facing forward.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated metal panels and mechanical components with a painted recycling symbol as decoration.",
+    "attribute_facial_features": "The face consists of two round, blue-highlighted eye-like sensors set into a flat, rectangular head panel; there is no visible mouth, nose, or expressive features.",
+    "attribute_limb_articulation": "Both arms and legs have multiple visible hinge joints at the shoulders, elbows, hips, and knees, allowing for a wide range of motion; the limbs appear rigid but highly articulated.",
+    "attribute_presence_of_sensors": "Two forward-facing optical sensors (eyes) on the head panel.",
+    "uid": "d98f957f418543299fcaabe443df6454",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5564066143053805,
+        "android.n.01": 0.5636072971616557,
+        "cyborg.n.01": 0.583585123170049,
+        "robotics.n.01": 0.5938989455121156,
+        "automaton.n.02": 0.5943176461416948
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d98f957f418543299fcaabe443df6454",
+        "creator_username": "ros_art",
+        "creator_display_name": "ros_art",
+        "creator_profile_url": "https://sketchfab.com/ros_art"
+    },
+    "filename": "std_d98f957f418543299fcaabe443df6454.glb",
+    "length": 0.3944856524467468,
+    "width": 0.639995813369751
+}

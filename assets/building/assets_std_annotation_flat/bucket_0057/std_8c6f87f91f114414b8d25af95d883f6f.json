@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a modern, angular trash bin made of concrete or a similar gray composite material, designed for urban environments. The bin features a slanted top with a large, rectangular opening on one face for depositing waste. Prominent white signage is visible on multiple sides, including a recycling symbol, a pictogram of a person throwing trash, and the word 'Abf\u00e4lle' (German for 'waste'). The surface is matte and slightly textured, giving it a robust, industrial appearance. There are no visible handles or wheels, and the bin appears to be heavy and stationary. The overall design is minimalist, functional, and intended to blend into public spaces while clearly indicating its purpose.",
+    "description": "A robust, angular gray trash bin with white recycling and waste signage, a slanted top, and a large front opening. Its concrete-like surface and minimalist design make it suitable for urban public spaces.",
+    "description_view_0": "Side view showing the pictogram of a person throwing trash and the word 'Abf\u00e4lle' vertically, with the slanted top and recycling symbol partially visible.",
+    "description_view_1": "Front view displaying the large rectangular waste opening, recycling symbol, and vertical 'Abf\u00e4lle' label, making this the primary interaction side.",
+    "description_view_2": "Opposite side view similar to view 0, with the pictogram and slanted top visible, but mirrored.",
+    "description_view_3": "Rear view showing the word 'Abf\u00e4lle' and a recycling symbol, with no visible opening or pictogram.",
+    "category": "trash bin",
+    "height": 1.1,
+    "max_dimension": 0.6,
+    "materials": [
+        "concrete",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "depositable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "waste opening"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.9,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "flat",
+    "attribute_opening_mechanism": "open-top",
+    "attribute_presence_of_wheels": false,
+    "attribute_handle_design": "absent",
+    "attribute_labeling_or_signage": "Recycling symbol, waste pictogram, and 'Abf\u00e4lle' label in white on multiple sides",
+    "uid": "8c6f87f91f114414b8d25af95d883f6f",
+    "near_synsets": {
+        "recycling_bin.n.01": 0.5018056976251153,
+        "dumpster.n.01": 0.5188944278132162,
+        "garbage.n.03": 0.5192120328068921,
+        "ashcan.n.01": 0.5371374579290368,
+        "litterbin.n.01": 0.5437532119575266,
+        "bin.n.01": -1000.0,
+        "methamphetamine.n.01": -1000.0,
+        "trash.n.02": -1000.0,
+        "rubbish.n.01": -1000.0,
+        "folderol.n.01": -1000.0,
+        "bin.n.02": -1000.0,
+        "bank_identification_number.n.01": -1000.0
+    },
+    "synset": "litterbin.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8c6f87f91f114414b8d25af95d883f6f",
+        "creator_username": "PagDev",
+        "creator_display_name": "PagDev",
+        "creator_profile_url": "https://sketchfab.com/PagDev"
+    },
+    "filename": "std_8c6f87f91f114414b8d25af95d883f6f.glb",
+    "length": 0.8249443769454956,
+    "width": 0.5499961376190186
+}

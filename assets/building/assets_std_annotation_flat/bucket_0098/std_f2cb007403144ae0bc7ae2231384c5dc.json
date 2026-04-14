@@ -1,0 +1,96 @@
+{
+    "description_long": "This humanoid robot features a robust, exoskeletal frame with metallic gray armor plating and exposed mechanical joints. The torso is reinforced with rib-like structures and brown tubing, suggesting a power or hydraulic system. The arms and legs are heavily segmented, with visible actuators and reinforced joints for enhanced mobility and strength. The back includes a large, circular vent or port, possibly for cooling or power input, and the shoulders are broad with additional mechanical detailing. The feet are wide and stable, designed for balance and support on urban terrain. The overall design is utilitarian and industrial, with no visible facial features or decorative elements.",
+    "description": "A heavily armored, metallic humanoid robot with exposed joints, ribbed torso, and reinforced limbs, designed for strength and utility.",
+    "description_view_0": "Front view shows the ribbed chest, brown tubing, and symmetrical arm and leg armor.",
+    "description_view_1": "Left side view highlights the depth of the torso, arm articulation, and layered leg armor.",
+    "description_view_2": "Rear view reveals a large circular vent on the back, reinforced spine, and mechanical detailing on the legs.",
+    "description_view_3": "Right side view mirrors the left, showing the arm and leg structure and the protruding back components.",
+    "category": "humanoid robot",
+    "height": 2.1,
+    "max_dimension": 1.1,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 210,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 2100,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arm",
+        "leg",
+        "torso panel",
+        "back vent"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms relaxed at the sides and legs straight, head facing forward, and torso aligned vertically.",
+    "attribute_clothing_style": "No clothing; the robot is covered in integrated metallic panels and mechanical components with some exposed tubing.",
+    "attribute_facial_features": "No visible facial features; the head is featureless and helmet-like with no eyes, mouth, or nose.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints at the shoulders, elbows, wrists, hips, knees, and ankles, allowing for a wide range of motion; limbs appear robust and articulated.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "f2cb007403144ae0bc7ae2231384c5dc",
+    "near_synsets": {
+        "cyborg.n.01": 0.5168559536447656,
+        "android.n.01": 0.5183127379239353,
+        "robotics_equipment.n.01": 0.5265257759858845,
+        "automaton.n.02": 0.5427485241569646,
+        "robotics.n.01": 0.5651667664247731
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f2cb007403144ae0bc7ae2231384c5dc",
+        "creator_username": "moondonghwa",
+        "creator_display_name": "Moon dong hwa",
+        "creator_profile_url": "https://sketchfab.com/moondonghwa"
+    },
+    "filename": "std_f2cb007403144ae0bc7ae2231384c5dc.glb",
+    "length": 2.26091206073761,
+    "width": 2.260911226272583
+}

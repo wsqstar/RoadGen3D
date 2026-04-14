@@ -1,0 +1,103 @@
+{
+    "description_long": "This object is a large, industrial pumping station with a robust, rectangular body primarily colored in dark blue and black. The sides feature three prominent, ribbed ventilation grilles, likely for cooling internal machinery, and a cylindrical chamber at one end, possibly housing the main pump mechanism. The top includes a raised, box-like structure with a small yellow warning triangle, suggesting the presence of electrical or mechanical components. Thick, black piping runs along the top and sides, indicating fluid intake and output connections. The base is reinforced and appears designed to be bolted to the ground for stability. The overall construction is heavy-duty, suitable for urban infrastructure such as water or sewage management.",
+    "description": "A heavy-duty, blue and black industrial pumping station with ribbed ventilation grilles, cylindrical chamber, and thick piping, designed for urban infrastructure.",
+    "description_view_0": "Front view shows the circular end chamber and the reinforced base, with the ribbed top and side details visible.",
+    "description_view_1": "Side view highlights the three large ribbed ventilation grilles, the cylindrical chamber, and the top-mounted box with a warning sign.",
+    "description_view_2": "Rear view reveals two large exhaust or intake ports and a flat, gridded panel, with the piping and ribbed structure visible above.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the ribbed grilles, cylindrical chamber, and piping, but from the other side.",
+    "category": "pumping station",
+    "height": 1.6,
+    "max_dimension": 3.2,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "control panel",
+        "access panel",
+        "valve",
+        "ventilation grille"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black",
+        "gray",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_building_signage": "A small yellow warning triangle is visible on the top-mounted box on the side; no other signage or labels are present.",
+    "attribute_ventilation_grilles": "Three large, rectangular ribbed ventilation grilles are present on each side of the main body.",
+    "attribute_security_fencing": "none",
+    "attribute_access_hatches": "One large circular access panel is visible on the front end; additional rectangular access panels are present on the sides.",
+    "attribute_warning_lights": "none",
+    "uid": "aa6923a3a31340c4a3ea8f65ee45fd68",
+    "near_synsets": {
+        "pump_house.n.01": 0.5241590759487289,
+        "pump.n.01": 0.5620393677234603,
+        "pump_room.n.01": 0.5724208388239637,
+        "pump_well.n.01": 0.5736184099741892,
+        "groundwater_pump.n.01": 0.5738113760507939,
+        "station.n.05": -1000.0,
+        "place.n.10": -1000.0,
+        "station.n.01": -1000.0,
+        "station.n.03": -1000.0,
+        "post.n.01": -1000.0
+    },
+    "synset": "pump_house.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/aa6923a3a31340c4a3ea8f65ee45fd68",
+        "creator_username": "delroy.granger1",
+        "creator_display_name": "Plague",
+        "creator_profile_url": "https://sketchfab.com/delroy.granger1"
+    },
+    "filename": "std_aa6923a3a31340c4a3ea8f65ee45fd68.glb",
+    "length": 2.8726682662963867,
+    "width": 0.9546304941177368
+}

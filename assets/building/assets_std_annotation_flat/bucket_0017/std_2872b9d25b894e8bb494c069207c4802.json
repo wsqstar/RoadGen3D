@@ -1,0 +1,103 @@
+{
+    "description_long": "This humanoid robot features a sleek, white exterior with black and blue accents, giving it a modern and approachable appearance. Its head is triangular with a black faceplate displaying expressive digital eyes and a blue accent, suggesting a screen-based interface. The torso is broad and houses a prominent display screen and a slot, possibly for interaction or information display, with additional blue-lit details. The arms are segmented with visible joints at the shoulders, elbows, and wrists, ending in articulated hands. The lower body is wide and rounded, likely containing the robot's mobility system, with vent-like openings at the base. The overall design is streamlined, with smooth surfaces and integrated panels, suitable for public interaction in urban environments.",
+    "description": "A modern, white humanoid robot with a digital face, articulated arms, and a broad, rounded base, featuring blue and black accents and a central display screen.",
+    "description_view_0": "Side view showing the robot's triangular head, articulated arm, and the rounded, stable base.",
+    "description_view_1": "Rear view highlighting the broad back, symmetrical arms, and the vented lower base.",
+    "description_view_2": "Opposite side view displaying the arm articulation and the smooth, continuous body panels.",
+    "description_view_3": "Front view revealing the expressive digital face, central display screen, and detailed hand structure.",
+    "category": "humanoid robot",
+    "height": 1.5,
+    "max_dimension": 0.8,
+    "materials": [
+        "plastic",
+        "metal",
+        "glass",
+        "rubber",
+        "air",
+        "electronic components"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.05,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 55,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 9,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "display screen",
+        "face screen",
+        "arms",
+        "hands",
+        "buttons",
+        "slots"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "blue",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms relaxed at the sides, head facing forward, and torso aligned vertically. The hands are open and slightly forward, suggesting readiness for interaction.",
+    "attribute_clothing_style": "No visible clothing; the robot is covered in integrated, smooth white and black panels with blue accent lighting.",
+    "attribute_facial_features": "The face consists of a black digital screen with expressive, animated eyes and a blue accent, lacking a physical mouth or nose. The display is designed to convey emotion and information visually.",
+    "attribute_limb_articulation": "Arms have three main articulation points: shoulder (ball joint), elbow (hinge), and wrist (rotary), with articulated fingers on the hands. No visible legs; the base is a single rounded unit likely for mobility.",
+    "attribute_presence_of_sensors": "Visible sensors include a camera or visual sensor on the face screen, possible microphones near the head, and touch sensors on the hands and display screen.",
+    "uid": "2872b9d25b894e8bb494c069207c4802",
+    "near_synsets": {
+        "android.n.01": 0.5208691305410819,
+        "cyborg.n.01": 0.5305391557200151,
+        "automaton.n.02": 0.5598841933873203,
+        "robotics.n.01": 0.5648867328501743,
+        "automaton.n.03": 0.5668181748189199
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2872b9d25b894e8bb494c069207c4802",
+        "creator_username": "cyborgin",
+        "creator_display_name": "cyborgin",
+        "creator_profile_url": "https://sketchfab.com/cyborgin"
+    },
+    "filename": "std_2872b9d25b894e8bb494c069207c4802.glb",
+    "length": 0.6702156364917755,
+    "width": 0.7036682367324829
+}

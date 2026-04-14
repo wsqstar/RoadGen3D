@@ -1,0 +1,95 @@
+{
+    "description_long": "This shelter is a small, makeshift structure constructed primarily from corrugated metal sheets, many of which are heavily rusted and weathered, giving the shelter a patchwork appearance. The roof is composed of overlapping, unevenly sized metal panels, some of which are misaligned, creating a rugged and improvised look. The walls are also made from corrugated metal, with visible seams and discoloration from exposure to the elements. Four simple wooden poles support the roof at the corners, with one pole slightly askew, suggesting a temporary or quickly assembled build. The shelter is open on one side, providing access to the interior, which appears to be a single, undivided space. There are no visible windows, doors, or decorative elements, emphasizing its utilitarian purpose as a basic protective cover.",
+    "description": "A small, makeshift shelter built from rusted corrugated metal sheets and supported by wooden poles, with an open entryway and a patchwork roof.",
+    "description_view_0": "Front view showing the open entryway, patchwork corrugated metal roof, and two supporting wooden poles.",
+    "description_view_1": "Angled side view revealing the uneven roof panels, the open side, and the corrugated metal wall construction.",
+    "description_view_2": "Rear view highlighting the continuous corrugated metal wall and the full extent of the rusted roof panels.",
+    "description_view_3": "Opposite side view showing the sloped roof, side wall, and the supporting wooden poles, with the open entryway partially visible.",
+    "category": "shelter",
+    "height": 2.2,
+    "max_dimension": 3.5,
+    "materials": [
+        "corrugated metal",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "mass": 210,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shelter_providing",
+        "weather_protection"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "entryway"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "rust brown",
+        "gray",
+        "silver",
+        "wood brown"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 160000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "patchwork sloped corrugated metal roof",
+    "attribute_entryway_design": "open passage without doors or coverings, framed by wooden poles",
+    "attribute_support_structure": "vertical wooden poles supporting corrugated metal roof and walls",
+    "attribute_signage": "none",
+    "attribute_transparency": "fully opaque",
+    "uid": "60156c85ad9e43498e15f2fbd529a5da",
+    "near_synsets": {
+        "shelter.n.02": 0.4602406122578225,
+        "shelter.n.05": 0.4720821043577918,
+        "shelter.n.01": 0.4829025692094016,
+        "sentry_box.n.01": 0.5102329884931556,
+        "shed.n.01": 0.5108542481540177,
+        "tax_shelter.n.01": -1000.0,
+        "protection.n.04": -1000.0
+    },
+    "synset": "tax_shelter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/60156c85ad9e43498e15f2fbd529a5da",
+        "creator_username": "erroratten",
+        "creator_display_name": "Erroratten",
+        "creator_profile_url": "https://sketchfab.com/erroratten"
+    },
+    "filename": "std_60156c85ad9e43498e15f2fbd529a5da.glb",
+    "length": 4.851909875869751,
+    "width": 3.3042941093444824
+}

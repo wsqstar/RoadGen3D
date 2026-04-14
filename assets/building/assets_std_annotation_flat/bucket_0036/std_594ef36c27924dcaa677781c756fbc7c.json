@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a dual-axle utility trailer with a robust steel frame and open construction, designed for transporting large or heavy items such as vehicles or equipment. The trailer features a flatbed platform with multiple crossbars for structural support and tie-down points along the sides. At the front, there is a triangular tongue with a ball hitch for towing, a manual winch, and a wheel jack for stability when detached from a vehicle. The trailer rides on four wheels, two on each side, and has fenders above each wheel pair. There are no enclosed sides or roof, making it suitable for carrying oversized loads. Reflective strips and lights are visible along the frame for safety during road use.",
+    "description": "A heavy-duty, open-frame dual-axle utility trailer with a steel flatbed, ball hitch, and winch, designed for hauling large items or vehicles.",
+    "description_view_0": "Front view showing the triangular tongue, ball hitch, winch, and the open frame structure.",
+    "description_view_1": "Side view highlighting the dual axles, four wheels, fenders, and the length of the flatbed platform.",
+    "description_view_2": "Rear view displaying the open back, crossbars, and taillights, with no doors or ramps visible.",
+    "description_view_3": "Opposite side view showing the same dual-axle configuration, fenders, and the open steel frame.",
+    "category": "trailer",
+    "height": 1.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.01,
+        0.03
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "towable",
+        "attachable",
+        "loadable",
+        "winchable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hitch",
+        "winch",
+        "wheel",
+        "jack",
+        "fender",
+        "taillight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.85,
+        0.12,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 4,
+    "attribute_hitch_type": "ball hitch",
+    "attribute_door_configuration": "no doors visible",
+    "attribute_branding_or_signage": "no visible signage",
+    "attribute_window_presence": "no windows visible",
+    "uid": "594ef36c27924dcaa677781c756fbc7c",
+    "near_synsets": {
+        "trailer.n.03": 0.4640156832420714,
+        "flatbed.n.02": 0.4712078452990881,
+        "trailer.n.04": 0.48251583067182546,
+        "trailer_truck.n.01": 0.48505747289502993,
+        "truck.n.01": 0.49626067402788165,
+        "dawdler.n.01": -1000.0,
+        "preview.n.01": -1000.0
+    },
+    "synset": "trailer_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/594ef36c27924dcaa677781c756fbc7c",
+        "creator_username": "boatusfoundation",
+        "creator_display_name": "BoatUS Foundation",
+        "creator_profile_url": "https://sketchfab.com/boatusfoundation"
+    },
+    "filename": "std_594ef36c27924dcaa677781c756fbc7c.glb",
+    "length": 5.707194805145264,
+    "width": 1.5656707882881165
+}

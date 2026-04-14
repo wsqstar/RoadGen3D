@@ -1,0 +1,91 @@
+{
+    "description_long": "This is a small, open wooden boat with a simple, utilitarian design, likely intended for use on calm waters such as rivers, lakes, or urban canals. The hull is constructed from planks of wood, giving it a rustic and sturdy appearance, and the boat features a flat bottom with slightly angled sides for stability. There are two bench seats spanning the width of the boat, providing seating for passengers or space for cargo. The bow is pointed, while the stern is squared off, and there are two small metal loops on the gunwales, possibly for attaching ropes or oars. The interior is open and unobstructed, making it easy to enter and move around inside. The wood surface shows some gloss, suggesting a protective varnish or sealant has been applied.",
+    "description": "A small, open wooden boat with bench seats and a flat-bottomed hull, featuring a rustic, varnished finish and simple fittings.",
+    "description_view_0": "Front view showing the pointed bow, flat bottom, and the first bench seat inside the boat.",
+    "description_view_1": "Side view highlighting the boat's length, flat-bottomed hull, and two bench seats with visible metal loops on the gunwales.",
+    "description_view_2": "Rear view displaying the squared-off stern, both bench seats, and the open interior layout.",
+    "description_view_3": "Opposite side view similar to view 1, showing the boat's length, flat bottom, and open seating arrangement.",
+    "category": "boat",
+    "height": 0.7,
+    "max_dimension": 3.5,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 90,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 250,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench seat",
+        "metal loop"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "glossy",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_hull_type": "flat-bottom",
+    "attribute_propulsion_type": "oars",
+    "attribute_registration_number": "none",
+    "attribute_presence_of_trailer": false,
+    "attribute_visible_boat_name": "none",
+    "uid": "496e7294637b43dd8979898745056137",
+    "near_synsets": {
+        "boat.n.01": 0.4461560390174198,
+        "small_boat.n.01": 0.4578135541891164,
+        "rowing_boat.n.01": 0.4731924288483827,
+        "bareboat.n.01": 0.4942492043341187,
+        "boathouse.n.01": 0.5000177063284742,
+        "gravy_boat.n.01": -1000.0
+    },
+    "synset": "gravy_boat.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/496e7294637b43dd8979898745056137",
+        "creator_username": "sofiemhoffmann",
+        "creator_display_name": "sofiemhoffmann",
+        "creator_profile_url": "https://sketchfab.com/sofiemhoffmann"
+    },
+    "filename": "std_496e7294637b43dd8979898745056137.glb",
+    "length": 2.7957167625427246,
+    "width": 1.3388023376464844
+}

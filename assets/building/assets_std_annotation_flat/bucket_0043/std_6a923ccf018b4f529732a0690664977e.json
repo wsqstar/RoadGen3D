@@ -1,0 +1,102 @@
+{
+    "description_long": "This tram is a rectangular, elongated vehicle with a dark green body and a flat roof, running on a set of metal rails embedded in a gravel or sand-colored ground. The sides feature a series of evenly spaced, rectangular windows, providing visibility and light for passengers inside. The tram has a set of metal wheels and undercarriage components visible beneath the body, and a raised pantograph structure on the roof for electrical connection. Entry and exit doors are located along the sides, with a platform area adjacent to the rails for passenger access. The overall design is utilitarian, with minimal decorative elements and a focus on functionality for urban public transport.",
+    "description": "A dark green, rectangular tram with side windows, roof-mounted pantograph, and metal wheels on rails, designed for urban passenger transport.",
+    "description_view_0": "Front view showing the tram's narrow end, rails, and a glimpse of the roof pantograph.",
+    "description_view_1": "Side view highlighting the row of windows, side doors, and the full length of the tram on rails.",
+    "description_view_2": "Rear view similar to the front, showing the opposite narrow end and rails.",
+    "description_view_3": "Opposite side view, again showing the windows, doors, and the tram's length on rails.",
+    "category": "tram",
+    "height": 3.2,
+    "max_dimension": 18.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "pantograph",
+        "wheel",
+        "button",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_pantograph_type": "diamond",
+    "attribute_door_configuration": "two sliding doors on each side, centrally located",
+    "attribute_window_arrangement": "six large, evenly spaced rectangular windows per side, separated by narrow vertical frames",
+    "attribute_route_number_display": "none",
+    "attribute_front_signage": "none",
+    "uid": "6a923ccf018b4f529732a0690664977e",
+    "near_synsets": {
+        "streetcar.n.01": 0.4958652219804276,
+        "tramway.n.01": 0.49668249137863674,
+        "trolleybus.n.01": 0.49942851935565474,
+        "train.n.01": 0.5011453694945486,
+        "tramline.n.01": 0.5027543840897666,
+        "tramcar.n.01": -1000.0
+    },
+    "synset": "tramcar.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6a923ccf018b4f529732a0690664977e",
+        "creator_username": "YanaBelaya",
+        "creator_display_name": "YanaBelaya",
+        "creator_profile_url": "https://sketchfab.com/YanaBelaya"
+    },
+    "filename": "std_6a923ccf018b4f529732a0690664977e.glb",
+    "length": 37.37337303161621,
+    "width": 20.793846130371094
+}

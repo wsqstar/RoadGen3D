@@ -1,0 +1,101 @@
+{
+    "description_long": "This humanoid robot features a segmented, orange exoskeleton with black joint connectors and mechanical details visible at the elbows, knees, and neck. The body is proportioned similarly to a human, with a defined torso, articulated limbs, and a head shaped like a helmet, lacking any expressive facial features. Black and yellow hazard symbols are present on the chest, shoulders, and legs, suggesting its use in safety or testing environments. The hands are detailed with individual fingers, and the feet are broad and flat, likely for stability. The surface appears hard and slightly glossy, with visible seams and bolts at the joints. The overall design is robust and functional, optimized for durability and mobility in urban or industrial settings.",
+    "description": "A robust, orange humanoid robot with articulated limbs, black joints, and hazard markings, designed for durability and mobility.",
+    "description_view_0": "Front view shows the robot's symmetrical torso, hazard symbols on the chest, and detailed hands with spread fingers.",
+    "description_view_1": "Left side view highlights the helmet-like head profile, joint articulation, and the flat, stable feet.",
+    "description_view_2": "Rear view reveals the back panel, shoulder joints, and additional hazard markings on the upper back and legs.",
+    "description_view_3": "Right side view mirrors the left, showing limb articulation and mechanical details at the joints.",
+    "category": "humanoid robot",
+    "height": 1.8,
+    "max_dimension": 1.8,
+    "materials": [
+        "painted metal",
+        "plastic",
+        "rubber",
+        "synthetic polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 95,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "hands",
+        "fingers",
+        "legs",
+        "head",
+        "torso joints"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "black",
+        "yellow",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms slightly extended outward and downward, legs straight and parallel, head facing forward, and fingers splayed.",
+    "attribute_clothing_style": "No clothing; the robot is covered in integrated orange and black panels with hazard markings, resembling a crash test dummy.",
+    "attribute_facial_features": "The face is featureless, smooth, and helmet-like with no visible eyes, mouth, or nose; no expressive or display elements are present.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints at the shoulders, elbows, wrists, hips, knees, and ankles; hands have articulated fingers, suggesting a wide range of motion.",
+    "attribute_presence_of_sensors": "None visible",
+    "uid": "0c5cf6b017ba48f1bb32244ae1fefd2d",
+    "near_synsets": {
+        "android.n.01": 0.5287570710773051,
+        "robotics_equipment.n.01": 0.5514870843222452,
+        "automaton.n.02": 0.5599055283876072,
+        "cyborg.n.01": 0.5619577317007097,
+        "robotics.n.01": 0.5761491791416739
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/0c5cf6b017ba48f1bb32244ae1fefd2d",
+        "creator_username": "robomax",
+        "creator_display_name": "robomax",
+        "creator_profile_url": "https://sketchfab.com/robomax"
+    },
+    "filename": "std_0c5cf6b017ba48f1bb32244ae1fefd2d.glb",
+    "length": 0.30357562005519867,
+    "width": 1.3749386072158813
+}

@@ -1,0 +1,91 @@
+{
+    "description_long": "This tunnel structure is long and rectangular, featuring a segmented exterior with evenly spaced paneling along its length. The ends of the tunnel are flat and bordered by a reinforced frame, with one end displaying a row of metallic connectors or fixtures, possibly for modular attachment or access. The surface is predominantly gray, with a matte, industrial finish, and the construction appears to be primarily of metal, suggesting durability and strength. The tunnel's proportions are low in height but extensive in length, indicating it is designed for passage rather than overhead clearance. There are no visible windows, doors, or decorative elements, emphasizing a utilitarian and functional design. The overall appearance suggests it is intended for vehicular or service access in an urban or industrial environment.",
+    "description": "A long, rectangular, gray tunnel with segmented paneling and reinforced ends, designed for utilitarian urban or industrial use. One end features metallic connectors, and the structure has a matte, industrial finish.",
+    "description_view_0": "The tunnel is seen head-on from one end, showing a flat face with a row of metallic connectors or fixtures at the base.",
+    "description_view_1": "A side view reveals the tunnel's full length and segmented paneling, emphasizing its elongated, rectangular shape.",
+    "description_view_2": "The opposite end view mirrors the first, with a flat face and reinforced frame but without visible connectors.",
+    "description_view_3": "Another side view, identical to view 1, displaying the tunnel's length and segmented exterior.",
+    "category": "tunnel",
+    "height": 1.5,
+    "max_dimension": 12.0,
+    "materials": [
+        "steel",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "connectable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "connector panel"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "vehicle"
+    ],
+    "colors": [
+        "gray",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "Rectangular open ends with reinforced metal frames; one end features a connector panel, both ends are open with no doors or gates.",
+    "attribute_lighting_fixtures": [],
+    "attribute_signage": [],
+    "attribute_surrounding_infrastructure": "No visible surrounding infrastructure; the tunnel is isolated in the images with no adjacent roads, tracks, or buildings.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "a040e85ca8124ffa871da3c11149d9df",
+    "near_synsets": {
+        "railroad_tunnel.n.01": 0.5052685058462414,
+        "tunnel.n.01": 0.519252544119371,
+        "tube.n.01": 0.5623842409188591,
+        "conduit.n.01": 0.5686217844240896,
+        "underpass.n.01": 0.5740555689729898,
+        "burrow.n.01": -1000.0
+    },
+    "synset": "tunnel.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a040e85ca8124ffa871da3c11149d9df",
+        "creator_username": "Adityakm",
+        "creator_display_name": "Aditya Graphical",
+        "creator_profile_url": "https://sketchfab.com/Adityakm"
+    },
+    "filename": "std_a040e85ca8124ffa871da3c11149d9df.glb",
+    "length": 13.57233190536499,
+    "width": 2.333754062652588
+}

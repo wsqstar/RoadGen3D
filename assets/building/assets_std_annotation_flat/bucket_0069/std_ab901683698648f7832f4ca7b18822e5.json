@@ -1,0 +1,90 @@
+{
+    "description_long": "This object appears to be a highly fragmented and incomplete representation of an airplane, with large portions of the fuselage and wings missing or rendered as thin, irregular surfaces. The visible surfaces are mostly brownish with some lighter and darker patches, suggesting a weathered or camouflaged paint scheme. The structure is riddled with holes and gaps, making it difficult to discern specific airplane features such as the cockpit, engines, or landing gear. There are no clearly defined windows, doors, or control surfaces visible, and the overall form is distorted and abstract. The asset gives the impression of a deteriorated or partially destroyed aircraft, possibly a wreck or a deconstructed model. The scattered fragments and lack of solid volume indicate that much of the original mass and structure is absent.",
+    "description": "A fragmented, partially destroyed airplane with irregular, hole-riddled brown surfaces and missing major features. The object appears as scattered, thin remnants of an aircraft.",
+    "description_view_0": "From this view, the largest contiguous surface is visible, showing a curved, perforated section that may represent part of the fuselage or wing.",
+    "description_view_1": "This angle highlights the flatness and fragmentation of the object, with several disconnected pieces and a lack of recognizable airplane features.",
+    "description_view_2": "Here, the scattered nature of the fragments is most apparent, with thin, irregular surfaces and no clear central structure.",
+    "description_view_3": "This view emphasizes the irregular edges and the absence of any solid, continuous airplane body, with the largest piece appearing almost skeletal.",
+    "category": "airplane",
+    "height": 0.5,
+    "max_dimension": 2.0,
+    "materials": [
+        "metal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.1,
+        0.4
+    ],
+    "mass": 15,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 2,
+    "movable": true,
+    "required_force": 50,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "brown",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Indeterminate due to fragmentation; remnants suggest possible low-wing configuration with irregular, broken edges and no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "No visible engines present on the object.",
+    "attribute_tail_design": "Tail configuration is not discernible due to missing or fragmented structure.",
+    "attribute_landing_gear_type": "No landing gear visible in the current state of the object.",
+    "attribute_cockpit_placement": "Cockpit location and configuration are not identifiable from the visible fragments.",
+    "uid": "ab901683698648f7832f4ca7b18822e5",
+    "near_synsets": {
+        "aircraft.n.01": 0.5203220173226888,
+        "airplane.n.01": 0.5376252152596525,
+        "wreckage.n.01": 0.546124550818368,
+        "warplane.n.01": 0.5550258488417571,
+        "airframe.n.01": 0.5590974484864524
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/ab901683698648f7832f4ca7b18822e5",
+        "creator_username": "joshkuperman",
+        "creator_display_name": "joshkuperman",
+        "creator_profile_url": "https://sketchfab.com/joshkuperman"
+    },
+    "filename": "std_ab901683698648f7832f4ca7b18822e5.glb",
+    "length": 1.3431779742240906,
+    "width": 1.3037912249565125
+}

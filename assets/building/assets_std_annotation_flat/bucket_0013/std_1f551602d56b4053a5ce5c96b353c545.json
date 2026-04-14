@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a small, stylized cement mixer vehicle, primarily constructed from a wood-like material. It features a compact truck cab at the front with a flat hood and a simple, boxy design. The rear section houses a polygonal mixing drum mounted on a pair of visible support arms, suggesting the ability to rotate for mixing cement. The vehicle sits on four round wheels, also made of the same wood material, and the drum is attached to a basic frame that connects it to the chassis. There are no visible windows or fine details such as lights or mirrors, giving it a toy-like or minimalist appearance. The overall finish is matte, with a consistent brown color throughout.",
+    "description": "A small, wooden cement mixer truck with a polygonal mixing drum and a simple, boxy cab, all in a matte brown finish.",
+    "description_view_0": "Side view showing the full length of the truck, the polygonal mixing drum, and the support arms connecting the drum to the chassis.",
+    "description_view_1": "Front view highlighting the flat hood, the cab's boxy shape, and the absence of windows or headlights.",
+    "description_view_2": "Opposite side view mirroring view 0, with the drum and support arms visible, as well as the open cab area.",
+    "description_view_3": "Rear view showing the back of the drum, the support frame, and the rear of the cab.",
+    "category": "cement mixer",
+    "height": 0.4,
+    "max_dimension": 1.0,
+    "materials": [
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 8,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "drum",
+        "support arm",
+        "cab"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_rotating_drum": true,
+    "attribute_chute": false,
+    "attribute_mixing_blades": false,
+    "attribute_truck_cab": true,
+    "attribute_support_frame": true,
+    "uid": "1f551602d56b4053a5ce5c96b353c545",
+    "near_synsets": {
+        "concrete_mixer.n.01": 0.49270514983163166,
+        "electric_mixer.n.01": 0.5604283301584869,
+        "stand_mixer.n.01": 0.563203828527429,
+        "mixer.n.04": 0.5643780699320624,
+        "paintbox.n.01": 0.5654206355693112,
+        "cement.n.03": -1000.0,
+        "mixer.n.02": -1000.0,
+        "mixer.n.03": -1000.0,
+        "cement.n.02": -1000.0,
+        "cementum.n.01": -1000.0,
+        "cement.n.04": -1000.0,
+        "cement.n.01": -1000.0,
+        "sociable.n.01": -1000.0
+    },
+    "synset": "concrete_mixer.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1f551602d56b4053a5ce5c96b353c545",
+        "creator_username": "trinityscsp",
+        "creator_display_name": "trinityscsp",
+        "creator_profile_url": "https://sketchfab.com/trinityscsp"
+    },
+    "filename": "std_1f551602d56b4053a5ce5c96b353c545.glb",
+    "length": 1.5687385201454163,
+    "width": 1.568336546421051
+}

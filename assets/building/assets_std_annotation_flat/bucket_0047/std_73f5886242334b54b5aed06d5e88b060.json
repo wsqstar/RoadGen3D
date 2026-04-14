@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a large rectangular cardboard shipping box with a brown, corrugated exterior. The front face displays several hazardous material labels, including a UN 1203 gasoline warning, a flammable symbol, and a cargo aircraft restriction notice, indicating the contents are dangerous and regulated. Two of the side faces feature a red 'this side up' label with upward-pointing arrows, while the remaining side is plain with no markings. The box appears sturdy and is likely sealed, designed for the secure transport of hazardous goods. The surface texture is matte and slightly rough, typical of industrial cardboard packaging. The box is suitable for placement in urban logistics, warehouses, or transport hubs.",
+    "description": "A large brown cardboard shipping box with hazardous material and flammable warning labels, featuring 'this side up' arrows on two sides.",
+    "description_view_0": "The front view shows the main hazard labels, including UN 1203 gasoline, flammable symbol, and cargo aircraft restriction.",
+    "description_view_1": "This side displays a 'this side up' label with two red arrows, with no other markings visible.",
+    "description_view_2": "This side is plain brown cardboard with no visible labels or markings.",
+    "description_view_3": "This side also features a 'this side up' label with two red arrows, similar to view 1.",
+    "category": "parcels",
+    "height": 0.45,
+    "max_dimension": 0.65,
+    "materials": [
+        "corrugated_cardboard",
+        "adhesive",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 6.5,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "flaps",
+        "tape_seal"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "white",
+        "red",
+        "black",
+        "orange"
+    ],
+    "colors_composition": [
+        0.92,
+        0.03,
+        0.02,
+        0.02,
+        0.01
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 4000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "",
+    "attribute_car_model": "",
+    "attribute_building_number": "",
+    "attribute_storefront_signage": "",
+    "attribute_street_name": "",
+    "uid": "73f5886242334b54b5aed06d5e88b060",
+    "near_synsets": {
+        "packing_box.n.02": 0.555934709586058,
+        "carton.n.02": 0.5605052319602785,
+        "matchbox.n.01": 0.564417107060015,
+        "hazmat.n.01": 0.5690894622642959,
+        "box.n.01": 0.5697774105204426,
+        "package.n.01": -1000.0,
+        "package.n.02": -1000.0,
+        "tract.n.01": -1000.0,
+        "parcel.n.02": -1000.0
+    },
+    "synset": "carton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/73f5886242334b54b5aed06d5e88b060",
+        "creator_username": "dnlblt",
+        "creator_display_name": "dnlblt",
+        "creator_profile_url": "https://sketchfab.com/dnlblt"
+    },
+    "filename": "std_73f5886242334b54b5aed06d5e88b060.glb",
+    "length": 0.514285683631897,
+    "width": 0.70714271068573
+}

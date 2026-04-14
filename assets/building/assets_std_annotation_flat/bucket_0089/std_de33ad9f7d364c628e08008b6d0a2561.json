@@ -1,0 +1,105 @@
+{
+    "description_long": "This object is a tall, industrial wind turbine mounted on a yellow lattice tower base, designed for large-scale power generation. The structure features three long, aerodynamic blades attached to a central hub, with red tips for visibility. The nacelle, which houses the generator and other machinery, sits atop a cylindrical tower and is painted in a combination of white and gray with red accent bands. The base is a robust, open truss structure, likely made of steel, providing stability and support for the tall tower. On one side, there are three circular display panels showing operational data such as wind speed, power output, and efficiency. The overall design is utilitarian, with a focus on durability and functionality in outdoor environments.",
+    "description": "A tall wind turbine with three blades, mounted on a yellow lattice steel tower and featuring operational data displays on one side.",
+    "description_view_0": "Front view showing all three blades, the nacelle, and three circular data displays on the right side of the tower.",
+    "description_view_1": "Side view highlighting the blade profile, the cylindrical tower, and the lattice base structure.",
+    "description_view_2": "Rear view with the three blades visible and the data displays on the left side, showing the back of the nacelle and tower.",
+    "description_view_3": "Opposite side view showing the blade profile and the lattice base, with no data displays visible.",
+    "category": "transformer tower",
+    "height": 60.0,
+    "max_dimension": 70.0,
+    "materials": [
+        "steel",
+        "composite",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "blades",
+        "nacelle",
+        "data display panels"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "red",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.01,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_insulator_stacks": 0,
+    "attribute_arrangement_of_crossarms": "There are no visible crossarms; the structure consists of a central cylindrical tower with a three-bladed rotor mounted at the top.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "generator",
+        "rotor",
+        "data display panels"
+    ],
+    "attribute_configuration_of_attached_power_lines": "No power lines are visibly attached; the structure is designed for wind energy generation with internal routing of generated power.",
+    "uid": "de33ad9f7d364c628e08008b6d0a2561",
+    "near_synsets": {
+        "wind_turbine.n.01": 0.5150552216417794,
+        "wind_tee.n.01": 0.5504366829953871,
+        "windmill.n.02": 0.5506449627390331,
+        "wind_farm.n.01": 0.5540458467148891,
+        "windmill.n.01": 0.5543400526239174,
+        "tugboat.n.01": -1000.0,
+        "transformer.n.01": -1000.0,
+        "column.n.04": -1000.0,
+        "tower.n.01": -1000.0
+    },
+    "synset": "wind_turbine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/de33ad9f7d364c628e08008b6d0a2561",
+        "creator_username": "topinka.jirka",
+        "creator_display_name": "Ji\u0159\u00ed Topinka",
+        "creator_profile_url": "https://sketchfab.com/topinka.jirka"
+    },
+    "filename": "std_de33ad9f7d364c628e08008b6d0a2561.glb",
+    "length": 10.348777770996094,
+    "width": 32.595436096191406
+}

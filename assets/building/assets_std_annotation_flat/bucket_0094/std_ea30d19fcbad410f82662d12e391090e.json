@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a classic submachine gun with a robust wooden stock and foregrip, paired with a matte black metal receiver and barrel assembly. The stock and foregrip are made from dark-stained wood, giving the weapon a vintage appearance, while the rest of the body is constructed from metal with a utilitarian finish. The magazine is a prominent, detachable box type, extending vertically beneath the receiver. The barrel is relatively short and ends with a simple, unadorned muzzle, lacking any advanced muzzle device. Iron sights are mounted on the top, with a rear aperture and a front post for aiming. The overall design is reminiscent of early to mid-20th-century military firearms, built for durability and reliability in urban combat scenarios.",
+    "description": "A vintage submachine gun with a dark wooden stock and foregrip, matte black metal body, and a detachable box magazine. Features iron sights and a short, unadorned barrel.",
+    "description_view_0": "Side view showing the full wooden stock, foregrip, and the box magazine extending downward.",
+    "description_view_1": "Front view highlighting the barrel's end, iron front sight, and the narrow profile of the magazine.",
+    "description_view_2": "Opposite side view displaying the wooden stock, foregrip, and the magazine, mirroring the first side.",
+    "description_view_3": "Rear view focusing on the stock's butt and the alignment of the iron sights along the top.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 0.85,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.3,
+        0.03,
+        0.02
+    ],
+    "mass": 4.8,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 48,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "foregrip",
+        "trigger",
+        "magazine",
+        "safety lever",
+        "charging handle",
+        "iron sights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.35,
+        0.6,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "ea30d19fcbad410f82662d12e391090e",
+    "near_synsets": {
+        "sten_gun.n.01": 0.5094409379171086,
+        "submachine_gun.n.01": 0.516171860481149,
+        "tommy_gun.n.01": 0.526970207606456,
+        "garand_rifle.n.01": 0.527491717259337,
+        "kalashnikov.n.01": 0.5291366661934953,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ea30d19fcbad410f82662d12e391090e",
+        "creator_username": "AliNagi",
+        "creator_display_name": "AliNagi",
+        "creator_profile_url": "https://sketchfab.com/AliNagi"
+    },
+    "filename": "std_ea30d19fcbad410f82662d12e391090e.glb",
+    "length": 0.7957002818584442,
+    "width": 0.05386936664581299
+}

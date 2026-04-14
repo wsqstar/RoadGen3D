@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a classic Western-style motel complex featuring two main rectangular buildings set on a sandy lot with sparse desert landscaping, including several cacti. The left building has a prominent wooden porch with posts, a sign reading 'SALOON', and a blue-gray facade with large windows and a central entrance. The right building, labeled 'HOTEL', has a slightly taller, brown wooden facade with a covered entryway supported by columns and a sign above the entrance. Both structures have flat, slightly sloped roofs and wooden siding, evoking a rustic, frontier-era aesthetic. The buildings are separated by a small alley and are surrounded by a dirt path, suggesting easy access for vehicles or pedestrians. The overall scene is reminiscent of a small-town main street in the American Old West.",
+    "description": "A Western-style motel complex with two wooden buildings, covered porches, and desert landscaping, evoking a frontier-era main street.",
+    "description_view_0": "Front view showing both the 'SALOON' and 'HOTEL' facades, covered porches, and cacti flanking the entrance.",
+    "description_view_1": "Side view highlighting the depth of the buildings, the wooden siding, and the alley between the two structures.",
+    "description_view_2": "Rear view displaying the back sides of both buildings, with less architectural detail and no signage visible.",
+    "description_view_3": "Opposite side view focusing on the length of the porch and the arrangement of the cacti along the sandy lot.",
+    "category": "motel",
+    "height": 6.5,
+    "max_dimension": 24.0,
+    "materials": [
+        "wood",
+        "glass",
+        "metal",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 95000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "porch",
+        "sign"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "blue-gray",
+        "beige",
+        "black",
+        "green"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "scene",
+    "attribute_neon_signage": false,
+    "attribute_exterior_corridor_access": true,
+    "attribute_parking_lot_adjacency": true,
+    "attribute_room_door_visibility": true,
+    "attribute_architectural_style": "Western frontier",
+    "uid": "2b5e1209737548ca84436b845207f1d6",
+    "near_synsets": {
+        "motel.n.01": 0.4983886501018736,
+        "motel_room.n.01": 0.5241560731538598,
+        "motor_hotel.n.01": 0.5587508815338903,
+        "dude_ranch.n.01": 0.5621597705214493,
+        "camp.n.03": 0.564331370498333
+    },
+    "synset": "motel_room.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2b5e1209737548ca84436b845207f1d6",
+        "creator_username": "andreagonzalez28",
+        "creator_display_name": "andreagonzalez28",
+        "creator_profile_url": "https://sketchfab.com/andreagonzalez28"
+    },
+    "filename": "std_2b5e1209737548ca84436b845207f1d6.glb",
+    "length": 14.581368446350098,
+    "width": 27.07843589782715
+}

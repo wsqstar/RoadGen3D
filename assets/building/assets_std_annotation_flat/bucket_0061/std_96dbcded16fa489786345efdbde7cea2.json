@@ -1,0 +1,106 @@
+{
+    "description_long": "This object is a compact solar energy infrastructure unit featuring a rectangular solar panel mounted atop a sturdy base. The solar panel consists of multiple dark photovoltaic cells arranged in a grid, encased in a metallic or composite frame. The base appears to be made of a solid, possibly concrete or metal material, providing stability and support for the elevated panel. The panel is tilted at an angle, optimizing exposure to sunlight, and is supported by a visible mounting structure. The overall design is utilitarian, with minimal decorative elements, and is suitable for installation in urban environments such as rooftops, parking lots, or small utility areas. No visible cabling or inverter components are apparent from the exterior views.",
+    "description": "A compact solar panel unit with a tilted photovoltaic array mounted on a solid rectangular base, designed for urban solar energy collection.",
+    "description_view_0": "Front view showing the rectangular base and the tilted solar panel with its grid of photovoltaic cells.",
+    "description_view_1": "Side view highlighting the tilt angle of the solar panel and the depth of the supporting base.",
+    "description_view_2": "Rear view displaying the back of the base and the panel's supporting structure.",
+    "description_view_3": "Opposite side view emphasizing the panel's tilt and the width of the base.",
+    "category": "solar energy infrastructure",
+    "height": 0.7,
+    "max_dimension": 1.2,
+    "materials": [
+        "glass",
+        "aluminum",
+        "silicon",
+        "concrete",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.3,
+        0.2,
+        0.15,
+        0.3,
+        0.03,
+        0.02
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "solar panel",
+        "mounting frame"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "silver",
+        "red"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_panel_orientation": "tilted at approximately 30 degrees, azimuth direction not clearly discernible, orientation appears fixed",
+    "attribute_mounting_structure_type": "ground-mounted with a metal or composite frame supporting the panel above a solid base",
+    "attribute_electrical_inverter_presence": false,
+    "attribute_cabling_visibility": "not visible",
+    "attribute_array_configuration": "single row of 1 panel mounted on a rectangular base",
+    "uid": "96dbcded16fa489786345efdbde7cea2",
+    "near_synsets": {
+        "solar_array.n.01": 0.46996504724655463,
+        "solar_cell.n.01": 0.506859386423234,
+        "solar_thermal_system.n.01": 0.5176447728749639,
+        "solar_house.n.01": 0.5325773998270946,
+        "solar_energy.n.01": 0.5336895239420008,
+        "department_of_energy.n.01": -1000.0,
+        "energy.n.05": -1000.0,
+        "energy.n.01": -1000.0,
+        "energy.n.04": -1000.0,
+        "energy.n.02": -1000.0,
+        "energy.n.03": -1000.0,
+        "energy.n.06": -1000.0,
+        "infrastructure.n.01": -1000.0,
+        "infrastructure.n.02": -1000.0
+    },
+    "synset": "solar_array.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/96dbcded16fa489786345efdbde7cea2",
+        "creator_username": "brooklynsolarworks",
+        "creator_display_name": "brooklynsolarworks",
+        "creator_profile_url": "https://sketchfab.com/brooklynsolarworks"
+    },
+    "filename": "std_96dbcded16fa489786345efdbde7cea2.glb",
+    "length": 2.8819411993026733,
+    "width": 0.42053988575935364
+}

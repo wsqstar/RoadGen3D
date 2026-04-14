@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a low-profile, armored tracked combat vehicle with a sloped front glacis and a long, forward-mounted cannon. The hull is covered in dark green camouflage paint with subtle weathering and wear, and the vehicle features a flat, angular superstructure with hatches and vision ports. The sides are equipped with six large road wheels per track, and the tracks themselves are robust, designed for heavy-duty off-road and urban movement. A long radio antenna extends from the roof, and there are visible exhaust vents and grilles at the rear. The vehicle's exterior is constructed from thick, sloped armor plating, providing protection across the entire body. No visible external markings or insignia are present, and the vehicle lacks traditional tires, relying instead on continuous metal tracks.",
+    "description": "A heavily armored, low-profile tracked combat vehicle with a long cannon, sloped armor, and dark green camouflage. It features six large road wheels per side and a prominent radio antenna.",
+    "description_view_0": "Front view shows the sloped glacis, central cannon barrel, and armored tracks with a narrow, angular profile.",
+    "description_view_1": "Left side view highlights the full length of the cannon, six large road wheels, and the flat, angular superstructure.",
+    "description_view_2": "Rear view displays the exhaust grilles, rear armor plating, and the end of the tracks.",
+    "description_view_3": "Right side view mirrors the left, showing the cannon, tracks, and superstructure details.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 6.8,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.85,
+        0.07,
+        0.02,
+        0.04,
+        0.02
+    ],
+    "mass": 25000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "cannon",
+        "antenna",
+        "track",
+        "wheel",
+        "vision port",
+        "exhaust vent"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One forward-mounted cannon integrated into the hull; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped steel armor plating; prominent on the front glacis and sides, with visible weld lines and reinforced panels.",
+    "attribute_camouflage_pattern": "Dark green base with irregular brown and black patches in a classic woodland camouflage style.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "25c96f8d48884ac6bc97f286759aaf3a",
+    "near_synsets": {
+        "reconnaissance_vehicle.n.01": 0.47729774042669254,
+        "military_vehicle.n.01": 0.4872922312322471,
+        "tank.n.01": 0.4919400898353054,
+        "armored_car.n.02": 0.4972247552450848,
+        "assault_gun.n.02": 0.5146213072237422,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/25c96f8d48884ac6bc97f286759aaf3a",
+        "creator_username": "chilecaliente",
+        "creator_display_name": "BFJFFK",
+        "creator_profile_url": "https://sketchfab.com/chilecaliente"
+    },
+    "filename": "std_25c96f8d48884ac6bc97f286759aaf3a.glb",
+    "length": 3.8954813480377197,
+    "width": 1.501853108406067
+}

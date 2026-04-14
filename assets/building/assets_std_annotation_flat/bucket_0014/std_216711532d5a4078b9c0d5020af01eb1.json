@@ -1,0 +1,137 @@
+{
+    "description_long": "This object is a detailed grave site ensemble, featuring a large stone tomb with a sloped top and two rectangular metal plaques embedded on its surface. At the head of the tomb, there is a prominent upright headstone with a carved cross, flanked by a smaller rectangular stone marker at its base. The materials appear to be primarily gray granite or marble, with metallic insets for inscriptions or decoration. The structure is solid and heavy, with clean, angular lines and a weathered, matte finish typical of outdoor cemetery monuments. The overall design suggests a traditional Western-style grave, suitable for placement in a formal cemetery or memorial park.",
+    "description": "A traditional stone grave ensemble with a sloped tomb, upright headstone featuring a cross, and metallic plaques. The structure is solid, gray, and weathered, typical of cemetery monuments.",
+    "description_view_0": "Side view showing the sloped tomb, upright headstone with cross, and a smaller stone marker in a row.",
+    "description_view_1": "Front view highlighting the headstone with cross, the main tomb with metal plaques, and the smaller marker in front.",
+    "description_view_2": "Opposite side view displaying the tomb's sloped surface and the alignment of the headstone and marker.",
+    "description_view_3": "Rear view focusing on the back of the tomb and the headstone with cross, with the main plaque visible.",
+    "category": "grave yard",
+    "height": 1.2,
+    "max_dimension": 2.5,
+    "materials": [
+        "granite",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.06,
+        0.02
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "memorializable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.54,
+    "youngs_modulus": 50000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_tombstone_inscriptions": [],
+    "attribute_crosses": [
+        {
+            "style": "Latin",
+            "height": 0.5,
+            "material": "granite"
+        }
+    ],
+    "attribute_grave_markers": [
+        {
+            "type": "headstone",
+            "material": "granite",
+            "dimensions": [
+                1.2,
+                0.5,
+                0.2
+            ]
+        },
+        {
+            "type": "plaque",
+            "material": "metal",
+            "dimensions": [
+                0.4,
+                0.3,
+                0.02
+            ]
+        },
+        {
+            "type": "plaque",
+            "material": "metal",
+            "dimensions": [
+                0.4,
+                0.3,
+                0.02
+            ]
+        },
+        {
+            "type": "rectangular marker",
+            "material": "granite",
+            "dimensions": [
+                0.3,
+                0.5,
+                0.15
+            ]
+        }
+    ],
+    "attribute_mausoleums": [],
+    "attribute_cemetery_gates": [],
+    "uid": "216711532d5a4078b9c0d5020af01eb1",
+    "near_synsets": {
+        "gravestone.n.01": 0.46021019610234787,
+        "grave.n.02": 0.4703553206665379,
+        "cemetery.n.01": 0.5221063487888107,
+        "cairn.n.01": 0.5223926601412899,
+        "burial_mound.n.01": 0.5291215652709793,
+        "yard.n.08": -1000.0,
+        "cubic_yard.n.01": -1000.0,
+        "yard.n.03": -1000.0,
+        "yard.n.01": -1000.0,
+        "yard.n.07": -1000.0,
+        "yard.n.09": -1000.0,
+        "thousand.n.01": -1000.0,
+        "yard.n.06": -1000.0,
+        "yard.n.02": -1000.0
+    },
+    "synset": "gravestone.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/216711532d5a4078b9c0d5020af01eb1",
+        "creator_username": "Kigha",
+        "creator_display_name": "Kigha",
+        "creator_profile_url": "https://sketchfab.com/Kigha"
+    },
+    "filename": "std_216711532d5a4078b9c0d5020af01eb1.glb",
+    "length": 3.3470205068588257,
+    "width": 2.55999755859375
+}

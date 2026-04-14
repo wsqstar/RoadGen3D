@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a large, industrial shipping container with a rectangular, box-like structure and a weathered red exterior. The sides are reinforced with vertical corrugations for added strength, and the word 'EVERRED' is boldly stenciled in white across both long sides. The front and rear faces feature double doors, each secured with multiple vertical locking bars and metal latches, as well as small warning and information labels. The container's surface shows signs of wear, including scratches and chipped paint, suggesting frequent use in urban or industrial environments. The corners are fitted with black metal castings for stacking and securing during transport. This type of container is commonly seen in shipping yards, construction sites, or as temporary storage in urban settings.",
+    "description": "A large, red, weathered shipping container with reinforced corrugated sides, double locking doors, and 'EVERRED' stenciled in white on both long faces.",
+    "description_view_0": "Front view showing double doors with vertical locking bars, latches, and warning labels.",
+    "description_view_1": "Side view displaying the corrugated red surface and large white 'EVERRED' stencil.",
+    "description_view_2": "Rear view, nearly identical to the front, with double doors and locking mechanisms.",
+    "description_view_3": "Opposite side view, again showing the corrugated surface and 'EVERRED' stencil.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.03,
+        0.05
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 15000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking bar",
+        "latch",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "large white 'EVERRED' stencil on both long sides; small warning and information labels on doors",
+    "attribute_handles_or_grips": "vertical locking bars with integrated handles on both doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "1e61211efb1c49939ba6e45022e42873",
+    "near_synsets": {
+        "container.n.01": 0.4984622825910841,
+        "cargo_container.n.01": 0.5098861278626575,
+        "box.n.01": 0.5562775993485028,
+        "cargo_door.n.01": 0.5682902980814527,
+        "empty.n.01": 0.5696878460123515
+    },
+    "synset": "cargo_container.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1e61211efb1c49939ba6e45022e42873",
+        "creator_username": "avkpiter",
+        "creator_display_name": "avkpiter",
+        "creator_profile_url": "https://sketchfab.com/avkpiter"
+    },
+    "filename": "std_1e61211efb1c49939ba6e45022e42873.glb",
+    "length": 5.495861053466797,
+    "width": 2.2793333530426025
+}

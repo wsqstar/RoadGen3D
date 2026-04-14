@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a compact, submachine gun-style rifle with a matte black finish, featuring a rectangular receiver and a prominent magazine well extending downward from the grip. The weapon is equipped with a folding metal stock, which is currently folded alongside the body, and a simple sling attached to both the front and rear for carrying. The barrel is short and cylindrical, protruding slightly from the front of the receiver, and the iron sights are fixed, with a rear notch and a front post. The grip is ergonomic and made of polymer or plastic, contrasting with the metallic body. The magazine is a detachable box type, inserted vertically into the receiver. The overall design is utilitarian, with minimal embellishments, suitable for rapid deployment and urban use.",
+    "description": "A compact, matte black submachine gun-style rifle with a folding metal stock, detachable box magazine, and fixed iron sights.",
+    "description_view_0": "Front view showing the narrow barrel end, front sight post, and the folded stock profile.",
+    "description_view_1": "Side view displaying the full length of the rifle, folded stock, sling, grip, and magazine.",
+    "description_view_2": "Rear view highlighting the back of the receiver, rear sight, and the folded stock's attachment.",
+    "description_view_3": "Opposite side view showing the ejection port, folded stock, sling, and magazine.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 0.55,
+    "materials": [
+        "steel",
+        "polymer",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable",
+        "foldable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "magazine",
+        "stock",
+        "sling",
+        "safety lever",
+        "charging handle",
+        "iron sights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "olive green"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "folding",
+    "attribute_barrel_type": "short",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "0a314ac3ee704c1eb850e933960fb085",
+    "near_synsets": {
+        "submachine_gun.n.01": 0.4715443321189953,
+        "kalashnikov.n.01": 0.4884891517736726,
+        "garand_rifle.n.01": 0.4937285139349894,
+        "carbine.n.01": 0.4970654741110087,
+        "automatic_rifle.n.01": 0.5068475266371101,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0a314ac3ee704c1eb850e933960fb085",
+        "creator_username": "neyr",
+        "creator_display_name": "neyr",
+        "creator_profile_url": "https://sketchfab.com/neyr"
+    },
+    "filename": "std_0a314ac3ee704c1eb850e933960fb085.glb",
+    "length": 0.45160795748233795,
+    "width": 0.05503247305750847
+}

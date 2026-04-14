@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a vintage-style tow truck with a flatbed rear and a prominent blue crane boom mounted on the back, equipped with a hook for towing vehicles. The front features a classic, rounded hood and fenders, with a visible grille and headlamps, and a small windshield under a canopy roof. The vehicle has wooden-spoked wheels, with the rear wheels slightly larger than the front, and a side-mounted spare tire. The operator's cabin is open, with a simple bench seat, steering wheel, and basic controls visible. The rear flatbed area holds the crane mechanism, a winch, and additional equipment such as a spare wheel and toolbox. The overall construction appears to be primarily metal and wood, with some rubber components for the tires.",
+    "description": "A vintage tow truck with a blue crane boom, open cabin, and wooden-spoked wheels, featuring a flatbed rear for towing. The design is classic, with a mix of metal and wood materials and a visible towing hook.",
+    "description_view_0": "Front view shows the rounded hood, grille, headlamps, and the canopy roof, with the crane boom visible behind.",
+    "description_view_1": "Left side view highlights the blue crane boom, open cabin, steering wheel, and the flatbed with equipment and spare tire.",
+    "description_view_2": "Rear view displays the crane boom, winch, and flatbed area with equipment, as well as the rear wheels.",
+    "description_view_3": "Right side view mirrors the left, showing the crane boom, open cabin, and flatbed, with the towing hook and equipment visible.",
+    "category": "tractor",
+    "height": 2.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "wood",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 9000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pullable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "steering wheel",
+        "crane boom",
+        "hook",
+        "wheels",
+        "seat",
+        "controls",
+        "winch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "blue",
+        "black",
+        "brown",
+        "silver",
+        "gold"
+    ],
+    "colors_composition": [
+        0.25,
+        0.2,
+        0.2,
+        0.15,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_tractor_brand": "unknown",
+    "attribute_tractor_model": "unknown",
+    "attribute_wheel_configuration": "Four wheels, larger rear wheels, two-wheel drive",
+    "attribute_presence_of_agricultural_implements": false,
+    "attribute_cabin_design": "Open cabin with a canopy roof, no doors or windows, basic bench seat and controls, no visible protective structures",
+    "uid": "e7ee97fb64bc4c69a717be18f55925cf",
+    "near_synsets": {
+        "tractor.n.02": 0.5239719664038233,
+        "trailer.n.03": 0.539910258375934,
+        "trailer_truck.n.01": 0.5400581598836104,
+        "crane.n.04": 0.5406624438076956,
+        "tow_truck.n.01": 0.5440376066755501,
+        "tractor.n.01": -1000.0
+    },
+    "synset": "tractor.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e7ee97fb64bc4c69a717be18f55925cf",
+        "creator_username": "denis.bouchard",
+        "creator_display_name": "Denis Bouchard",
+        "creator_profile_url": "https://sketchfab.com/denis.bouchard"
+    },
+    "filename": "std_e7ee97fb64bc4c69a717be18f55925cf.glb",
+    "length": 3.8026130199432373,
+    "width": 1.3164888620376587
+}

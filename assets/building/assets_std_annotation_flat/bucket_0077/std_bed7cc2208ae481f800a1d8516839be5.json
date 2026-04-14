@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a large, rectangular metal dumpster with a weathered blue exterior and a split, hinged lid made of ribbed metal panels. The lid is partially open, revealing black garbage bags and assorted trash inside, including a blue and white cardboard item. Scattered around the base are several green garbage bags and loose sheets of paper, suggesting recent or frequent use. The dumpster sits on small wheels, making it mobile, and has reinforced side panels for durability. There are no visible handles or warning labels, and the surface shows signs of rust and wear, typical of outdoor exposure. The overall construction is robust, designed to withstand heavy loads and rough handling in urban environments.",
+    "description": "A large, blue metal dumpster with a split, ribbed lid, visible trash inside, and scattered garbage bags and papers around its base. The surface is weathered and shows signs of outdoor use.",
+    "description_view_0": "Front view showing the partially open split lid, visible trash inside, and scattered garbage bags and papers in front.",
+    "description_view_1": "Left side view highlighting the open lid section, side panel details, and garbage bags and papers on the ground.",
+    "description_view_2": "Rear view with both lid sections visible, minimal trash inside visible, and scattered papers at the base.",
+    "description_view_3": "Right side view showing the open lid, more scattered papers, a red box, and the side panel construction.",
+    "category": "dumpster",
+    "height": 1.3,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "paper",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 250,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "black",
+        "green",
+        "white",
+        "red"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.08,
+        0.06,
+        0.04,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_lid_type": "split, hinged, flat metal lid with two ribbed sections, no visible locking mechanism",
+    "attribute_wheel_presence": true,
+    "attribute_handle_design": "none",
+    "attribute_warning_labels": [],
+    "attribute_placement_location": "outdoor commercial area, residential alley, or industrial site",
+    "uid": "bed7cc2208ae481f800a1d8516839be5",
+    "near_synsets": {
+        "dumpster.n.01": 0.46317057765439545,
+        "garbage.n.03": 0.5176844898244142,
+        "recycling_bin.n.01": 0.5388557744827563,
+        "scrapheap.n.02": 0.5402356749187143,
+        "garbage_truck.n.01": 0.5450694351643359
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bed7cc2208ae481f800a1d8516839be5",
+        "creator_username": "megore",
+        "creator_display_name": "megore",
+        "creator_profile_url": "https://sketchfab.com/megore"
+    },
+    "filename": "std_bed7cc2208ae481f800a1d8516839be5.glb",
+    "length": 1.6335105895996094,
+    "width": 1.6825714111328125
+}

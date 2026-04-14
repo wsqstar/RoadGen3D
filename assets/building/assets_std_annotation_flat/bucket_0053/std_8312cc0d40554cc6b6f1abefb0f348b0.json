@@ -1,0 +1,99 @@
+{
+    "description_long": "This gate features a robust rectangular frame constructed from light-colored stone blocks, giving it a solid and fortified appearance. The central gate panels are composed of vertically aligned wooden planks, reinforced with multiple horizontal and vertical metal bands for added strength and security. The wood is dark and weathered, contrasting with the lighter stone frame, and the metal bands are studded with rivets, suggesting durability and resistance to forced entry. The gate is double-leafed, with a clear seam down the center where the two panels meet, indicating it opens from the middle. The stonework extends around the sides and top, forming a thick, supportive border. There are no visible handles or decorative motifs, emphasizing a utilitarian and secure design suitable for urban or historical settings.",
+    "description": "A sturdy double-leaf gate framed in light stone blocks with reinforced wooden panels and metal bands, designed for security and durability. The gate has a utilitarian, fortress-like appearance with no visible decorative elements.",
+    "description_view_0": "Side view showing the thick, light-colored stone block frame with no visible gate panels.",
+    "description_view_1": "Front view displaying the double wooden gate panels, reinforced with metal bands, set within a stone block frame.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the stone block frame's thickness.",
+    "description_view_3": "Rear or alternate front view, again showing the double wooden gate panels with metal reinforcements and the stone frame.",
+    "category": "gate",
+    "height": 2.2,
+    "max_dimension": 2.5,
+    "materials": [
+        "stone",
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.15,
+        0.05
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "gate panel",
+        "metal band"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "beige",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.55,
+        0.3,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_gate_type": "double-leaf swing gate",
+    "attribute_opening_mechanism": "manual swing",
+    "attribute_decorative_elements": [],
+    "attribute_locking_system": "no visible lock",
+    "attribute_surrounding_structure": "stone block frame",
+    "uid": "8312cc0d40554cc6b6f1abefb0f348b0",
+    "near_synsets": {
+        "gate.n.01": 0.4813158891096702,
+        "lock-gate.n.01": 0.48900984819828164,
+        "portcullis.n.01": 0.4926865557943082,
+        "palisade.n.01": 0.5319886623457433,
+        "double_door.n.01": 0.5332775430757285,
+        "gate.n.04": -1000.0,
+        "gate.n.02": -1000.0,
+        "gate.n.03": -1000.0
+    },
+    "synset": "gate.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/8312cc0d40554cc6b6f1abefb0f348b0",
+        "creator_username": "Julien_van_Beek",
+        "creator_display_name": "Juli\u00ebn van Beek",
+        "creator_profile_url": "https://sketchfab.com/Julien_van_Beek"
+    },
+    "filename": "std_8312cc0d40554cc6b6f1abefb0f348b0.glb",
+    "length": 0.4125005900859833,
+    "width": 2.1999998092651367
+}

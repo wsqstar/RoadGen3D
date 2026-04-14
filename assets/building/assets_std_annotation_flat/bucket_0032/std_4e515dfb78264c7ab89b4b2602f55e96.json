@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a small, standalone public toilet structure with a weathered, painted wooden exterior and a slanted, overhanging roof. The front features a single door with a diagonal brace, a metal handle, and visible hinges, suggesting a simple swinging mechanism. A gray bucket is placed beside the structure, possibly for cleaning or waste collection. The paint is unevenly applied, with streaks of black and white, giving the structure a rustic, utilitarian appearance. The roof is made of the same material as the walls and extends slightly beyond the walls for rain protection. There are no visible windows, vents, or signage indicating gender or accessibility.",
+    "description": "A small, rustic public toilet with a slanted roof, weathered wooden walls, and a single front door, accompanied by a gray bucket.",
+    "description_view_0": "Front view showing the main door with a diagonal brace, metal handle, and a gray bucket to the left.",
+    "description_view_1": "Side view displaying the slanted roof and plain wooden paneling, with no visible openings or features.",
+    "description_view_2": "Rear view highlighting the back wall's horizontal planks and the bucket on the right side.",
+    "description_view_3": "Opposite side view with the slanted roof and another perspective of the bucket in front.",
+    "category": "public toilets",
+    "height": 2.1,
+    "max_dimension": 2.4,
+    "materials": [
+        "wood",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 180,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 800,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pullable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "bucket"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_signage": "none",
+    "attribute_door_type": "swinging",
+    "attribute_ventilation_features": "none",
+    "attribute_accessibility_features": "none",
+    "attribute_roof_structure": "Slanted, overhanging wooden roof with no visible skylights or gutters.",
+    "uid": "4e515dfb78264c7ab89b4b2602f55e96",
+    "near_synsets": {
+        "public_toilet.n.01": 0.4786853795719387,
+        "latrine.n.01": 0.4870758316806454,
+        "men's_room.n.01": 0.49019459927104186,
+        "washroom.n.01": 0.4911795527734885,
+        "toilet.n.01": 0.5058143944776486,
+        "toilet.n.02": -1000.0,
+        "gutter.n.02": -1000.0,
+        "toilet.n.04": -1000.0
+    },
+    "synset": "public_toilet.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4e515dfb78264c7ab89b4b2602f55e96",
+        "creator_username": "kobyla",
+        "creator_display_name": "Kobyla",
+        "creator_profile_url": "https://sketchfab.com/kobyla"
+    },
+    "filename": "std_4e515dfb78264c7ab89b4b2602f55e96.glb",
+    "length": 4.082127332687378,
+    "width": 4.082126617431641
+}

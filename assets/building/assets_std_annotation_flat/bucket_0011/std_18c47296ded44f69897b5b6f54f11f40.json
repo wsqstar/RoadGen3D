@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a weathered, rectangular metal container resembling a portable site office or storage unit, with a rusted red exterior and a curved roof. The structure features two small windows on each long side, and a set of double doors on one end, one of which is open, revealing a simple interior. The exterior is adorned with various urban elements, including blue plastic barrels, a wooden bench, and coiled cables, suggesting use in a construction or industrial setting. The surface is heavily rusted and stained, with visible wear and tear, indicating prolonged outdoor exposure. There are some labels and signage on the front near the door, and the roof shows significant discoloration and corrosion. The container sits on a flat, black base, with some items placed around it, enhancing its utilitarian, urban character.",
+    "description": "A rusted, red metal container with a curved roof, double doors, and urban accessories like barrels and a bench, showing heavy wear and industrial use.",
+    "description_view_0": "Front view showing the double doors (one open), two small windows, signage, a wooden bench, blue barrels, and cables.",
+    "description_view_1": "Side view with the closed end of the container, three blue barrels, and a rolled-up mat visible.",
+    "description_view_2": "Rear side view with two windows, open doors, two tables made of cinder blocks and metal, and a blue mat.",
+    "description_view_3": "Back view showing the closed double doors, roof curvature, and blue barrels to the side.",
+    "category": "container",
+    "height": 2.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "plastic",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.04,
+        0.03
+    ],
+    "mass": 3200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "sittable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "bench",
+        "barrel"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "red",
+        "brown",
+        "blue",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "swing open",
+    "attribute_labeling_or_signage": "white signage and labels on the front near the door",
+    "attribute_handles_or_grips": "door handles on double doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "18c47296ded44f69897b5b6f54f11f40",
+    "near_synsets": {
+        "rust.n.05": 0.5186509295164728,
+        "rust.n.01": 0.537213004719605,
+        "container.n.01": 0.5373158505058179,
+        "cargo_container.n.01": 0.5479661298368362,
+        "barrel.n.02": 0.5499532411962743
+    },
+    "synset": "cargo_container.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/18c47296ded44f69897b5b6f54f11f40",
+        "creator_username": "LilSmokeyBacon",
+        "creator_display_name": "Laurens Krikilion",
+        "creator_profile_url": "https://sketchfab.com/LilSmokeyBacon"
+    },
+    "filename": "std_18c47296ded44f69897b5b6f54f11f40.glb",
+    "length": 6.2337517738342285,
+    "width": 6.233750343322754
+}

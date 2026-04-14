@@ -1,0 +1,93 @@
+{
+    "description_long": "This radiator features a rectangular, flat white panel with a prominent serpentine metal pipe arrangement mounted on its front surface. The pipes are arranged in a tight, horizontal zigzag pattern, connected by vertical risers at one end, and are secured with visible brackets. The main body appears to be made of metal, likely steel or aluminum, with a powder-coated white finish, while the pipes themselves are metallic with some copper or brass elements at the connection points. A small valve or control knob is visible at the lower end of the pipework, suggesting manual operation. The back of the radiator is a solid, unadorned panel, indicating it is designed for wall mounting. The overall design is utilitarian, with exposed pipework for efficient heat dissipation and easy maintenance.",
+    "description": "A wall-mounted radiator with a white rectangular panel and exposed serpentine metal pipes, featuring a manual valve at the bottom. The design is functional, with visible brackets and a solid back panel.",
+    "description_view_0": "Front view showing the full serpentine pipe arrangement, brackets, and the manual valve at the bottom.",
+    "description_view_1": "Side view highlighting the depth of the radiator and the protruding pipework from the flat panel.",
+    "description_view_2": "Rear view displaying the plain, solid back panel with no visible features.",
+    "description_view_3": "Opposite side view showing the pipework's profile and its attachment to the main panel.",
+    "category": "radiator",
+    "height": 1.0,
+    "max_dimension": 1.0,
+    "materials": [
+        "steel",
+        "copper",
+        "brass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "turnable",
+        "adjustable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "valve",
+        "pipework"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "silver",
+        "copper"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "smooth",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "single",
+    "attribute_mounting_location": "wall-mounted",
+    "attribute_pipe_connections": "single connection at bottom left, horizontal orientation",
+    "attribute_fin_arrangement": "serpentine horizontal pipework",
+    "attribute_valve_type": "manual",
+    "attribute_grille_pattern": "solid panel with exposed pipework",
+    "uid": "c7137d101fab46b2820794d1b70b330c",
+    "near_synsets": {
+        "panel_heating.n.01": 0.5206628617592826,
+        "radiator.n.02": 0.5251383620833817,
+        "radiator.n.03": 0.5427261528935291,
+        "radiator.n.01": 0.5487636272170482,
+        "radiant_heating.n.01": 0.569390169075896
+    },
+    "synset": "radiator.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c7137d101fab46b2820794d1b70b330c",
+        "creator_username": "termagroup",
+        "creator_display_name": "termagroup",
+        "creator_profile_url": "https://sketchfab.com/termagroup"
+    },
+    "filename": "std_c7137d101fab46b2820794d1b70b330c.glb",
+    "length": 0.11006992310285568,
+    "width": 0.5329699516296387
+}

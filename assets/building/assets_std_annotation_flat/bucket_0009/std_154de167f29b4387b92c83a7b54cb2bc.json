@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a World War II-era German Panzer III tank, featuring a robust steel hull and turret with a long-barreled cannon mounted at the front. The vehicle is equipped with six large road wheels on each side, supported by a continuous metal track system for traversing rough terrain. The exterior is painted in a muted gray, with visible insignia and a prominent red and white flag with a black cross on the rear deck. The tank has a cylindrical commander's cupola on top of the turret, and various hatches, vents, and storage compartments are distributed across its surface. The front and rear are reinforced with additional armor plating, and the vehicle's overall design emphasizes durability and battlefield utility. Antennas and other communication equipment are also present, indicating its use in coordinated military operations.",
+    "description": "A gray WWII-era German Panzer III tank with a long cannon, six road wheels per side, and a red and white insignia flag on the rear deck. The vehicle features a steel hull, turret, and visible armor plating.",
+    "description_view_0": "Side view showing the full length of the tank, six large road wheels, continuous tracks, and the turret with its cannon facing forward.",
+    "description_view_1": "Front view highlighting the tank's reinforced armor, the cannon barrel, and the red and white insignia flag on the rear deck.",
+    "description_view_2": "Opposite side view similar to view 0, displaying the track system, wheels, and turret details, with the insignia flag partially visible.",
+    "description_view_3": "Rear view showing the back armor, exhaust system, and the rear portion of the tracks, with the turret and cupola visible on top.",
+    "category": "all-terrain vehicle",
+    "height": 2.5,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.01,
+        0.04
+    ],
+    "mass": 23000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "wheel",
+        "track",
+        "antenna",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 12,
+    "attribute_tire_tread_pattern": "The tracks feature a blocky, aggressive tread pattern designed for maximum traction on rough and muddy terrain, typical of military tanks.",
+    "attribute_suspension_type": "torsion bar",
+    "attribute_presence_of_roll_cage": false,
+    "attribute_handlebar_or_steering_wheel_type": "round steering wheel",
+    "uid": "154de167f29b4387b92c83a7b54cb2bc",
+    "near_synsets": {
+        "panzer.n.01": 0.46617335934518,
+        "tank.n.01": 0.4995858686753275,
+        "tank_destroyer.n.01": 0.5310330609069487,
+        "military_vehicle.n.01": 0.5313426421617227,
+        "assault_gun.n.02": 0.5368791481019785,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "panzer.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/154de167f29b4387b92c83a7b54cb2bc",
+        "creator_username": "ArtemKomonov",
+        "creator_display_name": "OnlyPalantir",
+        "creator_profile_url": "https://sketchfab.com/ArtemKomonov"
+    },
+    "filename": "std_154de167f29b4387b92c83a7b54cb2bc.glb",
+    "length": 4.237815618515015,
+    "width": 2.056914806365967
+}

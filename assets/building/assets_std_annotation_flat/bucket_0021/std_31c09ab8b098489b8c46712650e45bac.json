@@ -1,0 +1,91 @@
+{
+    "description_long": "This object represents a person dressed as a doctor, wearing light blue medical scrubs that cover the body from head to toe. The figure has a matching blue surgical cap and a face mask, leaving only the eyes and a small portion of the face visible. The arms are extended horizontally, and the hands are partially visible, with skin tone showing at the wrists. The clothing appears loose-fitting, typical of medical scrubs, and there are no visible accessories such as a stethoscope, badge, or clipboard. The surface of the clothing is smooth and matte, with a consistent blue color throughout. The overall form is stylized and simplified, lacking fine anatomical or fabric details.",
+    "description": "A stylized doctor figure in light blue scrubs, cap, and mask, with arms outstretched and minimal visible accessories.",
+    "description_view_0": "Front view showing the doctor's face mask, cap, and outstretched arms with visible hands.",
+    "description_view_1": "Left side view highlighting the profile of the face, cap, and the extended left arm.",
+    "description_view_2": "Rear view showing the back of the cap and scrubs, with both arms extended outward.",
+    "description_view_3": "Right side view showing the profile of the face, cap, and the extended right arm.",
+    "category": "doctor",
+    "height": 1.75,
+    "max_dimension": 3.2,
+    "materials": [
+        "fabric",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 72,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 3,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "hands",
+        "head"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "skin",
+        "brown"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "soft",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 500,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_white_coat": false,
+    "attribute_stethoscope": false,
+    "attribute_medical_badge": false,
+    "attribute_scrubs": true,
+    "attribute_clipboard": false,
+    "uid": "31c09ab8b098489b8c46712650e45bac",
+    "near_synsets": {
+        "doctor.n.01": 0.5149668810023473,
+        "doctor.n.04": 0.5335342885770503,
+        "medical_practitioner.n.01": 0.5422902625853252,
+        "doctor_of_medicine.n.01": 0.5463031611959516,
+        "doctor.n.03": 0.5532197672261582,
+        "doctor_of_the_church.n.01": -1000.0
+    },
+    "synset": "doctor_of_the_church.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/31c09ab8b098489b8c46712650e45bac",
+        "creator_username": "Box_Games",
+        "creator_display_name": "Box Games",
+        "creator_profile_url": "https://sketchfab.com/Box_Games"
+    },
+    "filename": "std_31c09ab8b098489b8c46712650e45bac.glb",
+    "length": 32.644073724746704,
+    "width": 73.17146682739258
+}

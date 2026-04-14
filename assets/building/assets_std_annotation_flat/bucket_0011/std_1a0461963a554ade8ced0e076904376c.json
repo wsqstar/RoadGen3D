@@ -1,0 +1,98 @@
+{
+    "description_long": "This shelter is a small, box-like structure with three solid brick-patterned walls and a flat, smooth roof. One side features a large open entryway, providing access to a partially enclosed interior space. The interior includes a visible bench or ledge along one wall, suggesting a place to sit or rest. There is a rectangular window cutout on one of the side walls, allowing light and visibility into the shelter. The exterior is predominantly finished in a reddish-orange brick texture, while the roof and some wall sections are a uniform gray. The overall design is utilitarian, suitable for use as a bus stop shelter, park shelter, or similar urban amenity.",
+    "description": "A small, boxy brick-patterned shelter with a flat gray roof, open entryway, and side window. Includes a bench or ledge inside for seating.",
+    "description_view_0": "Shows the solid brick-patterned side and the flat gray roof, with the open entryway partially visible.",
+    "description_view_1": "Displays the open entryway, interior bench, and side window, highlighting the shelter's accessible side.",
+    "description_view_2": "Reveals the side window and solid brick-patterned wall, with the entryway not visible.",
+    "description_view_3": "Presents the fully enclosed brick-patterned back wall and the flat roof, with no openings visible.",
+    "category": "shelter",
+    "height": 2.5,
+    "max_dimension": 3.5,
+    "materials": [
+        "brick",
+        "concrete",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 6500,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "shelterable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench",
+        "window"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "red-orange",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "flat concrete slab",
+    "attribute_entryway_design": "large open passage with no door or covering",
+    "attribute_support_structure": "brick masonry walls with concrete roof slab",
+    "attribute_signage": "none",
+    "attribute_transparency": "mostly opaque with a single open window",
+    "uid": "1a0461963a554ade8ced0e076904376c",
+    "near_synsets": {
+        "shelter.n.02": 0.46236081608093876,
+        "shelter.n.01": 0.4668142070731766,
+        "sentry_box.n.01": 0.48438043234226136,
+        "shelter.n.05": 0.4956239892708518,
+        "birdhouse.n.01": 0.5079899703682347,
+        "protection.n.04": -1000.0,
+        "tax_shelter.n.01": -1000.0
+    },
+    "synset": "tax_shelter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1a0461963a554ade8ced0e076904376c",
+        "creator_username": "juigcrra",
+        "creator_display_name": "Juan Ignacio Cruz Ramirez",
+        "creator_profile_url": "https://sketchfab.com/juigcrra"
+    },
+    "filename": "std_1a0461963a554ade8ced0e076904376c.glb",
+    "length": 4.4136106967926025,
+    "width": 4.6454691886901855
+}

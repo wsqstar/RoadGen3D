@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a large, classic wooden sailing ship featuring three tall masts, each rigged with multiple square sails made of white canvas. The hull is robust and elongated, constructed from dark brown wood with black accents and a rounded stern. The ship's deck is open and spacious, with visible railings and rigging lines connecting the masts. The bow is pointed and extends forward with a long bowsprit, while the stern is slightly elevated and rounded. There are multiple gunports along the hull, suggesting a historical warship or merchant vessel design. The overall appearance is reminiscent of 18th-century tall ships used for exploration or naval warfare.",
+    "description": "A large, classic wooden sailing ship with three masts, white square sails, and a detailed brown hull featuring gunports and rigging.",
+    "description_view_0": "Front view showing the pointed bow, bowsprit, and the full height of the three masts with their square sails aligned.",
+    "description_view_1": "Side view highlighting the elongated hull, open deck, gunports, and the full rigging of the masts and sails.",
+    "description_view_2": "Rear view displaying the rounded stern, the width of the hull, and the alignment of the masts and sails from behind.",
+    "description_view_3": "Opposite side view similar to view 1, showing the hull, deck, and rigging, with the stern and bow both visible.",
+    "category": "ship",
+    "height": 25.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "wood",
+        "canvas",
+        "metal",
+        "rope",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 350000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sails",
+        "masts",
+        "rigging",
+        "deck",
+        "gunports",
+        "wheel",
+        "anchor"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a classic displacement type with a pointed bow and rounded stern, featuring a deep draft and multiple gunports along the sides. The structure is robust, with a long, narrow profile and a prominent bowsprit extending forward. No keels or bulbous bows are visible, and the hull appears to be constructed from wood with reinforced edges.",
+    "attribute_superstructure_layout": "The superstructure consists of an open main deck with raised stern and bow sections, three tall masts evenly spaced along the length, and visible railings. There are no enclosed cabins or bridges visible, and the deck is largely unobstructed except for rigging and masts.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "rigging",
+        "sails",
+        "anchor",
+        "gunports",
+        "railings",
+        "bowsprit"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "1eb8869360ee43c98fb1b8d97ffc4254",
+    "near_synsets": {
+        "bark.n.03": 0.4517527989936071,
+        "galleon.n.01": 0.4690768572553661,
+        "sailing_vessel.n.01": 0.4762545020786659,
+        "windjammer.n.01": 0.48336837738757776,
+        "brig.n.01": 0.4864303294877252,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1eb8869360ee43c98fb1b8d97ffc4254",
+        "creator_username": "meysam7981",
+        "creator_display_name": "meysam7981",
+        "creator_profile_url": "https://sketchfab.com/meysam7981"
+    },
+    "filename": "std_1eb8869360ee43c98fb1b8d97ffc4254.glb",
+    "length": 46.15318298339844,
+    "width": 15.526533603668213
+}

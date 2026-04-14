@@ -1,0 +1,87 @@
+{
+    "description_long": "This object is a sleek, modern airplane with a streamlined, dark exterior and a compact fuselage. The wings are sharply swept back and appear to be integrated smoothly into the body, giving it a futuristic and aerodynamic profile. The nose is rounded and tapers smoothly into the main body, while the tail section is distinct and slightly flared, suggesting stability and control surfaces. The surface finish is glossy, reflecting light and emphasizing the smooth, hard material, likely a composite or metal. No visible windows or cockpit details are apparent, and the landing gear is not visible, suggesting it may be retracted or not modeled. The overall design is minimalistic, with a focus on aerodynamic efficiency and stealth-like appearance.",
+    "description": "A sleek, dark, and streamlined airplane with swept-back wings and a glossy, aerodynamic finish.",
+    "description_view_0": "Front view shows a rounded nose and narrow fuselage, with the wings barely visible.",
+    "description_view_1": "Side view highlights the sharply swept-back wings and the thin, elongated profile of the airplane.",
+    "description_view_2": "Rear view reveals the flared tail section and the full wingspan, with no visible engines or landing gear.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the smooth, continuous wing and body integration.",
+    "category": "airplane",
+    "height": 0.7,
+    "max_dimension": 4.5,
+    "materials": [
+        "composite",
+        "aluminum",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.1
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 6375,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit",
+        "wing",
+        "tail section"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.08,
+    "surface_finish": "glossy",
+    "reflectivity": 0.7,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.3,
+    "bounciness": 0.05,
+    "recommended_clearance": 6.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with sharply swept wings and no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "No visible engines present on the exterior.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers integrated into the tail section.",
+    "attribute_landing_gear_type": "No visible landing gear; likely retracted or not modeled.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with no visible windows or canopy details.",
+    "uid": "c6183fb9c36247278bb5196c8be1f390",
+    "near_synsets": {
+        "aircraft.n.01": 0.4656986195576088,
+        "airplane.n.01": 0.47422064489142207,
+        "monoplane.n.01": 0.506499965171039,
+        "warplane.n.01": 0.5203423578477068,
+        "airliner.n.01": 0.5219123895400873
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c6183fb9c36247278bb5196c8be1f390",
+        "creator_username": "VertaScan",
+        "creator_display_name": "VertaScan",
+        "creator_profile_url": "https://sketchfab.com/VertaScan"
+    },
+    "filename": "std_c6183fb9c36247278bb5196c8be1f390.glb",
+    "length": 3.1713374853134155,
+    "width": 1.02047598361969
+}

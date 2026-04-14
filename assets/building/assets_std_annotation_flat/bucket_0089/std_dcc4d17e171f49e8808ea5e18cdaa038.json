@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a modern, large-caliber sniper rifle with a matte black finish and a robust, angular design. It features a long, heavy barrel with a prominent muzzle brake at the end, and a detachable box magazine located just in front of the trigger guard. The rifle is equipped with a high-magnification scope mounted on a Picatinny rail, enhancing its precision for long-range targeting. A sturdy bipod is attached near the front of the rifle, providing stability when firing from a prone or supported position. The stock is fixed and ergonomic, with a thumbhole and a pronounced cheek rest for shooter comfort. The overall construction suggests a combination of metal and polymer materials, typical for high-powered sniper rifles used in urban or tactical scenarios.",
+    "description": "A large, matte black sniper rifle with a long barrel, scope, bipod, and fixed ergonomic stock, designed for precision shooting.",
+    "description_view_0": "Side view showing the full length of the rifle, including the scope, bipod, magazine, and fixed stock.",
+    "description_view_1": "Front view highlighting the muzzle brake, bipod legs, and the narrow profile of the barrel.",
+    "description_view_2": "Opposite side view displaying the scope, magazine, bipod, and the detailed stock design.",
+    "description_view_3": "Rear view focusing on the stock's shape, cheek rest, and the alignment of the barrel and scope.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 1.4,
+    "materials": [
+        "steel",
+        "polymer",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.18,
+        0.05,
+        0.02,
+        0.05
+    ],
+    "mass": 13,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 130,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "trigger",
+        "magazine",
+        "scope",
+        "bipod",
+        "bolt handle",
+        "safety",
+        "muzzle brake"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed thumbhole",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "scope",
+    "attribute_muzzle_device": "muzzle brake",
+    "uid": "dcc4d17e171f49e8808ea5e18cdaa038",
+    "near_synsets": {
+        "sniper_rifle.n.01": 0.4338851209941259,
+        "dragunov.n.01": 0.47026004343939753,
+        "rifle.n.01": 0.4862549722251477,
+        "sniper.n.01": 0.5069226326671052,
+        "garand_rifle.n.01": 0.5141693032883927
+    },
+    "synset": "garand_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dcc4d17e171f49e8808ea5e18cdaa038",
+        "creator_username": "Nollien",
+        "creator_display_name": "Nollien",
+        "creator_profile_url": "https://sketchfab.com/Nollien"
+    },
+    "filename": "std_dcc4d17e171f49e8808ea5e18cdaa038.glb",
+    "length": 1.003448724746704,
+    "width": 0.16533422470092773
+}

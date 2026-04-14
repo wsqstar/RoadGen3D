@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a medium-sized, six-wheeled flatbed truck with a utilitarian design, featuring a single cab at the front and a large, open cargo bed with metal side panels. The cab is painted white and has two side mirrors, a visible exhaust stack, and two seats inside. The cargo bed is bordered by greenish-blue metal panels with a weathered, industrial appearance, and the floor of the bed is made of wood or a wood-like material. The truck has three axles, with two sets of double rear wheels for heavy load support, and the tires are rugged, suitable for urban and light off-road use. The front grille is simple, with headlights and a license plate, but no clear manufacturer logo is visible. This vehicle is commonly used for transporting goods, materials, or equipment in urban environments.",
+    "description": "A six-wheeled flatbed truck with a white cab and greenish-blue metal cargo bed, designed for transporting goods in urban settings. The truck features a single cab, rugged tires, and a large open cargo area.",
+    "description_view_0": "Side view showing the full length of the truck, the white cab, and the open flatbed with greenish-blue metal panels.",
+    "description_view_1": "Front view highlighting the white cab, windshield, two seats, side mirrors, and the front grille.",
+    "description_view_2": "Opposite side view displaying the cab, exhaust stack, and the full cargo bed with metal side panels.",
+    "description_view_3": "Rear view focusing on the open cargo bed, rear metal panel, and the back of the cab.",
+    "category": "truck",
+    "height": 2.7,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "wood",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.05,
+        0.08,
+        0.05,
+        0.05,
+        0.02,
+        0.05
+    ],
+    "mass": 6500,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable",
+        "pullable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "seat",
+        "steering wheel",
+        "mirror",
+        "cargo bed gate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "green",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.3,
+        0.4,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "flatbed",
+    "attribute_wheelbase": 4.2,
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "2bdbff4d6ac94fd4bce3435c7e77ace3",
+    "near_synsets": {
+        "flatbed.n.02": 0.43846690965406915,
+        "truck.n.01": 0.47933004456641054,
+        "truck_bed.n.01": 0.4870904068042604,
+        "delivery_truck.n.01": 0.4921967922324583,
+        "van.n.05": 0.49981754692982494,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2bdbff4d6ac94fd4bce3435c7e77ace3",
+        "creator_username": "Lertys245",
+        "creator_display_name": "Lertys245",
+        "creator_profile_url": "https://sketchfab.com/Lertys245"
+    },
+    "filename": "std_2bdbff4d6ac94fd4bce3435c7e77ace3.glb",
+    "length": 5.882741212844849,
+    "width": 2.5907928943634033
+}

@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a large, modern semi-truck tractor unit with a high-roof cab and a chassis designed for hauling trailers. The cab is boxy and elevated, featuring detailed panel lines, side mirrors, and window outlines. The front grille is prominent, with multiple horizontal slats and a wide windshield, while the rear section is open, exposing the fifth wheel coupling and dual rear wheels. The truck's exterior is primarily a muted metallic color, with some areas appearing darker, possibly due to shadow or material variation. The wheels are robust and detailed, and the overall build suggests a heavy-duty vehicle intended for long-haul transport. The truck lacks a visible cargo bed, indicating it is a tractor unit meant to connect to various trailer types.",
+    "description": "A large, high-roof semi-truck tractor unit with a detailed cab and exposed rear chassis, designed for hauling trailers. The exterior is metallic with robust wheels and a prominent front grille.",
+    "description_view_0": "Side view showing the high-roof cab, detailed door panels, and exposed rear chassis with dual wheels.",
+    "description_view_1": "Front view highlighting the wide windshield, prominent grille, and side mirrors.",
+    "description_view_2": "Opposite side view with clear visibility of the cab's height, rear chassis, and wheel details.",
+    "description_view_3": "Rear view focusing on the open chassis, fifth wheel coupling, and dual rear wheels.",
+    "category": "truck",
+    "height": 3.2,
+    "max_dimension": 6.5,
+    "materials": [
+        "metal",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.1,
+        0.05,
+        0.02
+    ],
+    "mass": 7500,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 25000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "pullable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "mirror",
+        "fifth wheel coupling",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "day cab",
+    "attribute_cargo_bed_type": "chassis cab",
+    "attribute_wheelbase": 3.8,
+    "attribute_number_of_axles": 2,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "572ab6dc598d47b393fb9a0ba146e8d1",
+    "near_synsets": {
+        "trailer_truck.n.01": 0.44974630964151635,
+        "truck.n.01": 0.46648269252884395,
+        "trailer.n.03": 0.4759372327167907,
+        "tractor.n.02": 0.4805409487636999,
+        "lorry.n.02": 0.5194202637532171,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/572ab6dc598d47b393fb9a0ba146e8d1",
+        "creator_username": "fhernand",
+        "creator_display_name": "fhernand",
+        "creator_profile_url": "https://sketchfab.com/fhernand"
+    },
+    "filename": "std_572ab6dc598d47b393fb9a0ba146e8d1.glb",
+    "length": 4.973837375640869,
+    "width": 3.2585145235061646
+}

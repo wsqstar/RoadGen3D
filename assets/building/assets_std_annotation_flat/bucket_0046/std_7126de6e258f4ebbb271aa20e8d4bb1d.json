@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a rectangular, pavilion-style beer garden structure with a prominent black facade and a large white sign reading 'TAVERNE' above the open entrance. The building features a peaked, light gray roof and three large open bays at the front, providing access to the interior. Inside, there are visible wooden floors, several tables with chairs, and a bar area with stacked barrels, evoking a casual, communal atmosphere. The side and rear walls are solid and unadorned, emphasizing the open, welcoming front. The overall design is simple and functional, with a focus on providing ample sheltered seating and gathering space. The structure appears to be constructed primarily from wood and metal, with some interior furnishings.",
+    "description": "A black pavilion-style beer garden labeled 'TAVERNE' with open bays, wooden floors, tables, and a bar area with barrels.",
+    "description_view_0": "Front view showing the 'TAVERNE' sign, three open bays, interior tables, chairs, and a bar area with barrels.",
+    "description_view_1": "Side view showing a solid, unadorned wall and the peaked roof, with no visible openings or interior details.",
+    "description_view_2": "Rear view displaying a plain, solid wall and the full width of the peaked roof, with no openings or signage.",
+    "description_view_3": "Opposite side view, similar to view 1, showing a solid wall and the roof, with no visible interior.",
+    "category": "beer garden",
+    "height": 4.0,
+    "max_dimension": 15.0,
+    "materials": [
+        "wood",
+        "metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "placeable",
+        "servable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "tables",
+        "chairs",
+        "bar counter"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "white",
+        "light brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.4,
+        0.1,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 10000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_outdoor_seating_arrangement": "Tables with chairs are arranged in small clusters near the open bays, with visible spacing for movement; no umbrellas or canopies are present.",
+    "attribute_large_communal_tables": "none visible",
+    "attribute_string_lights_or_lanterns": "none visible",
+    "attribute_branded_beer_signage": "none visible",
+    "attribute_architectural_style": "Contemporary",
+    "uid": "7126de6e258f4ebbb271aa20e8d4bb1d",
+    "near_synsets": {
+        "beer_garden.n.01": 0.4238336356889227,
+        "beer_hall.n.01": 0.4855881934631168,
+        "tavern.n.01": 0.4907616857335672,
+        "brewpub.n.01": 0.5155136384363356,
+        "alehouse.n.01": 0.5313273482949048,
+        "garden.n.03": -1000.0,
+        "beer.n.01": -1000.0,
+        "garden.n.02": -1000.0,
+        "garden.n.01": -1000.0
+    },
+    "synset": "beer_garden.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7126de6e258f4ebbb271aa20e8d4bb1d",
+        "creator_username": "dns-event",
+        "creator_display_name": "dns-event",
+        "creator_profile_url": "https://sketchfab.com/dns-event"
+    },
+    "filename": "std_7126de6e258f4ebbb271aa20e8d4bb1d.glb",
+    "length": 6.0936901569366455,
+    "width": 11.055999755859375
+}

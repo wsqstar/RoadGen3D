@@ -17,8 +17,8 @@ from ..eval_quality import (
     write_walkability_report,
     write_json_report,
 )
-from ..llm.safety_eval import evaluate_safety
-from ..llm.beauty_eval import evaluate_beauty
+from ..eval_engine_ext.road_metrics.evaluators.safety_eval import evaluate_safety
+from ..eval_engine_ext.road_metrics.evaluators.beauty_eval import evaluate_beauty
 from ..llm.design_workflow import DesignAssistantService
 from ..services.design_runtime import generate_scene_from_graph_context
 from ..services.design_types import (

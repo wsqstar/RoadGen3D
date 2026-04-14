@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a detached residential garage structure with two prominent garage doors at the front, each featuring a rectangular window section. The garage is attached to a larger house, with a sloped roof and a driveway leading up to the doors. Two cars are parked on the driveway, emphasizing its function as a vehicle storage space. The exterior walls are light-colored, and the roof is a darker shade, likely made of asphalt shingles. The rear and side views show additional windows and a simple, clean architectural design typical of suburban neighborhoods.",
+    "description": "A detached residential garage with two front-facing doors, attached to a house and accessed by a driveway with parked cars.",
+    "description_view_0": "Front view showing two garage doors, driveway, and two parked cars.",
+    "description_view_1": "Side view highlighting the sloped roof and the side wall of the garage, with part of the driveway and cars visible.",
+    "description_view_2": "Rear view showing the back of the garage and house, with several windows and no visible doors.",
+    "description_view_3": "Opposite side view showing the side wall of the garage and a partial view of the driveway and cars.",
+    "category": "garage",
+    "height": 4.0,
+    "max_dimension": 12.0,
+    "materials": [
+        "concrete",
+        "wood",
+        "asphalt_shingles",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 18000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "garage door",
+        "door handle",
+        "windows"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "group",
+    "attribute_garage_door_type": "sectional",
+    "attribute_number_of_garage_doors": 2,
+    "attribute_presence_of_driveway": true,
+    "attribute_door_hardware_style": "none",
+    "attribute_architectural_style": "ranch",
+    "uid": "b35785581c254e13a07d853650153712",
+    "near_synsets": {
+        "garage.n.01": 0.46547602578518377,
+        "carport.n.01": 0.5015278704470119,
+        "villa.n.02": 0.5143196797334562,
+        "detached_house.n.01": 0.5243011026387376,
+        "semi-detached_house.n.01": 0.5336660195873677,
+        "garage.n.02": -1000.0
+    },
+    "synset": "garage.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/b35785581c254e13a07d853650153712",
+        "creator_username": "homedesign3d",
+        "creator_display_name": "Home Design 3D",
+        "creator_profile_url": "https://sketchfab.com/homedesign3d"
+    },
+    "filename": "std_b35785581c254e13a07d853650153712.glb",
+    "length": 17.04677963256836,
+    "width": 8.035194396972656
+}

@@ -1,0 +1,98 @@
+{
+    "description_long": "This hospital complex consists of several interconnected rectangular buildings with flat roofs, primarily constructed from concrete and steel. The structures feature a mix of dark and light gray facades, with some sections displaying a reddish-brown exterior, likely brick or composite panels. The roofs are equipped with various utility structures such as HVAC units, vents, and skylights, indicating a functional design. Windows are arranged in regular rows along the building sides, providing natural light to the interior spaces. There are multiple entry points and a few small external structures, possibly for service or emergency access. The overall layout suggests a utilitarian approach, prioritizing accessibility and operational efficiency.",
+    "description": "A multi-building hospital complex with flat roofs, gray and reddish-brown facades, and numerous windows and rooftop utilities.",
+    "description_view_0": "This view highlights the separation between the main hospital wings and shows rooftop equipment and small external structures.",
+    "description_view_1": "This angle emphasizes the rectangular layout and the regular window patterns along the building sides.",
+    "description_view_2": "This perspective reveals the interconnected nature of the buildings and the extensive flat roof surfaces.",
+    "description_view_3": "This view shows the rear and side facades, with visible rooftop installations and a clear view of the building's overall footprint.",
+    "category": "hospital",
+    "height": 15,
+    "max_dimension": 80,
+    "materials": [
+        "concrete",
+        "steel",
+        "glass",
+        "brick",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 1200000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "roof access",
+        "vent"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "dark gray",
+        "reddish-brown",
+        "blue"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 10,
+    "asset_composition_type": "group",
+    "attribute_hospital_signage": false,
+    "attribute_emergency_entrance": false,
+    "attribute_ambulance_bay": false,
+    "attribute_medical_cross_symbol": false,
+    "attribute_architectural_style": "utilitarian",
+    "uid": "34d0e1b1d72d49868e74060192135a80",
+    "near_synsets": {
+        "medical_building.n.01": 0.5046541508581085,
+        "medical_center.n.01": 0.5428448977428161,
+        "hospital.n.01": 0.5429229571973168,
+        "building_complex.n.01": 0.5510246166217514,
+        "roof_garden.n.01": 0.5515635427564624,
+        "hospital.n.02": -1000.0
+    },
+    "synset": "hospital.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/34d0e1b1d72d49868e74060192135a80",
+        "creator_username": "timofey1",
+        "creator_display_name": "timofey1",
+        "creator_profile_url": "https://sketchfab.com/timofey1"
+    },
+    "filename": "std_34d0e1b1d72d49868e74060192135a80.glb",
+    "length": 124.4293212890625,
+    "width": 125.07459259033203
+}

@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a spherical metallic bomb with a rugged, industrial appearance. The surface is predominantly matte gray metal, featuring a segmented groove running horizontally around its equator, giving it a mechanical, engineered look. On the upper hemisphere, there is a prominent red circular button or indicator, likely serving as an activation or status component. Adjacent to the groove, three smaller circular elements\u2014two white and one gray\u2014are visible, possibly functioning as sensors, lights, or secondary triggers. A raised, rectangular black strip runs along the top, suggesting a handle, access panel, or additional mechanism. The overall design is robust and utilitarian, with no visible wiring or digital displays, and the object appears solid and heavy.",
+    "description": "A rugged, spherical metallic bomb with a red button, segmented groove, and several circular components. The surface is matte gray with a raised black strip on top.",
+    "description_view_0": "Front view shows the red button on top, three circular elements (two white, one gray) near the groove, and the segmented equator clearly.",
+    "description_view_1": "This view highlights the raised black strip running along the top and the red button partially visible, with the groove and surface texture prominent.",
+    "description_view_2": "The top view focuses on the black strip, which appears as a handle or panel, with the red button less visible and the groove encircling the sphere.",
+    "description_view_3": "The rear view shows the red button and black strip from a different angle, with the groove and metallic surface texture continuing around the sphere.",
+    "category": "bomb",
+    "height": 0.35,
+    "max_dimension": 0.35,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "red button",
+        "black strip",
+        "circular indicators"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.08,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation appears to be initiated by pressing the prominent red button on the top, with possible secondary triggers via the smaller circular indicators.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": true,
+    "uid": "e7f7c6d42cc74b9abd4d5d127b84d9cf",
+    "near_synsets": {
+        "bomb.n.01": 0.5399278525598384,
+        "cherry_bomb.n.01": 0.5419744333109539,
+        "pipe_bomb.n.01": 0.557778938798637,
+        "shell.n.01": 0.5590977567611751,
+        "buzz_bomb.n.01": 0.5595383714943771,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e7f7c6d42cc74b9abd4d5d127b84d9cf",
+        "creator_username": "username10199",
+        "creator_display_name": "username10199",
+        "creator_profile_url": "https://sketchfab.com/username10199"
+    },
+    "filename": "std_e7f7c6d42cc74b9abd4d5d127b84d9cf.glb",
+    "length": 0.335765540599823,
+    "width": 0.33576542139053345
+}

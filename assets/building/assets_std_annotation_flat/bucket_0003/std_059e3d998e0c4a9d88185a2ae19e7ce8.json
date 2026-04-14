@@ -1,0 +1,108 @@
+{
+    "description_long": "This object is a ground-mounted solar panel installation, featuring a rectangular array of photovoltaic modules supported by a single vertical metal pole. The solar panel array consists of six individual modules arranged in a 2x3 grid, each with a dark, glassy surface divided by metallic grid lines. The supporting pole is anchored into a concrete base, which sits on a patch of grass, providing stability and resistance to wind loads. The panel array is tilted at an angle, optimizing exposure to sunlight, and the mounting structure appears to be made of metal, likely aluminum or steel, for durability and corrosion resistance. No visible electrical inverter or cabling is present, suggesting these components may be housed elsewhere or not modeled. The overall design is typical for small-scale solar energy infrastructure found in parks, parking lots, or residential areas.",
+    "description": "A ground-mounted, pole-supported solar panel array with six modules in a 2x3 grid, anchored on a concrete base over grass. The panels are tilted and framed in metal, typical for urban solar energy installations.",
+    "description_view_0": "Rear view showing the back of the tilted solar panel array, the supporting pole, and the concrete base.",
+    "description_view_1": "Side view highlighting the angled tilt of the solar panels and the structural support details of the pole and frame.",
+    "description_view_2": "Front view displaying the full face of the six-panel array, with the grid pattern of the photovoltaic modules clearly visible.",
+    "description_view_3": "Opposite side view showing the panel tilt and the mounting structure, similar to view 1 but from the other side.",
+    "category": "solar energy infrastructure",
+    "height": 2.2,
+    "max_dimension": 2.5,
+    "materials": [
+        "glass",
+        "aluminum",
+        "steel",
+        "concrete",
+        "silicon",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.25,
+        0.15,
+        0.15,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "collects_solar_energy"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "panel array",
+        "mounting pole",
+        "concrete base"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "silver",
+        "green"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_panel_orientation": "tilted at approximately 30 degrees, facing forward (likely south), orientation appears fixed",
+    "attribute_mounting_structure_type": "pole-mounted, supported by a single vertical metal pole anchored in a concrete base, likely aluminum or steel frame",
+    "attribute_electrical_inverter_presence": false,
+    "attribute_cabling_visibility": "not visible",
+    "attribute_array_configuration": "2x3 grid of solar panels arranged in a single rectangular array",
+    "uid": "059e3d998e0c4a9d88185a2ae19e7ce8",
+    "near_synsets": {
+        "solar_array.n.01": 0.5085018432718991,
+        "solar_house.n.01": 0.5638672400303668,
+        "solar_thermal_system.n.01": 0.5645412225680274,
+        "solar_energy.n.01": 0.5680473276111598,
+        "solar_cell.n.01": 0.5753705263796655,
+        "infrastructure.n.01": -1000.0,
+        "energy.n.03": -1000.0,
+        "department_of_energy.n.01": -1000.0,
+        "energy.n.05": -1000.0,
+        "energy.n.04": -1000.0,
+        "infrastructure.n.02": -1000.0,
+        "energy.n.02": -1000.0,
+        "energy.n.06": -1000.0,
+        "energy.n.01": -1000.0
+    },
+    "synset": "solar_array.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/059e3d998e0c4a9d88185a2ae19e7ce8",
+        "creator_username": "Ida_Rousk",
+        "creator_display_name": "Ida_Rousk",
+        "creator_profile_url": "https://sketchfab.com/Ida_Rousk"
+    },
+    "filename": "std_059e3d998e0c4a9d88185a2ae19e7ce8.glb",
+    "length": 2.200018525123596,
+    "width": 1.5962445139884949
+}

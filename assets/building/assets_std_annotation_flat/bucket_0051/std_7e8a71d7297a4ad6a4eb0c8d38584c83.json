@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a three-story apartment building with a rectangular footprint and a flat roof. The exterior is clad in light-colored brickwork, featuring regularly spaced, symmetrical windows with brown frames on each floor. The building includes open balconies running along the length of two sides, furnished with tables and chairs, and a prominent wooden staircase providing access between floors. The interior is partially visible, showing multiple rooms, doors, and some basic furnishings such as tables, chairs, and a kitchen area. The main entrances are single doors located on the ground floor, and the building is designed for residential use in an urban environment.",
+    "description": "A three-story, light-brick apartment building with symmetrical windows, open balconies, and visible interior rooms and staircases.",
+    "description_view_0": "This view shows the side of the building with three floors, brown-framed windows, and a clear view into the upper floor's rooms and doors.",
+    "description_view_1": "This angle highlights the building's corner, revealing both the window arrangement and the open balcony with visible furniture and stair access.",
+    "description_view_2": "This view focuses on the long side with continuous balconies on each floor, furnished with tables and chairs, and the main staircase inside.",
+    "description_view_3": "This perspective shows the opposite long side, emphasizing the staircase, balcony access, and the arrangement of doors and windows.",
+    "category": "apartment building",
+    "height": 9.0,
+    "max_dimension": 18.0,
+    "materials": [
+        "brick",
+        "wood",
+        "glass",
+        "metal",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.15,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "staircase",
+        "balcony railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "brown",
+        "beige"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 3,
+    "attribute_balcony_presence": true,
+    "attribute_window_arrangement": "The windows are symmetrically arranged in vertical and horizontal rows, evenly spaced across each floor, with consistent alignment and grouping.",
+    "attribute_entrance_type": "single door",
+    "attribute_architectural_style": "Contemporary",
+    "uid": "7e8a71d7297a4ad6a4eb0c8d38584c83",
+    "near_synsets": {
+        "apartment_building.n.01": 0.4703988441557776,
+        "suite.n.02": 0.5144966234693864,
+        "apartment.n.01": 0.515302315330287,
+        "duplex_apartment.n.01": 0.5165671383639814,
+        "penthouse.n.01": 0.5294619938232354,
+        "building.n.01": -1000.0,
+        "building.n.04": -1000.0,
+        "construction.n.01": -1000.0,
+        "construction.n.07": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/7e8a71d7297a4ad6a4eb0c8d38584c83",
+        "creator_username": "homedesign3d",
+        "creator_display_name": "Home Design 3D",
+        "creator_profile_url": "https://sketchfab.com/homedesign3d"
+    },
+    "filename": "std_7e8a71d7297a4ad6a4eb0c8d38584c83.glb",
+    "length": 9.62038278579712,
+    "width": 11.719503402709961
+}

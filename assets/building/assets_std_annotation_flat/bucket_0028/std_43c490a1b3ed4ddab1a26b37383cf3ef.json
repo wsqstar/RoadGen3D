@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a boxy, four-door sedan with a distinctly angular design reminiscent of older Eastern European or Soviet-era vehicles. The exterior is covered in a dark, heavily weathered texture with patches of rust and corrosion, giving it an abandoned or derelict appearance. The windows are open voids, lacking any glass or interior detail, and the body panels are flat with minimal curvature. The roof is slightly raised with a squared-off profile, and the wheel wells are cut out but do not contain any visible wheels. The overall silhouette is utilitarian, with sharp edges and a utilitarian, no-frills construction. The surface finish is matte and rough, with a mottled pattern of black, gray, and brown tones.",
+    "description": "A boxy, weathered sedan with a dark, rusted exterior and open window voids, featuring a utilitarian, angular design and no visible wheels.",
+    "description_view_0": "Side view showing the full length of the sedan, with open window voids and a heavily weathered, patchy surface.",
+    "description_view_1": "Front view highlighting the flat, rectangular front end and the open windshield area, with no visible headlights or grille details.",
+    "description_view_2": "Opposite side view similar to view 0, showing the same boxy profile and weathered texture.",
+    "description_view_3": "Rear view displaying the flat back of the sedan, open rear window, and lack of visible taillights or trunk details.",
+    "category": "sedan",
+    "height": 1.4,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "air",
+        "paint",
+        "rust"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 1100,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 3,
+    "movable": true,
+    "required_force": 3500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "roof",
+        "hood",
+        "trunk"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_number_of_doors": 4,
+    "attribute_license_plate": "none",
+    "attribute_wheel_design": "unknown",
+    "uid": "43c490a1b3ed4ddab1a26b37383cf3ef",
+    "near_synsets": {
+        "sedan.n.01": 0.5220412045541588,
+        "brougham.n.02": 0.5230633280608445,
+        "car_window.n.01": 0.5441762869274758,
+        "sedan.n.02": 0.5522970619257267,
+        "car_door.n.01": 0.5587666146465884
+    },
+    "synset": "sedan.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/43c490a1b3ed4ddab1a26b37383cf3ef",
+        "creator_username": "belsbury",
+        "creator_display_name": "Belsbury",
+        "creator_profile_url": "https://sketchfab.com/belsbury"
+    },
+    "filename": "std_43c490a1b3ed4ddab1a26b37383cf3ef.glb",
+    "length": 4.4433135986328125,
+    "width": 2.1893478631973267
+}

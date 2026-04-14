@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a large, concrete dam structure with a robust, monolithic appearance, featuring a sloped face and several vertical slots or spillways near the center. The dam has a prominent rectangular section on one side, which houses three large, green cylindrical pipes, likely penstocks for water flow control. The top of the dam is flat and wide, bordered by a low parapet, and appears to be surfaced with gravel or asphalt, possibly serving as a maintenance road. The rear face of the dam is plain and unadorned, with four rectangular openings near the top, likely for ventilation or water passage. The side views reveal the thickness of the dam and the protruding penstock structure, emphasizing its massive, reinforced construction. The overall color palette is dominated by shades of gray concrete, with green accents on the pipes.",
+    "description": "A massive concrete dam with a sloped face, vertical spillway slots, and a side structure housing large green pipes. The top is flat and bordered, with a utilitarian, industrial appearance.",
+    "description_view_0": "Front view showing the sloped face, vertical spillway slots, and the side structure with three green pipes.",
+    "description_view_1": "Side view highlighting the thickness of the dam and the protruding penstock structure with visible green pipes.",
+    "description_view_2": "Rear view displaying a plain concrete wall with four rectangular openings near the top.",
+    "description_view_3": "Opposite side view showing the dam's width, sloped face, and the side structure from a different angle.",
+    "category": "dam",
+    "height": 12.0,
+    "max_dimension": 30.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "asphalt",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 650000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "blockable",
+        "redirectable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "spillway slots",
+        "penstock pipes"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.2,
+    "bounciness": 0.01,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_spillway_presence": true,
+    "attribute_control_gates": [
+        "none"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_water_outflow": "none",
+    "attribute_perimeter_fencing": false,
+    "uid": "d761a8b4ee184839912d41aefe6f096d",
+    "near_synsets": {
+        "dam.n.01": 0.5348211825532817,
+        "milldam.n.01": 0.5484028417064123,
+        "spillway.n.01": 0.5488311868866023,
+        "weir.n.01": 0.5546469909934318,
+        "levee.n.03": 0.5619228483895853,
+        "dam.n.03": -1000.0,
+        "decameter.n.01": -1000.0
+    },
+    "synset": "dam.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d761a8b4ee184839912d41aefe6f096d",
+        "creator_username": "usacesacramento",
+        "creator_display_name": "USACE Sacramento District",
+        "creator_profile_url": "https://sketchfab.com/usacesacramento"
+    },
+    "filename": "std_d761a8b4ee184839912d41aefe6f096d.glb",
+    "length": 10.798018455505371,
+    "width": 26.584129333496094
+}

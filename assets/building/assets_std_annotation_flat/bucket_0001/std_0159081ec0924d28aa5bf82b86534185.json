@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a large, heavy-duty rotary machine gun with a multi-barrel design, reminiscent of a minigun or Gatling gun. The central body is robust and features a series of six barrels arranged in a circular pattern, with a prominent rotating mechanism at the front. Two large, curved red armor plates flank the central body, providing both protection and a distinctive visual profile. The rear section includes a cylindrical ammunition drum, secured with black straps, and a sturdy handle for maneuvering. Several exposed cables and hoses run along the sides, connecting the drum to the firing mechanism, and a secondary grip is mounted on the left side for additional control. The overall construction suggests a weapon designed for sustained, high-volume fire in urban combat scenarios.",
+    "description": "A heavy, multi-barreled rotary machine gun with red armor plating, a large rear drum, and exposed cables and grips. Its robust design and prominent barrels make it suitable for intense urban firefights.",
+    "description_view_0": "Front view showing the six-barrel rotary cluster and the curved red armor plates flanking the central body.",
+    "description_view_1": "Left side view highlighting the ammunition drum, side handle, and the network of cables and hoses.",
+    "description_view_2": "Rear view displaying the full width of the drum, the back of the central body, and the attachment points for the straps.",
+    "description_view_3": "Right side view showing the drum, the main handle, and the exposed mechanical components and piping.",
+    "category": "rifle",
+    "height": 0.55,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "polymer",
+        "rubber",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "mass": 32,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "rotatable",
+        "triggerable",
+        "reloadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "main handle",
+        "side handle",
+        "trigger",
+        "ammunition drum",
+        "barrel cluster"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "gray",
+        "beige",
+        "brown"
+    ],
+    "colors_composition": [
+        0.25,
+        0.35,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "rotary",
+    "attribute_magazine_type": "drum",
+    "attribute_sight_type": "none",
+    "attribute_muzzle_device": "none",
+    "uid": "0159081ec0924d28aa5bf82b86534185",
+    "near_synsets": {
+        "gatling_gun.n.01": 0.48499310812545,
+        "automatic_rifle.n.01": 0.48544584013538805,
+        "machine_gun.n.01": 0.48798674487568394,
+        "rifle.n.01": 0.4987014606204821,
+        "light_arm.n.01": 0.49910239337295115
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0159081ec0924d28aa5bf82b86534185",
+        "creator_username": "astute",
+        "creator_display_name": "Astute",
+        "creator_profile_url": "https://sketchfab.com/astute"
+    },
+    "filename": "std_0159081ec0924d28aa5bf82b86534185.glb",
+    "length": 1.0851447582244873,
+    "width": 17.453503489494324
+}

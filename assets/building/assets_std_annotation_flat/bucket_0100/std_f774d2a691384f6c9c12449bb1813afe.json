@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a compact, tracked combat tactical vehicle with a robust, angular body and a rotating turret mounted centrally on top. The vehicle features a long, cylindrical main cannon extending from the turret, and a visible antenna with a spherical tip, suggesting radio communication capability. The tracks are wide and reinforced, with multiple road wheels visible on each side, providing stability and traction over rough terrain. The exterior is painted in a muted green with some darker and lighter accents, and there is a triangular warning symbol on the turret's side. Additional details include a cylindrical canister mounted on the rear and various hatches and panels, indicating access points and storage. The overall design emphasizes durability and functionality, with visible armor plating and utilitarian features.",
+    "description": "A compact, green tracked combat vehicle with a central turret, long cannon, and reinforced armor. Features include a visible antenna, warning symbol, and cylindrical rear canister.",
+    "description_view_0": "Front view shows the main cannon, reinforced tracks, and the central turret with an antenna.",
+    "description_view_1": "Left side view highlights the triangular warning symbol, cylindrical rear canister, and track details.",
+    "description_view_2": "Rear view displays the back armor, canister, and the rear of the tracks and turret.",
+    "description_view_3": "Right side view reveals the turret, cannon, antenna, and the track system without the warning symbol.",
+    "category": "combat tactical  vehicle",
+    "height": 1.5,
+    "max_dimension": 2.8,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 25000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "antenna",
+        "track",
+        "canister"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "gray",
+        "orange"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the turret; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body armor plating with angular, sloped surfaces; appears thick and robust, covering all sides including turret and hull.",
+    "attribute_camouflage_pattern": "Solid green paint with some darker and lighter accents; no distinct camouflage pattern.",
+    "attribute_military_markings": "Triangular orange warning symbol on the left side of the turret; no other visible markings.",
+    "attribute_tire_type": "not applicable",
+    "uid": "f774d2a691384f6c9c12449bb1813afe",
+    "near_synsets": {
+        "tank.n.01": 0.48592910304918874,
+        "reconnaissance_vehicle.n.01": 0.5170825294401451,
+        "military_vehicle.n.01": 0.5178623504701496,
+        "assault_gun.n.02": 0.5243580841719425,
+        "weapons_carrier.n.01": 0.536207342651397,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f774d2a691384f6c9c12449bb1813afe",
+        "creator_username": "ddamlayagli",
+        "creator_display_name": "Damla Yagli",
+        "creator_profile_url": "https://sketchfab.com/ddamlayagli"
+    },
+    "filename": "std_f774d2a691384f6c9c12449bb1813afe.glb",
+    "length": 2.354629635810852,
+    "width": 1.582672119140625
+}

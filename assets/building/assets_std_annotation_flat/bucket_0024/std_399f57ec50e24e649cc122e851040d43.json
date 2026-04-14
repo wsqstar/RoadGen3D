@@ -1,0 +1,93 @@
+{
+    "description_long": "This sunshade features a large, rectangular canopy supported by a series of evenly spaced vertical poles, providing ample shaded area beneath. The canopy appears to be made of a dark, opaque material, likely designed to block sunlight effectively. The supporting structure consists of slender metal poles anchored into a flat, rectangular base, which may represent a paved or concrete surface. The open sides allow for easy access and ventilation, making it suitable for public spaces such as parks, bus stops, or outdoor waiting areas. The design is utilitarian, with no visible decorative elements or branding, emphasizing function over form. The overall construction suggests durability and stability, suitable for long-term outdoor installation.",
+    "description": "A large, rectangular sunshade with a dark canopy supported by multiple metal poles on a flat base, designed for providing shade in public outdoor areas. The structure is open-sided and utilitarian, with no visible decorative features.",
+    "description_view_0": "Front view showing the full length of the canopy and the row of supporting poles beneath, highlighting the open, accessible design.",
+    "description_view_1": "Side view displaying the depth of the canopy and the triangular support trusses at the ends, emphasizing the structure's length.",
+    "description_view_2": "Rear view mirroring the front, with the same row of poles and open access beneath the canopy.",
+    "description_view_3": "Opposite side view, again showing the depth and end trusses, similar to view 1.",
+    "category": "sunshade",
+    "height": 3.0,
+    "max_dimension": 12.0,
+    "materials": [
+        "metal",
+        "fabric",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shade_providing",
+        "sheltering"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "poles",
+        "canopy"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "dark brown",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_mounting_type": "ground-anchored poles",
+    "attribute_canopy_design": "rectangular, single panel, flat top",
+    "attribute_support_structure_style": "multiple straight vertical poles, minimal trusswork at ends, utilitarian",
+    "attribute_edge_detailing": "plain",
+    "attribute_branding_or_signage": "no visible branding",
+    "uid": "399f57ec50e24e649cc122e851040d43",
+    "near_synsets": {
+        "window_shade.n.01": 0.485656651769538,
+        "parasol.n.01": 0.49489958143232865,
+        "shade.n.03": 0.5092768227725935,
+        "lampshade.n.01": 0.5137888314202759,
+        "canopy.n.03": 0.515881164412514,
+        "awning.n.01": -1000.0
+    },
+    "synset": "awning.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/399f57ec50e24e649cc122e851040d43",
+        "creator_username": "gradislav23",
+        "creator_display_name": "Vladislav Horiainov",
+        "creator_profile_url": "https://sketchfab.com/gradislav23"
+    },
+    "filename": "std_399f57ec50e24e649cc122e851040d43.glb",
+    "length": 4.229854106903076,
+    "width": 11.507837295532227
+}

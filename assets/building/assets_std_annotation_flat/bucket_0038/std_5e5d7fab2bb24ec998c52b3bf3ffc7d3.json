@@ -1,0 +1,92 @@
+{
+    "description_long": "This is a large, rectangular shipping container with a dark reddish-brown exterior, commonly seen in industrial and urban environments. The container features corrugated metal sides for structural strength, with visible locking bars and reinforced corners on both ends. One side displays white stenciled markings, including Japanese characters, geometric symbols, and a hexagonal logo, while the opposite side has a large white number '1' and a vertical sequence of numbers. The container's doors are equipped with multiple vertical locking rods and metal handles, typical of secure freight containers. The surface shows signs of wear and weathering, suggesting outdoor use and exposure to the elements. Its robust construction and size indicate it is designed for heavy-duty storage or transport of goods.",
+    "description": "A large, reddish-brown corrugated metal shipping container with white markings, reinforced corners, and secure locking doors, showing signs of outdoor use.",
+    "description_view_0": "End view showing the container's double doors with vertical locking rods, handles, and white stenciled codes.",
+    "description_view_1": "Side view displaying corrugated metal, Japanese characters, a geometric logo, and weathered surface details.",
+    "description_view_2": "Opposite end view with similar double doors, vertical locking rods, and additional white stenciled codes.",
+    "description_view_3": "Opposite side view featuring a large white number '1', a vertical number sequence, and a barcode-like marking.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.92,
+        0.07,
+        0.01
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking rod",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "reddish-brown",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.92,
+        0.06,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double swinging doors with vertical locking bars",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "White stenciled codes, Japanese characters, geometric logos, and numbers on sides and doors",
+    "attribute_handles_or_grips": "multiple vertical metal handles on both doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "5e5d7fab2bb24ec998c52b3bf3ffc7d3",
+    "near_synsets": {
+        "container.n.01": 0.4474861140002619,
+        "cargo_container.n.01": 0.46855548482514786,
+        "box.n.01": 0.49736213795851775,
+        "crate.n.01": 0.5211328852821575,
+        "case.n.05": 0.5263398716179495
+    },
+    "synset": "cargo_container.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5e5d7fab2bb24ec998c52b3bf3ffc7d3",
+        "creator_username": "PatrikL",
+        "creator_display_name": "PatrikL",
+        "creator_profile_url": "https://sketchfab.com/PatrikL"
+    },
+    "filename": "std_5e5d7fab2bb24ec998c52b3bf3ffc7d3.glb",
+    "length": 6.1750359535217285,
+    "width": 2.444885492324829
+}

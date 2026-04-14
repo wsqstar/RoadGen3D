@@ -1,0 +1,118 @@
+{
+    "description_long": "This bus shelter features a partially enclosed structure with a metal frame and a transparent, arched roof. The shelter includes a bench for seating, a trash bin, and a large advertisement panel with a caution-themed design. The back wall is partially covered with graffiti and additional panels, while the side panels provide some wind and rain protection. The shelter is situated on a raised platform with a curb and drainage grate, and there is visible litter and debris around the base, adding to its urban character. A bus stop sign is mounted on one side, and the shelter's surfaces show signs of wear and weathering.",
+    "description": "A weathered, partially enclosed urban bus shelter with a metal frame, arched transparent roof, bench, trash bin, and advertisement panel, set on a raised platform.",
+    "description_view_0": "Front view showing the bench, trash bin, and open entry with a clear view of the shelter's interior.",
+    "description_view_1": "Side view highlighting the bus stop sign, trash bin, and partial advertisement panel with caution markings.",
+    "description_view_2": "Rear view displaying graffiti, utility boxes, and the back panels that partially enclose the shelter.",
+    "description_view_3": "Opposite side view showing the advertisement panel, more debris, and the shelter's arched roof structure.",
+    "category": "bus shelter",
+    "height": 2.4,
+    "max_dimension": 3.2,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "concrete",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.18,
+        0.12,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "leanable",
+        "deposit_trash",
+        "viewable_advertisement"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench",
+        "trash bin",
+        "advertisement panel",
+        "bus stop sign"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "gray",
+        "blue",
+        "yellow",
+        "orange",
+        "black",
+        "green"
+    ],
+    "colors_composition": [
+        0.35,
+        0.25,
+        0.12,
+        0.08,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.65,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_roof_type": "arched transparent",
+    "attribute_seating_presence": true,
+    "attribute_advertisement_panel": true,
+    "attribute_shelter_enclosure_level": "partially enclosed",
+    "attribute_signage": [
+        "route sign"
+    ],
+    "uid": "3486a4757b9d41c7b90fe421bc0075e7",
+    "near_synsets": {
+        "shelter.n.02": 0.5112035258407442,
+        "bus_stop.n.01": 0.5383094308569554,
+        "shelter.n.05": 0.5477211173146898,
+        "park_bench.n.01": 0.5512764117963711,
+        "shelter.n.01": 0.5520314581320191,
+        "bus.n.01": -1000.0,
+        "busbar.n.01": -1000.0,
+        "tax_shelter.n.01": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "protection.n.04": -1000.0,
+        "bus.n.04": -1000.0
+    },
+    "synset": "shelter.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3486a4757b9d41c7b90fe421bc0075e7",
+        "creator_username": "LThomas762",
+        "creator_display_name": "Logan Thomas",
+        "creator_profile_url": "https://sketchfab.com/LThomas762"
+    },
+    "filename": "std_3486a4757b9d41c7b90fe421bc0075e7.glb",
+    "length": 3.3580795526504517,
+    "width": 3.4535751342773438
+}

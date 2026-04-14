@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a large, military-grade tactical vehicle equipped with a long, cylindrical missile mounted on its chassis. The vehicle features a robust, angular armored body with a cab at the front and eight large, rugged wheels designed for off-road mobility. The missile is secured on a launch platform that extends over the length of the vehicle, with visible support structures and mechanical components at the rear. The exterior is finished in a dark, matte color, showing signs of wear and dirt, suggesting operational use. There are no visible windows on the sides, and the cab appears heavily armored, with reinforced panels and minimal external detailing. The overall design emphasizes durability, protection, and the ability to transport and launch large ordnance.",
+    "description": "A large, armored military vehicle with eight rugged wheels and a mounted missile on top, finished in a dark, matte color. The vehicle is built for durability and off-road mobility, with a reinforced cab and launch platform.",
+    "description_view_0": "Front view showing the armored cab and the pointed nose of the missile extending above the vehicle.",
+    "description_view_1": "Side view revealing the full length of the missile, the eight large wheels, and the launch platform structure.",
+    "description_view_2": "Rear view highlighting the missile's tail section and the mechanical support structures at the back.",
+    "description_view_3": "Opposite side view displaying the missile, wheels, and the armored body, similar to view 1 but from the other side.",
+    "category": "combat tactical  vehicle",
+    "height": 3.5,
+    "max_dimension": 13.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 40000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "missile launcher",
+        "hatch",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large missile launcher mounted on the top center of the vehicle, extending from the rear to the front.",
+    "attribute_armor_plating": "Full body armor plating is visible, with thick, angular panels covering the cab and chassis. The armor appears robust and continuous, especially around the cab and sides.",
+    "attribute_camouflage_pattern": "None visible; the vehicle is painted in a solid dark gray color with some dirt and wear.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Eight large off-road tires with deep tread patterns, designed for rugged terrain.",
+    "uid": "52dd97914cd8450e82ba990e2e6d0bc7",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4611167131650605,
+        "armored_car.n.02": 0.48324569489128033,
+        "reconnaissance_vehicle.n.01": 0.48462321784349244,
+        "tank.n.01": 0.4895003978444406,
+        "armored_vehicle.n.01": 0.4975483608481558,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "armored_car.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/52dd97914cd8450e82ba990e2e6d0bc7",
+        "creator_username": "stellarstro",
+        "creator_display_name": "Stellarstro",
+        "creator_profile_url": "https://sketchfab.com/stellarstro"
+    },
+    "filename": "std_52dd97914cd8450e82ba990e2e6d0bc7.glb",
+    "length": 12.023580551147461,
+    "width": 3.4395101070404053
+}

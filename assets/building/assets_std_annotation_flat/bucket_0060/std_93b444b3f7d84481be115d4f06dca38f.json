@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a large, cylindrical metal tank with a rounded body and a weathered, blue-painted surface showing significant rust and wear. The tank features a small circular opening or cap on the top center, likely for filling or venting, and a reinforced band encircling one end, which is attached to a rectangular support base. The surface is mottled with patches of reddish-brown rust, indicating prolonged outdoor exposure and aging. There is a smaller circular port or fitting on the side, possibly for drainage or connection to piping. The overall construction suggests it is designed to hold liquids or gases under moderate pressure, typical of industrial or utility environments. Its robust build and reinforced elements imply it is intended for stationary use in urban or industrial settings.",
+    "description": "A large, weathered blue metal tank with rust patches, a top opening, and reinforced banding on one end, likely used for storage in industrial or urban environments.",
+    "description_view_0": "The rounded end of the tank is visible, showing the top opening and extensive rust on the blue surface.",
+    "description_view_1": "Side view reveals the cylindrical body, top cap, and prominent reinforced band with a rectangular support base.",
+    "description_view_2": "Opposite rounded end with the top opening visible, and the rectangular base partially seen below.",
+    "description_view_3": "Side view with the reinforced band and base on the left, and a small circular port on the tank's side.",
+    "category": "barrel or bucket",
+    "height": 1.1,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "air",
+        "paint",
+        "rust"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 180,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "fillable",
+        "drainable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "top cap",
+        "side port",
+        "reinforced band",
+        "support base"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "rust brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "metal band reinforcement at one end",
+    "attribute_labeling_or_markings": "none",
+    "attribute_placement_location": "industrial",
+    "uid": "93b444b3f7d84481be115d4f06dca38f",
+    "near_synsets": {
+        "bucket.n.01": 0.4664551648509319,
+        "barrel.n.02": 0.47469493043562383,
+        "barrel.n.03": 0.4943305875364236,
+        "beer_barrel.n.01": 0.5059398586929194,
+        "tank.n.02": 0.5061423535694308,
+        "barrel.n.04": -1000.0,
+        "bucket.n.02": -1000.0,
+        "barrel.n.05": -1000.0,
+        "barrel.n.01": -1000.0
+    },
+    "synset": "bucket.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/93b444b3f7d84481be115d4f06dca38f",
+        "creator_username": "gutiraul",
+        "creator_display_name": "gutiraul",
+        "creator_profile_url": "https://sketchfab.com/gutiraul"
+    },
+    "filename": "std_93b444b3f7d84481be115d4f06dca38f.glb",
+    "length": 0.9039540886878967,
+    "width": 1.6544444561004639
+}

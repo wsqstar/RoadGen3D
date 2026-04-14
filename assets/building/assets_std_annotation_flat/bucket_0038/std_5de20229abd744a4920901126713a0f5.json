@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a medium-sized military ship with a streamlined hull painted in a blue and gray camouflage pattern. The vessel features a raised central superstructure with visible equipment and crew stations, as well as a prominent mast and several mounted fixtures along the deck. The bow is sharply pointed, while the stern is slightly rounded, both designed for efficient movement through water. The deck is detailed with various hatches, railings, and what appear to be weapon emplacements or observation posts. The ship's surface is primarily metallic, with some wooden elements visible on the deck. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A camouflaged military ship with a streamlined hull, central superstructure, and visible deck equipment including a mast and mounted fixtures.",
+    "description_view_0": "Top-down view showing the full outline of the ship, camouflage pattern, and deck layout.",
+    "description_view_1": "Side profile highlighting the ship's low, sleek hull, central superstructure, and mast.",
+    "description_view_2": "Bottom-up view similar to view 0 but from the opposite end, showing stern details and deck arrangement.",
+    "description_view_3": "Opposite side profile, mirroring view 1, with clear visibility of the hull's shape and deck equipment.",
+    "category": "ship",
+    "height": 6.0,
+    "max_dimension": 45.0,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.01,
+        0.03
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1800000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "wheel",
+        "mast",
+        "gun emplacement"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.45,
+        0.35,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single, streamlined displacement type with a sharply pointed bow and a rounded stern. The sides are relatively low, and the hull features a continuous camouflaged paint scheme. No bulbous bow or visible keels are present.",
+    "attribute_superstructure_layout": "The superstructure is centrally located and moderately raised, with a bridge area, mast, and several deck fixtures. There are no multiple decks or large towers, but the arrangement suggests a focus on functionality and visibility.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "mast",
+        "gun emplacement",
+        "antenna",
+        "hatch",
+        "railing"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "5de20229abd744a4920901126713a0f5",
+    "near_synsets": {
+        "surface_ship.n.01": 0.4842051454453591,
+        "cargo_ship.n.01": 0.5009629795998792,
+        "troopship.n.01": 0.5017797703967392,
+        "naval_radar.n.01": 0.5027236447623121,
+        "transport_ship.n.01": 0.5040467688146834,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5de20229abd744a4920901126713a0f5",
+        "creator_username": "lxyun_2",
+        "creator_display_name": "\u5168\u6597\u7115",
+        "creator_profile_url": "https://sketchfab.com/lxyun_2"
+    },
+    "filename": "std_5de20229abd744a4920901126713a0f5.glb",
+    "length": 3.17706561088562,
+    "width": 27.575990676879883
+}

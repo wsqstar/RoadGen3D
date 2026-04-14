@@ -1,0 +1,113 @@
+{
+    "description_long": "This object is a compact, polygonal solar energy pod with a faceted brown exterior and multiple integrated solar panels on its sloped roof surfaces. The structure features a combination of opaque and translucent panels, with several angled windows and louvered ventilation sections. A prominent entryway with a small staircase and awning is visible, suggesting the pod is designed for human access and possibly habitation or equipment housing. The base is elevated on short cylindrical supports, with a mesh or grille skirt for airflow or drainage. The solar panels are mounted at various angles, maximizing exposure to sunlight from different directions. The overall design is robust and modular, suitable for urban deployment as a standalone solar energy hub or microgrid node.",
+    "description": "A polygonal, brown solar energy pod with multiple angled solar panels, windows, and a small entry staircase, designed for urban energy generation and access.",
+    "description_view_0": "Front view showing the main entryway with a staircase, large angled windows, and several solar panels on the roof.",
+    "description_view_1": "Side view highlighting the louvered ventilation panels, geometric wall patterns, and partial view of the entryway and solar panels.",
+    "description_view_2": "Rear view displaying a large rectangular window, extensive louvered paneling, and the mesh base skirt.",
+    "description_view_3": "Opposite side view with a focus on the geometric wall design, angled solar panels, and the mesh base structure.",
+    "category": "solar energy infrastructure",
+    "height": 3.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "metal",
+        "glass",
+        "polycarbonate",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.18,
+        0.12,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "solar panel",
+        "vent panel",
+        "staircase"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "gray",
+        "white",
+        "blue"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.32,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_panel_orientation": "Panels are tilted at approximately 30-40 degrees, facing multiple directions for all-day sun exposure; orientation appears fixed.",
+    "attribute_mounting_structure_type": "roof-mounted on a polygonal pod structure with visible metal framing integrated into the roof panels.",
+    "attribute_electrical_inverter_presence": false,
+    "attribute_cabling_visibility": "not visible",
+    "attribute_array_configuration": "Clustered arrangement of 4 solar panels, each mounted on a separate roof facet, not in a strict grid or row.",
+    "uid": "d0bd9627172f44f9ab911ead519ed4c0",
+    "near_synsets": {
+        "solar_house.n.01": 0.5196503785484438,
+        "solar_array.n.01": 0.5305195894830291,
+        "solar_energy.n.01": 0.5462037895244992,
+        "solar_thermal_system.n.01": 0.5574283448599222,
+        "solar_cell.n.01": 0.561194554888508,
+        "energy.n.06": -1000.0,
+        "energy.n.05": -1000.0,
+        "infrastructure.n.01": -1000.0,
+        "energy.n.04": -1000.0,
+        "energy.n.01": -1000.0,
+        "infrastructure.n.02": -1000.0,
+        "department_of_energy.n.01": -1000.0,
+        "energy.n.03": -1000.0,
+        "energy.n.02": -1000.0
+    },
+    "synset": "solar_array.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d0bd9627172f44f9ab911ead519ed4c0",
+        "creator_username": "peterc",
+        "creator_display_name": "Peter Chaddock",
+        "creator_profile_url": "https://sketchfab.com/peterc"
+    },
+    "filename": "std_d0bd9627172f44f9ab911ead519ed4c0.glb",
+    "length": 3.919163227081299,
+    "width": 3.665116310119629
+}

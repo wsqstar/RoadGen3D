@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a medium-sized urban dam structure constructed primarily from reinforced concrete, featuring a wide, gently curved spillway surface with visible weathering, stains, and graffiti art on its walls. The dam is bordered by metal safety railings along the top edges, providing a barrier for pedestrian safety. On one end, there is a stairway leading up to a raised platform, which is also enclosed by railings. The surface of the dam is marred with cracks, dirt, and discoloration, indicating prolonged exposure to the elements. Graffiti in vibrant colors decorates several sections, adding an urban, lived-in feel. There are no visible water control gates or active water flow, and the structure appears dry and empty.",
+    "description": "A weathered concrete dam with metal railings, graffiti art, and a stairway leading to a raised platform. The structure is dry, urban, and shows signs of age and use.",
+    "description_view_0": "The dam is seen from the side, highlighting the graffiti on the left wall, the central opening, and the full length of the safety railings.",
+    "description_view_1": "This view shows the interior spillway surface, with graffiti on the right wall and the stairway platform visible at the far end.",
+    "description_view_2": "The opposite side reveals more graffiti, the stairway structure, and the full extent of the concrete wall's weathering.",
+    "description_view_3": "Looking directly into the spillway, the curved surface and graffiti on both side walls are prominent, with the stairway on the left.",
+    "category": "dam",
+    "height": 6.0,
+    "max_dimension": 20.0,
+    "materials": [
+        "reinforced concrete",
+        "steel",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.04,
+        0.01
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "stairway",
+        "platform",
+        "railings"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "black",
+        "red",
+        "blue",
+        "yellow",
+        "pink"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.03,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_spillway_presence": true,
+    "attribute_control_gates": [
+        "none"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_water_outflow": "none",
+    "attribute_perimeter_fencing": true,
+    "uid": "e668807176f64c9299a74b1c470785c3",
+    "near_synsets": {
+        "dam.n.01": 0.5545739937693858,
+        "weir.n.01": 0.570829443640411,
+        "steel_arch_bridge.n.01": 0.5833381691607361,
+        "stairhead.n.01": 0.5848842705851686,
+        "cityscape.n.02": 0.5855521790712787,
+        "decameter.n.01": -1000.0,
+        "dam.n.03": -1000.0
+    },
+    "synset": "dam.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e668807176f64c9299a74b1c470785c3",
+        "creator_username": "Jayvolt",
+        "creator_display_name": "Jayvolt",
+        "creator_profile_url": "https://sketchfab.com/Jayvolt"
+    },
+    "filename": "std_e668807176f64c9299a74b1c470785c3.glb",
+    "length": 14.983102798461914,
+    "width": 14.090747833251953
+}

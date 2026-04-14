@@ -1,0 +1,96 @@
+{
+    "description_long": "This kiosk features a prominent, symmetrical structure with a large, pitched roof supported by four robust cylindrical columns at each corner. The roof is composed of geometric, diamond-patterned panels in shades of gray and black, creating a striking visual effect. The open front and rear allow for easy access, while the interior includes a counter and shelving units, likely for service or display purposes. The floor and steps are decorated with bold, angular patterns that echo the roof's design, enhancing the modern aesthetic. The kiosk appears to be constructed primarily from metal and glass, with a solid, durable frame and glossy surfaces. There is minimal signage, and the overall style is contemporary with a focus on geometric forms and high contrast.",
+    "description": "A modern kiosk with a geometric, pitched roof, four cylindrical columns, and bold black-and-gray patterns. The open design features a counter and shelving inside, with a sleek, contemporary appearance.",
+    "description_view_0": "Front view showing the open entrance, interior counter, and shelving, framed by two columns and the patterned roof.",
+    "description_view_1": "View of the main approach with wide steps, all four columns visible, and the bold patterned flooring leading to the open front.",
+    "description_view_2": "Rear view with open access, interior counter visible, and the geometric roof pattern prominent.",
+    "description_view_3": "Back view highlighting the rear counter, two columns, and the patterned steps and flooring.",
+    "category": "kiosk",
+    "height": 3.2,
+    "max_dimension": 5.5,
+    "materials": [
+        "metal",
+        "glass",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "displayable",
+        "serving",
+        "shelvable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "counter",
+        "shelving",
+        "steps"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "glossy",
+    "reflectivity": 0.5,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "printed sign above the interior counter, minimal text visible",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "open archway at front and rear, no doors",
+    "attribute_roof_design": "large pitched roof with geometric diamond pattern, overhanging edges, constructed from metal panels",
+    "attribute_architectural_style": "modern with geometric and minimalist influences",
+    "uid": "c8dae04d539c49c68bc7e90ef962cf29",
+    "near_synsets": {
+        "booth.n.02": 0.5563101821675254,
+        "counter.n.01": 0.5898682114520994,
+        "countertop.n.01": 0.590526611783513,
+        "arcade.n.01": 0.5922250968577831,
+        "portico.n.01": 0.5925502949672732
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c8dae04d539c49c68bc7e90ef962cf29",
+        "creator_username": "Matome",
+        "creator_display_name": "Matome",
+        "creator_profile_url": "https://sketchfab.com/Matome"
+    },
+    "filename": "std_c8dae04d539c49c68bc7e90ef962cf29.glb",
+    "length": 4.059256553649902,
+    "width": 4.059256553649902
+}

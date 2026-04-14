@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a large, modern ferry with a streamlined white hull and multiple decks, designed for transporting passengers and possibly vehicles across water. The vessel features several rows of windows along its sides, with blue-tinted sections on the upper decks that may represent open-air or recreational areas. The top deck includes a prominent bridge structure and various rooftop details, such as communication equipment and lifeboats. The bow is sharply pointed, while the stern is broader and houses additional superstructure elements. The ferry's exterior is primarily white with subtle gray and blue accents, giving it a clean, contemporary appearance. The overall design suggests a focus on both functionality and passenger comfort, typical of urban or intercity ferries.",
+    "description": "A large, white modern ferry with multiple decks, blue-tinted upper areas, and a streamlined hull, designed for passenger and vehicle transport.",
+    "description_view_0": "Front view showing the pointed bow, central bridge, and upper deck details.",
+    "description_view_1": "Side view displaying the full length of the ferry, rows of windows, and blue-tinted deck areas.",
+    "description_view_2": "Rear view highlighting the broad stern, superstructure, and rooftop features.",
+    "description_view_3": "Opposite side view with similar features to view 1, showing the vessel's length and deck arrangement.",
+    "category": "ferry",
+    "height": 18,
+    "max_dimension": 210,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.01,
+        0.03
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "dockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "lifeboat",
+        "bridge",
+        "deck railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.07,
+        0.06,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_passenger_decks": 3,
+    "attribute_vehicle_loading_ramps": false,
+    "attribute_large_windows": true,
+    "attribute_multiple_entry_points": true,
+    "attribute_prominent_smokestack": false,
+    "uid": "bb782326932e4c179e34f3d6c8e36b86",
+    "near_synsets": {
+        "ferry.n.01": 0.43877507359360424,
+        "car-ferry.n.01": 0.46156635081983044,
+        "ferry.n.02": 0.46201128971230304,
+        "passenger_ship.n.01": 0.5133045121311508,
+        "ferryman.n.01": 0.5171277006684112
+    },
+    "synset": "ferryman.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bb782326932e4c179e34f3d6c8e36b86",
+        "creator_username": "farhad.Guli",
+        "creator_display_name": "farhad.Guli",
+        "creator_profile_url": "https://sketchfab.com/farhad.Guli"
+    },
+    "filename": "std_bb782326932e4c179e34f3d6c8e36b86.glb",
+    "length": 105.52441787719727,
+    "width": 13.498943328857422
+}

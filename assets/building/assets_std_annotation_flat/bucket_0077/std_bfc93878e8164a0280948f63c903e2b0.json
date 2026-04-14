@@ -1,0 +1,102 @@
+{
+    "description_long": "This humanoid robot features a cylindrical yellow body with metallic joints and limbs, standing upright on a flat, irregularly shaped stone platform. Its head is rounded with two prominent circular eyes and a small antenna on top, giving it a friendly, cartoonish appearance. The arms are thin and metallic, ending in simple, claw-like hands, while the legs are short and robust, with rounded feet. Visible seams and bolts accentuate the robot's segmented construction, suggesting modular assembly. The robot's exterior is primarily smooth and painted yellow, with metallic gray and black accents on the joints and extremities. The overall design is utilitarian yet approachable, suitable for urban environments where interaction with humans is expected.",
+    "description": "A yellow, cartoonish humanoid robot with a rounded head, circular eyes, and metallic limbs stands on a flat stone platform. Its segmented body and simple claw hands give it a friendly, approachable look.",
+    "description_view_0": "The robot is seen from the left side, showing its cylindrical torso, one arm bent at the elbow, and the rounded head with a visible eye and antenna.",
+    "description_view_1": "The robot faces forward, displaying both circular eyes, outstretched arms, and symmetrical legs and feet on the stone platform.",
+    "description_view_2": "The right side of the robot is visible, highlighting the cylindrical body, one arm extended, and the side profile of the head and feet.",
+    "description_view_3": "The robot is viewed from the back, showing the segmented back of the head and torso, both arms slightly out, and the rear of the legs and feet.",
+    "category": "humanoid robot",
+    "height": 1.1,
+    "max_dimension": 1.1,
+    "materials": [
+        "painted metal",
+        "plastic",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "mass": 38,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "rotatable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "hands",
+        "head",
+        "antenna",
+        "eyes",
+        "legs",
+        "feet"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms slightly outstretched to the sides, legs straight and feet flat on the ground, head facing forward.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated yellow panels and metallic joints as part of its structure.",
+    "attribute_facial_features": "The face consists of two large, circular eyes and a seam running vertically down the head; no mouth or nose is visible, and the expression is neutral.",
+    "attribute_limb_articulation": "Each arm has at least two visible hinge joints (shoulder and elbow), and the hands are simple claws; legs have hinge joints at the hips and knees, with rounded feet, suggesting moderate flexibility.",
+    "attribute_presence_of_sensors": "Two circular eye-like sensors on the front of the head, possible antenna sensor on top.",
+    "uid": "bfc93878e8164a0280948f63c903e2b0",
+    "near_synsets": {
+        "android.n.01": 0.5451400797393776,
+        "robotics_equipment.n.01": 0.5699089031988265,
+        "automaton.n.02": 0.5709645963671206,
+        "animatronics.n.01": 0.5788845992743833,
+        "cyborg.n.01": 0.5828043909879241
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bfc93878e8164a0280948f63c903e2b0",
+        "creator_username": "maria_stashko",
+        "creator_display_name": "Maria Stashko",
+        "creator_profile_url": "https://sketchfab.com/maria_stashko"
+    },
+    "filename": "std_bfc93878e8164a0280948f63c903e2b0.glb",
+    "length": 1.024229884147644,
+    "width": 1.0930135250091553
+}

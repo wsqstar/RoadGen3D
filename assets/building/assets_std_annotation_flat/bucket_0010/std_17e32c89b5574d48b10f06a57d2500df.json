@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a concrete skatepark feature, specifically a multi-sided ledge and bank structure commonly found in urban skateparks. The object consists of a central raised platform with sloped banks on either side, flanked by two long, rectangular grind ledges. The surface is mostly flat with angled transitions, and the edges are reinforced with metal coping for durability and grindability. The structure is decorated with graffiti and shows signs of weathering and use, indicating it is an outdoor installation. The overall design is robust and utilitarian, intended for skateboarding, BMX, and similar activities.",
+    "description": "A concrete skatepark ledge and bank structure with metal coping, graffiti, and sloped surfaces for skating and tricks.",
+    "description_view_0": "Front view showing the central raised platform, sloped banks, and graffiti on the lower ledge.",
+    "description_view_1": "Side/top view highlighting the long grind ledge and the flat upper surface.",
+    "description_view_2": "Rear view displaying the opposite sloped bank and the reinforced coping along the edges.",
+    "description_view_3": "Side/top view from the other direction, emphasizing the symmetry and the second grind ledge.",
+    "category": "playground",
+    "height": 1.0,
+    "max_dimension": 6.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "grindable",
+        "slideable",
+        "climbable",
+        "jumpable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "grind ledge",
+        "banked ramp",
+        "platform"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "skateboarder",
+        "bmx_rider"
+    ],
+    "colors": [
+        "gray",
+        "blue",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_playground_equipment_type": "skatepark ledge and bank",
+    "attribute_presence_of_safety_barriers": false,
+    "attribute_number_of_play_structures": 1,
+    "attribute_presence_of_shade_structures": false,
+    "attribute_architectural_style": "industrial",
+    "uid": "17e32c89b5574d48b10f06a57d2500df",
+    "near_synsets": {
+        "skateboarding.n.01": 0.52705336189593,
+        "playground.n.02": 0.5523784984826727,
+        "rink.n.01": 0.5557113439398587,
+        "skateboarder.n.01": 0.5634994883774074,
+        "skateboard.n.01": 0.5657904077960273,
+        "resort_area.n.01": -1000.0
+    },
+    "synset": "playground.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/17e32c89b5574d48b10f06a57d2500df",
+        "creator_username": "matousekfoto",
+        "creator_display_name": "matousekfoto",
+        "creator_profile_url": "https://sketchfab.com/matousekfoto"
+    },
+    "filename": "std_17e32c89b5574d48b10f06a57d2500df.glb",
+    "length": 4.253507614135742,
+    "width": 6.4188172817230225
+}

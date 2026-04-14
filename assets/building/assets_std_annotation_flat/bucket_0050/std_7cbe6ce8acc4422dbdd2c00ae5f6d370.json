@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a robust, industrial-style toolbox with a deep red metallic exterior and a black top surface, designed for heavy-duty urban or workshop use. The front features a combination of horizontal slatted panels and a solid door, likely concealing drawers or storage compartments, and a small handle for access. The upper section includes a wide, open shelf supported by two side panels, providing additional storage or workspace. The toolbox is mounted on four caster wheels, making it easily movable across flat surfaces. A sturdy horizontal handle is attached to one side, facilitating pushing or pulling. The overall construction suggests a steel body with a glossy, slightly reflective finish, and the design is both functional and visually striking for urban environments.",
+    "description": "A large, red metallic toolbox with a black top, open upper shelf, slatted front panels, and caster wheels for mobility. Features include a side handle and a glossy, industrial finish.",
+    "description_view_0": "Front view showing slatted panels, a solid door, a small handle, and the open upper shelf.",
+    "description_view_1": "Left side view highlighting the side handle and the depth of the toolbox.",
+    "description_view_2": "Rear view displaying a solid red back panel and the open shelf above.",
+    "description_view_3": "Right side view showing the plain side panel and the overall boxy profile.",
+    "category": "toolbox",
+    "height": 1.2,
+    "max_dimension": 1.5,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 65,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "door",
+        "drawer",
+        "wheel",
+        "shelf"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.25
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "glossy",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_handle_type": "Fixed horizontal tubular steel handle on the left side, cylindrical in shape, designed for pushing or pulling the toolbox.",
+    "attribute_latch_mechanism": "Implied small latch or handle on the front door, likely a metal pull or lever; no visible padlock or keyhole.",
+    "attribute_brand_logo": "none",
+    "attribute_compartment_configuration": "Front section likely contains multiple drawers or a large compartment behind slatted panels and a solid door; open upper shelf spans the width of the toolbox; compartments appear fixed.",
+    "attribute_external_labeling": [],
+    "uid": "7cbe6ce8acc4422dbdd2c00ae5f6d370",
+    "near_synsets": {
+        "toolbox.n.01": 0.4942858230396539,
+        "toy_box.n.01": 0.5439751122214896,
+        "tool_bag.n.01": 0.5497478615502812,
+        "drawer.n.01": 0.5532707761111489,
+        "chest.n.02": 0.5540550306098962
+    },
+    "synset": "toolbox.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7cbe6ce8acc4422dbdd2c00ae5f6d370",
+        "creator_username": "roughdominator",
+        "creator_display_name": "3ddominator",
+        "creator_profile_url": "https://sketchfab.com/roughdominator"
+    },
+    "filename": "std_7cbe6ce8acc4422dbdd2c00ae5f6d370.glb",
+    "length": 0.5367906391620636,
+    "width": 1.2285377383232117
+}

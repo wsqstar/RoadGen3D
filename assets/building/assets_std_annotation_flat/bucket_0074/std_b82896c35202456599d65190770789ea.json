@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a brown and black railway carriage with a rectangular body and a slightly curved roof. The sides feature large sliding doors, three on each side, which are open to reveal the interior cargo space. The carriage is supported by two sets of black bogie wheels, allowing it to run on standard railway tracks. The ends of the carriage are flat, with visible couplers for connecting to other train cars. There are small rectangular windows along the upper part of the side walls, providing limited visibility into the interior. The overall design and lack of passenger amenities suggest it is intended for transporting goods rather than people.",
+    "description": "A brown and black railway freight carriage with sliding side doors and small upper windows, designed for cargo transport.",
+    "description_view_0": "Front view showing the flat end of the carriage with a coupler and no visible doors or windows.",
+    "description_view_1": "Side view displaying three large open sliding doors and small rectangular windows along the top edge.",
+    "description_view_2": "Rear view similar to the front, with a flat end and coupler, no doors or windows visible.",
+    "description_view_3": "Opposite side view, again showing three large open sliding doors and small upper windows.",
+    "category": "train",
+    "height": 4.2,
+    "max_dimension": 18.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.03,
+        0.03,
+        0.02,
+        0.07
+    ],
+    "mass": 32000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "coupler"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "freight train",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "three large sliding doors evenly spaced along both sides",
+    "attribute_window_arrangement": "small rectangular windows spaced along the upper sides",
+    "uid": "b82896c35202456599d65190770789ea",
+    "near_synsets": {
+        "boxcar.n.01": 0.41787602078672903,
+        "freight_car.n.01": 0.4402045246517119,
+        "passenger_train.n.01": 0.4633748285216264,
+        "coal_car.n.01": 0.4636184859734161,
+        "train.n.01": 0.4682751435279884,
+        "gearing.n.01": -1000.0,
+        "train.n.04": -1000.0,
+        "train.n.05": -1000.0,
+        "caravan.n.01": -1000.0,
+        "string.n.04": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b82896c35202456599d65190770789ea",
+        "creator_username": "nathan.d1563",
+        "creator_display_name": "Paul",
+        "creator_profile_url": "https://sketchfab.com/nathan.d1563"
+    },
+    "filename": "std_b82896c35202456599d65190770789ea.glb",
+    "length": 16.187793731689453,
+    "width": 2.768239736557007
+}

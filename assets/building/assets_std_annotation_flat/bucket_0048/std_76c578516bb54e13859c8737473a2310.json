@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a modern precision sniper rifle with a tan-colored chassis and a black adjustable stock. The rifle features a long, heavy barrel supported by a bipod for stability during long-range shooting. It is equipped with a high-magnification scope mounted on the top rail, enhancing its accuracy for distant targets. The pistol grip and stock are ergonomically designed, with the stock appearing to be skeletonized for reduced weight and improved handling. The magazine is detachable and box-shaped, positioned just in front of the trigger guard. The overall design suggests a focus on accuracy, stability, and modularity, suitable for tactical or law enforcement use in urban environments.",
+    "description": "A tan precision sniper rifle with a black adjustable skeletonized stock, long barrel, bipod, and mounted scope. Designed for accuracy and stability, it features a detachable box magazine and ergonomic grip.",
+    "description_view_0": "Side view showing the full length of the rifle, including the tan chassis, black adjustable stock, scope, bipod, and detachable magazine.",
+    "description_view_1": "Front view highlighting the circular barrel opening, bipod legs, and the alignment of the scope above the barrel.",
+    "description_view_2": "Opposite side view mirroring view 0, showing the rifle's profile, bipod, scope, and stock details.",
+    "description_view_3": "Rear view focusing on the black adjustable stock, pistol grip, and the alignment of the scope and barrel.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 1.3,
+    "materials": [
+        "metal",
+        "polymer",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 6.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 65,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "rotatable",
+        "pullable",
+        "pushable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "pistol grip",
+        "trigger",
+        "magazine",
+        "bolt handle",
+        "scope",
+        "bipod",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "adjustable skeletonized",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "scope",
+    "attribute_muzzle_device": "none",
+    "uid": "76c578516bb54e13859c8737473a2310",
+    "near_synsets": {
+        "sniper_rifle.n.01": 0.48779499256770903,
+        "dragunov.n.01": 0.48853107593365697,
+        "light_arm.n.01": 0.545977657243992,
+        "garand_rifle.n.01": 0.547988636947993,
+        "rifle.n.01": 0.5527147485644415
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/76c578516bb54e13859c8737473a2310",
+        "creator_username": "dicorato.romain",
+        "creator_display_name": "Romain DI CORATO",
+        "creator_profile_url": "https://sketchfab.com/dicorato.romain"
+    },
+    "filename": "std_76c578516bb54e13859c8737473a2310.glb",
+    "length": 1.0588054656982422,
+    "width": 0.29137706756591797
+}

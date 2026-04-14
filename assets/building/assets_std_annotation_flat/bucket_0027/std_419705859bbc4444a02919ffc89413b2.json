@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a cylindrical, metallic device resembling a stun or flashbang grenade, commonly used in urban tactical scenarios. The body is hexagonal at both ends and features a series of large circular cutouts along the central shaft, revealing a red inner lining. At the top, there is a prominent safety lever and a metal pull ring, which are standard features for manual detonation. The surface is matte black with subtle red highlights visible through the cutouts, and the overall construction appears robust and industrial. The object is compact, designed for handheld use, and its geometric design suggests it is engineered for both durability and ease of grip. No visible digital or analog timer is present, and there are no obvious warning labels or hazard symbols.",
+    "description": "A compact, hexagonal-ended metallic grenade with circular cutouts revealing a red interior, featuring a safety lever and pull ring. The surface is matte black with red highlights and a robust, industrial design.",
+    "description_view_0": "The grenade is shown upright, clearly displaying the hexagonal ends, circular cutouts, and the safety lever with pull ring on top.",
+    "description_view_1": "This angled view emphasizes the length of the grenade and the alignment of the safety lever and pull ring, with the red interior visible through the cutouts.",
+    "description_view_2": "The grenade is lying on its side, highlighting the cylindrical body, hexagonal ends, and the arrangement of the cutouts along the shaft.",
+    "description_view_3": "A close-up, upright view focusing on the top section, showing the safety lever, pull ring, and the detailed cutouts with red interior.",
+    "category": "bomb",
+    "height": 0.14,
+    "max_dimension": 0.16,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 0.45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 5,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "body"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is likely initiated by pulling the metal ring to release the safety lever, which triggers the internal fuse mechanism.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "419705859bbc4444a02919ffc89413b2",
+    "near_synsets": {
+        "cherry_bomb.n.01": 0.5273768798965675,
+        "hand_grenade.n.01": 0.5293283858972999,
+        "grenade.n.01": 0.5341685554168357,
+        "bomb.n.01": 0.5363134786906993,
+        "briefcase_bomb.n.01": 0.5604791992620561,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/419705859bbc4444a02919ffc89413b2",
+        "creator_username": "joeyvanpetegem",
+        "creator_display_name": "joeyvanpetegem",
+        "creator_profile_url": "https://sketchfab.com/joeyvanpetegem"
+    },
+    "filename": "std_419705859bbc4444a02919ffc89413b2.glb",
+    "length": 0.07889479771256447,
+    "width": 0.18721194565296173
+}

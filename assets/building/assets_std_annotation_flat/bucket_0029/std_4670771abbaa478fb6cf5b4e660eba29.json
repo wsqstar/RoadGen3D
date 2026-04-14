@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a small, fixed-wing airplane with a streamlined fuselage and a predominantly orange and white color scheme. The wings are mounted low on the fuselage and extend straight out, with no visible winglets or pronounced dihedral angles. The nose section features a cockpit area with a slightly raised canopy, and the tail section includes a conventional vertical stabilizer and horizontal stabilizers. The engine appears to be mounted at the front of the fuselage, suggesting a single piston or turboprop configuration. The landing gear is not clearly visible, but the overall proportions and design indicate a light utility or general aviation aircraft. The surface finish is smooth and hard, typical of metal-skinned aircraft.",
+    "description": "A small, orange and white fixed-wing airplane with a streamlined fuselage, low-mounted straight wings, and a conventional tail. The cockpit is forward-mounted with a slightly raised canopy.",
+    "description_view_0": "Front view showing the nose, cockpit canopy, and the full wingspan extending horizontally.",
+    "description_view_1": "Side view highlighting the length of the fuselage, the low-mounted wing, and the vertical tail fin.",
+    "description_view_2": "Rear view displaying the tail section, including the vertical and horizontal stabilizers, and the trailing edges of the wings.",
+    "description_view_3": "Opposite side view showing the fuselage profile, wing, and tail assembly from the other side.",
+    "category": "airplane",
+    "height": 2.5,
+    "max_dimension": 12.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 6000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit canopy",
+        "wheel",
+        "propeller"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 15.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, straight configuration with no visible winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "Single front-mounted piston or turboprop engine",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers",
+    "attribute_landing_gear_type": "Landing gear not clearly visible; likely tricycle or taildragger configuration",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a slightly raised canopy",
+    "uid": "4670771abbaa478fb6cf5b4e660eba29",
+    "near_synsets": {
+        "airplane.n.01": 0.47316137137689324,
+        "aircraft.n.01": 0.49463266156056873,
+        "monoplane.n.01": 0.504954917709733,
+        "biplane.n.01": 0.5348869816471165,
+        "fuselage.n.01": 0.5435080110554171
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4670771abbaa478fb6cf5b4e660eba29",
+        "creator_username": "christianto01",
+        "creator_display_name": "christianto01",
+        "creator_profile_url": "https://sketchfab.com/christianto01"
+    },
+    "filename": "std_4670771abbaa478fb6cf5b4e660eba29.glb",
+    "length": 53.852365493774414,
+    "width": 28.291175842285156
+}

@@ -1,0 +1,96 @@
+{
+    "description_long": "This object consists of a flat, rectangular surface made up of irregularly shaped, grayish-blue stone tiles arranged in a grid pattern. The stones are set in a matrix of lighter, weathered mortar, with some visible cracks and small gaps between the stones. The surface shows signs of age, with patches of discoloration, dirt, and faint traces of reddish-brown debris, possibly from brick or soil. The stones have a rough, uneven texture, and their edges are worn, suggesting prolonged exposure to the elements. The overall appearance is consistent with a section of old cobblestone pavement or a stone walkway fragment. This debris would likely be found in an urban environment where paving materials have been broken up or removed.",
+    "description": "A weathered, rectangular section of cobblestone pavement with rough, gray-blue stones set in light mortar, showing signs of age and dirt. The surface is uneven, cracked, and has visible wear.",
+    "description_view_0": "The cobblestone surface is seen from a low angle, highlighting the rough texture and irregular grid of stones.",
+    "description_view_1": "This view shows the stone pattern more head-on, emphasizing the uniformity of the grid and the weathered mortar lines.",
+    "description_view_2": "The surface appears slightly lighter, with the stone edges and cracks more visible, showing the unevenness of the debris.",
+    "description_view_3": "Similar to view 1, but with subtle differences in lighting and stone coloration, revealing more of the surface's worn details.",
+    "category": "debris",
+    "height": 0.08,
+    "max_dimension": 2.0,
+    "materials": [
+        "stone",
+        "mortar",
+        "dirt",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 480,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4700,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "trippable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "obstacle",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "blue-gray",
+        "light brown",
+        "reddish-brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.54,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.95,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_location": "urban street",
+    "attribute_context": "Fragment of pavement left over from roadwork, sidewalk repair, or demolition of old urban infrastructure.",
+    "attribute_object_type": "cobblestone pavement section",
+    "attribute_condition": "intact but heavily weathered and dirty, with visible cracks and worn edges",
+    "attribute_associated_infrastructure": [
+        "road",
+        "sidewalk"
+    ],
+    "uid": "3301d56e05064e37a630b21e1a6f28b5",
+    "near_synsets": {
+        "cobble.n.01": 0.47388393037128096,
+        "macadam.n.01": 0.5040734136389092,
+        "debris.n.01": 0.5141001450169537,
+        "bluestone.n.01": 0.5182189202199871,
+        "shingle.n.02": 0.5254313694800358
+    },
+    "synset": "debris.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3301d56e05064e37a630b21e1a6f28b5",
+        "creator_username": "morepolys",
+        "creator_display_name": "morepolys",
+        "creator_profile_url": "https://sketchfab.com/morepolys"
+    },
+    "filename": "std_3301d56e05064e37a630b21e1a6f28b5.glb",
+    "length": 360288029245440.0,
+    "width": 360287928582144.0
+}

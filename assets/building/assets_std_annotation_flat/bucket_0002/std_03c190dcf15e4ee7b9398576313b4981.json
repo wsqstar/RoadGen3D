@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a single slice of pizza with a golden-brown crust and a slightly raised edge. The surface is covered with melted cheese, which appears to be mozzarella, and is topped with a variety of vegetables including black olives, green bell peppers, red bell peppers, and mushrooms. The toppings are distributed unevenly, giving the slice a realistic, hand-made appearance. The crust is thick and soft-looking, with a matte finish and a slightly puffy texture. The cheese and toppings blend together, with some areas showing more sauce and others more cheese. The slice is triangular, with the point of the triangle being the thinnest part and the crust forming the base.",
+    "description": "A realistic slice of pizza with a thick, golden-brown crust, topped with cheese, olives, peppers, and mushrooms.",
+    "description_view_0": "The pizza slice is viewed from above, showing the full array of toppings and the triangular shape.",
+    "description_view_1": "The slice is seen from the side, highlighting the thickness of the crust and the layering of cheese and toppings.",
+    "description_view_2": "A front-on view of the crust, emphasizing its thickness and the distribution of toppings near the edge.",
+    "description_view_3": "The slice is viewed from the opposite side, again showing the crust and the spread of toppings along the surface.",
+    "category": "pizza",
+    "height": 0.025,
+    "max_dimension": 0.18,
+    "materials": [
+        "bread",
+        "cheese",
+        "vegetables",
+        "tomato sauce",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "mass": 0.12,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "brown",
+        "black",
+        "green",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.08,
+        0.08,
+        0.08,
+        0.06
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_topping_type": [
+        "black olives",
+        "green bell pepper",
+        "red bell pepper",
+        "mushroom",
+        "cheese"
+    ],
+    "attribute_slice_count": 1,
+    "attribute_crust_style": "thick crust",
+    "attribute_packaging_presence": false,
+    "attribute_brand_logo": "None",
+    "uid": "03c190dcf15e4ee7b9398576313b4981",
+    "near_synsets": {
+        "sicilian_pizza.n.01": 0.47758112401004194,
+        "pepperoni_pizza.n.01": 0.4808878022963262,
+        "cheese_pizza.n.01": 0.48703491914572744,
+        "pizza.n.01": 0.5044390711387896,
+        "sausage_pizza.n.01": 0.5124714871252097
+    },
+    "synset": "sausage_pizza.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/03c190dcf15e4ee7b9398576313b4981",
+        "creator_username": "Pierre.Bourdon",
+        "creator_display_name": "Pierre.Bourdon",
+        "creator_profile_url": "https://sketchfab.com/Pierre.Bourdon"
+    },
+    "filename": "std_03c190dcf15e4ee7b9398576313b4981.glb",
+    "length": 0.17224495112895966,
+    "width": 0.12907685339450836
+}

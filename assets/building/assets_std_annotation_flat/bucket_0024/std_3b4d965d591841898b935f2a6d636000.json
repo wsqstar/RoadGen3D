@@ -1,0 +1,91 @@
+{
+    "description_long": "This crustacean features a heavily armored, segmented exoskeleton with a rugged, spiked appearance and a dark, mottled coloration of reds, browns, and blacks. Its body is broad and flattened, with a prominent carapace that extends over the back and sides, providing substantial protection. Two large, menacing claws extend from the front, each jointed and tipped with sharp pincers, while multiple spiny legs radiate from beneath the carapace. The head is integrated into the main body, with visible mandibles and a pair of small, forward-facing eyes set low on the front. The surface texture is rough and jagged, resembling the natural armor of a wild crustacean adapted for defense. The overall form is robust and intimidating, suggesting a creature well-suited for survival in harsh environments.",
+    "description": "A heavily armored, spiked crustacean with large claws, a broad segmented shell, and a rugged, mottled surface in dark reds and browns.",
+    "description_view_0": "Front view shows the menacing claws, spiny legs, and facial features including eyes and mandibles.",
+    "description_view_1": "Rear-left view highlights the layered, armored carapace and the curvature of the shell, with claws less visible.",
+    "description_view_2": "Back view emphasizes the broad, segmented shell and the arrangement of the legs, with claws mostly hidden.",
+    "description_view_3": "Right-side view displays the side profile of the claws, the jagged shell, and the spiny appendages.",
+    "category": "crustacean",
+    "height": 0.7,
+    "max_dimension": 1.2,
+    "materials": [
+        "chitin",
+        "keratin",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "graspable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "claws",
+        "legs",
+        "mandibles"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark red",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.56,
+    "youngs_modulus": 4000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_legs": 6,
+    "attribute_presence_of_claws": true,
+    "attribute_body_segmentation": "cephalothorax and abdomen",
+    "attribute_antennae_visibility": false,
+    "attribute_eye_placement": "sessile on head",
+    "uid": "3b4d965d591841898b935f2a6d636000",
+    "near_synsets": {
+        "crustacean.n.01": 0.40893654600757723,
+        "crab.n.01": 0.4629671176646988,
+        "decapod_crustacean.n.01": 0.4645554395677662,
+        "malacostracan_crustacean.n.01": 0.4813514827658783,
+        "barnacle.n.01": 0.48302709070655725
+    },
+    "synset": "malacostracan_crustacean.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3b4d965d591841898b935f2a6d636000",
+        "creator_username": "inostupid",
+        "creator_display_name": "inostupid",
+        "creator_profile_url": "https://sketchfab.com/inostupid"
+    },
+    "filename": "std_3b4d965d591841898b935f2a6d636000.glb",
+    "length": 0.5536723434925079,
+    "width": 0.6920901834964752
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This kiosk is a compact, modular booth structure with a rectangular footprint and a flat roof supported by metallic framing. The front features an open entryway with three black chairs arranged behind a counter, suggesting a setup for customer interaction or service. Above the entry, a red fascia panel displays the placeholder text 'FASCIA NAME,' and a green sign beneath it provides details about the stall type and size. The side and rear walls are solid, opaque panels, providing privacy and security, while the interior is finished with a red floor. The overall design is utilitarian, with clean lines and minimal decorative elements, making it suitable for trade shows, markets, or temporary urban installations.",
+    "description": "A modular kiosk booth with a flat roof, open front, solid side and rear panels, and a prominent fascia sign above the entry. The interior features a counter and three black chairs on a red floor.",
+    "description_view_0": "Front view showing the open entry, three black chairs, counter, red fascia sign, and green stall information sign.",
+    "description_view_1": "Left side view displaying the solid, opaque side panel and partial view of the fascia sign's edge.",
+    "description_view_2": "Rear view showing a completely solid back panel with no openings or signage.",
+    "description_view_3": "Right side view with a solid panel and a glimpse of the interior signage and fascia from an angle.",
+    "category": "kiosk",
+    "height": 2.5,
+    "max_dimension": 4.0,
+    "materials": [
+        "metal",
+        "plastic",
+        "composite panel",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "displayable",
+        "presentable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "counter",
+        "chairs",
+        "signage panel"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "white",
+        "gray",
+        "red",
+        "black",
+        "green"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_signage_type": "Printed sign and banner; red fascia above entrance with placeholder text 'FASCIA NAME', green printed sign below with stall details.",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "Single open entryway at the front, no physical doors.",
+    "attribute_roof_design": "Flat roof with metallic framing, slight overhang at the front for signage.",
+    "attribute_architectural_style": "Modern utilitarian with minimalist influences.",
+    "uid": "7116f5e3ecf746509290c9c3c8466304",
+    "near_synsets": {
+        "booth.n.02": 0.5094271593585175,
+        "booth.n.01": 0.5372894655869103,
+        "booth.n.04": 0.540162528638456,
+        "shopfront.n.01": 0.557039545097646,
+        "telephone_booth.n.01": 0.5599695361236153
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7116f5e3ecf746509290c9c3c8466304",
+        "creator_username": "patelanky",
+        "creator_display_name": "patelanky",
+        "creator_profile_url": "https://sketchfab.com/patelanky"
+    },
+    "filename": "std_7116f5e3ecf746509290c9c3c8466304.glb",
+    "length": 2.4176496267318726,
+    "width": 3.2434680461883545
+}

@@ -1,0 +1,97 @@
+{
+    "description_long": "This ship features a broad, flat hull with a pronounced red lower section and a gray upper deck, suggesting a design optimized for stability and cargo or passenger capacity. The superstructure is compact and centrally located, with a raised bridge or control area visible at the center. The sides of the hull are smooth, with no visible portholes or windows, and the bow and stern are both rounded, giving the vessel a streamlined appearance. The deck appears to be equipped with several mechanical fixtures, possibly for mooring or cargo handling, and there is a prominent black structure at the rear, likely an engine housing or exhaust funnel. The overall design is utilitarian, with minimal decorative elements and a focus on function. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A broad, flat-hulled ship with a red lower section, gray upper deck, and a compact central superstructure. The vessel features mechanical fixtures on deck and a prominent black structure at the rear.",
+    "description_view_0": "Side view showing the ship's flat, wide hull with a red lower section and a compact superstructure at the center.",
+    "description_view_1": "Front view highlighting the rounded bow, central superstructure, and symmetrical deck layout.",
+    "description_view_2": "Opposite side view similar to view 0, with the black rear structure more visible.",
+    "description_view_3": "Rear view showing the rounded stern and the prominent black structure, likely an engine housing or exhaust.",
+    "category": "ship",
+    "height": 3.5,
+    "max_dimension": 28.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.01,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1800000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bridge",
+        "deck fixtures",
+        "engine housing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is broad and flat with a pronounced red lower section and smooth, rounded bow and stern. There are no visible keels, bulbous bows, or catamaran features, and the hull appears to be a single displacement type optimized for stability.",
+    "attribute_superstructure_layout": "The superstructure is compact and centrally located, with a single raised bridge or control area and minimal additional decks or towers. The design is functional, with mechanical fixtures on the deck and a prominent rear structure.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "deck fixtures",
+        "engine housing"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "6d414e0a9e9342ca98281fb40b17d54a",
+    "near_synsets": {
+        "cargo_ship.n.01": 0.49415852958889356,
+        "vessel.n.02": 0.4991599971065722,
+        "deck-house.n.01": 0.5015030900235498,
+        "beam.n.06": 0.5065242826949112,
+        "ship.n.01": 0.5067888913054348
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6d414e0a9e9342ca98281fb40b17d54a",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_6d414e0a9e9342ca98281fb40b17d54a.glb",
+    "length": 15.296682357788086,
+    "width": 6.769601345062256
+}

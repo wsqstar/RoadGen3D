@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a medium-sized suspension bridge with two prominent towers supporting a series of cables that arc gracefully above the deck. The bridge deck is flat and appears to be constructed from a dark, solid material, likely metal or concrete, with a subtle texture suggesting durability. The suspension cables are anchored to the towers and extend down to the deck, providing both structural support and a visually striking silhouette. The railings are composed of evenly spaced vertical metal bars, offering safety for pedestrians or vehicles crossing the span. The overall design is sleek and modern, with clean lines and minimal decorative elements. The bridge is suitable for urban environments, spanning over roads, rivers, or other obstacles.",
+    "description": "A modern suspension bridge with two towers, arched cables, and metal railings, featuring a flat, dark deck. The design is sleek and functional, ideal for urban crossings.",
+    "description_view_0": "Front view showing the narrow width of the bridge, the flat deck, and the vertical alignment of the towers and cables.",
+    "description_view_1": "Side view highlighting the arched suspension cables, the two towers, and the full length of the bridge deck.",
+    "description_view_2": "Rear view similar to the front, displaying the bridge's width, deck surface, and cable arrangement.",
+    "description_view_3": "Opposite side view, mirroring view 1, with clear visibility of the suspension structure and deck.",
+    "category": "bridge",
+    "height": 8.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "steel",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "crossable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "deck",
+        "railing"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "bicycle",
+        "car"
+    ],
+    "colors": [
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.01,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_support_type": "suspension",
+    "attribute_railing_design": "metal bars with vertical balusters and a top rail",
+    "attribute_arch_presence": false,
+    "attribute_lighting_fixtures": [],
+    "attribute_architectural_style": "modern",
+    "uid": "003f92a284154e1cadeab8131d896eb6",
+    "near_synsets": {
+        "suspension_bridge.n.01": 0.4659612553682629,
+        "truss_bridge.n.01": 0.5081726797970803,
+        "steel_arch_bridge.n.01": 0.5089240236087942,
+        "trestle_bridge.n.01": 0.5093522739462688,
+        "trestle.n.01": 0.5184504112868881,
+        "bridge.n.05": -1000.0,
+        "bridge.n.08": -1000.0,
+        "bridge.n.03": -1000.0,
+        "bridge.n.04": -1000.0,
+        "bridge.n.09": -1000.0,
+        "bridge.n.02": -1000.0,
+        "bridge.n.07": -1000.0,
+        "bridge.n.06": -1000.0,
+        "bridge.n.01": -1000.0
+    },
+    "synset": "bridge.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/003f92a284154e1cadeab8131d896eb6",
+        "creator_username": "dannyd16",
+        "creator_display_name": "coffeecat",
+        "creator_profile_url": "https://sketchfab.com/dannyd16"
+    },
+    "filename": "std_003f92a284154e1cadeab8131d896eb6.glb",
+    "length": 21.339723587036133,
+    "width": 10.417780876159668
+}

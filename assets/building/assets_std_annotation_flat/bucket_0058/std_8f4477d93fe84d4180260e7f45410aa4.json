@@ -1,0 +1,97 @@
+{
+    "description_long": "This hamburger features a rounded sesame seed bun with a lightly browned top, dotted with numerous sesame seeds. The top bun is slightly domed and textured, while the bottom bun appears flatter and paler. Sandwiched between the buns is a thick, dark brown patty, likely beef, with a visible layer of pale yellow cheese melting over it. The cheese is unevenly distributed, oozing slightly over the patty's edge. The overall appearance is soft and slightly squished, with the ingredients pressed together. No additional toppings such as lettuce, tomato, or pickles are visible.",
+    "description": "A sesame seed hamburger with a thick beef patty and melted cheese between a soft, rounded bun. The bun is lightly browned and dotted with sesame seeds.",
+    "description_view_0": "The top view highlights the domed, sesame seed-covered bun with a smooth, lightly browned surface.",
+    "description_view_1": "This side view reveals the thick beef patty, a layer of pale yellow cheese, and the textured edge of the bun.",
+    "description_view_2": "The bottom view shows the flat, pale underside of the bun and the layered structure of the patty and cheese.",
+    "description_view_3": "Another side view, emphasizing the cheese layer and the squished, uneven alignment of the bun and patty.",
+    "category": "hamburger",
+    "height": 0.09,
+    "max_dimension": 0.13,
+    "materials": [
+        "bread",
+        "beef",
+        "cheese",
+        "sesame seeds",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.03,
+        0.02
+    ],
+    "mass": 0.18,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 2,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "graspable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "top bun",
+        "patty",
+        "cheese",
+        "bottom bun"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light brown",
+        "dark brown",
+        "yellow",
+        "white"
+    ],
+    "colors_composition": [
+        0.45,
+        0.3,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "soft",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_bun_type": "sesame seed bun",
+    "attribute_patty_visibility": "fully visible",
+    "attribute_topping_arrangement": "A single layer of cheese is placed directly on top of the beef patty, with no other visible toppings or condiments.",
+    "attribute_packaging_presence": false,
+    "attribute_sesame_seed_presence": true,
+    "uid": "8f4477d93fe84d4180260e7f45410aa4",
+    "near_synsets": {
+        "hamburger.n.01": 0.4752149895311161,
+        "cheeseburger.n.01": 0.4823563895367842,
+        "hamburger_bun.n.01": 0.5037857026623804,
+        "ground_beef.n.01": 0.5424493251133263,
+        "reuben.n.02": 0.5472562426935234
+    },
+    "synset": "hamburger_bun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8f4477d93fe84d4180260e7f45410aa4",
+        "creator_username": "derbyquad",
+        "creator_display_name": "derbyquad",
+        "creator_profile_url": "https://sketchfab.com/derbyquad"
+    },
+    "filename": "std_8f4477d93fe84d4180260e7f45410aa4.glb",
+    "length": 0.08686277642846107,
+    "width": 0.09716318547725677
+}

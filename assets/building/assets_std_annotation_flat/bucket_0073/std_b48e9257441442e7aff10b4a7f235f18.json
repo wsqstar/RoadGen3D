@@ -1,0 +1,98 @@
+{
+    "description_long": "This kiosk is a rectangular, open-frame wooden structure with a minimalist design, featuring a large central open area and multiple partitioned sections. The front facade displays a prominent 'EcoSmart' sign above a counter with four stools, suggesting a customer interaction or service area. The side panels also bear the 'EcoSmart' branding, and there are two black rectangular display screens mounted on the interior walls. The structure is primarily constructed from light-colored wood, with open entryways and no visible windows or doors, allowing easy access from multiple sides. The roof is flat and partially open, supported by wooden beams, giving the kiosk an airy, pavilion-like feel. The overall aesthetic is clean, modern, and functional, suitable for use in urban parks, plazas, or exhibition spaces.",
+    "description": "A modern, open-frame wooden kiosk with 'EcoSmart' signage, a central counter, stools, and flat, partially open roof beams. The design is minimalist and functional, with open access from multiple sides.",
+    "description_view_0": "Front view showing the main 'EcoSmart' sign, counter with stools, and open central area.",
+    "description_view_1": "Side view highlighting the side 'EcoSmart' signage, open entryway, and interior partitioning.",
+    "description_view_2": "Rear view displaying the solid wooden back wall and the open roof structure.",
+    "description_view_3": "Opposite side view with another 'EcoSmart' sign, visible counter, and open access.",
+    "category": "kiosk",
+    "height": 2.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "wood",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.02,
+        0.08
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "displayable",
+        "presentable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "counter",
+        "stools",
+        "display screens"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light wood",
+        "white",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "Printed signs with 'EcoSmart' logo, placed above the main counter and on both side panels, integrated into the structure.",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "No doors; open entryways on front and sides.",
+    "attribute_roof_design": "Flat, partially open roof with exposed wooden beams and no overhangs or decorative elements.",
+    "attribute_architectural_style": "Modern minimalist with open-frame construction and clean lines.",
+    "uid": "b48e9257441442e7aff10b4a7f235f18",
+    "near_synsets": {
+        "booth.n.02": 0.5747160441976448,
+        "counter.n.01": 0.5918670761010234,
+        "shopfront.n.01": 0.5925978119223947,
+        "etagere.n.01": 0.5931253321827997,
+        "meat_counter.n.01": 0.5940933238668337
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b48e9257441442e7aff10b4a7f235f18",
+        "creator_username": "timvandiessen",
+        "creator_display_name": "TARS",
+        "creator_profile_url": "https://sketchfab.com/timvandiessen"
+    },
+    "filename": "std_b48e9257441442e7aff10b4a7f235f18.glb",
+    "length": 3.4063650369644165,
+    "width": 7.40740442276001
+}

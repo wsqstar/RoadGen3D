@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a medium-sized urban delivery truck with a box-shaped cargo compartment and a compact cab. The cab is painted white and features side mirrors, a windshield, and a front grille with headlights. The cargo area is a large, rectangular, enclosed box with rear double doors secured by visible locking mechanisms. The truck rides on two axles with four wheels, and the undercarriage includes a visible chassis frame. The exterior surfaces are mostly smooth and metallic, with some plastic and rubber components on the wheels and trim. This vehicle is designed for transporting goods within city environments and can be entered via the cab doors or the rear cargo doors.",
+    "description": "A white, box-style urban delivery truck with a compact cab and large enclosed cargo area, featuring rear double doors and four wheels. The truck has a smooth metallic finish and is designed for transporting goods in city settings.",
+    "description_view_0": "Side view showing the full length of the truck, including the cab, large box cargo area, and both wheels on one side.",
+    "description_view_1": "Front view highlighting the cab, windshield, headlights, grille, and side mirrors.",
+    "description_view_2": "Opposite side view similar to view 0, showing the other side of the cab and cargo box.",
+    "description_view_3": "Rear view displaying the double cargo doors, locking mechanisms, and rear bumper.",
+    "category": "truck",
+    "height": 2.8,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air",
+        "fabric"
+    ],
+    "materials_composition": [
+        0.55,
+        0.2,
+        0.05,
+        0.08,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 3500,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "handle",
+        "mirror",
+        "headlight",
+        "cargo door latch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.25,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "box",
+    "attribute_wheelbase": 3.5,
+    "attribute_number_of_axles": 2,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "663a0953c038434a918cb85725c88ffa",
+    "near_synsets": {
+        "delivery_truck.n.01": 0.4670487834053685,
+        "van.n.05": 0.48890345683744335,
+        "truck.n.01": 0.5132963329399559,
+        "pickup.n.01": 0.5171020562142435,
+        "car_carrier.n.01": 0.5277199330677348,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/663a0953c038434a918cb85725c88ffa",
+        "creator_username": "DanielZhabotinsky",
+        "creator_display_name": "Daniel Zhabotinsky",
+        "creator_profile_url": "https://sketchfab.com/DanielZhabotinsky"
+    },
+    "filename": "std_663a0953c038434a918cb85725c88ffa.glb",
+    "length": 5.920892238616943,
+    "width": 2.5612716674804688
+}

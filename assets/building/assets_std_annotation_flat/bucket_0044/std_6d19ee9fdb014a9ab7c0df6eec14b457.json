@@ -1,0 +1,122 @@
+{
+    "description_long": "This is a large, industrial-grade control cabinet system, primarily constructed from orange-painted metal panels. The front face features multiple access doors, each with its own handle, as well as a variety of control panels, meters, indicator lights, and warning labels. The rightmost section includes a digital interface, push buttons, and a slot for test cards, suggesting advanced monitoring and control capabilities. The cabinet is equipped with several ventilation grilles and cable entry points, indicating it houses electrical or electronic equipment that requires cooling and connectivity. The top and sides are solid, with some raised enclosures and cable conduits visible, while the rear is mostly featureless except for additional cable exits. This type of cabinet is typically found in urban environments for power distribution, automation, or utility management.",
+    "description": "A large, orange industrial control cabinet with multiple doors, control panels, meters, and warning labels, designed for power or utility management in urban settings.",
+    "description_view_0": "Front view showing access doors, control panels, meters, indicator lights, and warning labels.",
+    "description_view_1": "Side view displaying the solid metal panels and the depth of the cabinet, with cable exits visible at the bottom.",
+    "description_view_2": "Rear view highlighting the solid back, raised enclosures, and several cable conduits extending from the base.",
+    "description_view_3": "Opposite side view showing the solid metal construction and additional cable exits, with minimal interactive features.",
+    "category": "control cabinets",
+    "height": 2.0,
+    "max_dimension": 3.2,
+    "materials": [
+        "painted steel",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.07,
+        0.03,
+        0.02,
+        0.03
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "button",
+        "switch",
+        "display",
+        "slot"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "black",
+        "white",
+        "gray",
+        "green",
+        "red"
+    ],
+    "colors_composition": [
+        0.92,
+        0.03,
+        0.02,
+        0.02,
+        0.005,
+        0.005
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_door_handle_type": "T-handle",
+    "attribute_lock_mechanism_presence": true,
+    "attribute_ventilation_grille_pattern": "rectangular slots",
+    "attribute_warning_or_information_labels": [
+        "high voltage",
+        "manufacturer label",
+        "test point",
+        "touch warning"
+    ],
+    "attribute_mounting_style": "floor-standing",
+    "uid": "6d19ee9fdb014a9ab7c0df6eec14b457",
+    "near_synsets": {
+        "control_panel.n.01": 0.5087066380359472,
+        "cabinet.n.01": 0.5383262050132123,
+        "cabinet.n.04": 0.5389125632644021,
+        "cabinet.n.03": 0.5518704681874824,
+        "control_room.n.01": 0.5549605999521655,
+        "cabinet.n.02": -1000.0,
+        "control_condition.n.01": -1000.0,
+        "control.n.05": -1000.0,
+        "control.n.03": -1000.0,
+        "control.n.01": -1000.0,
+        "control.n.09": -1000.0,
+        "control.n.02": -1000.0,
+        "dominance.n.02": -1000.0,
+        "command.n.06": -1000.0,
+        "control.n.10": -1000.0,
+        "restraint.n.02": -1000.0,
+        "control.n.11": -1000.0
+    },
+    "synset": "control_panel.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6d19ee9fdb014a9ab7c0df6eec14b457",
+        "creator_username": "Shnubby",
+        "creator_display_name": "Shnubby",
+        "creator_profile_url": "https://sketchfab.com/Shnubby"
+    },
+    "filename": "std_6d19ee9fdb014a9ab7c0df6eec14b457.glb",
+    "length": 2.4386366605758667,
+    "width": 2.1515880823135376
+}

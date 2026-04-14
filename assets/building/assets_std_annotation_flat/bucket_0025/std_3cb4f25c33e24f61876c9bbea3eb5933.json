@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a historical field cannon, featuring a long, bronze-colored barrel mounted on a wooden carriage. The carriage is supported by two large, spoked wooden wheels with metal rims, allowing for mobility across rough terrain. The rear of the carriage extends backward, forming a sturdy tail with metal reinforcements and a chain for towing or stabilization. Metal hardware, such as brackets and fasteners, are visible along the carriage, providing structural support and attachment points. The cannon barrel is slightly flared at the muzzle and is secured to the carriage with metal fittings. The overall construction suggests durability and functionality for battlefield use.",
+    "description": "A historical field cannon with a bronze barrel mounted on a wooden carriage and large spoked wheels, featuring metal reinforcements and hardware.",
+    "description_view_0": "Side view showing the full length of the bronze barrel, wooden carriage, and both large spoked wheels.",
+    "description_view_1": "Front view highlighting the circular muzzle of the cannon barrel and the alignment of the two large wheels.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the other side of the carriage and wheels.",
+    "description_view_3": "Rear view displaying the tail of the carriage, metal chain, and the back ends of the wheels.",
+    "category": "combat tactical  vehicle",
+    "height": 1.2,
+    "max_dimension": 2.5,
+    "materials": [
+        "wood",
+        "steel",
+        "bronze",
+        "iron",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "barrel",
+        "chain",
+        "carriage"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "bronze",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 110000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One fixed cannon barrel mounted centrally on the carriage.",
+    "attribute_armor_plating": "None visible.",
+    "attribute_camouflage_pattern": "None visible; surfaces are solid brown and bronze.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "3cb4f25c33e24f61876c9bbea3eb5933",
+    "near_synsets": {
+        "cannon.n.02": 0.49216561976206524,
+        "cannon.n.01": 0.49370074136221415,
+        "military_vehicle.n.01": 0.5176942191947735,
+        "caisson.n.02": 0.5188202427462226,
+        "tank_shell.n.01": 0.5196929294813933,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "cannon.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3cb4f25c33e24f61876c9bbea3eb5933",
+        "creator_username": "nocyde",
+        "creator_display_name": "Lucas Garnier",
+        "creator_profile_url": "https://sketchfab.com/nocyde"
+    },
+    "filename": "std_3cb4f25c33e24f61876c9bbea3eb5933.glb",
+    "length": 2.3014516830444336,
+    "width": 1.3920313119888306
+}

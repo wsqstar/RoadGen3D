@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a cylindrical, industrial tank trailer mounted on a set of four metal wheels, designed for transporting liquids or gases. The tank is painted a weathered beige with visible grime and rust streaks, indicating heavy use and exposure to the elements. A metal ladder is attached to the side, providing access to the top hatch and maintenance fittings, which are clustered along the upper centerline. The ends of the tank are capped with greenish metal covers, each marked with white stenciled text for identification. The undercarriage features robust metal framework and suspension components, supporting the tank's considerable weight. Branding and signage, including 'CARGO COMPANY' and serial numbers, are visible on the side, but there are no windows or traditional doors present.",
+    "description": "A weathered beige cylindrical tank trailer with metal wheels, side ladder, and industrial signage, designed for transporting liquids or gases.",
+    "description_view_0": "Front view showing the green end cap with white stenciled text and the rounded cylindrical shape.",
+    "description_view_1": "Side view displaying the full length of the beige tank, the metal ladder, wheels, and visible grime and signage.",
+    "description_view_2": "Rear view similar to the front, with a green end cap and no visible doors or hatches.",
+    "description_view_3": "Opposite side view showing the tank's length, ladder, wheels, and additional signage.",
+    "category": "trailer",
+    "height": 3.2,
+    "max_dimension": 10.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "attachable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "ladder",
+        "hatch",
+        "wheel",
+        "coupling mechanism"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "green",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 4,
+    "attribute_hitch_type": "railway coupling",
+    "attribute_door_configuration": "no doors visible",
+    "attribute_branding_or_signage": "company name and serial numbers in black and white letters on the side",
+    "attribute_window_presence": "no windows visible",
+    "uid": "fb06d9ee4d0e4225b97ad1dd387f42e6",
+    "near_synsets": {
+        "trailer.n.03": 0.49949164789533823,
+        "tank_car.n.01": 0.5042101871528629,
+        "tanker_truck.n.01": 0.5079425847185696,
+        "trailer_truck.n.01": 0.5261458015704996,
+        "water_truck.n.01": 0.529183385404046,
+        "dawdler.n.01": -1000.0,
+        "trailer.n.04": -1000.0,
+        "preview.n.01": -1000.0
+    },
+    "synset": "trailer.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fb06d9ee4d0e4225b97ad1dd387f42e6",
+        "creator_username": "Tonylis",
+        "creator_display_name": "Tonylis",
+        "creator_profile_url": "https://sketchfab.com/Tonylis"
+    },
+    "filename": "std_fb06d9ee4d0e4225b97ad1dd387f42e6.glb",
+    "length": 7.8141608238220215,
+    "width": 2.19887638092041
+}

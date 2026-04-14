@@ -1,0 +1,104 @@
+{
+    "description_long": "This object consists of three tall, cylindrical towers of varying heights, each featuring a series of horizontal bands and vertical window-like panels, giving a modern, industrial appearance. The towers are mounted on a rectangular base platform with angular extensions and geometric structures at both ends, possibly representing auxiliary buildings or equipment enclosures. The tallest tower is centrally positioned, flanked by two shorter towers, and all three are connected at the base. The surface is predominantly white and gray, with teal or blue-green accents on the window panels and some horizontal bands. The base is set on a green and black ground plane, suggesting landscaped or paved surroundings. The overall design is sleek and functional, with a strong emphasis on verticality and modularity.",
+    "description": "A trio of tall, cylindrical towers with horizontal bands and teal window panels, mounted on a rectangular base with angular side structures. The design is modern, industrial, and visually striking.",
+    "description_view_0": "The tallest tower is centered, with the two shorter towers behind, and the angular base structures are visible at the front.",
+    "description_view_1": "All three towers are visible in profile, showing their height differences and the full length of the rectangular base with side structures.",
+    "description_view_2": "The two shorter towers are in front, with the tallest tower behind, and the geometric base structures are more prominent.",
+    "description_view_3": "A side view showing the three towers in a row, highlighting the base's angular extensions and the alignment of the towers.",
+    "category": "transformer tower",
+    "height": 28.0,
+    "max_dimension": 45.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "switchable",
+        "inspectable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "access door",
+        "control panel",
+        "insulator stack",
+        "crossarm"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "teal",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "group",
+    "attribute_number_of_insulator_stacks": 6,
+    "attribute_arrangement_of_crossarms": "Crossarms are arranged horizontally at multiple levels on each tower, with each level supporting several insulator stacks in a parallel configuration.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "transformer",
+        "insulator",
+        "control box"
+    ],
+    "attribute_configuration_of_attached_power_lines": "Power lines are attached in a parallel, multi-circuit configuration, with three-phase arrangements visible on each tower and lines routed horizontally between the towers and outward from the base.",
+    "uid": "64cf3eae57e646b3adc34b447d247f42",
+    "near_synsets": {
+        "trefoil.n.03": 0.5637110381893315,
+        "tower.n.01": 0.571726308508364,
+        "pylon.n.02": 0.572708809433331,
+        "clock_tower.n.01": 0.5736388301614884,
+        "high-rise.n.01": 0.5844596807297956,
+        "tugboat.n.01": -1000.0,
+        "column.n.04": -1000.0,
+        "transformer.n.01": -1000.0
+    },
+    "synset": "tower.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/64cf3eae57e646b3adc34b447d247f42",
+        "creator_username": "VertaScan",
+        "creator_display_name": "VertaScan",
+        "creator_profile_url": "https://sketchfab.com/VertaScan"
+    },
+    "filename": "std_64cf3eae57e646b3adc34b447d247f42.glb",
+    "length": 45.863447189331055,
+    "width": 16.68975830078125
+}

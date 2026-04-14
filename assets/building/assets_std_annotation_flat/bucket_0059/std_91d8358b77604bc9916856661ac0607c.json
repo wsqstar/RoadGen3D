@@ -1,0 +1,106 @@
+{
+    "description_long": "This combat tactical vehicle features a broad, angular body with heavy armor plating and a low profile, designed for urban combat scenarios. It is equipped with two large, cylindrical side modules that likely house propulsion or stabilization systems, and a prominent central turret mounted with a heavy weapon. The vehicle's exterior is finished in a matte, desert-tan color scheme with geometric paneling and reinforced sections, suggesting a focus on both protection and stealth. The front is characterized by a sloped glacis plate and a visible hatch or viewport, while the rear includes additional armor and mechanical components. The roof hosts multiple weapon mounts and sensor arrays, enhancing its battlefield awareness and firepower. Overall, the vehicle's design emphasizes durability, firepower, and adaptability for urban operations.",
+    "description": "A heavily armored, angular combat vehicle with a central turret, large side modules, and a matte tan finish, built for urban tactical operations.",
+    "description_view_0": "Front view shows the sloped armor, central hatch, and the main turret weapon facing forward, with side modules flanking the body.",
+    "description_view_1": "Left-front angle highlights the turret's weapon, side modules, and the angular, reinforced body panels.",
+    "description_view_2": "Rear view reveals the back armor, mechanical components, and the symmetry of the side modules.",
+    "description_view_3": "Right-front angle displays the turret, side modules, and the detailed paneling on the vehicle's surface.",
+    "category": "combat tactical  vehicle",
+    "height": 2.8,
+    "max_dimension": 7.5,
+    "materials": [
+        "armored steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 90000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "hatch",
+        "door",
+        "weapon mount",
+        "sensor array"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large turret-mounted weapon on the roof center, with possible secondary mounts on each side module.",
+    "attribute_armor_plating": "Full body coverage with thick, angular armor plating; sloped front glacis and reinforced side panels are visible.",
+    "attribute_camouflage_pattern": "Solid matte tan color with subtle geometric paneling; no distinct camouflage pattern.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "91d8358b77604bc9916856661ac0607c",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.49456121445086154,
+        "tank.n.01": 0.49472641793288863,
+        "assault_gun.n.02": 0.49612689563932527,
+        "armored_car.n.02": 0.5031294328611077,
+        "armored_vehicle.n.01": 0.5167315910984126,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/91d8358b77604bc9916856661ac0607c",
+        "creator_username": "BruceLeedleLee",
+        "creator_display_name": "BruceLeedleLee",
+        "creator_profile_url": "https://sketchfab.com/BruceLeedleLee"
+    },
+    "filename": "std_91d8358b77604bc9916856661ac0607c.glb",
+    "length": 7.099976062774658,
+    "width": 5.60198974609375
+}

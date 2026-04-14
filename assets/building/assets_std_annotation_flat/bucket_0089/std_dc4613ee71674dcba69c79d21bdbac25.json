@@ -1,0 +1,113 @@
+{
+    "description_long": "This machine gun features a robust, industrial design with a predominantly metallic body accented by blue highlights. The weapon has a multi-barrel configuration at the front, suggesting a rotary or Gatling-style firing mechanism. Its body is angular and armored, with several protruding panels and vents for heat dissipation. The rear section is bulkier, with a solid, ergonomic grip and a stock that appears reinforced for stability. There are visible mechanical components, such as a feed system and possible mounting points, indicating it is designed for sustained fire. The overall finish is matte with some areas showing wear, giving it a utilitarian, battle-ready appearance.",
+    "description": "A heavy, multi-barreled machine gun with blue accents, armored panels, and a reinforced stock, designed for sustained fire and durability.",
+    "description_view_0": "Front view showing the multi-barrel cluster and the armored muzzle, emphasizing the weapon's firepower.",
+    "description_view_1": "Side view revealing the angular body, blue accent panels, and visible feed system, highlighting the weapon's mechanical complexity.",
+    "description_view_2": "Rear view focusing on the grip and stock, with the barrel cluster receding into the distance.",
+    "description_view_3": "Opposite side view displaying additional blue panels, the feed system, and the mounting area, mirroring the details of view 1.",
+    "category": "machine gun",
+    "height": 0.28,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "polymer",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 220,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "aimable",
+        "triggerable",
+        "reloadable",
+        "mountable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel cluster",
+        "trigger",
+        "grip",
+        "stock",
+        "feed system",
+        "mounting point"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "blue",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_type": "multi-barrel rotary cluster with exposed cooling vents",
+    "attribute_stock_design": "fixed metal stock with angular reinforcement and ergonomic grip",
+    "attribute_magazine_type": "no magazine visible",
+    "attribute_mounting_mechanism": "no mounting mechanism visible",
+    "attribute_iron_sight_configuration": "no iron sights visible",
+    "uid": "dc4613ee71674dcba69c79d21bdbac25",
+    "near_synsets": {
+        "machine_gun.n.01": 0.4597714314353415,
+        "submachine_gun.n.01": 0.46687240026554666,
+        "gatling_gun.n.01": 0.4823926256429973,
+        "shotgun.n.01": 0.49150225314914364,
+        "browning_machine_gun.n.01": 0.497688574573827,
+        "machine.n.04": -1000.0,
+        "gun.n.07": -1000.0,
+        "car.n.01": -1000.0,
+        "accelerator.n.01": -1000.0,
+        "gunman.n.01": -1000.0,
+        "grease_gun.n.01": -1000.0,
+        "machine.n.01": -1000.0,
+        "gunman.n.02": -1000.0,
+        "artillery.n.01": -1000.0,
+        "machine.n.05": -1000.0,
+        "machine.n.02": -1000.0,
+        "gun.n.01": -1000.0,
+        "machine.n.03": -1000.0
+    },
+    "synset": "browning_machine_gun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dc4613ee71674dcba69c79d21bdbac25",
+        "creator_username": "nodoxi",
+        "creator_display_name": "nodoxi",
+        "creator_profile_url": "https://sketchfab.com/nodoxi"
+    },
+    "filename": "std_dc4613ee71674dcba69c79d21bdbac25.glb",
+    "length": 0.7905778586864471,
+    "width": 0.18343226611614227
+}

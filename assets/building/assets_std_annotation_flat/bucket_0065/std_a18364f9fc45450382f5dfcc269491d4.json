@@ -1,0 +1,107 @@
+{
+    "description_long": "This traffic barricade consists of two upright cylindrical posts with wide, round bases for stability, connected by a plastic chain. The posts are wrapped in alternating yellow and black bands, enhancing their visibility. A rectangular yellow warning sign with black diagonal stripes and the word 'WARNING' in bold black letters hangs from the chain between the posts. The chain itself alternates between yellow and black links, matching the color scheme of the posts. The bases appear to be made of a heavier material, likely metal or weighted plastic, to keep the barricade upright. The overall design is intended to attract attention and restrict access in urban environments such as sidewalks, parking lots, or construction zones.",
+    "description": "A pair of yellow and black striped posts connected by a matching chain and a prominent 'WARNING' sign, designed to block or restrict passage.",
+    "description_view_0": "A single post with alternating yellow and black stripes and a round base is visible from the front.",
+    "description_view_1": "Both posts are visible, connected by a yellow and black chain with a central yellow 'WARNING' sign.",
+    "description_view_2": "A single post is shown from the rear, displaying the same striped pattern and round base.",
+    "description_view_3": "Both posts and the connecting chain with the 'WARNING' sign are visible, similar to view 1 but from the opposite side.",
+    "category": "traffic barricade",
+    "height": 0.9,
+    "max_dimension": 1.2,
+    "materials": [
+        "plastic",
+        "metal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 7,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "chain",
+        "warning sign",
+        "posts"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_reflective_striping_pattern": "Horizontal alternating yellow and black stripes, medium width, repeated along the length of each post.",
+    "attribute_warning_signage": [
+        {
+            "content": "WARNING",
+            "color": "yellow with black text and border",
+            "placement": "centered on the hanging sign between the posts"
+        }
+    ],
+    "attribute_number_of_support_legs": 2,
+    "attribute_attachment_fixtures": [
+        "chain hooks",
+        "sign hooks"
+    ],
+    "attribute_presence_of_lights": false,
+    "uid": "a18364f9fc45450382f5dfcc269491d4",
+    "near_synsets": {
+        "stop_sign.n.01": 0.501496773068919,
+        "roadblock.n.02": 0.5017284044155415,
+        "street_sign.n.01": 0.5276044233264585,
+        "white_line.n.01": 0.5319361392423911,
+        "crash_barrier.n.01": 0.5333410299688284,
+        "traffic.n.01": -1000.0,
+        "traffic.n.03": -1000.0,
+        "dealings.n.01": -1000.0,
+        "barricade.n.02": -1000.0,
+        "traffic.n.02": -1000.0
+    },
+    "synset": "roadblock.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a18364f9fc45450382f5dfcc269491d4",
+        "creator_username": "helsingr",
+        "creator_display_name": "Helsingr",
+        "creator_profile_url": "https://sketchfab.com/helsingr"
+    },
+    "filename": "std_a18364f9fc45450382f5dfcc269491d4.glb",
+    "length": 0.3219063729047775,
+    "width": 1.6960284113883972
+}

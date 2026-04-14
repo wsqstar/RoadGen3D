@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a modern medical stretcher designed for patient transport, featuring a bright red mattress pad atop a sturdy, light gray metal frame. The stretcher is equipped with four caster wheels for mobility and an adjustable scissor-lift mechanism for height variation. Side rails run along the length of the bed, providing safety and preventing the patient from falling off. At the head of the stretcher, there are visible handles for maneuvering, and an IV pole is attached, complete with a hanging IV bag and tubing. The frame appears to be collapsible, allowing for compact storage or easy loading into ambulances. The overall construction suggests a combination of metal, plastic, and cushioned materials for both durability and patient comfort.",
+    "description": "A hospital stretcher with a red mattress pad, metal frame, side rails, wheels, and an attached IV pole. It is designed for safe and mobile patient transport.",
+    "description_view_0": "Front view showing the red mattress, head-end handles, and the IV pole standing beside the stretcher.",
+    "description_view_1": "Side view highlighting the full length of the stretcher, side rails, scissor-lift frame, and attached IV pole.",
+    "description_view_2": "Rear view displaying the foot-end of the stretcher, wheels, and the IV pole positioned to the side.",
+    "description_view_3": "Opposite side view showing the stretcher's length, side rails, wheels, and the IV pole from a different angle.",
+    "category": "stretcher",
+    "height": 1.6,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "plastic",
+        "foam",
+        "synthetic fabric",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "adjustable",
+        "supportable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "side rail",
+        "IV pole",
+        "mattress pad",
+        "scissor-lift frame"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "gray",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.3,
+        0.5,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_wheels": true,
+    "attribute_collapsible_frame": true,
+    "attribute_side_rails": true,
+    "attribute_handles": true,
+    "attribute_mattress_pad": true,
+    "uid": "20aed1e111ea4749bea19e3c810b0469",
+    "near_synsets": {
+        "stretcher.n.03": 0.4831172279393978,
+        "hospital_bed.n.01": 0.5051200643125505,
+        "stretcher_party.n.01": 0.5355967714179256,
+        "gurney.n.01": 0.5424151337332244,
+        "stretcher.n.01": 0.5665714420924367,
+        "capstone.n.02": -1000.0,
+        "stretcher.n.02": -1000.0
+    },
+    "synset": "stretcher.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/20aed1e111ea4749bea19e3c810b0469",
+        "creator_username": "riki-genesisdigital",
+        "creator_display_name": "riki-genesisdigital",
+        "creator_profile_url": "https://sketchfab.com/riki-genesisdigital"
+    },
+    "filename": "std_20aed1e111ea4749bea19e3c810b0469.glb",
+    "length": 1.5175742506980896,
+    "width": 1.2479652762413025
+}

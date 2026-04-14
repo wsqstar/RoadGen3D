@@ -1,0 +1,92 @@
+{
+    "description_long": "This structure is a medium-sized cowshed with a distinctive arched roof made from corrugated material, likely metal or fiber-reinforced panels. The front features an open framework with visible wooden beams and partial slatted flooring, providing ventilation and access for livestock. The sides and roof are uniformly clad in a beige material, while the rear is fully enclosed with a wood-textured wall. The overall design is utilitarian, prioritizing function and airflow, with no visible windows or elaborate decorative elements. The interior appears spacious, suitable for housing multiple animals, and the open front allows for easy entry and exit. The construction materials suggest durability and weather resistance, typical of agricultural outbuildings.",
+    "description": "A medium-sized arched-roof cowshed with an open wooden front, beige corrugated sides, and a fully enclosed wood-textured rear wall.",
+    "description_view_0": "The front view shows an open entrance with exposed wooden beams and partial slatted flooring, providing access and ventilation.",
+    "description_view_1": "The side view displays the continuous arched beige roof and wall, with no visible openings or features.",
+    "description_view_2": "The rear view reveals a fully enclosed wall with a wood-textured finish, lacking any doors or windows.",
+    "description_view_3": "The opposite side view mirrors the other side, showing the uninterrupted arched beige exterior.",
+    "category": "cowshed",
+    "height": 4.0,
+    "max_dimension": 12.0,
+    "materials": [
+        "wood",
+        "corrugated metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "mass": 3500,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "entrance framework",
+        "slatted floor"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "livestock"
+    ],
+    "colors": [
+        "beige",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "arched",
+    "attribute_door_style": "open front with wooden framework, no visible doors",
+    "attribute_window_presence": "no windows",
+    "attribute_ventilation_features": "open front, partial slatted floor",
+    "attribute_architectural_style": "modern utilitarian",
+    "uid": "8963a1d568d5494181e2400e6237f3b8",
+    "near_synsets": {
+        "cowbarn.n.01": 0.429028990738182,
+        "cow_pasture.n.01": 0.4935234253325927,
+        "stockyard.n.01": 0.5013160966722653,
+        "barn.n.01": 0.5025586286733864,
+        "farm_building.n.01": 0.5041870148167665
+    },
+    "synset": "cowbarn.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8963a1d568d5494181e2400e6237f3b8",
+        "creator_username": "daliadome",
+        "creator_display_name": "daliadome",
+        "creator_profile_url": "https://sketchfab.com/daliadome"
+    },
+    "filename": "std_8963a1d568d5494181e2400e6237f3b8.glb",
+    "length": 9.831002235412598,
+    "width": 6.0935959815979
+}

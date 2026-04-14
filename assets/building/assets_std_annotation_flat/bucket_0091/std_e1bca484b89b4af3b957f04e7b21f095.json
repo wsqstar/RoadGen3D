@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a streamlined, cylindrical bomb with a pointed nose and a set of four stabilizing tail fins at the rear. The main body is a dark gray color, featuring two distinct orange bands encircling its midsection, which may serve as identification or warning markers. The tail section is metallic gray and consists of four flat, angular fins arranged symmetrically around a central shaft, likely for aerodynamic stability during flight. The nose is smooth and tapers to a blunt point, while the rear has a small protruding rod, possibly for mounting or triggering purposes. The surface appears hard and matte, with no visible seams or openings. There are no visible buttons, wires, or timer displays on the exterior.",
+    "description": "A dark gray, cylindrical bomb with orange bands and metallic tail fins, featuring a pointed nose and a central rear rod. The surface is hard and matte, with no visible external mechanisms.",
+    "description_view_0": "Front view shows the pointed nose and the symmetrical arrangement of the four tail fins, with the central rod visible at the rear.",
+    "description_view_1": "Side view highlights the cylindrical body, two orange bands, and the flat, angular tail fins extending outward.",
+    "description_view_2": "Rear view displays the tail fins in a cross pattern and the central rod protruding from the back.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the bomb's length, orange bands, and tail fin structure.",
+    "category": "bomb",
+    "height": 0.25,
+    "max_dimension": 0.75,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.3,
+        0.03,
+        0.02
+    ],
+    "mass": 12,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "tail fins",
+        "central rod"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "metallic gray",
+        "orange"
+    ],
+    "colors_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "No visible detonation mechanism; likely initiated by impact or remote trigger not visible on the exterior.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "e1bca484b89b4af3b957f04e7b21f095",
+    "near_synsets": {
+        "buzz_bomb.n.01": 0.5593511390312039,
+        "bomb.n.01": 0.5718946601348465,
+        "remote-control_bomb.n.01": 0.5728153123918752,
+        "plastic_bomb.n.01": 0.5743267161160341,
+        "cherry_bomb.n.01": 0.5786788437057305,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e1bca484b89b4af3b957f04e7b21f095",
+        "creator_username": "FabioVivas",
+        "creator_display_name": "FabioVivas",
+        "creator_profile_url": "https://sketchfab.com/FabioVivas"
+    },
+    "filename": "std_e1bca484b89b4af3b957f04e7b21f095.glb",
+    "length": 1.3035435676574707,
+    "width": 0.24999982863664627
+}

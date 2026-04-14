@@ -1,0 +1,104 @@
+{
+    "description_long": "This object is a modern solar energy installation featuring two large rectangular photovoltaic panels mounted on a robust central pole. The panels are composed of multiple blue-tinted solar cells arranged in a grid pattern, each cell separated by a visible metallic framework. The supporting structure is a thick, cylindrical pole with a hexagonal base, likely made of metal for stability and durability. The central mounting hub appears reinforced and may allow for panel rotation or tilting, suggesting a tracking capability. The overall design is sleek and utilitarian, suitable for urban environments such as parks, sidewalks, or parking lots. No visible cabling or inverter housing is present, and the surface finish of the panels is smooth and slightly reflective.",
+    "description": "A dual-panel solar energy installation with blue photovoltaic cells on a sturdy metal pole, designed for urban outdoor use. The panels are arranged side by side and mounted on a central support structure.",
+    "description_view_0": "Top-down view showing the two rectangular solar panels and the central mounting hub, highlighting the symmetry and panel arrangement.",
+    "description_view_1": "Angled side view revealing the blue solar cells, the tilt of the panels, and the robust pole with a hexagonal base.",
+    "description_view_2": "Frontal view displaying the full grid of blue solar cells and the central support structure beneath the panels.",
+    "description_view_3": "Rear angled view emphasizing the panel tilt, the back of the support pole, and the panel framework.",
+    "category": "solar energy infrastructure",
+    "height": 2.2,
+    "max_dimension": 2.8,
+    "materials": [
+        "aluminum",
+        "glass",
+        "silicon",
+        "steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "tiltable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "panel array",
+        "mounting hub"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_panel_orientation": "tilted at approximately 30 degrees, azimuth direction not clearly specified, orientation appears adjustable",
+    "attribute_mounting_structure_type": "pole-mounted tracking system with a metallic (likely steel or aluminum) support structure",
+    "attribute_electrical_inverter_presence": false,
+    "attribute_cabling_visibility": "not visible",
+    "attribute_array_configuration": "two panels arranged side by side in a single linear row",
+    "uid": "de0b271669384e649385c7572f635e86",
+    "near_synsets": {
+        "solar_array.n.01": 0.5019505091572088,
+        "solar_cell.n.01": 0.5198557228643265,
+        "solar_house.n.01": 0.5464847791287833,
+        "solar_energy.n.01": 0.5487834857333701,
+        "solar_thermal_system.n.01": 0.554658154680133,
+        "energy.n.01": -1000.0,
+        "energy.n.05": -1000.0,
+        "infrastructure.n.02": -1000.0,
+        "department_of_energy.n.01": -1000.0,
+        "energy.n.02": -1000.0,
+        "energy.n.06": -1000.0,
+        "energy.n.04": -1000.0,
+        "energy.n.03": -1000.0,
+        "infrastructure.n.01": -1000.0
+    },
+    "synset": "solar_array.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/de0b271669384e649385c7572f635e86",
+        "creator_username": "vcauxilum",
+        "creator_display_name": "Tristan Kempen",
+        "creator_profile_url": "https://sketchfab.com/vcauxilum"
+    },
+    "filename": "std_de0b271669384e649385c7572f635e86.glb",
+    "length": 1.7143710255622864,
+    "width": 1.9428720474243164
+}

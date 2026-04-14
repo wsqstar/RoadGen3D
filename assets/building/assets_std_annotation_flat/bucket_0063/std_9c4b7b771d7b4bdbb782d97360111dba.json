@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a futuristic, voxel-style airplane with a predominantly white and gray color scheme accented by orange and black details. The fuselage is broad and tapers toward the nose, which features a dark, angular cockpit canopy with multiple window panels. The wings are mid-mounted and swept back, each equipped with vertical winglets at the tips and additional control surfaces. The rear of the airplane has a distinctive tail section with twin vertical stabilizers and a horizontal stabilizer connecting them. Four visible engine nacelles are integrated into the wings, two on each side, with orange intakes. The underside of the nose is detailed with a blue-tinted, faceted structure, possibly representing a sensor or observation dome.",
+    "description": "A voxel-style, futuristic airplane with swept mid-wings, twin vertical stabilizers, and a dark, angular cockpit canopy. The design features white, gray, and orange coloring with four visible engine nacelles and a blue-tinted nose dome.",
+    "description_view_0": "Front view showing the broad, faceted blue-tinted nose dome, angular cockpit canopy, and the full span of the swept wings with vertical winglets.",
+    "description_view_1": "Left side view highlighting the mid-mounted swept wing, engine nacelles, and the angular cockpit canopy with visible orange and black markings.",
+    "description_view_2": "Rear view displaying the twin vertical stabilizers, horizontal stabilizer, and the symmetrical arrangement of the engines and wings.",
+    "description_view_3": "Right side view similar to the left, showing the wing, engine nacelles, and tail configuration, with clear visibility of the cockpit and fuselage markings.",
+    "category": "airplane",
+    "height": 3.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "engine nacelle",
+        "winglet",
+        "door",
+        "control surface"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "orange",
+        "black",
+        "blue"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 25.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing configuration with swept wings and upward-angled winglets at the tips; moderate dihedral angle present.",
+    "attribute_engine_type": "Four jet engines integrated into the wings, two per side.",
+    "attribute_tail_design": "Twin vertical stabilizers connected by a single horizontal stabilizer, forming an H-tail configuration.",
+    "attribute_landing_gear_type": "Not visibly extended; likely retractable landing gear based on design, but not explicitly shown.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a multi-panel angular canopy and multiple window sections.",
+    "uid": "9c4b7b771d7b4bdbb782d97360111dba",
+    "near_synsets": {
+        "aircraft.n.01": 0.5512260030705073,
+        "vertical_tail.n.01": 0.5838802722593146,
+        "airplane.n.01": 0.5839486376460802,
+        "fuselage.n.01": 0.5851570607744991,
+        "canopy.n.01": 0.5870650035162855
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9c4b7b771d7b4bdbb782d97360111dba",
+        "creator_username": "ZOSK",
+        "creator_display_name": "ZOSK Studios",
+        "creator_profile_url": "https://sketchfab.com/ZOSK"
+    },
+    "filename": "std_9c4b7b771d7b4bdbb782d97360111dba.glb",
+    "length": 13.63155460357666,
+    "width": 13.815768241882324
+}

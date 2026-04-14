@@ -1,0 +1,104 @@
+{
+    "description_long": "This object is a large, multi-stage bomb with a central cylindrical core flanked by three robust, rounded booster-like modules. The main body is metallic gray with segmented bands and reinforced ribbing, while the side modules feature yellow horizontal stripes and blue-tinted domed tops. Each booster is equipped with stabilizing fins and thick, ribbed midsections, suggesting reinforced containment or propulsion. The base of the central core has a prominent, conical nozzle, likely for propulsion or dispersal, surrounded by additional stabilizing fins. The overall construction is industrial and engineered for high durability, with visible seams and paneling. The design is reminiscent of advanced ordnance or a heavy-duty urban explosive device, intended for significant impact.",
+    "description": "A large, multi-stage bomb with a central core and three ribbed, domed boosters, featuring yellow stripes, blue domes, and stabilizing fins.",
+    "description_view_0": "Front view shows the central core flanked by three boosters, with the conical nozzle and stabilizing fins clearly visible at the base.",
+    "description_view_1": "This angled view highlights the ribbed texture and yellow stripes on the boosters, as well as the blue domes and side fins.",
+    "description_view_2": "Rear view displays the three boosters more prominently, with the central core partially obscured and the symmetry of the fins and domes evident.",
+    "description_view_3": "Another frontal perspective, similar to view 0, but with a slight rotation showing more of the side boosters and their attachment to the core.",
+    "category": "bomb",
+    "height": 2.2,
+    "max_dimension": 2.4,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "glass",
+        "explosive_compound",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.1,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 850,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 9000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "nozzle",
+        "fins",
+        "booster modules",
+        "central core"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "yellow",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "group",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The object appears to have no visible external buttons, switches, or timers, suggesting a concealed or remote detonation mechanism, possibly triggered by internal electronics or remote signal.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "65703759fed944e3ae79b7b8e555f69e",
+    "near_synsets": {
+        "buzz_bomb.n.01": 0.5199939653011298,
+        "bomb.n.01": 0.5512401646837115,
+        "cluster_bomb.n.01": 0.5577891776447372,
+        "plastic_bomb.n.01": 0.5583509812278538,
+        "general-purpose_bomb.n.01": 0.5592248901219993,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/65703759fed944e3ae79b7b8e555f69e",
+        "creator_username": "rbxrootx",
+        "creator_display_name": "rbxrootx",
+        "creator_profile_url": "https://sketchfab.com/rbxrootx"
+    },
+    "filename": "std_65703759fed944e3ae79b7b8e555f69e.glb",
+    "length": 1.6164242625236511,
+    "width": 1.64201158285141
+}

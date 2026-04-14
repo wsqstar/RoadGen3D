@@ -1,0 +1,107 @@
+{
+    "description_long": "This object is a large, multi-structure storage locker complex resembling a block of interconnected industrial or urban storage units. The exterior is composed of various rectangular and square buildings, some with flat roofs and others with slightly sloped or gabled roofs, suggesting a mix of storage and utility spaces. The surfaces are primarily clad in muted, industrial materials such as concrete, corrugated metal, and brick, with some areas featuring visible windows and loading bays. The layout includes internal courtyards and alleyways, indicating access points for vehicles or personnel, and the overall footprint is expansive, covering a significant area. The color palette is dominated by grays, browns, and muted blues, giving it a utilitarian and weathered appearance. This structure is likely designed for use in an industrial facility or urban storage yard, providing secure, compartmentalized storage for goods or equipment.",
+    "description": "A sprawling, multi-building storage locker complex with industrial materials, flat and gabled roofs, and muted urban colors.",
+    "description_view_0": "Front view shows the main facade with multiple building sections, flat roofs, and a prominent entry corridor.",
+    "description_view_1": "This side view highlights the depth of the complex, revealing additional structures and a mix of roof types.",
+    "description_view_2": "Rear view exposes more internal courtyards and loading areas, with less visible detail on the main facade.",
+    "description_view_3": "Opposite side view displays the length of the complex and the arrangement of storage units along the perimeter.",
+    "category": "storage locker",
+    "height": 8.0,
+    "max_dimension": 45.0,
+    "materials": [
+        "concrete",
+        "brick",
+        "corrugated metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 120000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "storable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "lock",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "scene",
+    "attribute_number_of_doors": 8,
+    "attribute_locking_mechanism_type": "key lock",
+    "attribute_ventilation_pattern": "none visible",
+    "attribute_handle_design": "bar handle",
+    "attribute_placement_location": "industrial facility",
+    "uid": "7f718ece9a57461586b03ea7cc47dc62",
+    "near_synsets": {
+        "storage_space.n.01": 0.5437099673869881,
+        "storage.n.03": 0.5486934181109501,
+        "shed.n.01": 0.5519949778621278,
+        "loft.n.01": 0.5545669669675513,
+        "artist's_loft.n.01": 0.5618314187906214,
+        "footlocker.n.01": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "locker.n.02": -1000.0,
+        "cabinet.n.03": -1000.0,
+        "repositing.n.01": -1000.0,
+        "storage.n.04": -1000.0,
+        "storage.n.01": -1000.0,
+        "memory.n.04": -1000.0
+    },
+    "synset": "cabinet.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7f718ece9a57461586b03ea7cc47dc62",
+        "creator_username": "neominigan",
+        "creator_display_name": "Neo_minigan",
+        "creator_profile_url": "https://sketchfab.com/neominigan"
+    },
+    "filename": "std_7f718ece9a57461586b03ea7cc47dc62.glb",
+    "length": 40.58474540710449,
+    "width": 37.5101375579834
+}

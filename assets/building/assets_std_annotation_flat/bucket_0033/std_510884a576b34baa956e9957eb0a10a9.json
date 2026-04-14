@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a large, cylindrical metal barrel with a weathered, rusty yellow-orange exterior, featuring two prominent horizontal reinforcement bands around its circumference. The top surface is sealed and shows black stains and corrosion, with a small capped opening visible in one view. One side of the barrel displays a bold black flammable warning symbol, indicating it is used for storing hazardous or combustible materials. The surface is marked by streaks of rust and grime, suggesting prolonged outdoor exposure and industrial use. The barrel's structure appears robust, with a hard metallic finish and no visible handles. Its overall appearance is typical of containers found in industrial or urban environments for hazardous waste or chemical storage.",
+    "description": "A large, weathered yellow-orange metal barrel with rust streaks, black stains, and a flammable warning symbol. It is reinforced with two horizontal bands and has a sealed top with a capped opening.",
+    "description_view_0": "Front view shows the barrel's rusty yellow surface, black stains on the top, and vertical streaks of grime.",
+    "description_view_1": "This view highlights the capped opening on the top and more pronounced rust streaks running down the side.",
+    "description_view_2": "The side view reveals the sealed top, rust stains, and the absence of any visible markings or symbols.",
+    "description_view_3": "This view prominently displays the black flammable warning symbol on the side, along with rust and grime streaks.",
+    "category": "barrel or bucket",
+    "height": 0.9,
+    "max_dimension": 0.6,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 25,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 300,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow-orange",
+        "black",
+        "rust-brown"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "metal hoops at top and bottom",
+    "attribute_labeling_or_markings": "flammable warning symbol, black stains",
+    "attribute_placement_location": "industrial",
+    "uid": "510884a576b34baa956e9957eb0a10a9",
+    "near_synsets": {
+        "barrel.n.02": 0.47816473576244056,
+        "barrel.n.03": 0.48663695439166926,
+        "beer_barrel.n.01": 0.4994078134977717,
+        "bucket.n.01": 0.502341647726754,
+        "barrels.n.01": 0.5160346582757851,
+        "bucket.n.02": -1000.0,
+        "barrel.n.05": -1000.0,
+        "barrel.n.01": -1000.0,
+        "barrel.n.04": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/510884a576b34baa956e9957eb0a10a9",
+        "creator_username": "bmiles10",
+        "creator_display_name": "bmiles10",
+        "creator_profile_url": "https://sketchfab.com/bmiles10"
+    },
+    "filename": "std_510884a576b34baa956e9957eb0a10a9.glb",
+    "length": 0.5811976790428162,
+    "width": 0.5811977982521057
+}

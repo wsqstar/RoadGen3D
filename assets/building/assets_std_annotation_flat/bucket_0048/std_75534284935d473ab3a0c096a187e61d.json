@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a two-story office building with a rectangular footprint, featuring a facade of reddish-brown brickwork and a prominent concrete band separating the ground and upper floors. The ground floor includes a recessed entryway with a single door and a large, dark window to one side, while the upper floor is characterized by large, rectangular windows set in pairs or singly, framed by the brick exterior. The building's windows are dark and opaque, suggesting either tinted or reflective glass. A metallic or illuminated sign panel is mounted above the main entrance, indicating space for business signage. The roof is flat and bordered by brick parapets, with the interior open to the sky, hinting at an unfinished or partially roofless structure. The overall design is utilitarian, with minimal ornamentation and a focus on function over form.",
+    "description": "A two-story brick office building with large, dark windows, a recessed single-door entrance, and a flat roof bordered by brick parapets. The facade is utilitarian, with a concrete band and a prominent sign panel above the entry.",
+    "description_view_0": "Front view showing the main entrance, a large window, and a metallic sign panel above the door.",
+    "description_view_1": "Side view with two large upper windows and no visible entrance, emphasizing the brickwork and concrete band.",
+    "description_view_2": "Rear view with no windows or doors, only continuous brickwork and the concrete band.",
+    "description_view_3": "Opposite side view with two large upper windows and a smaller window on the lower floor, no visible entrance.",
+    "category": "office building",
+    "height": 8.0,
+    "max_dimension": 12.0,
+    "materials": [
+        "brick",
+        "concrete",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "windows",
+        "sign panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red-brown",
+        "gray",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 2,
+    "attribute_window_pattern": "Rectangular windows arranged in pairs or singly on the upper floor, with irregular spacing and a single large window on the ground floor.",
+    "attribute_building_entrance_type": "recessed single door",
+    "attribute_signage_presence": true,
+    "attribute_architectural_style": "Utilitarian",
+    "uid": "75534284935d473ab3a0c096a187e61d",
+    "near_synsets": {
+        "office_building.n.01": 0.49404702997641264,
+        "facade.n.01": 0.5344119520894618,
+        "building.n.01": 0.5481144075945773,
+        "building.n.04": 0.5514665663073405,
+        "front_door.n.01": 0.5536127884905203,
+        "position.n.06": -1000.0,
+        "office.n.04": -1000.0,
+        "agency.n.01": -1000.0,
+        "office.n.05": -1000.0,
+        "office.n.06": -1000.0,
+        "function.n.03": -1000.0,
+        "construction.n.01": -1000.0,
+        "office.n.01": -1000.0,
+        "construction.n.07": -1000.0
+    },
+    "synset": "office_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/75534284935d473ab3a0c096a187e61d",
+        "creator_username": "kuraijiin",
+        "creator_display_name": "KuraiJiin",
+        "creator_profile_url": "https://sketchfab.com/kuraijiin"
+    },
+    "filename": "std_75534284935d473ab3a0c096a187e61d.glb",
+    "length": 8.227327823638916,
+    "width": 8.204416275024414
+}

@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a large green metal dumpster with a ribbed, hinged black lid, commonly found in urban environments for waste collection. The dumpster is accompanied by three blue metal barrels, one of which is lying on its side, and a stack of weathered wooden pallets with a broken plank. The dumpster's exterior shows signs of wear, including rust, grime, and faded graffiti or signage. The lid appears to be made of heavy-duty plastic or metal and is designed to be lifted for depositing trash. The barrels and pallets are arranged closely around the dumpster, suggesting a cluttered, utilitarian setting. The overall scene evokes a back alley or service area where waste and recyclables are temporarily stored.",
+    "description": "A large green metal dumpster with a ribbed black lid, surrounded by blue barrels and stacked wooden pallets, showing signs of urban wear and use.",
+    "description_view_0": "Front view showing the dumpster's main access side, three blue barrels, and a stack of wooden pallets with a broken plank.",
+    "description_view_1": "Side view highlighting the stacked wooden pallets and the edge of the dumpster's lid, with barrels mostly out of sight.",
+    "description_view_2": "Rear view displaying the back of the dumpster, the full stack of pallets, and all three barrels, one lying on its side.",
+    "description_view_3": "Angled view focusing on the barrels in the foreground, the dumpster's lid, and the top of the pallet stack.",
+    "category": "dumpster",
+    "height": 1.3,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "plastic",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.1,
+        0.2,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "pallet",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "blue",
+        "brown",
+        "rust"
+    ],
+    "colors_composition": [
+        0.45,
+        0.15,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_lid_type": "hinged, ribbed, single-section lid made of black plastic or metal, no visible locking mechanism",
+    "attribute_wheel_presence": false,
+    "attribute_handle_design": "none",
+    "attribute_warning_labels": [
+        "white rectangular label with faded text and symbols on the front"
+    ],
+    "attribute_placement_location": "outdoor commercial area or service alley",
+    "uid": "5f3dbff1ca9d4a7fa487ec24600f46d9",
+    "near_synsets": {
+        "dumpster.n.01": 0.44891192589646745,
+        "garbage.n.03": 0.5149544402187497,
+        "recycling_bin.n.01": 0.5178067046952842,
+        "scrapheap.n.02": 0.5274692633944787,
+        "garbage_truck.n.01": 0.5386888655943004
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5f3dbff1ca9d4a7fa487ec24600f46d9",
+        "creator_username": "adjective.george",
+        "creator_display_name": "George Hager",
+        "creator_profile_url": "https://sketchfab.com/adjective.george"
+    },
+    "filename": "std_5f3dbff1ca9d4a7fa487ec24600f46d9.glb",
+    "length": 1.989761233329773,
+    "width": 4.757429599761963
+}

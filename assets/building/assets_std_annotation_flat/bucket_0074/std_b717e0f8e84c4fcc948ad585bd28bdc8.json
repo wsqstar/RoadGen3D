@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a large geodesic dome tent with a semi-spherical structure, supported by a network of intersecting metal or composite poles forming triangular panels. The tent is covered with a translucent or opaque fabric material, likely weather-resistant, that stretches tightly over the frame. The entrance is a single arched opening at ground level, large enough for a person to walk through comfortably. The tent sits on a flat, dark base, and its spacious interior is implied by the scale of the human figure standing nearby. The geometric framework is visible through the fabric, giving the tent a modern, architectural appearance. No visible branding or decorative elements are present on the exterior.",
+    "description": "A large geodesic dome tent with a triangular pole framework and a single arched entrance, covered in a light-colored fabric. The structure is spacious and modern, suitable for urban parks or event spaces.",
+    "description_view_0": "Front view showing the main arched entrance and a human figure for scale.",
+    "description_view_1": "Side view with the entrance partially visible and the geometric pole structure prominent.",
+    "description_view_2": "Rear view with no visible entrance, highlighting the continuous dome surface and pole network.",
+    "description_view_3": "Opposite front view with the entrance centered and a human figure standing to the right.",
+    "category": "tent",
+    "height": 5.0,
+    "max_dimension": 10.0,
+    "materials": [
+        "fabric",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.4,
+        0.1,
+        0.5
+    ],
+    "mass": 350,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shelter",
+        "cover",
+        "enclosable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "entrance flap",
+        "structural poles"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "arched flap entrance located at ground level on one side, no visible zipper or mesh, wide enough for easy access",
+    "attribute_number_of_poles": 40,
+    "attribute_guy_line_configuration": "No visible guy lines; the structure appears self-supporting with a rigid geodesic frame.",
+    "attribute_ventilation_openings": [],
+    "attribute_branding_or_logo": "none",
+    "uid": "b717e0f8e84c4fcc948ad585bd28bdc8",
+    "near_synsets": {
+        "geodesic_dome.n.01": 0.4956668427334183,
+        "sibley_tent.n.01": 0.5075003736124776,
+        "pyramidal_tent.n.01": 0.5187800503133373,
+        "pavilion.n.01": 0.5223365234686533,
+        "field_tent.n.01": 0.5278340652131098,
+        "tent.n.02": -1000.0,
+        "tent.n.01": -1000.0
+    },
+    "synset": "tent.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b717e0f8e84c4fcc948ad585bd28bdc8",
+        "creator_username": "inventa3d",
+        "creator_display_name": "inventa3d",
+        "creator_profile_url": "https://sketchfab.com/inventa3d"
+    },
+    "filename": "std_b717e0f8e84c4fcc948ad585bd28bdc8.glb",
+    "length": 10.350682735443115,
+    "width": 10.19715690612793
+}

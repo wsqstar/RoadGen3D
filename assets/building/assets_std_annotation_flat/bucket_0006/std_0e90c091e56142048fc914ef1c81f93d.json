@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a sleek, modern airplane with a streamlined fuselage and sharply swept wings that feature slight upward winglets at the tips. The engines are mounted high on the rear fuselage, close to the tail, and are cylindrical in shape, suggesting a jet-powered design. The tail section is configured in a T-tail arrangement, with the horizontal stabilizer mounted atop the vertical fin. The nose is pointed and smoothly contoured, with a cockpit area that appears to be forward and slightly raised, featuring a subtle windshield outline. The surface is uniformly colored in a matte orange, with no visible landing gear or external markings. The overall design is reminiscent of a business jet or regional jet, optimized for aerodynamic efficiency and speed.",
+    "description": "A modern, orange airplane with swept wings, rear-mounted engines, and a T-tail, featuring a streamlined fuselage and forward cockpit.",
+    "description_view_0": "Front view showing the pointed nose, forward cockpit, and the wide, swept wings with upward winglets.",
+    "description_view_1": "Left side view highlighting the elongated fuselage, rear-mounted engines, and the T-tail configuration.",
+    "description_view_2": "Rear view displaying the twin engines, T-tail, and the upward angle of the winglets.",
+    "description_view_3": "Right side view similar to the left, showing the streamlined body, engine placement, and tail design.",
+    "category": "airplane",
+    "height": 6.5,
+    "max_dimension": 28.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 176400,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit controls",
+        "engine",
+        "windows"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "white"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 35.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with sharply swept wings and upward-angled winglets at the tips.",
+    "attribute_engine_type": "Twin turbofan engines mounted on the rear fuselage, close to the tail.",
+    "attribute_tail_design": "T-tail configuration with a single vertical stabilizer and a high-mounted horizontal stabilizer.",
+    "attribute_landing_gear_type": "Not visible",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a subtle windshield outline.",
+    "uid": "0e90c091e56142048fc914ef1c81f93d",
+    "near_synsets": {
+        "aircraft.n.01": 0.5068169587366897,
+        "airplane.n.01": 0.51036045664097,
+        "monoplane.n.01": 0.5364747414128904,
+        "x-tail.n.01": 0.5371421246485023,
+        "jet.n.01": 0.5381553689018223
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0e90c091e56142048fc914ef1c81f93d",
+        "creator_username": "hemaraju",
+        "creator_display_name": "hemaraju",
+        "creator_profile_url": "https://sketchfab.com/hemaraju"
+    },
+    "filename": "std_0e90c091e56142048fc914ef1c81f93d.glb",
+    "length": 28.920010566711426,
+    "width": 27.676729202270508
+}

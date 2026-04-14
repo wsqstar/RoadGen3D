@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a modern military fighter jet with a sleek, aerodynamic fuselage and a delta wing configuration. The aircraft features a bubble canopy cockpit positioned near the front, providing excellent visibility for the pilot. Its wings are sharply swept back and equipped with multiple hardpoints for mounting external equipment or weaponry. The twin-engine exhausts are located at the rear, flanked by a single vertical stabilizer and two small horizontal stabilizers. The surface is finished in a matte gray color, with subtle markings and insignia visible on the tail and fuselage. The landing gear is not visible, suggesting it is likely retractable and integrated into the fuselage.",
+    "description": "A sleek, gray military fighter jet with a delta wing, bubble canopy cockpit, and twin rear engines. The aircraft is detailed with swept wings and a single vertical stabilizer.",
+    "description_view_0": "Top-down view showing the delta wing shape, bubble canopy, and symmetrical placement of hardpoints along the wings.",
+    "description_view_1": "Left side profile highlighting the sharp nose, cockpit canopy, and the streamlined fuselage with visible tail and engine exhausts.",
+    "description_view_2": "Rear view displaying the twin engine exhausts, single vertical stabilizer, and the full span of the delta wings.",
+    "description_view_3": "Right side profile similar to the left, showing the cockpit, fuselage, and tail assembly with visible insignia.",
+    "category": "airplane",
+    "height": 5.3,
+    "max_dimension": 15.5,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 11000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 108000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "closable",
+        "openable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "canopy",
+        "cockpit controls",
+        "landing gear",
+        "engine throttle",
+        "wing hardpoints"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "yellow",
+        "green"
+    ],
+    "colors_composition": [
+        0.9,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.03,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, delta configuration with sharply swept wings and small wingtip devices.",
+    "attribute_engine_type": "Twin jet engines, rear-mounted within the fuselage.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Retractable tricycle landing gear (not visible, inferred from design).",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed bubble canopy cockpit, likely single-seat.",
+    "uid": "01d9a26a89dc4a17a9fa4c4c1f7ac39f",
+    "near_synsets": {
+        "aircraft.n.01": 0.4828109323027177,
+        "airplane.n.01": 0.4960577849762946,
+        "delta_wing.n.01": 0.5001558389928301,
+        "fighter.n.02": 0.5142246883600299,
+        "warplane.n.01": 0.515984988661186
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/01d9a26a89dc4a17a9fa4c4c1f7ac39f",
+        "creator_username": "robnewman76",
+        "creator_display_name": "robnewman76",
+        "creator_profile_url": "https://sketchfab.com/robnewman76"
+    },
+    "filename": "std_01d9a26a89dc4a17a9fa4c4c1f7ac39f.glb",
+    "length": 17.761884689331055,
+    "width": 12.429099082946777
+}

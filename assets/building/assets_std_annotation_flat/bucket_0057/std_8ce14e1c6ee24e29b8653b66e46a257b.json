@@ -1,0 +1,106 @@
+{
+    "description_long": "This object is a collection of industrial storage tanks and barrels, typically used for storing liquids or chemicals in an urban or industrial environment. The tanks are primarily cylindrical, with some featuring domed tops and others flat, and are colored in shades of blue, green, and metallic gray. Several tanks have visible bands or rings, suggesting reinforced construction, and one tank has a conical top with a small valve or cap. The barrels are arranged in a row, and some appear to have metallic or plastic exteriors, while others have a more rugged, industrial finish. The set includes both large and small tanks, indicating a variety of storage capacities. No visible ladders, signage, or extensive piping are attached, but some tanks have small caps or valves on top.",
+    "description": "A group of cylindrical and domed industrial storage tanks and barrels in blue, green, and metallic colors, with reinforced bands and small caps or valves.",
+    "description_view_0": "Front view showing the full lineup of tanks and barrels, highlighting their cylindrical shapes and color variations.",
+    "description_view_1": "Side view emphasizing the height and depth of the tanks, with the domed and capped tops more visible.",
+    "description_view_2": "Rear view displaying the backs of the tanks and barrels, with reinforced bands and the arrangement of the group.",
+    "description_view_3": "Top-down view showing the circular tops, domes, and caps, as well as the spatial layout of the tanks.",
+    "category": "storage tank",
+    "height": 1.2,
+    "max_dimension": 0.8,
+    "materials": [
+        "steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "mass": 120,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 800,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "fillable",
+        "drainable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cap",
+        "valve"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "green",
+        "gray",
+        "beige"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [
+        "cap",
+        "valve"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_architectural_style": "cylindrical vertical",
+    "uid": "8ce14e1c6ee24e29b8653b66e46a257b",
+    "near_synsets": {
+        "tank.n.02": 0.4635953614272908,
+        "reservoir.n.03": 0.5056810444071037,
+        "tank_farm.n.01": 0.5152031585175518,
+        "barrel.n.02": 0.5304067501920561,
+        "tankage.n.03": 0.5442166313292461,
+        "memory.n.04": -1000.0,
+        "tank.n.01": -1000.0,
+        "storage.n.04": -1000.0,
+        "storage.n.01": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "repositing.n.01": -1000.0,
+        "cooler.n.03": -1000.0,
+        "tank.n.03": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "storage.n.03": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8ce14e1c6ee24e29b8653b66e46a257b",
+        "creator_username": "mcher",
+        "creator_display_name": "csbob",
+        "creator_profile_url": "https://sketchfab.com/mcher"
+    },
+    "filename": "std_8ce14e1c6ee24e29b8653b66e46a257b.glb",
+    "length": 3.9677735567092896,
+    "width": 16.431640625
+}

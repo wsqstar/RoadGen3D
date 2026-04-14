@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a rectangular basketball court with a dark brown wooden surface, featuring a parquet-style texture. The court is marked with standard white basketball lines, including the key, free throw circles, three-point arcs, center circle, sidelines, and baselines. The markings are crisp and clearly delineate the playing areas, giving the court a professional appearance. There are no visible basketball hoops, backboards, or fencing around the court, suggesting it is a standalone playing surface. The court appears to be designed for full-court play, with symmetrical markings on both halves. Its clean and minimalistic design is typical of modern recreational or gymnasium courts.",
+    "description": "A full-sized, dark brown wooden basketball court with crisp white standard markings and a parquet-style surface, lacking hoops or fencing.",
+    "description_view_0": "The court is seen from one end, highlighting the key, free throw area, and half of the court's markings.",
+    "description_view_1": "A side view showing the full length of the court and the symmetry of the markings on both halves.",
+    "description_view_2": "The opposite end view, mirroring view 0, with the key and free throw area visible on the far side.",
+    "description_view_3": "Another side view, similar to view 1, displaying the court's full length and central markings.",
+    "category": "basketball court",
+    "height": 0.03,
+    "max_dimension": 28.0,
+    "materials": [
+        "wood",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.03,
+        0.02
+    ],
+    "mass": 4200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "playable",
+        "markable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.93,
+        0.07
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_hoop_presence": false,
+    "attribute_backboard_type": "none",
+    "attribute_court_markings": [
+        "three-point line",
+        "free throw line",
+        "center circle",
+        "key",
+        "sidelines",
+        "baseline"
+    ],
+    "attribute_fence_enclosure": false,
+    "attribute_architectural_style": "modern recreational",
+    "uid": "32e7f7f5fd5e43cba3357dbfd91afcaa",
+    "near_synsets": {
+        "basketball_court.n.01": 0.43940435584372123,
+        "volleyball_court.n.01": 0.5027731597155595,
+        "badminton_court.n.01": 0.5074788565624042,
+        "tennis_court.n.01": 0.5086628766123585,
+        "handball_court.n.01": 0.516904937583432,
+        "court.n.04": -1000.0,
+        "court.n.06": -1000.0,
+        "court.n.09": -1000.0,
+        "basketball.n.02": -1000.0,
+        "court.n.01": -1000.0,
+        "basketball.n.01": -1000.0,
+        "court.n.05": -1000.0,
+        "court.n.08": -1000.0,
+        "court.n.10": -1000.0,
+        "court.n.03": -1000.0,
+        "court.n.02": -1000.0,
+        "motor_hotel.n.01": -1000.0
+    },
+    "synset": "basketball_court.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/32e7f7f5fd5e43cba3357dbfd91afcaa",
+        "creator_username": "1araimjonov",
+        "creator_display_name": "1araimjonov",
+        "creator_profile_url": "https://sketchfab.com/1araimjonov"
+    },
+    "filename": "std_32e7f7f5fd5e43cba3357dbfd91afcaa.glb",
+    "length": 98929.375,
+    "width": 66357.34375
+}

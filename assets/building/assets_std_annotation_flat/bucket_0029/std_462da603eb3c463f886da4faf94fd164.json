@@ -1,0 +1,97 @@
+{
+    "description_long": "This temple features a long rectangular structure with a prominent green gabled roof that extends well beyond the building's walls, providing ample shelter around the perimeter. The roof is supported by a series of evenly spaced cylindrical columns at the front and rear, creating open porticos. The exterior walls are minimal, with large open sections along the sides, allowing for visibility and airflow. The base is a wide, flat stone or concrete platform that elevates the temple slightly above ground level. The overall design is simple and functional, with little visible ornamentation or intricate detailing, emphasizing structural clarity and open space.",
+    "description": "A rectangular temple with a green gabled roof, stone platform, and columned open porticos at both ends. The design is simple, with minimal ornamentation and large open side sections.",
+    "description_view_0": "Front view showing the main entrance with four cylindrical columns supporting the roof and a wide open portico.",
+    "description_view_1": "Side view highlighting the long green roof and open side sections, with columns visible at the far end.",
+    "description_view_2": "Rear view displaying a similar portico to the front, with columns and a clear view of the roof's overhang.",
+    "description_view_3": "Opposite side view showing the extended roof and open side, mirroring the other side.",
+    "category": "temple",
+    "height": 6.0,
+    "max_dimension": 20.0,
+    "materials": [
+        "stone",
+        "concrete",
+        "wood",
+        "tile",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "shelter",
+        "gathering"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "columns",
+        "portico"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "green",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Neoclassical",
+    "attribute_ornamentation": "minimalist, plain columns, no visible decorative motifs",
+    "attribute_roof_type": "gable",
+    "attribute_entrance_design": "Wide open portico with four cylindrical columns, no doors, simple rectangular framing, no visible ornamentation",
+    "attribute_religious_symbols": [],
+    "uid": "462da603eb3c463f886da4faf94fd164",
+    "near_synsets": {
+        "temple.n.01": 0.5098871825531509,
+        "temple.n.02": 0.5169176018873186,
+        "temple.n.03": 0.5197102435658754,
+        "entablature.n.01": 0.5261283175281162,
+        "pediment.n.01": 0.5308348011754602,
+        "synagogue.n.01": -1000.0
+    },
+    "synset": "temple.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/462da603eb3c463f886da4faf94fd164",
+        "creator_username": "MOJackal",
+        "creator_display_name": "MOJackal",
+        "creator_profile_url": "https://sketchfab.com/MOJackal"
+    },
+    "filename": "std_462da603eb3c463f886da4faf94fd164.glb",
+    "length": 23.37222385406494,
+    "width": 12.822574615478516
+}

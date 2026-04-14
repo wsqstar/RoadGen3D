@@ -1,0 +1,112 @@
+{
+    "description_long": "This is a large industrial ship with a black hull and a flat deck, featuring several cylindrical tanks and a prominent yellow crane mounted amidships. The bow is sharply pointed, and the stern is squared off, with a raised superstructure housing the bridge and control rooms. The deck is equipped with railings, ladders, and various mechanical fixtures, suggesting a vessel designed for transporting or processing bulk materials or liquids. The superstructure is located toward the rear, with multiple levels and visible communication equipment. The ship's deck is mostly open, with the tanks and crane dominating the central area, and there are walkways and access points for crew movement. The vessel appears robust, with reinforced structures and industrial-grade fittings, suitable for heavy-duty maritime operations.",
+    "description": "A large industrial ship with a black hull, cylindrical tanks, a yellow crane, and a multi-level superstructure at the stern. The deck is open and equipped for heavy-duty maritime tasks.",
+    "description_view_0": "Front view showing the pointed bow, central tanks, and the yellow crane extending to the side.",
+    "description_view_1": "Side view highlighting the full length of the ship, the arrangement of tanks, crane, and the superstructure at the stern.",
+    "description_view_2": "Rear view displaying the squared stern, superstructure with bridge, and the alignment of deck equipment.",
+    "description_view_3": "Opposite side view showing the tanks, crane, and the detailed structure of the superstructure and deck railings.",
+    "category": "ship",
+    "height": 18,
+    "max_dimension": 120,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.01,
+        0.05
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2500000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "operable",
+        "loadable",
+        "unloadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "crane",
+        "door",
+        "ladder",
+        "hatch",
+        "bridge controls",
+        "railings"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "white",
+        "yellow",
+        "green",
+        "gray",
+        "red"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.08,
+        0.07,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 20,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a sharply pointed bow and a squared stern. The hull sides are vertical with a flat deck, and there is no visible bulbous bow or catamaran structure. The hull appears robust and reinforced for industrial use.",
+    "attribute_superstructure_layout": "The superstructure is located at the stern, rising several levels above the main deck, with a bridge at the top and additional cabins or control rooms below. The central deck is open, dominated by cylindrical tanks and a large crane, with walkways and railings along the sides.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "crane",
+        "ladder",
+        "railings",
+        "antenna",
+        "radar"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "88e084fe401a4b9ab08cd287d25c34ec",
+    "near_synsets": {
+        "cargo_ship.n.01": 0.49188122908480064,
+        "container_ship.n.01": 0.5054627487589947,
+        "factory_ship.n.01": 0.5135000082427432,
+        "superstructure.n.01": 0.5177662499878779,
+        "shipbuilding_industry.n.01": 0.5224038264296678,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/88e084fe401a4b9ab08cd287d25c34ec",
+        "creator_username": "gabs.spix",
+        "creator_display_name": "SPIX",
+        "creator_profile_url": "https://sketchfab.com/gabs.spix"
+    },
+    "filename": "std_88e084fe401a4b9ab08cd287d25c34ec.glb",
+    "length": 44.7287540435791,
+    "width": 13.591779708862305
+}

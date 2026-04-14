@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a firearm with a classic design, featuring a wooden stock and foregrip paired with a matte black metal receiver and barrel. The stock and foregrip are made of a medium-brown wood with visible grain, giving the weapon a traditional appearance. The barrel is long and cylindrical, with a simple front sight and no visible ribbing or venting. The receiver is robust and boxy, with a prominent magazine protruding below, suggesting a repeating action. The trigger guard is rounded and encloses a standard trigger, with no visible finger grooves or reinforcement. The overall construction appears solid and functional, suitable for use in urban environments where durability and reliability are important.",
+    "description": "A traditional shotgun with a wooden stock and foregrip, matte black metal receiver, and a long barrel. The design is robust and functional, with a classic appearance.",
+    "description_view_0": "Side view showing the full wooden stock, foregrip, and the length of the black barrel and receiver.",
+    "description_view_1": "Front-on view highlighting the narrow barrel opening and the alignment of the wooden foregrip and stock.",
+    "description_view_2": "Opposite side view displaying the magazine, trigger guard, and the full length of the wooden and metal components.",
+    "description_view_3": "Rear view focusing on the end of the wooden stock and the straight alignment of the barrel.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.9,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.35,
+        0.03,
+        0.02
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "foregrip",
+        "barrel",
+        "trigger",
+        "trigger guard",
+        "magazine"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.4,
+        0.6
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, no visible ribbing or venting, standard length",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "semi-automatic",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized, enclosing the trigger with no visible reinforcement or finger grooves",
+    "uid": "39a5339bb1e642b39bc0cf7d846218be",
+    "near_synsets": {
+        "shotgun.n.01": 0.5174474701390849,
+        "sawed-off_shotgun.n.01": 0.5221164075871177,
+        "stock.n.03": 0.5318632991893109,
+        "shotgun_shell.n.01": 0.5478696118176019,
+        "pump_action.n.01": 0.5605648674500305
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/39a5339bb1e642b39bc0cf7d846218be",
+        "creator_username": "Mookbway",
+        "creator_display_name": "Mookbway",
+        "creator_profile_url": "https://sketchfab.com/Mookbway"
+    },
+    "filename": "std_39a5339bb1e642b39bc0cf7d846218be.glb",
+    "length": 0.5483855605125427,
+    "width": 0.033475931733846664
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a rectangular, two-story brick apartment building with a flat, weathered roof and a utilitarian design. The facade features two large, multi-pane windows on the upper floor and a single, smaller window on the lower floor, all framed in dark trim. A metal awning, slightly rusted, shelters the main entrance, which is centrally located beneath the upper windows. The side and rear walls are plain, with only a single small window on each, emphasizing the building's functional, industrial character. The brickwork is consistent throughout, with a reddish-brown hue and visible mortar lines, giving the structure a sturdy, aged appearance. The roof is bordered by low parapet walls, and there are no visible balconies or decorative elements.",
+    "description": "A two-story, rectangular brick apartment building with a flat roof, large front windows, and a metal awning over the main entrance. The design is utilitarian and industrial, with minimal ornamentation.",
+    "description_view_0": "Side view showing a plain brick wall with a single small window near the bottom center.",
+    "description_view_1": "Front view displaying two large upper windows, a smaller lower window, and a metal awning above the main entrance.",
+    "description_view_2": "Opposite side view, nearly identical to view 0, with a single small window and plain brickwork.",
+    "description_view_3": "Rear view featuring a solid brick wall with no windows or doors, highlighting the building's simple, functional design.",
+    "category": "apartment building",
+    "height": 7.5,
+    "max_dimension": 15.0,
+    "materials": [
+        "brick",
+        "glass",
+        "metal",
+        "wood",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.08,
+        0.07,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "awning"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "dark brown",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 15000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 2,
+    "attribute_balcony_presence": false,
+    "attribute_window_arrangement": "Windows are symmetrically arranged on the front facade, with two large upper windows side by side and a single small lower window. The sides each have one small window, while the rear has none.",
+    "attribute_entrance_type": "single door",
+    "attribute_architectural_style": "Industrial",
+    "uid": "7fbd0e7399f547e3a13b1e83e1064073",
+    "near_synsets": {
+        "apartment_building.n.01": 0.5116188694124034,
+        "railroad_flat.n.01": 0.5457238824921519,
+        "block.n.05": 0.5495182185244903,
+        "building.n.04": 0.5570879646300528,
+        "building.n.01": 0.5627431886436581,
+        "construction.n.07": -1000.0,
+        "construction.n.01": -1000.0,
+        "apartment.n.01": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7fbd0e7399f547e3a13b1e83e1064073",
+        "creator_username": "adam127",
+        "creator_display_name": "adam127",
+        "creator_profile_url": "https://sketchfab.com/adam127"
+    },
+    "filename": "std_7fbd0e7399f547e3a13b1e83e1064073.glb",
+    "length": 11.874529361724854,
+    "width": 6.4531331062316895
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This trash bin consists of a large, rectangular green container with a wide open top, suitable for depositing waste. In front of the main bin is a blue, tapered insert that appears to function as a chute or liner, guiding trash into the bin. Attached to the blue insert is a brown, semi-cylindrical lid with a partial opening, likely designed to limit access and contain odors. The lid is supported by two thin legs, elevating it above the ground. A small, black spherical object is positioned nearby, possibly serving as a foot pedal or decorative element. The overall design is utilitarian, with robust, simple geometric shapes and no visible signage or markings.",
+    "description": "A large green rectangular trash bin with a blue tapered insert and a brown semi-cylindrical lid, featuring simple geometric shapes and no visible markings.",
+    "description_view_0": "Front view shows the brown semi-cylindrical lid facing forward, the blue insert behind it, and the green bin at the back, with a small black sphere in front.",
+    "description_view_1": "Side view reveals the brown lid's elevation on legs, the full length of the blue insert, and the green bin's rectangular profile.",
+    "description_view_2": "Rear view highlights the open top of the green bin and the back of the blue insert, with the brown lid partially visible.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the brown lid, blue insert, and green bin in sequence, with the black sphere at the end.",
+    "category": "trash bin",
+    "height": 1.0,
+    "max_dimension": 1.2,
+    "materials": [
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "mass": 25,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "insert",
+        "bin body"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "blue",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_lid_type": "semi-cylindrical hinged lid",
+    "attribute_opening_mechanism": "hand lift",
+    "attribute_presence_of_wheels": false,
+    "attribute_handle_design": "absent",
+    "attribute_labeling_or_signage": "unmarked",
+    "uid": "9bf78ed84e7440ba9dd798650dfe5de0",
+    "near_synsets": {
+        "recycling_bin.n.01": 0.4947537268426498,
+        "dumpster.n.01": 0.5075891150820957,
+        "garbage.n.03": 0.5136512717821048,
+        "bin_liner.n.01": 0.5143985290414311,
+        "bin.n.01": 0.5255033219531229,
+        "methamphetamine.n.01": -1000.0,
+        "folderol.n.01": -1000.0,
+        "rubbish.n.01": -1000.0,
+        "bin.n.02": -1000.0,
+        "trash.n.02": -1000.0,
+        "bank_identification_number.n.01": -1000.0,
+        "ashcan.n.01": -1000.0
+    },
+    "synset": "ashcan.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9bf78ed84e7440ba9dd798650dfe5de0",
+        "creator_username": "vitor.balbino",
+        "creator_display_name": "Vitor Balbino",
+        "creator_profile_url": "https://sketchfab.com/vitor.balbino"
+    },
+    "filename": "std_9bf78ed84e7440ba9dd798650dfe5de0.glb",
+    "length": 3.1115777492523193,
+    "width": 0.8559806644916534
+}

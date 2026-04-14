@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a tall, rectangular office building with a uniform grid of windows and balconies running vertically along its facade. The structure is primarily composed of concrete and glass, with a muted gray color palette that gives it a utilitarian appearance. The base of the building features a recessed entryway and several ground-level windows, suggesting commercial or lobby spaces. The roof is flat and includes mechanical structures and antennae, typical of high-rise office buildings. The window pattern is highly regular, with each floor featuring identical rows of windows and small balconies, emphasizing a repetitive architectural rhythm. The overall design is functional and straightforward, reflecting a Brutalist architectural style.",
+    "description": "A tall, gray, rectangular office building with a repetitive grid of windows and balconies, flat roof, and a recessed ground-level entrance. The facade is dominated by concrete and glass, giving it a utilitarian, Brutalist appearance.",
+    "description_view_0": "The front view shows the main recessed entrance and a symmetrical grid of windows and balconies, with the building's base slightly protruding.",
+    "description_view_1": "This side view highlights the building's depth and the continuation of the window and balcony pattern, with rooftop structures visible.",
+    "description_view_2": "The rear view displays a similar window and balcony arrangement, with less emphasis on the entrance and more on the uniformity of the facade.",
+    "description_view_3": "This view shows another side of the building, mirroring the window and balcony grid, and reveals additional rooftop details.",
+    "category": "office building",
+    "height": 120.0,
+    "max_dimension": 130.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "mass": 9000000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "balcony",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "dark gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 38,
+    "attribute_window_pattern": "Highly regular, vertically and horizontally aligned rectangular windows with small balconies on each floor, creating a repetitive grid pattern.",
+    "attribute_building_entrance_type": "recessed entry",
+    "attribute_signage_presence": false,
+    "attribute_architectural_style": "Brutalist",
+    "uid": "14e3d5743f7546d5bb7f3befc72c9057",
+    "near_synsets": {
+        "office_building.n.01": 0.48416459679241813,
+        "high-rise.n.01": 0.528615216495279,
+        "skyscraper.n.01": 0.5380432164349404,
+        "building.n.01": 0.5412490673725063,
+        "facade.n.01": 0.5413346775395227,
+        "agency.n.01": -1000.0,
+        "function.n.03": -1000.0,
+        "office.n.06": -1000.0,
+        "office.n.05": -1000.0,
+        "position.n.06": -1000.0,
+        "office.n.01": -1000.0,
+        "building.n.04": -1000.0,
+        "construction.n.01": -1000.0,
+        "office.n.04": -1000.0,
+        "construction.n.07": -1000.0
+    },
+    "synset": "office_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/14e3d5743f7546d5bb7f3befc72c9057",
+        "creator_username": "aitortilla01",
+        "creator_display_name": "aitortilla01",
+        "creator_profile_url": "https://sketchfab.com/aitortilla01"
+    },
+    "filename": "std_14e3d5743f7546d5bb7f3befc72c9057.glb",
+    "length": 44.04720687866211,
+    "width": 44.047176361083984
+}

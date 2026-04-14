@@ -1,0 +1,89 @@
+{
+    "description_long": "This object is a tall, multi-tiered ladder with a metallic frame and several evenly spaced horizontal rungs. The ladder is accompanied by two shelving units, one tall and one short, both featuring slatted shelves that match the ladder's material and design. The ladder itself is constructed from what appears to be brushed steel or aluminum, giving it a modern, industrial look suitable for urban environments such as garages, workshops, or maintenance areas. The rungs are flat and wide enough to provide stable footing, and the side rails are straight and robust, likely designed for durability and safety. The shelving units are integrated or paired with the ladder, suggesting a modular storage and access solution. The overall finish is matte with a slightly textured surface, and the color palette is dominated by shades of gray and metallic silver.",
+    "description": "A tall, metallic ladder with flat rungs and matching slatted shelving units, featuring a modern industrial design in gray and silver tones.",
+    "description_view_0": "Front view showing the full height of the ladder, the tall shelving unit with multiple shelves, and the shorter shelving unit, all aligned for clear visibility of their structure.",
+    "description_view_1": "Top-down view highlighting the depth and alignment of the ladder and shelving units, with the rungs and shelves visible in a linear arrangement.",
+    "description_view_2": "Rear view displaying the backs of the shelving units and the ladder, emphasizing the open, slatted construction and the uniformity of the materials.",
+    "description_view_3": "Side view showing the ladder leaning against the tall shelving unit, with the rungs and shelves visible in profile, illustrating the ladder's attachment or proximity to the shelving.",
+    "category": "ladder",
+    "height": 2.0,
+    "max_dimension": 2.0,
+    "materials": [
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.15
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "climbable",
+        "grippable",
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "rungs",
+        "side rails",
+        "shelves"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_number_of_rungs": 7,
+    "attribute_rung_spacing": 0.28,
+    "attribute_side_rail_profile": "rectangular aluminum",
+    "attribute_mounting_position": "freestanding",
+    "attribute_presence_of_safety_features": [],
+    "uid": "206f37bcef4348f69b205898c12e0073",
+    "near_synsets": {
+        "ladder.n.01": 0.5086473131549417,
+        "step_ladder.n.01": 0.5315147002855086,
+        "rope_ladder.n.01": 0.5329424332310277,
+        "extension_ladder.n.01": 0.5332601821604114,
+        "articulated_ladder.n.01": 0.5501375010228085,
+        "run.n.13": -1000.0,
+        "ladder.n.02": -1000.0
+    },
+    "synset": "ladder.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/206f37bcef4348f69b205898c12e0073",
+        "creator_username": "sapizon",
+        "creator_display_name": "Sapizon",
+        "creator_profile_url": "https://sketchfab.com/sapizon"
+    },
+    "filename": "std_206f37bcef4348f69b205898c12e0073.glb",
+    "length": 0.9090576171875,
+    "width": 2.097900390625
+}

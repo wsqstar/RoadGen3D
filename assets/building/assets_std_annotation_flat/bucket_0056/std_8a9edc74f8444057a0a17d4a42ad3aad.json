@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a cylindrical bomb with a matte dark gray body, accented by several red bands and detailed with white stenciled markings and warning labels. The bomb features four stabilizing fins at the rear, each with angular, aerodynamic shapes and additional white insignia. The nose is rounded and slightly tapered, while the rear is open, suggesting a propulsion or guidance system. The surface appears metallic and robust, with visible seams and panel lines running along its length. The overall design is streamlined, indicating it is intended for aerial deployment or precision targeting. The bomb's size and construction suggest it is a modern, guided munition suitable for urban or tactical scenarios.",
+    "description": "A dark gray, cylindrical bomb with red bands, white warning labels, and four angular stabilizing fins at the rear. The surface is metallic and matte, with a streamlined, modern design.",
+    "description_view_0": "Front view showing the rounded nose and the cylindrical body, with red bands and some white markings visible.",
+    "description_view_1": "Side view highlighting the full length, red bands, white warning labels, and the four stabilizing fins at the rear.",
+    "description_view_2": "Rear view displaying the open propulsion or guidance section and the angular arrangement of the fins.",
+    "description_view_3": "Opposite side view similar to view 1, with clear visibility of the fins, red bands, and additional white markings.",
+    "category": "bomb",
+    "height": 0.25,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "aluminum",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.25,
+        0.04,
+        0.01
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "fins",
+        "nose",
+        "propulsion section"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "red",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.12,
+        0.08,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.01,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [
+        "warning",
+        "hazard symbol"
+    ],
+    "attribute_detonation_mechanism": "The bomb appears to have a nose section that may house a contact or proximity fuse, with no visible external switches or wires, suggesting an internal triggering mechanism.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "8a9edc74f8444057a0a17d4a42ad3aad",
+    "near_synsets": {
+        "bomb.n.01": 0.5659814729912236,
+        "plastic_bomb.n.01": 0.5681542784809165,
+        "remote-control_bomb.n.01": 0.5720079354854879,
+        "buzz_bomb.n.01": 0.5735366375503188,
+        "dirty_bomb.n.01": 0.5750833304171645,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8a9edc74f8444057a0a17d4a42ad3aad",
+        "creator_username": "Potato211",
+        "creator_display_name": "Juan Manuel Fernandez",
+        "creator_profile_url": "https://sketchfab.com/Potato211"
+    },
+    "filename": "std_8a9edc74f8444057a0a17d4a42ad3aad.glb",
+    "length": 1.7851198315620422,
+    "width": 0.24327823519706726
+}

@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a compact, heavily armored combat tactical vehicle with a low profile and a robust, angular hull. The exterior is covered in a desert camouflage pattern, blending tan, brown, and green tones in irregular patches. A prominent turret is mounted centrally on the roof, equipped with a long-barreled cannon and what appears to be a coaxial machine gun. The vehicle's hull features sloped armor plating, especially at the front and sides, enhancing its defensive capabilities. No visible wheels or tracks are apparent from these views, suggesting the running gear is either obscured or the vehicle is modeled with minimal ground clearance. There are no visible military markings or insignia on the exterior surfaces.",
+    "description": "A compact, low-profile armored combat vehicle with a central turret and desert camouflage pattern. Features sloped armor and a long-barreled cannon.",
+    "description_view_0": "The vehicle is seen from the front, showing its low, wide stance and the sloped frontal armor.",
+    "description_view_1": "A side view reveals the length of the cannon and the compactness of the hull, with the turret clearly visible.",
+    "description_view_2": "The top-down view highlights the turret's central placement and the angular shape of the hull.",
+    "description_view_3": "The opposite side view again shows the cannon's length and the vehicle's armored profile.",
+    "category": "combat tactical  vehicle",
+    "height": 1.8,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 90000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "machine gun"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "brown",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the central turret; one coaxial machine gun mount adjacent to the cannon.",
+    "attribute_armor_plating": "Full body coverage with sloped armor plating, especially reinforced at the front and sides; thickness appears substantial with angular design.",
+    "attribute_camouflage_pattern": "Desert camouflage with tan, brown, and green irregular patches in a disruptive pattern.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "d386acc4c1bc4864b5640866f557ae71",
+    "near_synsets": {
+        "tank.n.01": 0.4925974844243444,
+        "military_vehicle.n.01": 0.49713782603237533,
+        "reconnaissance_vehicle.n.01": 0.4991398114533739,
+        "armored_car.n.02": 0.513090636408974,
+        "weapons_carrier.n.01": 0.5136708988488211,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d386acc4c1bc4864b5640866f557ae71",
+        "creator_username": "esdeaz",
+        "creator_display_name": "esdeaz",
+        "creator_profile_url": "https://sketchfab.com/esdeaz"
+    },
+    "filename": "std_d386acc4c1bc4864b5640866f557ae71.glb",
+    "length": 2.8368046283721924,
+    "width": 10.384511947631836
+}

@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a metal shopping cart with a wireframe basket and a sturdy, open design, commonly found in supermarkets and urban retail environments. The basket is constructed from interwoven metal rods forming a rectangular grid, providing both strength and visibility of contents. The cart is supported by four large, solid wheels, which are spaced widely for stability and ease of movement over various surfaces. At the rear, a handlebar with a red plastic grip allows for comfortable pushing and maneuvering. The cart features a small, foldable child seat near the handle, identifiable by its red plastic components. There is no visible store branding or logo on the cart, giving it a generic appearance suitable for multiple retail settings.",
+    "description": "A metal wire shopping cart with a rectangular basket, four large wheels, and a red plastic handle and child seat. The design is open, sturdy, and unbranded.",
+    "description_view_0": "Side view showing the full length of the wire basket, all four large wheels, and the red handle and child seat at the rear.",
+    "description_view_1": "Front view highlighting the open basket, the circular pattern of the front wheels, and the grid structure of the basket.",
+    "description_view_2": "Opposite side view similar to view 0, showing the basket, wheels, and handle, but from the other side.",
+    "description_view_3": "Rear view focusing on the handlebar, red child seat, and the rear wheels' alignment.",
+    "category": "shopping cart",
+    "height": 1.05,
+    "max_dimension": 1.15,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 25,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "rotatable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "child seat",
+        "basket"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_wire_basket_pattern": "Rectangular grid pattern with evenly spaced horizontal and vertical steel rods, medium density, straight lines, and moderate wire thickness.",
+    "attribute_handlebar_design": "Straight steel handlebar with a red plastic grip, ergonomic for pushing, no visible branding or additional controls.",
+    "attribute_wheel_configuration": "Four large, solid wheels, equally spaced at the corners, likely fixed with no visible swivel or locking mechanism.",
+    "attribute_child_seat_presence": "present; foldable red plastic seat near the handle, no visible safety belt.",
+    "attribute_store_branding": "none",
+    "uid": "619fb3582d704b11a3150a139043e0b1",
+    "near_synsets": {
+        "shopping_cart.n.01": 0.48453392308618576,
+        "shopping_basket.n.01": 0.51223262407495,
+        "cart.n.01": 0.5198041397489442,
+        "shopping_bag.n.01": 0.5437267283570439,
+        "laundry_cart.n.01": 0.5469060967661197,
+        "handcart.n.01": -1000.0
+    },
+    "synset": "shopping_cart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/619fb3582d704b11a3150a139043e0b1",
+        "creator_username": "mini_fish",
+        "creator_display_name": "Weitstern",
+        "creator_profile_url": "https://sketchfab.com/mini_fish"
+    },
+    "filename": "std_619fb3582d704b11a3150a139043e0b1.glb",
+    "length": 0.9611547291278839,
+    "width": 0.5663690865039825
+}

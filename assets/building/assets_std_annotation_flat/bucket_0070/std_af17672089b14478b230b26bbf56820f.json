@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a large cargo ship with a robust, elongated hull painted primarily in red and gray, featuring a flat deck with four prominent rectangular cargo hatches. The bow is sharply pointed, designed for efficient movement through water, while the stern is squared off and houses a raised superstructure with bridge and control areas. The deck is equipped with various fixtures, including what appear to be winches and access points, and the superstructure is offset towards the rear of the vessel. The ship's hull sits low in the water, indicating a displacement-type design suitable for heavy loads. The overall construction suggests steel as the primary material, with visible railings and safety barriers along the deck edges. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A large, steel cargo ship with a red and gray hull, four rectangular cargo hatches, and a raised superstructure at the stern. The deck features winches and safety railings.",
+    "description_view_0": "Front view showing the pointed bow, the symmetry of the hull, and the alignment of the cargo hatches.",
+    "description_view_1": "Side view highlighting the ship's length, the four cargo hatches, and the raised superstructure at the stern.",
+    "description_view_2": "Rear view displaying the squared stern, superstructure, and deck equipment concentrated at the back.",
+    "description_view_3": "Opposite side view mirroring view 1, with clear visibility of the hull's red and gray color scheme and deck layout.",
+    "category": "ship",
+    "height": 18,
+    "max_dimension": 220,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.03,
+        0.02,
+        0.01,
+        0.02
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "door",
+        "winch",
+        "railing",
+        "bridge controls"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "gray",
+        "brown",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.35,
+        0.3,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.03,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a sharply pointed bow and a squared stern, featuring a flat deck and a low profile in the water. The hull is robust, with a red lower section and gray upper section, and no visible keels or bulbous bows.",
+    "attribute_superstructure_layout": "The superstructure is located at the stern, raised above the main deck, and includes the bridge and control areas. There are no visible additional decks or towers, and the main deck is flat with four large cargo hatches.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "winch",
+        "railing",
+        "hatch"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "af17672089b14478b230b26bbf56820f",
+    "near_synsets": {
+        "cargo_ship.n.01": 0.4482552754667016,
+        "container_ship.n.01": 0.48220128092711384,
+        "ship.n.01": 0.4841824499812244,
+        "car_carrier.n.02": 0.5080661935978327,
+        "hull.n.06": 0.5119579640889723
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/af17672089b14478b230b26bbf56820f",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_af17672089b14478b230b26bbf56820f.glb",
+    "length": 95.17818832397461,
+    "width": 17.809179306030273
+}

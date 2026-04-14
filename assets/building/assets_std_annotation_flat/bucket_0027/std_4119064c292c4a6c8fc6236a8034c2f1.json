@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a classic hand grenade, specifically resembling the Mk 2 fragmentation grenade, with a robust, segmented olive-green body designed for grip and fragmentation. The upper section features a metallic safety lever and a prominent pull ring attached to a safety pin, both showing signs of wear and rust. A yellow band encircles the neck just below the metal fuse assembly, indicating its explosive nature. The body is ribbed with deep grooves, enhancing grip and aiding in fragmentation upon detonation. The metal components, including the lever and pin, have a weathered, matte finish, suggesting exposure to the elements or heavy use. The overall form is compact and ergonomic, intended for easy handling and throwing.",
+    "description": "A classic olive-green, segmented hand grenade with a metal safety lever, pull ring, and a yellow band around the neck. The body is ribbed for grip, and the metal parts are weathered and matte.",
+    "description_view_0": "Front view showing the rounded, ribbed body and the top of the metal fuse assembly with the safety lever and yellow band clearly visible.",
+    "description_view_1": "Side view highlighting the full length of the safety lever, the pull ring, and the yellow band around the neck.",
+    "description_view_2": "Rear view dominated by the broad, flat surface of the safety lever covering the top of the grenade.",
+    "description_view_3": "Angled view showing both the pull ring and the safety lever, with the ribbed body and yellow band visible.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.12,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 0.6,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 6,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "throwable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "safety pin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "gray",
+        "yellow",
+        "rust brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the safety pin and releasing the safety lever, which triggers a timed fuse mechanism inside the metal assembly.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "4119064c292c4a6c8fc6236a8034c2f1",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.5076084448527358,
+        "grenade.n.01": 0.541302311425711,
+        "rifle_grenade.n.01": 0.5616190068758111,
+        "pipe_bomb.n.01": 0.5696877592383068,
+        "general-purpose_bomb.n.01": 0.5819128152061497,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0,
+        "bomb.n.01": -1000.0
+    },
+    "synset": "bomb.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/4119064c292c4a6c8fc6236a8034c2f1",
+        "creator_username": "wisdom3D",
+        "creator_display_name": "wisdom3D",
+        "creator_profile_url": "https://sketchfab.com/wisdom3D"
+    },
+    "filename": "std_4119064c292c4a6c8fc6236a8034c2f1.glb",
+    "length": 0.07063715159893036,
+    "width": 0.05943720601499081
+}

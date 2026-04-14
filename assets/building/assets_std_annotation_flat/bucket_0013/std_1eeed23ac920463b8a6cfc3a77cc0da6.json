@@ -1,0 +1,104 @@
+{
+    "description_long": "This chapel is a compact, stone-built religious structure with a steeply pitched roof and prominent stained glass windows on its side facades. The exterior walls are constructed from light gray stone blocks, giving it a robust and historic appearance. The main entrance features a large, arched wooden door with ornate black metal hinges and a weathered finish, set beneath a modest overhang. Inside, the chapel is divided by stone columns and features a tiled floor, with wooden pews lining the interior. The stained glass windows are tall and narrow, filled with vibrant colors and intricate religious imagery. The overall design is reminiscent of Gothic Revival architecture, with pointed arches and decorative elements that evoke a sense of reverence and tradition.",
+    "description": "A small stone chapel with a steep roof, arched wooden entrance, and vibrant stained glass windows on the sides. The structure features Gothic Revival elements and a richly detailed, historic appearance.",
+    "description_view_0": "This view shows the side of the chapel with two tall, colorful stained glass windows set in stone walls beneath a pitched roof.",
+    "description_view_1": "This view reveals the interior layout, including stone columns, wooden pews, a tiled floor, and the arched wooden entrance door at the far end.",
+    "description_view_2": "This view mirrors view 0, displaying the opposite side of the chapel with two matching stained glass windows and the same stonework.",
+    "description_view_3": "This view focuses on the main entrance, highlighting the large arched wooden door with decorative metalwork and the plain stone facade.",
+    "category": "chapel",
+    "height": 8.0,
+    "max_dimension": 14.0,
+    "materials": [
+        "stone",
+        "wood",
+        "glass",
+        "metal",
+        "tile",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.07,
+        0.03,
+        0.05,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "brown",
+        "blue",
+        "red",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.07,
+        0.06,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Gothic Revival",
+    "attribute_religious_symbols": [],
+    "attribute_stained_glass_windows": "Yes, there are tall, narrow stained glass windows on both side facades, featuring vibrant colors and religious imagery. The windows are rectangular with pointed arches at the top.",
+    "attribute_steeple_or_bell_tower": "None.",
+    "attribute_entrance_door_design": "The main entrance door is a large, pointed arch made of weathered wood with ornate black metal hinges and decorative elements. It is set within a plain stone facade, emphasizing the door's craftsmanship and historic character.",
+    "uid": "1eeed23ac920463b8a6cfc3a77cc0da6",
+    "near_synsets": {
+        "chapel.n.01": 0.5130130767574257,
+        "side_chapel.n.01": 0.5222293099951304,
+        "cathedral.n.01": 0.5310608783817761,
+        "lady_chapel.n.01": 0.5347636416276628,
+        "gothic.n.03": 0.5358283602951482,
+        "chapel_service.n.01": -1000.0
+    },
+    "synset": "chapel_service.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1eeed23ac920463b8a6cfc3a77cc0da6",
+        "creator_username": "llamaoverflow",
+        "creator_display_name": "llamaoverflow",
+        "creator_profile_url": "https://sketchfab.com/llamaoverflow"
+    },
+    "filename": "std_1eeed23ac920463b8a6cfc3a77cc0da6.glb",
+    "length": 6.996710300445557,
+    "width": 7.06231164932251
+}

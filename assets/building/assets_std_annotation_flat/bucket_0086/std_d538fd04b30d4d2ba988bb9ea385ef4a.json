@@ -1,0 +1,92 @@
+{
+    "description_long": "This is a two-story barn with a prominent gable roof constructed from wooden planks, featuring a secondary, lower gable roof extension on one side. The exterior walls are clad in reddish-brown brickwork, reinforced with visible timber framing in a traditional half-timbered style. The front facade includes a single, vertically oriented wooden door at ground level, while the upper story on both side elevations features a small, rectangular window with a wooden frame. The barn's structure is robust and utilitarian, with the timber beams providing both support and decorative patterning. The overall appearance suggests a historical or rural European influence, suitable for agricultural storage or livestock shelter. The roof and siding materials give the barn a rustic, weathered look, making it a fitting structure for urban edge or peri-urban settings.",
+    "description": "A two-story, half-timbered barn with a gable roof, brick walls, and a single wooden door. Timber framing and a small upper window add rustic, traditional character.",
+    "description_view_0": "Front view showing the main wooden door, brick and timber facade, and the full gable roof.",
+    "description_view_1": "Left side view revealing the upper small window, timber framing, and the lower gable roof extension.",
+    "description_view_2": "Rear view displaying the brick and timber wall, the main and lower gable roofs, but no visible doors or windows.",
+    "description_view_3": "Right side view with a small upper window, timber framing, and the lower gable roof extension visible.",
+    "category": "barn",
+    "height": 6.0,
+    "max_dimension": 8.0,
+    "materials": [
+        "wood",
+        "brick",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.4,
+        0.05,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "red",
+        "beige"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 10000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gable roof with a secondary lower gable extension",
+    "attribute_siding_pattern": "brick with exposed timber framing (half-timbered)",
+    "attribute_door_style": "single hinged door, vertically oriented, no visible windows or panels",
+    "attribute_window_arrangement": "one small rectangular window centered on each upper side wall",
+    "attribute_architectural_style": "traditional half-timbered European barn",
+    "uid": "d538fd04b30d4d2ba988bb9ea385ef4a",
+    "near_synsets": {
+        "farmhouse.n.01": 0.5080089135587055,
+        "barn.n.01": 0.5180809654741774,
+        "farm_building.n.01": 0.5184935642770826,
+        "barn_door.n.01": 0.5297956880117368,
+        "ranch_house.n.01": 0.5365669007711839,
+        "barn.n.02": -1000.0
+    },
+    "synset": "barn.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d538fd04b30d4d2ba988bb9ea385ef4a",
+        "creator_username": "vas_ubito",
+        "creator_display_name": "vas_ubito",
+        "creator_profile_url": "https://sketchfab.com/vas_ubito"
+    },
+    "filename": "std_d538fd04b30d4d2ba988bb9ea385ef4a.glb",
+    "length": 5.162902593612671,
+    "width": 5.032372236251831
+}

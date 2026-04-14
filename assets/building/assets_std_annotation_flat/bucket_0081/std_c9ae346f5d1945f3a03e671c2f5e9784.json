@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a medium-sized, rectangular event tent with a peaked, gable-style roof and open front and rear entrances. The tent is supported by a series of vertical poles at each corner and along the sides, with additional guy lines extending outward for stability. The roof and side panels are made of a light-colored, likely waterproof fabric, while the base is a flat, dark platform that simulates ground or flooring. The front and rear entrances are wide and unobstructed, allowing easy access, and the tent interior appears spacious enough for multiple people or equipment. No windows or mesh ventilation panels are visible, and the structure is utilitarian, suitable for temporary urban installations such as markets, events, or emergency shelters.",
+    "description": "A rectangular event tent with a peaked roof, open front and rear entrances, and guy lines for stability. The tent is made of light fabric panels on a dark base, suitable for urban gatherings or shelters.",
+    "description_view_0": "Front view showing the open entrance, peaked roof, and guy lines extending from the corners.",
+    "description_view_1": "Side view displaying the solid fabric side panels and the tent's rectangular profile.",
+    "description_view_2": "Rear view mirroring the front, with an open entrance and visible guy lines.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the solid side panels and roof.",
+    "category": "tent",
+    "height": 2.5,
+    "max_dimension": 5.0,
+    "materials": [
+        "polyester_fabric",
+        "aluminum",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.15
+    ],
+    "mass": 45,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "closable",
+        "openable",
+        "coverable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "entrance_flap",
+        "guy_line",
+        "support_pole"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "white",
+        "black",
+        "olive green"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "Open front and rear entrances with no visible doors or flaps, located at the short ends of the tent.",
+    "attribute_number_of_poles": 6,
+    "attribute_guy_line_configuration": "Four guy lines, one at each corner, extending outward from the roof edge for stability.",
+    "attribute_ventilation_openings": [],
+    "attribute_branding_or_logo": "none",
+    "uid": "c9ae346f5d1945f3a03e671c2f5e9784",
+    "near_synsets": {
+        "field_tent.n.01": 0.4671550988289408,
+        "tent.n.01": 0.4720971969855006,
+        "pop_tent.n.01": 0.47332165857992076,
+        "canvas_tent.n.01": 0.48726589791524605,
+        "sibley_tent.n.01": 0.49031562704518217,
+        "tent.n.02": -1000.0
+    },
+    "synset": "tent.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c9ae346f5d1945f3a03e671c2f5e9784",
+        "creator_username": "Ivan.Dumek",
+        "creator_display_name": "Typko.cz",
+        "creator_profile_url": "https://sketchfab.com/Ivan.Dumek"
+    },
+    "filename": "std_c9ae346f5d1945f3a03e671c2f5e9784.glb",
+    "length": 6.564550399780273,
+    "width": 6.564548015594482
+}

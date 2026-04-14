@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a medium-sized, tracked excavator with a weathered yellow and black exterior, showing signs of heavy use and dirt accumulation. The machine features a large, boxy operator cab with an open front and a protective roof, positioned on the left side of the upper structure. Its arm consists of a mono boom and a standard digging bucket, both heavily worn and rust-stained, suitable for urban construction or demolition tasks. The undercarriage is equipped with robust black rubber tracks, designed for stability and traction on uneven surfaces. Warning markings and directional arrows are visible on the sides and rear, enhancing safety in busy environments. The overall design is utilitarian, prioritizing function and durability over aesthetics.",
+    "description": "A weathered yellow and black tracked excavator with a boxy cab, mono boom, and standard digging bucket, showing heavy use and safety markings.",
+    "description_view_0": "Front view showing the wide bucket, mono boom, and open cab with visible wear and dirt.",
+    "description_view_1": "Left side view highlighting the cab's position, the full length of the boom and bucket, and the detailed track system.",
+    "description_view_2": "Rear view displaying the warning markings, the back of the cab, and the dual tracks.",
+    "description_view_3": "Right side view showing the boom's articulation, bucket profile, and the continuous track system.",
+    "category": "excavator",
+    "height": 2.8,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.1,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "track",
+        "boom",
+        "bucket",
+        "control lever",
+        "seat"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "gray",
+        "white",
+        "brown (rust)"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.08,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_boom_type": "mono boom",
+    "attribute_cab_position": "left side",
+    "attribute_track_or_wheel_type": "rubber tracks",
+    "attribute_bucket_design": "standard digging bucket",
+    "attribute_brand_logo": "none",
+    "uid": "e4f58b9c6b6c4dec87caeb5be367061a",
+    "near_synsets": {
+        "backhoe.n.01": 0.5154514732765881,
+        "power_shovel.n.01": 0.515808554228431,
+        "excavator.n.01": 0.5165802359543971,
+        "scoop.n.05": 0.5409399172509993,
+        "caterpillar.n.02": 0.5598476374507952
+    },
+    "synset": "excavator.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e4f58b9c6b6c4dec87caeb5be367061a",
+        "creator_username": "whitenecromancer",
+        "creator_display_name": "whitenecromancer",
+        "creator_profile_url": "https://sketchfab.com/whitenecromancer"
+    },
+    "filename": "std_e4f58b9c6b6c4dec87caeb5be367061a.glb",
+    "length": 4.413115739822388,
+    "width": 1.8889233469963074
+}

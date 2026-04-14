@@ -1,0 +1,100 @@
+{
+    "description_long": "This barrow features a rectangular, open-topped container with a deep, rust-brown body framed by thick, black, stone-like borders. The sides are reinforced with horizontal panels, giving it a sturdy and industrial appearance. It is supported by four octagonal wooden wheels, each attached at the corners, providing stability and mobility. The interior is spacious and unobstructed, suitable for carrying materials or goods. At one end, a small, protruding metal fixture suggests a coupling or attachment point, possibly for pulling or connecting to another vehicle. The overall construction combines wood, metal, and stone-like materials, making it robust and functional for urban transport or utility tasks.",
+    "description": "A robust, open-topped barrow with a deep brown body, black stone-like frame, and four octagonal wooden wheels. It features reinforced sides and a small metal fixture for attachment.",
+    "description_view_0": "Side view showing the full length of the barrow, with two octagonal wheels and the deep, brown paneling framed by black borders.",
+    "description_view_1": "End view highlighting the open interior, the thickness of the black frame, and the small metal fixture at the base.",
+    "description_view_2": "Opposite side view, nearly identical to view 0, showing the other pair of wheels and the same paneling.",
+    "description_view_3": "Rear end view, displaying the open tray and the solid, blocky wheel bases without the metal fixture.",
+    "category": "barrow",
+    "height": 0.85,
+    "max_dimension": 1.2,
+    "materials": [
+        "wood",
+        "metal",
+        "stone",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "mass": 38,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 90,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "tray",
+        "handle/fixture"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "black",
+        "gray",
+        "tan"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.55,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 4,
+    "attribute_handle_type": "single small metal fixture",
+    "attribute_wheel_position": "dual front and dual rear, side-mounted",
+    "attribute_tray_depth": 0.6,
+    "attribute_presence_of_support_legs": false,
+    "uid": "c35cde70f2a84b359d93060ab9f6099c",
+    "near_synsets": {
+        "barrow.n.03": 0.4809844679422064,
+        "handbarrow.n.01": 0.5233176797749579,
+        "buckboard.n.01": 0.5276119072195764,
+        "barrow.n.01": 0.5308226628663936,
+        "cart.n.01": 0.5344362641081214,
+        "burial_mound.n.01": -1000.0
+    },
+    "synset": "barrow.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c35cde70f2a84b359d93060ab9f6099c",
+        "creator_username": "rawpuwnzl",
+        "creator_display_name": "Sam",
+        "creator_profile_url": "https://sketchfab.com/rawpuwnzl"
+    },
+    "filename": "std_c35cde70f2a84b359d93060ab9f6099c.glb",
+    "length": 1.2219780087471008,
+    "width": 0.9866039454936981
+}

@@ -1,0 +1,91 @@
+{
+    "description_long": "This is a medium-sized, hexagonal tent with a peaked roof and rigid, paneled sides, likely designed for semi-permanent installation in urban parks or event spaces. The tent features a single, central entrance on one of its six sides, accessible via a rectangular mat or platform extending outward. The structure appears to be supported by a visible frame, possibly metal or reinforced plastic, with translucent or semi-opaque fabric or plastic panels forming the walls and roof. The roof is faceted, converging to a central point, and the walls are divided into geometric sections, suggesting modular assembly. There are no visible windows, mesh panels, or additional openings aside from the main entrance. The overall appearance is utilitarian, with a focus on durability and weather resistance rather than portability.",
+    "description": "A hexagonal, paneled tent with a peaked roof and a single central entrance, supported by a rigid frame and designed for urban use. The structure is semi-opaque and utilitarian, with a mat or platform at the entrance.",
+    "description_view_0": "Side view showing the hexagonal shape, paneled walls, and the mat extending from the entrance.",
+    "description_view_1": "Frontal view highlighting the main entrance, central mat, and symmetrical roof structure.",
+    "description_view_2": "Opposite side view with the mat visible on the left, showing the tent's geometric wall panels.",
+    "description_view_3": "Rear view displaying the back wall and the peaked roof, with no visible openings or features.",
+    "category": "tent",
+    "height": 2.5,
+    "max_dimension": 4.5,
+    "materials": [
+        "polyester fabric",
+        "plastic",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.2
+    ],
+    "mass": 65,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door/panel",
+        "mat/platform"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 200,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "Single central flap or panel door located on one hexagonal side, accessed via a rectangular mat or platform; no awning or vestibule visible.",
+    "attribute_number_of_poles": 6,
+    "attribute_guy_line_configuration": "No visible guy lines; structure appears self-supporting with rigid frame at corners and roof apex.",
+    "attribute_ventilation_openings": [],
+    "attribute_branding_or_logo": "none",
+    "uid": "a6cce65a612b4d61a389868b04fc96b4",
+    "near_synsets": {
+        "tent.n.01": 0.4907679506392312,
+        "pyramidal_tent.n.01": 0.49569067317708027,
+        "sibley_tent.n.01": 0.4994742530253803,
+        "field_tent.n.01": 0.5010665240026825,
+        "pop_tent.n.01": 0.505428756079447,
+        "tent.n.02": -1000.0
+    },
+    "synset": "tent.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/a6cce65a612b4d61a389868b04fc96b4",
+        "creator_username": "homedesign3d",
+        "creator_display_name": "Home Design 3D",
+        "creator_profile_url": "https://sketchfab.com/homedesign3d"
+    },
+    "filename": "std_a6cce65a612b4d61a389868b04fc96b4.glb",
+    "length": 8.504512310028076,
+    "width": 4.154739856719971
+}

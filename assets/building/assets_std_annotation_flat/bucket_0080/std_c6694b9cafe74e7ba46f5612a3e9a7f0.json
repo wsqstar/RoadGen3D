@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a compact tugboat-style ship with a robust, rounded hull painted in dark brown and black, featuring a pronounced bow and a slightly raised stern. The superstructure is positioned toward the front, painted white with red accents, and includes a wheelhouse with large windows and a cylindrical funnel behind it. The deck is equipped with various fixtures such as railings, lifebuoys, and what appears to be a winch or towing apparatus. The hull has a series of round fenders or bumpers along its edge, suggesting it is designed for close-quarters maneuvering and docking. The ship's overall design is functional, with a focus on utility and durability, typical of harbor or service vessels. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A compact, functional tugboat with a rounded dark hull, white superstructure, and visible deck equipment such as railings and a funnel.",
+    "description_view_0": "Bottom-up view showing the dark hull, underside details, and the superstructure with a prominent funnel and deck fixtures.",
+    "description_view_1": "Side view highlighting the white superstructure, cylindrical funnel, and the rounded bow with visible deck railings.",
+    "description_view_2": "Top-down view displaying the full length of the dark hull, with minimal superstructure detail visible.",
+    "description_view_3": "Opposite side view focusing on the stern and the rear of the superstructure, with the funnel and deck equipment visible.",
+    "category": "ship",
+    "height": 5.0,
+    "max_dimension": 18.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "steerable",
+        "towable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "funnel",
+        "winch",
+        "railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "white",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.18,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a rounded bow and stern, featuring a deep draft and a series of round fenders along the edge. The hull is robust and wide, optimized for stability and maneuverability in harbor environments.",
+    "attribute_superstructure_layout": "The superstructure is compact and located toward the bow, with a single main deck, a wheelhouse with large windows, and a cylindrical funnel directly behind. Railings and deck fixtures are present, with minimal upper deck structures.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "winch",
+        "lifebuoy",
+        "railing",
+        "funnel"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "c6694b9cafe74e7ba46f5612a3e9a7f0",
+    "near_synsets": {
+        "tugboat.n.01": 0.43501972282196794,
+        "tender.n.05": 0.48064340635189495,
+        "gig.n.04": 0.49020123505100804,
+        "boat.n.01": 0.4904634091790386,
+        "cargo_ship.n.01": 0.4967954442014361,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c6694b9cafe74e7ba46f5612a3e9a7f0",
+        "creator_username": "4122",
+        "creator_display_name": "4122",
+        "creator_profile_url": "https://sketchfab.com/4122"
+    },
+    "filename": "std_c6694b9cafe74e7ba46f5612a3e9a7f0.glb",
+    "length": 13.628501415252686,
+    "width": 8.625182628631592
+}

@@ -1,0 +1,91 @@
+{
+    "description_long": "This is a rectangular greenhouse structure with a pitched roof, constructed from a visible metal frame and transparent wall and roof panels. The frame is composed of evenly spaced vertical and horizontal metal supports, providing structural integrity and a modern, utilitarian appearance. The front features a single door with a diagonal support bar, allowing entry into the interior space. The transparent panels, likely made of glass or polycarbonate, allow maximum sunlight penetration, essential for plant growth inside. The roof is gabled, maximizing headroom and air circulation, and the entire structure is elevated slightly above the ground on metal feet. The overall design is functional and contemporary, suitable for urban gardens or community parks.",
+    "description": "A modern, rectangular greenhouse with a metal frame and transparent panels, featuring a pitched roof and a single front door. The structure is designed for optimal sunlight and durability.",
+    "description_view_0": "Front view showing the entry door, diagonal support bar, and the pitched roof structure.",
+    "description_view_1": "Side/top view highlighting the length of the greenhouse, the gabled roof, and the regular spacing of the metal frame supports.",
+    "description_view_2": "Rear view mirroring the front, but without a visible door, showing the symmetry of the frame and roof.",
+    "description_view_3": "Opposite side/top view, similar to view 1, emphasizing the transparent panels and structural grid.",
+    "category": "greenhouse",
+    "height": 2.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.25,
+        0.35,
+        0.4
+    ],
+    "mass": 800,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "door handle"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "gray",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.3,
+        0.7
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_transparent_walls": true,
+    "attribute_glass_roof": true,
+    "attribute_metal_frame": true,
+    "attribute_visible_plants_inside": false,
+    "attribute_architectural_style": "modern",
+    "uid": "76df9cd74ba6498b91046b4bbb574239",
+    "near_synsets": {
+        "greenhouse.n.01": 0.4716257188546474,
+        "cold_frame.n.01": 0.5161877360678576,
+        "conservatory.n.03": 0.5346048889021782,
+        "solar_house.n.01": 0.5413660979284299,
+        "window.n.01": 0.5574505759231325
+    },
+    "synset": "greenhouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/76df9cd74ba6498b91046b4bbb574239",
+        "creator_username": "sanx78",
+        "creator_display_name": "MinorEarth",
+        "creator_profile_url": "https://sketchfab.com/sanx78"
+    },
+    "filename": "std_76df9cd74ba6498b91046b4bbb574239.glb",
+    "length": 4.26405143737793,
+    "width": 2.7636873722076416
+}

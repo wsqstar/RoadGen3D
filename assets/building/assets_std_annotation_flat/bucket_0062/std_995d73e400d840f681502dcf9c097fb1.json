@@ -1,0 +1,102 @@
+{
+    "description_long": "This mud patch is a roughly circular, slightly raised area of compacted earth with a predominantly brown coloration. The surface is uneven, featuring small clumps, shallow depressions, and scattered rocks embedded within the mud. The texture appears gritty and granular, with some areas showing smoother, more compacted soil and others displaying loose, crumbly dirt. There are visible color variations, ranging from lighter tan to deeper brown, suggesting a mix of dry and slightly damp soil. The edges of the patch are irregular and blend gradually into the surrounding ground, with no sharp boundary. Small rocks and bits of debris are scattered across the surface, adding to the natural, weathered appearance.",
+    "description": "A circular, uneven patch of brown mud with scattered rocks and debris, featuring a gritty, granular texture and irregular, blended edges.",
+    "description_view_0": "This view highlights the central area of the mud patch, showing a prominent rock and several smaller stones embedded in the surface, with visible texture variations.",
+    "description_view_1": "From this angle, the patch appears smoother with fewer rocks, and the lighter brown tones are more prominent, especially near the edge.",
+    "description_view_2": "This perspective emphasizes the central depression and a single large rock, with the surface appearing more compacted and slightly darker.",
+    "description_view_3": "Here, the mud patch's irregular edge is most visible, with a mix of compacted and loose soil and a few scattered rocks near the perimeter.",
+    "category": "mud patch",
+    "height": 0.08,
+    "max_dimension": 1.2,
+    "materials": [
+        "soil",
+        "rock",
+        "organic_matter",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "coverable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "brown",
+        "tan",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.07,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 50,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_location": "roadside or construction site in an urban area",
+    "attribute_boundary_definition": "The boundaries are irregular and blend gradually into the surrounding ground, with no sharp or well-defined edge.",
+    "attribute_presence_of_footprints_or_tire_marks": "none visible",
+    "attribute_water_accumulation": "none visible",
+    "attribute_surrounding_debris": "rocks",
+    "uid": "995d73e400d840f681502dcf9c097fb1",
+    "near_synsets": {
+        "mud_puddle.n.01": 0.5004858245236792,
+        "mud_stain.n.01": 0.5099891760212333,
+        "mud.n.01": 0.5157571638724496,
+        "mottle.n.01": 0.5451414259094597,
+        "pudding_stone.n.01": 0.556021791985301,
+        "eyepatch.n.01": -1000.0,
+        "while.n.01": -1000.0,
+        "mud.n.02": -1000.0,
+        "mend.n.01": -1000.0,
+        "spot.n.05": -1000.0,
+        "plot.n.02": -1000.0,
+        "patch.n.05": -1000.0,
+        "temporary_hookup.n.01": -1000.0,
+        "patch.n.03": -1000.0,
+        "bandage.n.01": -1000.0
+    },
+    "synset": "mud_puddle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/995d73e400d840f681502dcf9c097fb1",
+        "creator_username": "hram356",
+        "creator_display_name": "hram356",
+        "creator_profile_url": "https://sketchfab.com/hram356"
+    },
+    "filename": "std_995d73e400d840f681502dcf9c097fb1.glb",
+    "length": 0.6545097827911377,
+    "width": 0.6554783582687378
+}

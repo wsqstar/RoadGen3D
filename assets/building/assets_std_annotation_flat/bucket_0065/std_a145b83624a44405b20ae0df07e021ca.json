@@ -1,0 +1,103 @@
+{
+    "description_long": "This object is a military-style jet airplane with a rugged, angular fuselage and a camouflage brown exterior, featuring visible panel lines and weathering effects. The wings are swept back and mounted low on the fuselage, each equipped with multiple hardpoints carrying ordnance such as missiles or bombs. The twin-engine nacelles are integrated into the rear fuselage, with prominent exhaust nozzles visible at the back. The tail section features a conventional vertical stabilizer and horizontal stabilizers, all with sharp, angular lines. The cockpit is positioned at the front of the fuselage, enclosed by a dark, streamlined canopy. Landing gear is not visible, suggesting it may be retracted or not modeled in this view.",
+    "description": "A brown, camouflaged military jet with swept low wings, twin rear engines, and a front-mounted enclosed cockpit. The airplane is detailed with visible ordnance and angular tail surfaces.",
+    "description_view_0": "Front view showing the pointed nose, forward cockpit canopy, and the full span of the swept wings with visible ordnance.",
+    "description_view_1": "Side view highlighting the angular fuselage, twin rear engines, and the underwing ordnance; the cockpit canopy and tail profile are clearly visible.",
+    "description_view_2": "Rear view displaying the twin engine exhausts, the horizontal and vertical stabilizers, and the underwing payloads.",
+    "description_view_3": "Opposite side view similar to view 1, showing the other side of the fuselage, engines, and wing-mounted ordnance.",
+    "category": "airplane",
+    "height": 4.5,
+    "max_dimension": 15.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "control stick",
+        "throttle",
+        "ejection seat",
+        "landing gear lever",
+        "engine throttle",
+        "missile hardpoints"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "gray",
+        "red",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "group",
+    "attribute_wingspan_configuration": "Low-wing configuration with swept wings, equipped with multiple hardpoints for ordnance; no winglets or pronounced dihedral/anhedral angles visible.",
+    "attribute_engine_type": "Twin jet engines integrated into the rear fuselage.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Landing gear not visible; likely retractable based on military jet design.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a single canopy, likely single or tandem seat.",
+    "uid": "a145b83624a44405b20ae0df07e021ca",
+    "near_synsets": {
+        "aircraft.n.01": 0.46903832778748683,
+        "warplane.n.01": 0.48680857808623107,
+        "airplane.n.01": 0.5018938277067382,
+        "bomber.n.01": 0.5130071152206037,
+        "reconnaissance_plane.n.01": 0.5139128917170863
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a145b83624a44405b20ae0df07e021ca",
+        "creator_username": "larrynguyen",
+        "creator_display_name": "larrynguyen",
+        "creator_profile_url": "https://sketchfab.com/larrynguyen"
+    },
+    "filename": "std_a145b83624a44405b20ae0df07e021ca.glb",
+    "length": 4.369402647018433,
+    "width": 5.719500541687012
+}

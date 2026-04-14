@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a modern, single-seat fighter jet with a sleek, aerodynamic fuselage and sharply swept-back wings. The aircraft features a forward-mounted, enclosed cockpit with a transparent canopy, and is equipped with visible external weaponry mounted under the wings. The wings are low-mounted with slight anhedral angles and are fitted with small wingtip missiles or pods. The tail section includes a single vertical stabilizer and two horizontal stabilizers, forming a conventional tail design. The landing gear is tricycle-type, with the main gear under the wings and a nose gear under the forward fuselage. The jet engine is rear-mounted, with a prominent exhaust nozzle at the back.",
+    "description": "A modern, single-seat fighter jet with swept-back low wings, external weaponry, and a forward-enclosed cockpit. Features a single vertical stabilizer and tricycle landing gear.",
+    "description_view_0": "Front view showing the pointed nose, forward cockpit canopy, and symmetrical low-mounted swept wings with visible underwing armaments.",
+    "description_view_1": "Side view highlighting the elongated fuselage, open cockpit canopy, underwing missiles, and the tricycle landing gear configuration.",
+    "description_view_2": "Rear view displaying the single vertical stabilizer, horizontal stabilizers, engine exhaust, and the symmetry of the wing-mounted weaponry.",
+    "description_view_3": "Opposite side view showing the cockpit, swept-back wings, underwing armaments, and the rear engine placement.",
+    "category": "airplane",
+    "height": 4.8,
+    "max_dimension": 15.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "air",
+        "steel"
+    ],
+    "materials_composition": [
+        0.55,
+        0.2,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 9000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 88200,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "canopy",
+        "landing gear",
+        "control stick",
+        "throttle",
+        "ejection seat",
+        "wings",
+        "missile mounts",
+        "engine nozzle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "green",
+        "black",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "sleek",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, sharply swept with slight anhedral angle and small wingtip pods or missiles.",
+    "attribute_engine_type": "Single rear-mounted jet",
+    "attribute_tail_design": "Conventional tail with single vertical stabilizer and two horizontal stabilizers",
+    "attribute_landing_gear_type": "Tricycle, retractable, with one nose gear and two main gear units",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed single-seat cockpit with a transparent canopy",
+    "uid": "031debe8efad46dd9ba362604707ebb1",
+    "near_synsets": {
+        "airplane.n.01": 0.4957452728610078,
+        "monoplane.n.01": 0.49962733789059927,
+        "aircraft.n.01": 0.5023805321938523,
+        "jet.n.01": 0.5062701861781735,
+        "fighter.n.02": 0.5104628024116368
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/031debe8efad46dd9ba362604707ebb1",
+        "creator_username": "cdesrocher",
+        "creator_display_name": "cdesrocher",
+        "creator_profile_url": "https://sketchfab.com/cdesrocher"
+    },
+    "filename": "std_031debe8efad46dd9ba362604707ebb1.glb",
+    "length": 13.682429790496826,
+    "width": 9.847967147827148
+}

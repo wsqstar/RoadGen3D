@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a blocky, fortress-like prison building with a square footprint and a flat, open rooftop surrounded by a high parapet wall. The exterior is constructed from alternating dark and light materials, with the dark blocks resembling reinforced stone or concrete and the lighter sections forming a grid-like pattern. The building features a central double-door entrance on one side, set into a recessed section, and is elevated on a base of green grass and brown soil. The rooftop is bordered by a fence and has a central area that appears to be a secure courtyard or exercise yard, with a small structure or fire pit in the middle. The overall design is highly secure, with thick walls and minimal windows, emphasizing containment and surveillance. The structure is utilitarian, prioritizing function and security over decorative elements.",
+    "description": "A fortress-like, blocky prison with thick, alternating dark and light walls, a fenced flat roof, and a secure central entrance. The design is utilitarian and highly secure, with minimal windows and a strong perimeter.",
+    "description_view_0": "Front view showing the main double-door entrance, thick alternating wall sections, and the fenced rooftop with a central courtyard.",
+    "description_view_1": "Side view highlighting the grid-like wall pattern, the depth of the parapet, and the continuation of the secure rooftop fence.",
+    "description_view_2": "Rear view with a similar wall structure as the front but without a visible entrance, emphasizing the building's symmetry and security.",
+    "description_view_3": "Opposite side view, mirroring the features of view 1, with clear visibility of the parapet and rooftop details.",
+    "category": "prison",
+    "height": 12.0,
+    "max_dimension": 28.0,
+    "materials": [
+        "concrete",
+        "stone",
+        "metal",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 420000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "gate",
+        "fence"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark blue",
+        "white",
+        "gray",
+        "brown",
+        "green"
+    ],
+    "colors_composition": [
+        0.45,
+        0.35,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 6.0,
+    "asset_composition_type": "single",
+    "attribute_barbed_wire": false,
+    "attribute_guard_towers": 0,
+    "attribute_high_perimeter_walls": true,
+    "attribute_security_cameras": 0,
+    "attribute_architectural_style": "utilitarian",
+    "uid": "d873651526f64699a0d93d4f58d4e60e",
+    "near_synsets": {
+        "stockade.n.01": 0.5189261227410442,
+        "prison.n.02": 0.5221311948844307,
+        "fortress.n.01": 0.5398353332472119,
+        "panopticon.n.02": 0.541316444059528,
+        "dungeon.n.02": 0.5432652490177361,
+        "prison.n.01": -1000.0
+    },
+    "synset": "prison.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d873651526f64699a0d93d4f58d4e60e",
+        "creator_username": "madexc",
+        "creator_display_name": "madexc",
+        "creator_profile_url": "https://sketchfab.com/madexc"
+    },
+    "filename": "std_d873651526f64699a0d93d4f58d4e60e.glb",
+    "length": 21.428531646728516,
+    "width": 21.428524017333984
+}

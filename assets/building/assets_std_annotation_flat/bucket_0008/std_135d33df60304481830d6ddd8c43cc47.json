@@ -1,0 +1,116 @@
+{
+    "description_long": "This is a large, industrial-style dumpster with a weathered blue metal body and a black, split, hinged lid. The front features several warning labels, including a yellow caution sign and a diamond-shaped chemical hazard placard, as well as a keypad panel. The sides show signs of rust and wear, with one side displaying colorful butterfly decals and the other side plain except for some structural reinforcements. The rear is mostly unadorned except for red graffiti near the bottom. The lid is ribbed for strength and has a visible metal bar for opening, while the overall structure is robust and designed for heavy-duty waste storage. The dumpster is suitable for placement in urban environments such as alleys, commercial loading zones, or industrial sites.",
+    "description": "A large, blue, weathered metal dumpster with a black split lid, warning labels, and visible signs of wear and graffiti. Designed for heavy-duty waste storage in urban or industrial settings.",
+    "description_view_0": "Front view showing the split black lid, keypad panel, yellow caution label, chemical hazard placard, and general weathering.",
+    "description_view_1": "Left side view highlighting the sloped lid, butterfly decals, and structural reinforcements.",
+    "description_view_2": "Rear view displaying a mostly plain, rusted surface with red graffiti near the bottom.",
+    "description_view_3": "Right side view with a plain, weathered surface and visible lid hinges.",
+    "category": "dumpster",
+    "height": 1.4,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 320,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "handle",
+        "keypad"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black",
+        "yellow",
+        "red",
+        "white",
+        "multicolor"
+    ],
+    "colors_composition": [
+        0.7,
+        0.18,
+        0.04,
+        0.03,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "split, hinged, ribbed plastic lid with two sections and a metal opening bar; no visible locking mechanism",
+    "attribute_wheel_presence": false,
+    "attribute_handle_design": "two metal bar handles, one on each side near the top edge",
+    "attribute_warning_labels": [
+        {
+            "color": "yellow",
+            "shape": "rectangle",
+            "content": "CAUTION CHEMICAL STORAGE AREA"
+        },
+        {
+            "color": "multicolor",
+            "shape": "diamond",
+            "content": "hazard placard (2-3-0)"
+        },
+        {
+            "color": "white/yellow",
+            "shape": "rectangle",
+            "content": "keypad panel"
+        }
+    ],
+    "attribute_placement_location": "outdoor commercial area, industrial site, or urban alley",
+    "uid": "135d33df60304481830d6ddd8c43cc47",
+    "near_synsets": {
+        "dumpster.n.01": 0.4413709255580114,
+        "garbage.n.03": 0.5173388700218101,
+        "garbage_truck.n.01": 0.5330515702295963,
+        "recycling_bin.n.01": 0.5387763127030096,
+        "dump.n.02": 0.5398889682007035
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/135d33df60304481830d6ddd8c43cc47",
+        "creator_username": "zackim",
+        "creator_display_name": "zackim",
+        "creator_profile_url": "https://sketchfab.com/zackim"
+    },
+    "filename": "std_135d33df60304481830d6ddd8c43cc47.glb",
+    "length": 1.2665302753448486,
+    "width": 1.486441731452942
+}

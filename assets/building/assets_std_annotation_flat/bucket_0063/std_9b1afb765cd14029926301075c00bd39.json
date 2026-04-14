@@ -1,0 +1,90 @@
+{
+    "description_long": "This object is a streamlined aerial bomb with a pointed nose and a cylindrical body, featuring prominent stabilizing fins at the rear and midsection. The nose is conical and tapers smoothly into the main body, which is segmented by subtle ridges and a visible band near the center. The rear section is equipped with a set of four large, flat tail fins arranged in a cross pattern, providing aerodynamic stability during flight. The surface appears to be made of metal, with a matte, uniform gray finish and no visible markings or labels. The overall design is utilitarian, with no visible external wiring, switches, or timer displays. The bomb is solid and robust, intended for deployment in urban or military environments.",
+    "description": "A gray, streamlined aerial bomb with a pointed nose, cylindrical body, and large cross-pattern tail fins. The surface is matte metal with no visible markings or external components.",
+    "description_view_0": "Side view showing the pointed nose, cylindrical body, and two of the four large tail fins.",
+    "description_view_1": "Rear view highlighting the cross-shaped arrangement of the four tail fins and the hollow tail section.",
+    "description_view_2": "Opposite side view similar to view 0, showing the other two tail fins and the segmented body.",
+    "description_view_3": "Front view displaying the conical nose and the symmetrical spread of the four stabilizing fins.",
+    "category": "bomb",
+    "height": 0.35,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "aluminum",
+        "explosive_compound",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.25,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1176,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "tail fins",
+        "nose cone"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.01,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "No visible external detonation mechanism; likely initiated by an internal impact fuse or remote trigger based on standard bomb design.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "9b1afb765cd14029926301075c00bd39",
+    "near_synsets": {
+        "bomber.n.01": 0.5234752496342169,
+        "buzz_bomb.n.01": 0.52783448608351,
+        "aerial_torpedo.n.01": 0.5433893341765821,
+        "bombsight.n.01": 0.5517622271313204,
+        "aircraft.n.01": 0.551832302203568,
+        "bomb.n.01": -1000.0,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9b1afb765cd14029926301075c00bd39",
+        "creator_username": "victory_mirosya",
+        "creator_display_name": "victory_mirosya",
+        "creator_profile_url": "https://sketchfab.com/victory_mirosya"
+    },
+    "filename": "std_9b1afb765cd14029926301075c00bd39.glb",
+    "length": 0.8984272181987762,
+    "width": 0.44376659393310547
+}

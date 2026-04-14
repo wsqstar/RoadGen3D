@@ -1,0 +1,100 @@
+{
+    "description_long": "A whole cheese pizza sits inside an open cardboard pizza box, which is placed on a red cloth or mat. The pizza is round, with a golden-brown crust and a surface covered in melted cheese, showing some browning from baking. The box is a standard corrugated cardboard type, with visible flaps and printed text along the edge. The pizza appears to be uncut, with no visible slice lines. Behind the box, there is a small, partially visible object that looks like a bottle or can, possibly a beverage, but it is not the main focus. The scene is typical of a pizza delivery or takeout meal, with the pizza ready to be served or eaten.",
+    "description": "A whole cheese pizza in an open cardboard box sits on a red mat, with a golden crust and melted cheese topping.",
+    "description_view_0": "The pizza is viewed from above, showing the full round shape, golden cheese, and the open box with flaps visible.",
+    "description_view_1": "The pizza is seen from the side, highlighting the thickness of the crust and the depth of the box, with the red mat extending outward.",
+    "description_view_2": "A low side profile shows the box lid and a partially obscured beverage or object behind the box, with the pizza edge barely visible.",
+    "description_view_3": "An angled view reveals the pizza's surface, the open box, and the red mat, with the beverage object more visible in the background.",
+    "category": "pizza",
+    "height": 0.09,
+    "max_dimension": 0.36,
+    "materials": [
+        "bread",
+        "cheese",
+        "tomato sauce",
+        "cardboard",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.25,
+        0.1,
+        0.25,
+        0.05
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 15,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "box lid",
+        "pizza"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "brown",
+        "red",
+        "white",
+        "tan"
+    ],
+    "colors_composition": [
+        0.35,
+        0.15,
+        0.25,
+        0.05,
+        0.2
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 15,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.08,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_topping_type": [
+        "cheese"
+    ],
+    "attribute_slice_count": 1,
+    "attribute_crust_style": "thick crust",
+    "attribute_packaging_presence": true,
+    "attribute_brand_logo": "None",
+    "uid": "d5b66f6c7e5549ecaf7262c4b58088b5",
+    "near_synsets": {
+        "cheese_pizza.n.01": 0.4674727286108787,
+        "pepperoni_pizza.n.01": 0.5119051249600832,
+        "sausage_pizza.n.01": 0.5278860192487838,
+        "pizza.n.01": 0.5295841143513252,
+        "sicilian_pizza.n.01": 0.5347233320193884
+    },
+    "synset": "sicilian_pizza.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d5b66f6c7e5549ecaf7262c4b58088b5",
+        "creator_username": "kckaiwei",
+        "creator_display_name": "kckaiwei",
+        "creator_profile_url": "https://sketchfab.com/kckaiwei"
+    },
+    "filename": "std_d5b66f6c7e5549ecaf7262c4b58088b5.glb",
+    "length": 0.15811706334352493,
+    "width": 0.16770891845226288
+}

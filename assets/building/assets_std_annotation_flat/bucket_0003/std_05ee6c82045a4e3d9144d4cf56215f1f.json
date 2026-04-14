@@ -1,0 +1,108 @@
+{
+    "description_long": "This ship features a low-profile, ironclad hull with a rounded bow and stern, and a flat deck surrounded by railings. The deck is equipped with two large, armored gun turrets, one positioned near the bow and the other closer to the stern, each with visible gun barrels. A single, tall cylindrical funnel rises from the center of the deck, flanked by two lifeboats mounted on either side. The hull is painted gray with a distinct red waterline stripe, and the deck is sparsely populated with fixtures, emphasizing its utilitarian, military design. The ship also displays a black flag at the stern, and several small hatches and deck fittings are visible. The overall appearance suggests a historical ironclad warship, likely from the late 19th century.",
+    "description": "A gray, ironclad warship with a flat deck, two armored turrets, a central funnel, and lifeboats, featuring a red waterline stripe and a black flag at the stern.",
+    "description_view_0": "Front view showing the rounded bow, forward turret, and symmetrical placement of lifeboats.",
+    "description_view_1": "Side view highlighting the full length of the hull, central funnel, both turrets, lifeboats, and the black flag at the stern.",
+    "description_view_2": "Rear view displaying the stern turret, lifeboats, and the black flag, with the funnel and deck layout visible.",
+    "description_view_3": "Opposite side view similar to view 1, showing the hull profile, turrets, funnel, lifeboats, and stern flag.",
+    "category": "ship",
+    "height": 7.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "steel",
+        "iron",
+        "wood",
+        "glass",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.01,
+        0.04
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2500000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "hatch",
+        "lifeboat",
+        "flag",
+        "funnel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a rounded bow and stern, a flat deck, and a pronounced red waterline stripe. There are no visible keels or bulbous bows, and the hull sides are smooth with minimal external features.",
+    "attribute_superstructure_layout": "The superstructure consists of two armored turrets, a single central funnel, and minimal deck structures, with lifeboats mounted on either side and a flag at the stern. The deck is open and surrounded by railings.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "turret",
+        "lifeboat",
+        "funnel",
+        "flag",
+        "hatch",
+        "railings"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "05ee6c82045a4e3d9144d4cf56215f1f",
+    "near_synsets": {
+        "ironclad.n.01": 0.4584668903646447,
+        "capital_ship.n.01": 0.49669076216091235,
+        "battleship.n.01": 0.497899573649569,
+        "surface_ship.n.01": 0.4984147035376578,
+        "three-decker.n.03": 0.500464203101655,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/05ee6c82045a4e3d9144d4cf56215f1f",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_05ee6c82045a4e3d9144d4cf56215f1f.glb",
+    "length": 29.268324851989746,
+    "width": 9.026847839355469
+}

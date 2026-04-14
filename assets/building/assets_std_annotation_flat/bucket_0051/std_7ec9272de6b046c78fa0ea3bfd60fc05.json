@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a small, single-story urban cafe with a flat roof and a brick-and-stucco facade. The front features a large window, a glass entrance door, and signage indicating the establishment's name and offerings. There is a trash bin and a menu board outside, enhancing its street presence. The side and rear walls are more utilitarian, with minimal windows and a plain, gray finish. Rooftop details include HVAC units and vents, typical for commercial buildings. The sidewalk in front is paved, and the overall structure is compact and functional, suited for a city street.",
+    "description": "A compact, single-story urban cafe with a brick-and-stucco facade, large front window, signage, and a flat roof with rooftop units.",
+    "description_view_0": "Front view showing the main entrance, large window, signage, trash bin, and menu board.",
+    "description_view_1": "Side view with a smaller window and a continuation of the brick facade, less detailed than the front.",
+    "description_view_2": "Rear view with plain gray brickwork, two small rooftop vents, and no windows or doors.",
+    "description_view_3": "Opposite side view with a single window and visible rooftop units, minimal decoration.",
+    "category": "cafe",
+    "height": 4.0,
+    "max_dimension": 12.0,
+    "materials": [
+        "concrete",
+        "brick",
+        "glass",
+        "metal",
+        "plastic",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.1,
+        0.08,
+        0.05,
+        0.02,
+        0.05
+    ],
+    "mass": 65000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "menu board",
+        "trash bin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "white",
+        "black",
+        "green"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_signage": true,
+    "attribute_outdoor_seating": false,
+    "attribute_awning": false,
+    "attribute_storefront_display": true,
+    "attribute_architectural_style": "utilitarian",
+    "uid": "7ec9272de6b046c78fa0ea3bfd60fc05",
+    "near_synsets": {
+        "espresso_shop.n.01": 0.5252153304554701,
+        "cafe.n.01": 0.528203231793197,
+        "coffee_stall.n.01": 0.5558905816876905,
+        "caff.n.01": 0.5614134767624422,
+        "estaminet.n.01": 0.571915177070346
+    },
+    "synset": "cafe.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7ec9272de6b046c78fa0ea3bfd60fc05",
+        "creator_username": "colpolstudios",
+        "creator_display_name": "colpolstudios",
+        "creator_profile_url": "https://sketchfab.com/colpolstudios"
+    },
+    "filename": "std_7ec9272de6b046c78fa0ea3bfd60fc05.glb",
+    "length": 10.222377300262451,
+    "width": 9.468688488006592
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a modern, two-bay garage structure with a flat roof and a clean, geometric design. The front facade features two large, white sectional garage doors, each wide enough to accommodate a vehicle, and a paved driveway with five parked cars. The side and rear walls are plain, with minimal windows and a smooth, light gray exterior finish. The left side of the building includes a small entrance area with a glass canopy and some landscaping, while the right side is bordered by a driveway that curves around the building. The structure appears to be constructed primarily from concrete or masonry, with some wood and glass accents on the entrance side. The overall appearance is functional and contemporary, suitable for urban or suburban environments.",
+    "description": "A modern, flat-roofed garage with two large sectional doors, a paved driveway, and minimalistic design elements. The structure features concrete walls, wood and glass accents, and space for multiple vehicles.",
+    "description_view_0": "Front view showing two large white sectional garage doors, five parked cars, and the main driveway entrance.",
+    "description_view_1": "Rear view highlighting the plain back wall, roof structure, and the side profile of parked vehicles.",
+    "description_view_2": "Back view with minimal windows and a solid wall, showing the separation between the two garage bays.",
+    "description_view_3": "Side view displaying the wood and glass entrance area, landscaping, and the driveway curving around the building.",
+    "category": "garage",
+    "height": 6.0,
+    "max_dimension": 20.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "wood",
+        "metal",
+        "asphalt",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.08,
+        0.07,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "garage door",
+        "side door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "brown",
+        "black",
+        "green"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_garage_door_type": "sectional",
+    "attribute_number_of_garage_doors": 2,
+    "attribute_presence_of_driveway": true,
+    "attribute_door_hardware_style": "minimalist",
+    "attribute_architectural_style": "modern",
+    "uid": "3732439dee704ecb8a65de619941fef6",
+    "near_synsets": {
+        "carport.n.01": 0.4945433598618865,
+        "garage.n.01": 0.5007535880188175,
+        "garage.n.02": 0.5657053565126955,
+        "door.n.04": 0.5733031800741671,
+        "railroad_flat.n.01": 0.5745408498339377
+    },
+    "synset": "garage.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3732439dee704ecb8a65de619941fef6",
+        "creator_username": "crispimrafael",
+        "creator_display_name": "SrMonteiro",
+        "creator_profile_url": "https://sketchfab.com/crispimrafael"
+    },
+    "filename": "std_3732439dee704ecb8a65de619941fef6.glb",
+    "length": 19.762452125549316,
+    "width": 14.543970584869385
+}

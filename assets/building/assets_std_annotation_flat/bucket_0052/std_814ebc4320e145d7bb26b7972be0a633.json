@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a double-barrel shotgun with a robust, industrial appearance, featuring two parallel barrels of equal length. The barrels are constructed from dark metal, exhibiting a slightly worn, matte finish, and are joined together along their entire length. The receiver is boxy and metallic, with a visible loading port and mechanical details on the side. The grip is made of wood, contrasting with the metal components, and is shaped ergonomically for handheld use. A prominent trigger guard encloses the trigger, and the overall design suggests a utilitarian, functional weapon suitable for urban defense or law enforcement scenarios.",
+    "description": "A double-barrel shotgun with dark metal barrels and a wooden grip, featuring a boxy receiver and prominent trigger guard. The design is utilitarian and robust, with visible mechanical details.",
+    "description_view_0": "Front view showing the two parallel barrels and the muzzle openings, emphasizing the shotgun's double-barrel configuration.",
+    "description_view_1": "Side view displaying the full length of the barrels, the boxy receiver, wooden grip, and the trigger guard.",
+    "description_view_2": "Top-down view highlighting the alignment of the barrels and the rectangular shape of the receiver, with the wooden grip visible at the rear.",
+    "description_view_3": "Opposite side view mirroring view 1, showing the barrels, receiver, wooden grip, and trigger guard from the other side.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.85,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.18,
+        0.05,
+        0.02
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "trigger guard",
+        "barrels",
+        "grip",
+        "receiver",
+        "loading port"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "side-by-side double-barrel, both barrels of equal length with no visible ribbing or venting",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "break-action",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "Elongated, rounded trigger guard with a smooth contour and no visible finger grooves or reinforcement",
+    "uid": "814ebc4320e145d7bb26b7972be0a633",
+    "near_synsets": {
+        "shotgun.n.01": 0.4671036660788558,
+        "sawed-off_shotgun.n.01": 0.49693646520326273,
+        "shotgun_shell.n.01": 0.5364674504387642,
+        "gun.n.01": 0.5448447170936186,
+        "gun_trigger.n.01": 0.547908729658202
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/814ebc4320e145d7bb26b7972be0a633",
+        "creator_username": "goswick3",
+        "creator_display_name": "Johnathon Goswick",
+        "creator_profile_url": "https://sketchfab.com/goswick3"
+    },
+    "filename": "std_814ebc4320e145d7bb26b7972be0a633.glb",
+    "length": 0.5470842719078064,
+    "width": 0.10155618190765381
+}

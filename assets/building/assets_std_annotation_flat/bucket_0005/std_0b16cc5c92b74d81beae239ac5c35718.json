@@ -1,0 +1,98 @@
+{
+    "description_long": "This kiosk is a tall, rectangular structure with a modern, minimalist design, featuring a combination of wood-textured and dark-colored panels. The front face displays the word 'RECICLADO' in large, vertical white letters, suggesting its function as a recycling station or collection point. The upper section includes a prominent, striped cylindrical element, possibly a decorative or functional chute, positioned above a series of horizontal slats or slots. The sides are plain with a light wood finish, while the rear is mostly solid with a few horizontal black slots near the top. The overall construction appears sturdy, with clean lines and a utilitarian aesthetic suitable for urban environments. The kiosk lacks visible windows or doors, emphasizing its role as a receptacle rather than an enclosed booth.",
+    "description": "A tall, rectangular recycling kiosk with wood-textured sides, dark front panel, and a striped cylindrical feature on top. The front displays 'RECICLADO' and multiple horizontal slots, giving it a modern, utilitarian look.",
+    "description_view_0": "Front view showing the 'RECICLADO' signage, horizontal slots, and the striped cylindrical element on top.",
+    "description_view_1": "Side view revealing the plain wood-textured panel and the depth of the kiosk.",
+    "description_view_2": "Rear view with a mostly solid surface and a few horizontal black slots near the top.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the wood-textured panel and the kiosk's profile.",
+    "category": "kiosk",
+    "height": 2.0,
+    "max_dimension": 2.2,
+    "materials": [
+        "wood",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "depositable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "slots",
+        "cylindrical chute"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light wood",
+        "black",
+        "gray",
+        "white",
+        "brown",
+        "orange"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 10000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "Printed sign, vertical, on front left panel, text: 'RECICLADO'",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "none",
+    "attribute_roof_design": "Flat roof with a prominent striped cylindrical element on top, no overhangs or awnings",
+    "attribute_architectural_style": "modern, minimalist, utilitarian",
+    "uid": "0b16cc5c92b74d81beae239ac5c35718",
+    "near_synsets": {
+        "recycling_bin.n.01": 0.5320156733681694,
+        "recycling_plant.n.01": 0.5739192810158815,
+        "bottle_bank.n.01": 0.5766981041475189,
+        "garbage.n.03": 0.580494357245442,
+        "bottle_collection.n.03": 0.5880796961502934,
+        "booth.n.02": -1000.0
+    },
+    "synset": "recycling_bin.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0b16cc5c92b74d81beae239ac5c35718",
+        "creator_username": "arteurbano",
+        "creator_display_name": "ArteURBANO",
+        "creator_profile_url": "https://sketchfab.com/arteurbano"
+    },
+    "filename": "std_0b16cc5c92b74d81beae239ac5c35718.glb",
+    "length": 0.5679881274700165,
+    "width": 0.667194277048111
+}

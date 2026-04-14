@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a military-style tracked vehicle resembling a Soviet T-34 tank, featuring a robust armored hull and a rotating turret with a long barrel cannon. The exterior is painted in a matte olive green with visible Cyrillic markings on the turret, and the body is equipped with cylindrical fuel tanks and stowage items mounted on the sides. The vehicle has six large road wheels on each side, connected by a continuous metal track system, and additional spare track links are attached to the hull. The turret includes a commander's cupola, hatches, and periscopes, while the rear of the vehicle displays exhaust vents and storage compartments. The surface is rugged and utilitarian, with visible weld seams, bolts, and weathering effects that suggest heavy use. This vehicle is designed for off-road and urban combat scenarios, providing both mobility and protection in challenging environments.",
+    "description": "A heavily armored, olive green tracked military vehicle with a rotating turret, long cannon, and side-mounted fuel tanks, designed for rugged all-terrain use.",
+    "description_view_0": "Rear three-quarter view showing the cylindrical fuel tanks, rear engine deck, and turret with Cyrillic markings.",
+    "description_view_1": "Left side view highlighting the six large road wheels, spare track links, and turret details.",
+    "description_view_2": "Front right view displaying the sloped frontal armor, cannon barrel, and turret hatches.",
+    "description_view_3": "Rear right view focusing on the exhaust vents, rear hull, and side-mounted equipment.",
+    "category": "all-terrain vehicle",
+    "height": 2.4,
+    "max_dimension": 6.7,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 26000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "wheel",
+        "track",
+        "fuel tank",
+        "periscope"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "black",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 12,
+    "attribute_tire_tread_pattern": "The tracks feature a blocky, aggressive tread pattern designed for maximum traction on rough, muddy, or urban debris-laden terrain.",
+    "attribute_suspension_type": "independent",
+    "attribute_presence_of_roll_cage": false,
+    "attribute_handlebar_or_steering_wheel_type": "round steering wheel",
+    "uid": "5090252558c04d5ba8a29972ac059560",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4548868345557142,
+        "tank.n.01": 0.46938554763172624,
+        "reconnaissance_vehicle.n.01": 0.4837033742593989,
+        "assault_gun.n.02": 0.48422211638481083,
+        "armored_vehicle.n.01": 0.48478125800791544,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5090252558c04d5ba8a29972ac059560",
+        "creator_username": "kryik1023",
+        "creator_display_name": "Renafox",
+        "creator_profile_url": "https://sketchfab.com/kryik1023"
+    },
+    "filename": "std_5090252558c04d5ba8a29972ac059560.glb",
+    "length": 5.3569066524505615,
+    "width": 5.0344438552856445
+}

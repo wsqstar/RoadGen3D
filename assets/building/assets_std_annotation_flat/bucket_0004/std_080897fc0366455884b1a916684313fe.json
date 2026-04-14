@@ -1,0 +1,101 @@
+{
+    "description_long": "This rifle features a compact bullpup design with a matte black finish, characterized by its integrated stock and magazine located behind the trigger group. The body is primarily constructed from polymer with visible metal components, including the barrel, rails, and trigger assembly. It is equipped with a top-mounted Picatinny rail supporting a holographic or red dot sight, and additional rails for tactical accessories. The front end includes a short, thick barrel with a mounted flashlight or laser module and a prominent muzzle device. The rifle's ergonomic grip and trigger guard are molded into the body, and the magazine is horizontally inserted at the rear. The overall design is modern, tactical, and optimized for urban combat scenarios.",
+    "description": "A compact, black bullpup rifle with integrated rails, a holographic sight, and a tactical front attachment. Its modern design features a rear magazine and ergonomic grip.",
+    "description_view_0": "Side view showing the full length, bullpup configuration, and tactical attachments including the sight and front module.",
+    "description_view_1": "Front view highlighting the muzzle, mounted device, and sight alignment along the top rail.",
+    "description_view_2": "Opposite side view displaying the rear magazine, ergonomic grip, and overall compactness.",
+    "description_view_3": "Rear view focusing on the stock, rear magazine insertion point, and the alignment of the sight.",
+    "category": "rifle",
+    "height": 0.22,
+    "max_dimension": 0.68,
+    "materials": [
+        "polymer",
+        "steel",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "aimable",
+        "mountable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "magazine",
+        "sight",
+        "safety switch",
+        "rail",
+        "muzzle device",
+        "grip",
+        "flashlight/laser module"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.38,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "bullpup",
+    "attribute_barrel_type": "short",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "holographic",
+    "attribute_muzzle_device": "flash hider",
+    "uid": "080897fc0366455884b1a916684313fe",
+    "near_synsets": {
+        "dragunov.n.01": 0.5353923101073648,
+        "light_arm.n.01": 0.5401662746432421,
+        "carbine.n.01": 0.5412562420459162,
+        "peep_sight.n.01": 0.5501641508825105,
+        "browning_automatic_rifle.n.01": 0.5523343970402838,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/080897fc0366455884b1a916684313fe",
+        "creator_username": "doomsentinel",
+        "creator_display_name": "doomsentinel",
+        "creator_profile_url": "https://sketchfab.com/doomsentinel"
+    },
+    "filename": "std_080897fc0366455884b1a916684313fe.glb",
+    "length": 0.6420898735523224,
+    "width": 0.07995612919330597
+}

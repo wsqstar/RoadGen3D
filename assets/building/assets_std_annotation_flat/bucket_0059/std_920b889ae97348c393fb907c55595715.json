@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a long, narrow wooden raft with a pointed bow and stern, painted in a combination of beige and red hues. The raft features eight evenly spaced bench seats, each accompanied by a pair of oars extending outward, indicating it is designed for multiple rowers. The hull is shallow and open, with visible ribs and planking, suggesting traditional construction methods. The exterior is primarily beige with a red trim along the upper edge, and the interior seating and floorboards are a lighter wood tone. The raft rests on a black support, likely for display or storage, and there are no visible flotation devices or safety markings. The overall design is functional and utilitarian, suitable for group rowing on calm waters.",
+    "description": "A long, beige and red wooden raft with eight bench seats and paired oars, designed for group rowing. The open hull and traditional construction highlight its utilitarian purpose.",
+    "description_view_0": "Top-down view showing the full arrangement of eight bench seats and paired oars extending symmetrically from both sides.",
+    "description_view_1": "Side profile displaying the raft's shallow hull, red trim, and the alignment of oars and seats along its length.",
+    "description_view_2": "Bottom-up view emphasizing the raft's pointed bow and stern, with the oars and seating layout visible from above.",
+    "description_view_3": "Opposite side profile mirroring view 1, showing the raft's length, oar placement, and hull shape.",
+    "category": "raft",
+    "height": 0.6,
+    "max_dimension": 7.0,
+    "materials": [
+        "wood",
+        "metal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "rowable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "oar",
+        "bench seat"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "beige",
+        "red",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_presence_of_flotation_devices": false,
+    "attribute_number_of_seats": 8,
+    "attribute_type_of_propulsion": "oar",
+    "attribute_safety_markings": [],
+    "attribute_attachment_points": 0,
+    "uid": "920b889ae97348c393fb907c55595715",
+    "near_synsets": {
+        "rowing_boat.n.01": 0.4720617575879501,
+        "raft.n.01": 0.523809288973002,
+        "racing_boat.n.01": 0.5346200331332698,
+        "wherry.n.02": 0.5398145136577334,
+        "gig.n.01": 0.5402908531619778,
+        "raft_foundation.n.01": -1000.0,
+        "batch.n.02": -1000.0
+    },
+    "synset": "raft_foundation.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/920b889ae97348c393fb907c55595715",
+        "creator_username": "eeelabvisual",
+        "creator_display_name": "eeelabvisual",
+        "creator_profile_url": "https://sketchfab.com/eeelabvisual"
+    },
+    "filename": "std_920b889ae97348c393fb907c55595715.glb",
+    "length": 0.6505513191223145,
+    "width": 0.5161178112030029
+}

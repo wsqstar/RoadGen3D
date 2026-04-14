@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is an antique flintlock-style shotgun, featuring a curved wooden grip and a short, thick barrel. The body is primarily constructed from dark, aged wood with visible grain, complemented by metal components including the barrel, trigger, and firing mechanism. The hammer and frizzen are prominent above the barrel, characteristic of early firearm designs. Brass or bronze bands reinforce the barrel at intervals, adding both structural integrity and decorative detail. The trigger guard is rounded and made of metal, with a simple, utilitarian design. The overall appearance suggests a historical weapon, likely from the 18th or early 19th century, with a compact form suitable for close-quarters use.",
+    "description": "A compact, antique flintlock shotgun with a curved wooden grip, short metal barrel, and prominent hammer mechanism. Brass bands and a rounded metal trigger guard accent its aged, historical appearance.",
+    "description_view_0": "Side view showing the full profile, curved wooden grip, short barrel, and prominent hammer and trigger guard.",
+    "description_view_1": "Top-down view highlighting the barrel's thickness, the alignment of the hammer, and the curvature of the grip.",
+    "description_view_2": "Opposite side view displaying the metal bands, firing mechanism, and the overall compactness of the shotgun.",
+    "description_view_3": "Front-angled view emphasizing the muzzle, barrel opening, and the upward curve of the grip.",
+    "category": "shotgun",
+    "height": 0.13,
+    "max_dimension": 0.35,
+    "materials": [
+        "wood",
+        "steel",
+        "brass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "mass": 1.5,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 20,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "graspable",
+        "triggerable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "hammer",
+        "barrel",
+        "grip",
+        "trigger guard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "brass"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 160000.0,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, short and thick with no visible ribbing or venting",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "flintlock",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized metal guard with a simple, unadorned design",
+    "uid": "19580345c7c846f0a7f05d783cb48ea8",
+    "near_synsets": {
+        "flintlock.n.02": 0.45769287915616236,
+        "flintlock.n.01": 0.475763470160131,
+        "sawed-off_shotgun.n.01": 0.5093555552449183,
+        "shotgun.n.01": 0.5125983972714329,
+        "fusil.n.01": 0.5159556703124634
+    },
+    "synset": "shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/19580345c7c846f0a7f05d783cb48ea8",
+        "creator_username": "UofA-CDH",
+        "creator_display_name": "The Center for Digital Humanities UArizona",
+        "creator_profile_url": "https://sketchfab.com/UofA-CDH"
+    },
+    "filename": "std_19580345c7c846f0a7f05d783cb48ea8.glb",
+    "length": 0.3346870392560959,
+    "width": 0.13662561774253845
+}

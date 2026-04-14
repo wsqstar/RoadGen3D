@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a classic cartoon-style spherical bomb with a matte black surface and a short, white fuse protruding from the top. The front of the bomb features a large, bold letter 'P' in a gradient of yellow to orange, giving it a distinctive and possibly personalized appearance. The body is smooth and seamless, with no visible seams or mechanical parts except for the fuse. The fuse appears to be made of a flexible material, likely intended to be lit for detonation. The bomb is compact and solid, with a uniform curvature and a slightly reflective finish. Its overall design is simple, iconic, and easily recognizable as an explosive device.",
+    "description": "A matte black spherical bomb with a white fuse and a large yellow-orange 'P' on the front, featuring a smooth, slightly reflective surface.",
+    "description_view_0": "Front view showing the bold 'P' in yellow-orange gradient and the white fuse on top.",
+    "description_view_1": "Side view with the edge of the 'P' barely visible and the fuse still prominent.",
+    "description_view_2": "Rear view showing only the smooth black surface and the fuse, with no markings.",
+    "description_view_3": "Opposite side view, fully black with the fuse visible, no markings or features.",
+    "category": "bomb",
+    "height": 0.25,
+    "max_dimension": 0.25,
+    "materials": [
+        "metal",
+        "explosive_compound",
+        "plastic",
+        "paper",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 2.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 25,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "fuse"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "white",
+        "yellow",
+        "orange"
+    ],
+    "colors_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The bomb appears to be detonated by lighting the short white fuse protruding from the top, which would burn down to the internal explosive.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "1fb0eaf57b4847ce9f1cf41bd4f6c9bd",
+    "near_synsets": {
+        "plastic_bomb.n.01": 0.5239443727091277,
+        "bomb.n.01": 0.5316735440240056,
+        "pipe_bomb.n.01": 0.5357181437997438,
+        "cherry_bomb.n.01": 0.5422619691448629,
+        "general-purpose_bomb.n.01": 0.542527751589677,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1fb0eaf57b4847ce9f1cf41bd4f6c9bd",
+        "creator_username": "Dryan5",
+        "creator_display_name": "Daniel Ryan",
+        "creator_profile_url": "https://sketchfab.com/Dryan5"
+    },
+    "filename": "std_1fb0eaf57b4847ce9f1cf41bd4f6c9bd.glb",
+    "length": 0.20967558026313782,
+    "width": 0.2108304351568222
+}

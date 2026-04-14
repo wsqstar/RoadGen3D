@@ -1,0 +1,116 @@
+{
+    "description_long": "This is a compact tugboat-style ship with a robust, rounded hull painted in black and a broad, rust-red deck. The bow is reinforced and curves upward, while the stern is flat and features two large propellers and a central towing hook. The superstructure is centrally located, with a polygonal, green-tinted glass bridge surrounded by metal railings and access ladders. The ship is equipped with multiple antennas, navigation lights, and life rings mounted on the sides. Deck equipment includes bollards, winches, and a visible anchor at the stern, indicating its utility for towing or maneuvering larger vessels.",
+    "description": "A sturdy tugboat with a rounded black hull, rust-red deck, and a central glass bridge, featuring antennas, life rings, and heavy-duty deck equipment.",
+    "description_view_0": "Front view showing the reinforced bow, central bridge with green-tinted windows, and prominent railings.",
+    "description_view_1": "Side view highlighting the length of the deck, superstructure placement, life rings, and deck equipment.",
+    "description_view_2": "Rear view displaying the flat stern, dual propellers, towing hook, and anchor.",
+    "description_view_3": "Opposite side view showing the superstructure, deck layout, and additional life rings.",
+    "category": "ship",
+    "height": 7.5,
+    "max_dimension": 24.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 1800000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "steerable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "ladder",
+        "railing",
+        "winch",
+        "anchor",
+        "propeller",
+        "antenna",
+        "towing hook",
+        "life ring"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "rust-red",
+        "gray",
+        "green",
+        "white"
+    ],
+    "colors_composition": [
+        0.45,
+        0.35,
+        0.1,
+        0.06,
+        0.04
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a rounded bow and flat stern, reinforced at the front for impact resistance. The hull sides are high and robust, with no visible keels or bulbous bows, and the stern features two large propellers and a central towing hook.",
+    "attribute_superstructure_layout": "The superstructure consists of a single, centrally located bridge with polygonal, green-tinted windows, surrounded by metal railings and ladders. The bridge is elevated above the main deck, with access points on both sides and deck equipment distributed fore and aft.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "antenna",
+        "winch",
+        "anchor",
+        "life ring",
+        "towing hook",
+        "bollard",
+        "ladder",
+        "railing"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "1bbadbe4ab0a4b2599cd3f450942e6fe",
+    "near_synsets": {
+        "tugboat.n.01": 0.48893314553760103,
+        "tender.n.05": 0.5152694494033068,
+        "icebreaker.n.01": 0.5167714691318216,
+        "boat_deck.n.01": 0.52113828798931,
+        "gig.n.04": 0.5247250933394844,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1bbadbe4ab0a4b2599cd3f450942e6fe",
+        "creator_username": "davidbroutian",
+        "creator_display_name": "Brout",
+        "creator_profile_url": "https://sketchfab.com/davidbroutian"
+    },
+    "filename": "std_1bbadbe4ab0a4b2599cd3f450942e6fe.glb",
+    "length": 10.702185153961182,
+    "width": 4.39470100402832
+}

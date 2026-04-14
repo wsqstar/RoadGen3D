@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a rectangular, heavy-duty wooden toolbox with reinforced edges and metal fasteners, giving it a rugged, industrial appearance. The wood is weathered and stained, with visible grain and several dark, rusty marks and handprints, suggesting frequent use or rough handling. The top surface features a large central lid, secured by a black metal latch, and is flanked by two thick wooden beams for added structural support. The sides and ends of the box are constructed from slatted wooden panels, with visible screws or rivets at the corners. The top surface is marked with a 'CAUTION' warning and a triangular hazard symbol, both faded but still legible. The overall design is utilitarian, with a focus on durability and security, making it suitable for storing tools or hazardous materials in urban or industrial environments.",
+    "description": "A rugged, weathered wooden toolbox with reinforced beams, metal fasteners, and visible caution markings. The box is stained, marked with handprints, and features a central lid secured by a black metal latch.",
+    "description_view_0": "Front view shows the main lid with a central black metal latch, caution markings, and reinforced wooden beams; blood-like stains and handprints are visible.",
+    "description_view_1": "Side view reveals the slatted wooden construction, thick end beams, and the box's overall rectangular profile; latch and stains are partially visible.",
+    "description_view_2": "Rear view displays the back of the lid, more handprints, and the continuation of the reinforced beams; caution marking is partially visible.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the slatted wood, end beams, and some stains; latch is less visible from this angle.",
+    "category": "toolbox",
+    "height": 0.25,
+    "max_dimension": 1.0,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "latch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light brown",
+        "dark brown",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_handle_type": "No visible external handle; the lid may be lifted via the latch or edge.",
+    "attribute_latch_mechanism": "Single central black metal latch, likely a sliding or clasp type, with no visible keyhole or combination lock.",
+    "attribute_brand_logo": "none",
+    "attribute_compartment_configuration": "Single large internal compartment implied by the central lid; no visible trays, drawers, or dividers.",
+    "attribute_external_labeling": [
+        "'CAUTION' text and triangular hazard symbol on the lid",
+        "blood-like handprints and stains on the top and sides"
+    ],
+    "uid": "1852b23b73a94d4da46992c54e629da3",
+    "near_synsets": {
+        "toolbox.n.01": 0.4768810873732836,
+        "tool_bag.n.01": 0.5256391813223212,
+        "safe.n.01": 0.5456045094557683,
+        "woodworking_bench.n.01": 0.5456656717223894,
+        "strongbox.n.01": 0.5502895595061664
+    },
+    "synset": "toolbox.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1852b23b73a94d4da46992c54e629da3",
+        "creator_username": "BSheady",
+        "creator_display_name": "BSheady",
+        "creator_profile_url": "https://sketchfab.com/BSheady"
+    },
+    "filename": "std_1852b23b73a94d4da46992c54e629da3.glb",
+    "length": 0.3912155479192734,
+    "width": 0.7548080086708069
+}

@@ -1,0 +1,95 @@
+{
+    "description_long": "This kiosk is a compact, free-standing retail display unit with a rectangular base and a tall, vertical back panel. The front features multiple shelves stocked with various products, including bottles and boxes, all arranged neatly. The upper section displays a large, vibrant promotional sign with the word 'PATTERN' and an image of a woman in a yellow outfit, accompanied by the slogan 'HONOR YOUR PATTERN.' The sides of the kiosk are decorated with additional promotional images and branding, maintaining a consistent yellow and white color scheme. The structure appears to be made primarily of printed cardboard or lightweight composite board, with glossy printed surfaces for visual appeal. The overall design is modern and eye-catching, intended to attract customers in high-traffic urban environments.",
+    "description": "A modern, free-standing retail kiosk with shelves of products and bold yellow branding, topped by a large promotional sign and images.",
+    "description_view_0": "Front view showing the main display shelves, product arrangement, and the large promotional sign with branding.",
+    "description_view_1": "Left side view highlighting the side panel graphics and the depth of the kiosk, with less visibility of the products.",
+    "description_view_2": "Rear view showing the back of the promotional sign and the less detailed, mostly structural side of the kiosk.",
+    "description_view_3": "Right side view displaying the side panel graphics and a partial view of the product shelves and branding.",
+    "category": "kiosk",
+    "height": 1.6,
+    "max_dimension": 0.9,
+    "materials": [
+        "cardboard",
+        "paper",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "displayable",
+        "stockable",
+        "labelable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "shelves",
+        "product compartments",
+        "signage panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "white",
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 3500,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_signage_type": "Printed sign integrated into the upper back panel, with large 'PATTERN' text and promotional imagery; additional printed branding on side panels.",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "none",
+    "attribute_roof_design": "Flat top with a vertical back panel extending above, made of printed board with no overhangs or decorative roof elements.",
+    "attribute_architectural_style": "Modern commercial display with bold graphics and minimalist structure.",
+    "uid": "0182d352b63442b8b03c7e6931676286",
+    "near_synsets": {
+        "newsstand.n.01": 0.5408200622121977,
+        "shopfront.n.01": 0.5437817871436285,
+        "pop-up.n.03": 0.5500394611148036,
+        "booth.n.04": 0.5559873242242904,
+        "booth.n.02": 0.5572154459186112
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/0182d352b63442b8b03c7e6931676286",
+        "creator_username": "andrewsink",
+        "creator_display_name": "Andrew Sink",
+        "creator_profile_url": "https://sketchfab.com/andrewsink"
+    },
+    "filename": "std_0182d352b63442b8b03c7e6931676286.glb",
+    "length": 0.9231321811676025,
+    "width": 1.1607254147529602
+}

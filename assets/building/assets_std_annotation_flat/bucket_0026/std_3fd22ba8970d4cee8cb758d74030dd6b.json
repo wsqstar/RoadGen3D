@@ -1,0 +1,98 @@
+{
+    "description_long": "This humanoid robot features a sleek, human-like form with articulated limbs and a segmented body, primarily in shades of white, gray, and black. The robot's head is smooth and helmet-like, lacking visible facial features, and is slightly separated from the body in the images. Its torso is contoured with a narrow waist and broad chest, while the arms and legs are jointed at the shoulders, elbows, wrists, hips, knees, and ankles, allowing for a wide range of motion. The hands are detailed with individual fingers, and the feet are shaped like high-heeled shoes, suggesting a design inspired by human fashion. The robot's surface appears hard and smooth, with visible panel lines and mechanical joints. No external sensors or expressive elements are visible, giving it a minimalist, futuristic appearance.",
+    "description": "A sleek, human-like robot with articulated limbs, a smooth helmet-like head, and a contoured body in white, gray, and black. The design is minimalist and futuristic, with no visible facial features or sensors.",
+    "description_view_0": "Front view shows the robot's symmetrical body, broad chest, narrow waist, and separated helmet-like head.",
+    "description_view_1": "Left side view highlights the robot's contoured torso, high-heeled feet, and the head floating slightly away from the neck.",
+    "description_view_2": "Rear view reveals the back paneling, jointed limbs, and the attachment point for the head at the neck.",
+    "description_view_3": "Right side view mirrors the left, showing the robot's profile, limb articulation, and the separated head.",
+    "category": "humanoid robot",
+    "height": 1.75,
+    "max_dimension": 1.75,
+    "materials": [
+        "plastic",
+        "metal",
+        "synthetic rubber",
+        "air",
+        "glass"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.04,
+        0.01
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 650,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head",
+        "arms",
+        "hands",
+        "fingers",
+        "legs",
+        "feet"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms slightly extended outward and legs straight; head is detached and floating near the neck.",
+    "attribute_clothing_style": "Unclothed; body is covered by integrated panels and mechanical segments with no separate clothing or decorative elements.",
+    "attribute_facial_features": "Face is featureless and helmet-like, with no visible eyes, mouth, nose, or expressive elements.",
+    "attribute_limb_articulation": "Arms and legs have visible joints at shoulders, elbows, wrists, hips, knees, and ankles; hands have articulated fingers; limbs appear to allow a wide range of motion.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "3fd22ba8970d4cee8cb758d74030dd6b",
+    "near_synsets": {
+        "cyborg.n.01": 0.5369680978350154,
+        "android.n.01": 0.5371047481149841,
+        "robotics_equipment.n.01": 0.5578058268302338,
+        "automaton.n.02": 0.5680922721492724,
+        "robotics.n.01": 0.5728352791870484
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3fd22ba8970d4cee8cb758d74030dd6b",
+        "creator_username": "Thomas.Grenda",
+        "creator_display_name": "L3v3n",
+        "creator_profile_url": "https://sketchfab.com/Thomas.Grenda"
+    },
+    "filename": "std_3fd22ba8970d4cee8cb758d74030dd6b.glb",
+    "length": 1.3364620804786682,
+    "width": 1.2180125713348389
+}

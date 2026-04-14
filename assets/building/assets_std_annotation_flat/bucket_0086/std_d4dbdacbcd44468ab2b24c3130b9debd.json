@@ -1,0 +1,87 @@
+{
+    "description_long": "This is a long, narrow ladder constructed from a dark metallic material, featuring a truss-like design with diagonal supports forming triangular patterns between the side rails. The structure is open, with no solid panels, allowing visibility through the ladder from any angle. The rungs are evenly spaced and integrated into the truss framework, providing both support and rigidity. The side rails appear to be made from rectangular steel profiles, giving the ladder a robust and industrial appearance. There are no visible safety features such as anti-slip feet or handrails, and the ends of the ladder are flat and unadorned. The overall design suggests it is intended for fixed or structural use, possibly as part of scaffolding or a permanent installation.",
+    "description": "A long, dark metallic ladder with a truss-style frame and evenly spaced rungs, featuring a robust, industrial look. The open triangular design provides strength and visibility through the structure.",
+    "description_view_0": "The ladder is seen from the side, showing the full length and the triangular truss pattern with all rungs visible.",
+    "description_view_1": "The ladder is viewed from the end, appearing as a thin vertical line with no internal details visible.",
+    "description_view_2": "Similar to view 0, this side view displays the full truss structure and rung arrangement along the length.",
+    "description_view_3": "Another end-on view, showing the ladder as a narrow vertical profile with no visible rungs or truss details.",
+    "category": "ladder",
+    "height": 0.05,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.15
+    ],
+    "mass": 8.0,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 25,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "climbable",
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "rungs",
+        "side rails"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_rungs": 8,
+    "attribute_rung_spacing": 0.22,
+    "attribute_side_rail_profile": "rectangular steel",
+    "attribute_mounting_position": "fixed wall-mounted",
+    "attribute_presence_of_safety_features": [],
+    "uid": "d4dbdacbcd44468ab2b24c3130b9debd",
+    "near_synsets": {
+        "ladder.n.01": 0.505509758388128,
+        "extension_ladder.n.01": 0.5141709099114947,
+        "rope_ladder.n.01": 0.521294303140522,
+        "aerial_ladder.n.01": 0.5342895333801175,
+        "articulated_ladder.n.01": 0.5364656215626553,
+        "run.n.13": -1000.0,
+        "ladder.n.02": -1000.0
+    },
+    "synset": "ladder.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d4dbdacbcd44468ab2b24c3130b9debd",
+        "creator_username": "lozenkow",
+        "creator_display_name": "\u0424\u0410\u0411\u0420\u0418\u041a\u0410 \u041a\u0410\u0420\u041a\u0410\u0421\u041e\u0412 \u041b\u0421\u0422\u041a",
+        "creator_profile_url": "https://sketchfab.com/lozenkow"
+    },
+    "filename": "std_d4dbdacbcd44468ab2b24c3130b9debd.glb",
+    "length": 0.011331652291119099,
+    "width": 0.5
+}

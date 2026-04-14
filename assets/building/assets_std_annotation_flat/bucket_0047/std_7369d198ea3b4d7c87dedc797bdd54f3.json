@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a compact, tracked military vehicle with a low, angular armored superstructure and a prominent forward-mounted cannon. The vehicle features continuous track systems on both sides, providing enhanced mobility over rough terrain. Its exterior is painted in a matte olive drab color, with a red star insignia visible on the side panels, suggesting military use. The front of the vehicle is heavily armored, with a sloped glacis plate and a small, centrally mounted gun barrel protruding from the armored housing. The rear section appears to have a sloped engine cover and a rear extension, possibly for additional equipment or support. The overall design is utilitarian, prioritizing protection and firepower in a compact form factor.",
+    "description": "A compact, olive drab tracked military vehicle with angular armor and a forward-mounted cannon, featuring a red star insignia on the side. Its design emphasizes protection and mobility with continuous tracks and a sloped armored front.",
+    "description_view_0": "Side view showing the full length of the vehicle, the red star insignia, and the continuous track system.",
+    "description_view_1": "Rear view highlighting the sloped engine cover, rear extension, and the armored back panel.",
+    "description_view_2": "Opposite side view, mirroring view 0, with the red star insignia and track system visible.",
+    "description_view_3": "Front view displaying the sloped glacis plate, centrally mounted cannon, and the armored front profile.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 9500,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "closable",
+        "openable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hatch",
+        "cannon",
+        "track",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive drab",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.92,
+        0.04,
+        0.04
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible forward-mounted cannon integrated into the armored superstructure.",
+    "attribute_armor_plating": "Full body coverage with thick, angular steel armor plating, especially prominent on the front and sides; sloped glacis plate for deflection.",
+    "attribute_camouflage_pattern": "Solid olive drab color with no visible camouflage pattern.",
+    "attribute_military_markings": "Red star insignia on both side panels.",
+    "attribute_tire_type": "not applicable",
+    "uid": "7369d198ea3b4d7c87dedc797bdd54f3",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4961381710231685,
+        "reconnaissance_vehicle.n.01": 0.5012049959620928,
+        "tank.n.01": 0.5081341942935159,
+        "armored_car.n.02": 0.5191678682725988,
+        "weapons_carrier.n.01": 0.5336708763302106,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7369d198ea3b4d7c87dedc797bdd54f3",
+        "creator_username": "yanix",
+        "creator_display_name": "yanix",
+        "creator_profile_url": "https://sketchfab.com/yanix"
+    },
+    "filename": "std_7369d198ea3b4d7c87dedc797bdd54f3.glb",
+    "length": 1.8823395371437073,
+    "width": 1.5090248584747314
+}

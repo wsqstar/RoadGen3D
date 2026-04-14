@@ -1,0 +1,99 @@
+{
+    "description_long": "This humanoid robot features a robust, industrial design with a heavily weathered and rusted exterior, primarily in shades of orange and silver-gray. Its body is composed of large, rounded metallic segments, including broad shoulders, thick arms, and sturdy legs, all connected by visible mechanical joints. The torso is boxy and reinforced, with a circular detail at the center of the chest, suggesting a power core or sensor. The head is cylindrical with a flat top and minimal facial features, giving it a utilitarian appearance. The hands are articulated with visible finger segments, and the feet are wide and stable, designed for balance on urban surfaces. The overall aesthetic is reminiscent of retro-futuristic robots, with clear signs of age and exposure to harsh environments.",
+    "description": "A large, weathered humanoid robot with a rusted orange and silver metallic body, broad limbs, and a cylindrical head with minimal facial features. Its design is industrial and robust, showing heavy wear and mechanical joints.",
+    "description_view_0": "Rear view showing the robot's broad back, rounded shoulders, and the segmented structure of its arms and legs, with visible rust and wear.",
+    "description_view_1": "Left side view highlighting the robot's thick limbs, cylindrical head, and the depth of its torso, with pronounced weathering on the side panels.",
+    "description_view_2": "Front view displaying the robot's chest detail, articulated hands, and the minimalistic face on the cylindrical head, with heavy rust and metallic textures.",
+    "description_view_3": "Right side view similar to the left, emphasizing the robust limb construction and the layered, weathered metal surfaces.",
+    "category": "humanoid robot",
+    "height": 2.1,
+    "max_dimension": 1.3,
+    "materials": [
+        "steel",
+        "iron",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hand",
+        "arm",
+        "head",
+        "chest panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "silver",
+        "gray",
+        "rust brown"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms relaxed at the sides and legs straight, head facing forward, and hands slightly open.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated metallic panels with visible bolts and rusted surfaces.",
+    "attribute_facial_features": "The face is minimalistic, with a flat front, small circular eye-like features, and no visible mouth or nose. No expressive elements or display screens are present.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints at the shoulders, elbows, wrists, hips, knees, and ankles. Hands have articulated fingers, suggesting a moderate range of motion.",
+    "attribute_presence_of_sensors": "None visible",
+    "uid": "0047ef5783c845efa9a6623d0361df23",
+    "near_synsets": {
+        "android.n.01": 0.5321064141348519,
+        "cyborg.n.01": 0.5444715996954944,
+        "robotics_equipment.n.01": 0.5643590486283794,
+        "automaton.n.02": 0.5661528221260539,
+        "automaton.n.03": 0.5806308226940621
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0047ef5783c845efa9a6623d0361df23",
+        "creator_username": "pepetrincado",
+        "creator_display_name": "pepetrincado",
+        "creator_profile_url": "https://sketchfab.com/pepetrincado"
+    },
+    "filename": "std_0047ef5783c845efa9a6623d0361df23.glb",
+    "length": 0.5496456027030945,
+    "width": 1.1227353811264038
+}

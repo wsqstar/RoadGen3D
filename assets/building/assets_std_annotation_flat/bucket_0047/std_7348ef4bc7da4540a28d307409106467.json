@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a large cargo ship with a long, flat deck and a prominent superstructure located at the stern. The hull is painted with a red lower section and a gray upper section, showing signs of weathering and use. The deck is divided into several large cargo holds, each covered with rectangular hatches. The superstructure features multiple levels, including the bridge and various operational areas, with visible railings and equipment. The bow is sharply pointed, while the stern is squared off, supporting the superstructure and additional deck machinery. Various deck fixtures such as antennas and possible winches are visible, indicating the ship's operational readiness.",
+    "description": "A large, weathered cargo ship with a red and gray hull, multiple cargo holds, and a multi-level superstructure at the stern.",
+    "description_view_0": "Side view showing the full length of the ship, the red and gray hull, and the superstructure at the stern.",
+    "description_view_1": "Stern view highlighting the multi-level superstructure, bridge, and deck equipment concentrated at the rear.",
+    "description_view_2": "Opposite side view displaying the ship's length, cargo holds, and the bow's pointed shape.",
+    "description_view_3": "Bow view emphasizing the pointed front, the arrangement of cargo hatches, and the superstructure at the far end.",
+    "category": "ship",
+    "height": 18,
+    "max_dimension": 220,
+    "materials": [
+        "steel",
+        "glass",
+        "paint",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.03,
+        0.02,
+        0.01,
+        0.02
+    ],
+    "mass": 350000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 7000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "bridge controls",
+        "antenna",
+        "winch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.35,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a long, flat bottom and a sharply pointed bow. The stern is squared off to support the superstructure, and the hull sides are straight with a slight flare at the bow. No bulbous bow or visible keels are present, and the hull sits low in the water, typical of cargo ships.",
+    "attribute_superstructure_layout": "The superstructure is located at the stern and consists of multiple stacked decks, including the bridge at the top. There are several levels with railings and operational areas, and the superstructure is compact but tall, maximizing space for cargo holds along the deck.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "antenna",
+        "winch"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "7348ef4bc7da4540a28d307409106467",
+    "near_synsets": {
+        "cargo_ship.n.01": 0.44111529181534925,
+        "container_ship.n.01": 0.47595999160897096,
+        "ship.n.01": 0.47730906688305574,
+        "shipwreck.n.01": 0.4803325052008173,
+        "abandoned_ship.n.01": 0.4814028025451462
+    },
+    "synset": "abandoned_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7348ef4bc7da4540a28d307409106467",
+        "creator_username": "JamesNeal",
+        "creator_display_name": "James Neal",
+        "creator_profile_url": "https://sketchfab.com/JamesNeal"
+    },
+    "filename": "std_7348ef4bc7da4540a28d307409106467.glb",
+    "length": 70.9390640258789,
+    "width": 11.40677785873413
+}

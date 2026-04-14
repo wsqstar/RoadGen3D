@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a freestanding digital payment kiosk with a tall, rectangular form and a sturdy base. The front features a large digital display with a QR code for Venmo payments, a company logo, and a small circular image at the top, all set within a light-colored panel. The sides are slim and flat, emphasizing the kiosk's thin profile, while the rear is solid black with ventilation grilles and a small access panel near the bottom. The kiosk appears to be constructed primarily from metal and plastic, with a glass or acrylic screen covering the display area. Its design is sleek and modern, suitable for high-traffic urban environments such as sidewalks, malls, or transit stations. The overall appearance is utilitarian yet professional, with minimal decorative elements.",
+    "description": "A tall, slim digital payment kiosk with a large front display, sturdy base, and modern black finish. The front features a Venmo QR code and company branding.",
+    "description_view_0": "Front view showing the digital display with QR code, branding, and a light panel.",
+    "description_view_1": "Side view revealing the kiosk's thin profile and solid construction.",
+    "description_view_2": "Rear view displaying ventilation grilles and an access panel at the bottom.",
+    "description_view_3": "Opposite side view, again highlighting the slim, flat profile.",
+    "category": "kiosk",
+    "height": 1.6,
+    "max_dimension": 0.6,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "mass": 55,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "scannable",
+        "readable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "touchscreen",
+        "QR code display",
+        "access panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "white",
+        "blue",
+        "red"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "Digital display integrated into the front structure, showing a Venmo QR code, company logo, and branding text.",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "none",
+    "attribute_roof_design": "Flat roof, flush with the kiosk's rectangular form, no overhangs or decorative elements.",
+    "attribute_architectural_style": "modern, minimalist",
+    "uid": "73333bcdb1ca41c8815f05c62d65ae23",
+    "near_synsets": {
+        "pay-phone.n.01": 0.6005545667338025,
+        "checkout_line.n.01": 0.6032513080983316,
+        "vending_machine.n.01": 0.6049358114768636,
+        "cash_register.n.01": 0.6074889885330675,
+        "checkout.n.03": 0.6135117247260592,
+        "booth.n.02": -1000.0
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/73333bcdb1ca41c8815f05c62d65ae23",
+        "creator_username": "22blockmedia",
+        "creator_display_name": "22blockverse",
+        "creator_profile_url": "https://sketchfab.com/22blockmedia"
+    },
+    "filename": "std_73333bcdb1ca41c8815f05c62d65ae23.glb",
+    "length": 0.21982263028621674,
+    "width": 0.7370508909225464
+}

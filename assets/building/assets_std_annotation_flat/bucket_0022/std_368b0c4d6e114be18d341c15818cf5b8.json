@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a large, heavily armored combat vehicle with a low, angular profile and a long, forward-facing main cannon mounted on a rotating turret. The exterior is covered in a desert camouflage pattern with light tan and beige geometric shapes, designed to blend into arid environments. The vehicle features wide, reinforced tracks on both sides, supported by multiple road wheels, providing stability and traction over rough terrain. The turret is centrally positioned and includes a visible hatch and a secondary mount, likely for a machine gun or observation equipment. The hull and turret are clad in thick, sloped armor plating, offering protection against ballistic threats. No visible military insignia or numbers are present, and the vehicle lacks traditional tires, relying instead on its robust tracked system.",
+    "description": "A large, tan desert-camouflaged tracked combat vehicle with a long cannon, thick sloped armor, and a central rotating turret.",
+    "description_view_0": "Front view shows the long main cannon, sloped frontal armor, and the wide tracks flanking the hull.",
+    "description_view_1": "Left side view highlights the length of the cannon, the full set of road wheels, and the low, angular turret.",
+    "description_view_2": "Rear view displays the back of the turret, rear armor plating, and the end of the tracks.",
+    "description_view_3": "Right side view mirrors the left, showing the track system, turret, and cannon from the opposite side.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 9.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 55000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "track",
+        "road wheel",
+        "secondary mount"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "beige",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the turret center, one secondary mount (likely for a machine gun) on the turret roof.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating on the hull and turret; no visible modular or reactive panels.",
+    "attribute_camouflage_pattern": "Desert camouflage with tan and beige geometric shapes in a blocky, irregular pattern.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "368b0c4d6e114be18d341c15818cf5b8",
+    "near_synsets": {
+        "tank.n.01": 0.47481422525061423,
+        "military_vehicle.n.01": 0.4813681872725707,
+        "reconnaissance_vehicle.n.01": 0.48508740225362434,
+        "assault_gun.n.02": 0.5071697294298864,
+        "armored_car.n.02": 0.518429598069465,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/368b0c4d6e114be18d341c15818cf5b8",
+        "creator_username": "mashiro306",
+        "creator_display_name": "mashiro306",
+        "creator_profile_url": "https://sketchfab.com/mashiro306"
+    },
+    "filename": "std_368b0c4d6e114be18d341c15818cf5b8.glb",
+    "length": 9.980195999145508,
+    "width": 3.7778594493865967
+}

@@ -1,0 +1,115 @@
+{
+    "description_long": "This delivery robot features a compact, boxy body with a smooth, light gray exterior and rounded edges, mounted on four black wheels. The upper section of the robot has a slightly sloped top with a dark panel, possibly housing controls or sensors, and a small raised button or hatch. The sides are largely unadorned except for subtle branding and a few colored accents, including a red logo and turquoise highlights near the wheels. The rear of the robot displays a vertical seam, a rectangular access panel with a handle, and what appears to be a charging port or interface. The front is more streamlined, with a clean surface and a small, dark window or sensor area. The overall design suggests durability and weather resistance, suitable for autonomous navigation on urban sidewalks and streets.",
+    "description": "A compact, four-wheeled delivery robot with a smooth gray body, dark top panel, and subtle colored accents. Features include a rear access panel, branding, and sensor areas for urban navigation.",
+    "description_view_0": "Side view showing the smooth gray body, two visible wheels, and a red logo near the base.",
+    "description_view_1": "Front view highlighting the clean, rounded face, small dark sensor area, and turquoise accents near the wheels.",
+    "description_view_2": "Opposite side view, similar to view 0 but without visible branding, showing the sloped top and two wheels.",
+    "description_view_3": "Rear view displaying the vertical seam, rectangular access panel with handle, and a charging port or interface.",
+    "category": "delivery robot",
+    "height": 0.7,
+    "max_dimension": 1.0,
+    "materials": [
+        "plastic",
+        "metal",
+        "glass",
+        "rubber",
+        "air",
+        "electronics"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.05,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "access panel",
+        "button",
+        "charging port",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "red",
+        "turquoise"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_brand_logo": "A red logo with the text 'Olux' is visible on the lower side panel near the wheels.",
+    "attribute_sensor_array": [
+        {
+            "type": "camera or sensor window",
+            "shape": "rectangular",
+            "location": "front upper section"
+        }
+    ],
+    "attribute_wheel_configuration": "Four black wheels, likely drive wheels, arranged at the corners of the base for stability and maneuverability.",
+    "attribute_compartment_access_panel": "A rectangular access panel with a handle is visible on the rear, likely for accessing the cargo compartment.",
+    "attribute_display_screen": "A small, dark rectangular panel on the top may serve as a display or control interface, but no active screen content is visible.",
+    "uid": "c5ddfa9e6309403083bbce60bdcc3d71",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5752293863047132,
+        "delivery_truck.n.01": 0.5988089005675141,
+        "segway.n.01": 0.6038749858329775,
+        "automaton.n.02": 0.6082036828991403,
+        "reconnaissance_vehicle.n.01": 0.6083718301421401,
+        "delivery.n.02": -1000.0,
+        "manner_of_speaking.n.01": -1000.0,
+        "delivery.n.07": -1000.0,
+        "rescue.n.01": -1000.0,
+        "delivery.n.04": -1000.0,
+        "pitch.n.02": -1000.0,
+        "delivery.n.01": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c5ddfa9e6309403083bbce60bdcc3d71",
+        "creator_username": "re1monsen",
+        "creator_display_name": "re1monsen",
+        "creator_profile_url": "https://sketchfab.com/re1monsen"
+    },
+    "filename": "std_c5ddfa9e6309403083bbce60bdcc3d71.glb",
+    "length": 0.8793790340423584,
+    "width": 0.8793792724609375
+}

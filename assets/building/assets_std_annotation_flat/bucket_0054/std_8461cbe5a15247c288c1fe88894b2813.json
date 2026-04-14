@@ -1,0 +1,99 @@
+{
+    "description_long": "This bus shelter features a modern, rectangular design with a flat roof supported by a sturdy metal frame. The shelter's sides and back are constructed from horizontal wooden slats, providing partial enclosure while allowing visibility and airflow. A long wooden bench is integrated into the structure, offering seating for waiting passengers. One side of the shelter includes a vertical wooden element that may serve as a decorative accent or structural support. The roof is divided into three sections, likely made of translucent or dark-tinted material to provide shade while allowing some light through. The overall aesthetic is contemporary, combining metal and wood for both durability and visual appeal.",
+    "description": "A modern bus shelter with a flat roof, horizontal wooden slats, and a built-in bench, combining metal and wood for a sleek, partially enclosed design.",
+    "description_view_0": "Top-down view showing the flat roof with three sections, the bench beneath, and the vertical wooden accent on one side.",
+    "description_view_1": "Side view highlighting the open front, the bench, and the transparent or open side panels.",
+    "description_view_2": "Rear view displaying the full extent of the horizontal wooden slats and the vertical accent structure.",
+    "description_view_3": "Opposite side view showing the open entry, the bench, and the supporting frame structure.",
+    "category": "bus shelter",
+    "height": 2.5,
+    "max_dimension": 4.0,
+    "materials": [
+        "metal",
+        "wood",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.1
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "flat metal and glass roof",
+    "attribute_seating_presence": true,
+    "attribute_advertisement_panel": false,
+    "attribute_shelter_enclosure_level": "partially enclosed",
+    "attribute_signage": [],
+    "uid": "8461cbe5a15247c288c1fe88894b2813",
+    "near_synsets": {
+        "shelter.n.02": 0.5414769421297236,
+        "shelter.n.01": 0.5620960067376202,
+        "bus_stop.n.01": 0.568027294556905,
+        "park_bench.n.01": 0.5681458711552465,
+        "gazebo.n.01": 0.5742477537987971,
+        "bus.n.04": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "busbar.n.01": -1000.0,
+        "tax_shelter.n.01": -1000.0,
+        "protection.n.04": -1000.0,
+        "shelter.n.05": -1000.0,
+        "bus.n.01": -1000.0
+    },
+    "synset": "shelter.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8461cbe5a15247c288c1fe88894b2813",
+        "creator_username": "francfc98",
+        "creator_display_name": "Franc",
+        "creator_profile_url": "https://sketchfab.com/francfc98"
+    },
+    "filename": "std_8461cbe5a15247c288c1fe88894b2813.glb",
+    "length": 3.555031895637512,
+    "width": 1.2974570393562317
+}

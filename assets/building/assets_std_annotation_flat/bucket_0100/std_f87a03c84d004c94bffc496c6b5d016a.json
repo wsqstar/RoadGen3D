@@ -1,0 +1,92 @@
+{
+    "description_long": "This object is a blocky, stylized shotgun with a long, cylindrical barrel and a prominent suppressor or extended muzzle at the front. The body is angular and dark, with a squared receiver and a vertical foregrip beneath the barrel for added control. The stock is skeletal and minimalist, featuring a rectangular cutout, and the pistol grip is textured for a secure hold. The trigger guard is squared and robust, enclosing a simple trigger. The overall design is utilitarian and tactical, with a matte black finish and no visible decorative elements.",
+    "description": "A blocky, matte black shotgun with a long barrel, vertical foregrip, and minimalist skeletal stock.",
+    "description_view_0": "Side view showing the full length of the shotgun, including the long barrel, vertical foregrip, and skeletal stock.",
+    "description_view_1": "Front view displaying the circular muzzle and the narrow profile of the barrel.",
+    "description_view_2": "Opposite side view, mirroring view 0, with the same visible features: barrel, foregrip, and stock.",
+    "description_view_3": "Rear view showing the open skeletal stock and the narrow width of the shotgun.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 1.0,
+    "materials": [
+        "metal",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "pistol grip",
+        "vertical foregrip",
+        "trigger",
+        "trigger guard",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, long cylindrical barrel with no visible ribbing or venting",
+    "attribute_stock_type": "skeleton stock",
+    "attribute_action_mechanism": "semi-automatic",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "squared, robust trigger guard with a simple, angular profile and no finger grooves",
+    "uid": "f87a03c84d004c94bffc496c6b5d016a",
+    "near_synsets": {
+        "sawed-off_shotgun.n.01": 0.49961197713145267,
+        "shotgun.n.01": 0.5224843274194821,
+        "dragunov.n.01": 0.5510909942365869,
+        "winchester.n.02": 0.5573176257713653,
+        "shotgun_shell.n.01": 0.5606032177545792
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f87a03c84d004c94bffc496c6b5d016a",
+        "creator_username": "salatis",
+        "creator_display_name": "salatis",
+        "creator_profile_url": "https://sketchfab.com/salatis"
+    },
+    "filename": "std_f87a03c84d004c94bffc496c6b5d016a.glb",
+    "length": 0.7324137389659882,
+    "width": 0.01862080581486225
+}

@@ -1,0 +1,104 @@
+{
+    "description_long": "This humanoid robot features a sleek, segmented body with a predominantly metallic gray and white exterior, accented by black and green elements. Its limbs are highly articulated, with visible joints at the shoulders, elbows, hips, knees, and ankles, allowing for a wide range of motion. The robot's head is rounded and streamlined, with a red circular feature on the front that may serve as a sensor or indicator. Extending from its back are two long, zigzagging appendages with green highlights, possibly functioning as antennae or manipulators. The robot's hands and feet are designed for dexterity, with fingers and toes that suggest grasping and walking capabilities. Scattered around the main body are several detached components, indicating modular construction or possible damage.",
+    "description": "A sleek, articulated humanoid robot with metallic gray and white panels, green-accented zigzag appendages, and a red sensor on its head. Its limbs and joints suggest high mobility and dexterity.",
+    "description_view_0": "The robot is seen from a front angle, highlighting its red head sensor, chest, and the zigzag appendages extending upward and backward.",
+    "description_view_1": "A side view reveals the robot's profile, showing the curvature of its torso, the articulation of its limbs, and the full length of the zigzag appendages.",
+    "description_view_2": "The rear view displays the robot's back, the attachment points of the zigzag appendages, and the segmented structure of its legs and arms.",
+    "description_view_3": "An angled view from behind and below emphasizes the robot's lower body, the articulation of its legs, and the underside of its torso.",
+    "category": "humanoid robot",
+    "height": 1.6,
+    "max_dimension": 2.2,
+    "materials": [
+        "metal",
+        "plastic",
+        "synthetic rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "pullable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head sensor",
+        "arms",
+        "hands",
+        "legs",
+        "feet",
+        "zigzag appendages"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "black",
+        "green",
+        "red"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "sleek",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.12,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is in a dynamic, sprawled pose with one arm extended forward, the other bent, one leg outstretched, and the other bent at the knee. Its head is tilted, and the zigzag appendages are raised and angled backward.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated panels and mechanical coverings with no visible fabric or decorative elements.",
+    "attribute_facial_features": "The face is minimalistic, with a smooth surface and a prominent red circular sensor or indicator in the center. No eyes, mouth, or nose are visible.",
+    "attribute_limb_articulation": "The robot has multiple visible articulation points: ball or rotary joints at the shoulders, elbows, hips, knees, and ankles, allowing for flexible and realistic limb movement. The hands and feet have articulated digits.",
+    "attribute_presence_of_sensors": "A prominent red sensor is visible on the head; no other sensors are clearly visible.",
+    "uid": "3b349e3e5032494aa5746858096610c7",
+    "near_synsets": {
+        "android.n.01": 0.5310288177818672,
+        "cyborg.n.01": 0.546177614774271,
+        "robotics_equipment.n.01": 0.5534917851717815,
+        "automaton.n.02": 0.5618050113209216,
+        "robotics.n.01": 0.5713570880049963
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3b349e3e5032494aa5746858096610c7",
+        "creator_username": "sanyaork",
+        "creator_display_name": "sanyaork",
+        "creator_profile_url": "https://sketchfab.com/sanyaork"
+    },
+    "filename": "std_3b349e3e5032494aa5746858096610c7.glb",
+    "length": 3.842324733734131,
+    "width": 4.350193619728088
+}

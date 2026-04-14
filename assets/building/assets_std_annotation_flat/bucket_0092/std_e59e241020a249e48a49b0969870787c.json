@@ -1,0 +1,105 @@
+{
+    "description_long": "This humanoid robot features a cylindrical body with a domed head, reminiscent of classic science fiction designs. Its exterior is primarily white with blue and metallic accents, and it is equipped with various panels, vents, and compartments distributed around its body. The head includes several sensors, lights, and what appears to be a primary optical sensor or camera, along with smaller protrusions and ports. The robot stands on three sturdy legs, two of which are articulated and attached to the sides, while the third is centered at the front base, all with visible mechanical joints and wiring. The surface is metallic and smooth, with some matte and glossy finishes, and the robot's design suggests durability and functionality for urban environments. Decorative blue bands and panels add visual interest and reinforce its technological aesthetic.",
+    "description": "A cylindrical, domed humanoid robot with a white and blue metallic exterior, multiple sensors, and three articulated legs. Its surface is smooth and detailed with panels, vents, and mechanical joints.",
+    "description_view_0": "Front view shows the main optical sensor, dome head with lights and panels, and two articulated side legs with a central third leg.",
+    "description_view_1": "Side view highlights the vertical blue panel, side leg structure, and additional ports and compartments on the body.",
+    "description_view_2": "Rear view reveals the back panels, vents, and the symmetrical design of the legs and body.",
+    "description_view_3": "Opposite side view displays more ports, the side leg, and the continuation of blue and metallic detailing.",
+    "category": "humanoid robot",
+    "height": 1.1,
+    "max_dimension": 1.1,
+    "materials": [
+        "aluminum",
+        "plastic",
+        "glass",
+        "rubber",
+        "air",
+        "copper"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "button",
+        "panel",
+        "sensor",
+        "leg",
+        "wheel",
+        "compartment"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "black",
+        "silver",
+        "red"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.08,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is standing upright on three legs, with its dome head centered above the cylindrical torso. The side legs are extended downward, and the central leg is positioned at the front base, all in a stable, neutral stance.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated panels and decorative blue and metallic coverings as part of its exterior shell.",
+    "attribute_facial_features": "The dome head includes a prominent circular optical sensor resembling an eye, several smaller lights and ports, but lacks a mouth, nose, or expressive facial features.",
+    "attribute_limb_articulation": "The robot has three articulated legs, each with visible hinge joints at the body connection and at the 'ankle' area. The limbs appear rigid, designed for stability and movement rather than flexibility.",
+    "attribute_presence_of_sensors": "Visible sensors include a primary optical sensor (camera) on the dome head, several smaller lights or cameras, and possible audio or environmental sensors distributed around the head and body.",
+    "uid": "e59e241020a249e48a49b0969870787c",
+    "near_synsets": {
+        "android.n.01": 0.5498900153550925,
+        "robotics_equipment.n.01": 0.5614537276135441,
+        "cyborg.n.01": 0.5732657476790447,
+        "automaton.n.02": 0.5746220107312758,
+        "robotics.n.01": 0.5898083303087231
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e59e241020a249e48a49b0969870787c",
+        "creator_username": "Stym",
+        "creator_display_name": "Stym",
+        "creator_profile_url": "https://sketchfab.com/Stym"
+    },
+    "filename": "std_e59e241020a249e48a49b0969870787c.glb",
+    "length": 0.5118382275104523,
+    "width": 0.6545695066452026
+}

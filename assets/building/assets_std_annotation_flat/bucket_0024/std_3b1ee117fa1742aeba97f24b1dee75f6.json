@@ -1,0 +1,101 @@
+{
+    "description_long": "This forklift features a compact, industrial design with a tan body and black structural elements. The vehicle is equipped with two long, parallel fork arms extending forward from a tall, robust mast, suitable for lifting and transporting pallets or heavy loads. The operator's compartment includes a single seat, a steering wheel, and simple controls, all protected by a sturdy overhead guard. The rear of the forklift houses a cylindrical counterweight, likely representing a gas or battery unit, and the vehicle rides on four solid wheels. The mast is reinforced with vertical supports and crossbars, providing stability for heavy lifting. The overall appearance is utilitarian, with minimal decorative elements and a focus on function and safety.",
+    "description": "A compact tan and black forklift with long fork arms, a tall mast, and a protected operator seat. It features a rear counterweight and a sturdy overhead guard.",
+    "description_view_0": "Side view showing the operator seat, steering wheel, overhead guard, and the full length of the fork arms and mast.",
+    "description_view_1": "Front view highlighting the parallel fork arms, the width of the mast, and the protective structure above the operator area.",
+    "description_view_2": "Opposite side view displaying the operator compartment, mast, and fork arms from the other side.",
+    "description_view_3": "Rear view showing the cylindrical counterweight, the back of the seat, and the overhead guard structure.",
+    "category": "forklift",
+    "height": 2.5,
+    "max_dimension": 3.2,
+    "materials": [
+        "steel",
+        "rubber",
+        "plastic",
+        "glass",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.07,
+        0.03,
+        0.02,
+        0.03
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 16000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "liftable",
+        "steerable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "steering wheel",
+        "seat",
+        "fork arms",
+        "pedals",
+        "levers",
+        "wheels"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.55,
+        0.4,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_fork_arms": "Two long, straight, parallel fork arms extend forward from the mast, made of solid metal with a rectangular cross-section. They are uniform in thickness, appear robust, and are positioned close to the ground for easy pallet access. No visible attachments or signs of wear are present.",
+    "attribute_overhead_guard": "The overhead guard consists of a rectangular metal frame with four vertical supports and horizontal crossbars, providing coverage above the operator seat. It is constructed from black metal tubing and offers protection from falling objects.",
+    "attribute_mast": "The mast is a tall, double-stage structure made of black metal, with two main vertical rails and cross-bracing for stability. It features visible lift channels and support rollers, but no detailed hydraulic components are apparent.",
+    "attribute_operator_seat": "The operator seat is a simple, dark-colored chair with a flat base and backrest, made from what appears to be molded plastic or vinyl. It lacks visible armrests, headrest, or seatbelt, and is sized for a single adult.",
+    "attribute_warning_lights": "There are two small, round warning lights mounted on the overhead guard, one on each side. They are gray in color and do not appear to be illuminated.",
+    "uid": "3b1ee117fa1742aeba97f24b1dee75f6",
+    "near_synsets": {
+        "forklift.n.01": 0.4678250106937837,
+        "stacker_crane.n.01": 0.5589258512463491,
+        "crane.n.04": 0.5722660416160927,
+        "lifting_device.n.01": 0.5752495731231779,
+        "hayfork.n.01": 0.5789776872025688
+    },
+    "synset": "forklift.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3b1ee117fa1742aeba97f24b1dee75f6",
+        "creator_username": "maxdragon",
+        "creator_display_name": "maxdragonn",
+        "creator_profile_url": "https://sketchfab.com/maxdragon"
+    },
+    "filename": "std_3b1ee117fa1742aeba97f24b1dee75f6.glb",
+    "length": 2.187427282333374,
+    "width": 0.7224323153495789
+}

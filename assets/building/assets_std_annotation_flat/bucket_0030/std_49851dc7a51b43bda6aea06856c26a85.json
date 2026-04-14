@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a tall, yellow tower crane commonly used on construction sites for lifting and moving heavy materials. The crane features a lattice boom extending horizontally from a central tower, with a counterweight section on the opposite end for balance. The main support structure is a vertical truss mast anchored to a large, solid base, providing stability. A visible operator cabin is situated near the intersection of the mast and the boom, allowing for control and monitoring of crane operations. The lifting mechanism consists of a single hook suspended from the end of the boom by cables. The crane's structure is primarily composed of steel, with some concrete in the base and glass in the operator cabin.",
+    "description": "A tall, yellow tower crane with a lattice boom, counterweight, and operator cabin, anchored by a solid base. It features a single hook lifting mechanism for construction site operations.",
+    "description_view_0": "Side view showing the full length of the lattice boom, the counterweight, and the operator cabin near the mast.",
+    "description_view_1": "End-on view highlighting the narrow profile of the boom and the vertical truss mast, with the base visible below.",
+    "description_view_2": "Opposite side view displaying the boom, hook, counterweight, and the operator cabin from the other direction.",
+    "description_view_3": "Rear view focusing on the counterweight section and the truss structure of the mast, with the boom extending forward.",
+    "category": "crane",
+    "height": 40.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "steel",
+        "concrete",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 35000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "operator cabin",
+        "hook",
+        "boom",
+        "counterweight",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.01,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_boom_type": "lattice boom",
+    "attribute_counterweight_presence": true,
+    "attribute_operator_cabin_visibility": true,
+    "attribute_hook_or_lifting_mechanism": "single hook",
+    "attribute_support_structure_design": "fixed base",
+    "uid": "49851dc7a51b43bda6aea06856c26a85",
+    "near_synsets": {
+        "crane.n.04": 0.42949618342246587,
+        "derrick.n.02": 0.48513689594364307,
+        "stacker_crane.n.01": 0.5212803883872864,
+        "lift_capacity.n.01": 0.5328001508166436,
+        "hoist.n.01": 0.5483960325813243,
+        "grus.n.01": -1000.0,
+        "crane.n.05": -1000.0,
+        "crane.n.02": -1000.0,
+        "crane.n.01": -1000.0
+    },
+    "synset": "crane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/49851dc7a51b43bda6aea06856c26a85",
+        "creator_username": "Chamodp",
+        "creator_display_name": "CHAMOD",
+        "creator_profile_url": "https://sketchfab.com/Chamodp"
+    },
+    "filename": "std_49851dc7a51b43bda6aea06856c26a85.glb",
+    "length": 6.4140424728393555,
+    "width": 39.91619110107422
+}

@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a large, cylindrical vertical storage tank constructed primarily from metal panels, with visible weathering and rust stains on its surface. The tank features a robust metal safety railing encircling the flat roof, which also contains a central circular hatch and a prominent vertical pipe attachment. A metal access ladder runs up the side, providing roof access for maintenance or inspection. One side of the tank displays a yellow biohazard warning sign, indicating it is used for storing hazardous or potentially dangerous materials. The base of the tank is slightly elevated, likely supported by a ring of metal supports, and the overall design is industrial and utilitarian, suitable for secure containment.",
+    "description": "A large, weathered cylindrical metal storage tank with a rooftop railing, access ladder, pipe attachment, and a biohazard warning sign.",
+    "description_view_0": "Front view showing the full height of the tank, the access ladder, rooftop railing, and a pipe emerging from the roof.",
+    "description_view_1": "Side view highlighting the access ladder and the central rooftop hatch with a vertical pipe attachment.",
+    "description_view_2": "Rear view displaying the biohazard warning sign and the tank's smooth, weathered metal surface.",
+    "description_view_3": "Opposite side view focusing on the pipe attachment and the tank's circular structure, with the ladder partially visible.",
+    "category": "storage tank",
+    "height": 5.0,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "iron",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "ladder",
+        "hatch",
+        "pipe"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": true,
+    "attribute_valve_or_pipe_attachments": [
+        "inlet pipe"
+    ],
+    "attribute_warning_signage": true,
+    "attribute_architectural_style": "cylindrical vertical",
+    "uid": "d9a373d54b5443e29a3e21bd5524884f",
+    "near_synsets": {
+        "tank.n.02": 0.523778436659974,
+        "tank_farm.n.01": 0.5387195400252401,
+        "reservoir.n.03": 0.5389244411145774,
+        "bunker.n.02": 0.5391175226025465,
+        "water_tower.n.01": 0.5493266048880844,
+        "memory.n.04": -1000.0,
+        "repositing.n.01": -1000.0,
+        "storage.n.01": -1000.0,
+        "storage.n.04": -1000.0,
+        "tank.n.03": -1000.0,
+        "storage.n.03": -1000.0,
+        "cooler.n.03": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "tank.n.01": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d9a373d54b5443e29a3e21bd5524884f",
+        "creator_username": "Lior29",
+        "creator_display_name": "Lior29",
+        "creator_profile_url": "https://sketchfab.com/Lior29"
+    },
+    "filename": "std_d9a373d54b5443e29a3e21bd5524884f.glb",
+    "length": 3.929437279701233,
+    "width": 3.776519775390625
+}

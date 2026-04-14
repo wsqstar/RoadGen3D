@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a cylindrical metal barrel with a faded red and yellow exterior, featuring a wide open top and a visible black circular opening on the lid. The barrel's surface is marked by a prominent yellow warning triangle, suggesting it may be used for hazardous or industrial materials. Two horizontal yellow bands encircle the barrel, providing structural reinforcement and visual contrast. The paint appears weathered, with some areas showing signs of wear and exposure, typical of objects left outdoors or in industrial settings. The barrel is placed on a cobblestone surface next to a wooden crate and a tiled wall, reinforcing its utilitarian, urban context. Its size and proportions suggest it could hold a significant volume of liquid or solid material.",
+    "description": "A weathered red and yellow metal barrel with a warning triangle and open top, reinforced by yellow bands and showing signs of outdoor or industrial use.",
+    "description_view_0": "The barrel is seen from the side, showing its red and yellow bands and the open top, with a wooden crate and tiled wall nearby.",
+    "description_view_1": "Only the tiled wall is visible; the barrel is not in view.",
+    "description_view_2": "The barrel is partially obscured by the crate, with its top and part of the side visible, showing the yellow band and opening.",
+    "description_view_3": "The front of the barrel is visible, displaying the yellow warning triangle and the open top, with the crate to the left.",
+    "category": "barrel or bucket",
+    "height": 0.9,
+    "max_dimension": 0.6,
+    "materials": [
+        "metal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "open top"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "yellow",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_lid_presence": false,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "yellow painted reinforcement bands",
+    "attribute_labeling_or_markings": "yellow warning triangle",
+    "attribute_placement_location": "outdoor",
+    "uid": "cd45ad3dd96d4d2094f3e56e7c4dec4d",
+    "near_synsets": {
+        "barrel.n.02": 0.508852532758173,
+        "barrel.n.03": 0.5109433901012012,
+        "beer_barrel.n.01": 0.5151148812045135,
+        "bucket.n.01": 0.5322354669722243,
+        "rain_barrel.n.01": 0.53244171959048,
+        "barrel.n.04": -1000.0,
+        "bucket.n.02": -1000.0,
+        "barrel.n.01": -1000.0,
+        "barrel.n.05": -1000.0
+    },
+    "synset": "bucket.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cd45ad3dd96d4d2094f3e56e7c4dec4d",
+        "creator_username": "peacewithans",
+        "creator_display_name": "Gabrielle Speace",
+        "creator_profile_url": "https://sketchfab.com/peacewithans"
+    },
+    "filename": "std_cd45ad3dd96d4d2094f3e56e7c4dec4d.glb",
+    "length": 1.8000000715255737,
+    "width": 1.8000000715255737
+}

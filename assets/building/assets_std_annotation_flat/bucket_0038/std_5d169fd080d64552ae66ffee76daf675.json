@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is the heavily damaged fuselage of an old, single-engine airplane, missing its wings and most of its tail section. The metal skin is corroded and torn, with large holes exposing the internal framework and ribbing. The cockpit area is open and stripped, with no glass or instrumentation remaining, and the canopy frame is visible. The tail fin is partially intact but appears burnt and jagged, while the rear fuselage is twisted and broken. The surface is mottled with rust, faded paint, and soot, suggesting long-term exposure to the elements or fire. The overall structure is skeletal, with many sharp edges and a hollow interior.",
+    "description": "A rusted, broken airplane fuselage with a gutted cockpit, missing wings, and a partially destroyed tail fin. The surface is corroded, torn, and covered in faded paint and soot.",
+    "description_view_0": "Rear three-quarter view showing the jagged, burnt tail fin and the hollow, broken rear fuselage.",
+    "description_view_1": "Side profile highlighting the missing wings, exposed internal structure, and the open, stripped cockpit area.",
+    "description_view_2": "Front three-quarter view focusing on the empty cockpit, torn fuselage, and the absence of the nose and wings.",
+    "description_view_3": "Opposite side profile showing the damaged fuselage, burnt tail, and more of the internal ribbing.",
+    "category": "airplane",
+    "height": 2.2,
+    "max_dimension": 7.0,
+    "materials": [
+        "aluminum",
+        "steel",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.02,
+        0.08
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 4,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "inspectable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cockpit frame",
+        "fuselage panels",
+        "tail fin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "rust brown",
+        "black",
+        "gray",
+        "orange"
+    ],
+    "colors_composition": [
+        0.4,
+        0.25,
+        0.15,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Wings are missing; attachment points suggest a low-wing configuration with no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "No engine visible; engine compartment is empty.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer, partially destroyed and burnt.",
+    "attribute_landing_gear_type": "Landing gear absent; no visible wheels or struts.",
+    "attribute_cockpit_placement": "Forward-mounted, open cockpit with a stripped canopy frame and no glass, likely single-seat.",
+    "uid": "5d169fd080d64552ae66ffee76daf675",
+    "near_synsets": {
+        "fuselage.n.01": 0.5393183085963202,
+        "aircraft.n.01": 0.5430838886999353,
+        "airframe.n.01": 0.558367265602225,
+        "airplane.n.01": 0.5635820112005909,
+        "hangar_queen.n.01": 0.5677109659822829
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5d169fd080d64552ae66ffee76daf675",
+        "creator_username": "artfletch",
+        "creator_display_name": "artfletch",
+        "creator_profile_url": "https://sketchfab.com/artfletch"
+    },
+    "filename": "std_5d169fd080d64552ae66ffee76daf675.glb",
+    "length": 5.949387788772583,
+    "width": 3.006749391555786
+}

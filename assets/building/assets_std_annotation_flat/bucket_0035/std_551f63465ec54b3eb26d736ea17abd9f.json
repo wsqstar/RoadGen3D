@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a round, thin-crust pizza with a golden-brown, slightly uneven edge and a visibly crisp texture. The surface is generously covered with melted cheese, which appears to be mozzarella, and is interspersed with toppings such as sliced mushrooms, pieces of onion, and possibly bits of ham or chicken. The cheese is slightly browned in spots, indicating it has been baked thoroughly. The pizza is pre-sliced into several triangular pieces, with the cut lines faintly visible across the surface. The toppings are distributed unevenly, giving the pizza a rustic, homemade appearance. There is no visible packaging or branding present.",
+    "description": "A thin-crust, round pizza topped with cheese, mushrooms, onions, and possibly ham or chicken, pre-sliced and baked to a golden brown.",
+    "description_view_0": "The pizza is viewed from a low angle, showing the golden-brown crust and a generous layer of cheese with visible toppings like mushrooms and onions.",
+    "description_view_1": "This view highlights the pizza's thin crust and the distribution of toppings, with the cheese appearing slightly more browned on this side.",
+    "description_view_2": "The pizza is seen from a slightly higher angle, making the cut lines and the arrangement of toppings more apparent.",
+    "description_view_3": "This angle emphasizes the uneven distribution of toppings and the crispness of the crust, with the cheese appearing more melted and bubbly.",
+    "category": "pizza",
+    "height": 0.025,
+    "max_dimension": 0.32,
+    "materials": [
+        "bread",
+        "cheese",
+        "mushroom",
+        "onion",
+        "ham",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.08,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 0.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 5,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable",
+        "rotatable",
+        "separable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "slices",
+        "crust"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "golden brown",
+        "white",
+        "light brown",
+        "beige"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.4,
+    "asset_composition_type": "single",
+    "attribute_topping_type": [
+        "cheese",
+        "mushroom",
+        "onion",
+        "ham"
+    ],
+    "attribute_slice_count": 8,
+    "attribute_crust_style": "thin crust",
+    "attribute_packaging_presence": false,
+    "attribute_brand_logo": "None",
+    "uid": "551f63465ec54b3eb26d736ea17abd9f",
+    "near_synsets": {
+        "pizza.n.01": 0.45394148583926336,
+        "sicilian_pizza.n.01": 0.47519289994088665,
+        "pepperoni_pizza.n.01": 0.4913174605706537,
+        "cheese_pizza.n.01": 0.4962033947948085,
+        "sausage_pizza.n.01": 0.5157495154692315
+    },
+    "synset": "sausage_pizza.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/551f63465ec54b3eb26d736ea17abd9f",
+        "creator_username": "pilips",
+        "creator_display_name": "pilips",
+        "creator_profile_url": "https://sketchfab.com/pilips"
+    },
+    "filename": "std_551f63465ec54b3eb26d736ea17abd9f.glb",
+    "length": 0.3592674136161804,
+    "width": 0.3558019995689392
+}

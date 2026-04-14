@@ -1,0 +1,92 @@
+{
+    "description_long": "This is a large, open-topped cardboard box with flaps partially extended outward on both sides. The box is constructed from corrugated cardboard, giving it a slightly ribbed texture and a matte finish. The exterior is a light brown color, typical of standard shipping or moving boxes, while the interior appears slightly darker due to shadowing. The box is empty, revealing its spacious interior and the thickness of the cardboard walls. The flaps are not sealed, indicating the box is ready to be filled or closed. This type of box is commonly used for packaging, moving, or temporary storage in urban environments such as sidewalks, garages, or delivery areas.",
+    "description": "A large, open cardboard box with outward-facing flaps and a ribbed, light brown exterior. The box is empty and ready for use in packaging or storage.",
+    "description_view_0": "Front view showing the open top, two side flaps extended outward, and the full depth of the box.",
+    "description_view_1": "Angled view from the left, highlighting the left flap's extension and the box's interior space.",
+    "description_view_2": "Rear view with both side flaps visible and the open top clearly displayed.",
+    "description_view_3": "Angled view from the right, emphasizing the right flap's extension and the box's empty interior.",
+    "category": "parcels",
+    "height": 0.55,
+    "max_dimension": 0.65,
+    "materials": [
+        "corrugated_cardboard",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.15
+    ],
+    "mass": 1.2,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 5,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "flap",
+        "box_body"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light brown",
+        "dark brown"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 4000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "",
+    "attribute_car_model": "",
+    "attribute_building_number": "",
+    "attribute_storefront_signage": "",
+    "attribute_street_name": "",
+    "uid": "f1cafeafdec34fe29d42be1fb543d15b",
+    "near_synsets": {
+        "carton.n.02": 0.47614348541028134,
+        "packing_box.n.02": 0.4845304563516271,
+        "box.n.01": 0.5262679904076425,
+        "envelope.n.01": 0.5279232927639433,
+        "packing.n.02": 0.5310044177820487,
+        "package.n.02": -1000.0,
+        "tract.n.01": -1000.0,
+        "parcel.n.02": -1000.0,
+        "package.n.01": -1000.0
+    },
+    "synset": "carton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f1cafeafdec34fe29d42be1fb543d15b",
+        "creator_username": "andreadev",
+        "creator_display_name": "AndreaDev3d",
+        "creator_profile_url": "https://sketchfab.com/andreadev"
+    },
+    "filename": "std_f1cafeafdec34fe29d42be1fb543d15b.glb",
+    "length": 0.6512748599052429,
+    "width": 0.6647813022136688
+}

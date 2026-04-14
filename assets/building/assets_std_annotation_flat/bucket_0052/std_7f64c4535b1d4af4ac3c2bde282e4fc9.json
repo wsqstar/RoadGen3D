@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a tracked armored combat vehicle equipped with a large missile launcher system mounted on its rear section. The vehicle features a low, angular hull with sloped armor panels and a camouflage paint scheme in shades of green, gray, and black. On the roof, there is a machine gun mounted towards the front, and two tall radio antennas extend upward from the rear. The missile launcher system consists of two large rectangular pods, each with visible launch tubes, positioned on a rotating platform. The vehicle's sides display military insignia, and the tracks are robust, designed for off-road mobility. The overall design suggests a focus on both protection and offensive capability in urban or battlefield environments.",
+    "description": "Armored tracked combat vehicle with a roof-mounted missile launcher, camouflage paint, and military insignia.",
+    "description_view_0": "Front view showing the sloped armored hull, headlights, and the forward-mounted machine gun.",
+    "description_view_1": "Left side view highlighting the missile launcher pods, track system, and military insignia on the hull.",
+    "description_view_2": "Rear view focusing on the back of the missile launcher system and the vehicle's armored rear section.",
+    "description_view_3": "Right side view displaying the missile launcher, track system, and additional details of the hull and antennas.",
+    "category": "combat tactical  vehicle",
+    "height": 2.8,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "aluminum",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.05,
+        0.02,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "door",
+        "track",
+        "missile launcher",
+        "machine gun",
+        "antenna",
+        "headlight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One machine gun mount on the front roof and one dual-pod missile launcher system on the rear roof.",
+    "attribute_armor_plating": "Full body armor plating with sloped panels on the front and sides, moderate thickness, and reinforced sections around the hull.",
+    "attribute_camouflage_pattern": "Woodland-style camouflage with irregular patches of green, gray, and black.",
+    "attribute_military_markings": "White star insignia on the side hull.",
+    "attribute_tire_type": "not applicable",
+    "uid": "7f64c4535b1d4af4ac3c2bde282e4fc9",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4671712328203894,
+        "reconnaissance_vehicle.n.01": 0.47636229555767556,
+        "armored_vehicle.n.01": 0.4938212910025375,
+        "tank.n.01": 0.493953353402311,
+        "armored_car.n.02": 0.49561610651862886,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7f64c4535b1d4af4ac3c2bde282e4fc9",
+        "creator_username": "Adityakm",
+        "creator_display_name": "Aditya Graphical",
+        "creator_profile_url": "https://sketchfab.com/Adityakm"
+    },
+    "filename": "std_7f64c4535b1d4af4ac3c2bde282e4fc9.glb",
+    "length": 3.7135692834854126,
+    "width": 1.4458576440811157
+}

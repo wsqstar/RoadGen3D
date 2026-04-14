@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a stylized, futuristic rifle with a robust, angular body primarily colored in dark gray and black, accented by red and gold details. The rifle features a thick, cylindrical barrel with a segmented muzzle, from which a projectile or energy effect appears to be emitted. Its body is mounted on a mechanical, tripod-like base with articulated legs, suggesting it may function as an automated or stationary weapon. A prominent red circular sight or sensor is mounted on the top, giving it a high-tech appearance. The rear section is compact and squared, with additional red markings and a possible handle or grip area. The overall design is blocky and mechanical, with visible joints and connectors, evoking a sense of durability and advanced technology.",
+    "description": "A blocky, futuristic rifle with a dark gray body, red accents, and a mechanical tripod base, featuring a prominent red sight and a segmented barrel emitting a projectile.",
+    "description_view_0": "Front view shows the circular red sight, the segmented muzzle, and the symmetrical tripod legs.",
+    "description_view_1": "Left side view highlights the length of the barrel, the emission effect, and the mechanical details of the tripod base.",
+    "description_view_2": "Rear view displays the squared back, red markings, and the symmetrical arrangement of the tripod legs.",
+    "description_view_3": "Right side view mirrors the left, showing the barrel, emission effect, and mechanical base details.",
+    "category": "rifle",
+    "height": 0.6,
+    "max_dimension": 1.1,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "aimable",
+        "triggerable",
+        "deployable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel",
+        "sight",
+        "trigger",
+        "grip",
+        "tripod legs",
+        "magazine"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray",
+        "red",
+        "gold"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "red dot",
+    "attribute_muzzle_device": "muzzle brake",
+    "uid": "d737ac2f9d8f4a6bb2cefd2afcb0a37b",
+    "near_synsets": {
+        "dragunov.n.01": 0.5040165446216369,
+        "light_arm.n.01": 0.5305587737598522,
+        "gun.n.01": 0.5424129224223864,
+        "rifle.n.01": 0.5440811727208116,
+        "garand_rifle.n.01": 0.5468764652783146
+    },
+    "synset": "garand_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d737ac2f9d8f4a6bb2cefd2afcb0a37b",
+        "creator_username": "AaronXRdev",
+        "creator_display_name": "Aaron XR Dev",
+        "creator_profile_url": "https://sketchfab.com/AaronXRdev"
+    },
+    "filename": "std_d737ac2f9d8f4a6bb2cefd2afcb0a37b.glb",
+    "length": 1.2734689712524414,
+    "width": 0.4897956848144531
+}

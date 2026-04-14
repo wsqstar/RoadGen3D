@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a delicate flowering plant with a slender, greenish stem that branches into two main stalks, each supporting a bloom or bud. The primary flower displays several broad, overlapping petals in shades of pink and red, with subtle hints of orange and yellow near the base. The petals are slightly curled and irregular, giving the flower a natural, organic appearance. One branch features a closed bud, while the other supports a partially opened flower, suggesting different stages of bloom. The stem is textured and slightly uneven, with a few small, lanceolate leaves visible near the base of the flowers. The overall form is typical of ornamental flowers found in urban parks or gardens.",
+    "description": "A slender, branching green stem supports a pink-red flower with broad, overlapping petals and a closed bud, displaying natural irregularity and subtle color gradients.",
+    "description_view_0": "The main flower with its broad, pink-red petals is fully visible, along with a closed bud and a secondary, partially opened bloom on the right.",
+    "description_view_1": "The flower is seen edge-on, highlighting the thickness of the petals and the alignment of the bud and bloom along the stem.",
+    "description_view_2": "The two main branches and their respective flowers are clearly visible, with the open flower facing right and the bud on the left.",
+    "description_view_3": "The open flower is viewed from the opposite side, showing the petal arrangement and the bud directly behind it.",
+    "category": "flower",
+    "height": 0.28,
+    "max_dimension": 0.3,
+    "materials": [
+        "plant tissue",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 0.015,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 0.2,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "petal",
+        "bud",
+        "stem"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "green",
+        "pink",
+        "red",
+        "yellow",
+        "brown"
+    ],
+    "colors_composition": [
+        0.45,
+        0.3,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.38,
+    "youngs_modulus": 20,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.15,
+    "asset_composition_type": "single",
+    "attribute_petal_arrangement": "The petals are arranged in a somewhat radial pattern with overlapping and slightly irregular placement, lacking perfect symmetry but forming a loose whorl around the flower center.",
+    "attribute_number_of_petals": 6,
+    "attribute_stem_presence": true,
+    "attribute_leaf_shape": "lanceolate",
+    "attribute_flower_location": "terminal",
+    "uid": "ccb6dd9987414db88f1794f7a37c8508",
+    "near_synsets": {
+        "ground_pink.n.01": 0.5022987844389242,
+        "grass_pink.n.01": 0.5245946806183011,
+        "epipactis_helleborine.n.01": 0.5281818148932925,
+        "flower_bud.n.01": 0.5329707893610105,
+        "bud.n.01": 0.5331160183503403,
+        "flower.n.01": -1000.0,
+        "flower.n.03": -1000.0,
+        "flower.n.02": -1000.0
+    },
+    "synset": "flower.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ccb6dd9987414db88f1794f7a37c8508",
+        "creator_username": "scbenoit",
+        "creator_display_name": "scbenoit",
+        "creator_profile_url": "https://sketchfab.com/scbenoit"
+    },
+    "filename": "std_ccb6dd9987414db88f1794f7a37c8508.glb",
+    "length": 0.08159176632761955,
+    "width": 0.17638927698135376
+}

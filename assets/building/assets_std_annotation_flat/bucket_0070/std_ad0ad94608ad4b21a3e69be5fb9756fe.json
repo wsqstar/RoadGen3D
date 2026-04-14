@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a green locomotive train with a boxy, elongated body and a flat roof, featuring two large black exhaust vents on top. The sides are adorned with yellow safety railings and a red undercarriage, while the wheels are black and evenly spaced along the base. The front of the train displays a chevron pattern in yellow, red, and gray, with a prominent circular headlight at the center. There is a blue driver's cab window on one side, and a red nameplate reading 'MAKTRON' beneath it. The train's exterior is primarily metal, with glass windows and plastic or rubber details on the railings and wheels. The overall design suggests a diesel or electric freight locomotive commonly seen in urban rail yards or industrial areas.",
+    "description": "A green locomotive train with yellow railings, a blue cab window, and a red undercarriage, featuring a chevron-patterned front and black wheels. The design is boxy and industrial, typical of urban freight or shunting engines.",
+    "description_view_0": "Side view showing the green body, blue cab window, red undercarriage, yellow railings, and black wheels.",
+    "description_view_1": "Front view highlighting the chevron-patterned nose, central headlight, and the symmetry of the train's design.",
+    "description_view_2": "Opposite side view similar to view 0, but without the blue cab window, showing the green body and yellow railings.",
+    "description_view_3": "Rear/front view mirroring view 1, with the chevron pattern and headlight visible.",
+    "category": "train",
+    "height": 4.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 90000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 300000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "headlight",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "yellow",
+        "red",
+        "black",
+        "blue",
+        "gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.08,
+        0.1,
+        0.1,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_train_type": "freight train locomotive",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "single door near the cab on one side",
+    "attribute_window_arrangement": "spaced rectangular windows on the cab and body",
+    "uid": "ad0ad94608ad4b21a3e69be5fb9756fe",
+    "near_synsets": {
+        "train.n.01": 0.47795686006619137,
+        "steam_locomotive.n.01": 0.5104763941664411,
+        "train_set.n.01": 0.5108180122789444,
+        "car_train.n.01": 0.5116786303953106,
+        "locomotive.n.01": 0.512350320296585,
+        "train.n.04": -1000.0,
+        "train.n.05": -1000.0,
+        "caravan.n.01": -1000.0,
+        "gearing.n.01": -1000.0,
+        "string.n.04": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ad0ad94608ad4b21a3e69be5fb9756fe",
+        "creator_username": "mrkuza",
+        "creator_display_name": "mrkuza",
+        "creator_profile_url": "https://sketchfab.com/mrkuza"
+    },
+    "filename": "std_ad0ad94608ad4b21a3e69be5fb9756fe.glb",
+    "length": 17.65175151824951,
+    "width": 2.6129080057144165
+}

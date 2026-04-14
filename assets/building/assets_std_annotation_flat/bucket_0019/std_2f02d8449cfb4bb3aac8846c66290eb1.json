@@ -1,0 +1,88 @@
+{
+    "description_long": "This airplane features a blocky, pixelated design with a predominantly blue and white color scheme, reminiscent of a stylized or toy aircraft. The wings are broad and straight, extending laterally with intricate, stepped patterns along the edges, and the tail section is similarly detailed with a straight horizontal stabilizer. The fuselage is rectangular and robust, with a slightly raised cockpit area at the front, marked by a lighter blue and white pattern. The undercarriage is not visibly detailed, suggesting a simplified or stylized landing gear. The surface appears hard and matte, with a consistent texture across all components. The overall form is compact and geometric, with no visible engines or propellers, emphasizing a decorative or conceptual representation rather than a functional aircraft.",
+    "description": "A stylized, blocky blue and white airplane with broad, stepped wings and a rectangular fuselage, featuring a raised cockpit area and geometric detailing.",
+    "description_view_0": "Front view shows the wide, stepped wings and the raised cockpit area at the nose, with the symmetrical wing pattern clearly visible.",
+    "description_view_1": "Side view highlights the thickness of the fuselage, the stepped wing edges, and the geometric tail structure.",
+    "description_view_2": "Rear view displays the straight horizontal stabilizer and the full span of the wings, with the tail's blocky design prominent.",
+    "description_view_3": "Opposite side view reveals the underside of the wings and fuselage, emphasizing the layered, pixelated construction.",
+    "category": "airplane",
+    "height": 0.5,
+    "max_dimension": 2.5,
+    "materials": [
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.15
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 35,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wing",
+        "tail",
+        "cockpit"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "white",
+        "light blue"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.2,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with straight, broad wings featuring stepped, blocky edges and no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "No visible engines present on the wings or fuselage.",
+    "attribute_tail_design": "Conventional tail with a single horizontal stabilizer and a central vertical fin, all rendered in a blocky, geometric style.",
+    "attribute_landing_gear_type": "No visible landing gear present.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit integrated into the front of the fuselage, with a single-seat configuration implied by the compact design.",
+    "uid": "2f02d8449cfb4bb3aac8846c66290eb1",
+    "near_synsets": {
+        "airplane.n.01": 0.48006735596688366,
+        "aircraft.n.01": 0.490985210161307,
+        "biplane.n.01": 0.5144560117592158,
+        "wings.n.02": 0.5160461536280078,
+        "monoplane.n.01": 0.5180105402586819
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2f02d8449cfb4bb3aac8846c66290eb1",
+        "creator_username": "AITORGAMES1",
+        "creator_display_name": "AITORGAMES1",
+        "creator_profile_url": "https://sketchfab.com/AITORGAMES1"
+    },
+    "filename": "std_2f02d8449cfb4bb3aac8846c66290eb1.glb",
+    "length": 3.3042960166931152,
+    "width": 2.9963605403900146
+}

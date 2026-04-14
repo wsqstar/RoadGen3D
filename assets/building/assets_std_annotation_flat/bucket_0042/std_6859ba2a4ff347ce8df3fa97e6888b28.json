@@ -1,0 +1,100 @@
+{
+    "description_long": "This gate consists of two wooden doors with rectangular window cutouts in the upper half, each mounted on a stone base. The doors are positioned opposite each other and are partially open, revealing a passageway between them. The wood has a grid-like pattern, and each door features a simple metallic handle. The base and the overhead structure are made of gray stone blocks, giving the gate a sturdy and utilitarian appearance. The overall design is minimalistic, with no ornate or decorative elements, and the materials suggest durability for outdoor urban use. The gate is likely intended for pedestrian access control in a public or residential setting.",
+    "description": "A double wooden swing gate with grid-patterned panels and metal handles, mounted on a stone base and topped with a stone block. The design is simple and functional, suitable for urban access control.",
+    "description_view_0": "Front view showing both wooden doors partially open, revealing the passage and the stone base.",
+    "description_view_1": "Side view similar to the front, with both doors visible and the stone base and top block clearly seen.",
+    "description_view_2": "Rear view, mirroring the front, with both doors open and the stone structure visible.",
+    "description_view_3": "Opposite side view, showing the same features as the other side, with both doors and stone elements in view.",
+    "category": "gate",
+    "height": 2.0,
+    "max_dimension": 2.0,
+    "materials": [
+        "wood",
+        "stone",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.45,
+        0.05,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.45,
+        0.5,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_gate_type": "swing gate",
+    "attribute_opening_mechanism": "manual swing",
+    "attribute_decorative_elements": [],
+    "attribute_locking_system": "latch",
+    "attribute_surrounding_structure": "stone base and stone overhead block",
+    "uid": "6859ba2a4ff347ce8df3fa97e6888b28",
+    "near_synsets": {
+        "lock-gate.n.01": 0.494810734836581,
+        "hinging_post.n.01": 0.5099054953051946,
+        "gate.n.01": 0.5117925642843573,
+        "portcullis.n.01": 0.5155840187775362,
+        "gateway.n.01": 0.536360548574265,
+        "gate.n.02": -1000.0,
+        "gate.n.04": -1000.0,
+        "gate.n.03": -1000.0
+    },
+    "synset": "gate.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6859ba2a4ff347ce8df3fa97e6888b28",
+        "creator_username": "madexc",
+        "creator_display_name": "madexc",
+        "creator_profile_url": "https://sketchfab.com/madexc"
+    },
+    "filename": "std_6859ba2a4ff347ce8df3fa97e6888b28.glb",
+    "length": 1.500000774860382,
+    "width": 1.4999998807907104
+}

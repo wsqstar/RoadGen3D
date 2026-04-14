@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a steampunk-inspired airship featuring a large, dark brown, cigar-shaped gas envelope with visible seam lines and metallic end caps. Suspended beneath the envelope is a mechanical gondola with exposed framework, propellers, and fins, giving it a retro-futuristic appearance. The gondola includes a visible cockpit area, a central propeller at the front, and two side-mounted stabilizing fins, one of which is painted red. The tail section of the airship features two large, black vertical stabilizers and a smaller horizontal stabilizer. The materials appear to be a combination of fabric or leather for the envelope, metal for the framework and propellers, and glass for the cockpit. The overall design suggests a lightweight, buoyant structure intended for flight above urban environments.",
+    "description": "A steampunk-style airship with a brown, cigar-shaped envelope, exposed metal gondola, and prominent propellers and fins.",
+    "description_view_0": "Side view showing the elongated brown envelope, suspended gondola with propellers, and two large black stabilizers at the rear.",
+    "description_view_1": "Front view highlighting the rounded nose, central front propeller, and symmetrical placement of the stabilizing fins and gondola.",
+    "description_view_2": "Opposite side view similar to view 0, with the red stabilizing fin more visible and the gondola's structure clearly shown.",
+    "description_view_3": "Rear view displaying the twin black vertical stabilizers, the tail end of the envelope, and the rear propeller arrangement.",
+    "category": "airplane",
+    "height": 2.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "fabric",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.05,
+        0.15
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3430,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "cockpit",
+        "fin",
+        "gondola"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "silver",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 500,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "No traditional wings; features twin large vertical stabilizers and a small horizontal stabilizer at the tail, with side-mounted stabilizing fins on the gondola.",
+    "attribute_engine_type": "Single front-mounted propeller engine with additional small propellers on the gondola.",
+    "attribute_tail_design": "Twin vertical stabilizer tail with a small central horizontal stabilizer, conventional configuration.",
+    "attribute_landing_gear_type": "No visible landing gear; gondola is suspended beneath the envelope.",
+    "attribute_cockpit_placement": "Forward-mounted, open cockpit integrated into the gondola beneath the main envelope.",
+    "uid": "236f1652e144488da3e837530260448f",
+    "near_synsets": {
+        "airship.n.01": 0.4903928622334159,
+        "aircraft.n.01": 0.5192159968309457,
+        "biplane.n.01": 0.5357352326109048,
+        "steampunk.n.01": 0.5422534174475061,
+        "airplane.n.01": 0.5496150613235424
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/236f1652e144488da3e837530260448f",
+        "creator_username": "Nikolai.Simonov",
+        "creator_display_name": "Nikolai.Simonov",
+        "creator_profile_url": "https://sketchfab.com/Nikolai.Simonov"
+    },
+    "filename": "std_236f1652e144488da3e837530260448f.glb",
+    "length": 3.4169145822525024,
+    "width": 1.6955225467681885
+}

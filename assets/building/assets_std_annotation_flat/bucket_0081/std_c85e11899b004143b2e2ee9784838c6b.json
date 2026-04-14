@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a classic hand grenade, specifically resembling the Mk 2 fragmentation grenade, commonly known as the 'pineapple' grenade due to its segmented, textured cast-iron body. The main body is dark olive green with a yellow band near the top, indicating its explosive nature. The upper section features a robust metal safety lever and a visible pull ring attached to a safety pin, both made of dark, slightly weathered steel. The grenade's body is divided into raised rectangular segments, designed to enhance grip and fragment upon detonation. The surface shows signs of wear and minor scratches, suggesting it has been handled or stored for some time. The overall construction is solid and utilitarian, with no visible digital or analog displays or external wiring.",
+    "description": "A dark olive green, segmented hand grenade with a yellow band, metal safety lever, and pull ring. The surface is textured and slightly worn, giving it a rugged, utilitarian appearance.",
+    "description_view_0": "The grenade is shown from a side angle, highlighting the safety lever, pull ring, and the yellow band near the top.",
+    "description_view_1": "A front-on view showing the symmetrical, segmented body and the top of the safety lever, with the yellow band encircling the neck.",
+    "description_view_2": "Another side view, this time with the pull ring and safety pin more prominently visible, along with the textured body.",
+    "description_view_3": "A top-down view focusing on the width of the safety lever and the alignment of the segments on the grenade's body.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.07,
+    "materials": [
+        "steel",
+        "cast iron",
+        "explosive compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.03,
+        0.02
+    ],
+    "mass": 0.6,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 6,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "safety pin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "yellow",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 120000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the safety pin and releasing the safety lever, which triggers a timed fuse inside the grenade.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "c85e11899b004143b2e2ee9784838c6b",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.49615495941378845,
+        "grenade.n.01": 0.526663686556832,
+        "rifle_grenade.n.01": 0.555573765154614,
+        "pipe_bomb.n.01": 0.5696623824593585,
+        "bomb.n.01": 0.5700404535074223,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c85e11899b004143b2e2ee9784838c6b",
+        "creator_username": "MiguelCF",
+        "creator_display_name": "MiguelCF",
+        "creator_profile_url": "https://sketchfab.com/MiguelCF"
+    },
+    "filename": "std_c85e11899b004143b2e2ee9784838c6b.glb",
+    "length": 0.062386529520154,
+    "width": 0.06707048416137695
+}

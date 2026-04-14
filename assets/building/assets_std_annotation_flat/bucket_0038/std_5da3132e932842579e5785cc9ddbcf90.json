@@ -1,0 +1,92 @@
+{
+    "description_long": "This object is a sleek, futuristic airplane with a sharply pointed nose and a triangular, delta-shaped main body. The wings are integrated into the main fuselage and extend outward with a slight backward sweep, each ending in a compact engine nacelle with a blue glow, suggesting advanced propulsion. The rear of the airplane features a prominent, glowing blue exhaust, indicating a jet or energy-based engine. The upper fuselage has a raised section, likely housing the cockpit, with angular, armored contours. The surface is predominantly metallic gray with dark blue accents, giving it a high-tech, military or sci-fi appearance. The overall design is compact and streamlined, optimized for speed and maneuverability.",
+    "description": "A compact, futuristic airplane with a triangular body, swept wings, and glowing blue engine nacelles, finished in metallic gray and blue.",
+    "description_view_0": "Front view shows the pointed nose, integrated swept wings, and dual engine nacelles with blue highlights.",
+    "description_view_1": "Side view reveals the triangular profile, raised cockpit section, and prominent glowing blue exhaust at the rear.",
+    "description_view_2": "Rear view highlights the large blue engine exhaust and the symmetry of the wings and nacelles.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the angular fuselage and glowing engine exhaust.",
+    "category": "airplane",
+    "height": 1.2,
+    "max_dimension": 6.0,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 17640,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "engine nacelle",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "sleek",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, delta-shaped wings with slight backward sweep and integrated engine nacelles; no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Twin jet engines integrated into wing nacelles with visible blue exhaust glow.",
+    "attribute_tail_design": "No conventional tail; features a tailless delta configuration with no visible vertical or horizontal stabilizers.",
+    "attribute_landing_gear_type": "No visible landing gear present in the images.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit raised above the main fuselage with angular canopy.",
+    "uid": "5da3132e932842579e5785cc9ddbcf90",
+    "near_synsets": {
+        "aircraft.n.01": 0.5050170100029407,
+        "airplane.n.01": 0.5274930008249139,
+        "propjet.n.01": 0.5401177634712104,
+        "delta_wing.n.01": 0.5410520011435044,
+        "monoplane.n.01": 0.542885029092812
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5da3132e932842579e5785cc9ddbcf90",
+        "creator_username": "the-regressor",
+        "creator_display_name": "the_regressor",
+        "creator_profile_url": "https://sketchfab.com/the-regressor"
+    },
+    "filename": "std_5da3132e932842579e5785cc9ddbcf90.glb",
+    "length": 396.87256622314453,
+    "width": 592.0729675292969
+}

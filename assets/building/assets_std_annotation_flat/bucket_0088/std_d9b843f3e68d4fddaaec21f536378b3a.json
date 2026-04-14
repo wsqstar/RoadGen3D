@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a cylindrical, stick-handled bomb resembling the classic German Model 24 Stielhandgranate, commonly known as a 'stick grenade.' The main body consists of a dark metal cylindrical head attached to a long, wooden handle, which is slightly tapered and shows a natural wood grain texture. A prominent metal clip or lever is affixed to the side of the cylindrical head, likely serving as a safety or triggering mechanism. The metal head appears robust and industrial, with a matte, slightly worn finish, while the handle is smooth and ergonomically shaped for gripping. The overall construction suggests a combination of metal and wood, with the head likely containing internal explosive material. No visible warning labels, wires, or timer displays are present on the exterior.",
+    "description": "A stick-handled cylindrical bomb with a metal head and wooden handle, featuring a side-mounted metal lever. The design is robust and utilitarian, with a matte finish and no visible labels or electronics.",
+    "description_view_0": "Side view showing the full length of the bomb, highlighting the cylindrical metal head, wooden handle, and a prominent metal lever on the left side.",
+    "description_view_1": "End-on view from the handle, showing the circular cross-section of the handle and the alignment of the head and lever.",
+    "description_view_2": "Opposite side view, displaying the cylindrical head and handle, with the metal lever now on the right side.",
+    "description_view_3": "End-on view from the head, showing the circular face of the metal head and the attachment point of the lever.",
+    "category": "bomb",
+    "height": 0.35,
+    "max_dimension": 0.35,
+    "materials": [
+        "steel",
+        "wood",
+        "explosive_compound",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.35,
+        0.15,
+        0.05
+    ],
+    "mass": 0.6,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 6,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "throwable",
+        "activatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "lever"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.55,
+        0.45
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The bomb appears to use a mechanical lever or pull-activation system, likely requiring the user to pull or twist the lever to initiate detonation.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "d9b843f3e68d4fddaaec21f536378b3a",
+    "near_synsets": {
+        "pipe_bomb.n.01": 0.5185576888125542,
+        "hand_grenade.n.01": 0.5445924793798268,
+        "zip_gun.n.01": 0.5500411516732769,
+        "plastic_bomb.n.01": 0.551398725640334,
+        "mug.n.04": 0.5516284466596871,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0,
+        "bomb.n.01": -1000.0
+    },
+    "synset": "bomb.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d9b843f3e68d4fddaaec21f536378b3a",
+        "creator_username": "MihailoJova",
+        "creator_display_name": "MihailoJova",
+        "creator_profile_url": "https://sketchfab.com/MihailoJova"
+    },
+    "filename": "std_d9b843f3e68d4fddaaec21f536378b3a.glb",
+    "length": 0.28589555621147156,
+    "width": 1.524045467376709
+}

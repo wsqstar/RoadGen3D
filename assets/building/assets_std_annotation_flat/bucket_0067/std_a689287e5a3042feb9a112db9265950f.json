@@ -1,0 +1,89 @@
+{
+    "description_long": "This object is a modern rifle with a long, slender barrel and a streamlined body, likely constructed from metal and polymer materials. The rifle features a straight stock and a thin, elongated barrel, suggesting it is designed for precision shooting. The central body appears compact, with a trigger guard and a magazine well beneath the receiver. The overall silhouette is minimalistic, with no visible attachments such as scopes or bipods. The coloration is predominantly a uniform gray, giving it a utilitarian and tactical appearance. The rifle's design is consistent with those used in urban law enforcement or military scenarios.",
+    "description": "A sleek, modern rifle with a long barrel and straight stock, finished in a uniform gray color. The design is minimalistic and functional, suitable for tactical use.",
+    "description_view_0": "The rifle is seen from an angled top-down perspective, showing the full length of the barrel and the compact body.",
+    "description_view_1": "A direct side view highlights the rifle's thin profile, straight stock, and the uninterrupted line of the barrel.",
+    "description_view_2": "Another angled view similar to view 0, emphasizing the symmetry and slenderness of the rifle.",
+    "description_view_3": "A direct side view from the opposite side, mirroring view 1 and confirming the rifle's uniform design.",
+    "category": "rifle",
+    "height": 0.04,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "grippable",
+        "triggerable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "trigger",
+        "magazine well",
+        "grip"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "none",
+    "uid": "a689287e5a3042feb9a112db9265950f",
+    "near_synsets": {
+        "rifle.n.01": 0.4878114551400712,
+        "garand_rifle.n.01": 0.5057465870414354,
+        "light_arm.n.01": 0.5096833041167681,
+        "dragunov.n.01": 0.5174239569127232,
+        "carbine.n.01": 0.5193576481504435
+    },
+    "synset": "garand_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a689287e5a3042feb9a112db9265950f",
+        "creator_username": "jesamabin",
+        "creator_display_name": "jesamabin",
+        "creator_profile_url": "https://sketchfab.com/jesamabin"
+    },
+    "filename": "std_a689287e5a3042feb9a112db9265950f.glb",
+    "length": 0.009011959657073021,
+    "width": 0.00048661768960300833
+}

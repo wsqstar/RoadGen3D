@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a curved segment of a primary road, featuring a dark asphalt surface with two solid white lines running down the center, indicating a no-passing zone. The road is bordered by yellow dashed lines on both sides, which serve as lane or edge markers. The surface texture appears slightly rough, typical of urban asphalt, and the road section is relatively flat and wide enough for vehicular traffic. There are no visible curbs, sidewalks, or additional road features such as signage, lighting, or pedestrian crossings. The road segment is designed to connect smoothly with other road pieces in an urban environment. The overall appearance suggests it is intended for use in a city or suburban street network.",
+    "description": "A curved, dark asphalt road segment with double solid white center lines and yellow dashed edge markings, typical of urban streets. The surface is slightly rough and lacks curbs, signage, or pedestrian features.",
+    "description_view_0": "The road segment is seen from the side, highlighting its gentle curve and the double white center lines with yellow dashed edge markings.",
+    "description_view_1": "Viewed from above, the full curvature of the road and the continuous double white center lines are clearly visible, along with the yellow dashed lines on both sides.",
+    "description_view_2": "Similar to view 0, this side view shows the opposite edge of the curved road, again emphasizing the lane markings and the road's width.",
+    "description_view_3": "From this top-down angle, the road's curve and lane markings are prominent, mirroring the features seen in view 1.",
+    "category": "road",
+    "height": 0.15,
+    "max_dimension": 6.0,
+    "materials": [
+        "asphalt",
+        "paint",
+        "aggregate",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.08,
+        0.02
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "car",
+        "bicycle"
+    ],
+    "colors": [
+        "black",
+        "white",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.53,
+    "youngs_modulus": 8000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_lane_markings": "Double solid white center lines, two in total, with yellow dashed lines along both edges. No special markings such as arrows or turn lanes.",
+    "attribute_signage": "none",
+    "attribute_curb_presence": false,
+    "attribute_lighting_fixtures": "none",
+    "attribute_pedestrian_crossings": "none",
+    "uid": "17530cb0901a4a0db002d4b769c9a33f",
+    "near_synsets": {
+        "road_surface.n.01": 0.4930538493795987,
+        "white_line.n.01": 0.5005528801713116,
+        "street.n.01": 0.5075899497921477,
+        "curb.n.01": 0.5108853383647358,
+        "street.n.02": 0.5134710609650639,
+        "road.n.02": -1000.0,
+        "road.n.01": -1000.0
+    },
+    "synset": "road.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/17530cb0901a4a0db002d4b769c9a33f",
+        "creator_username": "kyebaker",
+        "creator_display_name": "kyebaker",
+        "creator_profile_url": "https://sketchfab.com/kyebaker"
+    },
+    "filename": "std_17530cb0901a4a0db002d4b769c9a33f.glb",
+    "length": 7.103668212890625,
+    "width": 4.1234283447265625
+}

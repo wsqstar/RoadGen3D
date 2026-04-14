@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a segment of railway track composed of two long, parallel metal rails supported by a series of evenly spaced wooden sleepers. The rails are slightly weathered, showing a metallic sheen, while the sleepers have a natural wood grain texture and a brownish hue. The structure is open underneath, with no ballast bed or pavement visible, and the rails are elevated above the ground by the sleepers. The track section is straight and appears to be a standard gauge, suitable for urban or industrial railways. There are no additional features such as signage, ballast, or embedded pavement. The overall construction is robust, designed to support the weight of passing trains.",
+    "description": "A straight railway track segment with two parallel metal rails mounted on brown wooden sleepers, lacking ballast or signage.",
+    "description_view_0": "A top-down view showing the full length of the track, highlighting the parallel rails and evenly spaced wooden sleepers.",
+    "description_view_1": "An angled side view revealing the thickness of the sleepers and the elevation of the rails above the ground.",
+    "description_view_2": "A head-on view emphasizing the width of the track and the alignment of the rails and sleepers.",
+    "description_view_3": "Another angled side view similar to view 1, showing the rails and sleepers from the opposite direction.",
+    "category": "railway track",
+    "height": 0.15,
+    "max_dimension": 2.5,
+    "materials": [
+        "wood",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 60,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "alignable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "rail",
+        "sleeper"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_parallel_metal_rails": true,
+    "attribute_wooden_or_concrete_sleepers": "wood",
+    "attribute_ballast_bed": false,
+    "attribute_embedded_in_pavement": false,
+    "attribute_railway_crossing_signage": false,
+    "uid": "dc65054cd46d45478597a3fd697b6e07",
+    "near_synsets": {
+        "railroad_bed.n.01": 0.4556161450974141,
+        "line.n.14": 0.47272059474343275,
+        "track.n.09": 0.47670934157598377,
+        "railroad_track.n.01": 0.4902313942742636,
+        "switch.n.04": 0.4936073585697617,
+        "lead.n.03": -1000.0,
+        "track.n.08": -1000.0,
+        "track.n.03": -1000.0,
+        "track.n.11": -1000.0,
+        "path.n.04": -1000.0,
+        "track.n.07": -1000.0,
+        "railway.n.01": -1000.0,
+        "racetrack.n.01": -1000.0,
+        "track.n.06": -1000.0,
+        "cut.n.08": -1000.0,
+        "track.n.10": -1000.0
+    },
+    "synset": "track.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dc65054cd46d45478597a3fd697b6e07",
+        "creator_username": "drakula_graf",
+        "creator_display_name": "drakula_graf",
+        "creator_profile_url": "https://sketchfab.com/drakula_graf"
+    },
+    "filename": "std_dc65054cd46d45478597a3fd697b6e07.glb",
+    "length": 0.47784416377544403,
+    "width": 0.15754491835832596
+}

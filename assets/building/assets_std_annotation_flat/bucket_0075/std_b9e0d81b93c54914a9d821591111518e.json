@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a small, simple tent structure supported by two vertical wooden poles at each end, with a stretched, weathered canvas fabric forming the main shelter. The canvas is a muted tan color with visible patches of darker brown and reddish stains, suggesting heavy use or exposure to the elements. The tent is open on two sides, with the fabric draped between the poles and secured at the corners, creating a basic lean-to or tarp shelter. The poles are dark brown and appear to be made of wood, with visible cross-bracing at the top for stability. There are no visible doors, zippers, or mesh panels, and the tent lacks any clear branding or decorative elements. The overall design is utilitarian, likely intended for temporary shelter in an urban park, street, or encampment setting.",
+    "description": "A small, weathered canvas tent with two wooden support poles and an open-sided, utilitarian design. The tan fabric is patched and stained, giving it a rugged, makeshift appearance.",
+    "description_view_0": "Front view showing the two wooden poles and the taut, triangular canvas stretched between them, with the open side facing forward.",
+    "description_view_1": "Side view highlighting the rectangular canvas panel, with visible fabric sag and a reddish patch in the lower corner.",
+    "description_view_2": "Rear view displaying the back of the tent, with the canvas pulled taut between the poles and visible weathering on the fabric.",
+    "description_view_3": "Opposite side view similar to view 1, showing the canvas panel and reddish patch, with the poles visible at each end.",
+    "category": "tent",
+    "height": 1.5,
+    "max_dimension": 2.2,
+    "materials": [
+        "canvas",
+        "wood",
+        "rope",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.1
+    ],
+    "mass": 8,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shelterable",
+        "attachable",
+        "foldable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "canvas flap",
+        "support pole",
+        "rope tie"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "tan",
+        "brown",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 500,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "open-sided entrance, located between the two main support poles, no door or flap present",
+    "attribute_number_of_poles": 2,
+    "attribute_guy_line_configuration": "No visible guy lines; canvas is directly attached to the poles at the corners.",
+    "attribute_ventilation_openings": [],
+    "attribute_branding_or_logo": "none",
+    "uid": "b9e0d81b93c54914a9d821591111518e",
+    "near_synsets": {
+        "field_tent.n.01": 0.42126475640854305,
+        "canvas_tent.n.01": 0.4423003796229789,
+        "tent.n.01": 0.4465861762415702,
+        "wall_tent.n.01": 0.4607828227124315,
+        "cottage_tent.n.01": 0.46607451372958136,
+        "tent.n.02": -1000.0
+    },
+    "synset": "tent.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/b9e0d81b93c54914a9d821591111518e",
+        "creator_username": "Szerching",
+        "creator_display_name": "Szerching",
+        "creator_profile_url": "https://sketchfab.com/Szerching"
+    },
+    "filename": "std_b9e0d81b93c54914a9d821591111518e.glb",
+    "length": 2.185725450515747,
+    "width": 1.6979280710220337
+}

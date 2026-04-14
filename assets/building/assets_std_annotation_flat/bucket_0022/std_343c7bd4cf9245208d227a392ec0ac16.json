@@ -1,0 +1,100 @@
+{
+    "description_long": "This humanoid robot features a glossy, dark blue body with a large, rounded head and a transparent faceplate displaying a friendly, cartoon-like face. The head is adorned with three teal antennae\u2014one on top and one on each side\u2014adding a playful, futuristic touch. Its torso is compact and smoothly contoured, connecting to segmented arms and legs that suggest a high degree of articulation. The hands have three fingers each, and the legs are robust with pointed feet, giving the robot a stable stance. The surface is highly reflective, indicating a hard, polished material, likely plastic or metal. The overall design is sleek and approachable, suitable for urban environments where interaction with humans is expected.",
+    "description": "A glossy, dark blue humanoid robot with a large, rounded head, teal antennae, and a friendly faceplate. Its segmented limbs and reflective surface give it a sleek, futuristic appearance.",
+    "description_view_0": "Front view shows the robot's expressive faceplate, three teal antennae, and symmetrical, segmented limbs.",
+    "description_view_1": "Left side view highlights the rounded head, single visible antenna, and the profile of the segmented arm and leg.",
+    "description_view_2": "Rear view reveals the smooth, featureless back of the head and body, with both side antennae visible.",
+    "description_view_3": "Right side view mirrors the left, showing the head's curvature, single antenna, and the side profile of the limbs.",
+    "category": "humanoid robot",
+    "height": 1.2,
+    "max_dimension": 0.7,
+    "materials": [
+        "plastic",
+        "metal",
+        "glass",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 32,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 320,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "faceplate",
+        "antennae",
+        "arms",
+        "hands",
+        "legs"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark blue",
+        "teal",
+        "light blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.12,
+    "surface_finish": "glossy",
+    "reflectivity": 0.7,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.2,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms relaxed at the sides and legs straight, head facing forward.",
+    "attribute_clothing_style": "No visible clothing; the robot is covered in integrated, glossy panels with teal decorative elements.",
+    "attribute_facial_features": "The face consists of a large, light blue display with cartoon-like eyes and a smiling mouth, no visible nose, and no other facial features.",
+    "attribute_limb_articulation": "Arms and legs are segmented with visible joints at the shoulders, elbows, hips, and knees, suggesting hinge or ball joints for flexible movement; hands have three articulated fingers each.",
+    "attribute_presence_of_sensors": "None visible",
+    "uid": "343c7bd4cf9245208d227a392ec0ac16",
+    "near_synsets": {
+        "android.n.01": 0.5443660819510231,
+        "robotics_equipment.n.01": 0.5722048425205689,
+        "cyborg.n.01": 0.5732742709911813,
+        "automaton.n.02": 0.5799252130046766,
+        "robotics.n.01": 0.6005692684982963
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/343c7bd4cf9245208d227a392ec0ac16",
+        "creator_username": "dwelfster",
+        "creator_display_name": "Elisey",
+        "creator_profile_url": "https://sketchfab.com/dwelfster"
+    },
+    "filename": "std_343c7bd4cf9245208d227a392ec0ac16.glb",
+    "length": 0.29253247380256653,
+    "width": 0.5949961543083191
+}

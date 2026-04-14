@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a robust, six-wheeled all-terrain vehicle designed for challenging environments, featuring a high ground clearance and oversized, deep-tread tires for superior off-road capability. The body is primarily white with black trim and a blue emergency light bar above the windshield, suggesting utility or emergency service use. The vehicle has a boxy, reinforced cabin with multiple windows on each side, and the branding 'Nord Transit' is prominently displayed on both sides. The front is equipped with a heavy-duty bumper and grille guard, while the rear includes a tow hitch and utility access panel. Roof hatches and rails are visible, indicating additional cargo or equipment storage options. The overall construction appears to be a mix of metal and reinforced plastic, with glass windows and rubber tires.",
+    "description": "A six-wheeled, white all-terrain vehicle with large tires, black trim, and blue emergency lights, branded 'Nord Transit' and built for rugged urban or off-road use.",
+    "description_view_0": "Side view showing three large wheels, 'Nord Transit' branding, multiple windows, and a roof hatch.",
+    "description_view_1": "Front view highlighting the blue emergency light bar, reinforced bumper, grille guard, and wide stance.",
+    "description_view_2": "Opposite side view mirroring view 0, with visible doors, windows, and roof features.",
+    "description_view_3": "Rear view displaying the tow hitch, utility access panel, rear window, and roof hatch.",
+    "category": "all-terrain vehicle",
+    "height": 2.6,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.1,
+        0.12,
+        0.08,
+        0.05
+    ],
+    "mass": 4200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 21000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "bumper",
+        "light bar",
+        "roof hatch",
+        "tow hitch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "blue"
+    ],
+    "colors_composition": [
+        0.75,
+        0.18,
+        0.07
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.95,
+    "bounciness": 0.08,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 6,
+    "attribute_tire_tread_pattern": "The tires have a deep, blocky, all-terrain tread pattern designed for maximum grip on both urban and off-road surfaces.",
+    "attribute_suspension_type": "independent",
+    "attribute_presence_of_roll_cage": true,
+    "attribute_handlebar_or_steering_wheel_type": "round steering wheel",
+    "uid": "a64624dc83ba46c2bc72f783aaeecdea",
+    "near_synsets": {
+        "truck.n.01": 0.5401339627091915,
+        "military_vehicle.n.01": 0.5414351907390437,
+        "snowmobile.n.01": 0.5432026144800303,
+        "sport_utility.n.01": 0.5435057103257167,
+        "four-wheeler.n.01": 0.5492574660920909,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a64624dc83ba46c2bc72f783aaeecdea",
+        "creator_username": "nikolay.pusev",
+        "creator_display_name": ".outsider",
+        "creator_profile_url": "https://sketchfab.com/nikolay.pusev"
+    },
+    "filename": "std_a64624dc83ba46c2bc72f783aaeecdea.glb",
+    "length": 5.846623420715332,
+    "width": 2.6487855911254883
+}

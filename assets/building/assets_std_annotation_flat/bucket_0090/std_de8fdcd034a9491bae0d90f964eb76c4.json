@@ -1,0 +1,114 @@
+{
+    "description_long": "This object is a sleek, quadrupedal robot dog with a streamlined, angular body and a matte black finish. Its head is sharply contoured, featuring prominent, geometric blue eye panels that suggest the presence of sensors or LED indicators. The legs are robust and jointed, designed for agile movement, and the tail is thin and slightly curled, adding to its dynamic posture. The surface appears hard and smooth, likely constructed from advanced polymers or lightweight metal alloys. The overall design is minimalist, with no visible seams or external hardware, emphasizing a futuristic, high-tech aesthetic. This robot dog would fit seamlessly into urban environments as a patrol, companion, or service robot.",
+    "description": "A sleek, matte black robot dog with angular features, blue eye panels, and articulated limbs, designed for urban environments.",
+    "description_view_0": "Front view shows the broad, angular head, symmetrical body, and straight posture of the robot dog.",
+    "description_view_1": "Left side view highlights the geometric head, blue eye panel, jointed legs, and curled tail.",
+    "description_view_2": "Rear view displays the back of the head, body, and tail, emphasizing the symmetry and robust hind legs.",
+    "description_view_3": "Right side view mirrors the left, showing the blue eye panel, articulated limbs, and tail curvature.",
+    "category": "robot dog",
+    "height": 0.7,
+    "max_dimension": 1.1,
+    "materials": [
+        "polymer",
+        "aluminum",
+        "glass",
+        "air",
+        "silicone"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 28,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head",
+        "legs",
+        "tail",
+        "eye panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "blue"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 7000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.15,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_mechanical_joints": [
+        "rotary joint",
+        "hinge joint"
+    ],
+    "attribute_visible_sensors": [
+        "camera"
+    ],
+    "attribute_led_indicators": [
+        "eye LED"
+    ],
+    "attribute_articulated_limbs": [
+        "front left leg",
+        "front right leg",
+        "rear left leg",
+        "rear right leg",
+        "tail"
+    ],
+    "attribute_robotic_face": true,
+    "uid": "de8fdcd034a9491bae0d90f964eb76c4",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.564930231246718,
+        "robotics.n.01": 0.585888328824332,
+        "android.n.01": 0.588099394274661,
+        "italian_greyhound.n.01": 0.5905372979676865,
+        "animatronics.n.01": 0.5946200224452738,
+        "automaton.n.02": -1000.0,
+        "pawl.n.01": -1000.0,
+        "dog.n.01": -1000.0,
+        "andiron.n.01": -1000.0,
+        "cad.n.01": -1000.0,
+        "frank.n.01": -1000.0,
+        "dog.n.03": -1000.0,
+        "frump.n.01": -1000.0
+    },
+    "synset": "animatronics.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/de8fdcd034a9491bae0d90f964eb76c4",
+        "creator_username": "david.diaz27",
+        "creator_display_name": "david.diaz27",
+        "creator_profile_url": "https://sketchfab.com/david.diaz27"
+    },
+    "filename": "std_de8fdcd034a9491bae0d90f964eb76c4.glb",
+    "length": 0.8441890180110931,
+    "width": 0.2350260466337204
+}

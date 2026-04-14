@@ -1,0 +1,94 @@
+{
+    "description_long": "This object consists of three large, rectangular intermodal shipping containers stacked in an offset arrangement. The containers are made of corrugated steel panels with reinforced corners and visible locking mechanisms on the end doors. The top container is red and labeled 'PX-TRANS .Tech charge', the middle container is blue with 'PX TRANSPORT' on the side, and the bottom container is brown with partial white text visible. Each container features heavy-duty doors with locking bars and hinges, typical of cargo containers used for freight transport. The surfaces are matte and slightly textured, with visible seams and structural ribs for added strength. These containers are commonly found in shipping yards, industrial zones, or as temporary storage in urban environments.",
+    "description": "A group of three stacked, corrugated steel shipping containers in red, blue, and brown, each with bold white labeling and heavy-duty locking doors.",
+    "description_view_0": "Front view showing the red and blue containers stacked, with clear white text 'PX-TRANS .Tech charge' and 'PX TRANSPORT' on their sides.",
+    "description_view_1": "Side view highlighting the blue and red containers' corrugated sides and the partial 'PX' label on the brown container.",
+    "description_view_2": "Rear view displaying the red and brown containers, with the brown one showing the word 'height' in white text.",
+    "description_view_3": "Back view showing the locking doors and hardware of all three containers, with visible hinges and locking bars.",
+    "category": "container",
+    "height": 5.8,
+    "max_dimension": 12.2,
+    "materials": [
+        "steel",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.92,
+        0.07,
+        0.01
+    ],
+    "mass": 7200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking bar",
+        "hinge"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "blue",
+        "brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.38,
+        0.38,
+        0.22,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "large printed white text and logos on sides and ends of containers",
+    "attribute_handles_or_grips": "integrated steel handles on doors",
+    "attribute_placement_location": "outdoor ground, shipping yard, or industrial site",
+    "uid": "e28d10f250264b2fa8703ab6688b9bb7",
+    "near_synsets": {
+        "container.n.01": 0.46297125268932743,
+        "cargo_container.n.01": 0.48454283311404295,
+        "box.n.01": 0.5074265223927901,
+        "packing_box.n.02": 0.5236425072893117,
+        "container_ship.n.01": 0.5285653420049177
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e28d10f250264b2fa8703ab6688b9bb7",
+        "creator_username": "person-x",
+        "creator_display_name": "T-Art",
+        "creator_profile_url": "https://sketchfab.com/person-x"
+    },
+    "filename": "std_e28d10f250264b2fa8703ab6688b9bb7.glb",
+    "length": 6.131891489028931,
+    "width": 8.589835166931152
+}

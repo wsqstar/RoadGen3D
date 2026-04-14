@@ -1,0 +1,105 @@
+{
+    "description_long": "A partially eaten hamburger sits atop a crumpled, light brown paper wrapper. The hamburger features a sesame seed bun with a visible bite taken out, exposing layers of green lettuce, a yellowish sauce or cheese, and a patty that is mostly obscured by the toppings. The bun is lightly browned and sprinkled with sesame seeds, while the wrapper beneath is wrinkled and slightly torn at the edges, suggesting casual handling. The lettuce appears fresh and unevenly distributed, protruding from the sides of the sandwich. The overall appearance is that of a typical fast-food hamburger, with a slightly messy and realistic presentation.",
+    "description": "A bitten sesame seed hamburger with lettuce and sauce sits on a crumpled paper wrapper. The sandwich looks fresh but slightly messy, with toppings visible and the wrapper torn at the edges.",
+    "description_view_0": "The bitten side of the hamburger is clearly visible, showing the interior layers of lettuce and sauce, with the wrapper spread out beneath.",
+    "description_view_1": "The side of the hamburger is shown, with the sesame seed bun and lettuce protruding, and the wrapper appearing more crumpled and uneven.",
+    "description_view_2": "The back of the hamburger is visible, with the bun mostly intact and lettuce peeking out, while the wrapper is torn and jagged at the edge.",
+    "description_view_3": "The opposite bitten side is shown, with the bite mark and interior layers visible, and the wrapper mostly flat beneath.",
+    "category": "hamburger",
+    "height": 0.07,
+    "max_dimension": 0.22,
+    "materials": [
+        "bread",
+        "lettuce",
+        "meat",
+        "cheese",
+        "sauce",
+        "paper",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.15,
+        0.18,
+        0.08,
+        0.07,
+        0.15,
+        0.02
+    ],
+    "mass": 0.18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "graspable",
+        "edible"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "bun",
+        "lettuce",
+        "patty",
+        "wrapper"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light brown",
+        "green",
+        "yellow",
+        "white",
+        "beige"
+    ],
+    "colors_composition": [
+        0.45,
+        0.18,
+        0.12,
+        0.1,
+        0.15
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "group",
+    "attribute_bun_type": "sesame seed bun",
+    "attribute_patty_visibility": "partially visible",
+    "attribute_topping_arrangement": "Lettuce is layered beneath the top bun and protrudes unevenly from the sides, with sauce or cheese visible near the bitten area. The toppings are not uniformly distributed, giving a casual, slightly messy appearance.",
+    "attribute_packaging_presence": true,
+    "attribute_sesame_seed_presence": true,
+    "uid": "568ea2c12daf4a7bb08ae499bf146dc1",
+    "near_synsets": {
+        "hamburger.n.01": 0.4998847889300964,
+        "cheeseburger.n.01": 0.5265894002021153,
+        "reuben.n.02": 0.5430002121022864,
+        "hamburger_bun.n.01": 0.5441474888209933,
+        "sloppy_joe.n.01": 0.5443719210704238,
+        "ground_beef.n.01": -1000.0
+    },
+    "synset": "hamburger_bun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/568ea2c12daf4a7bb08ae499bf146dc1",
+        "creator_username": "sander-zh",
+        "creator_display_name": "sander-zh",
+        "creator_profile_url": "https://sketchfab.com/sander-zh"
+    },
+    "filename": "std_568ea2c12daf4a7bb08ae499bf146dc1.glb",
+    "length": 0.409474179148674,
+    "width": 0.27406422793865204
+}

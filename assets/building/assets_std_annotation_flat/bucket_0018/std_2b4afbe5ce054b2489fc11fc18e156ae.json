@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a classic wooden sailing ship with a single tall mast and two large triangular sails, one fore and one aft. The hull is elongated and gently curved, with a pointed bow and a rounded stern, typical of traditional displacement hulls. The deck is open and features a central mast with rigging lines extending to the bow and stern, as well as a visible ladder or ratlines for climbing. The ship's surface is finished in natural wood tones, giving it a vintage maritime appearance. There are no visible cabins or enclosed superstructure, and the deck appears to be clear except for the mast and rigging. The overall design suggests a vessel intended for manual sailing, likely used for transport or fishing in historical or recreational contexts.",
+    "description": "A classic wooden sailing ship with a single mast, two large sails, and an open deck, featuring natural wood tones and traditional rigging.",
+    "description_view_0": "Narrow bow view showing the pointed front of the hull and the alignment of the mast and rigging.",
+    "description_view_1": "Side profile highlighting the full length of the hull, the tall mast, and both sails fully visible.",
+    "description_view_2": "Stern view displaying the rounded rear of the hull and the central placement of the mast.",
+    "description_view_3": "Opposite side profile with a clear view of the sails, rigging, and open deck layout.",
+    "category": "ship",
+    "height": 15.0,
+    "max_dimension": 25.0,
+    "materials": [
+        "wood",
+        "canvas",
+        "metal",
+        "rope",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "steerable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sail",
+        "mast",
+        "rigging",
+        "ladder",
+        "deck"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "beige",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a traditional displacement type with a pointed bow and rounded stern, featuring a smooth, continuous curvature along its length. There is a visible keel running along the bottom, and the hull appears to be constructed from wooden planks. No bulbous bow or catamaran features are present.",
+    "attribute_superstructure_layout": "The ship has an open deck with no visible enclosed superstructure, cabins, or bridges. The central mast is the main vertical feature, and the deck is otherwise clear except for rigging and a ladder.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "mast",
+        "sails",
+        "rigging",
+        "ladder"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "2b4afbe5ce054b2489fc11fc18e156ae",
+    "near_synsets": {
+        "sailboat.n.01": 0.4761904201346945,
+        "sailing_vessel.n.01": 0.4790498901517194,
+        "bark.n.03": 0.4830583483503336,
+        "fore-and-after.n.01": 0.48550208124540484,
+        "brig.n.01": 0.4878827908652584,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2b4afbe5ce054b2489fc11fc18e156ae",
+        "creator_username": "Museovirasto",
+        "creator_display_name": "Museovirasto Museiverket Finnish Heritage Agency",
+        "creator_profile_url": "https://sketchfab.com/Museovirasto"
+    },
+    "filename": "std_2b4afbe5ce054b2489fc11fc18e156ae.glb",
+    "length": 19.60593605041504,
+    "width": 3.165423631668091
+}

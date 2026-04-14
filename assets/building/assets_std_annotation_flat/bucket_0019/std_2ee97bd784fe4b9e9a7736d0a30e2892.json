@@ -1,0 +1,111 @@
+{
+    "description_long": "This is a medium-sized wooden sailing ship with a single tall mast and a large, triangular sail. The hull is dark brown with blue accents along the edges and around the mast base, and features a raised stern section with windows and a small cabin. The deck is mostly open, with a set of stairs leading up to the stern cabin and several hatches and fixtures visible on the main deck. The bow is pointed and reinforced with a blue prow, while the stern is squared off and features additional windows. The ship's superstructure is simple, with a single main deck and a raised aft section, and the mast is equipped with two crow's nests. There are no visible weapons or heavy equipment, suggesting this is a civilian or merchant vessel.",
+    "description": "A wooden sailing ship with a single mast, large triangular sail, and a raised stern cabin with windows. The hull is dark brown with blue accents and an open deck layout.",
+    "description_view_0": "Side view showing the full length of the ship, the large sail, and the raised stern cabin with windows.",
+    "description_view_1": "Front view highlighting the pointed bow, central mast, and the open deck leading to the stern.",
+    "description_view_2": "Opposite side view displaying the hull, sail, and the stern cabin with its windows and stairs.",
+    "description_view_3": "Rear view focusing on the squared stern, windows, and the open deck with visible stairs and hatches.",
+    "category": "ship",
+    "height": 15.0,
+    "max_dimension": 35.0,
+    "materials": [
+        "wood",
+        "fabric",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "openable",
+        "closable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sail",
+        "mast",
+        "stairs",
+        "cabin door",
+        "hatch",
+        "windows",
+        "deck"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "blue",
+        "white",
+        "beige",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a pointed bow and squared stern, constructed from wood with visible planking. The bow features a blue reinforced prow, and the hull sides are straight with a slight flare. There are no visible keels or bulbous bows, and the hull sits low in the water, suggesting stability and cargo capacity.",
+    "attribute_superstructure_layout": "The superstructure consists of a single main deck with a raised stern section housing a small cabin with windows. There are stairs leading up to the stern, and the deck is open with hatches and minimal fixtures. The mast is centrally located, and there are no additional decks or towers.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "stairs",
+        "hatch",
+        "mast",
+        "sail"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "2ee97bd784fe4b9e9a7736d0a30e2892",
+    "near_synsets": {
+        "sailboat.n.01": 0.4814897920330742,
+        "bark.n.03": 0.48495347684218887,
+        "sailing_vessel.n.01": 0.49211329339141474,
+        "outer_jib.n.01": 0.4926518693050823,
+        "catboat.n.01": 0.4953315264306908,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/2ee97bd784fe4b9e9a7736d0a30e2892",
+        "creator_username": "HarryvanAlst",
+        "creator_display_name": "Harry van Alst",
+        "creator_profile_url": "https://sketchfab.com/HarryvanAlst"
+    },
+    "filename": "std_2ee97bd784fe4b9e9a7736d0a30e2892.glb",
+    "length": 16.29458236694336,
+    "width": 5.181645631790161
+}

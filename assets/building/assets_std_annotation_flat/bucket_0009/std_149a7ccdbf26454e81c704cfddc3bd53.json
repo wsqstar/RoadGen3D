@@ -1,0 +1,91 @@
+{
+    "description_long": "This object is a compact, submachine gun-style rifle with a boxy, utilitarian design reminiscent of the Uzi family. The body is predominantly matte black, with a rectangular receiver and two prominent raised sections on either side, likely serving as protective shrouds or housing for internal mechanisms. The barrel is short and stubby, protruding slightly from the front, and the trigger guard is angular and robust. The grip is vertical and integrated into the lower receiver, while the magazine appears to be inserted into the grip itself, a common feature in compact submachine guns. Iron sights are visible on the top, with a simple post and notch configuration. The overall construction suggests a focus on durability and ease of use in close-quarters urban environments.",
+    "description": "A compact, matte black submachine gun-style rifle with a boxy body, short barrel, and integrated iron sights. Features a vertical grip and magazine housed in the grip, designed for urban close-quarters use.",
+    "description_view_0": "Side view showing the rectangular receiver, raised shrouds, short barrel, and vertical grip with magazine.",
+    "description_view_1": "Front view highlighting the barrel opening, iron sight post, and symmetrical shrouds on either side.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the trigger guard and grip.",
+    "description_view_3": "Rear view showing the back of the receiver, rear iron sight notch, and the top of the grip.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 0.45,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "magazine",
+        "safety",
+        "iron sights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "short",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "149a7ccdbf26454e81c704cfddc3bd53",
+    "near_synsets": {
+        "submachine_gun.n.01": 0.48969371062372996,
+        "uzi.n.01": 0.5085192014917311,
+        "kalashnikov.n.01": 0.5115473933825712,
+        "carbine.n.01": 0.5227537176974083,
+        "tommy_gun.n.01": 0.5231660522220885,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/149a7ccdbf26454e81c704cfddc3bd53",
+        "creator_username": "Mookbway",
+        "creator_display_name": "Mookbway",
+        "creator_profile_url": "https://sketchfab.com/Mookbway"
+    },
+    "filename": "std_149a7ccdbf26454e81c704cfddc3bd53.glb",
+    "length": 0.29359912872314453,
+    "width": 0.06312186643481255
+}

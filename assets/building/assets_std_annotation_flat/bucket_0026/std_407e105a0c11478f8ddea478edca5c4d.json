@@ -1,0 +1,90 @@
+{
+    "description_long": "This object is a stylized trumpet with a golden brass-like body and three prominent piston valves positioned along the top. The bell is octagonal and flares outward with a distinct, geometric shape, while the tubing forms a continuous loop with angular bends. The mouthpiece is square and silver, contrasting with the rest of the instrument. The valve casings and tuning slides are rendered in a lighter metallic color, adding visual distinction to the functional parts. The overall design is blocky and geometric, giving the trumpet a modern, almost voxel-like appearance.",
+    "description": "A golden, geometric trumpet with three silver piston valves, an octagonal flared bell, and a square silver mouthpiece.",
+    "description_view_0": "Side view showing the full length of the trumpet, highlighting the three piston valves and the angular tubing.",
+    "description_view_1": "Top-down view emphasizing the alignment of the valves and the octagonal bell shape.",
+    "description_view_2": "Opposite side view displaying the continuous tubing loop and the distinct bell flare.",
+    "description_view_3": "Front view focused on the octagonal bell opening and the square mouthpiece at the rear.",
+    "category": "trumpet",
+    "height": 0.18,
+    "max_dimension": 0.55,
+    "materials": [
+        "brass",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "valve",
+        "mouthpiece",
+        "tuning slide"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gold",
+        "silver",
+        "white"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.65,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 100000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_bell_flare": "Octagonal and wide, with a gradual but geometric flare.",
+    "attribute_valve_configuration": "Three piston valves arranged in a straight line along the top center of the trumpet.",
+    "attribute_mouthpiece_presence": true,
+    "attribute_leadpipe_curvature": "Gently curved with angular bends leading from the mouthpiece to the main tuning slide.",
+    "attribute_tuning_slide_location": "U-shaped tuning slide located just after the leadpipe and before the valve section, oriented downward.",
+    "uid": "407e105a0c11478f8ddea478edca5c4d",
+    "near_synsets": {
+        "cornet.n.01": 0.4894583588183656,
+        "french_horn.n.01": 0.5133706056911367,
+        "trombone.n.01": 0.5258494150823778,
+        "trumpet_arch.n.01": 0.5261563881961787,
+        "bugle.n.01": 0.5330044890661211
+    },
+    "synset": "trumpet_arch.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/407e105a0c11478f8ddea478edca5c4d",
+        "creator_username": "wackyblocks",
+        "creator_display_name": "Wacky",
+        "creator_profile_url": "https://sketchfab.com/wackyblocks"
+    },
+    "filename": "std_407e105a0c11478f8ddea478edca5c4d.glb",
+    "length": 0.42298567295074463,
+    "width": 0.1319577917456627
+}

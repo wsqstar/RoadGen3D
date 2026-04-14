@@ -1,0 +1,92 @@
+{
+    "description_long": "This is a metal swing gate composed of a main hinged section and several adjoining fence panels, forming a partial enclosure. The gate features a rectangular frame with horizontal and vertical bars, providing both structural support and visibility through the barrier. The adjoining fence panels are connected at angles, creating a segmented boundary that could be used to control access to a driveway, park, or private property. The metal construction suggests durability and resistance to weather, with a dark finish that is both utilitarian and visually unobtrusive. There are no visible decorative elements, and the design is straightforward, prioritizing function over ornamentation. The gate appears to be manually operated, with a simple latch mechanism implied at the hinge.",
+    "description": "A dark metal swing gate with adjoining fence panels, featuring a simple, functional design with horizontal and vertical bars. The structure forms a partial enclosure suitable for access control in urban environments.",
+    "description_view_0": "Front view showing the main gate section and the adjoining fence panels extending at angles.",
+    "description_view_1": "Angled view highlighting the segmented layout and the connection points between the gate and fence panels.",
+    "description_view_2": "Rear view displaying the back of the gate and the alignment of the fence panels.",
+    "description_view_3": "Side view emphasizing the length of the fence panels and the gate's hinge area.",
+    "category": "gate",
+    "height": 1.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.08
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "gate panel",
+        "hinge",
+        "latch"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.0,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_gate_type": "swing gate",
+    "attribute_opening_mechanism": "manual swing",
+    "attribute_decorative_elements": [],
+    "attribute_locking_system": "latch",
+    "attribute_surrounding_structure": "metal fence",
+    "uid": "35bccb49e5c748008749c6c4300959b0",
+    "near_synsets": {
+        "gate.n.01": 0.4847838488142152,
+        "lock-gate.n.01": 0.5007836522360856,
+        "gateway.n.01": 0.5161791237670964,
+        "door.n.01": 0.5172266654907717,
+        "portcullis.n.01": 0.5201498638859462,
+        "gate.n.03": -1000.0,
+        "gate.n.02": -1000.0,
+        "gate.n.04": -1000.0
+    },
+    "synset": "gate.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/35bccb49e5c748008749c6c4300959b0",
+        "creator_username": "pasquill",
+        "creator_display_name": "pasquill",
+        "creator_profile_url": "https://sketchfab.com/pasquill"
+    },
+    "filename": "std_35bccb49e5c748008749c6c4300959b0.glb",
+    "length": 5.322755336761475,
+    "width": 8.537325382232666
+}

@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a rectangular Coca-Cola vending machine with a prominent red and white color scheme and a large, curved front panel. The front features a bold Coca-Cola logo, a product selection interface with multiple buttons, and a payment area with slots for coins and bills. The sides are also branded with the Coca-Cola logo, while the back is plain and unadorned. The machine is constructed primarily from metal, with plastic and glass components for the display and interface areas. The overall design is sleek and functional, suitable for placement in public urban environments. The machine stands upright and is large enough to accommodate a significant quantity of beverages inside.",
+    "description": "A large, upright Coca-Cola vending machine with a red and white branded exterior, product selection buttons, and payment slots on the front.",
+    "description_view_0": "Front view showing the curved Coca-Cola logo panel, product selection buttons, payment slots, and retrieval slot.",
+    "description_view_1": "Side view displaying the flat red panel with the Coca-Cola logo, no visible interface or slots.",
+    "description_view_2": "Rear view, entirely black and featureless with no branding or interactive elements.",
+    "description_view_3": "Opposite side view, similar to view 1, with a red Coca-Cola logo panel and no visible interface.",
+    "category": "vending machine",
+    "height": 1.8,
+    "max_dimension": 1.8,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "electronic components",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 220,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "payment slot",
+        "retrieval slot",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A vertical rectangular display panel is located on the right side of the front, above the selection buttons, showing product options and possibly prices.",
+    "attribute_payment_interface": "Payment interface includes a coin slot, bill acceptor, and possibly a card reader, all located on the right side of the front panel above the selection buttons.",
+    "attribute_product_selection_buttons": "A vertical row of individual rectangular buttons, each corresponding to a product, is located on the right side of the front panel below the payment interface.",
+    "attribute_product_retrieval_slot": "A rectangular retrieval slot is located at the bottom of the front panel, slightly left of center, with a recessed opening.",
+    "attribute_branding_or_signage": "Large Coca-Cola logo in white on a red background covers the entire front and both side panels, with the logo text prominently displayed.",
+    "uid": "70f8f7b0d3aa4bd4b5d896f494eb1bb5",
+    "near_synsets": {
+        "vending_machine.n.01": 0.4553689548619891,
+        "automat.n.01": 0.5063787955761943,
+        "coca_cola.n.01": 0.5396847936002708,
+        "soda_fountain.n.02": 0.5545552813768947,
+        "soda_fountain.n.01": 0.5672003578648217,
+        "machine.n.04": -1000.0,
+        "machine.n.05": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.02": -1000.0,
+        "car.n.01": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/70f8f7b0d3aa4bd4b5d896f494eb1bb5",
+        "creator_username": "emvision",
+        "creator_display_name": "emvision",
+        "creator_profile_url": "https://sketchfab.com/emvision"
+    },
+    "filename": "std_70f8f7b0d3aa4bd4b5d896f494eb1bb5.glb",
+    "length": 0.981628954410553,
+    "width": 1.172372579574585
+}

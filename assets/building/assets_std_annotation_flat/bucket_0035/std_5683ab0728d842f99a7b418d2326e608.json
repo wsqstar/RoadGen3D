@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a compact, tracked combat tactical vehicle with a distinctive angular armored hull and a small, centrally mounted turret. The vehicle features wide, robust tracks on either side, designed for traversing rough terrain and urban obstacles. Its front is sharply sloped, providing additional protection and deflection for incoming projectiles, while the rear is more angular and houses an exhaust system. The turret is equipped with a single barrel weapon mount, likely for a machine gun or light cannon, and has a hatch on top for crew access. The exterior is finished in a two-tone paint scheme with muted yellow and black geometric panels, giving it a utilitarian and somewhat camouflaged appearance. No visible military insignia or unit markings are present, and the vehicle's design emphasizes functionality and protection.",
+    "description": "A compact, angular tracked combat vehicle with a small turret and sloped armor, finished in yellow and black geometric panels. It features wide tracks and a single barrel weapon mount.",
+    "description_view_0": "Front view shows the sharply sloped armor, narrow profile, and the central turret with a visible weapon barrel.",
+    "description_view_1": "Left side view highlights the full length of the tracks, the angular hull, and the protruding weapon barrel from the turret.",
+    "description_view_2": "Rear view reveals the angular back armor, exhaust system, and the width of the tracks.",
+    "description_view_3": "Right side view mirrors the left, showing the tracks, hull shape, and turret weapon, with a visible exhaust pipe.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.01,
+        0.05,
+        0.01
+    ],
+    "mass": 7200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "weapon barrel",
+        "tracks",
+        "exhaust pipe"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible weapon mount on the turret, front-facing, suitable for a machine gun or light cannon.",
+    "attribute_armor_plating": "Full body coverage with angular, sloped steel armor plating; appears moderately thick and designed for deflection.",
+    "attribute_camouflage_pattern": "Two-tone geometric paint scheme in yellow and black; no traditional camouflage pattern.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "5683ab0728d842f99a7b418d2326e608",
+    "near_synsets": {
+        "tank.n.01": 0.5009781358991484,
+        "military_vehicle.n.01": 0.5089538048465706,
+        "armored_car.n.02": 0.5193890396102591,
+        "reconnaissance_vehicle.n.01": 0.5253513151169338,
+        "weapons_carrier.n.01": 0.5317906059917512,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5683ab0728d842f99a7b418d2326e608",
+        "creator_username": "mudroljub",
+        "creator_display_name": "mudroljub",
+        "creator_profile_url": "https://sketchfab.com/mudroljub"
+    },
+    "filename": "std_5683ab0728d842f99a7b418d2326e608.glb",
+    "length": 4.6004958152771,
+    "width": 2.241475224494934
+}

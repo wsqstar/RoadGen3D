@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a robust, industrial-style desk with a dark, metallic finish and visible surface scratches, suggesting heavy use. The desk features a built-in computer terminal with a prominent monitor, a keyboard, and a control panel embedded into the desktop. The structure is blocky and angular, with thick side panels and a recessed leg space beneath the work surface. The monitor is encased in a metallic frame, and the control panel includes illuminated buttons and a display, hinting at specialized or technical use. The overall design is utilitarian, prioritizing durability and function over aesthetics. The desk appears suitable for environments requiring secure, fixed workstations, such as control rooms or security offices.",
+    "description": "A heavy-duty, industrial desk with a built-in computer terminal, metallic finish, and control panel, showing signs of wear and technical use.",
+    "description_view_0": "Front view showing the monitor, keyboard, control panel, and open leg space beneath the desk.",
+    "description_view_1": "Left side view highlighting the thick, solid side panel and the protruding monitor frame.",
+    "description_view_2": "Rear view displaying the solid back panel and the recessed area for the monitor, with no visible controls.",
+    "description_view_3": "Right side view similar to the left, showing the side panel and the edge of the control interface.",
+    "category": "desk",
+    "height": 1.0,
+    "max_dimension": 1.6,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "sittable",
+        "pressable",
+        "supportive"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "keyboard",
+        "monitor",
+        "control panel",
+        "buttons"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "light gray",
+        "blue",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.8,
+    "asset_composition_type": "single",
+    "attribute_location": "security control room",
+    "attribute_orientation": "The user-facing side features the monitor, keyboard, and control panel, with an open leg space beneath; the solid back and sides indicate the front is where the computer interface is accessible.",
+    "attribute_condition": "worn",
+    "attribute_presence_of_attached_objects": [
+        "monitor",
+        "keyboard",
+        "control panel"
+    ],
+    "attribute_usage_context": "computer workstation for monitoring or control operations",
+    "uid": "3a6a3d21afd44dfd841cfda19003f35e",
+    "near_synsets": {
+        "desk.n.01": 0.5008809197645778,
+        "desktop.n.01": 0.5026041206109721,
+        "office_furniture.n.01": 0.506058734398504,
+        "terminal.n.04": 0.5352098427742702,
+        "desktop_computer.n.01": 0.5366065489426567
+    },
+    "synset": "desktop_computer.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3a6a3d21afd44dfd841cfda19003f35e",
+        "creator_username": "Fetter",
+        "creator_display_name": "Fetter",
+        "creator_profile_url": "https://sketchfab.com/Fetter"
+    },
+    "filename": "std_3a6a3d21afd44dfd841cfda19003f35e.glb",
+    "length": 0.7286739945411682,
+    "width": 1.4573475122451782
+}

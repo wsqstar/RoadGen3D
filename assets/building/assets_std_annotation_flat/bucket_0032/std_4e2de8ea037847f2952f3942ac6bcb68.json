@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a small, fixed-wing airplane with a straight, low-mounted wing configuration and a single propeller engine mounted at the nose. The fuselage is slender and streamlined, with a forward-placed, enclosed cockpit that appears to accommodate one or two seats. The tail section features a conventional design with a single vertical stabilizer and horizontal stabilizers extending from either side. The landing gear is fixed and appears to be of the tricycle type, with two main wheels under the wings and a smaller nose wheel. The surface is smooth and metallic, with a uniform light gray coloration and minimal visible markings or details. The overall design suggests a light general aviation or training aircraft, suitable for short-range urban or regional flights.",
+    "description": "A small, light gray, single-propeller airplane with a low-mounted straight wing, conventional tail, and fixed tricycle landing gear.",
+    "description_view_0": "Front oblique view showing the propeller at the nose, low-mounted wings, and forward cockpit.",
+    "description_view_1": "Side profile highlighting the slender fuselage, fixed tricycle landing gear, and tail assembly.",
+    "description_view_2": "Rear oblique view displaying the tail section, horizontal and vertical stabilizers, and wing span.",
+    "description_view_3": "Opposite side profile emphasizing the engine placement, cockpit, and landing gear configuration.",
+    "category": "airplane",
+    "height": 1.8,
+    "max_dimension": 9.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "mass": 750,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "cockpit canopy",
+        "landing gear",
+        "door",
+        "control surfaces"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 12.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, straight configuration with no visible winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "Single nose-mounted piston engine with a front propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Fixed tricycle landing gear with two main wheels and a single nose wheel.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit likely configured for one or two seats, with a clear canopy.",
+    "uid": "4e2de8ea037847f2952f3942ac6bcb68",
+    "near_synsets": {
+        "airplane.n.01": 0.43952046558452557,
+        "single_prop.n.01": 0.45954245465398946,
+        "propeller_plane.n.01": 0.4706999494579718,
+        "monoplane.n.01": 0.47792610404010677,
+        "aircraft.n.01": 0.489936651880886
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4e2de8ea037847f2952f3942ac6bcb68",
+        "creator_username": "mudroljub",
+        "creator_display_name": "mudroljub",
+        "creator_profile_url": "https://sketchfab.com/mudroljub"
+    },
+    "filename": "std_4e2de8ea037847f2952f3942ac6bcb68.glb",
+    "length": 1.200878620147705,
+    "width": 0.20959387719631195
+}

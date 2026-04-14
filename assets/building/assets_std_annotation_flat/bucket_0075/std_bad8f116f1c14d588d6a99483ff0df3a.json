@@ -1,0 +1,95 @@
+{
+    "description_long": "This hospital is a large, multi-story structure with a rectangular footprint and a prominent, tiered roof featuring a central raised section. The exterior is characterized by horizontal bands of red and beige, with vertical gray columns at each corner and along the facades, suggesting reinforced concrete construction. Rows of windows line each floor, providing ample natural light to the interior spaces. The main entrance is marked by a protruding canopy and a vertical glass section, likely housing elevators or stairwells. A large sign sits atop the central roof, indicating the building's identity, though the text is not fully legible. The overall design is functional and modern, with minimal decorative elements and a focus on accessibility and visibility.",
+    "description": "A large, modern hospital with a tiered roof, horizontal red and beige bands, and a prominent central sign. The building features multiple stories, rows of windows, and a main entrance with a canopy.",
+    "description_view_0": "This view highlights the main entrance with its canopy and vertical glass section, as well as the prominent rooftop sign and corner columns.",
+    "description_view_1": "This angle shows the side facade with continuous window rows and the tiered roof, while the entrance canopy is less visible.",
+    "description_view_2": "Similar to view 0, this perspective emphasizes the main entrance and the symmetry of the building's design, with the rooftop sign clearly visible.",
+    "description_view_3": "This view focuses on the opposite side of the building, showing the repeating window pattern and the structural columns, with the entrance less prominent.",
+    "category": "hospital",
+    "height": 18.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.1
+    ],
+    "mass": 1200000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "windows",
+        "entrance canopy",
+        "rooftop sign"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "red",
+        "beige"
+    ],
+    "colors_composition": [
+        0.35,
+        0.3,
+        0.25,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_hospital_signage": true,
+    "attribute_emergency_entrance": false,
+    "attribute_ambulance_bay": false,
+    "attribute_medical_cross_symbol": false,
+    "attribute_architectural_style": "modern",
+    "uid": "bad8f116f1c14d588d6a99483ff0df3a",
+    "near_synsets": {
+        "medical_building.n.01": 0.5477686432192147,
+        "hospital.n.01": 0.5560971691120379,
+        "medical_center.n.01": 0.5646365069650998,
+        "hospital.n.02": 0.568512504086436,
+        "hospital_room.n.01": 0.5746174387653924
+    },
+    "synset": "hospital_room.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bad8f116f1c14d588d6a99483ff0df3a",
+        "creator_username": "yolandawulan",
+        "creator_display_name": "yolandawulan",
+        "creator_profile_url": "https://sketchfab.com/yolandawulan"
+    },
+    "filename": "std_bad8f116f1c14d588d6a99483ff0df3a.glb",
+    "length": 34.81400108337402,
+    "width": 34.72748565673828
+}

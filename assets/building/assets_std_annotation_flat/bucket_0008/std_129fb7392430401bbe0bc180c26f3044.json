@@ -1,0 +1,104 @@
+{
+    "description_long": "This is an industrial ABB robot arm, commonly used in manufacturing and automation environments. The arm features a robust, articulated structure with multiple joints, allowing for a wide range of motion and precision. Its exterior is primarily orange with a gray central segment, and it has visible black cabling running along its body for power and control. The base is solid and heavy, designed for stable floor mounting, and the arm segments are constructed from metal with a matte finish. The end of the arm appears to have a tool mount, but no specific end effector is attached. The overall design is utilitarian, emphasizing durability and functionality for repetitive industrial tasks.",
+    "description": "A heavy-duty orange and gray ABB industrial robot arm with articulated joints, visible cabling, and a tool mount at the end. It is designed for floor mounting and robust automation tasks.",
+    "description_view_0": "Side view showing the full length of the arm, the ABB logo, and the main articulation joints.",
+    "description_view_1": "Front view highlighting the arm's width, dual cabling, and the central axis of rotation.",
+    "description_view_2": "Opposite side view with clear visibility of the base, arm segments, and cabling layout.",
+    "description_view_3": "Rear view focusing on the base, cabling, and the back of the main arm segment.",
+    "category": "robot arm",
+    "height": 1.5,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "rubber",
+        "copper",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arm segments",
+        "joints",
+        "tool mount",
+        "cabling"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_joint_type": "revolute",
+    "attribute_number_of_segments": 3,
+    "attribute_end_effector_type": "tool mount",
+    "attribute_visible_wiring_or_cabling": true,
+    "attribute_mounting_location": "floor-mounted",
+    "uid": "129fb7392430401bbe0bc180c26f3044",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5401156987190296,
+        "automaton.n.02": 0.5858024399486254,
+        "automaton.n.03": 0.5976510508622219,
+        "automation.n.03": 0.6005105497135055,
+        "grab.n.01": 0.6043326412542744,
+        "arm.n.04": -1000.0,
+        "arm.n.02": -1000.0,
+        "arm.n.01": -1000.0,
+        "branch.n.01": -1000.0,
+        "sleeve.n.01": -1000.0,
+        "weapon.n.01": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/129fb7392430401bbe0bc180c26f3044",
+        "creator_username": "24je4296",
+        "creator_display_name": "24je4296",
+        "creator_profile_url": "https://sketchfab.com/24je4296"
+    },
+    "filename": "std_129fb7392430401bbe0bc180c26f3044.glb",
+    "length": 1.550849199295044,
+    "width": 0.743778645992279
+}

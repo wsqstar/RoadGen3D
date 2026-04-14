@@ -1,0 +1,90 @@
+{
+    "description_long": "This object is a tall, multi-level structure resembling a modern obelisk, constructed primarily from white-painted materials. It features two visible staircases that spiral upward, enclosed by railings, and is supported by four slender vertical columns at the corners. The central shaft is partially enclosed by a solid wall, with open platforms at each level, and the uppermost platform is bordered by a railing. The base sits on a square wooden platform that mimics parquet flooring, providing a stable foundation. The overall design is minimalist and geometric, with clean lines and a functional, architectural aesthetic. There are no visible decorative elements or inscriptions, and the structure appears to be designed for access and traversal rather than commemoration.",
+    "description": "A tall, white, multi-level obelisk-like structure with spiral staircases, railings, and a square wooden base. The design is minimalist and functional, with open platforms and clean lines.",
+    "description_view_0": "Front view shows the open staircases, railings, and the full height of the structure, with the wooden base clearly visible.",
+    "description_view_1": "Side view reveals the depth of the platforms and the partial enclosure of the central shaft, with the staircases less visible.",
+    "description_view_2": "Rear view displays the solid wall running vertically, obscuring most of the interior features and staircases.",
+    "description_view_3": "Opposite side view highlights the upper platform and railing, with the wall and base structure visible.",
+    "category": "obelisk",
+    "height": 6.0,
+    "max_dimension": 6.0,
+    "materials": [
+        "painted metal",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "graspable_rail"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "staircase",
+        "railing"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "white",
+        "light brown"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_inscription": "none visible",
+    "attribute_ornamentation": "none visible",
+    "attribute_base_design": "The base is a flat, square platform with a wood-like parquet pattern, providing stability and a slight elevation above the ground. There are no steps or decorative features.",
+    "attribute_tip_design": "The tip is flat and open, forming a small platform with a railing, lacking any pointed or decorative features.",
+    "attribute_surrounding_features": "none visible",
+    "uid": "ff1b8add4ce742b6b959b2c26268a887",
+    "near_synsets": {
+        "obelisk.n.01": 0.4934815001940064,
+        "monolith.n.01": 0.5398331874694806,
+        "newel.n.02": 0.5535888570036972,
+        "minaret.n.01": 0.5616820913901737,
+        "stairhead.n.01": 0.5630228951420342,
+        "dagger.n.02": -1000.0
+    },
+    "synset": "obelisk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ff1b8add4ce742b6b959b2c26268a887",
+        "creator_username": "solidorab",
+        "creator_display_name": "SolidorAB",
+        "creator_profile_url": "https://sketchfab.com/solidorab"
+    },
+    "filename": "std_ff1b8add4ce742b6b959b2c26268a887.glb",
+    "length": 6.597310543060303,
+    "width": 6.2945146560668945
+}

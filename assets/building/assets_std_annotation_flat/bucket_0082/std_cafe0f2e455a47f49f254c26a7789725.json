@@ -1,0 +1,91 @@
+{
+    "description_long": "This warehouse is a rectangular, steel-framed structure elevated on slender columns, featuring a flat, corrugated metal roof. The open sides reveal a spacious, unobstructed interior, with visible support beams and a mezzanine level accessible by a prominent metal staircase. The roof is uniform and unadorned, emphasizing functionality over ornamentation. The building's exterior is dominated by industrial materials, with no visible windows or decorative elements, and the overall design prioritizes utility and efficient access. The staircase and mezzanine suggest areas for storage or operational oversight. The structure is typical of urban logistics or storage facilities, designed for easy movement of goods and personnel.",
+    "description": "A rectangular, steel-framed warehouse with a flat metal roof, open sides, and a visible mezzanine accessed by a metal staircase. The design is utilitarian, emphasizing function and efficient access.",
+    "description_view_0": "End-on view showing the narrow side of the warehouse, with the flat roof and open support columns visible.",
+    "description_view_1": "Side view revealing the full length of the warehouse, the open structure, and the metal staircase leading to the mezzanine.",
+    "description_view_2": "Opposite end-on view, similar to view 0, showing the other narrow side with open supports and roof.",
+    "description_view_3": "Side view mirroring view 1, with the staircase and mezzanine clearly visible from a different angle.",
+    "category": "warehouse",
+    "height": 7.0,
+    "max_dimension": 30.0,
+    "materials": [
+        "steel",
+        "corrugated metal",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.1
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "storeable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "staircase",
+        "mezzanine platform"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main exterior facade is composed of exposed steel columns and beams, with a flat corrugated metal roof and open sides. There are no windows or decorative features, and a metal staircase provides access to a mezzanine level.",
+    "attribute_loading_dock_presence": false,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is flat and constructed from corrugated metal panels, with no visible skylights, HVAC units, or additional structures on top.",
+    "attribute_architectural_style": "modern industrial",
+    "uid": "cafe0f2e455a47f49f254c26a7789725",
+    "near_synsets": {
+        "loft.n.01": 0.5369144514898877,
+        "warehouse.n.01": 0.5449192904140195,
+        "shop_floor.n.01": 0.5633126354492664,
+        "mezzanine.n.02": 0.5690904772975983,
+        "well.n.04": 0.5726567914084976
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cafe0f2e455a47f49f254c26a7789725",
+        "creator_username": "GabrielPaiva",
+        "creator_display_name": "GabrielPaiva",
+        "creator_profile_url": "https://sketchfab.com/GabrielPaiva"
+    },
+    "filename": "std_cafe0f2e455a47f49f254c26a7789725.glb",
+    "length": 10.577659130096436,
+    "width": 23.751419067382812
+}

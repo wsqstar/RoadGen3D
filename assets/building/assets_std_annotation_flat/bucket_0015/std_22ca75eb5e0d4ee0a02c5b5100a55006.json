@@ -1,0 +1,106 @@
+{
+    "description_long": "This ATM is a freestanding, rectangular kiosk with a robust, metallic front panel and a matte black body. The front features a large, slightly recessed screen at the top, displaying a blue interface, with a card slot and keypad situated below it. There is a wide, horizontal slot likely for cash or receipts beneath the keypad, and the lower section is solid and unadorned. The left side of the ATM is decorated with colorful graffiti text reading 'Hector Was Here' in red, orange, and green. The rear and right sides are plain black, with no visible openings or features. The overall design is utilitarian, with a focus on durability and security, suitable for placement in public urban environments.",
+    "description": "A sturdy, freestanding ATM with a metallic front, blue screen, and graffiti on one side. The design is robust and functional, with a card slot, keypad, and cash/receipt slot on the front.",
+    "description_view_0": "Front view showing the screen, card slot, keypad, and a wide slot for cash or receipts.",
+    "description_view_1": "Left side view displaying graffiti text 'Hector Was Here' in colorful letters.",
+    "description_view_2": "Rear view showing a plain, solid black surface with no visible features.",
+    "description_view_3": "Right side view, plain black with no visible markings or features.",
+    "category": "atm",
+    "height": 1.5,
+    "max_dimension": 1.5,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "electronic_components",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 250,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "insertable",
+        "withdrawable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "screen",
+        "card slot",
+        "keypad",
+        "cash slot",
+        "receipt slot",
+        "buttons"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "blue",
+        "red",
+        "orange",
+        "green"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.03,
+        0.03,
+        0.04
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_screen_interface": "A rectangular, slightly recessed screen at the top front, displaying a blue interface with white text and several rectangular UI elements, likely buttons or menu options.",
+    "attribute_card_slot": "One horizontal card slot located below the screen, centrally positioned, with a metallic or plastic trim.",
+    "attribute_keypad_layout": "A small rectangular keypad with a grid layout of square keys, positioned directly below the card slot and above the cash/receipt slot.",
+    "attribute_bank_branding": "None visible.",
+    "attribute_receipt_dispenser": "A wide, horizontal slot below the keypad, likely serving as the receipt dispenser, with no visible labeling.",
+    "uid": "22ca75eb5e0d4ee0a02c5b5100a55006",
+    "near_synsets": {
+        "cash_machine.n.01": 0.5247682926988587,
+        "automat.n.01": 0.5722545740904128,
+        "vending_machine.n.01": 0.5832297771746677,
+        "cash_register.n.01": 0.5901974137707308,
+        "coin_slot.n.01": 0.5969793036650506,
+        "standard_atmosphere.n.01": -1000.0,
+        "asynchronous_transfer_mode.n.01": -1000.0
+    },
+    "synset": "standard_atmosphere.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/22ca75eb5e0d4ee0a02c5b5100a55006",
+        "creator_username": "oscarherry3d",
+        "creator_display_name": "oscarherry3d",
+        "creator_profile_url": "https://sketchfab.com/oscarherry3d"
+    },
+    "filename": "std_22ca75eb5e0d4ee0a02c5b5100a55006.glb",
+    "length": 0.5516650676727295,
+    "width": 0.5013287365436554
+}

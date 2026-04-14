@@ -1,0 +1,100 @@
+{
+    "description_long": "This bus station features a striking, multi-tiered architectural design with a series of broad, overhanging roofs that create a stepped, pagoda-like silhouette. The structure is supported by numerous vertical columns, providing a sense of openness beneath the shelter while maintaining robust support. The main body of the station is elevated above a dark, flat base, suggesting a raised platform or plaza area. The uppermost roof section is solid and expansive, likely offering substantial protection from the elements, while the lower tiers extend outward, creating deep eaves. The overall form is symmetrical and geometric, with clean lines and a modernist aesthetic. There are no visible transparent panels, signage, or seating elements, and the exterior appears to be constructed primarily from concrete or a similar material.",
+    "description": "A large, multi-tiered bus station with broad, overhanging roofs and strong vertical columns, featuring a modern, geometric design. The structure is elevated on a dark base and appears solid and imposing.",
+    "description_view_0": "The front view shows the symmetrical, tiered roofs and the prominent vertical columns supporting the structure, with the dark base clearly visible.",
+    "description_view_1": "This view is nearly identical to the front, emphasizing the layered roof design and the depth of the overhangs, with the columns and base still prominent.",
+    "description_view_2": "The structure remains symmetrical, with the stepped roofs and supporting columns visible, and the central raised platform is apparent.",
+    "description_view_3": "Similar to the other views, this angle highlights the geometric, multi-level roof and the open area beneath, supported by columns.",
+    "category": "bus station",
+    "height": 12.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "shelter",
+        "waiting"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "platform",
+        "roof",
+        "columns"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_shelter_structure": "The shelter is partially covered with multiple broad, overhanging roofs arranged in a stepped, pagoda-like fashion. It is supported by numerous vertical columns, and the structure is open on all sides. The roof is flat and expansive, constructed from concrete or similar solid material, with no visible enclosure.",
+    "attribute_route_signage": "No route signage is visible or implied in the asset. There are no signs, poles, or display boards present in the geometry.",
+    "attribute_seating_arrangement": "No seating arrangement is visible in the asset. There are no benches, seats, or other seating elements present within or around the shelter structure.",
+    "attribute_bus_stop_pole": "No bus stop pole is present in the asset. There are no vertical poles or attached features such as signs or lights visible.",
+    "attribute_transparent_panels": "No transparent panels are present in the asset. The structure is composed entirely of opaque materials, with no glass or acrylic elements visible.",
+    "uid": "695f2b945c964f9abffeaad6213ae226",
+    "near_synsets": {
+        "bus_terminal.n.01": 0.5442274833233184,
+        "bus_stop.n.01": 0.5447898688833148,
+        "platform.n.06": 0.548254429931917,
+        "subway_station.n.01": 0.5635789604241832,
+        "local.n.01": 0.5735229263251694,
+        "station.n.05": -1000.0,
+        "bus.n.04": -1000.0,
+        "post.n.01": -1000.0,
+        "bus.n.01": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "busbar.n.01": -1000.0,
+        "station.n.03": -1000.0,
+        "station.n.01": -1000.0,
+        "place.n.10": -1000.0
+    },
+    "synset": "bus_terminal.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/695f2b945c964f9abffeaad6213ae226",
+        "creator_username": "KlaytonRiley",
+        "creator_display_name": "KlaytonRiley",
+        "creator_profile_url": "https://sketchfab.com/KlaytonRiley"
+    },
+    "filename": "std_695f2b945c964f9abffeaad6213ae226.glb",
+    "length": 28.07250213623047,
+    "width": 28.06845474243164
+}

@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a classic lever-action shotgun, featuring a long, cylindrical barrel with a dark metallic finish and a wooden full stock. The receiver area is highlighted with a brass or gold-toned metal, contrasting with the darker barrel and stock. The lever loop is prominent beneath the receiver, indicating the action mechanism, and the trigger guard is rounded and integrated with the lever. The stock is made of polished wood, extending smoothly to a slightly angled butt. The barrel is unadorned, with no visible ribbing or venting, and the overall design is streamlined and functional, typical of traditional lever-action firearms.",
+    "description": "A lever-action shotgun with a dark metal barrel, brass receiver, and polished wooden full stock. The design is classic and streamlined, with a prominent lever and rounded trigger guard.",
+    "description_view_0": "Side view showing the full length of the shotgun, highlighting the wooden stock, brass receiver, and dark barrel.",
+    "description_view_1": "Front view down the barrel, showing the circular muzzle and the narrow profile of the shotgun.",
+    "description_view_2": "Opposite side view, similar to view 0, displaying the lever, trigger guard, and the full stock.",
+    "description_view_3": "Rear view from the buttstock, showing the width of the wooden stock and the alignment of the barrel.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "wood",
+        "brass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "operable",
+        "loadable",
+        "aimable",
+        "triggerable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "lever",
+        "trigger",
+        "trigger guard",
+        "stock",
+        "barrel",
+        "receiver"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "gold"
+    ],
+    "colors_composition": [
+        0.3,
+        0.6,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, no visible ribbing or venting, standard length",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "lever-action",
+    "attribute_presence_of_a_pump_or_lever": "lever",
+    "attribute_trigger_guard_design": "Rounded, medium-sized trigger guard integrated with the lever, no finger grooves or reinforcement visible",
+    "uid": "6941ec1e75e24a379764185e93182a63",
+    "near_synsets": {
+        "pump_action.n.01": 0.5002564099070241,
+        "gun_trigger.n.01": 0.509089874976943,
+        "sawed-off_shotgun.n.01": 0.5300868103724322,
+        "shotgun.n.01": 0.537411611478677,
+        "shotgun_shell.n.01": 0.546926220718571
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6941ec1e75e24a379764185e93182a63",
+        "creator_username": "JonatanSantana",
+        "creator_display_name": "JonatanSantana",
+        "creator_profile_url": "https://sketchfab.com/JonatanSantana"
+    },
+    "filename": "std_6941ec1e75e24a379764185e93182a63.glb",
+    "length": 0.8016151785850525,
+    "width": 0.03566884435713291
+}

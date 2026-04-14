@@ -1,0 +1,112 @@
+{
+    "description_long": "This object consists of a small stack of books, with one book open and others closed, resting on a dark, flat surface that appears to be a soft-sided bag or case. The open book displays black-and-white printed pages with images and text, while the closed books have colorful covers, including one with a bold red and black design and another with a purple spine. The books are slightly askew, giving a casual, used appearance, and the edges of the covers and pages are visible from multiple angles. The surface beneath the books is irregular and appears to be fabric, possibly a backpack or satchel, with visible straps and some wear or damage. The overall scene suggests a personal collection of study materials or leisure reading, left temporarily on the ground or a bench in an urban environment.",
+    "description": "A small, casually stacked group of books, including an open one, resting on a dark, soft-sided bag with visible straps and wear.",
+    "description_view_0": "The open book is most prominent, with its pages spread wide and a closed book beneath it; the bag's straps are visible at the bottom.",
+    "description_view_1": "The stack appears more disordered, with the open book partially covering a red and black book; the bag's surface looks torn or damaged.",
+    "description_view_2": "The purple-spined book labeled 'UNLEASHED' is clearly visible, and the open book is seen from the side; the bag's irregular edge is noticeable.",
+    "description_view_3": "The open book is again prominent, with the purple-spined book and another closed book visible beneath; the bag's straps and surface are clear.",
+    "category": "book",
+    "height": 0.1,
+    "max_dimension": 0.35,
+    "materials": [
+        "paper",
+        "cardboard",
+        "fabric",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.15,
+        0.03,
+        0.02
+    ],
+    "mass": 2.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 5,
+    "movable": true,
+    "required_force": 22,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "readable",
+        "openable",
+        "closable",
+        "liftable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "pages",
+        "cover",
+        "spine",
+        "bag straps"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "red",
+        "purple",
+        "gray"
+    ],
+    "colors_composition": [
+        0.45,
+        0.2,
+        0.15,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.48,
+    "youngs_modulus": 4000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "group",
+    "attribute_cover_illustration": "The front cover of the most visible book features a bold, graphic illustration with a dominant red and black color scheme, possibly depicting a stylized figure or abstract design. The style is modern and eye-catching, with high contrast and dynamic shapes.",
+    "attribute_title_text": "UNLEASHED",
+    "attribute_spine_design": "The spine of the purple book is visible, featuring large, white, capitalized text on a solid purple background. The design is simple and bold, with no additional decorative elements.",
+    "attribute_publisher_logo": "None.",
+    "attribute_dust_jacket_presence": false,
+    "uid": "e32e0db5baca414baa50b7b4ca5f0999",
+    "near_synsets": {
+        "book_bag.n.01": 0.4717847655057793,
+        "bookshelf.n.01": 0.513966520296259,
+        "schoolbag.n.01": 0.514350072052414,
+        "stacks.n.02": 0.5212125469488461,
+        "book.n.02": 0.530307664797879,
+        "book.n.06": -1000.0,
+        "book.n.10": -1000.0,
+        "script.n.01": -1000.0,
+        "book.n.11": -1000.0,
+        "koran.n.01": -1000.0,
+        "record.n.05": -1000.0,
+        "ledger.n.01": -1000.0,
+        "book.n.01": -1000.0,
+        "bible.n.01": -1000.0,
+        "book.n.07": -1000.0
+    },
+    "synset": "book.n.07",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e32e0db5baca414baa50b7b4ca5f0999",
+        "creator_username": "coelhoelectrico",
+        "creator_display_name": "Artur Coelho",
+        "creator_profile_url": "https://sketchfab.com/coelhoelectrico"
+    },
+    "filename": "std_e32e0db5baca414baa50b7b4ca5f0999.glb",
+    "length": 0.1551799774169922,
+    "width": 0.11732945963740349
+}

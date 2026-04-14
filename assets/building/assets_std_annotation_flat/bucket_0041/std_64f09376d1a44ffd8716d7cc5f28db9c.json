@@ -1,0 +1,101 @@
+{
+    "description_long": "This shelter is a two-story, rectangular structure with a weathered, industrial appearance. The upper level is clad in aged wooden planks and features a flat, rusted metal roof with a rectangular skylight and perimeter railing. The lower level is constructed from corrugated metal panels, showing signs of rust and wear, and includes a large ventilation unit and concrete blocks at the base. Access is provided by a wide, external staircase leading to a raised wooden platform, which is bordered by metal railings. The shelter has multiple rectangular windows, some open and some covered, and a prominent, rusted drainage pipe running vertically along one side. The overall design suggests a utilitarian, possibly temporary or repurposed building suitable for urban or industrial environments.",
+    "description": "A weathered, two-story shelter with a rusted metal roof, wooden upper walls, and a metal lower section, featuring an external staircase and raised platform.",
+    "description_view_0": "Front view showing the main entry, external staircase, and raised platform with metal railings.",
+    "description_view_1": "Side view highlighting the rusted drainage pipe, ventilation unit, and a window on the upper level.",
+    "description_view_2": "Rear view displaying two upper windows, concrete blocks at the base, and the full length of the shelter.",
+    "description_view_3": "Platform view showing the entry door on the upper level and the open, railed platform extending outward.",
+    "category": "shelter",
+    "height": 5.0,
+    "max_dimension": 10.0,
+    "materials": [
+        "wood",
+        "metal",
+        "concrete",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.35,
+        0.1,
+        0.02,
+        0.08
+    ],
+    "mass": 8500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "staircase",
+        "railing",
+        "platform"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "rust",
+        "black"
+    ],
+    "colors_composition": [
+        0.45,
+        0.3,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 15000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "flat rusted metal roof with perimeter railing and rectangular skylight",
+    "attribute_entryway_design": "rectangular open doorway with adjacent wooden steps and covered platform",
+    "attribute_support_structure": "wooden beams, metal posts, and corrugated metal wall panels",
+    "attribute_signage": "none",
+    "attribute_transparency": "fully opaque except for a small glass skylight",
+    "uid": "64f09376d1a44ffd8716d7cc5f28db9c",
+    "near_synsets": {
+        "shelter.n.02": 0.4462780653383572,
+        "shelter.n.01": 0.48529643048878746,
+        "shed.n.01": 0.49495359580589326,
+        "shelter.n.05": 0.5077140277590863,
+        "half-dugout.n.01": 0.5133269933927989,
+        "tax_shelter.n.01": -1000.0,
+        "protection.n.04": -1000.0
+    },
+    "synset": "tax_shelter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/64f09376d1a44ffd8716d7cc5f28db9c",
+        "creator_username": "erroratten",
+        "creator_display_name": "Erroratten",
+        "creator_profile_url": "https://sketchfab.com/erroratten"
+    },
+    "filename": "std_64f09376d1a44ffd8716d7cc5f28db9c.glb",
+    "length": 4.293592214584351,
+    "width": 7.5625176429748535
+}

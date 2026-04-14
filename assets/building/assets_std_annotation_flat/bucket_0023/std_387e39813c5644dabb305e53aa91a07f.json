@@ -1,0 +1,116 @@
+{
+    "description_long": "This ferry terminal is a large, multi-functional structure situated at the edge of a body of water, featuring a main terminal building with a gabled roof and multiple windows. The terminal is surrounded by paved walkways, landscaped greenery, and a prominent road leading to the entrance, providing easy access for vehicles and pedestrians. Adjacent to the main building, there is a sheltered waiting area and a small dock with mooring posts for ferries and boats. A colorful, sloped ramp or gangway connects the terminal to the water, facilitating passenger boarding and disembarkation. The site includes benches, street lamps, and signage, enhancing comfort and navigation for travelers. The overall design integrates functional elements such as ticketing facilities, waiting zones, and direct water access, making it a comprehensive transportation hub.",
+    "description": "A large, detailed ferry terminal with a main building, landscaped surroundings, a road approach, waiting areas, and direct water access with boarding ramps and mooring structures.",
+    "description_view_0": "Front view showing the main terminal building, water access, and landscaped approach with benches and street lamps.",
+    "description_view_1": "Side view highlighting the road leading to the terminal, the colorful boarding ramp, and a moored ferry.",
+    "description_view_2": "Rear view focusing on the sloped gangway, mooring area, and the back of the terminal building.",
+    "description_view_3": "Angled view displaying the terminal entrance, adjacent water, and the road with greenery.",
+    "category": "ferry terminal",
+    "height": 10,
+    "max_dimension": 60,
+    "materials": [
+        "concrete",
+        "glass",
+        "steel",
+        "wood",
+        "asphalt",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.1,
+        0.15,
+        0.1,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "ticket booth",
+        "bench",
+        "gangway",
+        "signage"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "blue",
+        "green",
+        "brown",
+        "red",
+        "yellow",
+        "white"
+    ],
+    "colors_composition": [
+        0.45,
+        0.2,
+        0.15,
+        0.08,
+        0.05,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 8,
+    "asset_composition_type": "scene",
+    "attribute_ferry_dock_signage": true,
+    "attribute_passenger_waiting_area": true,
+    "attribute_ticket_booth_or_kiosk": true,
+    "attribute_boarding_ramps_or_gangways": true,
+    "attribute_water_access_with_mooring_structures": true,
+    "uid": "387e39813c5644dabb305e53aa91a07f",
+    "near_synsets": {
+        "dock.n.05": 0.510032730033749,
+        "ferry.n.01": 0.5385804136187108,
+        "landing.n.02": 0.5396404344792562,
+        "ferry.n.02": 0.5398774554560924,
+        "terminal.n.01": 0.5413938887408525,
+        "end.n.01": -1000.0,
+        "terminal.n.02": -1000.0,
+        "terminal.n.04": -1000.0
+    },
+    "synset": "terminal.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/387e39813c5644dabb305e53aa91a07f",
+        "creator_username": "wsrttys",
+        "creator_display_name": "wsrttys",
+        "creator_profile_url": "https://sketchfab.com/wsrttys"
+    },
+    "filename": "std_387e39813c5644dabb305e53aa91a07f.glb",
+    "length": 54.751243591308594,
+    "width": 59.268999099731445
+}

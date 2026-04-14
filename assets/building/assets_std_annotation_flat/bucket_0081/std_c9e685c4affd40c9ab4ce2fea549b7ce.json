@@ -1,0 +1,103 @@
+{
+    "description_long": "This is an industrial robot arm, predominantly yellow with black and metallic accents, designed for automated tasks in urban environments such as factories or garages. The arm features multiple articulated segments connected by robust joints, allowing for a wide range of motion and precision. Its base is wide and heavy, providing stability, and is likely bolted to the floor for secure operation. The end effector is a two-finger gripper, suitable for grasping and manipulating objects. The surface is hard and metallic, with a smooth, slightly glossy finish, and the arm is marked with technical labeling. No visible wiring or cabling is present on the exterior, giving it a clean, industrial appearance.",
+    "description": "A yellow industrial robot arm with a two-finger gripper, multiple articulated segments, and a sturdy, floor-mounted base. The surface is hard, metallic, and slightly glossy, designed for automated manipulation tasks.",
+    "description_view_0": "Front view showing the gripper end effector and the alignment of the arm's segments directly facing forward.",
+    "description_view_1": "Side view highlighting the full extension of the arm, the articulated joints, and the technical labeling on the upper arm segment.",
+    "description_view_2": "Rear view displaying the back of the base and the arm's main support structure, with the gripper barely visible.",
+    "description_view_3": "Opposite side view showing the arm fully extended and the robust construction of the base and joints.",
+    "category": "robot arm",
+    "height": 1.2,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "graspable",
+        "rotatable",
+        "extendable",
+        "clampable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "gripper",
+        "joints",
+        "base",
+        "arm segments"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_joint_type": "revolute, prismatic",
+    "attribute_number_of_segments": 3,
+    "attribute_end_effector_type": "two-finger gripper",
+    "attribute_visible_wiring_or_cabling": false,
+    "attribute_mounting_location": "floor-mounted",
+    "uid": "c9e685c4affd40c9ab4ce2fea549b7ce",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5380242291625044,
+        "grab.n.01": 0.547332783839003,
+        "automaton.n.02": 0.5685539230365284,
+        "robotics.n.01": 0.5845498547545679,
+        "automaton.n.03": 0.5923838061716892,
+        "branch.n.01": -1000.0,
+        "weapon.n.01": -1000.0,
+        "arm.n.04": -1000.0,
+        "sleeve.n.01": -1000.0,
+        "arm.n.02": -1000.0,
+        "arm.n.01": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c9e685c4affd40c9ab4ce2fea549b7ce",
+        "creator_username": "gallagherpat",
+        "creator_display_name": "Patrick Gallagher",
+        "creator_profile_url": "https://sketchfab.com/gallagherpat"
+    },
+    "filename": "std_c9e685c4affd40c9ab4ce2fea549b7ce.glb",
+    "length": 2.1351197957992554,
+    "width": 0.7313819825649261
+}

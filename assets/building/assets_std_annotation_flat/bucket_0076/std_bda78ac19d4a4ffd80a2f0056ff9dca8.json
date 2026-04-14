@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a stylized, turret-like rifle with a robust, rectangular red body featuring a mottled, weathered texture. The main barrel is cylindrical and metallic, colored in a brass or bronze tone, protruding prominently from the front. The base consists of a circular pivot mechanism mounted on a sturdy, tripod-like support with two wide, clawed feet for stability. The overall design suggests a stationary, possibly automated weapon system, with mechanical joints visible at the barrel and base for aiming adjustments. There are no visible magazines, stocks, or traditional rifle grips, reinforcing its fixed emplacement nature. The surface finish is matte with some roughness, and the construction appears to be primarily metal.",
+    "description": "A red, turret-style rifle with a brass barrel and sturdy tripod base, featuring a weathered, matte finish. The design is robust and mechanical, suited for stationary deployment.",
+    "description_view_0": "Front view shows the circular barrel opening and symmetrical tripod feet, emphasizing the weapon's imposing, forward-facing design.",
+    "description_view_1": "Side view highlights the rectangular body, the full length of the brass barrel, and the circular pivot base, showing the weapon's mechanical articulation.",
+    "description_view_2": "Rear view displays the back of the rectangular housing and the tripod feet, with the barrel barely visible, emphasizing the bulk of the main body.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the other side of the rectangular body and the barrel, with the pivot mechanism and tripod base clearly visible.",
+    "category": "rifle",
+    "height": 0.6,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "brass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "aimable",
+        "pressable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel",
+        "pivot base",
+        "mounting feet"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "brass",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "none",
+    "uid": "bda78ac19d4a4ffd80a2f0056ff9dca8",
+    "near_synsets": {
+        "rifle.n.01": 0.528925066311149,
+        "dragunov.n.01": 0.5318275201046994,
+        "light_arm.n.01": 0.5375294528125982,
+        "winchester.n.02": 0.5451246432802329,
+        "mauser.n.02": 0.5457973527970653
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bda78ac19d4a4ffd80a2f0056ff9dca8",
+        "creator_username": "ThomasMarsollier",
+        "creator_display_name": "Thomas Marsollier",
+        "creator_profile_url": "https://sketchfab.com/ThomasMarsollier"
+    },
+    "filename": "std_bda78ac19d4a4ffd80a2f0056ff9dca8.glb",
+    "length": 1.0928164720535278,
+    "width": 0.6534574627876282
+}

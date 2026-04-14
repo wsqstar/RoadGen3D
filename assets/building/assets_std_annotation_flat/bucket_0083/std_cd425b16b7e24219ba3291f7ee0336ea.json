@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a classic hand grenade, specifically resembling the iconic 'pineapple' style fragmentation grenade. Its body is oval-shaped with a textured, segmented surface, painted in a worn, mottled gray and black pattern that suggests heavy use or age. The top features a black cylindrical fuse assembly with a prominent safety lever and a circular pull ring, both rendered in a matte black finish. The body is constructed from metal, likely steel or cast iron, with visible chipping and scuffing on the raised segments. The safety lever and pin mechanism are clearly defined, indicating the object's interactive components. The overall appearance is utilitarian and robust, designed for easy gripping and operation in high-stress environments.",
+    "description": "A worn, segmented metal hand grenade with a black safety lever and pull ring, featuring a rugged, utilitarian design and a mottled gray-black finish.",
+    "description_view_0": "The grenade's safety lever and pull ring are clearly visible, with the lever extending to the right and the ring upright, highlighting the interactive top components.",
+    "description_view_1": "The rear view shows the cylindrical fuse assembly and the segmented body, with the safety lever less visible and the pull ring partially obscured.",
+    "description_view_2": "The safety lever is now on the left, and the pull ring is more prominent, with the grenade's textured body and worn paint clearly visible.",
+    "description_view_3": "A direct rear view of the fuse assembly, with the safety lever and pull ring aligned away from the viewer, emphasizing the grenade's symmetrical, rugged body.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.07,
+    "materials": [
+        "steel",
+        "iron",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 0.4,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "fuse assembly"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the safety pin and releasing the safety lever, which triggers the internal fuse mechanism.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "cd425b16b7e24219ba3291f7ee0336ea",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.4663955868615324,
+        "grenade.n.01": 0.5034364810036128,
+        "rifle_grenade.n.01": 0.5319735123157128,
+        "bomb.n.01": 0.5390241584652876,
+        "zip_gun.n.01": 0.5475825998821682,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cd425b16b7e24219ba3291f7ee0336ea",
+        "creator_username": "tristanstewart",
+        "creator_display_name": "tristanstewart",
+        "creator_profile_url": "https://sketchfab.com/tristanstewart"
+    },
+    "filename": "std_cd425b16b7e24219ba3291f7ee0336ea.glb",
+    "length": 0.058317720890045166,
+    "width": 0.06126502528786659
+}

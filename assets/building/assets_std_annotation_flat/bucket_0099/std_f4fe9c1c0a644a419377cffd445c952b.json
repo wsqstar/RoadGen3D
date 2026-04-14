@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a sleek, modern flying wing-style airplane with a smooth, continuous delta-shaped body and no distinct fuselage. The wings are sharply swept back, forming a triangular planform with a broad leading edge and tapering wingtips. The surface is predominantly a matte gray, with subtle panel lines and minimal external markings, giving it a stealthy appearance. Two small engine nacelles are visible on the underside near the center, suggesting a jet propulsion system. The tail section lacks traditional vertical or horizontal stabilizers, emphasizing the flying wing design. The landing gear appears to be minimal and partially retracted, with small wheels visible beneath the central body.",
+    "description": "A matte gray, delta-shaped flying wing airplane with swept-back wings, minimal landing gear, and a smooth, stealthy surface.",
+    "description_view_0": "Front view shows the wide, swept-back wings and central body, with two small engine nacelles visible underneath.",
+    "description_view_1": "Left-side view highlights the triangular planform and the smooth, continuous upper surface with minimal protrusions.",
+    "description_view_2": "Rear view reveals the absence of a traditional tail, emphasizing the flying wing design and showing the engine nacelles from behind.",
+    "description_view_3": "Right-side view mirrors the left, displaying the delta wing shape and the subtle landing gear beneath the body.",
+    "category": "airplane",
+    "height": 0.5,
+    "max_dimension": 3.5,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1176,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "closable",
+        "openable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "landing gear",
+        "engine nacelle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, delta configuration with sharply swept wings and no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Twin jet engines mounted near the center underside of the wing.",
+    "attribute_tail_design": "No conventional tail; flying wing configuration with no vertical or horizontal stabilizers.",
+    "attribute_landing_gear_type": "Retractable landing gear with two main wheels visible under the central body.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit integrated into the central body, likely single-seat with a smooth canopy.",
+    "uid": "f4fe9c1c0a644a419377cffd445c952b",
+    "near_synsets": {
+        "delta_wing.n.01": 0.49473470176566775,
+        "aircraft.n.01": 0.49582789847915276,
+        "airplane.n.01": 0.5102785679178807,
+        "monoplane.n.01": 0.5186151622149633,
+        "glider.n.01": 0.5341761312600295
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f4fe9c1c0a644a419377cffd445c952b",
+        "creator_username": "lebedeventerprise",
+        "creator_display_name": "ToporEnterprise",
+        "creator_profile_url": "https://sketchfab.com/lebedeventerprise"
+    },
+    "filename": "std_f4fe9c1c0a644a419377cffd445c952b.glb",
+    "length": 1.6017817258834839,
+    "width": 3.580561637878418
+}

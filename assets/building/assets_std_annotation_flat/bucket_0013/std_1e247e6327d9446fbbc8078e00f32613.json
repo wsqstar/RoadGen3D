@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a double-leaf metal gate supported by two large rectangular stone or concrete pillars on either side. The gate features vertical black bars with a gently arched top, and the upper section of each leaf is adorned with a series of circular cutouts, adding a modern decorative touch. The structure appears robust and is likely designed for vehicular or pedestrian access control in urban or residential settings. The pillars are solid and provide substantial support for the swinging mechanism of the gate. The gate's design is both functional and visually appealing, with a focus on security and aesthetics. The materials and construction suggest durability and resistance to outdoor elements.",
+    "description": "A sturdy double-leaf black metal gate with vertical bars and circular cutouts, flanked by two large stone or concrete pillars. The design is modern and secure, suitable for driveways or entrances.",
+    "description_view_0": "Front view showing both gate leaves, vertical bars, circular cutouts, and the supporting pillars.",
+    "description_view_1": "Side view of a single pillar, showing its rectangular profile and the slot for the gate attachment.",
+    "description_view_2": "Rear view, visually similar to the front, displaying the gate's structure and decorative cutouts.",
+    "description_view_3": "Opposite side view of the other pillar, mirroring the features seen in view 1.",
+    "category": "gate",
+    "height": 1.8,
+    "max_dimension": 3.2,
+    "materials": [
+        "steel",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.5,
+        0.05
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "gate leaf",
+        "hinge",
+        "latch"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "bicycle",
+        "car"
+    ],
+    "colors": [
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.45,
+        0.55
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_gate_type": "driveway gate",
+    "attribute_opening_mechanism": "manual swing",
+    "attribute_decorative_elements": [
+        "circular cutouts",
+        "arched top"
+    ],
+    "attribute_locking_system": "latch",
+    "attribute_surrounding_structure": "stone or concrete pillars",
+    "uid": "1e247e6327d9446fbbc8078e00f32613",
+    "near_synsets": {
+        "gate.n.01": 0.487268981419903,
+        "lock-gate.n.01": 0.4936799181670996,
+        "portcullis.n.01": 0.5110123886510625,
+        "gateway.n.01": 0.5170501094340212,
+        "double_door.n.01": 0.5223043174287724,
+        "gate.n.04": -1000.0,
+        "gate.n.03": -1000.0,
+        "gate.n.02": -1000.0
+    },
+    "synset": "gate.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1e247e6327d9446fbbc8078e00f32613",
+        "creator_username": "periklis",
+        "creator_display_name": "Periklis",
+        "creator_profile_url": "https://sketchfab.com/periklis"
+    },
+    "filename": "std_1e247e6327d9446fbbc8078e00f32613.glb",
+    "length": 0.45000071823596954,
+    "width": 3.3395928144454956
+}

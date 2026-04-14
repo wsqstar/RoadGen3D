@@ -1,0 +1,101 @@
+{
+    "description_long": "This rifle features a blocky, pixelated design reminiscent of voxel art, with a long black barrel and a prominent scope mounted on top. The stock is a distinctive reddish-brown color with two large cutouts, giving it a skeletonized appearance and reducing weight. The receiver and trigger assembly are compact and angular, with a small magazine well visible beneath. The scope is cylindrical and sits above the main body, suggesting the rifle is intended for precision shooting at range. The overall construction appears to be primarily metal with a wooden or polymer stock, and the finish is matte with minimal reflectivity. The rifle's proportions and features suggest it is modeled after a modern sniper or marksman rifle.",
+    "description": "A blocky, voxel-style sniper rifle with a long black barrel, a mounted scope, and a reddish-brown skeletonized stock.",
+    "description_view_0": "Side view showing the full length of the rifle, the mounted scope, and the skeletonized reddish-brown stock with two cutouts.",
+    "description_view_1": "Front view showing the narrow profile of the barrel and scope, with minimal detail visible except the muzzle.",
+    "description_view_2": "Opposite side view, mirroring view 0, highlighting the scope and the open structure of the stock.",
+    "description_view_3": "Rear view showing the end of the stock and the back of the scope, with the rifle's width and symmetry visible.",
+    "category": "rifle",
+    "height": 0.18,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "polymer",
+        "wood",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 5.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 52,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "aimable",
+        "triggerable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "scope",
+        "trigger",
+        "magazine",
+        "grip"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "reddish-brown",
+        "gray",
+        "blue"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "skeletonized",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "scope",
+    "attribute_muzzle_device": "none",
+    "uid": "b098ef7d89c240e9831437c2436c7fc5",
+    "near_synsets": {
+        "dragunov.n.01": 0.5013906077605125,
+        "rifle.n.01": 0.5440711644799548,
+        "sniper_rifle.n.01": 0.5540232140511353,
+        "kalashnikov.n.01": 0.554921401286077,
+        "musket.n.01": 0.5594829515258027
+    },
+    "synset": "sniper_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/b098ef7d89c240e9831437c2436c7fc5",
+        "creator_username": "vlados360rus3",
+        "creator_display_name": "vlados360rus3",
+        "creator_profile_url": "https://sketchfab.com/vlados360rus3"
+    },
+    "filename": "std_b098ef7d89c240e9831437c2436c7fc5.glb",
+    "length": 0.6776470839977264,
+    "width": 0.04235297441482544
+}

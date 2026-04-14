@@ -1,0 +1,100 @@
+{
+    "description_long": "This ship features a long, narrow hull with a pointed bow and a rounded stern, typical of early 20th-century warships or armored cruisers. The deck is outfitted with two prominent cylindrical funnels positioned amidships, flanked by two tall masts fore and aft. The superstructure is compact, with raised platforms and what appear to be gun turrets or armored casemates on both the fore and aft sections. The hull and deck are primarily colored in muted gray and reddish-brown tones, suggesting a steel construction with anti-corrosive coatings. The ship's deck is relatively uncluttered, with visible hatches, railings, and other minor fixtures, but no lifeboats or cranes are apparent. The overall design emphasizes functionality and durability, with a focus on naval operations rather than passenger comfort.",
+    "description": "A steel warship with a long, narrow hull, two funnels, and two tall masts, featuring gun turrets and a compact superstructure in gray and reddish-brown colors.",
+    "description_view_0": "Top-down view showing the pointed bow, rounded stern, and symmetrical deck layout with visible turrets and superstructure.",
+    "description_view_1": "Side profile highlighting the ship's low freeboard, two tall masts, and twin funnels amidships.",
+    "description_view_2": "Top-down view from the stern, mirroring the bow view but with a clearer view of the aft superstructure and turrets.",
+    "description_view_3": "Opposite side profile, similar to view 1, showing the ship's length, masts, and funnels from the other side.",
+    "category": "ship",
+    "height": 18,
+    "max_dimension": 120,
+    "materials": [
+        "steel",
+        "glass",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 9000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 3000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "hatch",
+        "door",
+        "mast",
+        "funnel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "reddish-brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 20,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a pointed bow and rounded stern, featuring a low freeboard and a continuous deck. No bulbous bow or visible keels are present, and the hull appears robust and streamlined for naval use.",
+    "attribute_superstructure_layout": "The superstructure is compact, with raised platforms at the bow and stern, two central funnels, and two tall masts. There are no visible large cabins or bridges, and the design is focused on operational efficiency.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "turret",
+        "hatch",
+        "mast",
+        "funnel"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "5cf134a5d2f141559725ba208a4857f3",
+    "near_synsets": {
+        "battleship.n.01": 0.4959365464698004,
+        "surface_ship.n.01": 0.49635892815532506,
+        "three-decker.n.03": 0.5007009479696527,
+        "capital_ship.n.01": 0.5014868098767684,
+        "naval_weaponry.n.01": 0.5015369925101133,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5cf134a5d2f141559725ba208a4857f3",
+        "creator_username": "DeathRoe",
+        "creator_display_name": "DeathRoe",
+        "creator_profile_url": "https://sketchfab.com/DeathRoe"
+    },
+    "filename": "std_5cf134a5d2f141559725ba208a4857f3.glb",
+    "length": 62.33727264404297,
+    "width": 12.896103858947754
+}

@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a large, classic wooden sailing ship with a high, rounded hull and two prominent masts, each supporting large white sails adorned with bold red crosses. The hull is constructed from brown planks, featuring a raised stern and bow, and a series of small, evenly spaced portholes along the sides. The deck is open and spacious, with a visible forecastle and quarterdeck, and the stern includes a small, windowed cabin area. The masts are rigged with blocky, stylized rigging, and the sails are square-rigged, typical of historical European galleons or carracks. The ship's bow is pointed and reinforced, while the stern is squared off with a decorative railing. No modern equipment or machinery is visible, emphasizing its historical design.",
+    "description": "A large, brown wooden sailing ship with two masts and white sails marked by red crosses, featuring a high, rounded hull and open deck.",
+    "description_view_0": "Side view showing the full length of the ship, both masts with sails, and the detailed hull with portholes.",
+    "description_view_1": "Front view highlighting the pointed bow, central mast, and the full display of the forward sail with a red cross.",
+    "description_view_2": "Opposite side view mirroring view 0, showing the hull, masts, and stern details from the other side.",
+    "description_view_3": "Rear view focusing on the squared stern, windowed cabin, and the back of the sails and deck.",
+    "category": "ship",
+    "height": 18.0,
+    "max_dimension": 45.0,
+    "materials": [
+        "wood",
+        "cloth",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.02,
+        0.08
+    ],
+    "mass": 120000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "steerable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sails",
+        "masts",
+        "deck",
+        "cabin",
+        "railing",
+        "rudder"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "white",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a high, rounded profile, pointed bow, and squared stern. It features a raised forecastle and quarterdeck, with a series of small portholes along the sides and a windowed stern cabin. No keels or bulbous bows are visible.",
+    "attribute_superstructure_layout": "The superstructure consists of an open main deck with raised sections at the bow and stern, a small cabin at the stern, and two tall masts centrally positioned. There are no visible bridges or enclosed towers.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "masts",
+        "sails",
+        "railing"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "688c0525bd564087a24e55a19b45e8d0",
+    "near_synsets": {
+        "bark.n.03": 0.4632142399380032,
+        "sailing_vessel.n.01": 0.46404728583433275,
+        "sailboat.n.01": 0.477618308774265,
+        "brig.n.01": 0.48179788184752126,
+        "sail.n.03": 0.4866599845123502,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/688c0525bd564087a24e55a19b45e8d0",
+        "creator_username": "madexc",
+        "creator_display_name": "madexc",
+        "creator_profile_url": "https://sketchfab.com/madexc"
+    },
+    "filename": "std_688c0525bd564087a24e55a19b45e8d0.glb",
+    "length": 27.62790298461914,
+    "width": 7.11628532409668
+}

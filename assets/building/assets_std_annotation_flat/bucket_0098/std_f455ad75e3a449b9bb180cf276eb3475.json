@@ -1,0 +1,102 @@
+{
+    "description_long": "This kiosk features a modern, open-plan design with a polygonal base and several partition walls forming semi-enclosed display and interaction zones. The structure is predominantly white, with large, flat wall panels that serve as display surfaces for graphics and information. A prominent digital screen is mounted on one of the central partitions, likely for multimedia presentations or interactive content. Above the kiosk, a large, suspended sign with the name 'PUTT SIRISAKSOPIT' provides clear identification and visibility from a distance. The kiosk lacks a traditional roof, instead opting for an open-air layout that encourages easy access from multiple sides. The overall aesthetic is minimalist, with clean lines and a focus on functionality and visual communication.",
+    "description": "A modern, open-air kiosk with white partition walls, a polygonal base, a digital display, and a large suspended name sign. The design is minimalist and highly accessible from all sides.",
+    "description_view_0": "Front view showing the open layout, central digital display, and the large overhead 'PUTT SIRISAKSOPIT' sign.",
+    "description_view_1": "Rear angled view highlighting the back partition walls and the reverse side of the suspended sign.",
+    "description_view_2": "Side view emphasizing the depth of the kiosk, the arrangement of partitions, and the digital display's placement.",
+    "description_view_3": "Frontal perspective with a clear view of the open entry, display partitions, and the prominent overhead signage.",
+    "category": "kiosk",
+    "height": 2.7,
+    "max_dimension": 6.0,
+    "materials": [
+        "painted wood",
+        "glass",
+        "metal",
+        "plastic",
+        "digital display",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.05,
+        0.15,
+        0.05,
+        0.05,
+        0.15
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "displayable",
+        "touchable",
+        "mountable",
+        "viewable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "digital display",
+        "partition panels"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "white",
+        "gray",
+        "black",
+        "green"
+    ],
+    "colors_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 8000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "scene",
+    "attribute_signage_type": "Large suspended printed sign above the kiosk with the text 'PUTT SIRISAKSOPIT', highly visible and integrated into the structure.",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "none; open entryways on multiple sides",
+    "attribute_roof_design": "No roof; open-air design with only a suspended sign overhead.",
+    "attribute_architectural_style": "modern minimalist",
+    "uid": "f455ad75e3a449b9bb180cf276eb3475",
+    "near_synsets": {
+        "booth.n.02": 0.557757538851339,
+        "shopfront.n.01": 0.5698125550343194,
+        "pop-up.n.03": 0.5777614638548325,
+        "window.n.07": 0.5802429159861694,
+        "display_window.n.01": 0.5826144068736644
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f455ad75e3a449b9bb180cf276eb3475",
+        "creator_username": "puttsiri",
+        "creator_display_name": "puttsiri",
+        "creator_profile_url": "https://sketchfab.com/puttsiri"
+    },
+    "filename": "std_f455ad75e3a449b9bb180cf276eb3475.glb",
+    "length": 4.176347017288208,
+    "width": 4.1763458251953125
+}

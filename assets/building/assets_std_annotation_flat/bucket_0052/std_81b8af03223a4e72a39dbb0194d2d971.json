@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a rectangular gate with a wooden central panel bordered by a metallic or painted frame. The front face features a series of evenly spaced square metallic studs or bolts arranged vertically along both sides, suggesting reinforcement or decorative detailing. A prominent rectangular handle or bar projects outward from the center, providing a grip for manual operation. The back of the gate is plain, with the wood panel uninterrupted by hardware or embellishments. The side views reveal the thickness of the frame and the protruding handle, indicating a sturdy construction. The overall design is utilitarian, suitable for access control in urban environments such as parking lots, garages, or restricted entryways.",
+    "description": "A sturdy rectangular gate with a wood panel, metallic frame, and a central projecting handle, featuring vertical rows of square studs for reinforcement or decoration.",
+    "description_view_0": "Front view showing the wood panel, metallic border, vertical rows of square studs, and a central projecting handle.",
+    "description_view_1": "Side view highlighting the thickness of the frame and the protruding handle, with minimal visible detail.",
+    "description_view_2": "Rear view displaying a plain wood panel bordered by metal, with no visible hardware or studs.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the frame's thickness and the handle's projection.",
+    "category": "gate",
+    "height": 1.8,
+    "max_dimension": 1.8,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_gate_type": "swing gate",
+    "attribute_opening_mechanism": "manual swing",
+    "attribute_decorative_elements": [
+        "square studs"
+    ],
+    "attribute_locking_system": "no visible lock",
+    "attribute_surrounding_structure": "metal frame",
+    "uid": "81b8af03223a4e72a39dbb0194d2d971",
+    "near_synsets": {
+        "gate.n.01": 0.48330940410535367,
+        "portcullis.n.01": 0.502971794902199,
+        "lock-gate.n.01": 0.5083816369047719,
+        "cross.n.01": 0.5224399802980788,
+        "gatepost.n.01": 0.5238620231591282,
+        "gate.n.02": -1000.0,
+        "gate.n.03": -1000.0,
+        "gate.n.04": -1000.0
+    },
+    "synset": "gate.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/81b8af03223a4e72a39dbb0194d2d971",
+        "creator_username": "bugbilly",
+        "creator_display_name": "William Zarek",
+        "creator_profile_url": "https://sketchfab.com/bugbilly"
+    },
+    "filename": "std_81b8af03223a4e72a39dbb0194d2d971.glb",
+    "length": 0.5138311386108398,
+    "width": 0.981817901134491
+}

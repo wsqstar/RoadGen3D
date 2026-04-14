@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a compact, futuristic-looking shotgun with a bullpup configuration, featuring a matte dark gray and black finish. The upper section houses a transparent, amber-tinted magazine that runs parallel to the barrel, allowing visible observation of the ammunition. The body is constructed with smooth, contoured surfaces and integrated ergonomic grips, including a large trigger guard and thumbhole stock for improved handling. The top of the weapon features a raised sight rail and a prominent charging handle, while the front end is short and squared, with a small muzzle protruding. The overall design is streamlined, with minimal external attachments and a robust, tactical appearance. The materials suggest a combination of metal and high-strength polymer, typical for modern urban firearms.",
+    "description": "A compact, bullpup-style shotgun with a dark matte finish, transparent magazine, and ergonomic grips. It features a streamlined, tactical design with visible metal and polymer components.",
+    "description_view_0": "Side view showing the full length, transparent magazine, ergonomic grip, and the overall bullpup configuration.",
+    "description_view_1": "Front view highlighting the short, squared muzzle, sight rail, and the compact width of the weapon.",
+    "description_view_2": "Opposite side view displaying the magazine, charging handle, and the contoured stock design.",
+    "description_view_3": "Rear view focusing on the magazine feed, sight rail, and the thumbhole stock opening.",
+    "category": "shotgun",
+    "height": 0.22,
+    "max_dimension": 0.68,
+    "materials": [
+        "polymer",
+        "steel",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.05,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "magazine",
+        "charging handle",
+        "safety switch",
+        "grip",
+        "sight rail"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "amber"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, short and compact with no visible ribbing or venting",
+    "attribute_stock_type": "thumbhole stock",
+    "attribute_action_mechanism": "semi-automatic",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "large, rounded, and elongated trigger guard integrated with the grip and thumbhole stock",
+    "uid": "431fc5a7b937481389558238ec43907a",
+    "near_synsets": {
+        "shotgun.n.01": 0.532889072196793,
+        "pump_action.n.01": 0.5366036780390784,
+        "sawed-off_shotgun.n.01": 0.5423697424257028,
+        "gas_gun.n.01": 0.5436716370491237,
+        "tommy_gun.n.01": 0.5598912316989246
+    },
+    "synset": "sawed-off_shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/431fc5a7b937481389558238ec43907a",
+        "creator_username": "felip32pppp",
+        "creator_display_name": "rato bi\u00f4nico games",
+        "creator_profile_url": "https://sketchfab.com/felip32pppp"
+    },
+    "filename": "std_431fc5a7b937481389558238ec43907a.glb",
+    "length": 0.4577530175447464,
+    "width": 0.08598096296191216
+}

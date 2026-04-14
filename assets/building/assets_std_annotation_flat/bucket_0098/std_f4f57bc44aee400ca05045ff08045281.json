@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a classic double-action revolver with a robust steel frame and a medium-length barrel. The grip is made of dark wood, contoured for ergonomic handling, and features a single visible screw for attachment. The cylinder is metallic, holding six chambers, and is integrated into the frame with a visible release latch. The trigger guard is rounded and thick, providing ample space for finger placement, while the trigger itself is metallic and slightly curved. The barrel is straight and unadorned, with a front sight post and a slightly worn, matte finish, indicating frequent handling or age.",
+    "description": "A classic steel revolver with a wooden grip, six-chamber cylinder, and a medium-length barrel. The finish is matte and slightly worn, with a robust, ergonomic design.",
+    "description_view_0": "Side view showing the full profile of the revolver, including the wooden grip, cylinder, and barrel with front sight.",
+    "description_view_1": "Rear view highlighting the back of the grip, the rear of the cylinder, and the alignment of the barrel.",
+    "description_view_2": "Opposite side view displaying the other side of the grip, cylinder, and barrel, with visible screws and latch details.",
+    "description_view_3": "Front view focusing on the muzzle of the barrel, the front sight, and the circular arrangement of the cylinder chambers.",
+    "category": "handgun",
+    "height": 0.14,
+    "max_dimension": 0.28,
+    "materials": [
+        "steel",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.8,
+        0.18,
+        0.02
+    ],
+    "mass": 1.1,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "rotatable",
+        "pressable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "cylinder",
+        "hammer",
+        "barrel",
+        "trigger guard",
+        "cylinder release latch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark brown",
+        "gunmetal gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.18,
+        0.8,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_grip_design": "The grip is crafted from dark wood, smoothly contoured to fit the hand comfortably, with a gentle palm swell and a rounded butt. Its surface is mostly smooth with a subtle matte sheen, lacking aggressive texturing or checkering, and is secured by a single visible screw. There are no visible logos, finger grooves, or embellishments, giving it a classic, understated appearance.",
+    "attribute_trigger_guard_style": "The trigger guard is robust and rounded, with a thick profile that provides ample protection for the trigger. It features a smooth, untextured surface and a gentle curve, without any undercuts, squared-off edges, or integrated accessories. The design is traditional and functional, prioritizing durability and safety.",
+    "attribute_barrel_type": "The barrel is medium in length, straight, and unthreaded, with a simple cylindrical profile and a matte, slightly worn finish. There are no visible compensators, ports, or suppressor threads, and the exterior is free of markings or decorative elements. The front sight post is integrated at the muzzle end.",
+    "attribute_slide_markings": "There are no visible markings, engravings, or inscriptions on the revolver's frame or barrel. The surfaces appear plain, with no manufacturer logos, model names, serial numbers, or caliber designations present.",
+    "attribute_magazine_base_shape": "As a revolver, this object does not feature a detachable magazine or magazine base. The grip terminates in a rounded, smooth butt with no extended, beveled, or flared features, and lacks finger rests, logos, or texturing.",
+    "uid": "f4f57bc44aee400ca05045ff08045281",
+    "near_synsets": {
+        "revolver.n.01": 0.48736239989245567,
+        "colt.n.02": 0.5144360555818259,
+        "pistol.n.01": 0.5283448045928251,
+        "blank_revolver.n.01": 0.5490754756402011,
+        "twenty-two_pistol.n.01": 0.5526716646793979
+    },
+    "synset": "revolver.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f4f57bc44aee400ca05045ff08045281",
+        "creator_username": "Vladimir..Taranenko",
+        "creator_display_name": "VladiT",
+        "creator_profile_url": "https://sketchfab.com/Vladimir..Taranenko"
+    },
+    "filename": "std_f4f57bc44aee400ca05045ff08045281.glb",
+    "length": 0.23923983424901962,
+    "width": 0.039444442838430405
+}

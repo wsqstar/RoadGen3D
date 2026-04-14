@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a modern two-story bungalow with a prominent gable roof and a large covered porch extending across the front facade. The structure features a combination of wood and concrete materials, with a red-tiled awning over the carport area. The property includes a spacious yard with a patterned lawn, a rectangular swimming pool, and a paved driveway leading to a garage. Large windows are distributed asymmetrically, providing ample natural light to the interior. The entire property is enclosed by a low black boundary wall, and the landscaping is characterized by geometric grass and garden patterns.",
+    "description": "A modern two-story bungalow with a gable roof, large porch, carport, patterned lawn, and a swimming pool within a fenced yard.",
+    "description_view_0": "Front view showing the gable roof, full-width porch, red-tiled carport, and main entrance.",
+    "description_view_1": "Side view highlighting the carport with a vehicle, driveway, and the pool area in the backyard.",
+    "description_view_2": "Rear view displaying the large window, backyard lawn, and the swimming pool with its deck.",
+    "description_view_3": "Opposite side view showing the plain side wall, open yard, and the pool at the far end.",
+    "category": "bungalow",
+    "height": 7.5,
+    "max_dimension": 28.0,
+    "materials": [
+        "concrete",
+        "wood",
+        "glass",
+        "ceramic tile",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.1,
+        0.08,
+        0.02,
+        0.1
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "garage door",
+        "porch",
+        "carport"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "red",
+        "green",
+        "blue",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.3,
+        0.2,
+        0.1,
+        0.18,
+        0.1,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "scene",
+    "attribute_architectural_style": "Modern",
+    "attribute_roof_type": "gable",
+    "attribute_number_of_stories": 2,
+    "attribute_porch_presence": true,
+    "attribute_window_arrangement": "asymmetrical with grouped side and rear windows",
+    "uid": "6cf41150a9584e82b49ce1e8e83f3dc8",
+    "near_synsets": {
+        "bungalow.n.01": 0.45707628114451954,
+        "villa.n.02": 0.5195652718264472,
+        "villa.n.04": 0.530077429076453,
+        "ranch_house.n.01": 0.5430700793181354,
+        "backyard.n.01": 0.5460475877000079
+    },
+    "synset": "bungalow.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6cf41150a9584e82b49ce1e8e83f3dc8",
+        "creator_username": "mamaus",
+        "creator_display_name": "ptsjenbach",
+        "creator_profile_url": "https://sketchfab.com/mamaus"
+    },
+    "filename": "std_6cf41150a9584e82b49ce1e8e83f3dc8.glb",
+    "length": 15.5758376121521,
+    "width": 15.678808212280273
+}

@@ -1,0 +1,100 @@
+{
+    "description_long": "This lighthouse features a tall, rectangular stone tower with a white facade and subtle texturing, standing on a cobblestone base. The upper section is topped with a red, hipped roof that supports a green, octagonal lantern room, which is surrounded by a black metal gallery balcony with railings. The tower has arched windows on its upper levels, with the front side displaying three vertically aligned windows and a small entry door at the base. The lantern room is capped with a pointed roof and includes window panels, suggesting the presence of a light beacon inside. The structure's overall design is utilitarian yet elegant, with minimal ornamentation and a focus on function. The lighthouse is visually striking and would serve as a prominent navigational landmark in an urban or coastal setting.",
+    "description": "A tall, white stone lighthouse with a red roof, green lantern room, and black gallery balcony, featuring arched windows and a small entry door. The design is functional and prominent, ideal as a navigational landmark.",
+    "description_view_0": "Front view showing three arched windows, a small entry door, and the full gallery balcony encircling the lantern room.",
+    "description_view_1": "Rear view with a plain wall, no windows, and the red roof and lantern room visible above.",
+    "description_view_2": "Side view displaying two arched windows vertically aligned and the gallery balcony, with the lantern room above.",
+    "description_view_3": "Opposite side view with two arched windows and a small entry door, similar to the front but with fewer windows.",
+    "category": "lighthouse",
+    "height": 18.0,
+    "max_dimension": 8.0,
+    "materials": [
+        "stone",
+        "metal",
+        "glass",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "illuminate",
+        "signal",
+        "observe"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "windows",
+        "gallery railing",
+        "lantern room"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "green",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.0,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_light_beacon": true,
+    "attribute_lantern_room": true,
+    "attribute_gallery_balcony": true,
+    "attribute_tapered_tower": false,
+    "attribute_architectural_style": "Functionalist",
+    "uid": "ea4702d62b28442484dee69e1c6efffb",
+    "near_synsets": {
+        "lightship.n.01": 0.5061693460935833,
+        "beacon.n.03": 0.5381368007875502,
+        "lighthouse_keeper.n.01": 0.5457527811270786,
+        "lantern.n.01": 0.548679240127381,
+        "clock_tower.n.01": 0.5561918579120388
+    },
+    "synset": "lighthouse_keeper.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ea4702d62b28442484dee69e1c6efffb",
+        "creator_username": "Ivan.Badanjak",
+        "creator_display_name": "Ivan.Badanjak",
+        "creator_profile_url": "https://sketchfab.com/Ivan.Badanjak"
+    },
+    "filename": "std_ea4702d62b28442484dee69e1c6efffb.glb",
+    "length": 13.043348789215088,
+    "width": 13.043344020843506
+}

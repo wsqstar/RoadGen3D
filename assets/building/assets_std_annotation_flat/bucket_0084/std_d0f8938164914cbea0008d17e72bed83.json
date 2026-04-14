@@ -1,0 +1,103 @@
+{
+    "description_long": "This object is a medium-sized, belt-fed machine gun with a robust, utilitarian design. The rifle features a long, black metal barrel with a prominent bipod attached near the muzzle for stability during firing. The stock and pistol grip are made of dark wood, providing a classic and sturdy appearance, while the receiver and barrel assembly are constructed from matte-finished steel. A large, box-shaped green ammunition container is mounted beneath the receiver, indicating its use for sustained automatic fire. The rifle is equipped with simple iron sights for aiming, and the overall build suggests durability and reliability in urban combat scenarios. The combination of wood and metal materials, along with the visible mechanical components, gives the weapon a rugged, military-grade aesthetic.",
+    "description": "A belt-fed machine gun with a long black barrel, wooden stock and grip, and a green box magazine. It features a bipod and iron sights, giving it a rugged, military appearance.",
+    "description_view_0": "Side view showing the full length of the rifle, wooden stock, green box magazine, and bipod.",
+    "description_view_1": "Front view highlighting the muzzle, bipod legs, and the width of the green box magazine.",
+    "description_view_2": "Opposite side view displaying the wooden stock, green box magazine, and barrel details.",
+    "description_view_3": "Rear view focusing on the stock, pistol grip, and the back of the green box magazine.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 8.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 90,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "deployable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "pistol grip",
+        "trigger",
+        "magazine",
+        "bipod",
+        "charging handle",
+        "safety lever",
+        "iron sights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "green",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "belt-fed box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "d0f8938164914cbea0008d17e72bed83",
+    "near_synsets": {
+        "browning_machine_gun.n.01": 0.49937547546221145,
+        "rifle.n.01": 0.5200035510726776,
+        "garand_rifle.n.01": 0.5261684277291082,
+        "carbine.n.01": 0.5289114100376225,
+        "browning_automatic_rifle.n.01": 0.5306149278112287
+    },
+    "synset": "browning_automatic_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/d0f8938164914cbea0008d17e72bed83",
+        "creator_username": "oxxxxxygen",
+        "creator_display_name": "oxxxxxygen",
+        "creator_profile_url": "https://sketchfab.com/oxxxxxygen"
+    },
+    "filename": "std_d0f8938164914cbea0008d17e72bed83.glb",
+    "length": 1.07460618019104,
+    "width": 0.2162467986345291
+}

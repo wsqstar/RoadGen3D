@@ -1,0 +1,95 @@
+{
+    "description_long": "This hamburger features a soft, rounded bun with a smooth, light brown surface, enclosing two thick, grilled beef patties. Each patty is separated by a slice of melted yellow cheese, which slightly oozes over the edges, creating a visually appealing layered effect. The patties have a textured, charred appearance, suggesting they are well-cooked and juicy. The bun appears pillowy and slightly glossy, with no visible seeds or toppings on its surface. The hamburger is presented on a simple, round, gray plate, emphasizing its central placement. No additional toppings such as lettuce, tomato, or onions are visible, giving it a classic double cheeseburger look.",
+    "description": "A double cheeseburger with a smooth, plain bun, two grilled beef patties, and melted cheese, served on a gray plate. The burger is visually simple and classic, with no extra toppings.",
+    "description_view_0": "Front view showing the layered structure of the bun, two beef patties, and cheese, with the cheese slightly more visible on the right side.",
+    "description_view_1": "Slightly rotated view revealing more of the cheese between the patties and a clearer look at the patty texture.",
+    "description_view_2": "Direct rear view with the bun and patties aligned, showing the even stacking of ingredients and minimal cheese overhang.",
+    "description_view_3": "Side view highlighting the cheese slice protruding on the right and the uniform thickness of the patties.",
+    "category": "hamburger",
+    "height": 0.11,
+    "max_dimension": 0.13,
+    "materials": [
+        "bread",
+        "beef",
+        "cheese",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.4,
+        0.2,
+        0.05
+    ],
+    "mass": 0.28,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 3,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "top bun",
+        "bottom bun",
+        "patty",
+        "cheese"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light brown",
+        "dark brown",
+        "yellow",
+        "gray"
+    ],
+    "colors_composition": [
+        0.35,
+        0.4,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "soft",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.08,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_bun_type": "plain white bun",
+    "attribute_patty_visibility": "fully visible",
+    "attribute_topping_arrangement": "Cheese slices are layered between two beef patties, with no visible lettuce, tomato, onions, or pickles. The arrangement is simple and classic, focusing on the meat and cheese.",
+    "attribute_packaging_presence": false,
+    "attribute_sesame_seed_presence": false,
+    "uid": "b83b87a2a78d4f8c8c996ae43969ae56",
+    "near_synsets": {
+        "hamburger.n.01": 0.4743884811219419,
+        "cheeseburger.n.01": 0.47444671991059223,
+        "hamburger_bun.n.01": 0.5393839481175782,
+        "ground_beef.n.01": 0.5501574379922073,
+        "grilled_cheese.n.01": 0.5570390400041544
+    },
+    "synset": "hamburger_bun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b83b87a2a78d4f8c8c996ae43969ae56",
+        "creator_username": "LordDiego",
+        "creator_display_name": "LordDiego",
+        "creator_profile_url": "https://sketchfab.com/LordDiego"
+    },
+    "filename": "std_b83b87a2a78d4f8c8c996ae43969ae56.glb",
+    "length": 0.18245874345302582,
+    "width": 0.18245866894721985
+}

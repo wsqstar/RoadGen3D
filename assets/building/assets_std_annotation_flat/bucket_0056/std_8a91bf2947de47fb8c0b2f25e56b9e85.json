@@ -1,0 +1,111 @@
+{
+    "description_long": "This combat tactical vehicle is a six-wheeled armored personnel carrier with a low, angular profile and a digital camouflage paint scheme. The exterior is covered in modular, sloped armor plating, providing full-body protection, including the sides, front, and rear. The roof features two prominent weapon mounts, each equipped with what appear to be autocannons or heavy machine guns, and additional hatches and periscopes for crew access and visibility. The vehicle's wheels are partially shrouded by armored skirts, enhancing its defensive capabilities. The front and rear are equipped with reinforced bumpers and grilles, while the overall design emphasizes both protection and urban maneuverability. No visible military insignia or unit markings are present on the exterior.",
+    "description": "A six-wheeled, heavily armored combat vehicle with digital camouflage and dual roof-mounted weapon systems. Its angular, modular armor and shrouded wheels emphasize protection and urban readiness.",
+    "description_view_0": "Side view showing three large wheels, modular side armor, and the dual roof-mounted weapons.",
+    "description_view_1": "Front view highlighting the reinforced bumper, grille, and the forward-facing weapon mounts on the roof.",
+    "description_view_2": "Opposite side view, mirroring the first, with visible side armor and weapon mounts.",
+    "description_view_3": "Rear view displaying the armored back panel, rear bumper, and the rearward aspect of the roof weapons.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 90000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "wheel",
+        "weapon mount",
+        "periscope",
+        "bumper"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "white",
+        "green"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Two roof-mounted weapon hardpoints, each equipped with a large-caliber autocannon or heavy machine gun, positioned centrally and parallel to the vehicle's length.",
+    "attribute_armor_plating": "Full-body modular and sloped armor plating, covering the sides, front, and rear, with visible panel seams and reinforced sections. Armor appears thick and designed for ballistic protection.",
+    "attribute_camouflage_pattern": "Digital camouflage pattern in shades of gray, black, white, and green, with pixelated rectangular shapes covering the entire exterior.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "Six large, all-terrain rubber tires with moderate tread, partially covered by armored skirts; no visible special reinforcements or chains.",
+    "uid": "8a91bf2947de47fb8c0b2f25e56b9e85",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.49263879706515057,
+        "reconnaissance_vehicle.n.01": 0.49828557553392666,
+        "armored_car.n.02": 0.5061101354939758,
+        "tank.n.01": 0.5148759495163713,
+        "armored_vehicle.n.01": 0.527502228834713,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "armored_car.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8a91bf2947de47fb8c0b2f25e56b9e85",
+        "creator_username": "Planetrix23",
+        "creator_display_name": "Peter Primini",
+        "creator_profile_url": "https://sketchfab.com/Planetrix23"
+    },
+    "filename": "std_8a91bf2947de47fb8c0b2f25e56b9e85.glb",
+    "length": 5.678989887237549,
+    "width": 2.230464458465576
+}

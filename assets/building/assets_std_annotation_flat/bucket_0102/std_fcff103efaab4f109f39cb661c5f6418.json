@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a classic school desk with an integrated chair, featuring a sturdy metal frame and a wooden seat, backrest, and desktop. The desktop is rectangular with a right-side extension, providing extra writing space, and is adorned with white graffiti and markings. The chair is attached to the desk via metal supports and includes a wire basket underneath for storage. The metal frame is tubular and slightly textured, supporting both the desk and the chair, and the legs are angled for stability. The wood surfaces have a medium brown finish with visible grain patterns, while the metal is a dark, slightly worn gray. The overall design is utilitarian, suitable for high-traffic environments like schools or public study areas.",
+    "description": "A classic school desk with an attached chair, featuring a brown wooden top with graffiti, a metal frame, and an under-seat wire basket.",
+    "description_view_0": "Side view showing the desk's L-shaped top, attached chair, and the wire basket beneath the seat.",
+    "description_view_1": "Rear view highlighting the backrest, the wire basket, and the full width of the desktop.",
+    "description_view_2": "Opposite side view displaying the desk's extension, chair attachment, and the metal frame's structure.",
+    "description_view_3": "Front view showing the main writing surface, the seat, and the open space beneath the desk.",
+    "category": "desk",
+    "height": 0.8,
+    "max_dimension": 1.2,
+    "materials": [
+        "wood",
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.4,
+        0.05,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 90,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "sittable",
+        "writable",
+        "storable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "seat",
+        "backrest",
+        "desktop",
+        "wire basket"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 20000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_location": "classroom",
+    "attribute_orientation": "The desk is oriented with the seat and backrest facing the user, and the main writing surface directly in front, with the right-side extension providing additional workspace.",
+    "attribute_condition": "lightly used",
+    "attribute_presence_of_attached_objects": [
+        "seat",
+        "backrest",
+        "wire basket"
+    ],
+    "attribute_usage_context": "student writing and study desk in a classroom setting",
+    "uid": "fcff103efaab4f109f39cb661c5f6418",
+    "near_synsets": {
+        "desk.n.01": 0.4752928366795972,
+        "desktop.n.01": 0.5006836342501167,
+        "writing_desk.n.02": 0.5207847567859286,
+        "writing_desk.n.01": 0.5236987426067394,
+        "office_furniture.n.01": 0.5272685787330684
+    },
+    "synset": "writing_desk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fcff103efaab4f109f39cb661c5f6418",
+        "creator_username": "loichuet1",
+        "creator_display_name": "Lo\u00efc",
+        "creator_profile_url": "https://sketchfab.com/loichuet1"
+    },
+    "filename": "std_fcff103efaab4f109f39cb661c5f6418.glb",
+    "length": 1.2068310976028442,
+    "width": 0.8999378085136414
+}

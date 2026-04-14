@@ -1,0 +1,109 @@
+{
+    "description_long": "This object is a circular cross-section of earth featuring a grass patch on its upper surface, with a variety of small plants and saplings emerging from the greenery. The top layer is densely covered with green leaves and grass, interspersed with a few young trees and shrubs, some of which have visible trunks and branches. The sides and exposed interior reveal a stratified soil profile, with a rough, rocky texture and varying shades of brown and gray. The cutaway section exposes the internal composition, showing compacted earth and rock beneath the surface vegetation. The grass and foliage appear lush and healthy, while the soil layers suggest a natural, undisturbed terrain. The overall form is reminiscent of a segment of parkland or a landscaped urban green space.",
+    "description": "A circular patch of dense grass and foliage with small trees, set atop a thick, rocky soil cross-section. The exposed side reveals layered earth beneath the lush greenery.",
+    "description_view_0": "A full, unobstructed view of the grass patch with three small trees and dense foliage on top, showing the circular shape and leafy surface.",
+    "description_view_1": "A cutaway view revealing the internal soil and rock layers, with half the grass patch and vegetation visible on the right side.",
+    "description_view_2": "A side view highlighting the leafy surface and the arrangement of trees, with the soil cross-section visible along the edge.",
+    "description_view_3": "An angled view focusing on the exposed soil interior and the upper grass patch, showing the transition from earth to foliage.",
+    "category": "grass patch",
+    "height": 0.7,
+    "max_dimension": 1.5,
+    "materials": [
+        "soil",
+        "rock",
+        "organic_matter",
+        "plant",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "sittable",
+        "plantable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "grass_surface",
+        "small_trees",
+        "soil_layer"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "green",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.4,
+        0.4,
+        0.2
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 100,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_location": "urban park",
+    "attribute_density": "dense",
+    "attribute_boundary_definition": "well-defined",
+    "attribute_presence_of_litter_or_debris": false,
+    "attribute_integration_with_surrounding_elements": "The grass patch sits atop a sharply defined soil and rock base, with a clear transition between the leafy surface and the exposed earth, suggesting minimal blending with adjacent surfaces.",
+    "uid": "198cfbfa8fda4f1394d6fbd448831e95",
+    "near_synsets": {
+        "turf.n.01": 0.5291213945092004,
+        "grassland.n.01": 0.5308597448518287,
+        "groundcover.n.01": 0.5312831270117414,
+        "grass.n.01": 0.5327437723584069,
+        "plot.n.02": 0.5355778825302783,
+        "while.n.01": -1000.0,
+        "pot.n.09": -1000.0,
+        "temporary_hookup.n.01": -1000.0,
+        "mend.n.01": -1000.0,
+        "grass.n.02": -1000.0,
+        "eatage.n.01": -1000.0,
+        "patch.n.05": -1000.0,
+        "patch.n.03": -1000.0,
+        "bandage.n.01": -1000.0,
+        "supergrass.n.01": -1000.0,
+        "eyepatch.n.01": -1000.0,
+        "spot.n.05": -1000.0
+    },
+    "synset": "turf.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/198cfbfa8fda4f1394d6fbd448831e95",
+        "creator_username": "jiratchaya.s",
+        "creator_display_name": "jiratchaya.s",
+        "creator_profile_url": "https://sketchfab.com/jiratchaya.s"
+    },
+    "filename": "std_198cfbfa8fda4f1394d6fbd448831e95.glb",
+    "length": 1.0862624049186707,
+    "width": 1.0599365234375
+}

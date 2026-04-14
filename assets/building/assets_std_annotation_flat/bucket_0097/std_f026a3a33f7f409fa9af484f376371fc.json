@@ -1,0 +1,112 @@
+{
+    "description_long": "This conference center features a stepped, pyramid-like structure with a broad, rectangular base and multiple receding tiers, all clad in a reddish-brown stone or concrete material. The facade is accented by a prominent black band near the base, which includes bold Cyrillic lettering, and a checkered black-and-brown pattern that runs along the lower perimeter. The main entrance is centrally located and recessed, with a series of vertical rectangular openings above it, suggesting a grand entryway. The roof is flat at the topmost tier, with no visible overhangs or mechanical units, and the overall design is geometric and monumental. The building's exterior is largely windowless, emphasizing solid mass and symmetry, with only a few small, grill-like openings above the entrance. The architectural style is reminiscent of Soviet-era monumentalism, with a focus on strong lines, minimal ornamentation, and a sense of permanence.",
+    "description": "A stepped, pyramid-like conference center with a reddish-brown stone exterior, black accent bands, and bold Cyrillic signage. The design is geometric, monumental, and largely windowless, evoking Soviet-era architecture.",
+    "description_view_0": "Side view showing the stepped tiers, checkered base pattern, and solid, windowless facade.",
+    "description_view_1": "Front view highlighting the main entrance, vertical grill openings above, and prominent black band with Cyrillic lettering.",
+    "description_view_2": "Opposite side view similar to view 0, with stepped tiers and checkered base, but no visible signage.",
+    "description_view_3": "Rear view showing the stepped structure and checkered base, with no visible entrance or signage.",
+    "category": "conference center",
+    "height": 12.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "stone",
+        "concrete",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 960000.0,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "host_events",
+        "display_signage"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "entrance_door",
+        "signage_panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "reddish-brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_facade_signage": "The facade features a prominent black horizontal band near the base with large, bold red Cyrillic letters spelling '\u041b\u0415\u041d\u0418\u041d'. The signage is centrally placed on the front facade, occupying most of the width of the black band. The letters are blocky and sans-serif, matching the monumental style of the building. No other signage or logos are visible on the exterior.",
+    "attribute_entrance_design": "The main entrance is centrally located on the front facade, recessed into the structure and accessed via a broad, shallow platform. Above the entrance, there are five vertical rectangular grill-like openings, adding a sense of formality and grandeur. The entrance is flanked by solid walls, with no visible doors or decorative elements, and the materials match the reddish-brown stone of the rest of the building. The entrance is distinguished by its central placement, recessed design, and the vertical grill detail above.",
+    "attribute_window_arrangement": "The building is largely windowless, with the only visible openings being the five vertical rectangular grill-like slots above the main entrance. There are no rows or columns of windows, and the facade is otherwise solid and unbroken, emphasizing mass and monumentality.",
+    "attribute_roof_structure": "The roof is flat at the topmost tier, with a stepped, pyramid-like progression leading up to it. There are no visible overhangs, skylights, or mechanical units. The roof integrates seamlessly with the stepped design, maintaining the geometric and monumental aesthetic of the building.",
+    "attribute_architectural_style": "The architectural style is monumental and strongly influenced by Soviet-era design, specifically the constructivist and brutalist movements. The building's form is geometric, with strong horizontal and vertical lines, minimal ornamentation, and a focus on mass and permanence. The use of bold signage, solid materials, and a stepped, pyramid-like structure are characteristic of this style.",
+    "uid": "f026a3a33f7f409fa9af484f376371fc",
+    "near_synsets": {
+        "conference_center.n.01": 0.5400480885542471,
+        "kremlin.n.02": 0.5495405837522315,
+        "conference_room.n.01": 0.5727854672646141,
+        "diplomatic_building.n.01": 0.5989702967252218,
+        "dacha.n.01": 0.6049487848408737,
+        "conference.n.03": -1000.0,
+        "plaza.n.02": -1000.0,
+        "center.n.12": -1000.0,
+        "center.n.13": -1000.0,
+        "conference.n.01": -1000.0,
+        "league.n.01": -1000.0,
+        "kernel.n.03": -1000.0,
+        "center.n.18": -1000.0,
+        "center.n.01": -1000.0,
+        "center.n.10": -1000.0,
+        "center.n.14": -1000.0,
+        "center.n.07": -1000.0,
+        "center.n.11": -1000.0,
+        "center.n.04": -1000.0,
+        "center_field.n.01": -1000.0,
+        "center.n.17": -1000.0,
+        "center.n.08": -1000.0,
+        "center.n.09": -1000.0,
+        "center.n.16": -1000.0,
+        "center.n.06": -1000.0,
+        "center.n.03": -1000.0
+    },
+    "synset": "conference_center.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f026a3a33f7f409fa9af484f376371fc",
+        "creator_username": "kersh124",
+        "creator_display_name": "kersh124",
+        "creator_profile_url": "https://sketchfab.com/kersh124"
+    },
+    "filename": "std_f026a3a33f7f409fa9af484f376371fc.glb",
+    "length": 22.34708595275879,
+    "width": 25.312084197998047
+}

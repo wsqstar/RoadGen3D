@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a large, turret-like multi-barreled weapon system with a robust, armored housing and four prominent gun barrels extending from the front. The main body is rectangular and heavily plated, featuring visible bolts, hatches, and a small control panel on the upper surface. The base is circular with gear-like teeth around the edge, suggesting it is designed to rotate, and it has three stabilizing legs or supports extending outward. The barrels are thick and reinforced, each with a ribbed section near the base, indicating heavy-duty construction for sustained firing. The overall color is a dark, matte green, typical of military hardware, with minimal markings except for a small red insignia. This weapon system appears fixed and is likely intended for defensive or anti-vehicle roles in urban environments.",
+    "description": "A heavy, multi-barreled turret weapon with a circular rotating base and armored housing, finished in dark green. It features four reinforced barrels and three stabilizing supports.",
+    "description_view_0": "Front view showing four aligned barrels, armored faceplate, and a small control panel on the upper left.",
+    "description_view_1": "Side view highlighting the length and reinforcement of the barrels, as well as the circular base and one of the stabilizing legs.",
+    "description_view_2": "Rear view displaying the solid back of the housing and the symmetrical arrangement of the stabilizing legs.",
+    "description_view_3": "Angled side view emphasizing the staggered arrangement of the barrels and the robust, gear-like base.",
+    "category": "rifle",
+    "height": 1.2,
+    "max_dimension": 2.5,
+    "materials": [
+        "steel",
+        "composite",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.01,
+        0.04
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "barrel",
+        "hatch",
+        "control panel",
+        "base",
+        "stabilizing leg"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "none",
+    "uid": "594ef4bc3f504342b4710dcb5da48e81",
+    "near_synsets": {
+        "gatling_gun.n.01": 0.5019463339750001,
+        "gun_enclosure.n.01": 0.5111606899247626,
+        "rifle.n.01": 0.5239195611142052,
+        "cannon.n.02": 0.527509355876839,
+        "light_arm.n.01": 0.5288116249039184
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/594ef4bc3f504342b4710dcb5da48e81",
+        "creator_username": "ville.eriksen",
+        "creator_display_name": "ville.eriksen",
+        "creator_profile_url": "https://sketchfab.com/ville.eriksen"
+    },
+    "filename": "std_594ef4bc3f504342b4710dcb5da48e81.glb",
+    "length": 2.0938029289245605,
+    "width": 2.3674455881118774
+}

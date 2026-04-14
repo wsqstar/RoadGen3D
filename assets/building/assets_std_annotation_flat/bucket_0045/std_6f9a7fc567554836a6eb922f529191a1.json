@@ -1,0 +1,96 @@
+{
+    "description_long": "This warehouse is a large, rectangular industrial building with a flat roof and minimal exterior ornamentation. The facade features long horizontal windows along the upper portion of the walls, providing natural light to the interior. The structure is surrounded by paved roads and green patches, with multiple entry points and loading areas visible on different sides. The exterior is primarily finished in a light gray or white material, likely concrete or metal panels, giving it a clean and utilitarian appearance. Several garage-style doors and loading bays are present, indicating its function for storage and distribution. The building is part of a small industrial complex, with adjacent structures and parking areas for vehicles.",
+    "description": "A large, rectangular warehouse with flat roof, horizontal windows, and multiple loading bays, finished in light gray or white. Surrounded by paved roads and green areas, it features a clean, utilitarian industrial design.",
+    "description_view_0": "The front view shows the main facade with long horizontal windows, a large entry area, and adjacent paved roads.",
+    "description_view_1": "This side view highlights the building's length, additional entry points, and the surrounding green and paved areas.",
+    "description_view_2": "The rear view reveals multiple loading bays and garage doors, emphasizing the warehouse's distribution function.",
+    "description_view_3": "This angle shows the side facade with more windows and access points, as well as the building's integration into the industrial complex.",
+    "category": "warehouse",
+    "height": 8.0,
+    "max_dimension": 45.0,
+    "materials": [
+        "concrete",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "garage door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "scene",
+    "attribute_facade_design": "The main facade features long horizontal strip windows set high on the wall, large industrial entry doors, and a smooth, light-colored exterior surface. The design is functional, with minimal decorative elements and a focus on accessibility for vehicles and goods.",
+    "attribute_loading_dock_presence": true,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is flat and expansive, constructed from what appears to be concrete or metal panels, with no visible skylights or rooftop equipment.",
+    "attribute_architectural_style": "modern industrial",
+    "uid": "6f9a7fc567554836a6eb922f529191a1",
+    "near_synsets": {
+        "warehouse.n.01": 0.5057085192345107,
+        "loft.n.01": 0.5254030244182964,
+        "storehouse.n.01": 0.5559176386693289,
+        "shop_floor.n.01": 0.5592980478238995,
+        "workroom.n.01": 0.565437202130325
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/6f9a7fc567554836a6eb922f529191a1",
+        "creator_username": "homedesign3d",
+        "creator_display_name": "Home Design 3D",
+        "creator_profile_url": "https://sketchfab.com/homedesign3d"
+    },
+    "filename": "std_6f9a7fc567554836a6eb922f529191a1.glb",
+    "length": 89.9094009399414,
+    "width": 90.39529037475586
+}

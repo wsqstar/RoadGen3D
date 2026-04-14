@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a compact, upright hand truck or dolly, commonly used for transporting heavy loads in urban and industrial environments. It features a sturdy black metal frame with three horizontal support bars and two large, solid wheels for stability and mobility. The handle is ergonomically curved and appears to be covered in a tan or beige material for improved grip. The base plate is wide and flat, designed to slide under objects for easy lifting. The wheels are robust and made of a dense material, likely rubber or hard plastic, suitable for rolling over various surfaces. The overall construction is utilitarian, emphasizing durability and ease of use for manual material handling.",
+    "description": "A sturdy black hand truck with a wide base plate, two large wheels, and a tan handle grip, designed for transporting heavy loads.",
+    "description_view_0": "Front view showing the wide base plate, three horizontal support bars, and both wheels clearly.",
+    "description_view_1": "Side view highlighting the depth of the base plate, the thickness of the frame, and the profile of one wheel.",
+    "description_view_2": "Rear view displaying the vertical frame, both wheels, and the handle's attachment points.",
+    "description_view_3": "Opposite side view showing the same structural features as view 1 but from the other side.",
+    "category": "forklift",
+    "height": 1.2,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "base plate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "tan"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_fork_arms": "There are no traditional fork arms; instead, a single wide, flat base plate extends forward at the bottom, made of thick metal and designed for sliding under loads.",
+    "attribute_overhead_guard": "No overhead guard is present; the structure consists only of the vertical frame and handle.",
+    "attribute_mast": "No mast is present; the vertical frame is a simple, rigid structure with three horizontal support bars.",
+    "attribute_operator_seat": "No operator seat is present; the object is designed for manual operation while standing.",
+    "attribute_warning_lights": "No warning lights are visible on any part of the object.",
+    "uid": "392ee649ed1046f9912ce56eb905d75c",
+    "near_synsets": {
+        "forklift.n.01": 0.4348261501897755,
+        "hand_truck.n.01": 0.45350250381799473,
+        "lifting_device.n.01": 0.5096257383030518,
+        "truck.n.01": 0.5267918185851209,
+        "stacker_crane.n.01": 0.5298154890659267
+    },
+    "synset": "forklift.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/392ee649ed1046f9912ce56eb905d75c",
+        "creator_username": "Blender3D",
+        "creator_display_name": "Blender3D",
+        "creator_profile_url": "https://sketchfab.com/Blender3D"
+    },
+    "filename": "std_392ee649ed1046f9912ce56eb905d75c.glb",
+    "length": 0.4671723246574402,
+    "width": 0.5363434851169586
+}

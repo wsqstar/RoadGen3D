@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a heavy, rectangular metal safe box with a distressed olive-green finish, showing significant patches of rust and wear across its surfaces. The front features a thick door, currently ajar, revealing a dark interior with shelves stacked with bundles of cash. The door is equipped with a round mechanical lock and a small handle, both metallic and slightly corroded. The hinges are mounted externally on the right side, allowing the door to swing open widely. The safe's exterior is solid and industrial, with no visible branding or ventilation slots, emphasizing its utilitarian and secure design.",
+    "description": "A weathered olive-green metal safe box with a rusted finish, featuring a thick door, mechanical lock, and visible cash bundles inside.",
+    "description_view_0": "Front view showing the closed, rusted olive-green door with no visible handle or lock details.",
+    "description_view_1": "Side view with the door partially open, revealing the thickness of the door and some of the interior.",
+    "description_view_2": "Angled view of the open door, clearly displaying the mechanical lock, handle, and shelves filled with cash bundles inside.",
+    "description_view_3": "Rear-side view with the door fully open, showing the right-side external hinges and the safe's boxy structure.",
+    "category": "safe box",
+    "height": 1.0,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "paper",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.06,
+        0.02
+    ],
+    "mass": 180,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1765,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "pullable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "lock",
+        "handle",
+        "hinges",
+        "shelves"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "brown",
+        "gray",
+        "white",
+        "red"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_lock_mechanism_type": "mechanical key lock",
+    "attribute_handle_design": "small round metal pull handle located near the lock on the door front",
+    "attribute_door_hinge_placement": "right side external hinges",
+    "attribute_brand_or_manufacturer_label": "none",
+    "attribute_ventilation_slots_or_openings": "none",
+    "uid": "41f47f3b489a4a16adab31354506c720",
+    "near_synsets": {
+        "safe.n.01": 0.4640153641456303,
+        "strongbox.n.01": 0.5173643487552545,
+        "safe-deposit.n.01": 0.5315478918267595,
+        "sentry_box.n.01": 0.5506639837423773,
+        "cashbox.n.01": 0.5521946519101755,
+        "box.n.08": -1000.0,
+        "box.n.09": -1000.0,
+        "box.n.05": -1000.0,
+        "box.n.10": -1000.0,
+        "box.n.01": -1000.0,
+        "corner.n.08": -1000.0,
+        "box.n.06": -1000.0,
+        "box.n.02": -1000.0,
+        "box.n.07": -1000.0,
+        "box.n.03": -1000.0
+    },
+    "synset": "safe.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/41f47f3b489a4a16adab31354506c720",
+        "creator_username": "PauleMenson",
+        "creator_display_name": "Paule Gennadievich",
+        "creator_profile_url": "https://sketchfab.com/PauleMenson"
+    },
+    "filename": "std_41f47f3b489a4a16adab31354506c720.glb",
+    "length": 1.2180837988853455,
+    "width": 0.7457786202430725
+}

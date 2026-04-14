@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a construction zone traffic barricade featuring two horizontal orange boards supported by two vertical, textured metal legs. The upper board displays a series of diagonal white and orange stripes, serving as a high-visibility warning pattern. The lower board contains a white sign with bold black text reading 'ZONA EN CONSTRUCCI\u00d3N,' indicating an active construction area in Spanish. The legs have a rough, speckled metallic appearance, suggesting durability and stability for outdoor use. The back of the barricade is plain orange with no signage or striping. The overall design is utilitarian, intended to block or redirect pedestrian and vehicular traffic in urban environments.",
+    "description": "Orange and white-striped construction barricade with 'ZONA EN CONSTRUCCI\u00d3N' signage, supported by two metal legs.",
+    "description_view_0": "Front view showing the orange and white diagonal stripes and the 'ZONA EN CONSTRUCCI\u00d3N' sign.",
+    "description_view_1": "Side view revealing the thin profile of the barricade and the depth of the boards and legs.",
+    "description_view_2": "Rear view displaying plain orange boards and the backs of the metal legs, with no signage or striping.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the thinness and construction of the barricade.",
+    "category": "traffic barricade",
+    "height": 1.0,
+    "max_dimension": 1.2,
+    "materials": [
+        "painted wood",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.1
+    ],
+    "mass": 12,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sign panel",
+        "support legs"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 10000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_reflective_striping_pattern": "Diagonal orange and white stripes, medium width, evenly spaced, on the upper board.",
+    "attribute_warning_signage": [
+        {
+            "content": "ZONA EN CONSTRUCCI\u00d3N",
+            "color": "black text on white background",
+            "placement": "centered on lower board"
+        }
+    ],
+    "attribute_number_of_support_legs": 2,
+    "attribute_attachment_fixtures": [],
+    "attribute_presence_of_lights": false,
+    "uid": "b6e2672295f44439a3edab14dc7e1b74",
+    "near_synsets": {
+        "street_sign.n.01": 0.554266740593336,
+        "white_line.n.01": 0.5568733071719011,
+        "stop_sign.n.01": 0.5625019358191684,
+        "pedestrian_crossing.n.01": 0.5639310055081355,
+        "road_construction.n.01": 0.5656953058234682,
+        "traffic.n.02": -1000.0,
+        "barricade.n.02": -1000.0,
+        "roadblock.n.02": -1000.0,
+        "dealings.n.01": -1000.0,
+        "traffic.n.03": -1000.0,
+        "traffic.n.01": -1000.0
+    },
+    "synset": "barricade.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/b6e2672295f44439a3edab14dc7e1b74",
+        "creator_username": "yaretzyalvarez1211",
+        "creator_display_name": "yaretzyalvarez1211",
+        "creator_profile_url": "https://sketchfab.com/yaretzyalvarez1211"
+    },
+    "filename": "std_b6e2672295f44439a3edab14dc7e1b74.glb",
+    "length": 0.09436970576643944,
+    "width": 1.2428571581840515
+}

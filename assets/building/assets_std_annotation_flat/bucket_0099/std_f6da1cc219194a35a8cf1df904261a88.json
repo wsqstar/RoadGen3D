@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a large, tunnel-style camping tent with a green and yellow color scheme, designed for outdoor use in parks or urban green spaces. The tent features a prominent arched roof supported by multiple flexible poles, and its exterior is made of weather-resistant synthetic fabric. The front side has a rectangular entrance with a roll-up flap and a small awning for rain protection, secured by guy lines extending from the corners and sides. The tent is anchored to the ground with several red guy lines and stakes, providing stability in windy conditions. There is a small window with a mesh panel on the front, and the rear side is fully enclosed for privacy and weather protection. The tent appears spacious enough to accommodate several people and their gear, making it suitable for group camping or temporary shelter in urban environments.",
+    "description": "A large, green tunnel-style tent with yellow trim, featuring a front entrance with an awning, multiple guy lines, and a mesh window. Designed for group camping or temporary shelter in urban parks or open spaces.",
+    "description_view_0": "Front view showing the main entrance with a roll-up flap, a small awning, and a mesh window above the door.",
+    "description_view_1": "Side view displaying the tent's elongated tunnel shape, multiple support poles, and guy lines extending from the sides.",
+    "description_view_2": "Rear view highlighting the fully enclosed back panel and the symmetrical arch structure, with guy lines at the corners.",
+    "description_view_3": "Opposite side view showing the tent's length, pole structure, and the awning extending from the front entrance.",
+    "category": "tent",
+    "height": 2.0,
+    "max_dimension": 4.5,
+    "materials": [
+        "polyester fabric",
+        "fiberglass poles",
+        "nylon mesh",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "zipperable",
+        "coverable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door flap",
+        "zipper",
+        "window flap",
+        "guy lines",
+        "awning"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "green",
+        "yellow",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 300,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "Roll-up flap door with zipper, located at the front center, featuring a small awning for rain protection.",
+    "attribute_number_of_poles": 4,
+    "attribute_guy_line_configuration": "Eight guy lines: two at each corner, two at the front awning, and two at the rear, all staked to the ground for stability.",
+    "attribute_ventilation_openings": [
+        "Mesh window above the front door"
+    ],
+    "attribute_branding_or_logo": "none",
+    "uid": "f6da1cc219194a35a8cf1df904261a88",
+    "near_synsets": {
+        "field_tent.n.01": 0.47126605623485407,
+        "tent.n.01": 0.4760767399181331,
+        "cottage_tent.n.01": 0.4789522989657926,
+        "pop_tent.n.01": 0.48957290604874226,
+        "two-man_tent.n.01": 0.4954446512919951,
+        "tent.n.02": -1000.0
+    },
+    "synset": "tent.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f6da1cc219194a35a8cf1df904261a88",
+        "creator_username": "muru",
+        "creator_display_name": "Muru",
+        "creator_profile_url": "https://sketchfab.com/muru"
+    },
+    "filename": "std_f6da1cc219194a35a8cf1df904261a88.glb",
+    "length": 7.404458999633789,
+    "width": 5.476613759994507
+}

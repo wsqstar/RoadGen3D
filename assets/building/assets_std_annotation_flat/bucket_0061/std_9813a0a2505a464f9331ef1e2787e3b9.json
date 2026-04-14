@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a pixel-art style firearm with a modern, semi-automatic pistol silhouette, featuring a metallic silver slide and a black, textured grip. The asset includes two configurations: one with a standard barrel and one with an extended cylindrical suppressor attached to the muzzle. The slide has green front and rear sights, and the grip appears ergonomically contoured with a stippled pattern for improved handling. The trigger guard is rounded and proportionally sized, enclosing a visible trigger. The suppressor is long, matte black, and seamlessly attaches to the front of the barrel, extending the overall length of the weapon. The design is compact and tactical, suitable for urban environments.",
+    "description": "A modern, pixel-art pistol with a silver slide, black textured grip, and an optional long suppressor. Features green sights and a rounded trigger guard.",
+    "description_view_0": "Side view showing both the standard and suppressed barrel configurations, highlighting the silver slide, black grip, and green sights.",
+    "description_view_1": "Edge-on view emphasizing the thin profile of the pistol and the length of the suppressor attachment.",
+    "description_view_2": "Opposite side view displaying the suppressor's full length and the blue accent on its underside, along with the pistol's ergonomic grip.",
+    "description_view_3": "Top-down view showing the alignment of the sights and the suppressor's cylindrical form.",
+    "category": "shotgun",
+    "height": 0.15,
+    "max_dimension": 0.38,
+    "materials": [
+        "steel",
+        "polymer",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 7,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "attachable",
+        "detachable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "slide",
+        "suppressor",
+        "magazine release",
+        "sights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "silver",
+        "green",
+        "blue"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_barrel_configuration": "single-barrel with optional cylindrical suppressor; no ribbing or venting visible",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "semi-automatic",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with smooth edges and no visible finger grooves or reinforcement",
+    "uid": "9813a0a2505a464f9331ef1e2787e3b9",
+    "near_synsets": {
+        "shotgun.n.01": 0.5452906691156362,
+        "gas_gun.n.01": 0.5502405529181066,
+        "submachine_gun.n.01": 0.5509661438673983,
+        "sawed-off_shotgun.n.01": 0.55956699946352,
+        "gun.n.01": 0.5614983974825726
+    },
+    "synset": "sawed-off_shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9813a0a2505a464f9331ef1e2787e3b9",
+        "creator_username": "salatis",
+        "creator_display_name": "salatis",
+        "creator_profile_url": "https://sketchfab.com/salatis"
+    },
+    "filename": "std_9813a0a2505a464f9331ef1e2787e3b9.glb",
+    "length": 0.00675677671097219,
+    "width": 0.1851351037621498
+}

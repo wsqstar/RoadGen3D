@@ -1,0 +1,103 @@
+{
+    "description_long": "This gatehouse features a robust stone-like construction with two prominent towers at either end, each topped with a pyramidal roof and adorned with blue diamond-shaped accents. The central section is a fortified wall with subtle blue trim and decorative vertical grooves, suggesting a blend of defensive and ceremonial functions. One tower is capped with a circular turret, possibly for observation or signaling, while the other is more angular and imposing. The structure is detailed with buttresses and layered stonework, giving it a sense of mass and permanence. The color palette is dominated by gray stone, accented with metallic gold and blue highlights, evoking a fantasy or medieval architectural style. The overall design suggests a secure entry point or checkpoint for a walled urban area.",
+    "description": "A fortified stone gatehouse with two towers, blue accents, and detailed stonework, evoking a medieval or fantasy style.",
+    "description_view_0": "Side view showing both towers, the blue diamond accent, and the full length of the connecting wall.",
+    "description_view_1": "Top-down view highlighting the pyramidal roofs, the circular turret, and the overall layout of the gatehouse.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the wall and both towers' architectural details.",
+    "description_view_3": "End-on view focusing on the main tower's entry slit and the layered stonework at the base.",
+    "category": "gatehouse",
+    "height": 6.0,
+    "max_dimension": 16.0,
+    "materials": [
+        "stone",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "defendable",
+        "blockable",
+        "surveillable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "doorway",
+        "turret",
+        "windows"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "blue",
+        "gold",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Medieval Fantasy",
+    "attribute_roof_type": "pyramidal",
+    "attribute_entryway_design": "Tall, narrow vertical slit with stone framing and decorative blue accent above.",
+    "attribute_window_placement": "Single tall slit window in each tower, symmetrically placed near the center.",
+    "attribute_security_features": [
+        "fortified walls",
+        "elevated towers",
+        "limited entryway",
+        "turret"
+    ],
+    "uid": "e85daa9115a44cf9972eba683209a4f9",
+    "near_synsets": {
+        "gatehouse.n.01": 0.48500604321242113,
+        "portcullis.n.01": 0.5130047482847032,
+        "castle.n.02": 0.5178000880418162,
+        "keep.n.02": 0.5255354253177233,
+        "machicolation.n.01": 0.529794896581511
+    },
+    "synset": "gatehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e85daa9115a44cf9972eba683209a4f9",
+        "creator_username": "tylerhalterman",
+        "creator_display_name": "Tyler P Halterman",
+        "creator_profile_url": "https://sketchfab.com/tylerhalterman"
+    },
+    "filename": "std_e85daa9115a44cf9972eba683209a4f9.glb",
+    "length": 4.3226282596588135,
+    "width": 11.237565040588379
+}

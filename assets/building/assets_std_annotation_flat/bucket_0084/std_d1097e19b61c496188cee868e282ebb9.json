@@ -1,0 +1,106 @@
+{
+    "description_long": "This object consists of three distinct rifles arranged horizontally, each with unique features. The top rifle has a classic wooden stock and a simple iron sight, evoking a traditional design. The middle rifle features a more modern, tactical appearance with a synthetic stock, pistol grip, and a detachable box magazine. The bottom rifle is a long-barreled sniper-style firearm, equipped with a scope, bipod, and a suppressor, indicating precision and long-range use. The materials range from wood and metal to synthetic polymers, with visible details such as trigger guards, magazines, and sighting systems. The rifles are primarily black and brown, with metallic highlights and some matte finishes. These firearms are typical of those found in urban tactical or law enforcement scenarios.",
+    "description": "A set of three rifles, including a classic wooden-stock rifle, a modern tactical rifle, and a long-barreled sniper rifle with a scope and suppressor. The rifles feature a mix of wood, metal, and synthetic materials, with detailed stocks, magazines, and sighting systems.",
+    "description_view_0": "Side view showing all three rifles' profiles, highlighting their stocks, barrels, and sighting systems.",
+    "description_view_1": "Front view showing the muzzles and the alignment of the barrels, with minimal detail of stocks or magazines.",
+    "description_view_2": "Opposite side view, again showing the full profiles of the rifles, with stocks and magazines visible.",
+    "description_view_3": "Rear view showing the buttstocks and the alignment of the rifles' bodies, with little detail of the barrels.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 1.4,
+    "materials": [
+        "steel",
+        "polymer",
+        "wood",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 17,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 170,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "trigger",
+        "magazine",
+        "bolt",
+        "scope",
+        "bipod",
+        "safety",
+        "barrel",
+        "muzzle device",
+        "sight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "scope",
+    "attribute_muzzle_device": "suppressor",
+    "uid": "d1097e19b61c496188cee868e282ebb9",
+    "near_synsets": {
+        "sniper_rifle.n.01": 0.5221134571031155,
+        "dragunov.n.01": 0.5346147216142667,
+        "rifle.n.01": 0.5431676363786432,
+        "garand_rifle.n.01": 0.5458335188270111,
+        "assault_rifle.n.01": 0.5544980482434855
+    },
+    "synset": "assault_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d1097e19b61c496188cee868e282ebb9",
+        "creator_username": "caio17011",
+        "creator_display_name": "Caio de Oliveira",
+        "creator_profile_url": "https://sketchfab.com/caio17011"
+    },
+    "filename": "std_d1097e19b61c496188cee868e282ebb9.glb",
+    "length": 0.46214109659194946,
+    "width": 0.06340255588293076
+}

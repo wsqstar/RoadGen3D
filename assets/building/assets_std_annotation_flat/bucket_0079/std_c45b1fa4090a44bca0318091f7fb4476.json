@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a medium-sized ship with a steel hull painted in a combination of gray and reddish-brown, featuring a pointed bow and a flat stern. The hull sits low in the water, suggesting a displacement-type design, and the deck is divided into several distinct sections with visible hatches and raised platforms. Two prominent masts rise from the deck, likely for communication or navigation equipment, and there are multiple deck fixtures such as railings and possible gun mounts or winches. The superstructure is compact and centrally located, with a bridge area and additional raised elements toward the center of the vessel. The deck areas are mostly open, with some sections covered in what appears to be wooden planking. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A medium-sized, gray and reddish-brown ship with a steel hull, two masts, and a compact central superstructure. The deck features open areas, hatches, and various fixtures.",
+    "description_view_0": "Top-down view showing the pointed bow, central superstructure, and open deck areas with visible hatches and platforms.",
+    "description_view_1": "Side view highlighting the ship's low, displacement hull, two masts, and the compact superstructure amidships.",
+    "description_view_2": "Rear (stern) view displaying the flat stern, central superstructure, and open deck space at the back.",
+    "description_view_3": "Opposite side view similar to view 1, showing the hull profile, masts, and deck layout from the other side.",
+    "category": "ship",
+    "height": 12.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 900000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 3000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "steerable",
+        "operable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "door",
+        "mast",
+        "deck equipment",
+        "bridge controls"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "reddish-brown",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a pointed bow and a flat stern, featuring a smooth, continuous sheer line and a moderate freeboard. The hull is painted gray above the waterline and reddish-brown below, with no visible keels or bulbous bows. The sides are straight with minimal flare, and the stern is squared off.",
+    "attribute_superstructure_layout": "The superstructure is compact and centrally located, with a single main deckhouse and bridge area. There are two raised platforms or decks, and the superstructure is flanked by open deck spaces fore and aft. The design is functional, with minimal ornamentation and clear separation between operational and open areas.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "mast",
+        "hatch",
+        "railing",
+        "platform"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "c45b1fa4090a44bca0318091f7fb4476",
+    "near_synsets": {
+        "cargo_ship.n.01": 0.4941917030832975,
+        "ship.n.01": 0.4989006300202107,
+        "small_ship.n.01": 0.5050352616362926,
+        "surface_ship.n.01": 0.5163375948319979,
+        "hull.n.06": 0.5184939113297155
+    },
+    "synset": "surface_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c45b1fa4090a44bca0318091f7fb4476",
+        "creator_username": "Ronald_Reagan",
+        "creator_display_name": "Ronald_Reagan",
+        "creator_profile_url": "https://sketchfab.com/Ronald_Reagan"
+    },
+    "filename": "std_c45b1fa4090a44bca0318091f7fb4476.glb",
+    "length": 28.864046096801758,
+    "width": 5.252125978469849
+}

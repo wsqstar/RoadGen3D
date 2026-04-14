@@ -1,0 +1,97 @@
+{
+    "description_long": "This handcart is a robust, medieval-style wooden vehicle mounted on six iron-rimmed wheels, featuring a reinforced frame with prominent metal brackets at the corners. The cart is equipped with a large central mortar or cannon, surrounded by a wooden platform that holds several spherical cannonballs and cylindrical shells. A ladder is attached to one side, providing access to the elevated platform, while a pulley system and ropes are visible at the front, likely for adjusting the mortar's angle or loading ammunition. The structure is enclosed by sturdy wooden side rails, offering protection and containment for its contents. The wheels are solid and rugged, suitable for traversing uneven urban or battlefield terrain. The overall design suggests a specialized handcart for transporting and operating heavy artillery in historical or fantasy urban settings.",
+    "description": "A heavy-duty wooden handcart with six iron-rimmed wheels, side rails, and a central mortar surrounded by ammunition and a ladder for access.",
+    "description_view_0": "Side view showing the full length of the cart, the mortar, ammunition storage, and the sturdy wooden frame with metal reinforcements.",
+    "description_view_1": "Front view highlighting the pulley system, ladder, and the open access to the platform and mortar.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the mortar and side rails.",
+    "description_view_3": "Rear view focusing on the open platform, the mouth of the mortar, and the arrangement of cannonballs and shells.",
+    "category": "handcart",
+    "height": 2.2,
+    "max_dimension": 3.0,
+    "materials": [
+        "wood",
+        "iron",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "rotatable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "handle",
+        "ladder",
+        "pulley",
+        "mortar",
+        "side rail"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_number_of_wheels": 6,
+    "attribute_handle_type": "straight bar with pulley",
+    "attribute_wheel_position": "side-mounted, three per side",
+    "attribute_presence_of_side_rails": true,
+    "attribute_load_platform_design": "elevated solid wood platform with storage shelves",
+    "uid": "56959c3614b347778f9ad51d477fe02a",
+    "near_synsets": {
+        "handcart.n.01": 0.4794144602368147,
+        "hand_truck.n.01": 0.48293994556676345,
+        "cart.n.01": 0.4890518059364322,
+        "laundry_cart.n.01": 0.4987597666328673,
+        "shopping_cart.n.01": 0.5071370762473011
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/56959c3614b347778f9ad51d477fe02a",
+        "creator_username": "Faust13s",
+        "creator_display_name": "Faust13s",
+        "creator_profile_url": "https://sketchfab.com/Faust13s"
+    },
+    "filename": "std_56959c3614b347778f9ad51d477fe02a.glb",
+    "length": 2.1997017860412598,
+    "width": 1.5256366729736328
+}

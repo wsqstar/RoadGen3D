@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a yellow four-door sedan commonly used as a taxi in urban environments. The vehicle features a streamlined body with black-tinted windows and black wheels, giving it a modern and professional appearance. The front grille is silver, flanked by rectangular headlights, while the rear has red tail lights and a visible license plate. The car's body is primarily painted in a bright yellow color, which is typical for taxis, but there are no visible taxi signs or company branding on the roof or sides. The doors, handles, and side mirrors are clearly defined, and the overall build suggests a sturdy metal construction with glass windows. The interior is not visible, but it is likely to contain standard seating and a fare meter, as is typical for taxis.",
+    "description": "A yellow four-door sedan with black wheels and tinted windows, designed as a taxi but lacking visible taxi signs or branding. The car has a silver front grille, red tail lights, and a visible license plate.",
+    "description_view_0": "Front view shows the yellow hood, silver grille, rectangular headlights, and black-tinted windshield.",
+    "description_view_1": "Left side view highlights the four doors, black wheels, and the elongated yellow body with tinted windows.",
+    "description_view_2": "Rear view displays the trunk, red tail lights, and a visible license plate, with the rear windshield also tinted.",
+    "description_view_3": "Right side view mirrors the left, showing the four doors, black wheels, and yellow body with tinted windows.",
+    "category": "taxi",
+    "height": 1.5,
+    "max_dimension": 5.2,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.12,
+        0.08,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 1700,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 3400,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "wheel",
+        "window",
+        "trunk",
+        "hood",
+        "mirror"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "silver",
+        "red"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.42,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.08,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_taxi_sign": false,
+    "attribute_roof_light": false,
+    "attribute_license_plate": true,
+    "attribute_company_branding": false,
+    "attribute_fare_meter_display": false,
+    "uid": "afe41ac100be4c27868c334023c2f6c7",
+    "near_synsets": {
+        "minicab.n.01": 0.5176622578620002,
+        "gypsy_cab.n.01": 0.5213073812194393,
+        "cab.n.03": 0.5357090225310596,
+        "medallion.n.03": 0.5368404291684181,
+        "taxidriver.n.01": 0.5462394708264998
+    },
+    "synset": "taxidriver.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/afe41ac100be4c27868c334023c2f6c7",
+        "creator_username": "sergeif",
+        "creator_display_name": "Sergei",
+        "creator_profile_url": "https://sketchfab.com/sergeif"
+    },
+    "filename": "std_afe41ac100be4c27868c334023c2f6c7.glb",
+    "length": 5.5015175342559814,
+    "width": 2.138841390609741
+}

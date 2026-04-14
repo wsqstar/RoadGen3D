@@ -1,0 +1,96 @@
+{
+    "description_long": "This rifle features a long, cylindrical black barrel with a robust, utilitarian design, and a wooden or polymer stock with a skeletonized cutout for reduced weight and improved handling. The receiver and barrel assembly are matte black, contrasting with the brownish stock, which has a thumbhole configuration for ergonomic grip. A detachable box magazine is positioned below the receiver, and the rifle includes basic iron sights for aiming. The muzzle appears to have a cylindrical device, likely a suppressor, attached to the end of the barrel. The overall construction suggests a blend of metal and synthetic materials, typical for modern tactical or sporting rifles. The design is streamlined, with minimal external attachments, emphasizing functionality and ease of use in urban environments.",
+    "description": "A matte black rifle with a skeletonized brown stock, detachable box magazine, and a cylindrical suppressor at the muzzle. The design is streamlined and functional, with iron sights and ergonomic features.",
+    "description_view_0": "Side view showing the full length of the rifle, highlighting the skeletonized stock, detachable magazine, and suppressor.",
+    "description_view_1": "Top-down view emphasizing the slim profile of the barrel and the open cutout in the stock.",
+    "description_view_2": "Opposite side view, mirroring view 0, with clear visibility of the stock cutout and magazine.",
+    "description_view_3": "Front view showing the circular muzzle opening and the alignment of the barrel with the stock.",
+    "category": "rifle",
+    "height": 0.22,
+    "max_dimension": 0.95,
+    "materials": [
+        "steel",
+        "polymer",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "mass": 3.8,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "liftable",
+        "triggerable",
+        "reloadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "magazine",
+        "trigger",
+        "sight",
+        "muzzle device",
+        "grip"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "skeletonized thumbhole",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "suppressor",
+    "uid": "e21959eb916f4ff1a3c3340ff94ef9bb",
+    "near_synsets": {
+        "dragunov.n.01": 0.5431579493361907,
+        "carbine.n.01": 0.5457269165232852,
+        "silencer.n.01": 0.5473521440280279,
+        "rifle.n.01": 0.5522867315364429,
+        "garand_rifle.n.01": 0.5528742809281226
+    },
+    "synset": "garand_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e21959eb916f4ff1a3c3340ff94ef9bb",
+        "creator_username": "patrakeevasveta",
+        "creator_display_name": "patrakeevasveta",
+        "creator_profile_url": "https://sketchfab.com/patrakeevasveta"
+    },
+    "filename": "std_e21959eb916f4ff1a3c3340ff94ef9bb.glb",
+    "length": 1.22338205575943,
+    "width": 0.08016204833984375
+}

@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a large, tracked combat tactical vehicle with a robust, angular hull and a prominent, boxy superstructure at the rear. The vehicle features continuous metal tracks on both sides, supported by multiple road wheels, which provide excellent mobility over rough terrain. The front of the vehicle is sloped and reinforced, likely for added protection, while the rear superstructure appears to house crew or equipment compartments. There are visible hatches and possible observation ports on the upper surfaces, as well as a small antenna, suggesting communication capabilities. The exterior is finished in a uniform, light gray color with no visible camouflage or markings. No external weapon mounts or armaments are visible on the hull or superstructure.",
+    "description": "A large, tracked combat tactical vehicle with a boxy rear superstructure, reinforced sloped front, and continuous metal tracks. The exterior is light gray and lacks visible weapon mounts or markings.",
+    "description_view_0": "Front view shows the sloped, reinforced hull and the narrow profile of the tracks.",
+    "description_view_1": "Left side view highlights the long, continuous track system and the boxy rear superstructure.",
+    "description_view_2": "Rear view displays the back of the superstructure and the track ends, with no visible doors or hatches.",
+    "description_view_3": "Right side view mirrors the left, showing the track system and superstructure, with a visible antenna.",
+    "category": "combat tactical  vehicle",
+    "height": 3.2,
+    "max_dimension": 8.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "air",
+        "plastic"
+    ],
+    "materials_composition": [
+        0.85,
+        0.03,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "track",
+        "antenna",
+        "door",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "none visible.",
+    "attribute_armor_plating": "Full body armor plating is visible, with thick, angular panels covering the hull and superstructure. The front is notably sloped for deflection, and the sides are reinforced.",
+    "attribute_camouflage_pattern": "none visible.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "429472155cbe4de3ab392c4aec9ea6f9",
+    "near_synsets": {
+        "reconnaissance_vehicle.n.01": 0.49592964563071085,
+        "military_vehicle.n.01": 0.500084153658881,
+        "tank.n.01": 0.5103330309672767,
+        "weapons_carrier.n.01": 0.5253857979278457,
+        "assault_gun.n.02": 0.5268301884898956,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/429472155cbe4de3ab392c4aec9ea6f9",
+        "creator_username": "madmailbox",
+        "creator_display_name": "Giganaut",
+        "creator_profile_url": "https://sketchfab.com/madmailbox"
+    },
+    "filename": "std_429472155cbe4de3ab392c4aec9ea6f9.glb",
+    "length": 18.38644027709961,
+    "width": 3.273672103881836
+}

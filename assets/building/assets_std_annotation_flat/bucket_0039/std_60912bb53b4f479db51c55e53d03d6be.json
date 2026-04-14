@@ -1,0 +1,111 @@
+{
+    "description_long": "This object is a compact solar energy infrastructure unit featuring a single rectangular photovoltaic solar panel mounted horizontally atop a cylindrical base. The solar panel has a blue grid-like surface, typical of crystalline silicon solar cells, encased in a metallic or aluminum frame. The supporting structure consists of a central vertical pole connecting the panel to the base, which appears to be made of metal or concrete and may house electrical components or ballast. The base is solid and robust, with a two-tone color scheme: a darker exterior and a lighter interior ring visible from above. The design is minimalistic and functional, suitable for urban environments such as sidewalks, parks, or parking lots. No visible cabling or inverter is present, and the panel orientation is flat, suggesting a fixed installation.",
+    "description": "A compact solar panel mounted flat on a cylindrical base, featuring a blue grid-patterned surface and a sturdy, minimalistic design suitable for urban settings.",
+    "description_view_0": "Front view showing the blue solar panel surface and the dark cylindrical base with a visible central pole.",
+    "description_view_1": "Side view highlighting the flat orientation of the solar panel and the two-tone cylindrical base with a yellowish interior.",
+    "description_view_2": "Rear view similar to the front, with the blue panel and dark base, but the pole and interior details are less prominent.",
+    "description_view_3": "Opposite side view showing the flat panel and the lighter interior of the cylindrical base, with the supporting pole clearly visible.",
+    "category": "solar energy infrastructure",
+    "height": 0.8,
+    "max_dimension": 1.2,
+    "materials": [
+        "aluminum",
+        "glass",
+        "silicon",
+        "steel",
+        "concrete",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.2,
+        0.15,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "supportable",
+        "mountable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "solar panel",
+        "mounting pole",
+        "base"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "black",
+        "white",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.35,
+        0.3,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_panel_orientation": "flat, horizontal, orientation appears fixed",
+    "attribute_mounting_structure_type": "pole-mounted, cylindrical metal or concrete base with central support pole",
+    "attribute_electrical_inverter_presence": false,
+    "attribute_cabling_visibility": "not visible",
+    "attribute_array_configuration": "single rectangular panel",
+    "uid": "60912bb53b4f479db51c55e53d03d6be",
+    "near_synsets": {
+        "solar_array.n.01": 0.502837697877446,
+        "solar_house.n.01": 0.5285845163597285,
+        "solar_cell.n.01": 0.5399003659900797,
+        "solar_thermal_system.n.01": 0.5443709727676322,
+        "solar_energy.n.01": 0.5476480816992124,
+        "energy.n.01": -1000.0,
+        "infrastructure.n.01": -1000.0,
+        "infrastructure.n.02": -1000.0,
+        "energy.n.06": -1000.0,
+        "energy.n.03": -1000.0,
+        "energy.n.05": -1000.0,
+        "department_of_energy.n.01": -1000.0,
+        "energy.n.02": -1000.0,
+        "energy.n.04": -1000.0
+    },
+    "synset": "solar_cell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/60912bb53b4f479db51c55e53d03d6be",
+        "creator_username": "spsvision",
+        "creator_display_name": "Steven Samuel",
+        "creator_profile_url": "https://sketchfab.com/spsvision"
+    },
+    "filename": "std_60912bb53b4f479db51c55e53d03d6be.glb",
+    "length": 1.991265594959259,
+    "width": 0.9170840680599213
+}

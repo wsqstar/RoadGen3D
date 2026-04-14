@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a medium-sized utility truck with a boxy cargo compartment and a crew cab, commonly used for service or maintenance work in urban environments. The truck is predominantly white with black accents, featuring a pair of ladders securely mounted on the roof of the cargo area. The front of the vehicle has a wide windshield, rectangular headlights, and side mirrors extending outward for better visibility. The rear cargo compartment is fully enclosed, with double doors and circular features that may be vents or access ports. The truck rides on four wheels with visible wheel wells and has a set of steps or toolboxes mounted beneath the cargo area on both sides. The overall design suggests durability and functionality, suitable for transporting tools, equipment, and personnel.",
+    "description": "A white utility truck with a crew cab, enclosed cargo box, and ladders mounted on the roof, designed for urban service or maintenance tasks.",
+    "description_view_0": "Front view showing the wide windshield, rectangular headlights, side mirrors, and the ladders mounted on the roof.",
+    "description_view_1": "Left side view displaying the crew cab, side doors, wheel wells, and the full length of the ladders on the roof.",
+    "description_view_2": "Rear view highlighting the double cargo doors, circular access ports, and the rear ends of the ladders.",
+    "description_view_3": "Right side view similar to the left, showing the crew cab, side steps/toolboxes, and the ladders on the roof.",
+    "category": "truck",
+    "height": 2.6,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.08,
+        0.07,
+        0.02
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 16000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "ladder",
+        "mirror",
+        "step",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "crew cab",
+    "attribute_cargo_bed_type": "box",
+    "attribute_wheelbase": 3.6,
+    "attribute_number_of_axles": 2,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "cf835095907049dea0bbe91d4ee05847",
+    "near_synsets": {
+        "van.n.05": 0.4838245599651982,
+        "ladder_truck.n.01": 0.486976398861784,
+        "truck.n.01": 0.4924822342994567,
+        "delivery_truck.n.01": 0.5060811166599677,
+        "lorry.n.02": 0.5207349213724043,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cf835095907049dea0bbe91d4ee05847",
+        "creator_username": "Calne",
+        "creator_display_name": "Calne",
+        "creator_profile_url": "https://sketchfab.com/Calne"
+    },
+    "filename": "std_cf835095907049dea0bbe91d4ee05847.glb",
+    "length": 6.585914373397827,
+    "width": 2.031625270843506
+}

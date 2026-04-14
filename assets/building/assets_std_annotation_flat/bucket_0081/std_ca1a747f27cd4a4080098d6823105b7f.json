@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a compact shotgun with a dark, matte finish and a short barrel, giving it a robust and utilitarian appearance. The receiver and barrel are constructed from metal, while the grip and stock area are made of a darker, likely wooden or synthetic material. The shotgun features a lever-action mechanism, with a prominent lever loop beneath the receiver for cycling the action. The trigger guard is large and rounded, integrated with the lever, and the grip is ergonomically shaped for one-handed operation. The barrel is cylindrical and unadorned, with no visible ribbing or venting, and the overall design is minimalistic, prioritizing function over ornamentation. This type of shotgun is often associated with close-quarters use in urban environments, such as home defense or law enforcement.",
+    "description": "A compact, dark-finished lever-action shotgun with a short barrel and ergonomic grip, featuring a large rounded trigger guard integrated with the lever.",
+    "description_view_0": "The shotgun is viewed directly from the muzzle end, showing the circular barrel opening and a slim profile.",
+    "description_view_1": "A full side profile reveals the short barrel, lever-action mechanism, and ergonomic grip, highlighting the overall compactness.",
+    "description_view_2": "Viewed from the rear, the grip and stock are prominent, with the barrel receding away, emphasizing the handle's shape.",
+    "description_view_3": "The opposite side profile mirrors view 1, showing the lever, trigger guard, and the clean lines of the barrel and receiver.",
+    "category": "shotgun",
+    "height": 0.15,
+    "max_dimension": 0.7,
+    "materials": [
+        "steel",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 2.8,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 28,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "cockable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "lever",
+        "trigger",
+        "trigger guard",
+        "barrel",
+        "grip",
+        "receiver"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.4
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, no visible ribbing or venting, short barrel length",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "lever-action",
+    "attribute_presence_of_a_pump_or_lever": "lever",
+    "attribute_trigger_guard_design": "Large, rounded trigger guard integrated with the lever, elongated and robust",
+    "uid": "ca1a747f27cd4a4080098d6823105b7f",
+    "near_synsets": {
+        "sawed-off_shotgun.n.01": 0.474365353989685,
+        "pump_action.n.01": 0.48337493700857315,
+        "gun_trigger.n.01": 0.4852728479459992,
+        "shotgun.n.01": 0.4875657557622838,
+        "shotgun_shell.n.01": 0.5094878005875081
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ca1a747f27cd4a4080098d6823105b7f",
+        "creator_username": "Brendan52",
+        "creator_display_name": "Brendan",
+        "creator_profile_url": "https://sketchfab.com/Brendan52"
+    },
+    "filename": "std_ca1a747f27cd4a4080098d6823105b7f.glb",
+    "length": 0.6286210417747498,
+    "width": 0.03744065947830677
+}

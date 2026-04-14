@@ -1,0 +1,119 @@
+{
+    "description_long": "This is a modern grave site set on a rectangular paved plot, featuring a prominent black granite headstone with a polished finish and a carved cross on the left side. The headstone is mounted on a raised, light gray stone base that extends to form a platform, likely made of marble or granite. In front of the grave are three black cubic blocks, each topped with a white circular element, possibly representing candle holders or flower vases. The paved area surrounding the grave is composed of small, uniformly arranged gray tiles, providing a neat and respectful setting. The headstone bears inscriptions including a name, dates, and an epitaph, all engraved in white. The overall design is minimalist yet dignified, with a strong contrast between the dark and light stone elements.",
+    "description": "A modern grave site with a black granite headstone, gray stone base, and three black cubic blocks with white tops on a tiled platform.",
+    "description_view_0": "Side view showing the black headstone, gray stone base, and three black cubic blocks with white tops aligned in front.",
+    "description_view_1": "Rear angled view highlighting the depth of the gray stone base and the alignment of the three black blocks.",
+    "description_view_2": "Frontal view displaying the engraved headstone with a cross, inscriptions, and the three black blocks with white tops in front.",
+    "description_view_3": "View from behind the grave, focusing on the tops of the three black blocks and the expanse of the gray stone base.",
+    "category": "grave yard",
+    "height": 1.2,
+    "max_dimension": 3.0,
+    "materials": [
+        "granite",
+        "marble",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "placeable",
+        "readable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "candle_holder",
+        "headstone"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.54,
+    "youngs_modulus": 50000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.01,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_tombstone_inscriptions": [
+        "\u015ap. Jan Kowalski 21.08.1957 - 25.10.2013",
+        "Na zawsze w naszych sercach"
+    ],
+    "attribute_crosses": [
+        {
+            "style": "Latin",
+            "height": 0.25,
+            "material": "granite"
+        }
+    ],
+    "attribute_grave_markers": [
+        {
+            "type": "headstone",
+            "material": "granite",
+            "dimensions": [
+                1.2,
+                0.8,
+                0.15
+            ]
+        }
+    ],
+    "attribute_mausoleums": [],
+    "attribute_cemetery_gates": [],
+    "uid": "d5ed94ed27c94c3cbb418d76dc235376",
+    "near_synsets": {
+        "gravestone.n.01": 0.49940807885338645,
+        "grave.n.02": 0.5053050522172824,
+        "cemetery.n.01": 0.5413306240807867,
+        "cairn.n.01": 0.5476648464855619,
+        "grave.n.01": 0.5484439509717131,
+        "cubic_yard.n.01": -1000.0,
+        "yard.n.03": -1000.0,
+        "yard.n.08": -1000.0,
+        "yard.n.09": -1000.0,
+        "yard.n.02": -1000.0,
+        "yard.n.07": -1000.0,
+        "yard.n.06": -1000.0,
+        "yard.n.01": -1000.0,
+        "thousand.n.01": -1000.0
+    },
+    "synset": "gravestone.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d5ed94ed27c94c3cbb418d76dc235376",
+        "creator_username": "tandrzej",
+        "creator_display_name": "korrado.pl",
+        "creator_profile_url": "https://sketchfab.com/tandrzej"
+    },
+    "filename": "std_d5ed94ed27c94c3cbb418d76dc235376.glb",
+    "length": 2.3927266597747803,
+    "width": 3.1054491996765137
+}

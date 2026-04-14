@@ -1,0 +1,108 @@
+{
+    "description_long": "This object consists of a group of twenty-four circular traffic signs, each mounted on a slender vertical post. The signs feature a white background with a bold red border and various black pictograms or numbers, indicating different traffic regulations such as speed limits, turn restrictions, and vehicle prohibitions. The posts are metallic and uniformly spaced, giving the arrangement a grid-like appearance. The signs display a mix of regulatory symbols, including speed limits ranging from 20 to 120, directional arrows, and prohibitive icons such as no U-turns and no parking. The overall construction suggests durability for outdoor use, with reflective surfaces for visibility. The signs are designed to be easily recognizable and legible from a distance, suitable for urban traffic management.",
+    "description": "A grouped set of twenty-four circular, red-bordered traffic signs on metal posts, displaying various speed limits and regulatory symbols. The signs are arranged in a neat grid and are highly visible for urban roadside use.",
+    "description_view_0": "Front view showing all sign faces, including speed limits, directional arrows, and prohibition symbols.",
+    "description_view_1": "Side view revealing the thin profile of the signs and the alignment of the posts in two rows.",
+    "description_view_2": "Rear view displaying the plain backs of the signs and the mounting brackets on the posts.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the edge profiles and post arrangement.",
+    "category": "traffic sign",
+    "height": 1.8,
+    "max_dimension": 2.5,
+    "materials": [
+        "metal",
+        "plastic",
+        "reflective paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 48,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "sign face",
+        "post"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_sign_text": "120 100 90 80 70 60 50 40 30 20 STOP",
+    "attribute_symbol_or_pictogram": "Speed limit numbers, right turn arrow, left turn arrow, U-turn arrow, no U-turn symbol, no parking symbol, no entry for trucks, no entry for cars, pedestrian symbol, straight arrow, left and right turn arrows, no left turn symbol, no right turn symbol",
+    "attribute_mounting_type": "post-mounted",
+    "attribute_orientation": "perpendicular to road",
+    "attribute_location_context": "urban roadside, intersections, parking lot entrances",
+    "uid": "844fd718b6ef4a28879ec84493a6242c",
+    "near_synsets": {
+        "street_sign.n.01": 0.4734029747689214,
+        "stop_sign.n.01": 0.48989972851567104,
+        "direction_sign.n.01": 0.5069355806075976,
+        "speed_limit.n.01": 0.5087879021451885,
+        "traffic_light.n.01": 0.515543201130082,
+        "sign.n.01": -1000.0,
+        "sign_of_the_zodiac.n.01": -1000.0,
+        "traffic.n.03": -1000.0,
+        "sign.n.11": -1000.0,
+        "sign.n.02": -1000.0,
+        "dealings.n.01": -1000.0,
+        "traffic.n.02": -1000.0,
+        "sign.n.10": -1000.0,
+        "signboard.n.01": -1000.0,
+        "polarity.n.02": -1000.0,
+        "sign.n.09": -1000.0,
+        "sign.n.06": -1000.0,
+        "augury.n.01": -1000.0,
+        "traffic.n.01": -1000.0,
+        "signal.n.01": -1000.0
+    },
+    "synset": "street_sign.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/844fd718b6ef4a28879ec84493a6242c",
+        "creator_username": "baso4388",
+        "creator_display_name": "CoderBoy",
+        "creator_profile_url": "https://sketchfab.com/baso4388"
+    },
+    "filename": "std_844fd718b6ef4a28879ec84493a6242c.glb",
+    "length": 4.3985044956207275,
+    "width": 3.664866089820862
+}

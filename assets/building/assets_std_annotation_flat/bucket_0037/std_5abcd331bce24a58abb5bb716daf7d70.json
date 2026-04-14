@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a small, rustic barn constructed from horizontally stacked, weathered wooden logs, giving it a robust and traditional appearance. The barn features a steeply pitched gable roof clad in corrugated metal sheets, which are heavily rusted and textured, adding to its aged character. The front facade has a single, wide rectangular opening that serves as the main entrance, with no visible doors or windows. The sides and rear are solid, with no additional openings or architectural embellishments. The structure sits low to the ground and appears compact, suitable for storage or sheltering small livestock. The overall design is utilitarian, reflecting a classic rural outbuilding style often found on farms or at the edge of urban parks.",
+    "description": "A compact, weathered log barn with a steep rusted metal gable roof and a single open entrance. The structure is solid and rustic, with no windows and a utilitarian design.",
+    "description_view_0": "Front view showing the wide open entrance and the stacked log construction beneath the steep gable roof.",
+    "description_view_1": "Top-down view highlighting the corrugated, rusted metal gable roof with its pronounced texture and no visible openings.",
+    "description_view_2": "Rear view displaying the solid log wall with no openings or features, emphasizing the barn's enclosed nature.",
+    "description_view_3": "Top-down view from the opposite side, again focusing on the rusted metal roof and the barn's rectangular footprint.",
+    "category": "barn",
+    "height": 2.5,
+    "max_dimension": 3.5,
+    "materials": [
+        "wood",
+        "corrugated metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "storable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "entrance"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "red",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gable roof with corrugated metal cladding",
+    "attribute_siding_pattern": "horizontal log siding",
+    "attribute_door_style": "single wide open entrance, no visible door",
+    "attribute_window_arrangement": "no windows visible on any side",
+    "attribute_architectural_style": "traditional American barn",
+    "uid": "5abcd331bce24a58abb5bb716daf7d70",
+    "near_synsets": {
+        "barn.n.01": 0.5105380222259354,
+        "farm_building.n.01": 0.5155681299062982,
+        "shed.n.01": 0.530357262831973,
+        "farmhouse.n.01": 0.5310311412007663,
+        "cowbarn.n.01": 0.5330561557195974,
+        "barn.n.02": -1000.0
+    },
+    "synset": "barn.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5abcd331bce24a58abb5bb716daf7d70",
+        "creator_username": "rhcreations",
+        "creator_display_name": "rhcreations",
+        "creator_profile_url": "https://sketchfab.com/rhcreations"
+    },
+    "filename": "std_5abcd331bce24a58abb5bb716daf7d70.glb",
+    "length": 3.426765203475952,
+    "width": 2.911094903945923
+}

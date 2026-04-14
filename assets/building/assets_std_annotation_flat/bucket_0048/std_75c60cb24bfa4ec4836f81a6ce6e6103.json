@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a medium-sized dam structure featuring a curved, wooden central section flanked by concrete abutments. The dam has a smooth, bowl-like channel, likely designed to guide water or other materials, with wooden planks forming the main surface. At both ends, there are raised platforms with wooden railings, providing safety barriers along the top edge. The concrete base appears solid and robust, supporting the wooden superstructure above. No visible spillways, control gates, or water outflow mechanisms are present, and the structure is open and accessible from both sides.",
+    "description": "A medium-sized dam with a curved wooden channel, concrete base, and wooden railings on raised platforms at both ends.",
+    "description_view_0": "Front view showing the wooden channel, concrete base, and wooden railings on the upper platform.",
+    "description_view_1": "Side view revealing the full curved wooden channel and both raised platforms with railings.",
+    "description_view_2": "Rear view, similar to the front, displaying the wooden channel and concrete base with railings.",
+    "description_view_3": "Opposite side view, again showing the curved channel and both raised platforms with railings.",
+    "category": "dam",
+    "height": 3.0,
+    "max_dimension": 10.0,
+    "materials": [
+        "wood",
+        "concrete",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.35,
+        0.05,
+        0.1
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "railing"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "gray",
+        "tan"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_spillway_presence": false,
+    "attribute_control_gates": [
+        "none"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_water_outflow": "none",
+    "attribute_perimeter_fencing": true,
+    "uid": "75c60cb24bfa4ec4836f81a6ce6e6103",
+    "near_synsets": {
+        "dam.n.01": 0.503941754590767,
+        "milldam.n.01": 0.5133945417601824,
+        "weir.n.01": 0.5169475801300031,
+        "aqueduct.n.01": 0.5397856737307688,
+        "flume.n.02": 0.5400955271519475,
+        "dam.n.03": -1000.0,
+        "decameter.n.01": -1000.0
+    },
+    "synset": "dam.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/75c60cb24bfa4ec4836f81a6ce6e6103",
+        "creator_username": "gongarth",
+        "creator_display_name": "gongarth",
+        "creator_profile_url": "https://sketchfab.com/gongarth"
+    },
+    "filename": "std_75c60cb24bfa4ec4836f81a6ce6e6103.glb",
+    "length": 9.80851936340332,
+    "width": 4.931227684020996
+}

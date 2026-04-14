@@ -1,0 +1,100 @@
+{
+    "description_long": "This humanoid robot features a robust, angular frame with a dark, matte metallic exterior and subtle green highlights on its visor and joints. Its head is helmet-like with a single, horizontal green visor, giving it a futuristic and tactical appearance. The torso is broad and armored, with pronounced shoulder plates and a slightly tapered waist, while the limbs are segmented and mechanical, suggesting strong articulation. Copper-colored cables run from the back of the head to the upper back, adding an industrial, functional detail. The left arm is equipped with a large, rectangular attachment resembling a tool or weapon, and the hands are claw-like with articulated fingers. The overall design is utilitarian and imposing, suitable for urban patrol or security roles.",
+    "description": "A dark, armored humanoid robot with a green visor, copper cables, and a large tool-like attachment on its left arm.",
+    "description_view_0": "Front view shows the broad chest, helmeted head with green visor, and the large rectangular attachment on the left arm.",
+    "description_view_1": "Left side view highlights the copper cables running from the head to the back and the thickness of the arm attachment.",
+    "description_view_2": "Rear view reveals the full routing of the copper cables and the segmented, mechanical structure of the back and legs.",
+    "description_view_3": "Right side view displays the angular armor plating and the articulated joints of the limbs.",
+    "category": "humanoid robot",
+    "height": 2.0,
+    "max_dimension": 2.2,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "copper",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1765,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "visor",
+        "arm attachment",
+        "hands",
+        "joints",
+        "cables"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "green",
+        "copper",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with legs slightly apart, left arm extended forward holding a large attachment, right arm relaxed at the side, head facing forward.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated armor panels and mechanical coverings with visible cables.",
+    "attribute_facial_features": "Face is a helmet-like structure with a single horizontal green visor; no mouth, nose, or expressive features visible.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints at shoulders, elbows, wrists, hips, knees, and ankles, allowing for a wide range of motion; hands have articulated fingers.",
+    "attribute_presence_of_sensors": "Single green visor on the head likely functions as a visual sensor; no other sensors visible.",
+    "uid": "3b443873cabf4481b22c60da61f22714",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5354505912230811,
+        "cyborg.n.01": 0.5480093002712892,
+        "android.n.01": 0.5480869398668466,
+        "automaton.n.02": 0.5602748339808112,
+        "automaton.n.03": 0.5799236416901019
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3b443873cabf4481b22c60da61f22714",
+        "creator_username": "myrajia",
+        "creator_display_name": "Amara",
+        "creator_profile_url": "https://sketchfab.com/myrajia"
+    },
+    "filename": "std_3b443873cabf4481b22c60da61f22714.glb",
+    "length": 1.7852104902267456,
+    "width": 1.585150122642517
+}

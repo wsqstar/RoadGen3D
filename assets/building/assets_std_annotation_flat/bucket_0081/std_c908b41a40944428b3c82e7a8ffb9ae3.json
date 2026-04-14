@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a modern city transit bus with a rectangular, elongated body and a flat roof, painted primarily white with yellow and blue accent stripes along the lower sides. The bus features large, rectangular tinted windows evenly spaced along both sides, separated by black vertical pillars. There are two wide passenger doors on the right side, one at the front and one in the middle, both equipped with black framing and likely automatic operation. The front of the bus displays a digital route sign above the windshield, and the rear has multiple lights and a vented panel. The wheels are large and black with metallic hubs, and the bus sits relatively low to the ground, indicating accessibility features. Branding and city transit logos are visible on the sides, along with accessibility signage.",
+    "description": "A modern, low-floor city transit bus with white, yellow, and blue livery, large side windows, and dual passenger doors. It features digital route signage and city transit branding.",
+    "description_view_0": "Side view showing the right side with two large passenger doors, multiple rectangular windows, and city transit branding.",
+    "description_view_1": "Front view highlighting the wide windshield, digital route sign, and front bumper details.",
+    "description_view_2": "Opposite side view with windows and branding, but no visible passenger doors.",
+    "description_view_3": "Rear view showing taillights, vented panels, and rear signage.",
+    "category": "bus",
+    "height": 3.2,
+    "max_dimension": 12.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.18,
+        0.1,
+        0.1,
+        0.02,
+        0.05
+    ],
+    "mass": 13000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 35000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "button",
+        "mirror",
+        "display panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "yellow",
+        "blue",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.1,
+        0.08,
+        0.12,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 2,
+    "attribute_window_arrangement": "Seven large rectangular windows on each side, evenly spaced and separated by black vertical pillars, with a smaller window at the rear and a gap for the passenger doors on the right side.",
+    "attribute_route_number_or_destination_sign": "C - DART",
+    "attribute_bus_manufacturer_logo": "A blue and yellow city transit crest logo is visible on the side panels near the doors; no specific manufacturer logo is clearly visible.",
+    "attribute_passenger_entry_step_height": 0.35,
+    "uid": "c908b41a40944428b3c82e7a8ffb9ae3",
+    "near_synsets": {
+        "bus.n.01": 0.5100243307704707,
+        "minibus.n.01": 0.52215326065434,
+        "public_transit.n.01": 0.528101237702503,
+        "transit_line.n.01": 0.5382163606358655,
+        "school_bus.n.01": 0.538313522743922,
+        "busbar.n.01": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "bus.n.04": -1000.0
+    },
+    "synset": "bus.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c908b41a40944428b3c82e7a8ffb9ae3",
+        "creator_username": "olm",
+        "creator_display_name": "olm",
+        "creator_profile_url": "https://sketchfab.com/olm"
+    },
+    "filename": "std_c908b41a40944428b3c82e7a8ffb9ae3.glb",
+    "length": 12.087533473968506,
+    "width": 2.93414306640625
+}

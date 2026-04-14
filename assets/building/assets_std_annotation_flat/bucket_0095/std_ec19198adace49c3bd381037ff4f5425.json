@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a compact, tracked combat tactical vehicle with a boxy, armored hull and a low profile. The front features two protruding gun barrels and a small hatch, flanked by round headlights and a painted Italian flag. The sides display riveted armor panels, a visible exhaust system, and the Roman numeral 'IV' with red stripes, suggesting unit identification. The rear is equipped with a circular access hatch, dual exhaust pipes, and engine ventilation grilles. The tracks are robust, with detailed suspension and drive components visible along the lower sides. The vehicle's exterior is finished in a weathered tan paint, with signs of wear and operational use.",
+    "description": "A compact, tan, tracked combat vehicle with dual front guns, riveted armor, and visible military markings. Features include a low profile, robust tracks, and weathered exterior.",
+    "description_view_0": "Front view shows dual gun barrels, a small hatch, headlights, and an Italian flag painted on the sloped armor.",
+    "description_view_1": "Left side view highlights the 'IV' marking, red stripes, exhaust system, and detailed track and suspension components.",
+    "description_view_2": "Rear view displays a circular access hatch, dual exhaust pipes, and engine grilles, with the tracks extending outward.",
+    "description_view_3": "Right side view mirrors the left, with the Italian flag, exhaust, and track system visible, but without the 'IV' marking.",
+    "category": "combat tactical  vehicle",
+    "height": 1.7,
+    "max_dimension": 4.2,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.02,
+        0.07,
+        0.03,
+        0.03
+    ],
+    "mass": 8500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hatch",
+        "gun barrel",
+        "headlight",
+        "track",
+        "exhaust pipe",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "black",
+        "red",
+        "green",
+        "white",
+        "silver"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.03,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Two fixed gun mounts on the front hull, positioned side by side.",
+    "attribute_armor_plating": "Full body coverage with riveted steel armor plating, sloped at the front and sides, moderate thickness, no visible modular or reactive panels.",
+    "attribute_camouflage_pattern": "Solid tan paint with weathering; no distinct camouflage pattern.",
+    "attribute_military_markings": "Italian flag on the front and right side, 'IV' with three red stripes on the left side.",
+    "attribute_tire_type": "not applicable",
+    "uid": "ec19198adace49c3bd381037ff4f5425",
+    "near_synsets": {
+        "tank.n.01": 0.49594793021681594,
+        "military_vehicle.n.01": 0.507245963511052,
+        "reconnaissance_vehicle.n.01": 0.5155632836865851,
+        "armored_car.n.02": 0.5241334846683333,
+        "weapons_carrier.n.01": 0.5301433314406351,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ec19198adace49c3bd381037ff4f5425",
+        "creator_username": "Tom.McCahey",
+        "creator_display_name": "Tom.McCahey",
+        "creator_profile_url": "https://sketchfab.com/Tom.McCahey"
+    },
+    "filename": "std_ec19198adace49c3bd381037ff4f5425.glb",
+    "length": 3.9764055013656616,
+    "width": 2.0732243061065674
+}

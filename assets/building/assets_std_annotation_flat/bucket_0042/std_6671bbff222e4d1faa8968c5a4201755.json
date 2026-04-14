@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a rugged, industrial-style tanker truck with a heavily weathered and rusted exterior, suggesting extensive use or exposure to harsh environments. The cab is compact and angular, featuring reinforced bumpers and protective grilles over the front, with visible exhaust stacks and side mirrors. The main body consists of a large cylindrical tank mounted on the chassis, marked with yellow and black hazard stripes, indicating it is designed to transport liquids, possibly hazardous materials. The rear of the truck displays a ladder and additional hazard striping, as well as taillights and a reinforced bumper. The wheels are robust and partially covered by fenders, with the undercarriage showing mechanical details. The overall appearance is utilitarian, with a focus on durability and function over aesthetics.",
+    "description": "A heavily weathered, industrial tanker truck with a rusted cylindrical tank and reinforced cab, marked by hazard stripes and rugged details.",
+    "description_view_0": "Front view shows the reinforced grille, angular cab, and protective bumper.",
+    "description_view_1": "Left side view highlights the cylindrical tank with hazard stripes, exhaust stack, and side mirrors.",
+    "description_view_2": "Rear view displays the tank's end, ladder, hazard striping, taillights, and reinforced bumper.",
+    "description_view_3": "Right side view mirrors the left, showing the tank, cab, and mechanical undercarriage details.",
+    "category": "truck",
+    "height": 2.7,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 6500,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "tank hatch",
+        "ladder",
+        "mirror",
+        "bumper"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "yellow",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "tanker",
+    "attribute_wheelbase": 3.8,
+    "attribute_number_of_axles": 2,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "6671bbff222e4d1faa8968c5a4201755",
+    "near_synsets": {
+        "tank_car.n.01": 0.5148489278860475,
+        "truck.n.01": 0.5172541185142775,
+        "tanker_truck.n.01": 0.5184592997060122,
+        "van.n.05": 0.5317674365476779,
+        "trailer_truck.n.01": 0.5346860306391297,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/6671bbff222e4d1faa8968c5a4201755",
+        "creator_username": "kryik1023",
+        "creator_display_name": "Renafox",
+        "creator_profile_url": "https://sketchfab.com/kryik1023"
+    },
+    "filename": "std_6671bbff222e4d1faa8968c5a4201755.glb",
+    "length": 6.666102886199951,
+    "width": 3.3263611793518066
+}

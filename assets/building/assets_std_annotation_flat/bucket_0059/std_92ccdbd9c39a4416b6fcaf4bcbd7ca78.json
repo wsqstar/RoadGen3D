@@ -1,0 +1,89 @@
+{
+    "description_long": "This is a stylized wooden sailing ship with a broad, angular hull and two large, curved white sails mounted on central masts. The hull is faceted and polygonal, with a raised stern section and a stepped deck leading down toward the bow. The ship features open deck space with visible seating or cargo areas, and the masts are supported by simple crossbeams. The sails are billowing outward, suggesting wind propulsion, and the overall design is minimalistic with no visible rigging or detailed fixtures. The color palette is dominated by natural wood tones and bright white sails, giving the vessel a clean, classic appearance.",
+    "description": "A stylized wooden sailing ship with two large white sails and a faceted, angular hull. The design is minimalistic, featuring open decks and a raised stern.",
+    "description_view_0": "Front view showing the broad bow, central mast, and the full expanse of the main sail.",
+    "description_view_1": "Angled side view revealing the stepped deck, both masts with curved sails, and the raised stern structure.",
+    "description_view_2": "Rear view highlighting the stern's angular shape, the back of the sails, and the symmetry of the hull.",
+    "description_view_3": "Opposite angled side view showing the open deck layout, both masts, and the faceted hull contours.",
+    "category": "ship",
+    "height": 4.5,
+    "max_dimension": 12.0,
+    "materials": [
+        "wood",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sail",
+        "mast",
+        "deck"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a broad, angular, polygonal shape. The bow is blunt and faceted, while the stern is raised and squared off. There are no visible keels or bulbous bows, and the hull sides are straight and flat.",
+    "attribute_superstructure_layout": "The superstructure consists of a stepped deck with a raised stern section and open central area. There are no enclosed cabins, bridges, or towers visible; the design is open and minimalistic.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [],
+    "attribute_registration_markings": "none",
+    "uid": "92ccdbd9c39a4416b6fcaf4bcbd7ca78",
+    "near_synsets": {
+        "sail.n.03": 0.5063923929282692,
+        "sailing_vessel.n.01": 0.5175182884591518,
+        "fore-and-after.n.01": 0.5192784545152551,
+        "small_ship.n.01": 0.5194000912607375,
+        "cargo_ship.n.01": 0.5203363805824212,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/92ccdbd9c39a4416b6fcaf4bcbd7ca78",
+        "creator_username": "JohnsClever",
+        "creator_display_name": "JohnsClever",
+        "creator_profile_url": "https://sketchfab.com/JohnsClever"
+    },
+    "filename": "std_92ccdbd9c39a4416b6fcaf4bcbd7ca78.glb",
+    "length": 5.704759120941162,
+    "width": 4.035186290740967
+}

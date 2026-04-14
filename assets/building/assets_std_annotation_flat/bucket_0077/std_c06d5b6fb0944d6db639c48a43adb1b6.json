@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a large, rectangular, green metal street cabinet mounted on a concrete base, commonly found in urban environments for housing electrical or communication equipment. The front features two large doors with a central handle and a visible locking mechanism, as well as three prominent yellow warning labels indicating electrical hazard and high voltage. Ventilation grilles are present at the bottom of the front doors and along the top and bottom edges of the side panels, suggesting internal heat dissipation. The sides and back are plain, with the back being completely featureless, while the sides have additional ventilation grilles. The cabinet's robust construction and secure doors indicate it is designed to protect sensitive equipment from weather and unauthorized access.",
+    "description": "A large green metal street cabinet with double front doors, warning labels, and ventilation grilles, mounted on a concrete base.",
+    "description_view_0": "Front view showing double doors with a handle, locking mechanism, three yellow warning labels, and lower ventilation grilles.",
+    "description_view_1": "Side view displaying a plain green panel with a horizontal ventilation grille at the top and bottom.",
+    "description_view_2": "Rear view showing a completely plain green panel with no visible features or openings.",
+    "description_view_3": "Opposite side view similar to view 1, with horizontal ventilation grilles at the top and bottom.",
+    "category": "street cabinet",
+    "height": 1.4,
+    "max_dimension": 2.0,
+    "materials": [
+        "painted steel",
+        "concrete",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 350,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "door",
+        "lock"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "gray",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.2,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 2,
+    "attribute_presence_of_ventilation_grilles": true,
+    "attribute_locking_mechanism_type": "latch",
+    "attribute_placement_of_warning_labels_or_signage": "front door",
+    "attribute_presence_of_cable_entry_points": true,
+    "uid": "c06d5b6fb0944d6db639c48a43adb1b6",
+    "near_synsets": {
+        "corner_cabinet.n.01": 0.5461127791886614,
+        "cabinet.n.04": 0.5548634324442354,
+        "cabinet.n.01": 0.5565656600936502,
+        "dresser.n.05": 0.5633586137674642,
+        "street_sign.n.01": 0.5656635083693947,
+        "street.n.03": -1000.0,
+        "cabinet.n.02": -1000.0,
+        "street.n.05": -1000.0,
+        "cabinet.n.03": -1000.0,
+        "street.n.04": -1000.0,
+        "street.n.02": -1000.0,
+        "street.n.01": -1000.0
+    },
+    "synset": "cabinet.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c06d5b6fb0944d6db639c48a43adb1b6",
+        "creator_username": "sebastian.krowiors",
+        "creator_display_name": "sebastian.krowiors",
+        "creator_profile_url": "https://sketchfab.com/sebastian.krowiors"
+    },
+    "filename": "std_c06d5b6fb0944d6db639c48a43adb1b6.glb",
+    "length": 1.024960219860077,
+    "width": 1.651524543762207
+}

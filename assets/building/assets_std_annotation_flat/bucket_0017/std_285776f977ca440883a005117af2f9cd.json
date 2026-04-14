@@ -1,0 +1,105 @@
+{
+    "description_long": "This humanoid robot features a robust, industrial design with a greenish metallic exterior and heavy-duty limbs. Its body is composed of a central, armored torso with a domed top and multiple vent-like structures on the front and back. The robot has two large, articulated arms with multiple joints and reinforced segments, ending in claw-like appendages. Its legs are thick and mechanical, with wide, flat feet designed for stability on urban terrain. Yellow hazard symbols and warning decals are visible on various panels, suggesting an industrial or security function. The overall appearance is utilitarian, with exposed mechanical joints and a rugged, weathered finish.",
+    "description": "A rugged, green metallic humanoid robot with articulated arms, claw-like hands, and heavy-duty legs, featuring hazard decals and a weathered industrial finish.",
+    "description_view_0": "Front three-quarter view showing the robot's broad torso, vented chest, articulated arms with claws, and both legs with wide feet.",
+    "description_view_1": "Side view highlighting the length and articulation of the right arm, the domed torso top, and the mechanical structure of the legs.",
+    "description_view_2": "Rear view displaying the back vents, symmetrical leg structure, and the extended left arm with visible joint details.",
+    "description_view_3": "Back three-quarter view emphasizing the left arm's articulation, the robust leg joints, and the overall mechanical complexity of the limbs.",
+    "category": "humanoid robot",
+    "height": 2.2,
+    "max_dimension": 3.0,
+    "materials": [
+        "painted steel",
+        "aluminum",
+        "glass",
+        "plastic",
+        "rubber",
+        "air",
+        "electronic components"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.03,
+        0.07,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 6370,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "pullable",
+        "rotatable",
+        "grippable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "claws",
+        "legs",
+        "feet",
+        "torso panels"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "gray",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both legs planted, right arm bent forward and left arm extended outward, claws open and ready for action, torso upright and head centered.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated metallic panels with hazard decals and industrial markings.",
+    "attribute_facial_features": "No traditional facial features; front of the torso has vent-like structures and panels, with no visible eyes, mouth, or expressive elements.",
+    "attribute_limb_articulation": "Arms have at least three visible rotary joints each, with articulated elbows and wrists; legs have two main hinge joints each, and feet are segmented for stability. Limbs appear rigid but highly articulated.",
+    "attribute_presence_of_sensors": "Possible sensors on the front torso panel and small protrusions on the head, but none clearly visible.",
+    "uid": "285776f977ca440883a005117af2f9cd",
+    "near_synsets": {
+        "android.n.01": 0.5543224666401438,
+        "robotics_equipment.n.01": 0.5563197556914816,
+        "cyborg.n.01": 0.5806725658933418,
+        "automaton.n.02": 0.581205178787237,
+        "grab.n.01": 0.5968512430028219
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/285776f977ca440883a005117af2f9cd",
+        "creator_username": "StruanForsyth",
+        "creator_display_name": "StruanForsyth",
+        "creator_profile_url": "https://sketchfab.com/StruanForsyth"
+    },
+    "filename": "std_285776f977ca440883a005117af2f9cd.glb",
+    "length": 1.9899905323982239,
+    "width": 2.487727165222168
+}

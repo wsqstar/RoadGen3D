@@ -1,0 +1,104 @@
+{
+    "description_long": "This rifle features a robust metallic body with a rectangular receiver and a prominent, boxy ammunition feed on the right side. The weapon is equipped with a fixed wooden stock and a matching wooden pistol grip, providing stability and ergonomic handling. A visible belt of ammunition feeds into the receiver, suggesting it is a belt-fed, likely automatic weapon. The barrel is long and cylindrical, extending from the receiver with a simple, unadorned muzzle. There is a bipod mounted beneath the barrel for support during sustained fire. The overall finish is utilitarian, with a matte metallic sheen and visible wear, indicating heavy use.",
+    "description": "A belt-fed, automatic rifle with a metallic body, wooden stock and grip, and a boxy side-mounted ammunition feed. Features a long barrel, bipod, and a utilitarian, worn finish.",
+    "description_view_0": "Side view showing the full length of the rifle, wooden stock and grip, and the belt-fed ammunition system.",
+    "description_view_1": "Front view highlighting the barrel, bipod, and the protruding ammunition box on the right side.",
+    "description_view_2": "Opposite side view displaying the belt of ammunition feeding into the receiver and the wooden stock.",
+    "description_view_3": "Rear view focusing on the wooden stock and grip, with the ammunition box and belt visible to the left.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "wood",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.18,
+        0.05,
+        0.02
+    ],
+    "mass": 11,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 110,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "pistol grip",
+        "trigger",
+        "magazine box",
+        "ammunition belt",
+        "barrel",
+        "bipod",
+        "charging handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "black",
+        "silver",
+        "gold"
+    ],
+    "colors_composition": [
+        0.65,
+        0.18,
+        0.08,
+        0.06,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "belt-fed",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "2f2f280021c64bde865c7db2a38f83b0",
+    "near_synsets": {
+        "automatic_rifle.n.01": 0.493285031890179,
+        "carbine.n.01": 0.49605623292781864,
+        "browning_automatic_rifle.n.01": 0.5055466463002983,
+        "garand_rifle.n.01": 0.5131577294448927,
+        "assault_rifle.n.01": 0.5147864667646095,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2f2f280021c64bde865c7db2a38f83b0",
+        "creator_username": "korian",
+        "creator_display_name": "korian",
+        "creator_profile_url": "https://sketchfab.com/korian"
+    },
+    "filename": "std_2f2f280021c64bde865c7db2a38f83b0.glb",
+    "length": 0.9724747240543365,
+    "width": 0.3008374571800232
+}

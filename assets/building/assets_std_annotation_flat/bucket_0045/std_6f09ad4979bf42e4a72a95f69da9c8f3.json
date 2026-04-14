@@ -1,0 +1,92 @@
+{
+    "description_long": "This object is a group of four large, industrial shipping containers arranged in a cross-like formation. Each container is constructed from corrugated steel panels, painted in a weathered blue color with visible rust and wear along the edges and corners. The containers feature reinforced metal frames, heavy-duty corner fittings, and large, ribbed double doors on at least two of the visible units. Some containers display small, square access panels and ventilation grilles, as well as subtle locking mechanisms on the doors. The surfaces are matte and show signs of prolonged outdoor exposure, with streaks of grime and faded paint. This configuration is typical for temporary storage or makeshift structures in urban or industrial environments.",
+    "description": "A group of four weathered blue steel shipping containers arranged in a cross pattern, featuring ribbed doors, rusted edges, and industrial detailing.",
+    "description_view_0": "View 0 shows the cross-shaped arrangement clearly, with two container doors visible at the front and rusted edges prominent.",
+    "description_view_1": "View 1 highlights the side panels and the length of the containers, with one container extending out to the right.",
+    "description_view_2": "View 2 displays the rear and side surfaces, emphasizing the corrugated steel texture and the absence of visible doors.",
+    "description_view_3": "View 3 presents the containers from the opposite side, showing a single set of doors and the cross configuration from a different angle.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 12.0,
+    "materials": [
+        "steel",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.92,
+        0.07,
+        0.01
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking mechanism",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "rust brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_lid_type": "double swinging doors",
+    "attribute_opening_mechanism": "unlatch and pull open",
+    "attribute_labeling_or_signage": "none",
+    "attribute_handles_or_grips": "integrated door handles on the front doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "6f09ad4979bf42e4a72a95f69da9c8f3",
+    "near_synsets": {
+        "container.n.01": 0.5035527402190033,
+        "cargo_container.n.01": 0.5117128316617939,
+        "crate.n.01": 0.5448065291120022,
+        "container_ship.n.01": 0.5486764925504196,
+        "case.n.05": 0.5568322867209188
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6f09ad4979bf42e4a72a95f69da9c8f3",
+        "creator_username": "threedjaj",
+        "creator_display_name": "FF 3DMODEL",
+        "creator_profile_url": "https://sketchfab.com/threedjaj"
+    },
+    "filename": "std_6f09ad4979bf42e4a72a95f69da9c8f3.glb",
+    "length": 18.69233226776123,
+    "width": 16.22941017150879
+}

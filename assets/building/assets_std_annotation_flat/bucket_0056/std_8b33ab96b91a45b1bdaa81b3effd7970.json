@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a multi-level metal fire escape ladder, commonly found attached to the exterior of urban buildings. It consists of four horizontal platforms connected by diagonal staircases, each platform surrounded by protective railings. The structure is constructed from dark, likely painted or coated steel, with open grating on the steps and platforms for drainage and slip resistance. The platforms are rectangular and the staircases are supported by side rails and vertical balusters. At the bottom, a vertical ladder segment provides access to the ground. The overall design prioritizes safety and accessibility for emergency egress.",
+    "description": "A multi-level metal fire escape ladder with four platforms, diagonal staircases, and protective railings, typical for urban building exteriors.",
+    "description_view_0": "Front view showing all four platforms, diagonal staircases, and the vertical ladder at the bottom.",
+    "description_view_1": "Side view highlighting the depth of the platforms and the zigzag arrangement of the staircases.",
+    "description_view_2": "Rear view mirroring the front, with clear visibility of the platforms and staircases.",
+    "description_view_3": "Opposite side view, again showing the depth and staggered arrangement of the platforms and stairs.",
+    "category": "ladder",
+    "height": 8.0,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 450,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "climbable",
+        "grippable",
+        "supportive"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "steps",
+        "platforms",
+        "handrails",
+        "vertical ladder"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "dark brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.0,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_rungs": 28,
+    "attribute_rung_spacing": 0.3,
+    "attribute_side_rail_profile": "rectangular steel",
+    "attribute_mounting_position": "fixed wall-mounted",
+    "attribute_presence_of_safety_features": [
+        "handrails",
+        "protective railings",
+        "open grating steps"
+    ],
+    "uid": "8b33ab96b91a45b1bdaa81b3effd7970",
+    "near_synsets": {
+        "fire_escape.n.01": 0.46130449087176084,
+        "ladder.n.01": 0.5111042563941166,
+        "aerial_ladder.n.01": 0.5111168806359652,
+        "extension_ladder.n.01": 0.515006726691435,
+        "ladder_truck.n.01": 0.529679636794277,
+        "run.n.13": -1000.0,
+        "ladder.n.02": -1000.0
+    },
+    "synset": "ladder.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8b33ab96b91a45b1bdaa81b3effd7970",
+        "creator_username": "KnightFallows",
+        "creator_display_name": "KnightFallows",
+        "creator_profile_url": "https://sketchfab.com/KnightFallows"
+    },
+    "filename": "std_8b33ab96b91a45b1bdaa81b3effd7970.glb",
+    "length": 1.0588680505752563,
+    "width": 3.1345443725585938
+}

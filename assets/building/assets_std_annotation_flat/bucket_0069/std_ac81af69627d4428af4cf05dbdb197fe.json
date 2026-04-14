@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a detached residential garage with a gable roof covered in gray asphalt shingles. The exterior walls are clad in horizontal blue siding, while the lower portion features a stone veneer base. The front of the garage has a large, single-panel garage door, partially open to reveal a car and a vehicle lift inside. The structure is robust and utilitarian, designed to accommodate at least one vehicle and provide additional storage or workspace. The overall appearance is clean and well-maintained, with no visible windows or side doors.",
+    "description": "A blue, stone-based detached garage with a gable roof and a large single-panel garage door.",
+    "description_view_0": "Front view showing the large, partially open garage door, blue siding, stone base, and a car inside.",
+    "description_view_1": "Top-down rear view highlighting the gray shingled roof and stone base, with no doors or windows visible.",
+    "description_view_2": "Rear gable view showing blue siding and stone base, with no openings or features except the roof.",
+    "description_view_3": "Top-down front view emphasizing the roof and stone base, with the garage door not visible.",
+    "category": "garage",
+    "height": 4.0,
+    "max_dimension": 7.5,
+    "materials": [
+        "wood",
+        "asphalt shingle",
+        "stone",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.18,
+        0.18,
+        0.08,
+        0.01,
+        0.1
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "garage door"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "car"
+    ],
+    "colors": [
+        "blue",
+        "gray",
+        "white",
+        "brown"
+    ],
+    "colors_composition": [
+        0.45,
+        0.35,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_garage_door_type": "single panel",
+    "attribute_number_of_garage_doors": 1,
+    "attribute_presence_of_driveway": false,
+    "attribute_door_hardware_style": "none",
+    "attribute_architectural_style": "ranch",
+    "uid": "ac81af69627d4428af4cf05dbdb197fe",
+    "near_synsets": {
+        "garage.n.01": 0.4867177036785174,
+        "carport.n.01": 0.5114420344814911,
+        "villa.n.02": 0.5459674922233061,
+        "toolshed.n.01": 0.5554445460613915,
+        "shed.n.01": 0.5590926316878838,
+        "garage.n.02": -1000.0
+    },
+    "synset": "garage.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ac81af69627d4428af4cf05dbdb197fe",
+        "creator_username": "cbrown70",
+        "creator_display_name": "cbrown70",
+        "creator_profile_url": "https://sketchfab.com/cbrown70"
+    },
+    "filename": "std_ac81af69627d4428af4cf05dbdb197fe.glb",
+    "length": 6.539317607879639,
+    "width": 6.677670955657959
+}

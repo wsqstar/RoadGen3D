@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a stylized evergreen tree, resembling a conifer such as a pine or spruce, with a triangular silhouette and a dense, bushy canopy of green needle-like foliage. The branches radiate outward in irregular, wispy layers, giving the tree a somewhat airy and natural appearance. The trunk is short, dark, and relatively narrow compared to the width of the canopy, and is only partially visible beneath the thick foliage. The tree's overall form is asymmetrical, with some branches extending further than others, contributing to a lifelike, organic feel. The foliage appears to be made up of fine, overlapping strands, simulating the texture of real pine needles. This type of tree is commonly found in urban parks, streetscapes, or landscaped areas, providing shade and visual interest.",
+    "description": "A stylized evergreen tree with dense, wispy green needle-like foliage and a narrow, dark trunk. The branches radiate outward in irregular layers, creating a natural, bushy appearance.",
+    "description_view_0": "The tree is seen from the front, showing a full, triangular canopy with the trunk partially visible at the base.",
+    "description_view_1": "A side view reveals the tree's asymmetrical, layered branches and a more pronounced tapering of the canopy.",
+    "description_view_2": "The back view displays the broadest part of the canopy, with the trunk mostly obscured by dense foliage.",
+    "description_view_3": "Another side view, highlighting the irregular extension of branches and the tree's overall bushy texture.",
+    "category": "tree",
+    "height": 3.0,
+    "max_dimension": 2.5,
+    "materials": [
+        "wood",
+        "foliage",
+        "air"
+    ],
+    "materials_composition": [
+        0.15,
+        0.75,
+        0.1
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 5,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "climbable",
+        "shade_providing"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "branches",
+        "trunk"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [
+        "drone"
+    ],
+    "colors": [
+        "green",
+        "dark brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_trunk_diameter": 0.18,
+    "attribute_branching_pattern": "whorled",
+    "attribute_leaf_type": "needle-like",
+    "attribute_canopy_density": "dense",
+    "attribute_root_visibility": false,
+    "uid": "fb9ef9004f844459bd43c6ac7cb47264",
+    "near_synsets": {
+        "christmas_tree.n.05": 0.4880614055059378,
+        "european_larch.n.01": 0.5038660527528807,
+        "coniferales.n.01": 0.5040925682636829,
+        "tree.n.01": 0.5095353461817297,
+        "grass_tree.n.02": 0.5114419672959517,
+        "tree.n.02": -1000.0,
+        "tree.n.03": -1000.0
+    },
+    "synset": "tree.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/fb9ef9004f844459bd43c6ac7cb47264",
+        "creator_username": "costanzo",
+        "creator_display_name": "costanzo",
+        "creator_profile_url": "https://sketchfab.com/costanzo"
+    },
+    "filename": "std_fb9ef9004f844459bd43c6ac7cb47264.glb",
+    "length": 2.2713619470596313,
+    "width": 2.518980026245117
+}

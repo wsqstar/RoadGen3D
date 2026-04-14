@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a mid-sized, vintage-style city bus with a boxy, utilitarian design and a slightly rounded roof. The exterior is primarily white with a prominent blue horizontal stripe running along the sides, and the lower panels show signs of rust and weathering, suggesting heavy use. The bus features large, rectangular windows along both sides, separated by thin pillars, and two axles with four visible wheels. The front has a wide windshield split by two wipers, round headlights, and a simple bumper, while the rear is flat with a pair of square windows and a central access panel. The side view reveals a single passenger door at the front, with the rest of the side dedicated to windows for passenger visibility. The overall appearance is functional, with minimal decorative elements, and the bus is likely constructed from metal panels over a steel frame.",
+    "description": "A weathered, white and blue city bus with large rectangular windows, rusted lower panels, and a boxy, utilitarian shape. It features a single front passenger door and a simple, functional design.",
+    "description_view_0": "Front view shows a wide, split windshield with two wipers, round headlights, and a blue stripe across the front.",
+    "description_view_1": "Left side view displays four large rectangular windows, a single front passenger door, and visible rust along the lower panels.",
+    "description_view_2": "Rear view reveals two square windows, a central access panel, and a blue stripe across the back.",
+    "description_view_3": "Right side view mirrors the left, with four large windows and no visible passenger door, showing similar rust and weathering.",
+    "category": "bus",
+    "height": 2.8,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.12,
+        0.08,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "windshield wiper",
+        "headlight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "black",
+        "gray",
+        "rust"
+    ],
+    "colors_composition": [
+        0.55,
+        0.18,
+        0.12,
+        0.08,
+        0.07
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 1,
+    "attribute_window_arrangement": "Four large, evenly spaced rectangular passenger windows on each side, separated by thin vertical pillars, all of similar size and shape.",
+    "attribute_route_number_or_destination_sign": "",
+    "attribute_bus_manufacturer_logo": "",
+    "attribute_passenger_entry_step_height": 0.5,
+    "uid": "c7cb694adeea44b2accb97946fb5d5e7",
+    "near_synsets": {
+        "bus.n.01": 0.5156985221612884,
+        "school_bus.n.01": 0.5249289368664415,
+        "bus.n.04": 0.538496076156478,
+        "minibus.n.01": 0.5591533958228777,
+        "bus_traffic.n.01": 0.5638358670467423,
+        "bus_topology.n.01": -1000.0,
+        "busbar.n.01": -1000.0
+    },
+    "synset": "busbar.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c7cb694adeea44b2accb97946fb5d5e7",
+        "creator_username": "milionna",
+        "creator_display_name": "Milionna",
+        "creator_profile_url": "https://sketchfab.com/milionna"
+    },
+    "filename": "std_c7cb694adeea44b2accb97946fb5d5e7.glb",
+    "length": 7.573824405670166,
+    "width": 2.769118070602417
+}

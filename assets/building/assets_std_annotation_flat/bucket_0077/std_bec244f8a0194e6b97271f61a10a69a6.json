@@ -1,0 +1,101 @@
+{
+    "description_long": "This traffic barricade consists of three connected metal frames forming a zigzag barrier, each section made from thin cylindrical rods painted white with red accents. The central section features a circular sign with a red border and a white center, likely indicating a restriction or warning. The rods are evenly spaced vertically, providing visibility while still serving as a physical barrier. Each section stands on two angled support legs, slightly splayed for stability, and the joints between sections allow for flexible arrangement. The surface appears hard and smooth, typical of powder-coated or painted steel. The overall design is lightweight yet sturdy, suitable for temporary access control in urban environments.",
+    "description": "A three-section metal traffic barricade with red and white coloring and a central circular warning sign, supported by angled legs.",
+    "description_view_0": "Front view showing all three connected sections, the red and white color scheme, and the central circular sign.",
+    "description_view_1": "Angled side view highlighting the depth and zigzag arrangement of the barricade sections.",
+    "description_view_2": "Rear view mirroring the front, with the central sign visible and the structure of the support legs apparent.",
+    "description_view_3": "Opposite angled side view, showing the alignment and spacing of the vertical rods and support legs.",
+    "category": "traffic barricade",
+    "height": 1.1,
+    "max_dimension": 4.0,
+    "materials": [
+        "painted steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 22,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hinge joints",
+        "circular sign"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.3,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_reflective_striping_pattern": "Vertical red stripes on white bars, evenly spaced, with a solid red border on the central circular sign.",
+    "attribute_warning_signage": [
+        {
+            "content": "red-bordered white circle",
+            "color": "red/white",
+            "placement": "center of middle section"
+        }
+    ],
+    "attribute_number_of_support_legs": 6,
+    "attribute_attachment_fixtures": [],
+    "attribute_presence_of_lights": false,
+    "uid": "bec244f8a0194e6b97271f61a10a69a6",
+    "near_synsets": {
+        "stop_sign.n.01": 0.541519404039142,
+        "street_sign.n.01": 0.5444823958066722,
+        "traffic_light.n.01": 0.5557421904415932,
+        "white_line.n.01": 0.5607060000120819,
+        "crossbar.n.03": 0.5612765856219124,
+        "roadblock.n.02": -1000.0,
+        "traffic.n.03": -1000.0,
+        "traffic.n.01": -1000.0,
+        "traffic.n.02": -1000.0,
+        "barricade.n.02": -1000.0,
+        "dealings.n.01": -1000.0
+    },
+    "synset": "roadblock.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bec244f8a0194e6b97271f61a10a69a6",
+        "creator_username": "desvat",
+        "creator_display_name": "desvat",
+        "creator_profile_url": "https://sketchfab.com/desvat"
+    },
+    "filename": "std_bec244f8a0194e6b97271f61a10a69a6.glb",
+    "length": 2.2429983615875244,
+    "width": 8.919847011566162
+}

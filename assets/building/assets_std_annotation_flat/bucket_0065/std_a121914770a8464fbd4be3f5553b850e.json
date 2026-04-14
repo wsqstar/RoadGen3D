@@ -1,0 +1,88 @@
+{
+    "description_long": "This object is a compact, tactical shotgun with a predominantly matte black finish and a visibly worn, scratched surface, suggesting heavy use or exposure to harsh environments. The body is blocky and robust, with a short, thick barrel protruding from the front, and a large, curved trigger guard that appears to double as a pistol-style grip. The top of the receiver is flat and squared, lacking any visible ribbing or venting, and the overall silhouette is utilitarian, prioritizing function over aesthetics. There is no visible stock, making the weapon more maneuverable in tight urban spaces. The trigger guard is oversized and rounded, providing ample space for gloved fingers. The design is minimalistic, with no apparent external magazine, pump, or lever mechanisms, indicating a simple, possibly semi-automatic or single-shot action.",
+    "description": "A compact, matte black shotgun with a worn, scratched surface, featuring a short barrel, large rounded trigger guard, and no visible stock or pump.",
+    "description_view_0": "Front view showing the short, thick barrel and the squared, blocky receiver profile.",
+    "description_view_1": "Side view highlighting the large, rounded trigger guard and pistol-style grip, with the short barrel extending forward.",
+    "description_view_2": "Rear view displaying the back of the receiver and the symmetrical, compact design.",
+    "description_view_3": "Opposite side view mirroring view 1, again showing the trigger guard and grip, with surface wear visible.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.45,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 2.8,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 35,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "trigger guard",
+        "barrel",
+        "grip"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, short length, no visible ribbing or venting",
+    "attribute_stock_type": "no stock",
+    "attribute_action_mechanism": "semi-automatic (inferred from lack of pump or lever, but only visible features considered)",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "large, rounded, oversized trigger guard with a smooth contour and no finger grooves",
+    "uid": "a121914770a8464fbd4be3f5553b850e",
+    "near_synsets": {
+        "sawed-off_shotgun.n.01": 0.45358677595517155,
+        "shotgun.n.01": 0.49475967696450773,
+        "shotgun_shell.n.01": 0.5094841775901449,
+        "pump_action.n.01": 0.5254033496561729,
+        "gun_muzzle.n.01": 0.5293383637106515
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a121914770a8464fbd4be3f5553b850e",
+        "creator_username": "benlunato",
+        "creator_display_name": "benlunato",
+        "creator_profile_url": "https://sketchfab.com/benlunato"
+    },
+    "filename": "std_a121914770a8464fbd4be3f5553b850e.glb",
+    "length": 0.27068503201007843,
+    "width": 0.07090628892183304
+}

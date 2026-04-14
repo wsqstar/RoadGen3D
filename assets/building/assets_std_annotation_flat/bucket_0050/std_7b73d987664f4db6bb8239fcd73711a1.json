@@ -1,0 +1,100 @@
+{
+    "description_long": "This object consists of two military-style rifles placed side by side, each featuring a long, dark barrel and a prominent stock. The stocks are colored in wood-like brown and yellow hues, suggesting traditional wooden or polymer construction. Both rifles are equipped with bipods for stability during firing, and one has a visible ammunition belt hanging from the receiver area, indicating it is likely a light machine gun. The upper surfaces show iron sights, and the overall design is robust, with metallic finishes dominating the main body and barrel. The rifles have distinct magazine and receiver areas, with one showing a boxy magazine and the other an exposed belt feed.",
+    "description": "A pair of military-style rifles with long barrels, wooden or polymer stocks, bipods, and visible iron sights, one featuring an ammunition belt.",
+    "description_view_0": "Top-down view showing the parallel alignment of the two rifles, highlighting the stocks and the bipods' spread.",
+    "description_view_1": "Side view displaying the full length of both rifles, the wooden and yellow stocks, bipods, and the ammunition belt on one rifle.",
+    "description_view_2": "Bottom-up view emphasizing the underside of the stocks and the bipods, with the barrels and muzzle ends visible.",
+    "description_view_3": "Opposite side view showing the rifles' profiles, the stocks, and the ammunition belt hanging from one rifle.",
+    "category": "rifle",
+    "height": 0.18,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 13.0,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 130,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "deployable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "trigger",
+        "magazine",
+        "bipod",
+        "sight",
+        "ammunition belt"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "yellow",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "belt-fed and detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "7b73d987664f4db6bb8239fcd73711a1",
+    "near_synsets": {
+        "rifle.n.01": 0.4832779573436773,
+        "light_arm.n.01": 0.4990264017885919,
+        "garand_rifle.n.01": 0.5026390545177059,
+        "twenty-two_rifle.n.01": 0.5082739780357982,
+        "musket.n.01": 0.5194208103973553
+    },
+    "synset": "twenty-two_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7b73d987664f4db6bb8239fcd73711a1",
+        "creator_username": "gamgo_studio",
+        "creator_display_name": "GAMGO",
+        "creator_profile_url": "https://sketchfab.com/gamgo_studio"
+    },
+    "filename": "std_7b73d987664f4db6bb8239fcd73711a1.glb",
+    "length": 0.2492498829960823,
+    "width": 0.920255035161972
+}

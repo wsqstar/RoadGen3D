@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a medium-sized wooden sailing ship with a single large mast and a prominent square sail, featuring a raised stern deck and a lower bow. The hull is constructed from planks with visible railings and a rounded stern, and the ship is equipped with red cylindrical thrusters or pontoons on either side, suggesting a hybrid or fantastical design. The deck includes several human figures, a steering wheel, and a lookout platform atop the mast. Attached to the ship is a floating island segment with palm trees, rocks, and sandy terrain, giving the impression of a mobile or modular vessel. The ship's rigging and sail are rendered in a weathered, off-white fabric, and the overall color palette is dominated by natural wood tones, muted reds, and green accents from the island foliage. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A wooden sailing ship with a single mast, red thrusters, and an attached floating island segment with palm trees and rocks.",
+    "description_view_0": "Side view showing the ship's hull, mast, sail, and the attached floating island with palm trees and rocks.",
+    "description_view_1": "Rear view highlighting the rounded stern, deck layout, and the full width of the red thrusters and floating island.",
+    "description_view_2": "Opposite side view displaying the ship's railings, mast, and the island segment from a different angle.",
+    "description_view_3": "Frontal view focusing on the bow, sail, and the floating island's terrain and vegetation.",
+    "category": "ship",
+    "height": 7.0,
+    "max_dimension": 22.0,
+    "materials": [
+        "wood",
+        "fabric",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "steerable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "steering wheel",
+        "sail",
+        "mast",
+        "deck railings",
+        "thrusters"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "red",
+        "white",
+        "green",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "group",
+    "attribute_hull_design": "The hull is a single displacement type with a rounded stern and a pointed bow, constructed from wooden planks. The sides are reinforced with railings, and the hull features red cylindrical thrusters or pontoons attached to both port and starboard sides. No keels or bulbous bows are visible.",
+    "attribute_superstructure_layout": "The superstructure consists of a single main deck with a raised stern section, a central mast with a lookout platform, and minimal cabin structures. The deck is open with railings and includes a steering wheel and several human figures.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "steering wheel",
+        "mast",
+        "sail",
+        "lookout platform",
+        "thrusters"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "d0c4c2256f90421fabf54131c653dcb2",
+    "near_synsets": {
+        "windjammer.n.01": 0.5110910873741232,
+        "sailing_vessel.n.01": 0.5145328109642651,
+        "fore-and-after.n.01": 0.5165788100299042,
+        "sail.n.03": 0.5207008129059446,
+        "sailboat.n.01": 0.5208704221964202,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d0c4c2256f90421fabf54131c653dcb2",
+        "creator_username": "DiodeVries",
+        "creator_display_name": "Dio de Vries",
+        "creator_profile_url": "https://sketchfab.com/DiodeVries"
+    },
+    "filename": "std_d0c4c2256f90421fabf54131c653dcb2.glb",
+    "length": 12.489415645599365,
+    "width": 8.088066101074219
+}

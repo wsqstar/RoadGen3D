@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a modern gas station building situated on a large paved lot, surrounded by a mix of red earth and green vegetation. The structure is rectangular with a flat roof, featuring a main building and an adjacent area that could serve as a fueling zone. The building appears to be constructed from concrete or similar materials, with a light-colored roof and some darker accents, possibly indicating solar panels or HVAC units. The surrounding lot is spacious, allowing for vehicle maneuvering, but no fuel pumps or canopy structures are visible. The gas station is located in a semi-urban neighborhood, with smaller residential buildings nearby and access roads leading to the property.",
+    "description": "A modern, rectangular gas station building with a flat roof, set on a large paved lot with no visible fuel pumps or canopy. The structure is surrounded by red earth, greenery, and nearby residential buildings.",
+    "description_view_0": "The gas station is seen from above, showing the main building centered on a large paved area with red earth and nearby houses.",
+    "description_view_1": "This angle highlights the rear and one side of the building, with the paved lot extending toward the back and more greenery visible.",
+    "description_view_2": "The front and side of the gas station are visible, with the main entrance area facing the road and the paved lot clearly defined.",
+    "description_view_3": "A diagonal view shows the building's side and part of the front, with the lot and surrounding neighborhood in the background.",
+    "category": "gas station",
+    "height": 5.0,
+    "max_dimension": 25.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "asphalt",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.1,
+        0.1,
+        0.15,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "refuelable",
+        "payable",
+        "shelterable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "green",
+        "red-brown"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "scene",
+    "attribute_fuel_pumps": "none visible",
+    "attribute_canopy_structure": "none visible",
+    "attribute_station_signage": "none visible",
+    "attribute_price_display_board": "none visible",
+    "attribute_convenience_store_entrance": "none visible",
+    "uid": "e4d79e8698a94aea8b903b125dbed656",
+    "near_synsets": {
+        "service_station.n.01": 0.5161617555503274,
+        "gasoline_station.n.01": 0.5236547771419592,
+        "gas_pump.n.01": 0.5287699766431159,
+        "gas_tank.n.01": 0.5585170451901834,
+        "tank_farm.n.01": 0.5629701450262904,
+        "gas.n.01": -1000.0,
+        "natural_gas.n.01": -1000.0,
+        "station.n.03": -1000.0,
+        "station.n.05": -1000.0,
+        "place.n.10": -1000.0,
+        "gasoline.n.01": -1000.0,
+        "gas.n.02": -1000.0,
+        "flatulence.n.01": -1000.0,
+        "accelerator.n.01": -1000.0,
+        "station.n.01": -1000.0,
+        "post.n.01": -1000.0
+    },
+    "synset": "gasoline_station.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e4d79e8698a94aea8b903b125dbed656",
+        "creator_username": "pedrocristo",
+        "creator_display_name": "pedrocristo",
+        "creator_profile_url": "https://sketchfab.com/pedrocristo"
+    },
+    "filename": "std_e4d79e8698a94aea8b903b125dbed656.glb",
+    "length": 167.56756591796875,
+    "width": 160.79800415039062
+}

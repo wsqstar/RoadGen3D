@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a modern, two-story hospital building with a flat roof and a prominent red 'HOSPITAL' sign above the main entrance. The facade features large, rectangular windows arranged symmetrically, providing ample natural light to the interior. A covered entrance canopy extends from the front, likely serving as a drop-off or ambulance bay, and is flanked by neatly trimmed green shrubbery. The roof includes two gray utility structures, possibly HVAC units, and is bordered by a red trim for visual emphasis. On the side, a circular medical cross sign is mounted, further identifying the building's healthcare function. The overall design is clean and functional, with a focus on accessibility and clear medical identification.",
+    "description": "A modern, two-story hospital with large windows, a red 'HOSPITAL' sign, a covered entrance, and medical cross signage. The building features a flat roof and symmetrical design with green shrubbery at the front.",
+    "description_view_0": "Front view showing the main entrance, red 'HOSPITAL' sign, large windows, covered canopy, and green shrubbery.",
+    "description_view_1": "Side view with four large windows and the circular medical cross sign visible on the left edge.",
+    "description_view_2": "Rear view displaying a plain wall with no windows or signage, and the covered entrance canopy extending from the right.",
+    "description_view_3": "Opposite side view with four windows and the covered entrance canopy, as well as the medical cross sign visible on the right edge.",
+    "category": "hospital",
+    "height": 8.0,
+    "max_dimension": 16.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "plastic",
+        "air",
+        "vegetation"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.02,
+        0.08,
+        0.02
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "windows",
+        "canopy",
+        "signage"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "gray",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.12,
+        0.1,
+        0.08,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_hospital_signage": true,
+    "attribute_emergency_entrance": false,
+    "attribute_ambulance_bay": true,
+    "attribute_medical_cross_symbol": true,
+    "attribute_architectural_style": "modern",
+    "uid": "e388c25483e0403384bcb2a14d0a3b36",
+    "near_synsets": {
+        "medical_building.n.01": 0.5085851722501782,
+        "hospital.n.01": 0.5325362007038467,
+        "hospital.n.02": 0.548179727509252,
+        "hospital_room.n.01": 0.5578729026305372,
+        "medical_center.n.01": 0.5640978950538013
+    },
+    "synset": "hospital_room.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e388c25483e0403384bcb2a14d0a3b36",
+        "creator_username": "pixelvoxeltrulala",
+        "creator_display_name": "pixelvoxeltrulala",
+        "creator_profile_url": "https://sketchfab.com/pixelvoxeltrulala"
+    },
+    "filename": "std_e388c25483e0403384bcb2a14d0a3b36.glb",
+    "length": 10.704225540161133,
+    "width": 13.295774936676025
+}

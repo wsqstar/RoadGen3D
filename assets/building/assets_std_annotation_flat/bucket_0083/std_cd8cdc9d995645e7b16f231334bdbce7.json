@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a medium-sized wooden boat with a classic monohull design, featuring a gently curved bow and a slightly raised stern. The hull is painted a light blue on the upper section and a reddish-brown on the lower section, with a white stripe running along the side. The interior is open and spacious, with seating areas along the sides and a flat deck floor, suitable for carrying several passengers or cargo. The boat appears to be supported by wooden stands, indicating it is currently out of the water. There are no visible engines, sails, or oars, suggesting it may be intended for manual or auxiliary propulsion. The overall construction and finish suggest it is a traditional rowboat or small utility craft, commonly found in urban waterfronts or parks.",
+    "description": "A classic wooden boat with a blue and reddish-brown hull, open interior, and seating along the sides, supported by stands.",
+    "description_view_0": "Side view showing the full length of the boat, blue upper hull, reddish-brown lower hull, and open interior with seating.",
+    "description_view_1": "Front view highlighting the pointed bow, blue paint, and the open deck area inside.",
+    "description_view_2": "Opposite side view mirroring view 0, showing the hull's curvature and open seating arrangement.",
+    "description_view_3": "Rear view displaying the stern, interior seating, and the flat deck area.",
+    "category": "boat",
+    "height": 1.2,
+    "max_dimension": 6.0,
+    "materials": [
+        "wood",
+        "metal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 450,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "seats",
+        "deck",
+        "gunwale"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "blue",
+        "white",
+        "reddish-brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.1,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_hull_type": "monohull",
+    "attribute_propulsion_type": "unknown",
+    "attribute_registration_number": "none",
+    "attribute_presence_of_trailer": false,
+    "attribute_visible_boat_name": "none",
+    "uid": "cd8cdc9d995645e7b16f231334bdbce7",
+    "near_synsets": {
+        "boat.n.01": 0.47711973614116593,
+        "rowing_boat.n.01": 0.4913413884304364,
+        "small_boat.n.01": 0.5080447042602833,
+        "houseboat.n.01": 0.5101762750949017,
+        "boathouse.n.01": 0.5125481119032007,
+        "gravy_boat.n.01": -1000.0
+    },
+    "synset": "gravy_boat.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cd8cdc9d995645e7b16f231334bdbce7",
+        "creator_username": "artfletch",
+        "creator_display_name": "artfletch",
+        "creator_profile_url": "https://sketchfab.com/artfletch"
+    },
+    "filename": "std_cd8cdc9d995645e7b16f231334bdbce7.glb",
+    "length": 4.246389627456665,
+    "width": 1.410060703754425
+}

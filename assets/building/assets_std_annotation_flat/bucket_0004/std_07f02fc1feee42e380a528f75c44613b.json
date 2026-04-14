@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a rectangular, single-story convenience store building with a flat roof and a bold, colorful facade. The exterior features a prominent red, yellow, and gray color scheme, with a large OXXO logo sign mounted above the main entrance. The front of the building has glass entrance doors and several large windows, allowing visibility into the store's interior. The roof appears weathered and slightly stained, typical of urban commercial structures. The building is constructed primarily from concrete and glass, with metal framing and signage elements. The overall design is functional and modern, optimized for accessibility and visibility in a busy urban environment.",
+    "description": "A rectangular, single-story convenience store with a flat roof, bold red and yellow facade, large OXXO signage, and glass entrance doors and windows.",
+    "description_view_0": "Front view showing the main entrance, large OXXO signage, glass doors, and windows.",
+    "description_view_1": "Side view displaying the building's length, flat roof, and the absence of windows or doors.",
+    "description_view_2": "Rear view with plain walls, no signage, windows, or doors visible.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the building's length and flat roof.",
+    "category": "convenience store",
+    "height": 4.0,
+    "max_dimension": 18.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 65000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "signage"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "yellow",
+        "gray",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.25,
+        0.15,
+        0.45,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_storefront_signage": "Large, rectangular OXXO logo sign in red, white, and yellow, mounted above the main entrance, non-illuminated, bold and highly visible.",
+    "attribute_glass_entrance_doors": "Yes, two glass swinging doors with metal frames, transparent, with visible handles.",
+    "attribute_display_windows": "Yes, several large display windows on the front facade, clear glass with metal framing, no visible advertisements.",
+    "attribute_exterior_lighting_fixtures": "None.",
+    "attribute_architectural_style": "vernacular convenience store",
+    "uid": "07f02fc1feee42e380a528f75c44613b",
+    "near_synsets": {
+        "convenience_store.n.01": 0.5093465968646875,
+        "shopfront.n.01": 0.5781891448980199,
+        "pop-up.n.03": 0.5865838301123023,
+        "bodega.n.01": 0.5875479076261158,
+        "chain_store.n.01": 0.5915771932167997,
+        "shop.n.01": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "convenience.n.02": -1000.0,
+        "memory.n.04": -1000.0,
+        "appliance.n.01": -1000.0,
+        "public_toilet.n.01": -1000.0,
+        "store.n.02": -1000.0,
+        "convenience.n.01": -1000.0
+    },
+    "synset": "convenience_store.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/07f02fc1feee42e380a528f75c44613b",
+        "creator_username": "daftvid",
+        "creator_display_name": "daftvid",
+        "creator_profile_url": "https://sketchfab.com/daftvid"
+    },
+    "filename": "std_07f02fc1feee42e380a528f75c44613b.glb",
+    "length": 4.926260709762573,
+    "width": 21.676570892333984
+}

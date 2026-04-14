@@ -1,0 +1,92 @@
+{
+    "description_long": "This humanoid robot features a sleek, minimalist design with a smooth, white body and deep blue accents. The robot's form is distinctly human-like, with a rounded head, slender arms, and a long, flowing skirt-like lower body. The face is a black, featureless visor, suggesting a display or sensor area, and the arms are jointed at the shoulders and elbows, with no visible hands. The back of the robot is mostly white, with a blue band across the upper back and a circular detail at the lower back. The blue coloration wraps around the sides and front, creating a visually striking contrast. The overall appearance is futuristic and elegant, suitable for public interaction in urban environments.",
+    "description": "A sleek, white and blue humanoid robot with a featureless black visor and a long, skirt-like lower body. Its minimalist, futuristic design emphasizes smooth surfaces and human-like proportions.",
+    "description_view_0": "The robot is seen from the front, highlighting the black visor, blue chest and skirt, and the open sides of the torso.",
+    "description_view_1": "A left-side view reveals the robot's profile, showing the curvature of the head, the blue arm, and the blue panel running down the side of the skirt.",
+    "description_view_2": "The back view displays a mostly white surface with a blue band across the upper back and a small circular detail at the lower back.",
+    "description_view_3": "The right-side view mirrors the left, with the blue arm and side panel visible, and the head's smooth, rounded shape.",
+    "category": "humanoid robot",
+    "height": 1.7,
+    "max_dimension": 1.7,
+    "materials": [
+        "plastic",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "visor/display",
+        "arms"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.1,
+    "surface_finish": "smooth",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.2,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is standing upright with both arms relaxed and straight at its sides, head facing forward, and legs together within a skirt-like lower body.",
+    "attribute_clothing_style": "The robot appears to wear a long, blue and white dress-like covering integrated into its body, with blue panels on the chest, arms, and skirt. No separate clothing is visible.",
+    "attribute_facial_features": "The face consists of a smooth, black, featureless visor with no visible eyes, mouth, or nose, suggesting a display or sensor area.",
+    "attribute_limb_articulation": "The arms have visible joints at the shoulders and elbows, suggesting hinge or rotary articulation, but no hands or fingers are present. The lower body is a continuous skirt with no visible leg articulation.",
+    "attribute_presence_of_sensors": "A large black visor on the face likely houses visual or optical sensors; no other sensors are visible.",
+    "uid": "58c2e098a93744148bc1e83fba6a4135",
+    "near_synsets": {
+        "android.n.01": 0.5482188840087817,
+        "cyborg.n.01": 0.5574976125129538,
+        "robotics_equipment.n.01": 0.5696828792700187,
+        "automaton.n.03": 0.5813783076044985,
+        "automaton.n.02": 0.5815302049809677
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/58c2e098a93744148bc1e83fba6a4135",
+        "creator_username": "kamalakannankg1",
+        "creator_display_name": "kamalakannankg1",
+        "creator_profile_url": "https://sketchfab.com/kamalakannankg1"
+    },
+    "filename": "std_58c2e098a93744148bc1e83fba6a4135.glb",
+    "length": 0.5881291627883911,
+    "width": 0.5934422612190247
+}

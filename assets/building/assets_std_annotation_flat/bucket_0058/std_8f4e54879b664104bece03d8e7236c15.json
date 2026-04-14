@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a tall, lattice-structured metal tower with a series of crossarms supporting multiple sets of insulator stacks and power lines. The central section features a large, box-like transformer unit mounted between the supporting legs. The tower is supported by four angled legs that converge at the top and base, providing stability. Multiple insulator stacks are attached horizontally to the crossarms, with power lines extending outward in parallel. The structure is predominantly metallic, with visible bolts and bracing for reinforcement. The overall appearance is industrial, with a utilitarian design suited for high-voltage electrical transmission in urban environments.",
+    "description": "A tall, metallic lattice tower with crossarms, insulator stacks, and a central transformer unit, supporting multiple parallel power lines.",
+    "description_view_0": "The tower is seen from the side, showing the vertical alignment of the legs, the central transformer, and the crossarms with insulator stacks extending outward.",
+    "description_view_1": "A front view reveals the full width of the crossarms, the arrangement of insulator stacks, and the symmetrical placement of the supporting legs.",
+    "description_view_2": "The opposite side view mirrors view 0, highlighting the vertical structure, transformer, and crossarms with attached insulators.",
+    "description_view_3": "A rear view displays the crossarms and insulator stacks in full width, with the transformer unit and supporting legs visible in the background.",
+    "category": "transformer tower",
+    "height": 18.0,
+    "max_dimension": 22.0,
+    "materials": [
+        "steel",
+        "ceramic",
+        "copper",
+        "aluminum",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "connectable",
+        "mountable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "insulator stack",
+        "crossarm",
+        "transformer unit",
+        "power line attachment point"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.01,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_insulator_stacks": 8,
+    "attribute_arrangement_of_crossarms": "There are two main horizontal crossarms arranged in a double-tiered configuration, each supporting multiple insulator stacks evenly spaced along their length.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "transformer"
+    ],
+    "attribute_configuration_of_attached_power_lines": "The power lines are arranged in two parallel circuits, each with three-phase conductors spaced evenly along the crossarms, running horizontally and parallel to each other.",
+    "uid": "8f4e54879b664104bece03d8e7236c15",
+    "near_synsets": {
+        "pylon.n.02": 0.4916817788337155,
+        "cascade_transformer.n.01": 0.5381478320521476,
+        "power_system.n.01": 0.5425944676983319,
+        "transformer.n.01": 0.5460035929835131,
+        "tesla_coil.n.01": 0.5493586217800142,
+        "tugboat.n.01": -1000.0,
+        "column.n.04": -1000.0,
+        "tower.n.01": -1000.0
+    },
+    "synset": "pylon.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8f4e54879b664104bece03d8e7236c15",
+        "creator_username": "one80solar",
+        "creator_display_name": "One80 Solar",
+        "creator_profile_url": "https://sketchfab.com/one80solar"
+    },
+    "filename": "std_8f4e54879b664104bece03d8e7236c15.glb",
+    "length": 53.24652671813965,
+    "width": 208.01290130615234
+}

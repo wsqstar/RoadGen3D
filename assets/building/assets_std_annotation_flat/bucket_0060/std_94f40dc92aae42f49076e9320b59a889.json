@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a classic hand grenade with a dark olive-green, segmented body designed for grip and fragmentation. The surface is divided into raised rectangular sections, giving it a robust, utilitarian appearance. At the top, there is a metallic safety lever and a circular pull ring, both rendered in a silvery-gray metal, indicating the arming mechanism. The grenade's body is slightly rounded and tapers toward the base, with a flat bottom for stability when placed upright. The finish is matte with subtle camouflage-like color variations, suggesting military use. No visible markings or warning labels are present on the exterior.",
+    "description": "A dark olive-green, segmented hand grenade with a metallic safety lever and pull ring, featuring a matte, utilitarian finish.",
+    "description_view_0": "The grenade is shown with the pull ring and safety lever partially visible at the top, highlighting the segmented body and flat base.",
+    "description_view_1": "This view emphasizes the metallic pull ring and the curved safety lever, which extends down the side of the grenade.",
+    "description_view_2": "The safety lever is fully visible, running vertically along the grenade's body, with the pull ring tucked behind it.",
+    "description_view_3": "The grenade is seen from the opposite side, showing the top cap and the lever's attachment point, with the segmented body clearly visible.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.12,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 0.4,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pull ring",
+        "safety lever",
+        "top cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the safety ring and releasing the lever, which likely triggers an internal fuse mechanism.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "94f40dc92aae42f49076e9320b59a889",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.49310558701029733,
+        "grenade.n.01": 0.520446934068368,
+        "rifle_grenade.n.01": 0.5476323419168769,
+        "bomb.n.01": 0.5631793948230822,
+        "pipe_bomb.n.01": 0.5638459014320687,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/94f40dc92aae42f49076e9320b59a889",
+        "creator_username": "maypassamon",
+        "creator_display_name": "maypassamon",
+        "creator_profile_url": "https://sketchfab.com/maypassamon"
+    },
+    "filename": "std_94f40dc92aae42f49076e9320b59a889.glb",
+    "length": 0.08364235237240791,
+    "width": 0.09701118618249893
+}

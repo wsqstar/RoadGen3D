@@ -1,0 +1,109 @@
+{
+    "description_long": "This object consists of a large cylindrical storage tank housed within a rectangular wooden enclosure. The enclosure is constructed from horizontal wooden slats, providing partial visibility and ventilation, and features a hinged door for access. The tank itself is ribbed and made of a light-colored material, likely plastic or metal, and is connected to visible green pipes and a pump system at its base. The enclosure sits on a concrete slab foundation, ensuring stability and protection from ground moisture. The setup is typical for water or liquid storage in urban environments, with the enclosure offering both security and aesthetic integration. The overall design is utilitarian, prioritizing function while maintaining a clean, organized appearance.",
+    "description": "A ribbed cylindrical storage tank is housed within a slatted wooden enclosure on a concrete base, featuring a door and visible piping.",
+    "description_view_0": "Front view showing the open slatted wooden door, the cylindrical tank, and attached green piping and pump.",
+    "description_view_1": "Side view with the door partially visible, showing the top of the tank and the enclosure's slatted construction.",
+    "description_view_2": "Rear view highlighting the full length of the wooden enclosure and the top of the tank barely visible inside.",
+    "description_view_3": "Opposite side view with the door open, showing the enclosure's structure and a partial view of the tank inside.",
+    "category": "storage tank",
+    "height": 2.2,
+    "max_dimension": 3.0,
+    "materials": [
+        "wood",
+        "plastic",
+        "metal",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.05,
+        0.15,
+        0.1
+    ],
+    "mass": 850,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "pipe",
+        "pump"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light brown",
+        "gray",
+        "green",
+        "white"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_location": "urban rooftop",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [
+        "inlet pipe",
+        "pump"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_architectural_style": "cylindrical vertical in slatted enclosure",
+    "uid": "1a5c1fea33e646f7a91e1ed9961a8a67",
+    "near_synsets": {
+        "tank.n.02": 0.5479282119047355,
+        "reservoir.n.03": 0.5588497580335374,
+        "ribbed_vault.n.01": 0.5651159603415148,
+        "barrel.n.02": 0.5678971720059124,
+        "tank_farm.n.01": 0.5706054320511648,
+        "storehouse.n.01": -1000.0,
+        "repositing.n.01": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "memory.n.04": -1000.0,
+        "tank.n.03": -1000.0,
+        "storage.n.04": -1000.0,
+        "storage.n.01": -1000.0,
+        "tank.n.01": -1000.0,
+        "cooler.n.03": -1000.0,
+        "storage.n.03": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1a5c1fea33e646f7a91e1ed9961a8a67",
+        "creator_username": "john-38",
+        "creator_display_name": "john-38",
+        "creator_profile_url": "https://sketchfab.com/john-38"
+    },
+    "filename": "std_1a5c1fea33e646f7a91e1ed9961a8a67.glb",
+    "length": 3.093216061592102,
+    "width": 2.961239218711853
+}

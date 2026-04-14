@@ -1,0 +1,118 @@
+{
+    "description_long": "This delivery robot is designed with a robust, militaristic aesthetic, featuring a boxy, armored body and a prominent cylindrical turret on top. The exterior is primarily olive green with yellow and blue checkerboard insignia on the turret, and it is equipped with wide, rugged green treads for traversing urban terrain. The front showcases a large, central barrel-like structure, flanked by two circular elements resembling headlights, and a grille below. The rear includes two red canisters and a warning symbol, suggesting storage or power components, while the sides display additional mechanical details and pipes. The turret is topped with a railing and a mounted device, possibly a sensor or communication array, and the overall build suggests heavy-duty metal construction. The robot's design implies it is capable of carrying and delivering cargo securely in urban environments.",
+    "description": "A heavily armored, olive green delivery robot with a cylindrical turret, rugged treads, and checkerboard insignia, designed for secure urban cargo transport.",
+    "description_view_0": "Front view shows the large central barrel, two circular headlight-like features, and a grille beneath, emphasizing the robot's armored face.",
+    "description_view_1": "Left side view highlights the cylindrical turret with checkerboard insignia, side pipes, and the rugged tread system.",
+    "description_view_2": "Rear view reveals two red canisters, a warning symbol, and the back of the tread system, with the turret's checkerboard pattern visible.",
+    "description_view_3": "Right side view mirrors the left, showing the turret, side pipes, and mechanical details, with the mounted device on top more visible.",
+    "category": "delivery robot",
+    "height": 1.4,
+    "max_dimension": 1.7,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 650,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3500,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "turret",
+        "barrel",
+        "tread",
+        "canister",
+        "access panel",
+        "sensor array"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "yellow",
+        "blue",
+        "red",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.08,
+        0.05,
+        0.05,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_brand_logo": "none",
+    "attribute_sensor_array": [
+        {
+            "type": "camera or sensor pod",
+            "shape": "cylindrical with lens",
+            "location": "top of turret"
+        }
+    ],
+    "attribute_wheel_configuration": "Two wide, continuous rubber treads on each side, supported by multiple small wheels underneath, suitable for all-terrain movement.",
+    "attribute_compartment_access_panel": "A rectangular access panel is visible on the rear, below the red canisters, likely for cargo or maintenance; it appears to have a handle and possible hinges.",
+    "attribute_display_screen": "none",
+    "uid": "75e7d0bfcbc847ed9d9c8b81abf7f1e0",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5627572372813197,
+        "military_vehicle.n.01": 0.5772285172762883,
+        "reconnaissance_vehicle.n.01": 0.5781435017522704,
+        "armored_vehicle.n.01": 0.5820760699322782,
+        "weapons_carrier.n.01": 0.5822336787979244,
+        "delivery.n.07": -1000.0,
+        "delivery.n.04": -1000.0,
+        "rescue.n.01": -1000.0,
+        "pitch.n.02": -1000.0,
+        "delivery.n.01": -1000.0,
+        "manner_of_speaking.n.01": -1000.0,
+        "automaton.n.02": -1000.0,
+        "delivery.n.02": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/75e7d0bfcbc847ed9d9c8b81abf7f1e0",
+        "creator_username": "outcast945",
+        "creator_display_name": "outcast945",
+        "creator_profile_url": "https://sketchfab.com/outcast945"
+    },
+    "filename": "std_75e7d0bfcbc847ed9d9c8b81abf7f1e0.glb",
+    "length": 1.3677085638046265,
+    "width": 0.8264569640159607
+}

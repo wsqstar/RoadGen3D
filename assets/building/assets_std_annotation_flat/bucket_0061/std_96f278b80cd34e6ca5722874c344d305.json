@@ -1,0 +1,97 @@
+{
+    "description_long": "This humanoid robot features a sleek, dark metallic body with articulated limbs and a robust, armored appearance. Its head is helmet-like, lacking visible facial features, and is partially covered by a brown, fabric-like cloak draped over one shoulder and across the back. The robot's arms and legs are segmented with mechanical joints, allowing for a wide range of motion, and its hands are equipped with articulated fingers. The overall design is utilitarian and slightly asymmetrical due to the draped cloak, suggesting a blend of functionality and style. The surface finish is mostly smooth and hard, with matte and slightly glossy elements, while the cloak adds a contrasting soft, textured appearance. The robot stands upright, exuding a sense of readiness and resilience suitable for urban environments.",
+    "description": "A dark, armored humanoid robot with a helmeted head and a brown cloak draped over one shoulder, featuring articulated limbs and a sleek, mechanical build.",
+    "description_view_0": "Front view shows the robot's helmeted head, brown cloak over the left shoulder, and symmetrical mechanical limbs.",
+    "description_view_1": "Left side view highlights the profile of the helmet, the draped cloak, and the segmented arm and leg joints.",
+    "description_view_2": "Rear view reveals the full extent of the cloak covering the upper back and the mechanical structure of the legs and arms.",
+    "description_view_3": "Right side view displays the opposite profile, with the cloak partially visible and the mechanical joints of the limbs exposed.",
+    "category": "humanoid robot",
+    "height": 1.85,
+    "max_dimension": 0.7,
+    "materials": [
+        "metal",
+        "fabric",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 110,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arm",
+        "hand",
+        "head",
+        "cloak"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark blue",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.8,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms relaxed at the sides, legs straight and parallel, head facing forward, and torso erect.",
+    "attribute_clothing_style": "A single brown, fabric-like cloak draped over the left shoulder and upper back, contrasting with the otherwise armored and metallic body.",
+    "attribute_facial_features": "The face is covered by a helmet-like head with no visible eyes, mouth, or nose; no expressive or display elements are present.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints at the shoulders, elbows, wrists, hips, knees, and ankles; hands have articulated fingers, suggesting a high degree of flexibility.",
+    "attribute_presence_of_sensors": "None visible",
+    "uid": "96f278b80cd34e6ca5722874c344d305",
+    "near_synsets": {
+        "android.n.01": 0.514523614744023,
+        "cyborg.n.01": 0.527269177341781,
+        "automaton.n.02": 0.5405440029817471,
+        "robotics_equipment.n.01": 0.5435726732436882,
+        "automaton.n.03": 0.5700981391223281
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/96f278b80cd34e6ca5722874c344d305",
+        "creator_username": "Dikkiedik",
+        "creator_display_name": "Joe-Louis",
+        "creator_profile_url": "https://sketchfab.com/Dikkiedik"
+    },
+    "filename": "std_96f278b80cd34e6ca5722874c344d305.glb",
+    "length": 0.4317456781864166,
+    "width": 0.7556748390197754
+}

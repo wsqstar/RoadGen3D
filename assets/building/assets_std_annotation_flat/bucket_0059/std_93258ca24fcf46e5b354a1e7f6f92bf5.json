@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a straight segment of a primary urban road, featuring a dark gray asphalt surface with two parallel solid white edge lines and a dashed white centerline. The road is bordered on both sides by raised gray curbs, which provide a clear separation from adjacent areas such as sidewalks or medians. The surface appears flat and even, suitable for vehicular traffic, and the lane markings are clearly visible, aiding in lane discipline. There are no visible road signs, lighting fixtures, or pedestrian crossings present on this segment. The road section is designed for two-way traffic, with the dashed centerline indicating permissible overtaking. The overall construction suggests durability and stability, typical of city infrastructure.",
+    "description": "A straight, gray asphalt road segment with solid edge lines, a dashed centerline, and raised gray curbs on both sides. No signage, lighting, or pedestrian crossings are present.",
+    "description_view_0": "Front view showing the road's width, solid edge lines, dashed centerline, and raised curbs on both sides.",
+    "description_view_1": "Side view emphasizing the flatness of the road surface and the prominence of the curbs along the edges.",
+    "description_view_2": "Rear view similar to the front, displaying the lane markings and curbs from the opposite direction.",
+    "description_view_3": "Opposite side view, again highlighting the road's flat surface and the raised curbs.",
+    "category": "road",
+    "height": 0.25,
+    "max_dimension": 8.0,
+    "materials": [
+        "asphalt",
+        "concrete",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "car",
+        "bicycle",
+        "motorcycle",
+        "bus",
+        "truck"
+    ],
+    "colors": [
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.92,
+        0.08
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_lane_markings": "One dashed white centerline dividing two lanes, with solid white edge lines on both sides; no special markings.",
+    "attribute_signage": "none",
+    "attribute_curb_presence": true,
+    "attribute_lighting_fixtures": "none",
+    "attribute_pedestrian_crossings": "none",
+    "uid": "93258ca24fcf46e5b354a1e7f6f92bf5",
+    "near_synsets": {
+        "white_line.n.01": 0.5133734162231802,
+        "traffic_lane.n.01": 0.5317564440583525,
+        "one-way_street.n.02": 0.5334453630667584,
+        "road_surface.n.01": 0.534164464512366,
+        "sidewalk.n.01": 0.5374185420227213,
+        "road.n.01": -1000.0,
+        "road.n.02": -1000.0
+    },
+    "synset": "road.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/93258ca24fcf46e5b354a1e7f6f92bf5",
+        "creator_username": "Saidov",
+        "creator_display_name": "Saidov",
+        "creator_profile_url": "https://sketchfab.com/Saidov"
+    },
+    "filename": "std_93258ca24fcf46e5b354a1e7f6f92bf5.glb",
+    "length": 7.127691745758057,
+    "width": 4.8044610023498535
+}

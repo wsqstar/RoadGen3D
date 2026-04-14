@@ -1,0 +1,96 @@
+{
+    "description_long": "This warehouse is a large, rectangular building with a predominantly black and gray color scheme, featuring a geometric, patterned roof with triangular and diamond-shaped panels. The structure is surrounded by a low perimeter wall, and the main building rises from within, with a central section that appears slightly elevated. The facade is punctuated by a series of small, evenly spaced windows and a few larger entry points, likely for loading and unloading goods. The roof is flat with a distinctive, angular design, and there are several protruding elements that may serve as skylights or ventilation units. The exterior is composed mainly of metal and concrete, giving it a robust, industrial appearance. The overall design is modern and functional, with minimal decorative elements and a focus on utility.",
+    "description": "A large, modern warehouse with a geometric patterned flat roof, black and gray exterior, and minimal windows, surrounded by a low perimeter wall.",
+    "description_view_0": "The front view shows the main entry facade with a prominent geometric roof pattern, a central elevated section, and several small windows along the black exterior wall.",
+    "description_view_1": "This side view highlights the length of the building, the continuation of the patterned roof, and a secondary entry area with striped ground markings.",
+    "description_view_2": "The rear view reveals additional windows, a covered loading or entry area, and the layered structure of the roof and walls.",
+    "description_view_3": "The opposite side view displays the building's depth, more of the patterned roof, and a secondary access point with striped ground features.",
+    "category": "warehouse",
+    "height": 10,
+    "max_dimension": 50,
+    "materials": [
+        "concrete",
+        "steel",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.1
+    ],
+    "mass": 120000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "loadable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "loading dock"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "white",
+        "purple"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 5,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main facade features a sleek, black exterior with a geometric patterned roof edge, small rectangular windows arranged in a linear fashion, and a few larger entry points. The design is minimalistic, with a focus on clean lines and functional access areas.",
+    "attribute_loading_dock_presence": true,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is flat with a striking geometric pattern of triangular and diamond-shaped panels, and includes several raised sections that may function as skylights or ventilation units.",
+    "attribute_architectural_style": "modern industrial",
+    "uid": "2588f6b246c94c6a9c89611a89abf2b0",
+    "near_synsets": {
+        "loft.n.01": 0.5254908039726884,
+        "warehouse.n.01": 0.525758679772615,
+        "workroom.n.01": 0.5586903345727046,
+        "shop_floor.n.01": 0.5608141420191297,
+        "artist's_loft.n.01": 0.5668214075215787
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2588f6b246c94c6a9c89611a89abf2b0",
+        "creator_username": "csurya",
+        "creator_display_name": "surya",
+        "creator_profile_url": "https://sketchfab.com/csurya"
+    },
+    "filename": "std_2588f6b246c94c6a9c89611a89abf2b0.glb",
+    "length": 31.304336547851562,
+    "width": 23.913036346435547
+}

@@ -1,0 +1,92 @@
+{
+    "description_long": "This is a compact submachine gun with a boxy, utilitarian design, reminiscent of the iconic Uzi. The body is primarily constructed from dark metal, featuring a prominent rectangular receiver and a straight, vertical magazine extending below the grip. The rear of the weapon is equipped with a folding metal stock, which is currently in the folded position, adding to its portability. The barrel is short and cylindrical, protruding slightly from the front of the receiver, and the weapon is fitted with simple iron sights. The overall finish is matte black, with minimal markings or embellishments, emphasizing function over form. This firearm is designed for close-quarters use, making it suitable for urban environments where maneuverability is essential.",
+    "description": "A compact, matte black submachine gun with a folding metal stock, straight magazine, and short barrel, designed for close-quarters urban use.",
+    "description_view_0": "Side view showing the full profile, including the folded metal stock, straight magazine, and short barrel.",
+    "description_view_1": "Front view highlighting the barrel's muzzle and the narrow width of the receiver.",
+    "description_view_2": "Opposite side view displaying the same features as view 0, with visible markings and the folded stock.",
+    "description_view_3": "Top-down view showing the alignment of the iron sights and the rectangular receiver.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 0.45,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "foldable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "magazine",
+        "folding stock",
+        "charging handle",
+        "safety selector",
+        "iron sights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "folding",
+    "attribute_barrel_type": "short",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "3f7ece560073489db57b29f69431630d",
+    "near_synsets": {
+        "submachine_gun.n.01": 0.45702281018849156,
+        "kalashnikov.n.01": 0.4965434800842298,
+        "carbine.n.01": 0.49987774924794803,
+        "uzi.n.01": 0.5001140112396559,
+        "automatic_rifle.n.01": 0.5018215810529141,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3f7ece560073489db57b29f69431630d",
+        "creator_username": "rbanzon",
+        "creator_display_name": "rbanzon",
+        "creator_profile_url": "https://sketchfab.com/rbanzon"
+    },
+    "filename": "std_3f7ece560073489db57b29f69431630d.glb",
+    "length": 0.24335496872663498,
+    "width": 0.04179603420197964
+}

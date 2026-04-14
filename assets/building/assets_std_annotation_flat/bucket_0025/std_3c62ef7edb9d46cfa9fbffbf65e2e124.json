@@ -1,0 +1,107 @@
+{
+    "description_long": "This object is a compact, industrial transformer tower unit mounted on a rectangular black base. The main cylindrical body is painted blue and features the number '27' in large white digits, with several yellow warning signs indicating high voltage and danger. The top of the cylinder has four rounded, yellowish domes, likely serving as insulator caps or terminals. Adjacent to the main cylinder is a smaller, conical insulator stack with black disc-shaped separators and a tall, thin rod extending upward, connected to a metallic box with a warning label. The base appears sturdy and slightly elevated, providing stability and insulation from the ground. The overall design is functional and robust, suitable for urban power distribution in public or semi-public spaces.",
+    "description": "A blue cylindrical transformer tower with warning signs, insulator stack, and a black base, designed for urban power distribution.",
+    "description_view_0": "Front view showing the blue cylinder with '27', warning signs, insulator stack, and metallic box on a black base.",
+    "description_view_1": "Rear view highlighting the back of the blue cylinder, partial warning sign, and the tall rod of the insulator stack.",
+    "description_view_2": "Side view displaying the full length of the base, the cylindrical body, insulator stack, and metallic box.",
+    "description_view_3": "Opposite end view focusing on the insulator stack and rod, with the blue cylinder in the background.",
+    "category": "transformer tower",
+    "height": 1.6,
+    "max_dimension": 2.2,
+    "materials": [
+        "painted steel",
+        "ceramic",
+        "plastic",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.05,
+        0.02,
+        0.05
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "control box",
+        "insulator stack",
+        "warning signage"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black",
+        "yellow",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.18,
+        0.1,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_number_of_insulator_stacks": 1,
+    "attribute_arrangement_of_crossarms": "No visible crossarms are present; the insulator stack and rod are vertically aligned adjacent to the main cylinder.",
+    "attribute_presence_of_warning_signage": true,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "transformer",
+        "insulator stack",
+        "control box"
+    ],
+    "attribute_configuration_of_attached_power_lines": "No visible power lines are attached; the insulator stack and rod suggest provision for a single-phase or three-phase connection, with routing likely intended to be parallel to the base.",
+    "uid": "3c62ef7edb9d46cfa9fbffbf65e2e124",
+    "near_synsets": {
+        "pylon.n.02": 0.5441733188906713,
+        "substation.n.01": 0.5636578295525838,
+        "step-up_transformer.n.01": 0.5704651997436397,
+        "water_tower.n.01": 0.5725291368859984,
+        "transformer.n.01": 0.5736234842904312,
+        "column.n.04": -1000.0,
+        "tower.n.01": -1000.0,
+        "tugboat.n.01": -1000.0
+    },
+    "synset": "transformer.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3c62ef7edb9d46cfa9fbffbf65e2e124",
+        "creator_username": "EL27",
+        "creator_display_name": "EL27",
+        "creator_profile_url": "https://sketchfab.com/EL27"
+    },
+    "filename": "std_3c62ef7edb9d46cfa9fbffbf65e2e124.glb",
+    "length": 1.195644736289978,
+    "width": 2.3395473957061768
+}

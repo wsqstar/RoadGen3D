@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a large, tracked military combat vehicle with a boxy, angular superstructure and a camouflage paint scheme. The vehicle features a set of multiple launch tubes or rocket pods mounted on the upper rear section, suggesting it is a multiple rocket launcher system. The hull is robust, with visible armor plating covering the entire body, and the tracks are wide and reinforced for off-road mobility. There are two prominent headlights at the front, and a long radio antenna extends from the top. The vehicle's exterior is finished in a green and brown woodland camouflage pattern, with no visible military markings or insignia.",
+    "description": "A large, tracked military vehicle with a boxy superstructure, multiple rocket launchers, and woodland camouflage paint.",
+    "description_view_0": "Front view shows the armored hull, two headlights, and the front of the rocket launcher array.",
+    "description_view_1": "Side view reveals the full length of the tracks, the boxy launcher system, and the long antenna.",
+    "description_view_2": "Rear view highlights the back of the launcher pods and the armored rear hull.",
+    "description_view_3": "Opposite side view displays the tracks, launcher system, and antenna from the other side.",
+    "category": "combat tactical  vehicle",
+    "height": 3.2,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1800000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "door",
+        "track",
+        "launcher pod",
+        "antenna",
+        "headlight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.03,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large multiple rocket launcher pod mounted on the upper rear section of the vehicle.",
+    "attribute_armor_plating": "Full body armor plating with thick, angular panels covering the hull and superstructure.",
+    "attribute_camouflage_pattern": "Woodland camouflage with irregular green and brown patches and black accents.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "255fba6ba6c44b97aaea91d0225d0c75",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4709281982672149,
+        "reconnaissance_vehicle.n.01": 0.4720173754048907,
+        "tank.n.01": 0.49446171940353617,
+        "weapons_carrier.n.01": 0.5003308740991755,
+        "assault_gun.n.02": 0.5166349341850884,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/255fba6ba6c44b97aaea91d0225d0c75",
+        "creator_username": "lm9241221",
+        "creator_display_name": "lm9241221",
+        "creator_profile_url": "https://sketchfab.com/lm9241221"
+    },
+    "filename": "std_255fba6ba6c44b97aaea91d0225d0c75.glb",
+    "length": 6.572888612747192,
+    "width": 6.572888374328613
+}

@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a vintage double-decker trolleybus painted primarily in green with red and gold accents, featuring an open upper deck with a red roof supported by yellow and green railings. The lower deck is enclosed with large windows and a side entry, while the upper deck is accessed via a spiral staircase at the rear. The front of the vehicle has a classic, boxy engine compartment with a gold grille and headlamps, and the wheels are spoked with red hubs. The signage on the side reads 'MAIN STREET TRANSPORTATION CO.', suggesting it is modeled after early 20th-century public transit vehicles. The interior appears to have wooden bench seating, and the overall construction is robust, likely using a combination of metal and wood. There are no visible pantograph poles or overhead wire connections, indicating it may be a motorbus styled as a trolleybus.",
+    "description": "A vintage green double-decker trolleybus with a red roof, open upper deck, and spiral rear staircase, featuring gold and red detailing and classic spoked wheels.",
+    "description_view_0": "Side view showing the full length, spiral staircase at the rear, and 'MAIN STREET TRANSPORTATION CO.' signage.",
+    "description_view_1": "Front view highlighting the gold grille, headlamps, and the upper deck's red roof and railings.",
+    "description_view_2": "Opposite side view with clear visibility of the entry door and the vehicle's length.",
+    "description_view_3": "Rear view focusing on the spiral staircase leading to the upper deck and the back of the red roof.",
+    "category": "trolleybus",
+    "height": 3.8,
+    "max_dimension": 6.5,
+    "materials": [
+        "metal",
+        "wood",
+        "glass",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.07,
+        0.05,
+        0.03,
+        0.05
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "steerable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "door",
+        "steering wheel",
+        "stairs",
+        "seats"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "red",
+        "yellow",
+        "black",
+        "gold",
+        "white"
+    ],
+    "colors_composition": [
+        0.55,
+        0.18,
+        0.1,
+        0.08,
+        0.06,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.32,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_pantograph_poles": false,
+    "attribute_overhead_wire_connection": false,
+    "attribute_route_number_display": false,
+    "attribute_articulated_body_sections": 1,
+    "attribute_passenger_entry_doors": 1,
+    "uid": "cbb199ae1edf41c6898c997ae785c4db",
+    "near_synsets": {
+        "trolleybus.n.01": 0.4973806931708159,
+        "trolley_line.n.01": 0.5190828234623336,
+        "current_collector.n.01": 0.5650502531773565,
+        "streetcar.n.01": 0.5684403699130733,
+        "bus.n.01": 0.5776627363275547
+    },
+    "synset": "trolleybus.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/cbb199ae1edf41c6898c997ae785c4db",
+        "creator_username": "kastle",
+        "creator_display_name": "Kastle",
+        "creator_profile_url": "https://sketchfab.com/kastle"
+    },
+    "filename": "std_cbb199ae1edf41c6898c997ae785c4db.glb",
+    "length": 5.259245872497559,
+    "width": 2.08173143863678
+}

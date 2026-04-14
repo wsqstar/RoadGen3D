@@ -1,0 +1,97 @@
+{
+    "description_long": "This cowshed is a rectangular, open-sided structure with a prominent gable roof covered in a textured, weathered material resembling thatch or aged shingles. The roof is supported by sturdy wooden beams and posts, with the framework visible at the gable ends, giving it a rustic, utilitarian appearance. The floor is made of stone or concrete pavers, with a clear division between a lighter, front section and a darker, rear section, possibly indicating different functional zones. The open front and rear allow for easy access and ventilation, while the sides are mostly enclosed by the roof's overhang and supporting beams. There are no visible doors or windows, emphasizing its function as a shelter for livestock rather than a secure enclosure. The overall design is simple and practical, suitable for rural or peri-urban settings where livestock housing is needed.",
+    "description": "A rustic, open-sided cowshed with a gable roof, wooden supports, and a stone or concrete floor, designed for sheltering livestock. The structure is practical and airy, with no doors or windows.",
+    "description_view_0": "Front view showing the open entrance, wooden posts, and the lighter stone or concrete flooring at the front.",
+    "description_view_1": "Side gable view highlighting the triangular wooden framework and the full height of the gable roof.",
+    "description_view_2": "Rear view mirroring the front, with open access and visible support beams, but with a darker floor section.",
+    "description_view_3": "Opposite side gable view, again showing the wooden framework and the roof's steep pitch.",
+    "category": "cowshed",
+    "height": 4.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "wood",
+        "thatch",
+        "stone",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.4,
+        0.25,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "mass": 9500,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shelterable",
+        "tetherable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "livestock"
+    ],
+    "colors": [
+        "brown",
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.45,
+        0.35,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gable",
+    "attribute_door_style": "no doors; open front and rear access",
+    "attribute_window_presence": "no windows",
+    "attribute_ventilation_features": "open sides and gable ends for natural ventilation",
+    "attribute_architectural_style": "traditional rural",
+    "uid": "4e86aedaac4b42ea928bcb576f855dae",
+    "near_synsets": {
+        "cowbarn.n.01": 0.42307517945945594,
+        "shed.n.01": 0.48784970410101064,
+        "stockyard.n.01": 0.4961386785680897,
+        "barn.n.01": 0.49724342212673406,
+        "farm_building.n.01": 0.5038488506473191
+    },
+    "synset": "cowbarn.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4e86aedaac4b42ea928bcb576f855dae",
+        "creator_username": "filipstryk",
+        "creator_display_name": "filipstryk",
+        "creator_profile_url": "https://sketchfab.com/filipstryk"
+    },
+    "filename": "std_4e86aedaac4b42ea928bcb576f855dae.glb",
+    "length": 4.274967432022095,
+    "width": 7.424941062927246
+}

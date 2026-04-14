@@ -1,0 +1,113 @@
+{
+    "description_long": "This object is an industrial robotic workcell enclosed by a transparent safety fence, featuring a large articulated robot arm, likely manufactured by ABB, positioned centrally within the enclosure. The robot arm is mounted on a robust base and is surrounded by various control panels, safety interlocks, and operator interfaces located outside the fenced area. The enclosure is constructed from metal framing with mesh panels, providing visibility and protection, while the robot arm itself is composed of multiple rigid segments connected by mechanical joints. The workcell includes access gates, warning signage, and safety bollards at the perimeter, indicating its use in automated manufacturing or material handling. The robot arm appears to have a tool mount or specialized end effector for industrial tasks, and the entire setup is designed for stationary operation in a factory or industrial urban environment. The overall structure is large, heavy, and intended for fixed installation, with no visible wheels or mobile components.",
+    "description": "A large, stationary industrial robot arm is housed within a transparent safety enclosure, surrounded by control panels and safety features. The setup is robust, metallic, and designed for automated tasks in an urban industrial setting.",
+    "description_view_0": "Front view shows the main access gate, control panels, and the robot arm visible through the mesh enclosure.",
+    "description_view_1": "Rear view highlights the back of the robot arm, the ABB branding, and the main work area inside the enclosure.",
+    "description_view_2": "Side view displays the length of the enclosure, the robot arm's articulated segments, and additional safety features.",
+    "description_view_3": "Opposite side view reveals the robot arm's base, more of the enclosure's structure, and the arrangement of control units.",
+    "category": "robot arm",
+    "height": 2.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "aluminum",
+        "polycarbonate",
+        "plastic",
+        "glass",
+        "rubber",
+        "air",
+        "electronic components"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.1,
+        0.07,
+        0.03,
+        0.02,
+        0.05,
+        0.03
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "control panel",
+        "access gate",
+        "robot arm joints",
+        "end effector",
+        "emergency stop button"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "black",
+        "orange",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "scene",
+    "attribute_joint_type": "revolute, prismatic",
+    "attribute_number_of_segments": 6,
+    "attribute_end_effector_type": "tool mount",
+    "attribute_visible_wiring_or_cabling": false,
+    "attribute_mounting_location": "floor-mounted",
+    "uid": "d3b8f5439e624ff18d26ca43ba302a0a",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5266083653191955,
+        "automaton.n.02": 0.5606454460956014,
+        "automaton.n.03": 0.5662773750045804,
+        "automation.n.03": 0.574826506769473,
+        "robotics.n.01": 0.591620784422234,
+        "arm.n.01": -1000.0,
+        "arm.n.02": -1000.0,
+        "weapon.n.01": -1000.0,
+        "arm.n.04": -1000.0,
+        "branch.n.01": -1000.0,
+        "sleeve.n.01": -1000.0
+    },
+    "synset": "robotics_equipment.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d3b8f5439e624ff18d26ca43ba302a0a",
+        "creator_username": "bluoppVR",
+        "creator_display_name": "bluoppVR",
+        "creator_profile_url": "https://sketchfab.com/bluoppVR"
+    },
+    "filename": "std_d3b8f5439e624ff18d26ca43ba302a0a.glb",
+    "length": 1.5417170524597168,
+    "width": 2.128250002861023
+}

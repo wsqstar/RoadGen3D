@@ -1,0 +1,106 @@
+{
+    "description_long": "This object consists of two open books placed side by side, each displaying several pages with visible lines of text. The books have cream-colored pages and red covers, with a black circular bookmark or button visible near the spine of each book. The pages are slightly curled, suggesting the books are well-used or mid-read. The spines and edges of the covers are visible, showing a subtle texture and thickness typical of paperback or hardcover books. The books are positioned flat, with their interiors fully exposed, making the text and page structure the most prominent features. The overall appearance is realistic, with attention to the layering of pages and the subtle shading between them.",
+    "description": "Two open books with red covers and cream pages, side by side, showing detailed page textures and black bookmarks.",
+    "description_view_0": "Front view of two open books, both showing their interiors and black bookmarks near the spines.",
+    "description_view_1": "Side view showing the thickness of the books and the layering of pages, with the covers and spines visible.",
+    "description_view_2": "Rear view of the open books, with the backs of the covers and the page edges most visible.",
+    "description_view_3": "Top-down view highlighting the open pages, red cover edges, and the black bookmarks running across the spines.",
+    "category": "book",
+    "height": 0.03,
+    "max_dimension": 0.45,
+    "materials": [
+        "paper",
+        "cardboard",
+        "cloth",
+        "ink",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.01,
+        0.01
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "readable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "pages",
+        "cover",
+        "spine",
+        "bookmark"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "cream",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.47,
+    "youngs_modulus": 4000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "group",
+    "attribute_cover_illustration": "No illustration visible.",
+    "attribute_title_text": "None.",
+    "attribute_spine_design": "Not visible.",
+    "attribute_publisher_logo": "None.",
+    "attribute_dust_jacket_presence": false,
+    "uid": "ae17a25eebeb4926bdedf68cb99fbd22",
+    "near_synsets": {
+        "book.n.02": 0.5303939296586092,
+        "book.n.01": 0.5308771112648495,
+        "frontispiece.n.02": 0.5330195954369593,
+        "bookbinding.n.01": 0.5391831516107127,
+        "title_page.n.01": 0.5408371611647453,
+        "script.n.01": -1000.0,
+        "book.n.10": -1000.0,
+        "koran.n.01": -1000.0,
+        "bible.n.01": -1000.0,
+        "ledger.n.01": -1000.0,
+        "book.n.07": -1000.0,
+        "record.n.05": -1000.0,
+        "book.n.06": -1000.0,
+        "book.n.11": -1000.0
+    },
+    "synset": "book.n.11",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ae17a25eebeb4926bdedf68cb99fbd22",
+        "creator_username": "davidz16",
+        "creator_display_name": "davidz16",
+        "creator_profile_url": "https://sketchfab.com/davidz16"
+    },
+    "filename": "std_ae17a25eebeb4926bdedf68cb99fbd22.glb",
+    "length": 0.026166864670813084,
+    "width": 0.08417266607284546
+}

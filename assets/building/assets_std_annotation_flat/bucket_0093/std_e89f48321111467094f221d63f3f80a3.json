@@ -1,0 +1,112 @@
+{
+    "description_long": "This object is a modern traffic light assembly designed for urban intersections. It features a vertical rectangular signal housing with three distinct circular lights: red at the top, yellow in the middle, and green at the bottom, each set into a black frame. The signal housing is mounted on a tall, slender pole that is anchored to a square base, providing stability. Extending horizontally from the top of the pole is a long arm, which supports the signal housing at its end, allowing it to be positioned over a roadway. The materials appear to be primarily metal for the pole and arm, with plastic or glass lenses for the signal lights. The overall design is utilitarian, with a matte finish and clear color differentiation for visibility.",
+    "description": "A vertical, three-light traffic signal mounted on a tall pole with a horizontal arm, featuring red, yellow, and green lights in a black housing.",
+    "description_view_0": "Side view showing the rectangular signal housing and the thickness of the pole and base.",
+    "description_view_1": "Rear view highlighting the long horizontal arm and the back of the signal housing.",
+    "description_view_2": "Side view from the opposite direction, showing the vertical alignment of the lights and the pole's attachment to the base.",
+    "description_view_3": "Front view displaying the three colored lights (red, yellow, green) in a vertical arrangement within the black housing.",
+    "category": "traffic light",
+    "height": 3.0,
+    "max_dimension": 4.0,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "signal lights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "yellow",
+        "green",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_signal_lights": 3,
+    "attribute_signal_orientation": "vertical",
+    "attribute_mounting_type": "overhead",
+    "attribute_presence_of_pedestrian_signals": false,
+    "attribute_control_box_visibility": false,
+    "uid": "e89f48321111467094f221d63f3f80a3",
+    "near_synsets": {
+        "traffic_light.n.01": 0.4343343910687058,
+        "stoplight.n.01": 0.501330233780884,
+        "red_light.n.01": 0.5185935898055778,
+        "semaphore.n.01": 0.5274861841143343,
+        "green_light.n.01": 0.5338032328154015,
+        "light.n.01": -1000.0,
+        "light.n.09": -1000.0,
+        "light.n.06": -1000.0,
+        "luminosity.n.01": -1000.0,
+        "light.n.10": -1000.0,
+        "light.n.03": -1000.0,
+        "traffic.n.01": -1000.0,
+        "traffic.n.02": -1000.0,
+        "lighter.n.02": -1000.0,
+        "light.n.14": -1000.0,
+        "sparkle.n.01": -1000.0,
+        "light.n.08": -1000.0,
+        "light.n.05": -1000.0,
+        "light.n.12": -1000.0,
+        "light.n.07": -1000.0,
+        "dealings.n.01": -1000.0,
+        "inner_light.n.01": -1000.0,
+        "light.n.02": -1000.0,
+        "traffic.n.03": -1000.0
+    },
+    "synset": "traffic_light.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e89f48321111467094f221d63f3f80a3",
+        "creator_username": "ahmedalforsk2",
+        "creator_display_name": "3BLATIF",
+        "creator_profile_url": "https://sketchfab.com/ahmedalforsk2"
+    },
+    "filename": "std_e89f48321111467094f221d63f3f80a3.glb",
+    "length": 0.6818184852600098,
+    "width": 3.1363637447357178
+}

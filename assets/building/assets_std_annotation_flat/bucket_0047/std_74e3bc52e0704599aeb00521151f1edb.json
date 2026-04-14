@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a cylindrical, military-style stun grenade, commonly known as a flashbang. It features a hexagonal body with multiple circular cutouts along its length, revealing a red inner core. The exterior is painted in a matte olive drab color, with white stenciled alphanumeric markings and serial numbers on the upper and lower sections. At the top, there is a prominent black safety lever and a metal pull ring, both attached to a visible pin mechanism for arming the device. The construction appears robust, with the body likely made of metal and the cutouts providing both grip and visual access to the internal charge. The overall design is utilitarian, optimized for quick deployment and safe handling in tactical scenarios.",
+    "description": "A military-style cylindrical flashbang grenade with a hexagonal body, circular cutouts, and a black safety lever with a pull ring. Olive drab exterior with white stenciled markings and a visible red core.",
+    "description_view_0": "Front view showing the hexagonal body, circular cutouts, black safety lever, and pull ring prominently displayed.",
+    "description_view_1": "Side view highlighting the flat face of the hexagonal body, the full length of the safety lever, and the pull ring folded to the side.",
+    "description_view_2": "Rear view displaying the opposite side of the hexagonal body, with the safety lever and pull ring less prominent and more of the stenciled markings visible.",
+    "description_view_3": "Angled view showing the serial numbers, the arrangement of the cutouts, and the top mechanism with the safety pin and lever.",
+    "category": "bomb",
+    "height": 0.14,
+    "max_dimension": 0.14,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 0.45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 5,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pull ring",
+        "safety lever",
+        "safety pin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive drab",
+        "black",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the safety pin and releasing the safety lever, which triggers an internal fuse mechanism.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "74e3bc52e0704599aeb00521151f1edb",
+    "near_synsets": {
+        "bomb.n.01": 0.536745074549066,
+        "hand_grenade.n.01": 0.540578512351184,
+        "grenade.n.01": 0.5505255423097823,
+        "gas_shell.n.01": 0.5509563657625087,
+        "cherry_bomb.n.01": 0.5525560965883224,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/74e3bc52e0704599aeb00521151f1edb",
+        "creator_username": "BlueOxel",
+        "creator_display_name": "BlueOxel",
+        "creator_profile_url": "https://sketchfab.com/BlueOxel"
+    },
+    "filename": "std_74e3bc52e0704599aeb00521151f1edb.glb",
+    "length": 0.06679780781269073,
+    "width": 0.0673128068447113
+}

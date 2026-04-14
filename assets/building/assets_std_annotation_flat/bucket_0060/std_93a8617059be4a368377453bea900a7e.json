@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a modern tactical rifle with a black matte finish, featuring a collapsible stock and a prominent pistol grip for ergonomic handling. The rifle is equipped with a detachable box magazine and a long, slender barrel, which appears to have a flash hider or muzzle brake at the tip. The upper receiver includes a rail system, likely for mounting optics or accessories, and the rifle is fitted with iron sights. The handguard is ribbed for improved grip and heat dissipation, and the overall design is streamlined for urban tactical use. The materials appear to be primarily metal with some polymer components, typical of contemporary assault rifles. The rifle's proportions and features suggest it is designed for both maneuverability and accuracy in close to mid-range engagements.",
+    "description": "A modern black tactical rifle with a collapsible stock, detachable magazine, and long barrel, featuring iron sights and a ribbed handguard. The design is streamlined for urban tactical use.",
+    "description_view_0": "Side view showing the full length of the rifle, including the collapsible stock, pistol grip, magazine, and long barrel with a visible muzzle device.",
+    "description_view_1": "Front-on view highlighting the narrow profile of the barrel and handguard, with the muzzle device at the forefront.",
+    "description_view_2": "Opposite side view displaying the rifle's length, stock, grip, and magazine, mirroring view 0 but from the other side.",
+    "description_view_3": "Rear-on view focusing on the stock and grip, with the barrel extending away and the muzzle device barely visible.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 1.0,
+    "materials": [
+        "steel",
+        "polymer",
+        "aluminum",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "pistol grip",
+        "magazine",
+        "trigger",
+        "barrel",
+        "sight",
+        "handguard",
+        "muzzle device"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "collapsible",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "flash hider",
+    "uid": "93a8617059be4a368377453bea900a7e",
+    "near_synsets": {
+        "rifle.n.01": 0.529674575253081,
+        "garand_rifle.n.01": 0.5322212337432377,
+        "light_arm.n.01": 0.532747217439907,
+        "assault_rifle.n.01": 0.5332033406868979,
+        "carbine.n.01": 0.5372228744895232
+    },
+    "synset": "assault_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/93a8617059be4a368377453bea900a7e",
+        "creator_username": "drcrazzie",
+        "creator_display_name": "drcrazzie",
+        "creator_profile_url": "https://sketchfab.com/drcrazzie"
+    },
+    "filename": "std_93a8617059be4a368377453bea900a7e.glb",
+    "length": 2.1598929166793823,
+    "width": 0.12612810730934143
+}

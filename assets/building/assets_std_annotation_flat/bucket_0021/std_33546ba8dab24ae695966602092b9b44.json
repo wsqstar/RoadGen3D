@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a long, cylindrical, tube-like device with a camouflage paint pattern, resembling a man-portable anti-tank weapon or rocket launcher. It features a prominent rectangular blast shield near one end, likely for operator protection, and a simple trigger and grip assembly mounted below the tube. The rear end is open, consistent with a recoilless design, while the front end is capped and slightly flared. The surface is mostly matte with a rugged, utilitarian finish, and the overall construction appears to be primarily metal with some plastic or composite components. There are no visible wheels, tracks, or means of self-propulsion, indicating it is intended to be carried and operated by a person.",
+    "description": "A camouflaged, tube-shaped anti-tank weapon with a blast shield, trigger assembly, and rugged metal construction.",
+    "description_view_0": "Side view showing the full length of the tube, the blast shield, and the trigger assembly beneath.",
+    "description_view_1": "Front view highlighting the circular muzzle, the rectangular blast shield, and the open tube end.",
+    "description_view_2": "Opposite side view, mirroring view 0, with the blast shield and grip visible.",
+    "description_view_3": "Rear view showing the open back of the tube and the blast shield's rear surface.",
+    "category": "combat tactical  vehicle",
+    "height": 0.45,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "plastic",
+        "composite",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 7.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "aimable",
+        "triggerable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "grip",
+        "blast shield"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One integrated launch tube for a single-use projectile, no additional mounts visible.",
+    "attribute_armor_plating": "A single rectangular blast shield is present near the grip, providing localized protection; no other armor plating visible.",
+    "attribute_camouflage_pattern": "Woodland camouflage with irregular green, brown, and black patches in a matte finish.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "33546ba8dab24ae695966602092b9b44",
+    "near_synsets": {
+        "tank.n.01": 0.46108642317867904,
+        "assault_gun.n.02": 0.49020637941885553,
+        "military_vehicle.n.01": 0.49268614977859787,
+        "tank_destroyer.n.01": 0.5040341113955578,
+        "armored_car.n.02": 0.5172201516949384,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "fomite.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/33546ba8dab24ae695966602092b9b44",
+        "creator_username": "Tactical_Beard",
+        "creator_display_name": "Tactical_Gamer",
+        "creator_profile_url": "https://sketchfab.com/Tactical_Beard"
+    },
+    "filename": "std_33546ba8dab24ae695966602092b9b44.glb",
+    "length": 1.6585577130317688,
+    "width": 0.39177602529525757
+}

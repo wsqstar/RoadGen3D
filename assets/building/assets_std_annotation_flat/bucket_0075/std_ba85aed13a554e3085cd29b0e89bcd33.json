@@ -1,0 +1,95 @@
+{
+    "description_long": "This humanoid robot features a striking, angular design with elongated limbs and a slender torso, primarily colored in orange with contrasting dark blue elements. The head is small and cylindrical, with what appears to be a single sensor or camera on the front, and the arms and legs are thin, mechanical, and jointed, suggesting a high degree of articulation. The robot's limbs are asymmetrical, with one arm appearing more robust and equipped with a possible tool or manipulator, while the other is more streamlined. The legs are digitigrade, ending in pointed, claw-like feet, which may aid in stability or specialized movement. The overall form is sleek and futuristic, with exposed mechanical joints and minimal surface coverings, emphasizing function over ornamentation. The robot's posture is dynamic, as if in mid-motion or ready to perform a task, and its design suggests it is built for agility and precision in urban environments.",
+    "description": "A sleek, angular humanoid robot with elongated limbs, orange and dark blue coloring, and a dynamic, functional design. Features a small cylindrical head, jointed arms and legs, and claw-like feet.",
+    "description_view_0": "Front-left view showing the robot's cylindrical head, robust right arm with a possible tool, and digitigrade legs with pointed feet.",
+    "description_view_1": "Left side view highlighting the elongated limbs, thin torso, and the asymmetry between the arms, with the right arm appearing more complex.",
+    "description_view_2": "Rear view displaying the back of the head, the mechanical structure of the torso, and the alignment of the legs and feet.",
+    "description_view_3": "Rear-right view emphasizing the angular design of the limbs, the exposed joints, and the streamlined left arm.",
+    "category": "humanoid robot",
+    "height": 2.1,
+    "max_dimension": 2.8,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 95,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head",
+        "right arm tool",
+        "joints",
+        "feet"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "dark blue"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "sleek",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is in a dynamic, upright pose with one arm extended forward and the other slightly bent, legs apart as if ready to move or perform a task, and the head facing forward.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated panels and exposed mechanical components with no decorative coverings.",
+    "attribute_facial_features": "The face consists of a small cylindrical head with a single visible sensor or camera on the front, lacking expressive features such as eyes, mouth, or nose.",
+    "attribute_limb_articulation": "The robot has articulated arms and legs with visible hinge and rotary joints at the shoulders, elbows, hips, and knees, allowing for a wide range of motion; the limbs appear rigid but highly maneuverable.",
+    "attribute_presence_of_sensors": "A single camera or optical sensor is visible on the front of the head; no other sensors are apparent.",
+    "uid": "ba85aed13a554e3085cd29b0e89bcd33",
+    "near_synsets": {
+        "android.n.01": 0.5426254611739818,
+        "cyborg.n.01": 0.5687040026416351,
+        "robotics_equipment.n.01": 0.5720837290330307,
+        "automaton.n.02": 0.5811172724197264,
+        "robotics.n.01": 0.5941220400551968
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ba85aed13a554e3085cd29b0e89bcd33",
+        "creator_username": "meag.exe",
+        "creator_display_name": "meag.exe",
+        "creator_profile_url": "https://sketchfab.com/meag.exe"
+    },
+    "filename": "std_ba85aed13a554e3085cd29b0e89bcd33.glb",
+    "length": 4.381638050079346,
+    "width": 3.813241958618164
+}

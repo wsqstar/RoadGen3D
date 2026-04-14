@@ -1,0 +1,103 @@
+{
+    "description_long": "This object is a classic British-style red telephone booth, featuring a tall, rectangular structure with a domed roof. The exterior is predominantly red with a grid of glass window panels on all visible sides, framed by metal bars. The front side has a door with multiple glass panes, allowing visibility into the interior, and the booth stands on a slightly flared base. The surface finish is glossy, reflecting light and giving the booth a polished appearance. The booth appears to be constructed mainly from painted metal and glass, with the interior likely containing a telephone unit and air space. There is no clearly visible signage or labeling, and the telephone handset is not visible from these views.",
+    "description": "A classic red British telephone booth with a domed roof, glass-paneled door, and glossy metal frame. The booth features multiple window grids and a polished, reflective surface.",
+    "description_view_0": "Front view showing the glass-paneled door and the domed roof, with the window grid and base clearly visible.",
+    "description_view_1": "Side view displaying the full grid of glass panels and the solid red roof, with no door handle visible.",
+    "description_view_2": "Rear view with a similar window grid as the front, but no door or handle, and the domed roof is prominent.",
+    "description_view_3": "Opposite side view, again showing the window grid and solid roof, with some color variation near the base.",
+    "category": "telephone booth",
+    "height": 2.4,
+    "max_dimension": 2.4,
+    "materials": [
+        "painted metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "mass": 550,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "window panels",
+        "telephone (implied)"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "red",
+        "white",
+        "black",
+        "yellow",
+        "blue"
+    ],
+    "colors_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_enclosure_type": "fully enclosed",
+    "attribute_door_presence": true,
+    "attribute_window_configuration": "multiple rectangular glass panels on all four sides, arranged in a grid pattern",
+    "attribute_signage_or_labeling": "no visible signage",
+    "attribute_handset_visibility": false,
+    "uid": "983e9a8be32e4eeda1ce2d42748db55e",
+    "near_synsets": {
+        "telephone_booth.n.01": 0.4452785850783379,
+        "booth.n.02": 0.5682553088873795,
+        "telephone_pole.n.01": 0.5703197013970293,
+        "tollbooth.n.01": 0.5703867371834055,
+        "handset.n.01": 0.5755327456050209,
+        "booth.n.03": -1000.0,
+        "telephone.n.02": -1000.0,
+        "telephone.n.01": -1000.0,
+        "booth.n.01": -1000.0,
+        "booth.n.04": -1000.0
+    },
+    "synset": "telephone_booth.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/983e9a8be32e4eeda1ce2d42748db55e",
+        "creator_username": "SFKhan00",
+        "creator_display_name": "SFKhan00",
+        "creator_profile_url": "https://sketchfab.com/SFKhan00"
+    },
+    "filename": "std_983e9a8be32e4eeda1ce2d42748db55e.glb",
+    "length": 1.2260359525680542,
+    "width": 1.0214275121688843
+}

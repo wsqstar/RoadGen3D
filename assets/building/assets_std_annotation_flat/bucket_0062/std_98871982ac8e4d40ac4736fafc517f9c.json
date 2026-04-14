@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a classic hand grenade with an olive green, segmented body designed for grip and fragmentation. The top features a black safety lever and a prominent metal pull ring, which is attached to a safety pin mechanism. A yellow band encircles the neck just below the lever, indicating a warning or identification marking. The body is robust and slightly oval, with deep grooves running vertically and horizontally, giving it a pineapple-like appearance. The lever is textured and slightly curved, fitting snugly over the top of the grenade. The overall construction suggests a metal shell, likely steel, with internal explosive components.",
+    "description": "A green, segmented hand grenade with a black safety lever, metal pull ring, and a yellow warning band around the neck.",
+    "description_view_0": "The grenade is shown from a three-quarter front angle, highlighting the pull ring, safety lever, and the yellow band around the neck.",
+    "description_view_1": "A direct side view, showing the narrow profile of the grenade and the alignment of the safety lever and ring.",
+    "description_view_2": "Another three-quarter view from the opposite side, displaying the lever, ring, and the detailed segmenting of the body.",
+    "description_view_3": "A direct rear view, focusing on the back of the lever and the symmetrical segment pattern of the grenade body.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.12,
+    "materials": [
+        "steel",
+        "plastic",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.15,
+        0.03,
+        0.02
+    ],
+    "mass": 0.4,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pull ring",
+        "safety lever",
+        "body"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "black",
+        "yellow",
+        "silver"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the metal ring to remove the safety pin, then releasing the safety lever to trigger the internal fuse.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "98871982ac8e4d40ac4736fafc517f9c",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.47540808435130627,
+        "grenade.n.01": 0.501472602841119,
+        "bomb.n.01": 0.5394034866100428,
+        "pipe_bomb.n.01": 0.542370129491398,
+        "rifle_grenade.n.01": 0.5448624325983213,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/98871982ac8e4d40ac4736fafc517f9c",
+        "creator_username": "sergei_pavlov",
+        "creator_display_name": "sergei pavlov",
+        "creator_profile_url": "https://sketchfab.com/sergei_pavlov"
+    },
+    "filename": "std_98871982ac8e4d40ac4736fafc517f9c.glb",
+    "length": 0.06182481534779072,
+    "width": 0.06940388679504395
+}

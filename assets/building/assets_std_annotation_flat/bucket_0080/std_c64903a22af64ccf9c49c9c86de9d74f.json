@@ -1,0 +1,106 @@
+{
+    "description_long": "This humanoid robot features a retro-inspired design with a predominantly blue body accented by orange joints and hands. Its head is boxy with two large, round eyes and a horizontal mouthpiece resembling a speaker grille, topped by a spring antenna with a metallic sphere. The torso is rectangular with a central panel and a stylized emblem, while the arms and legs are segmented with visible spring-like joints and cylindrical forearms and shins. The hands are claw-like pincers, and the feet are wide and flat, providing stability. The robot's overall appearance is playful and mechanical, with visible bolts and seams suggesting a robust, metallic construction.",
+    "description": "A blue, retro-styled humanoid robot with orange joints, large round eyes, a spring antenna, and claw-like hands.",
+    "description_view_0": "Front view showing the robot's expressive face, spring antenna, central chest panel, and both claw hands.",
+    "description_view_1": "Left side view highlighting the boxy head profile, spring elbow joint, and the curvature of the back and legs.",
+    "description_view_2": "Rear view displaying the smooth back of the head and torso, with both arms and legs visible from behind.",
+    "description_view_3": "Right side view showing the right arm's articulation, the side of the head, and the mechanical details of the limbs.",
+    "category": "humanoid robot",
+    "height": 1.1,
+    "max_dimension": 0.6,
+    "materials": [
+        "painted metal",
+        "plastic",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 38,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "rotatable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "antenna",
+        "eyes",
+        "mouth grille",
+        "arms",
+        "hands",
+        "legs",
+        "feet",
+        "chest panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "orange",
+        "black",
+        "silver",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms slightly bent at the elbows, hands open in a neutral position, legs straight, and head facing forward.",
+    "attribute_clothing_style": "No clothing; the robot has integrated blue and orange panels with metallic and plastic coverings as part of its structure.",
+    "attribute_facial_features": "The face features two large, round, protruding eyes, a horizontal mouth grille with metallic teeth-like details, and no visible nose. The head is topped with a spring antenna.",
+    "attribute_limb_articulation": "Arms and legs have visible hinge and rotary joints at the shoulders, elbows, hips, and knees. Hands are articulated with two-pronged pincers, and feet are rigid and flat.",
+    "attribute_presence_of_sensors": "Two large round eyes on the head likely function as cameras or visual sensors; no other sensors are visible.",
+    "uid": "c64903a22af64ccf9c49c9c86de9d74f",
+    "near_synsets": {
+        "android.n.01": 0.5412713637939897,
+        "cyborg.n.01": 0.5628720194145727,
+        "robotics_equipment.n.01": 0.5637106073825873,
+        "automaton.n.02": 0.5756215506797951,
+        "animatronics.n.01": 0.5825596165475
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c64903a22af64ccf9c49c9c86de9d74f",
+        "creator_username": "roiu10",
+        "creator_display_name": "Pablo Garcia",
+        "creator_profile_url": "https://sketchfab.com/roiu10"
+    },
+    "filename": "std_c64903a22af64ccf9c49c9c86de9d74f.glb",
+    "length": 0.5111047327518463,
+    "width": 0.6823673248291016
+}

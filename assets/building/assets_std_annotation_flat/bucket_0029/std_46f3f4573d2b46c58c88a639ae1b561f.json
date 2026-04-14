@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a detailed model of the Eiffel Tower, a world-famous iron lattice tower located in Paris, France. The structure features four massive arched legs that curve inward and meet at a central point, supporting a tall, tapering spire. The base is surrounded by a platform with greenery, representing the Champ de Mars park area. The latticework is intricate, with repeating geometric patterns and cross-bracing visible throughout the tower's height. The color scheme is primarily metallic gray, with dark green elements at the base. The overall appearance is iconic, instantly recognizable, and highly detailed, capturing the architectural essence of the original monument.",
+    "description": "A highly detailed, metallic gray lattice tower with arched legs and a tall spire, modeled after the Eiffel Tower and set on a green, park-like base.",
+    "description_view_0": "Front view showing the arched entrance, intricate latticework, and greenery at the base.",
+    "description_view_1": "Side view with a clear view of the archway and the symmetrical structure of the legs and base.",
+    "description_view_2": "Rear view, nearly identical to the front, with visible lattice details and greenery.",
+    "description_view_3": "Opposite side view, mirroring the other side, highlighting the arch and base platform.",
+    "category": "tower",
+    "height": 324.0,
+    "max_dimension": 125.0,
+    "materials": [
+        "iron",
+        "steel",
+        "concrete",
+        "air",
+        "vegetation"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 10000000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "viewable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "stairs",
+        "platforms",
+        "elevator"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "dark green",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.0,
+    "recommended_clearance": 30.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Industrial",
+    "attribute_number_of_windows": 0,
+    "attribute_presence_of_antennas_or_dishes": false,
+    "attribute_type_of_entrance": "arched doorway",
+    "attribute_decorative_elements": [
+        "ornamental latticework",
+        "arched supports"
+    ],
+    "uid": "46f3f4573d2b46c58c88a639ae1b561f",
+    "near_synsets": {
+        "clock_tower.n.01": 0.5263874405489776,
+        "church_tower.n.01": 0.5293406091730262,
+        "tower.n.01": 0.5373716680045865,
+        "minaret.n.01": 0.5495030018042184,
+        "turret.n.01": 0.5637490053023501,
+        "tugboat.n.01": -1000.0,
+        "column.n.04": -1000.0
+    },
+    "synset": "tower.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/46f3f4573d2b46c58c88a639ae1b561f",
+        "creator_username": "dotaggwp",
+        "creator_display_name": "dotaggwp",
+        "creator_profile_url": "https://sketchfab.com/dotaggwp"
+    },
+    "filename": "std_46f3f4573d2b46c58c88a639ae1b561f.glb",
+    "length": 191.1441879272461,
+    "width": 206.37315368652344
+}

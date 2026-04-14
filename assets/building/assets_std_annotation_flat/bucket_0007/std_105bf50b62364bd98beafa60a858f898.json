@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a rectangular pink cake with four large, upright number-shaped candles forming '6000' on top, each candle featuring a yellow flame. The cake is decorated with white and pink icing, and it sits on a wooden tray or board. Surrounding the cake are four robotic arms, each holding a camera or light, seemingly positioned to record or illuminate the cake from different angles. There are also small slices of cake placed on white plates near the robotic arms, and a stack of white plates is visible on one side. The overall scene is set on a green surface, giving the impression of a celebratory event being documented or broadcast. The cake and its setup suggest a high-tech, possibly urban celebration or milestone event.",
+    "description": "A pink rectangular cake with '6000' candles, surrounded by robotic arms with cameras and plates of cake, set on a wooden tray.",
+    "description_view_0": "Front view showing the '6000' candles, full cake, and all four robotic arms with cameras focused on the cake.",
+    "description_view_1": "Side view highlighting the robotic arms' arrangement and a stack of plates, with the cake's length visible.",
+    "description_view_2": "Rear view showing the back of the '6000' candles and the robotic arms, with the stack of plates more prominent.",
+    "description_view_3": "Opposite side view focusing on the robotic arms and a single plate with a cake slice, with the cake's side visible.",
+    "category": "cake",
+    "height": 0.35,
+    "max_dimension": 1.0,
+    "materials": [
+        "cake (sponge)",
+        "buttercream icing",
+        "wax (candles)",
+        "wood (tray)",
+        "plastic/metal (robotic arms)",
+        "ceramic (plates)",
+        "air"
+    ],
+    "materials_composition": [
+        0.25,
+        0.15,
+        0.05,
+        0.15,
+        0.3,
+        0.08,
+        0.02
+    ],
+    "mass": 12,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "candles",
+        "cake slices",
+        "robotic arms",
+        "plates"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "pink",
+        "white",
+        "yellow",
+        "brown",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.35,
+        0.25,
+        0.05,
+        0.15,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 10,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "scene",
+    "attribute_icing_type": "buttercream",
+    "attribute_decoration_style": "themed",
+    "attribute_number_of_tiers": 1,
+    "attribute_presence_of_candles": true,
+    "attribute_display_container": "wooden tray",
+    "uid": "105bf50b62364bd98beafa60a858f898",
+    "near_synsets": {
+        "birthday_cake.n.01": 0.5047046973248739,
+        "ice-cream_cake.n.01": 0.5765098904838859,
+        "cupcake.n.01": 0.5826355372695909,
+        "petit_four.n.01": 0.583057372556301,
+        "chocolate_cake.n.01": 0.5850488896626702,
+        "patty.n.01": -1000.0,
+        "cake.n.03": -1000.0,
+        "cake.n.01": -1000.0
+    },
+    "synset": "cake.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/105bf50b62364bd98beafa60a858f898",
+        "creator_username": "phil_xg",
+        "creator_display_name": "Phil_XG",
+        "creator_profile_url": "https://sketchfab.com/phil_xg"
+    },
+    "filename": "std_105bf50b62364bd98beafa60a858f898.glb",
+    "length": 0.9840463995933533,
+    "width": 0.984046220779419
+}

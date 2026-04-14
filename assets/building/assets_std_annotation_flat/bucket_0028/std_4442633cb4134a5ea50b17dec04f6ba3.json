@@ -1,0 +1,103 @@
+{
+    "description_long": "This vehicle features a highly angular, futuristic design with a central spherical cockpit flanked by two large, sharply tapered wings that extend outward and downward. The wings are ribbed with a series of horizontal segments, giving them a reinforced, armored appearance. The cockpit is detailed with mechanical panels and what appear to be control or access ports on each side, while the front and rear are smooth and rounded. The tips of the wings are adorned with blue and red elements, possibly representing weaponry or thrusters. The overall color scheme is dominated by dark gray and black, with subtle accents of blue, red, and white. The structure appears to be constructed from heavy, metallic materials, suggesting durability and combat readiness.",
+    "description": "A dark, angular combat vehicle with a spherical central cockpit and two large, ribbed wings tipped with blue and red details. Its design is futuristic and heavily armored, with mechanical panels and reinforced surfaces.",
+    "description_view_0": "Side view showing the elongated, ribbed wing structure and detailed mechanical panels on the cockpit's side.",
+    "description_view_1": "Front view highlighting the spherical cockpit and the symmetrical, downward-angled wings with colored tips.",
+    "description_view_2": "Opposite side view, mirroring the ribbed wing and mechanical panel details seen in view 0.",
+    "description_view_3": "Rear view displaying the rounded back of the cockpit and the converging wings, with less visible detail on the panels.",
+    "category": "combat tactical  vehicle",
+    "height": 4.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 35000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit hatch",
+        "control panel",
+        "weapon mounts"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "blue",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.65,
+        0.25,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Two visible weapon mounts, one at the tip of each wing, featuring elongated barrel-like structures.",
+    "attribute_armor_plating": "Full body coverage with thick, ribbed armor plating on the wings and reinforced panels on the cockpit.",
+    "attribute_camouflage_pattern": "None visible; vehicle is finished in solid dark colors with minor colored accents.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "4442633cb4134a5ea50b17dec04f6ba3",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.5236302938886926,
+        "reconnaissance_vehicle.n.01": 0.5377875728034343,
+        "tank.n.01": 0.5408940331440424,
+        "armored_car.n.02": 0.5436889156911152,
+        "assault_gun.n.02": 0.5610289968093686,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4442633cb4134a5ea50b17dec04f6ba3",
+        "creator_username": "madexc",
+        "creator_display_name": "madexc",
+        "creator_profile_url": "https://sketchfab.com/madexc"
+    },
+    "filename": "std_4442633cb4134a5ea50b17dec04f6ba3.glb",
+    "length": 7.00000262260437,
+    "width": 5.22727632522583
+}

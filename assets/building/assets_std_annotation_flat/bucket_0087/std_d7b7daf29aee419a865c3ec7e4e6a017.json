@@ -1,0 +1,91 @@
+{
+    "description_long": "This object is a pedestrian crosswalk, typically found on urban streets, featuring a series of wide, parallel white stripes set against a darker road surface. The stripes are evenly spaced and extend across the width of the road, providing a clear, high-contrast path for pedestrians to cross safely. The surface appears flat and hard, consistent with asphalt or concrete, and the markings are likely painted with durable road paint. The crosswalk is designed to be highly visible to both drivers and pedestrians, enhancing safety at intersections or mid-block crossings. There are no visible curb ramps, signage, or traffic signals included in the object itself. The overall appearance is utilitarian, focusing on function and visibility.",
+    "description": "A flat, wide pedestrian crosswalk with bold, parallel white stripes on a dark road surface, designed for safe street crossing. The markings are highly visible and evenly spaced.",
+    "description_view_0": "The crosswalk is seen from a low angle, emphasizing the length and alignment of the white stripes receding into the distance.",
+    "description_view_1": "A top-down perspective shows the full width and even spacing of the stripes, highlighting the crosswalk's rectangular layout.",
+    "description_view_2": "Viewed from the opposite end, the stripes again recede into the distance, mirroring the first view but from the other side.",
+    "description_view_3": "Another top-down angle, similar to view 1, but from the opposite direction, showing the same even distribution of stripes.",
+    "category": "pedestrian crosswalk",
+    "height": 0.02,
+    "max_dimension": 6.0,
+    "materials": [
+        "asphalt",
+        "road paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.04,
+        0.01
+    ],
+    "mass": 1500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "crossable",
+        "visible"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "bicycle",
+        "car"
+    ],
+    "colors": [
+        "white",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.25,
+        0.75
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.0,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_zebra_pattern": true,
+    "attribute_road_markings": [
+        "zebra stripes"
+    ],
+    "attribute_pedestrian_signage": [],
+    "attribute_curb_ramps": false,
+    "attribute_traffic_signals": [],
+    "uid": "d7b7daf29aee419a865c3ec7e4e6a017",
+    "near_synsets": {
+        "pedestrian_crossing.n.01": 0.4395135005900817,
+        "school_crossing.n.01": 0.5201571165722408,
+        "white_line.n.01": 0.5235038884924968,
+        "crossing.n.05": 0.531313642768441,
+        "sidewalk.n.01": 0.5366066190116077
+    },
+    "synset": "pedestrian_crossing.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d7b7daf29aee419a865c3ec7e4e6a017",
+        "creator_username": "nigromancer",
+        "creator_display_name": "nigromancer",
+        "creator_profile_url": "https://sketchfab.com/nigromancer"
+    },
+    "filename": "std_d7b7daf29aee419a865c3ec7e4e6a017.glb",
+    "length": 304348.5,
+    "width": 304348.4375
+}

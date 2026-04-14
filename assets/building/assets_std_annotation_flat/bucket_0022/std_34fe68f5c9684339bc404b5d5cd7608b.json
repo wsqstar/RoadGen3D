@@ -1,0 +1,98 @@
+{
+    "description_long": "This shelter features a robust, rectangular structure with a wide, open passage running through its center, allowing for easy traversal. The exterior is clad in a combination of light gray concrete-like panels and darker, ribbed metal or composite sections on the roof and sides, giving it a modern, utilitarian appearance. The roof is flat and slightly sloped at the edges, constructed from dark, ribbed panels that suggest durability and weather resistance. The side walls are thick and solid, with minimal detailing except for a small, rectangular access panel on one side. The central opening is large enough for people or small vehicles to pass through, making it suitable for use as a public shelter, underpass, or covered walkway. The overall design is functional, with a focus on providing protection from the elements while maintaining open access.",
+    "description": "A modern, rectangular shelter with a wide central passage, flat ribbed roof, and solid concrete-like walls. Designed for durability and open access in urban environments.",
+    "description_view_0": "Front view showing the wide central opening, solid side walls, and a small access panel on the right.",
+    "description_view_1": "Side view highlighting the ribbed, dark roof and side panels, with no visible openings.",
+    "description_view_2": "Rear view mirroring the front, with the central passage and access panel on the left.",
+    "description_view_3": "Opposite side view showing the ribbed roof and side panels, similar to view 1.",
+    "category": "shelter",
+    "height": 2.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "concrete",
+        "metal",
+        "composite",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "shelter",
+        "supportive",
+        "weather_protection"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "access panel"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "bicycle",
+        "motorcycle"
+    ],
+    "colors": [
+        "light gray",
+        "dark gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "flat ribbed metal and composite slab",
+    "attribute_entryway_design": "wide open passage with squared corners and no doors",
+    "attribute_support_structure": "reinforced concrete side walls with integrated roof panels",
+    "attribute_signage": "none",
+    "attribute_transparency": "fully opaque",
+    "uid": "34fe68f5c9684339bc404b5d5cd7608b",
+    "near_synsets": {
+        "shelter.n.01": 0.48327840321355664,
+        "shelter.n.02": 0.49739842201513845,
+        "shelter.n.05": 0.5296237211441575,
+        "shed.n.01": 0.5404114198167851,
+        "house.n.12": 0.54158483083031,
+        "protection.n.04": -1000.0,
+        "tax_shelter.n.01": -1000.0
+    },
+    "synset": "tax_shelter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/34fe68f5c9684339bc404b5d5cd7608b",
+        "creator_username": "Psychopomp-Games",
+        "creator_display_name": "PSYCHOPOMP",
+        "creator_profile_url": "https://sketchfab.com/Psychopomp-Games"
+    },
+    "filename": "std_34fe68f5c9684339bc404b5d5cd7608b.glb",
+    "length": 2.487704038619995,
+    "width": 3.851846933364868
+}

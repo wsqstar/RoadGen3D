@@ -1,0 +1,97 @@
+{
+    "description_long": "This structure is a tall, lattice-framed tower constructed primarily from green-painted metal, featuring a series of horizontal crossarms at multiple levels. The central shaft is reinforced by diagonal bracing and is anchored to the ground by four taut guy wires extending outward from the upper section. The midsection is equipped with several stacked insulator assemblies, which are mounted on the crossarms and designed to support high-voltage electrical conductors. The uppermost section is a narrow, vertical extension, likely for additional electrical clearance or mounting of further equipment. The overall design is robust and industrial, suitable for supporting and distributing electrical power in urban environments.",
+    "description": "A tall, green metal lattice tower with multiple crossarms, insulator stacks, and guy wires for electrical power distribution.",
+    "description_view_0": "Front view showing the symmetrical lattice frame, central shaft, and all four guy wires extending outward.",
+    "description_view_1": "Nearly identical to view 0, with a slight rotation revealing the depth of the crossarms and insulator stacks.",
+    "description_view_2": "Similar to previous views, maintaining a clear view of the crossarms, insulator stacks, and guy wires.",
+    "description_view_3": "Another frontal perspective, highlighting the vertical alignment and structural symmetry of the tower.",
+    "category": "transformer tower",
+    "height": 18.0,
+    "max_dimension": 22.0,
+    "materials": [
+        "steel",
+        "ceramic",
+        "composite",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "supportable",
+        "connectable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "insulator stack",
+        "crossarm",
+        "guy wire anchor"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_insulator_stacks": 6,
+    "attribute_arrangement_of_crossarms": "There are three levels of horizontal crossarms, each level supporting two parallel arms extending outward from the central shaft, forming a symmetrical, multi-tiered configuration.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "insulator"
+    ],
+    "attribute_configuration_of_attached_power_lines": "Power lines are attached in a parallel, multi-circuit configuration, with three-phase conductors likely routed along each crossarm level and spaced evenly for electrical clearance.",
+    "uid": "9b1124ff818442ffaf4ae82540ba3127",
+    "near_synsets": {
+        "pylon.n.02": 0.5043813728572402,
+        "power_system.n.01": 0.5345765825206391,
+        "substation.n.01": 0.5452657755075418,
+        "transformer.n.01": 0.5482095916981284,
+        "telephone_pole.n.01": 0.5485767207531831,
+        "tugboat.n.01": -1000.0,
+        "column.n.04": -1000.0,
+        "tower.n.01": -1000.0
+    },
+    "synset": "pylon.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9b1124ff818442ffaf4ae82540ba3127",
+        "creator_username": "mohamed.amir94812",
+        "creator_display_name": "mohamed.amir94812",
+        "creator_profile_url": "https://sketchfab.com/mohamed.amir94812"
+    },
+    "filename": "std_9b1124ff818442ffaf4ae82540ba3127.glb",
+    "length": 11.351132869720459,
+    "width": 11.465339660644531
+}

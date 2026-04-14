@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a modern quadcopter drone with a sleek, angular body finished in a matte tan color. It features four extended arms, each ending in a dark blue rotor with a distinctive polygonal shape. The central body is compact and slightly domed, likely housing the drone's electronics and battery. The drone is supported by four fixed landing legs, providing stability when at rest. The rotors are positioned symmetrically in an 'X' configuration, optimizing lift and maneuverability. There are no visible cameras or propeller guards, giving the drone a streamlined and utilitarian appearance suitable for urban environments.",
+    "description": "A tan, angular quadcopter drone with four blue polygonal rotors and fixed landing legs, designed for urban use. The body is compact and streamlined, lacking visible cameras or propeller guards.",
+    "description_view_0": "Front view showing the angular tan body, four blue rotors in an 'X' layout, and all four landing legs clearly visible.",
+    "description_view_1": "Angled view highlighting the drone's left side, with the arms and rotors foreshortened and the landing legs partially obscured.",
+    "description_view_2": "Rear view mirroring the front, displaying the symmetrical rotor arrangement and the back of the central body.",
+    "description_view_3": "Angled view from the opposite side, similar to view 1 but showing the right side of the drone.",
+    "category": "drone",
+    "height": 0.25,
+    "max_dimension": 0.7,
+    "materials": [
+        "plastic",
+        "carbon fiber",
+        "metal",
+        "air",
+        "electronic components"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "mass": 2.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 22,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotor",
+        "landing leg",
+        "power button",
+        "battery compartment"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "dark blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 7000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 4,
+    "attribute_rotor_configuration": "quadcopter X",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": false,
+    "attribute_propeller_guard_presence": false,
+    "uid": "02af566217c243f0bbed63a4e47cf7ce",
+    "near_synsets": {
+        "drone.n.04": 0.5114529571143649,
+        "single-rotor_helicopter.n.01": 0.5410212460983774,
+        "rotor.n.03": 0.5638160907410698,
+        "helicopter.n.01": 0.5646975583873557,
+        "orthopter.n.01": 0.5668939969714821,
+        "monotone.n.01": -1000.0,
+        "drone.n.01": -1000.0,
+        "drone.n.05": -1000.0,
+        "dawdler.n.01": -1000.0
+    },
+    "synset": "drone.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/02af566217c243f0bbed63a4e47cf7ce",
+        "creator_username": "Matheus.Filipe",
+        "creator_display_name": "Matheus.Filipe",
+        "creator_profile_url": "https://sketchfab.com/Matheus.Filipe"
+    },
+    "filename": "std_02af566217c243f0bbed63a4e47cf7ce.glb",
+    "length": 0.4989434778690338,
+    "width": 0.7351265549659729
+}

@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a large, modern semi-truck with a blue cab and a long, enclosed silver cargo trailer. The cab features aerodynamic contours, a prominent front grille, and side mirrors extending outward for visibility. The trailer is rectangular, ribbed along the sides, and supported by three axles at the rear, while the cab itself has two axles. The wheels are black with metallic hubs, and the truck's undercarriage and exhaust system are partially visible. The rear of the trailer has double doors with visible locking mechanisms and red tail lights. The overall design suggests it is built for long-haul freight transport in urban and highway environments.",
+    "description": "A blue semi-truck with a streamlined cab and a long, silver box trailer, designed for hauling cargo. The truck features multiple axles, ribbed trailer sides, and detailed rear doors.",
+    "description_view_0": "Front view showing the blue cab's grille, windshield, and side mirrors, with the trailer directly behind.",
+    "description_view_1": "Side view highlighting the full length of the truck, blue cab, silver ribbed trailer, and all visible wheels and axles.",
+    "description_view_2": "Rear view displaying the trailer's double doors, locking bars, and red tail lights.",
+    "description_view_3": "Opposite side view of the truck, similar to view 1, showing the cab and trailer from the other side.",
+    "category": "truck",
+    "height": 4.0,
+    "max_dimension": 16.0,
+    "materials": [
+        "steel",
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 16000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "mirror",
+        "handle",
+        "trailer door",
+        "step"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.18,
+        0.65,
+        0.1,
+        0.07
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "day cab",
+    "attribute_cargo_bed_type": "box",
+    "attribute_wheelbase": 7.0,
+    "attribute_number_of_axles": 5,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "65d325c2fc9443d88c61dc01976b8291",
+    "near_synsets": {
+        "trailer_truck.n.01": 0.4755629520859924,
+        "trailer.n.03": 0.5037184987495976,
+        "truck.n.01": 0.509304575405554,
+        "tandem_trailer.n.01": 0.511321367264839,
+        "van.n.05": 0.5145697755548221,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/65d325c2fc9443d88c61dc01976b8291",
+        "creator_username": "paulauskaservinas2018",
+        "creator_display_name": "Ervinas",
+        "creator_profile_url": "https://sketchfab.com/paulauskaservinas2018"
+    },
+    "filename": "std_65d325c2fc9443d88c61dc01976b8291.glb",
+    "length": 13.783269882202148,
+    "width": 2.7903910875320435
+}

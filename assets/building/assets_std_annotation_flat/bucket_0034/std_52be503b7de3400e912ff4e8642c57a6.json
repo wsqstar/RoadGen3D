@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a large, rectangular warehouse building with a flat roof and a predominantly white and light gray exterior. The facade features a regular grid of small, evenly spaced windows along the upper portion of the walls, providing natural light to the interior. The structure includes a main entry area, several smaller rooms or offices along one side, and a large open storage or work area occupying most of the interior. A loading dock with a ramp and a small vehicle is visible, indicating logistical functionality. The roof is flat and unadorned, with no visible skylights or rooftop equipment, emphasizing a utilitarian design. The overall appearance is clean, modern, and purpose-built for industrial or storage use.",
+    "description": "A large, flat-roofed warehouse with a white and gray exterior, grid-like windows, and a visible loading dock. The structure is modern and utilitarian, designed for storage and logistics.",
+    "description_view_0": "This view shows the main facade with a grid of windows, the main entry area, and a small vehicle near the loading dock.",
+    "description_view_1": "This angle highlights the open interior space, the loading dock ramp, and the arrangement of smaller rooms along one side.",
+    "description_view_2": "This view emphasizes the side with multiple smaller rooms or offices and the continuation of the window grid pattern.",
+    "description_view_3": "This perspective shows the rear and side of the building, with the loading dock and vehicle visible, and the flat expanse of the roof.",
+    "category": "warehouse",
+    "height": 10,
+    "max_dimension": 80,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.05,
+        0.15
+    ],
+    "mass": 1800000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "loading dock",
+        "windows"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "light gray",
+        "beige"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 5,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main facade features a repetitive grid of small, rectangular windows set into a smooth, white exterior wall. Entryways and loading dock access are integrated with minimal decorative elements, emphasizing function over ornamentation.",
+    "attribute_loading_dock_presence": true,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is flat and expansive, constructed from concrete or similar material, with no visible skylights, HVAC units, or other rooftop features.",
+    "attribute_architectural_style": "modern industrial",
+    "uid": "52be503b7de3400e912ff4e8642c57a6",
+    "near_synsets": {
+        "warehouse.n.01": 0.48874635260748794,
+        "loft.n.01": 0.5186057462000419,
+        "storehouse.n.01": 0.5375406631274058,
+        "storage.n.03": 0.5568730152380332,
+        "shop_floor.n.01": 0.5658994982692012
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/52be503b7de3400e912ff4e8642c57a6",
+        "creator_username": "homedesign3d",
+        "creator_display_name": "Home Design 3D",
+        "creator_profile_url": "https://sketchfab.com/homedesign3d"
+    },
+    "filename": "std_52be503b7de3400e912ff4e8642c57a6.glb",
+    "length": 130.85363006591797,
+    "width": 131.74738311767578
+}

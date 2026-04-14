@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a large, wooden shipping crate with a light, natural wood grain finish and reinforced metal corners. The front face prominently displays the Amazon logo in black and orange, indicating its sender or contents. One side features a 'FRAGILE' label with a broken wine glass icon, warning handlers to take care. Another side bears a yellow 'CAUTION BIOHAZARD' sign, suggesting the contents may be hazardous. The final side has a yellow 'TEAM LIFT' label, warning that the package exceeds 50 pounds and requires multiple people to lift. The crate is topped with a shipping label, further emphasizing its use for transport and delivery.",
+    "description": "A large, light wood shipping crate with Amazon branding, warning labels for fragility, biohazard, and heavy lifting, and a shipping label on top.",
+    "description_view_0": "The front view shows the Amazon logo centered on the wooden crate, with a shipping label visible on the top surface.",
+    "description_view_1": "This side displays a 'FRAGILE' label with a broken glass icon, emphasizing careful handling.",
+    "description_view_2": "This view features a yellow 'CAUTION BIOHAZARD' sign, indicating hazardous contents.",
+    "description_view_3": "The final side shows a yellow 'TEAM LIFT' label, warning that the package is heavy and requires multiple people to lift.",
+    "category": "parcels",
+    "height": 1.0,
+    "max_dimension": 1.2,
+    "materials": [
+        "wood",
+        "metal",
+        "paper",
+        "ink",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 45,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "labels"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light brown",
+        "black",
+        "yellow",
+        "red",
+        "white",
+        "orange"
+    ],
+    "colors_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "",
+    "attribute_car_model": "",
+    "attribute_building_number": "",
+    "attribute_storefront_signage": "amazon",
+    "attribute_street_name": "",
+    "uid": "5a1f722ce12e4b218d73edd9a79a8d48",
+    "near_synsets": {
+        "packing_box.n.02": 0.5157665721815354,
+        "crate.n.01": 0.5407134888894709,
+        "cargo_container.n.01": 0.5631494248012698,
+        "package.n.02": 0.5648989309493856,
+        "parcel_post.n.01": 0.5661528600123217,
+        "tract.n.01": -1000.0,
+        "package.n.01": -1000.0,
+        "parcel.n.02": -1000.0
+    },
+    "synset": "packing_box.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5a1f722ce12e4b218d73edd9a79a8d48",
+        "creator_username": "jgpeacock",
+        "creator_display_name": "jgpeacock",
+        "creator_profile_url": "https://sketchfab.com/jgpeacock"
+    },
+    "filename": "std_5a1f722ce12e4b218d73edd9a79a8d48.glb",
+    "length": 1.000000238418579,
+    "width": 0.9999997615814209
+}

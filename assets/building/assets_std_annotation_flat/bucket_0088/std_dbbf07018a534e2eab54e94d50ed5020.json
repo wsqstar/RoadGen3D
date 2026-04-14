@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a rustic wooden raft constructed from multiple cylindrical logs lashed together, forming a flat, buoyant platform. The raft features a single upright mast supporting a rectangular, gray fabric sail, which is attached with visible rope rigging. At the rear, there is a simple wooden tiller or rudder mechanism for steering, and a few crossbeams reinforce the structure. The surface of the raft is uneven, with the logs and planks showing a natural, unpolished texture. The overall design is utilitarian, with no visible modern safety features or mechanical propulsion, relying solely on wind and manual navigation. The raft appears large enough to accommodate several people and some cargo, making it suitable for basic water transport or adventure scenarios.",
+    "description": "A large, rustic wooden raft with a gray sail, constructed from lashed logs and reinforced with crossbeams. It features a simple rudder and ample flat surface for passengers or cargo.",
+    "description_view_0": "Side view showing the length of the raft, the upright mast with gray sail, and the rudder at the rear.",
+    "description_view_1": "Front view highlighting the width of the raft, the central mast, and the arrangement of logs forming the deck.",
+    "description_view_2": "Opposite side view displaying the sail's profile, the rudder, and the log construction.",
+    "description_view_3": "Rear view focusing on the sail's full spread and the rounded ends of the logs forming the raft's base.",
+    "category": "raft",
+    "height": 2.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "wood",
+        "fabric",
+        "rope",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sail",
+        "mast",
+        "rudder",
+        "ropes"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_presence_of_flotation_devices": false,
+    "attribute_number_of_seats": 4,
+    "attribute_type_of_propulsion": "sail",
+    "attribute_safety_markings": [],
+    "attribute_attachment_points": 6,
+    "uid": "dbbf07018a534e2eab54e94d50ed5020",
+    "near_synsets": {
+        "raft.n.01": 0.47290770751796685,
+        "rowing_boat.n.01": 0.479333247713532,
+        "life_raft.n.01": 0.4998675396492226,
+        "balsa_raft.n.01": 0.5083653195170128,
+        "sail.n.03": 0.518795914127396,
+        "raft_foundation.n.01": -1000.0,
+        "batch.n.02": -1000.0
+    },
+    "synset": "raft_foundation.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dbbf07018a534e2eab54e94d50ed5020",
+        "creator_username": "bar0nline",
+        "creator_display_name": "Bar0nline",
+        "creator_profile_url": "https://sketchfab.com/bar0nline"
+    },
+    "filename": "std_dbbf07018a534e2eab54e94d50ed5020.glb",
+    "length": 4.392962694168091,
+    "width": 1.771881103515625
+}

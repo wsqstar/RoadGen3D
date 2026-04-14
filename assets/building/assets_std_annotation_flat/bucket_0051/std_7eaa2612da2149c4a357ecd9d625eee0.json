@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a small, rectangular printed circuit board (PCB) featuring a green solder mask and a dense array of metallic through-holes along its perimeter. The surface is populated with several black integrated circuits, resistors, and capacitors, as well as a pin header cluster at one end for connectivity. Fine traces of copper are visible, intricately connecting the various components across the board. The board is flat and thin, with no visible enclosure, exposing all electronic elements. Such a PCB is typically used as a microcontroller development board or a custom electronics interface in urban technology setups.",
+    "description": "A compact green printed circuit board with multiple electronic components and a pin header cluster, featuring exposed traces and through-holes.",
+    "description_view_0": "Side view showing the flatness of the PCB and the low profile of the mounted components.",
+    "description_view_1": "End-on view highlighting the pin header cluster and the alignment of components along the board's length.",
+    "description_view_2": "Opposite side view displaying the full array of through-holes and the distribution of surface-mounted components.",
+    "description_view_3": "End-on view from the opposite side, showing the pin header cluster and the arrangement of components from a different angle.",
+    "category": "other electronics",
+    "height": 0.01,
+    "max_dimension": 0.08,
+    "materials": [
+        "fiberglass",
+        "copper",
+        "plastic",
+        "silicon",
+        "tin",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 0.012,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0.2,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "connectable",
+        "programmable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "pin header",
+        "IC socket"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "silver",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.55,
+    "youngs_modulus": 20000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.05,
+    "asset_composition_type": "single",
+    "attribute_brand": "unknown",
+    "attribute_display_type": "none",
+    "attribute_control_interface": "none",
+    "attribute_power_source": "USB",
+    "attribute_mounting_location": "desktop",
+    "uid": "7eaa2612da2149c4a357ecd9d625eee0",
+    "near_synsets": {
+        "printed_circuit.n.01": 0.49792180708570777,
+        "circuitry.n.01": 0.5377666850246103,
+        "module.n.03": 0.5443006234262269,
+        "circuit_board.n.01": 0.5453924217176629,
+        "pc_board.n.01": 0.5539081218212683,
+        "electronics.n.01": -1000.0
+    },
+    "synset": "printed_circuit.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7eaa2612da2149c4a357ecd9d625eee0",
+        "creator_username": "abgnokia",
+        "creator_display_name": "ismadi",
+        "creator_profile_url": "https://sketchfab.com/abgnokia"
+    },
+    "filename": "std_7eaa2612da2149c4a357ecd9d625eee0.glb",
+    "length": 0.17392408102750778,
+    "width": 0.06856057047843933
+}

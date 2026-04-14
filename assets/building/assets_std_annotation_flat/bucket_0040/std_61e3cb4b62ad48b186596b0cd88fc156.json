@@ -1,0 +1,105 @@
+{
+    "description_long": "This object is a towed anti-tank artillery gun, featuring a long, slender barrel mounted on a robust carriage with two large rubber-tired wheels. The front of the gun is protected by a rectangular armored shield, which provides cover for the operator. The rear of the carriage splits into two long, angled stabilizing trails that can be spread apart for firing or closed for towing. The gun's breech and aiming mechanisms are visible behind the shield, with various levers and handles for operation. The overall construction is primarily metal, with a utilitarian, military finish and visible signs of wear. The asset is painted in a muted, olive drab color, typical of military equipment.",
+    "description": "A towed anti-tank artillery gun with a long barrel, armored shield, and two large wheels, painted in olive drab. The rear features split stabilizing trails for deployment.",
+    "description_view_0": "Front three-quarter view showing the long barrel, armored shield, and both wheels; the split trails are visible extending rearward.",
+    "description_view_1": "Side view highlighting the length of the barrel, the profile of the armored shield, and the full extension of the stabilizing trails.",
+    "description_view_2": "Rear view focusing on the split trails, breech area, and the back of the armored shield; the wheels are seen from behind.",
+    "description_view_3": "Rear-side view showing the angled trails, one wheel, and the side of the armored shield, with the barrel extending forward.",
+    "category": "combat tactical  vehicle",
+    "height": 1.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "rotatable",
+        "pullable",
+        "aimable",
+        "fireable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "barrel",
+        "breech",
+        "trails",
+        "shield",
+        "aiming handle",
+        "firing lever"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive drab",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One fixed cannon mount at the front center, integrated into the carriage behind the armored shield.",
+    "attribute_armor_plating": "Armored shield at the front only, rectangular in shape, moderate thickness, no visible sloping or modular features.",
+    "attribute_camouflage_pattern": "Solid olive drab color, no visible camouflage pattern.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "Two large rubber tires with basic tread, suitable for road and light off-road use, not reinforced or chain-wrapped.",
+    "uid": "61e3cb4b62ad48b186596b0cd88fc156",
+    "near_synsets": {
+        "tank.n.01": 0.497452901772372,
+        "tank_destroyer.n.01": 0.5033562168841176,
+        "assault_gun.n.02": 0.506697659302615,
+        "military_vehicle.n.01": 0.5070452715681727,
+        "reconnaissance_vehicle.n.01": 0.5299814963072338,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/61e3cb4b62ad48b186596b0cd88fc156",
+        "creator_username": "sergey.s.filin",
+        "creator_display_name": "Sergey Filin",
+        "creator_profile_url": "https://sketchfab.com/sergey.s.filin"
+    },
+    "filename": "std_61e3cb4b62ad48b186596b0cd88fc156.glb",
+    "length": 5.28369140625,
+    "width": 3.8209365606307983
+}

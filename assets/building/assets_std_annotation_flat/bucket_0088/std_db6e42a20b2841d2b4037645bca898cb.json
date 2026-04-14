@@ -1,0 +1,92 @@
+{
+    "description_long": "This object is a blocky, stylized shotgun with a compact, angular design reminiscent of voxel art. The main body is rectangular with a prominent, squared-off stock at the rear and a thick, boxy barrel extending forward. A large, rectangular trigger guard and pistol grip are visible beneath the main body, and a magazine protrudes downward in front of the grip, suggesting a tactical or modern design. The upper receiver features an open, rail-like structure, possibly for mounting optics or accessories. The entire object is rendered in a uniform dark color, giving it a minimalist, digital appearance with no visible textures or fine detailing.",
+    "description": "A blocky, dark-colored shotgun with a squared stock, boxy barrel, and prominent pistol grip, rendered in a minimalist, voxel-art style.",
+    "description_view_0": "Side view showing the squared stock, boxy barrel, pistol grip, and protruding magazine.",
+    "description_view_1": "Front view showing the narrow profile of the barrel and a small blue detail on the side.",
+    "description_view_2": "Opposite side view, mirroring view 0 with the same key features visible.",
+    "description_view_3": "Rear view showing the narrow stock and the overall slim profile of the shotgun.",
+    "category": "shotgun",
+    "height": 0.25,
+    "max_dimension": 0.8,
+    "materials": [
+        "plastic",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.45,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 5,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "trigger",
+        "trigger guard",
+        "pistol grip",
+        "magazine"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "blue"
+    ],
+    "colors_composition": [
+        0.98,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, no visible ribbing or venting, medium length",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "semi-automatic",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rectangular, large, blocky with no visible finger grooves or reinforcement",
+    "uid": "db6e42a20b2841d2b4037645bca898cb",
+    "near_synsets": {
+        "sawed-off_shotgun.n.01": 0.5346195266770367,
+        "shotgun.n.01": 0.5415958099487954,
+        "zip_gun.n.01": 0.5567691208342836,
+        "shotgun_shell.n.01": 0.568336773907227,
+        "cork_gun.n.01": 0.5719999180517739
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/db6e42a20b2841d2b4037645bca898cb",
+        "creator_username": "salatis",
+        "creator_display_name": "salatis",
+        "creator_profile_url": "https://sketchfab.com/salatis"
+    },
+    "filename": "std_db6e42a20b2841d2b4037645bca898cb.glb",
+    "length": 0.6120689809322357,
+    "width": 0.02586216200143099
+}

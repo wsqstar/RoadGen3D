@@ -1,0 +1,103 @@
+{
+    "description_long": "This humanoid robot features a sleek, metallic body with a futuristic design, primarily composed of smooth silver and teal panels. Its head is rounded with a prominent visor-like faceplate, and it has glowing teal accents on the chest, joints, and feet, suggesting advanced technology. The arms and legs are segmented with visible joints, allowing for a wide range of motion, and the hands are shaped with articulated fingers. The robot's torso is streamlined, with subtle panel lines and a central illuminated circle on the chest. The feet are broad and stable, with additional teal lighting elements, and the back of the head includes a small antenna-like protrusion. Overall, the robot's design is both functional and visually striking, suitable for urban environments.",
+    "description": "A sleek, silver and teal humanoid robot with glowing accents, articulated limbs, and a futuristic, streamlined design.",
+    "description_view_0": "Front view shows the robot's visor-like faceplate, glowing chest circle, and articulated hands and feet.",
+    "description_view_1": "Left side view highlights the rounded helmet, segmented arm and leg joints, and the antenna on the back of the head.",
+    "description_view_2": "Rear view reveals the smooth back panels, teal lighting on the legs, and the back of the helmet with antenna.",
+    "description_view_3": "Right side view mirrors the left, showing the same articulated limbs and helmet profile.",
+    "category": "humanoid robot",
+    "height": 1.7,
+    "max_dimension": 0.6,
+    "materials": [
+        "aluminum alloy",
+        "polycarbonate",
+        "silicone",
+        "glass",
+        "air",
+        "copper"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.08,
+        0.05,
+        0.05,
+        0.02
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head",
+        "arms",
+        "hands",
+        "legs",
+        "feet",
+        "chest panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "silver",
+        "teal",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "sleek",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.8,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms relaxed at the sides, legs straight, and head facing forward.",
+    "attribute_clothing_style": "No clothing; the robot is covered in integrated metallic and polycarbonate panels with decorative glowing accents.",
+    "attribute_facial_features": "The face consists of a smooth, visor-like plate with two glowing teal eye shapes and no visible mouth or nose, giving it a neutral, non-expressive appearance.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints at the shoulders, elbows, wrists, hips, knees, and ankles; hands have articulated fingers, suggesting a high degree of flexibility.",
+    "attribute_presence_of_sensors": "Visible sensors include two eye-like cameras or optical sensors on the faceplate and a possible antenna on the back of the head.",
+    "uid": "dcd0b64451b94f058fa53b843addc103",
+    "near_synsets": {
+        "android.n.01": 0.5485319409043667,
+        "cyborg.n.01": 0.5604977742893554,
+        "robotics_equipment.n.01": 0.569968792546428,
+        "automaton.n.02": 0.5725371248839446,
+        "robotics.n.01": 0.5871268355584315
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/dcd0b64451b94f058fa53b843addc103",
+        "creator_username": "Sebastian.Barrios",
+        "creator_display_name": "Zeusrider",
+        "creator_profile_url": "https://sketchfab.com/Sebastian.Barrios"
+    },
+    "filename": "std_dcd0b64451b94f058fa53b843addc103.glb",
+    "length": 0.3859170228242874,
+    "width": 0.6791510581970215
+}

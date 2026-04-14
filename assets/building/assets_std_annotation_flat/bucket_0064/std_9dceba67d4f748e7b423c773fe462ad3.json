@@ -1,0 +1,99 @@
+{
+    "description_long": "A large stack of cardboard boxes is securely arranged on a standard wooden EPAL pallet, forming a rectangular block. The boxes are uniform in size and color, with visible tape sealing the tops and barcodes or shipping labels on some sides. The cardboard surfaces are matte and slightly textured, with printed handling symbols and recycling icons. The pallet beneath is made of light-colored wood, featuring the EPAL logo and standard pallet markings. The overall structure is industrial and utilitarian, commonly seen in warehouses, loading docks, or on delivery trucks. This object is designed for efficient transport and storage of goods in urban environments.",
+    "description": "A stack of sealed cardboard boxes on a wooden EPAL pallet, featuring shipping labels and handling symbols. The arrangement is industrial and suited for transport or storage.",
+    "description_view_0": "Front view showing three rows of boxes with printed symbols and the EPAL pallet logo clearly visible.",
+    "description_view_1": "Side view displaying the taped seams of the boxes and barcodes on the lower boxes, with the pallet's side slats visible.",
+    "description_view_2": "Rear view nearly identical to the front, with handling symbols and pallet markings visible.",
+    "description_view_3": "Opposite side view showing taped seams and barcodes, similar to view 1 but with different barcode placements.",
+    "category": "parcels",
+    "height": 1.2,
+    "max_dimension": 1.2,
+    "materials": [
+        "cardboard",
+        "wood",
+        "adhesive tape",
+        "ink",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "box flaps",
+        "pallet slats",
+        "tape seams"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "light brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 4000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_architectural_style": "",
+    "attribute_car_model": "",
+    "attribute_building_number": "",
+    "attribute_storefront_signage": "",
+    "attribute_street_name": "",
+    "uid": "9dceba67d4f748e7b423c773fe462ad3",
+    "near_synsets": {
+        "pallet.n.02": 0.5068669780361524,
+        "packing_box.n.02": 0.5181397501972042,
+        "parcel_post.n.01": 0.5398568358217826,
+        "packaging.n.03": 0.5418801992504177,
+        "packing.n.02": 0.5461612404761153,
+        "package.n.01": -1000.0,
+        "package.n.02": -1000.0,
+        "tract.n.01": -1000.0,
+        "parcel.n.02": -1000.0
+    },
+    "synset": "package.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9dceba67d4f748e7b423c773fe462ad3",
+        "creator_username": "ez_szf",
+        "creator_display_name": "ez_szf",
+        "creator_profile_url": "https://sketchfab.com/ez_szf"
+    },
+    "filename": "std_9dceba67d4f748e7b423c773fe462ad3.glb",
+    "length": 0.958526611328125,
+    "width": 1.4377884268760681
+}

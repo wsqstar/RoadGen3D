@@ -1,0 +1,92 @@
+{
+    "description_long": "This skyscraper features a tall, rectangular form with a series of staggered setbacks, creating a tiered silhouette reminiscent of modern high-rise architecture. The facade is composed of a dense grid of small, dark windows interspersed with lighter panels, giving it a pixelated, checkerboard appearance. The building's exterior is predominantly dark, with subtle variations in color and reflectivity that suggest a combination of glass and metal cladding. The structure rises vertically with minimal ornamentation, emphasizing clean lines and geometric precision. The overall massing is monolithic, with a strong vertical emphasis and a few protruding sections that break up the otherwise uniform profile. There are no visible entrances, signage, or decorative elements, reinforcing its sleek, utilitarian aesthetic.",
+    "description": "A tall, tiered skyscraper with a dark, pixelated facade of small windows and clean, geometric lines. The exterior is sleek and modern, dominated by glass and metal panels.",
+    "description_view_0": "The front view shows the main facade with a prominent central setback and a dense grid of small, dark windows.",
+    "description_view_1": "This side view highlights the stepped profile and reveals additional setbacks, with the window pattern continuing around the corner.",
+    "description_view_2": "The rear view displays a similar grid of windows and a slightly different arrangement of setbacks, maintaining the building's vertical emphasis.",
+    "description_view_3": "This angle shows the opposite side, with the tiered structure and pixelated window pattern clearly visible.",
+    "category": "skyscraper",
+    "height": 180.0,
+    "max_dimension": 45.0,
+    "materials": [
+        "glass",
+        "steel",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.2,
+        0.05
+    ],
+    "mass": 1200000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "elevator"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray",
+        "light gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Modernist",
+    "attribute_number_of_floors": 45,
+    "attribute_facade_design": "The facade is clad in dark glass and metal panels, arranged in a tight grid with subtle color variations. The exterior is sleek and unornamented, emphasizing verticality and geometric order.",
+    "attribute_window_pattern": "checkerboard",
+    "attribute_building_signage": "none",
+    "uid": "113492eac0154b14a6042cb8514c77b4",
+    "near_synsets": {
+        "skyscraper.n.01": 0.4410137441319866,
+        "high-rise.n.01": 0.5118528002152044,
+        "cityscape.n.02": 0.5377824362937897,
+        "clock_tower.n.01": 0.5400190648175816,
+        "tower.n.01": 0.5468433362482563
+    },
+    "synset": "skyscraper.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/113492eac0154b14a6042cb8514c77b4",
+        "creator_username": "mozillareality",
+        "creator_display_name": "MozillaHubs",
+        "creator_profile_url": "https://sketchfab.com/mozillareality"
+    },
+    "filename": "std_113492eac0154b14a6042cb8514c77b4.glb",
+    "length": 53.99999237060547,
+    "width": 53.9999885559082
+}

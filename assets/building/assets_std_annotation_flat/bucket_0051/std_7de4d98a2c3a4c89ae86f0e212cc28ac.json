@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a classic steam locomotive train with three distinct sections: a black engine at the front, a coal tender in the middle, and a flatbed freight car carrying barrels at the rear. The locomotive features a prominent smokestack, a cowcatcher, and large spoked wheels, all characteristic of 19th-century steam engines. The tender is boxy and appears to be used for carrying coal or water, with a slightly domed top. The freight car at the end is open and loaded with several cylindrical barrels, suggesting it is used for transporting goods. The train is primarily black with some dark green and brown accents, and there are no visible doors or windows on any of the cars. The overall design is utilitarian, with visible rivets and metalwork, evoking the industrial era.",
+    "description": "A vintage black steam locomotive with a coal tender and a flatbed freight car carrying barrels, featuring large spoked wheels and industrial detailing.",
+    "description_view_0": "Side view showing the full length of the train, including the locomotive, coal tender, and barrel-laden freight car.",
+    "description_view_1": "Front view highlighting the locomotive's smokestack, cowcatcher, and the linear arrangement of the cars behind it.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the train's three connected sections and their details.",
+    "description_view_3": "Rear view focusing on the flatbed freight car and barrels, with the locomotive's back and tender visible in the distance.",
+    "category": "train",
+    "height": 4.5,
+    "max_dimension": 20.0,
+    "materials": [
+        "steel",
+        "iron",
+        "wood",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 70000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "coupler",
+        "barrel",
+        "smokestack"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark green",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "group",
+    "attribute_train_type": "steam locomotive freight train",
+    "attribute_number_of_carriages": 3,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "no visible doors",
+    "attribute_window_arrangement": "no visible windows",
+    "uid": "7de4d98a2c3a4c89ae86f0e212cc28ac",
+    "near_synsets": {
+        "steam_locomotive.n.01": 0.4735901402937837,
+        "train.n.01": 0.47976498404587886,
+        "tender.n.04": 0.4817726365413441,
+        "traction_engine.n.01": 0.5009170864612407,
+        "locomotive.n.01": 0.5020673565928084,
+        "train.n.05": -1000.0,
+        "gearing.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "caravan.n.01": -1000.0,
+        "train.n.04": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7de4d98a2c3a4c89ae86f0e212cc28ac",
+        "creator_username": "ta.holovan",
+        "creator_display_name": "ta.holovan",
+        "creator_profile_url": "https://sketchfab.com/ta.holovan"
+    },
+    "filename": "std_7de4d98a2c3a4c89ae86f0e212cc28ac.glb",
+    "length": 22.769164085388184,
+    "width": 2.553654909133911
+}

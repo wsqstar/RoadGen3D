@@ -1,0 +1,90 @@
+{
+    "description_long": "This object is a large, cylindrical bomb with a heavily rusted, weathered metal surface, giving it an aged and industrial appearance. The main body is a thick metal cylinder, capped at both ends, with visible weld lines and surface corrosion. Three prominent, angular tail fins are attached near one end, providing aerodynamic stability, and are also constructed from rusted metal. Small metal loops and brackets are affixed to the body, likely for handling or mounting, and there are no visible markings or warning labels. The front end is solid and rounded, while the rear end is partially open, possibly for a fuse or detonation mechanism. The overall construction suggests a heavy, robust device designed for significant destructive capability.",
+    "description": "A large, rusted cylindrical bomb with three angular tail fins and a weathered metal surface, featuring small brackets and an open rear section.",
+    "description_view_0": "The bomb is seen head-on, showing the solid, rounded front cap and two of the three tail fins extending outward.",
+    "description_view_1": "A side view reveals the full cylindrical body, all three tail fins, and small metal loops and brackets along the surface.",
+    "description_view_2": "The rear view highlights the open end of the cylinder, with two tail fins clearly visible and the interior partially exposed.",
+    "description_view_3": "Another side view, similar to view 1 but from the opposite side, showing the cylindrical body, tail fins, and additional surface details.",
+    "category": "bomb",
+    "height": 1.2,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "iron",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3430,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "tail fins",
+        "brackets",
+        "open rear section"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "rust brown",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The open rear section suggests a possible location for a mechanical or fuse-based detonation mechanism, but no explicit triggering device is visible.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "f23f5e4956cc4779ab5fc9b204b25dee",
+    "near_synsets": {
+        "bomb.n.01": 0.5202054872043035,
+        "pipe_bomb.n.01": 0.5327345636226908,
+        "dirty_bomb.n.01": 0.5340819321590901,
+        "cluster_bomb.n.01": 0.5350079640182399,
+        "buzz_bomb.n.01": 0.5371094873104328,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f23f5e4956cc4779ab5fc9b204b25dee",
+        "creator_username": "JeckZeRippa",
+        "creator_display_name": "JeckZeRippa",
+        "creator_profile_url": "https://sketchfab.com/JeckZeRippa"
+    },
+    "filename": "std_f23f5e4956cc4779ab5fc9b204b25dee.glb",
+    "length": 1.9355573654174805,
+    "width": 1.3215696811676025
+}

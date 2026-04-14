@@ -1,0 +1,106 @@
+{
+    "description_long": "This humanoid robot features a robust, armored exoskeleton with a predominantly white and gray color scheme accented by blue and yellow highlights. Its body is covered in segmented plating, with visible mechanical joints at the shoulders, elbows, hips, knees, and ankles, suggesting a high degree of articulation. The head is helmet-like, with a dark, opaque visor and several small, colored markings and panels, possibly for sensors or identification. The chest and back are equipped with various ports, vents, and what appear to be thruster or exhaust units, indicating advanced mobility or cooling systems. The arms and legs are bulky and reinforced, with detailed mechanical hands and feet designed for dexterous manipulation and stable movement. The overall design is utilitarian and futuristic, suitable for urban environments requiring strength, resilience, and human-like interaction.",
+    "description": "A heavily armored, white and gray humanoid robot with a helmeted head, mechanical limbs, and detailed plating, designed for strength and dexterity in urban settings.",
+    "description_view_0": "Front view shows the robot's helmeted head, chest panels with colored markings, and articulated arms and legs with open hands.",
+    "description_view_1": "Left side view highlights the robot's profile, showing the thickness of the limbs, side ports, and the layered armor on the arms and legs.",
+    "description_view_2": "Rear view reveals the back-mounted thruster or exhaust units, reinforced plating, and the mechanical structure of the legs and arms.",
+    "description_view_3": "Right side view mirrors the left, displaying the same robust limb construction and side details, with visible joint articulation.",
+    "category": "humanoid robot",
+    "height": 1.85,
+    "max_dimension": 1.0,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "rubber",
+        "air",
+        "composite"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 140,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 1372,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hands",
+        "fingers",
+        "visor",
+        "chest panel",
+        "arm joints",
+        "leg joints",
+        "back ports"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "black",
+        "blue",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "sleek",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms slightly bent and extended forward, legs straight and feet flat on the ground, head facing forward.",
+    "attribute_clothing_style": "No separate clothing; the robot is covered in integrated, segmented armor panels with colored markings and technical decals.",
+    "attribute_facial_features": "The face consists of a dark, opaque visor with no visible eyes, mouth, or nose; the helmet is smooth and angular with technical markings and possible sensor ports.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints at shoulders, elbows, wrists, hips, knees, and ankles; hands have articulated fingers, suggesting dexterous movement.",
+    "attribute_presence_of_sensors": "Visible sensors include a large visor on the head (likely a camera or visual sensor array), and possible small sensors or ports on the chest and sides of the head.",
+    "uid": "736cdfb659d54d2a8502dd8ec2f2b8cb",
+    "near_synsets": {
+        "android.n.01": 0.5131677407707501,
+        "cyborg.n.01": 0.5141007707678766,
+        "robotics_equipment.n.01": 0.5330042725821855,
+        "automaton.n.02": 0.5365810178096636,
+        "robotics.n.01": 0.5543874518827738
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/736cdfb659d54d2a8502dd8ec2f2b8cb",
+        "creator_username": "Boomstix",
+        "creator_display_name": "Boomstix",
+        "creator_profile_url": "https://sketchfab.com/Boomstix"
+    },
+    "filename": "std_736cdfb659d54d2a8502dd8ec2f2b8cb.glb",
+    "length": 0.8259010314941406,
+    "width": 0.9773083925247192
+}

@@ -1,0 +1,103 @@
+{
+    "description_long": "This stone gatehouse features a robust, rectangular structure with thick, weathered masonry walls and a crenellated parapet along the roofline, evoking a fortified medieval style. Four prominent corner turrets rise above the main roof, each capped with a pyramidal stone roof, and the upper walls display signs of moss and age. The front facade is dominated by a large, arched entryway with three tall, narrow windows, each topped with a decorative arch and framed by stonework. The rear side is more austere, with a single circular feature resembling a sealed window or vent, and the side walls are largely unadorned except for narrow vertical slits. The roof is flat and walkable, with regularly spaced merlons and embrasures providing defensive cover. The overall appearance suggests a structure designed for both security and visibility, likely serving as a checkpoint or fortified entrance in an urban or historical setting.",
+    "description": "A fortified stone gatehouse with crenellated parapets, four corner turrets, and an arched windowed entryway, showing weathered masonry and defensive architectural features.",
+    "description_view_0": "The front view shows a solid stone wall with subtle decorative elements and no visible entryway or windows.",
+    "description_view_1": "The rear view features a circular stone detail, possibly a vent or sealed window, set into the wall beneath the parapet.",
+    "description_view_2": "The opposite side view mirrors the front, with a plain stone wall and no significant openings or features.",
+    "description_view_3": "The main facade displays three tall arched windows with decorative stonework, indicating the primary entryway and architectural focus.",
+    "category": "gatehouse",
+    "height": 9.0,
+    "max_dimension": 12.0,
+    "materials": [
+        "stone",
+        "glass",
+        "mortar",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "defendable",
+        "viewable",
+        "shelterable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "windows",
+        "entryway",
+        "turrets"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "brown",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Medieval",
+    "attribute_roof_type": "flat with crenellations and pyramidal turret roofs",
+    "attribute_entryway_design": "Triple arched stone entryway with tall, narrow windows and decorative stone framing",
+    "attribute_window_placement": "Three tall arched windows on the main facade, narrow vertical slits on the sides, and a circular feature on the rear",
+    "attribute_security_features": [
+        "crenellated parapet",
+        "thick stone walls",
+        "corner turrets",
+        "elevated entryway"
+    ],
+    "uid": "278f6bad95074c12920dda4ae9022382",
+    "near_synsets": {
+        "gatehouse.n.01": 0.4794603179819464,
+        "portcullis.n.01": 0.4913941041643361,
+        "blockhouse.n.01": 0.5070396097350753,
+        "machicolation.n.01": 0.50795344369245,
+        "battlement.n.01": 0.5129286153425197
+    },
+    "synset": "gatehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/278f6bad95074c12920dda4ae9022382",
+        "creator_username": "nivellen",
+        "creator_display_name": "nivellen",
+        "creator_profile_url": "https://sketchfab.com/nivellen"
+    },
+    "filename": "std_278f6bad95074c12920dda4ae9022382.glb",
+    "length": 9.618783950805664,
+    "width": 8.382659912109375
+}

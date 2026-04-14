@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a compact, tracked combat vehicle with a boxy, angular turret mounted atop a sloped armored hull. The turret features a single, forward-facing cannon and is adorned with a prominent red star on each side, suggesting a military affiliation. The hull is constructed from riveted metal plates, with visible hatches, vents, and reinforced sections, indicating robust armor protection. The vehicle moves on two large, rugged tracks with detailed wheels and suspension components, designed for traversing rough terrain. The rear of the vehicle displays grilles and access panels, likely for engine ventilation and maintenance. The overall finish is a weathered, greenish metal with signs of wear and utilitarian design.",
+    "description": "A small, tracked military vehicle with a boxy turret, forward cannon, and red star insignia, finished in weathered green metal. It features heavy armor plating, rugged tracks, and detailed mechanical components.",
+    "description_view_0": "Side view showing the red star insignia on the turret, the forward-facing cannon, and the full length of the rugged tracks.",
+    "description_view_1": "Front view highlighting the angular turret, the protruding cannon barrel, and the wide, armored tracks.",
+    "description_view_2": "Opposite side view mirroring view 0, with the red star insignia and visible track details.",
+    "description_view_3": "Rear view displaying engine grilles, access panels, and the back of the turret without the red star insignia.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 3.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.02,
+        0.08,
+        0.05
+    ],
+    "mass": 9000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "track",
+        "wheel",
+        "vent"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "gray",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible cannon mounted on the front of the turret.",
+    "attribute_armor_plating": "Full body coverage with thick, riveted steel plates; turret and hull both appear heavily armored with sloped and reinforced sections.",
+    "attribute_camouflage_pattern": "Solid weathered green paint with no distinct camouflage pattern.",
+    "attribute_military_markings": "Red star insignia on both sides of the turret.",
+    "attribute_tire_type": "not applicable",
+    "uid": "29d131867f524f9984bf91e5466e0eb8",
+    "near_synsets": {
+        "tank.n.01": 0.48507695914523646,
+        "military_vehicle.n.01": 0.4863794217680343,
+        "reconnaissance_vehicle.n.01": 0.4974613672787387,
+        "weapons_carrier.n.01": 0.5159460370226866,
+        "armored_car.n.02": 0.5192411035669457,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/29d131867f524f9984bf91e5466e0eb8",
+        "creator_username": "Eleven11-",
+        "creator_display_name": "Eleven11-",
+        "creator_profile_url": "https://sketchfab.com/Eleven11-"
+    },
+    "filename": "std_29d131867f524f9984bf91e5466e0eb8.glb",
+    "length": 3.251175284385681,
+    "width": 1.8482704162597656
+}

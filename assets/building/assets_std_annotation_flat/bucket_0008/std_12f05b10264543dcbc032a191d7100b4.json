@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a tall, modern apartment building with a distinctive wavy facade and multiple balconies on each floor. The front features a symmetrical arrangement of glass windows and concrete balcony railings, creating a rhythmic pattern across the structure. The building is primarily constructed from concrete and glass, with the balconies and windows forming prominent horizontal bands. The sides of the building are flat and unadorned, emphasizing the depth and curvature of the front facade. The roofline is slightly undulating, echoing the wave motif of the balconies below. The overall appearance is sleek and contemporary, suitable for a dense urban environment.",
+    "description": "A tall, modern apartment building with wavy balconies and a glass-concrete facade, featuring a rhythmic, symmetrical design.",
+    "description_view_0": "Front view showing the wavy balconies, symmetrical glass windows, and the main architectural features.",
+    "description_view_1": "Side view revealing the building's flat, unadorned profile and the depth of the balconies.",
+    "description_view_2": "Rear or top-down view displaying a plain, flat surface with no visible windows or balconies.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the flat side and balcony depth.",
+    "category": "apartment building",
+    "height": 45.0,
+    "max_dimension": 55.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "mass": 3200000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "balcony railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 14,
+    "attribute_balcony_presence": true,
+    "attribute_window_arrangement": "The windows are arranged in a symmetrical, vertical grid pattern, with each floor featuring a consistent row of windows separated by concrete balcony railings.",
+    "attribute_entrance_type": "multiple entrances",
+    "attribute_architectural_style": "Contemporary",
+    "uid": "12f05b10264543dcbc032a191d7100b4",
+    "near_synsets": {
+        "apartment_building.n.01": 0.49752184898483437,
+        "high-rise.n.01": 0.5176528498087618,
+        "skyscraper.n.01": 0.5243369676531566,
+        "gallery.n.06": 0.5377471451896222,
+        "suite.n.02": 0.5397786839143279,
+        "building.n.04": -1000.0,
+        "construction.n.01": -1000.0,
+        "building.n.01": -1000.0,
+        "construction.n.07": -1000.0,
+        "apartment.n.01": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/12f05b10264543dcbc032a191d7100b4",
+        "creator_username": "susidko.dima",
+        "creator_display_name": "Dmytryo Susidko",
+        "creator_profile_url": "https://sketchfab.com/susidko.dima"
+    },
+    "filename": "std_12f05b10264543dcbc032a191d7100b4.glb",
+    "length": 7.937124967575073,
+    "width": 35.60325241088867
+}

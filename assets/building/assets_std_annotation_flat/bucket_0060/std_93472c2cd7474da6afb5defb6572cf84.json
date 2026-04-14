@@ -1,0 +1,104 @@
+{
+    "description_long": "This is an old, weathered sedan with a boxy, classic design, featuring a faded blue paint job heavily marred by rust and grime. The car has a two-door coupe body style, with a pronounced trunk and a black rear spoiler. The windows are dark and opaque, suggesting either heavy tinting or dirt accumulation. The wheels are simple, dark, and show signs of wear, matching the overall neglected appearance of the vehicle. The front and rear bumpers are black, and the car's body panels display significant surface corrosion and paint chipping. No visible branding or license plates are present, and the car exudes an abandoned, derelict urban vibe.",
+    "description": "A rusted, blue two-door sedan with a black spoiler and worn wheels, showing heavy weathering and no visible branding.",
+    "description_view_0": "Front view shows the boxy hood, black grille, and windshield with visible rust and faded blue paint.",
+    "description_view_1": "Left side view highlights the two-door coupe profile, black spoiler, and extensive rust patches along the body.",
+    "description_view_2": "Rear view reveals the trunk, black rear bumper, taillights, and absence of a license plate.",
+    "description_view_3": "Right side view displays the same coupe profile, with more visible rust and the black spoiler.",
+    "category": "sedan",
+    "height": 1.4,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 1300,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 6500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "trunk",
+        "hood",
+        "spoiler"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black",
+        "rust brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.55,
+        0.2,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_number_of_doors": 2,
+    "attribute_license_plate": "none",
+    "attribute_wheel_design": "Simple dark wheels with a solid center and minimal visible spoke detail, heavily worn",
+    "uid": "93472c2cd7474da6afb5defb6572cf84",
+    "near_synsets": {
+        "sedan.n.01": 0.5651192417396076,
+        "brougham.n.02": 0.5657378786431069,
+        "car_door.n.01": 0.5728962041116111,
+        "used-car.n.01": 0.5806009607645662,
+        "boneshaker.n.01": 0.5819176676142619,
+        "sedan.n.02": -1000.0
+    },
+    "synset": "sedan.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/93472c2cd7474da6afb5defb6572cf84",
+        "creator_username": "rubenn",
+        "creator_display_name": "Ruben",
+        "creator_profile_url": "https://sketchfab.com/rubenn"
+    },
+    "filename": "std_93472c2cd7474da6afb5defb6572cf84.glb",
+    "length": 4.697105646133423,
+    "width": 6.791114091873169
+}

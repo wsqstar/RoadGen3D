@@ -1,0 +1,87 @@
+{
+    "description_long": "This is a large, rectangular metal shipping container with a ribbed exterior for structural reinforcement. The container is painted a deep reddish-brown color and features double doors on one end, each reinforced with vertical metal bars for added security and rigidity. The sides and top are solid panels with evenly spaced vertical ridges, typical of intermodal freight containers used for storage or transport. The doors are equipped with locking mechanisms, though handles and latches are not clearly visible in the images. The container sits directly on the ground, with small base supports visible along the bottom edge. Its robust construction and size suggest it is designed for heavy-duty use in urban, industrial, or transportation settings.",
+    "description": "A large, reddish-brown metal shipping container with ribbed sides and double doors on one end, designed for secure storage or transport. The exterior is reinforced and solid, typical of containers found in industrial or urban environments.",
+    "description_view_0": "End view showing the double doors with vertical reinforcement bars and panel detailing.",
+    "description_view_1": "Side view displaying the long, ribbed metal panel with no visible openings or features.",
+    "description_view_2": "Opposite end view, identical to view 0, showing the double doors and reinforcement.",
+    "description_view_3": "Opposite side view, identical to view 1, with a solid ribbed metal panel.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking bar"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red-brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double swinging doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "none",
+    "attribute_handles_or_grips": "none",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "565662aef2da4cdea8b1dd19af203ce5",
+    "near_synsets": {
+        "container.n.01": 0.4151755242148546,
+        "cargo_container.n.01": 0.46383922273091843,
+        "drum.n.04": 0.5004026898894183,
+        "box.n.01": 0.5012618194724957,
+        "container_ship.n.01": 0.5198749001856238
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/565662aef2da4cdea8b1dd19af203ce5",
+        "creator_username": "Aegin",
+        "creator_display_name": "Aegin",
+        "creator_profile_url": "https://sketchfab.com/Aegin"
+    },
+    "filename": "std_565662aef2da4cdea8b1dd19af203ce5.glb",
+    "length": 6.318842887878418,
+    "width": 2.559191346168518
+}

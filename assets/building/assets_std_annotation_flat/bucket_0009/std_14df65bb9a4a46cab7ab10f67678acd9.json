@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a large, detailed ship with a streamlined hull painted in white and red, featuring a wooden deck. The superstructure includes multiple cylindrical funnels, a prominent bridge, and several deck-mounted turrets and equipment. The bow is pointed and reinforced, while the stern is rounded, both designed for efficient movement through water. The deck is equipped with lifeboats, antennas, and various fixtures, indicating a vessel built for long voyages or military use. The ship's surface is hard and smooth, with metallic and painted finishes dominating its appearance. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A large, detailed ship with a white and red hull, wooden deck, multiple funnels, turrets, and deck equipment. The vessel features a streamlined design and a prominent superstructure.",
+    "description_view_0": "Front view showing the pointed bow, forward turrets, and the alignment of the superstructure along the centerline.",
+    "description_view_1": "Starboard side view highlighting the full length of the hull, multiple funnels, lifeboats, and deck equipment.",
+    "description_view_2": "Rear view displaying the rounded stern, aft deck fixtures, and the arrangement of the superstructure from behind.",
+    "description_view_3": "Port side view similar to the starboard, showing the hull profile, superstructure, and deck details from the opposite side.",
+    "category": "ship",
+    "height": 15,
+    "max_dimension": 120,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "paint",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.03,
+        0.07,
+        0.01,
+        0.04
+    ],
+    "mass": 9000000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "turret",
+        "lifeboat",
+        "antenna",
+        "funnel",
+        "bridge"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "black",
+        "tan",
+        "gray"
+    ],
+    "colors_composition": [
+        0.45,
+        0.1,
+        0.2,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 20,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a pointed bow and rounded stern, featuring a smooth, continuous sheer line and a red-painted lower section. No bulbous bow or visible keels are present, and the hull appears robust and reinforced for open water.",
+    "attribute_superstructure_layout": "The superstructure is centrally located with multiple cylindrical funnels, a raised bridge near the bow, and several deck levels. Lifeboats and equipment are symmetrically arranged along the sides, and antennas or masts are positioned toward the front.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "turret",
+        "lifeboat",
+        "antenna",
+        "funnel"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "14df65bb9a4a46cab7ab10f67678acd9",
+    "near_synsets": {
+        "cargo_ship.n.01": 0.5001654586734003,
+        "vessel.n.02": 0.5006690135365925,
+        "ship.n.01": 0.5097005024249257,
+        "hull.n.06": 0.5146887192153452,
+        "windjammer.n.01": 0.5149492442358097
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/14df65bb9a4a46cab7ab10f67678acd9",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_14df65bb9a4a46cab7ab10f67678acd9.glb",
+    "length": 62.48787307739258,
+    "width": 14.579374313354492
+}

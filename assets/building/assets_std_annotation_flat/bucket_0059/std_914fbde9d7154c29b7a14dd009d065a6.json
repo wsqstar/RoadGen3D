@@ -1,0 +1,100 @@
+{
+    "description_long": "This lounge area consists of a rectangular room with a textured beige wall, three horizontal frosted windows, and a dark wooden door. Inside, there are six upholstered armchairs arranged in two rows facing each other, each paired with a small, dark wooden side table. The armchairs are covered in a light fabric with a subtle, repeating pattern, and the seating area is organized to encourage conversation or waiting. The floor is a light, smooth surface, possibly laminate or tile, and the overall design is clean and modern. The side tables and a partition at one end are made of dark wood, providing contrast to the otherwise light color palette. The space is enclosed on three sides, with one open side for entry and exit.",
+    "description": "A modern lounge with six patterned armchairs, dark wooden side tables, and textured beige walls, arranged in a conversational layout with frosted windows.",
+    "description_view_0": "View from the open entry shows two rows of armchairs with side tables, a partition on the left, and a door at the far end.",
+    "description_view_1": "Frontal view highlights the three frosted windows, the symmetrical arrangement of armchairs, and the central aisle.",
+    "description_view_2": "Side view focuses on the textured wall and the dark wooden door, with minimal interior detail visible.",
+    "description_view_3": "Rear view displays the long textured wall with three frosted windows, no interior elements visible.",
+    "category": "lounge",
+    "height": 2.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "fabric",
+        "wood",
+        "glass",
+        "composite panel",
+        "air"
+    ],
+    "materials_composition": [
+        0.25,
+        0.25,
+        0.1,
+        0.1,
+        0.3
+    ],
+    "mass": 900,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "placeable",
+        "restable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "armchair",
+        "side table"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "beige",
+        "white",
+        "dark brown",
+        "frosted blue"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 5000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "scene",
+    "attribute_cushion_arrangement": "Six armchairs each with a single seat and back cushion, all attached and uniformly sized, arranged in two facing rows.",
+    "attribute_backrest_design": "Straight, medium-height backrests with a slight angle, no visible tufting or segmentation, simple and modern.",
+    "attribute_armrest_presence": "Present; straight, padded, and at seat height, matching the upholstery.",
+    "attribute_leg_style": "Legs are not visible, likely concealed or integrated into the base for a low-profile look.",
+    "attribute_upholstery_pattern": "Light fabric with a subtle, repeating geometric or floral pattern, matte finish, no tufting or quilting.",
+    "uid": "914fbde9d7154c29b7a14dd009d065a6",
+    "near_synsets": {
+        "salon.n.03": 0.507454782663171,
+        "living_room.n.01": 0.5190655789065881,
+        "lounge.n.02": 0.5312703432752838,
+        "cocktail_lounge.n.01": 0.538025690269114,
+        "sofa.n.01": 0.540271936481624
+    },
+    "synset": "cocktail_lounge.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/914fbde9d7154c29b7a14dd009d065a6",
+        "creator_username": "hahaxx24",
+        "creator_display_name": "hahaxx24",
+        "creator_profile_url": "https://sketchfab.com/hahaxx24"
+    },
+    "filename": "std_914fbde9d7154c29b7a14dd009d065a6.glb",
+    "length": 2.532976269721985,
+    "width": 5.2206573486328125
+}

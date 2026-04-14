@@ -1,0 +1,104 @@
+{
+    "description_long": "This object is a large, industrial-style storage locker embedded in a brick or concrete wall, featuring a metallic roll-up door. The door is framed by a robust black metal structure, and two prominent yellow cylindrical bollards are positioned in front to protect the entrance from vehicle impact. The roll-up door has horizontal slats, suggesting it can be raised or lowered for access, and a small lock or control box is visible on the upper left side of the frame. The wall is finished with a light, textured brick or stone pattern, giving the structure a utilitarian yet sturdy appearance. The overall design is typical of storage units or loading docks found in urban or industrial environments, prioritizing security and durability.",
+    "description": "A robust, wall-embedded storage locker with a metallic roll-up door and two yellow protective bollards in front, set in a light brick wall. The design is industrial and secure, suitable for urban or facility use.",
+    "description_view_0": "Front view showing the metallic roll-up door, black frame, and two yellow bollards against a light brick wall.",
+    "description_view_1": "Side view revealing the thin profile of the wall, the depth of the door frame, and the cylindrical shape of the bollards.",
+    "description_view_2": "Rear view displaying the back of the wall and the open roll-up door, with the bollards partially visible inside the opening.",
+    "description_view_3": "Opposite side view similar to view 1, showing the door frame and bollards from the other side.",
+    "category": "storage locker",
+    "height": 2.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.05,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "roll-up door",
+        "lock/control box"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light gray",
+        "black",
+        "yellow",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 1,
+    "attribute_locking_mechanism_type": "key lock",
+    "attribute_ventilation_pattern": "none visible",
+    "attribute_handle_design": "no handle visible",
+    "attribute_placement_location": "industrial facility",
+    "uid": "573511d1d2bd446e81e7882ab2f0e7ff",
+    "near_synsets": {
+        "safe.n.01": 0.5336361158088245,
+        "vault.n.02": 0.5385242781222953,
+        "locker.n.02": 0.5526911144151058,
+        "strongroom.n.01": 0.5706119256830678,
+        "cabinet.n.03": 0.5713035536697998,
+        "storage.n.03": -1000.0,
+        "footlocker.n.01": -1000.0,
+        "memory.n.04": -1000.0,
+        "repositing.n.01": -1000.0,
+        "storage.n.04": -1000.0,
+        "storage.n.01": -1000.0,
+        "storehouse.n.01": -1000.0
+    },
+    "synset": "cabinet.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/573511d1d2bd446e81e7882ab2f0e7ff",
+        "creator_username": "hippostance",
+        "creator_display_name": "HippoStance",
+        "creator_profile_url": "https://sketchfab.com/hippostance"
+    },
+    "filename": "std_573511d1d2bd446e81e7882ab2f0e7ff.glb",
+    "length": 0.6807970106601715,
+    "width": 6.599998474121094
+}

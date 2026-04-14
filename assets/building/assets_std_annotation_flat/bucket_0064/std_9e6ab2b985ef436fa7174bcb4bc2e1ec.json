@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a large, multi-barreled firearm with a robust, industrial design, featuring a rotating barrel cluster at the front. The body is primarily metallic with a matte, olive-brown finish and includes a prominent cylindrical housing for the barrels. A large, ergonomic handle is mounted on top, and a secondary grip is positioned at the rear, both designed for two-handed operation. The trigger is housed within a rectangular guard, and a gear-like adjustment wheel is visible on the side. The overall construction suggests durability and heavy use, with visible bolts and reinforced joints. The design is reminiscent of a Gatling-style shotgun, intended for rapid, high-volume fire in urban defense or assault scenarios.",
+    "description": "A heavy, multi-barreled shotgun with a rotating barrel cluster, olive-brown metallic body, and dual ergonomic handles for two-handed use.",
+    "description_view_0": "Front view showing the circular arrangement of multiple barrels and the top handle.",
+    "description_view_1": "Side view highlighting the cylindrical body, gear-like adjustment wheel, and trigger guard.",
+    "description_view_2": "Rear view displaying the back of the housing, rear grip, and the alignment of the handles.",
+    "description_view_3": "Opposite side view showing the same features as view 1, with a clear look at the barrel assembly and side details.",
+    "category": "shotgun",
+    "height": 0.35,
+    "max_dimension": 0.85,
+    "materials": [
+        "steel",
+        "polymer",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 16,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 160,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "rotatable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "trigger",
+        "barrel cluster",
+        "adjustment wheel",
+        "trigger guard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive",
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "multi-barrel rotary configuration with at least four parallel barrels, no visible ribbing or venting",
+    "attribute_stock_type": "no stock",
+    "attribute_action_mechanism": "rotary-action",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rectangular, elongated trigger guard with a flat profile and no visible finger grooves",
+    "uid": "9e6ab2b985ef436fa7174bcb4bc2e1ec",
+    "near_synsets": {
+        "shotgun.n.01": 0.44358087963912607,
+        "sawed-off_shotgun.n.01": 0.48219028413724846,
+        "shotgun_shell.n.01": 0.5059531083523855,
+        "gatling_gun.n.01": 0.5276045218675433,
+        "gun.n.01": 0.5344221361483482
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9e6ab2b985ef436fa7174bcb4bc2e1ec",
+        "creator_username": "Livagof",
+        "creator_display_name": "Ivaskiv Grigoriy",
+        "creator_profile_url": "https://sketchfab.com/Livagof"
+    },
+    "filename": "std_9e6ab2b985ef436fa7174bcb4bc2e1ec.glb",
+    "length": 0.8238180875778198,
+    "width": 0.23623131960630417
+}

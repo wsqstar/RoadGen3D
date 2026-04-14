@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a vintage biplane with a tan fuselage and dual straight wings, each adorned with roundels in red, white, and blue. The aircraft features an open cockpit situated just behind the upper wing, and a fixed taildragger landing gear with two main wheels and a small tail wheel. The tail section is decorated with a vertical stabilizer painted in blue, white, and red stripes, and marked with the number '5'. The fuselage displays red arrow and number markings, and the propeller is mounted at the nose, partially visible as a translucent disc. The structure appears to be primarily constructed from wood and fabric, typical of early 20th-century military aircraft, with some metal components for structural support and landing gear. The overall design is reminiscent of World War I-era fighter planes, with exposed struts and bracing wires between the wings.",
+    "description": "A tan, vintage biplane with dual straight wings, open cockpit, and colorful roundels and tail markings, featuring a fixed taildragger landing gear and a front-mounted propeller.",
+    "description_view_0": "Front-left view showing the open cockpit, dual wings with roundels, and the propeller at the nose.",
+    "description_view_1": "Rear view highlighting the colorful vertical stabilizer, tail markings, and the taildragger landing gear.",
+    "description_view_2": "Rear-right view displaying the tail section, number '2' and arrow markings, and the right wing's roundel.",
+    "description_view_3": "Front-right view focusing on the nose, propeller, cockpit, and the struts between the wings.",
+    "category": "airplane",
+    "height": 2.8,
+    "max_dimension": 7.5,
+    "materials": [
+        "wood",
+        "fabric",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 6500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "cockpit",
+        "wheels",
+        "control stick",
+        "rudder",
+        "elevator",
+        "ailerons"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "red",
+        "blue",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Biplane configuration with two straight, parallel wings stacked vertically; no winglets or noticeable dihedral/anhedral angles.",
+    "attribute_engine_type": "Single front-mounted piston engine with a two-blade propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "Fixed taildragger landing gear with two main wheels and a small tail wheel.",
+    "attribute_cockpit_placement": "Forward-mounted, open cockpit located just behind the upper wing, likely single-seat.",
+    "uid": "ffa42b5980aa400d8cef5b28bf7a86e5",
+    "near_synsets": {
+        "biplane.n.01": 0.472914167560415,
+        "airplane.n.01": 0.5036818532964998,
+        "monoplane.n.01": 0.5142427944627788,
+        "propeller_plane.n.01": 0.5242008032756386,
+        "aircraft.n.01": 0.5247734771962407
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ffa42b5980aa400d8cef5b28bf7a86e5",
+        "creator_username": "manilov.ap",
+        "creator_display_name": "manilov.ap",
+        "creator_profile_url": "https://sketchfab.com/manilov.ap"
+    },
+    "filename": "std_ffa42b5980aa400d8cef5b28bf7a86e5.glb",
+    "length": 11.450995922088623,
+    "width": 10.676971435546875
+}

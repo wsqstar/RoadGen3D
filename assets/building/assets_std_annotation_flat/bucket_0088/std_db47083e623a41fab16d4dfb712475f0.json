@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a heavily armored tracked combat vehicle resembling a World War II-era tank, featuring a large, cylindrical turret mounted centrally on a rectangular chassis. The turret is equipped with a long-barreled main cannon extending from the front, and a prominent circular hatch is visible on top. The hull is covered in thick, sloped armor plating with visible bolts and panel lines, and the sides display a set of large, interleaved road wheels supporting continuous metal tracks. The vehicle has a weathered, mottled paint scheme with a mix of light and dark gray patches, giving it a rugged, battle-worn appearance. An antenna extends vertically from the turret, and various hatches, periscopes, and external fixtures are distributed across the upper surfaces. No visible military insignia or numbers are present, and the vehicle lacks rubber tires, relying entirely on its tracked system for movement.",
+    "description": "A heavily armored, tracked combat vehicle with a large turret, long cannon, and weathered gray camouflage. It features interleaved road wheels, thick sloped armor, and a prominent antenna.",
+    "description_view_0": "Side view showing the full length of the cannon, the interleaved road wheels, and the continuous metal tracks.",
+    "description_view_1": "Front view highlighting the sloped frontal armor, the main gun barrel, and the symmetrical arrangement of the tracks.",
+    "description_view_2": "Opposite side view displaying the turret, tracks, and road wheels, with the antenna and hatch clearly visible.",
+    "description_view_3": "Rear view of the turret and hull, showing the back of the tracks and the rear armor details.",
+    "category": "combat tactical  vehicle",
+    "height": 2.7,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.88,
+        0.02,
+        0.05,
+        0.05
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "closable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "antenna",
+        "periscope",
+        "track",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the front of the turret; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped steel armor plating; visible on all sides including turret and hull; no modular or reactive panels apparent.",
+    "attribute_camouflage_pattern": "Mottled camouflage pattern with irregular patches of light and dark gray, giving a weathered, urban appearance.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "db47083e623a41fab16d4dfb712475f0",
+    "near_synsets": {
+        "tank.n.01": 0.4631913466524771,
+        "military_vehicle.n.01": 0.48154433090218474,
+        "armored_car.n.02": 0.486568569461295,
+        "reconnaissance_vehicle.n.01": 0.48881588673021464,
+        "assault_gun.n.02": 0.49648845361213106,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/db47083e623a41fab16d4dfb712475f0",
+        "creator_username": "vrheadsetretro",
+        "creator_display_name": "totally a VR headset",
+        "creator_profile_url": "https://sketchfab.com/vrheadsetretro"
+    },
+    "filename": "std_db47083e623a41fab16d4dfb712475f0.glb",
+    "length": 4.707367658615112,
+    "width": 2.608734130859375
+}

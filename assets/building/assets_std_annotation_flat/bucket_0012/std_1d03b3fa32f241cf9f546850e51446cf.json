@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a large, rectangular, open-top utility trailer with high, solid metal side walls and a reinforced base, designed for hauling bulk materials or debris. The trailer is painted a dark green color and features a robust frame with visible support ribs along the sides for added structural integrity. At the rear, there are double swing doors that open outward, allowing for easy loading and unloading of contents. The front end of the trailer is closed and features a hitch mechanism for attachment to a towing vehicle. The trailer sits on a set of wheels, which are partially obscured by the side panels but implied by the design. There is no visible branding, signage, or windows on the exterior, giving it a utilitarian appearance suitable for construction, landscaping, or waste management in urban environments.",
+    "description": "A large, dark green, open-top utility trailer with high metal sides, double rear swing doors, and a front hitch for towing. The design is robust and utilitarian, with no visible signage or windows.",
+    "description_view_0": "Front view showing the closed front wall, hitch mechanism, and the open-top cargo area.",
+    "description_view_1": "Side view displaying the long, high side panels, support ribs, and the rear doors partially open.",
+    "description_view_2": "Rear view highlighting the double swing doors fully open, revealing the spacious cargo area.",
+    "description_view_3": "Opposite side view with the rear doors open and the full length of the trailer visible.",
+    "category": "trailer",
+    "height": 1.6,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "loadable",
+        "unloadable",
+        "towable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hitch",
+        "wheel",
+        "latch"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "dark green",
+        "black"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 4,
+    "attribute_hitch_type": "pintle hook",
+    "attribute_door_configuration": "double rear swing doors",
+    "attribute_branding_or_signage": "no visible signage",
+    "attribute_window_presence": "no windows visible",
+    "uid": "1d03b3fa32f241cf9f546850e51446cf",
+    "near_synsets": {
+        "trailer.n.03": 0.45906094562648597,
+        "trailer.n.04": 0.5033761007325639,
+        "tandem_trailer.n.01": 0.5124754122259998,
+        "camper_trailer.n.01": 0.5177441533894545,
+        "trailer_truck.n.01": 0.5250413731174975,
+        "preview.n.01": -1000.0,
+        "dawdler.n.01": -1000.0
+    },
+    "synset": "trailer_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1d03b3fa32f241cf9f546850e51446cf",
+        "creator_username": "sinnervoncrawsz",
+        "creator_display_name": "Younique\u012adeaStudio",
+        "creator_profile_url": "https://sketchfab.com/sinnervoncrawsz"
+    },
+    "filename": "std_1d03b3fa32f241cf9f546850e51446cf.glb",
+    "length": 8.912395477294922,
+    "width": 2.490858793258667
+}

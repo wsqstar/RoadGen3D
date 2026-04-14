@@ -1,0 +1,95 @@
+{
+    "description_long": "This kiosk is a tall, rectangular structure with a sleek, modern design, featuring a combination of glossy black and light blue panels. The front face includes a large black section with a digital or printed display area, and a blue panel with visible branding and text, likely for advertising or informational purposes. The left and right sides are narrow and mostly solid, with the right side revealing some internal shelving or compartments, possibly for dispensing or storage. The base is a sturdy, flat platform that provides stability and elevates the kiosk slightly above ground level. The materials appear to be primarily metal and glass or acrylic, giving it a durable and professional appearance suitable for urban environments. There are no visible windows or doors, and the structure is not enterable, but it is designed for public interaction, likely through touchscreens or dispensing mechanisms.",
+    "description": "A tall, modern kiosk with glossy black and blue panels, digital signage, and internal compartments, designed for public interaction in urban settings.",
+    "description_view_0": "Front view showing the main black display area, blue signage with branding, and the primary interactive interface.",
+    "description_view_1": "Left side view revealing the kiosk's slim profile and solid, featureless panel.",
+    "description_view_2": "Rear view displaying a mostly black surface with some visible internal shelving or compartments.",
+    "description_view_3": "Right side view showing a narrow, solid panel with no visible features.",
+    "category": "kiosk",
+    "height": 1.8,
+    "max_dimension": 0.9,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "touchable",
+        "readable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "screen",
+        "button",
+        "compartment"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "blue",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.6,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "printed sign and logo, integrated into the front structure, with visible text 'Y SEGUI', 'PILSEN', and 'VALOR'.",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "none",
+    "attribute_roof_design": "flat roof, constructed from the same metal or composite material as the body, with no overhangs or decorative elements.",
+    "attribute_architectural_style": "modern, minimalist with clean lines and a functional aesthetic.",
+    "uid": "565cc14fcfde4c2bb70babd653c1266d",
+    "near_synsets": {
+        "booth.n.02": 0.5208501112083599,
+        "telephone_booth.n.01": 0.5497183873181193,
+        "shopfront.n.01": 0.5648441924331161,
+        "display_panel.n.01": 0.5668899275188432,
+        "newsstand.n.01": 0.5699289234211583
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/565cc14fcfde4c2bb70babd653c1266d",
+        "creator_username": "arteurbano",
+        "creator_display_name": "ArteURBANO",
+        "creator_profile_url": "https://sketchfab.com/arteurbano"
+    },
+    "filename": "std_565cc14fcfde4c2bb70babd653c1266d.glb",
+    "length": 0.5987434089183807,
+    "width": 1.041707158088684
+}

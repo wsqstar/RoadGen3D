@@ -1,0 +1,99 @@
+{
+    "description_long": "This humanoid robot features a sleek, futuristic design with a predominantly white and black color scheme accented by small cyan lights. Its body is armored with smooth, contoured plates covering the chest, shoulders, and limbs, giving it a robust yet agile appearance. The head is helmet-like, with a smooth, visor-like front and no visible facial features, suggesting advanced sensor integration. The arms and legs are segmented with visible joint articulation, and the hands have five fingers each, mimicking human anatomy. The back displays mechanical details, including exposed cabling and structural elements, hinting at internal complexity. Overall, the robot's form is both functional and visually striking, suitable for urban environments.",
+    "description": "A sleek, armored humanoid robot with white and black plating, cyan lights, and a helmet-like head with no visible face. Its design is robust, agile, and highly detailed.",
+    "description_view_0": "Front view shows the helmeted head, armored chest, and outstretched arms with cyan lights on the forearms and knees.",
+    "description_view_1": "Left side view highlights the profile of the helmet, arm, and leg articulation, as well as the layered armor on the torso and limbs.",
+    "description_view_2": "Rear view reveals mechanical details, exposed cabling, and structural elements on the back, with symmetrical armor plating.",
+    "description_view_3": "Right side view mirrors the left, showing the same profile features and articulation points, with visible cyan lights on the arm and leg.",
+    "category": "humanoid robot",
+    "height": 1.8,
+    "max_dimension": 1.8,
+    "materials": [
+        "plastic",
+        "metal",
+        "glass",
+        "synthetic rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 95,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 950,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hand",
+        "arm",
+        "leg",
+        "head",
+        "torso panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "cyan",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "sleek",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms slightly extended outward and legs straight, head facing forward, and torso erect.",
+    "attribute_clothing_style": "No traditional clothing; body is covered in integrated, contoured armor panels with decorative cyan lights and mechanical detailing.",
+    "attribute_facial_features": "No visible facial features; head is helmet-like with a smooth, visor-like front and no eyes, mouth, or nose.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible joints, likely ball or hinge types at shoulders, elbows, hips, and knees; hands have five articulated fingers each, suggesting a wide range of motion.",
+    "attribute_presence_of_sensors": "Possible sensors integrated into the helmet/visor area and small modules on the arms and back, but none explicitly visible.",
+    "uid": "35b81b6670724754be1a06907a8bbf01",
+    "near_synsets": {
+        "android.n.01": 0.5465122330906438,
+        "cyborg.n.01": 0.5531338291050317,
+        "robotics_equipment.n.01": 0.5543946125307758,
+        "automaton.n.02": 0.5690325095759079,
+        "helmet.n.01": 0.5859112964918516
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/35b81b6670724754be1a06907a8bbf01",
+        "creator_username": "noahm1216",
+        "creator_display_name": "noahm1216",
+        "creator_profile_url": "https://sketchfab.com/noahm1216"
+    },
+    "filename": "std_35b81b6670724754be1a06907a8bbf01.glb",
+    "length": 0.40533261001110077,
+    "width": 1.4082612991333008
+}

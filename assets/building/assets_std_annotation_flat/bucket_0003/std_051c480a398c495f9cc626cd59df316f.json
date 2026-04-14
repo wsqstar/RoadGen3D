@@ -1,0 +1,93 @@
+{
+    "description_long": "This kiosk is a compact, two-level structure with a modern, minimalist design. The lower level features an open area with a staircase leading to the upper platform, supported by slender columns. The upper level is enclosed with translucent or mesh-like walls and has a flat roof with extended overhangs on all sides, providing shade and shelter. The base and platform surfaces have a light wood or laminate finish, while the structural elements are predominantly white. The open lower section allows for easy access and visibility, making it suitable for public interaction or service functions. The overall appearance is clean, functional, and designed for urban environments such as parks, plazas, or sidewalks.",
+    "description": "A modern, two-level kiosk with an open lower area, staircase, and an enclosed upper platform with a flat overhanging roof. The structure features light wood surfaces and white supports, giving it a minimalist urban look.",
+    "description_view_0": "Front view showing the open lower area, staircase, and the overhanging upper platform.",
+    "description_view_1": "Side view highlighting the depth of the upper enclosure and the solid rear wall of the lower level.",
+    "description_view_2": "Rear view displaying the solid back of both levels and the overhanging roof.",
+    "description_view_3": "Opposite side view showing the open lower area and the staircase from a different angle.",
+    "category": "kiosk",
+    "height": 4.0,
+    "max_dimension": 5.0,
+    "materials": [
+        "wood",
+        "painted metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.15
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "shelterable",
+        "displayable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "staircase",
+        "platform",
+        "enclosure"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "light wood",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 10000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "none",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "open archway at front, no visible doors",
+    "attribute_roof_design": "Flat roof with wide overhangs on all sides, likely constructed from metal or composite panels.",
+    "attribute_architectural_style": "modern minimalist",
+    "uid": "051c480a398c495f9cc626cd59df316f",
+    "near_synsets": {
+        "booth.n.02": 0.5485549997312711,
+        "stairhead.n.01": 0.5686427153511614,
+        "skywalk.n.01": 0.5718483710251288,
+        "loggia.n.01": 0.5734574740131111,
+        "upstairs.n.01": 0.5746823095893316
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/051c480a398c495f9cc626cd59df316f",
+        "creator_username": "stolmark",
+        "creator_display_name": "Stolmark",
+        "creator_profile_url": "https://sketchfab.com/stolmark"
+    },
+    "filename": "std_051c480a398c495f9cc626cd59df316f.glb",
+    "length": 4.91067361831665,
+    "width": 5.663764476776123
+}

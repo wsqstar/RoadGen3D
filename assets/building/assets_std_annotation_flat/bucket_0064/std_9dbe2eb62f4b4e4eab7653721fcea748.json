@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a large, modern locomotive train with a streamlined rectangular body and a predominantly dark exterior accented by red and silver details. The roof features several ventilation grilles and raised sections, suggesting internal machinery and cooling systems. The sides display a series of evenly spaced rectangular windows and subtle paneling, with visible undercarriage components such as wheels and suspension. The front and rear ends are flat with prominent headlights, a central coupling mechanism, and red buffer beams. The train's exterior appears to be constructed mainly from metal, with glass windows and rubber or plastic trim. Its robust build and design indicate it is intended for heavy-duty urban or intercity rail transport.",
+    "description": "A modern, dark-colored locomotive train with red and silver accents, rectangular windows, and detailed undercarriage components. The design is robust and streamlined, suitable for urban or intercity rail use.",
+    "description_view_0": "Side view showing the full length of the train, with rectangular windows, paneling, and visible undercarriage details.",
+    "description_view_1": "Front view highlighting the flat face, headlights, central coupling, and red buffer beam.",
+    "description_view_2": "Opposite side view, nearly identical to view 0, showing the length, windows, and undercarriage.",
+    "description_view_3": "Rear view similar to the front, with headlights, coupling, and red buffer beam visible.",
+    "category": "train",
+    "height": 4.2,
+    "max_dimension": 21.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.07,
+        0.03,
+        0.03,
+        0.02
+    ],
+    "mass": 90000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "headlight",
+        "coupling",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "silver",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_train_type": "locomotive",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end",
+    "attribute_window_arrangement": "continuous row of rectangular windows",
+    "uid": "9dbe2eb62f4b4e4eab7653721fcea748",
+    "near_synsets": {
+        "train.n.01": 0.47666212203814345,
+        "train_set.n.01": 0.49809878289423226,
+        "car_train.n.01": 0.5096296341303013,
+        "subway_train.n.01": 0.5124395868024113,
+        "streamliner.n.01": 0.5188599653806139,
+        "string.n.04": -1000.0,
+        "train.n.05": -1000.0,
+        "train.n.04": -1000.0,
+        "caravan.n.01": -1000.0,
+        "gearing.n.01": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9dbe2eb62f4b4e4eab7653721fcea748",
+        "creator_username": "chinarailstory",
+        "creator_display_name": "chinarailstory",
+        "creator_profile_url": "https://sketchfab.com/chinarailstory"
+    },
+    "filename": "std_9dbe2eb62f4b4e4eab7653721fcea748.glb",
+    "length": 18.65102195739746,
+    "width": 4.290048837661743
+}

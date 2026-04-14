@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a two-story motel building with a flat roof and a simple, boxy structure. The facade features a green roofline, yellow walls, and blue-tinted balcony railings that run along both floors, providing access to the guest rooms. The front entrance is marked by a small staircase leading up to the first-floor walkway, and the upper floor is accessible via an exterior staircase on the left side. The building has a repetitive window and door pattern, typical of motels, with each room opening directly onto the exterior corridor. The rear and side elevations are plainer, with solid walls and minimal detailing, while the roof appears to have a small fenced-off area, possibly for maintenance or utilities.",
+    "description": "A two-story motel with yellow walls, green roofline, and blue balcony railings, featuring exterior corridors and a flat roof. The front has a central staircase and visible guest room doors.",
+    "description_view_0": "Front view showing the main entrance staircase, two levels of blue balcony railings, and the exterior corridor with visible room doors.",
+    "description_view_1": "Side view highlighting the solid end wall with a diagonal blue pattern and the upper-level fenced area on the roof.",
+    "description_view_2": "Rear view displaying the back of the motel with similar balcony railings and windows, but no main entrance staircase.",
+    "description_view_3": "Opposite side view with another solid end wall and diagonal blue pattern, mirroring the other side.",
+    "category": "motel",
+    "height": 7.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.02,
+        0.1
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "staircase",
+        "balcony railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "green",
+        "yellow",
+        "blue",
+        "brown"
+    ],
+    "colors_composition": [
+        0.35,
+        0.15,
+        0.25,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_neon_signage": false,
+    "attribute_exterior_corridor_access": true,
+    "attribute_parking_lot_adjacency": false,
+    "attribute_room_door_visibility": true,
+    "attribute_architectural_style": "mid-century utilitarian",
+    "uid": "5c96ee36343f4788b2ec96632a779b9e",
+    "near_synsets": {
+        "motel_room.n.01": 0.5130753588317329,
+        "motel.n.01": 0.5261435761089683,
+        "motor_hotel.n.01": 0.5657443197569196,
+        "hotel_room.n.01": 0.5792591649253376,
+        "hotel.n.01": 0.5836781681165297
+    },
+    "synset": "motel.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5c96ee36343f4788b2ec96632a779b9e",
+        "creator_username": "Vadim.Nasyrov",
+        "creator_display_name": "Vadim.Nasyrov",
+        "creator_profile_url": "https://sketchfab.com/Vadim.Nasyrov"
+    },
+    "filename": "std_5c96ee36343f4788b2ec96632a779b9e.glb",
+    "length": 7.099998950958252,
+    "width": 11.599998474121094
+}

@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a two-story corner pizzeria building with a red-brick facade and a flat roof, featuring a prominent fire escape on the side and a rooftop access structure. The ground floor has a black awning over the main entrance, with outdoor seating consisting of round tables and chairs on the sidewalk. Large windows and a mural add visual interest to the street-facing walls, while the side and rear of the building are simpler, with utility pipes, trash bins, and a secondary entrance. The roof includes a vent and a small structure, possibly for rooftop access or storage. Street elements such as lamp posts, a fire hydrant, and crosswalks surround the building, situating it in a lively urban environment.",
+    "description": "A two-story red-brick pizzeria with outdoor seating, fire escape, mural, and urban street elements.",
+    "description_view_0": "Front view showing the main entrance, black awning, outdoor tables, mural, and street corner.",
+    "description_view_1": "Side view highlighting the fire escape, windows, trash bins, and rooftop details.",
+    "description_view_2": "Rear view with utility pipes, trash bins, a secondary entrance, and a plain facade.",
+    "description_view_3": "Alternate street-facing view with the white side building, additional outdoor seating, and lamp post.",
+    "category": "pizzeria",
+    "height": 8.5,
+    "max_dimension": 16.0,
+    "materials": [
+        "brick",
+        "concrete",
+        "glass",
+        "metal",
+        "wood",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.2,
+        0.1,
+        0.1,
+        0.05,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "sittable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "awning",
+        "fire escape",
+        "outdoor table",
+        "outdoor chair"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "black",
+        "gray",
+        "yellow",
+        "green"
+    ],
+    "colors_composition": [
+        0.55,
+        0.15,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.65,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_signage": true,
+    "attribute_outdoor_seating": true,
+    "attribute_pizza_oven_chimney": false,
+    "attribute_menu_display": false,
+    "attribute_architectural_style": "classic urban",
+    "uid": "270559a5350a4469bbb6ddd2b9fd45ed",
+    "near_synsets": {
+        "pizzeria.n.01": 0.5274271907610207,
+        "cityscape.n.02": 0.5670260743244897,
+        "sicilian_pizza.n.01": 0.581865990017106,
+        "pepperoni_pizza.n.01": 0.5830715507025627,
+        "restaurant.n.01": 0.5843819043342112
+    },
+    "synset": "pizzeria.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/270559a5350a4469bbb6ddd2b9fd45ed",
+        "creator_username": "rus.zam56",
+        "creator_display_name": "rus.zam56",
+        "creator_profile_url": "https://sketchfab.com/rus.zam56"
+    },
+    "filename": "std_270559a5350a4469bbb6ddd2b9fd45ed.glb",
+    "length": 21.244773864746094,
+    "width": 20.963932991027832
+}

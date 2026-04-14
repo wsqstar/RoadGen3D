@@ -1,0 +1,99 @@
+{
+    "description_long": "This dam structure features a large, curved retaining wall with a smooth, light wood-textured surface and a prominent black section, possibly representing a spillway or water channel. The top of the dam is lined with metal safety railings, providing secure access along the walkway. A staircase on one side leads up to the walkway, allowing for maintenance or inspection. The central section of the dam includes a rectangular opening, which may serve as an access point or inspection hatch. The overall design is modern and utilitarian, with clear separation between the water-retaining and overflow areas. The structure is robust and imposing, suitable for urban water management or recreational park settings.",
+    "description": "A large, curved dam with a light wood-textured surface, black spillway section, metal railings, and a staircase for access. Features a central opening and robust, modern design.",
+    "description_view_0": "Side view showing the curved dam wall, central rectangular opening, and staircase with railings on the left.",
+    "description_view_1": "Angled view highlighting the interior curve of the dam, the black spillway section, and the staircase leading up to the walkway.",
+    "description_view_2": "Rear view displaying the full length of the dam, the walkway with railings, and the central opening.",
+    "description_view_3": "Opposite angled view showing the other side of the curved dam wall, the black spillway, and the staircase from a different perspective.",
+    "category": "dam",
+    "height": 7.0,
+    "max_dimension": 22.0,
+    "materials": [
+        "wood",
+        "metal",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.2,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "staircase",
+        "walkway",
+        "opening"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light beige",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.25,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_spillway_presence": true,
+    "attribute_control_gates": [
+        "none"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_water_outflow": "none",
+    "attribute_perimeter_fencing": true,
+    "uid": "81946a43239a4c6da165ce5912689eb5",
+    "near_synsets": {
+        "dam.n.01": 0.5319462336292555,
+        "weir.n.01": 0.5420796369213922,
+        "milldam.n.01": 0.5486720722981437,
+        "flume.n.02": 0.553947953918357,
+        "spillway.n.01": 0.5543906718361675,
+        "decameter.n.01": -1000.0,
+        "dam.n.03": -1000.0
+    },
+    "synset": "dam.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/81946a43239a4c6da165ce5912689eb5",
+        "creator_username": "sa058687",
+        "creator_display_name": "sa058687",
+        "creator_profile_url": "https://sketchfab.com/sa058687"
+    },
+    "filename": "std_81946a43239a4c6da165ce5912689eb5.glb",
+    "length": 15.9476957321167,
+    "width": 17.39065933227539
+}

@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a small, triangular A-frame tent with a canvas-like fabric stretched over a simple pole structure. The tent is supported by four visible wooden poles that cross at the apex, secured with a binding at the top. The front opening is wide and open, revealing a rolled-up sleeping mat or blanket inside, while the back and sides are fully enclosed with taut fabric. The tent's exterior is primarily a muted beige or khaki color, with brown trim along the edges and poles, giving it a rustic, utilitarian appearance. The structure appears lightweight and portable, suitable for temporary outdoor shelter in parks or urban green spaces. No branding, logos, or additional features such as windows, vents, or guy lines are visible.",
+    "description": "A small, beige A-frame tent with brown wooden poles and an open front, revealing a rolled-up mat inside. The tent is simple, rustic, and fully enclosed on the sides and back.",
+    "description_view_0": "Front view showing the open entrance, interior mat, and the crossing poles at the apex.",
+    "description_view_1": "Side view displaying the taut, uninterrupted fabric wall and the brown trim along the edges.",
+    "description_view_2": "Rear view with the triangular back panel fully closed and the pole structure visible at the top.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the plain fabric wall and edge details.",
+    "category": "tent",
+    "height": 1.2,
+    "max_dimension": 1.8,
+    "materials": [
+        "canvas",
+        "wood",
+        "rope",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 8,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shelterable",
+        "coverable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "entrance flap",
+        "poles",
+        "mat"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "beige",
+        "brown",
+        "green"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 500,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_entrance_type": "Open front flap, located at the triangular end, no visible closure mechanism.",
+    "attribute_number_of_poles": 4,
+    "attribute_guy_line_configuration": "No guy lines visible; tent is supported solely by the main poles.",
+    "attribute_ventilation_openings": [],
+    "attribute_branding_or_logo": "none",
+    "uid": "e5a32b9c07a941f78411bd1145f85fdf",
+    "near_synsets": {
+        "cottage_tent.n.01": 0.456420798265754,
+        "field_tent.n.01": 0.45926578841871873,
+        "pop_tent.n.01": 0.48440660465508606,
+        "sibley_tent.n.01": 0.4947322814131095,
+        "tent.n.01": 0.4948143859354002,
+        "tent.n.02": -1000.0
+    },
+    "synset": "tent.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e5a32b9c07a941f78411bd1145f85fdf",
+        "creator_username": "taczi.csaba",
+        "creator_display_name": "csabat3D",
+        "creator_profile_url": "https://sketchfab.com/taczi.csaba"
+    },
+    "filename": "std_e5a32b9c07a941f78411bd1145f85fdf.glb",
+    "length": 1.663360595703125,
+    "width": 1.237116813659668
+}

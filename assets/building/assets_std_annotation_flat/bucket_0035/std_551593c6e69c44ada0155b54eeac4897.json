@@ -1,0 +1,92 @@
+{
+    "description_long": "This object consists of a flat, rectangular arrangement of what appear to be large, irregularly shaped stone or concrete tiles, each with a slightly domed and uneven surface. The tiles are set closely together, with visible seams and some discoloration, suggesting age, weathering, or exposure to the elements. The surface is mottled with shades of gray, green, and yellow, possibly indicating moss, algae, or dirt accumulation. The overall structure is low-profile and solid, with no visible openings or movable parts. The texture appears rough and hard, with a semi-glossy finish that reflects some light. This debris would likely be found in an outdoor urban environment, such as a sidewalk, plaza, or construction site.",
+    "description": "A flat, rectangular slab made of weathered stone or concrete tiles with uneven, domed surfaces and visible seams. The surface is mottled with gray, green, and yellow, suggesting age and exposure to the elements.",
+    "description_view_0": "A low, rectangular slab with a grid of uneven, domed tiles, seen from a shallow angle highlighting the tile relief and seams.",
+    "description_view_1": "A top-down view showing the full grid of tiles, with mottled coloration and visible seams between each tile.",
+    "description_view_2": "A side angle similar to view 0, emphasizing the length and the uneven, slightly reflective surfaces of the tiles.",
+    "description_view_3": "A top-down view from the opposite end, showing the grid pattern and the variation in tile coloration and texture.",
+    "category": "debris",
+    "height": 0.08,
+    "max_dimension": 2.0,
+    "materials": [
+        "concrete",
+        "stone",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 3200,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "obstacle",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "green",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "glossy",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_location": "urban street",
+    "attribute_context": "Likely the result of broken pavement or sidewalk tiles that have been displaced and stacked together after maintenance or construction work.",
+    "attribute_object_type": "concrete paving slab",
+    "attribute_condition": "intact but weathered and dirty, with visible discoloration and surface wear",
+    "attribute_associated_infrastructure": [
+        "road",
+        "sidewalk"
+    ],
+    "uid": "551593c6e69c44ada0155b54eeac4897",
+    "near_synsets": {
+        "tile.n.02": 0.5067109015450143,
+        "tile.n.01": 0.5154742511718805,
+        "debris.n.01": 0.5317601826771278,
+        "stone.n.02": 0.5376891995349256,
+        "detritus.n.02": 0.5382176686297392
+    },
+    "synset": "debris.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/551593c6e69c44ada0155b54eeac4897",
+        "creator_username": "kamilsiberian",
+        "creator_display_name": "kamilsiberian",
+        "creator_profile_url": "https://sketchfab.com/kamilsiberian"
+    },
+    "filename": "std_551593c6e69c44ada0155b54eeac4897.glb",
+    "length": 595420.5,
+    "width": 958130.25
+}

@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a large, industrial shipping container constructed primarily from corrugated steel panels, painted in a dark green color. The front side features double doors with heavy-duty locking mechanisms, metal hinges, and visible warning and identification labels, including a yellow height clearance sign and white stenciled codes. The side panels are ribbed for structural strength, with one side displaying a faded 'ATLANTIC TRANSIT' logo in white paint, while the other side has only serial numbers. The top is flat and reinforced, suitable for stacking or supporting additional weight. The container shows signs of weathering and use, with some areas appearing slightly worn or rusted, typical for containers found in urban shipping yards, construction sites, or transport depots.",
+    "description": "A large, dark green corrugated steel shipping container with double locking doors, industrial markings, and a weathered appearance.",
+    "description_view_0": "The side view shows the 'ATLANTIC TRANSIT' logo stenciled in white on the ribbed green panel, with no visible doors or handles.",
+    "description_view_1": "The front view displays the double doors with locking bars, hinges, warning labels, and serial numbers, indicating the main access point.",
+    "description_view_2": "The opposite side view reveals only the ribbed green panel with serial numbers, lacking any logos or access points.",
+    "description_view_3": "The rear view shows a plain, ribbed green panel with a small yellow warning triangle and serial numbers, no doors or handles.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "paint",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.92,
+        0.03,
+        0.04,
+        0.01
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking bar",
+        "hinge",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "white",
+        "yellow",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.07,
+        0.03,
+        0.02,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "white stenciled logo and serial numbers on sides, yellow warning label and codes on front doors",
+    "attribute_handles_or_grips": "vertical locking bars with integrated handles on both front doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "bb05513cdd7d4f2f824adef06156a782",
+    "near_synsets": {
+        "cargo_container.n.01": 0.45204475574653386,
+        "container.n.01": 0.45260905188624007,
+        "box.n.01": 0.5205965106376119,
+        "cargo_door.n.01": 0.5240937847525832,
+        "container_ship.n.01": 0.5274382989302595
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bb05513cdd7d4f2f824adef06156a782",
+        "creator_username": "Havikar",
+        "creator_display_name": "Havikar",
+        "creator_profile_url": "https://sketchfab.com/Havikar"
+    },
+    "filename": "std_bb05513cdd7d4f2f824adef06156a782.glb",
+    "length": 5.404765605926514,
+    "width": 2.1913994550704956
+}

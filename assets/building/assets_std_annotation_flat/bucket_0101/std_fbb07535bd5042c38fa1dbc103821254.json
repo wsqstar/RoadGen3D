@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a passenger train carriage with a streamlined rectangular body, painted primarily in a light gray with a blue lower stripe and black roof. The sides feature a continuous row of rectangular windows, each separated by thin vertical dividers, and the word 'Inter-City' is visible, indicating its use for intercity travel. The undercarriage is detailed with visible wheels, suspension, and mechanical components, while the ends of the carriage show connectors and buffers for coupling with other train cars. The doors are not prominently visible, suggesting they may be located at the ends or are flush with the body. The overall design is typical of mid-to-late 20th-century European or British intercity passenger trains. The carriage is built for durability and passenger comfort, with a robust metal exterior and likely an interior fitted with seating and amenities.",
+    "description": "A streamlined intercity passenger train carriage with a light gray body, blue stripe, black roof, and a continuous row of rectangular windows. Detailed undercarriage and end connectors are visible, with 'Inter-City' branding on the side.",
+    "description_view_0": "End-on view showing the narrow face of the carriage, with visible connectors, buffers, and some undercarriage details.",
+    "description_view_1": "Side view displaying the full length of the carriage, continuous row of rectangular windows, blue stripe, and 'Inter-City' branding.",
+    "description_view_2": "Opposite end-on view similar to view 0, showing the other narrow face with connectors and undercarriage details.",
+    "description_view_3": "Side view mirroring view 1, showing the opposite side of the carriage with windows and blue stripe, but without visible branding.",
+    "category": "train",
+    "height": 3.8,
+    "max_dimension": 23.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "pressable",
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "connector",
+        "buffer",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "black",
+        "white",
+        "orange"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "intercity passenger train",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end",
+    "attribute_window_arrangement": "continuous row of rectangular windows",
+    "uid": "fbb07535bd5042c38fa1dbc103821254",
+    "near_synsets": {
+        "passenger_train.n.01": 0.48525241462718344,
+        "car_train.n.01": 0.49426147436161333,
+        "train.n.01": 0.4955753150988101,
+        "streamliner.n.01": 0.5003481790675506,
+        "passenger_car.n.01": 0.5189300575889436,
+        "caravan.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "gearing.n.01": -1000.0,
+        "train.n.05": -1000.0,
+        "train.n.04": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fbb07535bd5042c38fa1dbc103821254",
+        "creator_username": "timblewee",
+        "creator_display_name": "timblewee",
+        "creator_profile_url": "https://sketchfab.com/timblewee"
+    },
+    "filename": "std_fbb07535bd5042c38fa1dbc103821254.glb",
+    "length": 21.66366958618164,
+    "width": 2.688704490661621
+}

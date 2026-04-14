@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a large, industrial metal dumpster with a rectangular shape and a weathered, galvanized steel exterior. The dumpster features a hinged, flat metal lid that covers half of the top opening, with a visible locking latch mechanism on the front. Four robust caster wheels are attached to the bottom corners, allowing for mobility across paved surfaces. There are several warning labels and signage, including a prominent orange and white sticker on one side, indicating waste management service information. The surface is marked by dents, scratches, and patches of rust, suggesting heavy use in urban environments. The interior is spacious and open, designed to hold significant volumes of waste or recyclables.",
+    "description": "A large, weathered metal dumpster with a hinged lid, caster wheels, and visible warning labels, designed for urban waste collection. Its surface is dented and rusted, showing signs of heavy use.",
+    "description_view_0": "Front view showing the open half of the lid, the locking latch, and two front wheels.",
+    "description_view_1": "Side view with a clear view of the orange and white waste management sticker and all four wheels.",
+    "description_view_2": "Opposite side view highlighting the closed half of the lid and the side handle.",
+    "description_view_3": "Rear view showing the fully open top and the back panel, with visible wear and grime.",
+    "category": "dumpster",
+    "height": 1.2,
+    "max_dimension": 2.0,
+    "materials": [
+        "galvanized_steel",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "handle",
+        "wheel",
+        "latch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "orange",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.92,
+        0.04,
+        0.02,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "flat, hinged metal lid covering half the top, single section, with visible latch mechanism",
+    "attribute_wheel_presence": true,
+    "attribute_handle_design": "one metal bar handle on the front, one side-mounted bar handle, both made of steel",
+    "attribute_warning_labels": [
+        {
+            "color": "orange and white",
+            "shape": "rectangular",
+            "content": "waste management service info"
+        },
+        {
+            "color": "white and red",
+            "shape": "rectangular",
+            "content": "small safety or usage label"
+        }
+    ],
+    "attribute_placement_location": "outdoor commercial area",
+    "uid": "bda89ea9c21741b793f219991eed4f7a",
+    "near_synsets": {
+        "dumpster.n.01": 0.4328857216469666,
+        "garbage_truck.n.01": 0.5130573254621643,
+        "garbage.n.03": 0.5249436502753704,
+        "dump.n.02": 0.5349865842507324,
+        "scrapheap.n.02": 0.5369175324467806
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/bda89ea9c21741b793f219991eed4f7a",
+        "creator_username": "nomomo",
+        "creator_display_name": "No More Mondays",
+        "creator_profile_url": "https://sketchfab.com/nomomo"
+    },
+    "filename": "std_bda89ea9c21741b793f219991eed4f7a.glb",
+    "length": 1.6853522062301636,
+    "width": 1.2081960439682007
+}

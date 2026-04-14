@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a compact, stylized castle with four tall, square corner towers, each topped with a red flag. The walls are a pale, sandy stone color and feature prominent battlements along the top edges, giving the structure a fortified appearance. The main entrance is an arched gateway, visible on one side, leading into an open central courtyard. The flags are mounted on wooden poles and add a touch of color and heraldic flair to the otherwise monochrome stonework. The castle's design is simple and geometric, with clean lines and minimal ornamentation, evoking a classic medieval or fantasy style. The structure appears hollow inside, with ample space for agents to enter and move within the courtyard.",
+    "description": "A stylized, pale stone castle with four battlemented towers, red flags, and an arched entrance leading to an open courtyard.",
+    "description_view_0": "Front view showing three towers with battlements and two red flags, with the open courtyard visible inside.",
+    "description_view_1": "View of the main arched entrance, flanked by two towers with battlements and red flags, providing a clear look into the courtyard.",
+    "description_view_2": "Rear view highlighting the back towers and battlements, with all four red flags visible and no entrance on this side.",
+    "description_view_3": "Side view showing the solid walls, battlements, and three visible red flags, with the courtyard partially visible.",
+    "category": "castle",
+    "height": 6.0,
+    "max_dimension": 10.0,
+    "materials": [
+        "stone",
+        "wood",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "defensible"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "flag",
+        "gateway"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "beige",
+        "red",
+        "brown"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Fantasy Medieval",
+    "attribute_presence_of_battlements": true,
+    "attribute_presence_of_towers": true,
+    "attribute_presence_of_arrow_slits": false,
+    "attribute_presence_of_drawbridge": false,
+    "uid": "db4f0853c545455082255df6ad60778f",
+    "near_synsets": {
+        "castle.n.02": 0.4895310631168798,
+        "chateau.n.01": 0.5122193739447104,
+        "bailey.n.03": 0.5212529532721792,
+        "battlement.n.01": 0.5235152086323837,
+        "machicolation.n.01": 0.5277737602567202,
+        "castle.n.04": -1000.0,
+        "palace.n.01": -1000.0,
+        "castle.n.03": -1000.0
+    },
+    "synset": "castle.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/db4f0853c545455082255df6ad60778f",
+        "creator_username": "Naddel_",
+        "creator_display_name": "Naddel_",
+        "creator_profile_url": "https://sketchfab.com/Naddel_"
+    },
+    "filename": "std_db4f0853c545455082255df6ad60778f.glb",
+    "length": 6.840241193771362,
+    "width": 6.0
+}

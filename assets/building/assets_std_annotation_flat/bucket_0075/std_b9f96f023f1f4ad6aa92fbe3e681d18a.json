@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a large, industrial-style automated turret rifle mounted on a four-legged metal base. The main body is constructed from dark, weathered metal panels with visible rust and wear, giving it a rugged, utilitarian appearance. The upper section features a prominent barrel assembly with angular armor plating and exposed copper wiring, suggesting a high-powered, possibly energy-based weapon. The central housing is cylindrical and reinforced, with a yellow hazard symbol painted on the side, indicating potential danger or radioactive components. The legs are robust and jointed, designed to provide stability on uneven urban terrain, and the entire structure is elevated above the ground. The overall design is functional and intimidating, suitable for defensive or automated security roles in urban environments.",
+    "description": "A large, weathered automated turret rifle with a reinforced metal body, exposed wiring, and a four-legged base, designed for urban defense.",
+    "description_view_0": "Front-left view showing the angular barrel assembly, exposed copper wiring, and the hazard symbol on the cylindrical housing.",
+    "description_view_1": "Direct front view highlighting the symmetrical armor plating, central barrel, and the sturdy four-legged base.",
+    "description_view_2": "Right-side view displaying the length of the barrel, the layered metal panels, and the mechanical details of the turret's body.",
+    "description_view_3": "Rear view focusing on the back of the turret, the hazard symbol, and the structural supports of the base.",
+    "category": "rifle",
+    "height": 1.2,
+    "max_dimension": 1.4,
+    "materials": [
+        "steel",
+        "copper",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1800,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel",
+        "base",
+        "wiring",
+        "control panel",
+        "mount"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "rust brown",
+        "yellow",
+        "copper"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "none",
+    "uid": "b9f96f023f1f4ad6aa92fbe3e681d18a",
+    "near_synsets": {
+        "automatic_rifle.n.01": 0.5047608035905807,
+        "turret.n.01": 0.5064164603997884,
+        "assault_gun.n.02": 0.5109965326526239,
+        "gun_enclosure.n.01": 0.5156359319903566,
+        "machine_gun.n.01": 0.5169272302440372,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b9f96f023f1f4ad6aa92fbe3e681d18a",
+        "creator_username": "denisvoron1",
+        "creator_display_name": "banka",
+        "creator_profile_url": "https://sketchfab.com/denisvoron1"
+    },
+    "filename": "std_b9f96f023f1f4ad6aa92fbe3e681d18a.glb",
+    "length": 0.7129630744457245,
+    "width": 1.0343889594078064
+}

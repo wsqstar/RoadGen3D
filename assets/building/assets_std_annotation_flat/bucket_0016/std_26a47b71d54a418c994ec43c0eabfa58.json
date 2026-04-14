@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a heavily armored tracked combat vehicle, featuring a low-profile hull and a flat, angular design optimized for urban and battlefield environments. The vehicle is equipped with multiple weapon mounts on its roof, including a prominent main gun and several secondary armaments, as well as what appears to be a missile launcher or smoke grenade system. The sides and front are protected by thick, modular armor plating, with additional slat armor on the rear sides for enhanced protection against anti-tank weapons. The vehicle's tracks are wide and robust, designed for traversing rough terrain and urban obstacles. External fuel tanks and storage compartments are visible at the rear, and the overall construction suggests a focus on survivability and firepower.",
+    "description": "A heavily armored tracked combat vehicle with multiple roof-mounted weapons, thick modular armor, and robust tracks for urban and battlefield use.",
+    "description_view_0": "Side view showing the full length of the vehicle, with visible tracks, side armor panels, and roof-mounted weaponry.",
+    "description_view_1": "Rear view highlighting the external fuel tanks, storage compartments, and the slat armor protecting the back and sides.",
+    "description_view_2": "Opposite side view, mirroring the features of view 0, with clear visibility of the main gun and additional roof-mounted systems.",
+    "description_view_3": "Front view displaying the sloped frontal armor, the main gun, and the vehicle's low, wide stance.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 7.2,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.08,
+        0.04,
+        0.02,
+        0.03
+    ],
+    "mass": 48000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 9,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "door",
+        "turret",
+        "main gun",
+        "secondary gun",
+        "missile launcher",
+        "track",
+        "fuel tank",
+        "storage compartment"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.03,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Three visible weapon mounts: one large main gun on the turret roof, one coaxial or secondary gun adjacent to the main gun, and one launcher system (likely for missiles or smoke grenades) on the rear right of the turret.",
+    "attribute_armor_plating": "Full body coverage with thick, modular armor panels on the sides and front, sloped frontal armor, and slat armor on the rear sides for additional protection.",
+    "attribute_camouflage_pattern": "none visible",
+    "attribute_military_markings": "none visible",
+    "attribute_tire_type": "not applicable",
+    "uid": "26a47b71d54a418c994ec43c0eabfa58",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4778517894039124,
+        "tank.n.01": 0.48552294461244844,
+        "reconnaissance_vehicle.n.01": 0.4931143235656003,
+        "armored_vehicle.n.01": 0.4965984507572256,
+        "armored_car.n.02": 0.4966536305925404,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/26a47b71d54a418c994ec43c0eabfa58",
+        "creator_username": "SyllaVFX",
+        "creator_display_name": "SYLLA VFX",
+        "creator_profile_url": "https://sketchfab.com/SyllaVFX"
+    },
+    "filename": "std_26a47b71d54a418c994ec43c0eabfa58.glb",
+    "length": 5.005402326583862,
+    "width": 2.647564649581909
+}

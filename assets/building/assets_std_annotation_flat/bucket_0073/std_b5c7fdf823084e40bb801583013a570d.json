@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a robust, industrial-style metal gate with a rectangular frame and a weathered, corroded surface. The front features a segmented lower section with vertical slats and a rusted, reinforced panel, while the upper section has a frosted or opaque window-like area. The gate is secured with visible metal hinges and latches, suggesting a strong locking mechanism. The surface is heavily worn, with patches of rust, discoloration, and grime, indicating prolonged outdoor exposure. The sides are narrow and flat, emphasizing the gate's solid, utilitarian construction. The overall appearance suggests it is designed for high-security access control in an urban or industrial environment.",
+    "description": "A weathered, industrial metal gate with a frosted upper panel, reinforced lower section, and visible latches and hinges, showing heavy rust and wear.",
+    "description_view_0": "Front view showing the segmented lower panel, frosted upper section, and prominent latches and hinges.",
+    "description_view_1": "Side profile revealing the gate's narrow depth and flat, solid construction.",
+    "description_view_2": "Rear view with a plain, solid metal panel and less visible hardware, showing the gate's sturdy build.",
+    "description_view_3": "Opposite side profile, similar to view 1, highlighting the gate's thinness and structural simplicity.",
+    "category": "gate",
+    "height": 1.6,
+    "max_dimension": 1.6,
+    "materials": [
+        "steel",
+        "glass",
+        "brass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 95,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "latch",
+        "hinge",
+        "door panel",
+        "window panel"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "brown",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_gate_type": "portcullis",
+    "attribute_opening_mechanism": "manual lifting",
+    "attribute_decorative_elements": [
+        "geometric patterns",
+        "rust patina"
+    ],
+    "attribute_locking_system": "latch",
+    "attribute_surrounding_structure": "metal frame",
+    "uid": "b5c7fdf823084e40bb801583013a570d",
+    "near_synsets": {
+        "lock-gate.n.01": 0.5275694505132599,
+        "portcullis.n.01": 0.5357950592939672,
+        "gate.n.01": 0.5402085398913692,
+        "doorlock.n.01": 0.5505366645814267,
+        "gateway.n.01": 0.5519474127780545,
+        "gate.n.02": -1000.0,
+        "gate.n.04": -1000.0,
+        "gate.n.03": -1000.0
+    },
+    "synset": "gate.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b5c7fdf823084e40bb801583013a570d",
+        "creator_username": "JonhGillessen",
+        "creator_display_name": "JonhGillessen",
+        "creator_profile_url": "https://sketchfab.com/JonhGillessen"
+    },
+    "filename": "std_b5c7fdf823084e40bb801583013a570d.glb",
+    "length": 0.15656334906816483,
+    "width": 0.9065766334533691
+}

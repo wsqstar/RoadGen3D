@@ -1,0 +1,153 @@
+{
+    "description_long": "This is a small, enclosed graveyard featuring a central stone mausoleum with a gabled roof and block-patterned walls. The mausoleum is flanked by two upright rectangular headstones, each set on a raised stone base. The entire graveyard is surrounded by a black wrought iron fence with stone pillars at the corners and a prominent front gate. The ground is covered in green grass, and the area within the fence is neatly maintained. The structure and materials suggest a traditional, urban cemetery plot, with the mausoleum serving as the focal point.",
+    "description": "A compact graveyard with a central stone mausoleum, two headstones, and a surrounding wrought iron fence with stone pillars and a front gate.",
+    "description_view_0": "Front view showing the main entrance gate, the mausoleum centered at the back, and two headstones on either side.",
+    "description_view_1": "Side view highlighting the length of the mausoleum and the alignment of the headstones within the fenced area.",
+    "description_view_2": "Rear view displaying the back of the mausoleum and the symmetrical arrangement of the headstones and fence.",
+    "description_view_3": "Opposite side view showing the mausoleum's side profile and the stone pillars at the fence corners.",
+    "category": "grave yard",
+    "height": 2.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "stone",
+        "iron",
+        "grass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "gate",
+        "mausoleum door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "green",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.0,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_tombstone_inscriptions": [],
+    "attribute_crosses": [],
+    "attribute_grave_markers": [
+        {
+            "type": "headstone",
+            "material": "stone",
+            "dimensions": [
+                1.2,
+                0.6,
+                0.2
+            ]
+        },
+        {
+            "type": "headstone",
+            "material": "stone",
+            "dimensions": [
+                1.2,
+                0.6,
+                0.2
+            ]
+        }
+    ],
+    "attribute_mausoleums": [
+        {
+            "architectural_style": "classical",
+            "primary_materials": [
+                "stone"
+            ],
+            "dimensions": [
+                2.5,
+                2.5,
+                4.0
+            ],
+            "notable_features": [
+                "gabled roof",
+                "block-patterned walls",
+                "front door"
+            ]
+        }
+    ],
+    "attribute_cemetery_gates": [
+        {
+            "type": "wrought iron",
+            "primary_materials": [
+                "iron",
+                "stone"
+            ],
+            "dimensions": [
+                2.0,
+                2.5
+            ],
+            "decorative_elements": [
+                "vertical bars",
+                "stone pillars"
+            ]
+        }
+    ],
+    "uid": "32d9c3e59951406696a087046bb12033",
+    "near_synsets": {
+        "grave.n.02": 0.48723077315924185,
+        "gravestone.n.01": 0.4925921517988396,
+        "cemetery.n.01": 0.5055242777481395,
+        "cairn.n.01": 0.5148172461132019,
+        "mausoleum.n.01": 0.527584758974564,
+        "yard.n.03": -1000.0,
+        "yard.n.02": -1000.0,
+        "yard.n.09": -1000.0,
+        "thousand.n.01": -1000.0,
+        "yard.n.07": -1000.0,
+        "yard.n.01": -1000.0,
+        "yard.n.08": -1000.0,
+        "cubic_yard.n.01": -1000.0,
+        "yard.n.06": -1000.0
+    },
+    "synset": "cemetery.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/32d9c3e59951406696a087046bb12033",
+        "creator_username": "jsabbott",
+        "creator_display_name": "Jen S Abbott",
+        "creator_profile_url": "https://sketchfab.com/jsabbott"
+    },
+    "filename": "std_32d9c3e59951406696a087046bb12033.glb",
+    "length": 7.166584491729736,
+    "width": 7.166583061218262
+}

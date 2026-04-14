@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a large, heavily armored naval ship with a long, streamlined hull and a complex superstructure. The hull features a dark blue and gray camouflage pattern, with a pointed bow and a broad stern, typical of military vessels. The superstructure is densely packed with various towers, turrets, and antennae, indicating advanced communication and weapon systems. Multiple gun turrets are visible along the deck, along with smaller fixtures such as lifeboats and radar equipment. The ship has a prominent mast and several funnels, suggesting it is powered by large internal engines. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A large, camouflaged military ship with a streamlined hull, multiple gun turrets, and a complex superstructure featuring masts and antennae.",
+    "description_view_0": "Narrow, head-on view showing the pointed bow and the dense arrangement of superstructure elements.",
+    "description_view_1": "Side profile revealing the full length of the hull, multiple gun turrets, and the layered superstructure with masts and funnels.",
+    "description_view_2": "Rear view highlighting the broad stern, aft superstructure, and the arrangement of deck equipment.",
+    "description_view_3": "Opposite side profile, similar to view 1, showing the hull's camouflage and the distribution of superstructure and deck fixtures.",
+    "category": "ship",
+    "height": 18,
+    "max_dimension": 210,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 35000000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "turret",
+        "antenna",
+        "lifeboat",
+        "radar"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a pointed bow and a broad, squared stern. It features a continuous deck line, a pronounced keel, and a camouflaged paint scheme. The hull sides are vertical with slight flare at the bow, and there are no visible bulbous bows or catamaran structures.",
+    "attribute_superstructure_layout": "The superstructure is multi-tiered with several decks, a central bridge, and multiple towers. There are numerous turrets and antennae distributed along the length, with the tallest structures located amidships. The layout is dense, with little open deck space.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "turret",
+        "antenna",
+        "radar",
+        "lifeboat"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "4713c91e35684df08700e4f75f4f6f60",
+    "near_synsets": {
+        "battleship.n.01": 0.4844045005744529,
+        "troopship.n.01": 0.49572294092028407,
+        "surface_ship.n.01": 0.49602178625892274,
+        "naval_gun.n.01": 0.4961786193095396,
+        "transport_ship.n.01": 0.4979338224495941,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4713c91e35684df08700e4f75f4f6f60",
+        "creator_username": "lxyun_2",
+        "creator_display_name": "\u5168\u6597\u7115",
+        "creator_profile_url": "https://sketchfab.com/lxyun_2"
+    },
+    "filename": "std_4713c91e35684df08700e4f75f4f6f60.glb",
+    "length": 70.52386856079102,
+    "width": 7.649227142333984
+}

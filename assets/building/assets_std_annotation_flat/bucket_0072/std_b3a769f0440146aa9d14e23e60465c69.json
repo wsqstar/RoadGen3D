@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a compact, tracked combat vehicle with a distinctive domed turret and a narrow, angular hull. The vehicle features two wide, continuous tracks on either side, providing stability and traction over rough terrain. The front is sharply sloped, with a small viewing port and what appears to be a mounted weapon protruding from the turret. The hull is covered in dark, angular armor plates with a mottled camouflage pattern, and the rear includes a visible support structure. The vehicle's design is reminiscent of early 20th-century light tanks, with riveted armor and a small, single-person turret. No visible windows or external markings are present aside from a large 'M' on the rear.",
+    "description": "A compact, tracked combat vehicle with a domed turret, angular hull, and dark camouflage pattern. It features wide tracks and a small front-mounted weapon.",
+    "description_view_0": "Front view shows the narrow, sloped hull, central viewing port, and the domed turret with a weapon mount.",
+    "description_view_1": "Left side view highlights the full length of the tracks, the turret with a protruding weapon, and the rear support structure.",
+    "description_view_2": "Rear view displays the back armor, large 'M' marking, and the width of the tracks.",
+    "description_view_3": "Right side view mirrors the left, showing the tracks, turret, and hull details.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 7000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 35000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "tracks",
+        "weapon mount",
+        "viewing port"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible weapon mount on the front of the turret, likely for a machine gun or small cannon.",
+    "attribute_armor_plating": "Full body coverage with riveted, angular steel armor plates; moderate thickness, sloped at the front and sides.",
+    "attribute_camouflage_pattern": "Dark green and gray mottled camouflage pattern with irregular shapes.",
+    "attribute_military_markings": "Large black 'M' marking on the rear hull; no other visible insignia or numbers.",
+    "attribute_tire_type": "not applicable",
+    "uid": "b3a769f0440146aa9d14e23e60465c69",
+    "near_synsets": {
+        "tank.n.01": 0.4941700704522789,
+        "military_vehicle.n.01": 0.5068269060016772,
+        "reconnaissance_vehicle.n.01": 0.5225829424506604,
+        "armored_car.n.02": 0.524246894875434,
+        "assault_gun.n.02": 0.5288262156924592,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/b3a769f0440146aa9d14e23e60465c69",
+        "creator_username": "FrequentlyGreen",
+        "creator_display_name": "FrequentlyGreen",
+        "creator_profile_url": "https://sketchfab.com/FrequentlyGreen"
+    },
+    "filename": "std_b3a769f0440146aa9d14e23e60465c69.glb",
+    "length": 4.693872928619385,
+    "width": 1.9679114818572998
+}

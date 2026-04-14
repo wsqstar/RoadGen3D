@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a medium-sized, military-style tent with a muted green fabric exterior and tan reinforcement patches. The tent is supported by a visible frame of sturdy poles, with guy lines extending from the corners for stability. The entrance is a simple flap located at one end, and there are no visible windows or mesh panels. The tent is accompanied by a small folding table and a canister, suggesting a utilitarian, temporary setup. The surface of the tent appears matte and slightly textured, with the fabric likely being a weather-resistant canvas. The overall design is functional, suitable for outdoor or emergency urban use.",
+    "description": "A green, military-style canvas tent with tan patches, pole supports, and a flap entrance, accompanied by a folding table and canister.",
+    "description_view_0": "The tent is seen from the front, showing the entrance flap, a folding table, and a canister nearby.",
+    "description_view_1": "Side view of the tent, highlighting the green fabric and tan patches, with the table and canister to the left.",
+    "description_view_2": "Rear view of the tent, showing the back wall and guy lines, with the canister positioned behind.",
+    "description_view_3": "Opposite side view, displaying the tent's length, tan patches, and the table and canister to the right.",
+    "category": "tent",
+    "height": 1.6,
+    "max_dimension": 3.2,
+    "materials": [
+        "canvas",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.05,
+        0.1
+    ],
+    "mass": 28,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 90,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "foldable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "entrance flap",
+        "guy lines",
+        "poles"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "green",
+        "tan",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 500,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_entrance_type": "flap entrance at one end, secured with ties or fasteners, no visible zipper or mesh",
+    "attribute_number_of_poles": 4,
+    "attribute_guy_line_configuration": "Four guy lines, one at each corner, attached to the ground for stability",
+    "attribute_ventilation_openings": [],
+    "attribute_branding_or_logo": "none",
+    "uid": "4af75437a6d046d2acc9a757deed8040",
+    "near_synsets": {
+        "field_tent.n.01": 0.437420890952232,
+        "sibley_tent.n.01": 0.4751688192496545,
+        "wall_tent.n.01": 0.4763684749224412,
+        "canvas_tent.n.01": 0.48816277057813623,
+        "pop_tent.n.01": 0.4908750340242667,
+        "tent.n.02": -1000.0,
+        "tent.n.01": -1000.0
+    },
+    "synset": "tent.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4af75437a6d046d2acc9a757deed8040",
+        "creator_username": "kozachoks",
+        "creator_display_name": "kozachoks",
+        "creator_profile_url": "https://sketchfab.com/kozachoks"
+    },
+    "filename": "std_4af75437a6d046d2acc9a757deed8040.glb",
+    "length": 9.029020309448242,
+    "width": 9.028900146484375
+}

@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a large, detailed warship with a streamlined hull painted in a combination of red below the waterline and light gray above. The ship features a prominent superstructure with multiple turrets, radar domes, and communication equipment, as well as several gun emplacements along the deck. The bow is sharply pointed, and the stern is rounded, with visible propellers and rudders. The deck is equipped with various fixtures, including anchors, lifeboats, and antennae, indicating a vessel designed for naval operations. Flags are mounted at both the bow and stern, adding to the ship's military appearance. The overall construction suggests a steel hull and superstructure, with numerous access points and walkways for crew movement.",
+    "description": "A large, gray and red military ship with multiple turrets, radar domes, and deck equipment, featuring a streamlined hull and prominent superstructure.",
+    "description_view_0": "Side view showing the full length of the ship, highlighting the hull's red and gray color scheme, superstructure, turrets, and flags at both ends.",
+    "description_view_1": "Top-down view revealing the layout of the deck, placement of turrets, radar domes, and other equipment, as well as the pointed bow.",
+    "description_view_2": "Opposite side view similar to view 0, showing the hull, superstructure, and deck equipment from the other side.",
+    "description_view_3": "Top-down view from the stern, showing the rounded stern, propellers, rudders, and the arrangement of deck fixtures.",
+    "category": "ship",
+    "height": 18,
+    "max_dimension": 210,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 35000000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000000.0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "radar",
+        "antenna",
+        "door",
+        "hatch",
+        "lifeboat",
+        "anchor"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000.0,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.02,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a sharp, pointed bow and a rounded stern. The hull features a red lower section below the waterline and a gray upper section, with visible propellers and rudders at the stern. There are no visible keels or bulbous bows, but the hull is streamlined for efficient movement through water.",
+    "attribute_superstructure_layout": "The superstructure is centrally located and rises above the main deck, featuring multiple levels with turrets, radar domes, and communication masts. There are several access points, walkways, and platforms, with the bridge positioned near the front of the superstructure.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "turret",
+        "radar",
+        "antenna",
+        "anchor",
+        "lifeboat"
+    ],
+    "attribute_registration_markings": "flags at bow and stern",
+    "uid": "4804237e35b64c55ba00ee07d3e0103b",
+    "near_synsets": {
+        "naval_radar.n.01": 0.4768921487173759,
+        "three-decker.n.03": 0.49923930099441594,
+        "capital_ship.n.01": 0.5010870109886465,
+        "battleship.n.01": 0.5029087320061003,
+        "surface_ship.n.01": 0.503557948006376,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4804237e35b64c55ba00ee07d3e0103b",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_4804237e35b64c55ba00ee07d3e0103b.glb",
+    "length": 53.76291847229004,
+    "width": 8.994250297546387
+}

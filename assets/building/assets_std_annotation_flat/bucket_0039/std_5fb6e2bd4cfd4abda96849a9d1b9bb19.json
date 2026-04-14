@@ -1,0 +1,96 @@
+{
+    "description_long": "This object visually resembles a roughly assembled rifle-like form constructed from a variety of urban materials, including concrete blocks, bricks, and stones. The main body is composed of rectangular concrete and stone segments, with a vertical brick element suggesting a stock or grip. A flat, tan surface at the base may represent a makeshift platform or support. Several rounded stones and a couple of green plant leaves are present on one side, adding a natural touch to the otherwise industrial composition. The overall structure is blocky and abstract, lacking the refined contours and details of a functional firearm. There are no visible mechanical or metallic components typically associated with rifles, such as a trigger, barrel, or magazine.",
+    "description": "A blocky, abstract rifle-like object made from concrete, brick, and stone, with some plant elements and a tan base. The form is rough and lacks detailed firearm features.",
+    "description_view_0": "The front view shows the arrangement of concrete blocks, a vertical brick, and several rounded stones with green leaves on the left side.",
+    "description_view_1": "From this side, the large concrete block and vertical brick dominate, with the tan base extending forward and fewer visible stones.",
+    "description_view_2": "The rear view highlights the long concrete block and vertical brick, with minimal detail and no visible stones or leaves.",
+    "description_view_3": "This side view reveals the layered arrangement of blocks, the vertical brick, and the cluster of stones and leaves on the right.",
+    "category": "rifle",
+    "height": 0.28,
+    "max_dimension": 0.55,
+    "materials": [
+        "concrete",
+        "stone",
+        "brick",
+        "plant",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 3,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "vertical brick (stock/grip)",
+        "flat base",
+        "stone cluster"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "tan",
+        "brown",
+        "green"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "group",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "not visible",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "not visible",
+    "uid": "5fb6e2bd4cfd4abda96849a9d1b9bb19",
+    "near_synsets": {
+        "rifle.n.01": 0.5521673491891784,
+        "light_arm.n.01": 0.5563904834084764,
+        "building_block.n.02": 0.5610890688100516,
+        "block.n.01": 0.5626434082226882,
+        "firearm.n.01": 0.5631164256700224
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5fb6e2bd4cfd4abda96849a9d1b9bb19",
+        "creator_username": "Edp_1",
+        "creator_display_name": "Edp_1",
+        "creator_profile_url": "https://sketchfab.com/Edp_1"
+    },
+    "filename": "std_5fb6e2bd4cfd4abda96849a9d1b9bb19.glb",
+    "length": 0.390625,
+    "width": 0.46044921875
+}

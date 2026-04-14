@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a large, horizontally-oriented cylindrical storage tank mounted on a wheeled trailer chassis, designed for transporting hazardous liquids. The tank is metallic with a weathered, dark gray finish and features prominent red warning signage, including the word 'DANGER' and a flammable material symbol on both sides. The structure includes a rear access ladder, a set of dual wheels, and several pipes and valves for loading and unloading contents. Red and white reflective safety stripes run along the lower edge of the tank for visibility. The tank is supported by a metal frame and stabilizing legs, indicating it can be detached and parked when not in transit.",
+    "description": "A large, wheeled cylindrical metal storage tank with red 'DANGER' signage, flammable warning symbols, and safety stripes, designed for hazardous liquid transport.",
+    "description_view_0": "Side view showing the full length of the tank, red 'DANGER' signage, flammable symbol, wheels, and support frame.",
+    "description_view_1": "Rear view highlighting the access ladder, end cap, and rear bumper structure.",
+    "description_view_2": "Opposite side view with identical 'DANGER' signage and flammable symbol, visible wheels, and support frame.",
+    "description_view_3": "Front view showing the rounded end of the tank and the front support legs.",
+    "category": "storage tank",
+    "height": 2.8,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 6500,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "drainable",
+        "connectable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "access ladder",
+        "valve",
+        "pipe",
+        "wheel",
+        "support leg"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_location": "urban industrial facility",
+    "attribute_access_ladder_presence": true,
+    "attribute_valve_or_pipe_attachments": [
+        "pipe",
+        "valve"
+    ],
+    "attribute_warning_signage": true,
+    "attribute_architectural_style": "cylindrical horizontal",
+    "uid": "7fb5668e4b25453fa2d5f30987a17abc",
+    "near_synsets": {
+        "tank.n.02": 0.4779954789528624,
+        "tank_car.n.01": 0.5145504703165592,
+        "gas_tank.n.01": 0.5297382972434928,
+        "tank_farm.n.01": 0.5298829476941725,
+        "tanker_truck.n.01": 0.5300814248709321,
+        "cooler.n.03": -1000.0,
+        "repositing.n.01": -1000.0,
+        "tank.n.01": -1000.0,
+        "storage.n.03": -1000.0,
+        "storage.n.04": -1000.0,
+        "storage.n.01": -1000.0,
+        "memory.n.04": -1000.0,
+        "tank.n.03": -1000.0,
+        "storehouse.n.01": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7fb5668e4b25453fa2d5f30987a17abc",
+        "creator_username": "romazu3",
+        "creator_display_name": "Roman Demichev",
+        "creator_profile_url": "https://sketchfab.com/romazu3"
+    },
+    "filename": "std_7fb5668e4b25453fa2d5f30987a17abc.glb",
+    "length": 1.8830947875976562,
+    "width": 6.823601245880127
+}

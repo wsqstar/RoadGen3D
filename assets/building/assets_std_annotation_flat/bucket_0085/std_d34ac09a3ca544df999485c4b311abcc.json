@@ -1,0 +1,96 @@
+{
+    "description_long": "This hospital is a large, multi-story healthcare facility with a modern, utilitarian design, featuring two main rectangular wings connected by a central corridor. The exterior is predominantly white with blue accents, and the facade is lined with rows of evenly spaced windows, providing ample natural light to the interior. The flat roofs are dark gray and punctuated by several small rooftop structures, likely for ventilation or mechanical access. The main entrance is visible with a covered awning, suggesting a welcoming and accessible entry point for patients and visitors. The building's layout maximizes usable space and accessibility, typical of urban hospitals designed for high patient throughput. There are no visible emergency signs, ambulance bays, or medical cross symbols on the exterior.",
+    "description": "A large, modern hospital with two connected rectangular wings, white and blue facade, flat roofs, and rows of windows. The main entrance features a covered awning, and the design is utilitarian and functional.",
+    "description_view_0": "Front view showing the long main wing with rows of windows and the connecting corridor to the secondary wing.",
+    "description_view_1": "Side view highlighting the depth of the main wing and the full width of the secondary wing, with visible rooftop details.",
+    "description_view_2": "Rear view displaying the back of both wings, the connecting corridor, and the flat roof surfaces.",
+    "description_view_3": "View from the opposite side of the main entrance, showing the covered awning and the end of the long wing.",
+    "category": "hospital",
+    "height": 13,
+    "max_dimension": 65,
+    "materials": [
+        "reinforced concrete",
+        "glass",
+        "steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.02,
+        0.08
+    ],
+    "mass": 1200000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "awning"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 8,
+    "asset_composition_type": "single",
+    "attribute_hospital_signage": false,
+    "attribute_emergency_entrance": false,
+    "attribute_ambulance_bay": false,
+    "attribute_medical_cross_symbol": false,
+    "attribute_architectural_style": "modern utilitarian",
+    "uid": "d34ac09a3ca544df999485c4b311abcc",
+    "near_synsets": {
+        "medical_building.n.01": 0.5306427784747964,
+        "hospital.n.01": 0.5541529225657676,
+        "hospital.n.02": 0.563800405264237,
+        "medical_center.n.01": 0.5638419173764134,
+        "hospital_room.n.01": 0.5666211562966152
+    },
+    "synset": "hospital_room.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d34ac09a3ca544df999485c4b311abcc",
+        "creator_username": "swjeta",
+        "creator_display_name": "swjeta",
+        "creator_profile_url": "https://sketchfab.com/swjeta"
+    },
+    "filename": "std_d34ac09a3ca544df999485c4b311abcc.glb",
+    "length": 62.26388359069824,
+    "width": 73.35171127319336
+}

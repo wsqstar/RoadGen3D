@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a rectangular tennis court complex with a flat playing surface and clearly defined court boundaries. The main court area is bordered by a slightly raised structure, possibly representing a clubhouse or equipment storage area, attached to one end. The court surface features visible grid-like markings, likely representing the tennis court lines, and a distinct rectangular area that may indicate a different surface material or a maintenance hatch. The structure at one end has a sloped roof and small window-like openings, suggesting a utilitarian design. The overall color scheme is dominated by shades of gray, giving the court a modern, understated appearance. There are no visible fences, nets, or lighting fixtures present around the court.",
+    "description": "A modern, rectangular tennis court with a flat surface, attached utility structure, and visible court markings in shades of gray.",
+    "description_view_0": "View 0 shows the court from an angle highlighting the attached building with a sloped roof and the main playing surface with grid-like markings.",
+    "description_view_1": "View 1 presents a side profile, emphasizing the court's flatness and the low height of the attached structure.",
+    "description_view_2": "View 2 displays the court from the opposite side, showing the rectangular surface and the edge of the attached building.",
+    "description_view_3": "View 3 provides a rear perspective, focusing on the back of the attached structure and the full expanse of the court surface.",
+    "category": "tennis court",
+    "height": 4.0,
+    "max_dimension": 36.0,
+    "materials": [
+        "concrete",
+        "asphalt",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 5,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "playable",
+        "standable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "court surface",
+        "attached building"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "group",
+    "attribute_net_type": "none",
+    "attribute_court_line_markings": "Grid-like court markings are visible, appearing as standard tennis lines in a lighter gray color, but the completeness and width are not fully clear.",
+    "attribute_surrounding_fence": "none",
+    "attribute_lighting_fixtures": "none",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "fa80c70ef969420bb4e06fc909d7cb94",
+    "near_synsets": {
+        "tennis_court.n.01": 0.42660364576315724,
+        "volleyball_court.n.01": 0.512713640650062,
+        "badminton_court.n.01": 0.5158143468351623,
+        "tennis.n.01": 0.525874933527717,
+        "royal_tennis.n.01": 0.5275340954508062,
+        "court.n.03": -1000.0,
+        "court.n.04": -1000.0,
+        "court.n.05": -1000.0,
+        "court.n.06": -1000.0,
+        "court.n.01": -1000.0,
+        "court.n.08": -1000.0,
+        "court.n.02": -1000.0,
+        "court.n.09": -1000.0,
+        "motor_hotel.n.01": -1000.0,
+        "court.n.10": -1000.0
+    },
+    "synset": "tennis_court.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fa80c70ef969420bb4e06fc909d7cb94",
+        "creator_username": "rigraf",
+        "creator_display_name": "rigraf",
+        "creator_profile_url": "https://sketchfab.com/rigraf"
+    },
+    "filename": "std_fa80c70ef969420bb4e06fc909d7cb94.glb",
+    "length": 39.114606857299805,
+    "width": 33.721744537353516
+}

@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a large, rectangular shipping container with a weathered blue exterior, featuring corrugated steel walls and visible signs of rust and wear. The front side displays the MAERSK logo in bold black letters alongside a white star on a blue background, indicating its use for international freight. The container has reinforced corners and heavy-duty locking mechanisms on the doors, which are located at one end. Red patches of paint or rust are scattered across the surface, adding to its industrial, used appearance. The structure is robust, designed to withstand stacking and transport by ship, truck, or train. Its size and construction suggest it is suitable for storing or transporting large quantities of goods in urban or port environments.",
+    "description": "A large, weathered blue steel shipping container with the MAERSK logo, reinforced corners, and heavy-duty locking doors, showing signs of rust and industrial use.",
+    "description_view_0": "The front view shows the MAERSK logo and star, with visible rust and paint patches on the corrugated steel surface.",
+    "description_view_1": "This end view highlights the double doors with locking bars and hinges, showing the container's access point.",
+    "description_view_2": "The rear side is plain, with no visible logos or doors, only corrugated steel and scattered rust patches.",
+    "description_view_3": "Another end view, nearly identical to view 1, showing the double doors and locking mechanisms.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.92,
+        0.07,
+        0.01
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 15000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking bar",
+        "hinge"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black",
+        "white",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "printed MAERSK logo and star on front, scattered red markings",
+    "attribute_handles_or_grips": "integrated locking bars and handles on doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "04c747d6be0e4f2aa385bdcc991b0a99",
+    "near_synsets": {
+        "cargo_container.n.01": 0.48760785852591426,
+        "container.n.01": 0.49465777095235375,
+        "crate.n.01": 0.5445034851547087,
+        "cargo_door.n.01": 0.5494713726585229,
+        "container_ship.n.01": 0.5553240059497647
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/04c747d6be0e4f2aa385bdcc991b0a99",
+        "creator_username": "EttoreZaccaria",
+        "creator_display_name": "EttoreZaccaria",
+        "creator_profile_url": "https://sketchfab.com/EttoreZaccaria"
+    },
+    "filename": "std_04c747d6be0e4f2aa385bdcc991b0a99.glb",
+    "length": 2.56553053855896,
+    "width": 6.4663214683532715
+}

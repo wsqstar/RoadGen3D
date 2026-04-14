@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a small, classic steam locomotive with a bright blue body, black roof, and red accents, reminiscent of early 20th-century British tank engines. The front features a large, round face with expressive eyes, a black smokestack, and two yellow lamp-like details above the face. The sides display three large blue wheels connected by a wooden coupling rod, with a black undercarriage and a boxy cab at the rear. The locomotive's body is mostly blue with a black roof and a red buffer beam at the front and rear. There are no visible doors or windows on the cab, and the overall design is stylized and cartoonish. The train appears to be a single, self-contained engine without any attached carriages.",
+    "description": "A small, blue steam locomotive with a cartoonish face, black roof, and red accents, featuring three large blue wheels on each side and a boxy cab at the rear.",
+    "description_view_0": "Front view showing the black smokestack, round face, and red buffer beam.",
+    "description_view_1": "Left side view highlighting the three large blue wheels, wooden coupling rod, and boxy cab.",
+    "description_view_2": "Direct front view with a clear view of the face, smokestack, and yellow lamp-like details.",
+    "description_view_3": "Right side view similar to the left, showing wheels, coupling rod, and cab.",
+    "category": "train",
+    "height": 2.8,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "paint",
+        "glass",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 25000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 6,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "smokestack",
+        "face",
+        "coupling rod",
+        "buffer beam"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black",
+        "red",
+        "yellow",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.55,
+        0.2,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "steam locomotive",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "no visible doors",
+    "attribute_window_arrangement": "no visible windows",
+    "uid": "2b8605f4ad2b46e39de31e215a1061ce",
+    "near_synsets": {
+        "steam_locomotive.n.01": 0.4607306081402582,
+        "train_set.n.01": 0.4695198668547159,
+        "train.n.01": 0.4815989476902203,
+        "locomotive.n.01": 0.4967891801286418,
+        "choo-choo.n.01": 0.49681430279736877,
+        "caravan.n.01": -1000.0,
+        "train.n.04": -1000.0,
+        "train.n.05": -1000.0,
+        "string.n.04": -1000.0,
+        "gearing.n.01": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2b8605f4ad2b46e39de31e215a1061ce",
+        "creator_username": "eric.stirbescu",
+        "creator_display_name": "Eric.Stirbescu",
+        "creator_profile_url": "https://sketchfab.com/eric.stirbescu"
+    },
+    "filename": "std_2b8605f4ad2b46e39de31e215a1061ce.glb",
+    "length": 5.72097110748291,
+    "width": 1.8470872640609741
+}

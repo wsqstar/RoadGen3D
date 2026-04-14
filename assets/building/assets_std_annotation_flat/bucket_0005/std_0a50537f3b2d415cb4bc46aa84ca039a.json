@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a yellow, mid-sized backhoe excavator featuring a robust steel frame and a black operator cab. The vehicle is equipped with large, rugged rubber tires for mobility on urban and construction surfaces. At the front, it has a wide loader bucket attached to articulated arms, while the rear features a digging arm with a standard digging bucket. Hydraulic pistons and hoses are visible, indicating the machine's capability for heavy lifting and digging operations. The cab is enclosed and elevated, providing the operator with good visibility and protection. The overall appearance is utilitarian, with signs of wear and dirt typical of construction vehicles.",
+    "description": "A yellow, wheeled backhoe excavator with a black cab, front loader bucket, and rear digging arm, designed for urban construction tasks.",
+    "description_view_0": "Side view showing the black cab, large rear digging arm, and front loader bucket, with visible hydraulic components and rugged tires.",
+    "description_view_1": "Rear view highlighting the digging arm and bucket, with the cab and both rear tires visible.",
+    "description_view_2": "Opposite side view displaying the cab, digging arm, and loader bucket, with hydraulic lines and tire details.",
+    "description_view_3": "Front view focusing on the wide loader bucket, front tires, and the cab behind, with the digging arm less visible.",
+    "category": "excavator",
+    "height": 2.8,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.05,
+        0.15,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 7500,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 73500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "loader bucket",
+        "digging arm",
+        "hydraulic lever",
+        "steps",
+        "cab window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_boom_type": "mono boom",
+    "attribute_cab_position": "centered",
+    "attribute_track_or_wheel_type": "wheeled",
+    "attribute_bucket_design": "standard digging bucket",
+    "attribute_brand_logo": "none",
+    "uid": "0a50537f3b2d415cb4bc46aa84ca039a",
+    "near_synsets": {
+        "backhoe.n.01": 0.4043624924073459,
+        "excavator.n.01": 0.45588833465969747,
+        "power_shovel.n.01": 0.4704348187805048,
+        "scoop.n.05": 0.47439162446989797,
+        "digger.n.01": 0.5180681388578003
+    },
+    "synset": "excavator.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0a50537f3b2d415cb4bc46aa84ca039a",
+        "creator_username": "katie01bug05",
+        "creator_display_name": "katie01bug05",
+        "creator_profile_url": "https://sketchfab.com/katie01bug05"
+    },
+    "filename": "std_0a50537f3b2d415cb4bc46aa84ca039a.glb",
+    "length": 4.826653480529785,
+    "width": 1.4584647417068481
+}

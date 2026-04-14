@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a large, stationary, dual-barreled rotary weapon system mounted on a robust, angular base. The weapon features two sets of four-barrel rotary cannons, each housed in cylindrical casings with visible barrel openings and reinforced structural rings. The base is hexagonal with layered armor plating and raised geometric details, suggesting heavy-duty construction for stability and protection. The barrels are arranged in parallel pairs, and the entire assembly is supported by a central pivot mechanism, allowing for vertical adjustment. The surface is predominantly matte dark gray with subtle highlights, and the design is reminiscent of automated defense turrets used in urban or military environments. No visible stock, magazine, or traditional rifle grip is present, indicating this is a mounted, automated weapon rather than a handheld firearm.",
+    "description": "A heavy, dual rotary-barreled turret weapon mounted on a fortified hexagonal base, featuring parallel barrel clusters and robust armored construction.",
+    "description_view_0": "Front view shows the twin rotary barrel clusters and the symmetrical, reinforced base.",
+    "description_view_1": "Left side view highlights the cylindrical housings and the angular, layered base structure.",
+    "description_view_2": "Rear view reveals the back ends of the barrel clusters and the central pivot mechanism.",
+    "description_view_3": "Right side view mirrors the left, showing the barrel arrangement and armored base details.",
+    "category": "rifle",
+    "height": 1.2,
+    "max_dimension": 1.5,
+    "materials": [
+        "steel",
+        "composite polymer",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "barrel cluster",
+        "pivot mechanism",
+        "base panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "light gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "rotary",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "none",
+    "attribute_muzzle_device": "none",
+    "uid": "13f2b1742e344d2dbc411c4677531245",
+    "near_synsets": {
+        "turret.n.01": 0.508541415785587,
+        "gun_enclosure.n.01": 0.5104313390240899,
+        "rifle.n.01": 0.5126731693219845,
+        "gatling_gun.n.01": 0.5142567037763018,
+        "cannon.n.02": 0.520257628902102
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/13f2b1742e344d2dbc411c4677531245",
+        "creator_username": "MOJackal",
+        "creator_display_name": "MOJackal",
+        "creator_profile_url": "https://sketchfab.com/MOJackal"
+    },
+    "filename": "std_13f2b1742e344d2dbc411c4677531245.glb",
+    "length": 1.7416496872901917,
+    "width": 1.7416492104530334
+}

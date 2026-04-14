@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a blocky, stone-like combat tactical vehicle resembling a tank, constructed primarily from gray stone blocks with wooden elements. The vehicle features a long, rectangular cannon protruding from the front, and its turret is topped with hatches and grates, suggesting access points or ventilation. Wooden rails and trapdoors are attached to the sides and top, possibly simulating armor skirts or additional protection. The vehicle's body is robust and angular, with a low profile and wide tracks made from stone slabs, giving it a heavy, fortified appearance. Small red lights or indicators are present near the front, adding to its functional detail. The overall design is utilitarian and defensive, with no visible camouflage or military insignia.",
+    "description": "A blocky, stone-built combat vehicle with a long cannon, wooden rails, and grates, resembling a tank. It features a robust, angular body with stone tracks and red indicator lights.",
+    "description_view_0": "Front view shows the wide, armored face, central cannon, and wooden grates on the upper surface.",
+    "description_view_1": "Left side view highlights the long cannon, stone tracks, and wooden rails along the side.",
+    "description_view_2": "Rear view displays the back armor, stone tracks, and the rear end of the turret.",
+    "description_view_3": "Right side view mirrors the left, showing the cannon, stone tracks, and wooden rails.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 6.0,
+    "materials": [
+        "stone",
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 90000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "cannon",
+        "trapdoor",
+        "rail",
+        "light"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "red"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted at the front of the turret; no other weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, blocky stone armor; sloped and reinforced on all sides, including turret and tracks.",
+    "attribute_camouflage_pattern": "None visible; solid gray stone with brown wooden accents.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "93dc2f72f8374ae7a473c9c82eae48ad",
+    "near_synsets": {
+        "tank.n.01": 0.5123297067957902,
+        "military_vehicle.n.01": 0.5200389592071775,
+        "assault_gun.n.02": 0.5377236588417632,
+        "weapons_carrier.n.01": 0.5409842565478628,
+        "reconnaissance_vehicle.n.01": 0.5475814206599255,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/93dc2f72f8374ae7a473c9c82eae48ad",
+        "creator_username": "madexc",
+        "creator_display_name": "madexc",
+        "creator_profile_url": "https://sketchfab.com/madexc"
+    },
+    "filename": "std_93dc2f72f8374ae7a473c9c82eae48ad.glb",
+    "length": 6.517287254333496,
+    "width": 2.929784417152405
+}

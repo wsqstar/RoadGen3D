@@ -1,0 +1,104 @@
+{
+    "description_long": "This object is a rectangular, two-story building with a flat roof and a weathered, tan stucco exterior. The front facade features two arched doorways, each covered by a fabric awning\u2014one red and one gray\u2014supported by thin poles. In front of the building, there are long wooden tables displaying pottery, food, and other market goods, suggesting a bustling street market scene. The upper story has shuttered windows and a small patch of exposed stonework, adding to the rustic, historical character. A wooden ladder leans against one side, and the rear and sides of the building are mostly plain, with minimal architectural detail. The overall appearance evokes a Mediterranean or Middle Eastern urban market setting.",
+    "description": "A two-story tan stucco building with arched doorways, colorful fabric awnings, and market tables in front, evoking a lively street market scene.",
+    "description_view_0": "The front view shows a plain tan wall with a single shuttered window and no visible market activity.",
+    "description_view_1": "The left side view reveals a ladder, a patch of exposed stonework, and the side of the market tables and awnings.",
+    "description_view_2": "The main facade displays two arched doorways with red and gray awnings, shuttered windows above, and market tables filled with goods.",
+    "description_view_3": "The right side view shows the length of the building and the market tables extending outward, with minimal architectural detail.",
+    "category": "awning",
+    "height": 4.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "stucco",
+        "wood",
+        "fabric",
+        "stone",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shelter_providing",
+        "shade_providing",
+        "weather_protecting"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "awning canopy",
+        "awning poles",
+        "doors",
+        "windows",
+        "ladder",
+        "market tables"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "red",
+        "gray",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.08,
+        0.08,
+        0.1,
+        0.04
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_mounting_location": "attached to the building facade above arched doorways",
+    "attribute_canopy_pattern": "solid color fabric with no visible pattern, one red and one gray",
+    "attribute_edge_trim_style": "straight edge with minimal trim, no decorative features",
+    "attribute_branding_or_signage": "none",
+    "attribute_support_structure_type": "fixed frame with vertical support poles",
+    "uid": "07455d0240e5468b91bd23f31268e9b2",
+    "near_synsets": {
+        "porte-cochere.n.02": 0.5432449282272447,
+        "gazebo.n.01": 0.5528571469095501,
+        "awning.n.01": 0.5549110815850354,
+        "arcade.n.01": 0.5602031407231632,
+        "marquee.n.02": 0.5640721994823069
+    },
+    "synset": "awning.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/07455d0240e5468b91bd23f31268e9b2",
+        "creator_username": "evilgod9",
+        "creator_display_name": "evilgod9",
+        "creator_profile_url": "https://sketchfab.com/evilgod9"
+    },
+    "filename": "std_07455d0240e5468b91bd23f31268e9b2.glb",
+    "length": 6.400699853897095,
+    "width": 8.522404670715332
+}

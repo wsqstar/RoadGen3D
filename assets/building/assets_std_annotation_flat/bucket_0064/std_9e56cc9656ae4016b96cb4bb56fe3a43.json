@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a wrapped sandwich, likely a burrito or similar, with a soft, lightly browned tortilla encasing a colorful filling. The filling appears to include green lettuce, red tomato slices, and possibly some brownish protein or beans, all tightly packed inside. The tortilla is folded over at the ends, with the filling slightly visible at both open sides. The exterior is matte and slightly textured, resembling a freshly made flour tortilla. The sandwich is compact and cylindrical, with a low profile when viewed from the side. There is no visible packaging or branding, and the sandwich is presented alone, with no discernible background context.",
+    "description": "A tightly wrapped sandwich with a soft, matte tortilla and colorful vegetable filling visible at the ends. The sandwich is compact and cylindrical, with no visible packaging or branding.",
+    "description_view_0": "Front view showing the open end of the sandwich with visible green, red, and brown filling inside the folded tortilla.",
+    "description_view_1": "Side view displaying the sandwich's low, elongated profile with the tortilla fully enclosing the filling except at the ends.",
+    "description_view_2": "Rear view similar to the front, showing the opposite open end with filling visible, but with slightly less filling exposed.",
+    "description_view_3": "Opposite side view, again showing the sandwich's flat, elongated shape and the tortilla's smooth surface.",
+    "category": "sandwich",
+    "height": 0.07,
+    "max_dimension": 0.18,
+    "materials": [
+        "tortilla (flour)",
+        "lettuce",
+        "tomato",
+        "protein (meat or beans)",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.15,
+        0.05
+    ],
+    "mass": 0.25,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "graspable",
+        "edible"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "tortilla wrap",
+        "filling"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "green",
+        "red",
+        "brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.1,
+    "asset_composition_type": "single",
+    "attribute_packaging_type": "none",
+    "attribute_brand_logo": "none",
+    "attribute_display_location": "unknown",
+    "attribute_advertisement_signage": false,
+    "attribute_vendor_cart_presence": false,
+    "uid": "9e56cc9656ae4016b96cb4bb56fe3a43",
+    "near_synsets": {
+        "wrap.n.02": 0.43096140973100827,
+        "burrito.n.01": 0.48969732784382564,
+        "taco.n.02": 0.495331183635453,
+        "sandwich.n.01": 0.49547051563431654,
+        "grilled_cheese.n.01": 0.5270837523305969
+    },
+    "synset": "sandwich.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9e56cc9656ae4016b96cb4bb56fe3a43",
+        "creator_username": "Pierre.Bourdon",
+        "creator_display_name": "Pierre.Bourdon",
+        "creator_profile_url": "https://sketchfab.com/Pierre.Bourdon"
+    },
+    "filename": "std_9e56cc9656ae4016b96cb4bb56fe3a43.glb",
+    "length": 0.48904378712177277,
+    "width": 0.17920251190662384
+}

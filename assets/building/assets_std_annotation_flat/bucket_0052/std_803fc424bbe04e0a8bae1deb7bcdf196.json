@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a large, weathered metal shipping container with a rectangular form and double doors at one end. The exterior is heavily rusted and covered in graffiti, with visible streaks and patches of corrosion across the surface. The doors are open, revealing a dark, ribbed metal floor and several stacked cardboard boxes inside. The container's structure is reinforced with vertical and horizontal metal ribs, and the roof is corrugated for added strength. The doors feature robust locking mechanisms and hinges, designed for secure closure and transport. The overall appearance suggests long-term outdoor use, likely in an industrial or urban environment.",
+    "description": "A large, rusted metal shipping container with graffiti, open double doors, and visible interior boxes. The surface is heavily weathered and reinforced with metal ribs.",
+    "description_view_0": "Front view showing closed, rusted double doors with visible locking bars and graffiti.",
+    "description_view_1": "Side view displaying extensive graffiti, rust, and the open doors at the far end.",
+    "description_view_2": "Rear view with both doors open, revealing the interior and stacked boxes inside.",
+    "description_view_3": "Opposite side view with more graffiti and the open doors visible at the near end.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "cardboard",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.04,
+        0.04
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "loadable",
+        "unloadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "lock",
+        "hinge"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "gray",
+        "black",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "graffiti and markings on all exterior sides, no formal signage",
+    "attribute_handles_or_grips": "two vertical handles on each door",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "803fc424bbe04e0a8bae1deb7bcdf196",
+    "near_synsets": {
+        "cargo_container.n.01": 0.4846133546832749,
+        "container.n.01": 0.48614699382103066,
+        "dumpster.n.01": 0.546759227391743,
+        "cargo_door.n.01": 0.549347890774515,
+        "crate.n.01": 0.5494663729523761
+    },
+    "synset": "container.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/803fc424bbe04e0a8bae1deb7bcdf196",
+        "creator_username": "meeww",
+        "creator_display_name": "meeww",
+        "creator_profile_url": "https://sketchfab.com/meeww"
+    },
+    "filename": "std_803fc424bbe04e0a8bae1deb7bcdf196.glb",
+    "length": 8.714421272277832,
+    "width": 3.272099733352661
+}

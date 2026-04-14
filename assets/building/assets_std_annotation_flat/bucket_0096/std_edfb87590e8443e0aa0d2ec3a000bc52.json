@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a large, modern cruise ship with a streamlined white hull and a blue lower section, featuring multiple decks and a prominent superstructure. The ship has a green-topped upper deck with a helipad marked by an 'H' at the stern, and a blue funnel located amidships. Lifeboats are visible along the sides, and the bow is sharply pointed for efficient movement through water. The superstructure includes several levels with windows and open deck spaces, and the ship is equipped with various fixtures such as antennas and navigation equipment. The overall design suggests a vessel built for passenger comfort and long-distance travel.",
+    "description": "A large, white and blue modern cruise ship with multiple decks, a helipad, and visible lifeboats along the sides.",
+    "description_view_0": "Front view showing the pointed bow, layered decks, and the central alignment of the superstructure.",
+    "description_view_1": "Side view highlighting the full length of the ship, lifeboats, windows, and the blue funnel amidships.",
+    "description_view_2": "Rear view displaying the helipad at the stern, the wide superstructure, and the ship's overall width.",
+    "description_view_3": "Opposite side view similar to view 1, showing lifeboats, windows, and the ship's length.",
+    "category": "ship",
+    "height": 35,
+    "max_dimension": 300,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.07,
+        0.03,
+        0.03,
+        0.02
+    ],
+    "mass": 90000000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 300000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "dockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "lifeboat",
+        "helipad",
+        "antenna",
+        "funnel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "green",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 40,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a sharply pointed bow and a rounded stern. The hull sides are smooth and continuous, with a blue lower section and white upper section. No bulbous bow or visible keels are present, and the hull is designed for stability and efficient passage through water.",
+    "attribute_superstructure_layout": "The superstructure consists of multiple stacked decks with a central bridge, a blue funnel amidships, and open deck spaces. Lifeboats are mounted along the sides, and a helipad is located at the stern. Windows and railings are visible on several levels, indicating passenger and crew areas.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "lifeboat",
+        "helipad",
+        "antenna",
+        "funnel"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "edfb87590e8443e0aa0d2ec3a000bc52",
+    "near_synsets": {
+        "cruise_ship.n.01": 0.5053057140442273,
+        "boat_deck.n.01": 0.518063468789162,
+        "blue_peter.n.01": 0.5195069041489085,
+        "passenger_ship.n.01": 0.5250271268676195,
+        "cargo_ship.n.01": 0.5278176310073504,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/edfb87590e8443e0aa0d2ec3a000bc52",
+        "creator_username": "Karumaki",
+        "creator_display_name": "Karumaki",
+        "creator_profile_url": "https://sketchfab.com/Karumaki"
+    },
+    "filename": "std_edfb87590e8443e0aa0d2ec3a000bc52.glb",
+    "length": 115.56092071533203,
+    "width": 24.21939468383789
+}

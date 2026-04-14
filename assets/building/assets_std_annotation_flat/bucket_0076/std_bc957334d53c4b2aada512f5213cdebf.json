@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a large, open-topped metal dumpster with a rectangular shape and sloped sides, commonly used for waste collection in urban environments. The exterior is painted light gray and features red-and-white diagonal safety stripes on the longer sides, as well as the word 'KURZ' displayed on orange tiles on both the front and back. The interior is spacious and unobstructed, designed to hold a significant volume of debris or refuse. There are no visible lids, wheels, or handles, and the base is flat with reinforced edges for stability. The overall construction suggests durability and suitability for placement on streets, construction sites, or near commercial buildings.",
+    "description": "A large, open-topped gray metal dumpster with sloped sides, red-and-white safety stripes, and 'KURZ' signage. It is robust and designed for urban waste collection.",
+    "description_view_0": "Front view showing the sloped side, red-and-white safety stripes, and 'KURZ' signage on the panel.",
+    "description_view_1": "Side view highlighting the open top, deep interior, and the 'KURZ' signage on the end panel.",
+    "description_view_2": "Rear view mirroring the front, with identical safety stripes and 'KURZ' signage.",
+    "description_view_3": "Opposite side view showing the open top and deep interior, with safety stripes visible on the end.",
+    "category": "dumpster",
+    "height": 1.2,
+    "max_dimension": 3.0,
+    "materials": [
+        "painted_steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.08
+    ],
+    "mass": 350,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "loadable",
+        "unloadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "white",
+        "orange",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "none",
+    "attribute_wheel_presence": false,
+    "attribute_handle_design": "none",
+    "attribute_warning_labels": [
+        {
+            "color": "red and white",
+            "shape": "diagonal stripes",
+            "content": "safety warning"
+        },
+        {
+            "color": "orange",
+            "shape": "rectangular tiles",
+            "content": "KURZ signage"
+        }
+    ],
+    "attribute_placement_location": "outdoor commercial area, construction site, or street-side waste collection point",
+    "uid": "bc957334d53c4b2aada512f5213cdebf",
+    "near_synsets": {
+        "dumpster.n.01": 0.4668267079015984,
+        "garbage_truck.n.01": 0.5464855296110542,
+        "garbage.n.03": 0.547328952083043,
+        "recycling_bin.n.01": 0.5690619325499359,
+        "litterbin.n.01": 0.5804084034866448
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bc957334d53c4b2aada512f5213cdebf",
+        "creator_username": "bk191414",
+        "creator_display_name": "KURZ Entsorgung GmbH",
+        "creator_profile_url": "https://sketchfab.com/bk191414"
+    },
+    "filename": "std_bc957334d53c4b2aada512f5213cdebf.glb",
+    "length": 1.554326593875885,
+    "width": 2.93083918094635
+}

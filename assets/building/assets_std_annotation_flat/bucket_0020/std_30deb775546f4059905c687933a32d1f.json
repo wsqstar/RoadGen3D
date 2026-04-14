@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a small, decorative windmill featuring a lattice-style metal tower and a set of eight wooden blades attached to a central hub. The tower is constructed from intersecting black metal rods, forming a stable, open framework that tapers as it rises. At the top, a red, box-like nacelle houses the rotor mechanism and connects the blades to the structure. The wooden blades are evenly spaced and radiate outward, each with a slightly tapered shape and natural wood grain visible. The nacelle is compact and painted in a muted red, contrasting with the darker metal and wood elements. This windmill is likely intended for ornamental or small-scale functional use in urban gardens, parks, or yards.",
+    "description": "A small, decorative windmill with a black lattice metal tower, eight wooden blades, and a red nacelle at the top. The structure combines metal, wood, and painted elements for a rustic, urban look.",
+    "description_view_0": "Frontal view showing the full set of wooden blades and the lattice metal tower directly beneath.",
+    "description_view_1": "Angled view highlighting the red nacelle and the side profile of the blades, with the tower's structure visible.",
+    "description_view_2": "Rear three-quarter view emphasizing the back of the nacelle and the arrangement of the blades.",
+    "description_view_3": "Side view showing the thin profile of the blades and the tower's tapering structure.",
+    "category": "windmill",
+    "height": 1.2,
+    "max_dimension": 0.7,
+    "materials": [
+        "metal",
+        "wood",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.35,
+        0.05,
+        0.05
+    ],
+    "mass": 12,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "blades",
+        "nacelle",
+        "tower"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "red",
+        "silver"
+    ],
+    "colors_composition": [
+        0.45,
+        0.35,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_blades": 8,
+    "attribute_blade_orientation": "horizontal-axis",
+    "attribute_tower_structure_type": "lattice",
+    "attribute_presence_of_nacelle": true,
+    "attribute_mounting_location": "ground-mounted",
+    "uid": "30deb775546f4059905c687933a32d1f",
+    "near_synsets": {
+        "windmill.n.01": 0.4797481071069186,
+        "windmill.n.02": 0.5223545887122211,
+        "wind_turbine.n.01": 0.5381757837834455,
+        "wind_chime.n.01": 0.5477528388305932,
+        "weathervane.n.01": 0.5602785173651512
+    },
+    "synset": "windmill.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/30deb775546f4059905c687933a32d1f",
+        "creator_username": "AbsoluteMadLadd",
+        "creator_display_name": "AbsoluteMadLadd",
+        "creator_profile_url": "https://sketchfab.com/AbsoluteMadLadd"
+    },
+    "filename": "std_30deb775546f4059905c687933a32d1f.glb",
+    "length": 0.38764263689517975,
+    "width": 0.4493529945611954
+}

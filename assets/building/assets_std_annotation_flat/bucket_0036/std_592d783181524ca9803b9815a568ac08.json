@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a dilapidated bus shelter with a large, arched corrugated metal roof that is heavily rusted and features several large holes and missing panels. The shelter is supported by a simple steel frame with six vertical posts and cross-bracing, giving it a skeletal, industrial appearance. The roof is uneven, with some panels partially detached or missing, exposing the interior framework. There are no visible side or back panels, leaving the shelter completely open to the environment. The structure lacks any seating, advertisement panels, or signage, emphasizing its abandoned and weathered state. The overall look suggests long-term neglect, making it suitable for post-apocalyptic or rundown urban settings.",
+    "description": "A rusted, arched metal bus shelter with a damaged roof and exposed steel frame, lacking walls, seating, or signage. The structure appears abandoned and open on all sides.",
+    "description_view_0": "Front view showing the open framework, arched roof with missing panels, and no side enclosures.",
+    "description_view_1": "Angled view highlighting the curvature of the roof, large holes, and the skeletal steel support structure.",
+    "description_view_2": "Rear view displaying the full extent of the roof damage and the open, wall-less design.",
+    "description_view_3": "Opposite angled view emphasizing the roof's rust, missing sections, and the exposed truss work.",
+    "category": "bus shelter",
+    "height": 2.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "corrugated metal",
+        "steel",
+        "air",
+        "rust"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.09,
+        0.01
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shelter"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "dark gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "arched corrugated metal",
+    "attribute_seating_presence": false,
+    "attribute_advertisement_panel": false,
+    "attribute_shelter_enclosure_level": "open",
+    "attribute_signage": [],
+    "uid": "592d783181524ca9803b9815a568ac08",
+    "near_synsets": {
+        "shelter.n.02": 0.5665022797622151,
+        "shelter.n.05": 0.5692986135815656,
+        "bus.n.04": 0.5703296970916815,
+        "bus_stop.n.01": 0.5724105790933975,
+        "rest_house.n.01": 0.5778427967726744,
+        "bus.n.01": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "shelter.n.01": -1000.0,
+        "protection.n.04": -1000.0,
+        "busbar.n.01": -1000.0,
+        "tax_shelter.n.01": -1000.0
+    },
+    "synset": "shelter.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/592d783181524ca9803b9815a568ac08",
+        "creator_username": "qaz840530",
+        "creator_display_name": "Vivi Chen",
+        "creator_profile_url": "https://sketchfab.com/qaz840530"
+    },
+    "filename": "std_592d783181524ca9803b9815a568ac08.glb",
+    "length": 3.4065157175064087,
+    "width": 6.260698556900024
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a military tank with a robust, angular body painted in dark olive green. The vehicle features a large, rounded turret mounted centrally on the hull, equipped with a long, slender cannon extending forward. The tank's sides are protected by thick, flat armor skirts that cover the tracks, which are composed of multiple large road wheels. Visible details include a star insignia and white stenciled text on the turret, suggesting military identification. The surface is mostly smooth with subtle panel lines and hatches, and the overall design emphasizes durability and protection. The tank's exterior is devoid of visible windows or civilian features, focusing entirely on combat functionality.",
+    "description": "A dark green military tank with a rounded turret, long cannon, and thick armored skirts covering its tracks. Marked with a star and military text, it is built for combat and protection.",
+    "description_view_0": "Top-down view showing the rounded turret, long cannon, and the full extent of the armored skirts covering the tracks.",
+    "description_view_1": "Front-side view highlighting the star insignia on the hull and the prominent cannon extending forward.",
+    "description_view_2": "Low rear-side view emphasizing the length of the cannon, the star insignia on the side, and the detailed track system.",
+    "description_view_3": "Low side view displaying the turret's stenciled text, the full set of road wheels, and the armored side skirts.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 35000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 343000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "tracks",
+        "wheels"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.92,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the central turret; no other weapon mounts visible.",
+    "attribute_armor_plating": "Full body armor plating with thick, flat panels covering the hull and sides; turret is rounded and reinforced; armor appears sloped for deflection.",
+    "attribute_camouflage_pattern": "Solid dark green color with no visible camouflage pattern.",
+    "attribute_military_markings": "White star emblem on the hull sides and white stenciled text ('USA' and numbers) on the turret.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "3b67fd596a2c46e384ab5cde0d1812bd",
+    "near_synsets": {
+        "tank.n.01": 0.4450060678974561,
+        "military_vehicle.n.01": 0.47656692905832465,
+        "armored_car.n.02": 0.509089242470919,
+        "assault_gun.n.02": 0.5208910247906544,
+        "tank_destroyer.n.01": 0.5277206824584503,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3b67fd596a2c46e384ab5cde0d1812bd",
+        "creator_username": "525367272",
+        "creator_display_name": "Wenyuan Wang",
+        "creator_profile_url": "https://sketchfab.com/525367272"
+    },
+    "filename": "std_3b67fd596a2c46e384ab5cde0d1812bd.glb",
+    "length": 4.021347522735596,
+    "width": 4.345721006393433
+}

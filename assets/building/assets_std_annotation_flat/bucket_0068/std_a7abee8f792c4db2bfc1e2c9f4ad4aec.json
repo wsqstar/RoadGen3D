@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a large, heavily armored ship with a streamlined, elongated hull painted in a combination of dark and reddish-brown tones. The deck features multiple large gun turrets, each with prominent barrels, and several smaller structures, likely for command and navigation. The superstructure is compact and centralized, with a small flag visible near the center, and various antennae or masts rising above. The bow is sharply pointed, while the stern is rounded, both designed for efficient movement through water. Visible deck equipment includes lifeboats, anchors, and what appear to be ventilation or exhaust structures. The overall design suggests a military battleship, built for durability and firepower.",
+    "description": "A large, armored battleship with a dark, streamlined hull, multiple gun turrets, and a compact central superstructure. The deck is equipped with lifeboats, anchors, and a visible flag.",
+    "description_view_0": "Top-down view showing the full deck layout, gun turrets, lifeboats, and the pointed bow and rounded stern.",
+    "description_view_1": "Side profile highlighting the ship's low, elongated hull, central superstructure, and the arrangement of turrets and deck equipment.",
+    "description_view_2": "Top-down view from the stern, emphasizing the rear deck, lifeboats, and the symmetrical arrangement of turrets.",
+    "description_view_3": "Opposite side profile, mirroring view 1, with clear visibility of the hull's curvature and deck features.",
+    "category": "ship",
+    "height": 12,
+    "max_dimension": 180,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 35000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 5000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "lifeboat",
+        "anchor",
+        "antenna",
+        "flag"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark brown",
+        "black",
+        "gray",
+        "white",
+        "red"
+    ],
+    "colors_composition": [
+        0.45,
+        0.35,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a classic displacement type with a sharp, pointed bow and a rounded stern, designed for stability and efficient movement through water. The hull sides are smooth and slightly flared, with no visible keels or bulbous bows. The waterline is low, indicating a deep draft suitable for heavy loads.",
+    "attribute_superstructure_layout": "The superstructure is compact and centrally located, featuring a main bridge, several smaller deckhouses, and a few raised platforms. There are multiple large gun turrets symmetrically arranged fore and aft, with lifeboats and other equipment distributed along the deck.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "gun turret",
+        "lifeboat",
+        "anchor",
+        "antenna",
+        "flag"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "a7abee8f792c4db2bfc1e2c9f4ad4aec",
+    "near_synsets": {
+        "battleship.n.01": 0.43414115452877705,
+        "capital_ship.n.01": 0.4707934689491619,
+        "surface_ship.n.01": 0.4829976977345521,
+        "guard_ship.n.01": 0.48557997910825246,
+        "cargo_ship.n.01": 0.4870323820557374,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a7abee8f792c4db2bfc1e2c9f4ad4aec",
+        "creator_username": "Cheer_Up_Ship",
+        "creator_display_name": "Mea",
+        "creator_profile_url": "https://sketchfab.com/Cheer_Up_Ship"
+    },
+    "filename": "std_a7abee8f792c4db2bfc1e2c9f4ad4aec.glb",
+    "length": 62.06155014038086,
+    "width": 10.295557022094727
+}

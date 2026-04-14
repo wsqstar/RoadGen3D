@@ -1,0 +1,96 @@
+{
+    "description_long": "This structure is a small building with a steeply pitched, gabled roof covered in gray tiles, reminiscent of traditional rural European architecture. The walls are constructed from horizontal wooden planks with a warm, reddish-brown hue, and the base is made of a light-colored stone or concrete. The front and rear feature prominent, pointed arched doorways, with the front entrance open and the rear sealed. On the sides, there are two alcoves, each housing a statue or figure, adding a decorative and possibly cultural element. The overall form is compact and symmetrical, with a sturdy, weather-resistant appearance suitable for residential or small communal use. The design blends rustic charm with functional shelter, making it a distinctive feature in an urban or park setting.",
+    "description": "A compact wooden building with a steep gray-tiled roof, arched entrances, and stone base, featuring side alcoves with statues. Its rustic, symmetrical design evokes traditional rural architecture.",
+    "description_view_0": "Front view showing the open, pointed arched entrance and the stone base, with the gabled roof prominently visible.",
+    "description_view_1": "Side view displaying the two arched alcoves with statues and the full expanse of the gray-tiled roof.",
+    "description_view_2": "Rear view with a closed, pointed arch and no entrance, highlighting the wooden wall and stone base.",
+    "description_view_3": "Opposite side view mirroring view 1, again showing the alcoves with statues and the roof's length.",
+    "category": "trullo",
+    "height": 3.2,
+    "max_dimension": 5.0,
+    "materials": [
+        "wood",
+        "stone",
+        "ceramic tile",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shelter",
+        "displayable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "doorway",
+        "alcove"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_conical_roof": false,
+    "attribute_whitewashed_stone_walls": false,
+    "attribute_decorative_roof_pinnacle": false,
+    "attribute_small_arched_doorway": true,
+    "attribute_architectural_style": "vernacular Apulian",
+    "uid": "98bf745cba0344a4bcfedf5ddb46a99a",
+    "near_synsets": {
+        "villa.n.03": 0.5514467281885262,
+        "chalet.n.01": 0.5672360407213871,
+        "attic.n.04": 0.571199500099696,
+        "bungalow.n.01": 0.5736953317536563,
+        "pediment.n.01": 0.5757377598877728
+    },
+    "synset": "chalet.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/98bf745cba0344a4bcfedf5ddb46a99a",
+        "creator_username": "miguel.beckers",
+        "creator_display_name": "miguel.beckers",
+        "creator_profile_url": "https://sketchfab.com/miguel.beckers"
+    },
+    "filename": "std_98bf745cba0344a4bcfedf5ddb46a99a.glb",
+    "length": 3.492229461669922,
+    "width": 3.147428512573242
+}

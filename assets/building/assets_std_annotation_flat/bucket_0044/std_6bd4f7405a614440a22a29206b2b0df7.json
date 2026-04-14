@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a compact, heavily-armored combat tactical vehicle with a robust, angular body painted in a metallic green finish. The vehicle features a prominent turret mounted with a large cannon, as well as several smaller details such as hatches, periscopes, and external equipment. Its body is supported by a set of rugged, gear-like wheels, suggesting a tracked or hybrid wheel-track propulsion system. The rear of the vehicle is equipped with cylindrical fuel tanks and additional storage, while the sides display various mechanical components and reinforced armor panels. The vehicle's surface is matte with visible bolts and seams, indicating modular armor plating. Markings such as the number '017' are visible on the turret, adding to its military character.",
+    "description": "A compact, green armored combat vehicle with a turret-mounted cannon, rugged wheels, and visible military markings.",
+    "description_view_0": "Front view shows the reinforced frontal armor, central turret, and symmetrical wheel arrangement.",
+    "description_view_1": "Left side view highlights the main cannon, side armor, and external equipment including cylindrical tanks at the rear.",
+    "description_view_2": "Rear view displays the cylindrical fuel tanks, rear armor, and the back of the turret.",
+    "description_view_3": "Right side view reveals the turret, cannon, side armor, and additional mechanical details.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.82,
+        0.04,
+        0.08,
+        0.03,
+        0.03
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "wheel",
+        "door",
+        "fuel tank"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "gray",
+        "red",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted on the turret; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, angular steel armor plating; reinforced front and turret; visible bolts and seams.",
+    "attribute_camouflage_pattern": "Solid metallic green paint with no visible camouflage pattern.",
+    "attribute_military_markings": "White number '017' on the turret; no other visible insignia or symbols.",
+    "attribute_tire_type": "Not applicable; vehicle uses gear-like wheels or tracks.",
+    "uid": "6bd4f7405a614440a22a29206b2b0df7",
+    "near_synsets": {
+        "tank.n.01": 0.4627236165377504,
+        "military_vehicle.n.01": 0.4684746754921708,
+        "armored_car.n.02": 0.4883840217503415,
+        "reconnaissance_vehicle.n.01": 0.502501794095707,
+        "assault_gun.n.02": 0.5082333507267105,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "armored_car.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6bd4f7405a614440a22a29206b2b0df7",
+        "creator_username": "outcast945",
+        "creator_display_name": "outcast945",
+        "creator_profile_url": "https://sketchfab.com/outcast945"
+    },
+    "filename": "std_6bd4f7405a614440a22a29206b2b0df7.glb",
+    "length": 6.934809446334839,
+    "width": 4.674508094787598
+}

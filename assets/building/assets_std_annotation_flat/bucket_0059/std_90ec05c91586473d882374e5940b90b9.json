@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a revolver-style handgun with a robust, metallic frame and a prominent, cylindrical barrel. It features a mounted scope on top, suggesting it is designed for precision shooting or target acquisition. The grip is ergonomically shaped and finished in a wood-like material, contrasting with the matte gray metal of the rest of the body. The trigger guard is rounded and substantial, providing ample space for finger placement. The cylinder is visible and appears to be capable of holding multiple rounds, typical of a revolver. The overall design is utilitarian with minimal decorative markings, focusing on function and durability.",
+    "description": "A metallic revolver handgun with a mounted scope and a wood-textured ergonomic grip, designed for precision and durability.",
+    "description_view_0": "Side view showing the full length of the revolver, the mounted scope, and the wood-textured grip.",
+    "description_view_1": "Rear view highlighting the width of the grip and the alignment of the scope with the barrel.",
+    "description_view_2": "Opposite side view displaying the cylinder, scope, and grip contours.",
+    "description_view_3": "Front view focusing on the barrel opening and the scope's lens alignment.",
+    "category": "handgun",
+    "height": 0.15,
+    "max_dimension": 0.32,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 6,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "rotatable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "cylinder",
+        "hammer",
+        "scope",
+        "barrel",
+        "trigger guard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_grip_design": "The grip is contoured with a gentle ergonomic curve, finished in a wood-like material that provides a warm, natural contrast to the metallic frame. It features a smooth surface with subtle finger grooves for enhanced comfort and control. The edges are rounded, and the grip appears to be attached with visible fasteners. There are no visible logos or embellishments, giving it a classic and functional appearance.",
+    "attribute_trigger_guard_style": "The trigger guard is robust and rounded, with a thick profile that offers ample protection for the trigger. It is smoothly integrated into the frame, with no sharp edges or undercuts. The design is utilitarian, lacking any texturing or decorative elements, and is sized to accommodate gloved fingers.",
+    "attribute_barrel_type": "The barrel is medium-length and cylindrical, with a smooth, unadorned exterior. It is topped with a mounted scope, and there are no visible threads, ports, or compensators. The finish matches the matte gray of the frame, and there are no external markings or fluting.",
+    "attribute_slide_markings": "There are no visible markings, engravings, or inscriptions on the slide or barrel. The surfaces are plain and unmarked, emphasizing a utilitarian design.",
+    "attribute_magazine_base_shape": "As a revolver, this handgun does not feature a traditional magazine base or floorplate. The grip base is flat and slightly beveled, with no extensions, finger rests, or logos visible.",
+    "uid": "90ec05c91586473d882374e5940b90b9",
+    "near_synsets": {
+        "pistol.n.01": 0.5011155108772518,
+        "colt.n.02": 0.5025543293275029,
+        "firearm.n.01": 0.509947192321362,
+        "revolver.n.01": 0.5157066578859252,
+        "dragunov.n.01": 0.5167540806354586
+    },
+    "synset": "revolver.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/90ec05c91586473d882374e5940b90b9",
+        "creator_username": "Brendan.George",
+        "creator_display_name": "Brendan George",
+        "creator_profile_url": "https://sketchfab.com/Brendan.George"
+    },
+    "filename": "std_90ec05c91586473d882374e5940b90b9.glb",
+    "length": 0.23607810586690903,
+    "width": 0.0360107421875
+}

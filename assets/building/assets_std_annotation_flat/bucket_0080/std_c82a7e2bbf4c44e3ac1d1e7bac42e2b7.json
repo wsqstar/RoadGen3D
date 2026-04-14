@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a large, modern cruise ship with a streamlined white hull and multiple decks stacked above the waterline. The vessel features a pointed bow and a rounded stern, with rows of windows and balconies running along both sides. The superstructure includes several upper decks, a prominent bridge near the bow, and a series of lifeboats mounted along the midsection. The ship is equipped with visible funnels and various deck equipment, including lifeboats and antennas. The exterior is predominantly white with some blue and orange accents, and the ship's design suggests luxury accommodations and amenities for passengers. No visible registration markings or names are apparent on the hull or superstructure.",
+    "description": "A large, white modern cruise ship with multiple decks, lifeboats, and a streamlined hull. The vessel features rows of windows, balconies, and a prominent bridge.",
+    "description_view_0": "Front view showing the pointed bow, bridge, and the ship's vertical profile with stacked decks.",
+    "description_view_1": "Starboard side view displaying the full length of the ship, rows of windows, balconies, and lifeboats.",
+    "description_view_2": "Stern view highlighting the rounded rear, tiered decks, and the ship's width.",
+    "description_view_3": "Port side view similar to the starboard, showing the ship's length, lifeboats, and superstructure details.",
+    "category": "ship",
+    "height": 60,
+    "max_dimension": 300,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "aluminum",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "mass": 90000000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "dockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "lifeboat",
+        "bridge",
+        "antenna",
+        "funnel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "blue",
+        "orange"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.02,
+    "recommended_clearance": 50,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a pointed bow and a rounded stern, featuring a smooth, continuous profile and no visible keels or bulbous bows. The hull sides are lined with rows of windows and balconies.",
+    "attribute_superstructure_layout": "The superstructure consists of multiple stacked decks with a prominent bridge near the bow, lifeboats along the midsection, and several upper decks for passenger amenities. The design is symmetrical and streamlined.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "lifeboat",
+        "antenna",
+        "funnel"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "c82a7e2bbf4c44e3ac1d1e7bac42e2b7",
+    "near_synsets": {
+        "cruise_ship.n.01": 0.4595451863776834,
+        "passenger_ship.n.01": 0.48779771856146315,
+        "cargo_ship.n.01": 0.49492249629193014,
+        "liner.n.04": 0.49769265301630766,
+        "ship.n.01": 0.49922146963634495
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c82a7e2bbf4c44e3ac1d1e7bac42e2b7",
+        "creator_username": "jfactory",
+        "creator_display_name": "jfactory",
+        "creator_profile_url": "https://sketchfab.com/jfactory"
+    },
+    "filename": "std_c82a7e2bbf4c44e3ac1d1e7bac42e2b7.glb",
+    "length": 339.3758239746094,
+    "width": 53.494625091552734
+}

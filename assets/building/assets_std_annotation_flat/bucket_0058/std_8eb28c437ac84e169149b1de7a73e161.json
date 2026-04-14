@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a realistic yellow flower with six broad, slightly curved petals radiating symmetrically from a central green ovary. The petals are a soft yellow with subtle gradients and naturalistic shading, giving them a lifelike appearance. At the center, several elongated green filaments topped with pinkish anthers extend upward, forming the flower's stamens. The flower is supported by a long, slender green stem that appears smooth and cylindrical. No leaves are visible on or near the stem, emphasizing the flower's solitary presentation. The overall form and coloration suggest a lily or similar ornamental flower commonly found in urban parks or landscaped areas.",
+    "description": "A yellow flower with six broad petals, a green central ovary, and pink-tipped stamens on a slender green stem. The petals are symmetrically arranged and the flower lacks visible leaves.",
+    "description_view_0": "Front view showing the symmetrical arrangement of six yellow petals and prominent central stamens.",
+    "description_view_1": "Slightly rotated view highlighting the curvature of the petals and the central green ovary.",
+    "description_view_2": "Side view emphasizing the length of the petals and the upward extension of the stamens.",
+    "description_view_3": "Rear view showing the back of the petals and the attachment to the green stem.",
+    "category": "flower",
+    "height": 0.35,
+    "max_dimension": 0.38,
+    "materials": [
+        "plant_fiber",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 0.025,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0.2,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "petal",
+        "stamen",
+        "stem"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "yellow",
+        "green",
+        "pink"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.38,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.1,
+    "asset_composition_type": "single",
+    "attribute_petal_arrangement": "The petals are arranged in a radial, whorled configuration with six distinct petals symmetrically spaced around the central ovary. Each petal slightly overlaps its neighbor, creating a star-like appearance typical of many monocot flowers.",
+    "attribute_number_of_petals": 6,
+    "attribute_stem_presence": true,
+    "attribute_leaf_shape": "none",
+    "attribute_flower_location": "terminal",
+    "uid": "8eb28c437ac84e169149b1de7a73e161",
+    "near_synsets": {
+        "flower.n.02": 0.5183345436475669,
+        "petal.n.01": 0.521796591368752,
+        "flower.n.01": 0.529071568498262,
+        "floral_leaf.n.01": 0.5354365617946701,
+        "early_spider_orchid.n.01": 0.535996616603555,
+        "flower.n.03": -1000.0
+    },
+    "synset": "flower.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8eb28c437ac84e169149b1de7a73e161",
+        "creator_username": "claudiopo",
+        "creator_display_name": "claudiopo",
+        "creator_profile_url": "https://sketchfab.com/claudiopo"
+    },
+    "filename": "std_8eb28c437ac84e169149b1de7a73e161.glb",
+    "length": 0.3413257598876953,
+    "width": 0.36541271209716797
+}

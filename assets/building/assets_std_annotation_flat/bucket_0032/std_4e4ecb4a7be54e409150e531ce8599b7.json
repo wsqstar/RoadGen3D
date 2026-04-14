@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a heavily armored combat tactical vehicle with a robust, angular exterior designed for urban operations. The front features reinforced plating and a prominent grille guard, providing extra protection against impacts and threats. The sides display thick, paneled doors with visible hinges and handles, as well as small, reinforced windows for limited visibility and protection. The roof is flat with a hatch and possible mounting points for additional equipment or weaponry, while the rear is equipped with a sturdy ladder and protective bars. The vehicle rides on four large, rugged off-road tires, and the overall color scheme is a mix of metallic gray and black, giving it a utilitarian, militarized appearance. No visible military markings or camouflage patterns are present, emphasizing its focus on function and defense.",
+    "description": "A heavily armored, angular combat tactical vehicle with reinforced plating, rugged off-road tires, and a utilitarian gray-black color scheme.",
+    "description_view_0": "Front view shows reinforced grille guard, angular armor plating, and narrow, protected windshield.",
+    "description_view_1": "Left side view highlights thick, paneled doors, small reinforced windows, and rugged off-road tires.",
+    "description_view_2": "Rear view displays protective bars, a sturdy ladder, and armored rear panels.",
+    "description_view_3": "Right side view mirrors the left, with visible door handles, hinges, and robust wheel arches.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 7500,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "wheel",
+        "ladder",
+        "hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible mount point on the roof, likely for a machine gun or similar weapon.",
+    "attribute_armor_plating": "Full body coverage with thick, angular steel armor plating; reinforced front grille and doors; sloped panels for deflection.",
+    "attribute_camouflage_pattern": "None visible; solid metallic gray and black paint scheme.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Four large off-road tires with deep tread pattern, suitable for rugged terrain; appear reinforced.",
+    "uid": "4e4ecb4a7be54e409150e531ce8599b7",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.47890110855770524,
+        "reconnaissance_vehicle.n.01": 0.4935184249243561,
+        "tank.n.01": 0.4967854698799933,
+        "armored_vehicle.n.01": 0.5025516309139527,
+        "armored_car.n.02": 0.5058213164845258,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "armored_car.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4e4ecb4a7be54e409150e531ce8599b7",
+        "creator_username": "Primus03",
+        "creator_display_name": "Primus03",
+        "creator_profile_url": "https://sketchfab.com/Primus03"
+    },
+    "filename": "std_4e4ecb4a7be54e409150e531ce8599b7.glb",
+    "length": 6.972497463226318,
+    "width": 2.9986469745635986
+}

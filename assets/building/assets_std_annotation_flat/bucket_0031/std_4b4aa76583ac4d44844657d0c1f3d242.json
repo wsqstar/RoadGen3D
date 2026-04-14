@@ -1,0 +1,89 @@
+{
+    "description_long": "This object is a rifle with a long, slender barrel and a compact body, rendered in a dark brown color. The rifle features a straight stock and a minimalistic design, with no visible attachments or accessories. The barrel is thin and extends from the main body, while the stock appears to be integrated and not adjustable. There are no visible iron sights, optics, or muzzle devices attached to the end of the barrel. The magazine is not discernible from any angle, suggesting it may be internal or not modeled. The overall appearance is utilitarian, with a smooth, matte finish and no decorative elements.",
+    "description": "A dark brown, minimalist rifle with a long barrel and integrated stock, lacking visible attachments or magazine.",
+    "description_view_0": "The rifle is seen from the side, showing its long barrel and straight stock, with minimal detail visible.",
+    "description_view_1": "From this angle, the rifle's length is more apparent, and the barrel's alignment with the body is clear.",
+    "description_view_2": "This view mirrors the first, again highlighting the rifle's slim profile and lack of visible attachments.",
+    "description_view_3": "The rifle is viewed from the opposite side, showing the same minimalistic features and straight stock.",
+    "category": "rifle",
+    "height": 0.05,
+    "max_dimension": 1.0,
+    "materials": [
+        "metal",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 5,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "grippable",
+        "aimable",
+        "triggerable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "trigger",
+        "grip"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "not visible",
+    "uid": "4b4aa76583ac4d44844657d0c1f3d242",
+    "near_synsets": {
+        "rifle.n.01": 0.48655146836083263,
+        "light_arm.n.01": 0.5082239158209253,
+        "carbine.n.01": 0.508440724434489,
+        "garand_rifle.n.01": 0.5123966172817301,
+        "twenty-two_rifle.n.01": 0.5232363129737787
+    },
+    "synset": "twenty-two_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4b4aa76583ac4d44844657d0c1f3d242",
+        "creator_username": "AnirudhRao",
+        "creator_display_name": "AnirudhRao",
+        "creator_profile_url": "https://sketchfab.com/AnirudhRao"
+    },
+    "filename": "std_4b4aa76583ac4d44844657d0c1f3d242.glb",
+    "length": 1.90020751953125,
+    "width": 1.9001895189285278
+}

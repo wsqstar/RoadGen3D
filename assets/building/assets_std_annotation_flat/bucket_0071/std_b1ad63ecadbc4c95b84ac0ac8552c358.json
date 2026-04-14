@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a large, armored tracked combat tactical vehicle with a boxy, utilitarian design and a matte gray finish. The vehicle features a high, reinforced body with small, rectangular windows at the front and sides, and a prominent antenna on the roof, suggesting advanced communication capabilities. The sides display warning labels and the designation 'FG-86', with visible hatches and access panels, as well as external rails and storage compartments. The front is sloped with a robust bumper and multiple vision ports, while the rear is solid and unadorned. The vehicle moves on a set of heavy-duty, continuous tracks, providing stability and traction over rough terrain. No visible weapon mounts or camouflage patterns are present, and the vehicle appears designed for troop transport or command operations in urban environments.",
+    "description": "A large, gray, armored tracked combat vehicle with a boxy body, small windows, and heavy-duty treads. Marked 'FG-86', it features warning labels, an antenna, and reinforced panels.",
+    "description_view_0": "Left side view showing 'FG-86' marking, warning labels, access panels, and the full length of the tracks.",
+    "description_view_1": "Front view highlighting the sloped armored nose, multiple vision ports, and robust bumper.",
+    "description_view_2": "Right side view with external rails, hatches, and additional warning labels, similar to the left but with different panel arrangements.",
+    "description_view_3": "Rear view showing a solid, unadorned back with no visible windows or access points.",
+    "category": "combat tactical  vehicle",
+    "height": 3.2,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.08,
+        0.02,
+        0.1
+    ],
+    "mass": 18000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "door",
+        "window",
+        "antenna",
+        "track",
+        "panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "none visible.",
+    "attribute_armor_plating": "Full body visible armor plating with a boxy, reinforced design; appears thick and robust, with sloped front and reinforced panels on all sides.",
+    "attribute_camouflage_pattern": "none visible.",
+    "attribute_military_markings": "'FG-86' designation on left side, warning labels on both sides.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "b1ad63ecadbc4c95b84ac0ac8552c358",
+    "near_synsets": {
+        "tank.n.01": 0.5380012209071297,
+        "assault_gun.n.02": 0.5414397880333955,
+        "reconnaissance_vehicle.n.01": 0.5450054124292857,
+        "military_vehicle.n.01": 0.546247688445113,
+        "weapons_carrier.n.01": 0.5692371587933522,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b1ad63ecadbc4c95b84ac0ac8552c358",
+        "creator_username": "Kost_O",
+        "creator_display_name": "Kost_A",
+        "creator_profile_url": "https://sketchfab.com/Kost_O"
+    },
+    "filename": "std_b1ad63ecadbc4c95b84ac0ac8552c358.glb",
+    "length": 4.6695427894592285,
+    "width": 1.8871514201164246
+}

@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a modern urban laundromat building with a striking geometric black-and-white patterned roof and facade. The front features large glass windows and a central entrance with steps leading up, flanked by concrete and brick elements. One side of the building is solid black, while the opposite side displays a row of industrial washing machines visible through a transparent or open wall. The roof has a repeating triangular pattern and a skylight, adding to the contemporary aesthetic. The structure sits on a rectangular base with a striped walkway extending from the entrance. The overall design is bold and functional, suitable for a city street or neighborhood setting.",
+    "description": "A modern laundromat building with geometric black-and-white patterns, large front windows, and visible industrial washing machines on one side.",
+    "description_view_0": "Front view showing large glass windows, central entrance with steps, and geometric patterned roof.",
+    "description_view_1": "Side view dominated by a solid black wall and the patterned roof extending backward.",
+    "description_view_2": "Rear view with the geometric roof, a skylight, and a mostly solid black wall with minimal features.",
+    "description_view_3": "Side view displaying a row of industrial washing machines and the patterned roof, with a striped walkway visible.",
+    "category": "laundry",
+    "height": 4.0,
+    "max_dimension": 12.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "brick",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.15,
+        0.15,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "pressable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "washing machine door",
+        "button",
+        "steps"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "white",
+        "gray",
+        "red-brown"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_type_of_laundry_item": "industrial washing machines",
+    "attribute_method_of_hanging": "not applicable; machines are installed in wall bays",
+    "attribute_presence_of_laundry_line_or_rack": false,
+    "attribute_quantity_of_items": 8,
+    "attribute_architectural_style": "modern urban",
+    "uid": "4992d6b6d6bf4e6db538eced710bf86f",
+    "near_synsets": {
+        "laundry.n.02": 0.4850952014583345,
+        "launderette.n.01": 0.49418072312957584,
+        "washhouse.n.01": 0.5204874305103689,
+        "laundry_cart.n.01": 0.5308985369904822,
+        "washerman.n.01": 0.5393868044614736,
+        "laundry.n.01": -1000.0
+    },
+    "synset": "laundry.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4992d6b6d6bf4e6db538eced710bf86f",
+        "creator_username": "jimbogies",
+        "creator_display_name": "jimbogies",
+        "creator_profile_url": "https://sketchfab.com/jimbogies"
+    },
+    "filename": "std_4992d6b6d6bf4e6db538eced710bf86f.glb",
+    "length": 8.494154930114746,
+    "width": 6.285488843917847
+}

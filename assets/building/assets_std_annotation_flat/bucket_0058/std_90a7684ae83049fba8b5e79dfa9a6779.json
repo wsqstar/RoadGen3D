@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a long, rectangular train car with a streamlined, boxy profile and a dark, uniform exterior. The sides are smooth and featureless, lacking visible windows or doors, giving it a utilitarian appearance. The ends are flat and squared off, with subtle detailing that suggests connection points or couplers for linking with other train cars. The surface appears metallic and hard, likely constructed from steel or aluminum, with a slightly glossy finish that reflects some light. The undercarriage is minimally detailed, with small protrusions that may represent wheels or suspension components. Overall, the design is simple and functional, suitable for urban rail transport or as a subway car.",
+    "description": "A long, boxy train car with a smooth, dark metallic exterior and minimal surface detailing. The sides are featureless, and the ends are flat with subtle connection points.",
+    "description_view_0": "Side view showing the full length of the train car, with a smooth, uninterrupted surface and minimal undercarriage detail.",
+    "description_view_1": "End view displaying the flat, squared-off front with a small protrusion at the base, likely a coupler or connector.",
+    "description_view_2": "Opposite side view, nearly identical to view 0, showing the same smooth, featureless surface.",
+    "description_view_3": "Opposite end view, mirroring view 1 with the same flat front and base protrusion.",
+    "category": "train",
+    "height": 3.5,
+    "max_dimension": 20.0,
+    "materials": [
+        "steel",
+        "aluminum",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.01,
+        0.04
+    ],
+    "mass": 35000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "coupler",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "subway",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "no visible doors",
+    "attribute_window_arrangement": "no visible windows",
+    "uid": "90a7684ae83049fba8b5e79dfa9a6779",
+    "near_synsets": {
+        "train.n.01": 0.51352389927433,
+        "boxcar.n.01": 0.5155675751431484,
+        "car_train.n.01": 0.5186890773191308,
+        "coal_car.n.01": 0.5217386918906333,
+        "train_set.n.01": 0.5230989137258579,
+        "caravan.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "train.n.04": -1000.0,
+        "train.n.05": -1000.0,
+        "gearing.n.01": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/90a7684ae83049fba8b5e79dfa9a6779",
+        "creator_username": "GRIP420",
+        "creator_display_name": "GRIP420",
+        "creator_profile_url": "https://sketchfab.com/GRIP420"
+    },
+    "filename": "std_90a7684ae83049fba8b5e79dfa9a6779.glb",
+    "length": 21.589008331298828,
+    "width": 2.9992839097976685
+}

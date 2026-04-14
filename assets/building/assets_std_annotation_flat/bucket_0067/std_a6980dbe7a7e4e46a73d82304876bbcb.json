@@ -1,0 +1,101 @@
+{
+    "description_long": "This is an old, weathered utility tractor with a compact, boxy cab and a flatbed cargo area surrounded by wooden slats. The body is primarily constructed from metal, showing significant rust and paint wear, especially on the fenders, doors, and hood. The front features a classic grille, round headlights, and a circular badge with the number '2'. The cargo bed contains several large, rough wooden crates, and the rear is enclosed by a wooden gate. The wheels are small and solid, with visible rust and wear, and the side mirrors protrude from the cab. The overall appearance suggests a utilitarian vehicle used for transporting goods or materials in an urban or semi-rural environment.",
+    "description": "A weathered, vintage utility tractor with a metal cab, wooden cargo bed, and visible rust, carrying crates in the back.",
+    "description_view_0": "Front view shows the classic grille, round headlights, badge with '2', and the narrow cab with side mirrors.",
+    "description_view_1": "Left side view highlights the rusted metal cab, wooden slat cargo bed, and crates, with two wheels and a step below the door.",
+    "description_view_2": "Rear view displays the wooden gate, crates in the cargo bed, and the back of the cab with a small window.",
+    "description_view_3": "Right side view mirrors the left, showing the cab, wooden bed, and crates, with visible rust and wear.",
+    "category": "tractor",
+    "height": 1.8,
+    "max_dimension": 3.5,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.05,
+        0.07,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 3000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "steering wheel",
+        "cargo bed gate",
+        "side mirror"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue-gray",
+        "rust brown",
+        "wood brown",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.18,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_tractor_brand": "unknown",
+    "attribute_tractor_model": "unknown",
+    "attribute_wheel_configuration": "four wheels, all similar size, likely two-wheel drive",
+    "attribute_presence_of_agricultural_implements": false,
+    "attribute_cabin_design": "Enclosed metal cab with a single door, small window at the rear, and no visible ergonomic or comfort features.",
+    "uid": "a6980dbe7a7e4e46a73d82304876bbcb",
+    "near_synsets": {
+        "tractor.n.02": 0.4965144177834418,
+        "tractor.n.01": 0.5057342332761262,
+        "farm_machine.n.01": 0.5181070139739234,
+        "truck.n.01": 0.5295379476305231,
+        "skidder.n.03": 0.5314230252098625
+    },
+    "synset": "tractor.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a6980dbe7a7e4e46a73d82304876bbcb",
+        "creator_username": "trector",
+        "creator_display_name": "Trector",
+        "creator_profile_url": "https://sketchfab.com/trector"
+    },
+    "filename": "std_a6980dbe7a7e4e46a73d82304876bbcb.glb",
+    "length": 2.9969799518585205,
+    "width": 1.2774970531463623
+}

@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a compact firearm with a sleek, angular profile and a dark metallic finish, featuring a short barrel and a prominent trigger guard. The grip is ergonomically shaped and appears to be made of a different material, possibly wood or polymer, with a textured surface for improved handling. The slide is flat and smooth, with minimal external features except for a small protrusion near the rear, likely a safety or slide release. The barrel is relatively short and does not display any ribbing or venting typical of traditional shotguns. The overall design is reminiscent of a semi-automatic pistol rather than a conventional shotgun, with a single barrel and no visible magazine tube or pump mechanism. The object is compact and streamlined, suitable for one-handed operation and easy concealment.",
+    "description": "A compact, dark metallic firearm with a short barrel, ergonomic grip, and a sleek, streamlined design. The object resembles a semi-automatic pistol more than a traditional shotgun.",
+    "description_view_0": "Side view showing the full profile, including the short barrel, ergonomic grip, and prominent trigger guard.",
+    "description_view_1": "Front view displaying the narrow barrel opening and the slim profile of the slide and grip.",
+    "description_view_2": "Opposite side view, mirroring the features of view 0 with clear visibility of the grip texture and slide.",
+    "description_view_3": "Rear view highlighting the back of the grip and the top of the slide, with minimal external features visible.",
+    "category": "shotgun",
+    "height": 0.14,
+    "max_dimension": 0.22,
+    "materials": [
+        "steel",
+        "polymer",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "slide",
+        "magazine release",
+        "safety"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, no visible ribbing or venting, short barrel length",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "semi-automatic",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with smooth edges and no finger grooves",
+    "uid": "0e2e711cf6ae4acc909a485adbe88830",
+    "near_synsets": {
+        "shotgun.n.01": 0.4830389608891213,
+        "sawed-off_shotgun.n.01": 0.49007107729444993,
+        "gun.n.01": 0.5076400430029551,
+        "firearm.n.01": 0.5155199464219122,
+        "case_shot.n.01": 0.5171431076187178
+    },
+    "synset": "sawed-off_shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0e2e711cf6ae4acc909a485adbe88830",
+        "creator_username": "Tuuttipingu",
+        "creator_display_name": "Tuuttipingu",
+        "creator_profile_url": "https://sketchfab.com/Tuuttipingu"
+    },
+    "filename": "std_0e2e711cf6ae4acc909a485adbe88830.glb",
+    "length": 0.223040409386158,
+    "width": 0.031835196539759636
+}

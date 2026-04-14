@@ -1,0 +1,102 @@
+{
+    "description_long": "This humanoid robot features a rounded, friendly head with large, expressive eyes and a smooth, light blue and gray exterior. Its torso is compact and cylindrical, with visible wiring connecting the upper body to the arms, suggesting functional articulation. The robot's arms are long and slender, ending in flat, paddle-like hands, and are attached to the shoulders with black segmented joints for a wide range of motion. The lower body consists of a sturdy, wheeled base with two large wheels for mobility, and a tapered central column connecting the torso to the base. The overall design is sleek and approachable, with a combination of hard plastic and metallic surfaces. The robot appears to be designed for interaction in public or urban environments, possibly for assistance or guidance.",
+    "description": "A sleek, light blue and gray humanoid robot with a rounded head, expressive eyes, articulated arms, and a wheeled base for mobility.",
+    "description_view_0": "Front view shows the robot's face, outstretched arms, and wheeled base, highlighting its expressive eyes and symmetrical design.",
+    "description_view_1": "Side view reveals the robot's profile, the curvature of the head and torso, and the depth of the wheeled base.",
+    "description_view_2": "Rear view displays the back of the head, torso, and arms, as well as the wiring and the structure of the base.",
+    "description_view_3": "Opposite side view shows the profile from the other side, emphasizing the arm articulation and the base's wheel.",
+    "category": "humanoid robot",
+    "height": 1.5,
+    "max_dimension": 2.0,
+    "materials": [
+        "plastic",
+        "metal",
+        "rubber",
+        "glass",
+        "wiring",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.08,
+        0.05,
+        0.05,
+        0.02
+    ],
+    "mass": 55,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pressable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "hands",
+        "wheels",
+        "head",
+        "buttons"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light blue",
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms extended horizontally to the sides, head facing forward, and torso aligned vertically above a wheeled base.",
+    "attribute_clothing_style": "No visible clothing; the robot is covered in integrated, smooth panels of plastic and metal with some exposed wiring.",
+    "attribute_facial_features": "The face features large, round eyes with dark pupils, a small nose, and a simple mouth, all set in a smooth, rounded head with a friendly, non-threatening appearance.",
+    "attribute_limb_articulation": "Arms have multiple visible joints, including shoulder, elbow, and wrist, likely allowing for hinge and rotary motion; hands are flat and paddle-like. No visible legs, as the base is wheeled.",
+    "attribute_presence_of_sensors": "Visible sensors include two large camera-like eyes on the head, likely for visual input; possible microphones near the mouth area.",
+    "uid": "941caad4676844e296bde8fa186e6fb9",
+    "near_synsets": {
+        "android.n.01": 0.5462225854077402,
+        "robotics_equipment.n.01": 0.5553924250275535,
+        "automaton.n.02": 0.5594702400711106,
+        "cyborg.n.01": 0.5623320285386559,
+        "machine.n.02": 0.5779756395915073
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/941caad4676844e296bde8fa186e6fb9",
+        "creator_username": "irons3th",
+        "creator_display_name": "irons3th",
+        "creator_profile_url": "https://sketchfab.com/irons3th"
+    },
+    "filename": "std_941caad4676844e296bde8fa186e6fb9.glb",
+    "length": 0.305705726146698,
+    "width": 1.812820553779602
+}

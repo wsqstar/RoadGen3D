@@ -1,0 +1,95 @@
+{
+    "description_long": "This warehouse is a large, rectangular building with a flat, green roof and a simple, utilitarian design. The structure consists of two main rectangular volumes joined together, both featuring white exterior walls and rows of evenly spaced windows. The building sits on a broad, gray paved base, suggesting an industrial or commercial setting. The windows are small and rectangular, providing natural light while maintaining security and insulation. There are no visible decorative elements, and the facade is plain, emphasizing function over form. The roof is uninterrupted and featureless, with no visible skylights, HVAC units, or other rooftop structures.",
+    "description": "A large, white, flat-roofed warehouse with two joined rectangular sections, small windows, and a plain, functional exterior.",
+    "description_view_0": "The front view shows the longer facade with a row of windows and the intersection of the two main building volumes.",
+    "description_view_1": "This side view highlights the shorter facade with fewer windows and the depth of the two joined sections.",
+    "description_view_2": "The rear view displays the plain back walls of both sections, with no visible windows or doors.",
+    "description_view_3": "This end view shows the shorter side of the building, with a few windows and the connection between the two main volumes.",
+    "category": "warehouse",
+    "height": 6.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "mass": 480000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "green",
+        "gray",
+        "blue"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main facade features a series of small, evenly spaced rectangular windows set into plain white walls, with no visible ornamentation or signage. The entryway is not clearly visible, and the design emphasizes functionality and security.",
+    "attribute_loading_dock_presence": false,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is flat and covered in a green material, with no visible skylights, HVAC units, or other rooftop features. Its clean, uninterrupted surface suggests a focus on simplicity and utility.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "0d81bf89c2814dd9b11ed800e4d2f89f",
+    "near_synsets": {
+        "warehouse.n.01": 0.5016030293606785,
+        "loft.n.01": 0.5143762988903816,
+        "storehouse.n.01": 0.5397586217347042,
+        "farm_building.n.01": 0.5518586309266874,
+        "shoebox.n.01": 0.5572711784938995
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0d81bf89c2814dd9b11ed800e4d2f89f",
+        "creator_username": "ghkqi",
+        "creator_display_name": "ghkqi",
+        "creator_profile_url": "https://sketchfab.com/ghkqi"
+    },
+    "filename": "std_0d81bf89c2814dd9b11ed800e4d2f89f.glb",
+    "length": 41.77211952209473,
+    "width": 59.89144515991211
+}

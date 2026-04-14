@@ -1,0 +1,116 @@
+{
+    "description_long": "This object is a stylized grave monument featuring a central tombstone with a cross at the top, flanked by two symmetrical, low stone barriers connected by heavy, square-linked chains. The tombstone is rectangular with beveled edges and a slightly arched top, and it sits on a solid stone base. The front and back faces of the tombstone display engraved inscriptions, though the text is partially worn and difficult to read. The stone barriers extend outward in a gentle arc, each ending in a blocky pedestal that anchors the chains. The entire structure is constructed from a dark, weathered stone, giving it a somber and aged appearance. The chains and pedestals add a sense of enclosure and protection to the grave site.",
+    "description": "A weathered stone grave monument with a cross-topped tombstone, flanked by chained stone barriers and engraved inscriptions.",
+    "description_view_0": "Front view showing the cross-topped tombstone, engraved inscription, and both chained stone barriers extending outward.",
+    "description_view_1": "Side view highlighting the depth of the tombstone and the linear arrangement of the chained barriers.",
+    "description_view_2": "Rear view displaying the back inscription on the tombstone and the symmetrical layout of the chains and barriers.",
+    "description_view_3": "Opposite side view showing the thickness of the stone elements and the chain links' attachment to the pedestals.",
+    "category": "grave yard",
+    "height": 1.2,
+    "max_dimension": 2.5,
+    "materials": [
+        "stone",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "chains"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "dark gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_tombstone_inscriptions": [
+        "No Rest",
+        "Sorrow 1884"
+    ],
+    "attribute_crosses": [
+        {
+            "number": 1,
+            "type": "Latin",
+            "height": 0.3,
+            "material": "stone"
+        }
+    ],
+    "attribute_grave_markers": [
+        {
+            "type": "headstone",
+            "material": "stone",
+            "dimensions": [
+                1.2,
+                0.7,
+                0.3
+            ]
+        }
+    ],
+    "attribute_mausoleums": [],
+    "attribute_cemetery_gates": [],
+    "uid": "5eeabffb2d844cb08804d6f612f7ae03",
+    "near_synsets": {
+        "gravestone.n.01": 0.4722493358572923,
+        "grave.n.02": 0.4900179294754076,
+        "cairn.n.01": 0.5071146638409139,
+        "epitaph.n.01": 0.5161107653881695,
+        "cemetery.n.01": 0.5192749051693551,
+        "yard.n.02": -1000.0,
+        "yard.n.06": -1000.0,
+        "thousand.n.01": -1000.0,
+        "yard.n.08": -1000.0,
+        "cubic_yard.n.01": -1000.0,
+        "yard.n.07": -1000.0,
+        "yard.n.01": -1000.0,
+        "yard.n.03": -1000.0,
+        "yard.n.09": -1000.0
+    },
+    "synset": "gravestone.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5eeabffb2d844cb08804d6f612f7ae03",
+        "creator_username": "rawpuwnzl",
+        "creator_display_name": "Sam",
+        "creator_profile_url": "https://sketchfab.com/rawpuwnzl"
+    },
+    "filename": "std_5eeabffb2d844cb08804d6f612f7ae03.glb",
+    "length": 0.8336211144924164,
+    "width": 2.161465644836426
+}

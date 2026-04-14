@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a standard outdoor tennis court with a rectangular blue playing surface, bordered by white lines that clearly define the baselines, sidelines, service boxes, and center marks. The court features a taut net running across its width, supported by two posts at either end, dividing the court into two equal halves. The surface appears to be made of a hard, synthetic material, typical for modern tennis courts, providing a flat and even playing area. The white line markings are crisp and complete, ensuring clear visibility for players and officials. There are no visible fences, lighting fixtures, or additional architectural elements surrounding the court, giving it a minimalist and utilitarian appearance. The overall design is functional, focusing on the essential elements required for tennis play.",
+    "description": "A blue, hard-surfaced tennis court with crisp white markings and a central net, supported by two posts. The design is minimal and functional, with no visible fencing or lighting.",
+    "description_view_0": "Side view showing the full length of the blue court, the central net, and both supporting posts.",
+    "description_view_1": "End view highlighting the width of the court, the net spanning across, and the clear white line markings.",
+    "description_view_2": "Opposite side view mirroring view 0, displaying the court's length, net, and posts from the other side.",
+    "description_view_3": "Opposite end view similar to view 1, showing the court's width, net, and line markings from the other baseline.",
+    "category": "tennis court",
+    "height": 1.1,
+    "max_dimension": 24.0,
+    "materials": [
+        "synthetic hard court (acrylic or polyurethane)",
+        "paint",
+        "metal",
+        "nylon",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "playable",
+        "net-hittable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "net",
+        "net posts"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "blue",
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.48,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.15,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_net_type": "Braided nylon net, black color, supported by two metal posts with visible tensioning mechanisms.",
+    "attribute_court_line_markings": "All standard tennis lines present, white color, medium width, complete and clearly visible.",
+    "attribute_surrounding_fence": "none",
+    "attribute_lighting_fixtures": "none",
+    "attribute_architectural_style": "none",
+    "uid": "fab5950b1b6f441da6a73c314f0cd04e",
+    "near_synsets": {
+        "tennis_court.n.01": 0.4373113683024668,
+        "badminton_court.n.01": 0.5114608637494688,
+        "volleyball_court.n.01": 0.516833571207522,
+        "tennis.n.01": 0.521266887184045,
+        "deck_tennis.n.01": 0.5334544176157509,
+        "court.n.04": -1000.0,
+        "court.n.03": -1000.0,
+        "court.n.08": -1000.0,
+        "court.n.05": -1000.0,
+        "court.n.01": -1000.0,
+        "court.n.02": -1000.0,
+        "motor_hotel.n.01": -1000.0,
+        "court.n.06": -1000.0,
+        "court.n.10": -1000.0,
+        "court.n.09": -1000.0
+    },
+    "synset": "tennis_court.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fab5950b1b6f441da6a73c314f0cd04e",
+        "creator_username": "Yanez-Designs",
+        "creator_display_name": "Yanez Designs",
+        "creator_profile_url": "https://sketchfab.com/Yanez-Designs"
+    },
+    "filename": "std_fab5950b1b6f441da6a73c314f0cd04e.glb",
+    "length": 7.831126928329468,
+    "width": 3.846871256828308
+}

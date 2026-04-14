@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a historical field cannon, featuring a long, black metal barrel mounted on a wooden carriage. The carriage is supported by two large, spoked wheels made of metal, which allow for mobility across various terrains. The rear of the carriage extends into two wooden trails, which would be used to stabilize and aim the cannon when deployed. The metal barrel is cylindrical with a slightly flared muzzle and a knob at the breech end. The overall construction combines robust wood and metal, giving it a sturdy and functional appearance. The finish is utilitarian, with visible wood grain and a glossy black sheen on the metal components.",
+    "description": "A historical field cannon with a black metal barrel on a wooden carriage, supported by two large spoked metal wheels and extended wooden trails.",
+    "description_view_0": "Side view showing the full length of the cannon barrel, both large spoked wheels, and the wooden trails extending backward.",
+    "description_view_1": "Front view highlighting the circular muzzle of the cannon barrel, the alignment of the two wheels, and the narrow width of the carriage.",
+    "description_view_2": "Opposite side view similar to view 0, displaying the other side of the barrel, wheels, and wooden trails.",
+    "description_view_3": "Rear view focusing on the breech end of the barrel, the symmetry of the wheels, and the converging wooden trails.",
+    "category": "combat tactical  vehicle",
+    "height": 1.2,
+    "max_dimension": 2.5,
+    "materials": [
+        "steel",
+        "wood",
+        "iron",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "barrel",
+        "trails"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One fixed cannon barrel mounted centrally on the carriage.",
+    "attribute_armor_plating": "None visible.",
+    "attribute_camouflage_pattern": "None visible; surfaces are solid black and brown.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "98733d9728b14f9c803a334694495c79",
+    "near_synsets": {
+        "cannon.n.02": 0.49614398848375907,
+        "cannon.n.01": 0.498541276001098,
+        "caisson.n.02": 0.5133815040700723,
+        "military_vehicle.n.01": 0.5153837943645093,
+        "tank.n.01": 0.5229906170707533,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "cannon.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/98733d9728b14f9c803a334694495c79",
+        "creator_username": "588276",
+        "creator_display_name": "Styx",
+        "creator_profile_url": "https://sketchfab.com/588276"
+    },
+    "filename": "std_98733d9728b14f9c803a334694495c79.glb",
+    "length": 2.8604655265808105,
+    "width": 1.4071505069732666
+}

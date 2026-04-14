@@ -1,0 +1,108 @@
+{
+    "description_long": "This lantern object is a large, cylindrical structure adorned with vibrant red and multicolored fabric panels, reminiscent of traditional Chinese lanterns. The exterior is richly decorated with photographic prints of textiles and market scenes, giving it a festive and cultural appearance. Suspended above the main cylinder are several red spherical lanterns, each attached to thin vertical rods, enhancing the celebratory atmosphere. A prominent handle-like structure, constructed from a series of pink segments, is attached to one side, suggesting portability or a decorative mounting. The interior is partially visible, revealing more of the colorful fabric motif and a mannequin-like figure, possibly for display or thematic effect. Two orange traffic cones are placed at the base, adding an urban context and hinting at temporary installation or event use.",
+    "description": "A large, cylindrical lantern decorated with vibrant red and multicolored fabric prints, topped with hanging red lanterns and featuring a prominent segmented handle and urban display elements.",
+    "description_view_0": "The lantern's cylindrical body is shown with its vibrant fabric print, the segmented handle is visible on the left, and several red lanterns are suspended above.",
+    "description_view_1": "This view highlights the continuous fabric pattern around the cylinder and the alignment of the hanging lanterns above, with the handle partially obscured.",
+    "description_view_2": "The segmented handle is clearly visible on the right, with the red lanterns above and the fabric print wrapping around the cylinder.",
+    "description_view_3": "The open side of the cylinder is visible, revealing the mannequin inside and the two orange traffic cones at the base, with the handle and lanterns above.",
+    "category": "lantern",
+    "height": 3.0,
+    "max_dimension": 3.0,
+    "materials": [
+        "fabric",
+        "metal",
+        "plastic",
+        "paper",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "mass": 35,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "illuminable",
+        "decorative",
+        "displayable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "lanterns",
+        "interior mannequin"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "red",
+        "pink",
+        "orange",
+        "white",
+        "multicolor"
+    ],
+    "colors_composition": [
+        0.5,
+        0.15,
+        0.1,
+        0.1,
+        0.15
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 500,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_mounting_type": "portable",
+    "attribute_light_source_type": "LED",
+    "attribute_decorative_elements": [
+        "printed fabric patterns",
+        "hanging red lanterns",
+        "segmented handle",
+        "mannequin",
+        "traffic cones"
+    ],
+    "attribute_number_of_bulbs": 4,
+    "attribute_glass_enclosure_style": "no glass",
+    "uid": "430cd92cfe124b25abc5cc0d5e0443b0",
+    "near_synsets": {
+        "chinese_lantern.n.01": 0.46010561812788714,
+        "lantern.n.01": 0.5042842893488607,
+        "candelabrum.n.01": 0.5238453136403923,
+        "roman_candle.n.01": 0.5352967429615321,
+        "dark_lantern.n.01": 0.538835215784962
+    },
+    "synset": "dark_lantern.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/430cd92cfe124b25abc5cc0d5e0443b0",
+        "creator_username": "napapa.soonjan",
+        "creator_display_name": "napapa.soonjan",
+        "creator_profile_url": "https://sketchfab.com/napapa.soonjan"
+    },
+    "filename": "std_430cd92cfe124b25abc5cc0d5e0443b0.glb",
+    "length": 1.2486875653266907,
+    "width": 1.0655275583267212
+}

@@ -1,0 +1,100 @@
+{
+    "description_long": "This humanoid robot features a sleek, futuristic design with a predominantly white and silver body accented by dark joints and blue highlights. Its head is spherical with a single circular feature on the front, possibly functioning as a camera or sensor, and is flanked by two dark, ear-like structures. The torso is angular and tapers into a narrow waist, with layered, armor-like plating extending down to form a skirt-like lower body. The arms are long and slender, with articulated joints at the shoulders, elbows, and wrists, and the hands are composed of thin, finger-like appendages. The legs are fused into two elongated, blade-like structures, giving the robot a streamlined, non-humanoid lower half. The overall appearance suggests a design optimized for urban interaction, with a balance of form and function.",
+    "description": "A sleek, white and silver humanoid robot with a spherical head, articulated arms, and blade-like lower limbs, featuring blue and dark accent details.",
+    "description_view_0": "Front view showing the robot's spherical head, circular facial feature, articulated arms extended outward, and layered, skirt-like lower body.",
+    "description_view_1": "Side view highlighting the robot's narrow profile, the protruding head, and the blade-like lower limbs extending backward.",
+    "description_view_2": "Rear view displaying the back of the head, the symmetrical shoulder joints, and the split, armor-like lower body panels.",
+    "description_view_3": "Opposite side view emphasizing the slim silhouette, the curvature of the torso, and the elongated lower limbs.",
+    "category": "humanoid robot",
+    "height": 1.7,
+    "max_dimension": 2.0,
+    "materials": [
+        "plastic",
+        "metal",
+        "glass",
+        "synthetic rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 55,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head",
+        "arms",
+        "hands",
+        "fingers",
+        "torso"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "silver",
+        "black",
+        "blue"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "sleek",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 7000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms fully extended horizontally to the sides, legs together and straight, head facing forward, and torso upright.",
+    "attribute_clothing_style": "No visible clothing; the robot is covered in integrated, armor-like panels with a smooth, metallic and plastic finish.",
+    "attribute_facial_features": "The face consists of a single circular feature on a smooth, spherical head, with no visible eyes, mouth, or nose; two dark, ear-like structures are present on the sides.",
+    "attribute_limb_articulation": "Arms have visible ball joints at the shoulders, hinge joints at the elbows, and articulated fingers; legs are fused into rigid, blade-like structures with no visible knee or ankle joints.",
+    "attribute_presence_of_sensors": "One circular sensor or camera on the front of the head; possible additional sensors in the ear-like side structures.",
+    "uid": "a4b3b72b0fe44c8faa78a674ed9429ef",
+    "near_synsets": {
+        "android.n.01": 0.5415833549827745,
+        "cyborg.n.01": 0.5549598308963716,
+        "robotics_equipment.n.01": 0.5608483833259114,
+        "automaton.n.02": 0.5659095392108097,
+        "robotics.n.01": 0.5874713508717428
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a4b3b72b0fe44c8faa78a674ed9429ef",
+        "creator_username": "takahara.yukito",
+        "creator_display_name": "takahara.yukito",
+        "creator_profile_url": "https://sketchfab.com/takahara.yukito"
+    },
+    "filename": "std_a4b3b72b0fe44c8faa78a674ed9429ef.glb",
+    "length": 0.30741940438747406,
+    "width": 1.8025962114334106
+}

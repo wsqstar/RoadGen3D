@@ -1,0 +1,94 @@
+{
+    "description_long": "This is a large, rectangular, industrial shipping container, commonly seen in urban environments such as ports, rail yards, or construction sites. The container is constructed from corrugated steel panels, painted in a weathered reddish-brown color, with visible signs of wear and rust. One end features a set of double doors with heavy-duty locking mechanisms and metal latches, while the opposite end is solid and reinforced. The sides are marked with vertical ridges for structural strength, and there are some printed markings and codes, including a white logo and identification numbers. The top surface is flat and ribbed, suitable for stacking or supporting additional containers. This container is designed for secure storage and transport of goods, and its robust build allows it to withstand harsh outdoor conditions.",
+    "description": "A large, weathered reddish-brown steel shipping container with double doors on one end, corrugated sides, and visible industrial markings. It is built for secure storage and transport in urban or industrial settings.",
+    "description_view_0": "Side view showing the full length of the reddish-brown corrugated steel container with visible markings and a flat, ribbed top.",
+    "description_view_1": "End view displaying the double doors with locking mechanisms and latches, as well as some printed codes and signage.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the length and corrugated texture, with less visible signage.",
+    "description_view_3": "Solid end view with no doors, showing reinforced steel paneling and a weathered surface.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 12.2,
+    "materials": [
+        "steel",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.92,
+        0.07,
+        0.01
+    ],
+    "mass": 3500,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 15000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking latch",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "reddish-brown",
+        "white",
+        "yellow",
+        "gray"
+    ],
+    "colors_composition": [
+        0.92,
+        0.04,
+        0.02,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "printed logo and identification numbers on the side and doors",
+    "attribute_handles_or_grips": "two vertical handles on the doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "5c26a86ff20c4df689b5fbd760337845",
+    "near_synsets": {
+        "container.n.01": 0.4468198296294671,
+        "cargo_container.n.01": 0.4744576046198685,
+        "box.n.01": 0.528069391928243,
+        "drum.n.04": 0.5301321895345292,
+        "container_ship.n.01": 0.5323375088997689
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5c26a86ff20c4df689b5fbd760337845",
+        "creator_username": "Evanz",
+        "creator_display_name": "Evan",
+        "creator_profile_url": "https://sketchfab.com/Evanz"
+    },
+    "filename": "std_5c26a86ff20c4df689b5fbd760337845.glb",
+    "length": 13.22756052017212,
+    "width": 2.5900633335113525
+}

@@ -1,0 +1,94 @@
+{
+    "description_long": "This is a large, cylindrical metal barrel with a dark, weathered surface and visible signs of rust and grime, suggesting prolonged outdoor or industrial use. The barrel features two prominent horizontal metal bands reinforcing its structure, one near the top and one near the middle. The top surface is flat and appears to be sealed, with some dark stains and a small central cap or bung. On one side, there is a white printed label with the 'GAZPROM NEFT' logo, indicating it may have been used for oil or chemical storage. The overall color is a mottled dark gray with patches of black and lighter gray, giving it a rugged, utilitarian appearance. The barrel is likely hollow and capable of holding liquids or bulk materials.",
+    "description": "A large, weathered metal barrel with dark stains, metal bands, and a 'GAZPROM NEFT' label, suggesting industrial or oil storage use.",
+    "description_view_0": "The barrel's top is visible with dark stains and a flat, sealed surface; no label is seen from this angle.",
+    "description_view_1": "Shows the side with prominent stains on the top and body, but no visible label or markings.",
+    "description_view_2": "Displays the top with a small central cap and the side with no visible label, highlighting the barrel's cylindrical form.",
+    "description_view_3": "Features the 'GAZPROM NEFT' label clearly on the side, with the top and side bands also visible.",
+    "category": "barrel or bucket",
+    "height": 0.9,
+    "max_dimension": 0.6,
+    "materials": [
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "liftable",
+        "supportable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "bung/cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "metal hoops near top and middle",
+    "attribute_labeling_or_markings": "GAZPROM NEFT logo and text",
+    "attribute_placement_location": "industrial",
+    "uid": "61e4a2182bc64c3798f26c72647c5dff",
+    "near_synsets": {
+        "barrel.n.02": 0.5087022637688209,
+        "beer_barrel.n.01": 0.5181303187441528,
+        "barrels.n.01": 0.533148833245116,
+        "barrel.n.03": 0.5392862044861415,
+        "barrel.n.04": 0.5451979103063485,
+        "barrel.n.05": -1000.0,
+        "bucket.n.01": -1000.0,
+        "bucket.n.02": -1000.0,
+        "barrel.n.01": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/61e4a2182bc64c3798f26c72647c5dff",
+        "creator_username": "DOMNIN",
+        "creator_display_name": "DOMNIN",
+        "creator_profile_url": "https://sketchfab.com/DOMNIN"
+    },
+    "filename": "std_61e4a2182bc64c3798f26c72647c5dff.glb",
+    "length": 0.6402057409286499,
+    "width": 0.6402057111263275
+}

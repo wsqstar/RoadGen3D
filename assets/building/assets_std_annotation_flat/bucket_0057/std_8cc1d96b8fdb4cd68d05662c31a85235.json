@@ -1,0 +1,83 @@
+{
+    "description_long": "This object is a rectangular section of sidewalk composed of interlocking tan paving stones arranged in a staggered, geometric pattern. The surface is flat and even, with visible grout lines forming a grid of rectangles and squares. The paving stones have a matte finish and appear to be made of concrete or a similar hard material. The color is a uniform light brown, giving the sidewalk a warm, neutral appearance suitable for urban or residential environments. There are no visible curbs, tactile paving, or street furniture present along the edges. The edges of the sidewalk are flush, blending seamlessly with the surrounding ground.",
+    "description": "A flat, tan sidewalk section made of interlocking rectangular paving stones with visible grout lines and a matte finish.",
+    "description_view_0": "The sidewalk is seen from the front, showing the full rectangular pattern of tan paving stones and clear grout lines.",
+    "description_view_1": "Viewed from the left side, the interlocking pattern and flatness of the paving stones remain prominent.",
+    "description_view_2": "From the back, the rectangular grid of paving stones is visible, with no change in pattern or edge features.",
+    "description_view_3": "The right side view displays the same interlocking paving stone pattern and flush edges as the other sides.",
+    "category": "sidewalk",
+    "height": 0.08,
+    "max_dimension": 4.0,
+    "materials": [
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.98,
+        0.02
+    ],
+    "mass": 768,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "segmentable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "tan"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": false,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "flush",
+    "attribute_adjacent_street_type": "residential",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "8cc1d96b8fdb4cd68d05662c31a85235",
+    "near_synsets": {
+        "paving_stone.n.01": 0.5031058667796694,
+        "paved_surface.n.01": 0.503496891702697,
+        "sidewalk.n.01": 0.503804266755226,
+        "cobble.n.01": 0.5205548420062414,
+        "bluestone.n.01": 0.5252433141345979
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8cc1d96b8fdb4cd68d05662c31a85235",
+        "creator_username": "DolmosStudio",
+        "creator_display_name": "DolmosStudio",
+        "creator_profile_url": "https://sketchfab.com/DolmosStudio"
+    },
+    "filename": "std_8cc1d96b8fdb4cd68d05662c31a85235.glb",
+    "length": 595420.6875,
+    "width": 595420.3125
+}

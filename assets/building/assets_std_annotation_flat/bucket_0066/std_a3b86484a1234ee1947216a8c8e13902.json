@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a classic hamburger meal featuring a burger with a melted slice of white cheese on top, leafy green lettuce, and a soft, lightly browned bun. The burger is accompanied by a generous serving of golden French fries, which are scattered around the plate. A dollop of ketchup is visible near the fries, adding a pop of red color. The cheese appears to be melted smoothly over the patty, and the lettuce is fresh and vibrant. The bun does not show any visible sesame seeds and appears to be a plain white or lightly toasted type. The overall presentation is casual, resembling a typical diner or fast-food meal.",
+    "description": "A cheeseburger with lettuce and a plain bun, served with golden fries and a side of ketchup. The cheese is melted over the patty, and the lettuce is fresh and green.",
+    "description_view_0": "The front view shows the cheeseburger with melted cheese, fresh lettuce, and a pile of fries with ketchup on the side.",
+    "description_view_1": "This angle highlights the lettuce and cheese on the burger, with fries spread out and ketchup more visible.",
+    "description_view_2": "The back view emphasizes the cheese-covered patty and the fries, with the ketchup positioned to the left.",
+    "description_view_3": "This view shows the burger's front with cheese and lettuce, the fries, and the ketchup clearly visible to the left.",
+    "category": "hamburger",
+    "height": 0.08,
+    "max_dimension": 0.22,
+    "materials": [
+        "bread",
+        "beef",
+        "cheese",
+        "lettuce",
+        "potato",
+        "ketchup",
+        "air"
+    ],
+    "materials_composition": [
+        0.25,
+        0.18,
+        0.15,
+        0.07,
+        0.3,
+        0.03,
+        0.02
+    ],
+    "mass": 0.32,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 4,
+    "movable": true,
+    "required_force": 3.2,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "bun",
+        "patty",
+        "cheese",
+        "lettuce",
+        "fries",
+        "ketchup"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "brown",
+        "green",
+        "white",
+        "red"
+    ],
+    "colors_composition": [
+        0.4,
+        0.25,
+        0.1,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.35,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.08,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "group",
+    "attribute_bun_type": "plain white bun",
+    "attribute_patty_visibility": "partially visible",
+    "attribute_topping_arrangement": "Leafy lettuce is placed directly on the bottom bun, with a slice of melted white cheese covering the patty. The toppings are layered in a classic style, with the cheese on top and lettuce beneath.",
+    "attribute_packaging_presence": false,
+    "attribute_sesame_seed_presence": false,
+    "uid": "a3b86484a1234ee1947216a8c8e13902",
+    "near_synsets": {
+        "cheeseburger.n.01": 0.4411356642648638,
+        "hamburger.n.01": 0.4590701763738654,
+        "hamburger_bun.n.01": 0.529393596517533,
+        "fast_food.n.01": 0.5434902236268101,
+        "bacon-lettuce-tomato_sandwich.n.01": 0.5470990000090606,
+        "ground_beef.n.01": -1000.0
+    },
+    "synset": "hamburger_bun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/a3b86484a1234ee1947216a8c8e13902",
+        "creator_username": "stevencmutter",
+        "creator_display_name": "stevencmutter",
+        "creator_profile_url": "https://sketchfab.com/stevencmutter"
+    },
+    "filename": "std_a3b86484a1234ee1947216a8c8e13902.glb",
+    "length": 0.3691173940896988,
+    "width": 0.3530316650867462
+}

@@ -1,0 +1,104 @@
+{
+    "description_long": "This hamburger features a golden-brown sesame seed bun with a generous scattering of white sesame seeds on the top. The interior reveals a thick, juicy beef patty topped with a slice of melted cheese that oozes slightly over the edges. Several strips of crispy, dark brown bacon are layered above the cheese, adding texture and visual contrast. The bottom bun is slightly compressed, showing a realistic bread texture. No vegetables or sauces are visible, giving the burger a hearty, meat-and-cheese-focused appearance. The overall look is appetizing and classic, reminiscent of a bacon cheeseburger from a diner or fast-food restaurant.",
+    "description": "A classic bacon cheeseburger with a sesame seed bun, melted cheese, and crispy bacon strips. The bun is golden-brown and the patty is thick and juicy.",
+    "description_view_0": "The front view highlights the sesame seed bun, melted cheese, and bacon strips protruding from the sides.",
+    "description_view_1": "This angle emphasizes the bacon strips and the cheese melting over the patty, with the bun's texture clearly visible.",
+    "description_view_2": "The back view shows more of the bacon and the rounded shape of the bun, with less cheese visible.",
+    "description_view_3": "This side view displays the bacon and cheese layers, with the bottom bun's texture and color variations apparent.",
+    "category": "hamburger",
+    "height": 0.1,
+    "max_dimension": 0.12,
+    "materials": [
+        "bread",
+        "beef",
+        "cheese",
+        "bacon",
+        "sesame seeds",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.3,
+        0.15,
+        0.15,
+        0.03,
+        0.02
+    ],
+    "mass": 0.25,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 2.5,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "graspable",
+        "edible"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "top bun",
+        "bottom bun",
+        "patty",
+        "cheese",
+        "bacon"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "golden brown",
+        "white",
+        "dark brown",
+        "yellow",
+        "light brown"
+    ],
+    "colors_composition": [
+        0.45,
+        0.1,
+        0.2,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.08,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_bun_type": "sesame seed bun",
+    "attribute_patty_visibility": "partially visible",
+    "attribute_topping_arrangement": "Crispy bacon strips are layered above a slice of melted cheese, which sits atop the beef patty; toppings are stacked neatly between the top and bottom buns with no visible vegetables.",
+    "attribute_packaging_presence": false,
+    "attribute_sesame_seed_presence": true,
+    "uid": "bfc8948a81b94a03afe00b4873f9235f",
+    "near_synsets": {
+        "cheeseburger.n.01": 0.47311966948018586,
+        "hamburger.n.01": 0.5021409703200452,
+        "hamburger_bun.n.01": 0.5387032208957497,
+        "bacon-lettuce-tomato_sandwich.n.01": 0.5505162746238679,
+        "reuben.n.02": 0.5599707658149606,
+        "ground_beef.n.01": -1000.0
+    },
+    "synset": "hamburger_bun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/bfc8948a81b94a03afe00b4873f9235f",
+        "creator_username": "kraigfujii",
+        "creator_display_name": "kraigfujii",
+        "creator_profile_url": "https://sketchfab.com/kraigfujii"
+    },
+    "filename": "std_bfc8948a81b94a03afe00b4873f9235f.glb",
+    "length": 0.13523483276367188,
+    "width": 0.14180472493171692
+}

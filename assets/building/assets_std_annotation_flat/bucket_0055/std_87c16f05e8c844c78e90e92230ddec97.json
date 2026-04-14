@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a stylized, olive-green military tank with a long barrel cannon mounted on a rotating turret. The vehicle features heavy, angular armor plating with visible panel lines and reinforced sections, especially on the front and sides. On the left side of the turret, there is a hand-written message reading 'Don't open, Dead inside,' and a red stain resembling a splash of paint or fluid. The tank is equipped with two cylindrical exhaust pipes at the rear and a large, red cylindrical object, possibly a fuel drum, attached to the back. The tracks are wide and robust, designed for traversing rough terrain, and the overall design is utilitarian with minimal decorative elements. The surface finish is matte, with a slightly rough texture, and the tank lacks any visible military insignia or camouflage pattern beyond its solid color.",
+    "description": "A stylized olive-green military tank with heavy armor, a long cannon, and a red cylindrical object at the rear. The turret features hand-written text and a red stain, with two exhaust pipes and wide tracks.",
+    "description_view_0": "Left side view showing the hand-written message on the turret, the long barrel, and the red cylindrical object at the rear.",
+    "description_view_1": "Front view highlighting the thick frontal armor, cannon barrel, and symmetrical track layout.",
+    "description_view_2": "Right side view with the turret's hand-written message partially visible and the exhaust pipes and red cylinder at the back.",
+    "description_view_3": "Rear view displaying the two exhaust pipes, the large red cylindrical object, and the back armor plating.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "tracks",
+        "exhaust pipe",
+        "fuel drum"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "red",
+        "black",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the turret; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, angular steel armor plating; sloped front and side panels for deflection; reinforced sections visible on all sides.",
+    "attribute_camouflage_pattern": "Solid olive-green paint with no visible camouflage pattern.",
+    "attribute_military_markings": "Hand-written message 'Don't open, Dead inside' on the left side of the turret; no official military insignia or numbers visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "87c16f05e8c844c78e90e92230ddec97",
+    "near_synsets": {
+        "tank.n.01": 0.4799761167814686,
+        "military_vehicle.n.01": 0.5068295179578538,
+        "assault_gun.n.02": 0.5323462189019003,
+        "armored_car.n.02": 0.5348171395949388,
+        "weapons_carrier.n.01": 0.5404472508129519,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/87c16f05e8c844c78e90e92230ddec97",
+        "creator_username": "Kusaku",
+        "creator_display_name": "Kusaku",
+        "creator_profile_url": "https://sketchfab.com/Kusaku"
+    },
+    "filename": "std_87c16f05e8c844c78e90e92230ddec97.glb",
+    "length": 4.341675281524658,
+    "width": 2.534961700439453
+}

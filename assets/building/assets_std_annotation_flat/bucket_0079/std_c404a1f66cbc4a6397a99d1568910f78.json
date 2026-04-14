@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a rectangular barrow with a deep, open-topped tray constructed from brown panels, reinforced with angular wooden slats on the sides. The tray is filled with a mound of gray, angular material resembling rocks or coal, with several larger pieces protruding above the rim. The barrow is supported by four black wheels, partially visible beneath the tray, allowing for mobility. Metal or gray-colored brackets reinforce the lower edges and corners, adding structural stability. The sides feature diagonal wooden braces, likely for added strength and to secure the load. The overall design is utilitarian, suitable for transporting heavy or loose materials in an urban or construction environment.",
+    "description": "A sturdy, rectangular barrow with a deep brown tray filled with gray rocks, reinforced by wooden slats and supported by four black wheels.",
+    "description_view_0": "Top-down view showing the gray, angular load filling the tray and the rectangular rim.",
+    "description_view_1": "Side view highlighting the brown tray, diagonal wooden braces, and two visible black wheels.",
+    "description_view_2": "End view displaying the narrow profile, metal brackets, and the length of the tray.",
+    "description_view_3": "Opposite side view similar to view 1, with visible wheels and braces, showing the load's uneven surface.",
+    "category": "barrow",
+    "height": 0.7,
+    "max_dimension": 1.2,
+    "materials": [
+        "wood",
+        "metal",
+        "rock",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.15,
+        0.35,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable",
+        "unloadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "tray"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 4,
+    "attribute_handle_type": "dual straight wooden slats",
+    "attribute_wheel_position": "four corners, directly beneath tray",
+    "attribute_tray_depth": 0.4,
+    "attribute_presence_of_support_legs": false,
+    "uid": "c404a1f66cbc4a6397a99d1568910f78",
+    "near_synsets": {
+        "barrow.n.03": 0.45489199411292336,
+        "barrow.n.01": 0.49584853168059884,
+        "handbarrow.n.01": 0.5067751832240014,
+        "cart.n.01": 0.513063793207338,
+        "crowbar.n.01": 0.5341662031848916,
+        "burial_mound.n.01": -1000.0
+    },
+    "synset": "handbarrow.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c404a1f66cbc4a6397a99d1568910f78",
+        "creator_username": "Zorg741",
+        "creator_display_name": "Vladislav Laryushin",
+        "creator_profile_url": "https://sketchfab.com/Zorg741"
+    },
+    "filename": "std_c404a1f66cbc4a6397a99d1568910f78.glb",
+    "length": 0.5528537034988403,
+    "width": 1.139467716217041
+}

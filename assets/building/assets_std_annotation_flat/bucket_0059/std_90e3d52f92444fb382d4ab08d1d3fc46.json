@@ -1,0 +1,124 @@
+{
+    "description_long": "This object is a small, enclosed grave site featuring a prominent stone tomb or monument at its center. The tomb is constructed from weathered, dark stone and has a pitched roof, with architectural details such as a recessed arch and layered base. Surrounding the tomb is a wrought iron fence with pointed finials, anchored by robust stone pillars at each corner. The ground within the enclosure is covered with patches of grass and earth, giving it a slightly overgrown, aged appearance. The overall design suggests a historical or traditional cemetery plot, possibly for a notable individual or family. The structure is solid and immovable, with no visible inscriptions or decorative crosses.",
+    "description": "A weathered stone tomb with a pitched roof, enclosed by a wrought iron fence and stone pillars, set on a grassy plot.",
+    "description_view_0": "The side of the tomb is visible, showing the layered stone base and the iron fence with stone pillars enclosing the plot.",
+    "description_view_1": "The front of the tomb is shown, featuring a recessed arch detail and the main entrance area, with the fence and pillars clearly framing the monument.",
+    "description_view_2": "The opposite side of the tomb is visible, highlighting the fence's curvature and the grassy terrain inside the enclosure.",
+    "description_view_3": "The rear of the tomb is shown, with the back wall and the iron fence enclosing the grassy plot, and no visible entrance.",
+    "category": "grave yard",
+    "height": 2.5,
+    "max_dimension": 4.0,
+    "materials": [
+        "stone",
+        "iron",
+        "soil",
+        "grass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "fence gate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "brown",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.0,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_tombstone_inscriptions": [],
+    "attribute_crosses": [],
+    "attribute_grave_markers": [
+        {
+            "type": "headstone",
+            "material": "stone",
+            "dimensions": [
+                2.5,
+                1.0,
+                1.0
+            ]
+        }
+    ],
+    "attribute_mausoleums": [],
+    "attribute_cemetery_gates": [
+        {
+            "type": "wrought iron",
+            "primary_materials": "iron",
+            "dimensions": [
+                1.2,
+                1.0
+            ],
+            "decorative_elements": [
+                "pointed finials"
+            ]
+        }
+    ],
+    "uid": "90e3d52f92444fb382d4ab08d1d3fc46",
+    "near_synsets": {
+        "grave.n.02": 0.477834807194649,
+        "gravestone.n.01": 0.4937681174907463,
+        "cairn.n.01": 0.5077588033328072,
+        "cemetery.n.01": 0.5135272559838429,
+        "burial_mound.n.01": 0.5328612594023774,
+        "cubic_yard.n.01": -1000.0,
+        "thousand.n.01": -1000.0,
+        "yard.n.08": -1000.0,
+        "yard.n.03": -1000.0,
+        "yard.n.02": -1000.0,
+        "yard.n.07": -1000.0,
+        "yard.n.09": -1000.0,
+        "yard.n.06": -1000.0,
+        "yard.n.01": -1000.0
+    },
+    "synset": "gravestone.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/90e3d52f92444fb382d4ab08d1d3fc46",
+        "creator_username": "erwan.barbarin",
+        "creator_display_name": "erwan.barbarin",
+        "creator_profile_url": "https://sketchfab.com/erwan.barbarin"
+    },
+    "filename": "std_90e3d52f92444fb382d4ab08d1d3fc46.glb",
+    "length": 3.2174752950668335,
+    "width": 3.956308364868164
+}

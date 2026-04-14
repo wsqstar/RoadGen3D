@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a rectangular playground structure resembling a concrete skatepark or BMX park feature, with multiple recessed bowls and ramps integrated into its surface. The top surface is undulating, featuring two large, deep basins at either end and a shallower, central depression, all with smooth, curved transitions. The basins are lined with a blue material, possibly simulating water or a softer play surface, while the rest of the structure is a light beige, concrete-like material. The edges are sharply defined, and the overall form is low and elongated, suggesting it is designed for activities like skating, scootering, or BMX riding. There are no visible safety barriers, shade structures, or decorative elements, emphasizing a minimalist, utilitarian design. The structure appears robust and fixed, intended for outdoor installation in a public park or urban recreational area.",
+    "description": "A long, rectangular skatepark-style playground feature with deep blue-lined bowls and smooth, beige concrete surfaces, designed for skating or BMX activities.",
+    "description_view_0": "From this side view, the undulating surface and the depth of the two main basins are visible, with blue lining contrasting against the beige structure.",
+    "description_view_1": "This end view highlights the rectangular shape and shows the interior of one deep basin and the central depression.",
+    "description_view_2": "The opposite side view reveals the full length of the structure, the two main basins, and the smooth transitions between them.",
+    "description_view_3": "From this end, the second deep basin and the central depression are visible, emphasizing the depth and curvature of the play areas.",
+    "category": "playground",
+    "height": 0.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "concrete",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 4200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "skateable",
+        "rideable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bowl",
+        "ramp",
+        "platform"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "bicycle",
+        "skateboard"
+    ],
+    "colors": [
+        "beige",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_playground_equipment_type": "skatepark bowl",
+    "attribute_presence_of_safety_barriers": false,
+    "attribute_number_of_play_structures": 1,
+    "attribute_presence_of_shade_structures": false,
+    "attribute_architectural_style": "minimalist",
+    "uid": "ecb0bc49f490428180ffe177328e3238",
+    "near_synsets": {
+        "skateboarding.n.01": 0.5228187885010701,
+        "playground.n.02": 0.5287736170256342,
+        "course.n.09": 0.5418347273895683,
+        "speed_skating.n.01": 0.5557520942433014,
+        "skateboarder.n.01": 0.5561890779392886,
+        "resort_area.n.01": -1000.0
+    },
+    "synset": "playground.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ecb0bc49f490428180ffe177328e3238",
+        "creator_username": "artfletch",
+        "creator_display_name": "artfletch",
+        "creator_profile_url": "https://sketchfab.com/artfletch"
+    },
+    "filename": "std_ecb0bc49f490428180ffe177328e3238.glb",
+    "length": 5.664229869842529,
+    "width": 1.894635021686554
+}

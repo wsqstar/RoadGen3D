@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a large, modern apartment complex consisting of two identical high-rise buildings connected by a central ground-level structure. Each building features multiple stories with regularly spaced balconies and large windows, providing ample natural light to the units. The exterior is primarily finished in light gray and white tones, with darker accents on the balcony railings and window frames. The ground level includes a landscaped courtyard or communal area, possibly with recreational amenities. The buildings are set on a broad rectangular base, which may include parking or additional facilities. The overall design is symmetrical, with clean lines and a functional, contemporary aesthetic.",
+    "description": "A modern, twin-tower apartment complex with multiple stories, balconies, and a central courtyard, finished in light gray and white tones.",
+    "description_view_0": "Front view showing both apartment towers, the central connecting structure, and the landscaped courtyard area.",
+    "description_view_1": "Side view highlighting the depth of one tower and the linear arrangement of balconies and windows.",
+    "description_view_2": "Rear view mirroring the front, with both towers and the central courtyard visible.",
+    "description_view_3": "Opposite side view, again showing the depth of a single tower and the repeating balcony pattern.",
+    "category": "apartment building",
+    "height": 35,
+    "max_dimension": 90,
+    "materials": [
+        "concrete",
+        "glass",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.1
+    ],
+    "mass": 1200000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "balcony railing",
+        "elevator",
+        "staircase"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "dark brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 10,
+    "asset_composition_type": "group",
+    "attribute_number_of_floors": 12,
+    "attribute_balcony_presence": true,
+    "attribute_window_arrangement": "Windows are arranged in a highly regular, grid-like pattern, with each floor featuring evenly spaced windows aligned vertically and horizontally across the facade.",
+    "attribute_entrance_type": "multiple entrances",
+    "attribute_architectural_style": "Contemporary",
+    "uid": "c5dadf6e6ad747918851e601250393b5",
+    "near_synsets": {
+        "apartment_building.n.01": 0.49459395586227256,
+        "high-rise.n.01": 0.5152756411507006,
+        "suite.n.02": 0.5239500152171592,
+        "penthouse.n.01": 0.5353468812107184,
+        "block.n.05": 0.5361873250652215,
+        "construction.n.07": -1000.0,
+        "building.n.04": -1000.0,
+        "apartment.n.01": -1000.0,
+        "building.n.01": -1000.0,
+        "construction.n.01": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c5dadf6e6ad747918851e601250393b5",
+        "creator_username": "contact2exposit",
+        "creator_display_name": "contact2exposit",
+        "creator_profile_url": "https://sketchfab.com/contact2exposit"
+    },
+    "filename": "std_c5dadf6e6ad747918851e601250393b5.glb",
+    "length": 24.683900833129883,
+    "width": 121.28310775756836
+}

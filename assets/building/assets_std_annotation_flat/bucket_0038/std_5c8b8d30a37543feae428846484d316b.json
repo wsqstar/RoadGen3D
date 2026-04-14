@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a modern city bus with a rectangular, streamlined body painted primarily in a deep red color with gray and black accents. The bus features large, dark-tinted windows along both sides, separated by vertical pillars, and two sets of double doors for passenger entry and exit. The front of the bus has a wide windshield, prominent headlights, and side mirrors extending outward, while the rear is simpler with tail lights and a rear panel. The roof includes a rectangular skylight or ventilation hatch. The wheels are large and robust, suitable for urban roads, and the overall design suggests a focus on passenger capacity and efficient boarding.",
+    "description": "A modern red city bus with large side windows, double entry doors, and a rectangular skylight on the roof.",
+    "description_view_0": "Front view showing a wide windshield, headlights, and side mirrors.",
+    "description_view_1": "Side view displaying large windows, a double passenger door, and two wheels.",
+    "description_view_2": "Rear view with a simple panel, tail lights, and no visible doors.",
+    "description_view_3": "Opposite side view with similar window arrangement and another double passenger door.",
+    "category": "bus",
+    "height": 3.2,
+    "max_dimension": 12.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "button",
+        "mirror"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 2,
+    "attribute_window_arrangement": "Five large rectangular windows per side, evenly spaced, separated by vertical pillars, with a consistent height and dark tint.",
+    "attribute_route_number_or_destination_sign": "",
+    "attribute_bus_manufacturer_logo": "",
+    "attribute_passenger_entry_step_height": 0.4,
+    "uid": "5c8b8d30a37543feae428846484d316b",
+    "near_synsets": {
+        "bus_traffic.n.01": 0.5365019356051463,
+        "minibus.n.01": 0.5385592146086421,
+        "berlin.n.03": 0.5452561167416053,
+        "school_bus.n.01": 0.5468951122077751,
+        "bus.n.01": 0.5477588400756929,
+        "bus_topology.n.01": -1000.0,
+        "bus.n.04": -1000.0,
+        "busbar.n.01": -1000.0
+    },
+    "synset": "busbar.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5c8b8d30a37543feae428846484d316b",
+        "creator_username": "scudmorello",
+        "creator_display_name": "Scuderia Morello",
+        "creator_profile_url": "https://sketchfab.com/scudmorello"
+    },
+    "filename": "std_5c8b8d30a37543feae428846484d316b.glb",
+    "length": 10.273748397827148,
+    "width": 3.6832611560821533
+}

@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a large, armored combat tactical vehicle with a boxy, angular body and a low-profile turret mounted towards the front. The vehicle is painted in a solid olive drab color, with visible hatches, vents, and reinforced panels along its sides and roof. It features continuous metal tracks with multiple road wheels, providing robust off-road mobility. The front and rear are equipped with what appear to be smoke grenade launchers or similar defensive devices. The vehicle has several grilles and access panels, suggesting heavy armor and internal compartments for crew or equipment. Markings such as '07 LM 42' are visible on the front and rear, indicating possible identification or unit numbers.",
+    "description": "A heavily armored, olive drab tracked combat vehicle with a low turret, reinforced panels, and visible military markings.",
+    "description_view_0": "Front view shows the vehicle's flat, armored face with a central hatch, grilles, and the marking '07 LM 42', as well as defensive launchers on both sides.",
+    "description_view_1": "Left side view highlights the long, sloped armored body, continuous tracks, and the low turret positioned forward.",
+    "description_view_2": "Rear view displays the back hatch, additional grilles, the marking '07 LM 42', and rear-mounted launchers.",
+    "description_view_3": "Right side view mirrors the left, showing the armored panels, tracks, and the vehicle's overall length.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 25000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "door",
+        "wheel",
+        "track",
+        "turret",
+        "launcher",
+        "grille",
+        "panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive drab",
+        "black",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.04,
+        0.01
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Two sets of launcher mounts are visible on the front and rear corners; no turret-mounted weapons or cannons are visible.",
+    "attribute_armor_plating": "Full body coverage with thick, flat steel armor plating; reinforced panels on the sides, roof, and front; sloped surfaces for deflection.",
+    "attribute_camouflage_pattern": "Solid olive drab color; no visible camouflage pattern.",
+    "attribute_military_markings": "White alphanumeric marking '07 LM 42' on both the front and rear panels.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "23db0462ce604a64af5ea282b5df59b9",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.47525957104357985,
+        "tank.n.01": 0.4920330239231588,
+        "armored_car.n.02": 0.4986468897351392,
+        "armored_vehicle.n.01": 0.5012406130893811,
+        "reconnaissance_vehicle.n.01": 0.5051564046523931,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/23db0462ce604a64af5ea282b5df59b9",
+        "creator_username": "stealth86",
+        "creator_display_name": "stealth86",
+        "creator_profile_url": "https://sketchfab.com/stealth86"
+    },
+    "filename": "std_23db0462ce604a64af5ea282b5df59b9.glb",
+    "length": 6.3995983600616455,
+    "width": 2.847880005836487
+}

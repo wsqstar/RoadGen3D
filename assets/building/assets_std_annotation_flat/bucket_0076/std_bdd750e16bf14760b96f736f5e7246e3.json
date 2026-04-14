@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a rectangular vending machine with a distressed red and white exterior, topped by a prominent red cross symbol. The front features a transparent display window showing various products inside, with the words 'Health Boost' written in red script above and below the window. The sides each display a large red cross, reinforcing the health-related theme. The machine has a black top surface and a visible payment and selection interface on the right side of the front panel. The overall appearance is weathered, suggesting frequent use or exposure to the elements, and the design is reminiscent of a health or medical supply dispenser.",
+    "description": "A weathered red and white vending machine with a large red cross on top, transparent product window, and 'Health Boost' branding.",
+    "description_view_0": "Front view showing the transparent product window, 'Health Boost' signage, payment and selection interface, and the red cross on top.",
+    "description_view_1": "Left side view displaying a large red cross and the distressed red paint, with the cross on top visible.",
+    "description_view_2": "Rear view showing a plain, distressed red panel with no visible features except the cross on top.",
+    "description_view_3": "Right side view with another large red cross and the same weathered red finish, plus the cross on top.",
+    "category": "vending machine",
+    "height": 2.0,
+    "max_dimension": 2.0,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "payment slot",
+        "product retrieval slot",
+        "display panel",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "black",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A rectangular display panel is located on the upper right front, adjacent to the payment interface, with a small illuminated area and possible printed instructions.",
+    "attribute_payment_interface": "A payment interface is visible on the right front, featuring a coin slot and possibly a bill acceptor, with no visible card reader or contactless terminal.",
+    "attribute_product_selection_buttons": "A vertical row of individual selection buttons is present on the right front, each likely corresponding to a product, with no visible keypad.",
+    "attribute_product_retrieval_slot": "A horizontal product retrieval slot is located at the bottom front, beneath the transparent window, with a rectangular shape and a possible flap.",
+    "attribute_branding_or_signage": "The words 'Health Boost' are prominently displayed in red script above and below the product window on the front, and large red crosses are present on the top and both sides.",
+    "uid": "bdd750e16bf14760b96f736f5e7246e3",
+    "near_synsets": {
+        "vending_machine.n.01": 0.5241939534285538,
+        "automat.n.01": 0.5479470882248003,
+        "life_saver.n.01": 0.5967732151820034,
+        "fruit_machine.n.01": 0.6069935376877316,
+        "meat_counter.n.01": 0.6109156086092139,
+        "machine.n.01": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.02": -1000.0,
+        "machine.n.05": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bdd750e16bf14760b96f736f5e7246e3",
+        "creator_username": "Matt-AeroLab",
+        "creator_display_name": "Matt Rafferty",
+        "creator_profile_url": "https://sketchfab.com/Matt-AeroLab"
+    },
+    "filename": "std_bdd750e16bf14760b96f736f5e7246e3.glb",
+    "length": 0.5219860672950745,
+    "width": 0.9607018232345581
+}

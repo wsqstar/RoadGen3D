@@ -1,0 +1,154 @@
+{
+    "description_long": "This grave yard features a rectangular, fenced plot with a prominent mausoleum structure at one end, topped with a cross and decorative finial. The mausoleum is flanked by ornate wrought iron fencing and stone posts, with steps leading up to its entrance. The ground is covered with a striped pattern, possibly representing paving or gravel, and several grave markers, including headstones and a raised tomb, are distributed within the enclosure. The fencing is detailed with scrollwork and finials, enclosing the entire area and providing a sense of separation from the surrounding environment. The overall design suggests a historic or traditional cemetery, with a focus on stone and metal craftsmanship. The layout is symmetrical, with the mausoleum as the focal point and the grave markers arranged in an orderly fashion.",
+    "description": "A fenced grave yard with a central mausoleum, ornate ironwork, and several stone grave markers on a striped ground surface.",
+    "description_view_0": "Front view showing the mausoleum with cross, steps, and ornate fencing, with grave markers visible inside the enclosure.",
+    "description_view_1": "Side view highlighting the length of the fenced area, the mausoleum's side columns, and the arrangement of grave markers.",
+    "description_view_2": "Rear view focusing on the back of the mausoleum and the symmetry of the fenced grave yard layout.",
+    "description_view_3": "Opposite side view showing the mausoleum's side, the striped ground, and the distribution of grave markers within the fence.",
+    "category": "grave yard",
+    "height": 4.5,
+    "max_dimension": 12.0,
+    "materials": [
+        "stone",
+        "wrought iron",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "gate",
+        "mausoleum door",
+        "steps"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "white",
+        "brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.0,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_tombstone_inscriptions": [],
+    "attribute_crosses": [
+        {
+            "style": "Latin",
+            "height": 0.7,
+            "material": "stone"
+        }
+    ],
+    "attribute_grave_markers": [
+        {
+            "type": "headstone",
+            "material": "stone",
+            "height": 0.8,
+            "width": 0.5,
+            "depth": 0.2
+        },
+        {
+            "type": "raised tomb",
+            "material": "stone",
+            "height": 0.6,
+            "width": 1.2,
+            "depth": 0.7
+        }
+    ],
+    "attribute_mausoleums": [
+        {
+            "architectural_style": "Neo-Gothic",
+            "primary_materials": [
+                "stone",
+                "wrought iron"
+            ],
+            "height": 4.5,
+            "width": 2.5,
+            "depth": 2.5,
+            "notable_features": [
+                "arched doorway",
+                "cross finial",
+                "columns"
+            ]
+        }
+    ],
+    "attribute_cemetery_gates": [
+        {
+            "type": "wrought iron",
+            "primary_materials": [
+                "wrought iron",
+                "stone"
+            ],
+            "height": 1.2,
+            "width": 2.0,
+            "decorative_elements": [
+                "scrollwork",
+                "finials"
+            ]
+        }
+    ],
+    "uid": "4ef8af77a6ac43b1ab4b38b11d66c6a6",
+    "near_synsets": {
+        "grave.n.02": 0.47749068494804103,
+        "cemetery.n.01": 0.4819025877525302,
+        "gravestone.n.01": 0.4917955719417609,
+        "mausoleum.n.01": 0.502435029202499,
+        "cairn.n.01": 0.5135185724785742,
+        "cubic_yard.n.01": -1000.0,
+        "yard.n.08": -1000.0,
+        "thousand.n.01": -1000.0,
+        "yard.n.01": -1000.0,
+        "yard.n.07": -1000.0,
+        "yard.n.03": -1000.0,
+        "yard.n.09": -1000.0,
+        "yard.n.06": -1000.0,
+        "yard.n.02": -1000.0
+    },
+    "synset": "cemetery.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4ef8af77a6ac43b1ab4b38b11d66c6a6",
+        "creator_username": "kosmosoff",
+        "creator_display_name": "Kosmosoff",
+        "creator_profile_url": "https://sketchfab.com/kosmosoff"
+    },
+    "filename": "std_4ef8af77a6ac43b1ab4b38b11d66c6a6.glb",
+    "length": 10.442885875701904,
+    "width": 9.555580139160156
+}

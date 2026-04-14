@@ -1,0 +1,98 @@
+{
+    "description_long": "This humanoid robot features a skeletal, mechanical frame with exposed joints and intricate limb structures, giving it an industrial and utilitarian appearance. Its head is compact and angular, with a possible visor or sensor array at the front, and the torso is reinforced with visible mechanical components and cabling. The arms are long and segmented, ending in broad, multi-fingered hands that suggest dexterity and strength. The legs are robust and jointed, with large, flat feet designed for stability on urban surfaces. The overall color scheme is dominated by dark metallic tones, with hints of copper or bronze in the joints and connectors. The robot's design emphasizes functionality and durability, suitable for tasks in urban environments.",
+    "description": "A dark, skeletal humanoid robot with exposed joints, broad hands, and robust legs, featuring an industrial, utilitarian design.",
+    "description_view_0": "Front view shows the robot's symmetrical, mechanical frame, broad hands, and detailed torso with visible cabling.",
+    "description_view_1": "Side view highlights the robot's slim profile, jointed limbs, and the angular shape of the head and feet.",
+    "description_view_2": "Rear view reveals the back of the head, mechanical spine, and the structure of the legs and feet.",
+    "description_view_3": "Opposite side view mirrors the other side, showing the segmented limbs and mechanical details.",
+    "category": "humanoid robot",
+    "height": 1.8,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "copper",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 110,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hands",
+        "arms",
+        "head",
+        "legs",
+        "feet"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray",
+        "copper"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms extended horizontally to the sides and legs straight, head facing forward.",
+    "attribute_clothing_style": "Unclothed; only integrated mechanical panels and exposed structural elements are visible.",
+    "attribute_facial_features": "The face is minimalistic with a compact, angular structure; possible visor or sensor array at the front, no visible mouth or expressive features.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints, allowing for a wide range of motion; hands have articulated fingers, and feet are broad and jointed.",
+    "attribute_presence_of_sensors": "Possible sensor array or camera on the front of the head; none visible elsewhere.",
+    "uid": "342c762b0d4548c8b76b495df7e702f8",
+    "near_synsets": {
+        "android.n.01": 0.5214557403708587,
+        "cyborg.n.01": 0.5387988334731852,
+        "robotics_equipment.n.01": 0.548108410655845,
+        "robotics.n.01": 0.5523216806428796,
+        "automaton.n.02": 0.5563321541094476
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/342c762b0d4548c8b76b495df7e702f8",
+        "creator_username": "robinsonsteven419",
+        "creator_display_name": "robinsonsteven419",
+        "creator_profile_url": "https://sketchfab.com/robinsonsteven419"
+    },
+    "filename": "std_342c762b0d4548c8b76b495df7e702f8.glb",
+    "length": 0.47043614089488983,
+    "width": 2.330133557319641
+}

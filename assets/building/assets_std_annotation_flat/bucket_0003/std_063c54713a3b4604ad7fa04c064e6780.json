@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a compact, tracked combat vehicle with a boxy, angular turret mounted atop a robust chassis. The vehicle features a prominent, forward-facing cannon integrated into the turret, which is reinforced with visible rivets and armored panels. The tracks are wide and rugged, supported by multiple road wheels and a drive sprocket, designed for traversing rough urban terrain. The rear section includes a grated engine cover, suggesting an internal combustion or diesel engine beneath. The exterior is finished in a weathered, pale green paint with subtle rust and wear, giving it a utilitarian, battle-worn appearance. No visible markings or insignia are present, and the vehicle is devoid of external accessories or secondary armaments.",
+    "description": "A compact, tracked combat vehicle with a boxy turret, large cannon, and rugged tracks, finished in weathered pale green armor. The design is utilitarian and battle-worn, with no visible markings or secondary weapons.",
+    "description_view_0": "Left side view showing the full length of the tracks, the angular turret, and the prominent cannon extending forward.",
+    "description_view_1": "Front view highlighting the large cannon barrel, the armored turret face, and the wide, sturdy tracks.",
+    "description_view_2": "Right side view similar to the left, displaying the tracks, turret, and cannon, with the engine cover visible at the rear.",
+    "description_view_3": "Rear view showing the grated engine cover, the back of the turret, and the width of the tracks.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 90000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cannon",
+        "turret",
+        "tracks",
+        "hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "pale green",
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted centrally on the turret; no other weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, riveted steel armor; turret and hull feature sloped and flat panels for increased protection.",
+    "attribute_camouflage_pattern": "Solid pale green paint with weathering and rust; no distinct camouflage pattern visible.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "063c54713a3b4604ad7fa04c064e6780",
+    "near_synsets": {
+        "tank.n.01": 0.4830260011454814,
+        "military_vehicle.n.01": 0.4967369405843187,
+        "assault_gun.n.02": 0.5151466407653554,
+        "weapons_carrier.n.01": 0.5166365875732742,
+        "armored_car.n.02": 0.5176601220776531,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/063c54713a3b4604ad7fa04c064e6780",
+        "creator_username": "caidampier",
+        "creator_display_name": "caidampier",
+        "creator_profile_url": "https://sketchfab.com/caidampier"
+    },
+    "filename": "std_063c54713a3b4604ad7fa04c064e6780.glb",
+    "length": 4.261993408203125,
+    "width": 2.414113759994507
+}

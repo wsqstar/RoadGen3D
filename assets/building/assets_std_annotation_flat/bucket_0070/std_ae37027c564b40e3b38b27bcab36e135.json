@@ -1,0 +1,91 @@
+{
+    "description_long": "This object is a dark-colored, single-engine aircraft with a streamlined fuselage and straight, mid-mounted wings. The engine is mounted above and behind the fuselage, featuring a cylindrical nacelle and a short exhaust, characteristic of early jet or pulsejet propulsion. The tail section includes a conventional horizontal stabilizer and a single vertical fin, with the engine nacelle extending past the tail. The surface appears metallic and slightly reflective, with minimal visible markings or windows. The overall design is utilitarian, with no visible landing gear or cockpit details, suggesting a focus on aerodynamic efficiency.",
+    "description": "A dark, streamlined airplane with a rear-mounted cylindrical engine and straight mid-mounted wings, featuring a conventional tail and metallic surface.",
+    "description_view_0": "Front view showing the straight wings, narrow fuselage, and the engine nacelle positioned above the rear fuselage.",
+    "description_view_1": "Side view highlighting the elongated fuselage, rear-mounted engine, and the conventional tail configuration.",
+    "description_view_2": "Top view displaying the full wingspan, central fuselage, and the engine nacelle extending past the tail.",
+    "description_view_3": "Opposite side view showing the same features as view 1, with clear visibility of the engine and tail structure.",
+    "category": "airplane",
+    "height": 1.5,
+    "max_dimension": 7.5,
+    "materials": [
+        "metal",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.07
+    ],
+    "mass": 2200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 21580,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "engine",
+        "wings",
+        "tail",
+        "cockpit (implied)"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.13,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing configuration with straight wings and no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Single rear-mounted jet engine in a cylindrical nacelle above the fuselage.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "No visible landing gear.",
+    "attribute_cockpit_placement": "Forward-mounted cockpit, implied by the fuselage shape, with no visible canopy or windows.",
+    "uid": "ae37027c564b40e3b38b27bcab36e135",
+    "near_synsets": {
+        "aircraft.n.01": 0.487113307655159,
+        "airplane.n.01": 0.49104485645606566,
+        "aircraft_engine.n.01": 0.4983633486704163,
+        "monoplane.n.01": 0.5133427202817535,
+        "narrowbody_aircraft.n.01": 0.5263606161497864
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ae37027c564b40e3b38b27bcab36e135",
+        "creator_username": "warrior3d",
+        "creator_display_name": "warrior3d",
+        "creator_profile_url": "https://sketchfab.com/warrior3d"
+    },
+    "filename": "std_ae37027c564b40e3b38b27bcab36e135.glb",
+    "length": 8.218758583068848,
+    "width": 7.7568254470825195
+}

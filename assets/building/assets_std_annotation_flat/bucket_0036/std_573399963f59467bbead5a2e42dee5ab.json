@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a historical-style cannon mounted on a wooden carriage with four solid wheels. The cannon barrel is made of dark, weathered metal and features a flared muzzle, a reinforcing ring near the breech, and a prominent knob at the rear. The carriage is constructed from thick wooden planks, reinforced with metal bolts and brackets, and supports the heavy barrel securely. The wheels are also wooden, capped with metal rims, and are attached to axles that allow the cannon to be repositioned. The overall appearance is robust and utilitarian, with visible wear and patina on both the metal and wood surfaces. This type of vehicle would have been used for artillery purposes, likely in historical or ceremonial urban settings.",
+    "description": "A weathered metal cannon mounted on a sturdy wooden carriage with four solid wheels, featuring a flared muzzle and reinforced construction. The object has a robust, historical appearance with visible metal and wood textures.",
+    "description_view_0": "Side view showing the full length of the cannon barrel, carriage structure, and all four wheels.",
+    "description_view_1": "Front view highlighting the cannon's muzzle, the alignment of the wheels, and the width of the carriage.",
+    "description_view_2": "Opposite side view similar to view 0, displaying the barrel, carriage, and wheels from the other side.",
+    "description_view_3": "Rear view focusing on the breech of the cannon, the rear knob, and the back of the carriage.",
+    "category": "combat tactical  vehicle",
+    "height": 1.0,
+    "max_dimension": 2.5,
+    "materials": [
+        "iron",
+        "wood",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.05,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "rotatable",
+        "loadable",
+        "aimable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "barrel",
+        "axle",
+        "trunnion"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One fixed cannon barrel mounted centrally on the carriage.",
+    "attribute_armor_plating": "None visible.",
+    "attribute_camouflage_pattern": "None visible; surfaces are solid dark gray and brown.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "573399963f59467bbead5a2e42dee5ab",
+    "near_synsets": {
+        "cannon.n.02": 0.5152735378089471,
+        "cannon.n.01": 0.5186417070729862,
+        "weapons_carrier.n.01": 0.5266897524140877,
+        "military_vehicle.n.01": 0.5291763783988653,
+        "caisson.n.02": 0.5331611572924863,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "cannon.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/573399963f59467bbead5a2e42dee5ab",
+        "creator_username": "serenella.caruso",
+        "creator_display_name": "serenella.caruso",
+        "creator_profile_url": "https://sketchfab.com/serenella.caruso"
+    },
+    "filename": "std_573399963f59467bbead5a2e42dee5ab.glb",
+    "length": 2.7877193689346313,
+    "width": 1.3272285461425781
+}

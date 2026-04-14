@@ -1,0 +1,88 @@
+{
+    "description_long": "This object is a curved tunnel segment with a smooth, metallic exterior surface that reflects light, giving it a glossy appearance. The tunnel is cylindrical in shape, with both ends open and a consistent diameter throughout its length. The surface is highly polished, suggesting it is made from stainless steel or a similar metal, and there are subtle greenish hues along the edges, possibly from tinted glass or a protective coating. The interior appears hollow, allowing for passage through the tunnel, and the structure is robust, likely designed to support significant weight and resist deformation. There are no visible fixtures, signage, or architectural embellishments, emphasizing a utilitarian and modern design. The tunnel's curvature suggests it could be used in urban infrastructure for pedestrian, vehicular, or utility passage.",
+    "description": "A curved, cylindrical tunnel segment with a glossy metallic finish and open ends, designed for passage. Its smooth, reflective surface and robust construction suggest a modern, utilitarian style.",
+    "description_view_0": "Side view showing the full curvature and length of the tunnel, highlighting its cylindrical shape and reflective metallic surface.",
+    "description_view_1": "Angled view from one open end, emphasizing the tunnel's hollow interior and the thickness of its walls.",
+    "description_view_2": "Opposite side view, again displaying the tunnel's curvature and smooth, shiny exterior.",
+    "description_view_3": "Angled view from the other open end, providing a clear look into the tunnel's interior and the uniformity of its construction.",
+    "category": "tunnel",
+    "height": 0.7,
+    "max_dimension": 3.0,
+    "materials": [
+        "stainless_steel",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "passage"
+    ],
+    "support_surface": false,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "silver",
+        "green"
+    ],
+    "colors_composition": [
+        0.92,
+        0.08
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.08,
+    "surface_finish": "glossy",
+    "reflectivity": 0.85,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.25,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "Circular open ends constructed from polished stainless steel, with no doors or gates and a smooth, unobstructed entry.",
+    "attribute_lighting_fixtures": [],
+    "attribute_signage": [],
+    "attribute_surrounding_infrastructure": "",
+    "attribute_architectural_style": "utilitarian, modern",
+    "uid": "6987b3d35d2441e4b83ed9f87fbb74ff",
+    "near_synsets": {
+        "tunnel.n.01": 0.514720301039396,
+        "railroad_tunnel.n.01": 0.526833005442438,
+        "conduit.n.01": 0.5609327037995145,
+        "corridor.n.01": 0.5628077513853925,
+        "tube.n.01": 0.572275941297073,
+        "burrow.n.01": -1000.0
+    },
+    "synset": "railroad_tunnel.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6987b3d35d2441e4b83ed9f87fbb74ff",
+        "creator_username": "TomAce",
+        "creator_display_name": "TomAce",
+        "creator_profile_url": "https://sketchfab.com/TomAce"
+    },
+    "filename": "std_6987b3d35d2441e4b83ed9f87fbb74ff.glb",
+    "length": 5.759798526763916,
+    "width": 2.880900740623474
+}

@@ -1,0 +1,100 @@
+{
+    "description_long": "This humanoid robot features a sleek, futuristic design with a large, elongated oval head adorned with multiple red circular lights, likely functioning as sensors or visual indicators. Its body is primarily composed of dark gray and black metallic panels, accented by red lines that run along the torso, arms, and legs, suggesting internal wiring or energy conduits. The arms and legs are segmented with visible joints, allowing for a wide range of motion, and the hands are equipped with articulated fingers. The chest and abdomen are reinforced with robust armor plating, while the limbs are streamlined for agility. The feet are broad and flat, providing stability, and the overall build is slender yet sturdy. The robot's face lacks traditional human features, instead presenting a smooth surface with sensor clusters, giving it an enigmatic and advanced appearance.",
+    "description": "A sleek, dark gray humanoid robot with a large oval head, red sensor lights, and articulated limbs accented by red lines.",
+    "description_view_0": "Front view showing the elongated head with red lights, broad chest armor, and articulated arms and legs.",
+    "description_view_1": "Left side view highlighting the head's curvature, arm and leg joints, and the streamlined profile.",
+    "description_view_2": "Rear view displaying the back of the head, spine-like torso detailing, and symmetrical limb structure.",
+    "description_view_3": "Right side view mirroring the left, emphasizing the head's shape and limb articulation.",
+    "category": "humanoid robot",
+    "height": 1.85,
+    "max_dimension": 0.65,
+    "materials": [
+        "metal",
+        "polymer",
+        "glass",
+        "synthetic rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "mass": 95,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head",
+        "arms",
+        "hands",
+        "fingers",
+        "legs",
+        "feet",
+        "sensor lights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "sleek",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.8,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms slightly bent and extended downward, legs straight and feet flat on the ground, head facing forward.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated metallic and polymer panels with red accent lines.",
+    "attribute_facial_features": "Face is smooth and featureless except for multiple red circular sensor lights; no visible eyes, mouth, or nose.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints at shoulders, elbows, wrists, hips, knees, and ankles; hands have articulated fingers.",
+    "attribute_presence_of_sensors": "Multiple red circular sensors on the head, likely visual or environmental sensors.",
+    "uid": "ad66074434ab46cb91f7aa83dcf56260",
+    "near_synsets": {
+        "android.n.01": 0.5326333032495586,
+        "robotics_equipment.n.01": 0.5537319633411875,
+        "cyborg.n.01": 0.5559851767519308,
+        "automaton.n.02": 0.5712237034089246,
+        "robotics.n.01": 0.5761673228565918
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ad66074434ab46cb91f7aa83dcf56260",
+        "creator_username": "spybg",
+        "creator_display_name": "Valentin Yovchev",
+        "creator_profile_url": "https://sketchfab.com/spybg"
+    },
+    "filename": "std_ad66074434ab46cb91f7aa83dcf56260.glb",
+    "length": 0.42984697222709656,
+    "width": 1.0295631885528564
+}

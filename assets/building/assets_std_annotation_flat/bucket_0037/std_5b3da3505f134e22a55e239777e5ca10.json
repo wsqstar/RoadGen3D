@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a pump-action shotgun featuring a robust black metal receiver and barrel, paired with a wooden full stock and fore-end. The barrel is relatively short and topped with a ventilated rib, which aids in aiming and heat dissipation. The wooden stock and fore-end display a polished, natural wood grain, contrasting with the matte black finish of the metal components. The trigger guard is rounded and moderately sized, enclosing a single trigger. The shotgun's pump mechanism is clearly visible beneath the barrel, designed for manual cycling of the action. Overall, the design is utilitarian and classic, suitable for both urban defense and sporting use.",
+    "description": "A pump-action shotgun with a black metal barrel and receiver, complemented by a polished wooden stock and fore-end. It features a ventilated rib and a rounded trigger guard.",
+    "description_view_0": "Side view showing the full length of the shotgun, highlighting the wooden stock, fore-end, and the black metal barrel with a ventilated rib.",
+    "description_view_1": "Front view down the barrel, emphasizing the circular muzzle, ribbed barrel top, and the alignment of the fore-end beneath.",
+    "description_view_2": "Opposite side view, mirroring the first but with subtle differences in wood grain and lighting on the stock and fore-end.",
+    "description_view_3": "Rear view showing the butt of the wooden stock and the alignment of the receiver and barrel from behind.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 1.0,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.35,
+        0.03,
+        0.02
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "pumpable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "fore-end",
+        "barrel",
+        "trigger",
+        "trigger guard",
+        "pump",
+        "safety switch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.4
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel with a ventilated rib along the top",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with a smooth contour and no visible finger grooves",
+    "uid": "5b3da3505f134e22a55e239777e5ca10",
+    "near_synsets": {
+        "pump_action.n.01": 0.4813742210505515,
+        "sawed-off_shotgun.n.01": 0.5204003826891888,
+        "shotgun.n.01": 0.537546333322347,
+        "gas_gun.n.01": 0.551456010773433,
+        "shotgun_shell.n.01": 0.5589352578117326
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5b3da3505f134e22a55e239777e5ca10",
+        "creator_username": "bsparks42",
+        "creator_display_name": "warspawn",
+        "creator_profile_url": "https://sketchfab.com/bsparks42"
+    },
+    "filename": "std_5b3da3505f134e22a55e239777e5ca10.glb",
+    "length": 0.8109091520309448,
+    "width": 0.0637248121201992
+}

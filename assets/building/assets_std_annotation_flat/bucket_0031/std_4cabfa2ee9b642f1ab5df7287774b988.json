@@ -1,0 +1,90 @@
+{
+    "description_long": "This object is a shotgun composed of several distinct, blocky components arranged in a linear fashion, with a prominent elongated central body and multiple perpendicular attachments. The main body is rectangular and robust, with a cross-shaped section that likely represents the trigger and grip area. The front section appears to be the barrel, which is straight and unadorned, while the rear section is bulkier, possibly representing the stock. The object is uniformly dark in color, suggesting a metal or polymer construction, and lacks visible surface detailing such as engravings or texturing. The overall form is angular and geometric, with no visible curves except for a single slightly arched component. The shotgun's design is utilitarian, with clear separations between the barrel, grip, and stock areas.",
+    "description": "A blocky, dark-colored shotgun with a straight barrel, cross-shaped grip, and angular stock, featuring minimal surface detail and a utilitarian design.",
+    "description_view_0": "Front-facing view showing the cross-shaped grip and the linear alignment of the barrel and stock.",
+    "description_view_1": "Side view highlighting the elongated barrel, the perpendicular grip, and the segmented, blocky construction.",
+    "description_view_2": "Rear view displaying the bulkier stock section and the cross-shaped grip from behind.",
+    "description_view_3": "Opposite side view emphasizing the straight barrel and the angular, modular arrangement of the shotgun's parts.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.9,
+    "materials": [
+        "metal",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 5,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "aimable",
+        "triggerable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel",
+        "trigger",
+        "grip",
+        "stock",
+        "pump"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, straight and unadorned with no visible ribbing or venting",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "rectangular, blocky, and elongated with no visible finger grooves or reinforcement",
+    "uid": "4cabfa2ee9b642f1ab5df7287774b988",
+    "near_synsets": {
+        "shotgun.n.01": 0.4808355068527523,
+        "sawed-off_shotgun.n.01": 0.4811892343481794,
+        "shotgun_shell.n.01": 0.5253357049100069,
+        "stock.n.03": 0.5401328207065177,
+        "gun.n.01": 0.5450846830168582
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/4cabfa2ee9b642f1ab5df7287774b988",
+        "creator_username": "distance880",
+        "creator_display_name": "d880",
+        "creator_profile_url": "https://sketchfab.com/distance880"
+    },
+    "filename": "std_4cabfa2ee9b642f1ab5df7287774b988.glb",
+    "length": 2.2431106567382812,
+    "width": 1.271854043006897
+}

@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a white emergency ambulance van with a high roof, designed for rapid medical response and patient transport. The vehicle features prominent red markings, including the number '03' on the hood, sides, and rear, as well as a red medical cross symbol on the back. A blue emergency light bar is mounted on the roof, indicating its use for urgent situations. The van has two side doors and two large, hinged rear doors for easy access to the patient compartment. The exterior is primarily metal with glass windows and rubber tires, and the interior likely contains medical equipment and seating. The overall design is functional, with clear signage and features typical of ambulances used in urban environments.",
+    "description": "A white ambulance van with red markings, a blue roof light bar, and rear and side access doors. It features medical symbols and is designed for emergency medical transport.",
+    "description_view_0": "Front view shows the windshield, side mirrors, red '03' on the hood, and the blue emergency light bar on the roof.",
+    "description_view_1": "Left side view displays the side door, windows, red '03' marking, and the blue light bar on top.",
+    "description_view_2": "Rear view highlights two large hinged doors, a red cross symbol, and the '03' marking on the back.",
+    "description_view_3": "Right side view shows the side door, windows, and the red '03' marking, similar to the left side.",
+    "category": "ambulance",
+    "height": 2.6,
+    "max_dimension": 5.8,
+    "materials": [
+        "painted metal",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "wheel",
+        "light bar",
+        "mirror"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "blue",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.42,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_emergency_light_bar": true,
+    "attribute_ambulance_signage": "Red '03' numbers and a red medical cross symbol on white exterior",
+    "attribute_medical_cross_symbol": true,
+    "attribute_siren": true,
+    "attribute_rear_compartment_doors": "two hinged doors",
+    "uid": "3f2709a3d0be486fb809289122786090",
+    "near_synsets": {
+        "ambulance.n.01": 0.47631701545173116,
+        "funny_wagon.n.01": 0.5431070132331925,
+        "police_van.n.01": 0.5688793250166916,
+        "paramedic.n.01": 0.5746592168352116,
+        "blue_peter.n.01": 0.5795616875304292
+    },
+    "synset": "ambulance.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3f2709a3d0be486fb809289122786090",
+        "creator_username": "REM_Yankee",
+        "creator_display_name": "REM_Yankee",
+        "creator_profile_url": "https://sketchfab.com/REM_Yankee"
+    },
+    "filename": "std_3f2709a3d0be486fb809289122786090.glb",
+    "length": 5.709604978561401,
+    "width": 2.1797091960906982
+}

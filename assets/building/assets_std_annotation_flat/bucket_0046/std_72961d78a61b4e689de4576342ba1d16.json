@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a mounted rifle with a robust, industrial design, featuring a long cylindrical barrel extending from a rectangular base plate. The base plate appears metallic and is likely intended for fixed emplacement, possibly for defensive or heavy-duty use. The rifle's receiver and mounting bracket are visible, with mechanical details such as bolts and adjustment knobs, suggesting it can be aimed or repositioned. The coloration is primarily a matte dark green and black, with some metallic and weathered accents, indicating use in outdoor or urban environments. The barrel is thick and solid, lacking visible attachments like a suppressor or flash hider, and the stock is not present or is integrated into the mounting system. There are no visible sights or magazine, emphasizing its role as a mounted or stationary weapon rather than a handheld firearm.",
+    "description": "A heavy, mounted rifle with a long cylindrical barrel and a sturdy rectangular base plate, finished in matte green and black. The design is industrial and robust, with visible mounting hardware and no detachable stock or magazine.",
+    "description_view_0": "Front view showing the circular barrel opening and the rectangular base plate, with the mounting bracket visible behind the barrel.",
+    "description_view_1": "Side view revealing the full length of the barrel, the mounting hardware, and the angled receiver attached to the base plate.",
+    "description_view_2": "Rear view highlighting the back of the mounting bracket and the alignment of the barrel with the base plate.",
+    "description_view_3": "Opposite side view displaying the barrel, mounting mechanism, and the angular receiver, mirroring the details seen in view 1.",
+    "category": "rifle",
+    "height": 0.35,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "aluminum",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 90,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel",
+        "mounting bracket",
+        "adjustment knob",
+        "receiver"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "none",
+    "uid": "72961d78a61b4e689de4576342ba1d16",
+    "near_synsets": {
+        "rifle.n.01": 0.4890213453723566,
+        "garand_rifle.n.01": 0.5076105073566075,
+        "light_arm.n.01": 0.5173900799673036,
+        "carbine.n.01": 0.5281023471565263,
+        "assault_rifle.n.01": 0.5295112525062663
+    },
+    "synset": "assault_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/72961d78a61b4e689de4576342ba1d16",
+        "creator_username": "andrej.grave",
+        "creator_display_name": "Andrej Grave",
+        "creator_profile_url": "https://sketchfab.com/andrej.grave"
+    },
+    "filename": "std_72961d78a61b4e689de4576342ba1d16.glb",
+    "length": 0.7919239699840546,
+    "width": 0.3640577495098114
+}

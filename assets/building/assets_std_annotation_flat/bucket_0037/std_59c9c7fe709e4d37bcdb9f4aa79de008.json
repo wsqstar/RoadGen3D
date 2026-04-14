@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a large, military-grade tactical vehicle equipped with a long missile or rocket mounted on its chassis. The vehicle features a multi-axle configuration with eight large, rugged tires designed for heavy-duty off-road and urban mobility. Its exterior is covered in angular, armored panels with a camouflage paint scheme, providing both protection and concealment. The cab is reinforced and integrated into the main body, with visible windows and access hatches. The rear section houses the missile launch system, which is secured and aligned along the vehicle's length. The overall design emphasizes durability, mobility, and the ability to transport and deploy large ordnance.",
+    "description": "A large, camouflaged military vehicle with eight rugged tires and a mounted missile system, featuring armored panels and a reinforced cab.",
+    "description_view_0": "Front view shows the reinforced cab, armored panels, and the missile's nose aligned with the vehicle's body.",
+    "description_view_1": "Side view highlights the full length of the missile, the eight large tires, and the extended chassis.",
+    "description_view_2": "Rear view displays the missile's tail section and the supporting launch structure at the back.",
+    "description_view_3": "Opposite side view mirrors the other side, showing the missile, tires, and armored body.",
+    "category": "combat tactical  vehicle",
+    "height": 3.5,
+    "max_dimension": 13.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.03,
+        0.05,
+        0.05
+    ],
+    "mass": 40000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "hatch",
+        "missile launcher",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 6.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large missile launcher mounted along the vehicle's chassis; no other weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, angular armor plating; reinforced cab and side panels; no visible reactive or modular panels.",
+    "attribute_camouflage_pattern": "Woodland camouflage pattern with irregular green, brown, and black shapes in a matte finish.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "Eight large off-road tires with deep tread pattern; appear reinforced for heavy loads.",
+    "uid": "59c9c7fe709e4d37bcdb9f4aa79de008",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4491650660617612,
+        "reconnaissance_vehicle.n.01": 0.4672093031854701,
+        "tank.n.01": 0.47298228144143184,
+        "armored_car.n.02": 0.4953401594225023,
+        "weapons_carrier.n.01": 0.4961384242527665,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/59c9c7fe709e4d37bcdb9f4aa79de008",
+        "creator_username": "lm9241221",
+        "creator_display_name": "lm9241221",
+        "creator_profile_url": "https://sketchfab.com/lm9241221"
+    },
+    "filename": "std_59c9c7fe709e4d37bcdb9f4aa79de008.glb",
+    "length": 15.922956943511963,
+    "width": 15.922954559326172
+}

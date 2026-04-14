@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a large, modern commercial airplane with a streamlined fuselage and a pair of swept-back wings mounted low on the body. The wings each support two cylindrical engines, making a total of four engines, all positioned under the wings. The tail section features a conventional design with a single vertical stabilizer and two horizontal stabilizers. The nose is rounded and features a cockpit with visible windows, while the main body is smooth and unadorned, suggesting a metallic or composite exterior. The landing gear is not visible, implying it may be retracted or not modeled in detail.",
+    "description": "A large, modern commercial airplane with four underwing engines, swept-back low wings, and a conventional tail. The fuselage is streamlined with a forward cockpit and smooth exterior.",
+    "description_view_0": "Front view showing the rounded nose, cockpit windows, and the full span of the swept-back wings with four engines visible.",
+    "description_view_1": "Side view highlighting the elongated fuselage, low-mounted swept wings, and the conventional tail with a single vertical stabilizer.",
+    "description_view_2": "Rear view displaying the tail assembly, including the vertical and horizontal stabilizers, and the symmetry of the wings.",
+    "description_view_3": "Opposite side view mirroring view 1, showing the same features from the other side of the airplane.",
+    "category": "airplane",
+    "height": 7.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 2000000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit window",
+        "engine",
+        "wing",
+        "tail",
+        "fuselage"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 70.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with swept-back wings and no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Four underwing turbofan engines, two per wing.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Landing gear not visible; configuration not apparent.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with multiple windows at the front of the fuselage.",
+    "uid": "29a6d941b9934ea6aba069e0bcd9a427",
+    "near_synsets": {
+        "airplane.n.01": 0.45728654277567404,
+        "aircraft.n.01": 0.48688850309332654,
+        "fuselage.n.01": 0.48897876105404137,
+        "widebody_aircraft.n.01": 0.49959300832863845,
+        "narrowbody_aircraft.n.01": 0.5084368749931684
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/29a6d941b9934ea6aba069e0bcd9a427",
+        "creator_username": "imlcbaylor",
+        "creator_display_name": "imlcbaylor",
+        "creator_profile_url": "https://sketchfab.com/imlcbaylor"
+    },
+    "filename": "std_29a6d941b9934ea6aba069e0bcd9a427.glb",
+    "length": 26.690988540649414,
+    "width": 26.14292335510254
+}

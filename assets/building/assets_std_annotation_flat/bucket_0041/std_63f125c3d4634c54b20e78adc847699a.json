@@ -1,0 +1,106 @@
+{
+    "description_long": "This object is a portable automated external defibrillator (AED) with a rectangular, hard-shell case and a sturdy handle on top for easy carrying. The front face features a large digital display on the left showing vital signs and heart rate data, and a control panel on the right with three colored buttons (green, yellow, red) and a central knob. Below the screens are several toggle switches and two prominent, peach-colored electrode paddles housed in molded slots. The case is primarily light gray with blue and colored accents, and the design is utilitarian, emphasizing quick access and clear operation. The sides and back are plain, with the handle and side grips for portability. The overall appearance suggests a robust, emergency-use device suitable for rapid deployment in public spaces.",
+    "description": "A portable AED with a digital display, colored control buttons, and electrode paddles in a sturdy gray case with a top handle.",
+    "description_view_0": "Front view showing the digital display, control panel with colored buttons, toggle switches, and electrode paddles.",
+    "description_view_1": "Left side view displaying the plain side panel and the protruding handle, with minimal visible features.",
+    "description_view_2": "Rear view showing the smooth, featureless back and the top handle.",
+    "description_view_3": "Right side view similar to the left, with the handle and a glimpse of the front controls and paddles.",
+    "category": "defibrillator (aed)",
+    "height": 0.35,
+    "max_dimension": 0.42,
+    "materials": [
+        "plastic",
+        "metal",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 4.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 20,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "liftable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "button",
+        "knob",
+        "toggle switch",
+        "electrode paddle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "blue",
+        "green",
+        "yellow",
+        "red",
+        "peach",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.08,
+        0.04,
+        0.04,
+        0.04,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_aed_signage": "The digital display on the front shows vital signs and heart rate data, which is typical for AEDs, but there is no explicit AED label or universally recognized AED signage visible.",
+    "attribute_emergency_symbol": "none",
+    "attribute_access_panel": "No separate access panel is visible; the electrode paddles are stored in open molded slots on the front for immediate access.",
+    "attribute_instructional_diagram": "none",
+    "attribute_public_placement_location": "Most likely placed in high-traffic public areas such as airport terminals, shopping mall corridors, or train station platforms for emergency use.",
+    "uid": "63f125c3d4634c54b20e78adc847699a",
+    "near_synsets": {
+        "defibrillator.n.01": 0.5289643819324094,
+        "display.n.06": 0.5653757508523064,
+        "cardiac_monitor.n.01": 0.5712377832850517,
+        "pacemaker.n.03": 0.5725514385558733,
+        "electronic_device.n.01": 0.5752615420089688
+    },
+    "synset": "defibrillator.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/63f125c3d4634c54b20e78adc847699a",
+        "creator_username": "jahobs",
+        "creator_display_name": "jahobs",
+        "creator_profile_url": "https://sketchfab.com/jahobs"
+    },
+    "filename": "std_63f125c3d4634c54b20e78adc847699a.glb",
+    "length": 0.3029521405696869,
+    "width": 0.37264761328697205
+}

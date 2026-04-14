@@ -1,0 +1,103 @@
+{
+    "description_long": "This object is a blue, rectangular police telephone box reminiscent of the iconic TARDIS from Doctor Who. The structure features paneled sides with multiple square windows on the upper half of each face, and a flat roof topped with a small, illuminated lantern. The front side displays a sign reading 'POLICE PUBLIC CALL BOX' in white letters on a black background, and one panel includes a smaller sign with instructions for public use. The surface has a wood-like texture, giving it a slightly rough, matte appearance. The booth is large enough for a person to enter, with a door on the front side and windows on all sides. The overall design is robust and functional, suitable for placement on urban streets or sidewalks.",
+    "description": "A blue, paneled police telephone box with windows and a prominent 'POLICE PUBLIC CALL BOX' sign, featuring a door and a lantern on top. The surface is wood-textured and matte, with signage and windows on all sides.",
+    "description_view_0": "Front view showing the 'POLICE PUBLIC CALL BOX' sign, two sets of windows, and paneled doors with no visible handle.",
+    "description_view_1": "Side view nearly identical to the front, with the same sign and window arrangement, but no visible door handle or signage panel.",
+    "description_view_2": "View showing the door with a handle and a small instruction sign, along with the 'POLICE PUBLIC CALL BOX' sign and windows.",
+    "description_view_3": "Opposite side view, mirroring the front and side with windows and the sign, but no door or signage panel.",
+    "category": "telephone booth",
+    "height": 2.6,
+    "max_dimension": 2.6,
+    "materials": [
+        "wood",
+        "glass",
+        "metal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 350,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "windows",
+        "signage panel"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "blue",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_enclosure_type": "fully enclosed",
+    "attribute_door_presence": true,
+    "attribute_window_configuration": "six square glass windows on each side, arranged in two rows of three",
+    "attribute_signage_or_labeling": "'POLICE PUBLIC CALL BOX' sign in white on black above each side; small instruction sign on the door",
+    "attribute_handset_visibility": false,
+    "uid": "9aa688f1e43241df8a4c47c0188cbe3f",
+    "near_synsets": {
+        "telephone_booth.n.01": 0.4855133396332517,
+        "pillar_box.n.01": 0.5725702368965794,
+        "postbox.n.01": 0.5743929105468086,
+        "telephone_pole.n.01": 0.582442570299403,
+        "booth.n.02": 0.5833764704882016,
+        "booth.n.01": -1000.0,
+        "telephone.n.01": -1000.0,
+        "booth.n.04": -1000.0,
+        "booth.n.03": -1000.0,
+        "telephone.n.02": -1000.0
+    },
+    "synset": "telephone_booth.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9aa688f1e43241df8a4c47c0188cbe3f",
+        "creator_username": "apetrova.hanna",
+        "creator_display_name": "apetrova.hanna",
+        "creator_profile_url": "https://sketchfab.com/apetrova.hanna"
+    },
+    "filename": "std_9aa688f1e43241df8a4c47c0188cbe3f.glb",
+    "length": 1.3386144638061523,
+    "width": 1.3500957489013672
+}

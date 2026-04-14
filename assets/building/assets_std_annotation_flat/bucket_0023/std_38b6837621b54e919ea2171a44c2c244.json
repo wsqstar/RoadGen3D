@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a large, boxy moving truck with a weathered, rusty exterior and a rectangular cargo compartment. The cab is compact and angular, featuring a metallic grill, two headlights on each side, and a windshield with visible window frames. The truck has three axles, with two sets of rear wheels supporting the heavy cargo box. The sides of the cargo compartment display faded text reading 'Jay's Moving' within a black oval outline, suggesting it is used for commercial moving services. The rear of the truck is equipped with a ribbed metal door, likely for loading and unloading goods. The overall appearance is utilitarian, with a focus on durability and function over aesthetics.",
+    "description": "A large, rusty moving truck with a boxy cargo compartment and 'Jay's Moving' text on the sides. It features a compact cab, three axles, and a ribbed rear loading door.",
+    "description_view_0": "Front view showing the metallic grill, four headlights, and the compact cab with a windshield.",
+    "description_view_1": "Left side view displaying the full length of the truck, three axles, and the faded 'Jay's Moving' text on the cargo box.",
+    "description_view_2": "Rear view highlighting the ribbed metal loading door and the boxy shape of the cargo compartment.",
+    "description_view_3": "Right side view similar to the left, with the 'Jay's Moving' text and visible cab details.",
+    "category": "truck",
+    "height": 3.2,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 6500,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "cargo door",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "rusty brown",
+        "black",
+        "gray",
+        "green"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "box",
+    "attribute_wheelbase": 4.2,
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "38b6837621b54e919ea2171a44c2c244",
+    "near_synsets": {
+        "van.n.05": 0.5055784487827778,
+        "boxcar.n.01": 0.5322538689706979,
+        "cargo_container.n.01": 0.5378576751951168,
+        "truck.n.01": 0.5395394585527057,
+        "stockcar.n.01": 0.5405905123330375,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/38b6837621b54e919ea2171a44c2c244",
+        "creator_username": "vlkg99",
+        "creator_display_name": "Vlasov Konstantin",
+        "creator_profile_url": "https://sketchfab.com/vlkg99"
+    },
+    "filename": "std_38b6837621b54e919ea2171a44c2c244.glb",
+    "length": 8.131446361541748,
+    "width": 3.2043344974517822
+}

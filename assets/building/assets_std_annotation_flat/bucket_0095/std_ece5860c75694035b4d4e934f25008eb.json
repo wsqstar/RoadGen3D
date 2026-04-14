@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a traditional European-style windmill with a cylindrical stone tower and a conical, shingled roof. Four large wooden lattice blades are attached to a central hub at the front, extending outward in a cross pattern. The tower features a small arched wooden door at its base, and the stonework is weathered, giving it an aged appearance. The windmill sits on a circular gravel path surrounded by a patch of green grass, all mounted on a square base. The interior, visible in the cutaway views, reveals multiple wooden floors and a system of gears and shafts for milling operations. The structure is robust and designed to withstand outdoor conditions, making it a prominent landmark in parks or open urban spaces.",
+    "description": "A classic stone windmill with four wooden blades, a conical shingled roof, and a weathered stone tower set on a grassy base with a circular path.",
+    "description_view_0": "Front view showing the full set of four wooden blades, the arched door, and the circular gravel path.",
+    "description_view_1": "Side cutaway view revealing the thickness of the stone tower and partial interior wooden floors and mechanisms.",
+    "description_view_2": "Rear cutaway view displaying the internal structure, including multiple wooden floors, gears, and shafts.",
+    "description_view_3": "Opposite side cutaway view, similar to view 1, showing the stone wall and interior wooden elements.",
+    "category": "windmill",
+    "height": 8.0,
+    "max_dimension": 10.0,
+    "materials": [
+        "stone",
+        "wood",
+        "shingles",
+        "metal",
+        "air",
+        "grass",
+        "gravel"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.08,
+        0.05,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "blades",
+        "rotor hub",
+        "internal gears",
+        "internal floors"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "green",
+        "white"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_blades": 4,
+    "attribute_blade_orientation": "horizontal-axis",
+    "attribute_tower_structure_type": "other",
+    "attribute_presence_of_nacelle": false,
+    "attribute_mounting_location": "ground-mounted",
+    "uid": "ece5860c75694035b4d4e934f25008eb",
+    "near_synsets": {
+        "windmill.n.01": 0.45731425504938605,
+        "windmill.n.02": 0.5263619104803724,
+        "water_mill.n.01": 0.5303599667391815,
+        "wind_turbine.n.01": 0.5331808393295931,
+        "millstone.n.03": 0.5506327135526308
+    },
+    "synset": "windmill.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ece5860c75694035b4d4e934f25008eb",
+        "creator_username": "upto21",
+        "creator_display_name": "Dolores",
+        "creator_profile_url": "https://sketchfab.com/upto21"
+    },
+    "filename": "std_ece5860c75694035b4d4e934f25008eb.glb",
+    "length": 8.46074104309082,
+    "width": 8.174606800079346
+}

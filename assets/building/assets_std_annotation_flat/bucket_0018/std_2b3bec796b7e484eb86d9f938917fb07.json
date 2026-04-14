@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a robust industrial trolley with a rectangular flat metal platform supported by four wheels, designed for transporting heavy loads in urban or warehouse environments. The trolley features a sturdy, upright handlebar constructed from tubular metal, with three horizontal bars for grip and control. The metal surfaces show signs of wear and rust, indicating frequent use and durability. The wheels are small, likely made of hard rubber or plastic, and are positioned at each corner for stability and maneuverability. The platform is spacious and flat, allowing for the easy placement and movement of various objects. The overall construction is utilitarian, prioritizing function and strength over aesthetics.",
+    "description": "A heavy-duty metal trolley with a flat platform, upright handlebar, and four corner wheels, showing signs of wear and built for transporting loads.",
+    "description_view_0": "Front view showing the upright handlebar with three horizontal bars and the edge of the flat platform.",
+    "description_view_1": "Side view highlighting the length of the platform and the tubular handlebar, with two wheels visible beneath.",
+    "description_view_2": "Rear view displaying the full width of the platform and the handlebar structure, with all four wheels partially visible.",
+    "description_view_3": "Opposite side view showing the platform's depth and the handlebar's attachment, with two wheels visible.",
+    "category": "trolley",
+    "height": 1.1,
+    "max_dimension": 1.3,
+    "materials": [
+        "steel",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 32,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 18,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "platform"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "blue",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_handle_type": "single bar handle, tubular steel, straight with three horizontal grip bars, non-ergonomic",
+    "attribute_number_of_wheels": 4,
+    "attribute_wheel_arrangement": "four wheels, one at each corner, likely all swivel for maneuverability",
+    "attribute_basket_or_platform_presence": "platform",
+    "attribute_branding_or_signage": "none",
+    "uid": "2b3bec796b7e484eb86d9f938917fb07",
+    "near_synsets": {
+        "dolly.n.02": 0.5069099840565543,
+        "hand_truck.n.01": 0.5180182014992604,
+        "trundle.n.02": 0.5273183437854286,
+        "laundry_cart.n.01": 0.5273712152680022,
+        "cart.n.01": 0.5282853138659287,
+        "streetcar.n.01": -1000.0
+    },
+    "synset": "dolly.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2b3bec796b7e484eb86d9f938917fb07",
+        "creator_username": "daniyalmalik",
+        "creator_display_name": "Daniyal Malik",
+        "creator_profile_url": "https://sketchfab.com/daniyalmalik"
+    },
+    "filename": "std_2b3bec796b7e484eb86d9f938917fb07.glb",
+    "length": 1.1015676259994507,
+    "width": 0.7142481803894043
+}

@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a modern commercial jet airplane with a streamlined fuselage and a pair of swept-back wings mounted low on the body. The wings are equipped with underwing engine nacelles, each housing a turbofan engine, and the tail section features a conventional design with a single vertical stabilizer and horizontal stabilizers. The nose is rounded and features a dark cockpit window area, while the main body is smooth and painted in a light color. The landing gear is not visible, suggesting it may be retracted or not modeled in detail. The overall appearance is typical of passenger airliners used for urban and intercity transport.",
+    "description": "A sleek, light-colored commercial jet airplane with swept low-mounted wings, underwing engines, and a conventional tail. The cockpit is forward and features a dark window area.",
+    "description_view_0": "Top-down view showing the full wingspan, twin underwing engines, and the T-shaped tail section.",
+    "description_view_1": "Left side profile highlighting the streamlined fuselage, low-mounted swept wings, and the forward cockpit.",
+    "description_view_2": "Bottom-up view revealing the underside of the wings, engine placement, and the nose cockpit window.",
+    "description_view_3": "Right side profile similar to view 1, showing the tail fin and horizontal stabilizers.",
+    "category": "airplane",
+    "height": 6.0,
+    "max_dimension": 35.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 41000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 7,
+    "movable": true,
+    "required_force": 402000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit window",
+        "engine",
+        "wing",
+        "tail fin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.08,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.02,
+    "recommended_clearance": 40.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with swept-back wings and no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Twin turbofan underwing engines.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "Landing gear not visible; likely retractable tricycle configuration based on typical design.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a dark window area, likely multi-seat.",
+    "uid": "520dd275546242cf99ab6cd76508693f",
+    "near_synsets": {
+        "airplane.n.01": 0.46826191979540643,
+        "aircraft.n.01": 0.4856386453579522,
+        "jet.n.01": 0.5006477231664436,
+        "plane_seat.n.01": 0.507693734687352,
+        "airliner.n.01": 0.5091337618669342
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/520dd275546242cf99ab6cd76508693f",
+        "creator_username": "dilaranurylmaz",
+        "creator_display_name": "dilaranurylmaz",
+        "creator_profile_url": "https://sketchfab.com/dilaranurylmaz"
+    },
+    "filename": "std_520dd275546242cf99ab6cd76508693f.glb",
+    "length": 18.61382007598877,
+    "width": 15.426229000091553
+}

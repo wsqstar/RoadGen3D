@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a military armored combat vehicle with a low-profile turret and a long-barreled cannon mounted on top. The vehicle features six large, rugged tires, providing high mobility over various terrains. Its exterior is covered in a matte, solid olive drab paint, with no visible camouflage patterns or military markings. The hull and turret are angular, suggesting sloped armor for increased ballistic protection, and two long radio antennas extend from the turret. The vehicle's design includes multiple hatches, periscopes, and external equipment mounts, indicating crew access and operational versatility. The overall construction appears robust, with reinforced armor plating covering the entire body and turret.",
+    "description": "Armored six-wheeled combat vehicle with a long cannon, sloped armor, and matte olive drab finish. Features include a turret, antennas, and rugged tires.",
+    "description_view_0": "Side view showing the full length of the vehicle, six large tires, long cannon, and turret details.",
+    "description_view_1": "Front view highlighting the sloped armor, two antennas, and the width of the vehicle.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the turret, cannon, and tire arrangement.",
+    "description_view_3": "Rear view showing the back armor, rear hatches, and the base of the antennas.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 13500,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 90000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "door",
+        "hatch",
+        "turret",
+        "cannon",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive drab"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted on the turret roof; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body and turret covered in sloped, reinforced armor plating; thickness appears substantial with no modular or reactive panels visible.",
+    "attribute_camouflage_pattern": "None visible; solid olive drab color.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Six large off-road tires with deep tread pattern; appear reinforced for heavy-duty use.",
+    "uid": "298486ea5c9f46db8006c04bd45e495b",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.49268615459865944,
+        "tank.n.01": 0.4961748886239992,
+        "reconnaissance_vehicle.n.01": 0.5032938063236796,
+        "armored_car.n.02": 0.5090143862498593,
+        "assault_gun.n.02": 0.5115947249966748,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "armored_car.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/298486ea5c9f46db8006c04bd45e495b",
+        "creator_username": "okiokioki",
+        "creator_display_name": "okiokioki",
+        "creator_profile_url": "https://sketchfab.com/okiokioki"
+    },
+    "filename": "std_298486ea5c9f46db8006c04bd45e495b.glb",
+    "length": 4.7196314334869385,
+    "width": 1.5342119932174683
+}

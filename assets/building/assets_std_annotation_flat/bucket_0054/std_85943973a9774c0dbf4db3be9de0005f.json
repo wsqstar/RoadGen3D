@@ -1,0 +1,89 @@
+{
+    "description_long": "This object is a rectangular section of road surface, appearing as a flat, elongated slab with a rough, granular texture typical of asphalt or compacted gravel. The surface is predominantly gray, with subtle variations in tone and small specks of lighter and darker aggregate visible throughout. The edges are straight and clean, suggesting it is a cut-out segment rather than a naturally worn path. There are no visible lane markings, curbs, or other road features such as signage or lighting fixtures. The material appears dense and solid, suitable for supporting vehicular and pedestrian traffic in an urban environment. Its overall appearance is utilitarian, designed for durability and function rather than decorative effect.",
+    "description": "A flat, rectangular section of gray, rough-textured road surface, resembling asphalt or compacted gravel, with no visible markings or features.",
+    "description_view_0": "The road section is seen from an angle showing its flat, granular surface and rectangular shape, with the texture and color clearly visible.",
+    "description_view_1": "This view emphasizes the length of the road section, highlighting its straight edges and consistent surface texture.",
+    "description_view_2": "The road appears as a long, narrow slab with a uniform gray, rough surface and no visible features or markings.",
+    "description_view_3": "From this angle, the rectangular shape and rough, granular texture are apparent, with no additional features visible.",
+    "category": "road",
+    "height": 0.1,
+    "max_dimension": 4.0,
+    "materials": [
+        "asphalt",
+        "gravel",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 480,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "supportive"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "car",
+        "bicycle"
+    ],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 7000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lane_markings": "none",
+    "attribute_signage": "none",
+    "attribute_curb_presence": false,
+    "attribute_lighting_fixtures": "none",
+    "attribute_pedestrian_crossings": "none",
+    "uid": "85943973a9774c0dbf4db3be9de0005f",
+    "near_synsets": {
+        "road_surface.n.01": 0.46402343626652787,
+        "paved_surface.n.01": 0.49790072316422407,
+        "flat.n.01": 0.5046344735642577,
+        "road.n.01": 0.5086044710747886,
+        "pavement.n.01": 0.5143630192700079,
+        "road.n.02": -1000.0
+    },
+    "synset": "road.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/85943973a9774c0dbf4db3be9de0005f",
+        "creator_username": "spleen.vision",
+        "creator_display_name": "SPLEEN VISION",
+        "creator_profile_url": "https://sketchfab.com/spleen.vision"
+    },
+    "filename": "std_85943973a9774c0dbf4db3be9de0005f.glb",
+    "length": 0.6134172677993774,
+    "width": 0.7997934222221375
+}

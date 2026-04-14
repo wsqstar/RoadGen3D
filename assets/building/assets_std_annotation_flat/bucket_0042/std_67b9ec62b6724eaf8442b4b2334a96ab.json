@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a futuristic, science-fiction inspired airplane with a distinctive dual-boom structure and a central fuselage. The main body is elongated and features a forward-mounted, enclosed cockpit with a dark canopy and angular windows. Two large cylindrical engine nacelles are mounted on pylons extending from either side of the fuselage, connected by a horizontal stabilizer at the rear. The wings are straight and positioned mid-fuselage, with no visible winglets, and the engines are exposed at the rear. The surface is predominantly light gray with weathered, metallic textures and subtle yellow and dark gray accents, giving it a rugged, utilitarian appearance. The overall design suggests a heavily engineered craft, likely intended for advanced aerial operations rather than conventional urban use.",
+    "description": "A dual-boom, sci-fi airplane with a central cockpit, exposed rear engines, and a weathered metallic finish with yellow accents.",
+    "description_view_0": "Front view shows the angular cockpit, central fuselage, and the symmetrical placement of the engine nacelles on either side.",
+    "description_view_1": "Side view highlights the elongated fuselage, forward cockpit, and the straight, mid-mounted wings with exposed rear engines.",
+    "description_view_2": "Rear view reveals the twin engine exhausts, horizontal stabilizer connecting the booms, and the back of the cockpit canopy.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the same fuselage and engine configuration from the other side.",
+    "category": "airplane",
+    "height": 3.5,
+    "max_dimension": 16.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 176400,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "landing gear",
+        "engine nacelle",
+        "control panel",
+        "doors"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing configuration with straight wings extending from the central fuselage; no winglets or pronounced dihedral/anhedral angles; dual-boom structure.",
+    "attribute_engine_type": "Twin jet engines mounted at the rear of each boom.",
+    "attribute_tail_design": "H-tail configuration with a horizontal stabilizer connecting the twin booms and two vertical stabilizers at the ends.",
+    "attribute_landing_gear_type": "Retractable tricycle landing gear with two main units and a nose gear, partially visible.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a single canopy and multiple angular windows, likely multi-seat.",
+    "uid": "67b9ec62b6724eaf8442b4b2334a96ab",
+    "near_synsets": {
+        "aircraft.n.01": 0.5335727625271135,
+        "biplane.n.01": 0.5393813641794277,
+        "fuselage.n.01": 0.5490912506478359,
+        "twinjet.n.01": 0.5502673008584836,
+        "multiengine_airplane.n.01": 0.5540289544577869,
+        "airplane.n.01": -1000.0
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/67b9ec62b6724eaf8442b4b2334a96ab",
+        "creator_username": "aiv",
+        "creator_display_name": "AIV",
+        "creator_profile_url": "https://sketchfab.com/aiv"
+    },
+    "filename": "std_67b9ec62b6724eaf8442b4b2334a96ab.glb",
+    "length": 29.40048313140869,
+    "width": 14.285736560821533
+}

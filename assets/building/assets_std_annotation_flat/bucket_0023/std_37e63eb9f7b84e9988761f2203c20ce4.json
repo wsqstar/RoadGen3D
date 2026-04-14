@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a large, detailed model of a military aircraft carrier, featuring a long, flat flight deck with multiple aircraft positioned on top. The hull is robust and streamlined, painted in a dark gray with a red lower section, and the bow is sharply pointed for efficient movement through water. The superstructure, or island, is located on the starboard side and includes radar masts, antennas, and control towers. The deck is lined with various fixtures such as safety nets, barriers, and possibly catapults for launching aircraft. The sides of the hull display portholes and structural details, while the stern appears to have an open area for aircraft recovery. The overall design is functional and imposing, suitable for naval operations.",
+    "description": "A large, gray military aircraft carrier with a flat flight deck, visible aircraft, and a detailed superstructure on the starboard side. The hull is streamlined and robust, with various deck fixtures and equipment.",
+    "description_view_0": "Front view showing the pointed bow, narrow flight deck, and aircraft lined up along the deck.",
+    "description_view_1": "Side profile highlighting the length of the hull, the superstructure, and the arrangement of aircraft and deck equipment.",
+    "description_view_2": "Rear view displaying the wide stern, open deck area, and the arrangement of aircraft and barriers.",
+    "description_view_3": "Opposite side profile showing the hull's details, superstructure, and additional deck fixtures.",
+    "category": "ship",
+    "height": 25,
+    "max_dimension": 300,
+    "materials": [
+        "steel",
+        "aluminum",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.01,
+        0.03
+    ],
+    "mass": 90000000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000000.0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "radar",
+        "antenna",
+        "catapult",
+        "barrier"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 50,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a long, streamlined profile, sharply pointed bow, and a broad, flat stern. The lower hull is painted red, and the upper hull is gray, with visible portholes and structural reinforcements. No bulbous bow or visible keels are present.",
+    "attribute_superstructure_layout": "The superstructure is located on the starboard side, featuring a multi-level island with radar masts, antennas, and control towers. The flight deck is flat and expansive, with aircraft and deck equipment arranged along its length.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "aircraft",
+        "radar",
+        "antenna",
+        "barrier",
+        "catapult"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "37e63eb9f7b84e9988761f2203c20ce4",
+    "near_synsets": {
+        "aircraft_carrier.n.01": 0.3957600333829704,
+        "flight_deck.n.01": 0.4868628503358903,
+        "surface_ship.n.01": 0.502311943785992,
+        "cargo_ship.n.01": 0.5034713122273212,
+        "capital_ship.n.01": 0.5131755253881696,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/37e63eb9f7b84e9988761f2203c20ce4",
+        "creator_username": "lxyun_2",
+        "creator_display_name": "\u5168\u6597\u7115",
+        "creator_profile_url": "https://sketchfab.com/lxyun_2"
+    },
+    "filename": "std_37e63eb9f7b84e9988761f2203c20ce4.glb",
+    "length": 138.5077133178711,
+    "width": 23.2343111038208
+}

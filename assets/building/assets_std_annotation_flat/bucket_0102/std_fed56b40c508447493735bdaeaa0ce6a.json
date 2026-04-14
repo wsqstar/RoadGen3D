@@ -1,0 +1,119 @@
+{
+    "description_long": "This object is a small, enclosed grave yard surrounded by a low stone or concrete wall topped with decorative wrought iron fencing. The perimeter features regularly spaced pillars, each capped with a stone or concrete top, and the ground is paved with rectangular stone tiles. At the front, there is an ornate wrought iron gate with an arched design, flanked by two larger black structures that resemble entry posts or small mausoleums. Inside the enclosure, a central grassy area is bordered by a low iron fence, creating a distinct inner section. The overall design is formal and symmetrical, with clear entry and exit points and a focus on decorative ironwork.",
+    "description": "A formal, walled grave yard with wrought iron fencing, ornate gates, and a central grassy area, featuring decorative pillars and entry posts.",
+    "description_view_0": "Front view showing the main wrought iron gate, arched entry, and two prominent black entry posts flanking the entrance.",
+    "description_view_1": "Side view highlighting the length of the stone wall, iron fencing, and the central grassy area with the black entry posts visible to the right.",
+    "description_view_2": "Rear view showing the back of the arched gate and entry posts, with the central grassy area and perimeter fencing clearly visible.",
+    "description_view_3": "Opposite side view displaying the wall, fencing, and grassy area, with the black entry posts now on the left.",
+    "category": "grave yard",
+    "height": 2.5,
+    "max_dimension": 15.0,
+    "materials": [
+        "concrete",
+        "wrought iron",
+        "stone",
+        "grass",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "gate",
+        "archway",
+        "entry posts"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "green",
+        "light gray"
+    ],
+    "colors_composition": [
+        0.45,
+        0.2,
+        0.2,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_tombstone_inscriptions": [],
+    "attribute_crosses": [],
+    "attribute_grave_markers": [],
+    "attribute_mausoleums": [],
+    "attribute_cemetery_gates": [
+        {
+            "type": "wrought iron gate with archway",
+            "primary_materials": [
+                "wrought iron"
+            ],
+            "dimensions": [
+                2.5,
+                3.0
+            ],
+            "decorative_elements": [
+                "ornate ironwork",
+                "arched motif"
+            ]
+        }
+    ],
+    "uid": "fed56b40c508447493735bdaeaa0ce6a",
+    "near_synsets": {
+        "grave.n.02": 0.47279289810615194,
+        "cemetery.n.01": 0.4923190107098927,
+        "gravestone.n.01": 0.511750055851621,
+        "cairn.n.01": 0.5333394601882473,
+        "grave.n.01": 0.53888071332187,
+        "thousand.n.01": -1000.0,
+        "yard.n.08": -1000.0,
+        "yard.n.02": -1000.0,
+        "yard.n.09": -1000.0,
+        "cubic_yard.n.01": -1000.0,
+        "yard.n.07": -1000.0,
+        "yard.n.01": -1000.0,
+        "yard.n.03": -1000.0,
+        "yard.n.06": -1000.0
+    },
+    "synset": "cemetery.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fed56b40c508447493735bdaeaa0ce6a",
+        "creator_username": "scadl",
+        "creator_display_name": "SCADL & Co",
+        "creator_profile_url": "https://sketchfab.com/scadl"
+    },
+    "filename": "std_fed56b40c508447493735bdaeaa0ce6a.glb",
+    "length": 11.561030864715576,
+    "width": 10.507455825805664
+}

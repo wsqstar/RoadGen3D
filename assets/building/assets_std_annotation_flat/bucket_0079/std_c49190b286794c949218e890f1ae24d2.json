@@ -1,0 +1,108 @@
+{
+    "description_long": "This object is a large, modern machine gun with a long, heavy barrel and a robust, angular receiver. It features a prominent integrated bipod for stability during firing, and a box magazine is clearly visible beneath the receiver. The stock is a solid, squared design, likely made of metal or reinforced polymer, providing a sturdy shoulder rest. The overall finish is matte black, giving it a tactical, non-reflective appearance suitable for urban operations. The gun's silhouette is sleek and functional, with minimal decorative elements and a focus on utility. Iron sights are present, with a simple post at the front and a rear notch or aperture, allowing for basic aiming.",
+    "description": "A large, matte black machine gun with a long barrel, integrated bipod, box magazine, and a solid, angular stock. Designed for stability and tactical use, it features basic iron sights and a utilitarian build.",
+    "description_view_0": "Side view showing the full length of the machine gun, including the long barrel, box magazine, bipod, and solid stock.",
+    "description_view_1": "Front view highlighting the barrel's muzzle, bipod legs splayed for support, and the narrow profile of the receiver and stock.",
+    "description_view_2": "Opposite side view, again displaying the long barrel, bipod, box magazine, and the squared stock, mirroring view 0.",
+    "description_view_3": "Rear view focusing on the stock's end, the alignment of the receiver, and the bipod legs extending outward.",
+    "category": "machine gun",
+    "height": 0.25,
+    "max_dimension": 1.4,
+    "materials": [
+        "steel",
+        "polymer",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 13,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "rotatable",
+        "pushable",
+        "pullable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "magazine",
+        "bipod",
+        "stock",
+        "barrel",
+        "iron sights",
+        "charging handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_type": "heavy cylindrical barrel with no visible fluting or suppressor, equipped with a bipod attachment",
+    "attribute_stock_design": "fixed metal stock with a squared, robust profile and minimal ergonomic shaping",
+    "attribute_magazine_type": "box magazine",
+    "attribute_mounting_mechanism": "integrated bipod",
+    "attribute_iron_sight_configuration": "simple rear notch with fixed front post",
+    "uid": "c49190b286794c949218e890f1ae24d2",
+    "near_synsets": {
+        "machine_gun.n.01": 0.5040276626249329,
+        "submachine_gun.n.01": 0.507080385421427,
+        "maxim_gun.n.01": 0.5247803094505106,
+        "shotgun.n.01": 0.5293046304157641,
+        "gun.n.01": 0.532594155179029,
+        "machine.n.02": -1000.0,
+        "accelerator.n.01": -1000.0,
+        "machine.n.01": -1000.0,
+        "gunman.n.01": -1000.0,
+        "gunman.n.02": -1000.0,
+        "artillery.n.01": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.03": -1000.0,
+        "grease_gun.n.01": -1000.0,
+        "gun.n.07": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.05": -1000.0
+    },
+    "synset": "submachine_gun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c49190b286794c949218e890f1ae24d2",
+        "creator_username": "Redwthr",
+        "creator_display_name": "Octane reboot",
+        "creator_profile_url": "https://sketchfab.com/Redwthr"
+    },
+    "filename": "std_c49190b286794c949218e890f1ae24d2.glb",
+    "length": 0.4670410454273224,
+    "width": 0.076171875
+}

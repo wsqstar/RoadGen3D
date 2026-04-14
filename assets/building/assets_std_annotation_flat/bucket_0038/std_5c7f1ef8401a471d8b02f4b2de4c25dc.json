@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a small, decorative pond set within a patch of grassy terrain, featuring a shallow water body with several lily pads and tall cattails emerging from the water. A turtle is partially submerged near the center, while a frog perches atop a large rock at the pond's edge. The pond is bordered by a mix of natural elements, including clusters of reeds, tufts of grass, and a grouping of large, smooth rocks, one of which is adorned with small yellow flowers or lichen. The water is a light blue, contrasting with the green vegetation and the gray stones. The overall scene is tranquil and naturalistic, evoking a peaceful park or garden setting. The arrangement suggests a habitat for small wildlife and aquatic plants, making it a focal point for relaxation or observation in an urban green space.",
+    "description": "A tranquil, shallow pond surrounded by rocks, reeds, and grass, with a turtle in the water and a frog on a rock. The scene is naturalistic and ideal for a park or garden.",
+    "description_view_0": "The pond is seen from the front, showing the turtle in the water, the frog on a rock, and the main cluster of rocks and reeds at the back.",
+    "description_view_1": "Viewed from the side, the large rocks dominate the foreground, partially obscuring the pond and its wildlife.",
+    "description_view_2": "From this angle, the pond's water surface and vegetation are more visible, with the turtle and reeds clearly seen, and the rocks forming a backdrop.",
+    "description_view_3": "This view highlights the pond's planted margins, the lily pads, and the arrangement of rocks and vegetation, with the frog and turtle both visible.",
+    "category": "pond",
+    "height": 0.7,
+    "max_dimension": 3.0,
+    "materials": [
+        "water",
+        "stone",
+        "soil",
+        "vegetation",
+        "air"
+    ],
+    "materials_composition": [
+        0.4,
+        0.25,
+        0.15,
+        0.15,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "observed",
+        "habitat",
+        "decorative"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "water surface",
+        "rocks",
+        "vegetation",
+        "lily pads"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "blue",
+        "gray",
+        "brown",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.35,
+        0.25,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.33,
+    "youngs_modulus": 20000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "scene",
+    "attribute_water_presence": true,
+    "attribute_surrounding_vegetation": [
+        "reeds",
+        "grass"
+    ],
+    "attribute_edge_treatment": "The pond is edged with natural stone borders and clusters of reeds and grass, creating a soft, organic transition between water and land.",
+    "attribute_reflections": false,
+    "attribute_wildlife_activity": [
+        "turtle",
+        "frog"
+    ],
+    "uid": "5c7f1ef8401a471d8b02f4b2de4c25dc",
+    "near_synsets": {
+        "fishpond.n.01": 0.5243622438504066,
+        "birdbath.n.01": 0.5686452311359181,
+        "ducks_and_drakes.n.01": 0.5745505862020232,
+        "horsepond.n.01": 0.5775740949359122,
+        "mere.n.01": 0.5780839337090947,
+        "pond.n.01": -1000.0
+    },
+    "synset": "pond.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5c7f1ef8401a471d8b02f4b2de4c25dc",
+        "creator_username": "beerusk",
+        "creator_display_name": "beerusk",
+        "creator_profile_url": "https://sketchfab.com/beerusk"
+    },
+    "filename": "std_5c7f1ef8401a471d8b02f4b2de4c25dc.glb",
+    "length": 1.6967438459396362,
+    "width": 1.6967430114746094
+}

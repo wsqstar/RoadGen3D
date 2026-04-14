@@ -1,0 +1,103 @@
+{
+    "description_long": "This combat tactical vehicle has a low, rectangular profile with a broad, flat upper surface and angular, armored sides. The exterior is covered in a patchwork of panels, with visible seams and reinforced sections, suggesting heavy armor protection. Two prominent, boxy structures are mounted at the front, possibly for equipment or sensor housing, and there are additional raised modules on the roof and rear. The surface is weathered, with a mix of tan, brown, and gray tones, giving it a rugged, utilitarian appearance. There are no visible wheels or tracks, indicating a possible hover or skid-based mobility system. The vehicle lacks visible weapon mounts, markings, or windows, emphasizing its armored and functional design.",
+    "description": "A heavily armored, low-profile combat vehicle with a flat, panelled exterior and boxy front modules, finished in weathered tan and gray tones.",
+    "description_view_0": "Front view shows two large, boxy modules protruding from the sloped front, with a flat, armored upper surface and weathered coloration.",
+    "description_view_1": "Rear-side view reveals the vehicle's blocky rear section, additional paneling, and the absence of visible wheels or tracks.",
+    "description_view_2": "Opposite rear angle highlights the raised rear module and the overall rectangular, armored shape.",
+    "description_view_3": "Side view emphasizes the sloped front armor, flat roof, and the modular, reinforced side panels.",
+    "category": "combat tactical  vehicle",
+    "height": 1.8,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.05,
+        0.02,
+        0.08
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "closable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "gray",
+        "brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "none visible.",
+    "attribute_armor_plating": "Full body coverage with thick, angular armor panels; reinforced front and side sections; no visible reactive or modular panels.",
+    "attribute_camouflage_pattern": "Weathered, irregular tan and gray paint with some brown patches; no distinct camouflage pattern.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "a20e2a13dd804b2f99b4dbf44b414319",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.49095468685822097,
+        "tank.n.01": 0.500310461929453,
+        "reconnaissance_vehicle.n.01": 0.5026045985049945,
+        "armored_car.n.02": 0.5120473595210744,
+        "armored_vehicle.n.01": 0.5169548864054355,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/a20e2a13dd804b2f99b4dbf44b414319",
+        "creator_username": "Epinephrines",
+        "creator_display_name": "Epinephrines",
+        "creator_profile_url": "https://sketchfab.com/Epinephrines"
+    },
+    "filename": "std_a20e2a13dd804b2f99b4dbf44b414319.glb",
+    "length": 8.564135074615479,
+    "width": 8.316189765930176
+}

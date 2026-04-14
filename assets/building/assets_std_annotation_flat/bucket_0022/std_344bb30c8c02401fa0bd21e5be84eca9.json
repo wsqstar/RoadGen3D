@@ -1,0 +1,105 @@
+{
+    "description_long": "This vending machine is a rectangular, robust unit with a matte black body and prominent red accents on the sides and front. The front face features a large, illuminated red panel with the Coca-Cola logo in white, above a row of six drink dispensers and a slatted drip tray. One side is decorated with colorful graffiti art, including a cartoon mouse and other playful graphics, adding an urban, streetwise character. The rear panel is marked with technical labels, a coolant warning, and a circular unlock mechanism, indicating access for maintenance. The top surface is flat and unadorned, while the sides are mostly plain except for the graffiti and red handles. The machine appears to be constructed primarily from metal and plastic, with glass or acrylic for the illuminated panel and dispensing area.",
+    "description": "A black and red Coca-Cola vending machine with a prominent illuminated logo, six drink dispensers, graffiti art on one side, and technical markings on the back.",
+    "description_view_0": "Side view showing a plain black surface with a red handle and subtle panel details.",
+    "description_view_1": "Rear view featuring technical labels, a coolant warning, and an unlock mechanism.",
+    "description_view_2": "Side view with colorful graffiti art, including a cartoon mouse and other graphics, plus a red handle.",
+    "description_view_3": "Front view displaying the large red Coca-Cola logo panel, six drink dispensers, and a black drip tray.",
+    "category": "vending machine",
+    "height": 1.4,
+    "max_dimension": 1.6,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "dispensing buttons",
+        "drink nozzles",
+        "drip tray",
+        "unlock mechanism",
+        "side handles"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "white",
+        "yellow",
+        "blue"
+    ],
+    "colors_composition": [
+        0.7,
+        0.18,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A large, illuminated red panel with the Coca-Cola logo is located at the top front of the machine, rectangular in shape and spanning the width of the vending area.",
+    "attribute_payment_interface": "none",
+    "attribute_product_selection_buttons": "Six individual pressable buttons are located directly below the illuminated Coca-Cola panel, each corresponding to a drink dispenser.",
+    "attribute_product_retrieval_slot": "A wide, slatted black drip tray is located below the drink dispensers on the front, serving as the retrieval area for dispensed beverages.",
+    "attribute_branding_or_signage": "A large, white Coca-Cola logo is prominently displayed on the illuminated red front panel; graffiti art with colorful characters and the word 'Music' is visible on one side.",
+    "uid": "344bb30c8c02401fa0bd21e5be84eca9",
+    "near_synsets": {
+        "vending_machine.n.01": 0.4970873712349611,
+        "coca_cola.n.01": 0.5271357135822146,
+        "automat.n.01": 0.5331380498000549,
+        "soda_fountain.n.02": 0.5459803894432207,
+        "soda_fountain.n.01": 0.5701993120887009,
+        "machine.n.02": -1000.0,
+        "machine.n.01": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.05": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/344bb30c8c02401fa0bd21e5be84eca9",
+        "creator_username": "diegogarcia_05",
+        "creator_display_name": "diegogarcia_05",
+        "creator_profile_url": "https://sketchfab.com/diegogarcia_05"
+    },
+    "filename": "std_344bb30c8c02401fa0bd21e5be84eca9.glb",
+    "length": 1.293065071105957,
+    "width": 1.3742120265960693
+}

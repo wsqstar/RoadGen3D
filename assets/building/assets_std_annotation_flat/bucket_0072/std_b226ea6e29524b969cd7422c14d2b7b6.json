@@ -1,0 +1,91 @@
+{
+    "description_long": "This rifle features a blocky, pixelated design reminiscent of voxel art, with a prominent fixed stock at the rear and a long, straight barrel extending forward. The receiver is rectangular and robust, with a visible magazine protruding downward in a curved shape, typical of assault rifles like the AK-47. The handguard and upper rail are integrated into the main body, with a simple, uninterrupted silhouette. The trigger and pistol grip are clearly defined, and the overall form is compact yet substantial. The color scheme is entirely matte black, giving it a tactical and utilitarian appearance. No additional attachments or accessories are visible, and the rifle's details are stylized rather than hyper-realistic.",
+    "description": "A blocky, matte black rifle with a fixed stock, curved magazine, and long barrel, rendered in a pixelated style. The design is simple, robust, and tactical.",
+    "description_view_0": "Side view showing the full profile, including the fixed stock, curved magazine, and long barrel.",
+    "description_view_1": "Front-on view, showing the narrow barrel end and minimal width of the rifle.",
+    "description_view_2": "Opposite side view, mirroring the profile of view 0 with the same key features visible.",
+    "description_view_3": "Rear-on view, showing the back of the stock and the rifle's slim profile.",
+    "category": "rifle",
+    "height": 0.22,
+    "max_dimension": 0.9,
+    "materials": [
+        "polymer",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "aimable",
+        "triggerable",
+        "reloadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "magazine",
+        "trigger",
+        "pistol grip",
+        "handguard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "b226ea6e29524b969cd7422c14d2b7b6",
+    "near_synsets": {
+        "rifle.n.01": 0.5340022107723582,
+        "carbine.n.01": 0.5397953015518291,
+        "light_arm.n.01": 0.5438367559060493,
+        "dragunov.n.01": 0.5465481649491468,
+        "garand_rifle.n.01": 0.5478770262973222
+    },
+    "synset": "garand_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/b226ea6e29524b969cd7422c14d2b7b6",
+        "creator_username": "salatis",
+        "creator_display_name": "salatis",
+        "creator_profile_url": "https://sketchfab.com/salatis"
+    },
+    "filename": "std_b226ea6e29524b969cd7422c14d2b7b6.glb",
+    "length": 0.632500022649765,
+    "width": 0.0206251023337245
+}

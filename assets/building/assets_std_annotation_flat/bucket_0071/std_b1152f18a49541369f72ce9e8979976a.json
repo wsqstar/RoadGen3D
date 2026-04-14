@@ -1,0 +1,88 @@
+{
+    "description_long": "This warehouse is a large, rectangular structure with a flat, open roof frame composed of evenly spaced wooden trusses. The exterior walls are constructed from gray concrete or masonry panels, giving the building a robust and industrial appearance. The roof structure is partially open, revealing the internal support beams and allowing a clear view of the building's skeletal framework. There are no visible windows or doors, but the open sections and overhangs suggest potential entry points or loading areas. The building's layout is L-shaped, maximizing storage or operational space within an urban or industrial setting. The overall design is utilitarian, prioritizing function and structural integrity over decorative elements.",
+    "description": "A large, L-shaped warehouse with gray concrete walls and an exposed wooden truss roof, designed for industrial storage and utility.",
+    "description_view_0": "The warehouse is seen from the side, highlighting the open truss roof and the solid gray exterior walls.",
+    "description_view_1": "This view shows the top of the warehouse, emphasizing the grid-like pattern of the wooden roof trusses and the L-shaped layout.",
+    "description_view_2": "The opposite side view reveals the length of the building and the repetitive structure of the roof beams.",
+    "description_view_3": "From this angle, the open section and overhang are more visible, suggesting a possible loading or entry area.",
+    "category": "warehouse",
+    "height": 6.0,
+    "max_dimension": 32.0,
+    "materials": [
+        "concrete",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.1
+    ],
+    "mass": 180000,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "loadable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "roof truss",
+        "open bay"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "beige"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main exterior facade features plain gray concrete or masonry panels with no visible windows or decorative elements, emphasizing a functional and industrial look. The open roof trusses and overhangs suggest utilitarian access points rather than formal entryways.",
+    "attribute_loading_dock_presence": true,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is flat and composed of a visible grid of wooden trusses, with large open sections that expose the interior framework. There are no skylights or rooftop equipment visible.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "b1152f18a49541369f72ce9e8979976a",
+    "near_synsets": {
+        "warehouse.n.01": 0.4770971101081345,
+        "loft.n.01": 0.48246435580827,
+        "lumberyard.n.01": 0.5233029946566993,
+        "storehouse.n.01": 0.5336780486666952,
+        "storage_space.n.01": 0.5409909855956668
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b1152f18a49541369f72ce9e8979976a",
+        "creator_username": "freimans",
+        "creator_display_name": "Freimans",
+        "creator_profile_url": "https://sketchfab.com/freimans"
+    },
+    "filename": "std_b1152f18a49541369f72ce9e8979976a.glb",
+    "length": 37.1591796875,
+    "width": 22.0322265625
+}

@@ -1,0 +1,109 @@
+{
+    "description_long": "This object consists of three distinct medicine-related items: a large transparent glass bottle with a red cap and a prominent poison warning label, a yellow rectangular box labeled 'Parac\u00e9tamol' with pharmaceutical branding and dosage information, and a white plastic syringe with a visible plunger. The bottle features a skull and crossbones symbol and detailed warning text, indicating it contains a hazardous substance. The box has printed text and graphics, including a barcode and a white label area on the back. The syringe is simple, with a cylindrical barrel and a thin needle, suggesting it is intended for liquid administration. The materials appear to be glass for the bottle, cardboard for the box, and plastic for the syringe. The overall grouping suggests a medical or pharmaceutical context, possibly for emergency or hazardous use.",
+    "description": "A set of medicine items including a poison-labeled glass bottle, a yellow paracetamol box, and a white plastic syringe, all with detailed labels and medical markings.",
+    "description_view_0": "Front view showing the poison-labeled glass bottle, the 'Parac\u00e9tamol' box with branding, and the syringe lying in front.",
+    "description_view_1": "Rear angled view highlighting the back of the box with a white label area and the back of the bottle; the syringe is seen from the plunger end.",
+    "description_view_2": "Back view showing the barcode on the bottle and the full rear of the box, with less visibility of the syringe.",
+    "description_view_3": "Side view focusing on the detailed warning label of the bottle and the side of the paracetamol box, with the syringe to the right.",
+    "category": "medicine",
+    "height": 0.13,
+    "max_dimension": 0.18,
+    "materials": [
+        "glass",
+        "plastic",
+        "cardboard",
+        "liquid",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "mass": 0.35,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 5,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "injectable",
+        "pourable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "bottle cap",
+        "syringe plunger",
+        "syringe needle",
+        "box flap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "white",
+        "gray",
+        "red",
+        "black",
+        "blue",
+        "green"
+    ],
+    "colors_composition": [
+        0.35,
+        0.25,
+        0.15,
+        0.08,
+        0.08,
+        0.06,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 7000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "group",
+    "attribute_packaging_type": "bottle, box, syringe",
+    "attribute_label_text": "POISON! [illegible] PERSONS Parac\u00e9tamol [illegible] POISON: [illegible] Keep out of reach of children. For Emergency Only. [illegible] Barcode [illegible]",
+    "attribute_brand_logo": "none",
+    "attribute_dosage_form": "liquid, injection, tablet",
+    "attribute_tamper-evident_seal": false,
+    "uid": "c071c69e73b0495692703cae47d21611",
+    "near_synsets": {
+        "pill_bottle.n.01": 0.5038907619474766,
+        "medicine.n.02": 0.5249498596749481,
+        "medicine_chest.n.01": 0.5256254532384322,
+        "pill.n.01": 0.5261165961301657,
+        "pharmaceutical.n.01": 0.5280176928144402,
+        "music.n.05": -1000.0,
+        "medicine.n.03": -1000.0,
+        "medicine.n.01": -1000.0
+    },
+    "synset": "medicine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c071c69e73b0495692703cae47d21611",
+        "creator_username": "person-x",
+        "creator_display_name": "T-Art",
+        "creator_profile_url": "https://sketchfab.com/person-x"
+    },
+    "filename": "std_c071c69e73b0495692703cae47d21611.glb",
+    "length": 0.23084354400634766,
+    "width": 0.2533893585205078
+}

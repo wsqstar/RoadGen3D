@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a large, round pepperoni pizza with a golden-brown, hand-tossed crust that is slightly puffed and uneven around the edges. The surface is generously covered with melted cheese, which has a slightly oily sheen and is interspersed with numerous circular slices of pepperoni. The pepperoni slices are evenly distributed, giving the pizza a classic appearance. The crust appears soft and chewy, with a subtle gradient from light beige on the outer edge to a more toasted brown closer to the cheese. Faint cut lines are visible, suggesting the pizza is pre-sliced into multiple triangular pieces. There is no visible packaging or branding present.",
+    "description": "A large, round pepperoni pizza with a golden, hand-tossed crust and evenly distributed pepperoni slices on a melted cheese surface.",
+    "description_view_0": "The pizza is viewed from a low angle, highlighting the puffy, hand-tossed crust and the even spread of pepperoni slices.",
+    "description_view_1": "This view shows the pizza from a slightly rotated angle, with the cut lines and the distribution of toppings clearly visible.",
+    "description_view_2": "The pizza is seen from another side, emphasizing the consistent crust thickness and the uniform topping coverage.",
+    "description_view_3": "This angle displays the pizza with a focus on the crust's texture and the visible cut lines dividing the slices.",
+    "category": "pizza",
+    "height": 0.04,
+    "max_dimension": 0.35,
+    "materials": [
+        "bread",
+        "cheese",
+        "pepperoni",
+        "tomato sauce",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.3,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 15,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "cuttable",
+        "edible",
+        "sliceable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "crust",
+        "slices"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light brown",
+        "red",
+        "orange",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_topping_type": [
+        "pepperoni",
+        "cheese"
+    ],
+    "attribute_slice_count": 8,
+    "attribute_crust_style": "hand-tossed",
+    "attribute_packaging_presence": false,
+    "attribute_brand_logo": "None",
+    "uid": "65290c71cbc9426cac3b1a852f6514d1",
+    "near_synsets": {
+        "pepperoni_pizza.n.01": 0.4291917906144728,
+        "cheese_pizza.n.01": 0.4756008217724215,
+        "pizza.n.01": 0.48758534863219016,
+        "pepperoni.n.01": 0.49338164678235663,
+        "sicilian_pizza.n.01": 0.5046054293785232
+    },
+    "synset": "sicilian_pizza.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/65290c71cbc9426cac3b1a852f6514d1",
+        "creator_username": "Jacob.Elhatmi",
+        "creator_display_name": "Jacob.Elhatmi",
+        "creator_profile_url": "https://sketchfab.com/Jacob.Elhatmi"
+    },
+    "filename": "std_65290c71cbc9426cac3b1a852f6514d1.glb",
+    "length": 0.5357504487037659,
+    "width": 0.5376430749893188
+}

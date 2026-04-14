@@ -1,0 +1,99 @@
+{
+    "description_long": "This object consists of two large, cylindrical metal barrels with a yellowish-green color and a glossy finish. Both barrels have a thick band of green liquid or residue oozing from the top, suggesting they contain or have contained hazardous material. The tops of the barrels are sealed with metal lids, each featuring a small circular cap or bung for access. Prominently displayed on the sides are black radioactive warning symbols and the word 'RADIOACTIVE', indicating the barrels are used for storing or transporting radioactive waste. The barrels have visible horizontal reinforcement rings and slightly dented or ribbed sides, typical of industrial storage drums. The overall appearance is rugged and utilitarian, suitable for hazardous material containment in urban or industrial environments.",
+    "description": "Two yellow-green metal barrels with green residue and radioactive warning symbols, featuring reinforced rings and sealed lids.",
+    "description_view_0": "Two barrels are seen at an angle, with green residue visible on the tops and sides, and the lids with bungs are prominent.",
+    "description_view_1": "Front view of both barrels, showing the green residue and the ribbed sides, but no visible warning symbols.",
+    "description_view_2": "Rear angled view highlighting the lids and bungs, with the green residue more visible along the top edges.",
+    "description_view_3": "Clear view of the radioactive warning symbols and text on the sides of both barrels, with the green residue and sealed tops visible.",
+    "category": "barrel or bucket",
+    "height": 1.0,
+    "max_dimension": 1.2,
+    "materials": [
+        "metal",
+        "liquid (chemical/radioactive waste)",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 90,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "bung/cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "green",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "glossy",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "metal reinforcement rings",
+    "attribute_labeling_or_markings": "radioactive warning symbols and 'RADIOACTIVE' text",
+    "attribute_placement_location": "industrial",
+    "uid": "53d2f37eb33c48d9a1fea4163a6b1cff",
+    "near_synsets": {
+        "barrel.n.02": 0.5437547618488018,
+        "barrels.n.01": 0.5478881001829791,
+        "radioactive_material.n.01": 0.5599902725963458,
+        "barrel.n.03": 0.5604218807534768,
+        "beer_barrel.n.01": 0.5697692687181731,
+        "bucket.n.01": -1000.0,
+        "barrel.n.01": -1000.0,
+        "bucket.n.02": -1000.0,
+        "barrel.n.05": -1000.0,
+        "barrel.n.04": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/53d2f37eb33c48d9a1fea4163a6b1cff",
+        "creator_username": "weareeinsteinsmustache",
+        "creator_display_name": "weareeinsteinsmustache",
+        "creator_profile_url": "https://sketchfab.com/weareeinsteinsmustache"
+    },
+    "filename": "std_53d2f37eb33c48d9a1fea4163a6b1cff.glb",
+    "length": 0.8471668362617493,
+    "width": 1.884095013141632
+}

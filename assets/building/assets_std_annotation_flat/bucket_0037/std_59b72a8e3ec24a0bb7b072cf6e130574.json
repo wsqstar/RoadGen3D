@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a large, turret-mounted rifle with a robust, industrial design, featuring a long, cylindrical barrel and a reinforced, angular housing. The base is wide and stable, composed of four heavy, armored legs with metallic plating and visible bolts, suggesting it is designed for stationary deployment. The main body is constructed from a combination of matte brown and black metal panels, with some areas showing wear and utilitarian markings. The rifle's upper section includes a prominent receiver and a thick, ribbed barrel shroud, while the lower section has a mechanical pivot joint for rotation and elevation adjustment. There are no visible traditional rifle stocks or handheld grips, indicating this weapon is intended for remote or automated operation. The overall appearance is that of a high-caliber, defensive emplacement suitable for urban security or military checkpoints.",
+    "description": "A heavy, turret-mounted rifle with a long barrel, armored base, and industrial metal construction, designed for stationary defense.",
+    "description_view_0": "Side view showing the full length of the barrel, angular housing, and the wide, armored base with mechanical pivot.",
+    "description_view_1": "Front view highlighting the muzzle, symmetrical armored legs, and the central pivot mechanism.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the barrel, housing, and base structure.",
+    "description_view_3": "Rear view showing the back of the housing, the base's mechanical details, and the alignment of the support legs.",
+    "category": "rifle",
+    "height": 1.1,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "aluminum",
+        "polymer",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel",
+        "pivot joint",
+        "housing panel",
+        "control interface"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "none",
+    "uid": "59b72a8e3ec24a0bb7b072cf6e130574",
+    "near_synsets": {
+        "rifle.n.01": 0.48830227469712745,
+        "artillery.n.01": 0.49538680829547965,
+        "sniper_rifle.n.01": 0.4968430336421806,
+        "turret.n.01": 0.5005245436675662,
+        "cannon.n.02": 0.506741877609893
+    },
+    "synset": "sniper_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/59b72a8e3ec24a0bb7b072cf6e130574",
+        "creator_username": "Skotcher",
+        "creator_display_name": "Skotchet",
+        "creator_profile_url": "https://sketchfab.com/Skotcher"
+    },
+    "filename": "std_59b72a8e3ec24a0bb7b072cf6e130574.glb",
+    "length": 0.8722236752510071,
+    "width": 0.7448578476905823
+}

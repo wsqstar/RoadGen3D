@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a vintage-style Dr Pepper vending machine with a rectangular, upright form and a predominantly red and gray color scheme. The front face features a large Dr Pepper logo, a vertical row of circular product display windows, a coin slot, a bill acceptor, and a product retrieval slot, all arranged for user interaction. The lower front panel is labeled 'ICE COLD' and displays images of a hand holding a bottle, reinforcing its beverage-dispensing function. The sides are mostly solid red, with the left side displaying another Dr Pepper logo and the right side plain. The back panel is solid red with vent grilles at the bottom, likely for cooling and ventilation. The machine's exterior appears to be made of painted metal with some plastic or glass components for the display and interface areas.",
+    "description": "A vintage red and gray Dr Pepper vending machine with prominent branding, product display windows, and user interface elements on the front.",
+    "description_view_0": "Left side view showing a large Dr Pepper logo and vent grilles near the bottom.",
+    "description_view_1": "Front view displaying the Dr Pepper logo, product display windows, payment interface, product retrieval slot, and 'ICE COLD' signage.",
+    "description_view_2": "Right side view, plain red with no visible branding or features.",
+    "description_view_3": "Rear view with a solid red panel and vent grilles at the bottom, no branding or interface elements.",
+    "category": "vending machine",
+    "height": 1.6,
+    "max_dimension": 0.7,
+    "materials": [
+        "painted steel",
+        "plastic",
+        "glass",
+        "electronic components",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "coin slot",
+        "bill acceptor",
+        "product retrieval slot",
+        "display panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "gray",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.25,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A small rectangular display panel is located on the upper right section of the front face, above the payment interface, with a dark window that may be for digital or printed information.",
+    "attribute_payment_interface": "A coin slot and bill acceptor are present on the right side of the front face, with the coin slot above the bill acceptor; both are rectangular and metallic.",
+    "attribute_product_selection_buttons": "A vertical row of seven circular buttons is located on the left side of the front face, each corresponding to a product selection.",
+    "attribute_product_retrieval_slot": "A rectangular product retrieval slot with a flap is located on the lower right of the front face, below the payment interface.",
+    "attribute_branding_or_signage": "Large Dr Pepper logos are present on the front and left side, with 'ICE COLD' text and images of a hand holding a bottle on the lower front panel; all branding is in white against the red background.",
+    "uid": "62020512e24148d39ea4e0c9ba478008",
+    "near_synsets": {
+        "vending_machine.n.01": 0.5185546463853596,
+        "automat.n.01": 0.5641319700957569,
+        "pepsi.n.01": 0.56969008532899,
+        "soda_fountain.n.02": 0.5718373214637205,
+        "coca_cola.n.01": 0.5845459445675641,
+        "machine.n.02": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.05": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.04": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/62020512e24148d39ea4e0c9ba478008",
+        "creator_username": "mari.dyachuk",
+        "creator_display_name": "Koosss",
+        "creator_profile_url": "https://sketchfab.com/mari.dyachuk"
+    },
+    "filename": "std_62020512e24148d39ea4e0c9ba478008.glb",
+    "length": 0.7216798961162567,
+    "width": 0.73583984375
+}

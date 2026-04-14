@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a revolver-style firearm with a dark metallic body and a wooden grip. The barrel is long and cylindrical, extending forward from a robust, rounded frame that houses a visible rotating cylinder. The grip is ergonomically shaped, made of wood with two brass rivets on each side, providing a secure hold. The trigger guard is rounded and encloses a metallic trigger, while the hammer is exposed at the rear for manual cocking. The surface of the metal parts is glossy and reflective, contrasting with the matte, textured wood of the grip. The overall design is classic and utilitarian, suitable for handheld use in urban environments.",
+    "description": "A dark metallic revolver with a long barrel and a wooden grip, featuring a rotating cylinder and a rounded trigger guard. The metal is glossy, while the grip is matte and textured.",
+    "description_view_0": "Front view showing the circular barrel opening and the symmetrical alignment of the cylinder and frame.",
+    "description_view_1": "Left side view highlighting the long barrel, wooden grip with brass rivets, and the full profile of the rotating cylinder.",
+    "description_view_2": "Rear view focusing on the wooden grip and the back of the hammer, with the barrel and cylinder aligned away from the viewer.",
+    "description_view_3": "Right side view displaying the opposite side of the wooden grip, the trigger guard, and the full length of the barrel.",
+    "category": "shotgun",
+    "height": 0.15,
+    "max_dimension": 0.32,
+    "materials": [
+        "steel",
+        "wood",
+        "brass",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.2,
+        0.03,
+        0.02
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "rotatable",
+        "pressable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "hammer",
+        "cylinder",
+        "grip",
+        "barrel",
+        "trigger guard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "gold"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "glossy",
+    "reflectivity": 0.5,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, long and cylindrical with no visible ribbing or venting",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "revolver-action",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized, fully enclosing the trigger with smooth edges and no finger grooves",
+    "uid": "ccb425edc6204d0d8d64619787eb129c",
+    "near_synsets": {
+        "revolver.n.01": 0.5093756842721491,
+        "shotgun.n.01": 0.5111610139631692,
+        "colt.n.02": 0.5200207178516774,
+        "sawed-off_shotgun.n.01": 0.5261898172723076,
+        "gun.n.01": 0.5266686908982748
+    },
+    "synset": "sawed-off_shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ccb425edc6204d0d8d64619787eb129c",
+        "creator_username": "CohiTrippy",
+        "creator_display_name": "CohiTrippy",
+        "creator_profile_url": "https://sketchfab.com/CohiTrippy"
+    },
+    "filename": "std_ccb425edc6204d0d8d64619787eb129c.glb",
+    "length": 0.30627307295799255,
+    "width": 0.04784566909074783
+}

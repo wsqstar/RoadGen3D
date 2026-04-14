@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a towed anti-tank artillery gun, featuring a long, rifled barrel mounted on a robust carriage. The gun is supported by two large spoked wheels and stabilized by two wide, angled split trail legs that extend rearward for firing stability. The breech and recoil mechanism are housed in a reinforced central block, with a muzzle brake visible at the end of the barrel. The carriage includes protective armor plating around the breech area, and the trails terminate in flat spades for ground anchoring. The overall construction is metallic, with a dark, weathered finish and utilitarian design typical of mid-20th-century military field guns.",
+    "description": "A towed anti-tank artillery gun with a long barrel, large wheels, and split trail legs, finished in dark metal with visible armor plating.",
+    "description_view_0": "Front view showing the split trail legs splayed outward and the armored breech area.",
+    "description_view_1": "Angled side view highlighting the long barrel, spoked wheels, and the full length of the split trails.",
+    "description_view_2": "Rear view focusing on the armored breech and the ends of the split trail legs.",
+    "description_view_3": "Opposite angled side view displaying the barrel, wheels, and the rearward extension of the trails.",
+    "category": "combat tactical  vehicle",
+    "height": 1.2,
+    "max_dimension": 5.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.05,
+        0.01,
+        0.02
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "rotatable",
+        "aimable",
+        "fireable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "barrel",
+        "breech",
+        "trails",
+        "muzzle brake",
+        "spades"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One fixed main cannon barrel mounted centrally on the carriage; no additional mounts visible.",
+    "attribute_armor_plating": "Armor plating is visible around the breech and central carriage area, appearing moderately thick and sloped for protection.",
+    "attribute_camouflage_pattern": "None visible; the surface is finished in a solid dark gray/black color.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Two large spoked wheels with solid rubber tires; no tread pattern or special features visible.",
+    "uid": "82f688ffd3ec4a0789536ff8e3f5806d",
+    "near_synsets": {
+        "tank.n.01": 0.47782340885086994,
+        "tank_destroyer.n.01": 0.48470911585598164,
+        "assault_gun.n.02": 0.4878667952300219,
+        "military_vehicle.n.01": 0.5028179223507181,
+        "armored_car.n.02": 0.5071171956652627,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/82f688ffd3ec4a0789536ff8e3f5806d",
+        "creator_username": "Murdoch3D",
+        "creator_display_name": "Murdoch3D",
+        "creator_profile_url": "https://sketchfab.com/Murdoch3D"
+    },
+    "filename": "std_82f688ffd3ec4a0789536ff8e3f5806d.glb",
+    "length": 4.206780910491943,
+    "width": 2.3291313648223877
+}

@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a robust arched gate featuring two vertically-hinged wooden doors set within a thick, segmented stone frame. The doors are constructed from vertical wooden planks, reinforced with horizontal metal bands and adorned with round metal ring handles. The stone arch is composed of large, angular blocks, giving the structure a medieval or rustic appearance. Brass or bronze fasteners are visible on the metal bands, adding both structural integrity and visual detail. The gate is wide enough to allow easy passage for people or small vehicles, and the open design suggests it is meant for controlled access rather than complete security. The overall construction combines durability with a simple, functional aesthetic suitable for urban parks, courtyards, or historic neighborhoods.",
+    "description": "A sturdy arched gate with wooden double doors set in a segmented stone frame, featuring metal bands and ring handles. The design is rustic and functional, suitable for urban or historic settings.",
+    "description_view_0": "Top-down view showing the arched stone frame and both wooden doors partially open, revealing the interior passage.",
+    "description_view_1": "Side view highlighting the thickness of the stone pillar and the vertical wooden planks of one door, with the metal ring handle visible.",
+    "description_view_2": "Frontal view displaying the full arch, both doors open, and the symmetry of the stone and wood construction.",
+    "description_view_3": "Opposite side view showing the other stone pillar and wooden door, with similar construction details as the first side.",
+    "category": "gate",
+    "height": 2.2,
+    "max_dimension": 2.4,
+    "materials": [
+        "wood",
+        "stone",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.5,
+        0.1,
+        0.05
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "hinge"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "brown",
+        "black",
+        "gold"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_gate_type": "swing gate",
+    "attribute_opening_mechanism": "manual swing",
+    "attribute_decorative_elements": [],
+    "attribute_locking_system": "latch",
+    "attribute_surrounding_structure": "stone pillars",
+    "uid": "6617b7e5eb0f498ba1dc24a5b0900c3f",
+    "near_synsets": {
+        "lock-gate.n.01": 0.518675552746919,
+        "gate.n.01": 0.5255991811838134,
+        "portcullis.n.01": 0.5269458439365482,
+        "double_door.n.01": 0.5338073922061735,
+        "hinging_post.n.01": 0.5492553042678179,
+        "gate.n.03": -1000.0,
+        "gate.n.04": -1000.0,
+        "gate.n.02": -1000.0
+    },
+    "synset": "gate.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6617b7e5eb0f498ba1dc24a5b0900c3f",
+        "creator_username": "stefan.lengyel1",
+        "creator_display_name": "Pixel",
+        "creator_profile_url": "https://sketchfab.com/stefan.lengyel1"
+    },
+    "filename": "std_6617b7e5eb0f498ba1dc24a5b0900c3f.glb",
+    "length": 0.8776403665542603,
+    "width": 1.5193513631820679
+}

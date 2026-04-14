@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a large, rectangular, industrial shipping container with a weathered blue exterior and visible signs of rust and wear. The container features corrugated metal walls and a flat, ribbed roof, with two large hinged doors on one end that can swing open wide, revealing a spacious, hollow interior. The doors are reinforced with horizontal and vertical metal bars and have locking mechanisms visible on the outside. The sides of the container display the word 'HANUNG' in large, faded white letters, along with a globe logo, indicating a shipping or logistics company. The container's construction is robust, designed to withstand heavy use and outdoor exposure, and the interior appears empty, suitable for storing or transporting goods. The overall appearance suggests it is intended for placement in urban or industrial environments, such as docks, construction sites, or storage yards.",
+    "description": "A large, weathered blue shipping container with corrugated metal walls, wide-opening reinforced doors, and faded 'HANUNG' signage on the sides. The container is robust, hollow, and designed for industrial storage or transport.",
+    "description_view_0": "Front view showing both large doors open, revealing the empty interior and the reinforced structure of the doors.",
+    "description_view_1": "Side view displaying the full length of the container, the 'HANUNG' logo, and both doors detached and positioned away from the container.",
+    "description_view_2": "Rear view similar to the front, with both doors open and the interior visible, but with a slightly different door angle.",
+    "description_view_3": "Opposite side view showing the container's length, logo, and one door detached and positioned away, highlighting the container's open state.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.92,
+        0.07,
+        0.01
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "lock"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "blue",
+        "white",
+        "rust-brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "printed logo and text 'HANUNG' with a globe symbol on both long sides",
+    "attribute_handles_or_grips": "integrated metal handles on both doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "38b62c0ba06a4d38a40204f0bdeaaa2f",
+    "near_synsets": {
+        "container.n.01": 0.4555992519019151,
+        "cargo_container.n.01": 0.4864249948844926,
+        "container_ship.n.01": 0.5275949734299998,
+        "cargo_door.n.01": 0.5472221312660096,
+        "drum.n.04": 0.551308654407716
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/38b62c0ba06a4d38a40204f0bdeaaa2f",
+        "creator_username": "Kwon_Hyuk",
+        "creator_display_name": "Kwon_Hyuk",
+        "creator_profile_url": "https://sketchfab.com/Kwon_Hyuk"
+    },
+    "filename": "std_38b62c0ba06a4d38a40204f0bdeaaa2f.glb",
+    "length": 11.73327112197876,
+    "width": 2.543312907218933
+}

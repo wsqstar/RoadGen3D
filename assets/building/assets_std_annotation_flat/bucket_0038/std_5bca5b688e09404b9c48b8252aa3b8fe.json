@@ -1,0 +1,109 @@
+{
+    "description_long": "This object is a solar energy infrastructure installation featuring a hexagonal array of solar panels mounted on a tall, vertical pole. The solar panel array consists of multiple interconnected modules arranged in a honeycomb-like pattern, supported by a robust metal framework. The pole is anchored to a square base, which appears to house electrical components and possibly a control unit, with visible access panels and a numbered label. Several cables and small devices are attached to the pole, suggesting monitoring or communication equipment. The structure is primarily composed of metal and composite materials, with the solar panels displaying a dark, reflective surface. The overall design is engineered for stability and efficient solar energy capture in an urban environment.",
+    "description": "A pole-mounted solar panel array with a hexagonal, honeycomb-like configuration, supported by a sturdy base and visible electrical components.",
+    "description_view_0": "Side view showing the vertical pole, support arms, and the edge profile of the hexagonal solar panel array.",
+    "description_view_1": "Rear view highlighting the geometric pattern of the solar panels and the central mounting structure.",
+    "description_view_2": "Opposite side view displaying the pole, support arms, and a clear view of the control box labeled '7'.",
+    "description_view_3": "Front view showing the full face of the solar panel array and the base with attached equipment.",
+    "category": "solar energy infrastructure",
+    "height": 2.2,
+    "max_dimension": 1.8,
+    "materials": [
+        "aluminum",
+        "glass",
+        "plastic",
+        "steel",
+        "copper",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "toggleable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "control box",
+        "access panel",
+        "sensor unit"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "white",
+        "blue",
+        "beige"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_panel_orientation": "tilted at approximately 30 degrees, facing outward from the pole, orientation appears fixed",
+    "attribute_mounting_structure_type": "pole-mounted with a metal support frame and anchored base",
+    "attribute_electrical_inverter_presence": false,
+    "attribute_cabling_visibility": "black and white cables visible running along the pole and connecting to the control box",
+    "attribute_array_configuration": "single hexagonal cluster of 7 panels arranged in a honeycomb pattern",
+    "uid": "5bca5b688e09404b9c48b8252aa3b8fe",
+    "near_synsets": {
+        "solar_array.n.01": 0.48586142365102913,
+        "solar_house.n.01": 0.5459028871254782,
+        "solar_thermal_system.n.01": 0.5577083223602861,
+        "solar_energy.n.01": 0.5641374042607139,
+        "solar_cell.n.01": 0.5660956109803748,
+        "energy.n.03": -1000.0,
+        "energy.n.05": -1000.0,
+        "infrastructure.n.01": -1000.0,
+        "energy.n.06": -1000.0,
+        "infrastructure.n.02": -1000.0,
+        "energy.n.04": -1000.0,
+        "department_of_energy.n.01": -1000.0,
+        "energy.n.02": -1000.0,
+        "energy.n.01": -1000.0
+    },
+    "synset": "solar_array.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5bca5b688e09404b9c48b8252aa3b8fe",
+        "creator_username": "ice_space",
+        "creator_display_name": "ice_space",
+        "creator_profile_url": "https://sketchfab.com/ice_space"
+    },
+    "filename": "std_5bca5b688e09404b9c48b8252aa3b8fe.glb",
+    "length": 0.7894205749034882,
+    "width": 1.258658230304718
+}

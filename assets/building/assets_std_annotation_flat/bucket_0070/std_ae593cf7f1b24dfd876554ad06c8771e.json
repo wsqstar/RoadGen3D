@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a medium-sized, ironclad warship with a low, elongated hull painted in a combination of red and gray. The ship features two prominent masts, each equipped with lookout platforms, and a central smokestack rising from the main deck. The deck is open and relatively flat, with railings running along the perimeter and several visible gun emplacements. At both the bow and stern, small flags are mounted, and the ship's superstructure is minimal, with only a few raised sections and hatches. The vessel appears to be designed for military or patrol purposes, with a robust, armored appearance and minimal decorative elements. The overall design suggests a late 19th-century or early 20th-century naval vessel, optimized for durability and function.",
+    "description": "A robust, ironclad warship with a red and gray hull, two masts, a central smokestack, and visible deck guns. The ship has a flat, open deck with railings and military features.",
+    "description_view_0": "Side view showing the full length of the ship, two masts, central smokestack, and deck railings.",
+    "description_view_1": "Front (bow) view highlighting the pointed bow, forward mast, and symmetrical deck layout.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the hull, masts, and deck features.",
+    "description_view_3": "Rear (stern) view showing the rounded stern, aft mast, and the arrangement of the ship's rear deck.",
+    "category": "ship",
+    "height": 8.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.01,
+        0.04
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1800000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "door",
+        "gun",
+        "mast",
+        "flagpole",
+        "railing",
+        "smokestack"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.03,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a long, low profile, rounded stern, and a pointed bow. The hull sides are smooth with minimal protrusions, and the waterline is marked by a red-painted lower section. No keels or bulbous bows are visible, and the hull appears armored and robust.",
+    "attribute_superstructure_layout": "The superstructure is minimal, with a central smokestack, two masts with lookout platforms, and a few raised deck sections. There are no large bridges or cabins, and the deck is mostly open with railings and gun emplacements.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "gun",
+        "mast",
+        "smokestack",
+        "flagpole",
+        "railing"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "ae593cf7f1b24dfd876554ad06c8771e",
+    "near_synsets": {
+        "ironclad.n.01": 0.44545963295435687,
+        "three-decker.n.03": 0.4884485628190295,
+        "battleship.n.01": 0.49259341952451646,
+        "capital_ship.n.01": 0.49458210719505924,
+        "surface_ship.n.01": 0.4985078654289804,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ae593cf7f1b24dfd876554ad06c8771e",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_ae593cf7f1b24dfd876554ad06c8771e.glb",
+    "length": 20.735894203186035,
+    "width": 4.574258804321289
+}

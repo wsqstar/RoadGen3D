@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a large, heavy rifle resembling a recoilless rifle or anti-tank weapon, featuring a long cylindrical barrel with a matte black finish and a prominent bipod for stabilization. The rear section includes a wooden fixed stock and a pistol grip, both in a reddish-brown color, providing ergonomic support for the user. The central body is robust and rounded, likely housing the firing mechanism and breech, with a visible trigger guard and a carrying handle beneath. The front end of the barrel is wide and open, suggesting it is designed for launching large-caliber projectiles. There are minimal external attachments, with only basic iron sights visible and no advanced optics or rail systems. The overall construction appears to be primarily metal with some wooden components, giving it a rugged, utilitarian appearance suitable for military or paramilitary use in urban environments.",
+    "description": "A large, heavy recoilless rifle with a long black barrel, wooden fixed stock, bipod, and basic iron sights. Its robust metal construction and utilitarian design suggest military use.",
+    "description_view_0": "Side view showing the full length of the rifle, including the wooden stock, pistol grip, bipod, and open barrel.",
+    "description_view_1": "Rear view highlighting the wooden stock and pistol grip, with the bipod legs visible on either side.",
+    "description_view_2": "Opposite side view mirroring view 0, showing the barrel, bipod, and stock from the other side.",
+    "description_view_3": "Front view focusing on the open muzzle, bipod legs, and the cylindrical shape of the barrel.",
+    "category": "rifle",
+    "height": 0.35,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 12,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "rotatable",
+        "pressable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "pistol grip",
+        "trigger",
+        "bipod",
+        "barrel",
+        "carrying handle",
+        "iron sights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "none",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "2332041c12f640e6a9ce432e6e278455",
+    "near_synsets": {
+        "rifle.n.01": 0.4642247990612191,
+        "musket.n.01": 0.5049045307244312,
+        "garand_rifle.n.01": 0.5074160054106195,
+        "light_arm.n.01": 0.5115040079488133,
+        "sniper_rifle.n.01": 0.5153678061957015
+    },
+    "synset": "sniper_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2332041c12f640e6a9ce432e6e278455",
+        "creator_username": "tomas.anglim.811",
+        "creator_display_name": "Tomas Anglim",
+        "creator_profile_url": "https://sketchfab.com/tomas.anglim.811"
+    },
+    "filename": "std_2332041c12f640e6a9ce432e6e278455.glb",
+    "length": 1.0208588242530823,
+    "width": 0.21827872842550278
+}

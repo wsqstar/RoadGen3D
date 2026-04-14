@@ -1,0 +1,86 @@
+{
+    "description_long": "This object is a classic chessboard with a checkered playing surface composed of alternating black and white squares, set within a simple, flat rectangular base. The board is accompanied by two chess pieces, one black and one white, positioned on opposite corners, suggesting an ongoing or staged game. The chessboard's surface is smooth and glossy, reflecting light and giving it a polished appearance. The border of the board is minimal, with no visible ornamentation or inscriptions, and is consistent in color with the rest of the board. The chess pieces are traditionally shaped, with the black piece resembling a bishop and the white piece resembling a rook, both rendered in a shiny material. The overall design is clean and functional, suitable for use in public parks, urban plazas, or recreational spaces.",
+    "description": "A glossy black-and-white checkered chessboard with two classic chess pieces on opposite corners, featuring a simple, unadorned border.",
+    "description_view_0": "Front view showing the chessboard with a black bishop on the left front corner and a white rook on the right back corner.",
+    "description_view_1": "Side view highlighting the black bishop near the center left and the white rook at the far right edge.",
+    "description_view_2": "Rear view with the white rook on the left front corner and the black bishop on the right back corner.",
+    "description_view_3": "Opposite side view showing the white rook at the far left edge and the black bishop near the center right.",
+    "category": "chessboard",
+    "height": 0.07,
+    "max_dimension": 0.45,
+    "materials": [
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 15,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "playable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "board",
+        "chess pieces"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.5
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.08,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.55,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "group",
+    "attribute_board_pattern": "The playing surface features a regular grid of alternating black and white squares, each square being perfectly square-shaped and arranged in a classic checkered pattern with no decorative elements or additional markings.",
+    "attribute_square_grid": "8x8",
+    "attribute_alternating_light_and_dark_squares": true,
+    "attribute_presence_of_chess_pieces": true,
+    "attribute_border_design": "The border is plain and flat, matching the color of the board's edge squares, with no visible ornamentation, inscriptions, or decorative features. It is of moderate width and appears to be made of the same glossy plastic material as the playing surface.",
+    "uid": "db6185ab7479476ba34ea8b7580900c4",
+    "near_synsets": {
+        "chess_set.n.01": 0.4019414805296668,
+        "chessboard.n.01": 0.40824384831287,
+        "chess.n.02": 0.4605770587943972,
+        "checkerboard.n.01": 0.4639838549835918,
+        "checkers.n.01": 0.4789246299622032
+    },
+    "synset": "chessboard.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/db6185ab7479476ba34ea8b7580900c4",
+        "creator_username": "karaphelps",
+        "creator_display_name": "karaphelps",
+        "creator_profile_url": "https://sketchfab.com/karaphelps"
+    },
+    "filename": "std_db6185ab7479476ba34ea8b7580900c4.glb",
+    "length": 0.21051324903964996,
+    "width": 0.21051320433616638
+}

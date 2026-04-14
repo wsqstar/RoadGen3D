@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a modern commercial jet airplane with a streamlined silver fuselage and a blue vertical stabilizer featuring a circular logo. The aircraft has a pair of swept-back, low-mounted wings with underwing twin turbofan engines. The cockpit is located at the forward end of the fuselage, with a row of dark passenger windows running along each side. The tail section features a conventional design with a single vertical stabilizer and horizontal stabilizers. The landing gear is not visible, suggesting it may be retracted or not modeled in detail. The overall appearance is sleek and aerodynamic, suitable for passenger transport.",
+    "description": "A sleek silver and blue commercial jet airplane with swept-back low wings and twin underwing engines, designed for passenger transport.",
+    "description_view_0": "Side view showing the blue tail, swept-back wings, and row of passenger windows.",
+    "description_view_1": "Top-down view highlighting the full wingspan, blue tail fin, and overall fuselage shape.",
+    "description_view_2": "Opposite side view with clear visibility of the engines, windows, and blue tail.",
+    "description_view_3": "Front view displaying the nose, cockpit windows, engine intakes, and wing symmetry.",
+    "category": "airplane",
+    "height": 6.0,
+    "max_dimension": 35.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.07,
+        0.05,
+        0.03,
+        0.05
+    ],
+    "mass": 41000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 402000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "engine",
+        "cockpit controls",
+        "landing gear"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "silver",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.12,
+    "surface_finish": "sleek",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.03,
+    "recommended_clearance": 40.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with swept-back wings and no visible winglets; moderate dihedral angle.",
+    "attribute_engine_type": "Twin turbofan underwing engines.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "Landing gear not visible; likely retractable tricycle configuration based on typical design.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with multiple windows, likely multi-seat.",
+    "uid": "10353e86ff754e2da6f5c2b6763c99db",
+    "near_synsets": {
+        "airplane.n.01": 0.45423248459484433,
+        "airliner.n.01": 0.45669229412404727,
+        "jetliner.n.01": 0.47361679066042944,
+        "jet.n.01": 0.4802272735812933,
+        "aircraft.n.01": 0.48227665671363407
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/10353e86ff754e2da6f5c2b6763c99db",
+        "creator_username": "iekalfa3d",
+        "creator_display_name": "iekalfa3d",
+        "creator_profile_url": "https://sketchfab.com/iekalfa3d"
+    },
+    "filename": "std_10353e86ff754e2da6f5c2b6763c99db.glb",
+    "length": 11.161541938781738,
+    "width": 11.429393768310547
+}

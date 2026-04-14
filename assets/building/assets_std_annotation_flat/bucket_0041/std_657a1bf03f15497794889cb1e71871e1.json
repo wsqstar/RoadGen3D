@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a rectangular, industrial-style storage locker with a flat black top and concrete-textured sides covered in graffiti. The front features two large, rusted metal roll-up doors, each adorned with various tags and spray paint, suggesting frequent use in an urban environment. The left side has a smaller, rusted metal vent, while the rest of the surfaces are solid concrete with more graffiti. The structure appears robust and heavy, likely designed to withstand outdoor conditions and deter unauthorized access. The doors are equipped with simple key locks, and there are no visible handles, only recessed pulls for opening. The overall appearance is weathered and utilitarian, fitting for placement in alleys, garages, or industrial lots.",
+    "description": "A graffiti-covered, concrete storage locker with two rusted roll-up doors and a flat black top, designed for rugged urban use. Features include a side vent and key locks, with a heavily weathered, industrial look.",
+    "description_view_0": "Front view showing two large, rusted roll-up doors with graffiti and a small key lock on the left.",
+    "description_view_1": "Left side view displaying a small rusted vent and extensive graffiti on the concrete surface.",
+    "description_view_2": "Rear view with a solid graffiti-covered concrete wall and no visible doors or vents.",
+    "description_view_3": "Right side view showing a plain, graffiti-covered concrete wall with no openings.",
+    "category": "storage locker",
+    "height": 1.5,
+    "max_dimension": 3.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "roll-up door",
+        "lock",
+        "vent"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "rust brown",
+        "blue",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 2,
+    "attribute_locking_mechanism_type": "key lock",
+    "attribute_ventilation_pattern": "horizontal slits",
+    "attribute_handle_design": "recessed pull",
+    "attribute_placement_location": "outdoor",
+    "uid": "657a1bf03f15497794889cb1e71871e1",
+    "near_synsets": {
+        "cabinet.n.03": 0.5769818965220904,
+        "vault.n.02": 0.5809842719042708,
+        "cargo_door.n.01": 0.5818470821959429,
+        "storage_space.n.01": 0.5837910258351984,
+        "chest.n.02": 0.5899480878022193,
+        "locker.n.02": -1000.0,
+        "storage.n.03": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "storage.n.01": -1000.0,
+        "repositing.n.01": -1000.0,
+        "memory.n.04": -1000.0,
+        "storage.n.04": -1000.0,
+        "footlocker.n.01": -1000.0
+    },
+    "synset": "cabinet.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/657a1bf03f15497794889cb1e71871e1",
+        "creator_username": "ConstanceBespoke",
+        "creator_display_name": "Sam Constance",
+        "creator_profile_url": "https://sketchfab.com/ConstanceBespoke"
+    },
+    "filename": "std_657a1bf03f15497794889cb1e71871e1.glb",
+    "length": 1.5584419965744019,
+    "width": 2.532465934753418
+}

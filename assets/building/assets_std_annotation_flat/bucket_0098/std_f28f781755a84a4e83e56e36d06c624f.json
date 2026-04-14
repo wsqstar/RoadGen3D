@@ -1,0 +1,84 @@
+{
+    "description_long": "This object is a cylindrical, metallic can with a slightly tapered top and bottom, typical of beverage containers found in urban environments. The surface is smooth and unadorned, lacking any visible branding, text, or decorative elements. The top features a recessed lid with a circular groove and a faintly visible pull tab area, though the tab itself is not clearly defined. The can's proportions suggest it is a standard size, commonly used for soft drinks or beer, and it appears to be empty and discarded. The metallic surface reflects light, giving it a slightly glossy appearance, but there are no signs of rust, dents, or damage. The overall form is intact, with no visible deformations or punctures.",
+    "description": "A smooth, metallic, unbranded beverage can with a slightly glossy finish and an intact, recessed top.",
+    "description_view_0": "Front view shows the can's cylindrical body and the smooth, slightly domed top with a faint pull tab area.",
+    "description_view_1": "This angle highlights the top's recessed groove and the subtle outline of the pull tab area.",
+    "description_view_2": "The can's body and top are visible, with the pull tab area less pronounced from this perspective.",
+    "description_view_3": "Similar to view 1, this side shows the top's recessed area and the can's smooth, unmarked surface.",
+    "category": "discarded can",
+    "height": 0.12,
+    "max_dimension": 0.065,
+    "materials": [
+        "aluminum",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 0.014,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0.2,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable",
+        "crushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pull tab (implied)",
+        "lid"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.6,
+    "index_of_refraction": 1.44,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.2,
+    "recommended_clearance": 0.05,
+    "asset_composition_type": "single",
+    "attribute_brand_logo": "None",
+    "attribute_label_text": "None",
+    "attribute_barcode": "None",
+    "attribute_pull_tab_type": "standard ring pull (implied, not clearly visible)",
+    "attribute_rust_or_damage_marks": "None",
+    "uid": "f28f781755a84a4e83e56e36d06c624f",
+    "near_synsets": {
+        "soda_can.n.01": 0.49422617102381955,
+        "beer_can.n.01": 0.5274165427540234,
+        "can.n.01": 0.5333354355989275,
+        "beer_bottle.n.01": 0.5458570379066401,
+        "pop_bottle.n.01": 0.548567012621379
+    },
+    "synset": "can.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f28f781755a84a4e83e56e36d06c624f",
+        "creator_username": "Yarik16",
+        "creator_display_name": "Ya",
+        "creator_profile_url": "https://sketchfab.com/Yarik16"
+    },
+    "filename": "std_f28f781755a84a4e83e56e36d06c624f.glb",
+    "length": 0.06703085452318192,
+    "width": 0.06703086942434311
+}

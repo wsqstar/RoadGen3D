@@ -1,0 +1,113 @@
+{
+    "description_long": "This object is a collection of various road traffic signs, each mounted on a slender vertical metal post. The signs include a mix of regulatory, warning, and informational types, such as stop signs, yield signs, speed limits, directional arrows, and cautionary symbols. The sign faces are predominantly geometric shapes like circles, triangles, rectangles, and diamonds, with highly visible colors such as red, yellow, white, and green, and feature both text and pictograms. The posts are uniformly thin and metallic, supporting the signs at a height suitable for visibility to drivers and pedestrians. The signs are designed to be easily readable from a distance, with reflective surfaces to enhance visibility at night. This set would typically be found along urban streets, intersections, and roadside environments.",
+    "description": "A grouped set of urban road traffic signs on metal posts, featuring various shapes, colors, and both text and pictograms for regulatory and warning purposes.",
+    "description_view_0": "Front view showing the faces of all traffic signs, revealing their shapes, colors, and markings clearly.",
+    "description_view_1": "Side view showing the thin profile of the signs and posts, with sign faces barely visible.",
+    "description_view_2": "Rear view displaying the backs of the signs, which are plain and dark, with the posts visible.",
+    "description_view_3": "Opposite side view, again showing the thinness of the signs and posts, with no sign faces visible.",
+    "category": "traffic sign",
+    "height": 2.2,
+    "max_dimension": 3.5,
+    "materials": [
+        "metal",
+        "plastic",
+        "reflective paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 35,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "readable",
+        "visible",
+        "signaling"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "sign face",
+        "post"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "yellow",
+        "white",
+        "black",
+        "green",
+        "gray"
+    ],
+    "colors_composition": [
+        0.18,
+        0.22,
+        0.2,
+        0.18,
+        0.15,
+        0.07
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.5,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_sign_text": "STOP, YIELD, SPEED LIMIT, NO PARKING, ONE WAY, DO NOT ENTER, and other standard road sign texts",
+    "attribute_symbol_or_pictogram": "arrows, pedestrian figures, railroad crossing, caution exclamation marks, and other standard road sign symbols",
+    "attribute_mounting_type": "post-mounted",
+    "attribute_orientation": "perpendicular to road",
+    "attribute_location_context": "urban roadside, intersections, and crosswalks",
+    "uid": "43e1f66bd3cd43f584aea788d7151bc5",
+    "near_synsets": {
+        "street_sign.n.01": 0.45662179814991044,
+        "signage.n.01": 0.4772870353596754,
+        "direction_sign.n.01": 0.4827277074263494,
+        "stop_sign.n.01": 0.495080338136789,
+        "traffic_light.n.01": 0.4955071671238787,
+        "sign.n.01": -1000.0,
+        "signal.n.01": -1000.0,
+        "augury.n.01": -1000.0,
+        "sign.n.10": -1000.0,
+        "sign.n.02": -1000.0,
+        "sign.n.06": -1000.0,
+        "traffic.n.03": -1000.0,
+        "traffic.n.02": -1000.0,
+        "polarity.n.02": -1000.0,
+        "sign.n.11": -1000.0,
+        "dealings.n.01": -1000.0,
+        "sign_of_the_zodiac.n.01": -1000.0,
+        "traffic.n.01": -1000.0,
+        "sign.n.09": -1000.0,
+        "signboard.n.01": -1000.0
+    },
+    "synset": "signage.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/43e1f66bd3cd43f584aea788d7151bc5",
+        "creator_username": "nermin",
+        "creator_display_name": "nermin",
+        "creator_profile_url": "https://sketchfab.com/nermin"
+    },
+    "filename": "std_43e1f66bd3cd43f584aea788d7151bc5.glb",
+    "length": 1.4989013671875,
+    "width": 9.169126987457275
+}

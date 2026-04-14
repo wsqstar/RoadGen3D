@@ -1,0 +1,105 @@
+{
+    "description_long": "This humanoid robot features a rounded, metallic yellow body with a domed head and two prominent circular eyes on its faceplate. Its arms and legs are mechanical, segmented with visible joints, and end in claw-like hands and feet, suggesting dexterity and mobility. The torso is compact and armored, with panel lines, bolts, and vent-like details, giving it an industrial, utilitarian appearance. The back of the robot displays additional mechanical components, including what appear to be exhaust ports or connectors. The overall design is robust and functional, with a slightly cartoonish aesthetic due to its proportions and simplified features. The robot's surface is smooth and hard, with a semi-glossy finish that reflects light subtly.",
+    "description": "A yellow, rounded humanoid robot with mechanical limbs, large circular eyes, and claw-like hands and feet, featuring a robust, industrial design.",
+    "description_view_0": "Front view shows the robot's circular eyes, chest panel, and outstretched arms with clawed hands.",
+    "description_view_1": "Left side view highlights the domed head, cylindrical torso, and mechanical arm and leg joints.",
+    "description_view_2": "Rear view reveals exhaust ports or connectors on the back and the symmetrical design of the limbs.",
+    "description_view_3": "Right side view mirrors the left, showing the same mechanical details and limb articulation.",
+    "category": "humanoid robot",
+    "height": 1.2,
+    "max_dimension": 1.5,
+    "materials": [
+        "painted metal",
+        "plastic",
+        "glass",
+        "rubber",
+        "air",
+        "electronic components"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "rotatable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "eyes",
+        "arms",
+        "hands",
+        "legs",
+        "feet",
+        "chest panel",
+        "back connectors"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms extended horizontally to the sides and legs straight, head facing forward.",
+    "attribute_clothing_style": "Unclothed; exterior consists of integrated metallic panels and mechanical components with no additional coverings.",
+    "attribute_facial_features": "Face features two large, circular eyes and a flat, featureless mouth area; no nose or expressive elements are present.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints at shoulders, elbows, wrists, hips, knees, and ankles; hands and feet are claw-like with articulated segments.",
+    "attribute_presence_of_sensors": "Visible sensors include two large circular eye-like cameras on the face and possible additional sensors on the head and back.",
+    "uid": "12a82920c5564d1c8ca3e334296aefe9",
+    "near_synsets": {
+        "android.n.01": 0.5354048233713871,
+        "robotics_equipment.n.01": 0.5426925218893582,
+        "cyborg.n.01": 0.5503594139911594,
+        "automaton.n.02": 0.5528204831647601,
+        "robotics.n.01": 0.5630812883499593
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/12a82920c5564d1c8ca3e334296aefe9",
+        "creator_username": "chuot0214",
+        "creator_display_name": "TUAN ANH",
+        "creator_profile_url": "https://sketchfab.com/chuot0214"
+    },
+    "filename": "std_12a82920c5564d1c8ca3e334296aefe9.glb",
+    "length": 0.6567079126834869,
+    "width": 1.7345222234725952
+}

@@ -1,0 +1,106 @@
+{
+    "description_long": "This object is a rectangular, rack-mounted control cabinet, typically used in urban infrastructure for managing power or communication systems. The front panel features a series of tactile buttons, a rotary dial, a numeric keypad, and a display area, all set within a matte black faceplate. The body is constructed from metal, likely steel, with a utilitarian gray finish and minimal surface ornamentation. The rear and side panels are plain, with a few ports and connectors for wiring and maintenance access. There are no visible ventilation grilles, and the cabinet appears robust and industrial, designed for durability in demanding environments. The overall design is functional, prioritizing accessibility and control interface visibility.",
+    "description": "A robust, rectangular rack-mounted control cabinet with a black front panel featuring buttons, a dial, and a keypad, set in a gray metal housing.",
+    "description_view_0": "Side view showing a plain gray metal panel with a small port and no visible controls.",
+    "description_view_1": "Front view displaying the main control interface: buttons, rotary dial, numeric keypad, and a display area on a black faceplate.",
+    "description_view_2": "Opposite side view, similar to view 0, with a plain gray panel and a small port.",
+    "description_view_3": "Rear view showing a flat gray metal surface with a few ports and connectors, no controls or labels.",
+    "category": "control cabinets",
+    "height": 0.13,
+    "max_dimension": 0.48,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 8,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "rotary dial",
+        "keypad",
+        "panel door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "single",
+    "attribute_door_handle_type": "none",
+    "attribute_lock_mechanism_presence": false,
+    "attribute_ventilation_grille_pattern": "none",
+    "attribute_warning_or_information_labels": [],
+    "attribute_mounting_style": "rack-mounted",
+    "uid": "f1b6421ee57c470fb488ddba51d6b248",
+    "near_synsets": {
+        "cabinet.n.04": 0.5014454607818889,
+        "control_panel.n.01": 0.5198157323203245,
+        "control_room.n.01": 0.5306671723510233,
+        "cabinet.n.01": 0.5414027487342341,
+        "cabinet.n.03": 0.5501911971811881,
+        "restraint.n.02": -1000.0,
+        "control.n.11": -1000.0,
+        "control.n.09": -1000.0,
+        "control_condition.n.01": -1000.0,
+        "control.n.01": -1000.0,
+        "command.n.06": -1000.0,
+        "control.n.03": -1000.0,
+        "control.n.05": -1000.0,
+        "cabinet.n.02": -1000.0,
+        "dominance.n.02": -1000.0,
+        "control.n.10": -1000.0,
+        "control.n.02": -1000.0
+    },
+    "synset": "cabinet.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f1b6421ee57c470fb488ddba51d6b248",
+        "creator_username": "AlessioScarpa",
+        "creator_display_name": "Alessio Scarpa",
+        "creator_profile_url": "https://sketchfab.com/AlessioScarpa"
+    },
+    "filename": "std_f1b6421ee57c470fb488ddba51d6b248.glb",
+    "length": 0.2355765476822853,
+    "width": 0.7068715393543243
+}

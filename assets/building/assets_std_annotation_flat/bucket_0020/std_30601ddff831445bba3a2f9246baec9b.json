@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a large, multi-barreled rotary rifle resembling a minigun or Gatling-style weapon, featuring six parallel barrels encased in a cylindrical shroud. The central body is robust, with visible mechanical components such as a prominent drum-shaped housing, likely for ammunition, and a complex mounting or carrying frame on top. The rear section includes a grip and trigger assembly, as well as a possible charging handle and mounting bracket. The front end is fitted with a cylindrical muzzle device, and the entire weapon is constructed primarily from dark metal with some silver metallic highlights. The design is highly industrial, with exposed gears and mechanical linkages, suggesting a high rate of fire and significant weight. This rifle is intended for heavy-duty use, likely mounted or carried with support, and is visually imposing with a tactical, military aesthetic.",
+    "description": "A heavy, multi-barreled rotary rifle with a drum housing, industrial frame, and dark metallic finish, resembling a minigun. Features exposed mechanical parts and a cylindrical muzzle device.",
+    "description_view_0": "Front view showing the six-barrel cluster and cylindrical muzzle device, emphasizing the weapon's rotary design.",
+    "description_view_1": "Side view revealing the full length of the barrels, drum housing, mounting frame, and mechanical linkages.",
+    "description_view_2": "Rear view highlighting the grip, trigger assembly, and mounting bracket, with the drum and frame partially visible.",
+    "description_view_3": "Opposite side view similar to view 1, showing the drum housing, frame, and barrel assembly from the other side.",
+    "category": "rifle",
+    "height": 0.28,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "aluminum",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "rotatable",
+        "triggerable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel cluster",
+        "grip",
+        "trigger",
+        "drum housing",
+        "mounting frame",
+        "charging handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "rotary",
+    "attribute_magazine_type": "drum",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "flash hider",
+    "uid": "30601ddff831445bba3a2f9246baec9b",
+    "near_synsets": {
+        "gatling_gun.n.01": 0.4967018458150172,
+        "rifle.n.01": 0.5051861897768161,
+        "shotgun.n.01": 0.5128572249961281,
+        "garand_rifle.n.01": 0.5132457036222396,
+        "automatic_rifle.n.01": 0.519816849651907
+    },
+    "synset": "automatic_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/30601ddff831445bba3a2f9246baec9b",
+        "creator_username": "Yojik3d",
+        "creator_display_name": "Yojik3d",
+        "creator_profile_url": "https://sketchfab.com/Yojik3d"
+    },
+    "filename": "std_30601ddff831445bba3a2f9246baec9b.glb",
+    "length": 0.9050969481468201,
+    "width": 0.26115892827510834
+}

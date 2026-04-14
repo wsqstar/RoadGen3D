@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a large, armored combat tactical vehicle with a boxy, utilitarian design and a matte black exterior. The vehicle features a reinforced cab with small, dark-tinted windows and heavy-duty side mirrors extending from both sides. Its body is constructed from thick, flat metal panels, suggesting significant ballistic protection, and the doors and seams are minimal, likely for added security. The front grille is robust and metallic, flanked by protective headlight covers and a sturdy bumper. The vehicle rides on four large, solid black wheels with deep wheel wells, and the rear is flat with two small, reinforced windows and multiple lights. There are no visible weapon mounts, camouflage patterns, or military markings, giving it a stealthy, nondescript appearance.",
+    "description": "A matte black, heavily armored tactical vehicle with a boxy shape, reinforced windows, and four large wheels. It has a robust grille, minimal external features, and no visible weapon mounts or markings.",
+    "description_view_0": "Side view showing the vehicle's long, boxy body, two large wheels, and minimal side windows.",
+    "description_view_1": "Front view highlighting the reinforced grille, bumper, and small, armored windshield with side mirrors.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the vehicle's length and armored panels.",
+    "description_view_3": "Rear view displaying two small, reinforced windows, rear lights, and a flat armored back panel.",
+    "category": "combat tactical  vehicle",
+    "height": 2.6,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.82,
+        0.05,
+        0.07,
+        0.03,
+        0.03
+    ],
+    "mass": 9000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "mirror",
+        "grille",
+        "bumper",
+        "light"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "none visible.",
+    "attribute_armor_plating": "Full body coverage with thick, flat metal panels; reinforced cab and doors; no visible sloping or modular features.",
+    "attribute_camouflage_pattern": "none visible.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "Four large, solid black tires with minimal visible tread; appear reinforced for heavy-duty use.",
+    "uid": "26e809cce40e4359a3199649f12ef295",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.5071093443821201,
+        "tank.n.01": 0.5147181288597475,
+        "reconnaissance_vehicle.n.01": 0.5181764256705186,
+        "armored_car.n.02": 0.518451068269089,
+        "assault_gun.n.02": 0.525810346807583,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/26e809cce40e4359a3199649f12ef295",
+        "creator_username": "DanielZhabotinsky",
+        "creator_display_name": "Daniel Zhabotinsky",
+        "creator_profile_url": "https://sketchfab.com/DanielZhabotinsky"
+    },
+    "filename": "std_26e809cce40e4359a3199649f12ef295.glb",
+    "length": 6.4022297859191895,
+    "width": 2.717484474182129
+}

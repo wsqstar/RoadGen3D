@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a cylindrical, metal trash bin with a weathered blue finish and a hinged, flat lid. The exterior surface is heavily worn, showing patches of rust and paint chipping, giving it a rugged, urban appearance. A prominent white recycling symbol is stenciled on the front, indicating its intended use for recyclable materials. The lid features a rectangular, top-mounted handle for easy lifting, and is attached to the bin with visible hinges. The interior is hollow and spacious, suitable for holding a significant volume of waste. There are no visible wheels or side handles, and the bin is designed to rest directly on the ground.",
+    "description": "A weathered blue metal trash bin with a hinged flat lid, top handle, and a white recycling symbol on the front.",
+    "description_view_0": "Front view showing the open lid, rectangular top handle, and the recycling symbol on the bin's face.",
+    "description_view_1": "Side view with the lid partially open, highlighting the recycling symbol and the bin's cylindrical shape.",
+    "description_view_2": "Top-down view displaying the flat lid with a rectangular handle and the worn blue surface.",
+    "description_view_3": "Rear angled view showing the lid's hinge attachment and the absence of any side handles or wheels.",
+    "category": "trash bin",
+    "height": 0.7,
+    "max_dimension": 0.4,
+    "materials": [
+        "metal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 7.5,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 25,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "handle",
+        "hinge"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "flat, hinged",
+    "attribute_opening_mechanism": "hand lift",
+    "attribute_presence_of_wheels": false,
+    "attribute_handle_design": "top-mounted rectangular handle",
+    "attribute_labeling_or_signage": "white recycling symbol on the front",
+    "uid": "486deda4dc314c9b8ad7861dff52fd14",
+    "near_synsets": {
+        "recycling_bin.n.01": 0.47932598773098667,
+        "bin_liner.n.01": 0.5273738649872001,
+        "dumpster.n.01": 0.5281439684032438,
+        "garbage.n.03": 0.530616090837434,
+        "wastepaper_basket.n.01": 0.5416411443181237,
+        "bin.n.01": -1000.0,
+        "folderol.n.01": -1000.0,
+        "ashcan.n.01": -1000.0,
+        "trash.n.02": -1000.0,
+        "methamphetamine.n.01": -1000.0,
+        "bin.n.02": -1000.0,
+        "rubbish.n.01": -1000.0,
+        "bank_identification_number.n.01": -1000.0
+    },
+    "synset": "recycling_bin.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/486deda4dc314c9b8ad7861dff52fd14",
+        "creator_username": "helsingr",
+        "creator_display_name": "Helsingr",
+        "creator_profile_url": "https://sketchfab.com/helsingr"
+    },
+    "filename": "std_486deda4dc314c9b8ad7861dff52fd14.glb",
+    "length": 0.7423153221607208,
+    "width": 0.4285542815923691
+}

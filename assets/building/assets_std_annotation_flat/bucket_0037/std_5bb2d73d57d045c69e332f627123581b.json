@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a modern, cubic apartment building with a flat roof that features a rooftop pool and a small lounging area. The exterior is predominantly a muted pink color, accented by a row of small lights along the roofline and large, rectangular windows on the upper and lower floors. The building has two visible stories, each with distinct living spaces, including a kitchen, dining area, bedrooms, and bathrooms, all furnished in a playful, colorful style. The front facade is characterized by a large window and a glass door, while the rear is mostly solid with minimal fenestration. The rooftop area is bordered by a low wall and includes a pool with a ladder and a floating mat. The overall design is boxy and geometric, with clean lines and a minimalist aesthetic.",
+    "description": "A modern, box-shaped apartment building with a rooftop pool, large windows, and a pink exterior accented by rooftop lights. The interior is visible and colorfully furnished across two floors.",
+    "description_view_0": "The rear view shows a solid pink wall with only a few small rooftop features and no visible windows or doors.",
+    "description_view_1": "This side view displays a large window on the upper floor, a smaller window below, and a glass door with an exterior staircase.",
+    "description_view_2": "The front cutaway reveals the fully furnished two-story interior, including living, dining, and bedroom spaces, as well as the rooftop pool.",
+    "description_view_3": "The opposite side view features a mostly solid pink wall with a single large window on the lower floor and rooftop details.",
+    "category": "apartment building",
+    "height": 10.0,
+    "max_dimension": 12.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "plastic",
+        "metal",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.06,
+        0.03,
+        0.03
+    ],
+    "mass": 180000,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "pool ladder",
+        "furniture"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "pink",
+        "white",
+        "purple",
+        "blue",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 2,
+    "attribute_balcony_presence": false,
+    "attribute_window_arrangement": "Windows are large, rectangular, and asymmetrically placed, with some grouped and others isolated, providing a modern, irregular pattern.",
+    "attribute_entrance_type": "single door",
+    "attribute_architectural_style": "Contemporary",
+    "uid": "5bb2d73d57d045c69e332f627123581b",
+    "near_synsets": {
+        "apartment_building.n.01": 0.5210786484578029,
+        "penthouse.n.01": 0.5326244771277201,
+        "high-rise.n.01": 0.5489268499939106,
+        "suite.n.02": 0.5512845235043017,
+        "block.n.05": 0.5521683846571448,
+        "construction.n.01": -1000.0,
+        "building.n.04": -1000.0,
+        "apartment.n.01": -1000.0,
+        "building.n.01": -1000.0,
+        "construction.n.07": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5bb2d73d57d045c69e332f627123581b",
+        "creator_username": "s20728",
+        "creator_display_name": "s20728",
+        "creator_profile_url": "https://sketchfab.com/s20728"
+    },
+    "filename": "std_5bb2d73d57d045c69e332f627123581b.glb",
+    "length": 8.264461994171143,
+    "width": 9.586773872375488
+}

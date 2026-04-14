@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a freestanding ATM machine with a robust, rectangular structure and a slightly rounded top. The front face features a prominent gold 'ATM' label above a recessed screen area, a numeric keypad, and a card slot, all set within a blue and black housing. The lower section includes a gold-colored panel, likely for cash or receipt dispensing, and the overall body is constructed from sturdy materials, giving it a secure and tamper-resistant appearance. The sides and back are plain, with a matte black finish and no visible access points or branding. The ATM is designed for outdoor or semi-outdoor urban environments, with a compact footprint suitable for sidewalks or building entrances. Its design prioritizes user accessibility and security, with all interactive elements concentrated on the front face.",
+    "description": "A robust, blue and black freestanding ATM with a gold 'ATM' label, keypad, card slot, and dispensing panel on the front. The sides and back are plain and matte black, emphasizing security and durability.",
+    "description_view_0": "The front view shows the gold 'ATM' label, screen area, keypad, card slot, and a gold dispensing panel, all set within a blue and black frame.",
+    "description_view_1": "The left side view reveals a plain, solid black surface with no visible features or openings.",
+    "description_view_2": "The rear view displays a smooth, featureless black panel, emphasizing the ATM's secure and tamper-resistant design.",
+    "description_view_3": "The right side view is identical to the left, showing a plain, solid black surface with no interactive elements.",
+    "category": "atm",
+    "height": 1.5,
+    "max_dimension": 1.5,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "electronic_components",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 250,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "insertable",
+        "withdrawable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "screen",
+        "keypad",
+        "card slot",
+        "cash dispenser",
+        "receipt dispenser"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black",
+        "gold"
+    ],
+    "colors_composition": [
+        0.4,
+        0.5,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_screen_interface": "A small, rectangular recessed screen is located on the upper front, surrounded by a blue bezel, with no visible touch interface or detailed UI elements.",
+    "attribute_card_slot": "A single horizontal card slot is visible below the keypad on the front face, outlined in gold, with no visible illumination or protective flap.",
+    "attribute_keypad_layout": "A 4x3 grid of square keys, likely numbered, is positioned directly below the screen and above the card slot.",
+    "attribute_bank_branding": "The word 'ATM' is prominently displayed in gold lettering above the screen; no specific bank branding or logos are visible.",
+    "attribute_receipt_dispenser": "A gold-colored horizontal slot below the keypad, likely serving as the receipt dispenser, with no additional labeling or door.",
+    "uid": "83a8dde1ae4546cf9a0e68d6e7b6947a",
+    "near_synsets": {
+        "cash_machine.n.01": 0.5247813335350624,
+        "automat.n.01": 0.5840706189891487,
+        "vending_machine.n.01": 0.598750311739636,
+        "acquirer.n.03": 0.6076298344966876,
+        "cash_register.n.01": 0.6106903747519362,
+        "standard_atmosphere.n.01": -1000.0,
+        "asynchronous_transfer_mode.n.01": -1000.0
+    },
+    "synset": "standard_atmosphere.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/83a8dde1ae4546cf9a0e68d6e7b6947a",
+        "creator_username": "abdillaamy",
+        "creator_display_name": "abdillaamy",
+        "creator_profile_url": "https://sketchfab.com/abdillaamy"
+    },
+    "filename": "std_83a8dde1ae4546cf9a0e68d6e7b6947a.glb",
+    "length": 0.41714878380298615,
+    "width": 0.5185505151748657
+}

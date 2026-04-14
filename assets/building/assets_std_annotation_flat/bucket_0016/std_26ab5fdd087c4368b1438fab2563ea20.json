@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a weathered, cylindrical metal barrel with a blue base color, heavily mottled with rust and corrosion across its surface. The barrel features two prominent horizontal reinforcement bands encircling its body, dividing it into three main sections. On one side, a yellow triangular biohazard warning symbol is visible, while another side displays a yellow flammable material symbol, both faded and partially obscured by rust. The top and bottom are flat and sealed, with no visible openings or spouts, indicating the barrel is closed. The surface texture appears rough and pitted, suggesting long-term exposure to harsh outdoor conditions. This type of barrel is commonly found in industrial or urban environments, often used for storing hazardous or chemical materials.",
+    "description": "A rusted blue metal barrel with faded yellow hazard symbols and heavy surface corrosion, reinforced by two horizontal bands.",
+    "description_view_0": "Front view shows the yellow biohazard symbol prominently on a rusted blue surface with visible reinforcement bands.",
+    "description_view_1": "This side view displays extensive rust and corrosion, with no visible markings or symbols.",
+    "description_view_2": "Opposite side features a yellow flammable material symbol, also faded and surrounded by rust patches.",
+    "description_view_3": "Back view reveals a plain, heavily rusted surface with no visible symbols or markings.",
+    "category": "barrel or bucket",
+    "height": 0.9,
+    "max_dimension": 0.6,
+    "materials": [
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "brown",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.8,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "metal hoops at top, middle, and bottom",
+    "attribute_labeling_or_markings": "yellow biohazard and flammable symbols",
+    "attribute_placement_location": "industrial",
+    "uid": "26ab5fdd087c4368b1438fab2563ea20",
+    "near_synsets": {
+        "barrel.n.03": 0.5214665596416269,
+        "barrel.n.02": 0.5236019952231548,
+        "bucket.n.01": 0.5361572316207295,
+        "barrels.n.01": 0.5416571937988164,
+        "beer_barrel.n.01": 0.5477559948154394,
+        "barrel.n.01": -1000.0,
+        "barrel.n.05": -1000.0,
+        "barrel.n.04": -1000.0,
+        "bucket.n.02": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/26ab5fdd087c4368b1438fab2563ea20",
+        "creator_username": "K1TT3N",
+        "creator_display_name": "Oskar \"K1TT3N\" Adamczyk",
+        "creator_profile_url": "https://sketchfab.com/K1TT3N"
+    },
+    "filename": "std_26ab5fdd087c4368b1438fab2563ea20.glb",
+    "length": 0.5486895442008972,
+    "width": 0.5486894249916077
+}

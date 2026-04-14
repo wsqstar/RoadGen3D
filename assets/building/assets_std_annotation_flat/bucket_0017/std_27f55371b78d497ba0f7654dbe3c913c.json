@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a cylindrical bomb with a robust, industrial design, featuring a matte black body accented by two prominent red-orange bands near each end. One end is rounded and smooth, while the opposite end is flat with a central red dot, possibly indicating a trigger or access point. The flat end is encircled by a black and yellow hazard-striped ring, enhancing its warning appearance. A yellow triangular explosive hazard symbol is clearly visible on the side, suggesting its dangerous contents. The surface appears metallic with some wear and subtle scratches, indicating it is built for durability. The overall form is compact and streamlined, suitable for placement or concealment in urban environments.",
+    "description": "A compact, cylindrical black bomb with red-orange bands, a hazard symbol, and a hazard-striped end cap, featuring a metallic, worn surface.",
+    "description_view_0": "Side view showing the yellow explosive hazard symbol and both red-orange bands, with the hazard-striped end cap visible.",
+    "description_view_1": "View of the rounded, smooth black end, with minimal visible features except for the subtle sheen.",
+    "description_view_2": "Opposite side view, showing the plain black cylindrical body and both red-orange bands, without the hazard symbol.",
+    "description_view_3": "View of the flat end with a central red dot, surrounded by the hazard-striped ring, emphasizing the potential trigger or access point.",
+    "category": "bomb",
+    "height": 0.35,
+    "max_dimension": 0.55,
+    "materials": [
+        "steel",
+        "plastic",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.1,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 8.5,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 85,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "button",
+        "end cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red-orange",
+        "yellow",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [
+        "explosive hazard symbol"
+    ],
+    "attribute_detonation_mechanism": "The flat end features a central red button or indicator, suggesting a pressable trigger mechanism for detonation.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": true,
+    "uid": "27f55371b78d497ba0f7654dbe3c913c",
+    "near_synsets": {
+        "cherry_bomb.n.01": 0.5111042129183418,
+        "pipe_bomb.n.01": 0.5281380607700238,
+        "bomb.n.01": 0.5338962301874481,
+        "dirty_bomb.n.01": 0.5347618286553285,
+        "plastic_bomb.n.01": 0.5423243711444654,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/27f55371b78d497ba0f7654dbe3c913c",
+        "creator_username": "MauModel",
+        "creator_display_name": "MauModel",
+        "creator_profile_url": "https://sketchfab.com/MauModel"
+    },
+    "filename": "std_27f55371b78d497ba0f7654dbe3c913c.glb",
+    "length": 0.760670930147171,
+    "width": 0.3262811154127121
+}

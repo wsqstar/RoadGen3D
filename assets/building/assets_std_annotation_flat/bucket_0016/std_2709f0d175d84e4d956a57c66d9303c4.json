@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a large, utilitarian truck with a boxy cargo compartment mounted on a robust chassis. The front features a rounded hood, prominent headlights, and a protective grille, while the cab is compact and separated from the cargo area by a small gap. The truck has three axles with six large wheels, indicating it is designed for heavy-duty transport. On the side, a metal ladder provides access to the cab or roof, and there are two large, box-like containers positioned adjacent to the rear. The cargo area is fully enclosed, suggesting it is used for secure or weather-protected transport. The exterior is primarily gray with some darker accents, and the overall design is functional and industrial.",
+    "description": "A large, gray, boxy truck with a rounded front, enclosed cargo area, and three axles, designed for heavy-duty urban transport.",
+    "description_view_0": "Front view showing the rounded hood, headlights, grille, and two large containers beside the truck.",
+    "description_view_1": "Side view highlighting the cab, ladder, three axles, and the long, enclosed cargo compartment.",
+    "description_view_2": "Rear view displaying the back of the cargo box and the two adjacent containers.",
+    "description_view_3": "Angled rear-side view showing the containers, rear wheels, and the separation between cab and cargo area.",
+    "category": "truck",
+    "height": 3.2,
+    "max_dimension": 8.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.1,
+        0.05,
+        0.02
+    ],
+    "mass": 9500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "ladder",
+        "headlight",
+        "cargo box door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.85,
+        0.13,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "box",
+    "attribute_wheelbase": 4.2,
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "2709f0d175d84e4d956a57c66d9303c4",
+    "near_synsets": {
+        "truck.n.01": 0.45363982887059306,
+        "van.n.05": 0.45594414031869906,
+        "lorry.n.02": 0.4673701807785974,
+        "trailer.n.03": 0.49005148286255606,
+        "cargo_container.n.01": 0.4918683307263282,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2709f0d175d84e4d956a57c66d9303c4",
+        "creator_username": "onlinearts",
+        "creator_display_name": "onlinearts",
+        "creator_profile_url": "https://sketchfab.com/onlinearts"
+    },
+    "filename": "std_2709f0d175d84e4d956a57c66d9303c4.glb",
+    "length": 6.103823900222778,
+    "width": 4.425900459289551
+}

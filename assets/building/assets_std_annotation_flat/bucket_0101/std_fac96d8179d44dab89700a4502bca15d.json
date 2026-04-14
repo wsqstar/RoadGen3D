@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a tripod-mounted recoilless rifle, featuring a long, cylindrical barrel with a slightly flared muzzle and a prominent rear breech. The barrel is painted in a dark olive green color, with a distinct orange band near the muzzle, and is supported by a robust, angular metal frame. The tripod base consists of three sturdy legs, providing stability for the weapon when deployed on the ground. The central mounting assembly includes adjustment mechanisms and a circular handwheel, likely for aiming and elevation control. The rear of the rifle has a rounded breech area, and the overall construction suggests a heavy, durable build suitable for anti-armor or anti-fortification roles. The design is utilitarian, with exposed rivets and bolts, and lacks any visible advanced optics or electronic components.",
+    "description": "A tripod-mounted recoilless rifle with a long olive green barrel, orange muzzle band, and robust metal frame. Features a circular handwheel and sturdy tripod legs for stability.",
+    "description_view_0": "Front view showing the circular muzzle, orange band, and symmetrical tripod legs.",
+    "description_view_1": "Side view highlighting the full length of the barrel, the mounting frame, and the handwheel mechanism.",
+    "description_view_2": "Rear view displaying the breech area and the tripod's spread, with the barrel extending away.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the barrel, frame, and tripod from the other side.",
+    "category": "rifle",
+    "height": 1.1,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "paint",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel",
+        "handwheel",
+        "tripod legs",
+        "breech"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "black",
+        "orange",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "none",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "none",
+    "uid": "fac96d8179d44dab89700a4502bca15d",
+    "near_synsets": {
+        "light_arm.n.01": 0.52761382275973,
+        "rifle.n.01": 0.5318892898436687,
+        "dragunov.n.01": 0.5348334159943585,
+        "mauser.n.02": 0.5410396246511153,
+        "carbine.n.01": 0.545129746018491
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fac96d8179d44dab89700a4502bca15d",
+        "creator_username": "andrej.grave",
+        "creator_display_name": "Andrej Grave",
+        "creator_profile_url": "https://sketchfab.com/andrej.grave"
+    },
+    "filename": "std_fac96d8179d44dab89700a4502bca15d.glb",
+    "length": 1.7836360931396484,
+    "width": 0.5931978821754456
+}

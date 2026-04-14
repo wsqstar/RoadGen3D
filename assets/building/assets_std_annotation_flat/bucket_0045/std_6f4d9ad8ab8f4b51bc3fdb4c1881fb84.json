@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a classic steam locomotive with a cylindrical boiler, a prominent smokestack, and a large cab at the rear. The body is primarily dark green with black and red accents, and it features multiple large driving wheels connected by visible rods. The front of the train has a circular faceplate and buffers, while the sides display detailed wheel assemblies and subtle paneling. The cab at the rear is boxy and slightly elevated, with a roof that extends over the back. There are no visible doors or windows on the sides, and the train appears to be a single engine unit without attached carriages.",
+    "description": "A dark green and black steam locomotive with red accents, large driving wheels, and a boxy rear cab. The train features a cylindrical boiler and detailed wheel assemblies.",
+    "description_view_0": "Front view showing the circular faceplate, buffers, and the cylindrical boiler extending backward.",
+    "description_view_1": "Side view revealing the full length of the locomotive, large driving wheels, and the boxy cab at the rear.",
+    "description_view_2": "Rear view highlighting the back of the cab and the end of the locomotive, with minimal visible detail.",
+    "description_view_3": "Opposite side view similar to view 1, showing the wheels, boiler, and cab from the other side.",
+    "category": "train",
+    "height": 4.2,
+    "max_dimension": 18.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.05,
+        0.02
+    ],
+    "mass": 90000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "door",
+        "lever",
+        "button",
+        "valve",
+        "buffer"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "red",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "steam locomotive",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "no visible doors",
+    "attribute_window_arrangement": "no visible windows",
+    "uid": "6f4d9ad8ab8f4b51bc3fdb4c1881fb84",
+    "near_synsets": {
+        "steam_locomotive.n.01": 0.46347421755657314,
+        "diesel_locomotive.n.01": 0.49259913423000296,
+        "train.n.01": 0.49582742121796586,
+        "locomotive.n.01": 0.5017247016281956,
+        "train_set.n.01": 0.5036868384804064,
+        "train.n.04": -1000.0,
+        "caravan.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "train.n.05": -1000.0,
+        "gearing.n.01": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6f4d9ad8ab8f4b51bc3fdb4c1881fb84",
+        "creator_username": "Mickael.Chan",
+        "creator_display_name": "Mickael.Chan",
+        "creator_profile_url": "https://sketchfab.com/Mickael.Chan"
+    },
+    "filename": "std_6f4d9ad8ab8f4b51bc3fdb4c1881fb84.glb",
+    "length": 15.085463523864746,
+    "width": 3.1415231227874756
+}

@@ -1,0 +1,107 @@
+{
+    "description_long": "This object consists of two large, horizontally-oriented cylindrical tanks stacked vertically, both with rounded ends and a smooth metallic surface. A prominent vertical pipe rises from the top tank, accompanied by a set of bent pipes and a rectangular black hatch or access panel. A blue, flanged circular component, likely a valve or inspection port, is attached to the side of the upper tank and is surrounded by a black metal platform with railings, providing access for maintenance. The tanks are supported by a sturdy black metal frame that elevates the structure above the ground. The overall design is industrial, with visible pipework and fittings suggesting it is used for storing or processing fluids or gases. The absence of visible signage or ladders indicates a focus on containment and controlled access.",
+    "description": "A pair of large, horizontally-stacked cylindrical metal tanks with attached pipes, a blue valve, and a surrounding black metal platform and frame.",
+    "description_view_0": "The side view shows both cylindrical tanks, the vertical pipe, bent pipework, blue valve, and the full extent of the black metal platform and frame.",
+    "description_view_1": "The front view highlights the blue valve and circular flange, with the tanks aligned behind the platform's railings.",
+    "description_view_2": "The rear side view displays the tanks' rounded ends, the blue valve from the side, and the platform extending around the tanks.",
+    "description_view_3": "The back view emphasizes the bent pipework and the vertical pipe, with the tanks' ends and the platform's structure visible.",
+    "category": "storage tank",
+    "height": 2.5,
+    "max_dimension": 5.0,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 6500,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "turnable",
+        "connectable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "valve",
+        "pipe",
+        "hatch",
+        "platform railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "blue"
+    ],
+    "colors_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [
+        "inlet pipe",
+        "outlet pipe",
+        "valve"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_architectural_style": "cylindrical horizontal",
+    "uid": "994663469cf44997ad45e38728b9d446",
+    "near_synsets": {
+        "tank.n.02": 0.46349075861588157,
+        "tank_farm.n.01": 0.507046330620338,
+        "water_tower.n.01": 0.5210306376603382,
+        "reservoir.n.03": 0.5229621710053304,
+        "gas_tank.n.01": 0.5360761197278022,
+        "repositing.n.01": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "storage.n.01": -1000.0,
+        "tank.n.03": -1000.0,
+        "storage.n.03": -1000.0,
+        "memory.n.04": -1000.0,
+        "tank.n.01": -1000.0,
+        "cooler.n.03": -1000.0,
+        "storage.n.04": -1000.0,
+        "tank_car.n.01": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/994663469cf44997ad45e38728b9d446",
+        "creator_username": "lgclavijop",
+        "creator_display_name": "lgclavijop",
+        "creator_profile_url": "https://sketchfab.com/lgclavijop"
+    },
+    "filename": "std_994663469cf44997ad45e38728b9d446.glb",
+    "length": 3.466720938682556,
+    "width": 2.526084303855896
+}

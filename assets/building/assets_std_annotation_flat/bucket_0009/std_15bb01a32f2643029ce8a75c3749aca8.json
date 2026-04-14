@@ -1,0 +1,113 @@
+{
+    "description_long": "This is a two-story commercial auto repair shop with a flat roof and a rectangular footprint, featuring a weathered facade. The front of the building displays large signage reading 'STANDARD OIL COMPANY' and 'MARINO AUTO ELECTRICS FIRST FOR SERVICE', with two prominent red roll-up garage doors and a smaller entry door. The exterior walls are primarily white with red accents, and the upper story has barred windows and a faded, aged appearance. The side of the building includes additional signage advertising car alarms, stereos, and other services, while the rear is more utilitarian with exposed brickwork, small windows, and a metal service door. The roof is bordered by a low parapet and has a fenced-off section, suggesting possible rooftop access or storage.",
+    "description": "A weathered two-story auto repair shop with red roll-up garage doors, prominent signage, and a flat roof with a fenced section. The facade is white with red accents and features barred windows and a side entrance.",
+    "description_view_0": "Front and right side view showing two red roll-up garage doors, main signage, a small entry door, and additional yellow signage on the right wall.",
+    "description_view_1": "Angled front-left view highlighting the main facade, garage doors, and the adjacent sidewalk and street.",
+    "description_view_2": "Rear view displaying exposed brickwork, a metal service door, small windows, and the fenced rooftop area.",
+    "description_view_3": "Direct front view focusing on the main signage, two garage doors, and the sidewalk in front of the building.",
+    "category": "auto repair shop",
+    "height": 7.5,
+    "max_dimension": 15.0,
+    "materials": [
+        "concrete",
+        "brick",
+        "glass",
+        "metal",
+        "wood",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.08,
+        0.1,
+        0.05,
+        0.02,
+        0.05
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "garage door",
+        "entry door",
+        "windows",
+        "signage"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "gray",
+        "black",
+        "yellow",
+        "brown"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.08,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_signage": "Large 'STANDARD OIL COMPANY' sign above the upper windows, 'MARINO AUTO ELECTRICS FIRST FOR SERVICE' above the garage doors, and yellow signage on the right side advertising car alarms, stereos, and other services.",
+    "attribute_garage_doors": "2 red roll-up garage doors, metal, each approximately 3 meters wide and 3 meters tall, located on the front facade.",
+    "attribute_vehicle_lifts": "none",
+    "attribute_parked_cars_awaiting_service": "none",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "15bb01a32f2643029ce8a75c3749aca8",
+    "near_synsets": {
+        "repair_shop.n.01": 0.5047905361411829,
+        "garage.n.02": 0.5089042871270018,
+        "garage.n.01": 0.5575087007429954,
+        "carport.n.01": 0.5734733933180026,
+        "auto_mechanics.n.01": 0.5759952146784133,
+        "shop_class.n.01": -1000.0,
+        "car.n.01": -1000.0,
+        "repair.n.02": -1000.0,
+        "workshop.n.01": -1000.0,
+        "haunt.n.01": -1000.0,
+        "shop.n.01": -1000.0,
+        "repair.n.01": -1000.0
+    },
+    "synset": "garage.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/15bb01a32f2643029ce8a75c3749aca8",
+        "creator_username": "mauther",
+        "creator_display_name": "mauther",
+        "creator_profile_url": "https://sketchfab.com/mauther"
+    },
+    "filename": "std_15bb01a32f2643029ce8a75c3749aca8.glb",
+    "length": 12.877118110656738,
+    "width": 12.216097831726074
+}

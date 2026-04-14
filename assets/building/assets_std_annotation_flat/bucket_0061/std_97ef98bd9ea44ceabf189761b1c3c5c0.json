@@ -1,0 +1,104 @@
+{
+    "description_long": "This all-terrain vehicle features a robust, angular armored body with a matte green finish and visible weathering, suggesting heavy use in rugged environments. The vehicle is equipped with six large, blocky wheels, each with pronounced, reinforced hubs and thick, all-terrain treads designed for maximum traction on uneven surfaces. The front and rear ends are sloped for improved obstacle negotiation, and the sides display utilitarian details such as hatches, vents, and a visible number '15' for identification. The top of the vehicle includes a circular hatch, likely for crew access or observation, and several raised panels and equipment mounts. The exterior is primarily constructed from metal, with some rubber components on the wheels and possible glass or composite materials for vision ports. The overall design emphasizes durability, off-road capability, and protection, making it suitable for urban and off-road scenarios.",
+    "description": "A heavily armored, green all-terrain vehicle with six large, rugged wheels and a sloped, utilitarian body, designed for durability and off-road performance.",
+    "description_view_0": "Front view shows the sloped armored nose, central hatch, and the wide stance of the front wheels.",
+    "description_view_1": "Left side view highlights the six large wheels, side hatches, and the number '15' marking.",
+    "description_view_2": "Rear view reveals the back armor plating, rear wheel configuration, and the vehicle's overall width.",
+    "description_view_3": "Right side view mirrors the left, showing the wheels, side details, and the vehicle's length.",
+    "category": "all-terrain vehicle",
+    "height": 2.2,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "composite",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 8500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "wheel",
+        "tire",
+        "handle",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 6,
+    "attribute_tire_tread_pattern": "The tires feature a blocky, all-terrain tread pattern with deep grooves and large lugs, optimized for traction on rough and uneven surfaces.",
+    "attribute_suspension_type": "independent",
+    "attribute_presence_of_roll_cage": true,
+    "attribute_handlebar_or_steering_wheel_type": "round steering wheel",
+    "uid": "97ef98bd9ea44ceabf189761b1c3c5c0",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.49927189448983494,
+        "armored_vehicle.n.01": 0.506775352034426,
+        "reconnaissance_vehicle.n.01": 0.5081212442232668,
+        "assault_gun.n.02": 0.5189199117963765,
+        "sport_utility.n.01": 0.5190368284101597,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "armored_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/97ef98bd9ea44ceabf189761b1c3c5c0",
+        "creator_username": "morepolys",
+        "creator_display_name": "morepolys",
+        "creator_profile_url": "https://sketchfab.com/morepolys"
+    },
+    "filename": "std_97ef98bd9ea44ceabf189761b1c3c5c0.glb",
+    "length": 4.643433094024658,
+    "width": 2.330328345298767
+}

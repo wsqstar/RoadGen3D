@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a stylized, mounted rifle or turret with a robust, industrial design, featuring a large cylindrical barrel that tapers to a reddish-orange muzzle. The main body is predominantly yellow with green structural supports and a wide, stable base, suggesting it is designed for stationary use. The barrel is reinforced with metallic bands and has a few small, rectangular attachments on the top, possibly representing sighting or control modules. The base is angular and broad, colored in a muted yellow with black accents, providing stability and a platform for rotation or elevation adjustment. The rear of the rifle is flat and closed, with a dark central area that may represent a breech or loading port. The overall appearance is utilitarian, with visible wear and a matte finish, suitable for deployment in urban defense or security scenarios.",
+    "description": "A large, mounted, industrial-style rifle with a yellow cylindrical barrel, green supports, and a wide, angular base. The design is robust and utilitarian, with visible wear and a matte finish.",
+    "description_view_0": "Front view showing the wide, open muzzle with orange and red coloring, flanked by green supports and a broad, angular base.",
+    "description_view_1": "Side view highlighting the length of the yellow barrel, the green mounting arms, and the rectangular attachments on top.",
+    "description_view_2": "Rear view displaying the flat, closed end of the barrel with a dark central area and the symmetrical base.",
+    "description_view_3": "Opposite side view showing the barrel profile, top attachments, and the structural support details.",
+    "category": "rifle",
+    "height": 0.8,
+    "max_dimension": 1.2,
+    "materials": [
+        "painted metal",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel",
+        "mount",
+        "control module",
+        "base"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "green",
+        "orange",
+        "red",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "short",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "none",
+    "uid": "004d1e9e13934e319094151a4fad823f",
+    "near_synsets": {
+        "rifle.n.01": 0.5175759680869632,
+        "garand_rifle.n.01": 0.5199517218434134,
+        "light_arm.n.01": 0.5312023041640528,
+        "twenty-two_rifle.n.01": 0.5327674332452511,
+        "mauser.n.02": 0.537243325969487
+    },
+    "synset": "twenty-two_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/004d1e9e13934e319094151a4fad823f",
+        "creator_username": "TrapPark",
+        "creator_display_name": "trapART",
+        "creator_profile_url": "https://sketchfab.com/TrapPark"
+    },
+    "filename": "std_004d1e9e13934e319094151a4fad823f.glb",
+    "length": 0.8179369866847992,
+    "width": 0.6369737088680267
+}

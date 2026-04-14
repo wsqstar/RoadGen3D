@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a large, rectangular metal dumpster with a weathered blue exterior, covered in rust patches and graffiti. The front features a white notice label and a prominent circular graffiti mark, while the rear is marked with green spray-painted symbols and numbers. The lid is flat, split into two hinged black sections made of ribbed metal or heavy-duty plastic, designed to be lifted for access. The sides are relatively plain but show additional graffiti and signs of wear, with reinforced edges and a slight overhang from the lid. There are no visible wheels, but sturdy bar handles are present on the sides for maneuvering. This dumpster is typical of those found in urban environments, intended for bulk waste collection and temporary storage.",
+    "description": "A large, blue, rusted metal dumpster with a split black lid, graffiti, and side bar handles, commonly used for urban waste collection.",
+    "description_view_0": "Front view shows the white notice label, circular graffiti, and the split black lid.",
+    "description_view_1": "Left side view highlights the bar handle and visible rust, with some red graffiti near the bottom.",
+    "description_view_2": "Rear view displays green graffiti and numbers, with the lid's ribbed texture visible.",
+    "description_view_3": "Right side view shows another bar handle and green graffiti, with less prominent rust.",
+    "category": "dumpster",
+    "height": 1.3,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black",
+        "rust brown",
+        "white",
+        "green",
+        "red"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.15,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "split, flat, hinged lid with two sections made of ribbed black metal or heavy-duty plastic; no visible locking mechanism",
+    "attribute_wheel_presence": false,
+    "attribute_handle_design": "two straight bar handles, one on each side, made of metal, horizontally mounted near the top edge",
+    "attribute_warning_labels": [
+        {
+            "color": "white and blue",
+            "shape": "rectangular",
+            "content": "NOTICE PRIVATE DUMPSTER NOT FOR PUBLIC USE"
+        }
+    ],
+    "attribute_placement_location": "outdoor commercial area or residential alley",
+    "uid": "5ab50dee47d243c4af3d2b0bc9bcac6a",
+    "near_synsets": {
+        "dumpster.n.01": 0.42299152957733493,
+        "garbage.n.03": 0.4953230105676115,
+        "garbage_truck.n.01": 0.49846846555690505,
+        "dump.n.02": 0.5212073494263492,
+        "recycling_bin.n.01": 0.524012724275324
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5ab50dee47d243c4af3d2b0bc9bcac6a",
+        "creator_username": "Elke_Bo",
+        "creator_display_name": "Elke_Bo",
+        "creator_profile_url": "https://sketchfab.com/Elke_Bo"
+    },
+    "filename": "std_5ab50dee47d243c4af3d2b0bc9bcac6a.glb",
+    "length": 1.0771486163139343,
+    "width": 2.1640625
+}

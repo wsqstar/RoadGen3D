@@ -1,0 +1,89 @@
+{
+    "description_long": "This object is a compact, tactical-style shotgun with a matte black finish and a detachable box magazine positioned below the receiver. The body is streamlined, with a prominent pistol grip and a short, cylindrical barrel that extends forward from the main housing. The receiver is robust and slightly rounded, with minimal external ornamentation, emphasizing functionality. The trigger guard is rounded and encloses a standard trigger, while the magazine appears to be designed for quick reloading. The overall design suggests a modern, utilitarian firearm suitable for close-quarters use. The materials and construction indicate durability and ease of handling in urban environments.",
+    "description": "A compact, matte black tactical shotgun with a detachable box magazine, pistol grip, and short barrel, designed for close-quarters use.",
+    "description_view_0": "Side view showing the full length of the shotgun, the pistol grip, trigger guard, and the detachable magazine below the receiver.",
+    "description_view_1": "Front view highlighting the circular barrel opening and the narrow profile of the shotgun.",
+    "description_view_2": "Opposite side view, mirroring view 0, with clear visibility of the magazine and grip.",
+    "description_view_3": "Rear view showing the back of the receiver and grip, with the barrel extending away from the viewer.",
+    "category": "shotgun",
+    "height": 0.25,
+    "max_dimension": 0.8,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pistol grip",
+        "trigger",
+        "trigger guard",
+        "magazine",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, no visible ribbing or venting, short barrel length",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "semi-automatic",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with smooth edges and no visible reinforcement or finger grooves",
+    "uid": "bf06824d659149a3a67a3a7bae502251",
+    "near_synsets": {
+        "sawed-off_shotgun.n.01": 0.49079817648592056,
+        "shotgun.n.01": 0.508874275978049,
+        "pistol.n.01": 0.5287196807846143,
+        "gas_gun.n.01": 0.5349951232708628,
+        "shotgun_shell.n.01": 0.5363443484154191
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bf06824d659149a3a67a3a7bae502251",
+        "creator_username": "Matt-AeroLab",
+        "creator_display_name": "Matt Rafferty",
+        "creator_profile_url": "https://sketchfab.com/Matt-AeroLab"
+    },
+    "filename": "std_bf06824d659149a3a67a3a7bae502251.glb",
+    "length": 0.42492857575416565,
+    "width": 0.036002786830067635
+}

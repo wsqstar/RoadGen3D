@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a modern, angular combat tactical vehicle with a low-profile, sloped hull and a prominent, forward-facing cannon mounted on a turret. The body is covered in flat, geometric armor panels, giving it a stealthy, faceted appearance. The vehicle rides on a set of continuous tracks, visible along the lower sides, which are typical for heavy armored vehicles such as tanks. The surface is uniformly painted in a light tan color, with no visible camouflage patterns or military markings. The turret is integrated smoothly into the hull, and there are no visible hatches, sensors, or secondary weapon mounts. The overall design suggests a focus on deflection and protection, with minimal external features.",
+    "description": "A tan, angular combat vehicle with a sloped hull, forward cannon, and continuous tracks, featuring flat armor panels and a low-profile turret.",
+    "description_view_0": "Front view shows the sloped armor, central cannon, and the tracks partially visible beneath the hull.",
+    "description_view_1": "Left side view highlights the long cannon, flat side armor, and the full length of the tracks.",
+    "description_view_2": "Rear view reveals the flat back panel, no visible exhausts or hatches, and the tracks extending to the rear corners.",
+    "description_view_3": "Right side view mirrors the left, showing the cannon, flat side armor, and continuous tracks.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 55000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cannon",
+        "tracks",
+        "turret"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One forward-facing cannon mounted on the turret; no other weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with flat, sloped armor panels; thickness and modularity not visually apparent.",
+    "attribute_camouflage_pattern": "None visible; solid tan color.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "f190c1ccde304000bd4229c0efd13716",
+    "near_synsets": {
+        "tank.n.01": 0.48508958350060116,
+        "military_vehicle.n.01": 0.5026530299486149,
+        "assault_gun.n.02": 0.5165049773944074,
+        "reconnaissance_vehicle.n.01": 0.5168627305335713,
+        "tank_destroyer.n.01": 0.52551760131193,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/f190c1ccde304000bd4229c0efd13716",
+        "creator_username": "SuperDragon1026",
+        "creator_display_name": "SuperDragon1026",
+        "creator_profile_url": "https://sketchfab.com/SuperDragon1026"
+    },
+    "filename": "std_f190c1ccde304000bd4229c0efd13716.glb",
+    "length": 10.593421936035156,
+    "width": 4.993691682815552
+}

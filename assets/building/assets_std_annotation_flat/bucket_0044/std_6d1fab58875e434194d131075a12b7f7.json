@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a break-action shotgun with a double-barrel configuration, featuring two parallel barrels aligned side-by-side. The barrels are metallic and have a dark, matte finish, while the stock and grip area are rendered in a reddish-brown wood texture, suggesting a classic design. The break-action hinge is clearly visible, with the barrels pivoted open, exposing the breech for loading. The trigger guard is rounded and moderately sized, providing protection for the trigger area. The overall form is elongated and streamlined, with minimal external embellishments. The shotgun's construction appears robust, suitable for practical use in urban or rural environments.",
+    "description": "A side-by-side double-barrel break-action shotgun with a dark metal finish and reddish-brown wooden stock and grip. The barrels are open, revealing the breech and a rounded trigger guard.",
+    "description_view_0": "Side view showing the shotgun in a break-open position, with both barrels and the wooden grip clearly visible.",
+    "description_view_1": "Front view down the barrels, highlighting the twin barrel openings and the symmetry of the shotgun.",
+    "description_view_2": "Opposite side view, again showing the break-open action and the wooden grip, with slight differences in visible details compared to view 0.",
+    "description_view_3": "Rear view focusing on the stock and grip, with the barrels extending away from the viewer.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "loadable",
+        "fireable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "barrels",
+        "stock",
+        "grip",
+        "break-action hinge",
+        "trigger guard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "reddish-brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "side-by-side double-barrel, no visible ribbing or venting, barrels of equal length",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "break-action",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with no visible finger grooves or reinforcement",
+    "uid": "6d1fab58875e434194d131075a12b7f7",
+    "near_synsets": {
+        "shotgun.n.01": 0.48559754096072344,
+        "sawed-off_shotgun.n.01": 0.4916421992269674,
+        "pump_action.n.01": 0.5291348120993816,
+        "shotgun_shell.n.01": 0.5501795824099046,
+        "browning_automatic_rifle.n.01": 0.5576192589144832
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6d1fab58875e434194d131075a12b7f7",
+        "creator_username": "RDDev",
+        "creator_display_name": "RDDev",
+        "creator_profile_url": "https://sketchfab.com/RDDev"
+    },
+    "filename": "std_6d1fab58875e434194d131075a12b7f7.glb",
+    "length": 0.2770410180091858,
+    "width": 0.017174007371068
+}

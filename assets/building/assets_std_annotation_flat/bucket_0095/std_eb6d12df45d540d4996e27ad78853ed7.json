@@ -1,0 +1,112 @@
+{
+    "description_long": "This restaurant features a traditional Japanese architectural design with a prominent tiled gabled roof, wooden beams, and sliding shoji-style doors and windows. The structure is elevated on a wooden platform with steps leading up to the entrance, and lanterns hang from the eaves, adding a warm, inviting ambiance. The interior is visible from multiple sides, revealing tatami mat flooring, low dining tables, and decorative screens, all arranged in an open-plan layout. The exterior walls are a mix of dark wood and light plaster, with latticework and bamboo accents. Several human figures and lanterns are positioned around the entrance, suggesting a lively, welcoming atmosphere. The overall design emphasizes symmetry, natural materials, and a harmonious blend with the environment.",
+    "description": "A traditional Japanese restaurant with a gabled tiled roof, wooden structure, lanterns, and open tatami-mat interior visible from multiple sides.",
+    "description_view_0": "Side view showing the main staircase, lanterns, and a clear look at the elevated wooden platform and open dining area.",
+    "description_view_1": "Frontal view highlighting the main entrance, symmetrical facade, interior dining setup, and decorative screens.",
+    "description_view_2": "Side profile emphasizing the length of the building, tiled roof, and shoji-style windows with minimal ornamentation.",
+    "description_view_3": "Rear view displaying the back entrance, roof structure, and a glimpse of the interior layout.",
+    "category": "restaurant",
+    "height": 7.5,
+    "max_dimension": 15.0,
+    "materials": [
+        "wood",
+        "ceramic tile",
+        "paper",
+        "plaster",
+        "bamboo",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.08,
+        0.08,
+        0.05,
+        0.04,
+        0.02,
+        0.03
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "stairs",
+        "lantern",
+        "screen"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "dark brown",
+        "black",
+        "white",
+        "light beige",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.12,
+        0.1,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_signage": "None",
+    "attribute_outdoor_seating": false,
+    "attribute_facade_design": "The facade features dark wooden beams, white plaster infill, and a prominent tiled gabled roof with decorative ridge tiles. Hanging lanterns and bamboo accents add traditional Japanese charm, while the entrance is marked by wide steps and a wooden railing. The overall style is symmetrical and understated, emphasizing natural materials and clean lines.",
+    "attribute_window_displays": "None",
+    "attribute_architectural_style": "Traditional Japanese",
+    "uid": "eb6d12df45d540d4996e27ad78853ed7",
+    "near_synsets": {
+        "shoji.n.01": 0.551857512237992,
+        "restaurant.n.01": 0.5665368890230172,
+        "sushi_bar.n.01": 0.5680112433981938,
+        "japan.n.03": 0.5693096010210503,
+        "tea_garden.n.01": 0.5733587595730664
+    },
+    "synset": "restaurant.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/eb6d12df45d540d4996e27ad78853ed7",
+        "creator_username": "primagenevieve",
+        "creator_display_name": "NPHoa_Kagoby",
+        "creator_profile_url": "https://sketchfab.com/primagenevieve"
+    },
+    "filename": "std_eb6d12df45d540d4996e27ad78853ed7.glb",
+    "length": 11.217740058898926,
+    "width": 8.986925601959229
+}

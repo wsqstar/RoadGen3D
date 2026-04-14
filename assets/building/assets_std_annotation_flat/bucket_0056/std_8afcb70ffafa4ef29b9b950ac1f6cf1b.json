@@ -1,0 +1,104 @@
+{
+    "description_long": "This bulldozer features a robust, industrial design with a yellow-painted steel body and visible signs of dirt and wear, indicating heavy use. The front is equipped with a wide, toothed blade designed for pushing and grading material, with reinforced arms and hydraulic cylinders for blade articulation. The operator's cabin is open but protected by a black roll cage structure, providing safety while maintaining visibility. The vehicle moves on continuous steel tracks, which are well-suited for traversing rough or uneven terrain. There are small details such as a red warning light on the rear and various mechanical linkages and joints visible along the arms and undercarriage. The overall appearance is functional and rugged, suitable for demanding construction or demolition tasks in urban environments.",
+    "description": "A rugged yellow bulldozer with a toothed front blade, open protective cabin, and steel tracks, showing signs of heavy use and dirt.",
+    "description_view_0": "Side view showing the full length of the bulldozer, the articulated arms, and the toothed blade extended forward.",
+    "description_view_1": "Front view highlighting the wide, toothed blade and the open protective cabin directly behind it.",
+    "description_view_2": "Opposite side view, mirroring view 0, with clear visibility of the track system and hydraulic arm mechanisms.",
+    "description_view_3": "Rear view displaying the back of the cabin, the red warning light, and the compact engine housing.",
+    "category": "bulldozer",
+    "height": 2.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.03,
+        0.04,
+        0.03,
+        0.03,
+        0.02
+    ],
+    "mass": 8500,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "blade",
+        "track",
+        "cabin controls",
+        "hydraulic arms",
+        "roll cage",
+        "warning light"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "brown",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_blade_type": "straight blade (S-blade); the blade is flat with no side wings and has a straight edge with visible teeth, suitable for fine grading.",
+    "attribute_track_type": "standard track; the tracks are of moderate width and appear to be designed for general-purpose use on firm to moderately soft ground.",
+    "attribute_cabin_design": "The cabin is open with a robust black roll cage (ROPS) for operator protection, offering high visibility and basic safety. There are no enclosed panels, prioritizing ease of access and situational awareness.",
+    "attribute_exhaust_placement": "Single exhaust outlet at the rear, horizontally oriented.",
+    "attribute_manufacturer_logo": "None visible",
+    "uid": "8afcb70ffafa4ef29b9b950ac1f6cf1b",
+    "near_synsets": {
+        "bulldozer.n.01": 0.45335349392368757,
+        "angledozer.n.01": 0.5272665355547576,
+        "caterpillar.n.02": 0.527580259189997,
+        "power_shovel.n.01": 0.533717403405084,
+        "backhoe.n.01": 0.5467559356989465
+    },
+    "synset": "bulldozer.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8afcb70ffafa4ef29b9b950ac1f6cf1b",
+        "creator_username": "ookfco",
+        "creator_display_name": "ookfco",
+        "creator_profile_url": "https://sketchfab.com/ookfco"
+    },
+    "filename": "std_8afcb70ffafa4ef29b9b950ac1f6cf1b.glb",
+    "length": 4.2411789894104,
+    "width": 1.9389533996582031
+}

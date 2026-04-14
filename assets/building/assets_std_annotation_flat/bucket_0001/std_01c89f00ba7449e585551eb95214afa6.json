@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a historical naval cannon mounted on a wooden carriage. The cannon itself is long and cylindrical, made of dark metal with a slightly flared muzzle and decorative rings near the breech. The carriage is constructed from thick, sturdy wooden planks, reinforced with metal brackets and bolts, and features four solid metal wheels for mobility. The side view reveals iron handles and lifting rings attached to the cannon, as well as metal fastenings securing the cannon to the carriage. The front and rear views show the bore of the cannon and the arrangement of the wheels and axles. The overall appearance suggests a robust, functional design typical of artillery used in historical urban fortifications or naval settings.",
+    "description": "A long, dark metal cannon mounted on a reinforced wooden carriage with four metal wheels and iron fittings, evoking historical artillery.",
+    "description_view_0": "Side view showing the full length of the cannon, wooden carriage, and all four metal wheels.",
+    "description_view_1": "Front view highlighting the cannon's muzzle, the circular bore, and the symmetrical arrangement of the wheels.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the cannon's length and carriage details from the other side.",
+    "description_view_3": "Rear view focusing on the breech of the cannon and the back of the wooden carriage.",
+    "category": "combat tactical  vehicle",
+    "height": 1.0,
+    "max_dimension": 3.0,
+    "materials": [
+        "iron",
+        "wood",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.05,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheels",
+        "cannon barrel",
+        "lifting rings",
+        "carriage"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_weapon_mounts": "One fixed cannon barrel mounted centrally on a wooden carriage.",
+    "attribute_armor_plating": "None visible.",
+    "attribute_camouflage_pattern": "None visible; surfaces are solid black and brown.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "01c89f00ba7449e585551eb95214afa6",
+    "near_synsets": {
+        "cannon.n.02": 0.4731069768038397,
+        "cannon.n.01": 0.4782850278979747,
+        "tank.n.01": 0.48494921610626834,
+        "weapons_carrier.n.01": 0.4880521332405285,
+        "military_vehicle.n.01": 0.48905051774866387,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "cannon.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/01c89f00ba7449e585551eb95214afa6",
+        "creator_username": "cvbor999",
+        "creator_display_name": "cvbor999",
+        "creator_profile_url": "https://sketchfab.com/cvbor999"
+    },
+    "filename": "std_01c89f00ba7449e585551eb95214afa6.glb",
+    "length": 2.8284740447998047,
+    "width": 1.1517069935798645
+}

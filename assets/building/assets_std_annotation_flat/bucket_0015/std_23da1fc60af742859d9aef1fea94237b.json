@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a classic light machine gun, visually reminiscent of the Soviet Degtyaryov DP-28. It features a prominent round pan magazine mounted on top, a long, slender barrel with a perforated cooling shroud, and a fixed wooden stock at the rear. The rifle is supported by a bipod near the front, allowing for stable firing from a prone or supported position. The receiver and barrel assembly are primarily constructed from dark metal, while the stock and grip are made of wood, providing a contrast in texture and color. The overall design is utilitarian, with exposed mechanical components and a robust, functional appearance.",
+    "description": "A vintage light machine gun with a top-mounted pan magazine, wooden stock, and front bipod, primarily made of metal and wood.",
+    "description_view_0": "Side view showing the full length of the rifle, the wooden stock, top-mounted pan magazine, and extended bipod.",
+    "description_view_1": "Front view highlighting the circular pan magazine, barrel, and the symmetrical spread of the bipod legs.",
+    "description_view_2": "Opposite side view displaying the rifle's profile, wooden stock, and the length of the barrel with the bipod extended.",
+    "description_view_3": "Rear view focusing on the stock, the alignment of the barrel, and the bipod legs extending forward.",
+    "category": "rifle",
+    "height": 0.35,
+    "max_dimension": 1.25,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.2,
+        0.03,
+        0.02
+    ],
+    "mass": 9.0,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 90,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "deployable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "trigger",
+        "magazine",
+        "bipod",
+        "barrel",
+        "charging handle",
+        "safety lever",
+        "sights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable pan",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "23da1fc60af742859d9aef1fea94237b",
+    "near_synsets": {
+        "light_arm.n.01": 0.5053488044396232,
+        "carbine.n.01": 0.5104806774606819,
+        "garand_rifle.n.01": 0.5122513463312929,
+        "submachine_gun.n.01": 0.5155735178492028,
+        "machine_gun.n.01": 0.5164631823471845,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/23da1fc60af742859d9aef1fea94237b",
+        "creator_username": "kingy",
+        "creator_display_name": "Kingy",
+        "creator_profile_url": "https://sketchfab.com/kingy"
+    },
+    "filename": "std_23da1fc60af742859d9aef1fea94237b.glb",
+    "length": 0.750239372253418,
+    "width": 0.1355101317167282
+}

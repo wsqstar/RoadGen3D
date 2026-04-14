@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a stylized, blocky airplane with a predominantly white fuselage and wings, reminiscent of a pixel art or voxel design. The wings are broad and sharply angled, with a black cockpit area near the front center. The tail section features a vertical stabilizer and horizontal stabilizers, with a colorful, rainbow-like trail extending from the rear, suggesting motion or a decorative effect. The airplane is positioned on a green rectangular base, which may represent grass or a runway. Small, blocky elements behind the airplane resemble exhaust or smoke, further emphasizing the sense of movement.",
+    "description": "A blocky, white airplane with angled wings, a black cockpit, and a colorful trail on a green base.",
+    "description_view_0": "Front view showing the wide, pointed nose, black cockpit, and symmetrical wings.",
+    "description_view_1": "Side view highlighting the airplane's thin profile, colorful trail, and blocky exhaust elements.",
+    "description_view_2": "Rear view displaying the tail section, rainbow trail, and blocky exhaust behind the airplane.",
+    "description_view_3": "Opposite side view with the same features as view 1, showing the airplane's length and colorful trail.",
+    "category": "airplane",
+    "height": 0.25,
+    "max_dimension": 2.5,
+    "materials": [
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.15
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 5,
+    "movable": true,
+    "required_force": 35,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit",
+        "wings",
+        "tail",
+        "fuselage"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "green",
+        "red",
+        "yellow",
+        "blue",
+        "purple"
+    ],
+    "colors_composition": [
+        0.5,
+        0.05,
+        0.25,
+        0.07,
+        0.07,
+        0.03,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.2,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with straight, sharply angled wings and no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "No visible engines present on the wings or fuselage.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "No visible landing gear present.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit located at the front center of the fuselage.",
+    "uid": "4c084ecae91a4da58a6ace7e807fc78c",
+    "near_synsets": {
+        "aircraft.n.01": 0.5152655598632365,
+        "airplane.n.01": 0.5298108629046867,
+        "monoplane.n.01": 0.5461897353053294,
+        "biplane.n.01": 0.5535461658356803,
+        "wings.n.02": 0.5573937797557608
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4c084ecae91a4da58a6ace7e807fc78c",
+        "creator_username": "madexc",
+        "creator_display_name": "madexc",
+        "creator_profile_url": "https://sketchfab.com/madexc"
+    },
+    "filename": "std_4c084ecae91a4da58a6ace7e807fc78c.glb",
+    "length": 1.473681092262268,
+    "width": 0.4999999403953552
+}

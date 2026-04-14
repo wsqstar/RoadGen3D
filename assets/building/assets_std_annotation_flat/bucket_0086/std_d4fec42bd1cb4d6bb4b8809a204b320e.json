@@ -1,0 +1,87 @@
+{
+    "description_long": "This object is a blocky, stylized airplane rendered in a voxel art style, with a broad fuselage and four engines mounted on its wings. The wings are straight and extend laterally from the midsection of the fuselage, with no visible winglets or pronounced dihedral angle. The tail section features a conventional vertical stabilizer and horizontal stabilizers, forming a classic tail design. The cockpit is positioned at the front of the fuselage and appears to be enclosed, though window details are minimal due to the stylized geometry. The landing gear is not visible, suggesting it may be retracted or omitted in this representation. The airplane is predominantly gray, with a simple, blocky surface texture and no visible markings or livery.",
+    "description": "A stylized, blocky gray airplane with four engines, straight mid-mounted wings, and a conventional tail, rendered in a voxel art style.",
+    "description_view_0": "The airplane is seen from the front, showing its broad nose, four engines, and straight wings extending outward.",
+    "description_view_1": "A side view reveals the length of the fuselage, the mid-mounted wings, and the conventional tail, with the engines visible under the wings.",
+    "description_view_2": "The rear view highlights the tail section, including the vertical and horizontal stabilizers, and the symmetry of the wings and engines.",
+    "description_view_3": "Another side view from the opposite direction, again showing the fuselage, wings, and tail, with the engines clearly visible.",
+    "category": "airplane",
+    "height": 1.2,
+    "max_dimension": 3.5,
+    "materials": [
+        "plastic",
+        "air",
+        "metal"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 450,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "engine",
+        "wing",
+        "tail",
+        "cockpit"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing configuration with straight wings, no winglets, and no visible dihedral or anhedral angle.",
+    "attribute_engine_type": "Four piston engines mounted on the wings, two per side.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Landing gear not visible.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit at the front of the fuselage.",
+    "uid": "d4fec42bd1cb4d6bb4b8809a204b320e",
+    "near_synsets": {
+        "aircraft.n.01": 0.535842718944815,
+        "airplane.n.01": 0.5500922820214657,
+        "jet.n.01": 0.562768601366527,
+        "monoplane.n.01": 0.5646593333760376,
+        "biplane.n.01": 0.5650390713574809
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d4fec42bd1cb4d6bb4b8809a204b320e",
+        "creator_username": "_goncalo_sousa_",
+        "creator_display_name": "_goncalo_sousa_",
+        "creator_profile_url": "https://sketchfab.com/_goncalo_sousa_"
+    },
+    "filename": "std_d4fec42bd1cb4d6bb4b8809a204b320e.glb",
+    "length": 2.3989557027816772,
+    "width": 1.1999993324279785
+}

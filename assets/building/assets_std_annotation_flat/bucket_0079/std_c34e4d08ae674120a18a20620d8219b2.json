@@ -1,0 +1,99 @@
+{
+    "description_long": "This humanoid robot features a cylindrical, weathered metal torso resembling an urban trash can, complete with a hinged lid on top. Its arms and legs are constructed from a series of metallic, jointed segments, giving it a mechanical, industrial appearance. The arms terminate in different functional appendages: one appears to have a claw-like gripper, while the other ends in a more cylindrical, tool-like structure. The legs are similarly jointed and end in broad, cross-shaped feet, suggesting stability and the ability to traverse uneven urban terrain. The robot's surface is mottled with patches of rust and dark paint, indicating exposure to outdoor elements. There are no visible facial features, and the overall design emphasizes utility and durability over aesthetics.",
+    "description": "A humanoid robot with a cylindrical, weathered metal body, jointed mechanical limbs, and cross-shaped feet, resembling an urban trash can. Its rugged, industrial design features rusted surfaces and functional appendages.",
+    "description_view_0": "Front view showing the cylindrical torso, both articulated arms with different end effectors, and both cross-shaped feet.",
+    "description_view_1": "Left side view highlighting the arm's cylindrical tool-like end and the layered, jointed leg structure.",
+    "description_view_2": "Rear view displaying the back of the cylindrical torso, both legs, and the symmetrical shoulder joints.",
+    "description_view_3": "Right side view emphasizing the claw-like gripper on the arm and the mechanical joints of the limbs.",
+    "category": "humanoid robot",
+    "height": 1.2,
+    "max_dimension": 0.7,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 65,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "rotatable",
+        "pressable",
+        "openable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "lid",
+        "arm",
+        "claw",
+        "tool attachment",
+        "leg joints",
+        "feet"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "rust brown",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both legs straight and slightly apart, left arm extended forward with a claw-like gripper, right arm bent at the elbow with a cylindrical tool attachment, torso upright, and lid closed.",
+    "attribute_clothing_style": "Unclothed; exterior consists of integrated metal panels and mechanical joints with no decorative coverings.",
+    "attribute_facial_features": "No visible facial features; the cylindrical torso lacks eyes, mouth, or any expressive elements.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible rotary and hinge joints, allowing for a wide range of motion; hands are replaced by a claw and a tool attachment; feet are broad and cross-shaped for stability.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "c34e4d08ae674120a18a20620d8219b2",
+    "near_synsets": {
+        "android.n.01": 0.5406406469064086,
+        "cyborg.n.01": 0.5495352199959422,
+        "robotics_equipment.n.01": 0.5692051486340332,
+        "automaton.n.02": 0.5733153728719331,
+        "machine.n.02": 0.5916359923656788
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c34e4d08ae674120a18a20620d8219b2",
+        "creator_username": "ros_art",
+        "creator_display_name": "ros_art",
+        "creator_profile_url": "https://sketchfab.com/ros_art"
+    },
+    "filename": "std_c34e4d08ae674120a18a20620d8219b2.glb",
+    "length": 0.6796511113643646,
+    "width": 0.5659666657447815
+}

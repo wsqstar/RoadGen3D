@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a tan-colored armored combat vehicle with a low, angular profile and a long, forward-facing cannon mounted on a rotating turret. The hull and turret are covered in flat, sloped armor panels, with visible hatches and periscopes on the top surface. The vehicle features continuous metal tracks on both sides, supported by multiple road wheels, and side skirts partially covering the suspension. The exterior shows signs of weathering and dirt, suggesting operational use. The turret includes a prominent circular hatch and what appears to be a secondary, smaller hatch, along with various equipment mounts. The overall design is optimized for protection, firepower, and mobility in urban and battlefield environments.",
+    "description": "A tan, heavily armored tracked combat vehicle with a long cannon, sloped armor, and visible hatches, showing signs of operational wear.",
+    "description_view_0": "Front view showing the long cannon, sloped frontal armor, and two hatches on the turret roof.",
+    "description_view_1": "Left side view highlighting the full length of the cannon, side skirts, tracks, and turret details.",
+    "description_view_2": "Rear view displaying the back armor, rear hatches, and the ends of the tracks.",
+    "description_view_3": "Right side view showing the turret, cannon, side skirts, and track system from the opposite side.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "track",
+        "wheel",
+        "periscope"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.03,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted on the turret front; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating on the hull and turret; side skirts provide additional protection to the tracks.",
+    "attribute_camouflage_pattern": "Desert camouflage with tan and brown irregular patches and weathering effects.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "9835da682a7542b18d4f428285bd105b",
+    "near_synsets": {
+        "tank.n.01": 0.47629126941702843,
+        "military_vehicle.n.01": 0.48740925515344735,
+        "reconnaissance_vehicle.n.01": 0.5031637609260193,
+        "weapons_carrier.n.01": 0.5229102735087254,
+        "assault_gun.n.02": 0.5249170293647527,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9835da682a7542b18d4f428285bd105b",
+        "creator_username": "fancyfennec",
+        "creator_display_name": "FancyFennec",
+        "creator_profile_url": "https://sketchfab.com/fancyfennec"
+    },
+    "filename": "std_9835da682a7542b18d4f428285bd105b.glb",
+    "length": 8.913773536682129,
+    "width": 3.5579546689987183
+}

@@ -1,0 +1,93 @@
+{
+    "description_long": "This object appears to be a heavily weathered or partially destroyed airplane, with fragmented fuselage and wing sections scattered across a rough, debris-laden surface. The main body is elongated and tapers at one end, with remnants of wings extending from either side, though the structure is incomplete and jagged. The surface is mottled with gray, metallic, and greenish hues, suggesting a mix of exposed metal, paint, and possibly moss or corrosion. Some sections show what could be remnants of a cockpit area, though details are obscured by damage and debris. The overall form is low to the ground, with no visible landing gear or intact tail assembly. The asset is surrounded by scattered rubble and appears to be in a state of significant disrepair, as if it has crashed or been abandoned for a long period.",
+    "description": "A fragmented, weathered airplane with broken wings and fuselage, scattered across a debris-strewn surface. The object is mostly gray and green, with visible signs of corrosion and structural damage.",
+    "description_view_0": "From this view, the elongated fuselage and a partial wing are visible, with a greenish section suggesting remnants of the cockpit or upper fuselage.",
+    "description_view_1": "This angle highlights the jagged, broken edges of the wings and fuselage, with more debris and less visible structure.",
+    "description_view_2": "The view shows the length of the fuselage and the spread of the broken wings, with more surface detail and debris visible.",
+    "description_view_3": "From this perspective, the greenish cockpit area is more prominent, and the scattered nature of the debris is clear.",
+    "category": "airplane",
+    "height": 1.2,
+    "max_dimension": 8.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 2,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit",
+        "wing",
+        "fuselage"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "green",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with straight, broken wings and no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "No visible engines present on the remaining structure.",
+    "attribute_tail_design": "No intact tail assembly visible; tail section appears to be missing or destroyed.",
+    "attribute_landing_gear_type": "No landing gear visible; likely destroyed or retracted.",
+    "attribute_cockpit_placement": "Forward-mounted cockpit area, partially visible and heavily damaged, with remnants of an enclosed canopy.",
+    "uid": "4fd8998e2160497dadfbedf3c2ee9d9b",
+    "near_synsets": {
+        "aircraft.n.01": 0.530185978089063,
+        "airplane.n.01": 0.553323858081997,
+        "airplane_mechanics.n.01": 0.5650183315143873,
+        "wreckage.n.01": 0.5672320882663081,
+        "airframe.n.01": 0.5701238617358355
+    },
+    "synset": "airplane_mechanics.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/4fd8998e2160497dadfbedf3c2ee9d9b",
+        "creator_username": "feelab",
+        "creator_display_name": "feelab",
+        "creator_profile_url": "https://sketchfab.com/feelab"
+    },
+    "filename": "std_4fd8998e2160497dadfbedf3c2ee9d9b.glb",
+    "length": 2.692238688468933,
+    "width": 3.3714689016342163
+}

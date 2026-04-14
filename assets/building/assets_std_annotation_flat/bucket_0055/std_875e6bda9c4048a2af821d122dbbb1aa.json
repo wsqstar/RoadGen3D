@@ -1,0 +1,103 @@
+{
+    "description_long": "This humanoid robot features a cylindrical torso with segmented, metallic rings and a weathered, industrial finish. Its limbs are constructed from jointed metal rods and plates, with the right arm ending in a large, claw-like pincer and the left arm terminating in a more hand-like appendage. The legs are robust and angular, with reinforced joints and wide, flat feet for stability. The head is a simple, drum-shaped structure with no visible facial features or sensors. The robot's color palette consists of muted blues, grays, and metallic tones, accented by signs of wear and rust. Its overall design suggests durability and functionality, suitable for urban environments.",
+    "description": "A weathered, metallic humanoid robot with a cylindrical torso, jointed limbs, and a large claw on one arm. Its industrial design features muted blue and gray tones with visible wear.",
+    "description_view_0": "The robot is seen from the front, highlighting its cylindrical torso, clawed right arm, and hand-like left arm, with both legs visible.",
+    "description_view_1": "A three-quarter view from the right, emphasizing the large pincer claw and the angular construction of the limbs.",
+    "description_view_2": "The back view reveals the segmented torso and the mechanical structure of the legs and arms, with no visible sensors or facial features.",
+    "description_view_3": "A three-quarter view from the left, showing the hand-like left arm and the robust, jointed legs.",
+    "category": "humanoid robot",
+    "height": 1.7,
+    "max_dimension": 1.7,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "graspable",
+        "pushable",
+        "pullable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "claw",
+        "hand",
+        "arms",
+        "legs",
+        "joints"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "white",
+        "gold",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is standing upright with both legs slightly apart, right arm extended forward with a claw, and left arm bent at the elbow with a hand-like appendage. The torso is upright and the head is facing forward.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated metallic panels and exposed joints with no decorative coverings.",
+    "attribute_facial_features": "The head is cylindrical and featureless, with no visible eyes, mouth, nose, or display screens.",
+    "attribute_limb_articulation": "The robot has articulated shoulders, elbows, hips, and knees, with visible hinge and rotary joints. The right arm ends in a large claw, while the left arm ends in a hand-like structure. Limbs appear rigid but jointed for movement.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "875e6bda9c4048a2af821d122dbbb1aa",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5646711988165509,
+        "android.n.01": 0.5654976313408193,
+        "cyborg.n.01": 0.5719049448965104,
+        "automaton.n.02": 0.589038427345207,
+        "animatronics.n.01": 0.6035427051317616
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/875e6bda9c4048a2af821d122dbbb1aa",
+        "creator_username": "FrazierChristopher",
+        "creator_display_name": "FrazierChristopher",
+        "creator_profile_url": "https://sketchfab.com/FrazierChristopher"
+    },
+    "filename": "std_875e6bda9c4048a2af821d122dbbb1aa.glb",
+    "length": 0.7771831154823303,
+    "width": 0.9220988154411316
+}

@@ -1,0 +1,121 @@
+{
+    "description_long": "This robot dog features a sleek, angular body with a glossy black finish, giving it a futuristic and robust appearance. Its four articulated legs are jointed and reinforced, suggesting high mobility and stability on urban surfaces. The main body is rectangular with a slightly raised section on top, possibly housing sensors or control units, and a handle-like structure for manual handling or transport. The front face is equipped with multiple panels and what appear to be sensor arrays or cameras, while the rear is more streamlined and minimal. Small colored elements, such as a red indicator and pastel panels, hint at status lights or access ports. The overall design is compact and functional, suitable for navigation in complex urban environments.",
+    "description": "A glossy black, angular robot dog with four articulated legs, sensor panels, and colored indicator lights, designed for urban mobility.",
+    "description_view_0": "Side view showing the full length of the body, all four articulated legs, and the handle structure on top.",
+    "description_view_1": "Front view highlighting the narrow profile, symmetrical leg arrangement, and the raised sensor/control section.",
+    "description_view_2": "Opposite side view, similar to view 0, but with the raised section and red indicator more visible.",
+    "description_view_3": "Rear view displaying the back panels, colored indicator lights, and the mechanical structure of the legs.",
+    "category": "robot dog",
+    "height": 0.7,
+    "max_dimension": 1.1,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 38,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "sensor panel",
+        "indicator light",
+        "leg joint"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "pink",
+        "cyan"
+    ],
+    "colors_composition": [
+        0.92,
+        0.03,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.65,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_mechanical_joints": [
+        "rotary joint",
+        "hinge joint",
+        "linear actuator"
+    ],
+    "attribute_visible_sensors": [
+        "camera",
+        "lidar"
+    ],
+    "attribute_led_indicators": [
+        "status LED"
+    ],
+    "attribute_articulated_limbs": [
+        "front left leg",
+        "front right leg",
+        "rear left leg",
+        "rear right leg"
+    ],
+    "attribute_robotic_face": false,
+    "uid": "987fed43d07440c1896de4e1dc8416f4",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.55318464586518,
+        "android.n.01": 0.5740636609772489,
+        "automaton.n.02": 0.5826100838214481,
+        "robotics.n.01": 0.5845284842990477,
+        "dogcart.n.01": 0.587089807251201,
+        "frump.n.01": -1000.0,
+        "dog.n.03": -1000.0,
+        "andiron.n.01": -1000.0,
+        "cad.n.01": -1000.0,
+        "frank.n.01": -1000.0,
+        "dog.n.01": -1000.0,
+        "pawl.n.01": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/987fed43d07440c1896de4e1dc8416f4",
+        "creator_username": "lm9241221",
+        "creator_display_name": "lm9241221",
+        "creator_profile_url": "https://sketchfab.com/lm9241221"
+    },
+    "filename": "std_987fed43d07440c1896de4e1dc8416f4.glb",
+    "length": 0.5291093587875366,
+    "width": 0.6743240356445312
+}

@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a geodesic dome-shaped tent with a faceted, polygonal exterior made of light gray fabric panels. The front features a single wooden-framed door with a frosted or translucent panel, providing access to the interior. Several triangular and polygonal transparent or mesh windows are distributed across the sides, allowing natural light to enter. The structure appears to be supported by an internal framework, likely composed of lightweight metal or composite poles. The tent's surface is matte and slightly textured, with a small circular vent visible at the top for ventilation. The overall design suggests a modern, semi-permanent shelter suitable for urban parks, glamping, or event spaces.",
+    "description": "A modern geodesic dome tent with a wooden door, polygonal windows, and a matte light gray fabric exterior. The structure features a small roof vent and multiple transparent panels.",
+    "description_view_0": "Front view showing the wooden-framed door centered on the dome and several polygonal window panels on either side.",
+    "description_view_1": "Side view highlighting the tent's curved profile, with a large polygonal window and a triangular window visible, as well as the door's side frame.",
+    "description_view_2": "Rear view displaying the smooth, faceted dome surface with a small circular roof vent and no visible openings or windows.",
+    "description_view_3": "Opposite side view showing a large transparent polygonal window section and the side of the wooden door frame.",
+    "category": "tent",
+    "height": 2.5,
+    "max_dimension": 5.0,
+    "materials": [
+        "fabric",
+        "wood",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 120,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "windows",
+        "vent"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light gray",
+        "brown",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 500,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "Single wooden-framed door with a translucent panel, located at the front center of the dome.",
+    "attribute_number_of_poles": 12,
+    "attribute_guy_line_configuration": "No external guy lines are visible; the structure appears self-supporting with an internal framework.",
+    "attribute_ventilation_openings": [
+        "One small circular roof vent at the top center",
+        "Multiple polygonal mesh or transparent window panels on the sides"
+    ],
+    "attribute_branding_or_logo": "none",
+    "uid": "edb5ae4af8d144028af48132d8b221e1",
+    "near_synsets": {
+        "geodesic_dome.n.01": 0.4797645688456004,
+        "sibley_tent.n.01": 0.5163608592142147,
+        "dome.n.04": 0.5352741635818823,
+        "cottage_tent.n.01": 0.5363432635841913,
+        "mountain_tent.n.01": 0.536506450119501,
+        "tent.n.02": -1000.0,
+        "tent.n.01": -1000.0
+    },
+    "synset": "tent.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/edb5ae4af8d144028af48132d8b221e1",
+        "creator_username": "daliadome",
+        "creator_display_name": "daliadome",
+        "creator_profile_url": "https://sketchfab.com/daliadome"
+    },
+    "filename": "std_edb5ae4af8d144028af48132d8b221e1.glb",
+    "length": 4.154910326004028,
+    "width": 4.137510538101196
+}

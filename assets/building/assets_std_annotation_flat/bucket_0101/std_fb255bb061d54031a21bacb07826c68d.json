@@ -1,0 +1,91 @@
+{
+    "description_long": "This object is a streamlined, cylindrical bomb with a pointed nose and a set of stabilizing fins at the rear. The body is smooth and dark, likely constructed from metal, with a glossy finish that reflects light. The nose cone is slightly lighter in color, possibly indicating a different material or a protective cap. The rear section features four symmetrically arranged fins, which are designed to stabilize the bomb during flight. There are no visible markings, warning labels, or external components such as wires or switches on the surface. The overall design is utilitarian, optimized for aerodynamic efficiency and stability.",
+    "description": "A sleek, dark cylindrical bomb with a pointed nose and four stabilizing fins at the rear, featuring a smooth, glossy metallic surface.",
+    "description_view_0": "The bomb is seen from the side, showing its elongated body and the symmetrical arrangement of the rear fins.",
+    "description_view_1": "This view is nearly identical to view 0, with the same side profile and visible fin structure.",
+    "description_view_2": "The bomb's side profile remains consistent, with the pointed nose and rear fins clearly visible.",
+    "description_view_3": "Similar to the previous views, the bomb's streamlined body and fin arrangement are prominent.",
+    "category": "bomb",
+    "height": 1.0,
+    "max_dimension": 1.0,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "aluminum",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.08,
+        0.02
+    ],
+    "mass": 60,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "nose",
+        "fins"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "No visible detonation mechanism is present; detonation is likely initiated by an internal impact fuse or timer concealed within the nose or body.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "fb255bb061d54031a21bacb07826c68d",
+    "near_synsets": {
+        "buzz_bomb.n.01": 0.5172183842389768,
+        "bomb.n.01": 0.527393689221529,
+        "plastic_bomb.n.01": 0.5359116601771037,
+        "pipe_bomb.n.01": 0.5372143246780281,
+        "dive_bomber.n.01": 0.5389952263583176,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fb255bb061d54031a21bacb07826c68d",
+        "creator_username": "blckholem_pr",
+        "creator_display_name": "Black Hole M. PR.",
+        "creator_profile_url": "https://sketchfab.com/blckholem_pr"
+    },
+    "filename": "std_fb255bb061d54031a21bacb07826c68d.glb",
+    "length": 0.1681191399693489,
+    "width": 0.1681189388036728
+}

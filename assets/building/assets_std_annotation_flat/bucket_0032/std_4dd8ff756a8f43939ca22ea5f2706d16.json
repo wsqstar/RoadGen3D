@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a large, heavy-duty blue dump truck with a robust steel frame and a spacious open cargo bed designed for transporting bulk materials such as gravel, sand, or debris. The truck features a crew cab with four doors, black side mirrors, and a prominent front grille. It has six large black wheels distributed over three axles, providing stability and support for heavy loads. The cargo bed is angular and reinforced, with high side panels and a rear gate for dumping contents. Subtle yellow stripes run along the lower edge of the cargo bed, adding a touch of visual detail. The truck's overall design is utilitarian, built for durability and efficiency in urban construction or waste management scenarios.",
+    "description": "A large blue dump truck with a crew cab, six wheels, and a reinforced open cargo bed for hauling materials. It features black accents and yellow stripes along the cargo bed.",
+    "description_view_0": "Side view showing the full length of the blue dump truck, including the crew cab, three axles, and the angular cargo bed with yellow stripes.",
+    "description_view_1": "Rear view highlighting the open cargo bed and rear gate, with the truck's width and high side panels clearly visible.",
+    "description_view_2": "Opposite side view mirroring view 0, showing the cab, wheels, and cargo bed from the other side.",
+    "description_view_3": "Front view displaying the cab's grille, headlights, windshield, and the manufacturer's logo on the hood.",
+    "category": "truck",
+    "height": 3.2,
+    "max_dimension": 8.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "dumpable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "cargo bed",
+        "tailgate",
+        "mirror",
+        "headlight",
+        "grille"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black",
+        "yellow",
+        "gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "crew cab",
+    "attribute_cargo_bed_type": "dump bed",
+    "attribute_wheelbase": 4.2,
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "KAMAZ",
+    "uid": "4dd8ff756a8f43939ca22ea5f2706d16",
+    "near_synsets": {
+        "truck.n.01": 0.513059049871179,
+        "dump_truck.n.01": 0.5165827637831159,
+        "van.n.05": 0.5196122288277736,
+        "flatbed.n.02": 0.521135458037721,
+        "lorry.n.02": 0.5354640689662055,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4dd8ff756a8f43939ca22ea5f2706d16",
+        "creator_username": "mickeleanjelo",
+        "creator_display_name": "mickeleanjelo",
+        "creator_profile_url": "https://sketchfab.com/mickeleanjelo"
+    },
+    "filename": "std_4dd8ff756a8f43939ca22ea5f2706d16.glb",
+    "length": 7.821880340576172,
+    "width": 2.7142562866210938
+}

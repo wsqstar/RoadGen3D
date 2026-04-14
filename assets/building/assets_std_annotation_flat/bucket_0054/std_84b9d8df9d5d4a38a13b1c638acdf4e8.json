@@ -1,0 +1,90 @@
+{
+    "description_long": "This humanoid robot features a segmented, articulated body with a distinctly human-like silhouette, including a head, torso, arms, and legs. The exterior is composed of smooth, matte gray panels, with visible joint separations at the shoulders, elbows, wrists, hips, knees, and ankles, suggesting a high degree of mobility. The head is oval-shaped with minimal facial detailing, and the limbs are proportioned similarly to an average adult human. The robot's design is utilitarian, lacking decorative elements or clothing, and appears to be constructed primarily from metal or composite materials. The hands are shaped with individual fingers, and the feet are flat, providing stability for upright standing. There are no visible sensors, lights, or display screens on the surface, giving the robot a neutral, functional appearance.",
+    "description": "A gray, articulated humanoid robot with smooth panels, human-like proportions, and visible joint separations, designed for mobility and stability.",
+    "description_view_0": "Front view shows the robot's symmetrical body, head, torso, arms, and legs, with clear articulation at all major joints.",
+    "description_view_1": "Side view highlights the robot's flat chest, straight back, and the alignment of limbs, with visible joint separations at elbows and knees.",
+    "description_view_2": "Rear view reveals the back of the head, torso, and legs, with joint details and no visible sensors or decorative features.",
+    "description_view_3": "Opposite side view mirrors the other side, showing the profile of the head, torso, and limbs, emphasizing the robot's upright posture.",
+    "category": "humanoid robot",
+    "height": 1.75,
+    "max_dimension": 1.75,
+    "materials": [
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "legs",
+        "hands",
+        "head"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms relaxed at the sides, legs straight and feet flat on the ground, head facing forward.",
+    "attribute_clothing_style": "Unclothed; exterior consists of integrated, smooth gray panels with no decorative elements or coverings.",
+    "attribute_facial_features": "Minimal facial features; the head is smooth and oval-shaped with shallow indentations for eyes and no visible mouth or nose.",
+    "attribute_limb_articulation": "Arms and legs have visible hinge or rotary joints at shoulders, elbows, wrists, hips, knees, and ankles, allowing for a wide range of motion; hands have articulated fingers.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "84b9d8df9d5d4a38a13b1c638acdf4e8",
+    "near_synsets": {
+        "android.n.01": 0.5147568546891528,
+        "automaton.n.02": 0.5459434261894439,
+        "cyborg.n.01": 0.5498557157219109,
+        "robotics_equipment.n.01": 0.5605270919833818,
+        "automaton.n.03": 0.567598814607853
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/84b9d8df9d5d4a38a13b1c638acdf4e8",
+        "creator_username": "chadmanning1989",
+        "creator_display_name": "chadmanning1989",
+        "creator_profile_url": "https://sketchfab.com/chadmanning1989"
+    },
+    "filename": "std_84b9d8df9d5d4a38a13b1c638acdf4e8.glb",
+    "length": 0.26483653485774994,
+    "width": 0.9208570718765259
+}

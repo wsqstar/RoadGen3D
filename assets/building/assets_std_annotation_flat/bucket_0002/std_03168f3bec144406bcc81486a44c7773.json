@@ -1,0 +1,101 @@
+{
+    "description_long": "This cafe is a compact, rectangular building with a minimalist, modern design. The front features a partially open facade with a counter area, light wood accents, and a visible service counter, inviting customers inside. The exterior walls are smooth and predominantly white, with a flat roof and clean lines that emphasize simplicity. Inside, the layout includes a counter, seating area, and some built-in furniture, all in neutral tones with wood and metal finishes. The rear and side views show a mostly solid structure with minimal openings, except for a small service window or door on one side. The overall appearance is sleek and functional, suitable for urban environments where space efficiency and contemporary aesthetics are valued.",
+    "description": "A compact, modern cafe with a white exterior, open front counter, and minimalist design. Features wood and metal accents with a clean, functional layout.",
+    "description_view_0": "Front view showing the open entrance, counter area, and interior seating with wood and metal finishes.",
+    "description_view_1": "Side view displaying a solid white wall with a small service window or door, minimal exterior features.",
+    "description_view_2": "Rear view with a plain, uninterrupted white wall and no visible openings or details.",
+    "description_view_3": "Angled rear-side view revealing the entrance cutout and a glimpse of the interior, with mostly solid exterior walls.",
+    "category": "cafe",
+    "height": 3.2,
+    "max_dimension": 8.0,
+    "materials": [
+        "concrete",
+        "wood",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "orderable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "counter",
+        "seating",
+        "service window"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "white",
+        "light wood",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_signage": false,
+    "attribute_outdoor_seating": false,
+    "attribute_awning": false,
+    "attribute_storefront_display": false,
+    "attribute_architectural_style": "modern",
+    "uid": "03168f3bec144406bcc81486a44c7773",
+    "near_synsets": {
+        "cafe.n.01": 0.5193013084441028,
+        "espresso_shop.n.01": 0.5230726390024861,
+        "cybercafe.n.01": 0.561447491842288,
+        "caff.n.01": 0.5630268202472811,
+        "coffee_stall.n.01": 0.5705963065650207
+    },
+    "synset": "cybercafe.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/03168f3bec144406bcc81486a44c7773",
+        "creator_username": "pkjihad",
+        "creator_display_name": "pkjihad",
+        "creator_profile_url": "https://sketchfab.com/pkjihad"
+    },
+    "filename": "std_03168f3bec144406bcc81486a44c7773.glb",
+    "length": 6.33458399772644,
+    "width": 3.494736433029175
+}

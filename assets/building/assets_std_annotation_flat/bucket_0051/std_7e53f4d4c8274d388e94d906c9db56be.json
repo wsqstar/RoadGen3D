@@ -1,0 +1,91 @@
+{
+    "description_long": "This object is a tactical shotgun with a matte black finish, featuring a prominent cylindrical pump-action fore-end beneath a long, rectangular receiver. The shotgun is equipped with a folding skeletal stock at the rear, which is angular and minimalistic, providing structural support while reducing weight. The barrel is relatively short and compact, with a visible muzzle and a small front sight. The trigger area includes a pistol grip and a rounded trigger guard, designed for ergonomic handling. The overall design is utilitarian, with minimal decorative elements, emphasizing function and durability. The shotgun's construction appears to be primarily metal, with some polymer components for the grip and fore-end.",
+    "description": "A matte black tactical shotgun with a folding skeletal stock, pump-action fore-end, and a compact, utilitarian design. Features include a pistol grip, rounded trigger guard, and a short barrel.",
+    "description_view_0": "Side view showing the full length of the shotgun, including the folding skeletal stock, pump-action fore-end, and pistol grip.",
+    "description_view_1": "Front view highlighting the circular muzzle, front sight, and the width of the pump-action fore-end.",
+    "description_view_2": "Opposite side view displaying the folding stock, receiver, and the pump-action fore-end from the other side.",
+    "description_view_3": "Rear view focusing on the skeletal stock's structure and the alignment of the receiver and barrel.",
+    "category": "shotgun",
+    "height": 0.22,
+    "max_dimension": 0.85,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 35,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "pumpable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "pump fore-end",
+        "folding stock",
+        "pistol grip",
+        "trigger guard",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, with a cylindrical pump-action fore-end and a short, compact barrel",
+    "attribute_stock_type": "folding stock",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with a smooth contour and no visible finger grooves",
+    "uid": "7e53f4d4c8274d388e94d906c9db56be",
+    "near_synsets": {
+        "pump_action.n.01": 0.5216006209235069,
+        "sawed-off_shotgun.n.01": 0.5268848777361236,
+        "shotgun.n.01": 0.5472945167382786,
+        "gas_gun.n.01": 0.5667916754305894,
+        "stock.n.03": 0.5673071940605
+    },
+    "synset": "shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/7e53f4d4c8274d388e94d906c9db56be",
+        "creator_username": "Darren.Hogan",
+        "creator_display_name": "Daz",
+        "creator_profile_url": "https://sketchfab.com/Darren.Hogan"
+    },
+    "filename": "std_7e53f4d4c8274d388e94d906c9db56be.glb",
+    "length": 0.8346094787120819,
+    "width": 0.07626533508300781
+}

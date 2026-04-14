@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a large, flat, rectangular vehicle with a low profile and a solid, dark exterior. The surface appears smooth and featureless except for a small, raised structure near one end, which could be a hatch or equipment mount. The vehicle's body is broad and angular, with no visible wheels, tracks, or external detailing such as windows or doors. Its overall form suggests a heavy, armored platform, possibly designed for urban combat or tactical deployment. The dark coloration and lack of visible markings or camouflage give it a stealthy, utilitarian appearance. The structure on top may serve as an access point or mounting location for additional equipment.",
+    "description": "A large, flat, dark-colored armored vehicle with a smooth surface and a small raised structure near one end. The vehicle is featureless and has a stealthy, utilitarian look.",
+    "description_view_0": "From this view, the vehicle appears trapezoidal with a small raised structure visible near the top edge.",
+    "description_view_1": "This side view shows the vehicle's long, flat profile and highlights the small raised structure on the upper surface.",
+    "description_view_2": "The opposite end view mirrors the first, with the raised structure now positioned near the bottom edge.",
+    "description_view_3": "This side view is similar to view 1, showing the long, flat surface and the raised structure on the left side.",
+    "category": "combat tactical  vehicle",
+    "height": 0.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 8000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 4,
+    "movable": true,
+    "required_force": 40000,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.05,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "none visible",
+    "attribute_armor_plating": "Full body coverage with smooth, thick, and featureless armor plating; no visible sloping or modular panels.",
+    "attribute_camouflage_pattern": "none visible",
+    "attribute_military_markings": "none visible",
+    "attribute_tire_type": "not applicable",
+    "uid": "0e6bc1cdbc0b429ca6f57c946e8b5fac",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.49248699883757197,
+        "tank.n.01": 0.5020090374552424,
+        "reconnaissance_vehicle.n.01": 0.5100115392644187,
+        "armored_car.n.02": 0.5125335749881125,
+        "armored_vehicle.n.01": 0.5128355052343602,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/0e6bc1cdbc0b429ca6f57c946e8b5fac",
+        "creator_username": "3dzzz",
+        "creator_display_name": "3dzzz",
+        "creator_profile_url": "https://sketchfab.com/3dzzz"
+    },
+    "filename": "std_0e6bc1cdbc0b429ca6f57c946e8b5fac.glb",
+    "length": 13.711929321289062,
+    "width": 6.163181304931641
+}

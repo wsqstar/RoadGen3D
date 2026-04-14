@@ -1,0 +1,94 @@
+{
+    "description_long": "This is a large, cylindrical metal barrel with a weathered, dark gray surface, showing signs of rust and scattered white spots, indicative of prolonged outdoor exposure. The barrel is supported by two sturdy metal legs, elevating it slightly above the ground. One end features a reinforced, octagonal face with a prominent circular hatch and a smaller access door, likely for filling or emptying contents, as well as a round valve or gauge near the bottom. The opposite end is flat and undecorated, with the same octagonal outline as the front. The surface texture is rough and matte, with visible wear and corrosion, suggesting it is used for industrial or utility purposes. This type of barrel is commonly found in urban or industrial environments, possibly serving as a storage tank, incinerator, or fuel drum.",
+    "description": "A large, weathered metal barrel with a dark, rusted surface, supported by metal legs and featuring a hatch and valve on one end. Its rugged, industrial appearance suggests use in urban or utility settings.",
+    "description_view_0": "Side view showing the cylindrical body, rusted surface, and two supporting legs.",
+    "description_view_1": "Front view displaying the octagonal face, central hatch, smaller access door, and a round valve or gauge.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the plain cylindrical body and supporting legs.",
+    "description_view_3": "Rear view with a flat, undecorated octagonal end and supporting legs visible.",
+    "category": "barrel or bucket",
+    "height": 1.0,
+    "max_dimension": 1.8,
+    "materials": [
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 800,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "rotatable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "access door",
+        "valve"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "rust brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "metal reinforcement at ends",
+    "attribute_labeling_or_markings": "none",
+    "attribute_placement_location": "industrial",
+    "uid": "a57fb6a499e04f08b69de13a75bdd828",
+    "near_synsets": {
+        "barrel.n.02": 0.46382162857894704,
+        "barrel.n.03": 0.4666670510446045,
+        "bucket.n.01": 0.48511221412474265,
+        "beer_barrel.n.01": 0.49049246390725526,
+        "barrel.n.05": 0.5157181806617025,
+        "bucket.n.02": -1000.0,
+        "barrel.n.01": -1000.0,
+        "barrel.n.04": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a57fb6a499e04f08b69de13a75bdd828",
+        "creator_username": "dasparadoxon",
+        "creator_display_name": "dpgb feat. Tom Trottel",
+        "creator_profile_url": "https://sketchfab.com/dasparadoxon"
+    },
+    "filename": "std_a57fb6a499e04f08b69de13a75bdd828.glb",
+    "length": 1.4398519396781921,
+    "width": 0.8515555262565613
+}

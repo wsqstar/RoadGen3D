@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a small, streamlined helicopter with a slender fuselage and a single main rotor mounted on top. The body appears to be constructed primarily from lightweight metal, with a narrow tail boom extending to the rear. The helicopter features a compact cockpit area, though window details are not clearly visible. The landing gear consists of two thin, parallel skids attached to the underside of the fuselage. The overall design is minimalistic, with no visible external markings or color variations. The helicopter is rendered in a uniform, light color, giving it a clean and modern appearance.",
+    "description": "A small, streamlined helicopter with a slender body, single main rotor, and thin landing skids, all in a uniform light color.",
+    "description_view_0": "The helicopter is seen from the side, showing the full length of the fuselage, tail boom, and the parallel landing skids beneath.",
+    "description_view_1": "This angled view highlights the main rotor and the slender profile of the helicopter, with the tail boom extending away.",
+    "description_view_2": "A rear or near-rear view, showing the tail boom and the alignment of the landing skids, with minimal detail on the rotor.",
+    "description_view_3": "An angled side view from the opposite direction, again showing the main rotor, fuselage, and landing skids.",
+    "category": "helicopter",
+    "height": 1.8,
+    "max_dimension": 8.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 3,
+    "movable": true,
+    "required_force": 11760,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "main rotor",
+        "tail rotor",
+        "landing skids",
+        "cockpit controls"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_rotor_blades": "The main rotor blades are not clearly visible, but the presence of a single main rotor is implied. Blade number, length, and material details are not discernible.",
+    "attribute_tail_rotor": "The tail rotor is not visible in any of the views.",
+    "attribute_landing_skids": "The helicopter has two thin, parallel landing skids, likely made of metal, with a simple, straight design and no visible crossbars or footpads.",
+    "attribute_cockpit_windows": "Cockpit windows are not visible in the provided views.",
+    "attribute_registration_number": "not visible",
+    "uid": "c7496f34cff5465cabf7d921eb77f101",
+    "near_synsets": {
+        "single-rotor_helicopter.n.01": 0.44849117695156326,
+        "helicopter.n.01": 0.4643778510442941,
+        "landing_skid.n.01": 0.4920445126465647,
+        "main_rotor.n.01": 0.4980428225203667,
+        "shuttle_helicopter.n.01": 0.5109278961438564
+    },
+    "synset": "shuttle_helicopter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/c7496f34cff5465cabf7d921eb77f101",
+        "creator_username": "Pebegou",
+        "creator_display_name": "Pebegou",
+        "creator_profile_url": "https://sketchfab.com/Pebegou"
+    },
+    "filename": "std_c7496f34cff5465cabf7d921eb77f101.glb",
+    "length": 406.4667778015137,
+    "width": 4.07334291934967
+}

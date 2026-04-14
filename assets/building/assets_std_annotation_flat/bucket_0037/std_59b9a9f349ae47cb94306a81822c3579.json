@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a hexagonal above-ground jacuzzi with a wooden exterior frame and a blue inner basin filled with water. The jacuzzi features a metal ladder at the front for easy entry and exit, and a set of external filtration and pump equipment attached to one side, housed in an orange and black casing. The water level is high, nearly reaching the top edge of the basin, indicating it is almost full. The structure is supported by a sturdy wooden frame, and the top edge is slightly raised, forming a lip around the perimeter. No visible jets or control panels are present on the interior or exterior surfaces, and the jacuzzi is designed for outdoor or backyard use.",
+    "description": "A hexagonal wooden above-ground jacuzzi with a blue water-filled basin, metal ladder, and external filtration equipment. The water level is nearly full, and the structure is robust and suitable for outdoor settings.",
+    "description_view_0": "Front view showing the metal ladder centered at the front and the clear blue water inside the wooden hexagonal frame.",
+    "description_view_1": "Rear angled view highlighting the external filtration equipment and a side access panel, with the ladder visible on the far side.",
+    "description_view_2": "Back view focusing on the filtration system and pump attached to the wooden frame, with the water surface visible.",
+    "description_view_3": "Side angled view showing both the ladder and the filtration equipment, as well as the wooden frame's construction details.",
+    "category": "jacuzzi",
+    "height": 1.2,
+    "max_dimension": 2.5,
+    "materials": [
+        "wood",
+        "metal",
+        "plastic",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.1,
+        0.1,
+        0.25,
+        0.05
+    ],
+    "mass": 350,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "sittable",
+        "turnable_valve"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "ladder",
+        "pump",
+        "valve",
+        "side panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "blue",
+        "silver",
+        "orange",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.3,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_jets": [],
+    "attribute_control_panel": "none visible",
+    "attribute_water_level": "nearly full, water close to the top edge",
+    "attribute_cover": false,
+    "attribute_steps": [
+        {
+            "location": "front",
+            "number_of_steps": 3,
+            "material": "wood"
+        }
+    ],
+    "uid": "59b9a9f349ae47cb94306a81822c3579",
+    "near_synsets": {
+        "hot_tub.n.01": 0.5288642231266781,
+        "bath_water.n.01": 0.5686167564250924,
+        "pump_room.n.01": 0.5898660402512329,
+        "bathtub.n.01": 0.5914747172651631,
+        "swimming_pool.n.01": 0.595266322172403
+    },
+    "synset": "hot_tub.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/59b9a9f349ae47cb94306a81822c3579",
+        "creator_username": "trzyde.com",
+        "creator_display_name": "trzyde.com",
+        "creator_profile_url": "https://sketchfab.com/trzyde.com"
+    },
+    "filename": "std_59b9a9f349ae47cb94306a81822c3579.glb",
+    "length": 2.96489155292511,
+    "width": 3.4298582077026367
+}

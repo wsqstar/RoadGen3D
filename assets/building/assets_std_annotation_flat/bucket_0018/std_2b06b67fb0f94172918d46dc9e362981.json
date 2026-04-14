@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a small, open wooden rowboat with a dark brown hull and ribbed planking along the sides. The bow features a prominent skull ornament, giving the vessel a menacing or thematic appearance, while the stern is equipped with a curved metal pole holding a lantern. The interior contains several wooden benches for seating, and a jug or urn is positioned near the stern. Metal reinforcements and bolts are visible along the gunwales, adding to the boat's rugged construction. The overall design suggests a utilitarian craft, possibly for short-distance water travel or thematic use in a fantasy or pirate setting.",
+    "description": "A small, open wooden rowboat with a skull ornament at the bow and a lantern at the stern, featuring benches and metal reinforcements.",
+    "description_view_0": "Front view showing the skull ornament at the bow and the arrangement of benches inside.",
+    "description_view_1": "Side view highlighting the boat's length, ribbed hull, and the lantern mounted on a curved pole at the stern.",
+    "description_view_2": "Rear view displaying the jug or urn at the stern and the full width of the benches.",
+    "description_view_3": "Opposite side view showing the hull's planking, the skull at the bow, and the lantern at the stern.",
+    "category": "ship",
+    "height": 1.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "wood",
+        "metal",
+        "ceramic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.01,
+        0.04
+    ],
+    "mass": 180,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 600,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench",
+        "lantern",
+        "jug",
+        "skull ornament"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "black",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a pointed bow and a flat stern, constructed from ribbed wooden planks reinforced with metal bands. The bow is adorned with a skull ornament, and the hull sides are slightly flared for stability. No keels or bulbous bows are visible.",
+    "attribute_superstructure_layout": "There is no enclosed superstructure; the boat features an open deck with several wooden benches for seating. A curved metal pole at the stern supports a lantern, and a jug or urn is placed near the rear bench.",
+    "attribute_presence_of_masts_or_funnels": false,
+    "attribute_visible_deck_equipment": [
+        "lantern",
+        "jug",
+        "skull ornament",
+        "benches"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "2b06b67fb0f94172918d46dc9e362981",
+    "near_synsets": {
+        "rowing_boat.n.01": 0.48351944772484823,
+        "boat.n.01": 0.49014517395270035,
+        "figurehead.n.02": 0.49665086172826844,
+        "small_boat.n.01": 0.5025771813203029,
+        "scull.n.01": 0.5041792878367823,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2b06b67fb0f94172918d46dc9e362981",
+        "creator_username": "heathermichno",
+        "creator_display_name": "heathermichno",
+        "creator_profile_url": "https://sketchfab.com/heathermichno"
+    },
+    "filename": "std_2b06b67fb0f94172918d46dc9e362981.glb",
+    "length": 3.5375680923461914,
+    "width": 1.3974796533584595
+}

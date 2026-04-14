@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a heavily rusted, vintage-style sedan car shell with a weathered, brownish surface indicating significant age and exposure to the elements. The body is largely intact but missing all windows, headlights, and other external fixtures, leaving large open spaces where glass would be. The doors and trunk are present but appear fused or non-functional due to corrosion, and the wheels are either missing or reduced to rusted hubs. The roof is slightly domed, and the overall silhouette is boxy with rounded edges, typical of mid-20th-century sedans. The surface is rough and pitted, with visible streaks and patches of rust throughout. There are no visible manufacturer badges, license plates, or decorative trim, giving the car a stripped, abandoned appearance.",
+    "description": "A rusted, windowless vintage sedan shell with a rough, brown surface and missing external fixtures. The car is heavily corroded and appears abandoned.",
+    "description_view_0": "Front view shows the rusted hood, missing headlights, and open windshield area.",
+    "description_view_1": "Left side view reveals the open window frames, rusted door panels, and missing wheels.",
+    "description_view_2": "Rear view displays the trunk area, open rear window, and corroded taillight positions.",
+    "description_view_3": "Right side view mirrors the left, with visible rusted doors and open window frames.",
+    "category": "sedan",
+    "height": 1.5,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "iron",
+        "air",
+        "rust (iron oxide)"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "mass": 700,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 3500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "trunk",
+        "wheel well"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "dark brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.05,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_number_of_doors": 4,
+    "attribute_license_plate": "none",
+    "attribute_wheel_design": "unknown",
+    "uid": "348320b8009f454492c5b5b95b81aa3e",
+    "near_synsets": {
+        "car_window.n.01": 0.5437302769496378,
+        "bus.n.04": 0.5438718131034727,
+        "used-car.n.01": 0.5471681169069297,
+        "car_door.n.01": 0.557080704935398,
+        "sedan.n.01": 0.561765785311405,
+        "sedan.n.02": -1000.0
+    },
+    "synset": "sedan.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/348320b8009f454492c5b5b95b81aa3e",
+        "creator_username": "kryik1023",
+        "creator_display_name": "Renafox",
+        "creator_profile_url": "https://sketchfab.com/kryik1023"
+    },
+    "filename": "std_348320b8009f454492c5b5b95b81aa3e.glb",
+    "length": 4.771686315536499,
+    "width": 1.8699851036071777
+}

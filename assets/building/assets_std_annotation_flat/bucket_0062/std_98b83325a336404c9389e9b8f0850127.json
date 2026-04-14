@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a compact, tracked combat vehicle with a low-profile turret and a short-barreled cannon mounted at the front. The hull and turret are covered in angular, riveted armor plates, and the vehicle features a distinctive camouflage paint scheme with irregular green, brown, and black patches. The tracks are wide and robust, wrapping around large drive sprockets and road wheels, providing stability and traction. The turret is dome-shaped with a small hatch on top, and the cannon protrudes slightly forward. The rear of the vehicle tapers and is reinforced with additional armor, while the front is sloped for deflection. No visible military markings or insignia are present, and the vehicle lacks traditional tires, relying entirely on its tracked system.",
+    "description": "A small, tracked combat vehicle with a dome turret, short cannon, and angular camouflage armor. It features wide tracks and a distinctive green-brown-black paint scheme.",
+    "description_view_0": "Side view showing the full length of the tracks, the dome turret with cannon, and the angular armor plating.",
+    "description_view_1": "Front view highlighting the sloped frontal armor, the cannon barrel, and the symmetrical track layout.",
+    "description_view_2": "Opposite side view displaying the rear taper, turret, and the continuous track system.",
+    "description_view_3": "Rear view showing the reinforced back armor, track ends, and the rear of the turret.",
+    "category": "combat tactical  vehicle",
+    "height": 2.1,
+    "max_dimension": 4.9,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 7200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 90000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "tracks",
+        "viewports"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible cannon mount on the front of the turret.",
+    "attribute_armor_plating": "Full body coverage with riveted, angular steel armor plates; sloped at the front and reinforced at the rear.",
+    "attribute_camouflage_pattern": "Irregular woodland camouflage with green, brown, and black patches in a disruptive pattern.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "98b83325a336404c9389e9b8f0850127",
+    "near_synsets": {
+        "tank.n.01": 0.4941412159346234,
+        "military_vehicle.n.01": 0.5038893230992223,
+        "reconnaissance_vehicle.n.01": 0.5161896715456181,
+        "assault_gun.n.02": 0.5278627739108495,
+        "armored_car.n.02": 0.5318600766284715,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/98b83325a336404c9389e9b8f0850127",
+        "creator_username": "Ara_my45yt",
+        "creator_display_name": "Ara_my45yt",
+        "creator_profile_url": "https://sketchfab.com/Ara_my45yt"
+    },
+    "filename": "std_98b83325a336404c9389e9b8f0850127.glb",
+    "length": 4.17989444732666,
+    "width": 1.7158427238464355
+}

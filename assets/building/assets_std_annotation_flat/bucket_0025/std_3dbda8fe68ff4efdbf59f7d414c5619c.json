@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a cylindrical hand grenade, specifically modeled after the M84 stun grenade, commonly known as a flashbang. The body is olive drab with a series of circular cutouts along its length, revealing a metallic inner chamber, and is banded with a teal-green stripe. Both ends are hexagonal, providing stability when placed on surfaces, and the top features a prominent safety lever and pull ring, which are typically used to arm the device. The lever is metallic and painted in a reddish-brown color, contrasting with the rest of the grenade. Small white alphanumeric markings are visible on the upper section, indicating model and lot information. The overall construction suggests a robust, metallic build designed for tactical use in urban environments.",
+    "description": "A cylindrical, olive drab stun grenade with teal banding, hexagonal ends, and a metallic safety lever and pull ring. Circular cutouts reveal the inner chamber, and white markings are present on the upper body.",
+    "description_view_0": "The grenade is shown with its safety lever and pull ring clearly visible, highlighting the hexagonal end and teal banding.",
+    "description_view_1": "This view emphasizes the white alphanumeric markings on the upper section and provides a clear look at the circular cutouts and the reddish-brown lever.",
+    "description_view_2": "The rear of the grenade is visible, focusing on the metallic safety lever and the hexagonal end cap, with less emphasis on the cutouts.",
+    "description_view_3": "A side angle showing both the cutouts and the lever, with the pull ring and teal banding prominent along the body.",
+    "category": "bomb",
+    "height": 0.14,
+    "max_dimension": 0.16,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 0.4,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "body"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive drab",
+        "teal green",
+        "reddish-brown",
+        "black",
+        "silver",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "group",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The grenade is armed by pulling the safety ring and releasing the lever, which likely triggers an internal fuse mechanism.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "3dbda8fe68ff4efdbf59f7d414c5619c",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.5532959011615425,
+        "grenade.n.01": 0.5766965447580578,
+        "bomb.n.01": 0.5803170249102076,
+        "rifle_grenade.n.01": 0.5816219788628487,
+        "pipe_bomb.n.01": 0.5819976588497159,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3dbda8fe68ff4efdbf59f7d414c5619c",
+        "creator_username": "vanillatography",
+        "creator_display_name": "Vanillatography",
+        "creator_profile_url": "https://sketchfab.com/vanillatography"
+    },
+    "filename": "std_3dbda8fe68ff4efdbf59f7d414c5619c.glb",
+    "length": 0.17548178881406784,
+    "width": 0.1877482831478119
+}

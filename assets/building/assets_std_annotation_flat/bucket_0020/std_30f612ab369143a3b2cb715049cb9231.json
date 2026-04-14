@@ -1,0 +1,102 @@
+{
+    "description_long": "This kiosk is a compact, rectangular vending station with a prominent, colorful signboard on top, featuring both text and graphics. The front face displays two vending machine interfaces, each with a transparent window showing a variety of products inside, and a central payment terminal. The signboard is visually divided into two sections, with blue and orange backgrounds, and includes branding, promotional text, and a cheerful illustrated character. The sides of the kiosk are solid panels, each with additional branding and graphics, while the rear is a plain, solid surface with no openings or features. The kiosk sits on a circular wooden platform, suggesting a temporary or modular installation suitable for urban environments.",
+    "description": "A compact vending kiosk with dual vending machines, a colorful signboard, and branded side panels, set on a circular wooden platform.",
+    "description_view_0": "Front view showing two vending machines, a central payment terminal, and a large, colorful signboard with branding and graphics.",
+    "description_view_1": "Side view displaying a solid panel with branding, graphics, and a partial view of the signboard above.",
+    "description_view_2": "Rear view showing a plain, solid back panel with no openings or features.",
+    "description_view_3": "Opposite side view similar to view 1, with branding and graphics on the side panel and a partial view of the signboard.",
+    "category": "kiosk",
+    "height": 1.8,
+    "max_dimension": 2.2,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "wood",
+        "paper",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "vending interface",
+        "payment terminal",
+        "product window",
+        "signboard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "orange",
+        "blue",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.4,
+        0.2,
+        0.15,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "Printed signboard with branding, promotional text, and graphics, placed above the vending interfaces and on side panels; includes visible text such as 'ACQUISTA CASHLESS' and 'serim'.",
+    "attribute_window_presence": "Two rectangular transparent windows on the front, integrated into the vending machine interfaces.",
+    "attribute_door_configuration": "None visible; access likely from rear or internal panels not shown.",
+    "attribute_roof_design": "Flat roof, extends slightly beyond the kiosk body, constructed from solid panels with a large, upright signboard as a prominent feature.",
+    "attribute_architectural_style": "Modern commercial with minimalist, functional design and bold, colorful branding elements.",
+    "uid": "30f612ab369143a3b2cb715049cb9231",
+    "near_synsets": {
+        "vending_machine.n.01": 0.49086847301690323,
+        "automat.n.01": 0.5352398128649025,
+        "booth.n.02": 0.5449481590979138,
+        "booth.n.04": 0.5500742684972583,
+        "soda_fountain.n.01": 0.5607176097948491
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/30f612ab369143a3b2cb715049cb9231",
+        "creator_username": "serimcomunicazione",
+        "creator_display_name": "serimcomunicazione",
+        "creator_profile_url": "https://sketchfab.com/serimcomunicazione"
+    },
+    "filename": "std_30f612ab369143a3b2cb715049cb9231.glb",
+    "length": 5.089923620223999,
+    "width": 5.089922904968262
+}

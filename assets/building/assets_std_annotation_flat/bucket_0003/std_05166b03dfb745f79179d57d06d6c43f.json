@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a blocky, red city bus with a rectangular shape and pixelated design, reminiscent of voxel art. The bus features large, dark-tinted windows along both sides, with two prominent passenger doors on one side and a set of wheels positioned near the front and rear. The roof is equipped with a raised, gray ventilation or air conditioning unit, and the front of the bus has a wide windshield with angular headlights and a subtle bumper. The rear of the bus is flat, with a vent and tail lights, while the sides display a consistent window pattern separated by thin pillars. The overall appearance suggests a modern, urban public transport vehicle designed for city streets.",
+    "description": "A red, blocky city bus with large dark windows, two side doors, and a gray rooftop unit, designed for urban public transport.",
+    "description_view_0": "Front view showing the wide windshield, angular headlights, and the gray rooftop unit.",
+    "description_view_1": "Side view displaying four large windows, a single passenger door, and two wheels.",
+    "description_view_2": "Rear view with a flat back, vent, tail lights, and the rooftop unit visible.",
+    "description_view_3": "Opposite side view with four windows, two passenger doors, and two wheels.",
+    "category": "bus",
+    "height": 3.2,
+    "max_dimension": 10.5,
+    "materials": [
+        "painted metal",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.06,
+        0.03,
+        0.03
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "button",
+        "vent"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "gray",
+        "white",
+        "orange"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 2,
+    "attribute_window_arrangement": "Four large, rectangular windows evenly spaced along each side, separated by thin vertical pillars, with consistent size and shape.",
+    "attribute_route_number_or_destination_sign": "",
+    "attribute_bus_manufacturer_logo": "",
+    "attribute_passenger_entry_step_height": 0.4,
+    "uid": "05166b03dfb745f79179d57d06d6c43f",
+    "near_synsets": {
+        "bus.n.01": 0.48778112324010137,
+        "school_bus.n.01": 0.5055787917172861,
+        "minibus.n.01": 0.5165931838996409,
+        "public_transit.n.01": 0.5173314149269138,
+        "bus_traffic.n.01": 0.5283575469435867,
+        "bus.n.04": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "busbar.n.01": -1000.0
+    },
+    "synset": "busbar.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/05166b03dfb745f79179d57d06d6c43f",
+        "creator_username": "scailman",
+        "creator_display_name": "scailman",
+        "creator_profile_url": "https://sketchfab.com/scailman"
+    },
+    "filename": "std_05166b03dfb745f79179d57d06d6c43f.glb",
+    "length": 8.399998664855957,
+    "width": 3.9999983310699463
+}

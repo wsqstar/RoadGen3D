@@ -1,0 +1,108 @@
+{
+    "description_long": "This transformer tower is a tall, vertical structure composed of a central metallic shaft supporting multiple crossarms and insulator stacks. The upper section features a dense cluster of metallic and ceramic components, likely housing transformers and high-voltage switching equipment. Several insulator stacks are distributed along the shaft, separating the conductive elements from the supporting structure. The base is robust and grounded, with visible mounting hardware and possibly some vegetation or debris around it. The surface is predominantly metallic gray with patches of brown and green, suggesting exposure to the elements and possible rust or moss. The overall design is utilitarian, optimized for supporting and distributing high-voltage power lines in an urban environment.",
+    "description": "A tall, metallic transformer tower with multiple crossarms, insulator stacks, and dense electrical equipment at the top, showing weathered surfaces and robust construction.",
+    "description_view_0": "The tower appears narrow with a clear view of the central shaft and stacked insulators, with dense equipment visible at the top.",
+    "description_view_1": "This view highlights the complexity of the upper section, showing more of the crossarms and electrical components in profile.",
+    "description_view_2": "The shaft and insulator stacks are prominent, with the upper equipment cluster appearing slightly offset and more of the base visible.",
+    "description_view_3": "A side angle reveals the layered arrangement of crossarms and insulators, with the top equipment cluster extending outward.",
+    "category": "transformer tower",
+    "height": 14.0,
+    "max_dimension": 14.0,
+    "materials": [
+        "steel",
+        "ceramic",
+        "copper",
+        "plastic",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.12,
+        0.08,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 4,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "connectable",
+        "mountable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "insulator stack",
+        "crossarm",
+        "transformer unit",
+        "mounting bracket"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "green",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_insulator_stacks": 5,
+    "attribute_arrangement_of_crossarms": "There are multiple crossarms arranged in a staggered, multi-level configuration, with some positioned horizontally and others at slight angles to support various power lines.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "transformer",
+        "insulator",
+        "mounting bracket"
+    ],
+    "attribute_configuration_of_attached_power_lines": "Several circuits are attached, likely in a three-phase arrangement, with power lines routed in parallel and stacked vertically along the crossarms.",
+    "uid": "9fd030edcd464ad48b5678e329f4e88e",
+    "near_synsets": {
+        "pylon.n.02": 0.5348504030221037,
+        "clock_tower.n.01": 0.5456775923338362,
+        "water_tower.n.01": 0.5568796685956457,
+        "transformer.n.01": 0.5577780218097973,
+        "cascade_transformer.n.01": 0.559098353478305,
+        "tugboat.n.01": -1000.0,
+        "tower.n.01": -1000.0,
+        "column.n.04": -1000.0
+    },
+    "synset": "pylon.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9fd030edcd464ad48b5678e329f4e88e",
+        "creator_username": "navapol.montong",
+        "creator_display_name": "navapol.montong",
+        "creator_profile_url": "https://sketchfab.com/navapol.montong"
+    },
+    "filename": "std_9fd030edcd464ad48b5678e329f4e88e.glb",
+    "length": 3.2829254865646362,
+    "width": 3.0763168334960938
+}

@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a bright orange, medium-sized urban bus with a boxy, utilitarian design reminiscent of a food truck or shuttle. The front features two large, slightly angled windshields with black wipers, rectangular headlights, and a small yellow license plate. Along the passenger side, there is a large rectangular service window with a counter beneath it, suggesting it may be used as a food truck or mobile service vehicle, and two roof skylights are visible. The rear has multiple ventilation grilles, tail lights, and another yellow license plate, while the opposite side has a smaller access panel and no large windows. The bus sits on four wheels with visible wheel wells, and the exterior shows signs of wear and urban use, including some dirt and scuff marks. The roof has a circular vent and two rectangular skylights, adding to its functional, service-oriented appearance.",
+    "description": "A bright orange, boxy urban bus with large windshields, a side service window, roof skylights, and visible wear, resembling a food truck or shuttle.",
+    "description_view_0": "Front view shows two large windshields, side mirrors, headlights, and a yellow license plate.",
+    "description_view_1": "Passenger side view reveals a large service window with a counter, two roof skylights, and a circular roof vent.",
+    "description_view_2": "Rear view displays multiple ventilation grilles, tail lights, and a yellow license plate.",
+    "description_view_3": "Driver side view shows a smaller access panel, no large windows, and the continuation of the orange bodywork.",
+    "category": "bus",
+    "height": 2.8,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.12,
+        0.07,
+        0.05,
+        0.03,
+        0.03
+    ],
+    "mass": 5200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "mirror",
+        "service counter",
+        "vent",
+        "license plate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "black",
+        "gray",
+        "yellow",
+        "blue"
+    ],
+    "colors_composition": [
+        0.75,
+        0.12,
+        0.07,
+        0.03,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 1,
+    "attribute_window_arrangement": "One large rectangular service window on the passenger side, two roof skylights, no traditional passenger windows; driver side has a small access panel but no large windows.",
+    "attribute_route_number_or_destination_sign": "",
+    "attribute_bus_manufacturer_logo": "",
+    "attribute_passenger_entry_step_height": 0.45,
+    "uid": "9a179f9803734a3e95630727b9db3477",
+    "near_synsets": {
+        "bus.n.01": 0.49943089295959764,
+        "school_bus.n.01": 0.5180620835124864,
+        "bus_traffic.n.01": 0.535833049058234,
+        "shuttle_bus.n.01": 0.5377565151037231,
+        "bus.n.04": 0.5389528322643907,
+        "bus_topology.n.01": -1000.0,
+        "busbar.n.01": -1000.0
+    },
+    "synset": "busbar.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9a179f9803734a3e95630727b9db3477",
+        "creator_username": "sandrafaki",
+        "creator_display_name": "sandrafaki",
+        "creator_profile_url": "https://sketchfab.com/sandrafaki"
+    },
+    "filename": "std_9a179f9803734a3e95630727b9db3477.glb",
+    "length": 6.106124401092529,
+    "width": 2.3124008178710938
+}

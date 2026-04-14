@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a compact, ornately detailed firearm with a metallic frame and a dark, polished wooden grip. The barrel and cylinder are finished in a brass or gold tone, contrasting with the blackened steel of the main body. The grip features decorative inlays and a curved ergonomic shape, while the trigger and hammer are visibly metallic and functional. The cylinder is prominent, suggesting a revolver mechanism, and the barrel is relatively short and robust. The overall design is reminiscent of a classic revolver, with intricate engravings and a sturdy build. The object appears well-crafted, with a mix of matte and glossy finishes highlighting its contours.",
+    "description": "A compact, ornately detailed revolver-style firearm with a brass-toned barrel and dark wooden grip, featuring intricate engravings and a robust build.",
+    "description_view_0": "Front view showing the circular barrel opening and the top of the grip, with visible engravings on the upper frame.",
+    "description_view_1": "Side view displaying the full profile, including the curved wooden grip, metallic cylinder, and detailed engravings along the barrel and frame.",
+    "description_view_2": "Rear view highlighting the back of the grip and the alignment of the barrel, with the cylinder's width visible.",
+    "description_view_3": "Opposite side view showing the other profile, with similar details as view 1 but from the left side, including the hammer and trigger.",
+    "category": "shotgun",
+    "height": 0.13,
+    "max_dimension": 0.28,
+    "materials": [
+        "steel",
+        "wood",
+        "brass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.15,
+        0.02
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "rotatable",
+        "pressable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "hammer",
+        "cylinder",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "gold"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.22,
+    "surface_finish": "glossy",
+    "reflectivity": 0.38,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, short and robust with no visible ribbing or venting",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "revolver-action",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with a smooth contour and no finger grooves",
+    "uid": "de7887c9fb804aecb524a758c922fb7b",
+    "near_synsets": {
+        "colt.n.02": 0.481399783677763,
+        "shotgun.n.01": 0.48484259919240646,
+        "sawed-off_shotgun.n.01": 0.49052708167447645,
+        "revolver.n.01": 0.49334447580685387,
+        "firearm.n.01": 0.51467667058622
+    },
+    "synset": "sawed-off_shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/de7887c9fb804aecb524a758c922fb7b",
+        "creator_username": "shedmon",
+        "creator_display_name": "Shedmon",
+        "creator_profile_url": "https://sketchfab.com/shedmon"
+    },
+    "filename": "std_de7887c9fb804aecb524a758c922fb7b.glb",
+    "length": 0.17243477702140808,
+    "width": 0.01788162812590599
+}

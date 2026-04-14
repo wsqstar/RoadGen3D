@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a heavily modified SUV with a digital camouflage paint scheme, designed for rugged, tactical use in urban or combat environments. The vehicle features oversized, deep-tread off-road tires and reinforced body panels, suggesting enhanced durability and off-road capability. Mounted on the roof is a large, military-style turret with a machine gun, and the rear is equipped with a prominent spoiler and multiple rocket pods, indicating weaponization. The windows are blacked out, likely for protection and privacy, and the vehicle has visible antennas and additional armor plating. The rear of the SUV displays a license plate and exhaust pipes, while the overall build is boxy and robust. The design combines elements of civilian SUVs with military hardware, making it suitable for both urban patrol and combat scenarios.",
+    "description": "A camouflaged, weaponized SUV with oversized off-road tires, roof-mounted turret, and rear rocket pods, blending civilian and military design.",
+    "description_view_0": "Rear-side view showing the open trunk area, rear spoiler with rocket pods, and the roof-mounted turret.",
+    "description_view_1": "Direct rear view highlighting the spoiler, dual rocket pods, license plate, and rear armor details.",
+    "description_view_2": "Front-side view displaying the aggressive tire tread, side-mounted rocket pods, and the full profile of the turret.",
+    "description_view_3": "Front view emphasizing the armored grille, large tires, and the prominent roof-mounted weapon system.",
+    "category": "suv",
+    "height": 2.1,
+    "max_dimension": 4.8,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 16000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "turret",
+        "rocket pod",
+        "spoiler",
+        "antenna",
+        "window",
+        "license plate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "camouflage green",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.95,
+    "bounciness": 0.08,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_license_plate": "none",
+    "attribute_number_of_doors": 4,
+    "attribute_wheel_design": "large black rims with multiple small circular holes and deep off-road tread",
+    "uid": "644fc68208c240359f69acdce35d03f0",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4801678696009443,
+        "reconnaissance_vehicle.n.01": 0.4918774965470682,
+        "sport_utility.n.01": 0.5170785178957081,
+        "weapons_carrier.n.01": 0.5173686806090424,
+        "humvee.n.01": 0.5214034381412671
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/644fc68208c240359f69acdce35d03f0",
+        "creator_username": "Denys.Cherkasov",
+        "creator_display_name": "Denys Cherkasov",
+        "creator_profile_url": "https://sketchfab.com/Denys.Cherkasov"
+    },
+    "filename": "std_644fc68208c240359f69acdce35d03f0.glb",
+    "length": 4.521692276000977,
+    "width": 4.105477333068848
+}

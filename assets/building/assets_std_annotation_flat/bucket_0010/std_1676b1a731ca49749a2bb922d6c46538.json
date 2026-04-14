@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a weathered metal gate flanked by two robust rectangular pillars, each showing signs of age and peeling paint. The gate itself features vertical iron bars with pointed finials and a decorative top rail, providing both security and an ornamental touch. Above the gate, a large, partially deteriorated sign is mounted between the pillars, with remnants of white paint and faded lettering. The base of the structure appears to be set in a concrete or stone foundation, anchoring the gate and pillars firmly to the ground. The overall appearance suggests it is an entrance to a specific area, possibly a park, cemetery, or historic site, with a utilitarian yet slightly ornate design. The materials and construction indicate durability, while the visible wear adds character and a sense of history.",
+    "description": "A weathered metal gate with pointed finials, flanked by two aged pillars and topped with a faded sign, set on a concrete base.",
+    "description_view_0": "Front view showing the full gate, both pillars, the decorative ironwork, and the sign with partially legible text.",
+    "description_view_1": "Side view highlighting the thickness of the left pillar and the depth of the concrete base.",
+    "description_view_2": "Rear view displaying the back of the gate, pillars, and the reverse side of the sign, with less detail on the ironwork.",
+    "description_view_3": "Side view focusing on the right pillar, showing its weathered surface and the edge of the gate structure.",
+    "category": "gate",
+    "height": 2.2,
+    "max_dimension": 3.5,
+    "materials": [
+        "iron",
+        "concrete",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.35,
+        0.08,
+        0.02
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 5,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "gate door",
+        "sign",
+        "pillar"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "white",
+        "black",
+        "rust"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_gate_type": "ornamental swing gate",
+    "attribute_opening_mechanism": "manual swing",
+    "attribute_decorative_elements": [
+        "pointed finials",
+        "ornate top rail",
+        "faded sign"
+    ],
+    "attribute_locking_system": "no visible lock",
+    "attribute_surrounding_structure": "concrete base, metal fence, rectangular pillars",
+    "uid": "1676b1a731ca49749a2bb922d6c46538",
+    "near_synsets": {
+        "gate.n.01": 0.5434438225026931,
+        "gateway.n.01": 0.5436388641621804,
+        "shutting_post.n.01": 0.5437589842187243,
+        "portcullis.n.01": 0.5483703788570754,
+        "hinging_post.n.01": 0.5492353624531054,
+        "gate.n.02": -1000.0,
+        "gate.n.04": -1000.0,
+        "gate.n.03": -1000.0
+    },
+    "synset": "gate.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1676b1a731ca49749a2bb922d6c46538",
+        "creator_username": "FelixMatveev",
+        "creator_display_name": "FelixMatveev",
+        "creator_profile_url": "https://sketchfab.com/FelixMatveev"
+    },
+    "filename": "std_1676b1a731ca49749a2bb922d6c46538.glb",
+    "length": 0.7518845498561859,
+    "width": 3.866182804107666
+}

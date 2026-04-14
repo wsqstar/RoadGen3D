@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a vintage-style biplane with a wooden-textured fuselage and two sets of straight, parallel wings stacked vertically. The wings are supported by struts and wires, and the upper and lower wings are painted in shades of reddish-brown and gold. The nose features a wooden propeller, and the cockpit is open and situated just behind the upper wing, with a small windshield. The tail section is conventional, with a single vertical stabilizer and horizontal stabilizers, all in matching wood tones. The landing gear consists of two main wheels and a small tail skid, giving the aircraft a classic taildragger stance.",
+    "description": "A classic wooden biplane with stacked wings, open cockpit, and taildragger landing gear, featuring reddish-brown and gold tones.",
+    "description_view_0": "Front view showing the dual stacked wings, central propeller, and narrow fuselage.",
+    "description_view_1": "Left side view highlighting the open cockpit, propeller, and tail skid.",
+    "description_view_2": "Rear view displaying the tail section, single vertical stabilizer, and main landing gear.",
+    "description_view_3": "Right side view showing the cockpit, propeller, and the curvature of the fuselage.",
+    "category": "airplane",
+    "height": 2.5,
+    "max_dimension": 7.5,
+    "materials": [
+        "wood",
+        "metal",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 6375,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "cockpit",
+        "wheels",
+        "control stick"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "reddish-brown",
+        "gold",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Biplane configuration with two sets of straight, parallel wings stacked vertically; no winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "Single front-mounted piston engine with a wooden propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "Taildragger configuration with two fixed main wheels and a tail skid.",
+    "attribute_cockpit_placement": "Forward-mounted, open cockpit located just behind the upper wing, likely single-seat with a small windshield.",
+    "uid": "8117e9221dc341c0a15ecf1e16524631",
+    "near_synsets": {
+        "biplane.n.01": 0.481578066174235,
+        "monoplane.n.01": 0.531903563248119,
+        "aircraft.n.01": 0.5360595001991748,
+        "airplane.n.01": 0.5394521327995074,
+        "aircraft_landing.n.01": 0.5537267322480037
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8117e9221dc341c0a15ecf1e16524631",
+        "creator_username": "simon_fischer",
+        "creator_display_name": "simon_fischer",
+        "creator_profile_url": "https://sketchfab.com/simon_fischer"
+    },
+    "filename": "std_8117e9221dc341c0a15ecf1e16524631.glb",
+    "length": 4.353821039199829,
+    "width": 5.406806945800781
+}

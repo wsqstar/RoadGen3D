@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a heavily armored, tracked combat vehicle with a robust, angular design and a prominent central turret. The body is primarily composed of interlocking gray panels, with a thick, reinforced front and sides, and a distinctive red band encircling the lower turret area. The turret features a large, forward-facing cannon and is flanked by protective side shields that extend above the tracks. The rear of the vehicle is blocky, with visible exhaust or vent structures and additional red detailing. The tracks are wide and rugged, designed for traversing rough urban terrain, and the overall construction suggests a focus on durability and protection.",
+    "description": "A robust, gray tracked combat vehicle with a central turret, red accent band, and heavy armor plating. Features a large cannon and wide, rugged tracks for urban operations.",
+    "description_view_0": "Front view shows the reinforced armor, central cannon, and red accent band beneath the turret.",
+    "description_view_1": "Left side view highlights the thick side shields, wide tracks, and the turret's overhang.",
+    "description_view_2": "Rear view reveals blocky exhaust structures and red detailing, with the tracks and rear armor visible.",
+    "description_view_3": "Right side view mirrors the left, showing the turret, side shields, and rugged track design.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 160000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "track",
+        "side shield"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted centrally on the turret; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, angular armor plating; reinforced front and side shields; no visible modular or reactive panels.",
+    "attribute_camouflage_pattern": "None visible; solid gray with red accent band.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "295d60432e3e4e269412002f4c316f9b",
+    "near_synsets": {
+        "tank.n.01": 0.4982867747031511,
+        "military_vehicle.n.01": 0.5026645082591498,
+        "reconnaissance_vehicle.n.01": 0.5072940398557602,
+        "assault_gun.n.02": 0.5156926365719704,
+        "armored_car.n.02": 0.5232028336008749,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/295d60432e3e4e269412002f4c316f9b",
+        "creator_username": "devhub.developer",
+        "creator_display_name": "\ud83c\udd73\ud83c\udd74\ud83c\udd85\ud83c\udd77\ud83c\udd84\ud83c\udd71",
+        "creator_profile_url": "https://sketchfab.com/devhub.developer"
+    },
+    "filename": "std_295d60432e3e4e269412002f4c316f9b.glb",
+    "length": 3.8778469562530518,
+    "width": 3.0457781553268433
+}

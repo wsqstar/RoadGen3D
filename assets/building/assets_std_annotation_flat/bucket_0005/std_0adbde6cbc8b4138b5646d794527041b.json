@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a partially constructed wooden shelter with an open framework, featuring a gabled roof made of timber trusses and beams. The structure is rectangular, with vertical wooden studs forming the walls and a slatted wooden floor elevated above the ground. The front side is completely open, providing easy access, while the back and sides are framed but lack solid wall panels. Metal brackets and fasteners are visible at the joints, reinforcing the wooden connections. The roof is pitched and unfinished, exposing the internal truss system. The overall appearance suggests a utilitarian shelter, suitable for parks, bus stops, or temporary urban installations.",
+    "description": "A wooden-framed, open-sided shelter with a gabled roof and slatted floor, reinforced by metal brackets. The structure is unfinished, with exposed beams and no wall panels.",
+    "description_view_0": "Front view showing the open entryway, slatted floor, and full visibility of the roof trusses.",
+    "description_view_1": "Side view highlighting the depth of the structure, exposed wall studs, and the open framework.",
+    "description_view_2": "Rear view displaying the framed back wall with vertical studs and the gabled roof structure.",
+    "description_view_3": "Opposite side view showing the same open framework and slatted floor as the other side.",
+    "category": "shelter",
+    "height": 2.5,
+    "max_dimension": 4.0,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 350,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "supportive",
+        "protective"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "floor slats",
+        "roof trusses"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gabled timber truss roof with exposed beams",
+    "attribute_entryway_design": "wide open front with no doors or barriers",
+    "attribute_support_structure": "vertical wooden studs and horizontal beams reinforced with metal brackets",
+    "attribute_signage": "none",
+    "attribute_transparency": "fully opaque with open framework",
+    "uid": "0adbde6cbc8b4138b5646d794527041b",
+    "near_synsets": {
+        "shelter.n.02": 0.4919037391332852,
+        "shelter.n.01": 0.49733467270164666,
+        "shed.n.01": 0.5119686094960209,
+        "gazebo.n.01": 0.5182462407825481,
+        "lean-to.n.01": 0.5213473234584127,
+        "protection.n.04": -1000.0,
+        "shelter.n.05": -1000.0,
+        "tax_shelter.n.01": -1000.0
+    },
+    "synset": "tax_shelter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0adbde6cbc8b4138b5646d794527041b",
+        "creator_username": "casecalduroase",
+        "creator_display_name": "casecalduroase",
+        "creator_profile_url": "https://sketchfab.com/casecalduroase"
+    },
+    "filename": "std_0adbde6cbc8b4138b5646d794527041b.glb",
+    "length": 1.2108864784240723,
+    "width": 3.4407836198806763
+}

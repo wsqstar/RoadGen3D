@@ -1,0 +1,92 @@
+{
+    "description_long": "This object is a pair of light blue curtains suspended from a horizontal rod, with each curtain panel hanging down in gentle, natural folds. The curtains are made from a soft, opaque fabric and are mounted on a simple, cylindrical rod that extends slightly beyond the curtain edges. The top of each curtain features a rod pocket design, allowing the rod to pass through and support the fabric evenly. The curtains are fully closed, meeting at the center with a slight overlap, and the fabric drapes smoothly to the bottom. The rod appears to be made of a lightweight material, possibly plastic or metal, and is capped at both ends. The overall appearance is clean, modern, and suitable for residential or urban window installations.",
+    "description": "A pair of light blue, fully closed curtains with a rod pocket top, hanging from a simple horizontal rod. The fabric drapes in soft folds and the rod extends slightly past the curtain edges.",
+    "description_view_0": "Side view showing the curtain's thickness and the cylindrical rod running through the top pocket.",
+    "description_view_1": "Front view displaying both curtain panels fully closed, meeting at the center, with the rod visible at the top.",
+    "description_view_2": "Opposite side view similar to view 0, highlighting the curtain's depth and rod structure.",
+    "description_view_3": "Direct front view with both panels fully closed and the rod ends visible on both sides.",
+    "category": "curtain",
+    "height": 1.8,
+    "max_dimension": 2.0,
+    "materials": [
+        "fabric",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 2.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 5,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pullable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "curtain panel",
+        "rod"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "blue",
+        "gray"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "soft",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 0.05,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "group",
+    "attribute_mounting_location": "wall above window",
+    "attribute_openness_state": "fully closed",
+    "attribute_fabric_pattern": "solid color",
+    "attribute_top_design": "rod pocket",
+    "attribute_attachment_type": "sewn-in loops",
+    "uid": "19fdd83768bd4f40b19c21a99792f3de",
+    "near_synsets": {
+        "cafe_curtain.n.01": 0.4541577094321506,
+        "curtain.n.01": 0.4595968630667095,
+        "drapery.n.02": 0.46181334372586114,
+        "drape.n.02": 0.5023907910083738,
+        "curtain.n.02": 0.515029383671153
+    },
+    "synset": "curtain.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/19fdd83768bd4f40b19c21a99792f3de",
+        "creator_username": "ChuckyFinster",
+        "creator_display_name": "ChuckyFinster",
+        "creator_profile_url": "https://sketchfab.com/ChuckyFinster"
+    },
+    "filename": "std_19fdd83768bd4f40b19c21a99792f3de.glb",
+    "length": 0.24690254777669907,
+    "width": 2.062299966812134
+}

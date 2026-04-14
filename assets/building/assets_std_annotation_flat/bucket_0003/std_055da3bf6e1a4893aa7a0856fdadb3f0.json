@@ -1,0 +1,104 @@
+{
+    "description_long": "This object is a single-story building complex designed for car rental services, featuring a series of connected structures with prominent gabled roofs and exposed wooden beams. The main facade includes multiple entryways and large windows, suggesting customer service areas and office spaces. The exterior walls appear to be constructed from stone or brick, providing a sturdy and welcoming appearance. A paved driveway and parking area run parallel to the building, allowing vehicles to enter and exit easily. The surrounding area is landscaped with grass and pathways, enhancing accessibility and curb appeal. The overall design is functional and inviting, suitable for urban or suburban environments where car rental services are in demand.",
+    "description": "A stone and wood car rental building complex with gabled roofs, large windows, and a paved driveway for vehicle access.",
+    "description_view_0": "Top-down view showing the layout of the building complex, driveway, and landscaped surroundings.",
+    "description_view_1": "Front view highlighting the main entrances, gabled roofs, and large windows of the car rental building.",
+    "description_view_2": "Rear view displaying the back entrances and the continuation of the driveway and landscaping.",
+    "description_view_3": "Opposite front view emphasizing the main facade, entryways, and architectural details of the building.",
+    "category": "car rental",
+    "height": 5.0,
+    "max_dimension": 35.0,
+    "materials": [
+        "stone",
+        "wood",
+        "glass",
+        "asphalt",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.4,
+        0.25,
+        0.1,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 350000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "black",
+        "green"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "scene",
+    "attribute_car_manufacturer": "None",
+    "attribute_car_model": "None",
+    "attribute_license_plate": "None",
+    "attribute_rental_company_branding": "None",
+    "attribute_vehicle_type": "None",
+    "uid": "055da3bf6e1a4893aa7a0856fdadb3f0",
+    "near_synsets": {
+        "car_rental.n.01": 0.5263040211741055,
+        "garage.n.01": 0.5514023239373297,
+        "car_window.n.01": 0.5622215340889833,
+        "stone.n.02": 0.5624532293433566,
+        "carport.n.01": 0.5626643743897591,
+        "car.n.03": -1000.0,
+        "lease.n.01": -1000.0,
+        "cable_car.n.01": -1000.0,
+        "car.n.02": -1000.0,
+        "car.n.01": -1000.0,
+        "rental.n.02": -1000.0,
+        "car.n.04": -1000.0
+    },
+    "synset": "car_rental.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/055da3bf6e1a4893aa7a0856fdadb3f0",
+        "creator_username": "smwood",
+        "creator_display_name": "Smart Wood",
+        "creator_profile_url": "https://sketchfab.com/smwood"
+    },
+    "filename": "std_055da3bf6e1a4893aa7a0856fdadb3f0.glb",
+    "length": 24.97492218017578,
+    "width": 42.10890769958496
+}

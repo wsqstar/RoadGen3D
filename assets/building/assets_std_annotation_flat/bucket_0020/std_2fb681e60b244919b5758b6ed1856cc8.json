@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a pump-action shotgun with a long, cylindrical barrel and a tubular magazine running parallel beneath it. The receiver and barrel are finished in a dark, matte metal, while the fore-end and pistol grip are made of wood with a ribbed texture for improved grip. The shotgun features a prominent pump-action slide, which is ribbed and positioned just forward of the trigger guard. A single shotgun shell is displayed beneath the receiver, indicating the type of ammunition used. The trigger guard is rounded and encloses a standard trigger, and the overall design is robust and utilitarian, suitable for urban environments such as law enforcement or home defense. The shotgun lacks a full stock, instead featuring a pistol grip for compact handling.",
+    "description": "A pump-action shotgun with a long barrel, wooden ribbed fore-end, and pistol grip, finished in dark metal. A single shell is shown beneath the receiver, highlighting its ammunition type.",
+    "description_view_0": "Front view showing the circular muzzle and alignment of the barrel and magazine tube.",
+    "description_view_1": "Side view displaying the full length of the shotgun, wooden fore-end, pistol grip, and a single shell beneath the receiver.",
+    "description_view_2": "Rear view focusing on the pistol grip and the end of the receiver, with the barrel and magazine tube extending away.",
+    "description_view_3": "Opposite side view similar to view 1, showing the shotgun's profile, wooden elements, and shell beneath the receiver.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 1.05,
+    "materials": [
+        "steel",
+        "wood",
+        "plastic",
+        "brass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "pumpable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pump handle",
+        "trigger",
+        "trigger guard",
+        "pistol grip",
+        "barrel",
+        "magazine tube"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "silver",
+        "brass"
+    ],
+    "colors_composition": [
+        0.65,
+        0.25,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_barrel_configuration": "single-barrel with a tubular magazine beneath; no ribbing or venting visible on the barrel",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with a smooth contour and no visible finger grooves or reinforcement",
+    "uid": "2fb681e60b244919b5758b6ed1856cc8",
+    "near_synsets": {
+        "pump_action.n.01": 0.46035498917318557,
+        "sawed-off_shotgun.n.01": 0.5056141220509914,
+        "shotgun.n.01": 0.5095161910921236,
+        "shotgun_shell.n.01": 0.5270840898262898,
+        "gas_gun.n.01": 0.5302636320328767
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2fb681e60b244919b5758b6ed1856cc8",
+        "creator_username": "bumstrum",
+        "creator_display_name": "DJMaesen",
+        "creator_profile_url": "https://sketchfab.com/bumstrum"
+    },
+    "filename": "std_2fb681e60b244919b5758b6ed1856cc8.glb",
+    "length": 1.1606736183166504,
+    "width": 0.06555284187197685
+}

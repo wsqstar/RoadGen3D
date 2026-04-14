@@ -1,0 +1,94 @@
+{
+    "description_long": "This handcart features a rectangular wooden load platform with a chevron-patterned surface and four vertical metal arches serving as side rails. The cart is supported by two large, spoked metal wheels on either side, providing stability and ease of movement. A long, straight wooden handle extends from one end, designed for pulling or pushing the cart. The side rails are evenly spaced and rise above the platform, helping to secure cargo during transport. The overall construction combines robust wood for the main body and handle, with metal used for the wheels and rails, giving it a classic utilitarian appearance. The open-top design allows for easy loading and unloading of goods, making it suitable for various urban tasks such as gardening, deliveries, or market use.",
+    "description": "A wooden handcart with a chevron-patterned platform, four metal side rails, two large spoked wheels, and a long straight handle. The open design is ideal for transporting goods in urban settings.",
+    "description_view_0": "Side view showing the full length of the wooden platform, four vertical metal side rails, two large spoked wheels, and the extended handle.",
+    "description_view_1": "Front view highlighting the open end of the cart, the spacing of the metal side rails, and the width of the platform.",
+    "description_view_2": "Opposite side view mirroring view 0, displaying the wheels, handle, and side rails from the other side.",
+    "description_view_3": "Rear view showing the closed end of the platform, the alignment of the side rails, and the back of the wheels.",
+    "category": "handcart",
+    "height": 1.1,
+    "max_dimension": 2.2,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.3,
+        0.05
+    ],
+    "mass": 38,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "side rail",
+        "load platform"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.55,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 2,
+    "attribute_handle_type": "straight bar",
+    "attribute_wheel_position": "side-mounted",
+    "attribute_presence_of_side_rails": true,
+    "attribute_load_platform_design": "flat solid surface",
+    "uid": "14f90291f09148bda96fbbdd502cd79f",
+    "near_synsets": {
+        "hand_truck.n.01": 0.4704826174114139,
+        "handcart.n.01": 0.47636473966619386,
+        "serving_cart.n.01": 0.48841302606179865,
+        "shopping_cart.n.01": 0.4889530730621987,
+        "laundry_cart.n.01": 0.5051700081012663
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/14f90291f09148bda96fbbdd502cd79f",
+        "creator_username": "Florian.Bernard",
+        "creator_display_name": "Florian.Bernard",
+        "creator_profile_url": "https://sketchfab.com/Florian.Bernard"
+    },
+    "filename": "std_14f90291f09148bda96fbbdd502cd79f.glb",
+    "length": 2.0358188152313232,
+    "width": 0.7073156833648682
+}

@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a vertical waste disposal station commonly found in urban parks or public spaces. It features a cylindrical trash bin at the base, wrapped with a green plastic liner, and a tall metal post extending upward. Attached to the post are two rectangular signs, one above the other, with the upper sign displaying clear instructions and pictograms for pet waste disposal. The structure appears to be made primarily of metal, with plastic components for the liner and signage. The bin is open at the top for easy deposit of waste, and the post is likely anchored to the ground for stability. The overall design is utilitarian, with a focus on durability and clear communication for public use.",
+    "description": "A tall, cylindrical metal trash bin with a green liner and attached instructional signage for pet waste disposal, designed for public outdoor use.",
+    "description_view_0": "The bin and post are visible from the side, showing the cylindrical shape and the stacked signage above.",
+    "description_view_1": "A narrow side angle reveals the thin profile of the post and the round lid of the bin.",
+    "description_view_2": "The front view displays the signage clearly, including pictograms and instructions, with the bin directly below.",
+    "description_view_3": "Another side view, similar to view 1, highlighting the cylindrical bin and the post's vertical alignment.",
+    "category": "trash bin",
+    "height": 1.4,
+    "max_dimension": 1.4,
+    "materials": [
+        "metal",
+        "plastic",
+        "paper",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "depositable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bin opening",
+        "signage",
+        "liner"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "gray",
+        "white",
+        "blue"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "flat",
+    "attribute_opening_mechanism": "open-top",
+    "attribute_presence_of_wheels": false,
+    "attribute_handle_design": "absent",
+    "attribute_labeling_or_signage": "Instructional signage with pictograms and text for pet waste disposal is present on the upper sign.",
+    "uid": "1e52cc305b864aec90f3eb5633e2eb14",
+    "near_synsets": {
+        "litterbin.n.01": 0.4760291646202186,
+        "recycling_bin.n.01": 0.4819300610585417,
+        "bin_liner.n.01": 0.4968148240758322,
+        "dumpster.n.01": 0.5044001088194033,
+        "garbage.n.03": 0.5070083382652493,
+        "ashcan.n.01": -1000.0,
+        "trash.n.02": -1000.0,
+        "rubbish.n.01": -1000.0,
+        "methamphetamine.n.01": -1000.0,
+        "folderol.n.01": -1000.0,
+        "bank_identification_number.n.01": -1000.0,
+        "bin.n.01": -1000.0,
+        "bin.n.02": -1000.0
+    },
+    "synset": "litterbin.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/1e52cc305b864aec90f3eb5633e2eb14",
+        "creator_username": "stevencmutter",
+        "creator_display_name": "stevencmutter",
+        "creator_profile_url": "https://sketchfab.com/stevencmutter"
+    },
+    "filename": "std_1e52cc305b864aec90f3eb5633e2eb14.glb",
+    "length": 0.32224276661872864,
+    "width": 0.25800102949142456
+}

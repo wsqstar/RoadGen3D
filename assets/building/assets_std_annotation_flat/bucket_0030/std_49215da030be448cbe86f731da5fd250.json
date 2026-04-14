@@ -1,0 +1,89 @@
+{
+    "description_long": "This cowshed is a rectangular, single-story agricultural building with a gable roof clad in red metal panels. The exterior walls are constructed from horizontal wooden planks, with the front and rear gables featuring lighter-toned wood. The front facade is equipped with two large, double barn doors reinforced with black metal hinges, while the rear features a single wooden door. The roof overhangs slightly, providing some protection to the walls below, and the eaves are open, suggesting potential for passive ventilation. There are no visible windows, and the structure appears robust and utilitarian, suitable for housing livestock in a rural or peri-urban setting. The overall design is simple, functional, and typical of traditional rural cowsheds.",
+    "description": "A rectangular wooden cowshed with a red gable roof, double barn doors at the front, and a single door at the rear. The structure is robust, with open eaves and no visible windows.",
+    "description_view_0": "Front view showing double barn doors with black metal hinges and a light wood gable.",
+    "description_view_1": "Side view displaying the long wooden plank wall and the overhanging red gable roof.",
+    "description_view_2": "Rear view featuring a single wooden door and a matching light wood gable.",
+    "description_view_3": "Opposite side view with a continuous wooden plank wall and no visible doors or windows.",
+    "category": "cowshed",
+    "height": 4.5,
+    "max_dimension": 12.0,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "double barn doors",
+        "single rear door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "light brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.35,
+        0.6,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gable",
+    "attribute_door_style": "double hinged barn doors with black metal hinges (front), single wooden plank door (rear)",
+    "attribute_window_presence": "no windows",
+    "attribute_ventilation_features": "open eaves",
+    "attribute_architectural_style": "traditional rural",
+    "uid": "49215da030be448cbe86f731da5fd250",
+    "near_synsets": {
+        "cowbarn.n.01": 0.4269784143223953,
+        "barn.n.01": 0.498015093347389,
+        "shed.n.01": 0.5020435249798252,
+        "woodshed.n.01": 0.5034215579519771,
+        "farm_building.n.01": 0.5040376874802024
+    },
+    "synset": "cowbarn.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/49215da030be448cbe86f731da5fd250",
+        "creator_username": "crownoakbuildingsdesigns",
+        "creator_display_name": "crownoakbuildingsdesigns",
+        "creator_profile_url": "https://sketchfab.com/crownoakbuildingsdesigns"
+    },
+    "filename": "std_49215da030be448cbe86f731da5fd250.glb",
+    "length": 6.723729848861694,
+    "width": 6.913506031036377
+}

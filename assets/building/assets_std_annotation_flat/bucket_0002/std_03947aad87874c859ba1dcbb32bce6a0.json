@@ -1,0 +1,106 @@
+{
+    "description_long": "This pumping station complex features two large cylindrical structures, likely storage tanks or pump housings, with visible ventilation fans on their end faces. Adjacent to these is a main building with two tall, striped smokestacks, industrial piping, and rooftop details such as vents and access points. The facility is set on a rectangular concrete base and includes smaller auxiliary tanks, a metal shed with a curved roof, and various crates and barrels scattered around the site. The surfaces are predominantly concrete and metal, with weathered, light gray and white finishes, and some rust and dirt stains for realism. The station is equipped with industrial details such as ladders, railings, and a small elevated platform, suggesting maintenance access. The overall appearance is that of a robust, utilitarian urban infrastructure facility designed for water or fluid management.",
+    "description": "A large, industrial pumping station with cylindrical tanks, twin smokestacks, and auxiliary structures on a concrete base, featuring weathered concrete and metal surfaces.",
+    "description_view_0": "Front view shows the two large cylindrical tanks with visible ventilation fans and the main building with a single smokestack behind them.",
+    "description_view_1": "Side view reveals the curved-roof metal shed, twin smokestacks, auxiliary tanks, and various crates and barrels around the facility.",
+    "description_view_2": "Rear view highlights the back of the main building, a single smokestack, and additional industrial piping and tanks.",
+    "description_view_3": "Opposite side view displays the curved-roof shed, auxiliary tanks, and the twin smokestacks of the main building.",
+    "category": "pumping station",
+    "height": 8.0,
+    "max_dimension": 20.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "ventilation fan",
+        "control panel",
+        "ladder",
+        "hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "blue",
+        "brown",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "group",
+    "attribute_building_signage": "Red text signage is visible on the smokestacks and above the main building entrance, but the text is not fully legible.",
+    "attribute_ventilation_grilles": "Two large circular ventilation fans are visible on the end faces of the cylindrical tanks at the front of the facility.",
+    "attribute_security_fencing": "none",
+    "attribute_access_hatches": "One rectangular hatch is visible on the roof of the main building, likely made of metal.",
+    "attribute_warning_lights": "none",
+    "uid": "03947aad87874c859ba1dcbb32bce6a0",
+    "near_synsets": {
+        "pump_house.n.01": 0.530288457283949,
+        "water_tower.n.01": 0.5438340939417307,
+        "power_station.n.01": 0.5568503037814555,
+        "smokestack.n.01": 0.5661668136629778,
+        "tank_farm.n.01": 0.5707520807413444,
+        "post.n.01": -1000.0,
+        "station.n.05": -1000.0,
+        "station.n.03": -1000.0,
+        "station.n.01": -1000.0,
+        "place.n.10": -1000.0
+    },
+    "synset": "pump_house.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/03947aad87874c859ba1dcbb32bce6a0",
+        "creator_username": "Serikov_Anatoliy",
+        "creator_display_name": "Serikov_Anatoliy",
+        "creator_profile_url": "https://sketchfab.com/Serikov_Anatoliy"
+    },
+    "filename": "std_03947aad87874c859ba1dcbb32bce6a0.glb",
+    "length": 17.823790550231934,
+    "width": 9.507944107055664
+}

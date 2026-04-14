@@ -1,0 +1,103 @@
+{
+    "description_long": "This object is a futuristic, angular combat tactical vehicle with a low, wide profile and a heavily armored exterior. The body is constructed from dark, matte-finished metal panels, featuring sharp geometric lines and sloped surfaces for deflection. The front section is reinforced and appears to have a central viewing slit or sensor array, flanked by two prominent side modules. Circular insignias with 'CC' are visible on both sides, possibly indicating unit or faction identification. Small red lights or sensors are embedded near the front corners, suggesting advanced detection or communication capabilities. The vehicle lacks visible wheels or tracks, implying a hover or anti-gravity propulsion system.",
+    "description": "A low-profile, angular combat tactical vehicle with dark armored plating, sharp lines, and side insignias. It features a reinforced front, red sensors, and no visible wheels.",
+    "description_view_0": "Front view shows the reinforced central section, angular sloped armor, and two side insignias with 'CC'.",
+    "description_view_1": "Slightly rotated view reveals the symmetry of the side modules and the placement of red sensors near the corners.",
+    "description_view_2": "Similar to view 0, emphasizing the central slit and the broad, flat armored surfaces.",
+    "description_view_3": "Mirrors view 1, highlighting the angular design and the consistent placement of insignias and sensors.",
+    "category": "combat tactical  vehicle",
+    "height": 1.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 25000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "sensor array",
+        "side module",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "white",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "none visible",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating; no modular or reactive panels visible.",
+    "attribute_camouflage_pattern": "Solid dark gray and black color scheme; no camouflage pattern visible.",
+    "attribute_military_markings": "Circular 'CC' insignias on both side panels in white.",
+    "attribute_tire_type": "not applicable",
+    "uid": "ef9b623cce9a4eb283e4baa586c88863",
+    "near_synsets": {
+        "reconnaissance_vehicle.n.01": 0.5183179802241068,
+        "military_vehicle.n.01": 0.5314701678317094,
+        "armored_car.n.02": 0.5383991674929131,
+        "armored_vehicle.n.01": 0.5476037572691375,
+        "assault_gun.n.02": 0.5482135817587132,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "armored_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ef9b623cce9a4eb283e4baa586c88863",
+        "creator_username": "pedrohmm",
+        "creator_display_name": "pedrohmm",
+        "creator_profile_url": "https://sketchfab.com/pedrohmm"
+    },
+    "filename": "std_ef9b623cce9a4eb283e4baa586c88863.glb",
+    "length": 4.522829055786133,
+    "width": 4.521554946899414
+}

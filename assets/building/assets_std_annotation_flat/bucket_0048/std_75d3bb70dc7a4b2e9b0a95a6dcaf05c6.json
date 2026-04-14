@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a long, low-profile train with a streamlined body and a raised driver's cab at one end, suggesting a modern design. The train appears to have a single carriage with a smooth, continuous roofline and minimal external detailing. The sides are largely uninterrupted, with no visible doors or windows, indicating either a specialized maintenance or service train, or a stylized representation. The exterior is predominantly a dark color, possibly black or dark gray, with a matte or semi-gloss finish. The undercarriage is not visibly detailed, and there are no overhead wires or pantographs present. The overall form is compact and functional, with a focus on aerodynamic efficiency.",
+    "description": "A sleek, low-profile modern train with a raised cab at one end and a smooth, uninterrupted exterior. The body is dark-colored and streamlined, with minimal visible features.",
+    "description_view_0": "Side view showing the train's long, low body and the raised cab at one end.",
+    "description_view_1": "End view revealing the narrow width and the compact, streamlined profile.",
+    "description_view_2": "Opposite side view, similar to view 0, with the cab still visible at one end.",
+    "description_view_3": "Opposite end view, showing the rear of the train with no cab and a similarly narrow profile.",
+    "category": "train",
+    "height": 2.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "driver's cab"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "commuter train",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "no visible doors",
+    "attribute_window_arrangement": "no visible windows",
+    "uid": "75d3bb70dc7a4b2e9b0a95a6dcaf05c6",
+    "near_synsets": {
+        "streamliner.n.01": 0.5014966718199217,
+        "train.n.01": 0.5050599141930966,
+        "car_train.n.01": 0.5241453894571735,
+        "subway_train.n.01": 0.5248385438176827,
+        "passenger_train.n.01": 0.5267014495757767,
+        "gearing.n.01": -1000.0,
+        "caravan.n.01": -1000.0,
+        "train.n.04": -1000.0,
+        "train.n.05": -1000.0,
+        "string.n.04": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/75d3bb70dc7a4b2e9b0a95a6dcaf05c6",
+        "creator_username": "lumpapps",
+        "creator_display_name": "lumpapps",
+        "creator_profile_url": "https://sketchfab.com/lumpapps"
+    },
+    "filename": "std_75d3bb70dc7a4b2e9b0a95a6dcaf05c6.glb",
+    "length": 1.0627357959747314,
+    "width": 43.53680419921875
+}

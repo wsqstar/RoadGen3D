@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a portable automated external defibrillator (AED) mounted on a tall, wheeled metal stand. The main unit is a rectangular box with a control panel, display screen, and several buttons and indicator lights on the front, as well as visible cables and electrode pads attached to the sides. The stand features a central vertical pole with a five-legged base equipped with caster wheels for mobility. The AED unit is secured at a convenient height for access, and the cables are neatly coiled or draped around hooks or holders. The device is constructed primarily from metal and plastic, with some rubber and electronic components visible. The overall appearance is clinical and utilitarian, suitable for rapid deployment in emergency situations.",
+    "description": "A portable AED mounted on a tall, wheeled metal stand with a control panel, cables, and electrode pads. The design is clinical and mobile, ideal for emergency use.",
+    "description_view_0": "Side view showing the AED unit attached to the pole, with cables and a storage pouch visible.",
+    "description_view_1": "Narrow frontal view with the AED's control panel and cables facing forward, showing the main interface.",
+    "description_view_2": "Opposite side view highlighting the AED box and attached cables, with the pole and base visible.",
+    "description_view_3": "Rear view displaying the back of the AED unit, with visible ports, handles, and the wheeled base.",
+    "category": "defibrillator (aed)",
+    "height": 1.6,
+    "max_dimension": 1.6,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "glass",
+        "electronic_components",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.05,
+        0.02,
+        0.08,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pullable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "button",
+        "screen",
+        "handle",
+        "wheel",
+        "cable",
+        "electrode pad",
+        "storage pouch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.8,
+    "asset_composition_type": "group",
+    "attribute_aed_signage": "There are visible labels and stickers on the front panel of the AED unit, including a blue and white color scheme and possible text indicating 'AED' or 'Defibrillator', placed above or near the control interface.",
+    "attribute_emergency_symbol": "A heart with a lightning bolt symbol is visible on the front panel, clearly indicating its emergency function.",
+    "attribute_access_panel": "The AED unit has a front-facing access panel with a visible handle or latch, allowing quick retrieval of the device and electrode pads.",
+    "attribute_instructional_diagram": "There are step-by-step pictograms and diagrams on the front of the AED unit, illustrating how to use the device in an emergency, with clear and concise instructions.",
+    "attribute_public_placement_location": "Most likely placed in high-traffic public areas such as airport terminals, hospital corridors, or train station platforms for rapid emergency access.",
+    "uid": "dae36203625e414db3b0c8fff858f830",
+    "near_synsets": {
+        "defibrillator.n.01": 0.5428869302035977,
+        "exercise_device.n.01": 0.5817915181615887,
+        "cardiac_monitor.n.01": 0.5838030377912122,
+        "pacemaker.n.03": 0.589102508584982,
+        "control_panel.n.01": 0.5971636062785702
+    },
+    "synset": "defibrillator.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dae36203625e414db3b0c8fff858f830",
+        "creator_username": "UofA-CDH",
+        "creator_display_name": "The Center for Digital Humanities UArizona",
+        "creator_profile_url": "https://sketchfab.com/UofA-CDH"
+    },
+    "filename": "std_dae36203625e414db3b0c8fff858f830.glb",
+    "length": 0.2887103706598282,
+    "width": 0.25957053899765015
+}

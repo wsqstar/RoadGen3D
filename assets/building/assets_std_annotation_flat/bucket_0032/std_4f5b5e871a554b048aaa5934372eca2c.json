@@ -1,0 +1,98 @@
+{
+    "description_long": "This humanoid robot features a sleek, bipedal design with a predominantly white body accented by vibrant orange panels on the head, shoulders, chest, and lower legs. The head is rounded with a smooth, helmet-like appearance, and includes circular ear-like structures that may house sensors or speakers. The robot's arms are articulated and capable of expressive gestures, as seen with one arm extended outward and the other bent at the hip. Its legs are robust and jointed, designed for stable standing or walking, and the feet are broad for balance. The robot stands on a black, irregularly shaped base, which may serve as a display or support platform. The overall aesthetic is modern and functional, with visible seams and panel lines suggesting modular construction.",
+    "description": "A white and orange humanoid robot with articulated limbs, expressive posture, and a rounded head, standing on a black base. Its design is sleek and modern, with visible joints and panel details.",
+    "description_view_0": "Side view showing the robot's profile, with the head turned slightly forward and one arm bent at the hip.",
+    "description_view_1": "Rear three-quarter view highlighting the robot's back, extended right arm, and the broad black base.",
+    "description_view_2": "Front three-quarter view displaying the robot's face, chest panel, and both arms, one extended and one bent.",
+    "description_view_3": "Back view emphasizing the robot's rear torso, extended arm, and the structure of the legs and base.",
+    "category": "humanoid robot",
+    "height": 0.35,
+    "max_dimension": 0.38,
+    "materials": [
+        "plastic",
+        "metal",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 2.5,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arm",
+        "hand",
+        "head",
+        "torso panel",
+        "leg",
+        "foot"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "orange",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with one arm extended outward and the other bent at the hip, legs straight and feet flat on the base, head facing forward.",
+    "attribute_clothing_style": "No clothing; the robot is covered in integrated, smooth plastic and metal panels with orange and white coloration.",
+    "attribute_facial_features": "The face is smooth and rounded with no visible mouth or nose; two dark circular areas suggest eyes or sensors, and the head has orange and white paneling.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible joints, likely hinge or ball joints at the shoulders, elbows, hips, and knees, allowing for a wide range of motion; hands and feet are molded but do not show individual fingers or toes.",
+    "attribute_presence_of_sensors": "Circular areas on the sides of the head likely house microphones or speakers; dark spots on the face may be cameras or visual sensors.",
+    "uid": "4f5b5e871a554b048aaa5934372eca2c",
+    "near_synsets": {
+        "android.n.01": 0.5303006941031873,
+        "cyborg.n.01": 0.5658600276613006,
+        "automaton.n.02": 0.5689936432300408,
+        "robotics_equipment.n.01": 0.5740604393039118,
+        "robotics.n.01": 0.5783888437580871
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/4f5b5e871a554b048aaa5934372eca2c",
+        "creator_username": "sanguisan",
+        "creator_display_name": "SanguiSan",
+        "creator_profile_url": "https://sketchfab.com/sanguisan"
+    },
+    "filename": "std_4f5b5e871a554b048aaa5934372eca2c.glb",
+    "length": 0.2575410306453705,
+    "width": 0.15615420043468475
+}

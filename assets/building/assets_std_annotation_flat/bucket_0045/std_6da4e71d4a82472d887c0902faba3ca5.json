@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a flintlock-style shotgun with a classic, historical design, featuring a long, slightly flared brass barrel and a wooden stock. The barrel has a golden metallic finish, with a subtle hammered texture, and widens at the muzzle, characteristic of a blunderbuss. The stock is made of dark, polished wood, smoothly contoured for ergonomic handling, and the grip curves downward for a secure hold. The firing mechanism is exposed, with a visible hammer and frizzen, both rendered in a dark metallic material. The trigger guard is rounded and metallic, encircling the trigger in a protective loop. Overall, the shotgun has a robust, antique appearance, with a blend of wood and metal elements that evoke early firearms craftsmanship.",
+    "description": "A historical flintlock shotgun with a flared brass barrel, dark wooden stock, and exposed firing mechanism, featuring a rounded metallic trigger guard.",
+    "description_view_0": "Side view showing the full length of the brass barrel, wooden stock, and detailed firing mechanism.",
+    "description_view_1": "Front-on view highlighting the wide, flared muzzle and octagonal barrel shape.",
+    "description_view_2": "Opposite side view displaying the wooden stock's curvature and the metallic trigger guard.",
+    "description_view_3": "Rear view focusing on the end of the wooden stock and the alignment of the barrel.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.55,
+    "materials": [
+        "wood",
+        "brass",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.35,
+        0.18,
+        0.02
+    ],
+    "mass": 2.8,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 28,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "graspable",
+        "triggerable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "hammer",
+        "frizzen",
+        "barrel",
+        "stock",
+        "trigger guard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gold",
+        "black"
+    ],
+    "colors_composition": [
+        0.45,
+        0.4,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.32,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 110000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, flared muzzle, no visible ribbing or venting",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "break-action (flintlock mechanism visible)",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized metallic loop with smooth edges",
+    "uid": "6da4e71d4a82472d887c0902faba3ca5",
+    "near_synsets": {
+        "flintlock.n.01": 0.45266664991727046,
+        "flintlock.n.02": 0.46571191868459244,
+        "shotgun.n.01": 0.49608052449876355,
+        "fusil.n.01": 0.4973691414914984,
+        "gunflint.n.01": 0.511904610310453
+    },
+    "synset": "shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6da4e71d4a82472d887c0902faba3ca5",
+        "creator_username": "avandersloot",
+        "creator_display_name": "avandersloot",
+        "creator_profile_url": "https://sketchfab.com/avandersloot"
+    },
+    "filename": "std_6da4e71d4a82472d887c0902faba3ca5.glb",
+    "length": 0.4936915636062622,
+    "width": 0.06578710675239563
+}

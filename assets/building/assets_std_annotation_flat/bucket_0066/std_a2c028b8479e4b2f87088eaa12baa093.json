@@ -1,0 +1,105 @@
+{
+    "description_long": "This all-terrain vehicle features a robust, six-wheeled chassis with large, rugged tires designed for traversing uneven and challenging surfaces. The body is constructed from a combination of metal panels and reinforced structural elements, with visible mechanical components such as articulated suspension arms and a prominent robotic arm extending from the front. The vehicle's upper section houses various sensors, cameras, and equipment modules, suggesting advanced navigation and operational capabilities. The wheels are widely spaced and connected by independent suspension systems, providing stability and adaptability on rough terrain. The exterior is predominantly white and gray, with some metallic and dark accents, and the surface finish appears matte with some areas of wear. This vehicle is reminiscent of exploration or utility vehicles used in demanding environments, equipped for both mobility and technical operations.",
+    "description": "A six-wheeled, rugged all-terrain vehicle with a white and gray body, large knobby tires, and a prominent robotic arm, designed for advanced mobility and technical tasks.",
+    "description_view_0": "Front view showing the articulated robotic arm, wide wheelbase, and detailed equipment modules on the upper body.",
+    "description_view_1": "Side view highlighting the independent suspension, large wheels, and the profile of the main body and arm.",
+    "description_view_2": "Rear view displaying the back panel, rear wheels, and the symmetrical layout of the suspension system.",
+    "description_view_3": "Opposite side view showing the mechanical arm's extension and the detailed structure of the wheels and suspension.",
+    "category": "all-terrain vehicle",
+    "height": 2.2,
+    "max_dimension": 3.0,
+    "materials": [
+        "aluminum",
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 3500,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "robotic arm",
+        "suspension arm",
+        "sensor module",
+        "equipment bay"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "black",
+        "metallic silver"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.08,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 6,
+    "attribute_tire_tread_pattern": "The tires have a knobby, blocky tread pattern designed for maximum grip and traction on loose, rocky, or uneven terrain, making them suitable for off-road and all-terrain conditions.",
+    "attribute_suspension_type": "independent",
+    "attribute_presence_of_roll_cage": false,
+    "attribute_handlebar_or_steering_wheel_type": "round steering wheel",
+    "uid": "a2c028b8479e4b2f87088eaa12baa093",
+    "near_synsets": {
+        "reconnaissance_vehicle.n.01": 0.5330329067412929,
+        "wheeled_vehicle.n.01": 0.5374925598507256,
+        "motor_vehicle.n.01": 0.5377932013728965,
+        "military_vehicle.n.01": 0.5403752241855403,
+        "tractor.n.01": 0.5403888605352749,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "wheeled_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a2c028b8479e4b2f87088eaa12baa093",
+        "creator_username": "figfogg",
+        "creator_display_name": "Fig Fogg",
+        "creator_profile_url": "https://sketchfab.com/figfogg"
+    },
+    "filename": "std_a2c028b8479e4b2f87088eaa12baa093.glb",
+    "length": 1.2170912623405457,
+    "width": 1.5275824069976807
+}

@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a low-profile, heavily armored tracked combat vehicle with a flat, angular hull and a long, forward-mounted cannon. The exterior is covered in a matte, dark green finish with subtle panel lines, hatches, and grilles visible on the upper surfaces. The vehicle features two prominent antennas at the rear, suggesting advanced communication capabilities. Its sides are equipped with five large road wheels and continuous metal tracks, providing robust off-road mobility. The front and sides are reinforced with thick, sloped armor plating, and the vehicle lacks a traditional turret, indicating a fixed-gun design. The overall appearance is utilitarian and optimized for battlefield survivability and firepower.",
+    "description": "A heavily armored, low-profile tracked combat vehicle with a fixed forward cannon, matte green finish, and reinforced sloped armor. Features include multiple hatches, antennas, and robust metal tracks.",
+    "description_view_0": "Front view shows the flat, sloped armor, two antennas at the rear, and the forward-facing cannon barrel.",
+    "description_view_1": "Left side view highlights the five large road wheels, continuous tracks, and the length of the fixed cannon.",
+    "description_view_2": "Rear view displays the back armor, engine grilles, and the base of the antennas.",
+    "description_view_3": "Right side view mirrors the left, showing the tracks, wheels, and the full length of the cannon.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "air",
+        "plastic"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.03,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "cannon",
+        "antenna",
+        "track",
+        "wheel",
+        "grille"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One fixed forward cannon mounted on the front hull; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating on the front, sides, and rear; no visible modular or reactive panels.",
+    "attribute_camouflage_pattern": "Solid matte dark green paint scheme; no distinct camouflage pattern visible.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "2c9f161272f84fb69c6d2a5ab764c634",
+    "near_synsets": {
+        "tank.n.01": 0.4925722550500422,
+        "reconnaissance_vehicle.n.01": 0.49544457634232514,
+        "military_vehicle.n.01": 0.4977257214164584,
+        "assault_gun.n.02": 0.5116783534795993,
+        "armored_car.n.02": 0.5151625006866728,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2c9f161272f84fb69c6d2a5ab764c634",
+        "creator_username": "chilecaliente",
+        "creator_display_name": "BFJFFK",
+        "creator_profile_url": "https://sketchfab.com/chilecaliente"
+    },
+    "filename": "std_2c9f161272f84fb69c6d2a5ab764c634.glb",
+    "length": 6.1582934856414795,
+    "width": 2.722833275794983
+}

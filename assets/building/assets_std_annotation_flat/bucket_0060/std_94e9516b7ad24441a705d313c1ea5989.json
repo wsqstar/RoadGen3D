@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a modern bullpup-style shotgun with a matte olive-green polymer body and a black metal barrel. It features a long, slender barrel with a mounted optical sight on top, and a transparent magazine inserted behind the pistol grip, characteristic of bullpup designs. The foregrip is angled and integrated into the body, providing ergonomic support for the user. The stock is seamlessly integrated into the main body, giving it a compact and streamlined appearance. The trigger guard is elongated and rectangular, enclosing both the trigger and part of the pistol grip. The overall design is tactical and utilitarian, suitable for urban environments and close-quarters scenarios.",
+    "description": "A compact, olive-green bullpup shotgun with a long barrel, integrated scope, and transparent magazine. Its streamlined, tactical design features an ergonomic foregrip and an elongated trigger guard.",
+    "description_view_0": "Side view showing the full length of the shotgun, including the optical sight, transparent magazine, and ergonomic foregrip.",
+    "description_view_1": "Front view highlighting the narrow barrel profile and the alignment of the optical sight above the barrel.",
+    "description_view_2": "Opposite side view displaying the magazine, foregrip, and the integrated stock, mirroring the features seen in view 0.",
+    "description_view_3": "Rear view focusing on the back of the stock and the alignment of the barrel and sight, with the magazine visible to the side.",
+    "category": "shotgun",
+    "height": 0.25,
+    "max_dimension": 0.8,
+    "materials": [
+        "polymer",
+        "steel",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.05,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "aimable",
+        "triggerable",
+        "reloadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "magazine",
+        "foregrip",
+        "scope",
+        "safety switch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "black",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, long and slender with no visible ribbing or venting",
+    "attribute_stock_type": "full stock (integrated bullpup design)",
+    "attribute_action_mechanism": "semi-automatic",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "elongated rectangular trigger guard, enclosing both the trigger and part of the grip",
+    "uid": "94e9516b7ad24441a705d313c1ea5989",
+    "near_synsets": {
+        "shotgun.n.01": 0.5229236186423237,
+        "sawed-off_shotgun.n.01": 0.5386871011329255,
+        "gas_gun.n.01": 0.5408995142776699,
+        "pump_action.n.01": 0.5537971765433142,
+        "browning_automatic_rifle.n.01": 0.5551004723895459
+    },
+    "synset": "sawed-off_shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/94e9516b7ad24441a705d313c1ea5989",
+        "creator_username": "JasperCarmack",
+        "creator_display_name": "Jasper Carmack",
+        "creator_profile_url": "https://sketchfab.com/JasperCarmack"
+    },
+    "filename": "std_94e9516b7ad24441a705d313c1ea5989.glb",
+    "length": 0.755514532327652,
+    "width": 0.08429235219955444
+}

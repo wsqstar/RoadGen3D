@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a large, modern commercial airplane with a streamlined fuselage and a pair of long, swept-back wings mounted low on the body. The wings are equipped with underwing engine nacelles, each housing a turbofan engine, and the wingtips are slightly upturned, suggesting the presence of winglets. The tail section features a conventional design with a single vertical stabilizer and horizontal stabilizers extending from either side. The nose is rounded and tapers smoothly into the main fuselage, where a forward-mounted, enclosed cockpit is visible. The landing gear is in a tricycle configuration, with two main gear units under the wings and a single nose gear beneath the cockpit.",
+    "description": "A large, modern commercial airplane with swept-back low wings, underwing turbofan engines, and a conventional tail. The fuselage is streamlined with a forward, enclosed cockpit and tricycle landing gear.",
+    "description_view_0": "Front view showing the wide, swept-back wings, underwing engines, and the pointed nose with the cockpit above the nose gear.",
+    "description_view_1": "Left side view highlighting the elongated fuselage, low-mounted wings, visible engine nacelle, and the conventional tail structure.",
+    "description_view_2": "Rear view displaying the full wingspan, twin horizontal stabilizers, single vertical stabilizer, and the symmetry of the tail section.",
+    "description_view_3": "Right side view similar to the left, showing the streamlined body, underwing engine, and the tricycle landing gear beneath the fuselage.",
+    "category": "airplane",
+    "height": 6.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "closable",
+        "openable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "cockpit",
+        "landing gear",
+        "engine",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.1,
+    "surface_finish": "smooth",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 70.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with long, swept-back wings and slight upward winglets at the tips.",
+    "attribute_engine_type": "Twin turbofan underwing",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers",
+    "attribute_landing_gear_type": "Tricycle landing gear with two main gear units and a single nose gear",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with multiple windows",
+    "uid": "008dbd889a2a488780b7587cf6a448a1",
+    "near_synsets": {
+        "airplane.n.01": 0.46587039119213836,
+        "propjet.n.01": 0.4969124386835704,
+        "aircraft.n.01": 0.4985965053274706,
+        "fanjet.n.01": 0.5020790854770185,
+        "widebody_aircraft.n.01": 0.5055508542387382
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/008dbd889a2a488780b7587cf6a448a1",
+        "creator_username": "basel_khedr",
+        "creator_display_name": "basel_khedr",
+        "creator_profile_url": "https://sketchfab.com/basel_khedr"
+    },
+    "filename": "std_008dbd889a2a488780b7587cf6a448a1.glb",
+    "length": 16.838393211364746,
+    "width": 17.85421657562256
+}

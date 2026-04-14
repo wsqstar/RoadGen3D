@@ -1,0 +1,98 @@
+{
+    "description_long": "This combat tactical vehicle features a robust, angular body with two prominent, forward-facing cannons mounted on the front. The vehicle sits on a wide, flat base, suggesting stability and heavy armor, with a compact, rectangular turret structure on top. The sides display mechanical details, including what appear to be access panels and reinforced plating, while the top has a circular hatch and additional surface detailing. The overall design is utilitarian, with minimal decorative elements, emphasizing function over form. The exterior is finished in a dark, matte color, likely to reduce visibility and glare. The vehicle's construction suggests it is built for urban combat scenarios, prioritizing protection and firepower.",
+    "description": "A heavily armored, dark-colored combat vehicle with dual front-mounted cannons and a compact, angular turret. Its design emphasizes protection and firepower for urban tactical operations.",
+    "description_view_0": "Front view shows two large cannons protruding from the turret and a wide, armored base.",
+    "description_view_1": "Left side view highlights the length of the cannons, the rectangular turret, and side access panels.",
+    "description_view_2": "Rear view reveals the back of the turret and the vehicle's broad, flat base.",
+    "description_view_3": "Right side view mirrors the left, showing the cannons' length and side details.",
+    "category": "combat tactical  vehicle",
+    "height": 1.8,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 35000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cannon",
+        "hatch",
+        "access panel",
+        "turret"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Two large cannon mounts on the front turret.",
+    "attribute_armor_plating": "Full body coverage with thick, angular armor plating; reinforced turret and base.",
+    "attribute_camouflage_pattern": "none visible",
+    "attribute_military_markings": "none visible",
+    "attribute_tire_type": "not applicable",
+    "uid": "8077587ea50846ed8db473c389ae359d",
+    "near_synsets": {
+        "tank.n.01": 0.46996768819440965,
+        "armored_car.n.02": 0.4814807727052479,
+        "military_vehicle.n.01": 0.49153939100497634,
+        "assault_gun.n.02": 0.4992884849939046,
+        "armored_vehicle.n.01": 0.5085541396947015,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8077587ea50846ed8db473c389ae359d",
+        "creator_username": "UmutCalim",
+        "creator_display_name": "Umut Calim",
+        "creator_profile_url": "https://sketchfab.com/UmutCalim"
+    },
+    "filename": "std_8077587ea50846ed8db473c389ae359d.glb",
+    "length": 4.791046619415283,
+    "width": 2.376079559326172
+}

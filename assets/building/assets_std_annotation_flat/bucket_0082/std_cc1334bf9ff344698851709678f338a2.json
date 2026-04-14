@@ -1,0 +1,100 @@
+{
+    "description_long": "This humanoid robot features a sleek, futuristic design with a predominantly white and black color scheme. Its head is large and pointed, with pronounced black angular markings above the eyes, giving it a sharp, expressive look. The eyes are narrow and red, set into a smooth face with no visible mouth or nose, and the head has two small, ear-like protrusions. The robot's arms are long and segmented, ending in claw-like hands with articulated fingers, while its legs are sturdy and end in oversized, rounded black feet. The torso is compact and rounded, with visible joints at the shoulders, elbows, hips, and knees, suggesting a high degree of articulation. The overall appearance is both mechanical and anthropomorphic, suitable for urban environments where interaction with humans is expected.",
+    "description": "A sleek, white and black humanoid robot with a pointed head, red eyes, articulated limbs, and claw-like hands, designed for expressive interaction in urban settings.",
+    "description_view_0": "Front view shows the robot's pointed head, red eyes, outstretched arms, and large black feet.",
+    "description_view_1": "Left side view highlights the sharp head profile, arm articulation, and clawed hand details.",
+    "description_view_2": "Rear view reveals the smooth back of the head, rounded torso, and the back of the legs and feet.",
+    "description_view_3": "Right side view mirrors the left, showing the head's angular shape, arm joints, and hand claws.",
+    "category": "humanoid robot",
+    "height": 1.5,
+    "max_dimension": 1.8,
+    "materials": [
+        "plastic",
+        "metal",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 650,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hand",
+        "arm",
+        "head",
+        "eye",
+        "finger"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "sleek",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.2,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms extended horizontally to the sides, legs straight, head facing forward, and hands open with fingers slightly spread.",
+    "attribute_clothing_style": "No visible clothing; the robot is covered in integrated, smooth panels with a high-tech, minimalist aesthetic.",
+    "attribute_facial_features": "The face features narrow, red, angular eyes set in a smooth, white surface with no visible mouth or nose; black markings above the eyes add expressiveness.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible joints, including shoulders, elbows, wrists, hips, knees, and ankles; hands have articulated fingers with claw-like tips, suggesting a wide range of motion.",
+    "attribute_presence_of_sensors": "Visible sensors include two red eye-like cameras or optical sensors on the face; no other sensors are apparent.",
+    "uid": "cc1334bf9ff344698851709678f338a2",
+    "near_synsets": {
+        "android.n.01": 0.5246862007153085,
+        "cyborg.n.01": 0.5459405186764098,
+        "robotics.n.01": 0.561994088550149,
+        "automaton.n.02": 0.5628175945612401,
+        "robotics_equipment.n.01": 0.5660005203442287
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cc1334bf9ff344698851709678f338a2",
+        "creator_username": "tailsgene",
+        "creator_display_name": "tailsgene",
+        "creator_profile_url": "https://sketchfab.com/tailsgene"
+    },
+    "filename": "std_cc1334bf9ff344698851709678f338a2.glb",
+    "length": 0.7939714193344116,
+    "width": 1.7981231212615967
+}

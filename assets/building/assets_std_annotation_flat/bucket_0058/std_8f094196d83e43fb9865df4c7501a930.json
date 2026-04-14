@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a rectangular solar panel composed of a grid of dark photovoltaic cells, each cell separated by thin metallic lines, all encased within a rigid metallic frame. The surface is smooth and glossy, designed to maximize sunlight absorption and energy conversion. The panel is relatively thin, with a flat profile and no visible mounting hardware or cabling. The frame appears to be made of aluminum or a similar lightweight metal, providing structural support and durability. The back of the panel is solid and opaque, likely housing the electrical connections and protective layers. This type of solar panel is commonly used in urban environments for renewable energy generation on rooftops, parking structures, or ground-mounted arrays.",
+    "description": "A rectangular, grid-patterned solar panel with a glossy surface and metallic frame, designed for efficient sunlight absorption and energy conversion.",
+    "description_view_0": "Front view showing the full grid of dark photovoltaic cells and the metallic frame.",
+    "description_view_1": "Angled side view highlighting the panel's thin profile and the depth of the frame.",
+    "description_view_2": "Edge-on view displaying the solid, opaque back and the panel's overall thickness.",
+    "description_view_3": "Opposite angled side view, again emphasizing the thinness and grid structure of the panel.",
+    "category": "solar energy infrastructure",
+    "height": 1.0,
+    "max_dimension": 2.0,
+    "materials": [
+        "silicon",
+        "aluminum",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "installable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "silver",
+        "dark blue"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.08,
+    "surface_finish": "glossy",
+    "reflectivity": 0.5,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.25,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_panel_orientation": "flat, no tilt visible, orientation appears fixed",
+    "attribute_mounting_structure_type": "no mounting structure visible; panel is encased in an aluminum frame",
+    "attribute_electrical_inverter_presence": false,
+    "attribute_cabling_visibility": "not visible",
+    "attribute_array_configuration": "single rectangular panel, grid of photovoltaic cells",
+    "uid": "8f094196d83e43fb9865df4c7501a930",
+    "near_synsets": {
+        "solar_array.n.01": 0.47626883628146005,
+        "solar_house.n.01": 0.49267397268255597,
+        "solar_cell.n.01": 0.5020493071756524,
+        "solar_thermal_system.n.01": 0.5053207676572034,
+        "solar_energy.n.01": 0.5067745243848012,
+        "infrastructure.n.02": -1000.0,
+        "energy.n.01": -1000.0,
+        "energy.n.05": -1000.0,
+        "department_of_energy.n.01": -1000.0,
+        "energy.n.06": -1000.0,
+        "infrastructure.n.01": -1000.0,
+        "energy.n.04": -1000.0,
+        "energy.n.03": -1000.0,
+        "energy.n.02": -1000.0
+    },
+    "synset": "solar_array.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8f094196d83e43fb9865df4c7501a930",
+        "creator_username": "aero3d.ua",
+        "creator_display_name": "AERO3D",
+        "creator_profile_url": "https://sketchfab.com/aero3d.ua"
+    },
+    "filename": "std_8f094196d83e43fb9865df4c7501a930.glb",
+    "length": 1.1076555252075195,
+    "width": 0.7273146510124207
+}

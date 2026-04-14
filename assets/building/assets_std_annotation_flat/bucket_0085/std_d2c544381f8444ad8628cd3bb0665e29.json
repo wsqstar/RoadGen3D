@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a stealth military airplane with a distinctive angular, faceted design, primarily finished in matte black. The fuselage is sharply pointed at the nose, with a flat, wide body that tapers toward the rear. The wings are sharply swept back and integrated into the body, forming a triangular, almost delta-like planform with no visible external engines. Twin vertical stabilizers are canted inward at the rear, contributing to its radar-evading profile. The cockpit is positioned forward and is enclosed with a faceted canopy, blending seamlessly into the fuselage. There are no visible landing gear or external armaments, emphasizing its streamlined, stealth-oriented construction.",
+    "description": "A matte black, angular stealth airplane with swept-back wings, twin canted vertical stabilizers, and a forward, faceted cockpit canopy.",
+    "description_view_0": "Side view showing the sharply angled, flat fuselage, swept-back wings, and twin canted vertical stabilizers.",
+    "description_view_1": "Front view highlighting the triangular, faceted nose, wide wing span, and the forward cockpit canopy.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the angular body and twin stabilizers.",
+    "description_view_3": "Top-down view revealing the full delta-like wing shape and the integrated, faceted design of the fuselage.",
+    "category": "airplane",
+    "height": 2.5,
+    "max_dimension": 20.0,
+    "materials": [
+        "aluminum alloy",
+        "composite",
+        "glass",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.08,
+        0.02
+    ],
+    "mass": 13500,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 132300,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "closable",
+        "openable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "control surfaces",
+        "landing gear doors"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 25.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, sharply swept, delta-like planform with no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "No visible external engines; likely internal jet configuration.",
+    "attribute_tail_design": "Twin canted vertical stabilizers with no horizontal stabilizer; V-tail configuration.",
+    "attribute_landing_gear_type": "No landing gear visible; likely retractable.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed, single-seat cockpit with a faceted canopy integrated into the fuselage.",
+    "uid": "d2c544381f8444ad8628cd3bb0665e29",
+    "near_synsets": {
+        "aircraft.n.01": 0.4959523240828617,
+        "stealth_aircraft.n.01": 0.528707660483287,
+        "airplane.n.01": 0.537526641861017,
+        "monoplane.n.01": 0.5442962117396074,
+        "vertical_tail.n.01": 0.5460394530106483
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d2c544381f8444ad8628cd3bb0665e29",
+        "creator_username": "karelkiers",
+        "creator_display_name": "karelkiers",
+        "creator_profile_url": "https://sketchfab.com/karelkiers"
+    },
+    "filename": "std_d2c544381f8444ad8628cd3bb0665e29.glb",
+    "length": 18.840620040893555,
+    "width": 12.254798889160156
+}

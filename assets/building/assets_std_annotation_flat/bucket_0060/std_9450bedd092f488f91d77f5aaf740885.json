@@ -1,0 +1,111 @@
+{
+    "description_long": "This object depicts a section of an urban pedestrian crosswalk adjacent to a sidewalk and a wall. The crosswalk features bold white zebra stripes and a yellow line, indicating a designated pedestrian crossing area on a dark asphalt road. The sidewalk is bordered by a concrete curb and is connected to a wall that displays a colorful mural of a cartoon frog and a green creature, adding a playful urban touch. The wall also includes a mounted air conditioning unit, a circular vent, and exposed black piping, suggesting a city street or alleyway setting. The surface textures vary, with the road appearing rough and the sidewalk and wall having a matte, slightly worn finish. The overall scene is compact, with clear demarcation between pedestrian and vehicular zones.",
+    "description": "A detailed urban pedestrian crosswalk with white zebra stripes, a yellow line, and a sidewalk bordered by a wall featuring a mural, air conditioning unit, and exposed piping.",
+    "description_view_0": "Side view showing the crosswalk's zebra stripes, yellow line, and the wall with exposed piping and a mounted air conditioning unit.",
+    "description_view_1": "Frontal view highlighting the mural on the wall, the air conditioning unit, circular vent, and the full width of the crosswalk and sidewalk.",
+    "description_view_2": "Opposite side view focusing on the curb, the edge of the crosswalk, and the protruding air conditioning unit.",
+    "description_view_3": "Top-down view displaying the mural, the air conditioning unit, and the layout of the crosswalk and sidewalk.",
+    "category": "pedestrian crosswalk",
+    "height": 2.2,
+    "max_dimension": 3.5,
+    "materials": [
+        "concrete",
+        "asphalt",
+        "paint",
+        "metal",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.05,
+        0.1,
+        0.05,
+        0.02,
+        0.08
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "air conditioning unit",
+        "piping",
+        "vent"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "white",
+        "yellow",
+        "green",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.15,
+        0.05,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "scene",
+    "attribute_zebra_pattern": true,
+    "attribute_road_markings": [
+        "zebra stripes",
+        "yellow line"
+    ],
+    "attribute_pedestrian_signage": [],
+    "attribute_curb_ramps": false,
+    "attribute_traffic_signals": [],
+    "uid": "9450bedd092f488f91d77f5aaf740885",
+    "near_synsets": {
+        "pedestrian_crossing.n.01": 0.4441769558034647,
+        "school_crossing.n.01": 0.5323081136438905,
+        "walk-through.n.02": 0.5345027743657667,
+        "white_line.n.01": 0.5409577585501669,
+        "sidewalk.n.01": 0.5464680314116392,
+        "crossing.n.05": -1000.0
+    },
+    "synset": "pedestrian_crossing.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9450bedd092f488f91d77f5aaf740885",
+        "creator_username": "WakeKnight",
+        "creator_display_name": "WakeKnight",
+        "creator_profile_url": "https://sketchfab.com/WakeKnight"
+    },
+    "filename": "std_9450bedd092f488f91d77f5aaf740885.glb",
+    "length": 2.539451479911804,
+    "width": 2.4630993604660034
+}

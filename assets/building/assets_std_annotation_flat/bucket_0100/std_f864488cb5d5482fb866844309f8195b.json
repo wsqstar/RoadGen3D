@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a rectangular solar panel, featuring a grid of blue photovoltaic cells encased within a thin metallic frame. The surface is covered with a glass or transparent protective layer, allowing the blue cells beneath to be clearly visible. The panel is flat and relatively thin, with a uniform grid pattern of thin metallic lines running both vertically and horizontally across the surface, which are the electrical contacts for current collection. The edges are bordered by a silver or gray metallic frame, providing structural support and protection. There are no visible mounting brackets, cabling, or electrical inverters attached to the panel in these views. The overall design is sleek and modern, typical of solar panels used in urban and residential installations.",
+    "description": "A flat, rectangular solar panel with a blue grid of photovoltaic cells and a thin metallic frame, covered by a smooth glass surface.",
+    "description_view_0": "Front view showing the full grid of blue photovoltaic cells and the metallic frame, with the panel's width emphasized.",
+    "description_view_1": "Side view highlighting the panel's thin profile and rectangular shape, with the grid pattern visible along the length.",
+    "description_view_2": "Rear view similar to the front, displaying the grid of cells and frame, but from the opposite side.",
+    "description_view_3": "Opposite side view, again emphasizing the thinness and length of the panel, with the grid pattern visible.",
+    "category": "solar energy infrastructure",
+    "height": 0.04,
+    "max_dimension": 1.7,
+    "materials": [
+        "glass",
+        "silicon",
+        "aluminum",
+        "copper",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.08,
+    "surface_finish": "glossy",
+    "reflectivity": 0.5,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.2,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_panel_orientation": "flat, no tilt, orientation appears fixed",
+    "attribute_mounting_structure_type": "no visible mounting structure; only the panel and its frame are visible",
+    "attribute_electrical_inverter_presence": false,
+    "attribute_cabling_visibility": "not visible",
+    "attribute_array_configuration": "single rectangular panel",
+    "uid": "f864488cb5d5482fb866844309f8195b",
+    "near_synsets": {
+        "solar_array.n.01": 0.4713377843571078,
+        "solar_cell.n.01": 0.4842298845777047,
+        "solar_house.n.01": 0.5083285286261839,
+        "solar_energy.n.01": 0.5255719157038776,
+        "solar_thermal_system.n.01": 0.5326416051582009,
+        "department_of_energy.n.01": -1000.0,
+        "infrastructure.n.01": -1000.0,
+        "infrastructure.n.02": -1000.0,
+        "energy.n.04": -1000.0,
+        "energy.n.03": -1000.0,
+        "energy.n.01": -1000.0,
+        "energy.n.05": -1000.0,
+        "energy.n.02": -1000.0,
+        "energy.n.06": -1000.0
+    },
+    "synset": "solar_array.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f864488cb5d5482fb866844309f8195b",
+        "creator_username": "one80solar",
+        "creator_display_name": "One80 Solar",
+        "creator_profile_url": "https://sketchfab.com/one80solar"
+    },
+    "filename": "std_f864488cb5d5482fb866844309f8195b.glb",
+    "length": 3.4950727224349976,
+    "width": 1.9483744502067566
+}

@@ -1,0 +1,94 @@
+{
+    "description_long": "This kiosk is a small, freestanding structure with a tall, narrow profile and a steeply gabled roof made of dark, shingled material. The exterior walls are clad in vertically arranged wooden planks, painted with bold, alternating chevron stripes in black, red, and white, giving it a striking and highly visible appearance. The front features a large, open archway that serves as the entry, with no visible door or window, and a simple bench or platform inside. The roof overhangs slightly on all sides, providing some shelter from the elements. The structure is elevated slightly above the ground on a narrow base, and the overall design is utilitarian with a hint of traditional European guardhouse or sentry box influence. There are no visible signs, digital displays, or decorative elements beyond the painted chevrons.",
+    "description": "A tall, narrow wooden kiosk with a steep gabled roof and bold black, red, and white chevron stripes, featuring an open archway entrance and a simple interior bench.",
+    "description_view_0": "The kiosk is seen from the side, showing the chevron-striped wall and the layered, dark gabled roof.",
+    "description_view_1": "The rear view displays the full height of the chevron pattern and the symmetrical, steeply pitched roof.",
+    "description_view_2": "Another side view, nearly identical to view 0, with the chevron pattern and roof clearly visible.",
+    "description_view_3": "The front view reveals the open archway entrance, interior bench, and the chevron pattern framing the entry.",
+    "category": "kiosk",
+    "height": 2.2,
+    "max_dimension": 2.2,
+    "materials": [
+        "wood",
+        "paint",
+        "roofing_shingles",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.05,
+        0.15,
+        0.1
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 800,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "shelterable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench",
+        "entryway"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "none",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "single open archway at front",
+    "attribute_roof_design": "Steeply gabled roof with layered dark shingles and slight overhangs on all sides.",
+    "attribute_architectural_style": "Traditional European guardhouse with utilitarian and rustic influences.",
+    "uid": "a18250dcc99941fca970965907a25bea",
+    "near_synsets": {
+        "booth.n.02": 0.5270222255563497,
+        "booth.n.01": 0.5372545979422149,
+        "arcade.n.01": 0.5470650662080726,
+        "booth.n.04": 0.553131233726664,
+        "gazebo.n.01": 0.5593815393611058
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a18250dcc99941fca970965907a25bea",
+        "creator_username": "wilsz95",
+        "creator_display_name": "wilsz95",
+        "creator_profile_url": "https://sketchfab.com/wilsz95"
+    },
+    "filename": "std_a18250dcc99941fca970965907a25bea.glb",
+    "length": 0.9091499745845795,
+    "width": 0.9448583126068115
+}

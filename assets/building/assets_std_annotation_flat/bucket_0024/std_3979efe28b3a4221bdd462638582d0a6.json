@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a compact multirotor drone with six evenly spaced rotors mounted on slender black arms radiating from a central body. The central fuselage is cylindrical and appears to house the main electronics, with a light gray upper section and a darker lower section. At the front, a camera module is mounted, suggesting the drone is designed for aerial imaging or surveillance. The rotors have yellow-tipped blades, enhancing visibility and safety. The landing gear consists of short, fixed legs that keep the drone stable when on the ground. The overall design is sleek and functional, optimized for urban aerial operations.",
+    "description": "A sleek, six-rotor drone with a cylindrical body, front-facing camera, and yellow-tipped propellers, designed for aerial imaging or surveillance.",
+    "description_view_0": "Front view showing the camera module and the symmetrical arrangement of six rotors with yellow-tipped blades.",
+    "description_view_1": "Side view highlighting the slim profile of the drone and the fixed landing legs beneath the central body.",
+    "description_view_2": "Rear view displaying the cylindrical body and the even spacing of the rotors around the drone.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the drone's arm structure and landing gear.",
+    "category": "drone",
+    "height": 0.25,
+    "max_dimension": 0.7,
+    "materials": [
+        "plastic",
+        "carbon fiber",
+        "metal",
+        "glass",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.05,
+        0.08,
+        0.02
+    ],
+    "mass": 2.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 22,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable",
+        "toggleable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "camera",
+        "landing gear",
+        "power button",
+        "battery compartment"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "sleek",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 6,
+    "attribute_rotor_configuration": "hexacopter '+'",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": true,
+    "attribute_propeller_guard_presence": false,
+    "uid": "3979efe28b3a4221bdd462638582d0a6",
+    "near_synsets": {
+        "drone.n.04": 0.49318357202075747,
+        "single-rotor_helicopter.n.01": 0.5488906191174427,
+        "buzz_bomb.n.01": 0.5616354268005594,
+        "helicopter.n.01": 0.5631222580248578,
+        "drone.n.05": 0.5653698254943116,
+        "monotone.n.01": -1000.0,
+        "drone.n.01": -1000.0,
+        "dawdler.n.01": -1000.0
+    },
+    "synset": "drone.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/3979efe28b3a4221bdd462638582d0a6",
+        "creator_username": "geoffreycouppey",
+        "creator_display_name": "geoffreycouppey",
+        "creator_profile_url": "https://sketchfab.com/geoffreycouppey"
+    },
+    "filename": "std_3979efe28b3a4221bdd462638582d0a6.glb",
+    "length": 1.2429346442222595,
+    "width": 1.2429338097572327
+}

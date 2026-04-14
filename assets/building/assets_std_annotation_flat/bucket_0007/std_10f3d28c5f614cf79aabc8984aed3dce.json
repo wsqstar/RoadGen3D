@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a collection of rifles, each with a distinct silhouette and configuration, arranged in a vertical sequence. The rifles display a variety of stock types, barrel lengths, and magazine shapes, suggesting a mix of tactical and sporting designs. Most rifles appear to have prominent barrels, some with visible muzzle devices, and several feature accessory rails or scopes mounted on top. The stocks range from fixed to collapsible, and the magazines are mostly detachable box types, with some rifles showing extended magazines. The color palette is predominantly dark, with some metallic and possibly polymer components visible. The overall appearance is utilitarian, with a focus on function and modularity, suitable for urban tactical or law enforcement scenarios.",
+    "description": "A vertically arranged set of rifles with varied stocks, barrels, and magazines, mostly in dark and metallic tones. The rifles feature tactical and sporting designs with visible accessory rails and scopes.",
+    "description_view_0": "A frontal view showing the full vertical arrangement of rifles, highlighting the profiles of stocks, barrels, and magazines.",
+    "description_view_1": "A side view emphasizing the thinness of the rifles and the alignment of barrels and stocks, with minimal detail on the magazines.",
+    "description_view_2": "A rear view mirroring the frontal arrangement, showing the backs of stocks and the ends of barrels.",
+    "description_view_3": "A side view from the opposite direction, again showing the slim profiles and the alignment of the rifles.",
+    "category": "rifle",
+    "height": 1.2,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "polymer",
+        "aluminum",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "mass": 35,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "grippable",
+        "aimable",
+        "triggerable",
+        "reloadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "magazine",
+        "trigger",
+        "sight",
+        "muzzle device",
+        "rail"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "dark green",
+        "tan"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_stock_type": "mixed (fixed, collapsible, and possibly skeletonized)",
+    "attribute_barrel_type": "mixed (standard, long, and short)",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "mixed (iron sights, scope, and possibly none)",
+    "attribute_muzzle_device": "mixed (flash hider, muzzle brake, and none)",
+    "uid": "10f3d28c5f614cf79aabc8984aed3dce",
+    "near_synsets": {
+        "assault_rifle.n.01": 0.5003349461070543,
+        "rifle.n.01": 0.5027244086200104,
+        "garand_rifle.n.01": 0.5195783181854005,
+        "sniper_rifle.n.01": 0.5203023271343205,
+        "twenty-two_rifle.n.01": 0.5265665992573214
+    },
+    "synset": "twenty-two_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/10f3d28c5f614cf79aabc8984aed3dce",
+        "creator_username": "kagdrtentmt.henrypodo",
+        "creator_display_name": "Henry Podo N.H.N. (KAGDRT entmt)",
+        "creator_profile_url": "https://sketchfab.com/kagdrtentmt.henrypodo"
+    },
+    "filename": "std_10f3d28c5f614cf79aabc8984aed3dce.glb",
+    "length": 56.391658782958984,
+    "width": 9.380892276763916
+}

@@ -1,0 +1,91 @@
+{
+    "description_long": "This object is a shotgun with a robust, cylindrical black metal barrel and a classic wooden stock. The stock is full-sized, featuring a smooth, slightly curved design with a reddish-brown wood grain finish. The barrel is relatively short and thick, with a simple open sight mounted on top. The trigger guard is rounded and metallic, enclosing a single trigger. The overall construction appears solid and functional, with minimal decorative elements and a utilitarian appearance. The shotgun's components are tightly integrated, with visible screws and mechanical joints.",
+    "description": "A sturdy shotgun with a black metal barrel and a full wooden stock, featuring a rounded trigger guard and open sight.",
+    "description_view_0": "Side view showing the full wooden stock, black barrel, and open sight on top.",
+    "description_view_1": "Front view highlighting the circular barrel opening and the alignment of the sight.",
+    "description_view_2": "Opposite side view displaying the wooden stock and the metallic barrel, mirroring view 0.",
+    "description_view_3": "Rear view focusing on the butt of the wooden stock and the top-mounted sight.",
+    "category": "shotgun",
+    "height": 0.22,
+    "max_dimension": 0.95,
+    "materials": [
+        "steel",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.33,
+        0.02
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "trigger",
+        "trigger guard",
+        "sight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.65,
+        0.35
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, short and thick with no visible ribbing or venting",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "break-action",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized metallic guard with a smooth contour and no finger grooves",
+    "uid": "f1309916894a45e3ae6eb24f17f728d4",
+    "near_synsets": {
+        "shotgun.n.01": 0.4845536309936853,
+        "sawed-off_shotgun.n.01": 0.4857234582196199,
+        "shotgun_shell.n.01": 0.5031162930284153,
+        "gun.n.01": 0.516386027983289,
+        "stock.n.03": 0.5195047954757112
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f1309916894a45e3ae6eb24f17f728d4",
+        "creator_username": "denis1.eremin",
+        "creator_display_name": "denis1.eremin",
+        "creator_profile_url": "https://sketchfab.com/denis1.eremin"
+    },
+    "filename": "std_f1309916894a45e3ae6eb24f17f728d4.glb",
+    "length": 0.5882845222949982,
+    "width": 0.0701751708984375
+}

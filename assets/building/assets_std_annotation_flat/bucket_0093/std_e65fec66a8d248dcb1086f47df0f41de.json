@@ -1,0 +1,98 @@
+{
+    "description_long": "This kiosk is a small, open-sided wooden structure with a gabled roof supported by four red-painted posts. The roof is made of a solid, weathered material, likely metal or treated wood, and is fastened with visible bolts at the corners. The sides and back are enclosed with vertical wooden slats, while the front and rear are open, allowing easy access. Inside, there is a built-in bench and a central table, both constructed from wooden planks, making it suitable for seating and small gatherings. The floor is also made of wooden planks, slightly elevated from the ground. The overall appearance is rustic and functional, ideal for parks or playgrounds as a sheltered resting or picnic spot.",
+    "description": "A rustic, open-sided wooden kiosk with a gabled roof, red posts, and built-in bench seating around a central table. The structure is enclosed with vertical wooden slats and features a weathered, practical design.",
+    "description_view_0": "The kiosk is viewed from the back, showing the vertical wooden slats enclosing the rear and the red posts supporting the roof.",
+    "description_view_1": "The front view reveals the open entryway, central table, and bench seating, with the gabled roof and red posts framing the entrance.",
+    "description_view_2": "The opposite rear view again highlights the enclosed back with vertical slats and the solid roof, similar to view 0.",
+    "description_view_3": "This view shows the open rear entry, with the bench and table visible inside, and the red posts and slatted enclosure on the sides.",
+    "category": "kiosk",
+    "height": 2.0,
+    "max_dimension": 2.5,
+    "materials": [
+        "wood",
+        "metal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 250,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "supportable",
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench",
+        "table",
+        "floor"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "red",
+        "gray",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "none",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "open archway at front and rear, no doors",
+    "attribute_roof_design": "gabled roof, solid material, slightly overhanging edges, weathered finish",
+    "attribute_architectural_style": "rustic, utilitarian park structure",
+    "uid": "e65fec66a8d248dcb1086f47df0f41de",
+    "near_synsets": {
+        "gazebo.n.01": 0.5248239509834424,
+        "booth.n.02": 0.544890258160942,
+        "booth.n.01": 0.547361899065964,
+        "cross.n.01": 0.5629370445312708,
+        "portico.n.01": 0.5632252864197723
+    },
+    "synset": "gazebo.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e65fec66a8d248dcb1086f47df0f41de",
+        "creator_username": "alban",
+        "creator_display_name": "alban",
+        "creator_profile_url": "https://sketchfab.com/alban"
+    },
+    "filename": "std_e65fec66a8d248dcb1086f47df0f41de.glb",
+    "length": 1.3933204412460327,
+    "width": 1.4408410787582397
+}

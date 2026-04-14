@@ -1,0 +1,105 @@
+{
+    "description_long": "This object is a group of various barrels and drums, including four blue industrial barrels stacked on a wooden pallet, a classic wooden cask with metal hoops, a rusted metal drum, and a blue-and-white painted metal drum. The blue barrels have yellow hazard markings near their bases, suggesting they are used for storing chemicals or industrial liquids. The wooden cask features prominent metal bands and a rounded shape, typical of storage for liquids like wine or beer. The rusted drum shows significant weathering, indicating long-term outdoor exposure, while the blue-and-white drum appears cleaner and more modern. The wooden pallet beneath the blue barrels is slatted and robust, designed for forklift transport. The overall appearance suggests these items are commonly found in industrial, warehouse, or urban storage settings.",
+    "description": "A collection of industrial barrels and drums, including blue hazard-marked barrels on a pallet, a wooden cask, and metal drums, all suited for urban or warehouse environments.",
+    "description_view_0": "Front view shows the stacked blue barrels on a pallet, with the wooden cask and metal drums aligned behind.",
+    "description_view_1": "Side view reveals all barrels and drums in a row, clearly displaying the wooden cask, rusted drum, blue-and-white drum, and the pallet supporting the blue barrels.",
+    "description_view_2": "Rear view focuses on the blue barrels stacked on the pallet, with the other barrels partially obscured.",
+    "description_view_3": "Opposite side view displays the barrels and drums in reverse order, with the wooden cask now on the far right and the pallet on the left.",
+    "category": "barrel or bucket",
+    "height": 1.1,
+    "max_dimension": 2.2,
+    "materials": [
+        "metal",
+        "wood",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "stackable",
+        "liftable",
+        "pourable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "body",
+        "pallet"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "brown",
+        "yellow",
+        "white",
+        "gray",
+        "rust"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_lid_presence": false,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "metal hoops on wooden cask, none on metal and plastic drums",
+    "attribute_labeling_or_markings": "yellow hazard stripes, white band, none",
+    "attribute_placement_location": "industrial",
+    "uid": "19428d7d2e0f4db7aa4acbfb1d55fd66",
+    "near_synsets": {
+        "barrel.n.02": 0.44011097105321834,
+        "barrel.n.03": 0.46329606739386686,
+        "drum.n.04": 0.4824137892625071,
+        "barrels.n.01": 0.48343194015258223,
+        "barrel.n.04": 0.49502701070885696,
+        "bucket.n.01": -1000.0,
+        "barrel.n.05": -1000.0,
+        "bucket.n.02": -1000.0,
+        "barrel.n.01": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/19428d7d2e0f4db7aa4acbfb1d55fd66",
+        "creator_username": "nermin",
+        "creator_display_name": "nermin",
+        "creator_profile_url": "https://sketchfab.com/nermin"
+    },
+    "filename": "std_19428d7d2e0f4db7aa4acbfb1d55fd66.glb",
+    "length": 3.02435302734375,
+    "width": 3.63043212890625
+}

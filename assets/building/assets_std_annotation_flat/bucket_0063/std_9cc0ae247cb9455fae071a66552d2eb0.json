@@ -1,0 +1,107 @@
+{
+    "description_long": "This object is a horizontal cylindrical storage tank mounted on a wooden or metal support frame, elevated above a rectangular concrete or stone base. The tank is rust-colored, suggesting it is made of metal, and features visible pipes and valves attached to one end, likely for filling or dispensing liquids. The structure is set on a patch of uneven, grassy terrain, indicating it is designed for outdoor use. The tank's surface appears weathered, with signs of oxidation and wear, and the support frame is constructed from sturdy beams arranged in a crisscross pattern for stability. There are no visible access ladders, but the tank's height and attachments suggest it is intended for industrial or utility purposes. The overall design is utilitarian, prioritizing function and durability over aesthetics.",
+    "description": "A rust-colored horizontal cylindrical storage tank on a sturdy support frame with visible pipes and valves, set on a grassy base. The tank appears weathered and is designed for outdoor industrial or utility use.",
+    "description_view_0": "Front view showing the end of the cylindrical tank, the support frame, and the concrete base.",
+    "description_view_1": "Side view highlighting the cylindrical body, support beams, and attached pipes and valves.",
+    "description_view_2": "Rear view displaying the opposite end of the tank and the supporting structure.",
+    "description_view_3": "Side view from the opposite direction, showing the tank's body and support frame with less visibility of the pipe attachments.",
+    "category": "storage tank",
+    "height": 2.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "steel",
+        "wood",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.15,
+        0.05
+    ],
+    "mass": 950,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "turnable",
+        "connectable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "valve",
+        "pipe",
+        "cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "rust brown",
+        "gray",
+        "green"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [
+        "inlet pipe",
+        "outlet valve"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_architectural_style": "cylindrical horizontal",
+    "uid": "9cc0ae247cb9455fae071a66552d2eb0",
+    "near_synsets": {
+        "tank.n.02": 0.5214977406349977,
+        "reservoir.n.03": 0.5348595363971117,
+        "tank_farm.n.01": 0.5476947018323706,
+        "gas_tank.n.01": 0.5551717238883455,
+        "rust.n.05": 0.5600663962588486,
+        "cooler.n.03": -1000.0,
+        "memory.n.04": -1000.0,
+        "storage.n.04": -1000.0,
+        "storage.n.01": -1000.0,
+        "storage.n.03": -1000.0,
+        "repositing.n.01": -1000.0,
+        "tank.n.01": -1000.0,
+        "tank.n.03": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "storehouse.n.01": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9cc0ae247cb9455fae071a66552d2eb0",
+        "creator_username": "Prajwal.pn",
+        "creator_display_name": "Prajwal.pn",
+        "creator_profile_url": "https://sketchfab.com/Prajwal.pn"
+    },
+    "filename": "std_9cc0ae247cb9455fae071a66552d2eb0.glb",
+    "length": 2.19553279876709,
+    "width": 2.1015539169311523
+}

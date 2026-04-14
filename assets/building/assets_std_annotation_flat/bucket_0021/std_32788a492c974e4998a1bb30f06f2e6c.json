@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a medium-sized utility trailer with a rectangular wooden cargo bed framed by a sturdy metal structure. The trailer features two large, black, side-mounted wheels and a metal tow bar at the front, equipped with a hitch and a support jack for stability when not attached to a vehicle. The wooden bed is bordered by metal rails, providing containment for transported goods, and the surface appears slightly textured, indicating a natural wood grain. The rear of the trailer includes reflectors and a license plate holder, enhancing its visibility and compliance for road use. The metal frame and tow bar are finished in a matte gray, contrasting with the dark brown wood panels. This trailer is designed for hauling various items in urban environments, such as tools, equipment, or garden waste.",
+    "description": "A medium-sized utility trailer with a wooden cargo bed, metal frame, two side-mounted wheels, and a front tow bar with hitch and support jack.",
+    "description_view_0": "Front view showing the metal tow bar, hitch, and support jack, with the wooden cargo bed and side wheels partially visible.",
+    "description_view_1": "Side view highlighting the full length of the wooden bed, the large black wheel, and the metal frame structure.",
+    "description_view_2": "Rear view displaying the back panel of the wooden bed, reflectors, and license plate holder, with both wheels visible.",
+    "description_view_3": "Opposite side view similar to view 1, showing the other wheel and the metal tow bar extending forward.",
+    "category": "barrow",
+    "height": 0.9,
+    "max_dimension": 2.2,
+    "materials": [
+        "wood",
+        "steel",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 120,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "attachable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "tow bar",
+        "hitch",
+        "support jack",
+        "wheel",
+        "cargo bed"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "gray",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.55,
+        0.3,
+        0.13,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 20000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 2,
+    "attribute_handle_type": "straight metal tow bar with hitch",
+    "attribute_wheel_position": "dual side-mounted, centered along the length",
+    "attribute_tray_depth": 0.35,
+    "attribute_presence_of_support_legs": true,
+    "uid": "32788a492c974e4998a1bb30f06f2e6c",
+    "near_synsets": {
+        "barrow.n.03": 0.48306431259828564,
+        "trailer.n.03": 0.5013874091650338,
+        "trailer.n.04": 0.5174834637784859,
+        "handbarrow.n.01": 0.5234195004496458,
+        "camper_trailer.n.01": 0.5258502856512313,
+        "barrow.n.01": -1000.0,
+        "burial_mound.n.01": -1000.0
+    },
+    "synset": "barrow.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/32788a492c974e4998a1bb30f06f2e6c",
+        "creator_username": "prochazkajoe",
+        "creator_display_name": "prochazkajoe",
+        "creator_profile_url": "https://sketchfab.com/prochazkajoe"
+    },
+    "filename": "std_32788a492c974e4998a1bb30f06f2e6c.glb",
+    "length": 4.062527656555176,
+    "width": 2.4636722803115845
+}

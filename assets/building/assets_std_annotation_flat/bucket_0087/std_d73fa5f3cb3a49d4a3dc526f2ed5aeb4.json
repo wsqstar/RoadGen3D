@@ -1,0 +1,111 @@
+{
+    "description_long": "This is a large, detailed warship with a streamlined hull painted in light gray and green along the waterline, and a wooden deck. The ship features a prominent superstructure amidships, including multiple towers, radar arrays, and communication equipment. Several large gun turrets are mounted fore and aft, with additional smaller armaments and fixtures distributed along the deck. The bow is sharply pointed, while the stern is broad and slightly raised, with visible propeller shafts and rudder assemblies. The deck is equipped with various fixtures such as lifeboats, cranes, and antennae, indicating a military or naval function. The overall design suggests a heavily armored and armed vessel, likely intended for combat or defense operations.",
+    "description": "A large, gray and green warship with a wooden deck, prominent superstructure, and multiple gun turrets and deck fixtures. The ship features a pointed bow, broad stern, and extensive military equipment.",
+    "description_view_0": "Side view showing the full length of the ship, highlighting the hull's green waterline, wooden deck, and the central superstructure with turrets and towers.",
+    "description_view_1": "Front (bow) view emphasizing the pointed bow, symmetrical arrangement of gun turrets, and the compact width of the ship.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the stern's propeller shafts and rudder assemblies, as well as the superstructure.",
+    "description_view_3": "Rear (stern) view showing the broad stern, propeller shafts, and the arrangement of deck equipment and superstructure from behind.",
+    "category": "ship",
+    "height": 25,
+    "max_dimension": 250,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.01,
+        0.03
+    ],
+    "mass": 45000000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "door",
+        "hatch",
+        "radar",
+        "antenna",
+        "lifeboat",
+        "crane",
+        "ladder",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "green",
+        "brown",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.65,
+        0.1,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.02,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a sharp, pointed bow and a broad, slightly raised stern. The waterline is marked by a green stripe, and the hull features visible propeller shafts and rudder assemblies at the stern. The sides are smooth and streamlined, with no visible bulbous bow or catamaran structure.",
+    "attribute_superstructure_layout": "The superstructure is centrally located and consists of multiple decks, towers, and bridge structures. There are several large turrets fore and aft, with additional smaller fixtures and equipment distributed along the deck. The design is symmetrical and functional, with clear separation between operational and navigational areas.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "turret",
+        "lifeboat",
+        "crane",
+        "radar",
+        "antenna"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "d73fa5f3cb3a49d4a3dc526f2ed5aeb4",
+    "near_synsets": {
+        "warship.n.01": 0.4799032500062576,
+        "surface_ship.n.01": 0.48382801182286206,
+        "three-decker.n.03": 0.48391351654145276,
+        "capital_ship.n.01": 0.4879712514328631,
+        "troopship.n.01": 0.49103291735501664,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d73fa5f3cb3a49d4a3dc526f2ed5aeb4",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_d73fa5f3cb3a49d4a3dc526f2ed5aeb4.glb",
+    "length": 135.0512466430664,
+    "width": 23.606356620788574
+}

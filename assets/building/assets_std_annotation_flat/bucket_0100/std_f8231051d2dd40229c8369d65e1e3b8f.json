@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a small, single-person tent with a simple A-frame structure, supported by two intersecting poles at each end. The tent is covered in a muted, reddish-brown fabric with a pixelated, geometric pattern in lighter tones, giving it a distinctive, almost digital camouflage appearance. The entrance is a triangular flap at one end, which can be lifted to allow access to the interior, and the opposite end is fully enclosed. The tent is anchored at the four corners, with the fabric pulled taut and slightly wrinkled, suggesting a lightweight, flexible material. The interior appears to be open and unobstructed, suitable for sleeping or temporary shelter. No visible branding, windows, or additional features such as guy lines or vents are present.",
+    "description": "A small, reddish-brown A-frame tent with a pixelated geometric pattern and a triangular flap entrance, supported by two intersecting poles. The tent is lightweight, simple, and designed for single-person use.",
+    "description_view_0": "Side view showing the tent's taut, pixel-patterned fabric and the angled A-frame structure with visible pole ends at the top.",
+    "description_view_1": "Rear view displaying the fully enclosed, triangular back of the tent with intersecting poles at the apex.",
+    "description_view_2": "Opposite side view similar to view 0, highlighting the tent's geometric pattern and the way the fabric is anchored at the corners.",
+    "description_view_3": "Front view showing the open triangular flap entrance, revealing the tent's interior and the intersecting poles at the top.",
+    "category": "tent",
+    "height": 1.2,
+    "max_dimension": 2.0,
+    "materials": [
+        "fabric",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.15
+    ],
+    "mass": 3.5,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 6,
+    "movable": true,
+    "required_force": 25,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "entrance flap",
+        "support poles"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "reddish-brown",
+        "light beige"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "soft",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 0.05,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "Triangular flap entrance at the front, no visible zipper or fastener, simple lift-up design.",
+    "attribute_number_of_poles": 2,
+    "attribute_guy_line_configuration": "No visible guy lines; tent is anchored at four corners.",
+    "attribute_ventilation_openings": [],
+    "attribute_branding_or_logo": "none",
+    "uid": "f8231051d2dd40229c8369d65e1e3b8f",
+    "near_synsets": {
+        "mountain_tent.n.01": 0.47722533926003996,
+        "cottage_tent.n.01": 0.47795163218500636,
+        "pop_tent.n.01": 0.4789467754639214,
+        "field_tent.n.01": 0.48022235497657545,
+        "umbrella_tent.n.01": 0.4810763117788217,
+        "tent.n.01": -1000.0,
+        "tent.n.02": -1000.0
+    },
+    "synset": "tent.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f8231051d2dd40229c8369d65e1e3b8f",
+        "creator_username": "rakketchi",
+        "creator_display_name": "rakketchi",
+        "creator_profile_url": "https://sketchfab.com/rakketchi"
+    },
+    "filename": "std_f8231051d2dd40229c8369d65e1e3b8f.glb",
+    "length": 2.2043944597244263,
+    "width": 1.5206952691078186
+}

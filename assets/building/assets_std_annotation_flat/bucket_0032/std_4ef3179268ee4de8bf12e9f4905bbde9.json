@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a modern, mid-sized city bus with a predominantly white exterior and large, tinted side windows that run nearly the full length of the vehicle. The bus features two wide passenger entry/exit doors on the right side, each with clear glass panels, and a set of six rectangular windows separated by slim vertical pillars. The front of the bus has a wide windshield, two yellow-tinted headlights, and a digital route display above the windshield. The rear of the bus includes a large window, red taillights, and a digital display panel. The bus sits on two axles with four wheels, and the overall design is streamlined and functional for urban passenger transport.",
+    "description": "A white, modern city bus with large tinted windows, two passenger doors, and digital display panels at the front and rear. The bus is designed for urban public transportation and features a sleek, streamlined body.",
+    "description_view_0": "Side view showing the right side of the bus with two passenger doors and six large windows.",
+    "description_view_1": "Front view displaying the wide windshield, yellow headlights, and a digital route display above the windshield.",
+    "description_view_2": "Opposite side view with six large windows and no visible passenger doors.",
+    "description_view_3": "Rear view showing a large window, red taillights, and a digital display panel above the window.",
+    "category": "bus",
+    "height": 3.0,
+    "max_dimension": 10.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.18,
+        0.1,
+        0.08,
+        0.04,
+        0.05
+    ],
+    "mass": 11000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "drivable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "button",
+        "display panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "black",
+        "yellow",
+        "red"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.08,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 2,
+    "attribute_window_arrangement": "Six large, rectangular, evenly spaced windows along each side, separated by slim vertical pillars, with the windows extending nearly the full height between the lower body and the roofline.",
+    "attribute_route_number_or_destination_sign": "",
+    "attribute_bus_manufacturer_logo": "",
+    "attribute_passenger_entry_step_height": 0.35,
+    "uid": "4ef3179268ee4de8bf12e9f4905bbde9",
+    "near_synsets": {
+        "bus.n.01": 0.4815934597715906,
+        "school_bus.n.01": 0.5183877602899976,
+        "minibus.n.01": 0.53222683142101,
+        "public_transit.n.01": 0.5384821033654014,
+        "berlin.n.03": 0.5435168070720672,
+        "busbar.n.01": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "bus.n.04": -1000.0
+    },
+    "synset": "bus.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4ef3179268ee4de8bf12e9f4905bbde9",
+        "creator_username": "skeban",
+        "creator_display_name": "N Skeba",
+        "creator_profile_url": "https://sketchfab.com/skeban"
+    },
+    "filename": "std_4ef3179268ee4de8bf12e9f4905bbde9.glb",
+    "length": 9.806554317474365,
+    "width": 2.5945234298706055
+}

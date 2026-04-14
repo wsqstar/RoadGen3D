@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a small fishing or utility vessel with a green and white hull, featuring a flat open deck area and a compact, enclosed wheelhouse near the bow. The hull is robust and slightly rounded, designed for stability in coastal or harbor waters. The deck is bordered by railings and includes a metal frame structure at the stern, likely for supporting nets or equipment. The wheelhouse has windows on all sides and a small antenna or mast on top, providing visibility and communication capabilities. The ship's name, 'MA JOSY BOULOGNE,' is clearly marked on the side, along with registration numbers. The overall design suggests functionality for work or transport rather than leisure.",
+    "description": "A compact green and white workboat with an open deck, enclosed wheelhouse, and metal frame at the stern, marked with the name 'MA JOSY BOULOGNE.' Designed for utility or fishing tasks.",
+    "description_view_0": "Side view showing the green hull, open deck, wheelhouse with windows, and prominent metal frame at the stern.",
+    "description_view_1": "Front view highlighting the pointed bow, wheelhouse windows, and the open deck layout.",
+    "description_view_2": "Opposite side view with similar features as view 0, showing the ship's name and the open deck area.",
+    "description_view_3": "Rear view displaying the stern's metal frame structure, open deck, and the back of the wheelhouse.",
+    "category": "ship",
+    "height": 4.5,
+    "max_dimension": 12.0,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 9000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "steerable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "steering wheel",
+        "ladder",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "white",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a rounded bow and a flat stern, designed for stability and moderate speed. The bow is pointed and slightly flared, while the stern is squared off to maximize deck space. No keels or bulbous bows are visible, and the hull sides are smooth with minimal ornamentation.",
+    "attribute_superstructure_layout": "The superstructure consists of a single enclosed wheelhouse located near the bow, with windows on all sides and a small roof-mounted mast or antenna. The deck is open and flat, bordered by railings, and features a metal frame structure at the stern for equipment support.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "metal frame",
+        "antenna",
+        "ladder"
+    ],
+    "attribute_registration_markings": "MA JOSY BOULOGNE, registration numbers on the bow",
+    "uid": "be410d4c9d614ceda8a0830795b056f8",
+    "near_synsets": {
+        "jolly_boat.n.01": 0.5000281303082837,
+        "boat.n.01": 0.5155128670183087,
+        "bareboat.n.01": 0.5214055008166653,
+        "bumboat.n.01": 0.5266703406609176,
+        "small_boat.n.01": 0.5302495651546627,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/be410d4c9d614ceda8a0830795b056f8",
+        "creator_username": "fan3d",
+        "creator_display_name": "fan3d",
+        "creator_profile_url": "https://sketchfab.com/fan3d"
+    },
+    "filename": "std_be410d4c9d614ceda8a0830795b056f8.glb",
+    "length": 7.523452281951904,
+    "width": 3.1702017784118652
+}

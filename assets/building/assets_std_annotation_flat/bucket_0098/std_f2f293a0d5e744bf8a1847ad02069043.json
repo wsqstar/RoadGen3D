@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a dark, armored tracked vehicle resembling a World War II-era German tank, featuring a low, angular hull and a rounded turret with a long barrel cannon. The vehicle is equipped with six large road wheels on each side, connected by a visible suspension system, and tracks that wrap around the wheels for all-terrain mobility. The turret displays a German cross insignia and has a hatch, periscope, and antenna, indicating its military use. The rear section includes engine grilles and exhausts, while the front is sloped for deflection and protection. The exterior is primarily matte dark gray with weathering and dirt, suggesting heavy use. The vehicle is constructed mainly from thick metal armor, with glass for vision ports and rubber on the road wheels.",
+    "description": "A dark, armored tracked military vehicle with a rounded turret, long barrel, and German insignia, built for rugged all-terrain use. It features six large wheels per side, heavy metal armor, and weathered surfaces.",
+    "description_view_0": "Side view showing the full length of the tank, six large wheels, tracks, and the German cross on the turret.",
+    "description_view_1": "Front view highlighting the sloped armor, cannon barrel, and the compact, angular profile of the hull.",
+    "description_view_2": "Opposite side view, mirroring the wheel and track arrangement, with turret and barrel visible.",
+    "description_view_3": "Rear view displaying the engine grilles, exhausts, and the back of the turret and hull.",
+    "category": "all-terrain vehicle",
+    "height": 2.4,
+    "max_dimension": 6.7,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.88,
+        0.07,
+        0.01,
+        0.04
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "wheel",
+        "track",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.13,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 12,
+    "attribute_tire_tread_pattern": "The visible tread pattern on the road wheels is smooth, as is typical for steel tank wheels, with no pronounced knobby or blocky features, designed for use with continuous tracks on varied terrain.",
+    "attribute_suspension_type": "independent",
+    "attribute_presence_of_roll_cage": false,
+    "attribute_handlebar_or_steering_wheel_type": "round steering wheel",
+    "uid": "f2f293a0d5e744bf8a1847ad02069043",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.47635418929071094,
+        "armored_vehicle.n.01": 0.49026994497112564,
+        "tank.n.01": 0.4950353055938713,
+        "armored_car.n.02": 0.500546568497734,
+        "assault_gun.n.02": 0.5009118939436695,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f2f293a0d5e744bf8a1847ad02069043",
+        "creator_username": "dan11l11l",
+        "creator_display_name": "brow.wes",
+        "creator_profile_url": "https://sketchfab.com/dan11l11l"
+    },
+    "filename": "std_f2f293a0d5e744bf8a1847ad02069043.glb",
+    "length": 5.549301385879517,
+    "width": 2.221466541290283
+}

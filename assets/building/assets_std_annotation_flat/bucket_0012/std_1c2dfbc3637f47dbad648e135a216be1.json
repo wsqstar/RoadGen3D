@@ -1,0 +1,115 @@
+{
+    "description_long": "This object is a quadrupedal robot dog with a sleek, mechanical body composed of metallic and composite materials. Its torso is robust and streamlined, featuring a central spring or shock absorber connecting the front and rear sections, suggesting advanced mobility and flexibility. The legs are jointed and appear reinforced, with visible mechanical actuators and paw-like feet designed for stability on urban surfaces. The tail is segmented and articulated, likely for balance or communication, and the head is compact, possibly housing sensors or cameras. The overall design is utilitarian yet futuristic, with a dark, metallic finish and exposed mechanical elements. This robot dog is built for dynamic movement and interaction in urban environments.",
+    "description": "A sleek, metallic quadrupedal robot dog with articulated limbs, a segmented tail, and a compact sensor-equipped head, designed for agile movement in urban settings.",
+    "description_view_0": "Side view showing the full profile, including the articulated legs, spring-loaded torso, and segmented tail.",
+    "description_view_1": "Rear view highlighting the symmetry of the hind legs, the central spring, and the tail's articulation.",
+    "description_view_2": "Opposite side view, mirroring the first, with clear visibility of the mechanical joints and tail structure.",
+    "description_view_3": "Front view displaying the compact head, forward-facing legs, and the robust chest structure.",
+    "category": "robot dog",
+    "height": 0.7,
+    "max_dimension": 1.2,
+    "materials": [
+        "metal",
+        "plastic",
+        "composite",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 38,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 9,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "legs",
+        "tail",
+        "head",
+        "joints"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "sleek",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_mechanical_joints": [
+        "rotary joint",
+        "hinge joint",
+        "ball-and-socket joint"
+    ],
+    "attribute_visible_sensors": [
+        "camera"
+    ],
+    "attribute_led_indicators": [],
+    "attribute_articulated_limbs": [
+        "front left leg",
+        "front right leg",
+        "rear left leg",
+        "rear right leg",
+        "tail"
+    ],
+    "attribute_robotic_face": false,
+    "uid": "1c2dfbc3637f47dbad648e135a216be1",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5480411614171976,
+        "quadruped.n.01": 0.5546203406607062,
+        "robotics.n.01": 0.5727485601331896,
+        "automaton.n.02": 0.5790822865564142,
+        "android.n.01": 0.583031714622157,
+        "dog.n.03": -1000.0,
+        "frank.n.01": -1000.0,
+        "pawl.n.01": -1000.0,
+        "dog.n.01": -1000.0,
+        "frump.n.01": -1000.0,
+        "andiron.n.01": -1000.0,
+        "cad.n.01": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1c2dfbc3637f47dbad648e135a216be1",
+        "creator_username": "sergeykuchmin",
+        "creator_display_name": "sergeykuchmin",
+        "creator_profile_url": "https://sketchfab.com/sergeykuchmin"
+    },
+    "filename": "std_1c2dfbc3637f47dbad648e135a216be1.glb",
+    "length": 1.2888648509979248,
+    "width": 0.2748859226703644
+}

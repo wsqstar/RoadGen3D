@@ -1,0 +1,113 @@
+{
+    "description_long": "This bus shelter features a modern, arched roof constructed from transparent panels supported by dark green metal beams, providing weather protection while allowing natural light to filter through. The shelter is equipped with a long, red bench made of slatted material, offering seating for multiple passengers. The structure is partially enclosed with clear side panels and a solid back panel, enhancing comfort while maintaining visibility. A prominent sign with the 'LA' logo is mounted on one end, likely serving as a location or route identifier. The shelter's frame is robust, with metallic supports anchored to a sturdy base for stability. The overall design is functional and visually appealing, suitable for urban streetscapes and public transportation stops.",
+    "description": "A modern bus shelter with an arched transparent roof, red bench seating, partial glass enclosure, and a prominent 'LA' logo sign.",
+    "description_view_0": "View 0 shows the shelter from one end, highlighting the curved roof, red bench, and the metallic support structure.",
+    "description_view_1": "View 1 presents a side perspective, emphasizing the transparent arched roof, glass side panels, and the length of the red bench inside.",
+    "description_view_2": "View 2 displays the opposite end, featuring the 'LA' logo sign, the arched roof, and the bench alignment.",
+    "description_view_3": "View 3 offers a top-down side view, showcasing the full length of the shelter, the roof's curvature, and the bench beneath.",
+    "category": "bus shelter",
+    "height": 2.5,
+    "max_dimension": 4.0,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench",
+        "advertisement panel",
+        "signage panel"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "dark green",
+        "transparent",
+        "red",
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.3,
+        0.25,
+        0.2,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_roof_type": "arched transparent",
+    "attribute_seating_presence": true,
+    "attribute_advertisement_panel": true,
+    "attribute_shelter_enclosure_level": "partially enclosed",
+    "attribute_signage": [
+        "route sign"
+    ],
+    "uid": "fc632b69dc61498ab4b04139b4adf760",
+    "near_synsets": {
+        "bus_traffic.n.01": 0.5737286565188132,
+        "berlin.n.03": 0.5770312965713464,
+        "shelter.n.02": 0.5772816705272339,
+        "street_sign.n.01": 0.5828498096081668,
+        "bus_stop.n.01": 0.5861674734188426,
+        "busbar.n.01": -1000.0,
+        "shelter.n.01": -1000.0,
+        "bus.n.01": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "bus.n.04": -1000.0,
+        "shelter.n.05": -1000.0,
+        "tax_shelter.n.01": -1000.0,
+        "protection.n.04": -1000.0
+    },
+    "synset": "shelter.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fc632b69dc61498ab4b04139b4adf760",
+        "creator_username": "maypassamon",
+        "creator_display_name": "maypassamon",
+        "creator_profile_url": "https://sketchfab.com/maypassamon"
+    },
+    "filename": "std_fc632b69dc61498ab4b04139b4adf760.glb",
+    "length": 3.6345213651657104,
+    "width": 3.770392417907715
+}

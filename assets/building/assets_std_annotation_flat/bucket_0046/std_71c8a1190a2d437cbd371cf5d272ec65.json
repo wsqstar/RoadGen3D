@@ -1,0 +1,89 @@
+{
+    "description_long": "This is a cylindrical metal barrel with a yellowish-tan color and two prominent horizontal ridges reinforcing its structure. The barrel features bold black and yellow hazard stripes encircling its upper and lower sections, suggesting it is used for storing or transporting hazardous materials. The top surface displays a large warning symbol with the word 'DANGER' and a biohazard icon, making its purpose clear and cautionary. The surface appears smooth and slightly glossy, with some subtle shading and highlights indicating a metallic finish. There are no visible handles or spouts, and the lid is firmly in place, sealing the contents. The overall design is utilitarian and robust, suitable for industrial or urban environments where safety and containment are priorities.",
+    "description": "A yellowish-tan metal barrel with black hazard stripes and a biohazard warning symbol on the lid, designed for hazardous material storage. The surface is smooth and slightly glossy, with reinforced ridges.",
+    "description_view_0": "Front view showing the biohazard warning symbol and 'DANGER' text clearly on the lid, with hazard stripes visible around the barrel.",
+    "description_view_1": "Side view with the hazard stripes and barrel's ridges prominent, but the warning symbol on the lid is partially obscured.",
+    "description_view_2": "Another side view, similar to view 1, with the hazard stripes and ridges visible, and the warning symbol on the lid slightly more visible.",
+    "description_view_3": "Rear view with the hazard stripes and ridges visible, and the warning symbol on the lid partially visible from an angle.",
+    "category": "barrel or bucket",
+    "height": 0.9,
+    "max_dimension": 0.6,
+    "materials": [
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 25,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 300,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "glossy",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "integrated metal reinforcement rings at top and bottom",
+    "attribute_labeling_or_markings": "biohazard symbol, 'DANGER' text, black and yellow hazard stripes",
+    "attribute_placement_location": "industrial",
+    "uid": "71c8a1190a2d437cbd371cf5d272ec65",
+    "near_synsets": {
+        "barrel.n.02": 0.505493187220589,
+        "barrel.n.03": 0.5114965647737878,
+        "bucket.n.01": 0.5234265155539558,
+        "barrel.n.05": 0.5460641729268529,
+        "barrels.n.01": 0.5482882347423105,
+        "bucket.n.02": -1000.0,
+        "barrel.n.04": -1000.0,
+        "barrel.n.01": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/71c8a1190a2d437cbd371cf5d272ec65",
+        "creator_username": "filipstryk",
+        "creator_display_name": "filipstryk",
+        "creator_profile_url": "https://sketchfab.com/filipstryk"
+    },
+    "filename": "std_71c8a1190a2d437cbd371cf5d272ec65.glb",
+    "length": 0.7764034271240234,
+    "width": 0.7763535976409912
+}

@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a partially constructed or damaged apartment building with three visible floors, exposed concrete walls, and extensive scaffolding on one side. The structure features open floors with missing or incomplete walls, and debris is scattered around the base, suggesting ongoing construction or recent destruction. A large billboard reading 'Potago's Pizzeria Black Market' is mounted on the roof, adding a commercial element to the otherwise residential building. The right side of the building is heavily scaffolded, with wooden planks and metal supports visible, while the left side shows piles of rubble and construction materials. The windows are mostly absent or incomplete, and the main entrance appears to be obstructed by debris. The overall appearance is utilitarian and functional, with a focus on raw concrete and exposed structural elements.",
+    "description": "A three-story, concrete apartment building under construction or partially destroyed, with scaffolding, debris, and a rooftop billboard.",
+    "description_view_0": "The top and left sides are visible, showing a flat concrete roof, rooftop billboard, and rubble piled along the left wall.",
+    "description_view_1": "The right side is dominated by extensive scaffolding and exposed floors, with visible construction debris and incomplete walls.",
+    "description_view_2": "The front view features the 'Potago's Pizzeria Black Market' billboard, open floors, and a large pile of rubble at the base.",
+    "description_view_3": "The rear and left sides show solid concrete walls with minimal openings and more construction debris along the ground.",
+    "category": "apartment building",
+    "height": 10.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "wood",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 420000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "scaffolding",
+        "billboard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "red",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 3,
+    "attribute_balcony_presence": false,
+    "attribute_window_arrangement": "Windows are irregularly spaced and mostly absent, with some grouped openings on the scaffolded side and incomplete window frames.",
+    "attribute_entrance_type": "single door",
+    "attribute_architectural_style": "Brutalist",
+    "uid": "5d82eb0eaf394b76a0fce583b9cc8211",
+    "near_synsets": {
+        "apartment_building.n.01": 0.5116469851198693,
+        "skyscraper.n.01": 0.5164983668526989,
+        "ruin.n.02": 0.5317491656731802,
+        "cityscape.n.02": 0.5354294701029644,
+        "building_complex.n.01": 0.5386735340144152,
+        "building.n.04": -1000.0,
+        "apartment.n.01": -1000.0,
+        "construction.n.01": -1000.0,
+        "building.n.01": -1000.0,
+        "construction.n.07": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5d82eb0eaf394b76a0fce583b9cc8211",
+        "creator_username": "nermin",
+        "creator_display_name": "nermin",
+        "creator_profile_url": "https://sketchfab.com/nermin"
+    },
+    "filename": "std_5d82eb0eaf394b76a0fce583b9cc8211.glb",
+    "length": 22.306617736816406,
+    "width": 20.586737632751465
+}

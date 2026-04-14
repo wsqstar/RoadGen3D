@@ -1,0 +1,107 @@
+{
+    "description_long": "This pedestrian crosswalk consists of four wide, parallel white stripes set against a road surface, forming a classic zebra crossing. Adjacent to the crosswalk is a textured sidewalk or curb area, providing a safe waiting zone for pedestrians. A tall, cylindrical post with a domed top stands at the edge of the sidewalk, featuring a blue and green color scheme with orange circular elements, likely representing a pedestrian signal or button. The post is visually distinct and positioned to be easily accessible to those about to cross. The crosswalk stripes are evenly spaced and perpendicular to the direction of travel, ensuring high visibility for both pedestrians and drivers. The overall design is functional, prioritizing safety and accessibility in an urban environment.",
+    "description": "A zebra-style pedestrian crosswalk with four white stripes, a textured sidewalk, and a tall, colorful post with a domed top and buttons for pedestrian signaling.",
+    "description_view_0": "The crosswalk stripes and the sidewalk with the signaling post are clearly visible, showing the post's blue and green face with orange buttons.",
+    "description_view_1": "The rear of the signaling post is visible, showing its red and green sides, with the crosswalk stripes extending away from the sidewalk.",
+    "description_view_2": "The crosswalk stripes are seen from the far side, with the post's red face and the sidewalk's texture in view.",
+    "description_view_3": "The blue and green face of the post with buttons is prominent, and the crosswalk stripes are aligned in front of the sidewalk.",
+    "category": "pedestrian crosswalk",
+    "height": 1.2,
+    "max_dimension": 3.5,
+    "materials": [
+        "concrete",
+        "paint",
+        "plastic",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "white",
+        "gray",
+        "blue",
+        "green",
+        "red",
+        "orange"
+    ],
+    "colors_composition": [
+        0.25,
+        0.45,
+        0.08,
+        0.08,
+        0.08,
+        0.06
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "scene",
+    "attribute_zebra_pattern": true,
+    "attribute_road_markings": [
+        "zebra stripes"
+    ],
+    "attribute_pedestrian_signage": [],
+    "attribute_curb_ramps": false,
+    "attribute_traffic_signals": [
+        "pedestrian signal"
+    ],
+    "uid": "b7c68d0aaeb8410a8dc805f3e75e6b62",
+    "near_synsets": {
+        "pedestrian_crossing.n.01": 0.43284515629047954,
+        "school_crossing.n.01": 0.5479832902761307,
+        "stop_sign.n.01": 0.5620307648908681,
+        "footbridge.n.01": 0.562897945081439,
+        "pedestrian_traffic.n.01": 0.5645716422310569,
+        "crossing.n.05": -1000.0
+    },
+    "synset": "pedestrian_crossing.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b7c68d0aaeb8410a8dc805f3e75e6b62",
+        "creator_username": "gvallverdu",
+        "creator_display_name": "gvallverdu",
+        "creator_profile_url": "https://sketchfab.com/gvallverdu"
+    },
+    "filename": "std_b7c68d0aaeb8410a8dc805f3e75e6b62.glb",
+    "length": 2.8881874084472656,
+    "width": 3.0182952880859375
+}

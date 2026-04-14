@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a flat-roofed urban warehouse with a prominent rooftop helipad marked by a large 'H' and surrounded by a low safety barrier. The building features a weathered brick and concrete exterior, with large industrial windows and a metal staircase leading to the roof. A cylindrical water tower sits on one corner of the roof, enclosed by a chain-link fence for safety. The rooftop also includes HVAC units and a small utility shed, adding to the utilitarian appearance. The main facade has a large roll-up door, flanked by smaller windows and air conditioning units, suggesting active use for storage and logistics.",
+    "description": "A weathered urban warehouse with a rooftop helipad, water tower, industrial windows, and a roll-up door, designed for storage and logistics.",
+    "description_view_0": "This view highlights the rooftop helipad, the water tower, and the fenced perimeter, with the main facade partially visible.",
+    "description_view_1": "The rear view shows the water tower, utility shed, and the chain-link fence enclosing the rooftop, with minimal window exposure.",
+    "description_view_2": "This side view displays the metal staircase, large industrial windows, and the helipad, emphasizing the building's vertical access.",
+    "description_view_3": "The front view reveals the main roll-up door, flanking windows, rooftop structures, and the helipad, presenting the primary entry and operational side.",
+    "category": "warehouse",
+    "height": 8.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "concrete",
+        "brick",
+        "metal",
+        "glass",
+        "wood",
+        "asphalt",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.07,
+        0.03,
+        0.03,
+        0.02
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "staircase",
+        "fence gate",
+        "helipad platform",
+        "water tower hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "black",
+        "silver",
+        "white"
+    ],
+    "colors_composition": [
+        0.45,
+        0.3,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "scene",
+    "attribute_facade_design": "The main facade features a large industrial roll-up door, flanked by rectangular windows with metal frames and air conditioning units. The exterior is finished in weathered brick and concrete, with visible water stains and minimal decorative elements, emphasizing function over form.",
+    "attribute_loading_dock_presence": true,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is flat and constructed from concrete, featuring a large helipad with painted markings, a cylindrical metal water tower, HVAC units, and a chain-link safety fence around the perimeter.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "83f196f4ee894527b6d6d8655dab657b",
+    "near_synsets": {
+        "loft.n.01": 0.5296299988263915,
+        "warehouse.n.01": 0.5439096580399684,
+        "skyhook.n.01": 0.5657365283391624,
+        "storehouse.n.01": 0.5699978590107936,
+        "heliport.n.01": 0.5706156681029253
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/83f196f4ee894527b6d6d8655dab657b",
+        "creator_username": "drcrazzie",
+        "creator_display_name": "drcrazzie",
+        "creator_profile_url": "https://sketchfab.com/drcrazzie"
+    },
+    "filename": "std_83f196f4ee894527b6d6d8655dab657b.glb",
+    "length": 9.608505249023438,
+    "width": 8.1728515625
+}

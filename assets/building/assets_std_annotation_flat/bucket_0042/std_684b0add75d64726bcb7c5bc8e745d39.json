@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a bird-shaped drone with a realistic avian appearance, featuring outstretched wings that span a considerable width. The wings are detailed with feather-like textures and subtle color gradations, mimicking the look of a large raptor or eagle. The body is streamlined, with a pronounced beak at the front and talon-like landing gear beneath. The tail is fanned out, adding to the lifelike silhouette and aiding in aerodynamic stability. The surface is primarily dark brown with hints of lighter and greenish tones, giving it a natural, camouflaged look. The overall design is intended to blend into urban or natural environments, making it suitable for surveillance or wildlife monitoring.",
+    "description": "A bird-shaped drone with outstretched, feather-textured wings, a streamlined body, and talon-like landing gear, colored in natural brown and greenish hues.",
+    "description_view_0": "The drone is seen from the rear with wings fully extended, showcasing the wide wingspan and fanned tail.",
+    "description_view_1": "A top-side angled view highlights the detailed feather textures, the beak, and the talon-like landing gear.",
+    "description_view_2": "The drone is viewed from the front, emphasizing the beak, head, and symmetrical wing extension.",
+    "description_view_3": "A mirrored top-side angled view, similar to view 1, but from the opposite side, showing the same feather and body details.",
+    "category": "drone",
+    "height": 0.18,
+    "max_dimension": 1.4,
+    "materials": [
+        "plastic",
+        "carbon fiber",
+        "metal",
+        "electronics",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "mass": 2.2,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 22,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "flyable",
+        "liftable",
+        "landable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wings",
+        "beak",
+        "landing gear",
+        "tail"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "dark green",
+        "black",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 2,
+    "attribute_rotor_configuration": "fixed-wing ornithopter",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": false,
+    "attribute_propeller_guard_presence": false,
+    "uid": "684b0add75d64726bcb7c5bc8e745d39",
+    "near_synsets": {
+        "drone.n.04": 0.48961397818593577,
+        "falcon.n.01": 0.5226148220210634,
+        "hawk.n.01": 0.5349856525326436,
+        "wings.n.02": 0.5382218753101844,
+        "bird.n.01": 0.5460285648319096,
+        "drone.n.05": -1000.0,
+        "dawdler.n.01": -1000.0,
+        "drone.n.01": -1000.0,
+        "monotone.n.01": -1000.0
+    },
+    "synset": "drone.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/684b0add75d64726bcb7c5bc8e745d39",
+        "creator_username": "Rainbow907",
+        "creator_display_name": "Rainbow907",
+        "creator_profile_url": "https://sketchfab.com/Rainbow907"
+    },
+    "filename": "std_684b0add75d64726bcb7c5bc8e745d39.glb",
+    "length": 0.3878174126148224,
+    "width": 1.1325759887695312
+}

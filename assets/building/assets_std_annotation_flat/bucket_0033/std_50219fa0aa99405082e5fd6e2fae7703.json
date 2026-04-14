@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a traditional wooden sailing ship with a single large square sail made of weathered, off-white fabric. The hull is elongated and narrow, constructed from planks of wood, and features a shallow draft suitable for river or coastal navigation. The bow and stern are both slightly upturned, with the stern being more pronounced, and the ship is equipped with a single mast supporting the sail. Oars are visible on the sides, indicating the vessel can be rowed as well as sailed. The deck is open and simple, with wooden crossbeams and planking, and there are no visible cabins or superstructure beyond the mast and sail rigging. The overall appearance suggests a historical or ancient design, possibly inspired by Mediterranean or Egyptian river craft.",
+    "description": "A narrow, wooden sailing ship with a single large square sail and oars, featuring an open deck and upturned bow and stern. The vessel has a weathered, historical appearance with no visible cabins.",
+    "description_view_0": "Side view showing the full length of the ship, the large square sail, and the upturned bow and stern.",
+    "description_view_1": "Front view highlighting the pointed bow, the curvature of the hull, and the sail billowing to one side.",
+    "description_view_2": "Opposite side view displaying the sail, oars, and the open deck structure with visible planking.",
+    "description_view_3": "Rear view focusing on the stern's upturn, the arrangement of the deck planks, and the mast's central position.",
+    "category": "ship",
+    "height": 7.0,
+    "max_dimension": 15.0,
+    "materials": [
+        "wood",
+        "fabric",
+        "rope",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 1800,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3500,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "rowable",
+        "sailable",
+        "steerable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "oar",
+        "sail",
+        "mast",
+        "tiller",
+        "deck"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "brown",
+        "off-white",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a narrow, elongated displacement type with a shallow draft, constructed from wooden planks. Both the bow and stern are upturned, with the stern more pronounced, and there is no visible keel or bulbous bow. The hull sides are smooth and slightly rounded.",
+    "attribute_superstructure_layout": "There is no superstructure; the ship features an open deck with visible crossbeams and planking, and a single central mast. No cabins, bridges, or towers are present.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "oar",
+        "mast",
+        "sail",
+        "rigging"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "50219fa0aa99405082e5fd6e2fae7703",
+    "near_synsets": {
+        "sailboat.n.01": 0.4578439700439192,
+        "schooner.n.02": 0.46366600218827303,
+        "sailing_vessel.n.01": 0.4664414273546797,
+        "sail.n.03": 0.4790028993960087,
+        "boat.n.01": 0.4835849158988209,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/50219fa0aa99405082e5fd6e2fae7703",
+        "creator_username": "giravolt",
+        "creator_display_name": "Giravolt",
+        "creator_profile_url": "https://sketchfab.com/giravolt"
+    },
+    "filename": "std_50219fa0aa99405082e5fd6e2fae7703.glb",
+    "length": 7.693955183029175,
+    "width": 4.711542129516602
+}

@@ -1,0 +1,94 @@
+{
+    "description_long": "This kiosk features a robust, rectangular structure with a prominent, overhanging gabled roof made of corrugated metal, providing ample shelter. The base is constructed from stacked stone or masonry, lending a sense of permanence and durability. The open front area is supported by sturdy vertical posts, creating a sheltered space for interaction or service, while the rear and sides are partially enclosed. The floor appears to be made of wood or composite planks, slightly elevated above ground level. There are no visible windows or doors, and the kiosk is designed for open access from the front. The overall aesthetic is utilitarian with rustic influences, suitable for parks, markets, or urban public spaces.",
+    "description": "A sturdy kiosk with a gabled corrugated metal roof, stone base, and open front supported by posts. The design is open and functional, with rustic and utilitarian elements.",
+    "description_view_0": "Front view showing the open service area, stone base, and two figures standing inside under the roof.",
+    "description_view_1": "Side view highlighting the deep roof overhang, stone base, and open side structure.",
+    "description_view_2": "Rear view showing the solid stone base and the back of the kiosk, with the roof extending over the entire structure.",
+    "description_view_3": "Opposite side view emphasizing the roof's slope and the open side supported by posts.",
+    "category": "kiosk",
+    "height": 2.7,
+    "max_dimension": 4.5,
+    "materials": [
+        "corrugated metal",
+        "stone",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.4,
+        0.3,
+        0.2,
+        0.1
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "shelter",
+        "serving_counter"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "counter",
+        "posts"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "gray",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 20000.0,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "none",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "none; open front entryway",
+    "attribute_roof_design": "Gabled, sloped roof made of corrugated metal with deep overhangs on all sides.",
+    "attribute_architectural_style": "rustic utilitarian with modern influences",
+    "uid": "62a34fd135844587b93eb92147dea585",
+    "near_synsets": {
+        "gazebo.n.01": 0.5656110720717157,
+        "booth.n.02": 0.5737450152801713,
+        "portico.n.01": 0.5747908050540231,
+        "sentry_box.n.01": 0.578432256191656,
+        "loggia.n.01": 0.5807257960621321
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/62a34fd135844587b93eb92147dea585",
+        "creator_username": "labarch",
+        "creator_display_name": "labarch",
+        "creator_profile_url": "https://sketchfab.com/labarch"
+    },
+    "filename": "std_62a34fd135844587b93eb92147dea585.glb",
+    "length": 4.356247663497925,
+    "width": 6.111632585525513
+}

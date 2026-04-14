@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a green, tracked combat tactical vehicle equipped with a large, forward-facing cannon mounted on a rotating turret. The vehicle features six rugged wheels on each side, with visible suspension and a front-mounted plow or dozer blade, suggesting utility in both combat and obstacle-clearing roles. The main body is angular and armored, with several access hatches and a dome-shaped structure on the rear section. The exterior is painted in a solid green color with some weathering and dirt, and there are visible mechanical joints and hydraulic components. A yellow circular insignia is present on the side, and the wheels show significant wear, indicating heavy use. The vehicle's design emphasizes durability, mobility, and firepower for urban or battlefield environments.",
+    "description": "A green, heavily-armored combat vehicle with a large cannon, six rugged wheels per side, and a front-mounted plow blade. It features a rotating turret, visible hatches, and a yellow insignia on the side.",
+    "description_view_0": "Side view showing the full length of the vehicle, the large cannon, six wheels, the plow blade, and the yellow insignia on the body.",
+    "description_view_1": "Front view highlighting the cannon barrel, the plow blade, and the symmetrical arrangement of the wheels.",
+    "description_view_2": "Opposite side view similar to view 0, showing the cannon, wheels, and plow blade, but with different lighting and no visible insignia.",
+    "description_view_3": "Rear view focusing on the back of the turret, the dome structure, and the plow blade's width.",
+    "category": "combat tactical  vehicle",
+    "height": 2.8,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.03,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cannon",
+        "turret",
+        "hatches",
+        "wheels",
+        "plow blade"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "yellow",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.18,
+        0.05,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted on the main turret at the top front of the vehicle.",
+    "attribute_armor_plating": "Full body armor plating with angular, reinforced panels covering the entire vehicle, including the turret and lower hull. The armor appears thick and robust, with sloped surfaces for deflection.",
+    "attribute_camouflage_pattern": "Solid green paint with weathering and dirt; no distinct camouflage pattern.",
+    "attribute_military_markings": "Yellow circular insignia with a star-like design on the side of the vehicle.",
+    "attribute_tire_type": "Six large, rugged wheels per side with deep off-road tread patterns and visible wear.",
+    "uid": "b5222c56e8304a5cbbc793c8ce87aae2",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4944957104375372,
+        "tank.n.01": 0.49661709921890057,
+        "reconnaissance_vehicle.n.01": 0.5178390987878949,
+        "armored_car.n.02": 0.5198884246202351,
+        "assault_gun.n.02": 0.5359972858490822,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "armored_car.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b5222c56e8304a5cbbc793c8ce87aae2",
+        "creator_username": "clon6707",
+        "creator_display_name": "Andrew",
+        "creator_profile_url": "https://sketchfab.com/clon6707"
+    },
+    "filename": "std_b5222c56e8304a5cbbc793c8ce87aae2.glb",
+    "length": 4.042675018310547,
+    "width": 2.05267333984375
+}

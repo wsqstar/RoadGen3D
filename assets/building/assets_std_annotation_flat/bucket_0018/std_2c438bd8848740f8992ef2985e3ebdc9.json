@@ -1,0 +1,103 @@
+{
+    "description_long": "This vending machine features a tall, rectangular black body with a prominent front panel displaying a grid of colorful product images, each corresponding to a different beverage or snack. The front also includes a complex arrangement of white pipes and dials, possibly for mechanical or refrigeration purposes, giving it a technical and modern appearance. On the left side, a large cylindrical mechanical unit is attached, likely housing refrigeration or dispensing mechanisms. The right and rear sides are plain and solid black, with no visible openings or features. The machine appears robust and industrial, suitable for outdoor or high-traffic urban environments. The overall design is functional, with clear product selection and mechanical components visible from the front and left sides.",
+    "description": "A tall, black vending machine with a colorful product display grid, visible mechanical components, and a robust, industrial design.",
+    "description_view_0": "Front view showing a grid of colorful product images, white mechanical piping, and dials on a black background.",
+    "description_view_1": "Right side view, plain and solid black with no visible features or openings.",
+    "description_view_2": "Left side view, mostly plain black but with a large cylindrical mechanical unit protruding from the side.",
+    "description_view_3": "Rear view, solid black with the cylindrical mechanical unit visible in the center.",
+    "category": "vending machine",
+    "height": 1.8,
+    "max_dimension": 1.8,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "electronic components",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 220,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "display panel",
+        "payment interface",
+        "product retrieval slot",
+        "mechanical dial"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "white",
+        "multicolor (product images)"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "smooth",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A rectangular display panel is located on the upper right front, featuring a grid of colorful product images and a section with white mechanical piping and dials.",
+    "attribute_payment_interface": "A payment interface is visible on the right side of the front panel, featuring what appear to be dials and possibly slots for coins or cards.",
+    "attribute_product_selection_buttons": "Individual product selection buttons are arranged in a grid below each product image on the front panel.",
+    "attribute_product_retrieval_slot": "Two horizontal slots are located at the bottom of the front panel, likely serving as product retrieval slots.",
+    "attribute_branding_or_signage": "No explicit branding, logos, or signage are visible on the vending machine.",
+    "uid": "2c438bd8848740f8992ef2985e3ebdc9",
+    "near_synsets": {
+        "vending_machine.n.01": 0.467323688614373,
+        "automat.n.01": 0.5025429183254495,
+        "mechanism.n.05": 0.5704705148020928,
+        "automat.n.02": 0.574740625715479,
+        "fruit_machine.n.01": 0.5788184003817605,
+        "machine.n.03": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.05": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.02": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2c438bd8848740f8992ef2985e3ebdc9",
+        "creator_username": "Marco.Chacon",
+        "creator_display_name": "Marco.Chacon",
+        "creator_profile_url": "https://sketchfab.com/Marco.Chacon"
+    },
+    "filename": "std_2c438bd8848740f8992ef2985e3ebdc9.glb",
+    "length": 0.9381592869758606,
+    "width": 1.2694876194000244
+}

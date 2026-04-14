@@ -1,0 +1,90 @@
+{
+    "description_long": "This is a large, rectangular corrugated cardboard box with a partially open top flap, commonly used for shipping or storing goods. The exterior features a natural brown kraft paper texture with visible vertical ridges characteristic of corrugated cardboard. On one side, there are black printed handling symbols, including 'This Side Up', 'Do Not Stack', and 'Fragile', as well as a bold black square. The box appears empty or only lightly filled, as the top flaps are not bulging or tightly closed. The surface is matte and slightly rough, with no visible branding or labels apart from the handling icons. The box is utilitarian in design, suitable for use in warehouses, delivery trucks, or on urban sidewalks awaiting pickup.",
+    "description": "A large brown corrugated cardboard box with handling symbols printed in black and a partially open top flap. The surface is matte, rough, and unbranded, typical for shipping or storage.",
+    "description_view_0": "Front view showing the handling symbols and a partially open top flap.",
+    "description_view_1": "Side view with the top flap more visible and the handling symbols partially seen.",
+    "description_view_2": "Opposite side view with the handling symbols visible at the left edge and the open top flap.",
+    "description_view_3": "Rear view showing a plain corrugated surface with no visible symbols or markings.",
+    "category": "parcels",
+    "height": 0.55,
+    "max_dimension": 0.65,
+    "materials": [
+        "corrugated_cardboard",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.15
+    ],
+    "mass": 1.2,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "top_flap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.97,
+        0.03
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.05,
+    "index_of_refraction": 1.48,
+    "youngs_modulus": 4000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "",
+    "attribute_car_model": "",
+    "attribute_building_number": "",
+    "attribute_storefront_signage": "",
+    "attribute_street_name": "",
+    "uid": "87d8dfe0014f4eb08a478118153257a7",
+    "near_synsets": {
+        "packing_box.n.02": 0.49752329403255596,
+        "carton.n.02": 0.5039627375449837,
+        "box.n.01": 0.5388716821449004,
+        "crate.n.01": 0.5418043469804794,
+        "container.n.01": 0.5423889486242857,
+        "package.n.01": -1000.0,
+        "tract.n.01": -1000.0,
+        "package.n.02": -1000.0,
+        "parcel.n.02": -1000.0
+    },
+    "synset": "carton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/87d8dfe0014f4eb08a478118153257a7",
+        "creator_username": "mirai_rick",
+        "creator_display_name": "Mirai_Rick",
+        "creator_profile_url": "https://sketchfab.com/mirai_rick"
+    },
+    "filename": "std_87d8dfe0014f4eb08a478118153257a7.glb",
+    "length": 0.5210707187652588,
+    "width": 0.5210694074630737
+}

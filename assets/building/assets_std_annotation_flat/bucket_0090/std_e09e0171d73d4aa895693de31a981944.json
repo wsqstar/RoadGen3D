@@ -1,0 +1,108 @@
+{
+    "description_long": "This is an outdoor performance stage with a semi-circular, arched canopy structure, set on a grassy field. The canopy is made of a fabric material stretched over a metal frame, featuring a vibrant gradient of colors including blue, green, yellow, and red. The front of the stage is open, allowing performers and equipment to be visible and accessible, while the back and sides are partially enclosed by the canopy. The stage platform is elevated slightly above the ground and appears to be constructed from sturdy materials, likely wood or metal, to support performers and equipment. The structure is designed for temporary installation, suitable for concerts, festivals, or public events in parks or open urban spaces. The overall design is modern and functional, prioritizing visibility, weather protection, and ease of assembly.",
+    "description": "A colorful, semi-circular outdoor stage with a fabric canopy over a metal frame, set on grass and open at the front for performances.",
+    "description_view_0": "The stage is viewed from the rear, showing the closed back of the canopy and the metal frame structure.",
+    "description_view_1": "The front view reveals the open stage area, colorful canopy, and the performance space beneath.",
+    "description_view_2": "The stage is seen from the side, highlighting the curved canopy and the transition of colors along its surface.",
+    "description_view_3": "The view from the opposite side of the front shows the open stage and the supporting frame, with the platform visible.",
+    "category": "stage",
+    "height": 4.0,
+    "max_dimension": 10.0,
+    "materials": [
+        "fabric",
+        "metal",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.4,
+        0.3,
+        0.1,
+        0.2
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 800,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "performable",
+        "shelter_providing"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "stage platform",
+        "canopy",
+        "support frame"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "blue",
+        "green",
+        "yellow",
+        "red",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.25,
+        0.2,
+        0.15,
+        0.15,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Contemporary Event Structure",
+    "attribute_car_model": "",
+    "attribute_car_manufacturer": "",
+    "attribute_building_function": "",
+    "attribute_street_sign_type": "",
+    "uid": "e09e0171d73d4aa895693de31a981944",
+    "near_synsets": {
+        "stage.n.03": 0.44949920684536354,
+        "theater_stage.n.01": 0.4978271383803758,
+        "circus.n.05": 0.5111160906146645,
+        "proscenium.n.01": 0.5135894255874234,
+        "flat.n.06": 0.5151254472439565,
+        "phase.n.01": -1000.0,
+        "stage.n.08": -1000.0,
+        "degree.n.02": -1000.0,
+        "stage.n.07": -1000.0,
+        "stage.n.06": -1000.0,
+        "stagecoach.n.01": -1000.0,
+        "stage.n.04": -1000.0
+    },
+    "synset": "stage.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e09e0171d73d4aa895693de31a981944",
+        "creator_username": "BrianKorsedal",
+        "creator_display_name": "Brian Korsedal",
+        "creator_profile_url": "https://sketchfab.com/BrianKorsedal"
+    },
+    "filename": "std_e09e0171d73d4aa895693de31a981944.glb",
+    "length": 10.633411407470703,
+    "width": 21.690574645996094
+}

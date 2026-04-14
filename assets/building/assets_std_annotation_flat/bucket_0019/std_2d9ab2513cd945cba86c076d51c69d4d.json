@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a weathered, industrial transformer tower with a rectangular metal housing and two cylindrical conduit pipes extending downward. The housing features visible bolts, seams, and surface graffiti, indicating exposure to an urban environment. The top of the housing has two protruding connectors or terminals, likely for high-voltage cable attachment. The surface is predominantly gray, with signs of rust, grime, and faded paint, suggesting long-term outdoor use. The rear side is less detailed, showing a solid, unadorned metal panel. The overall construction appears robust, designed to withstand environmental stress and provide electrical distribution in a city setting.",
+    "description": "A weathered, gray metal transformer tower with a rectangular housing, two downward pipes, and visible graffiti and connectors.",
+    "description_view_0": "Front view shows the rectangular housing with graffiti, two cylindrical pipes below, and top connectors.",
+    "description_view_1": "Side view reveals the narrow profile, depth of the housing, and alignment of the pipes.",
+    "description_view_2": "Rear view displays a plain, solid metal panel with minimal detail and the two pipes extending downward.",
+    "description_view_3": "Opposite side view highlights the housing's thickness and the pipes' attachment, with less visible surface detail.",
+    "category": "transformer tower",
+    "height": 1.2,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "copper",
+        "ceramic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "housing cover",
+        "terminal connectors",
+        "conduit pipes"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_insulator_stacks": 0,
+    "attribute_arrangement_of_crossarms": "No crossarms are visible; the structure consists of a single rectangular housing with two vertical pipes.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "transformer"
+    ],
+    "attribute_configuration_of_attached_power_lines": "No external power lines are visibly attached; the two conduit pipes likely serve as cable entry or exit points, with no clear phase arrangement or circuit configuration visible.",
+    "uid": "2d9ab2513cd945cba86c076d51c69d4d",
+    "near_synsets": {
+        "step-down_transformer.n.01": 0.5726138716375041,
+        "clock_tower.n.01": 0.5758758602908377,
+        "pylon.n.02": 0.5794925561348397,
+        "water_tower.n.01": 0.5810854438829826,
+        "transformer.n.01": 0.5850718683644687,
+        "tugboat.n.01": -1000.0,
+        "tower.n.01": -1000.0,
+        "column.n.04": -1000.0
+    },
+    "synset": "transformer.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2d9ab2513cd945cba86c076d51c69d4d",
+        "creator_username": "RandomScan",
+        "creator_display_name": "CrazyScans",
+        "creator_profile_url": "https://sketchfab.com/RandomScan"
+    },
+    "filename": "std_2d9ab2513cd945cba86c076d51c69d4d.glb",
+    "length": 0.19383718073368073,
+    "width": 0.36399951577186584
+}

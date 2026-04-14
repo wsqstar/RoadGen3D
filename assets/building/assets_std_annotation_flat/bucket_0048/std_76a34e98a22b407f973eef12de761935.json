@@ -1,0 +1,94 @@
+{
+    "description_long": "This warehouse is a two-story rectangular building with a weathered, concrete exterior showing signs of age and exposed rebar in several areas. The front facade features a row of six tall, narrow windows on the upper floor and three large, dark garage doors on the ground level, with one section incorporating a wooden panel and a smaller window. The side and rear walls are plain, with the same distressed concrete texture and no visible windows or doors, except for a large black triangular opening on one side. The roof is flat and unadorned, constructed from a smooth, light gray material. The overall appearance suggests a utilitarian structure designed for storage or industrial use, with minimal decorative elements. The building's surfaces are rough and matte, contributing to its rugged, functional aesthetic.",
+    "description": "A weathered, two-story concrete warehouse with a flat roof, tall windows, and large garage doors on the front facade. The exterior is distressed and utilitarian, with minimal decoration.",
+    "description_view_0": "The front view shows six tall windows on the upper floor and three large garage doors below, with a wooden panel and a small window on the left.",
+    "description_view_1": "The left side view displays a plain, distressed concrete wall with no windows or doors.",
+    "description_view_2": "The rear view reveals a featureless, weathered concrete wall with visible rebar patterns and no openings.",
+    "description_view_3": "The right side view is similar to the left but includes a large, black triangular opening in the lower right corner.",
+    "category": "warehouse",
+    "height": 8.0,
+    "max_dimension": 16.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.05,
+        0.07,
+        0.05
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "garage door",
+        "window",
+        "side opening"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.01,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main facade features a distressed concrete surface with six tall, narrow windows on the upper level and three large, dark garage doors below, one of which is framed by a wooden panel and a small window. The design is utilitarian, with minimal ornamentation and a focus on function.",
+    "attribute_loading_dock_presence": true,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is flat and featureless, constructed from a smooth, light gray material with no visible skylights, HVAC units, or other rooftop structures.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "76a34e98a22b407f973eef12de761935",
+    "near_synsets": {
+        "warehouse.n.01": 0.5446330740031304,
+        "loft.n.01": 0.5456105743595691,
+        "garage.n.01": 0.5574866333719873,
+        "shed.n.01": 0.5616870994624596,
+        "farm_building.n.01": 0.5620513754899208
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/76a34e98a22b407f973eef12de761935",
+        "creator_username": "srockzv",
+        "creator_display_name": "srockzv",
+        "creator_profile_url": "https://sketchfab.com/srockzv"
+    },
+    "filename": "std_76a34e98a22b407f973eef12de761935.glb",
+    "length": 6.666412353515625,
+    "width": 10.57562255859375
+}

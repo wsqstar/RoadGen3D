@@ -1,0 +1,100 @@
+{
+    "description_long": "This hotel is a multi-story, rectangular building with a steeply pitched, gray gabled roof and a white facade accented by dark framing, reminiscent of traditional European or Tudor-style architecture. The structure features numerous green-framed windows arranged symmetrically across all visible sides, providing ample natural light to the interior. A prominent entrance is located at the front, with a covered porch supported by columns, and an attached wing extends from one side, possibly serving as additional guest rooms or service areas. The roof includes a chimney and several dormer windows, adding to the building's classic charm. The exterior walls are likely constructed from plaster or stucco with wooden beams, and the roof appears to be made of slate or shingles. The hotel is elevated slightly above ground level, with visible support columns beneath the porch area.",
+    "description": "A traditional, multi-story hotel with a steep gray gabled roof, white facade, and green-framed windows, featuring a covered front porch and attached side wing.",
+    "description_view_0": "Front view showing the main entrance, covered porch, symmetrical windows, and attached side wing.",
+    "description_view_1": "Rear view highlighting the back facade, roof structure, and the extension of the side wing.",
+    "description_view_2": "Side view displaying the gabled roof, chimney, and the length of the building with visible windows.",
+    "description_view_3": "Opposite side view focusing on the plain wall, roof, and support columns beneath the porch.",
+    "category": "hotel",
+    "height": 12.0,
+    "max_dimension": 22.0,
+    "materials": [
+        "plaster",
+        "wood",
+        "glass",
+        "slate",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "porch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "green",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_hotel_signage": "none",
+    "attribute_number_of_windows": 18,
+    "attribute_entrance_canopy": "covered porch with columns, likely wood or plaster",
+    "attribute_presence_of_doorman_or_bellhop": false,
+    "attribute_architectural_style": "Tudor Revival",
+    "uid": "cfa13cd9f032486499fa364b7e617566",
+    "near_synsets": {
+        "porch.n.01": 0.5340993086039035,
+        "hotel.n.01": 0.5349068821960192,
+        "lodge.n.03": 0.5401970260012894,
+        "french_roof.n.01": 0.5480172829069492,
+        "farmhouse.n.01": 0.5486994533286508
+    },
+    "synset": "hotel.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cfa13cd9f032486499fa364b7e617566",
+        "creator_username": "SamuelJamesBate",
+        "creator_display_name": "SamuelJamesBate",
+        "creator_profile_url": "https://sketchfab.com/SamuelJamesBate"
+    },
+    "filename": "std_cfa13cd9f032486499fa364b7e617566.glb",
+    "length": 32.68750762939453,
+    "width": 33.098655700683594
+}

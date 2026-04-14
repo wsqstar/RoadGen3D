@@ -1,0 +1,110 @@
+{
+    "description_long": "This object is a traditional water well set within a circular stone or concrete base, surrounded by dense, leafy green trees that provide ample shade. The well itself features a pitched wooden roof supported by posts, with a visible opening at the center for drawing water. The structure appears weathered, with the roof showing a reddish-brown hue and the base covered in patches of moss or vegetation. Roots from the surrounding trees extend visibly below the platform, adding a natural, overgrown appearance. The well is situated on a raised, round platform that is slightly elevated above the ground, with some small plants growing at its edge. No visible pulley or bucket mechanism is present, and the well is partially enclosed by the trees, giving it a secluded, park-like ambiance.",
+    "description": "A traditional water well with a pitched wooden roof, set on a circular stone base and surrounded by dense, leafy trees and exposed roots.",
+    "description_view_0": "The well is mostly obscured by dense foliage, with the circular base and some exposed roots visible beneath the trees.",
+    "description_view_1": "The pitched wooden roof and open well structure are clearly visible, framed by two large trees and surrounded by greenery.",
+    "description_view_2": "The side of the well is partially visible through the trees, with the stone base and some of the roof structure peeking out.",
+    "description_view_3": "A frontal view of the well, showing the entrance beneath the pitched roof, flanked by two large trees and surrounded by vegetation.",
+    "category": "water well",
+    "height": 3.5,
+    "max_dimension": 4.0,
+    "materials": [
+        "wood",
+        "stone",
+        "concrete",
+        "metal",
+        "soil",
+        "vegetation",
+        "air"
+    ],
+    "materials_composition": [
+        0.25,
+        0.2,
+        0.15,
+        0.05,
+        0.1,
+        0.2,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "draw_water",
+        "coverable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "well opening",
+        "roof",
+        "base platform"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_well_cover_design": "Pitched wooden roof supported by posts, no visible lid or grating over the well opening.",
+    "attribute_presence_of_pulley_or_bucket_mechanism": "none",
+    "attribute_surrounding_protective_structure": "Circular stone or concrete base platform, no wall or railing, surrounded by trees.",
+    "attribute_location_relative_to_buildings_or_street": "unknown",
+    "attribute_decorative_elements": "none",
+    "uid": "7e2fa4cef1a34026bd58d79ada7f54a8",
+    "near_synsets": {
+        "water_hole.n.01": 0.5061150912251673,
+        "well_point.n.01": 0.5116033716450203,
+        "wellhead.n.02": 0.5338886334028413,
+        "well.n.01": 0.5453062424424923,
+        "wellhead.n.01": 0.546781471241368,
+        "water_system.n.02": -1000.0,
+        "urine.n.01": -1000.0,
+        "water.n.01": -1000.0,
+        "well.n.05": -1000.0,
+        "well.n.02": -1000.0,
+        "well.n.04": -1000.0,
+        "water.n.06": -1000.0,
+        "well.n.03": -1000.0,
+        "body_of_water.n.01": -1000.0,
+        "water.n.03": -1000.0
+    },
+    "synset": "wellhead.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7e2fa4cef1a34026bd58d79ada7f54a8",
+        "creator_username": "bosch00",
+        "creator_display_name": "BotondBencsik",
+        "creator_profile_url": "https://sketchfab.com/bosch00"
+    },
+    "filename": "std_7e2fa4cef1a34026bd58d79ada7f54a8.glb",
+    "length": 1.981614589691162,
+    "width": 2.5387320518493652
+}

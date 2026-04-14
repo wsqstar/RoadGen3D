@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a British Rail diesel locomotive, characterized by its long, rectangular body and distinctive yellow and gray livery. The locomotive features a prominent British Rail double arrow logo on its side, with two large grilles and several smaller vents along the upper section for engine cooling. The front and rear ends are equipped with buffers, couplers, and detailed headlight and window arrangements, typical of mainline locomotives. The roof displays two large exhaust fans, indicating a powerful engine beneath. The windows are arranged in a continuous row along the sides, with no visible passenger doors, suggesting this is a freight or dedicated locomotive unit. The overall construction is robust, with a hard metallic exterior and minimal decorative elements.",
+    "description": "A British Rail diesel locomotive with a yellow and gray color scheme, featuring a long, rectangular body, side grilles, and prominent rail logos.",
+    "description_view_0": "Front view showing the yellow cab face, headlights, windows, and buffer details.",
+    "description_view_1": "Side view displaying the full length, British Rail logo, grilles, and window arrangement.",
+    "description_view_2": "Rear view similar to the front, with yellow cab face, windows, and buffer details.",
+    "description_view_3": "Opposite side view showing the same length, logo, grilles, and window arrangement as the other side.",
+    "category": "train",
+    "height": 3.9,
+    "max_dimension": 19.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 115000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "headlight",
+        "buffer",
+        "coupler",
+        "fan grille"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "yellow",
+        "black",
+        "white",
+        "red"
+    ],
+    "colors_composition": [
+        0.65,
+        0.18,
+        0.1,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_train_type": "diesel locomotive",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end",
+    "attribute_window_arrangement": "continuous row of rectangular windows",
+    "uid": "3518d94a2bad4f61a479639ecac30496",
+    "near_synsets": {
+        "diesel_locomotive.n.01": 0.46371066248464843,
+        "train.n.01": 0.49651698847405495,
+        "diesel-electric_locomotive.n.01": 0.5012513290993004,
+        "steam_locomotive.n.01": 0.5045266495358134,
+        "diesel-hydraulic_locomotive.n.01": 0.5067144969926343,
+        "gearing.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "train.n.04": -1000.0,
+        "train.n.05": -1000.0,
+        "caravan.n.01": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3518d94a2bad4f61a479639ecac30496",
+        "creator_username": "timblewee",
+        "creator_display_name": "timblewee",
+        "creator_profile_url": "https://sketchfab.com/timblewee"
+    },
+    "filename": "std_3518d94a2bad4f61a479639ecac30496.glb",
+    "length": 19.48127555847168,
+    "width": 2.7854217290878296
+}

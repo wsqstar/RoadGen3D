@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a rectangular patch of sand embedded within a larger, flat terrain surface. The sand patch features a slightly raised, layered structure with a visible dark band running horizontally through its middle, suggesting a stratified composition. The top surface is mostly flat but has subtle undulations and scattered lighter spots, mimicking the appearance of compacted sand with small pebbles or debris. The sides of the patch are sharply defined, with a clear vertical drop to the lower layer, and the central trench-like depression runs lengthwise through the middle. The sand patch appears to be set into a larger expanse of similar material, with the trench providing a distinct separation. The overall look is consistent with a man-made or disturbed sand area, such as might be found in a construction site or along a roadside.",
+    "description": "A rectangular, layered sand patch with a central trench and sharply defined edges, featuring a flat, slightly undulating surface with scattered light spots. The object appears embedded in a larger terrain, resembling a disturbed or constructed sand area.",
+    "description_view_0": "The sand patch is seen from the side, showing its layered structure and the dark horizontal band in the middle.",
+    "description_view_1": "The central trench is most visible from this angle, revealing the depth and sharpness of the cut through the sand patch.",
+    "description_view_2": "Similar to view 0, this side view highlights the layered composition and the flatness of the top surface.",
+    "description_view_3": "The trench is again prominent, with the sand patch's boundaries and depth clearly visible from this perspective.",
+    "category": "sand patch",
+    "height": 0.25,
+    "max_dimension": 2.0,
+    "materials": [
+        "sand",
+        "soil",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 800,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "coverable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "dark brown",
+        "light brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.54,
+    "youngs_modulus": 50,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_location": "construction site or roadside trench",
+    "attribute_boundary_definition": "The boundaries are sharply defined and angular, with clear vertical drops at the edges and a distinct trench cut through the center.",
+    "attribute_presence_of_debris": "minimal, with small scattered light spots resembling pebbles or compacted debris",
+    "attribute_integration_with_surrounding_surfaces": "The sand patch is partially blended with the surrounding terrain but remains visually distinct due to its sharp edges and central trench.",
+    "attribute_evidence_of_recent_disturbance": "minor, as indicated by the central trench and unevenness in the sand surface",
+    "uid": "32112ae701934fe783df7c4a47b92d84",
+    "near_synsets": {
+        "sandpit.n.01": 0.5639200696430807,
+        "sandbox.n.02": 0.5664495280217978,
+        "ripple_mark.n.01": 0.568747788741483,
+        "sandiness.n.02": 0.5689159582080852,
+        "cut.n.03": 0.5689715085131374,
+        "backbone.n.02": -1000.0,
+        "mend.n.01": -1000.0,
+        "sand.n.02": -1000.0,
+        "while.n.01": -1000.0,
+        "eyepatch.n.01": -1000.0,
+        "spot.n.05": -1000.0,
+        "patch.n.05": -1000.0,
+        "plot.n.02": -1000.0,
+        "temporary_hookup.n.01": -1000.0,
+        "bandage.n.01": -1000.0,
+        "patch.n.03": -1000.0,
+        "sand.n.01": -1000.0
+    },
+    "synset": "plot.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/32112ae701934fe783df7c4a47b92d84",
+        "creator_username": "blackspire",
+        "creator_display_name": "BlackSpire",
+        "creator_profile_url": "https://sketchfab.com/blackspire"
+    },
+    "filename": "std_32112ae701934fe783df7c4a47b92d84.glb",
+    "length": 3.0653305053710938,
+    "width": 3.0653207302093506
+}

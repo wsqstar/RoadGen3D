@@ -1,0 +1,99 @@
+{
+    "description_long": "This humanoid robot features a spherical central torso with a prominent blue circular element at its core, possibly representing a sensor or energy source. It has a single articulated leg ending in a wide, flat foot, and a single arm with multiple jointed segments, both colored in metallic blue and green hues. A large sword is mounted horizontally across its upper body, with a gold pommel and a black blade, giving the robot a distinctive, almost warrior-like appearance. The head is small, round, and offset from the torso, with a red antenna or sensor protruding from the top. The robot's design is asymmetrical, with one arm and one leg, and several smaller mechanical components attached to its body. The overall aesthetic is futuristic and mechanical, with glossy surfaces and visible joints.",
+    "description": "A glossy, asymmetrical humanoid robot with a spherical torso, one articulated arm and leg, a small head with a red antenna, and a large sword mounted across its body.",
+    "description_view_0": "The robot is seen from the side, highlighting the single arm and leg, the spherical torso, and the sword's profile.",
+    "description_view_1": "A frontal view showing the blue circular core, the sword mounted across the torso, and the head with its red antenna.",
+    "description_view_2": "The back view reveals the sword's handle and the robot's mechanical spine, with the leg and arm partially visible.",
+    "description_view_3": "A slightly angled front view emphasizing the sword, the blue core, and the asymmetrical limb arrangement.",
+    "category": "humanoid robot",
+    "height": 1.4,
+    "max_dimension": 1.6,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arm",
+        "leg",
+        "head",
+        "sword",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "green",
+        "black",
+        "gold",
+        "red"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "glossy",
+    "reflectivity": 0.5,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000.0,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is standing upright on one leg, with its single arm extended downward and the head slightly tilted. The sword is mounted horizontally across the upper torso.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated metallic panels and mechanical components with some decorative color accents.",
+    "attribute_facial_features": "The face consists of a small, round head with a blue circular element, lacking traditional eyes, mouth, or nose. A red antenna protrudes from the top, and no expressive features are visible.",
+    "attribute_limb_articulation": "The robot has one articulated arm and one leg, each with visible hinge and rotary joints allowing for a moderate range of motion. The limbs appear rigid and mechanical.",
+    "attribute_presence_of_sensors": "A blue circular element on the torso and a red antenna on the head may serve as sensors, but no other sensors are visibly apparent.",
+    "uid": "b5e2dde16e184e4fb99a332e042ed9d1",
+    "near_synsets": {
+        "android.n.01": 0.5266981461366409,
+        "cyborg.n.01": 0.5518402084739003,
+        "automaton.n.02": 0.5627268819410605,
+        "robotics_equipment.n.01": 0.5654466448627304,
+        "toy_soldier.n.01": 0.5855477754354029
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b5e2dde16e184e4fb99a332e042ed9d1",
+        "creator_username": "diegodocanto",
+        "creator_display_name": "diegodocanto",
+        "creator_profile_url": "https://sketchfab.com/diegodocanto"
+    },
+    "filename": "std_b5e2dde16e184e4fb99a332e042ed9d1.glb",
+    "length": 1.926742672920227,
+    "width": 1.946296513080597
+}

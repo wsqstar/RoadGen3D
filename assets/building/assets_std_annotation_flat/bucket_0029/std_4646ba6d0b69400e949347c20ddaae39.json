@@ -1,0 +1,99 @@
+{
+    "description_long": "This humanoid robot features a cylindrical torso with a domed head, two prominent round eyes, and a series of small circular details around the upper chest and head. Its arms are segmented and jointed, ending in simple, rounded fists, while the legs are thick and robust, designed for stability. The back is equipped with a large, detailed backpack-like structure, possibly for power or life-support, featuring cylindrical tanks and intricate paneling. The surface is predominantly metallic silver-gray, with some darker accents and a matte finish, giving it an industrial, utilitarian appearance. The robot's design is reminiscent of classic science fiction, with a blend of functional and slightly whimsical elements. The overall build suggests durability and a focus on practical movement in urban environments.",
+    "description": "A silver-gray humanoid robot with a cylindrical torso, domed head, round eyes, and a large, detailed backpack structure. Its segmented limbs and robust build evoke a classic sci-fi aesthetic.",
+    "description_view_0": "Side view showing the cylindrical torso, domed head, and one arm extended forward, with the backpack structure partially visible.",
+    "description_view_1": "Rear view highlighting the large, detailed backpack with cylindrical tanks and both arms raised, showing the back of the legs and head.",
+    "description_view_2": "Opposite side view with the other arm extended, clear view of the arm's jointed segments and the side of the backpack.",
+    "description_view_3": "Front view displaying the robot's round eyes, circular chest details, and both arms slightly raised, emphasizing the humanoid form.",
+    "category": "humanoid robot",
+    "height": 1.5,
+    "max_dimension": 0.8,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 110,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1078,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "hands",
+        "head",
+        "chest panel",
+        "backpack"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "silver",
+        "gray",
+        "black",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms bent at the elbows and slightly raised, legs straight and feet flat on the ground, head facing forward.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated metallic and plastic panels with visible mechanical and decorative elements.",
+    "attribute_facial_features": "Face features two large, round, protruding eyes with yellow accents, a smooth domed head, and a circular panel on the chest; no visible mouth or nose.",
+    "attribute_limb_articulation": "Arms and legs have visible segmented joints, likely hinge or rotary, allowing for basic movement; hands are simple and rounded, with no visible fingers.",
+    "attribute_presence_of_sensors": "Two large round eyes on the head likely function as visual sensors; no other sensors are visible.",
+    "uid": "4646ba6d0b69400e949347c20ddaae39",
+    "near_synsets": {
+        "android.n.01": 0.5634229070937214,
+        "cyborg.n.01": 0.5663809971960014,
+        "robotics_equipment.n.01": 0.57926128730563,
+        "automaton.n.02": 0.5951910297967447,
+        "robotics.n.01": 0.6032661546077205
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/4646ba6d0b69400e949347c20ddaae39",
+        "creator_username": "yamagasaruku",
+        "creator_display_name": "yamagasaruku",
+        "creator_profile_url": "https://sketchfab.com/yamagasaruku"
+    },
+    "filename": "std_4646ba6d0b69400e949347c20ddaae39.glb",
+    "length": 1.4423896670341492,
+    "width": 1.249117374420166
+}

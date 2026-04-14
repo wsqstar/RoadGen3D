@@ -1,0 +1,125 @@
+{
+    "description_long": "This is an elevated outdoor basketball court featuring a wooden playing surface with clearly marked lines and a central circle. The court is flanked by metal bleachers on both sides, providing seating for spectators, and is accessed by staircases at either end. The court is enclosed by a metal fence, ensuring safety and preventing balls from leaving the play area. At each end of the court, there are basketball hoops mounted on rectangular glass backboards, supported by sturdy metal frames. The overall design is open-air, with the structure raised above ground level on a visible metal framework, giving it an urban recreational feel.",
+    "description": "An elevated outdoor basketball court with wooden flooring, metal bleachers, and fenced enclosure, featuring glass backboards and clear court markings.",
+    "description_view_0": "View 0 shows the court from one end, highlighting the bleachers, stairs, and the central playing area with visible court markings.",
+    "description_view_1": "View 1 presents a side perspective, emphasizing the length of the court, the arrangement of the bleachers, and the fencing around the perimeter.",
+    "description_view_2": "View 2 displays the opposite end of the court, focusing on the stairs, the metal framework supporting the structure, and the backboard.",
+    "description_view_3": "View 3 offers a wide side view, showcasing both sets of bleachers, the full court, and the enclosing fence.",
+    "category": "basketball court",
+    "height": 5.0,
+    "max_dimension": 28.0,
+    "materials": [
+        "wood",
+        "metal",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 25000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "shootable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bleachers",
+        "stairs",
+        "hoop",
+        "backboard",
+        "fence gate"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "gray",
+        "red",
+        "white",
+        "black",
+        "green"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_hoop_presence": true,
+    "attribute_backboard_type": "rectangular glass",
+    "attribute_court_markings": [
+        "three-point line",
+        "free throw line",
+        "center circle",
+        "key",
+        "sidelines",
+        "baseline"
+    ],
+    "attribute_fence_enclosure": true,
+    "attribute_architectural_style": "urban outdoor",
+    "uid": "260dc6b8801f4ee2b416190592b63daa",
+    "near_synsets": {
+        "basketball_court.n.01": 0.43782035928719076,
+        "volleyball_court.n.01": 0.5026969182369748,
+        "tennis_court.n.01": 0.5121651910677476,
+        "badminton_court.n.01": 0.5183771514197714,
+        "basketball_equipment.n.01": 0.522770157324001,
+        "court.n.03": -1000.0,
+        "basketball.n.02": -1000.0,
+        "court.n.10": -1000.0,
+        "court.n.02": -1000.0,
+        "court.n.09": -1000.0,
+        "motor_hotel.n.01": -1000.0,
+        "court.n.01": -1000.0,
+        "court.n.05": -1000.0,
+        "basketball.n.01": -1000.0,
+        "court.n.06": -1000.0,
+        "court.n.08": -1000.0,
+        "court.n.04": -1000.0
+    },
+    "synset": "basketball_court.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/260dc6b8801f4ee2b416190592b63daa",
+        "creator_username": "Sergo_CRAFTSMAN",
+        "creator_display_name": "Sergo_CRAFTSMAN",
+        "creator_profile_url": "https://sketchfab.com/Sergo_CRAFTSMAN"
+    },
+    "filename": "std_260dc6b8801f4ee2b416190592b63daa.glb",
+    "length": 25.773850440979004,
+    "width": 15.31524658203125
+}

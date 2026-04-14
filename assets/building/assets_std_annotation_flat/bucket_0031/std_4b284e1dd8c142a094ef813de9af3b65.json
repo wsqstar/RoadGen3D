@@ -1,0 +1,106 @@
+{
+    "description_long": "This object consists of two spherical hand grenades, each with a metal safety lever and a prominent pull ring. The left grenade is dark green with yellow stenciled text reading 'GRENADE, HAND, FRAG, DELAY, M67' and features a black safety pin and lever. The right grenade is olive drab with a tan lever and ring, and has a more matte, slightly worn finish. Both grenades have visible seams around their equators and are constructed from metal, likely steel, with painted exteriors. The safety levers are attached to the tops of the grenades and are held in place by the pull rings, which are looped through the levers. The overall appearance is robust and utilitarian, with clear military markings and functional design elements.",
+    "description": "A pair of spherical hand grenades with metal levers, pull rings, and military stenciling, one in dark green and the other in olive drab.",
+    "description_view_0": "Front view showing both grenades side by side, with the left grenade's yellow stenciling and black lever clearly visible.",
+    "description_view_1": "Rear angled view highlighting the tan lever and ring of the right grenade, with less visible stenciling.",
+    "description_view_2": "Back view showing the spherical bodies and the attachment of the levers and rings, with minimal text visible.",
+    "description_view_3": "Angled front view focusing on the dark green grenade's top and lever, with the olive drab grenade partially obscured behind.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.16,
+    "materials": [
+        "steel",
+        "paint",
+        "plastic",
+        "explosive_compound",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.05,
+        0.05,
+        0.2,
+        0.05
+    ],
+    "mass": 0.8,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "fuse assembly"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "olive drab",
+        "black",
+        "tan",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.35,
+        0.35,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "group",
+    "attribute_warning_labels": [
+        "GRENADE, HAND, FRAG, DELAY, M67",
+        "COMP B",
+        "LS-90R065"
+    ],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the safety ring, which releases the lever and activates the internal timed fuse.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "4b284e1dd8c142a094ef813de9af3b65",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.5167334581776111,
+        "grenade.n.01": 0.5305481088441819,
+        "pipe_bomb.n.01": 0.5583945505818327,
+        "rifle_grenade.n.01": 0.5583973594300842,
+        "gas_shell.n.01": 0.5657585668095133,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0,
+        "bomb.n.01": -1000.0
+    },
+    "synset": "bomb.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4b284e1dd8c142a094ef813de9af3b65",
+        "creator_username": "budedalah",
+        "creator_display_name": "budedalah",
+        "creator_profile_url": "https://sketchfab.com/budedalah"
+    },
+    "filename": "std_4b284e1dd8c142a094ef813de9af3b65.glb",
+    "length": 0.12249062582850456,
+    "width": 0.1735648214817047
+}

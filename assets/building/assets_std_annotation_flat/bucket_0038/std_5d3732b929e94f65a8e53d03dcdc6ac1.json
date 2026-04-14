@@ -1,0 +1,105 @@
+{
+    "description_long": "This all-terrain vehicle features a robust, low-slung chassis with six large, rugged wheels designed for maximum stability and traction on uneven surfaces. The suspension arms are prominently articulated, suggesting advanced independent suspension for superior off-road capability. The body is composed of a mix of metallic and composite panels, with visible mechanical components such as drive shafts, gearboxes, and exposed wiring, indicating a utilitarian, high-performance design. The front end is equipped with multiple sensors and cameras, likely for navigation and obstacle detection, while the rear houses additional equipment and possibly storage compartments. The wheels have deep, blocky treads suitable for traversing rocky or loose terrain. Overall, the vehicle is engineered for durability and versatility in challenging environments, with a focus on function over aesthetics.",
+    "description": "A rugged, six-wheeled all-terrain vehicle with articulated suspension, exposed mechanical parts, and blocky tread tires for off-road use. Its design emphasizes durability and advanced navigation capabilities.",
+    "description_view_0": "Front view shows the vehicle's sensor array, robust suspension arms, and the symmetrical arrangement of the six wheels.",
+    "description_view_1": "Front-side angle highlights the articulated suspension, exposed drive components, and the detailed tread pattern on the wheels.",
+    "description_view_2": "Rear view reveals the back panel, additional equipment mounts, and the rear suspension structure.",
+    "description_view_3": "Side view displays the full length of the chassis, the independent suspension system, and the overall low profile of the vehicle.",
+    "category": "all-terrain vehicle",
+    "height": 1.2,
+    "max_dimension": 3.0,
+    "materials": [
+        "metal",
+        "rubber",
+        "plastic",
+        "glass",
+        "composite",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.18,
+        0.12,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 3500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "suspension arm",
+        "sensor",
+        "door",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "white",
+        "silver"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.12,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 6,
+    "attribute_tire_tread_pattern": "The tires feature a blocky, all-terrain tread pattern with deep grooves and pronounced lugs, optimized for traction on loose, rocky, or uneven surfaces.",
+    "attribute_suspension_type": "independent",
+    "attribute_presence_of_roll_cage": false,
+    "attribute_handlebar_or_steering_wheel_type": "round steering wheel",
+    "uid": "5d3732b929e94f65a8e53d03dcdc6ac1",
+    "near_synsets": {
+        "sport_utility.n.01": 0.5202046679029947,
+        "jeep.n.01": 0.533775206232756,
+        "tractor.n.01": 0.538154935227844,
+        "reconnaissance_vehicle.n.01": 0.5402977788551845,
+        "recreational_vehicle.n.01": 0.5418166070026772,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/5d3732b929e94f65a8e53d03dcdc6ac1",
+        "creator_username": "jgut028",
+        "creator_display_name": "jgut028",
+        "creator_profile_url": "https://sketchfab.com/jgut028"
+    },
+    "filename": "std_5d3732b929e94f65a8e53d03dcdc6ac1.glb",
+    "length": 3.246966600418091,
+    "width": 2.7344861030578613
+}

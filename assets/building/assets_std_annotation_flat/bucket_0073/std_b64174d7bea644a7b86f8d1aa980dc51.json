@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a heavily rusted and stripped sedan car shell, missing all doors, windows, wheels, and most interior components. The body is primarily composed of corroded metal, with significant rust patches visible throughout the frame, especially around the door frames, roof, and hood area. The roof remains mostly intact, but the front and rear sections are extensively damaged and open, exposing the hollow interior. The paint appears to be a faded greenish-blue, but is largely obscured by rust and weathering. The car's undercarriage and structural supports are visible due to the absence of panels and mechanical parts. This object resembles an abandoned or junkyard vehicle, likely left exposed to the elements for an extended period.",
+    "description": "A rusted, stripped sedan car shell with missing doors, windows, and wheels, showing extensive corrosion and weathering. The faded greenish-blue body is heavily damaged and open at both ends.",
+    "description_view_0": "Side view showing the missing doors, exposed interior, and extensive rust along the frame and roof.",
+    "description_view_1": "Front view revealing the open, empty engine bay and windshield area, with heavy rust on the hood and roof.",
+    "description_view_2": "Opposite side view highlighting the stripped interior, missing doors, and corroded body panels.",
+    "description_view_3": "Rear view displaying the open trunk area, missing rear bumper, and visible undercarriage supports.",
+    "category": "sedan",
+    "height": 1.4,
+    "max_dimension": 4.7,
+    "materials": [
+        "steel",
+        "rust",
+        "paint",
+        "air",
+        "glass"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.04,
+        0.01
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 5,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "pushable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door frame",
+        "roof",
+        "trunk area",
+        "hood area"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "drone"
+    ],
+    "colors": [
+        "green",
+        "rust brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_number_of_doors": 4,
+    "attribute_license_plate": "none",
+    "attribute_wheel_design": "unknown",
+    "uid": "b64174d7bea644a7b86f8d1aa980dc51",
+    "near_synsets": {
+        "car_door.n.01": 0.5474189250087227,
+        "car_window.n.01": 0.5576361256259116,
+        "sedan.n.01": 0.5653227796809863,
+        "bodywork.n.01": 0.579676701352461,
+        "body.n.11": 0.5831820504096397,
+        "sedan.n.02": -1000.0
+    },
+    "synset": "sedan.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b64174d7bea644a7b86f8d1aa980dc51",
+        "creator_username": "kryik1023",
+        "creator_display_name": "Renafox",
+        "creator_profile_url": "https://sketchfab.com/kryik1023"
+    },
+    "filename": "std_b64174d7bea644a7b86f8d1aa980dc51.glb",
+    "length": 3.1822893619537354,
+    "width": 2.235164999961853
+}

@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a small, boxy airplane with a rectangular fuselage and a flat, elongated wing structure extending from either side. The fuselage appears metallic with a greenish tint, featuring visible panel lines and what seem to be two rectangular windows or hatches on the top. The wings are straight and attached at a low position relative to the fuselage, painted in a solid dark blue color with a smooth, unadorned surface. The tail section is not distinctly visible, but the overall design suggests a utilitarian, possibly cargo-oriented aircraft. The landing gear is not clearly visible, but the undercarriage appears to have a recessed area, possibly for retractable gear. The airplane's design is simple and functional, with minimal decorative elements and a focus on geometric shapes.",
+    "description": "A small, boxy airplane with a metallic fuselage and long, straight dark blue wings, featuring a utilitarian and geometric design.",
+    "description_view_0": "Front view showing the wide, flat blue wings and the metallic fuselage with visible panel lines and two top hatches.",
+    "description_view_1": "Side view highlighting the thin profile of the blue wing and the rectangular, greenish fuselage with top windows.",
+    "description_view_2": "Top-down view dominated by the solid dark blue wingspan, with little detail visible on the fuselage.",
+    "description_view_3": "Opposite side view similar to view 1, showing the wing's thinness and the boxy fuselage with top features.",
+    "category": "airplane",
+    "height": 1.2,
+    "max_dimension": 8.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.07
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 5,
+    "movable": true,
+    "required_force": 6000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "hatch",
+        "landing gear"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "green",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with straight, rectangular wings and no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "No visible engines present on the fuselage or wings.",
+    "attribute_tail_design": "Tail section not clearly visible; no distinct vertical or horizontal stabilizer features apparent.",
+    "attribute_landing_gear_type": "Landing gear not clearly visible; possible recessed or retractable configuration suggested by undercarriage shape.",
+    "attribute_cockpit_placement": "Cockpit appears to be forward-mounted and enclosed, with two rectangular windows or hatches on the top of the fuselage.",
+    "uid": "4b37a0bdbd66476cbe9e13f8ee425a55",
+    "near_synsets": {
+        "aircraft.n.01": 0.47168687138902077,
+        "airplane.n.01": 0.47219335169507526,
+        "monoplane.n.01": 0.49856332524837793,
+        "fuselage.n.01": 0.5009985814709358,
+        "biplane.n.01": 0.5120203910565306
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4b37a0bdbd66476cbe9e13f8ee425a55",
+        "creator_username": "JeremyA",
+        "creator_display_name": "JeremyA",
+        "creator_profile_url": "https://sketchfab.com/JeremyA"
+    },
+    "filename": "std_4b37a0bdbd66476cbe9e13f8ee425a55.glb",
+    "length": 1.1978005766868591,
+    "width": 3.0931174755096436
+}

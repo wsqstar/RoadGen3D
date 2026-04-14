@@ -1,0 +1,101 @@
+{
+    "description_long": "This humanoid robot features a sleek, futuristic design with a predominantly light gray body accented by yellow and blue elements. Its head is elongated and helmet-like, with a smooth, featureless face and a pronounced crest running from the forehead to the back. The robot has four articulated arms: the upper pair are robust, with one ending in a large, claw-like pincer and the other in a cylindrical, tool-like appendage, while the lower pair are slimmer and more humanoid. Its legs are digitigrade, ending in bird-like feet with three forward-facing toes, suggesting agility and balance. The torso is broad and armored, with visible joint mechanisms and yellow circular details along the spine and shoulders. The overall appearance is both mechanical and organic, evoking a blend of utility and intimidation suitable for urban environments.",
+    "description": "A sleek, light gray humanoid robot with four articulated arms, an elongated helmet-like head, and digitigrade legs ending in bird-like feet. Yellow and blue accents highlight its mechanical joints and appendages.",
+    "description_view_0": "Front view shows the robot's broad chest, four arms (with distinct claw and tool ends), and the elongated, helmet-like head.",
+    "description_view_1": "Left side view highlights the profile of the head, the curvature of the torso, and the articulation of the arms and legs.",
+    "description_view_2": "Rear view reveals the spine-like row of yellow circles, the back of the head, and the symmetrical arrangement of the arms and legs.",
+    "description_view_3": "Right side view displays the clawed hand, the mechanical joints, and the digitigrade structure of the legs and feet.",
+    "category": "humanoid robot",
+    "height": 1.9,
+    "max_dimension": 2.1,
+    "materials": [
+        "plastic",
+        "metal",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 110,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1080,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "graspable",
+        "pushable",
+        "pullable",
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "claw hand",
+        "tool hand",
+        "articulated arms",
+        "legs",
+        "head"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "yellow",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.12,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with torso facing forward, both upper arms extended slightly outward, left upper arm ending in a claw and right in a cylindrical tool, lower arms relaxed at the sides, legs slightly bent at the knees, and head facing forward.",
+    "attribute_clothing_style": "No visible clothing; the robot is covered in integrated, smooth panels with mechanical joints and colored accents.",
+    "attribute_facial_features": "The face is smooth and featureless, with no visible eyes, mouth, or nose; the head is elongated with a pronounced crest and helmet-like appearance.",
+    "attribute_limb_articulation": "Four arms with multiple visible hinge and rotary joints at the shoulders, elbows, and wrists; legs have articulated hips, knees, and ankles; hands include a claw and a tool, with visible mechanical articulation; limbs appear rigid but highly jointed.",
+    "attribute_presence_of_sensors": "None visible",
+    "uid": "9f00e768f40f4413a32abab76055ac2b",
+    "near_synsets": {
+        "android.n.01": 0.5420693893199363,
+        "cyborg.n.01": 0.5546498083046786,
+        "robotics_equipment.n.01": 0.5559161723700359,
+        "automaton.n.02": 0.5632327641577235,
+        "automaton.n.03": 0.5879246206429978
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9f00e768f40f4413a32abab76055ac2b",
+        "creator_username": "chaitanyak",
+        "creator_display_name": "Chaitanya Krishnan",
+        "creator_profile_url": "https://sketchfab.com/chaitanyak"
+    },
+    "filename": "std_9f00e768f40f4413a32abab76055ac2b.glb",
+    "length": 2.049074649810791,
+    "width": 2.541356325149536
+}

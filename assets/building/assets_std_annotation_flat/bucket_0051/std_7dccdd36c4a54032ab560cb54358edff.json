@@ -1,0 +1,102 @@
+{
+    "description_long": "This bus shelter features a long, curved green roof supported by two vertical metal posts, providing coverage for waiting passengers. The shelter is mounted on a rectangular base with a black-and-white checkered pattern, which likely represents the sidewalk or platform area. The structure appears minimalistic, with no visible side or back panels, offering an open design for easy access from multiple directions. The roof is solid and opaque, constructed from what appears to be metal or coated steel, ensuring durability and weather resistance. There is no visible seating or advertisement panel integrated into the shelter. The overall design is functional and straightforward, suitable for urban environments where quick ingress and egress are important.",
+    "description": "A minimalistic bus shelter with a curved green metal roof, supported by two posts on a checkered base, and an open, accessible design.",
+    "description_view_0": "Front view showing the full length of the curved green roof and both supporting posts on the checkered base.",
+    "description_view_1": "Side view highlighting the arched profile of the green roof and the narrow width of the shelter.",
+    "description_view_2": "Rear view mirroring the front, with the curved roof and posts visible, but no additional features.",
+    "description_view_3": "Opposite side view, again showing the arched roof profile and the shelter's open sides.",
+    "category": "bus shelter",
+    "height": 2.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "metal",
+        "paint",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.1,
+        0.2,
+        0.1
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shelter"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "roof",
+        "support posts"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "green",
+        "black",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "curved metal",
+    "attribute_seating_presence": false,
+    "attribute_advertisement_panel": false,
+    "attribute_shelter_enclosure_level": "open",
+    "attribute_signage": [],
+    "uid": "7dccdd36c4a54032ab560cb54358edff",
+    "near_synsets": {
+        "shelter.n.02": 0.5566255619113044,
+        "bus_stop.n.01": 0.5690351837699954,
+        "umbrella_tent.n.01": 0.5730749553787636,
+        "shuttle_bus.n.01": 0.5742214768587292,
+        "shelter.n.01": 0.5742502023562849,
+        "tax_shelter.n.01": -1000.0,
+        "shelter.n.05": -1000.0,
+        "protection.n.04": -1000.0,
+        "bus.n.01": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "busbar.n.01": -1000.0,
+        "bus.n.04": -1000.0
+    },
+    "synset": "shelter.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7dccdd36c4a54032ab560cb54358edff",
+        "creator_username": "tryfield",
+        "creator_display_name": "TRYFIELD",
+        "creator_profile_url": "https://sketchfab.com/tryfield"
+    },
+    "filename": "std_7dccdd36c4a54032ab560cb54358edff.glb",
+    "length": 2.4243777990341187,
+    "width": 12.17340087890625
+}

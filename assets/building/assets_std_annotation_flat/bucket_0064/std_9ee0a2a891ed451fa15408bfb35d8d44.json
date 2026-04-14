@@ -1,0 +1,89 @@
+{
+    "description_long": "This is a straight, rigid ladder with two parallel side rails and a series of evenly spaced, flat rungs connecting them. The ladder appears to be constructed primarily from a dark, solid material, likely wood or metal, with a matte finish. The rungs are rectangular and slightly inset between the rails, providing a stable surface for climbing. The side rails are thick and robust, suggesting the ladder is designed for durability and to support significant weight. There are no visible safety features such as anti-slip feet or handrails, and the ends of the rails are squared off. The overall design is utilitarian, suitable for use in urban environments such as garages, construction sites, or for accessing rooftops.",
+    "description": "A dark, sturdy straight ladder with thick side rails and evenly spaced rectangular rungs, lacking visible safety features. Its utilitarian design suggests use in urban or construction settings.",
+    "description_view_0": "The ladder is seen from an oblique angle, highlighting the length and thickness of the side rails and the depth of the rungs.",
+    "description_view_1": "A direct view of the ladder's front, showing the full set of rungs and the parallel alignment of the side rails.",
+    "description_view_2": "The ladder is viewed from the opposite oblique angle, again emphasizing the side profile and the regular spacing of the rungs.",
+    "description_view_3": "A rear view of the ladder, showing the rungs from behind and the inner faces of the side rails.",
+    "category": "ladder",
+    "height": 2.2,
+    "max_dimension": 2.2,
+    "materials": [
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 12,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "climbable",
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "rung",
+        "side rail"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "dark brown"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rungs": 10,
+    "attribute_rung_spacing": 0.2,
+    "attribute_side_rail_profile": "rectangular wood",
+    "attribute_mounting_position": "leaning",
+    "attribute_presence_of_safety_features": [],
+    "uid": "9ee0a2a891ed451fa15408bfb35d8d44",
+    "near_synsets": {
+        "ladder.n.01": 0.47743774248531057,
+        "rope_ladder.n.01": 0.4949554404771568,
+        "extension_ladder.n.01": 0.5046582922371228,
+        "articulated_ladder.n.01": 0.5219239242831812,
+        "step_ladder.n.01": 0.5265149062080118,
+        "run.n.13": -1000.0,
+        "ladder.n.02": -1000.0
+    },
+    "synset": "ladder.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9ee0a2a891ed451fa15408bfb35d8d44",
+        "creator_username": "frankthefish",
+        "creator_display_name": "MattMakesSwords",
+        "creator_profile_url": "https://sketchfab.com/frankthefish"
+    },
+    "filename": "std_9ee0a2a891ed451fa15408bfb35d8d44.glb",
+    "length": 1.921245276927948,
+    "width": 0.655997633934021
+}

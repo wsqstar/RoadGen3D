@@ -1,0 +1,99 @@
+{
+    "description_long": "This humanoid robot features a sleek, futuristic design with a predominantly white body accented by red and yellow highlights. Its head is spherical with two small, pointed ear-like protrusions and a smooth, featureless faceplate. The torso is compact and angular, with broad shoulders connecting to long, curved arms that end in simple, rounded appendages. The legs are slender and slightly bent, with mechanical joints visible at the hips, knees, and ankles, giving the robot a dynamic, ready-to-move posture. The overall structure is lightweight and streamlined, suggesting agility and flexibility, while the surface appears to be made of hard, glossy composite materials. The robot's design is both functional and visually striking, suitable for urban environments where interaction with humans and navigation of complex spaces are required.",
+    "description": "A sleek, white humanoid robot with red and yellow accents, featuring a spherical head, long curved arms, and slender, jointed legs. Its streamlined, glossy body suggests agility and advanced functionality.",
+    "description_view_0": "Front view showing the robot's spherical head, broad shoulders, and symmetrical, curved arms with red and yellow accents.",
+    "description_view_1": "Side view highlighting the robot's slim profile, bent legs, and the curvature of its arms extending forward.",
+    "description_view_2": "Rear view displaying the back of the head, torso, and the symmetrical alignment of the arms and legs.",
+    "description_view_3": "Opposite side view showing the same slim profile, with visible mechanical joints and the curvature of the limbs.",
+    "category": "humanoid robot",
+    "height": 1.7,
+    "max_dimension": 1.1,
+    "materials": [
+        "plastic",
+        "metal",
+        "composite",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 55,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "legs",
+        "head",
+        "torso"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "yellow",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 7000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms slightly bent and extended outward, legs apart and slightly bent at the knees, head facing forward.",
+    "attribute_clothing_style": "Unclothed; body is covered by integrated, smooth panels with red and yellow decorative accents.",
+    "attribute_facial_features": "Face is a smooth, featureless plate with no visible eyes, mouth, or nose; two small, pointed ear-like protrusions on the sides of the head.",
+    "attribute_limb_articulation": "Arms and legs have visible hinge and rotary joints at shoulders, elbows, hips, and knees, allowing for a wide range of motion; limbs appear rigid but articulated.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "9f70dbeb6a5c45cfa157e2a150e17c45",
+    "near_synsets": {
+        "android.n.01": 0.5474468388408246,
+        "cyborg.n.01": 0.5640202849282112,
+        "robotics_equipment.n.01": 0.5651487929506244,
+        "automaton.n.02": 0.5816709413114135,
+        "human_head.n.01": 0.5896595622355519
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9f70dbeb6a5c45cfa157e2a150e17c45",
+        "creator_username": "Rokuukor",
+        "creator_display_name": "DGrummer",
+        "creator_profile_url": "https://sketchfab.com/Rokuukor"
+    },
+    "filename": "std_9f70dbeb6a5c45cfa157e2a150e17c45.glb",
+    "length": 0.3561569005250931,
+    "width": 1.1294077634811401
+}

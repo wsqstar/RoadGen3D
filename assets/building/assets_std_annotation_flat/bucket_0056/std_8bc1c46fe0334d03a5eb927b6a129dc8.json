@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a modern yellow taxi sedan, featuring a streamlined body with a prominent black front grille and sleek headlights. The sides display a bold 'TAXI' label and a classic black checkered stripe, signifying its function as a city cab. The roof is equipped with a traditional illuminated taxi sign, and the rear window has a large 'TAXI' marking for visibility. Black wheels and tinted windows add to its urban aesthetic, while the vehicle's overall design suggests a comfortable passenger cabin. The rear also features a visible license plate and additional branding elements.",
+    "description": "A yellow sedan taxi with checkered side stripes, a roof-mounted taxi sign, and visible branding, designed for urban passenger transport.",
+    "description_view_0": "Front view showing the yellow hood, black grille, headlights, and part of the roof sign.",
+    "description_view_1": "Left side view highlighting the 'TAXI' label, checkered stripe, four doors, and black wheels.",
+    "description_view_2": "Rear view displaying the 'TAXI' roof sign, large rear window marking, license plate, and taillights.",
+    "description_view_3": "Right side view similar to the left, with 'TAXI' label, checkered stripe, and black wheels visible.",
+    "category": "taxi",
+    "height": 1.5,
+    "max_dimension": 4.8,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.12,
+        0.08,
+        0.08,
+        0.04,
+        0.03
+    ],
+    "mass": 1500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "trunk",
+        "hood",
+        "taxi sign",
+        "license plate",
+        "roof light"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_taxi_sign": true,
+    "attribute_roof_light": true,
+    "attribute_license_plate": true,
+    "attribute_company_branding": true,
+    "attribute_fare_meter_display": false,
+    "uid": "8bc1c46fe0334d03a5eb927b6a129dc8",
+    "near_synsets": {
+        "minicab.n.01": 0.495646400664771,
+        "gypsy_cab.n.01": 0.4996084732905025,
+        "medallion.n.03": 0.5069331742776004,
+        "cab.n.03": 0.5193192562048201,
+        "taximeter.n.01": 0.5297893087559528
+    },
+    "synset": "taximeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/8bc1c46fe0334d03a5eb927b6a129dc8",
+        "creator_username": "TSB3DMODELS",
+        "creator_display_name": "TSB3DMODELS",
+        "creator_profile_url": "https://sketchfab.com/TSB3DMODELS"
+    },
+    "filename": "std_8bc1c46fe0334d03a5eb927b6a129dc8.glb",
+    "length": 4.4582836627960205,
+    "width": 1.972186803817749
+}

@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a medium-sized, weathered wooden ship with a rectangular, boxy superstructure at the stern and two prominent blue fabric sails supported by masts amidships. The hull is constructed from planks, showing signs of age and wear, with a mostly white and brown coloration and visible horizontal striping. The stern features a raised, enclosed cabin with a sloped roof, while the bow is slightly pointed and reinforced. The deck is open between the cabin and the masts, with a few simple fixtures and what appear to be crates or hatches. The rigging is minimal, with ropes connecting the masts and sails, and there are no visible modern navigation or propulsion systems. The overall design suggests a utilitarian, possibly historical or fantasy-inspired watercraft, suitable for river or coastal use.",
+    "description": "A weathered wooden ship with two blue sails, a boxy stern cabin, and an open deck with minimal fixtures. The hull is planked and aged, with a rustic, utilitarian appearance.",
+    "description_view_0": "Side view showing the full length of the ship, two blue sails, the boxy stern cabin, and open deck details.",
+    "description_view_1": "Rear view highlighting the sloped roof of the stern cabin and the width of the two blue sails.",
+    "description_view_2": "Opposite side view, similar to view 0, but with the bow and stern reversed, showing hull planking and deck layout.",
+    "description_view_3": "Front view focusing on the pointed bow, the two blue sails, and the narrowness of the hull at the front.",
+    "category": "ship",
+    "height": 7.0,
+    "max_dimension": 28.0,
+    "materials": [
+        "wood",
+        "fabric",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 6,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sail",
+        "mast",
+        "cabin door",
+        "deck hatch",
+        "rigging"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "white",
+        "blue",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a slightly pointed bow and a squared-off stern. It is constructed from horizontal wooden planks, with no visible keels or bulbous bows. The hull appears robust and boxy, optimized for stability rather than speed.",
+    "attribute_superstructure_layout": "The superstructure consists of a single, large, rectangular cabin at the stern with a sloped roof. The deck is open between the cabin and the masts, with minimal fixtures and no visible upper decks or bridges.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "sail",
+        "mast",
+        "rigging",
+        "deck hatch",
+        "crate"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "732ed15b0f82480f840e0fc7bcb2ecfd",
+    "near_synsets": {
+        "shipwreck.n.01": 0.49315614256066204,
+        "schooner.n.02": 0.4989207963149227,
+        "wreck.n.04": 0.5019571782418284,
+        "hull.n.06": 0.503178099781425,
+        "sail.n.03": 0.5039206964086381,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/732ed15b0f82480f840e0fc7bcb2ecfd",
+        "creator_username": "jackharper",
+        "creator_display_name": "Jack harper",
+        "creator_profile_url": "https://sketchfab.com/jackharper"
+    },
+    "filename": "std_732ed15b0f82480f840e0fc7bcb2ecfd.glb",
+    "length": 13.431394577026367,
+    "width": 5.611624240875244
+}

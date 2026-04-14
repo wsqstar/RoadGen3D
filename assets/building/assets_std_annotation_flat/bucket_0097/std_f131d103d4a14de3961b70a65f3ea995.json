@@ -1,0 +1,91 @@
+{
+    "description_long": "This shelter is constructed from rough, weathered wooden planks arranged vertically to form four walls, with a slanted roof made of similar planks. The structure is open on one side, providing an entryway, while the other three sides are fully enclosed with unevenly spaced boards. The roof is slightly angled, allowing for water runoff, and is supported by horizontal beams at the top and midsection. The wood appears untreated and rustic, giving the shelter a utilitarian, makeshift appearance suitable for temporary protection from the elements. There are no visible windows, doors, or decorative elements, emphasizing its functional design. The interior is spacious enough for a person to stand or take cover inside.",
+    "description": "A rustic, makeshift wooden shelter with a slanted plank roof and open entryway, constructed from rough, weathered boards. The structure is utilitarian and provides basic protection from the elements.",
+    "description_view_0": "Front view showing the open entryway and the uneven vertical planks forming the walls and roof.",
+    "description_view_1": "Angled side view highlighting the slanted roof and the open side, with the planks' irregular arrangement visible.",
+    "description_view_2": "Rear view displaying the fully enclosed back wall made of closely spaced vertical wooden planks.",
+    "description_view_3": "Side view emphasizing the roof's slope and the solid wall construction, with the open entryway partially visible.",
+    "category": "shelter",
+    "height": 1.8,
+    "max_dimension": 2.0,
+    "materials": [
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.15
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "entryway",
+        "roof"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "slanted wooden plank roof",
+    "attribute_entryway_design": "open passage with no door, framed by vertical planks",
+    "attribute_support_structure": "vertical wooden planks reinforced by horizontal beams",
+    "attribute_signage": "none",
+    "attribute_transparency": "fully opaque",
+    "uid": "f131d103d4a14de3961b70a65f3ea995",
+    "near_synsets": {
+        "shelter.n.02": 0.4455912735118111,
+        "shelter.n.01": 0.4613542200728355,
+        "pithouse.n.01": 0.4861939561623898,
+        "shelter.n.05": 0.4901812341836236,
+        "lean-to.n.01": 0.49110648764859877,
+        "protection.n.04": -1000.0,
+        "tax_shelter.n.01": -1000.0
+    },
+    "synset": "tax_shelter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/f131d103d4a14de3961b70a65f3ea995",
+        "creator_username": "piwici7944",
+        "creator_display_name": "piwici7944",
+        "creator_profile_url": "https://sketchfab.com/piwici7944"
+    },
+    "filename": "std_f131d103d4a14de3961b70a65f3ea995.glb",
+    "length": 1.4177849888801575,
+    "width": 1.603978455066681
+}

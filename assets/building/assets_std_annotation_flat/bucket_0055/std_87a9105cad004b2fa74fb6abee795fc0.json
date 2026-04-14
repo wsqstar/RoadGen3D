@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a rectangular, metal mailbox painted green, with a sloped top and a front-facing door. The front panel is adorned with graffiti, stickers, and a red 'Hello' label, giving it a distinctly urban, weathered appearance. The surface shows signs of rust and wear, especially on the sides and back, indicating prolonged outdoor exposure. The left side features additional stickers, including a rising sun motif and cartoonish graphics, while the back is plain with visible rust spots. The mailbox has a keyhole and a handle on the front, suggesting a lockable access door. The overall construction appears robust, suitable for public street or sidewalk installation.",
+    "description": "A green, metal urban mailbox with graffiti, stickers, and a sloped top, featuring a lockable front door and weathered, rusty surfaces.",
+    "description_view_0": "Front view showing graffiti, stickers, a keyhole, and a handle on the main access door.",
+    "description_view_1": "Left side view displaying additional stickers and the sloped top, with visible rust spots.",
+    "description_view_2": "Rear view showing a plain, rusted green surface with no openings or markings.",
+    "description_view_3": "Right side view with a clean, rusted surface and the sloped top visible.",
+    "category": "mailbox",
+    "height": 0.9,
+    "max_dimension": 0.9,
+    "materials": [
+        "steel",
+        "paint",
+        "adhesive",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 22,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 220,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "pullable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "keyhole",
+        "mail slot"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "red",
+        "white",
+        "black",
+        "yellow",
+        "blue"
+    ],
+    "colors_composition": [
+        0.85,
+        0.04,
+        0.04,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_mail_slot_location": "front center",
+    "attribute_flag_presence": false,
+    "attribute_door_type": "front-hinged",
+    "attribute_post_type": "none",
+    "attribute_identification_markings": [
+        "Hello",
+        "UGLY",
+        "JOE"
+    ],
+    "uid": "87a9105cad004b2fa74fb6abee795fc0",
+    "near_synsets": {
+        "postbox.n.01": 0.5218295615351859,
+        "mailbox.n.01": 0.5242131723048126,
+        "pillar_box.n.01": 0.5395790958787949,
+        "sentry_box.n.01": 0.5546991834572933,
+        "mail_slot.n.01": 0.5558009393200936
+    },
+    "synset": "mailbox.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/87a9105cad004b2fa74fb6abee795fc0",
+        "creator_username": "Olli_one",
+        "creator_display_name": "Olli_one",
+        "creator_profile_url": "https://sketchfab.com/Olli_one"
+    },
+    "filename": "std_87a9105cad004b2fa74fb6abee795fc0.glb",
+    "length": 0.19489599019289017,
+    "width": 0.5565069913864136
+}

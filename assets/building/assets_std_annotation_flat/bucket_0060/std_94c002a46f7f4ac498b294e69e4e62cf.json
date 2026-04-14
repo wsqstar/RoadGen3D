@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a rectangular, upright vending machine with a black exterior and visible signs of wear, such as scuff marks and scratches along the edges. The front face features a transparent window displaying several rows of individually packaged snacks or items, each in its own compartment with a spiral dispensing mechanism. To the right of the window is a control panel with a digital display, a keypad, and what appears to be a payment interface. The sides and back of the machine are solid black with no visible features or openings. The base of the machine is slightly recessed, and there is a product retrieval slot at the bottom of the front face. The overall design is utilitarian, suitable for placement in urban environments such as sidewalks, lobbies, or transit stations.",
+    "description": "A black, rectangular vending machine with a transparent front window displaying snacks, a control panel with keypad and payment interface, and a product retrieval slot at the bottom.",
+    "description_view_0": "The front view shows the transparent window with visible snacks, a control panel with keypad and display, and a product retrieval slot at the bottom.",
+    "description_view_1": "The left side view is featureless, showing a plain black surface with no visible openings or details.",
+    "description_view_2": "The back view is also plain black, with faint outlines of access panels or vents near the bottom.",
+    "description_view_3": "The right side view is similar to the left, with a solid black surface and no distinguishing features.",
+    "category": "vending machine",
+    "height": 1.8,
+    "max_dimension": 0.9,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "electronic components",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 220,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "keypad",
+        "display panel",
+        "payment slot",
+        "product retrieval slot",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "yellow",
+        "red",
+        "blue"
+    ],
+    "colors_composition": [
+        0.85,
+        0.07,
+        0.03,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A small rectangular digital display panel is located on the right side of the front face, above the keypad, showing illuminated numbers or instructions.",
+    "attribute_payment_interface": "A payment interface is integrated into the control panel on the right front, featuring a slot likely for coins and possibly a card reader, both compact and adjacent to the keypad.",
+    "attribute_product_selection_buttons": "A numeric keypad with individual square buttons is present on the right front, arranged in a grid for product selection.",
+    "attribute_product_retrieval_slot": "A horizontal rectangular slot is located at the bottom center of the front face, likely with a flap for retrieving purchased items.",
+    "attribute_branding_or_signage": "No visible branding, logos, or signage are present on the exterior of the vending machine.",
+    "uid": "94c002a46f7f4ac498b294e69e4e62cf",
+    "near_synsets": {
+        "vending_machine.n.01": 0.4275146286312087,
+        "automat.n.01": 0.47859714891167754,
+        "coin_box.n.01": 0.550844992885542,
+        "slot_machine.n.01": 0.5566188256418073,
+        "automat.n.02": 0.5576286407528894,
+        "machine.n.04": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.05": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.02": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/94c002a46f7f4ac498b294e69e4e62cf",
+        "creator_username": "gregthorburn",
+        "creator_display_name": "Greg Thorburn",
+        "creator_profile_url": "https://sketchfab.com/gregthorburn"
+    },
+    "filename": "std_94c002a46f7f4ac498b294e69e4e62cf.glb",
+    "length": 0.7812445163726807,
+    "width": 0.8999996185302734
+}

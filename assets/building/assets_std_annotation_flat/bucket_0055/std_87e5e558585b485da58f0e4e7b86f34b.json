@@ -1,0 +1,88 @@
+{
+    "description_long": "This object is a rectangular segment of road surface, featuring a slightly uneven edge along one side, suggestive of a cut or transition area. The surface is composed of a coarse, gray aggregate material typical of asphalt or concrete, with a speckled appearance from embedded stones and gravel. The texture is rough and granular, providing traction for vehicles and pedestrians. There are no visible lane markings, curbs, or signage present on the surface. The coloration is predominantly gray, with subtle variations due to the aggregate mix. The object is flat and broad, designed to be traversed or to serve as a section of a larger roadway.",
+    "description": "A flat, rectangular gray road segment with a rough, speckled aggregate surface and a slightly uneven edge.",
+    "description_view_0": "Viewed from above one end, the rectangular shape and rough, speckled surface are visible, with the uneven edge on the right.",
+    "description_view_1": "From the side, the flatness and thin profile of the road segment are apparent, highlighting the slight undulation along one edge.",
+    "description_view_2": "From the opposite end, the rectangular form and coarse surface texture are again visible, with the uneven edge now on the left.",
+    "description_view_3": "A side view showing the flat, thin profile and the irregularity along one long edge.",
+    "category": "road",
+    "height": 0.08,
+    "max_dimension": 3.0,
+    "materials": [
+        "asphalt",
+        "gravel",
+        "sand",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.09,
+        0.01
+    ],
+    "mass": 540,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "bicycle",
+        "car"
+    ],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lane_markings": "none",
+    "attribute_signage": "none",
+    "attribute_curb_presence": false,
+    "attribute_lighting_fixtures": "none",
+    "attribute_pedestrian_crossings": "none",
+    "uid": "87e5e558585b485da58f0e4e7b86f34b",
+    "near_synsets": {
+        "road_surface.n.01": 0.4864152162487141,
+        "paved_surface.n.01": 0.5139397109285178,
+        "macadam.n.01": 0.5194877835058432,
+        "verge.n.04": 0.5241308366898599,
+        "flat.n.01": 0.5335714418427604,
+        "road.n.01": -1000.0,
+        "road.n.02": -1000.0
+    },
+    "synset": "road.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/87e5e558585b485da58f0e4e7b86f34b",
+        "creator_username": "jfbuon",
+        "creator_display_name": "Buoncristiani JF.",
+        "creator_profile_url": "https://sketchfab.com/jfbuon"
+    },
+    "filename": "std_87e5e558585b485da58f0e4e7b86f34b.glb",
+    "length": 1.3374654054641724,
+    "width": 0.5280783176422119
+}

@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a compact lamp featuring a classic incandescent bulb design with a transparent glass envelope and a metallic cylindrical base. The glass bulb is clear, allowing visibility of the internal filament structure and support wires, which are typical of traditional light bulbs. The base is metallic, likely made of steel or aluminum, and includes a small protruding contact point for electrical connection. The interior of the bulb is filled with air or inert gas, and the filament is suspended between two metal supports. The overall form is simple and functional, with no decorative embellishments or complex patterns. This lamp is designed for practical use, likely in utility or industrial settings.",
+    "description": "A compact, clear glass incandescent bulb with a metallic cylindrical base and visible filament structure. The design is simple and functional, with no decorative features.",
+    "description_view_0": "Front view showing the clear glass bulb, central filament, and metallic base with a smooth surface.",
+    "description_view_1": "Rear view highlighting the internal filament structure and the metallic base with a visible contact point.",
+    "description_view_2": "Side view similar to the front, emphasizing the symmetry of the bulb and the central filament.",
+    "description_view_3": "Opposite rear view, again showing the filament and the metallic base with the contact point.",
+    "category": "lamp",
+    "height": 0.07,
+    "max_dimension": 0.045,
+    "materials": [
+        "glass",
+        "metal",
+        "air",
+        "tungsten"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "mass": 0.025,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0.5,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "illuminable",
+        "replaceable",
+        "graspable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "bulb",
+        "base",
+        "filament"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "transparent",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.05,
+    "surface_finish": "glossy",
+    "reflectivity": 0.7,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.1,
+    "asset_composition_type": "single",
+    "attribute_lamp_type": "miniature incandescent bulb",
+    "attribute_mounting_location": "portable",
+    "attribute_light_source_type": "incandescent bulb",
+    "attribute_number_of_bulbs": 1,
+    "attribute_decorative_features": [],
+    "uid": "7e76820eefef483086ffd0e80f052985",
+    "near_synsets": {
+        "light_bulb.n.01": 0.4157733324615325,
+        "lamp.n.02": 0.4684296541622518,
+        "lamp.n.01": 0.48535347716596056,
+        "electric_lamp.n.01": 0.5011516519893416,
+        "table_lamp.n.01": 0.5072361131581183
+    },
+    "synset": "table_lamp.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7e76820eefef483086ffd0e80f052985",
+        "creator_username": "mdsAgenturgruppe",
+        "creator_display_name": "mds Agenturgruppe GmbH",
+        "creator_profile_url": "https://sketchfab.com/mdsAgenturgruppe"
+    },
+    "filename": "std_7e76820eefef483086ffd0e80f052985.glb",
+    "length": 0.03629375249147415,
+    "width": 0.03625714033842087
+}

@@ -1,0 +1,103 @@
+{
+    "description_long": "This helicopter features a robust, angular fuselage with a dark, urban camouflage pattern, making it suitable for tactical operations in city environments. The main rotor consists of long, slender blades extending from a central hub, while the tail section is equipped with a multi-blade tail rotor for stability and control. The landing gear comprises sturdy skids, reinforced with crossbars for added support, and the cockpit is fitted with multiple angular windows, providing wide visibility for the crew. The body is primarily constructed from metal alloys, likely aluminum or composite materials, with glass for the windows and some plastic or rubber components for smaller fittings. The helicopter's exterior is finished in a matte, low-reflectivity paint to minimize glare and enhance stealth. No visible registration numbers or alphanumeric markings are present on the fuselage.",
+    "description": "A dark, urban-camouflage helicopter with a robust fuselage, long main rotor blades, multi-blade tail rotor, sturdy landing skids, and angular cockpit windows.",
+    "description_view_0": "Top-down view showing the full span of the main rotor blades and the streamlined, angular body with visible landing skids.",
+    "description_view_1": "Side profile highlighting the cockpit windows, landing skids, and the length of the main and tail rotors.",
+    "description_view_2": "Bottom-up view emphasizing the undercarriage, landing skids, and the tail rotor assembly.",
+    "description_view_3": "Opposite side profile showing the tail rotor, skids, and the detailed camouflage pattern on the fuselage.",
+    "category": "helicopter",
+    "height": 4.5,
+    "max_dimension": 15.5,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.1,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 63750,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit window",
+        "main rotor",
+        "tail rotor",
+        "landing skids",
+        "control panel",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 18.0,
+    "asset_composition_type": "single",
+    "attribute_rotor_blades": "The main rotor has four long, straight blades made of composite material, colored black with no visible markings. The blades are evenly spaced and extend well beyond the width of the fuselage.",
+    "attribute_tail_rotor": "The tail rotor is present, featuring four short blades arranged in a cross pattern, mounted vertically at the end of the tail boom. The blades are black and appear to be made of composite material.",
+    "attribute_landing_skids": "The landing skids are robust, tubular, and black, with crossbars for reinforcement. They are made of metal, likely aluminum, and are designed to provide stable ground support.",
+    "attribute_cockpit_windows": "The cockpit has multiple angular windows, including a large front windshield and side panels. The windows are tinted, framed in black, and provide wide visibility for the crew.",
+    "attribute_registration_number": "not visible",
+    "uid": "682bbf4dd7194766b3d7dd03994d82eb",
+    "near_synsets": {
+        "helicopter.n.01": 0.5076354342932188,
+        "cargo_helicopter.n.01": 0.5174169091955484,
+        "main_rotor.n.01": 0.5201276657718323,
+        "single-rotor_helicopter.n.01": 0.521950897785481,
+        "rotor_blade.n.01": 0.533101633353752
+    },
+    "synset": "single-rotor_helicopter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/682bbf4dd7194766b3d7dd03994d82eb",
+        "creator_username": "jhonjairopulecio",
+        "creator_display_name": "jhon pulecio",
+        "creator_profile_url": "https://sketchfab.com/jhonjairopulecio"
+    },
+    "filename": "std_682bbf4dd7194766b3d7dd03994d82eb.glb",
+    "length": 13.348421096801758,
+    "width": 16.913930892944336
+}

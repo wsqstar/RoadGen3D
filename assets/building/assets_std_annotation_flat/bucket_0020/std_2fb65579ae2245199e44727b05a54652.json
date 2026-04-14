@@ -1,0 +1,99 @@
+{
+    "description_long": "A barefoot person with short hair and a blue shirt is positioned inside a large, semi-circular metallic structure that is open at the front and back. The individual stands upright with arms extended outward, gripping the upper edges of the curved frame, which appears weathered and rusted. The structure is hollow, with a rough, industrial texture and a visibly incomplete base, exposing the ground beneath. The person is centrally framed, and there are no visible wheelchair components such as wheels, handrims, or a frame. The scene is set on a paved surface, and the metallic arc dominates the visual composition. No additional mobility aids or accessories are present.",
+    "description": "A barefoot person in a blue shirt stands inside a large, rusted, semi-circular metal structure, gripping its upper edges. No wheelchair frame or accessories are visible.",
+    "description_view_0": "The person is seen from the side, mostly obscured by the narrow edge of the curved metal structure.",
+    "description_view_1": "Rear view of the person standing inside the open arc, arms outstretched and gripping the metal edges.",
+    "description_view_2": "Side view showing the person partially hidden behind the structure's edge, with the arc's thickness visible.",
+    "description_view_3": "Front view of the person standing upright inside the arc, arms extended to both sides, facing forward.",
+    "category": "wheelchair user",
+    "height": 1.7,
+    "max_dimension": 2.1,
+    "materials": [
+        "steel",
+        "air",
+        "cotton",
+        "skin"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 110,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 4,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "grippable",
+        "leanable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "curved frame",
+        "grip edges"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "blue",
+        "gray",
+        "brown",
+        "beige"
+    ],
+    "colors_composition": [
+        0.25,
+        0.45,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_presence_of_wheelchair_frame": false,
+    "attribute_wheel_configuration": "",
+    "attribute_handrim_visibility": false,
+    "attribute_seating_posture": "Standing upright with arms extended outward, gripping the upper edges of the arc.",
+    "attribute_mobility_aid_accessories": [],
+    "uid": "2fb65579ae2245199e44727b05a54652",
+    "near_synsets": {
+        "wheelchair.n.01": 0.5599514332547201,
+        "disabled.n.01": 0.584048555321753,
+        "handicapped_person.n.01": 0.5890028769301726,
+        "bath_chair.n.01": 0.5912841326579178,
+        "walk-up.n.02": 0.5969092702159521,
+        "user.n.01": -1000.0,
+        "exploiter.n.01": -1000.0,
+        "drug_user.n.01": -1000.0
+    },
+    "synset": "handicapped_person.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/2fb65579ae2245199e44727b05a54652",
+        "creator_username": "dronepros",
+        "creator_display_name": "dronepros",
+        "creator_profile_url": "https://sketchfab.com/dronepros"
+    },
+    "filename": "std_2fb65579ae2245199e44727b05a54652.glb",
+    "length": 0.7221517860889435,
+    "width": 1.926674723625183
+}

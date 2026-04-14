@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a large, rectangular stone prison complex with high perimeter walls and four prominent cylindrical corner guard towers. The structure features a central open courtyard, surrounded by multi-story stone walls with small, evenly spaced windows, suggesting secure confinement. The exterior is constructed from gray stone blocks with horizontal red brick bands, giving it a fortified and imposing appearance. The roof is covered with reddish-brown tiles, sloping gently towards the center, and the main entrance is marked by a small doorway set into the thick front wall. The guard towers are integrated into the corners, each with a slightly conical roof, providing elevated vantage points for surveillance. The overall design is reminiscent of historical or fortress-like prisons, emphasizing security and containment.",
+    "description": "A fortress-like stone prison with four cylindrical corner guard towers, high perimeter walls, and a central open courtyard. The structure is built from gray stone with red brick bands and topped with reddish-brown tiled roofs.",
+    "description_view_0": "The front view shows the main entrance, two prominent cylindrical guard towers, and the solid stone facade with small windows.",
+    "description_view_1": "This view highlights the central courtyard, crenellated wall section, and all four corner guard towers, emphasizing the fortress-like enclosure.",
+    "description_view_2": "The rear view displays the back wall, two rear guard towers, and the open courtyard, with the stone and brick pattern clearly visible.",
+    "description_view_3": "This view shows the main entrance from a slightly different angle, with the two front guard towers and the tiled roof structure above.",
+    "category": "prison",
+    "height": 15,
+    "max_dimension": 60,
+    "materials": [
+        "stone",
+        "brick",
+        "roof_tile",
+        "wood",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.05,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 1200000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "surveillable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "windows",
+        "gate",
+        "guard tower"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.0,
+    "recommended_clearance": 10,
+    "asset_composition_type": "single",
+    "attribute_barbed_wire": false,
+    "attribute_guard_towers": 4,
+    "attribute_high_perimeter_walls": true,
+    "attribute_security_cameras": 0,
+    "attribute_architectural_style": "fortress",
+    "uid": "bed85d77a9ef46a28554d0c0b37ffe91",
+    "near_synsets": {
+        "stockade.n.01": 0.5324532084389735,
+        "minaret.n.01": 0.5436271501574267,
+        "fortress.n.01": 0.5471978718252516,
+        "casern.n.01": 0.548416726143862,
+        "bastille.n.02": 0.5495261649174406,
+        "prison.n.01": -1000.0,
+        "prison.n.02": -1000.0
+    },
+    "synset": "prison.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bed85d77a9ef46a28554d0c0b37ffe91",
+        "creator_username": "E-tour",
+        "creator_display_name": "E-tour",
+        "creator_profile_url": "https://sketchfab.com/E-tour"
+    },
+    "filename": "std_bed85d77a9ef46a28554d0c0b37ffe91.glb",
+    "length": 36.4834041595459,
+    "width": 33.21409225463867
+}

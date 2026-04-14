@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a classic box-style ambulance with a high-roofed, rectangular rear compartment and a cab-over-engine design. The vehicle is predominantly white with bold red striping and emergency markings, including 'FIRST RESPONDER', 'AMBULANCE', and '911' text along the sides and rear. Blue Star of Life medical symbols are visible on the sides, and the vehicle features a prominent emergency light bar on the roof, as well as additional lights and siren equipment. The front grille is robust, with large side mirrors and a reinforced bumper, while the rear has two large, hinged doors for patient access. The wheels are black with chrome hubcaps, and the side steps facilitate entry into the rear compartment. The overall build suggests a heavy-duty, functional emergency vehicle designed for rapid response and patient transport in urban environments.",
+    "description": "A white and red box-style ambulance with emergency markings, roof light bar, and rear double doors. Features include medical symbols, robust bumpers, and side steps for easy access.",
+    "description_view_0": "Side view showing 'FIRST RESPONDER' and 'AMBULANCE' markings, red diagonal stripe, and blue Star of Life symbol.",
+    "description_view_1": "Rear view displaying two large hinged doors, 'AMBULANCE' text, and emergency contact information.",
+    "description_view_2": "Opposite side view with similar markings, red stripe, and visible emergency light bar on the roof.",
+    "description_view_3": "Front view highlighting the 'AMBULANCE' text above the grille, emergency lights, and large windshield.",
+    "category": "ambulance",
+    "height": 2.6,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.1,
+        0.1,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 9,
+    "movable": true,
+    "required_force": 7000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "wheel",
+        "light bar",
+        "mirror",
+        "step",
+        "siren"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "black",
+        "blue",
+        "silver"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.08,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_emergency_light_bar": true,
+    "attribute_ambulance_signage": "AMBULANCE text, FIRST RESPONDER, 911, blue Star of Life, and emergency contact info in English",
+    "attribute_medical_cross_symbol": true,
+    "attribute_siren": true,
+    "attribute_rear_compartment_doors": "two hinged doors",
+    "uid": "2856dd3c61f940909dced9a5c0379484",
+    "near_synsets": {
+        "ambulance.n.01": 0.5093960541057647,
+        "funny_wagon.n.01": 0.5572621593821974,
+        "ladder_truck.n.01": 0.593132762729604,
+        "fire_engine.n.01": 0.5940119645892797,
+        "rescue_equipment.n.01": 0.5979480836477095
+    },
+    "synset": "ambulance.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2856dd3c61f940909dced9a5c0379484",
+        "creator_username": "DanielZhabotinsky",
+        "creator_display_name": "Daniel Zhabotinsky",
+        "creator_profile_url": "https://sketchfab.com/DanielZhabotinsky"
+    },
+    "filename": "std_2856dd3c61f940909dced9a5c0379484.glb",
+    "length": 5.849075078964233,
+    "width": 2.5354080200195312
+}

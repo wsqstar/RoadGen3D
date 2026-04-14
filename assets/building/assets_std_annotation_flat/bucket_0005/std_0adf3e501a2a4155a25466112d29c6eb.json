@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a large, yellow tower crane commonly used on construction sites for lifting and moving heavy materials. The crane features a tall, lattice-style vertical mast anchored to a wide, stable base, and a long horizontal jib extending outward, supported by a network of trusses. At the end of the jib, a cable and hook system is visible, currently holding a suspended load. The counter-jib, shorter and located opposite the main jib, houses the counterweight and machinery, including a visible operator cabin. The structure is primarily composed of steel, with some concrete elements at the base for stability. The crane's design allows it to rotate and lift loads across a wide radius, making it essential for urban construction projects.",
+    "description": "A tall, yellow tower crane with a lattice mast, long horizontal jib, and suspended hook, designed for heavy lifting on construction sites. Features a counterweight, operator cabin, and stable base.",
+    "description_view_0": "Front view showing the narrow profile of the crane, with the mast and jib aligned and the hook hanging directly below.",
+    "description_view_1": "Side view displaying the full length of the horizontal jib, the suspended load, counter-jib, and operator cabin.",
+    "description_view_2": "Rear view highlighting the counterweight and machinery at the back, with the hook and load visible below the jib.",
+    "description_view_3": "Opposite side view showing the jib, suspended load, and counter-jib, similar to view 1 but from the other side.",
+    "category": "crane",
+    "height": 40,
+    "max_dimension": 60,
+    "materials": [
+        "steel",
+        "concrete",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "operator cabin",
+        "hook",
+        "cable",
+        "counterweight",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.01,
+    "recommended_clearance": 10,
+    "asset_composition_type": "single",
+    "attribute_boom_type": "fixed jib",
+    "attribute_counterweight_presence": true,
+    "attribute_operator_cabin_visibility": true,
+    "attribute_hook_or_lifting_mechanism": "single hook",
+    "attribute_support_structure_design": "fixed base",
+    "uid": "0adf3e501a2a4155a25466112d29c6eb",
+    "near_synsets": {
+        "crane.n.04": 0.4388812224869594,
+        "derrick.n.02": 0.5071610328557956,
+        "stacker_crane.n.01": 0.517493905069374,
+        "lift_capacity.n.01": 0.5200782116370282,
+        "hoist.n.01": 0.5291664643517233,
+        "crane.n.02": -1000.0,
+        "crane.n.01": -1000.0,
+        "crane.n.05": -1000.0,
+        "grus.n.01": -1000.0
+    },
+    "synset": "crane.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/0adf3e501a2a4155a25466112d29c6eb",
+        "creator_username": "theorichard",
+        "creator_display_name": "Th\u00e9o Richard",
+        "creator_profile_url": "https://sketchfab.com/theorichard"
+    },
+    "filename": "std_0adf3e501a2a4155a25466112d29c6eb.glb",
+    "length": 7.32492995262146,
+    "width": 64.7363052368164
+}

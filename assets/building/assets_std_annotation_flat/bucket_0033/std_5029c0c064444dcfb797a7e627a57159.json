@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a large, armored tracked vehicle with a low, angular profile and a long, forward-mounted cannon. The exterior is painted in a light, weathered gray with red markings, including the number '910' and a star insignia on the side. The vehicle features six large road wheels on each side, heavy treads, and cylindrical external fuel tanks mounted along the rear sides. The top surface is detailed with hatches, vents, and an antenna, suggesting communication capabilities. The front is dominated by a sloped glacis plate and a prominent gun mantlet, while the rear has engine grilles and exhaust ports. The overall design is robust, utilitarian, and optimized for off-road and rugged terrain, typical of military self-propelled guns or tank destroyers.",
+    "description": "A large, gray, tracked armored vehicle with a long cannon, six road wheels per side, and red military markings. It features external fuel tanks, hatches, and a sloped, angular design.",
+    "description_view_0": "Front view shows the sloped armor, central cannon, and symmetrical tracks with external fuel tanks visible on both sides.",
+    "description_view_1": "Left side view highlights the six large road wheels, red '910' marking, star insignia, and the full length of the cannon.",
+    "description_view_2": "Rear view displays the engine grilles, exhaust ports, and the cylindrical fuel tanks mounted along the sides.",
+    "description_view_3": "Right side view mirrors the left, showing the wheels, cannon, and red markings, with additional details of the vehicle's upper structure.",
+    "category": "all-terrain vehicle",
+    "height": 2.2,
+    "max_dimension": 6.7,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 160000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "closable",
+        "openable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "wheel",
+        "door",
+        "antenna",
+        "cannon",
+        "fuel tank"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 12,
+    "attribute_tire_tread_pattern": "The visible tread pattern on the tracks is blocky and robust, designed for maximum traction on rough, uneven, or muddy terrain. The pattern is typical of military all-terrain tracked vehicles.",
+    "attribute_suspension_type": "torsion bar",
+    "attribute_presence_of_roll_cage": false,
+    "attribute_handlebar_or_steering_wheel_type": "round steering wheel",
+    "uid": "5029c0c064444dcfb797a7e627a57159",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4752081456959913,
+        "reconnaissance_vehicle.n.01": 0.4775189902320932,
+        "tank.n.01": 0.47881541959097956,
+        "assault_gun.n.02": 0.491525959147732,
+        "armored_vehicle.n.01": 0.502234714027532,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5029c0c064444dcfb797a7e627a57159",
+        "creator_username": "Hsu.Pei.Ge",
+        "creator_display_name": "Basic Hsu",
+        "creator_profile_url": "https://sketchfab.com/Hsu.Pei.Ge"
+    },
+    "filename": "std_5029c0c064444dcfb797a7e627a57159.glb",
+    "length": 4.939568519592285,
+    "width": 2.18548583984375
+}

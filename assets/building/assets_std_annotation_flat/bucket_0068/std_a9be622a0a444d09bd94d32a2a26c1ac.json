@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a heavily armored combat tactical vehicle resembling a main battle tank, featuring a large, centrally mounted turret with a long barrel cannon extending from the front. The hull and turret are covered in thick, sloped armor plating, with additional modular armor panels visible along the sides. The vehicle is painted in a mottled green camouflage pattern, designed to break up its outline. The top of the turret includes a commander's cupola and several hatches, while the rear deck has visible exhaust ports and storage compartments. The vehicle moves on wide, robust tracks, which are partially shielded by side skirts for added protection.",
+    "description": "A heavily armored, tracked combat vehicle with a large turret and long cannon, covered in green camouflage and modular armor panels.",
+    "description_view_0": "Front view shows the sloped glacis plate, central cannon, and turret with cupola and hatches.",
+    "description_view_1": "Left side view highlights the long barrel, side skirts over the tracks, and modular armor panels.",
+    "description_view_2": "Rear view reveals exhaust ports, storage compartments, and the back of the turret.",
+    "description_view_3": "Right side view mirrors the left, showing the tracks, armor, and turret profile.",
+    "category": "combat tactical  vehicle",
+    "height": 2.7,
+    "max_dimension": 9.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 55000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "hatch",
+        "cannon",
+        "cupola",
+        "track",
+        "exhaust port"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted on the turret front; possible secondary mount on the turret roof.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating; modular panels on sides and turret; reinforced front glacis.",
+    "attribute_camouflage_pattern": "Mottled green camouflage with irregular patches and spots.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "a9be622a0a444d09bd94d32a2a26c1ac",
+    "near_synsets": {
+        "tank.n.01": 0.44889855246000826,
+        "military_vehicle.n.01": 0.46718931317269924,
+        "armored_car.n.02": 0.4850149387512579,
+        "armored_vehicle.n.01": 0.4865156532024239,
+        "assault_gun.n.02": 0.49206619058413975,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a9be622a0a444d09bd94d32a2a26c1ac",
+        "creator_username": "flashmustachee",
+        "creator_display_name": "flashmustachee",
+        "creator_profile_url": "https://sketchfab.com/flashmustachee"
+    },
+    "filename": "std_a9be622a0a444d09bd94d32a2a26c1ac.glb",
+    "length": 10.686941146850586,
+    "width": 3.6469621658325195
+}

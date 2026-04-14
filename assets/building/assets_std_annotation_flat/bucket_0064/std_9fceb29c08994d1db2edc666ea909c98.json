@@ -1,0 +1,89 @@
+{
+    "description_long": "This warehouse is a large, rectangular structure with a flat roof and a robust, industrial appearance. The exterior is composed of dark, stone-like panels, giving it a solid and utilitarian look. The front facade features a row of evenly spaced vertical elements, possibly loading bays or reinforced columns, and a band of darker material along the base, which may serve as a protective barrier. The roof is flat and unadorned, with a few small protrusions that could be vents or utility access points. The sides of the building are plain, with minimal decorative features, emphasizing function over form. The overall design suggests a focus on durability and practicality, suitable for storage and logistics operations.",
+    "description": "A large, flat-roofed warehouse with dark stone-like exterior panels and a utilitarian, industrial design. The structure features reinforced vertical elements and a protective base band, emphasizing durability.",
+    "description_view_0": "The front view shows the main facade with vertical elements and a dark base band, highlighting the building's entry or loading area.",
+    "description_view_1": "This view reveals the same facade but with slightly more visible detail on the vertical elements and the protective base, suggesting possible loading bays.",
+    "description_view_2": "The rear or side view displays a plainer surface with fewer vertical features, focusing on the building's solid, uninterrupted wall.",
+    "description_view_3": "This view shows another plain side, similar to view 2, with minimal architectural features and a continuous flat roof.",
+    "category": "warehouse",
+    "height": 8.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "loading bay"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main facade is constructed from dark, stone-like panels with a row of reinforced vertical elements and a continuous dark band at the base, suggesting loading or entry points. The design is minimalistic, with no visible windows or decorative features, focusing on function and durability.",
+    "attribute_loading_dock_presence": true,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is flat and expansive, constructed from the same dark material as the walls, with a few small protrusions that may serve as vents or utility access points. There are no visible skylights or large rooftop equipment.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "9fceb29c08994d1db2edc666ea909c98",
+    "near_synsets": {
+        "warehouse.n.01": 0.5327745455118869,
+        "loft.n.01": 0.535593366160979,
+        "storehouse.n.01": 0.5611759867202059,
+        "ribbed_vault.n.01": 0.563552810604509,
+        "building.n.01": 0.5637094691567065
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9fceb29c08994d1db2edc666ea909c98",
+        "creator_username": "zlmalliance",
+        "creator_display_name": "ZLM Crafter",
+        "creator_profile_url": "https://sketchfab.com/zlmalliance"
+    },
+    "filename": "std_9fceb29c08994d1db2edc666ea909c98.glb",
+    "length": 23.832032203674316,
+    "width": 23.365234375
+}

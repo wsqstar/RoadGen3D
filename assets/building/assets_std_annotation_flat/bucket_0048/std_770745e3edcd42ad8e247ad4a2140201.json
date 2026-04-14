@@ -1,0 +1,113 @@
+{
+    "description_long": "This is a large, industrial-style dumpster constructed primarily from dark green painted metal, featuring a robust, ribbed exterior for added structural strength. The top is fitted with a hinged, slanted lid that spans the entire length, designed to be lifted for depositing waste. The dumpster sits on four sturdy wheels, allowing for mobility, and has reinforced side panels with visible metal handles for maneuvering. There are several functional components, including a prominent cylindrical bar at the base, likely for mechanical lifting by garbage trucks, and side-mounted handles for manual handling. Small warning labels and stickers are affixed to the front, providing safety or usage information. The overall appearance is utilitarian, with a slightly weathered finish, suitable for heavy-duty waste management in urban environments.",
+    "description": "A large, dark green metal dumpster with a ribbed, hinged lid, wheels for mobility, and visible handles and warning labels. Its robust, industrial design is suited for urban waste collection.",
+    "description_view_0": "Front view showing the ribbed lid, main access panel, cylindrical lifting bar, and warning labels.",
+    "description_view_1": "Side view highlighting the slanted, hinged lid, side handle, and two of the wheels.",
+    "description_view_2": "Rear view with the lid partially open, revealing the interior slats and rear warning stickers.",
+    "description_view_3": "Opposite side view showing the other side handle, slanted lid, and wheels.",
+    "category": "dumpster",
+    "height": 1.4,
+    "max_dimension": 2.2,
+    "materials": [
+        "painted_steel",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "handle",
+        "wheel",
+        "lifting_bar"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "gray",
+        "white",
+        "yellow",
+        "orange"
+    ],
+    "colors_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.01,
+        0.01
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "Hinged, slanted single-section metal lid with ribbed reinforcement; no visible locking mechanism.",
+    "attribute_wheel_presence": true,
+    "attribute_handle_design": "Two straight bar handles, one on each side, made of metal and mounted horizontally near the top edge.",
+    "attribute_warning_labels": [
+        {
+            "color": "orange",
+            "shape": "diamond",
+            "content": "warning symbol"
+        },
+        {
+            "color": "white",
+            "shape": "rectangle",
+            "content": "usage/safety information"
+        }
+    ],
+    "attribute_placement_location": "outdoor commercial area, alleyway, or industrial site",
+    "uid": "770745e3edcd42ad8e247ad4a2140201",
+    "near_synsets": {
+        "dumpster.n.01": 0.43854217091518444,
+        "garbage.n.03": 0.5242119135897956,
+        "garbage_truck.n.01": 0.5256492773436496,
+        "recycling_bin.n.01": 0.5319317944321874,
+        "wastepaper_basket.n.01": 0.5539925262771483
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/770745e3edcd42ad8e247ad4a2140201",
+        "creator_username": "athiel",
+        "creator_display_name": "Cyril Limoges Athiel",
+        "creator_profile_url": "https://sketchfab.com/athiel"
+    },
+    "filename": "std_770745e3edcd42ad8e247ad4a2140201.glb",
+    "length": 1.2388566136360168,
+    "width": 1.99264657497406
+}

@@ -1,0 +1,86 @@
+{
+    "description_long": "This object is a rectangular section of sidewalk paved with reddish-brown bricks arranged in a running bond pattern. The bricks are separated by light gray mortar lines, giving the surface a classic, textured appearance. The surface is flat and even, suitable for pedestrian use in urban environments such as city streets, parks, or residential neighborhoods. The brickwork is consistent across the entire area, with no visible curbs, tactile paving, or street furniture present. The edges of the sidewalk are flush, blending seamlessly with the surrounding ground. The overall look is clean and well-maintained, typical of a standard urban sidewalk.",
+    "description": "A flat, rectangular sidewalk paved with reddish-brown bricks and light gray mortar, featuring a classic running bond pattern and flush edges.",
+    "description_view_0": "The sidewalk is seen from a low angle, highlighting the horizontal brick pattern and the even, flat surface.",
+    "description_view_1": "This view emphasizes the length of the sidewalk and the regularity of the brick arrangement, with the pattern appearing more elongated.",
+    "description_view_2": "Similar to view 0, this angle shows the brick pattern and flatness, with the bricks' alignment clearly visible.",
+    "description_view_3": "The sidewalk is viewed from the opposite side, again showing the consistent brickwork and the flush, unobstructed edge.",
+    "category": "sidewalk",
+    "height": 0.08,
+    "max_dimension": 4.0,
+    "materials": [
+        "brick",
+        "mortar",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 600,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "red-brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 15000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": false,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "flush",
+    "attribute_adjacent_street_type": "residential",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "1be9cfa480c5422286e2a7b22c2f3a02",
+    "near_synsets": {
+        "sidewalk.n.01": 0.48500292960132413,
+        "paved_surface.n.01": 0.5190666366054594,
+        "brickwork.n.01": 0.5296259136621059,
+        "brick.n.01": 0.5336542982452281,
+        "row_of_bricks.n.01": 0.5341568677475504
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1be9cfa480c5422286e2a7b22c2f3a02",
+        "creator_username": "Emma.Ryan",
+        "creator_display_name": "Emma Ryan",
+        "creator_profile_url": "https://sketchfab.com/Emma.Ryan"
+    },
+    "filename": "std_1be9cfa480c5422286e2a7b22c2f3a02.glb",
+    "length": 595420.5,
+    "width": 595420.3125
+}

@@ -1,0 +1,100 @@
+{
+    "description_long": "This humanoid robot features a sleek, streamlined design with a predominantly yellow and black color scheme. Its head is round with a single blue circular element on the face, possibly functioning as a sensor or camera, and a distinctive antenna-like protrusion on top. The torso is narrow and tapers into broad, elongated arms and legs, each with smooth, rounded joints and large, flat feet for stability. The back displays mechanical details, including shoulder components and a central spine-like structure. The robot's limbs are segmented, suggesting multiple articulation points for a wide range of motion. The overall appearance is modern and functional, suitable for urban environments where interaction with humans and navigation of complex spaces are required.",
+    "description": "A sleek yellow and black humanoid robot with a round head, blue facial sensor, elongated limbs, and mechanical back details.",
+    "description_view_0": "Front view shows the round head with blue facial sensor, antenna, broad shoulders, and symmetrical elongated arms and legs.",
+    "description_view_1": "Left side view highlights the head's profile, antenna, arm and leg thickness, and visible mechanical shoulder and back details.",
+    "description_view_2": "Rear view reveals the spine-like back structure, mechanical shoulder joints, and the symmetrical design of the arms and legs.",
+    "description_view_3": "Right side view mirrors the left, showing the head's profile, antenna, and the mechanical details on the back and limbs.",
+    "category": "humanoid robot",
+    "height": 1.7,
+    "max_dimension": 0.6,
+    "materials": [
+        "plastic",
+        "metal",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head",
+        "arms",
+        "legs",
+        "antenna",
+        "torso",
+        "feet",
+        "shoulder joints"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "blue"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.18,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms relaxed at the sides, legs straight and parallel, head facing forward, and antenna pointing upward.",
+    "attribute_clothing_style": "Unclothed; exterior consists of integrated yellow and black panels with a smooth, modern finish.",
+    "attribute_facial_features": "Face features a single blue circular element, likely a sensor or camera, with no visible mouth, nose, or expressive features.",
+    "attribute_limb_articulation": "Arms and legs have visible segmented joints at shoulders, elbows, hips, and knees, suggesting hinge or ball joints for flexible movement; hands and feet are simple and lack detailed fingers or toes.",
+    "attribute_presence_of_sensors": "Single blue circular sensor or camera on the face; none visible elsewhere.",
+    "uid": "6ef778b5c07f4b29b1d4fa1cf391e86f",
+    "near_synsets": {
+        "android.n.01": 0.5442886825650813,
+        "robotics_equipment.n.01": 0.5576225960756691,
+        "cyborg.n.01": 0.5579206506388165,
+        "machine.n.02": 0.5772701001787004,
+        "automaton.n.02": 0.5803386060193342
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6ef778b5c07f4b29b1d4fa1cf391e86f",
+        "creator_username": "jobog",
+        "creator_display_name": "Jo Kawaguchi",
+        "creator_profile_url": "https://sketchfab.com/jobog"
+    },
+    "filename": "std_6ef778b5c07f4b29b1d4fa1cf391e86f.glb",
+    "length": 0.36144453287124634,
+    "width": 0.7779372930526733
+}

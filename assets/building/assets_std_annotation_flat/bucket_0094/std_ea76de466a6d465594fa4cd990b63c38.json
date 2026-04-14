@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a compact, modern dam structure with a light beige, wood-textured surface and a smooth, curved central section resembling a half-pipe. The dam is bordered on both sides by raised platforms with sturdy metal railings, providing safety barriers along the top edge. The front face features a small, rectangular sign labeled 'EXIT', while the rear face displays a blue paint splatter and a large hand gesture graphic, adding urban character. The dam's main body appears to be constructed from engineered wood or composite panels, with the railings made of metal. The structure is solid and robust, designed to prevent passage and support weight on its upper surfaces. There are no visible water channels, spillways, or control gates integrated into the design.",
+    "description": "A compact, modern dam with a smooth, curved wood-textured surface, metal railings, and urban-style graphics on its faces. The structure is solid and robust, with raised platforms and safety barriers.",
+    "description_view_0": "Front view showing the dam's curved surface, metal railings, and a central 'EXIT' sign.",
+    "description_view_1": "Top-down view highlighting the smooth, half-pipe shape and the raised platforms with railings on both sides.",
+    "description_view_2": "Rear view featuring a blue paint splatter on the face and the same curved structure with railings.",
+    "description_view_3": "Opposite top-down view showing a large hand gesture graphic on the left side and the overall symmetry of the platforms and railings.",
+    "category": "dam",
+    "height": 2.0,
+    "max_dimension": 8.0,
+    "materials": [
+        "engineered_wood",
+        "metal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportable",
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "railing",
+        "platform"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "gray",
+        "blue",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_spillway_presence": false,
+    "attribute_control_gates": [
+        "none"
+    ],
+    "attribute_warning_signage": true,
+    "attribute_water_outflow": "none",
+    "attribute_perimeter_fencing": true,
+    "uid": "ea76de466a6d465594fa4cd990b63c38",
+    "near_synsets": {
+        "dam.n.01": 0.5165971014290475,
+        "milldam.n.01": 0.5626347431096713,
+        "weir.n.01": 0.5777654007583338,
+        "aqueduct.n.01": 0.5809014392359815,
+        "flashboard.n.01": 0.5853408412395602,
+        "decameter.n.01": -1000.0,
+        "dam.n.03": -1000.0
+    },
+    "synset": "dam.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ea76de466a6d465594fa4cd990b63c38",
+        "creator_username": "poiuyt0418",
+        "creator_display_name": "poiuyt0418",
+        "creator_profile_url": "https://sketchfab.com/poiuyt0418"
+    },
+    "filename": "std_ea76de466a6d465594fa4cd990b63c38.glb",
+    "length": 6.532832145690918,
+    "width": 3.411611557006836
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This combat tactical vehicle features a low, angular profile with a predominantly olive green exterior accented by dark gray and blue highlights. The front is sharply contoured, resembling a wedge or prow, with two blue slits suggesting reinforced vision ports or sensor arrays. The sides are heavily armored with layered, sloped panels, providing both protection and deflection against projectiles. A prominent, elongated barrel extends from the front, indicating a primary weapon system, while the rear is compact and shielded. The vehicle's design suggests a focus on stealth and survivability, with minimal exposed components and a streamlined silhouette.",
+    "description": "A low-profile, angular combat tactical vehicle with olive green armor, blue vision ports, and a prominent front-mounted weapon barrel.",
+    "description_view_0": "Front view shows the wedge-shaped prow, blue vision ports, and the central weapon barrel.",
+    "description_view_1": "Left side view highlights the sloped armor panels, elongated barrel, and compact rear section.",
+    "description_view_2": "Rear view reveals the shielded back and the tapering of the vehicle's body.",
+    "description_view_3": "Right side view mirrors the left, showing the same armor layering and weapon barrel.",
+    "category": "combat tactical  vehicle",
+    "height": 1.5,
+    "max_dimension": 5.0,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 25000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "weapon barrel",
+        "hatch",
+        "vision port"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "dark gray",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible weapon mount: a central, forward-facing barrel integrated into the front hull.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor panels on the front and sides; no visible modular or reactive elements.",
+    "attribute_camouflage_pattern": "Solid olive green with dark gray and blue accents; no distinct camouflage pattern.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "2bfd725cd9c34e1985140e313a44dfc9",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.5103692810470688,
+        "reconnaissance_vehicle.n.01": 0.5269602851537866,
+        "weapons_carrier.n.01": 0.527979136976547,
+        "assault_gun.n.02": 0.5430241977009236,
+        "armored_car.n.02": 0.5433684033790113,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2bfd725cd9c34e1985140e313a44dfc9",
+        "creator_username": "pravda2033",
+        "creator_display_name": "Pravda",
+        "creator_profile_url": "https://sketchfab.com/pravda2033"
+    },
+    "filename": "std_2bfd725cd9c34e1985140e313a44dfc9.glb",
+    "length": 7.037482976913452,
+    "width": 2.551241397857666
+}

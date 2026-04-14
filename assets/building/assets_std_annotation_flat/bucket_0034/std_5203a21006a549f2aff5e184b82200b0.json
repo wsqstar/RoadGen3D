@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a biplane-style airplane with a distinctive open cockpit located near the front of the fuselage. The wings are arranged in a staggered biplane configuration, with the upper wing mounted above the fuselage and the lower wing attached below, both connected by struts. The tail section features a conventional design with a single vertical stabilizer and horizontal stabilizers extending from either side. The landing gear appears to be fixed and consists of two main wheels and a tail skid. The surface of the airplane is primarily metallic with some painted sections, giving it a weathered, utilitarian appearance. The overall structure is lightweight, with visible framework and spars, suggesting a classic or vintage aircraft design.",
+    "description": "A vintage biplane with an open cockpit, staggered wings, and a conventional tail, featuring a metallic and weathered finish.",
+    "description_view_0": "Front-left view showing the open cockpit, upper and lower wings, and the forward section of the fuselage.",
+    "description_view_1": "Side view highlighting the length of the fuselage, the staggered biplane wings, and the tail assembly.",
+    "description_view_2": "Rear-right view focusing on the tail section, horizontal stabilizers, and the back of the wings.",
+    "description_view_3": "Side view from the opposite direction, displaying the landing gear, wing struts, and the rear fuselage.",
+    "category": "airplane",
+    "height": 2.5,
+    "max_dimension": 9.0,
+    "materials": [
+        "aluminum",
+        "steel",
+        "glass",
+        "rubber",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.05,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 9500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit",
+        "propeller",
+        "landing gear",
+        "control stick",
+        "rudder",
+        "ailerons",
+        "elevator"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Biplane configuration with staggered, straight wings; no visible winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "Single piston engine mounted at the nose, with a visible propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Fixed taildragger landing gear with two main wheels and a tail skid.",
+    "attribute_cockpit_placement": "Forward-mounted, open cockpit with a single seat and minimal canopy structure.",
+    "uid": "5203a21006a549f2aff5e184b82200b0",
+    "near_synsets": {
+        "biplane.n.01": 0.4698217680391476,
+        "aircraft.n.01": 0.5167923778474645,
+        "monoplane.n.01": 0.5173712212433221,
+        "airplane.n.01": 0.5287337823787972,
+        "propeller_plane.n.01": 0.5530532046153518
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/5203a21006a549f2aff5e184b82200b0",
+        "creator_username": "feelab",
+        "creator_display_name": "feelab",
+        "creator_profile_url": "https://sketchfab.com/feelab"
+    },
+    "filename": "std_5203a21006a549f2aff5e184b82200b0.glb",
+    "length": 19.7908296585083,
+    "width": 11.738479614257812
+}

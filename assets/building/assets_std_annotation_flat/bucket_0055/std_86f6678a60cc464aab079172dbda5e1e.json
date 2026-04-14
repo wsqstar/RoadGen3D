@@ -1,0 +1,100 @@
+{
+    "description_long": "This ship features a robust, elongated hull with angular surfaces and a pronounced, armored bow. The superstructure is compact and integrated into the forward section, with multiple protrusions and what appear to be sensor or weapon mounts along the sides. The stern is equipped with three large, circular thrusters, suggesting a design optimized for high propulsion. The deck is relatively flat with raised sections and several small fixtures, possibly for navigation or defense. The overall color scheme is a dark gray with subtle paneling and detailing, giving it a militaristic or industrial appearance. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A dark gray, angular ship with a compact superstructure, multiple side-mounted fixtures, and three large rear thrusters. The hull is robust and armored, with a flat deck and detailed paneling.",
+    "description_view_0": "The ship is seen from the bow, showing its narrow, armored front and symmetrical side protrusions.",
+    "description_view_1": "A side profile reveals the ship's elongated hull, compact superstructure, and various fixtures along the length.",
+    "description_view_2": "The stern view highlights three large, circular thrusters and the rounded rear section.",
+    "description_view_3": "The opposite side profile mirrors the first, with visible surface details and side-mounted equipment.",
+    "category": "ship",
+    "height": 7.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "steel",
+        "glass",
+        "composite",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "control panel",
+        "thruster",
+        "turret"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "light gray",
+        "blue"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single, elongated displacement type with angular, armored surfaces and a pronounced, reinforced bow. The stern is rounded and houses three large thrusters. There are multiple side-mounted protrusions, likely for equipment or defense.",
+    "attribute_superstructure_layout": "The superstructure is compact and integrated into the forward section of the hull, with several raised sections and side-mounted fixtures. There are no visible separate decks or towers, but the design suggests a functional, armored bridge area.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "turret",
+        "antenna",
+        "thruster"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "86f6678a60cc464aab079172dbda5e1e",
+    "near_synsets": {
+        "hull.n.06": 0.5131365009209311,
+        "three-decker.n.03": 0.5243523116289268,
+        "three-decker.n.02": 0.5290734381298916,
+        "surface_ship.n.01": 0.5355812117419856,
+        "superstructure.n.01": 0.5382906643353854,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/86f6678a60cc464aab079172dbda5e1e",
+        "creator_username": "flannelandfilm",
+        "creator_display_name": "flannelandfilm",
+        "creator_profile_url": "https://sketchfab.com/flannelandfilm"
+    },
+    "filename": "std_86f6678a60cc464aab079172dbda5e1e.glb",
+    "length": 26.665252685546875,
+    "width": 5.721052646636963
+}

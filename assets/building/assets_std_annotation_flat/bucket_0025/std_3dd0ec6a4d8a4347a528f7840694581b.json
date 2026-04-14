@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a pump-action shotgun with a long, cylindrical barrel and a full wooden stock. The receiver and barrel are metallic, showing a slightly worn, matte finish, while the fore-end and stock are made of dark-stained wood with visible grain patterns. The fore-end features a ribbed texture for grip, and the trigger guard is rounded and metallic, enclosing a single trigger. The shotgun's action mechanism is clearly pump-action, with the pump located beneath the barrel. The overall design is utilitarian, with no visible embellishments or tactical attachments, making it suitable for practical use in urban or rural environments.",
+    "description": "A pump-action shotgun with a long metal barrel, ribbed wooden fore-end, and a full wooden stock. The finish is matte and utilitarian, with a rounded metallic trigger guard.",
+    "description_view_0": "The shotgun is viewed directly from the muzzle end, showing the circular barrel opening and the narrow profile of the fore-end and stock.",
+    "description_view_1": "A full side view reveals the long barrel, ribbed wooden fore-end, metallic receiver, and full wooden stock, with all major components clearly visible.",
+    "description_view_2": "Viewed from the butt end, the shotgun's stock is prominent, and the barrel appears as a thin line extending away from the viewer.",
+    "description_view_3": "The opposite side view mirrors view 1, displaying the same features: long barrel, ribbed fore-end, metallic receiver, and full wooden stock.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.3,
+        0.03,
+        0.02
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "pumpable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "fore-end",
+        "barrel",
+        "trigger",
+        "trigger guard",
+        "pump",
+        "receiver"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "gray",
+        "olive green"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, long cylindrical barrel with no visible ribbing or venting",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "rounded metallic trigger guard of medium size, enclosing the trigger with no visible finger grooves or reinforcement",
+    "uid": "3dd0ec6a4d8a4347a528f7840694581b",
+    "near_synsets": {
+        "pump_action.n.01": 0.4729449431132004,
+        "sawed-off_shotgun.n.01": 0.5073359171301294,
+        "shotgun.n.01": 0.5228159542759643,
+        "gas_gun.n.01": 0.5454492859785983,
+        "shotgun_shell.n.01": 0.5472990380203397
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3dd0ec6a4d8a4347a528f7840694581b",
+        "creator_username": "jamiemcfarlane",
+        "creator_display_name": "Jamie McFarlane",
+        "creator_profile_url": "https://sketchfab.com/jamiemcfarlane"
+    },
+    "filename": "std_3dd0ec6a4d8a4347a528f7840694581b.glb",
+    "length": 0.9642220139503479,
+    "width": 0.035472480580210686
+}

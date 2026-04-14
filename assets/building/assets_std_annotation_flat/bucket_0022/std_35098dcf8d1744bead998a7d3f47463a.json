@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a concrete jersey barrier, commonly used for traffic control and safety in urban environments. Its surface is painted with three horizontal bands: a weathered white top, a blue middle, and a red bottom, reminiscent of the Russian flag. The concrete exterior shows signs of dirt, grime, and minor surface wear, giving it a realistic, used appearance. The barrier has a trapezoidal profile with a wide, stable base and a narrower top, designed to deflect vehicles and prevent crossing. The sides are straight and the ends are flat, with no visible handles or attachment points. There are no reflective strips, warning signs, or graffiti present, but the paint is faded and the surface is rough.",
+    "description": "A concrete jersey barrier with weathered white, blue, and red horizontal stripes, showing dirt and minor wear. The surface is rough and painted, with no visible markings or reflective strips.",
+    "description_view_0": "Narrow end view showing the trapezoidal profile and visible color bands on the base.",
+    "description_view_1": "Side view displaying the full length of the barrier with white, blue, and red horizontal stripes and visible surface grime.",
+    "description_view_2": "Opposite narrow end view, similar to view 0, with the same color bands and rough texture.",
+    "description_view_3": "Opposite side view, showing the same color bands and weathered surface as view 1.",
+    "category": "jersey barrier",
+    "height": 0.8,
+    "max_dimension": 2.5,
+    "materials": [
+        "concrete",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.04,
+        0.01
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 17650,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "sittable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.2,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_presence_of_reflective_strips": false,
+    "attribute_presence_of_graffiti_or_markings": false,
+    "attribute_placement_relative_to_road_or_sidewalk": "median",
+    "attribute_presence_of_warning_signs_or_symbols": false,
+    "attribute_visible_damage_or_wear": "minor scuffs",
+    "uid": "35098dcf8d1744bead998a7d3f47463a",
+    "near_synsets": {
+        "jersey.n.04": 0.56901205777549,
+        "barrier.n.03": 0.5741327048203607,
+        "barrier.n.01": 0.5744139930221949,
+        "crash_barrier.n.01": 0.5776208569830493,
+        "color_bar.n.01": 0.5810048251919956,
+        "jersey.n.05": -1000.0,
+        "barrier.n.02": -1000.0,
+        "jersey.n.03": -1000.0,
+        "new_jersey.n.01": -1000.0,
+        "jersey.n.02": -1000.0
+    },
+    "synset": "crash_barrier.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/35098dcf8d1744bead998a7d3f47463a",
+        "creator_username": "eliorbe",
+        "creator_display_name": "eliorbe",
+        "creator_profile_url": "https://sketchfab.com/eliorbe"
+    },
+    "filename": "std_35098dcf8d1744bead998a7d3f47463a.glb",
+    "length": 0.3329257369041443,
+    "width": 1.8728183507919312
+}

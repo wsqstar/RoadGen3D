@@ -1,0 +1,116 @@
+{
+    "description_long": "This bus shelter consists of two distinct shelter structures placed side by side, each with a different roof style. The left shelter features a curved, opaque roof with a grid of colored panels marked with numbers, supported by metal framing and partially enclosed by side and back panels. The right shelter has a transparent, arched roof made of glass or acrylic panels, also supported by a metal frame, and is more open with clear side and back panels. Both shelters are accompanied by urban street elements such as a fire hydrant, a small utility box, and a colorful post, which may serve as a route marker or information post. The shelters are designed to provide protection from the elements for waiting passengers, with ample standing room and possible seating inside. The materials used are primarily metal, glass or acrylic, and plastic, giving the shelters a modern urban appearance.",
+    "description": "A pair of modern bus shelters, one with a colored opaque curved roof and the other with a transparent arched roof, both supported by metal frames and accompanied by urban street fixtures.",
+    "description_view_0": "Top-down view showing the distinct roof styles and the arrangement of the two shelters side by side, with visible street fixtures nearby.",
+    "description_view_1": "Frontal view highlighting the open entryways, the colored panel roof on the left shelter, and the transparent roof on the right shelter, as well as the presence of a fire hydrant and utility post.",
+    "description_view_2": "Rear view emphasizing the back panels of both shelters, the transparency of the right shelter's roof, and the colored grid pattern on the left shelter's roof.",
+    "description_view_3": "Opposite frontal view showing the shelters' open sides, the clear structure of the right shelter, and the colored roof of the left shelter, with street fixtures in the foreground.",
+    "category": "bus shelter",
+    "height": 2.5,
+    "max_dimension": 5.0,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.1
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "leanable",
+        "shelterable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench",
+        "advertisement panel",
+        "side panel",
+        "roof",
+        "sign post"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "transparent",
+        "red",
+        "yellow",
+        "green",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.1,
+        0.05,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "smooth",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_roof_type": "curved opaque and arched transparent",
+    "attribute_seating_presence": true,
+    "attribute_advertisement_panel": true,
+    "attribute_shelter_enclosure_level": "partially enclosed",
+    "attribute_signage": [
+        "route sign",
+        "stop name"
+    ],
+    "uid": "d34c76987fdd442c97449ed098d402a6",
+    "near_synsets": {
+        "shelter.n.02": 0.5447161881211846,
+        "shuttle_bus.n.01": 0.5556989001107338,
+        "bus_stop.n.01": 0.5613361066907849,
+        "shelter.n.01": 0.5628954944575826,
+        "porte-cochere.n.02": 0.569430984172476,
+        "bus.n.01": -1000.0,
+        "tax_shelter.n.01": -1000.0,
+        "protection.n.04": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "bus.n.04": -1000.0,
+        "shelter.n.05": -1000.0,
+        "busbar.n.01": -1000.0
+    },
+    "synset": "shelter.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d34c76987fdd442c97449ed098d402a6",
+        "creator_username": "KoteTheCat",
+        "creator_display_name": "KoteTheCat",
+        "creator_profile_url": "https://sketchfab.com/KoteTheCat"
+    },
+    "filename": "std_d34c76987fdd442c97449ed098d402a6.glb",
+    "length": 2.6769771575927734,
+    "width": 9.910088539123535
+}

@@ -1,0 +1,94 @@
+{
+    "description_long": "This warehouse is a large, rectangular industrial building with a flat, dark-colored roof and light gray exterior walls. The structure consists of two main connected volumes, with the larger section featuring a series of evenly spaced windows and loading bay doors along its facade. The smaller attached section also has multiple windows and a set of garage-style doors, suggesting dedicated access points for vehicles or goods. The building sits on a broad, paved lot, providing ample space for maneuvering trucks and storing materials. The exterior is utilitarian, with minimal decorative elements, focusing on functionality and accessibility. The overall design is typical of modern warehouses found in urban industrial zones.",
+    "description": "A large, light gray warehouse with a flat dark roof, multiple windows, and loading bay doors, set on a wide paved lot. The structure is functional and industrial, with two connected building volumes.",
+    "description_view_0": "Front view showing the main facade with multiple windows and several loading bay doors, as well as the paved lot in front.",
+    "description_view_1": "Side view highlighting the length of the building, the connection between the two volumes, and rows of windows along the side.",
+    "description_view_2": "Top-down view displaying the flat, dark roof and the overall rectangular footprint of the warehouse.",
+    "description_view_3": "Rear angled view showing the back and side of the building, with additional windows and garage-style doors visible.",
+    "category": "warehouse",
+    "height": 8.0,
+    "max_dimension": 45.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "glass",
+        "asphalt",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.2,
+        0.05,
+        0.05,
+        0.15
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "loading bay door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "dark gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.25,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 6.0,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main facade features a series of evenly spaced rectangular windows and multiple large loading bay doors, all set within smooth, light gray concrete walls. The design is minimalistic, with a focus on accessibility and function, and lacks decorative elements.",
+    "attribute_loading_dock_presence": true,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is flat and dark-colored, constructed from what appears to be metal or membrane material, with no visible skylights or rooftop equipment. Its clean, unbroken surface emphasizes the utilitarian nature of the building.",
+    "attribute_architectural_style": "modern industrial",
+    "uid": "88ad0e1decc04a1dbb9cd08d3dee66fa",
+    "near_synsets": {
+        "warehouse.n.01": 0.5185097245310039,
+        "loft.n.01": 0.5284447573796204,
+        "farm_building.n.01": 0.5642024810374641,
+        "storehouse.n.01": 0.5663416891461752,
+        "storage_space.n.01": 0.5714811792901401
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/88ad0e1decc04a1dbb9cd08d3dee66fa",
+        "creator_username": "ghkqi",
+        "creator_display_name": "ghkqi",
+        "creator_profile_url": "https://sketchfab.com/ghkqi"
+    },
+    "filename": "std_88ad0e1decc04a1dbb9cd08d3dee66fa.glb",
+    "length": 45.42770004272461,
+    "width": 65.1326904296875
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a large, semi-circular awning structure with a prominent, curved roof canopy made of a light-colored, likely weather-resistant material. The awning shelters a complex interior featuring yellow safety railings, industrial equipment, and a small vehicle, suggesting it is designed for utility or industrial use. The support structure consists of sturdy metal posts and beams, providing stability and elevating the canopy above the ground. The open sides allow for easy access and ventilation, while the interior layout includes platforms, workstations, and storage areas. The ground beneath the awning is a flat, light green surface, possibly simulating grass or a synthetic material. The overall design is utilitarian, prioritizing function and protection from the elements for both people and equipment.",
+    "description": "A large, curved-roof awning with metal supports, yellow railings, and an open-sided industrial workspace beneath. The structure shelters equipment and a small vehicle on a flat, green base.",
+    "description_view_0": "Front view showing the open entrance, interior platforms, yellow railings, and a small vehicle parked just outside.",
+    "description_view_1": "Side view highlighting the extended canopy, visible workstations, and the vehicle with additional equipment stored nearby.",
+    "description_view_2": "Rear oblique view revealing the depth of the interior, arrangement of platforms, and the open, accessible layout.",
+    "description_view_3": "Back view focusing on the curved canopy and the structural supports, with less visibility of the interior details.",
+    "category": "awning",
+    "height": 4.0,
+    "max_dimension": 10.0,
+    "materials": [
+        "metal",
+        "fabric",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 2500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shelter",
+        "protectable",
+        "storable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "gate",
+        "railings",
+        "platforms",
+        "vehicle"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "white",
+        "gray",
+        "yellow",
+        "green"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_mounting_location": "freestanding on a flat ground surface",
+    "attribute_canopy_pattern": "solid color",
+    "attribute_edge_trim_style": "straight",
+    "attribute_branding_or_signage": "none",
+    "attribute_support_structure_type": "fixed frame with posts and beams",
+    "uid": "e59364613a85426ea2ce4ce5d6b4b5b7",
+    "near_synsets": {
+        "awning.n.01": 0.5219814162781022,
+        "umbrella_tent.n.01": 0.5268966192478692,
+        "canopy.n.03": 0.540071427122609,
+        "roof.n.02": 0.5478462826775169,
+        "umbrella.n.01": 0.5525826717217196
+    },
+    "synset": "awning.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e59364613a85426ea2ce4ce5d6b4b5b7",
+        "creator_username": "vipavaice",
+        "creator_display_name": "vipavaice",
+        "creator_profile_url": "https://sketchfab.com/vipavaice"
+    },
+    "filename": "std_e59364613a85426ea2ce4ce5d6b4b5b7.glb",
+    "length": 7.994450330734253,
+    "width": 8.770071506500244
+}

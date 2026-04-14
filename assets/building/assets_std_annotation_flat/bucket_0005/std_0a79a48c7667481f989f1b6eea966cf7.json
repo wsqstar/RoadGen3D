@@ -1,0 +1,103 @@
+{
+    "description_long": "This object consists of a cluster of large, irregularly shaped, dark green and purple masses resembling boulders or artificial rock formations, with a small, vertical metallic tower structure mounted near the center. The tower features a visible ladder and a platform, suggesting access for maintenance. Around the base of the tower, there are several cylindrical and boxy components, likely representing electrical equipment such as transformers or insulators. A patch of blue, semi-transparent texture simulates water or electrical discharge, adding a dynamic element to the scene. The overall form is low and sprawling, with the metallic tower rising above the main mass. The materials appear to be a combination of painted metal, concrete, and possibly composite plastics.",
+    "description": "A sprawling cluster of dark green and purple boulder-like forms with a small metallic tower, ladder, and electrical equipment, accented by a blue, water-like patch.",
+    "description_view_0": "The front view highlights the metallic tower with its ladder and platform, set against the large purple and green masses and the blue patch in the foreground.",
+    "description_view_1": "From this angle, the blue patch is more prominent, and the green masses appear to envelop the structure, partially obscuring the tower.",
+    "description_view_2": "This view shows the rear of the object, with the tower and attached equipment visible atop the green and purple forms, and the blue patch receding.",
+    "description_view_3": "The side view emphasizes the layered arrangement of the green and purple masses, with the tower and blue patch visible but less central.",
+    "category": "transformer tower",
+    "height": 2.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "painted metal",
+        "concrete",
+        "composite plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 5,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "climbable",
+        "inspectable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "ladder",
+        "platform",
+        "electrical box",
+        "insulator"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "purple",
+        "blue",
+        "gray",
+        "metallic"
+    ],
+    "colors_composition": [
+        0.35,
+        0.35,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_number_of_insulator_stacks": 1,
+    "attribute_arrangement_of_crossarms": "A single horizontal crossarm is mounted near the top of the tower, supporting attached equipment and power lines.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "transformer",
+        "insulator"
+    ],
+    "attribute_configuration_of_attached_power_lines": "A single set of power lines is attached in a parallel configuration, likely representing a single-phase or three-phase circuit routed horizontally from the crossarm.",
+    "uid": "0a79a48c7667481f989f1b6eea966cf7",
+    "near_synsets": {
+        "pylon.n.02": 0.5709294670207213,
+        "cascade_transformer.n.01": 0.5744521809315555,
+        "water_tower.n.01": 0.5777137308487328,
+        "transformer.n.01": 0.5781712586599057,
+        "substation.n.01": 0.5888892206478032,
+        "column.n.04": -1000.0,
+        "tower.n.01": -1000.0,
+        "tugboat.n.01": -1000.0
+    },
+    "synset": "transformer.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/0a79a48c7667481f989f1b6eea966cf7",
+        "creator_username": "pallavidave",
+        "creator_display_name": "Pallavi Dav\u00e9",
+        "creator_profile_url": "https://sketchfab.com/pallavidave"
+    },
+    "filename": "std_0a79a48c7667481f989f1b6eea966cf7.glb",
+    "length": 11.222169876098633,
+    "width": 10.403634071350098
+}

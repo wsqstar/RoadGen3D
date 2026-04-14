@@ -1,0 +1,105 @@
+{
+    "description_long": "This is an above-ground, octagonal jacuzzi with a wooden exterior paneling and a bright blue interior water basin. The jacuzzi features a set of wooden steps attached to one side, providing easy access to the water, and a metal ladder inside for additional support. On one side, there is a visible orange filtration or pump unit connected to the jacuzzi, indicating a functional water circulation system. The water inside appears clean and nearly fills the basin, with the surface reflecting light. The structure is elevated on small concrete pads, ensuring stability and separation from the ground. The overall design is robust and suitable for outdoor urban environments such as backyards, parks, or communal recreation areas.",
+    "description": "An octagonal, above-ground wooden jacuzzi with blue water, attached steps, and a visible filtration unit. The jacuzzi is nearly full and designed for outdoor use.",
+    "description_view_0": "Front view showing the wooden steps leading up to the jacuzzi and the metal ladder inside.",
+    "description_view_1": "Side view highlighting the wooden steps, the metal ladder, and the orange filtration unit attached to the side.",
+    "description_view_2": "Rear angled view focusing on the filtration unit and the octagonal wooden structure, with the water surface visible.",
+    "description_view_3": "Opposite side view showing the metal ladder and the filtration unit, with no steps visible from this angle.",
+    "category": "jacuzzi",
+    "height": 1.2,
+    "max_dimension": 3.0,
+    "materials": [
+        "wood",
+        "metal",
+        "plastic",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.15,
+        0.1,
+        0.2,
+        0.05
+    ],
+    "mass": 800,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "sittable",
+        "graspable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "steps",
+        "ladder",
+        "filtration unit"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "blue",
+        "silver",
+        "orange",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.3,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 10000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_jets": [],
+    "attribute_control_panel": "none visible",
+    "attribute_water_level": "nearly full, water level close to the top edge",
+    "attribute_cover": false,
+    "attribute_steps": [
+        {
+            "location": "front",
+            "number_of_steps": 3,
+            "material": "wood"
+        }
+    ],
+    "uid": "1ac5f841d8d742988363b8bb16f7952c",
+    "near_synsets": {
+        "hot_tub.n.01": 0.5352601433720664,
+        "bath_water.n.01": 0.5717773887936214,
+        "bathtub.n.01": 0.5861936030845192,
+        "pump_room.n.01": 0.590599747231911,
+        "swimming_pool.n.01": 0.5962734331982037
+    },
+    "synset": "hot_tub.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/1ac5f841d8d742988363b8bb16f7952c",
+        "creator_username": "trzyde.com",
+        "creator_display_name": "trzyde.com",
+        "creator_profile_url": "https://sketchfab.com/trzyde.com"
+    },
+    "filename": "std_1ac5f841d8d742988363b8bb16f7952c.glb",
+    "length": 5.073911428451538,
+    "width": 4.0174102783203125
+}

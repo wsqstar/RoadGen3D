@@ -1,0 +1,88 @@
+{
+    "description_long": "This object is a cylindrical, red postbox with a domed top and a slightly flared base, reminiscent of traditional British or Japanese street postboxes. The front features a horizontal mail slot labeled 'POST' in white, with a rectangular panel below that may represent a collection times or access panel. The surface is smooth but shows signs of wear, with some scuff marks and chipped paint, suggesting it is made of ceramic or painted metal. The rear and sides are plain, lacking any additional features or openings. The postbox is compact and likely intended for tabletop or decorative use rather than full-scale street deployment. Its overall form is simple, with minimal ornamentation and a utilitarian design.",
+    "description": "A compact, cylindrical red postbox with a domed top, front mail slot labeled 'POST', and a smooth, slightly worn surface.",
+    "description_view_0": "Front view showing the mail slot labeled 'POST' and a rectangular panel below it.",
+    "description_view_1": "Side view revealing the smooth, featureless curvature of the postbox with the front slot and panel partially visible.",
+    "description_view_2": "Rear view displaying a plain, unadorned surface with no openings or panels.",
+    "description_view_3": "Angled rear-side view showing the rounded back and a glimpse of the front protruding panel.",
+    "category": "postbox",
+    "height": 0.22,
+    "max_dimension": 0.15,
+    "materials": [
+        "ceramic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 1.2,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "insertable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "mail slot",
+        "front panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_mail_slot_location": "centered on the front face near the top",
+    "attribute_collection_times_panel": "rectangular panel directly below the mail slot on the front",
+    "attribute_postal_service_logo": "no visible logo, only the word 'POST' in white above the slot",
+    "attribute_door_or_access_panel": "rectangular panel on the front below the mail slot, likely an access panel",
+    "attribute_posting_aperture_design": "horizontal rectangular slot with slightly rounded edges",
+    "uid": "cbd6932aac874d40a340660dfdcfe64d",
+    "near_synsets": {
+        "postbox.n.01": 0.42204988150597555,
+        "pillar_box.n.01": 0.4725963796393905,
+        "post-office_box.n.01": 0.48287325827739114,
+        "mailbox.n.01": 0.5047839407755651,
+        "post-office_box_number.n.01": 0.5290654627017447
+    },
+    "synset": "postbox.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cbd6932aac874d40a340660dfdcfe64d",
+        "creator_username": "i-maker",
+        "creator_display_name": "i-maker",
+        "creator_profile_url": "https://sketchfab.com/i-maker"
+    },
+    "filename": "std_cbd6932aac874d40a340660dfdcfe64d.glb",
+    "length": 0.14739293605089188,
+    "width": 0.14054667949676514
+}

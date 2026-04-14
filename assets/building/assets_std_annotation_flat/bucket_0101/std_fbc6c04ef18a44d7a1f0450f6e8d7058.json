@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a two-story urban bakery with a weathered brick facade, green-painted lower storefront, and a blue-and-white striped awning above the entrance. The building features a prominent water tower on the roof, supported by a wooden frame, and a mix of architectural details such as a decorative cornice and a partially exposed brick wall. The ground floor has a recessed entryway, a small sign reading 'Bakery', and a streetlamp and mailbox nearby, suggesting a city sidewalk setting. The side and rear walls are mostly plain red brick, with some areas of peeling paint and a green service door at the back. The sidewalk in front is detailed with a fire hydrant, traffic cone, and curb, enhancing the urban context. The overall appearance is slightly run-down, with visible wear and tear, evoking a classic, older city neighborhood.",
+    "description": "A weathered two-story urban bakery with a green storefront, blue-and-white awning, rooftop water tower, and detailed city sidewalk elements.",
+    "description_view_0": "Front view showing the green storefront, blue-and-white awning, bakery sign, main entrance, and street details like a lamp, mailbox, and fire hydrant.",
+    "description_view_1": "Left side view revealing the red brick wall with peeling paint, green service door, and side alley details including a trash bin and traffic cone.",
+    "description_view_2": "Rear view dominated by a plain red brick wall, the water tower above, and minimal street detail, emphasizing the building's back.",
+    "description_view_3": "Right side view with a large patch of exposed brick, green service door, and a clear look at the sidewalk and streetlamp.",
+    "category": "bakery",
+    "height": 8.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "brick",
+        "concrete",
+        "wood",
+        "metal",
+        "glass",
+        "fabric",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.2,
+        0.12,
+        0.1,
+        0.05,
+        0.03,
+        0.01,
+        0.04
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "awning",
+        "sign",
+        "service door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "green",
+        "blue",
+        "white",
+        "black",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.55,
+        0.18,
+        0.08,
+        0.06,
+        0.05,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_storefront_signage": "A small rectangular sign with the word 'Bakery' in white text is mounted above the storefront, to the right of the awning. The sign has a simple, classic style and is bordered in a muted color, blending with the green facade.",
+    "attribute_display_window_with_baked_goods": "none",
+    "attribute_awning_with_bakery_branding": "A blue-and-white striped fabric awning is present above the main entrance. The awning is rectangular and extends outward, but there is no visible bakery branding, logos, or text on it.",
+    "attribute_outdoor_seating_area": "none",
+    "attribute_architectural_style": "The building exhibits a utilitarian early 20th-century urban style with elements of Industrial and Classic Revival architecture, such as a decorative cornice, exposed brick, and a rooftop water tower.",
+    "uid": "fbc6c04ef18a44d7a1f0450f6e8d7058",
+    "near_synsets": {
+        "bakery.n.01": 0.521981246029503,
+        "patisserie.n.01": 0.5479286664255125,
+        "baker.n.01": 0.5590866240060968,
+        "baked_goods.n.01": 0.5615333481576715,
+        "cityscape.n.02": 0.564788487157684
+    },
+    "synset": "bakery.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fbc6c04ef18a44d7a1f0450f6e8d7058",
+        "creator_username": "exotic_infinity",
+        "creator_display_name": "exotic_infinity",
+        "creator_profile_url": "https://sketchfab.com/exotic_infinity"
+    },
+    "filename": "std_fbc6c04ef18a44d7a1f0450f6e8d7058.glb",
+    "length": 9.312047004699707,
+    "width": 8.223661422729492
+}

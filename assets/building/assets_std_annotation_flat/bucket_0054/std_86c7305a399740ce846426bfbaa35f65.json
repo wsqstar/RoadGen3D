@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a stylized, compact cannon mounted on a wooden carriage with four wheels. The cannon barrel is metallic gray, cylindrical, and tapers slightly towards the muzzle, which is open and hollow. The carriage is constructed from blocky, light brown wood with two large side supports and a central axle holding the wheels. Metal bands reinforce the carriage, and the wheels are simple, solid discs. The cannon features a small protruding knob on each side, likely representing trunnions for pivoting the barrel. The overall design is reminiscent of historical artillery pieces, with a simplified, cartoon-like appearance.",
+    "description": "A stylized gray cannon with a wooden wheeled carriage, featuring a hollow barrel and reinforced metal bands.",
+    "description_view_0": "Front view showing the closed end of the cannon barrel and the wooden carriage's front supports.",
+    "description_view_1": "Side view displaying the full length of the cannon barrel, carriage structure, and all four wheels.",
+    "description_view_2": "Rear view highlighting the open muzzle of the cannon and the symmetrical carriage supports.",
+    "description_view_3": "Opposite side view mirroring view 1, with visible trunnion and carriage details.",
+    "category": "combat tactical  vehicle",
+    "height": 0.7,
+    "max_dimension": 1.5,
+    "materials": [
+        "steel",
+        "wood",
+        "iron",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "barrel",
+        "trunnion"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "light brown"
+    ],
+    "colors_composition": [
+        0.55,
+        0.45
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One fixed cannon barrel mounted centrally on the carriage.",
+    "attribute_armor_plating": "None visible.",
+    "attribute_camouflage_pattern": "None visible.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "86c7305a399740ce846426bfbaa35f65",
+    "near_synsets": {
+        "weapons_carrier.n.01": 0.4924281047427354,
+        "cannon.n.02": 0.49594540943585047,
+        "cannon.n.01": 0.5014357628293726,
+        "military_vehicle.n.01": 0.5067473215479299,
+        "caisson.n.02": 0.5092824427745867,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "cannon.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/86c7305a399740ce846426bfbaa35f65",
+        "creator_username": "_its_sagar_bro",
+        "creator_display_name": "_its_sagar_bro",
+        "creator_profile_url": "https://sketchfab.com/_its_sagar_bro"
+    },
+    "filename": "std_86c7305a399740ce846426bfbaa35f65.glb",
+    "length": 1.035354733467102,
+    "width": 0.7619248926639557
+}

@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a medium-sized, historic-looking steamship with a long, narrow hull painted in a combination of red and gray, and a white deck. The ship features two tall masts, one at the bow and one at the stern, and a single black funnel located amidships. The deck is equipped with various fixtures, including lifeboats, railings, and a flag at the stern. The bow is pointed and the stern is rounded, with visible anchor equipment and a propeller at the rear. The ship displays a flag with a cross design, and the overall structure suggests a late 19th or early 20th-century naval or patrol vessel.",
+    "description": "A historic steamship with a red and gray hull, two masts, a central funnel, and deck equipment including lifeboats and a flag. The ship has a pointed bow, rounded stern, and detailed deck fixtures.",
+    "description_view_0": "Side view showing the red and gray hull, central funnel, two masts, and a flag at the stern.",
+    "description_view_1": "Front (bow) view highlighting the pointed bow, deck railings, and forward mast.",
+    "description_view_2": "Opposite side view with similar features as view 0, but with more visibility of the stern equipment and propeller.",
+    "description_view_3": "Rear (stern) view showing the rounded stern, propeller, lifeboat, and flag.",
+    "category": "ship",
+    "height": 7.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.03,
+        0.02,
+        0.1
+    ],
+    "mass": 350000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "steerable",
+        "launchable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "funnel",
+        "mast",
+        "lifeboat",
+        "flag",
+        "anchor",
+        "propeller",
+        "deck railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.45,
+        0.3,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000.0,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a long, narrow profile, pointed bow, and rounded stern. The hull sits low in the water, with a visible propeller at the stern and anchor equipment at the bow. There are no visible keels or bulbous bows.",
+    "attribute_superstructure_layout": "The superstructure is minimal, with a single deck running the length of the ship, a central funnel, and two tall masts. Deck equipment and lifeboats are distributed along the sides, and railings run along the perimeter.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "lifeboat",
+        "anchor",
+        "flag",
+        "funnel",
+        "mast",
+        "deck railing"
+    ],
+    "attribute_registration_markings": "flag with cross design",
+    "uid": "a95f8a5b42ec403f85cbb7884f3bbc45",
+    "near_synsets": {
+        "steamer.n.03": 0.5119674921037342,
+        "schooner.n.02": 0.5213669993874118,
+        "cargo_ship.n.01": 0.5254177149939891,
+        "steamboat.n.01": 0.5301331706119093,
+        "vessel.n.02": 0.5305318252293973,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a95f8a5b42ec403f85cbb7884f3bbc45",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_a95f8a5b42ec403f85cbb7884f3bbc45.glb",
+    "length": 15.234768390655518,
+    "width": 3.1418182849884033
+}

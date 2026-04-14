@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a large, historic-style steam-powered ship with a robust steel hull painted gray above the waterline and red below. The vessel features three tall masts, each equipped with spars for rigging, but no sails are present, suggesting it is a steam-assisted or auxiliary sailing ship. The deck is wooden and open, with a central smokestack and several small deck structures, likely for navigation and crew access. The bow is rounded and reinforced, while the stern is slightly tapered, both ends adorned with a gold and red emblem. Portholes line the hull, and lifeboats or davits are visible along the sides. The ship's design and features evoke late 19th-century naval or merchant vessels.",
+    "description": "A large, historic steam-powered ship with three masts, a central smokestack, and a steel hull painted gray and red. The deck is wooden with visible portholes, lifeboats, and gold-red emblems at the bow and stern.",
+    "description_view_0": "Side view showing the full length of the ship, three masts, central smokestack, portholes, and a gold-red emblem at the bow.",
+    "description_view_1": "Top-down view highlighting the wooden deck, arrangement of masts, central smokestack, and lifeboats along the sides.",
+    "description_view_2": "Opposite side view mirroring view 0, with similar features visible and the gold-red emblem now at the stern.",
+    "description_view_3": "Top-down view from the stern, showing the deck layout, masts, and stern emblem.",
+    "category": "ship",
+    "height": 18,
+    "max_dimension": 80,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.02,
+        0.08
+    ],
+    "mass": 350000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 2500000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "steerable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "door",
+        "hatch",
+        "lifeboat",
+        "mast",
+        "smokestack"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "brown",
+        "black",
+        "gold"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.03,
+    "recommended_clearance": 20,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a rounded bow and slightly tapered stern, featuring a reinforced prow and a smooth, continuous sheer line. The hull is painted gray above the waterline and red below, with portholes along the sides and gold-red emblems at both ends. No keels or bulbous bows are visible, and the hull appears robust and suited for ocean travel.",
+    "attribute_superstructure_layout": "The superstructure is minimal, with a central smokestack, small deckhouses, and three tall masts spaced evenly along the deck. Lifeboats or davits are mounted on the sides, and the deck is open and wooden, with no large enclosed cabins or bridges visible.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "lifeboat",
+        "smokestack",
+        "mast"
+    ],
+    "attribute_registration_markings": "gold and red emblem at bow and stern",
+    "uid": "e8abf75acce44315820a5f0a5a19595e",
+    "near_synsets": {
+        "steamer.n.03": 0.4940990499817498,
+        "steamboat.n.01": 0.5172163806028852,
+        "bark.n.03": 0.521187278483546,
+        "three-decker.n.03": 0.5237049699573515,
+        "three-decker.n.02": 0.5313589617862569,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e8abf75acce44315820a5f0a5a19595e",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_e8abf75acce44315820a5f0a5a19595e.glb",
+    "length": 7.991390228271484,
+    "width": 34.44268035888672
+}

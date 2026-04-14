@@ -1,0 +1,99 @@
+{
+    "description_long": "This kiosk is a small, octagonal structure with a flat, overhanging roof bordered by a thick yellow fascia. The main body is clad in weathered green wooden panels, showing signs of age and exposure, and sits atop a concrete base. Three large, green awnings extend outward from the front and sides, providing shade and shelter for the service windows beneath. The front features a mesh-covered service window with a visible sign and a display of goods or advertisements behind it. The sides and rear are solid, with no visible windows or doors, emphasizing its function as a street-side vendor booth. The overall design is utilitarian, with a rustic, slightly worn appearance suitable for parks, sidewalks, or urban plazas.",
+    "description": "A small, octagonal green wooden kiosk with a flat yellow-edged roof and three large green awnings over the service windows. The front features a mesh-covered window and signage, while the sides and rear are solid and weathered.",
+    "description_view_0": "Front view showing the main service window with mesh covering, signage, and three extended green awnings.",
+    "description_view_1": "Side view displaying the green wooden panels, the edge of the awnings, and the solid structure with no visible entry.",
+    "description_view_2": "Rear view revealing the solid, weathered green wooden panels and the flat yellow-edged roof, with no windows or doors.",
+    "description_view_3": "Opposite side view showing the green panels, the edge of the awnings, and the octagonal shape of the base.",
+    "category": "kiosk",
+    "height": 2.5,
+    "max_dimension": 3.2,
+    "materials": [
+        "wood",
+        "metal",
+        "glass",
+        "concrete",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.05,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "awning",
+        "service window",
+        "signage"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "yellow",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.2,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "printed sign behind mesh window at the front, with visible text and product displays",
+    "attribute_window_presence": "one large mesh-covered window at the front, rectangular",
+    "attribute_door_configuration": "none visible",
+    "attribute_roof_design": "flat roof with thick yellow fascia, slight overhang, no decorative elements",
+    "attribute_architectural_style": "rustic utilitarian with simple, functional design",
+    "uid": "4efb596093e141b883970a4d85291345",
+    "near_synsets": {
+        "booth.n.02": 0.5422750206883021,
+        "shopfront.n.01": 0.5475153904535474,
+        "gazebo.n.01": 0.5629212287631511,
+        "booth.n.04": 0.5671775461466941,
+        "telephone_booth.n.01": 0.5713935123573132
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4efb596093e141b883970a4d85291345",
+        "creator_username": "holgcool",
+        "creator_display_name": "holgcool",
+        "creator_profile_url": "https://sketchfab.com/holgcool"
+    },
+    "filename": "std_4efb596093e141b883970a4d85291345.glb",
+    "length": 3.039783239364624,
+    "width": 3.810788631439209
+}

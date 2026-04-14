@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a gray, four-door sedan with a utilitarian design, featuring a large open cargo bed in the rear, reminiscent of a pickup truck. The vehicle has a boxy cabin with clear windows, a dark roof-mounted box or equipment, and visible side mirrors. The cargo bed contains various objects, including what appears to be a brown suitcase and some technical equipment, suggesting it may be used for work or service purposes. The wheels are dark and appear somewhat stylized or simplified, with a rugged look. The front grille is rectangular with a metallic finish, and the rear has a simple bumper with no visible license plate. The overall appearance is functional, with a matte finish and minimal decorative elements.",
+    "description": "A gray, four-door sedan with a large open cargo bed, technical equipment in the back, and a rugged, utilitarian design.",
+    "description_view_0": "Side view showing the full length of the sedan, the open cargo bed with equipment, and the roof-mounted box.",
+    "description_view_1": "Rear view highlighting the open cargo bed, visible equipment, and the absence of a rear license plate.",
+    "description_view_2": "Opposite side view showing the sedan's profile, cargo bed contents, and side details.",
+    "description_view_3": "Front view displaying the rectangular grille, windshield, and roof-mounted equipment.",
+    "category": "sedan",
+    "height": 1.6,
+    "max_dimension": 4.8,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "rubber",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.12,
+        0.1,
+        0.08,
+        0.02,
+        0.03
+    ],
+    "mass": 1500,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 6,
+    "movable": true,
+    "required_force": 4500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "side mirror",
+        "roof box",
+        "cargo bed",
+        "trunk",
+        "hood"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "silver",
+        "brown"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_number_of_doors": 4,
+    "attribute_license_plate": "none",
+    "attribute_wheel_design": "Dark, solid wheels with minimal visible spokes and a rugged, utilitarian appearance.",
+    "uid": "c86d3ff462814979840de00c0f4b9cb3",
+    "near_synsets": {
+        "sedan.n.01": 0.4888295029540317,
+        "van.n.05": 0.4896864245374234,
+        "sport_utility.n.01": 0.5205283593221429,
+        "coupe.n.01": 0.5225709127280893,
+        "sedan.n.02": 0.5275691252698719
+    },
+    "synset": "sedan.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c86d3ff462814979840de00c0f4b9cb3",
+        "creator_username": "Sunlan4ch",
+        "creator_display_name": "Sunlan4ch",
+        "creator_profile_url": "https://sketchfab.com/Sunlan4ch"
+    },
+    "filename": "std_c86d3ff462814979840de00c0f4b9cb3.glb",
+    "length": 4.820587635040283,
+    "width": 2.260072112083435
+}

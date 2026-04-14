@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a compact, utilitarian truck with a boxy, angular cab and a flat cargo bed. The cab is painted a muted blue-gray and features large, dark-tinted windows on the front and sides, with a pair of rectangular headlights and a metallic grille below. The cargo bed is simple and flat, bordered by low side panels, and is also finished in the same blue-gray color. The truck rides on four black wheels with white hubcaps, and the rear features a license plate marked 'KA12' along with red and yellow tail lights. The overall design is minimalistic, with subtle panel lines and a lack of decorative elements, emphasizing function over form. This vehicle is typical of small urban delivery or utility trucks found in city environments.",
+    "description": "A compact, blue-gray utility truck with a boxy cab, flat cargo bed, and simple, functional design. It features large windows, four wheels, and minimal decorative details.",
+    "description_view_0": "Front view shows the boxy cab, large dark windshield, rectangular headlights, and metallic grille.",
+    "description_view_1": "Left side view highlights the single cab, side window, door, and the full length of the flat cargo bed.",
+    "description_view_2": "Rear view displays the flat cargo bed, tail lights, and license plate 'KA12'.",
+    "description_view_3": "Right side view mirrors the left, showing the cab, door, and cargo bed from the opposite side.",
+    "category": "truck",
+    "height": 2.0,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.1,
+        0.05,
+        0.02
+    ],
+    "mass": 1800,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 9000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "cargo bed",
+        "headlight",
+        "taillight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue-gray",
+        "black",
+        "white",
+        "yellow",
+        "red",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.07,
+        0.03,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "flatbed",
+    "attribute_wheelbase": "2.7",
+    "attribute_number_of_axles": 2,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "bee50cc724a640328020bf31be85e91d",
+    "near_synsets": {
+        "van.n.05": 0.5033263022988849,
+        "truck.n.01": 0.5068664093245586,
+        "pickup.n.01": 0.5083287970788605,
+        "delivery_truck.n.01": 0.5198093760680979,
+        "flatbed.n.02": 0.521337986590389,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bee50cc724a640328020bf31be85e91d",
+        "creator_username": "Aegin",
+        "creator_display_name": "Aegin",
+        "creator_profile_url": "https://sketchfab.com/Aegin"
+    },
+    "filename": "std_bee50cc724a640328020bf31be85e91d.glb",
+    "length": 3.862671136856079,
+    "width": 1.573974609375
+}

@@ -1,0 +1,100 @@
+{
+    "description_long": "This humanoid robot features a robust, armored build with a predominantly white and gray exterior accented by vibrant cyan-blue lines and highlights. Its body is heavily plated, with broad, rounded shoulders, thick forearms, and powerful legs, all suggesting a design focused on strength and durability. The chest area is detailed with a central circular component, possibly a sensor or power core, and the back displays a large, circular exhaust or propulsion port. The head is small relative to the body, with a helmet-like structure and subtle facial features, flanked by mechanical protrusions. The arms and legs are segmented with visible joints, allowing for significant articulation, and the hands are large and mechanical, each with articulated fingers. The overall aesthetic is futuristic and industrial, with a design that implies both combat and utility functions in an urban environment.",
+    "description": "A heavily armored, white and gray humanoid robot with cyan-blue highlights, broad shoulders, and a robust, futuristic design. It features articulated limbs, a central chest component, and a large back port, suggesting strength and advanced technology.",
+    "description_view_0": "Front view shows the robot's broad chest, central circular component, helmeted head, and articulated arms and legs with cyan-blue highlights.",
+    "description_view_1": "Left side view reveals the depth of the torso, the thickness of the limbs, and the layered armor plating, with visible joint segments.",
+    "description_view_2": "Rear view highlights the large circular port on the back, mechanical details on the legs, and the robust structure of the robot's frame.",
+    "description_view_3": "Right side view mirrors the left, showing the arm and leg articulation, armor layers, and the mechanical complexity of the limbs.",
+    "category": "humanoid robot",
+    "height": 2.4,
+    "max_dimension": 1.6,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "synthetic polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 4120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hands",
+        "arms",
+        "legs",
+        "chest component",
+        "back port",
+        "head"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "cyan-blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.08,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms slightly bent at the elbows and positioned at the sides, legs straight and feet flat on the ground, head facing forward.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated armor panels and decorative cyan-blue lines, giving a high-tech, industrial appearance.",
+    "attribute_facial_features": "The face is helmet-like with minimal features, lacking a visible mouth or nose, and has subtle indentations or markings where eyes might be, but no expressive elements.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints at the shoulders, elbows, wrists, hips, knees, and ankles; hands have articulated fingers, suggesting a wide range of motion.",
+    "attribute_presence_of_sensors": "Possible sensor in the central chest component and subtle eye-like features on the head, but no explicit cameras or other sensors are clearly visible.",
+    "uid": "1b3fc23e6ebf44a4a8ecdcc4f2f9b3c3",
+    "near_synsets": {
+        "cyborg.n.01": 0.549232035484623,
+        "android.n.01": 0.5546280608635163,
+        "robotics_equipment.n.01": 0.5631067498376382,
+        "automaton.n.02": 0.5836614037744436,
+        "robotics.n.01": 0.5950454247385892
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1b3fc23e6ebf44a4a8ecdcc4f2f9b3c3",
+        "creator_username": "bradleywong",
+        "creator_display_name": "bradleywong",
+        "creator_profile_url": "https://sketchfab.com/bradleywong"
+    },
+    "filename": "std_1b3fc23e6ebf44a4a8ecdcc4f2f9b3c3.glb",
+    "length": 0.9889453947544098,
+    "width": 1.623818278312683
+}

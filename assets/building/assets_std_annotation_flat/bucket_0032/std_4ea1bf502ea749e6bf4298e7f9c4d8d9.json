@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a small, rustic wooden raft featuring a flat-bottomed hull and a single upright mast supporting a simple sail. The deck is constructed from wooden planks, with several crossbeams and a rudimentary tiller at the stern for steering. The sail is rectangular and appears to be made from a light, canvas-like material, attached to the mast and supported by ropes. The raft has no visible engine or modern equipment, relying entirely on wind and manual navigation. There are no flotation devices or safety markings present, and the overall design is utilitarian, likely intended for short-distance travel on calm waters. The wood shows a weathered texture, suggesting frequent exposure to water and outdoor elements.",
+    "description": "A small, weathered wooden raft with a single mast and canvas sail, featuring a simple deck and tiller for steering. The design is rustic and functional, with no visible flotation devices or safety markings.",
+    "description_view_0": "Side view showing the full length of the raft, the upright mast, and the attached sail, with the tiller visible at the stern.",
+    "description_view_1": "Front view highlighting the pointed bow, the arrangement of deck planks, and the sail extending forward.",
+    "description_view_2": "Opposite side view displaying the mast, sail, and the open deck area, with the tiller at the rear.",
+    "description_view_3": "Rear view focusing on the stern, the tiller mechanism, and the alignment of the deck planks.",
+    "category": "raft",
+    "height": 2.5,
+    "max_dimension": 4.0,
+    "materials": [
+        "wood",
+        "canvas",
+        "rope",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 120,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 300,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "steerable",
+        "sailable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "tiller",
+        "mast",
+        "sail",
+        "ropes"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "brown",
+        "beige"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_presence_of_flotation_devices": false,
+    "attribute_number_of_seats": 3,
+    "attribute_type_of_propulsion": "sail",
+    "attribute_safety_markings": [],
+    "attribute_attachment_points": 2,
+    "uid": "4ea1bf502ea749e6bf4298e7f9c4d8d9",
+    "near_synsets": {
+        "rowing_boat.n.01": 0.4861838420865127,
+        "catboat.n.01": 0.4949415748026579,
+        "raft.n.01": 0.49971145984450793,
+        "balsa_raft.n.01": 0.5013210348768913,
+        "life_raft.n.01": 0.5069031948666823,
+        "batch.n.02": -1000.0,
+        "raft_foundation.n.01": -1000.0
+    },
+    "synset": "raft_foundation.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4ea1bf502ea749e6bf4298e7f9c4d8d9",
+        "creator_username": "emmashanks",
+        "creator_display_name": "emmashanks",
+        "creator_profile_url": "https://sketchfab.com/emmashanks"
+    },
+    "filename": "std_4ea1bf502ea749e6bf4298e7f9c4d8d9.glb",
+    "length": 3.284709334373474,
+    "width": 1.3445330262184143
+}

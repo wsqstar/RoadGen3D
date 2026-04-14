@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a low-profile, tracked combat tactical vehicle with a flat, angular hull and a long, forward-mounted cannon. The exterior is finished in a matte, olive drab color, with visible hatches, vents, and equipment stowed on the upper surfaces. The vehicle features robust, continuous tracks on both sides, supported by multiple road wheels and protected by side skirts. Antennas and other communication equipment are mounted on the roof, while the rear includes exhaust ports and stowage fixtures. The overall design emphasizes sloped armor for deflection and a compact silhouette for reduced visibility. The vehicle appears heavily armored, with reinforced plating covering the entire body.",
+    "description": "A low-profile, olive drab tracked combat vehicle with a long cannon, sloped armor, and multiple antennas. It features robust tracks, side skirts, and a flat, angular hull.",
+    "description_view_0": "Front view shows the flat, sloped glacis plate, two headlights, and the vehicle's low silhouette.",
+    "description_view_1": "Left side view highlights the long cannon, side skirts, multiple road wheels, and roof-mounted equipment.",
+    "description_view_2": "Rear view displays exhaust ports, stowage fixtures, and the back armor plate.",
+    "description_view_3": "Right side view mirrors the left, showing the cannon, tracks, and side details.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "cannon",
+        "antenna",
+        "track",
+        "wheel",
+        "door",
+        "vent"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive drab",
+        "black"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted on the front left of the hull; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating; reinforced front glacis and side skirts; no modular or reactive panels visible.",
+    "attribute_camouflage_pattern": "Solid olive drab color; no distinct camouflage pattern visible.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "dac898d6cfdb4e339bc2020ee48d03a7",
+    "near_synsets": {
+        "reconnaissance_vehicle.n.01": 0.5159749509024041,
+        "military_vehicle.n.01": 0.5240212441111295,
+        "weapons_carrier.n.01": 0.537092515477402,
+        "tank.n.01": 0.5415438676815845,
+        "armored_car.n.02": 0.5516991942294013,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dac898d6cfdb4e339bc2020ee48d03a7",
+        "creator_username": "chilecaliente",
+        "creator_display_name": "BFJFFK",
+        "creator_profile_url": "https://sketchfab.com/chilecaliente"
+    },
+    "filename": "std_dac898d6cfdb4e339bc2020ee48d03a7.glb",
+    "length": 4.63986873626709,
+    "width": 2.1705496311187744
+}

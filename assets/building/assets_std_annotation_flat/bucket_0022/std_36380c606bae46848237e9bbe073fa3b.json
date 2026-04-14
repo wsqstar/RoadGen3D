@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a small, rectangular shelter with a weathered, corrugated metal exterior showing signs of rust and age. The front features a wide, open doorway with a wooden frame and a single wooden-shuttered window to the left. The sides and back of the shelter have additional wooden-shuttered windows, while the rear includes a large louvered vent beneath a wooden lintel. The roof is flat and constructed from the same metal as the walls, with visible rust streaks and a slightly overhanging edge. The base of the shelter is reinforced with a wooden or metal skirting, providing structural stability and a raised platform at the entry. The overall appearance suggests a utilitarian, possibly temporary structure suitable for parks, construction sites, or roadside use.",
+    "description": "A weathered, rectangular metal shelter with a flat roof, open doorway, and multiple wooden-shuttered windows, showing signs of rust and age.",
+    "description_view_0": "Front view shows the open doorway with a wooden frame and a single wooden-shuttered window to the left.",
+    "description_view_1": "Side view reveals a plain, rusted metal wall with no windows or openings.",
+    "description_view_2": "Rear view displays two wooden-shuttered windows and extensive rust streaks on the metal surface.",
+    "description_view_3": "Opposite side view features a large louvered vent beneath a wooden lintel, with no doorway.",
+    "category": "shelter",
+    "height": 2.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "corrugated metal",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "mass": 1800,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "doorway",
+        "window shutters",
+        "vent"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "olive green",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "flat corrugated metal roof with slight overhang",
+    "attribute_entryway_design": "rectangular open doorway with wooden frame and raised step",
+    "attribute_support_structure": "corrugated metal walls with wooden framing and skirting",
+    "attribute_signage": "none",
+    "attribute_transparency": "fully opaque",
+    "uid": "36380c606bae46848237e9bbe073fa3b",
+    "near_synsets": {
+        "shelter.n.02": 0.43605933800367447,
+        "shelter.n.01": 0.4895637939233826,
+        "shelter.n.05": 0.4991461264325463,
+        "shed.n.01": 0.5131584509363339,
+        "sentry_box.n.01": 0.5141483444825397,
+        "tax_shelter.n.01": -1000.0,
+        "protection.n.04": -1000.0
+    },
+    "synset": "tax_shelter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/36380c606bae46848237e9bbe073fa3b",
+        "creator_username": "erroratten",
+        "creator_display_name": "Erroratten",
+        "creator_profile_url": "https://sketchfab.com/erroratten"
+    },
+    "filename": "std_36380c606bae46848237e9bbe073fa3b.glb",
+    "length": 2.9311928749084473,
+    "width": 6.29683518409729
+}

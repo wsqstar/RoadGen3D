@@ -1,0 +1,96 @@
+{
+    "description_long": "This object consists of a section of weathered stone or concrete paving tiles arranged in a grid, with visible cracks, chips, and uneven edges. Several of the tiles are partially broken, and one tile is missing, revealing a patch of exposed dirt and sparse tufts of grass growing through the gap. Small stones and debris are scattered across the surface, adding to the sense of neglect and disrepair. The tiles have a rough, matte finish with visible surface texture and signs of aging. The coloration is predominantly gray, with some brownish tones in the exposed earth and green from the grass. This debris would typically be found in an outdoor urban environment where pavement has deteriorated over time.",
+    "description": "A group of cracked, weathered stone or concrete paving tiles with one missing tile exposing dirt and grass, scattered with small debris.",
+    "description_view_0": "The missing tile and exposed dirt patch are clearly visible near the center, with grass tufts and scattered stones on the surface.",
+    "description_view_1": "The missing tile is prominent in the foreground, and the cracks and unevenness of the tiles are more apparent from this angle.",
+    "description_view_2": "The exposed dirt patch is further back, and the overall grid pattern of the tiles is clearly visible, with more grass tufts seen.",
+    "description_view_3": "The missing tile and dirt patch are visible toward the right, and the surface texture and cracks of the tiles are highlighted.",
+    "category": "debris",
+    "height": 0.12,
+    "max_dimension": 2.0,
+    "materials": [
+        "concrete",
+        "stone",
+        "soil",
+        "vegetation",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.07,
+        0.02,
+        0.01
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "trip_hazard"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "obstacle",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "brown",
+        "green"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_location": "urban street or sidewalk",
+    "attribute_context": "Likely the result of pavement damage from weathering, heavy use, or lack of maintenance, with some tiles broken or missing and natural overgrowth beginning to appear.",
+    "attribute_object_type": "concrete paving tile",
+    "attribute_condition": "cracked, chipped, partially missing, and overgrown with grass",
+    "attribute_associated_infrastructure": [
+        "road",
+        "sidewalk"
+    ],
+    "uid": "945d60fd01874c029a1e0cdef1184995",
+    "near_synsets": {
+        "debris.n.01": 0.47403181729356264,
+        "detritus.n.02": 0.5002635428301855,
+        "macadam.n.01": 0.5216855546393983,
+        "paving_stone.n.01": 0.5221109063239808,
+        "shingle.n.02": 0.5268530861874395
+    },
+    "synset": "debris.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/945d60fd01874c029a1e0cdef1184995",
+        "creator_username": "4Engine",
+        "creator_display_name": "4Engine",
+        "creator_profile_url": "https://sketchfab.com/4Engine"
+    },
+    "filename": "std_945d60fd01874c029a1e0cdef1184995.glb",
+    "length": 0.9644350111484528,
+    "width": 0.9644350409507751
+}

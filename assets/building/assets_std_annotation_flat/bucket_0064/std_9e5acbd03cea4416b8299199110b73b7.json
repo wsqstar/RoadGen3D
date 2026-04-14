@@ -1,0 +1,105 @@
+{
+    "description_long": "This ferry terminal features a large, T-shaped main building with a prominent, elongated covered walkway extending from the central structure, likely serving as the primary access route for passengers. The roof is multi-tiered with several gabled sections, providing architectural interest and shelter. On one end of the main building, there is a rounded, semi-enclosed area that may function as a waiting lounge or ticketing area. The structure is elevated above the ground, with visible support elements and a blue trim along the lower edges, suggesting weather protection and durability. The terminal appears to be constructed primarily from concrete and metal, with glass likely used for windows and entryways. The overall design is utilitarian yet welcoming, optimized for efficient passenger flow and ferry operations.",
+    "description": "A large, T-shaped ferry terminal with a long covered walkway, multi-tiered roof, and a rounded waiting or ticketing area. The structure is elevated and features blue trim, suggesting durability and weather protection.",
+    "description_view_0": "Side view showing the elongated covered walkway and the main building's multi-tiered roof, with the rounded area partially visible.",
+    "description_view_1": "Frontal view highlighting the full length of the covered walkway leading to the main terminal, with the T-shaped roof structure clearly visible.",
+    "description_view_2": "Opposite side view displaying the walkway's connection to the main building and the rounded end structure more prominently.",
+    "description_view_3": "Rear view showing the broad expanse of the main building's roof and the rounded area at one end, with the walkway extending away.",
+    "category": "ferry terminal",
+    "height": 8.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "concrete",
+        "metal",
+        "glass",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "ticket booth",
+        "gangway",
+        "waiting bench"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "dark gray",
+        "blue",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_ferry_dock_signage": true,
+    "attribute_passenger_waiting_area": true,
+    "attribute_ticket_booth_or_kiosk": true,
+    "attribute_boarding_ramps_or_gangways": true,
+    "attribute_water_access_with_mooring_structures": true,
+    "uid": "9e5acbd03cea4416b8299199110b73b7",
+    "near_synsets": {
+        "ferry.n.02": 0.5407319009224866,
+        "ferry.n.01": 0.5410117257036418,
+        "gate.n.04": 0.5455339051149165,
+        "terminal.n.01": 0.5488053989453151,
+        "bus_terminal.n.01": 0.5561145367106228,
+        "terminal.n.02": -1000.0,
+        "end.n.01": -1000.0,
+        "terminal.n.04": -1000.0
+    },
+    "synset": "terminal.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9e5acbd03cea4416b8299199110b73b7",
+        "creator_username": "fadilday",
+        "creator_display_name": "fadilday",
+        "creator_profile_url": "https://sketchfab.com/fadilday"
+    },
+    "filename": "std_9e5acbd03cea4416b8299199110b73b7.glb",
+    "length": 55.42665672302246,
+    "width": 41.91021919250488
+}

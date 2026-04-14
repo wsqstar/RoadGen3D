@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a vintage-style ambulance with a boxy rear compartment and a classic cab design, painted primarily in white. The sides of the vehicle display a large red medical cross within a circle, accompanied by the text 'LIEPAJAS CENTRA SLIMNICA' and an emergency phone number, indicating its use as a medical emergency vehicle in Latvia. The wheels are strikingly red with black tires, adding a distinctive visual contrast to the otherwise white body. The front features a prominent grille, round headlights, and a simple bumper, while the rear has a single, vertically oriented door for patient access. The vehicle's body appears to be constructed from metal, with glass windows and rubber tires. The overall design suggests a utilitarian, early 20th-century ambulance intended for urban medical response.",
+    "description": "A vintage white ambulance with red wheels, medical cross signage, and Latvian emergency markings. It features a boxy rear compartment and classic cab design.",
+    "description_view_0": "Front view shows the grille, headlights, windshield, and the vehicle's classic cab shape.",
+    "description_view_1": "Left side view highlights the red cross, Latvian signage, and the red wheels.",
+    "description_view_2": "Rear view displays a single, vertically oriented rear door and the boxy compartment.",
+    "description_view_3": "Right side view mirrors the left, with medical cross, signage, and red wheels visible.",
+    "category": "ambulance",
+    "height": 2.1,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.08,
+        0.04,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 9000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "handle",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.82,
+        0.1,
+        0.06,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_emergency_light_bar": false,
+    "attribute_ambulance_signage": "Red cross symbol, 'LIEPAJAS CENTRA SLIMNICA', and emergency phone number in Latvian.",
+    "attribute_medical_cross_symbol": true,
+    "attribute_siren": false,
+    "attribute_rear_compartment_doors": "single hinged door",
+    "uid": "a1c2373a25654117a731a1861403f372",
+    "near_synsets": {
+        "ambulance.n.01": 0.5198061008638074,
+        "funny_wagon.n.01": 0.5352202332034152,
+        "police_van.n.01": 0.5923328500997443,
+        "van.n.05": 0.5949685973258342,
+        "ladder_truck.n.01": 0.607583751855759
+    },
+    "synset": "ambulance.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a1c2373a25654117a731a1861403f372",
+        "creator_username": "robinmikart",
+        "creator_display_name": "Libau Media",
+        "creator_profile_url": "https://sketchfab.com/robinmikart"
+    },
+    "filename": "std_a1c2373a25654117a731a1861403f372.glb",
+    "length": 4.755293846130371,
+    "width": 1.6627001762390137
+}

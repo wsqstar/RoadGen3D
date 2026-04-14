@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a medium-span pedestrian bridge with a prominent arch structure made primarily of light-colored metal or painted steel. The bridge features a wooden or composite deck surface, flanked by metal railings with vertical balusters for safety. The arch rises above the deck and is supported at both ends by robust concrete abutments, providing stability and a visually appealing curve. The truss-like elements within the arch add structural integrity and a geometric aesthetic. The bridge is designed for urban environments, suitable for parks or river crossings, and allows for unobstructed passage across its length. The overall design is modern and functional, with clean lines and minimal decorative elements.",
+    "description": "A modern arch pedestrian bridge with a wooden deck, metal railings, and concrete abutments, designed for urban crossings. The structure features a prominent curved arch and geometric truss details.",
+    "description_view_0": "Front view showing the full arch, deck, and both concrete abutments with visible railings and truss details.",
+    "description_view_1": "Side view displaying the narrow profile of the bridge, highlighting the thickness of the deck and the arch's curvature.",
+    "description_view_2": "Rear view, nearly identical to the front, showing the arch, deck, abutments, and railing structure.",
+    "description_view_3": "Opposite side view, similar to view 1, emphasizing the bridge's slim width and the arch's rise above the deck.",
+    "category": "bridge",
+    "height": 4.5,
+    "max_dimension": 30.0,
+    "materials": [
+        "steel",
+        "wood",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.2,
+        0.2,
+        0.05
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "protective"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "railing",
+        "deck"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "bicycle"
+    ],
+    "colors": [
+        "light beige",
+        "brown",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_support_type": "arch, truss",
+    "attribute_railing_design": "metal railings with vertical balusters and a horizontal top rail, painted to match the arch",
+    "attribute_arch_presence": true,
+    "attribute_lighting_fixtures": [],
+    "attribute_architectural_style": "modern",
+    "uid": "254eb565be1b490bb64ef97e1274057f",
+    "near_synsets": {
+        "footbridge.n.01": 0.4739777751450154,
+        "steel_arch_bridge.n.01": 0.48106152476416963,
+        "bridge.n.01": 0.5086531058100564,
+        "truss_bridge.n.01": 0.5090022785990916,
+        "viaduct.n.01": 0.5123260213176596,
+        "bridge.n.05": -1000.0,
+        "bridge.n.04": -1000.0,
+        "bridge.n.03": -1000.0,
+        "bridge.n.02": -1000.0,
+        "bridge.n.07": -1000.0,
+        "bridge.n.09": -1000.0,
+        "bridge.n.08": -1000.0,
+        "bridge.n.06": -1000.0
+    },
+    "synset": "bridge.n.06",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/254eb565be1b490bb64ef97e1274057f",
+        "creator_username": "stingero",
+        "creator_display_name": "stingero",
+        "creator_profile_url": "https://sketchfab.com/stingero"
+    },
+    "filename": "std_254eb565be1b490bb64ef97e1274057f.glb",
+    "length": 1.7416371703147888,
+    "width": 21.38071060180664
+}

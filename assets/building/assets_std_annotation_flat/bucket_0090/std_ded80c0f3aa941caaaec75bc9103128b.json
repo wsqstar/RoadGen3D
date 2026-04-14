@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a cylindrical piece of sushi wrapped in a dark, glossy sheet of nori seaweed. The top surface is covered with a layer of white, slightly textured sushi rice, which appears soft and slightly sticky. Embedded in the rice are three distinct toppings: a slice of orange salmon with visible striations, a rectangular piece of white fish or imitation crab, and a green slice of cucumber. The nori wrap forms a continuous, smooth wall around the rice, giving the sushi a compact and uniform appearance. The overall look is fresh and appetizing, with the colorful toppings contrasting against the white rice and dark seaweed. The sushi is unadorned, with no visible garnishes or sauces.",
+    "description": "A cylindrical sushi roll wrapped in dark nori, topped with salmon, white fish or imitation crab, and cucumber on a bed of white rice.",
+    "description_view_0": "The sushi is seen from the side, showing the nori wrap and the top with salmon, white fish, and cucumber clearly visible.",
+    "description_view_1": "This view highlights the salmon topping most prominently, with the cucumber and white fish slightly behind.",
+    "description_view_2": "The cucumber and white fish are most visible from this angle, with the salmon partially obscured.",
+    "description_view_3": "The salmon and cucumber are both clearly visible, with the white fish partially hidden behind them.",
+    "category": "sushi",
+    "height": 0.04,
+    "max_dimension": 0.05,
+    "materials": [
+        "rice",
+        "nori",
+        "salmon",
+        "imitation crab",
+        "cucumber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.1,
+        0.04,
+        0.01
+    ],
+    "mass": 0.035,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0.4,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "graspable",
+        "edible"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "white",
+        "orange",
+        "green"
+    ],
+    "colors_composition": [
+        0.18,
+        0.6,
+        0.15,
+        0.07
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.35,
+    "surface_finish": "glossy",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.1,
+    "asset_composition_type": "single",
+    "attribute_type_of_sushi": "gunkan",
+    "attribute_presence_of_chopsticks": false,
+    "attribute_packaging_style": "no packaging",
+    "attribute_placement_location": "table",
+    "attribute_garnish_or_topping": [],
+    "uid": "ded80c0f3aa941caaaec75bc9103128b",
+    "near_synsets": {
+        "sushi.n.01": 0.4226534950729332,
+        "sashimi.n.01": 0.5100804344303523,
+        "sushi_bar.n.01": 0.5124533050800538,
+        "japanese_crab.n.01": 0.5429191715305579,
+        "teriyaki.n.01": 0.5553345665267748
+    },
+    "synset": "sushi_bar.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ded80c0f3aa941caaaec75bc9103128b",
+        "creator_username": "thomas.fugier",
+        "creator_display_name": "Thomas Fugier",
+        "creator_profile_url": "https://sketchfab.com/thomas.fugier"
+    },
+    "filename": "std_ded80c0f3aa941caaaec75bc9103128b.glb",
+    "length": 0.07314440608024597,
+    "width": 0.07314436137676239
+}

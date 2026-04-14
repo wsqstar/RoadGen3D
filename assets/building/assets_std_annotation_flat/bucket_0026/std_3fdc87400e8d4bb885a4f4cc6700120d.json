@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a large, modern commercial airplane with a streamlined fuselage and long, swept-back wings. The wings are mounted low on the body and feature noticeable upward-angled winglets at the tips. Two sizable turbofan engines are suspended beneath the wings, one on each side. The tail section has a conventional design with a single vertical stabilizer and horizontal stabilizers extending from either side. The exterior is primarily white with dark gray wings, and the surface appears smooth and glossy, typical of contemporary passenger jets.",
+    "description": "A sleek, white commercial airplane with swept-back low wings, underwing turbofan engines, and a conventional tail.",
+    "description_view_0": "Front view showing the pointed nose, cockpit windows, and the full wingspan with both engines visible beneath the wings.",
+    "description_view_1": "Left side profile highlighting the elongated fuselage, left wing with engine, and the vertical and horizontal stabilizers at the tail.",
+    "description_view_2": "Rear view displaying the tail section, both engines, and the upward-angled winglets at the wingtips.",
+    "description_view_3": "Right side profile showing the right wing and engine, cockpit placement, and the tail assembly.",
+    "category": "airplane",
+    "height": 6.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "air",
+        "plastic"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.05,
+        0.05,
+        0.08,
+        0.02
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "closable",
+        "openable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "engine",
+        "landing gear",
+        "cockpit controls"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.08,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.02,
+    "recommended_clearance": 70.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with long, swept-back wings and upward-angled winglets at the tips.",
+    "attribute_engine_type": "Twin turbofan underwing",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Tricycle retractable landing gear, with two main gear units and one nose gear (not visibly extended).",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with multiple windows, typical of commercial airliners.",
+    "uid": "3fdc87400e8d4bb885a4f4cc6700120d",
+    "near_synsets": {
+        "airplane.n.01": 0.4745643282571446,
+        "aircraft.n.01": 0.489362080976063,
+        "propjet.n.01": 0.4954271114396503,
+        "fanjet.n.01": 0.4977590560546988,
+        "jet.n.01": 0.5011176578222105
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3fdc87400e8d4bb885a4f4cc6700120d",
+        "creator_username": "adim09",
+        "creator_display_name": "Shawn 684 M",
+        "creator_profile_url": "https://sketchfab.com/adim09"
+    },
+    "filename": "std_3fdc87400e8d4bb885a4f4cc6700120d.glb",
+    "length": 24.12419891357422,
+    "width": 24.52262020111084
+}

@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a cylindrical orange medicine bottle with a white, octagonal, child-resistant cap. The bottle features a printed label with black text, including a prescription number, patient name, doctor name, and dosage information. The label wraps around the bottle, with some text partially visible from different angles. The cap is slightly wider than the bottle and appears to be made of opaque plastic, designed to be gripped and twisted off. The bottle itself is translucent, allowing some light to pass through but obscuring the contents inside. The overall appearance is typical of prescription medication containers found in pharmacies and urban healthcare settings.",
+    "description": "An orange prescription medicine bottle with a white, octagonal child-resistant cap and a printed label with patient and dosage information.",
+    "description_view_0": "The view shows the white octagonal cap from above, with the orange bottle body and a partially visible label.",
+    "description_view_1": "This angle highlights the side of the bottle, showing more of the label's edge and the cap's overhang.",
+    "description_view_2": "The front label is clearly visible, displaying prescription details, patient name, and doctor information.",
+    "description_view_3": "This view shows the label wrapping around the bottle, with some text visible and the cap's shape prominent.",
+    "category": "medicine",
+    "height": 0.11,
+    "max_dimension": 0.06,
+    "materials": [
+        "plastic",
+        "paper",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 0.025,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 6,
+    "movable": true,
+    "required_force": 1,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cap",
+        "bottle body",
+        "label"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "orange",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.35,
+        0.55,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.49,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.1,
+    "asset_composition_type": "single",
+    "attribute_packaging_type": "bottle",
+    "attribute_label_text": "XXXXX 00000000\nJohn Smith\nOrange small medicine [illegible]\nContain 25x Pills\nDr. Brown\n[illegible] 0000\ncine Pot with white cover.",
+    "attribute_brand_logo": "none",
+    "attribute_dosage_form": "tablet",
+    "attribute_tamper-evident_seal": false,
+    "uid": "965649cf48054ff29606aeb792ce9ca3",
+    "near_synsets": {
+        "pill_bottle.n.01": 0.4986995968407764,
+        "pill.n.01": 0.5322701741091364,
+        "capsule.n.02": 0.5399652595790838,
+        "pill.n.02": 0.5548395099599738,
+        "prescription.n.04": 0.5564568648786785,
+        "medicine.n.02": -1000.0,
+        "music.n.05": -1000.0,
+        "medicine.n.01": -1000.0,
+        "medicine.n.03": -1000.0
+    },
+    "synset": "medicine.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/965649cf48054ff29606aeb792ce9ca3",
+        "creator_username": "gabrieltarzia",
+        "creator_display_name": "Gabriel Tarzia",
+        "creator_profile_url": "https://sketchfab.com/gabrieltarzia"
+    },
+    "filename": "std_965649cf48054ff29606aeb792ce9ca3.glb",
+    "length": 0.08062591403722763,
+    "width": 0.08726878464221954
+}

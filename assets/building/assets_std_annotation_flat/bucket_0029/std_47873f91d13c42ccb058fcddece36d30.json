@@ -1,0 +1,109 @@
+{
+    "description_long": "This object is a rectangular block with a detailed model of a house and its surrounding yard situated on the top surface. The house features a gable roof with reddish-brown tiles and white exterior walls, and is surrounded by a green lawn bordered by a low wall or curb. The house has multiple windows arranged in a symmetrical pattern and a central entryway with steps leading up to the front door. The yard includes a paved driveway or walkway leading to the entrance, and the house appears to be a two-story structure. The block beneath the house is a solid, textured brown mass, representing the ground or a stylized pedestal.",
+    "description": "A two-story house with a gable roof and white walls sits atop a large rectangular brown block, surrounded by a green lawn and a paved entryway.",
+    "description_view_0": "The house is seen from an angle showing the side and part of the front, with the green lawn and driveway visible.",
+    "description_view_1": "The house is viewed directly from the front, highlighting the main entryway, steps, and symmetrical window arrangement.",
+    "description_view_2": "The house is seen from the opposite side, showing the side elevation and the extent of the green lawn.",
+    "description_view_3": "The house is viewed from the back, with the rear facade and backyard area visible.",
+    "category": "house",
+    "height": 18.0,
+    "max_dimension": 20.0,
+    "materials": [
+        "concrete",
+        "brick",
+        "wood",
+        "glass",
+        "roof_tile",
+        "plaster",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.1,
+        0.08,
+        0.05,
+        0.05,
+        0.02,
+        0.05
+    ],
+    "mass": 650000.0,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "green",
+        "white",
+        "red"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Colonial",
+    "attribute_number_of_stories": 2,
+    "attribute_roof_type": "gable",
+    "attribute_window_arrangement": "symmetrical rows",
+    "attribute_entryway_design": "Central entryway with steps, a simple door, and a paved approach",
+    "uid": "47873f91d13c42ccb058fcddece36d30",
+    "near_synsets": {
+        "house.n.12": 0.521643116280252,
+        "farmhouse.n.01": 0.5231352299103248,
+        "ranch_house.n.01": 0.5276092332352742,
+        "house.n.01": 0.5292069822997456,
+        "housetop.n.01": 0.5295905608369937,
+        "sign_of_the_zodiac.n.01": -1000.0,
+        "house.n.03": -1000.0,
+        "family.n.01": -1000.0,
+        "house.n.09": -1000.0,
+        "theater.n.01": -1000.0,
+        "firm.n.01": -1000.0,
+        "house.n.04": -1000.0,
+        "house.n.05": -1000.0,
+        "house.n.06": -1000.0,
+        "house.n.07": -1000.0
+    },
+    "synset": "house.n.07",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/47873f91d13c42ccb058fcddece36d30",
+        "creator_username": "siposmernokiroda",
+        "creator_display_name": "SzD",
+        "creator_profile_url": "https://sketchfab.com/siposmernokiroda"
+    },
+    "filename": "std_47873f91d13c42ccb058fcddece36d30.glb",
+    "length": 8.032461643218994,
+    "width": 7.0546875
+}

@@ -1,0 +1,95 @@
+{
+    "description_long": "This object consists of a rustic wooden farmhouse with a weathered, gabled roof and log-style walls, accompanied by a classic wooden wagon with large spoked wheels. The farmhouse features a partially open door, a small window, and a wooden ladder propped against the side, suggesting access to the roof or loft area. Scattered nearby are a barrel and a log, adding to the rural ambiance. The roof appears to be made of aged, overlapping wooden shingles, and the entire structure sits on a patch of grassy terrain. The wagon is detailed with iron-rimmed wheels and a simple hitch, typical of traditional farm transport. The overall scene evokes a historical or frontier farmstead, with all elements constructed primarily from wood and metal.",
+    "description": "A rustic wooden farmhouse with a gabled roof, accompanied by a classic wooden wagon, ladder, barrel, and log, all set on grassy terrain.",
+    "description_view_0": "Front view showing the farmhouse entrance, open door, wagon, and ladder leaning against the building.",
+    "description_view_1": "Side view highlighting the wagon, barrel, log, and the farmhouse's log construction and roof details.",
+    "description_view_2": "Rear view focusing on the back of the farmhouse and the ladder, with the roof and log walls prominent.",
+    "description_view_3": "Opposite side view showing the wagon from behind, the farmhouse's side, and the ladder's position.",
+    "category": "farm",
+    "height": 3.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "wood",
+        "metal",
+        "air",
+        "grass"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "climbable",
+        "rollable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "ladder",
+        "wagon wheel",
+        "wagon hitch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "green"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_farm_equipment_type": "wagon",
+    "attribute_manufacturer_brand": "unknown",
+    "attribute_presence_of_agricultural_attachments": false,
+    "attribute_distinctive_rural_signage": [],
+    "attribute_architectural_style": "log cabin",
+    "uid": "7f0ec8ccdc1149f3b64555bc0f8a4eea",
+    "near_synsets": {
+        "farmhouse.n.01": 0.4226310703043547,
+        "farm_building.n.01": 0.4699418772272099,
+        "farmyard.n.01": 0.4895685797265275,
+        "farm.n.01": 0.491234007746173,
+        "barn.n.01": 0.49544760367043733
+    },
+    "synset": "farm.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7f0ec8ccdc1149f3b64555bc0f8a4eea",
+        "creator_username": "maryfeti",
+        "creator_display_name": "maryfeti",
+        "creator_profile_url": "https://sketchfab.com/maryfeti"
+    },
+    "filename": "std_7f0ec8ccdc1149f3b64555bc0f8a4eea.glb",
+    "length": 16.490994453430176,
+    "width": 8.152477264404297
+}

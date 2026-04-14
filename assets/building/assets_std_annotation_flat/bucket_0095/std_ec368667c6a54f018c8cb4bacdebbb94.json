@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a classic semi-automatic rifle with a wooden stock and foregrip, featuring a dark metal receiver, barrel, and trigger assembly. The rifle has a straight, fixed stock and a long, slender barrel with a simple front sight post. A small, detachable clip of ammunition is positioned below the receiver, indicating a clip-fed internal magazine system. The wood grain is visible on both the stock and foregrip, contrasting with the matte, dark metal components. The rifle's design is reminiscent of mid-20th-century military firearms, with minimal embellishments and a utilitarian appearance. The overall build suggests durability and reliability, suitable for use in urban or field environments.",
+    "description": "A classic wooden-stocked, semi-automatic rifle with a dark metal barrel and receiver, featuring a clip-fed internal magazine. The design is utilitarian and robust, with visible wood grain and simple iron sights.",
+    "description_view_0": "Side view showing the full length of the rifle, wooden stock, foregrip, and a visible ammunition clip below the receiver.",
+    "description_view_1": "Top-down view highlighting the slim profile of the rifle and the alignment of the barrel, with the ammunition clip and rounds clearly separated.",
+    "description_view_2": "Opposite side view displaying the rifle's length, wooden components, and the trigger guard, with the clip and rounds visible below.",
+    "description_view_3": "Bottom-up view showing the underside of the rifle, the trigger guard, and the separated ammunition clip and rounds.",
+    "category": "rifle",
+    "height": 0.18,
+    "max_dimension": 1.1,
+    "materials": [
+        "wood",
+        "steel",
+        "brass",
+        "lead",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.35,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 4.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 45,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "trigger",
+        "bolt",
+        "magazine/clip",
+        "sight",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "dark gray",
+        "black",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.55,
+        0.35,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "internal",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "ec368667c6a54f018c8cb4bacdebbb94",
+    "near_synsets": {
+        "garand_rifle.n.01": 0.4783615978515089,
+        "rifle.n.01": 0.5229753054140927,
+        "assault_rifle.n.01": 0.5231922866228422,
+        "stock.n.03": 0.5234588918483974,
+        "automatic_rifle.n.01": 0.5246683993527992
+    },
+    "synset": "automatic_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ec368667c6a54f018c8cb4bacdebbb94",
+        "creator_username": "YieldingMist206",
+        "creator_display_name": "YieldingMist206",
+        "creator_profile_url": "https://sketchfab.com/YieldingMist206"
+    },
+    "filename": "std_ec368667c6a54f018c8cb4bacdebbb94.glb",
+    "length": 0.1207067146897316,
+    "width": 0.7058894038200378
+}

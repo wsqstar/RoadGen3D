@@ -1,0 +1,88 @@
+{
+    "description_long": "This object is a large, robust rifle with a boxy receiver and a long, cylindrical barrel featuring segmented reinforcement rings. The body is predominantly matte black, with a solid, fixed stock at the rear and a prominent trigger guard beneath the receiver. The barrel extends straight from the receiver, ending in a simple muzzle with no visible attachments. There is a small, raised sighting element on top of the receiver, but no scope or advanced optics are present. The magazine is not externally visible, suggesting an internal or side-fed mechanism. The overall design is utilitarian, with minimal decorative features and a focus on durability and function.",
+    "description": "A large, matte black rifle with a boxy receiver, long reinforced barrel, and fixed stock. It features a simple sight and lacks visible magazine or muzzle attachments.",
+    "description_view_0": "Side view showing the full length of the rifle, including the fixed stock, long barrel, and trigger guard.",
+    "description_view_1": "Front view highlighting the circular barrel opening and the narrow profile of the receiver.",
+    "description_view_2": "Opposite side view, mirroring view 0, with clear visibility of the barrel and stock.",
+    "description_view_3": "Rear view showing the end of the stock and the alignment of the barrel with the receiver.",
+    "category": "rifle",
+    "height": 0.22,
+    "max_dimension": 1.25,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.8,
+        0.18,
+        0.02
+    ],
+    "mass": 12,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "aimable",
+        "triggerable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "stock",
+        "barrel",
+        "sight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "857512f05f8148b484dd7294d4580e05",
+    "near_synsets": {
+        "rifle.n.01": 0.48716604635861804,
+        "garand_rifle.n.01": 0.5105586021447747,
+        "musket.n.01": 0.5229753092325636,
+        "automatic_rifle.n.01": 0.5271488168474864,
+        "mauser.n.02": 0.5274863848509415
+    },
+    "synset": "automatic_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/857512f05f8148b484dd7294d4580e05",
+        "creator_username": "Meijkiqman",
+        "creator_display_name": "Sivert K",
+        "creator_profile_url": "https://sketchfab.com/Meijkiqman"
+    },
+    "filename": "std_857512f05f8148b484dd7294d4580e05.glb",
+    "length": 1.1019721031188965,
+    "width": 0.11992097273468971
+}

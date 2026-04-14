@@ -1,0 +1,104 @@
+{
+    "description_long": "This kiosk features a modern, open booth design with a black and white striped floor and matching vertical panels. The structure includes two tall, angled side walls with geometric cutouts and teal accent graphics, creating a visually striking appearance. A central seating area with a turquoise stool is positioned for interaction, while a counter or desk surface extends from one side. Branding elements, including the name 'KREION' and circular logos, are prominently displayed on multiple surfaces, including a freestanding sign and a back wall. The kiosk is open on two sides, allowing easy access for visitors, and is designed for use in public or commercial urban environments. The materials appear to be primarily composite panels, glass or acrylic, and metal framing, with a sleek, glossy finish.",
+    "description": "A modern, open-sided kiosk with black and white striped panels, teal accents, and prominent 'KREION' branding. Features a central seating area, counter, and visually striking geometric design.",
+    "description_view_0": "Rear view showing the back wall with branding, the central stool, and the striped floor extending to the sides.",
+    "description_view_1": "Side view highlighting the interior seating, the main counter, and the large branded back panel.",
+    "description_view_2": "Front view displaying the open entry, counter, stool, and prominent signage with teal and black graphics.",
+    "description_view_3": "Opposite side view showing the freestanding sign, side panel, and partial view of the interior counter and seating.",
+    "category": "kiosk",
+    "height": 2.4,
+    "max_dimension": 4.0,
+    "materials": [
+        "composite panel",
+        "glass",
+        "metal",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.15,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "writable",
+        "displayable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "counter",
+        "stool",
+        "signage panel"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "white",
+        "teal",
+        "gray",
+        "blue"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 3500,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_signage_type": "Printed and logo signage; large printed sign on back wall, freestanding vertical sign at front left, integrated logo and text on side panels; visible text includes 'KREION' and circular logo.",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "Open archway entry at front and rear; no physical doors.",
+    "attribute_roof_design": "Flat roof with partial coverage, constructed from composite panels with black and white stripes; no overhangs or decorative elements.",
+    "attribute_architectural_style": "Modern minimalist with geometric and graphic design influences.",
+    "uid": "3fcd49dac9a344769d7f4bf6d4c71c2c",
+    "near_synsets": {
+        "booth.n.02": 0.5979109374417714,
+        "notions_counter.n.01": 0.5992792800246273,
+        "salon.n.01": 0.6132260415018294,
+        "counter.n.01": 0.6136760545587804,
+        "countertop.n.01": 0.6147253297175757
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3fcd49dac9a344769d7f4bf6d4c71c2c",
+        "creator_username": "kreion",
+        "creator_display_name": "KREION",
+        "creator_profile_url": "https://sketchfab.com/kreion"
+    },
+    "filename": "std_3fcd49dac9a344769d7f4bf6d4c71c2c.glb",
+    "length": 3.2282038927078247,
+    "width": 4.304271697998047
+}

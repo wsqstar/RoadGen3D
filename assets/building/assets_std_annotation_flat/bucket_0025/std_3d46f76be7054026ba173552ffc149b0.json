@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a modern outdoor canopy structure featuring a taut, white fabric roof stretched over four slender, vertical metal poles. The canopy's roof is gently curved, forming a saddle-like shape with a central peak and four downward-sloping corners, providing both shade and rain protection. The fabric appears to be tensioned and securely fastened at each pole, creating clean, geometric lines and a minimalist aesthetic. The supporting poles are evenly spaced at the corners, giving the structure stability and an open, airy feel beneath the canopy. The edges of the fabric are straight and appear reinforced, with no visible decorative trim or scalloping. This type of canopy is commonly found in parks, plazas, or outdoor event spaces, offering shelter while maintaining an unobtrusive, contemporary look.",
+    "description": "A sleek, white fabric canopy with a gently curved roof supported by four metal poles, designed for outdoor shade and shelter. The structure features clean lines and a minimalist, modern appearance.",
+    "description_view_0": "The canopy is seen from a corner, highlighting the central peak and the symmetrical, downward-sloping fabric towards each pole.",
+    "description_view_1": "Viewed from the side, the gentle arch of the canopy roof and the even spacing of the four supporting poles are clearly visible.",
+    "description_view_2": "This view mirrors view 0, showing the opposite corner with the same peaked center and sloping fabric edges.",
+    "description_view_3": "From this side view, the canopy's curved roof and the alignment of the poles are again evident, emphasizing the open space beneath.",
+    "category": "canopy",
+    "height": 2.8,
+    "max_dimension": 4.0,
+    "materials": [
+        "fabric",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shade_providing",
+        "rain_sheltering"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "poles",
+        "fabric canopy"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.15,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_mounting_type": "pole-supported, anchored",
+    "attribute_support_structure_design": "The canopy is supported by four straight, vertical metal poles positioned at each corner, forming a square or rectangular footprint. The fabric is tensioned between the poles, creating a stable, self-supporting structure with no additional cross-bracing or cables visible.",
+    "attribute_edge_detailing": "The edges of the canopy are straight and appear reinforced, likely hemmed or double-stitched for durability, with no decorative trim or exposed frame elements.",
+    "attribute_branding_or_signage": "none",
+    "attribute_lighting_integration": "none",
+    "uid": "3d46f76be7054026ba173552ffc149b0",
+    "near_synsets": {
+        "canopy.n.03": 0.46079793514805417,
+        "umbrella_tent.n.01": 0.4725043138272979,
+        "gazebo.n.01": 0.5084862874090802,
+        "umbrella.n.01": 0.5113705044911144,
+        "awning.n.01": 0.5118132203618404,
+        "canopy.n.01": -1000.0,
+        "canopy.n.02": -1000.0
+    },
+    "synset": "canopy.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3d46f76be7054026ba173552ffc149b0",
+        "creator_username": "raxtrox",
+        "creator_display_name": "raxtrox",
+        "creator_profile_url": "https://sketchfab.com/raxtrox"
+    },
+    "filename": "std_3d46f76be7054026ba173552ffc149b0.glb",
+    "length": 5.309096097946167,
+    "width": 3.572864532470703
+}

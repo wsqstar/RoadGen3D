@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a rectangular outdoor shelter with a corrugated metal roof and a frame constructed from metal tubing. The sides are primarily made of chain-link fencing, providing visibility and ventilation, while one end features solid metal panels, one of which is marked with a yellow star symbol. The shelter includes a gated entryway on one of the long sides, allowing access to the interior. The structure appears weathered, with visible rust and wear on the metal surfaces, suggesting prolonged outdoor use. Its design is utilitarian, suitable for use as a secure enclosure or holding area in urban parks, public spaces, or service facilities.",
+    "description": "A rectangular metal shelter with a corrugated roof, chain-link fencing, and a solid metal panel with a yellow star symbol. Features a gated entryway and weathered surfaces.",
+    "description_view_0": "Front view showing the corrugated roof, chain-link fencing, and partial solid metal panel on the left.",
+    "description_view_1": "Side view dominated by the solid metal panel with a yellow star symbol, minimal visibility of the fencing.",
+    "description_view_2": "Rear view similar to the front, with chain-link fencing and a solid panel on the right side.",
+    "description_view_3": "Opposite side view showing mostly chain-link fencing and the metal frame, with no solid panels visible.",
+    "category": "shelter",
+    "height": 2.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "steel",
+        "corrugated metal",
+        "chain-link mesh",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "gate",
+        "door latch"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "dark green",
+        "gray",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.05,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "pitched corrugated metal roof",
+    "attribute_entryway_design": "rectangular gated entry with metal frame and chain-link mesh",
+    "attribute_support_structure": "metal tubing frame with chain-link mesh infill and solid metal panels",
+    "attribute_signage": "yellow star symbol painted on solid metal panel",
+    "attribute_transparency": "partially transparent chain-link mesh walls with opaque metal roof and panels",
+    "uid": "934f060fd42d4073995ac3ae69a12876",
+    "near_synsets": {
+        "shelter.n.02": 0.4926710216484152,
+        "shelter.n.01": 0.5098326684826651,
+        "sentry_box.n.01": 0.5420873985705768,
+        "shelter.n.05": 0.5431816648756749,
+        "kennel.n.01": 0.5560183346481127,
+        "tax_shelter.n.01": -1000.0,
+        "protection.n.04": -1000.0
+    },
+    "synset": "tax_shelter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/934f060fd42d4073995ac3ae69a12876",
+        "creator_username": "berkgedik",
+        "creator_display_name": "Berk Gedik",
+        "creator_profile_url": "https://sketchfab.com/berkgedik"
+    },
+    "filename": "std_934f060fd42d4073995ac3ae69a12876.glb",
+    "length": 2.6180272102355957,
+    "width": 3.9531164169311523
+}

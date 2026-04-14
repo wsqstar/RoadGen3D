@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a stylized, mounted automatic rifle or turret with a robust cylindrical barrel and a reinforced support structure. The barrel is dark gray with white chevron markings and is encased at the rear by a thick, orange ring, suggesting a reinforced breech or heat shield. The rifle is mounted on a heavy, polygonal blue base with mechanical joints and a central black pivot, allowing for rotation and elevation adjustments. Scattered around the base are several spent brass casings, indicating recent or frequent firing activity. The mounting arm is thick and industrial, with visible bolts and a curved handle or cable running over the top. The overall design is utilitarian and rugged, suitable for urban defense or automated security in a city environment.",
+    "description": "A stylized, mounted automatic rifle with a cylindrical barrel, blue polygonal base, and scattered brass casings, designed for urban defense.",
+    "description_view_0": "Front view showing the barrel's opening, orange ring, and several spent casings on the ground.",
+    "description_view_1": "Side view highlighting the chevron markings on the barrel, the mounting arm, and the blue base.",
+    "description_view_2": "Rear view displaying the back of the barrel, mounting structure, and more spent casings.",
+    "description_view_3": "Angled view showing the barrel's side, Blender logo, and the distribution of casings around the base.",
+    "category": "rifle",
+    "height": 0.7,
+    "max_dimension": 0.9,
+    "materials": [
+        "steel",
+        "plastic",
+        "brass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 28,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel",
+        "mounting arm",
+        "base",
+        "handle",
+        "pivot joint"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "blue",
+        "orange",
+        "black",
+        "brass"
+    ],
+    "colors_composition": [
+        0.45,
+        0.3,
+        0.08,
+        0.12,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.32,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.07,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "group",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "none",
+    "attribute_muzzle_device": "none",
+    "uid": "3ab8ed35c31c43aea8ccb971110b218a",
+    "near_synsets": {
+        "machine_gun.n.01": 0.4810891186630501,
+        "assault_rifle.n.01": 0.48359592002529106,
+        "automatic_rifle.n.01": 0.48372860130683437,
+        "light_arm.n.01": 0.49063954143732186,
+        "rifle.n.01": 0.49584018009256015
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3ab8ed35c31c43aea8ccb971110b218a",
+        "creator_username": "berkgedik",
+        "creator_display_name": "Berk Gedik",
+        "creator_profile_url": "https://sketchfab.com/berkgedik"
+    },
+    "filename": "std_3ab8ed35c31c43aea8ccb971110b218a.glb",
+    "length": 0.6106456518173218,
+    "width": 0.5727924108505249
+}

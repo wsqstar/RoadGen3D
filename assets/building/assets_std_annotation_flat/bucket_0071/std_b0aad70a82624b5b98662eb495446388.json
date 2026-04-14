@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a small, single-story pharmacy building with a flat roof and a prominent green-and-white striped awning above the entrance. The facade features a large 'PHARMACY' sign in bold white letters, flanked by a white cross symbol, both of which are common indicators of a pharmacy. The storefront includes a glass entrance door and a large display window, allowing visibility into the interior. The building is surrounded by a paved sidewalk and a patch of green grass, with several stylized trees and bushes providing a welcoming atmosphere. The side and rear walls are plain, with additional windows and minimal architectural detailing. The overall design is clean and modern, with a focus on accessibility and clear identification as a healthcare facility.",
+    "description": "A modern, single-story pharmacy with a green-and-white awning, bold signage, glass entrance, and surrounding landscaping.",
+    "description_view_0": "Front view showing the pharmacy sign, cross symbol, striped awning, glass entrance door, and large display window.",
+    "description_view_1": "Side view revealing a plain wall with a single window, a tree, and part of the sidewalk and grass area.",
+    "description_view_2": "Rear view displaying two windows, a flat roof, and landscaping with trees and bushes.",
+    "description_view_3": "Opposite side view with a utility box, two bushes, a tree, and a window, plus the paved area extending to the side.",
+    "category": "pharmacy",
+    "height": 4.0,
+    "max_dimension": 10.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "plastic",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.05,
+        0.02,
+        0.05
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "signage"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "white",
+        "gray",
+        "brown",
+        "blue"
+    ],
+    "colors_composition": [
+        0.45,
+        0.2,
+        0.15,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_pharmacy_cross_sign": true,
+    "attribute_storefront_signage": "PHARMACY text with a white cross symbol",
+    "attribute_glass_display_windows": true,
+    "attribute_entrance_door": "swinging glass door with a handle",
+    "attribute_architectural_style": "modern",
+    "uid": "b0aad70a82624b5b98662eb495446388",
+    "near_synsets": {
+        "drugstore.n.01": 0.5370810625773847,
+        "pharmacy.n.01": 0.5409826399796752,
+        "medical_building.n.01": 0.5429449782765227,
+        "dispensary.n.01": 0.5503264208229028,
+        "pharmaceutical.n.01": 0.5690225195659846
+    },
+    "synset": "pharmacy.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b0aad70a82624b5b98662eb495446388",
+        "creator_username": "pixipui",
+        "creator_display_name": "pixipui",
+        "creator_profile_url": "https://sketchfab.com/pixipui"
+    },
+    "filename": "std_b0aad70a82624b5b98662eb495446388.glb",
+    "length": 8.052347183227539,
+    "width": 8.823758125305176
+}

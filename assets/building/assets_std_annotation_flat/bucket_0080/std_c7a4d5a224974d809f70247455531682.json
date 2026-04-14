@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a small pedestrian stone bridge with a gently arched span, reminiscent of Venetian canal bridges. The structure features a set of wide stone steps on both sides, leading up and over the arch. The bridge is bordered by black metal railings with vertical balusters and decorative posts at each corner, providing both safety and a touch of elegance. Underneath the bridge, a gondola with a paddle and a red scooter are positioned, suggesting a lively urban or canal-side setting. The bridge's surface and sides are constructed from gray stone or concrete, with brickwork visible at the base. The overall design is compact, functional, and visually evocative of European cityscapes.",
+    "description": "A small arched stone pedestrian bridge with black metal railings, flanked by a gondola and a red scooter beneath it. The bridge features wide steps and decorative posts, evoking a classic European urban style.",
+    "description_view_0": "Front view showing the arched span, black railings, and the gondola and scooter beneath the bridge.",
+    "description_view_1": "Top-down view highlighting the wide stone steps and the arrangement of the gondola and scooter at the base.",
+    "description_view_2": "Rear view displaying the arch, railings, and the gondola's bow and paddle, with the scooter visible to the side.",
+    "description_view_3": "Opposite top-down view focusing on the steps, the gondola's stern, and the scooter's position relative to the bridge.",
+    "category": "bridge",
+    "height": 2.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "stone",
+        "concrete",
+        "metal",
+        "brick",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "leanable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "steps",
+        "railings"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "black",
+        "red",
+        "brown",
+        "gold"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_support_type": "arch",
+    "attribute_railing_design": "black metal bars with vertical balusters and decorative posts",
+    "attribute_arch_presence": true,
+    "attribute_lighting_fixtures": [],
+    "attribute_architectural_style": "classical",
+    "uid": "c7a4d5a224974d809f70247455531682",
+    "near_synsets": {
+        "footbridge.n.01": 0.5198261233766683,
+        "steel_arch_bridge.n.01": 0.5365918306215752,
+        "viaduct.n.01": 0.5408879197431847,
+        "bridge.n.01": 0.5478574578791332,
+        "pier.n.03": 0.5517156240428602,
+        "bridge.n.03": -1000.0,
+        "bridge.n.09": -1000.0,
+        "bridge.n.07": -1000.0,
+        "bridge.n.05": -1000.0,
+        "bridge.n.06": -1000.0,
+        "bridge.n.04": -1000.0,
+        "bridge.n.02": -1000.0,
+        "bridge.n.08": -1000.0
+    },
+    "synset": "bridge.n.08",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c7a4d5a224974d809f70247455531682",
+        "creator_username": "nick.van.bouwel",
+        "creator_display_name": "Nick Van Bouwel",
+        "creator_profile_url": "https://sketchfab.com/nick.van.bouwel"
+    },
+    "filename": "std_c7a4d5a224974d809f70247455531682.glb",
+    "length": 6.998251914978027,
+    "width": 7.3906638622283936
+}

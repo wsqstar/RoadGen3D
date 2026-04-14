@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a rectangular patch of vibrant green grass, featuring numerous upright, thin blades that are evenly distributed across its surface. The grass blades are of uniform height and density, giving the patch a lush and healthy appearance. The edges of the patch are sharply defined, with the grass blades forming a clear boundary against the surrounding area. The surface texture appears soft and slightly uneven due to the natural variation in blade orientation. There are no visible signs of litter, debris, or other foreign objects present on the grass. This patch would typically be found in manicured urban environments such as parks, lawns, or landscaped roadside verges.",
+    "description": "A dense, rectangular patch of vibrant green grass with upright, evenly spaced blades and sharply defined edges. The surface appears lush, soft, and well-maintained.",
+    "description_view_0": "The grass patch is seen from a low angle, highlighting the uniform height and density of the blades along the front and left edges.",
+    "description_view_1": "This view emphasizes the right and front edges, showing the consistent distribution and sharp boundary of the grass blades.",
+    "description_view_2": "The patch is viewed from the back left, revealing the even coverage and the clear definition of the rear and left edges.",
+    "description_view_3": "The grass patch is seen from the back right, displaying the uniformity of the blades and the crisp outline along the rear and right sides.",
+    "category": "grass patch",
+    "height": 0.08,
+    "max_dimension": 1.0,
+    "materials": [
+        "plant_fiber",
+        "soil",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "mass": 2.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 15,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "sittable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "green"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "soft",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.38,
+    "youngs_modulus": 0.02,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_location": "urban park",
+    "attribute_density": "dense",
+    "attribute_boundary_definition": "well-defined",
+    "attribute_presence_of_litter_or_debris": false,
+    "attribute_integration_with_surrounding_elements": "The grass patch is visually separated from adjacent surfaces, with a clear and abrupt transition at its edges.",
+    "uid": "5ec1e157943d461cbb858d2957df0bca",
+    "near_synsets": {
+        "grass.n.01": 0.491588473703085,
+        "turf.n.01": 0.499651866447515,
+        "lawn.n.01": 0.5014705393480827,
+        "green.n.06": 0.5023938464943972,
+        "grassland.n.01": 0.5224409225152087,
+        "eyepatch.n.01": -1000.0,
+        "plot.n.02": -1000.0,
+        "patch.n.03": -1000.0,
+        "patch.n.05": -1000.0,
+        "temporary_hookup.n.01": -1000.0,
+        "bandage.n.01": -1000.0,
+        "mend.n.01": -1000.0,
+        "pot.n.09": -1000.0,
+        "spot.n.05": -1000.0,
+        "eatage.n.01": -1000.0,
+        "supergrass.n.01": -1000.0,
+        "grass.n.02": -1000.0,
+        "while.n.01": -1000.0
+    },
+    "synset": "turf.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/5ec1e157943d461cbb858d2957df0bca",
+        "creator_username": "Somersby",
+        "creator_display_name": "Somersby",
+        "creator_profile_url": "https://sketchfab.com/Somersby"
+    },
+    "filename": "std_5ec1e157943d461cbb858d2957df0bca.glb",
+    "length": 0.8405788540840149,
+    "width": 0.8297510743141174
+}

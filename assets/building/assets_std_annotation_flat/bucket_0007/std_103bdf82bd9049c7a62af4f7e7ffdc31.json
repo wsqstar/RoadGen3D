@@ -1,0 +1,109 @@
+{
+    "description_long": "This object consists of two modern main battle tanks positioned side by side on a circular, cracked concrete surface. Each tank features a large, elongated turret with a prominent main cannon, and both have visible hatches, periscopes, and antennae on their turrets. The tank on the left is painted in a dark gray camouflage pattern, while the one on the right displays a green woodland camouflage. Both tanks have heavy, sloped armor plating covering their hulls and turrets, with visible track systems running along the sides. The tanks' surfaces are matte and rugged, with various small details such as storage boxes, exhausts, and external equipment. No visible military insignia or numbers are present on either vehicle.",
+    "description": "Two heavily armored main battle tanks with distinct camouflage patterns are positioned on a cracked concrete surface, featuring large turrets, long cannons, and detailed track systems.",
+    "description_view_0": "Side view showing both tanks in profile, highlighting their long cannons, sloped armor, and contrasting camouflage patterns.",
+    "description_view_1": "Front view with both tanks facing forward, emphasizing the width of the hulls, the main cannons, and the frontal armor.",
+    "description_view_2": "Opposite side view, again showing both tanks in profile but with the green-camouflaged tank on the left and the gray-camouflaged tank on the right.",
+    "description_view_3": "Rear view of both tanks, displaying the back of the turrets, engine compartments, and the track systems.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.07,
+        0.03,
+        0.03,
+        0.02
+    ],
+    "mass": 110000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "antenna",
+        "track",
+        "periscope"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "gray",
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.45,
+        0.35,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "group",
+    "attribute_weapon_mounts": "Each tank has one large main cannon mounted on the turret; additional mounts for machine guns or secondary weapons may be present on the turret roof, but only the main cannons are clearly visible.",
+    "attribute_armor_plating": "Both tanks have full-body, sloped armor plating covering the hull and turret, with apparent thickness and modular construction; the armor appears robust and continuous with no visible gaps.",
+    "attribute_camouflage_pattern": "The left tank has a dark gray camouflage with irregular patches, while the right tank features a green woodland camouflage with blocky, angular shapes.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "103bdf82bd9049c7a62af4f7e7ffdc31",
+    "near_synsets": {
+        "tank.n.01": 0.4724863528626728,
+        "military_vehicle.n.01": 0.5217225407003308,
+        "assault_gun.n.02": 0.5277550323099041,
+        "panzer.n.01": 0.5323799325767796,
+        "armored_car.n.02": 0.5349954721883609,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/103bdf82bd9049c7a62af4f7e7ffdc31",
+        "creator_username": "lm9241221",
+        "creator_display_name": "lm9241221",
+        "creator_profile_url": "https://sketchfab.com/lm9241221"
+    },
+    "filename": "std_103bdf82bd9049c7a62af4f7e7ffdc31.glb",
+    "length": 15.818062782287598,
+    "width": 15.818063735961914
+}

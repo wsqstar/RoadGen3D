@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a blue, retro-futuristic truck with a large, open-topped cargo bed and a weathered, industrial appearance. The cab is compact and features a single door on each side, with a windshield and side windows that are slightly tinted. The truck is equipped with four large, circular hover engines instead of traditional wheels, connected by visible cables and mechanical supports, giving it a sci-fi, floating capability. The body is adorned with a white recycling symbol on the door, suggesting it is used for waste or recycling collection in an urban environment. The metal surfaces are worn and rusted in places, indicating heavy use and exposure to the elements. The overall design blends classic truck aesthetics with advanced, futuristic technology.",
+    "description": "A blue, weathered truck with a large open cargo bed and four hover engines, featuring a recycling symbol and a retro-futuristic design.",
+    "description_view_0": "Side view showing the open cargo bed, recycling symbol on the door, and two large hover engines with cables beneath the chassis.",
+    "description_view_1": "Front view highlighting the truck's grille, headlights, windshield, and the symmetrical placement of the hover engines.",
+    "description_view_2": "Opposite side view displaying the cargo bed, hover engines, and the cab's door and window details.",
+    "description_view_3": "Rear view focusing on the open cargo bed and the back ends of the hover engines, with cables visible underneath.",
+    "category": "truck",
+    "height": 2.2,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "mass": 3200,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 16000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "hover engine",
+        "cargo bed",
+        "cables"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "dump bed",
+    "attribute_wheelbase": "3.2",
+    "attribute_number_of_axles": 2,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "d8028b1483984b30bd556aa7098f1bff",
+    "near_synsets": {
+        "van.n.05": 0.5452524690015568,
+        "laundry_truck.n.01": 0.5582165696379826,
+        "truck.n.01": 0.5614159181986045,
+        "flatbed.n.02": 0.5724782833306965,
+        "garbage_truck.n.01": 0.5742634406927345,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d8028b1483984b30bd556aa7098f1bff",
+        "creator_username": "McGranny",
+        "creator_display_name": "Kirill",
+        "creator_profile_url": "https://sketchfab.com/McGranny"
+    },
+    "filename": "std_d8028b1483984b30bd556aa7098f1bff.glb",
+    "length": 3.5127238035202026,
+    "width": 1.908641278743744
+}

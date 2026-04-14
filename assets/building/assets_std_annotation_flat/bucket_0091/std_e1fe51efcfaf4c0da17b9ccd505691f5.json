@@ -1,0 +1,96 @@
+{
+    "description_long": "This gondola features a long, narrow wooden hull with gently upturned ends, characteristic of Venetian watercraft. The passenger compartment is centrally located and covered by a curved, metallic-looking canopy supported by slender posts. Two large wooden oars are mounted at the rear, attached to prominent oarlocks, and are used for propulsion. The seating area inside the compartment appears to be a simple wooden bench, with no visible upholstery or elaborate decoration. The prow and stern are capped with rounded, golden-yellow ornamental elements, adding a touch of elegance. The overall finish is a mix of dark brown wood, golden accents, and a muted metallic canopy, giving the vessel a traditional yet functional appearance.",
+    "description": "A traditional wooden gondola with a curved metallic canopy, golden ornamental ends, and a central bench seat, propelled by two large oars at the rear.",
+    "description_view_0": "Front view showing the narrow prow, golden tip, and the canopy's front edge.",
+    "description_view_1": "Side view highlighting the full length, curved hull, canopy, and both oars extending from the rear.",
+    "description_view_2": "Rear view displaying the stern's golden ornament, the back of the canopy, and the oar arrangement.",
+    "description_view_3": "Opposite side view showing the hull's curvature, canopy, and oars from the other side.",
+    "category": "gondola",
+    "height": 1.8,
+    "max_dimension": 10.0,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.1
+    ],
+    "mass": 350,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "oar",
+        "oarlock",
+        "bench",
+        "canopy"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gold",
+        "gray",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_passenger_compartment_design": "The passenger compartment is open-sided with a gently arched metallic canopy supported by slender posts, providing shade and partial shelter. The interior features a simple wooden bench without visible upholstery or decorative elements, emphasizing functionality over luxury.",
+    "attribute_prow_ornamentation": "The prow is capped with a smooth, rounded golden-yellow ornament, but no intricate carvings or decorative motifs are visible.",
+    "attribute_oarlock_type": "The oarlocks are traditional, upright wooden forcola, robustly shaped to accommodate the large oars and finished in a matching wood tone.",
+    "attribute_seating_arrangement": "There is a single central wooden bench located beneath the canopy, designed for multiple passengers to sit side by side. The bench appears plain, with no visible cushions, armrests, or backrests.",
+    "attribute_canopy_presence": true,
+    "uid": "e1fe51efcfaf4c0da17b9ccd505691f5",
+    "near_synsets": {
+        "gondola.n.02": 0.3973100284251925,
+        "gondola_car.n.01": 0.4923193822805457,
+        "gondolier.n.01": 0.507121626899481,
+        "canoe.n.01": 0.5353664739709217,
+        "rowing_boat.n.01": 0.5419524082574002,
+        "car.n.03": -1000.0
+    },
+    "synset": "gondola_car.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e1fe51efcfaf4c0da17b9ccd505691f5",
+        "creator_username": "anybody",
+        "creator_display_name": "anybody",
+        "creator_profile_url": "https://sketchfab.com/anybody"
+    },
+    "filename": "std_e1fe51efcfaf4c0da17b9ccd505691f5.glb",
+    "length": 4.344265460968018,
+    "width": 0.8762021064758301
+}

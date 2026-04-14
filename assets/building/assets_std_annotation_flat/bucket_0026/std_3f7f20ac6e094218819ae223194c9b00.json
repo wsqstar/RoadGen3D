@@ -1,0 +1,100 @@
+{
+    "description_long": "This ship features a robust, rectangular hull with a blue exterior accented by patches of rust and metallic wear, suggesting heavy use or exposure to harsh environments. The superstructure rises centrally with a sloped, gray upper section and is flanked by orange, ribbed elements that may serve as protective or functional rails. The front and rear both display a large, circular metallic fixture, possibly a hatch or thruster, set into a recessed panel. The deck is relatively flat and broad, with minimal visible equipment except for a small antenna or mast on the top. The overall design is utilitarian, with clean lines and a focus on durability, making it suitable for industrial or transport purposes in an urban waterfront or dockside setting. No visible windows, doors, or lifeboats are present, emphasizing a sealed, armored appearance.",
+    "description": "A blue, rectangular ship with a rugged, rust-patched hull, orange ribbed side rails, and a central gray superstructure topped by a small antenna. Large circular fixtures are present at both ends, giving it an industrial, armored look.",
+    "description_view_0": "The front view shows the orange ribbed side rails, the central gray superstructure, and a prominent circular fixture centered on the hull.",
+    "description_view_1": "This view reveals the rear of the ship, with the circular fixture and less visible orange rails, emphasizing the flat, armored back.",
+    "description_view_2": "Similar to view 1, this angle shows the rear with the circular fixture and minimal superstructure detail, highlighting the blue hull's weathered texture.",
+    "description_view_3": "The opposite end to view 0, this view again shows the orange ribbed rails and the circular fixture, mirroring the front's armored design.",
+    "category": "ship",
+    "height": 3.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "steel",
+        "aluminum",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "orange",
+        "rust brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single, rectangular displacement type with flat sides and a broad, flat base. Both bow and stern are squared off, with no visible keel or bulbous bow, and the hull is reinforced with metallic panels and rusted patches.",
+    "attribute_superstructure_layout": "The superstructure is centrally located, rising above the hull with a sloped, gray upper section and orange ribbed side rails. There is a single deck with a small antenna or mast on top, and no visible windows or doors.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "antenna"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "3f7f20ac6e094218819ae223194c9b00",
+    "near_synsets": {
+        "blue_peter.n.01": 0.5317431100355238,
+        "cargo_ship.n.01": 0.5397208870718961,
+        "hull.n.06": 0.5407578930897562,
+        "surface_ship.n.01": 0.5441815978203575,
+        "hulk.n.02": 0.544223127370046,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3f7f20ac6e094218819ae223194c9b00",
+        "creator_username": "kekaros509",
+        "creator_display_name": "Mihail Shegolev",
+        "creator_profile_url": "https://sketchfab.com/kekaros509"
+    },
+    "filename": "std_3f7f20ac6e094218819ae223194c9b00.glb",
+    "length": 3.225089192390442,
+    "width": 3.225088119506836
+}

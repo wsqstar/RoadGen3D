@@ -1,0 +1,110 @@
+{
+    "description_long": "This object is a vending machine with a unique, robotic design, featuring two mechanical legs and arm-like side panels, giving it an anthropomorphic appearance. The main body is a rectangular vending unit covered in vibrant, urban-style graffiti and street art, including stylized faces and bold patterns. The front panel displays a variety of drink cans and bottles behind a transparent window, with a control panel, payment interface, and product retrieval slot below. The top of the machine has a prominent sign with Japanese text and a phone number, while the sides and legs are decorated with additional artwork and mechanical details such as springs and joints. The color palette is dominated by orange, black, teal, and white, with accents of red and green. The overall construction appears to be primarily metal, with glass and plastic components for the display and interface areas.",
+    "description": "A graffiti-covered vending machine with robotic legs, a transparent product display, and a prominent Japanese sign on top, featuring vibrant urban artwork and mechanical details.",
+    "description_view_0": "Front view showing the vending display window, control panel, payment interface, product retrieval slot, and the large Japanese sign on top.",
+    "description_view_1": "Side view highlighting the robotic leg structure, mechanical joints, and detailed street art including a stylized face on the side panel.",
+    "description_view_2": "Rear view displaying the back of the vending machine, the mechanical legs, and the continuation of graffiti art, with less visible interface detail.",
+    "description_view_3": "Opposite side view focusing on the other leg, side panel artwork, and the depth of the vending machine body.",
+    "category": "vending machine",
+    "height": 2.1,
+    "max_dimension": 2.3,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.12,
+        0.1,
+        0.08,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 1800,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "payment slot",
+        "display panel",
+        "retrieval slot",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "black",
+        "white",
+        "teal",
+        "red",
+        "green"
+    ],
+    "colors_composition": [
+        0.35,
+        0.25,
+        0.15,
+        0.12,
+        0.08,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.32,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A rectangular display panel is located on the upper front of the vending machine, featuring a transparent window showing drink products, with printed instructions and product images visible.",
+    "attribute_payment_interface": "A payment interface is present below the display window on the front, including a coin slot, bill acceptor, and possibly a card reader, all grouped together in a compact area.",
+    "attribute_product_selection_buttons": "A set of individual product selection buttons is arranged vertically to the right of the display window, each labeled with product images or numbers.",
+    "attribute_product_retrieval_slot": "A rectangular product retrieval slot is located at the lower front of the machine, featuring a flap or door for accessing purchased items.",
+    "attribute_branding_or_signage": "A large, rectangular sign with Japanese text and a phone number is mounted on top of the machine, with additional branding and colorful graffiti art covering the body and sides.",
+    "uid": "fa53abe82a894481bb2a01855b51f322",
+    "near_synsets": {
+        "vending_machine.n.01": 0.49928252645208976,
+        "automat.n.01": 0.5149815690546266,
+        "automat.n.02": 0.5672765443863621,
+        "robotics_equipment.n.01": 0.5808529718068606,
+        "fruit_machine.n.01": 0.583720092902765,
+        "car.n.01": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.05": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.02": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fa53abe82a894481bb2a01855b51f322",
+        "creator_username": "sastrokromo.jeremia",
+        "creator_display_name": "nacho_dealer",
+        "creator_profile_url": "https://sketchfab.com/sastrokromo.jeremia"
+    },
+    "filename": "std_fa53abe82a894481bb2a01855b51f322.glb",
+    "length": 2.7572723627090454,
+    "width": 1.8968082070350647
+}

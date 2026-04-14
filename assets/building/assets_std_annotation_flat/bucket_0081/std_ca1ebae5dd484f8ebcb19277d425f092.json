@@ -1,0 +1,95 @@
+{
+    "description_long": "This airplane features a sleek, angular design with sharply swept wings and a low-profile fuselage, giving it a futuristic, stealth-inspired appearance. The wings are broad and sharply angled, with a slight anhedral configuration and red accent lines along the leading edges. The rear of the airplane is equipped with four prominent jet engines mounted close together, and the tail section includes a single vertical stabilizer. The cockpit is positioned forward on the fuselage and appears to be enclosed, with a dark canopy integrated into the streamlined body. The surface finish is predominantly matte gray with bold red and black highlights, and the overall structure suggests a high-performance, possibly military, aircraft. No visible landing gear is present in the images, indicating it may be retracted or not modeled.",
+    "description": "A futuristic, angular airplane with swept wings, four rear jet engines, and a forward enclosed cockpit, finished in matte gray with red and black accents.",
+    "description_view_0": "Front view showing the sharply swept wings, four prominent jet engines, and the pointed nose with a dark cockpit canopy.",
+    "description_view_1": "Side-rear view highlighting the angular wing shape, red and black accents, and the clustered rear jet engines.",
+    "description_view_2": "Rear view displaying the four jet engines, wide wingspan, and the single vertical stabilizer at the tail.",
+    "description_view_3": "Opposite side-rear view, similar to view 1, emphasizing the wing's anhedral angle and the streamlined fuselage.",
+    "category": "airplane",
+    "height": 2.5,
+    "max_dimension": 12.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 9500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "engine",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.04,
+    "recommended_clearance": 15.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, sharply swept wings with anhedral angle and no visible winglets.",
+    "attribute_engine_type": "Quad jet engines, rear-mounted in close cluster.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer.",
+    "attribute_landing_gear_type": "No visible landing gear.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a single dark canopy.",
+    "uid": "ca1ebae5dd484f8ebcb19277d425f092",
+    "near_synsets": {
+        "aircraft.n.01": 0.5048589023782861,
+        "airplane.n.01": 0.5287922542262542,
+        "jet.n.01": 0.5365478945195195,
+        "airframe.n.01": 0.5458250710110627,
+        "propjet.n.01": 0.547252850356924
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/ca1ebae5dd484f8ebcb19277d425f092",
+        "creator_username": "hoogflood",
+        "creator_display_name": "HoogFlood",
+        "creator_profile_url": "https://sketchfab.com/hoogflood"
+    },
+    "filename": "std_ca1ebae5dd484f8ebcb19277d425f092.glb",
+    "length": 5.170700788497925,
+    "width": 10.905147552490234
+}

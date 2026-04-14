@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a large, rectangular storage locker complex, resembling a modular facility with multiple individual compartments and rooms. The structure features a grid-like arrangement of storage units, each separated by thin walls and accessible via doorways. The exterior is predominantly white with blue accent lines outlining the edges and doors, and some sections are labeled with text. The interior layout includes both small and large compartments, suggesting a mix of personal and bulk storage options. The walls appear to be made of solid panels, likely metal or reinforced composite, with some transparent or semi-transparent sections possibly for visibility or ventilation. The overall design is robust and utilitarian, suitable for secure storage in a high-traffic urban environment.",
+    "description": "A large, modular storage locker facility with multiple compartments, white exterior, and blue accents, designed for secure urban storage.",
+    "description_view_0": "Front view showing a grid of storage compartments and doorways, with blue outlines and some labeled sections.",
+    "description_view_1": "Side view highlighting the depth of the structure and the arrangement of storage units along the length.",
+    "description_view_2": "Rear view displaying a large open area and additional storage compartments, with visible entry points.",
+    "description_view_3": "Opposite side view showing the extensive layout of storage units and the facility's overall rectangular footprint.",
+    "category": "storage locker",
+    "height": 3.0,
+    "max_dimension": 20.0,
+    "materials": [
+        "painted steel",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.05,
+        0.15
+    ],
+    "mass": 18000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "storable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "lock"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_number_of_doors": 16,
+    "attribute_locking_mechanism_type": "key lock",
+    "attribute_ventilation_pattern": "none visible",
+    "attribute_handle_design": "recessed pull",
+    "attribute_placement_location": "industrial facility",
+    "uid": "7d792b3c6d234856aa8fce5dbe42398d",
+    "near_synsets": {
+        "storage_space.n.01": 0.5220404807369864,
+        "cabinet.n.03": 0.5320102189669706,
+        "vault.n.02": 0.5432484880137618,
+        "safe.n.01": 0.544283407240157,
+        "locker_room.n.01": 0.5604750147253139,
+        "locker.n.02": -1000.0,
+        "storage.n.01": -1000.0,
+        "memory.n.04": -1000.0,
+        "storage.n.03": -1000.0,
+        "storage.n.04": -1000.0,
+        "repositing.n.01": -1000.0,
+        "footlocker.n.01": -1000.0,
+        "storehouse.n.01": -1000.0
+    },
+    "synset": "cabinet.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7d792b3c6d234856aa8fce5dbe42398d",
+        "creator_username": "3dmdesign",
+        "creator_display_name": "3DM Design",
+        "creator_profile_url": "https://sketchfab.com/3dmdesign"
+    },
+    "filename": "std_7d792b3c6d234856aa8fce5dbe42398d.glb",
+    "length": 34.4484806060791,
+    "width": 21.65302085876465
+}

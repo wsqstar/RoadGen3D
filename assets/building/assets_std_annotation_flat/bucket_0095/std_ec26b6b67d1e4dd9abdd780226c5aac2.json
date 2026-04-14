@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a rectangular, two-story prison building with a weathered, utilitarian appearance. The facade is marked by numerous small, barred windows, many of which show signs of rust and decay, and the walls are stained and discolored, suggesting age and exposure to the elements. The central entrance is recessed and accessed by a short set of steps, with the number '15' displayed above the doorway. The structure is constructed primarily from concrete, with a rough stone base visible along the lower portion of the exterior. The roof is flat and expansive, lacking any visible guard towers or rooftop features. The overall design is stark and functional, emphasizing security and durability over aesthetics.",
+    "description": "A weathered, two-story concrete prison with barred windows, a central entrance, and a rough stone base. The building has a stark, utilitarian appearance with visible signs of age and decay.",
+    "description_view_0": "Front view showing the main entrance, the number '15' above the door, and a symmetrical arrangement of barred windows.",
+    "description_view_1": "Side view revealing the building's depth, with several barred windows and visible wall stains.",
+    "description_view_2": "Rear view displaying a plain wall with barred windows and a central protrusion, lacking any entrance.",
+    "description_view_3": "Opposite side view similar to view 1, showing more barred windows and weathered wall surfaces.",
+    "category": "prison",
+    "height": 8.0,
+    "max_dimension": 32.0,
+    "materials": [
+        "concrete",
+        "stone",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "windows"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.01,
+    "recommended_clearance": 6.0,
+    "asset_composition_type": "single",
+    "attribute_barbed_wire": false,
+    "attribute_guard_towers": 0,
+    "attribute_high_perimeter_walls": false,
+    "attribute_security_cameras": 0,
+    "attribute_architectural_style": "utilitarian",
+    "uid": "ec26b6b67d1e4dd9abdd780226c5aac2",
+    "near_synsets": {
+        "prison.n.02": 0.5317393631823262,
+        "state_prison.n.01": 0.547811192490017,
+        "cell.n.07": 0.5530392326354319,
+        "casern.n.01": 0.5585103743239654,
+        "death_house.n.01": 0.5616943949149622,
+        "prison.n.01": -1000.0
+    },
+    "synset": "prison.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ec26b6b67d1e4dd9abdd780226c5aac2",
+        "creator_username": "gepap.aueb.gr",
+        "creator_display_name": "Georgios Papaioannou",
+        "creator_profile_url": "https://sketchfab.com/gepap.aueb.gr"
+    },
+    "filename": "std_ec26b6b67d1e4dd9abdd780226c5aac2.glb",
+    "length": 11.643178462982178,
+    "width": 25.519847869873047
+}

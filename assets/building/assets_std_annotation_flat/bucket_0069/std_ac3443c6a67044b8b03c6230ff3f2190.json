@@ -1,0 +1,97 @@
+{
+    "description_long": "This object consists of a round pizza with a light golden crust and numerous circular red pepperoni slices, placed inside an open, rectangular cardboard pizza box. The pizza appears to have a thin, slightly uneven crust and is topped with a uniform layer of melted cheese, with the pepperoni distributed evenly across the surface. The box is made of brown corrugated cardboard, with a simple, unbranded design and a hinged lid that stands upright. The interior of the box is plain, with no visible grease stains or branding, and the pizza sits directly on the box's bottom surface. The pizza itself does not appear to be sliced, maintaining a whole, uncut appearance. The overall presentation is typical of a takeout pizza intended for delivery or casual dining.",
+    "description": "A whole pepperoni pizza with a thin crust sits inside a plain, open brown cardboard box. The pizza is topped with cheese and evenly spaced pepperoni slices.",
+    "description_view_0": "Top-down view showing the full pizza with pepperoni slices inside the open box, with the lid upright and the pizza centered.",
+    "description_view_1": "Side view highlighting the thinness of the pizza and the depth of the open box, with the pizza visible inside.",
+    "description_view_2": "Rear view showing the closed back of the pizza box, with no pizza or toppings visible.",
+    "description_view_3": "Opposite side view showing the pizza's edge and the open box, similar to view 1 but from the other side.",
+    "category": "pizza",
+    "height": 0.18,
+    "max_dimension": 0.38,
+    "materials": [
+        "cardboard",
+        "bread",
+        "cheese",
+        "pepperoni",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.08,
+        0.02
+    ],
+    "mass": 0.85,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "base"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "yellow",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_topping_type": [
+        "pepperoni",
+        "cheese"
+    ],
+    "attribute_slice_count": 1,
+    "attribute_crust_style": "thin crust",
+    "attribute_packaging_presence": true,
+    "attribute_brand_logo": "None",
+    "uid": "ac3443c6a67044b8b03c6230ff3f2190",
+    "near_synsets": {
+        "pepperoni_pizza.n.01": 0.45363828049054206,
+        "pizza.n.01": 0.49619750533850154,
+        "cheese_pizza.n.01": 0.5111629555650732,
+        "sicilian_pizza.n.01": 0.522333744042832,
+        "pepperoni.n.01": 0.5236325026753149
+    },
+    "synset": "sicilian_pizza.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ac3443c6a67044b8b03c6230ff3f2190",
+        "creator_username": "mashipman",
+        "creator_display_name": "Mashipman",
+        "creator_profile_url": "https://sketchfab.com/mashipman"
+    },
+    "filename": "std_ac3443c6a67044b8b03c6230ff3f2190.glb",
+    "length": 0.18444007635116577,
+    "width": 0.17581340670585632
+}

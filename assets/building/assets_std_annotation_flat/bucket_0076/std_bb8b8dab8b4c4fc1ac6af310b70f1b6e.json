@@ -1,0 +1,99 @@
+{
+    "description_long": "This forklift features a compact, industrial design with a yellow body and a black overhead guard. The vehicle is equipped with two large front wheels and two smaller rear wheels, providing stability and maneuverability. The operator's compartment is open, with a visible seat and steering wheel, and the mast and fork arms are positioned at the front for lifting and transporting pallets or heavy loads. The overhead guard is robust, offering protection to the operator, while the mast appears to be a single-stage type with visible lift channels. The exterior is primarily metal, with some plastic and rubber components, and the overall finish is utilitarian and functional. The forklift is suitable for use in warehouses, loading docks, or urban construction sites.",
+    "description": "A compact yellow forklift with a black overhead guard, visible fork arms, and an open operator compartment. Designed for lifting and transporting heavy loads in industrial or urban settings.",
+    "description_view_0": "Side view showing the yellow body, black overhead guard, operator seat, and the full length of the fork arms at the front.",
+    "description_view_1": "Front view highlighting the fork arms, mast, and the protective overhead guard above the operator's area.",
+    "description_view_2": "Opposite side view similar to view 0, showing the yellow body, black overhead guard, and operator compartment from the other side.",
+    "description_view_3": "Rear view displaying the back of the yellow body, the overhead guard, and the rear wheels.",
+    "category": "forklift",
+    "height": 2.1,
+    "max_dimension": 3.2,
+    "materials": [
+        "steel",
+        "rubber",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 16000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "liftable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "steering wheel",
+        "seat",
+        "fork arms",
+        "mast",
+        "wheels",
+        "control levers"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_fork_arms": "Two parallel, straight fork arms extend forward from the base, appearing thick and robust, with a rectangular cross-section and a length suitable for standard pallets. The arms are positioned close to the ground and show no visible attachments or wear.",
+    "attribute_overhead_guard": "The overhead guard is a sturdy, rectangular black frame made of metal bars, covering the operator's area and providing protection from falling objects. It extends from the front to the rear of the operator compartment and is solidly constructed.",
+    "attribute_mast": "The mast is a single-stage vertical structure at the front, constructed from heavy steel with visible lift channels. It is relatively short and simple, with no visible hydraulic components or chains from these views.",
+    "attribute_operator_seat": "The operator seat is a single, contoured black seat with a backrest, positioned centrally in the compartment. It appears to be made of molded plastic or vinyl, with no visible armrests, headrest, or seatbelt.",
+    "attribute_warning_lights": "There are no visible warning lights on the forklift from any of the provided views.",
+    "uid": "bb8b8dab8b4c4fc1ac6af310b70f1b6e",
+    "near_synsets": {
+        "forklift.n.01": 0.4159012625997824,
+        "lifting_device.n.01": 0.5403858832109611,
+        "stacker_crane.n.01": 0.550170280480841,
+        "hoist.n.01": 0.5564553149025734,
+        "freight_elevator.n.01": 0.559126708995918
+    },
+    "synset": "forklift.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bb8b8dab8b4c4fc1ac6af310b70f1b6e",
+        "creator_username": "danorzc",
+        "creator_display_name": "Daniel Orozco",
+        "creator_profile_url": "https://sketchfab.com/danorzc"
+    },
+    "filename": "std_bb8b8dab8b4c4fc1ac6af310b70f1b6e.glb",
+    "length": 3.633346915245056,
+    "width": 15.609256744384766
+}

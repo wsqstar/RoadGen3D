@@ -1,0 +1,106 @@
+{
+    "description_long": "This object consists of two weathered sedans, both exhibiting significant rust and dirt across their exteriors, suggesting long-term exposure to harsh urban environments. The left sedan is predominantly dark brown with heavy rust patches, while the right sedan is a faded yellow with similar signs of corrosion and grime. Both vehicles have blacked-out windows, missing or darkened headlights, and black wheels, giving them an abandoned or derelict appearance. The body shapes are boxy and reminiscent of late 20th-century American sedans, with four doors and a traditional trunk. The yellow sedan has faint, worn markings on the side, possibly indicating it was once a taxi. License plates are visible on the rear of both cars, though the text is not fully legible. These sedans would fit well in scenes depicting urban decay, post-apocalyptic settings, or neglected city streets.",
+    "description": "Two heavily rusted, abandoned sedans\u2014one dark brown, one yellow\u2014showing extensive weathering, blacked-out windows, and black wheels, evoking a sense of urban decay.",
+    "description_view_0": "Front view showing the dark brown sedan on the left and the yellow sedan on the right, both with rusted hoods and blacked-out windshields.",
+    "description_view_1": "Side view highlighting the yellow sedan's faded taxi markings and the dark brown sedan's extensive rust along the doors and roof.",
+    "description_view_2": "Rear view displaying both sedans' trunks and license plates, with visible rust and dirt accumulation on the back surfaces.",
+    "description_view_3": "Opposite side view showing the yellow sedan's cleaner side and the dark brown sedan's heavily corroded panels and roof.",
+    "category": "sedan",
+    "height": 1.5,
+    "max_dimension": 5.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air",
+        "fabric"
+    ],
+    "materials_composition": [
+        0.7,
+        0.08,
+        0.07,
+        0.05,
+        0.04,
+        0.04,
+        0.02
+    ],
+    "mass": 1600,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "trunk",
+        "hood",
+        "license plate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "brown",
+        "black",
+        "rust orange"
+    ],
+    "colors_composition": [
+        0.45,
+        0.35,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_number_of_doors": 4,
+    "attribute_license_plate": "Rear license plates visible on both cars, rectangular, with a greenish tint; text not fully legible.",
+    "attribute_wheel_design": "Solid black wheels with no visible spokes or hubcap details, appearing utilitarian and worn.",
+    "uid": "268a610b570c4911968c8fb50ea7fe35",
+    "near_synsets": {
+        "sedan.n.01": 0.5650604277702868,
+        "car_window.n.01": 0.5737024137285271,
+        "used-car.n.01": 0.5760504624884009,
+        "bus.n.04": 0.5833552149093111,
+        "boneshaker.n.01": 0.5868996565933405,
+        "sedan.n.02": -1000.0
+    },
+    "synset": "sedan.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/268a610b570c4911968c8fb50ea7fe35",
+        "creator_username": "rubenn",
+        "creator_display_name": "Ruben",
+        "creator_profile_url": "https://sketchfab.com/rubenn"
+    },
+    "filename": "std_268a610b570c4911968c8fb50ea7fe35.glb",
+    "length": 5.4386115074157715,
+    "width": 7.469916105270386
+}

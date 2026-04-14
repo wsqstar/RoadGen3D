@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a classic hand grenade, featuring a segmented, pineapple-shaped metal body with a rugged, matte finish and visible signs of wear and chipping. The top section is fitted with a robust cylindrical safety lever and a prominent pull ring attached to a pin, both made of metal. The lever is slightly rusted and shows surface abrasions, while the body is painted in a muted olive drab color with patches of exposed metal and rust. The grenade's surface is faceted, providing a textured grip, and the neck area displays a yellowish band, indicating a possible marking or warning. The overall construction suggests a solid, heavy object designed for manual deployment. No digital or analog displays are present, and the only visible mechanism is the traditional pin-and-lever system.",
+    "description": "A rugged, olive drab hand grenade with a faceted metal body, safety lever, and pull ring, showing signs of wear and rust. The design is classic and utilitarian, with a yellow marking near the neck.",
+    "description_view_0": "Front view shows the grenade's safety lever and pull ring directly facing forward, highlighting the symmetrical, faceted body and the central alignment of the lever.",
+    "description_view_1": "This angled view reveals the side profile of the safety lever, the curvature of the pull ring, and more detail of the yellow marking around the neck.",
+    "description_view_2": "Rear view displays the back of the grenade, with the lever and ring less prominent, and the faceted body and yellow band clearly visible.",
+    "description_view_3": "Opposite angled view shows the lever and ring from the other side, emphasizing the rugged texture and chipped paint on the metal surfaces.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.07,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 0.4,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 4,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "pin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive drab",
+        "gray",
+        "yellow",
+        "rust brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the safety pin and releasing the lever, which triggers an internal fuse mechanism.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "5906698c72074aa1946ca111367c801e",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.49800956318964573,
+        "grenade.n.01": 0.537171011329251,
+        "rifle_grenade.n.01": 0.547755114905567,
+        "general-purpose_bomb.n.01": 0.5742274467533754,
+        "pipe_bomb.n.01": 0.5760078248665558,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0,
+        "bomb.n.01": -1000.0
+    },
+    "synset": "bomb.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5906698c72074aa1946ca111367c801e",
+        "creator_username": "rohitroy.me11",
+        "creator_display_name": "Rohit Roy",
+        "creator_profile_url": "https://sketchfab.com/rohitroy.me11"
+    },
+    "filename": "std_5906698c72074aa1946ca111367c801e.glb",
+    "length": 0.07648728042840958,
+    "width": 0.06515170633792877
+}

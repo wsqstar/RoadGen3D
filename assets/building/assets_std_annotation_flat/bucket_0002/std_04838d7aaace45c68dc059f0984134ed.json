@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a tall, cylindrical utility structure composed primarily of a vertical pole with two prominent horizontal crossarms at different heights. Each crossarm supports multiple insulator stacks, which are spaced evenly and project outward to hold electrical conductors. The pole features metallic brackets and mounting hardware, with visible insulators and connectors attached to the crossarms. The structure is robust, with a weathered metallic and composite finish, and is designed to support high-voltage electrical equipment. The overall appearance is industrial, with functional elements for power transmission and distribution.",
+    "description": "A tall, cylindrical utility pole with two horizontal crossarms supporting insulator stacks and electrical connectors, designed for high-voltage power transmission.",
+    "description_view_0": "Front view showing the full height of the pole, both crossarms, and all insulator stacks clearly aligned.",
+    "description_view_1": "Side view highlighting the depth of the crossarms and the staggered arrangement of insulator stacks.",
+    "description_view_2": "Rear view mirroring the front, with both crossarms and insulator stacks visible but less detail on mounting hardware.",
+    "description_view_3": "Opposite side view showing the crossarms' projection and the alignment of insulator stacks from a different angle.",
+    "category": "transformer tower",
+    "height": 10.0,
+    "max_dimension": 10.5,
+    "materials": [
+        "steel",
+        "ceramic",
+        "composite polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "connectable",
+        "mountable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "insulator stack",
+        "crossarm",
+        "mounting bracket"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "yellow",
+        "green"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_insulator_stacks": 6,
+    "attribute_arrangement_of_crossarms": "There are two horizontal crossarms arranged in a double-tiered configuration, each perpendicular to the pole and spaced vertically apart.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "insulator",
+        "mounting bracket"
+    ],
+    "attribute_configuration_of_attached_power_lines": "The power lines are arranged in two parallel circuits, each supported by a crossarm, with a likely three-phase configuration and the conductors spaced evenly along the arms.",
+    "uid": "04838d7aaace45c68dc059f0984134ed",
+    "near_synsets": {
+        "pylon.n.02": 0.4762746315010049,
+        "telephone_pole.n.01": 0.4948427876778767,
+        "transformer.n.01": 0.5182395382242722,
+        "power_system.n.01": 0.5316094591581912,
+        "cascade_transformer.n.01": 0.532580753574336,
+        "tower.n.01": -1000.0,
+        "column.n.04": -1000.0,
+        "tugboat.n.01": -1000.0
+    },
+    "synset": "pylon.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/04838d7aaace45c68dc059f0984134ed",
+        "creator_username": "omarsaurio",
+        "creator_display_name": "Omwekiatl",
+        "creator_profile_url": "https://sketchfab.com/omarsaurio"
+    },
+    "filename": "std_04838d7aaace45c68dc059f0984134ed.glb",
+    "length": 1.2578991651535034,
+    "width": 1.9332794547080994
+}

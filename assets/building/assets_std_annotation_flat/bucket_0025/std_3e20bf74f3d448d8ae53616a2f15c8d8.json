@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a World War II-era British fighter airplane, specifically modeled after the Supermarine Spitfire, featuring a streamlined fuselage with camouflage paint in brown and green tones. The wings are elliptical and display prominent Royal Air Force roundels, while the fuselage bears squadron codes and a tail number. The propeller is a three-blade design with yellow tips, and the landing gear is partially extended, indicating a taildragger configuration. The cockpit is enclosed with a clear canopy, positioned forward on the fuselage, and the tail section includes a single vertical stabilizer with a red, white, and blue fin flash. The airplane's surface appears metallic with matte paint, and the overall design is optimized for agility and speed.",
+    "description": "A camouflaged WWII British fighter airplane with elliptical wings, RAF roundels, and a forward-enclosed cockpit. It features a three-blade propeller, taildragger landing gear, and a single vertical stabilizer.",
+    "description_view_0": "Front-left view showing the elliptical wings, three-blade propeller, and forward cockpit canopy.",
+    "description_view_1": "Rear-left view highlighting the tail section, single vertical stabilizer, and extended landing gear.",
+    "description_view_2": "Rear-right view displaying the taildragger gear, tail markings, and right wing roundel.",
+    "description_view_3": "Front-right view focusing on the propeller, cockpit, and wing roundels.",
+    "category": "airplane",
+    "height": 3.5,
+    "max_dimension": 9.5,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 2700,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 26460,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "cockpit canopy",
+        "landing gear",
+        "wheels",
+        "control surfaces"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "green",
+        "blue",
+        "white",
+        "yellow",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.35,
+        0.35,
+        0.1,
+        0.08,
+        0.04,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 12.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, elliptical straight wings with no visible winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "Single nose-mounted piston engine with a three-blade propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "Taildragger configuration with two main fixed gear and a single tail wheel.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed single-seat cockpit with a clear canopy.",
+    "uid": "3e20bf74f3d448d8ae53616a2f15c8d8",
+    "near_synsets": {
+        "aircraft.n.01": 0.5290972157421369,
+        "fighter.n.02": 0.5329855733432882,
+        "warplane.n.01": 0.5332395022956297,
+        "combat_pilot.n.01": 0.5447152391964303,
+        "dogfight.n.03": 0.5526930565502506,
+        "airplane.n.01": -1000.0
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3e20bf74f3d448d8ae53616a2f15c8d8",
+        "creator_username": "manilov.ap",
+        "creator_display_name": "manilov.ap",
+        "creator_profile_url": "https://sketchfab.com/manilov.ap"
+    },
+    "filename": "std_3e20bf74f3d448d8ae53616a2f15c8d8.glb",
+    "length": 14.675588130950928,
+    "width": 14.165078163146973
+}

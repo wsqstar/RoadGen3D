@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a large, modern sniper rifle with a long, cylindrical barrel and a prominent scope mounted on top for precision aiming. The rifle features a robust, angular receiver and a fixed stock, with a pistol grip and a detachable box magazine visible beneath the action. A bipod is attached near the front of the barrel, providing stability for long-range shooting. The muzzle end appears to have a device, likely a muzzle brake, to reduce recoil. The overall finish is matte black, giving it a tactical and utilitarian appearance. A single rifle cartridge is depicted in proximity to the rifle, emphasizing its function and scale.",
+    "description": "A large, matte black sniper rifle with a long barrel, scope, bipod, and detachable magazine, designed for precision shooting.",
+    "description_view_0": "Front view showing the muzzle, bipod legs, and a cartridge aligned with the barrel.",
+    "description_view_1": "Side view displaying the full length of the rifle, scope, pistol grip, magazine, and bipod.",
+    "description_view_2": "Rear view highlighting the stock, scope alignment, and bipod legs from behind.",
+    "description_view_3": "Opposite side view showing the rifle's profile, scope, and magazine, with a cartridge near the muzzle.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 1.4,
+    "materials": [
+        "steel",
+        "polymer",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 13,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 130,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "magazine",
+        "bolt",
+        "scope",
+        "bipod",
+        "stock",
+        "pistol grip",
+        "barrel",
+        "muzzle brake"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "scope",
+    "attribute_muzzle_device": "muzzle brake",
+    "uid": "6ad968a934b44294822259bba60b5a42",
+    "near_synsets": {
+        "sniper_rifle.n.01": 0.41684414870622444,
+        "dragunov.n.01": 0.4683401300670425,
+        "rifle.n.01": 0.4758165111328415,
+        "sniper.n.01": 0.49106458789972657,
+        "garand_rifle.n.01": 0.5089281455849927
+    },
+    "synset": "garand_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6ad968a934b44294822259bba60b5a42",
+        "creator_username": "olofunot",
+        "creator_display_name": "olofunot",
+        "creator_profile_url": "https://sketchfab.com/olofunot"
+    },
+    "filename": "std_6ad968a934b44294822259bba60b5a42.glb",
+    "length": 0.802001953125,
+    "width": 0.10065078735351562
+}

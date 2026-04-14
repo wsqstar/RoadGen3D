@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a modular desk system composed of several wooden and metal components, including tabletops, support legs, and integrated shelving units. The design features multiple desk surfaces of varying sizes, with some sections incorporating slatted wooden back panels and others including attached storage compartments. The set also includes matching accessories such as drawers, small cabinets, and possibly cable management elements, all sharing a consistent wood and metal aesthetic. The wood appears to be a medium brown, while the metal parts are finished in a matte gray. The overall construction suggests durability and a modern, utilitarian style suitable for shared or public workspaces. The arrangement and variety of components indicate flexibility for different configurations and uses.",
+    "description": "A modular desk system with wood and metal construction, featuring multiple tabletops, shelving, and storage units in a modern, utilitarian style.",
+    "description_view_0": "Front view showing the full array of desk surfaces, shelving, and storage units, highlighting the modular and multi-component design.",
+    "description_view_1": "Side view emphasizing the depth of the desk surfaces and the thickness of the wood panels, with storage units and accessories visible in profile.",
+    "description_view_2": "Rear view displaying the slatted back panels and the structural supports, as well as the arrangement of storage compartments behind the desks.",
+    "description_view_3": "Opposite side view showing the alignment of the desk surfaces and the placement of smaller components, such as drawers and cabinets.",
+    "category": "desk",
+    "height": 1.2,
+    "max_dimension": 3.0,
+    "materials": [
+        "wood",
+        "steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.05,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "supportable",
+        "openable",
+        "closable",
+        "pullable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "drawer",
+        "shelf",
+        "cabinet door",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_location": "shared office or co-working space",
+    "attribute_orientation": "The user-facing side is defined by the open desk surfaces and accessible shelving, with slatted back panels and storage units positioned at the rear.",
+    "attribute_condition": "new",
+    "attribute_presence_of_attached_objects": [
+        "drawer",
+        "shelf",
+        "cabinet"
+    ],
+    "attribute_usage_context": "collaborative workspace or multi-user workstation",
+    "uid": "5150e7fcc98b44e1bc087e9ba206135a",
+    "near_synsets": {
+        "desk.n.01": 0.46227866976433113,
+        "office_furniture.n.01": 0.502883396254787,
+        "desktop.n.01": 0.5152051276514023,
+        "file.n.03": 0.5238153430324769,
+        "table.n.02": 0.5351686143729815
+    },
+    "synset": "desktop.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5150e7fcc98b44e1bc087e9ba206135a",
+        "creator_username": "JordiKruk",
+        "creator_display_name": "Jordi Kruk",
+        "creator_profile_url": "https://sketchfab.com/JordiKruk"
+    },
+    "filename": "std_5150e7fcc98b44e1bc087e9ba206135a.glb",
+    "length": 2.75048828125,
+    "width": 6.993774652481079
+}

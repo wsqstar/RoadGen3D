@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a rectangular section of urban roadway featuring a dark asphalt surface with two wide, light gray sidewalks running parallel along each side. The central road area is marked by a series of evenly spaced, rectangular white dashed lane markings, indicating a standard two-way street segment. The sidewalks are slightly elevated compared to the road surface, suggesting a clear separation for pedestrian use. The road section is flat and uniform, with no visible intersections, curves, or additional features such as drains or manhole covers. There are no visible road signs, lighting fixtures, or pedestrian crossings present. The overall appearance is clean and minimalistic, suitable for a modern city environment.",
+    "description": "A flat, rectangular urban road segment with dark asphalt, light gray sidewalks on both sides, and white dashed lane markings down the center.",
+    "description_view_0": "Front view showing the road's width, central dashed lane markings, and parallel sidewalks on both sides.",
+    "description_view_1": "Top-down view highlighting the full length and arrangement of the dashed lane markings and the sidewalks' width.",
+    "description_view_2": "Rear view, visually identical to the front, showing the road's width and lane markings from the opposite side.",
+    "description_view_3": "Top-down view from the opposite direction, again emphasizing the lane markings and sidewalk layout.",
+    "category": "road",
+    "height": 0.2,
+    "max_dimension": 6.0,
+    "materials": [
+        "asphalt",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "car",
+        "bicycle"
+    ],
+    "colors": [
+        "dark gray",
+        "light gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_lane_markings": "Four white dashed lane markings, evenly spaced, running longitudinally down the center of the road. No solid lines, arrows, or special markings.",
+    "attribute_signage": "none",
+    "attribute_curb_presence": true,
+    "attribute_lighting_fixtures": "none",
+    "attribute_pedestrian_crossings": "none",
+    "uid": "547179e9b1e44594b59a640d0d7f7112",
+    "near_synsets": {
+        "street.n.01": 0.48255818988285853,
+        "sidewalk.n.01": 0.484592014137173,
+        "street.n.02": 0.4919971175174459,
+        "traffic_lane.n.01": 0.5034273629228245,
+        "road_surface.n.01": 0.5036590079124188,
+        "road.n.01": -1000.0,
+        "road.n.02": -1000.0
+    },
+    "synset": "road.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/547179e9b1e44594b59a640d0d7f7112",
+        "creator_username": "oconop23",
+        "creator_display_name": "oconop23",
+        "creator_profile_url": "https://sketchfab.com/oconop23"
+    },
+    "filename": "std_547179e9b1e44594b59a640d0d7f7112.glb",
+    "length": 2.2904598712921143,
+    "width": 2.227745294570923
+}

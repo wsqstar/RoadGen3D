@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a hot-air balloon with a large, rounded envelope covered in a camouflage pattern of green, brown, and black, resembling military or tactical fabric. The envelope features several rectangular fabric patches sewn onto its surface, adding to its rugged appearance. Below the envelope, a small, boxy basket is suspended, constructed from what appears to be reinforced material and equipped with a number of protruding spikes or rods around its perimeter, likely for protection or structural support. The basket contains visible seating or control elements, and the connection between the envelope and basket is reinforced with dark suspension cables. The overall design is utilitarian, with no visible logos or decorative symbols, emphasizing function over aesthetics. The balloon's surface appears matte and slightly rough, with no glossy or reflective qualities.",
+    "description": "A camouflage-patterned hot-air balloon with a rugged, patchwork envelope and a spiked, reinforced basket suspended below. The design is utilitarian, with visible cables and no decorative markings.",
+    "description_view_0": "Front view shows the balloon's rounded envelope with a large rectangular patch and the spiked basket directly below.",
+    "description_view_1": "Side view highlights the camouflage pattern and the protruding spikes around the basket, with a patch visible on the envelope's side.",
+    "description_view_2": "Rear view displays the envelope's curvature, another rectangular patch, and the basket's structure with visible spikes.",
+    "description_view_3": "Opposite side view reveals additional patchwork on the envelope and the spiked basket, emphasizing the rugged design.",
+    "category": "hot-air balloon",
+    "height": 14.0,
+    "max_dimension": 10.0,
+    "materials": [
+        "fabric",
+        "metal",
+        "wood",
+        "air",
+        "plastic"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.13,
+        0.02
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "basket",
+        "suspension cables",
+        "burner frame",
+        "envelope patches"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "black",
+        "dark olive"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 500,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_envelope_pattern": "The envelope is covered in a camouflage pattern with irregular patches of green, brown, and black distributed unevenly across the surface. Several rectangular fabric patches are sewn onto the envelope, adding to the rugged, utilitarian look.",
+    "attribute_basket_presence": true,
+    "attribute_burner_frame_visibility": true,
+    "attribute_suspension_cables": true,
+    "attribute_registration_markings": "none",
+    "uid": "da44c038532041cdae61a6c7ee234f21",
+    "near_synsets": {
+        "hot-air_balloon.n.01": 0.46306962285304265,
+        "balloon.n.01": 0.5176733513800769,
+        "barrage_balloon.n.01": 0.5199271101596931,
+        "ballooning.n.01": 0.537746157190369,
+        "meteorological_balloon.n.01": 0.5505224196219289,
+        "balloon.n.02": -1000.0
+    },
+    "synset": "hot-air_balloon.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/da44c038532041cdae61a6c7ee234f21",
+        "creator_username": "LeionaChung",
+        "creator_display_name": "Leiona Chung",
+        "creator_profile_url": "https://sketchfab.com/LeionaChung"
+    },
+    "filename": "std_da44c038532041cdae61a6c7ee234f21.glb",
+    "length": 8.905567169189453,
+    "width": 8.816338539123535
+}

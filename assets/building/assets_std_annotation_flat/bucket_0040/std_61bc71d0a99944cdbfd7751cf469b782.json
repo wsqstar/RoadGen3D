@@ -1,0 +1,105 @@
+{
+    "description_long": "This is an above-ground, octagonal jacuzzi with a wooden exterior frame and a bright blue water interior. The jacuzzi features a metal ladder for entry and exit, attached to one side, and a visible external filtration or pump system mounted on another side. The wood paneling is arranged vertically, giving the structure a sturdy and decorative appearance suitable for outdoor urban environments such as backyards or parks. The water inside appears clean and nearly fills the tub to the brim, suggesting it is ready for use. The jacuzzi is large enough to accommodate multiple people and is designed for relaxation and social gatherings. No visible jets or control panels are present on the exterior surfaces.",
+    "description": "An octagonal, above-ground wooden jacuzzi with a blue water interior, metal ladder, and external pump system. The jacuzzi is nearly full and designed for outdoor use.",
+    "description_view_0": "This view shows the jacuzzi from a corner angle, highlighting the wooden exterior, blue water, and the external pump system on the left side.",
+    "description_view_1": "This side view emphasizes the elongated octagonal shape, the water surface, and the metal ladder at the far end.",
+    "description_view_2": "This view focuses on the entry side, clearly displaying the metal ladder attached to the jacuzzi and the water surface inside.",
+    "description_view_3": "This view shows the opposite side with both the ladder and the external pump system visible, providing a comprehensive look at the jacuzzi's main features.",
+    "category": "jacuzzi",
+    "height": 1.2,
+    "max_dimension": 3.5,
+    "materials": [
+        "wood",
+        "metal",
+        "plastic",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.1,
+        0.05,
+        0.35,
+        0.05
+    ],
+    "mass": 950,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 9,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "climbable",
+        "turnable_valve"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "ladder",
+        "pump",
+        "valve"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "blue",
+        "silver",
+        "orange",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.33,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_jets": [],
+    "attribute_control_panel": "none visible",
+    "attribute_water_level": "nearly full, water is close to the top edge",
+    "attribute_cover": false,
+    "attribute_steps": [
+        {
+            "location": "front",
+            "number_of_steps": 4,
+            "material": "wood"
+        }
+    ],
+    "uid": "61bc71d0a99944cdbfd7751cf469b782",
+    "near_synsets": {
+        "hot_tub.n.01": 0.5355013696480346,
+        "lido_deck.n.01": 0.5788635980792713,
+        "bath_water.n.01": 0.5802369778953378,
+        "pump_room.n.01": 0.5843606515656217,
+        "bathtub.n.01": 0.5907218361071561
+    },
+    "synset": "hot_tub.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/61bc71d0a99944cdbfd7751cf469b782",
+        "creator_username": "trzyde.com",
+        "creator_display_name": "trzyde.com",
+        "creator_profile_url": "https://sketchfab.com/trzyde.com"
+    },
+    "filename": "std_61bc71d0a99944cdbfd7751cf469b782.glb",
+    "length": 5.013229131698608,
+    "width": 3.664794683456421
+}

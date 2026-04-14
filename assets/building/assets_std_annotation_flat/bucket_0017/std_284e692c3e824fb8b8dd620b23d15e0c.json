@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a large, cylindrical metal barrel with a weathered green exterior, showing significant rust and wear, especially around the midsection and base. The surface is marked with various industrial symbols, including a faded triangular warning sign and diagonal lines, as well as a yellow 'WARNING' label near the bottom. The barrel's rim and a central reinforcing band are both metallic and slightly corroded, indicating prolonged outdoor exposure. There are visible handprints and smudges, suggesting frequent handling or movement. The top appears to be sealed with a matching green metal lid, and there are no visible handles. This type of barrel is commonly used for storing or transporting hazardous materials in industrial or urban environments.",
+    "description": "A weathered green metal barrel with rust, warning labels, and industrial markings, sealed with a metal lid.",
+    "description_view_0": "Front view shows heavy rust, a faded warning triangle, diagonal lines, and a yellow 'WARNING' label near the base.",
+    "description_view_1": "This side is mostly plain green with minor rust and no visible markings or labels.",
+    "description_view_2": "This view reveals a faint handprint and some smudges, with less rust and no major labels.",
+    "description_view_3": "This view highlights the warning triangle, diagonal lines, and the yellow 'WARNING' label, with pronounced rust patches.",
+    "category": "barrel or bucket",
+    "height": 0.9,
+    "max_dimension": 0.6,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "yellow",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "metal hoops at rim and midsection",
+    "attribute_labeling_or_markings": "warning triangle, diagonal lines, yellow 'WARNING' label, handprint",
+    "attribute_placement_location": "industrial",
+    "uid": "284e692c3e824fb8b8dd620b23d15e0c",
+    "near_synsets": {
+        "barrel.n.02": 0.47986345168331096,
+        "beer_barrel.n.01": 0.4974374864672722,
+        "barrel.n.03": 0.5020093818838539,
+        "bucket.n.01": 0.5044574651240745,
+        "barrels.n.01": 0.5182161451838388,
+        "bucket.n.02": -1000.0,
+        "barrel.n.04": -1000.0,
+        "barrel.n.05": -1000.0,
+        "barrel.n.01": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/284e692c3e824fb8b8dd620b23d15e0c",
+        "creator_username": "anilbhai",
+        "creator_display_name": "anilbhai",
+        "creator_profile_url": "https://sketchfab.com/anilbhai"
+    },
+    "filename": "std_284e692c3e824fb8b8dd620b23d15e0c.glb",
+    "length": 0.570082426071167,
+    "width": 0.5700826048851013
+}

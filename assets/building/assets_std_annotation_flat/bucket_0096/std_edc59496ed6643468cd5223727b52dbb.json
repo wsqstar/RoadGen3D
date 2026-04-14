@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a dark-colored, tracked combat tactical vehicle resembling a World War II-era tank, featuring a prominent cylindrical turret with a circular hatch on top and a long, narrow barrel extending from the front. The hull is angular with sloped armor panels, and the sides are equipped with large, robust road wheels and continuous metal tracks for all-terrain mobility. The vehicle's upper structure includes grilles and hatches, likely for engine ventilation and crew access. The turret appears to be rotatable, and the main gun is fixed to the front of the turret. The exterior is finished in a matte, nearly black color with no visible camouflage or military insignia. The overall design emphasizes protection and firepower, with thick armor plating covering the entire body.",
+    "description": "A dark, heavily-armored tracked combat vehicle with a cylindrical turret, long barrel, and robust metal tracks. The exterior is matte black with no visible markings or camouflage.",
+    "description_view_0": "Front view showing the sloped frontal armor, cylindrical turret with hatch, and the wide tracks on either side.",
+    "description_view_1": "Left side view highlighting the five large road wheels, continuous track, and the protruding main gun from the turret.",
+    "description_view_2": "Rear view displaying the back armor, track ends, and the rear of the turret with visible bolts and hatches.",
+    "description_view_3": "Right side view similar to the left, showing the track system, road wheels, and the main gun extending forward.",
+    "category": "combat tactical  vehicle",
+    "height": 2.3,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.02,
+        0.08,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "barrel",
+        "track",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the front of the turret; no other weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped steel armor plating; turret and hull both heavily armored with no visible modular or reactive panels.",
+    "attribute_camouflage_pattern": "None visible; solid matte black or dark gray finish.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "edc59496ed6643468cd5223727b52dbb",
+    "near_synsets": {
+        "tank.n.01": 0.48185559942161316,
+        "military_vehicle.n.01": 0.49008233918279775,
+        "armored_car.n.02": 0.4985560426672315,
+        "reconnaissance_vehicle.n.01": 0.5167089559398479,
+        "armored_vehicle.n.01": 0.5205991209230194,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/edc59496ed6643468cd5223727b52dbb",
+        "creator_username": "Alex.Zov",
+        "creator_display_name": "Alex.Zov",
+        "creator_profile_url": "https://sketchfab.com/Alex.Zov"
+    },
+    "filename": "std_edc59496ed6643468cd5223727b52dbb.glb",
+    "length": 4.317139148712158,
+    "width": 2.211727738380432
+}

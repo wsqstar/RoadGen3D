@@ -1,0 +1,103 @@
+{
+    "description_long": "This bus shelter features a long, rectangular structure with a corrugated, dark-colored metal roof supported by wooden posts and beams. The shelter is partially enclosed with wooden side and back panels, providing protection from the elements while allowing open access from the front. A bench, likely made of wood or composite material, is integrated along the length of the shelter for seating. There is a small, orange object adjacent to the shelter, possibly a separate bench or a step, adding a contrasting color accent. The shelter's design is utilitarian, with visible caution stripes on the corners for safety and visibility. The overall construction suggests durability and functionality, suitable for urban streets or transit stops.",
+    "description": "A long, partially enclosed bus shelter with a corrugated metal roof, wooden frame, and integrated bench, featuring safety markings and an orange accent object.",
+    "description_view_0": "End-on view showing the narrow side, wooden panel, and orange object at the base.",
+    "description_view_1": "Top-down view revealing the full length of the corrugated roof, open front, and the orange object to the left.",
+    "description_view_2": "Opposite end-on view with a clear look at the wooden panel and roof structure, no orange object visible.",
+    "description_view_3": "Side view displaying the full wooden back panel, open front, and the orange object on the right.",
+    "category": "bus shelter",
+    "height": 2.2,
+    "max_dimension": 6.0,
+    "materials": [
+        "wood",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.1
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench",
+        "roof",
+        "side panel"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "black",
+        "orange",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_roof_type": "flat corrugated metal",
+    "attribute_seating_presence": true,
+    "attribute_advertisement_panel": false,
+    "attribute_shelter_enclosure_level": "partially enclosed",
+    "attribute_signage": [],
+    "uid": "2e70b93124bf4d0fa6dde30bce7eae91",
+    "near_synsets": {
+        "shelter.n.02": 0.5252790287194844,
+        "shelter.n.01": 0.5496493482048458,
+        "bus_stop.n.01": 0.5562203355949313,
+        "shuttle_bus.n.01": 0.5585238991762375,
+        "school_bus.n.01": 0.5612083504806165,
+        "bus.n.01": -1000.0,
+        "tax_shelter.n.01": -1000.0,
+        "shelter.n.05": -1000.0,
+        "busbar.n.01": -1000.0,
+        "bus.n.04": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "protection.n.04": -1000.0
+    },
+    "synset": "shelter.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2e70b93124bf4d0fa6dde30bce7eae91",
+        "creator_username": "djbehar",
+        "creator_display_name": "Danny Behar",
+        "creator_profile_url": "https://sketchfab.com/djbehar"
+    },
+    "filename": "std_2e70b93124bf4d0fa6dde30bce7eae91.glb",
+    "length": 1.925410509109497,
+    "width": 7.99773907661438
+}

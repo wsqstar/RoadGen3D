@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a classic spherical bomb, reminiscent of those seen in cartoons or early 20th-century depictions. It features a matte black, slightly textured metal shell with a subtle mottled pattern, giving it a rugged, industrial appearance. At the top, a short cylindrical metal cap is visible, from which a single brown fuse protrudes vertically. The fuse appears to be made of a fibrous material, likely designed to be lit for ignition. The bomb's surface shows some wear and minor scuffing, suggesting it has been handled or stored in a rough environment. There are no visible markings, labels, or additional components on the exterior.",
+    "description": "A matte black, spherical metal bomb with a protruding brown fuse and a slightly worn, textured surface.",
+    "description_view_0": "The bomb is seen from a slightly angled perspective, showing the spherical body, the metal cap, and the fuse extending upward.",
+    "description_view_1": "A direct front view of the bomb, highlighting the symmetry of the sphere and the central placement of the fuse.",
+    "description_view_2": "Another angled view, nearly identical to view 0, with the fuse and cap clearly visible and the surface texture apparent.",
+    "description_view_3": "A rear view similar to view 1, showing the bomb's round shape and the fuse, with minimal surface detail changes.",
+    "category": "bomb",
+    "height": 0.28,
+    "max_dimension": 0.28,
+    "materials": [
+        "steel",
+        "gunpowder",
+        "cotton",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 35,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "fuse"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 2.0,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The bomb is equipped with a single exposed fuse at the top, which is likely intended to be ignited manually to initiate detonation.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "dde8319900f34ee78b0cb7674d99d689",
+    "near_synsets": {
+        "bomb.n.01": 0.5048627318856638,
+        "plastic_bomb.n.01": 0.5133851676416739,
+        "pipe_bomb.n.01": 0.5159698422282094,
+        "briefcase_bomb.n.01": 0.5301399798717045,
+        "dirty_bomb.n.01": 0.5339073516946032,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dde8319900f34ee78b0cb7674d99d689",
+        "creator_username": "warkarma",
+        "creator_display_name": "Warkarma",
+        "creator_profile_url": "https://sketchfab.com/warkarma"
+    },
+    "filename": "std_dde8319900f34ee78b0cb7674d99d689.glb",
+    "length": 0.15975354611873627,
+    "width": 0.15975230932235718
+}

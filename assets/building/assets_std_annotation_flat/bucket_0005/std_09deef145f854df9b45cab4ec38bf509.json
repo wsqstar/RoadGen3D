@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a rustic wooden cabin with a single-room layout, featuring rough-hewn timber walls and a simple, shed-style roof. The front facade is open, revealing a blacksmith's workshop setup with an anvil, furnace, tools, and a workbench, as well as a barrel and crate for storage. A stone chimney rises from one side, emitting puffs of smoke, and a torch is mounted near the entrance for illumination. The cabin has a single, rectangular window with blue-tinted panes on one side, framed by wooden planks. The floor is made of cobblestone, adding to the utilitarian, old-world charm. The overall appearance suggests a functional, hand-built structure suited for a craftsman or blacksmith in a historical or fantasy urban setting.",
+    "description": "A rustic wooden cabin with a shed roof, open front revealing a blacksmith's workshop, stone chimney, and a single blue-paned window.",
+    "description_view_0": "Side view showing the wooden plank wall and a single blue-paned window, with the stone chimney and smoke visible on the left.",
+    "description_view_1": "Front view displaying the open workshop area with tools, anvil, furnace, workbench, barrel, and crate, as well as the torch and chimney.",
+    "description_view_2": "Angled view highlighting both the windowed side and the open workshop, with the chimney, torch, and various workshop items visible.",
+    "description_view_3": "Rear view showing the solid wooden plank wall and the stone chimney with smoke, no windows or doors visible.",
+    "category": "cabin",
+    "height": 3.5,
+    "max_dimension": 5.0,
+    "materials": [
+        "wood",
+        "stone",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.02,
+        0.08
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "storable",
+        "ignitable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "window",
+        "workbench",
+        "anvil",
+        "furnace",
+        "torch",
+        "barrel",
+        "crate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "blue",
+        "black",
+        "yellow",
+        "orange"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.06,
+        0.03,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_roof_type": "shed roof constructed from wooden planks, sloping in one direction with no overhangs or dormers",
+    "attribute_window_arrangement": "One medium-sized, rectangular window with blue panes, centered on the left side wall, single and not grouped with others",
+    "attribute_door_placement": "No exterior doors are visible; the front is fully open, serving as the main entrance and workspace access",
+    "attribute_porch_presence": false,
+    "attribute_architectural_style": "rustic",
+    "uid": "09deef145f854df9b45cab4ec38bf509",
+    "near_synsets": {
+        "cabin.n.02": 0.4668401874486815,
+        "log_cabin.n.01": 0.47052175826737946,
+        "farmhouse.n.01": 0.5086762616179002,
+        "woodshed.n.01": 0.5150701934786911,
+        "toolshed.n.01": 0.5225026475081643,
+        "cabin.n.03": -1000.0,
+        "cabin.n.01": -1000.0
+    },
+    "synset": "cabin.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/09deef145f854df9b45cab4ec38bf509",
+        "creator_username": "sugarzombie",
+        "creator_display_name": "Sugar Zombie",
+        "creator_profile_url": "https://sketchfab.com/sugarzombie"
+    },
+    "filename": "std_09deef145f854df9b45cab4ec38bf509.glb",
+    "length": 3.0227280855178833,
+    "width": 3.1818182468414307
+}

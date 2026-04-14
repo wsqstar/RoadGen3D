@@ -1,0 +1,104 @@
+{
+    "description_long": "This is an octagonal above-ground jacuzzi with a wooden exterior frame and a blue water-filled interior. The jacuzzi features a set of wooden steps at the front for easy access, and a metal ladder is visible on one side, providing an alternative entry point. The water inside is clear and nearly reaches the top edge, indicating it is almost full. There are some visible accessories, such as a small orange tank or filter unit attached to the exterior, likely for water filtration or maintenance. The jacuzzi sits on a flat, light-colored base, which may be concrete or a similar material. The overall design is robust and suitable for outdoor urban environments such as backyards, parks, or communal spaces.",
+    "description": "An octagonal wooden jacuzzi with blue water, featuring steps, a metal ladder, and an external filtration unit. The jacuzzi is nearly full and designed for outdoor use.",
+    "description_view_0": "Front view showing the wooden steps leading up to the jacuzzi and the clear blue water inside.",
+    "description_view_1": "Side view highlighting the metal ladder and the orange filtration unit attached to the exterior.",
+    "description_view_2": "Rear view with a clear look at the orange filtration unit and the back of the jacuzzi, with no steps visible.",
+    "description_view_3": "Opposite side view showing the metal ladder and the filtration unit, with the steps partially visible.",
+    "category": "jacuzzi",
+    "height": 1.2,
+    "max_dimension": 3.0,
+    "materials": [
+        "wood",
+        "metal",
+        "plastic",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.1,
+        0.1,
+        0.25,
+        0.05
+    ],
+    "mass": 600,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "steps",
+        "ladder",
+        "filtration unit"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "blue",
+        "gray",
+        "orange",
+        "silver"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_jets": [],
+    "attribute_control_panel": "none visible",
+    "attribute_water_level": "nearly full, water close to the top edge",
+    "attribute_cover": false,
+    "attribute_steps": [
+        {
+            "location": "front",
+            "number_of_steps": 4,
+            "material": "wood"
+        }
+    ],
+    "uid": "2f45d212d8744ed3969f366a81b581b4",
+    "near_synsets": {
+        "hot_tub.n.01": 0.5353902978533426,
+        "bath_water.n.01": 0.5622158159369133,
+        "bathtub.n.01": 0.582394075709327,
+        "lido_deck.n.01": 0.5892594072023983,
+        "water_chute.n.01": 0.5897216479190813
+    },
+    "synset": "hot_tub.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/2f45d212d8744ed3969f366a81b581b4",
+        "creator_username": "trzyde.com",
+        "creator_display_name": "trzyde.com",
+        "creator_profile_url": "https://sketchfab.com/trzyde.com"
+    },
+    "filename": "std_2f45d212d8744ed3969f366a81b581b4.glb",
+    "length": 4.824007511138916,
+    "width": 4.8240063190460205
+}

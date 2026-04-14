@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a heavily armored tracked combat vehicle with a low, angular profile and a large, forward-facing main gun mounted in a casemate-style superstructure. The exterior is covered in thick, sloped armor plating, with additional side skirts protecting the tracks. The vehicle is painted in a light tan color with irregular brown camouflage streaks, suggesting an attempt to blend into arid environments. The tracks are wide and robust, designed for traversing rough terrain, and the rear features two prominent exhaust outlets. There are visible hatches and periscopes on the roof, as well as a few small markings and numbers on the sides. The overall design prioritizes protection and firepower, with minimal external features for crew visibility or comfort.",
+    "description": "A low-profile, heavily armored tracked combat vehicle with a large forward gun and tan-brown camouflage. It features sloped armor, side skirts, and robust tracks for rough terrain.",
+    "description_view_0": "Side view showing the full length of the vehicle, prominent side skirts, tracks, and the main gun protruding from the front.",
+    "description_view_1": "Rear view highlighting the two large exhaust outlets, rear armor, and the back of the tracks.",
+    "description_view_2": "Opposite side view similar to view 0, showing the side skirts, tracks, and the main gun from the other side.",
+    "description_view_3": "Front view displaying the large main gun, sloped frontal armor, and the vehicle's low, wide stance.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 23000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "closable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "main gun",
+        "track",
+        "exhaust",
+        "periscope",
+        "side skirt"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large forward-facing cannon mounted in the casemate; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped steel armor plating, including reinforced side skirts and frontal armor; no visible modular or reactive panels.",
+    "attribute_camouflage_pattern": "Tan base color with irregular brown streaks in a desert camouflage pattern.",
+    "attribute_military_markings": "White number '1' on the side armor; no other visible insignia or symbols.",
+    "attribute_tire_type": "not applicable",
+    "uid": "fd099adbcbfb43c38d8b489b2c949eab",
+    "near_synsets": {
+        "reconnaissance_vehicle.n.01": 0.49336893859089964,
+        "military_vehicle.n.01": 0.5008962579949382,
+        "tank.n.01": 0.5069318962398636,
+        "armored_car.n.02": 0.5182892212490533,
+        "assault_gun.n.02": 0.5241028625547578,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fd099adbcbfb43c38d8b489b2c949eab",
+        "creator_username": "TAKUMA.",
+        "creator_display_name": "TAKUMA",
+        "creator_profile_url": "https://sketchfab.com/TAKUMA."
+    },
+    "filename": "std_fd099adbcbfb43c38d8b489b2c949eab.glb",
+    "length": 5.045738220214844,
+    "width": 2.950205087661743
+}

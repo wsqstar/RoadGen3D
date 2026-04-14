@@ -1,0 +1,103 @@
+{
+    "description_long": "A classic pepperoni pizza sits inside a partially open white cardboard pizza box. The pizza is round, with a golden-brown thick crust and a surface covered in melted cheese and evenly distributed pepperoni slices. The box is plain white on the outside, with the Domino's logo printed on the lid. The interior of the box is a light brown, mimicking the look of cardboard, and the pizza fits snugly inside. The pizza appears freshly baked, with a slightly glossy cheese surface and crisped pepperoni edges. The box is hinged at the back, allowing the lid to open and close for access to the pizza inside.",
+    "description": "A pepperoni pizza with a thick crust sits inside a white Domino's-branded pizza box, partially open to reveal the pizza's toppings and golden cheese.",
+    "description_view_0": "Front view showing the open pizza box with a full view of the pepperoni pizza inside.",
+    "description_view_1": "Side view from the left, showing the pizza partially inside the open box and the thickness of the crust.",
+    "description_view_2": "Top-down view of the closed box, displaying the Domino's logo prominently on the lid.",
+    "description_view_3": "Side view from the right, similar to view 1, highlighting the pizza's edge and the open box structure.",
+    "category": "pizza",
+    "height": 0.09,
+    "max_dimension": 0.36,
+    "materials": [
+        "cardboard",
+        "cheese",
+        "bread",
+        "pepperoni",
+        "air",
+        "ink"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.13,
+        0.1,
+        0.05,
+        0.02
+    ],
+    "mass": 1.2,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 15,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "base"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "yellow",
+        "brown",
+        "blue"
+    ],
+    "colors_composition": [
+        0.55,
+        0.15,
+        0.13,
+        0.15,
+        0.02
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 300,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_topping_type": [
+        "pepperoni",
+        "cheese"
+    ],
+    "attribute_slice_count": 8,
+    "attribute_crust_style": "thick crust",
+    "attribute_packaging_presence": true,
+    "attribute_brand_logo": "Domino's",
+    "uid": "af85c1c516fb4ca48300ce1058dd2777",
+    "near_synsets": {
+        "pepperoni_pizza.n.01": 0.4602202627063689,
+        "cheese_pizza.n.01": 0.5102611751053264,
+        "pizza.n.01": 0.5169118179643196,
+        "sicilian_pizza.n.01": 0.5260612902112294,
+        "sausage_pizza.n.01": 0.54632589786703
+    },
+    "synset": "sausage_pizza.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/af85c1c516fb4ca48300ce1058dd2777",
+        "creator_username": "jason.lp.davis",
+        "creator_display_name": "jason.lp.davis",
+        "creator_profile_url": "https://sketchfab.com/jason.lp.davis"
+    },
+    "filename": "std_af85c1c516fb4ca48300ce1058dd2777.glb",
+    "length": 0.09482833743095398,
+    "width": 0.09482831507921219
+}

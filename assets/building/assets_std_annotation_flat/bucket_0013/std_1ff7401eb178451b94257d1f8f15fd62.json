@@ -1,0 +1,103 @@
+{
+    "description_long": "This bus shelter features a robust rectangular frame constructed primarily from metal, supporting a flat roof composed of solar panels. The shelter's back and partial side walls are made of perforated metal mesh, providing both visibility and airflow while offering some protection from the elements. A bench runs along the length of the shelter, providing seating for waiting passengers. One side panel is solid and displays a blue advertisement or branding panel, adding a visual accent and potential space for information. The structure is elevated slightly off the ground with sturdy legs, and the open front allows easy access for users. The overall design is modern and functional, suitable for urban environments.",
+    "description": "A modern bus shelter with a flat solar-panel roof, perforated metal mesh walls, a bench, and a blue advertisement panel on one side.",
+    "description_view_0": "Front view showing the open entry, perforated mesh back, bench, and the flat solar-panel roof.",
+    "description_view_1": "Side view highlighting the blue advertisement panel and the thickness of the solar-panel roof.",
+    "description_view_2": "Rear view displaying the full perforated mesh back wall and the bench inside.",
+    "description_view_3": "Opposite side view showing the open side without the advertisement panel and the shelter's structural frame.",
+    "category": "bus shelter",
+    "height": 2.3,
+    "max_dimension": 3.2,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "solar panel",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.05,
+        0.05,
+        0.15,
+        0.1
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench",
+        "advertisement panel"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "blue",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "flat solar-panel",
+    "attribute_seating_presence": true,
+    "attribute_advertisement_panel": true,
+    "attribute_shelter_enclosure_level": "partially enclosed",
+    "attribute_signage": [],
+    "uid": "1ff7401eb178451b94257d1f8f15fd62",
+    "near_synsets": {
+        "shelter.n.02": 0.5466114006896878,
+        "bus_stop.n.01": 0.5732554613235035,
+        "park_bench.n.01": 0.5743704776463026,
+        "bus_traffic.n.01": 0.5751022964826029,
+        "signboard.n.01": 0.5774215788628106,
+        "bus.n.04": -1000.0,
+        "tax_shelter.n.01": -1000.0,
+        "shelter.n.01": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "bus.n.01": -1000.0,
+        "shelter.n.05": -1000.0,
+        "busbar.n.01": -1000.0,
+        "protection.n.04": -1000.0
+    },
+    "synset": "shelter.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1ff7401eb178451b94257d1f8f15fd62",
+        "creator_username": "victorhugohc",
+        "creator_display_name": "V\u00edctor Hern\u00e1ndez",
+        "creator_profile_url": "https://sketchfab.com/victorhugohc"
+    },
+    "filename": "std_1ff7401eb178451b94257d1f8f15fd62.glb",
+    "length": 1.4676225781440735,
+    "width": 3.4714717864990234
+}

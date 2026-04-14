@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a multi-level, three-dimensional chessboard inspired by the Star Trek Tri-Dimensional Chess set. The structure consists of several square platforms arranged at different heights and connected by a central vertical rod and a curved support arm, all mounted on a circular base. The playing surfaces are decorated with alternating blue and white squares, with some platforms featuring grid lines and others left plain. The chessboard is adorned with metallic chess pieces in gold and silver, distributed across the various platforms. The base is white with gold insignia, resembling the Starfleet emblem, and the overall design is both futuristic and decorative. The materials appear to be a combination of metal, plastic, and possibly acrylic for the playing surfaces.",
+    "description": "A futuristic, multi-level chessboard with blue and white checkered platforms, metallic chess pieces, and a Star Trek-inspired circular base. The structure features a central rod and curved support, giving it a striking, decorative appearance.",
+    "description_view_0": "Front view showing the vertical alignment of the platforms, the gold and silver chess pieces, and the black circular base.",
+    "description_view_1": "Side view highlighting the curved support arm, the staggered arrangement of the platforms, and the white base with a gold insignia.",
+    "description_view_2": "Rear view focusing on the central rod, the layered platforms, and the distribution of chess pieces across the levels.",
+    "description_view_3": "Opposite side view emphasizing the curvature of the support arm and the spatial separation between the platforms.",
+    "category": "chessboard",
+    "height": 0.6,
+    "max_dimension": 0.7,
+    "materials": [
+        "plastic",
+        "metal",
+        "acrylic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "playable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "chess pieces",
+        "platforms"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "gold",
+        "silver",
+        "black"
+    ],
+    "colors_composition": [
+        0.4,
+        0.25,
+        0.15,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.5,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_board_pattern": "The playing surfaces are composed of alternating blue and white squares arranged in a checkered pattern, with some platforms featuring grid lines and others plain. The platforms are square and vary in size, with decorative elements such as the Starfleet insignia on the base.",
+    "attribute_square_grid": "Irregular multi-platform structure; each platform appears to have a 4x4 or 3x3 grid, but the overall board is not a single continuous grid.",
+    "attribute_alternating_light_and_dark_squares": true,
+    "attribute_presence_of_chess_pieces": true,
+    "attribute_border_design": "The borders of the platforms are thin and unadorned, matching the color of the playing surface edges. The base is circular, white, and features a gold Starfleet insignia, adding a decorative and thematic touch.",
+    "uid": "2d321ce293aa4b788b253cd8cec49fe2",
+    "near_synsets": {
+        "chess_set.n.01": 0.4907097064598736,
+        "chessboard.n.01": 0.5154466743153302,
+        "checkerboard.n.01": 0.562063317054321,
+        "chinese_checkers.n.01": 0.5635419605434253,
+        "chess.n.02": 0.5643153329721466
+    },
+    "synset": "chessboard.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/2d321ce293aa4b788b253cd8cec49fe2",
+        "creator_username": "Darren.Hogan",
+        "creator_display_name": "Daz",
+        "creator_profile_url": "https://sketchfab.com/Darren.Hogan"
+    },
+    "filename": "std_2d321ce293aa4b788b253cd8cec49fe2.glb",
+    "length": 0.43192489445209503,
+    "width": 0.24586772918701172
+}

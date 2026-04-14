@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a large, olive-green truck with a boxy, enclosed rear compartment and a cab at the front. The vehicle features a set of four windows along each side of the cargo area, and two rectangular roof hatches. The cab is equipped with a blue emergency light bar on the roof, suggesting it may be used for official or emergency purposes. The rear of the truck has a single door and two red tail lights, while the front displays a wide black grille and headlights. The truck rides on two axles with robust tires, and its overall design is utilitarian, likely intended for transporting personnel or equipment in urban or controlled environments.",
+    "description": "A large olive-green box truck with a blue emergency light bar, side windows, and a rear door, designed for official or utility use.",
+    "description_view_0": "Side view showing the left profile, four windows, two roof hatches, and the blue light bar on the cab.",
+    "description_view_1": "Rear view highlighting the single rear door, two red tail lights, and the boxy cargo compartment.",
+    "description_view_2": "Side view showing the right profile, four windows, two roof hatches, and the blue light bar on the cab.",
+    "description_view_3": "Front view displaying the wide black grille, headlights, and the blue emergency light bar on the cab roof.",
+    "category": "truck",
+    "height": 3.2,
+    "max_dimension": 8.0,
+    "materials": [
+        "painted steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "mass": 6500,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "light bar",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "black",
+        "blue",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.07,
+        0.03,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "box",
+    "attribute_wheelbase": 4.5,
+    "attribute_number_of_axles": 2,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "a352589b6f2043979080b6ab340afe26",
+    "near_synsets": {
+        "delivery_truck.n.01": 0.5247412913015964,
+        "truck.n.01": 0.5285649515128014,
+        "pickup.n.01": 0.5306190038447365,
+        "fire_engine.n.01": 0.5328676099350751,
+        "van.n.05": 0.5361313142994238,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a352589b6f2043979080b6ab340afe26",
+        "creator_username": "zhenko",
+        "creator_display_name": "zhenkoest",
+        "creator_profile_url": "https://sketchfab.com/zhenko"
+    },
+    "filename": "std_a352589b6f2043979080b6ab340afe26.glb",
+    "length": 8.002581119537354,
+    "width": 2.29421329498291
+}

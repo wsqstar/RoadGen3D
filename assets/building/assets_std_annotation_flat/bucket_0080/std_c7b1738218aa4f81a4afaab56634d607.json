@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a streamlined airplane with a rounded nose and a smooth, metallic fuselage painted primarily white with a red upper section and accents. The wings are straight and mid-mounted, extending symmetrically from the fuselage, and the tail features a single vertical stabilizer with red and blue markings. The cockpit is located at the front, with a series of black windows running along the side, indicating a passenger configuration. The engines are integrated into the lower front section of the fuselage, with two visible intakes beneath the nose. The airplane has a conventional tail design and lacks visible landing gear in the current views. The surface appears glossy and hard, reflecting light smoothly across its body.",
+    "description": "A white and red passenger airplane with mid-mounted straight wings, a rounded nose, and a single vertical stabilizer with colored markings. The cockpit is forward with multiple side windows and integrated front engines.",
+    "description_view_0": "Front view showing the rounded nose, cockpit windows, and two engine intakes beneath the fuselage.",
+    "description_view_1": "Left-side perspective highlighting the mid-mounted wing, row of passenger windows, and colored tail fin.",
+    "description_view_2": "Top-down view displaying the full wingspan, streamlined fuselage, and tail configuration.",
+    "description_view_3": "Right-side perspective similar to view 1, showing the opposite side's windows and tail markings.",
+    "category": "airplane",
+    "height": 4.5,
+    "max_dimension": 22.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.05,
+        0.05,
+        0.08,
+        0.02
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "cockpit controls",
+        "engine",
+        "tail fin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "black",
+        "blue"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.12,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 25.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing configuration with straight wings and no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Twin jet engines integrated beneath the forward fuselage.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "No visible landing gear in the current views.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with multiple windows, likely multi-seat.",
+    "uid": "c7b1738218aa4f81a4afaab56634d607",
+    "near_synsets": {
+        "navigation_light.n.01": 0.5145764636234592,
+        "airplane.n.01": 0.5221820454480555,
+        "monoplane.n.01": 0.5309889438033552,
+        "fuselage.n.01": 0.5387723381140295,
+        "aircraft.n.01": 0.5390245390340843
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c7b1738218aa4f81a4afaab56634d607",
+        "creator_username": "RoboRail1",
+        "creator_display_name": "RoboRail1",
+        "creator_profile_url": "https://sketchfab.com/RoboRail1"
+    },
+    "filename": "std_c7b1738218aa4f81a4afaab56634d607.glb",
+    "length": 12.071946620941162,
+    "width": 14.286009788513184
+}

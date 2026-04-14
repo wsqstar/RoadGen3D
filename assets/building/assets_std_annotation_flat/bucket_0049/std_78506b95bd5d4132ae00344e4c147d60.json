@@ -1,0 +1,102 @@
+{
+    "description_long": "This humanoid robot features a segmented, mechanical body with a prominent red head and expressive, round eyes, giving it a striking and somewhat unsettling appearance. Its torso and limbs are composed of black and white panels, with visible mechanical joints and exposed wiring, suggesting a utilitarian design. The robot's arms and legs are attached to long, thin rods, possibly for support or movement, and its hands and feet are stylized with red and black elements. The head is detailed with multiple circular features, including two large eyes and a smaller mouth-like component, while the body is adorned with various mechanical parts and connectors. The overall structure is elongated and somewhat skeletal, with several protruding rods and appendages extending from the main body. The robot's design is both functional and artistic, blending industrial aesthetics with humanoid form.",
+    "description": "A striking humanoid robot with a red head, expressive eyes, and a segmented black-and-white mechanical body, featuring long rod-like appendages and stylized red and black hands and feet.",
+    "description_view_0": "Front view shows the red head with large eyes, detailed facial features, and the full segmented torso with arms and legs extended, highlighting the robot's expressive face and central body structure.",
+    "description_view_1": "Side view reveals the depth of the torso, the arrangement of the limbs, and the extensive rod framework supporting the robot, with the head profile and mechanical joints visible.",
+    "description_view_2": "Rear view displays the back of the head and torso, the attachment points of the limbs, and the supporting rods, with less detail on the face but more on the mechanical structure.",
+    "description_view_3": "Angled side view emphasizes the robot's skeletal frame, the articulation of the limbs, and the complex network of rods and connectors, with partial visibility of the head and torso.",
+    "category": "humanoid robot",
+    "height": 2.2,
+    "max_dimension": 2.8,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head",
+        "eyes",
+        "arms",
+        "hands",
+        "legs",
+        "feet",
+        "joints",
+        "rods"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.25,
+        0.4,
+        0.3,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.12,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is in a seated or crouched pose with its torso upright, arms bent and raised, and legs bent at the knees. The head is facing forward, and the limbs are extended outward, supported by long rods.",
+    "attribute_clothing_style": "The robot is unclothed, with only integrated mechanical panels and stylized coverings in black, white, and red, giving it a decorative yet industrial appearance.",
+    "attribute_facial_features": "The face features a large, round red head with two prominent circular eyes, a small mouth-like component, and additional circular details, creating an expressive and slightly eerie visage.",
+    "attribute_limb_articulation": "The robot has articulated arms and legs with visible hinge and rotary joints at the shoulders, elbows, hips, and knees. The limbs appear to have a moderate range of motion, with hands and feet stylized but not highly articulated.",
+    "attribute_presence_of_sensors": "Visible sensors include two large camera-like eyes on the head, likely functioning as visual sensors. No other sensors are clearly visible.",
+    "uid": "78506b95bd5d4132ae00344e4c147d60",
+    "near_synsets": {
+        "android.n.01": 0.5324444373809758,
+        "cyborg.n.01": 0.5511312919847717,
+        "robotics_equipment.n.01": 0.5727899502596404,
+        "human_head.n.01": 0.5747702405452425,
+        "automaton.n.02": 0.5773988144992694
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/78506b95bd5d4132ae00344e4c147d60",
+        "creator_username": "TheWendigo2099",
+        "creator_display_name": "TheWendigo2099",
+        "creator_profile_url": "https://sketchfab.com/TheWendigo2099"
+    },
+    "filename": "std_78506b95bd5d4132ae00344e4c147d60.glb",
+    "length": 3.0247570276260376,
+    "width": 4.04925799369812
+}

@@ -11,8 +11,8 @@ from typing import Any, Dict, Iterable, Mapping, MutableMapping, Sequence
 from .eval_metrics import compute_balance_score, compute_spacing_uniformity
 
 try:
-    from .llm.safety_eval import evaluate_safety
-    from .llm.beauty_eval import evaluate_beauty
+    from .eval_engine_ext.road_metrics.evaluators.safety_eval import evaluate_safety
+    from .eval_engine_ext.road_metrics.evaluators.beauty_eval import evaluate_beauty
 except Exception:
     evaluate_safety = None  # type: ignore[misc,assignment]
     evaluate_beauty = None  # type: ignore[misc,assignment]

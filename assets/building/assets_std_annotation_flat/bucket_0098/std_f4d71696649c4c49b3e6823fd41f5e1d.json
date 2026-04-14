@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a large, industrial-style dumpster with a rectangular metal body and a split, ribbed plastic lid. The exterior is predominantly blue with significant patches of rust and weathering, indicating prolonged outdoor exposure. The lid is black, textured, and appears to be made of heavy-duty plastic, designed to be opened in two sections. The dumpster sits on four small wheels, allowing for mobility, and features reinforced side panels for structural strength. There are small, rectangular handles on the sides, likely for maneuvering or lifting. A faded warning label is visible on the front, adding to its utilitarian, urban appearance.",
+    "description": "A large, blue metal dumpster with a split black plastic lid, rust patches, and side handles, designed for outdoor waste collection.",
+    "description_view_0": "Front view showing the split black lid, faded warning label, and side handles.",
+    "description_view_1": "Left side view highlighting the ribbed lid texture and rusted blue metal body.",
+    "description_view_2": "Rear view displaying a plain, rusted blue metal surface with no visible labels or handles.",
+    "description_view_3": "Right side view similar to the left, showing the ribbed lid and weathered metal.",
+    "category": "dumpster",
+    "height": 1.3,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 250,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "handle",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black",
+        "brown",
+        "rust"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "split, ribbed, flat plastic lid with two sections, no visible locking mechanism",
+    "attribute_wheel_presence": true,
+    "attribute_handle_design": "two rectangular metal bar handles on each side",
+    "attribute_warning_labels": [
+        "white rectangular label with faded text on the front left"
+    ],
+    "attribute_placement_location": "outdoor commercial area",
+    "uid": "f4d71696649c4c49b3e6823fd41f5e1d",
+    "near_synsets": {
+        "dumpster.n.01": 0.41846494524250455,
+        "garbage.n.03": 0.49789362335412707,
+        "garbage_truck.n.01": 0.5139123730615907,
+        "recycling_bin.n.01": 0.5223181331704737,
+        "dump.n.02": 0.526260601102778
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f4d71696649c4c49b3e6823fd41f5e1d",
+        "creator_username": "OscarWW",
+        "creator_display_name": "OscarWW",
+        "creator_profile_url": "https://sketchfab.com/OscarWW"
+    },
+    "filename": "std_f4d71696649c4c49b3e6823fd41f5e1d.glb",
+    "length": 1.205078125,
+    "width": 1.91796875
+}

@@ -1,0 +1,103 @@
+{
+    "description_long": "This object consists of a group of factory buildings arranged in a row, each with distinct architectural features. The structures include a large brick building with a grid of industrial windows, several elongated warehouse-like buildings with flat roofs, and a few smaller utility structures. Some buildings feature visible rooftop machinery and vents, while others have loading dock doors and garage-style entrances. The color palette is dominated by muted tones such as gray, beige, and brick red, with some buildings displaying painted facades and signage. Smokestacks and industrial piping are visible on one of the buildings, emphasizing its factory function. The overall style is utilitarian, with a focus on functionality and industrial aesthetics.",
+    "description": "A group of industrial factory buildings with brick, concrete, and metal exteriors, featuring large windows, smokestacks, and rooftop machinery.",
+    "description_view_0": "A side view showing the full lineup of factory buildings, highlighting the variety in size, color, and roof structures.",
+    "description_view_1": "A frontal view emphasizing the main facades, with large windows and entrances visible on several buildings.",
+    "description_view_2": "The opposite side view, revealing the backs of the buildings, including loading docks and additional rooftop details.",
+    "description_view_3": "A rear view focusing on the brick building and utility structures, with smokestacks and machinery more prominent.",
+    "category": "factory building",
+    "height": 0.12,
+    "max_dimension": 0.55,
+    "materials": [
+        "brick",
+        "concrete",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.4,
+        0.25,
+        0.15,
+        0.1,
+        0.1
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "loading dock door",
+        "smokestack",
+        "rooftop machinery"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "white",
+        "beige",
+        "blue"
+    ],
+    "colors_composition": [
+        0.4,
+        0.25,
+        0.15,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_number_of_large_industrial_windows": 18,
+    "attribute_presence_of_smokestacks": true,
+    "attribute_loading_dock_doors": 3,
+    "attribute_rooftop_machinery": true,
+    "attribute_architectural_style": "Modern Industrial",
+    "uid": "51d32125adde471c80ffafb983c9ba63",
+    "near_synsets": {
+        "factory.n.01": 0.4936631877300655,
+        "plant.n.01": 0.5063953441078252,
+        "farm_building.n.01": 0.5238340364063138,
+        "building.n.01": 0.5450218841979101,
+        "office_building.n.01": 0.5469337547774825,
+        "construction.n.01": -1000.0,
+        "construction.n.07": -1000.0,
+        "building.n.04": -1000.0
+    },
+    "synset": "factory.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/51d32125adde471c80ffafb983c9ba63",
+        "creator_username": "cfletche",
+        "creator_display_name": "cfletche",
+        "creator_profile_url": "https://sketchfab.com/cfletche"
+    },
+    "filename": "std_51d32125adde471c80ffafb983c9ba63.glb",
+    "length": 0.8808774650096893,
+    "width": 0.2161765843629837
+}

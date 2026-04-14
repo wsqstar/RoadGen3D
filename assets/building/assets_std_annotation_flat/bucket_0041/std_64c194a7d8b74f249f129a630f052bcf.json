@@ -1,0 +1,140 @@
+{
+    "description_long": "This is a small, enclosed grave plot featuring a prominent Celtic cross monument made of stone, mounted on a stepped pedestal. The grave area is surrounded by a decorative wrought iron fence, enclosing two flat stone grave markers with engraved symbols and possible inscriptions. The ground within the enclosure is covered with grass and patches of earth, while the base of the cross and the grave markers show signs of weathering. The cross itself is intricately carved with traditional Celtic knotwork and stands as the central focal point. The overall scene suggests a historical or memorial site, likely found in a park, churchyard, or urban cemetery.",
+    "description": "A stone Celtic cross monument stands within a wrought iron-fenced grave plot, featuring two flat grave markers and weathered stonework.",
+    "description_view_0": "Front view showing the detailed Celtic cross, the stepped stone pedestal, and the fenced grave area with two grave markers.",
+    "description_view_1": "Side view highlighting the length of the grave plot, the iron fencing, and the profile of the cross and pedestal.",
+    "description_view_2": "Rear view focusing on the two flat grave markers, the full enclosure of the iron fence, and the back of the cross.",
+    "description_view_3": "Opposite side view showing the cross's profile, the stone base, and the fenced grave area from a different angle.",
+    "category": "grave yard",
+    "height": 2.2,
+    "max_dimension": 3.0,
+    "materials": [
+        "stone",
+        "iron",
+        "soil",
+        "grass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "fence gate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "green",
+        "brown"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.0,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_tombstone_inscriptions": [],
+    "attribute_crosses": [
+        {
+            "number": 1,
+            "type": "Celtic",
+            "height_m": 2.0,
+            "material": "stone"
+        }
+    ],
+    "attribute_grave_markers": [
+        {
+            "type": "headstone (flat slab)",
+            "material": "stone",
+            "dimensions_m": [
+                0.15,
+                0.8,
+                1.8
+            ]
+        },
+        {
+            "type": "headstone (flat slab)",
+            "material": "stone",
+            "dimensions_m": [
+                0.15,
+                0.8,
+                1.8
+            ]
+        }
+    ],
+    "attribute_mausoleums": [],
+    "attribute_cemetery_gates": [
+        {
+            "type": "wrought iron fence gate",
+            "primary_materials": "iron",
+            "dimensions_m": [
+                0.8,
+                1.0
+            ],
+            "decorative_elements": [
+                "finials"
+            ]
+        }
+    ],
+    "uid": "64c194a7d8b74f249f129a630f052bcf",
+    "near_synsets": {
+        "cairn.n.01": 0.5150109817374966,
+        "celtic_cross.n.01": 0.5207841912314807,
+        "gravestone.n.01": 0.5230710705469113,
+        "grave.n.02": 0.5500443847149952,
+        "cenotaph.n.01": 0.5563378199714962,
+        "yard.n.07": -1000.0,
+        "thousand.n.01": -1000.0,
+        "cubic_yard.n.01": -1000.0,
+        "yard.n.01": -1000.0,
+        "yard.n.02": -1000.0,
+        "yard.n.08": -1000.0,
+        "yard.n.06": -1000.0,
+        "yard.n.09": -1000.0,
+        "yard.n.03": -1000.0
+    },
+    "synset": "gravestone.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/64c194a7d8b74f249f129a630f052bcf",
+        "creator_username": "JackMGlauser",
+        "creator_display_name": "JackMGlauser",
+        "creator_profile_url": "https://sketchfab.com/JackMGlauser"
+    },
+    "filename": "std_64c194a7d8b74f249f129a630f052bcf.glb",
+    "length": 2.4514658451080322,
+    "width": 1.8099308013916016
+}

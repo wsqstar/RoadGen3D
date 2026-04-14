@@ -1,0 +1,98 @@
+{
+    "description_long": "This combat tactical vehicle features a blocky, angular design with a predominantly black and white color scheme. The vehicle has a high, rectangular central body with a raised section at the rear, likely representing an armored compartment or turret. On each side, there are large, robust structures resembling armored wheel covers or tracks, suggesting heavy-duty mobility. The right side of the vehicle displays protruding rectangular elements that could represent weapon mounts or equipment racks. The front and rear are reinforced with thick, solid panels, and the overall construction appears to prioritize protection and durability. The vehicle's exterior is smooth and hard, with no visible windows or markings.",
+    "description": "A blocky, armored combat tactical vehicle with a black and white color scheme, featuring robust side structures and protruding mounts on one side.",
+    "description_view_0": "Front view shows a solid, rectangular face with thick side structures and a raised central section.",
+    "description_view_1": "Right side view highlights protruding rectangular mounts and the stepped, angular body profile.",
+    "description_view_2": "Rear view reveals a flat, reinforced back panel and symmetrical side structures.",
+    "description_view_3": "Left side view is similar to the right but lacks the protruding mounts, showing a more uniform side profile.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 8500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "weapon mount",
+        "door",
+        "hatch",
+        "track/wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.4
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Three rectangular mounts visible on the right side, likely for machine guns or similar weapons.",
+    "attribute_armor_plating": "Full body coverage with thick, angular armor plating; no visible sloping or modular panels.",
+    "attribute_camouflage_pattern": "None visible; solid black and white color scheme.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "d8e5099881974333bb163a6e9ed19e9e",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4938528919148306,
+        "tank.n.01": 0.5110353135886175,
+        "reconnaissance_vehicle.n.01": 0.5289393710702452,
+        "assault_gun.n.02": 0.5292783461212285,
+        "armored_car.n.02": 0.5314346229770429,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d8e5099881974333bb163a6e9ed19e9e",
+        "creator_username": "Das_L1",
+        "creator_display_name": "Das_L",
+        "creator_profile_url": "https://sketchfab.com/Das_L1"
+    },
+    "filename": "std_d8e5099881974333bb163a6e9ed19e9e.glb",
+    "length": 2.3214285373687744,
+    "width": 2.499999523162842
+}

@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a vintage biplane with a striking blue fuselage and wings, accented by white tail surfaces and black cross insignias reminiscent of early 20th-century military aircraft. The airplane features two sets of straight, parallel wings connected by a network of black struts and wires, with the upper wing slightly larger than the lower. The nose is equipped with a wooden two-blade propeller and a pair of exposed, cylindrical engine housings mounted between the wings. The cockpit is open and situated just behind the upper wing, with a small windscreen and visible pilot seat. The tail section includes a single vertical stabilizer and horizontal stabilizers, all painted white with black crosses. The overall construction appears to be primarily metal and wood, with fabric-covered wings and control surfaces.",
+    "description": "A vintage blue biplane with dual wings, exposed engines, and an open cockpit, featuring black cross insignias and a wooden propeller. The design is reminiscent of early military aircraft with a mix of metal, wood, and fabric construction.",
+    "description_view_0": "Rear three-quarter view showing the blue fuselage, white tail with black cross, and the upper and lower wings with visible struts and wires.",
+    "description_view_1": "Direct top-down view highlighting the full wingspan, dual engine housings, and the black cross insignias on both wings and tail.",
+    "description_view_2": "Opposite rear three-quarter view, similar to view 0 but from the other side, showing the tail, wing structure, and engine placement.",
+    "description_view_3": "Frontal view displaying the wooden propeller, engine housings, open cockpit, and the symmetrical biplane wing arrangement.",
+    "category": "airplane",
+    "height": 2.8,
+    "max_dimension": 7.5,
+    "materials": [
+        "metal",
+        "wood",
+        "fabric",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 9500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "cockpit",
+        "engine housing",
+        "control stick",
+        "landing gear"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "white",
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Biplane configuration with two straight, parallel wings stacked vertically and connected by struts and wires; no winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "Twin exposed piston engines mounted between the upper and lower wings.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers; all tail surfaces are straight-edged.",
+    "attribute_landing_gear_type": "Fixed taildragger landing gear with two main wheels and a small tail skid.",
+    "attribute_cockpit_placement": "Open, single-seat cockpit located forward of the fuselage, just behind the upper wing, with a small windscreen.",
+    "uid": "4642abafc89e4e7a87d77a38bc37358c",
+    "near_synsets": {
+        "biplane.n.01": 0.4683045823799291,
+        "airplane.n.01": 0.5198916506327508,
+        "aircraft.n.01": 0.5231776523408361,
+        "monoplane.n.01": 0.5281105202425469,
+        "multiengine_airplane.n.01": 0.5370087653186111
+    },
+    "synset": "multiengine_airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4642abafc89e4e7a87d77a38bc37358c",
+        "creator_username": "alexm00",
+        "creator_display_name": "alexm00",
+        "creator_profile_url": "https://sketchfab.com/alexm00"
+    },
+    "filename": "std_4642abafc89e4e7a87d77a38bc37358c.glb",
+    "length": 3.5432130098342896,
+    "width": 6.22742223739624
+}

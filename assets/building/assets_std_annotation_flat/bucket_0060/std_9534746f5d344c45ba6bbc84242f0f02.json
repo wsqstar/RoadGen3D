@@ -1,0 +1,107 @@
+{
+    "description_long": "This humanoid robot features a friendly, cartoon-like face with glasses and a wide-brimmed hat, mounted on a cylindrical neck and a rounded yellow torso. Its arms are long, segmented, and extend horizontally, ending in flat, paddle-like hands with visible finger segments. The robot's lower body is integrated into a wheeled base, suggesting mobility, with two large wheels on either side and a central support. Colorful cables are visible connecting the torso to the arms, adding a mechanical and functional aesthetic. The robot's chest and base display various mechanical details, including a panel with a biohazard symbol and a keyhole, hinting at access or maintenance points. The overall design is sleek and approachable, blending metallic and plastic materials with a playful, service-oriented appearance.",
+    "description": "A friendly humanoid robot with a cartoon face, wide-brimmed hat, yellow torso, and long segmented arms, mounted on a wheeled base with visible cables and mechanical details.",
+    "description_view_0": "Front view showing the robot's face, glasses, hat, yellow torso, outstretched arms, and wheeled base with visible cables and chest panel.",
+    "description_view_1": "Left side view highlighting the profile of the head, hat, arm segments, and the depth of the wheeled base.",
+    "description_view_2": "Rear view displaying the back of the head, yellow torso, extended arms, and the structure of the wheeled base.",
+    "description_view_3": "Right side view showing the side profile of the head, arm, and the mechanical details of the base.",
+    "category": "humanoid robot",
+    "height": 1.6,
+    "max_dimension": 2.0,
+    "materials": [
+        "plastic",
+        "metal",
+        "rubber",
+        "glass",
+        "wiring",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pressable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "hands",
+        "wheels",
+        "chest panel",
+        "head",
+        "keyhole"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "yellow",
+        "gray",
+        "black",
+        "blue",
+        "red"
+    ],
+    "colors_composition": [
+        0.45,
+        0.2,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with torso vertical, arms fully extended horizontally to the sides in a T-pose, head facing forward, and body supported by a wheeled base.",
+    "attribute_clothing_style": "The robot is unclothed but features integrated panels and a wide-brimmed hat-like head covering, with decorative elements such as glasses and colored wiring.",
+    "attribute_facial_features": "The face has large, round eyes with glasses, a small nose, and a simple mouth, all stylized in a cartoon-like manner; the head is topped with a wide, flat hat.",
+    "attribute_limb_articulation": "Arms have multiple visible hinge joints at the shoulders, elbows, and wrists, allowing for a wide range of motion; hands have segmented fingers, but no visible legs as the lower body is a wheeled base.",
+    "attribute_presence_of_sensors": "Possible camera or visual sensor in the face area; no other sensors are clearly visible.",
+    "uid": "9534746f5d344c45ba6bbc84242f0f02",
+    "near_synsets": {
+        "android.n.01": 0.531906468543668,
+        "automaton.n.02": 0.5493754620472892,
+        "robotics_equipment.n.01": 0.5502870488774444,
+        "cyborg.n.01": 0.5509815407969135,
+        "animatronics.n.01": 0.5568012851045173
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9534746f5d344c45ba6bbc84242f0f02",
+        "creator_username": "NoTimeForAdventure",
+        "creator_display_name": "NoTimeForAdventure",
+        "creator_profile_url": "https://sketchfab.com/NoTimeForAdventure"
+    },
+    "filename": "std_9534746f5d344c45ba6bbc84242f0f02.glb",
+    "length": 0.4027760624885559,
+    "width": 1.9270604848861694
+}

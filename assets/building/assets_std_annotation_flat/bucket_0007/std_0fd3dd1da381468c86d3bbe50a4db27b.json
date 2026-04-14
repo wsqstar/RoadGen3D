@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a classic single-wheel barrow, commonly used for transporting materials in urban and garden environments. The main body consists of a deep, rectangular metal tray with slightly sloped sides, designed to hold loose or bulky items. Two straight, black metal handles with red rubber grips extend from the rear, providing leverage for lifting and maneuvering. The barrow is supported at the front by a single, robust rubber wheel mounted centrally beneath the tray, and at the rear by two sturdy, curved metal support legs. The frame is constructed from tubular metal, giving it both strength and durability. The overall finish is matte black with visible signs of wear, indicating practical use.",
+    "description": "A sturdy, single-wheel barrow with a deep black metal tray, red-handled grips, and a central front wheel, designed for transporting materials. It features a robust metal frame and support legs for stability.",
+    "description_view_0": "Front view showing the single central wheel, the deep tray, and the two handles with red grips extending backward.",
+    "description_view_1": "Side view highlighting the sloped tray, the single front wheel, and the full length of the handles and support legs.",
+    "description_view_2": "Rear view displaying the open tray, the two handles with red grips, and the support legs beneath.",
+    "description_view_3": "Opposite side view similar to view 1, showing the tray's depth, the wheel, and the handles' alignment.",
+    "category": "barrow",
+    "height": 0.6,
+    "max_dimension": 1.4,
+    "materials": [
+        "steel",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 15,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 25,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable",
+        "dumpable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "tray",
+        "support legs"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "black",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 1,
+    "attribute_handle_type": "dual straight handles with rubber grips",
+    "attribute_wheel_position": "single front-centered",
+    "attribute_tray_depth": 0.28,
+    "attribute_presence_of_support_legs": true,
+    "uid": "0fd3dd1da381468c86d3bbe50a4db27b",
+    "near_synsets": {
+        "barrow.n.03": 0.4198219299650559,
+        "handbarrow.n.01": 0.48755761954238735,
+        "barrow.n.01": 0.5133765580465327,
+        "cart.n.01": 0.5196891225728304,
+        "drawbar.n.01": 0.531978952913469,
+        "burial_mound.n.01": -1000.0
+    },
+    "synset": "barrow.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0fd3dd1da381468c86d3bbe50a4db27b",
+        "creator_username": "Dave.Maak",
+        "creator_display_name": "Dave.Maak",
+        "creator_profile_url": "https://sketchfab.com/Dave.Maak"
+    },
+    "filename": "std_0fd3dd1da381468c86d3bbe50a4db27b.glb",
+    "length": 1.3266400694847107,
+    "width": 0.5327306985855103
+}

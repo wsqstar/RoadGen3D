@@ -1,0 +1,102 @@
+{
+    "description_long": "This humanoid robot features a robust, angular frame with a boxy torso and heavily armored limbs, giving it a formidable and industrial appearance. The front of the torso displays a digital panel with the number '0.1' and a yellow smiley face sticker, adding a touch of personality to its otherwise utilitarian design. Its arms and legs are constructed from segmented, block-like components, suggesting strong mechanical joints for enhanced mobility and strength. The back of the robot is marked with a warning symbol and the letters 'BC', indicating possible caution or identification markings. Small red and yellow accent panels are visible on the shoulders and upper arms, providing visual contrast to the predominantly dark metallic body. The robot's overall build and detailing suggest it is designed for urban environments, possibly for security, maintenance, or heavy-duty tasks.",
+    "description": "A heavily armored, blocky humanoid robot with a dark metallic body, digital markings, and accent panels, designed for urban utility or security roles.",
+    "description_view_0": "Front view shows the robot's boxy torso with a digital '0.1' panel, a yellow smiley face sticker, and detailed arm and leg segments.",
+    "description_view_1": "Left three-quarter view highlights the robot's thick, jointed limbs and a red accent panel on the upper arm, with the torso's depth visible.",
+    "description_view_2": "Rear view reveals the 'BC' marking and a yellow warning symbol on the back, with symmetrical, robust leg and arm construction.",
+    "description_view_3": "Right three-quarter view displays another red accent panel, a small circular marking on the upper arm, and the robot's broad, armored back.",
+    "category": "humanoid robot",
+    "height": 2.1,
+    "max_dimension": 1.3,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "rubber",
+        "air",
+        "electronics"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "panel",
+        "button",
+        "joint",
+        "display"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "yellow",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.04,
+        0.04,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.08,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both legs slightly apart, arms bent at the elbows and positioned close to the torso, head and torso facing forward.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated armored panels and accent markings, with a utilitarian, industrial style.",
+    "attribute_facial_features": "No traditional facial features; the front panel includes a digital display and a yellow smiley face sticker, but lacks eyes, mouth, or nose.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints at the shoulders, elbows, hips, and knees, allowing for a wide range of motion; limbs appear robust and mechanically flexible.",
+    "attribute_presence_of_sensors": "Possible camera or sensor on the front torso panel; no other visible sensors.",
+    "uid": "d986cb2c73834c169bbfed28ec7d9387",
+    "near_synsets": {
+        "android.n.01": 0.5166031347846801,
+        "cyborg.n.01": 0.5285245300827373,
+        "automaton.n.02": 0.5529126098422674,
+        "robotics_equipment.n.01": 0.5558082244111741,
+        "robotics.n.01": 0.5755192257915287
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d986cb2c73834c169bbfed28ec7d9387",
+        "creator_username": "starkeron",
+        "creator_display_name": "starkeron",
+        "creator_profile_url": "https://sketchfab.com/starkeron"
+    },
+    "filename": "std_d986cb2c73834c169bbfed28ec7d9387.glb",
+    "length": 1.2400881052017212,
+    "width": 1.6351590156555176
+}

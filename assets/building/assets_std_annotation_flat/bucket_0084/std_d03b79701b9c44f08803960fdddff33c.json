@@ -1,0 +1,91 @@
+{
+    "description_long": "This greenhouse features a semi-cylindrical, tunnel-like structure with a series of evenly spaced, arched metal frames supporting translucent wall and roof panels. The front and rear ends are flat, with a large rectangular door framed by cross-bracing for stability. The transparent or translucent panels allow ample sunlight to penetrate, making it ideal for plant cultivation. The frame appears to be constructed from metal, likely galvanized steel or aluminum, providing both strength and resistance to corrosion. The overall design is utilitarian and modern, optimized for maximum internal growing space and efficient light diffusion. The structure is elevated slightly above the ground on metal footings, ensuring stability and durability.",
+    "description": "A modern, tunnel-shaped greenhouse with a metal frame and translucent panels, featuring a large front door and arched supports. The design maximizes light entry and internal growing space.",
+    "description_view_0": "Front view showing the large rectangular door with cross-bracing and the arched metal frame structure.",
+    "description_view_1": "Side view highlighting the series of evenly spaced arched metal supports and the continuous translucent wall panels.",
+    "description_view_2": "Rear view, similar to the front, but without a visible door, showing the end wall and frame structure.",
+    "description_view_3": "Opposite side view, mirroring view 1, with clear visibility of the arched supports and translucent panels.",
+    "category": "greenhouse",
+    "height": 3.0,
+    "max_dimension": 8.0,
+    "materials": [
+        "metal",
+        "polycarbonate",
+        "air"
+    ],
+    "materials_composition": [
+        0.25,
+        0.35,
+        0.4
+    ],
+    "mass": 650,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "frame"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.4
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_transparent_walls": true,
+    "attribute_glass_roof": false,
+    "attribute_metal_frame": true,
+    "attribute_visible_plants_inside": false,
+    "attribute_architectural_style": "modern tunnel",
+    "uid": "d03b79701b9c44f08803960fdddff33c",
+    "near_synsets": {
+        "greenhouse.n.01": 0.48498312661256765,
+        "conservatory.n.03": 0.5367811910997685,
+        "cold_frame.n.01": 0.5404646397743769,
+        "solar_house.n.01": 0.5651316606989969,
+        "french_door.n.01": 0.5655790737692566
+    },
+    "synset": "greenhouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d03b79701b9c44f08803960fdddff33c",
+        "creator_username": "sanx78",
+        "creator_display_name": "MinorEarth",
+        "creator_profile_url": "https://sketchfab.com/sanx78"
+    },
+    "filename": "std_d03b79701b9c44f08803960fdddff33c.glb",
+    "length": 5.3110504150390625,
+    "width": 4.043127536773682
+}

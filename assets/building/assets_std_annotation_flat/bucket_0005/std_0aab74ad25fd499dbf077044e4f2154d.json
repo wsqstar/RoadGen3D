@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a large, industrial wheeled excavator painted primarily in green with black and metallic accents. The vehicle features a robust operator cab mounted on the left side, protected by a metal frame and glass windows. It is equipped with six large rubber tires for mobility and stability on urban terrain. The excavator's arm is a two-piece boom with hydraulic cylinders, ending in a grapple attachment designed for grabbing and lifting materials. Visible hydraulic hoses and mechanical joints connect the boom to the main body, indicating heavy-duty construction. The vehicle is mounted on a flat platform, likely for transport or display, and shows no visible brand markings.",
+    "description": "A green, heavy-duty wheeled excavator with a two-piece boom and grapple attachment, featuring a left-side operator cab and six large tires. The machine is detailed with hydraulic components and mounted on a flat platform.",
+    "description_view_0": "Front view showing the grapple attachment, boom, and the wide stance of the six tires.",
+    "description_view_1": "Side view highlighting the two-piece boom, left-side cab, and the full length of the vehicle on its platform.",
+    "description_view_2": "Rear view displaying the back of the cab, the rear tires, and the platform base.",
+    "description_view_3": "Opposite side view showing the boom's hydraulic connections and the cab's profile.",
+    "category": "excavator",
+    "height": 3.2,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "hydraulic fluid",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.1,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 176400,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "grabbable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "boom",
+        "grapple",
+        "hydraulic cylinder",
+        "control lever",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "gray",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_boom_type": "two-piece boom",
+    "attribute_cab_position": "left side",
+    "attribute_track_or_wheel_type": "wheeled",
+    "attribute_bucket_design": "grapple",
+    "attribute_brand_logo": "none",
+    "uid": "0aab74ad25fd499dbf077044e4f2154d",
+    "near_synsets": {
+        "backhoe.n.01": 0.4955844559851273,
+        "power_shovel.n.01": 0.5036739067695107,
+        "excavator.n.01": 0.525080388051393,
+        "caterpillar.n.02": 0.5515694632083964,
+        "bulldozer.n.01": 0.5525304965242437
+    },
+    "synset": "excavator.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0aab74ad25fd499dbf077044e4f2154d",
+        "creator_username": "thesidekick",
+        "creator_display_name": "Lassi Kaukonen",
+        "creator_profile_url": "https://sketchfab.com/thesidekick"
+    },
+    "filename": "std_0aab74ad25fd499dbf077044e4f2154d.glb",
+    "length": 8.682398319244385,
+    "width": 2.1419135332107544
+}

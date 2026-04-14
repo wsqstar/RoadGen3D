@@ -1,0 +1,100 @@
+{
+    "description_long": "This ATM is a robust, rectangular kiosk with a slightly slanted upper section housing a large, blue-lit display screen. Below the screen is a control panel featuring two prominent joysticks and an array of blue-highlighted buttons, suggesting a tactile, mechanical interface. The body is constructed from a gray, metallic material with visible wear and subtle gold trim along the edges, giving it an industrial, utilitarian appearance. The sides feature large, circular ventilation grilles and rectangular vents, likely for cooling internal electronics. The rear is plain and unadorned, emphasizing the machine's functional design. The overall look is sturdy and secure, suitable for placement in public urban environments.",
+    "description": "A sturdy, gray metallic ATM with a blue-lit screen, mechanical controls, and prominent side vents. Its industrial design features gold trim and a robust, utilitarian build.",
+    "description_view_0": "Front view showing the blue display screen, control panel with joysticks and buttons, and the main user interface.",
+    "description_view_1": "Left side view highlighting the large circular ventilation grille and rectangular vent near the base.",
+    "description_view_2": "Rear view displaying a plain, unadorned metallic surface with no visible features.",
+    "description_view_3": "Right side view similar to the left, with visible ventilation grilles and the protruding control panel.",
+    "category": "atm",
+    "height": 1.5,
+    "max_dimension": 1.5,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "electronic_components",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "insertable",
+        "grippable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "screen",
+        "joystick",
+        "button",
+        "card slot"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "gold",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_screen_interface": "A large, rectangular blue-lit screen is centrally placed on the upper front, occupying about one-third of the front face, with visible UI elements and text.",
+    "attribute_card_slot": "A single card slot is visible below the screen, integrated into the control panel area, horizontally oriented and slightly recessed.",
+    "attribute_keypad_layout": "A mechanical control panel with two joysticks and multiple round buttons arranged in a grid below the screen; no traditional numeric keypad is visible.",
+    "attribute_bank_branding": "none visible",
+    "attribute_receipt_dispenser": "none visible",
+    "uid": "79a2ad8c7a9f4312b5b5d77c38b88448",
+    "near_synsets": {
+        "cash_machine.n.01": 0.5661430895758717,
+        "automat.n.01": 0.5782331424820625,
+        "automat.n.02": 0.6005586883371347,
+        "vending_machine.n.01": 0.6045326867430956,
+        "atmometer.n.01": 0.6095516399391205,
+        "standard_atmosphere.n.01": -1000.0,
+        "asynchronous_transfer_mode.n.01": -1000.0
+    },
+    "synset": "standard_atmosphere.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/79a2ad8c7a9f4312b5b5d77c38b88448",
+        "creator_username": "chemaron",
+        "creator_display_name": "\u0421hemaron",
+        "creator_profile_url": "https://sketchfab.com/chemaron"
+    },
+    "filename": "std_79a2ad8c7a9f4312b5b5d77c38b88448.glb",
+    "length": 0.9164429306983948,
+    "width": 0.6250001490116119
+}

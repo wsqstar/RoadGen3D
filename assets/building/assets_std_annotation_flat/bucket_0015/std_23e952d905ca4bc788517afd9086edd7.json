@@ -1,0 +1,113 @@
+{
+    "description_long": "This delivery robot features a robust, industrial design with a predominantly yellow and black color scheme, accented by hazard stripes and warning symbols. Its body is mounted on two wide, rugged tank treads, providing stability and traction for urban environments. The upper section consists of a cylindrical turret-like module, equipped with a prominent forward-facing camera or sensor and a small cylindrical device, possibly a light or additional sensor. Articulated metal arms connect the turret to the main chassis, allowing for vertical movement and adjustment. The chassis includes visible bolts, metal reinforcements, and a rear compartment marked with a radiation warning symbol, suggesting secure cargo storage. The overall appearance is utilitarian, with exposed mechanical components and weathered surfaces indicating heavy use.",
+    "description": "A rugged, yellow and black tracked delivery robot with a turret-mounted sensor and articulated arms, designed for urban cargo transport. Features include tank treads, a secure rear compartment, and visible hazard markings.",
+    "description_view_0": "Front view shows the cylindrical turret with a central camera or sensor, a small cylindrical device on top, and the wide tank treads flanking the body.",
+    "description_view_1": "Left side view highlights the articulated arm mechanism, the turret's side details, and the three visible wheels within the tank tread assembly.",
+    "description_view_2": "Rear view displays the radiation warning symbol on the compartment, the back of the turret, and the full width of the treads.",
+    "description_view_3": "Right side view mirrors the left, showing the arm mechanism, turret details, and tread wheels, with additional view of the rear compartment.",
+    "category": "delivery robot",
+    "height": 0.85,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.12,
+        0.03,
+        0.05
+    ],
+    "mass": 95,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pressable",
+        "toggleable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "tread",
+        "camera",
+        "sensor",
+        "arm",
+        "compartment door",
+        "button"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.55,
+        0.3,
+        0.13,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_brand_logo": "A radiation warning symbol is visible on the rear compartment; no brand logo or text is present.",
+    "attribute_sensor_array": [
+        "A forward-facing camera or optical sensor located on the front of the turret module.",
+        "A small cylindrical device on top of the turret, possibly a light or additional sensor."
+    ],
+    "attribute_wheel_configuration": "Two continuous tank treads, each with three visible road wheels and a drive sprocket, arranged on either side of the chassis for tracked movement.",
+    "attribute_compartment_access_panel": "A rear compartment access panel is visible, marked with a radiation warning symbol. The panel appears to be hinged or latched, suitable for secure cargo storage.",
+    "attribute_display_screen": "none",
+    "uid": "23e952d905ca4bc788517afd9086edd7",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5626408689743906,
+        "tracked_vehicle.n.01": 0.5785416997920402,
+        "laundry_truck.n.01": 0.5869864553383867,
+        "technical.n.01": 0.5873091886473415,
+        "reconnaissance_vehicle.n.01": 0.5895206451392347,
+        "delivery.n.02": -1000.0,
+        "delivery.n.01": -1000.0,
+        "rescue.n.01": -1000.0,
+        "delivery.n.04": -1000.0,
+        "pitch.n.02": -1000.0,
+        "delivery.n.07": -1000.0,
+        "manner_of_speaking.n.01": -1000.0,
+        "automaton.n.02": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/23e952d905ca4bc788517afd9086edd7",
+        "creator_username": "luddepubde",
+        "creator_display_name": "LuddePudde",
+        "creator_profile_url": "https://sketchfab.com/luddepubde"
+    },
+    "filename": "std_23e952d905ca4bc788517afd9086edd7.glb",
+    "length": 1.0638656616210938,
+    "width": 0.6134972870349884
+}

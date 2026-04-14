@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a military-style tandem-rotor helicopter with a camouflage paint scheme, featuring a robust, elongated fuselage and two large horizontal rotors mounted at the front and rear. The body is primarily green with brown and black patches, designed for concealment in natural environments. The cockpit is located at the front, with dark-tinted windows and a rounded nose. The helicopter has a pair of landing wheels or skids beneath the fuselage, and the tail section is slightly elevated, supporting the rear rotor. The main rotors are long, straight, and black with yellow tips, providing significant lift. The overall design suggests a vehicle built for troop transport or heavy lifting in urban or combat scenarios.",
+    "description": "A camouflaged tandem-rotor military helicopter with a long fuselage, dark cockpit windows, and prominent black rotors with yellow tips.",
+    "description_view_0": "Top-down view showing both main rotors fully extended, the camouflage pattern on the upper fuselage, and the overall length of the helicopter.",
+    "description_view_1": "Left side view highlighting the cockpit windows, side camouflage, and the tandem rotor configuration with visible landing gear.",
+    "description_view_2": "Rear view displaying the width of the fuselage, the rear rotor, and the tail structure, with both rotors extending outward.",
+    "description_view_3": "Right side view similar to the left, showing the opposite camouflage pattern, cockpit, and rotor alignment.",
+    "category": "helicopter",
+    "height": 4.5,
+    "max_dimension": 16.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.2,
+        0.1,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit window",
+        "rotor blade",
+        "landing gear",
+        "control stick"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "black",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_rotor_blades": "Two sets of main rotor blades, each with three long, straight blades made of composite material, colored black with yellow tips, extending from the front and rear rotor hubs.",
+    "attribute_tail_rotor": "No traditional tail rotor; instead, the helicopter uses a tandem-rotor configuration with both rotors mounted horizontally at the front and rear.",
+    "attribute_landing_skids": "Landing gear consists of wheels or short skids beneath the fuselage, colored black, with visible support struts; no traditional long skids.",
+    "attribute_cockpit_windows": "Three cockpit windows at the front: one large central and two smaller side windows, all rounded and dark-tinted with black framing.",
+    "attribute_registration_number": "not visible",
+    "uid": "149cb2d6892c45caad017928d91f10f5",
+    "near_synsets": {
+        "single-rotor_helicopter.n.01": 0.5064997511486381,
+        "helicopter.n.01": 0.5145920147329841,
+        "cargo_helicopter.n.01": 0.5241548254878166,
+        "shuttle_helicopter.n.01": 0.5339858749538376,
+        "rotor_blade.n.01": 0.5397426680257056
+    },
+    "synset": "shuttle_helicopter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/149cb2d6892c45caad017928d91f10f5",
+        "creator_username": "waltervalentim",
+        "creator_display_name": "waltervalentim",
+        "creator_profile_url": "https://sketchfab.com/waltervalentim"
+    },
+    "filename": "std_149cb2d6892c45caad017928d91f10f5.glb",
+    "length": 10.914585590362549,
+    "width": 14.6815824508667
+}

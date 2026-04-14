@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a weathered, red metal newspaper vending box, commonly found on city sidewalks. The box features a rectangular body with a prominent front-facing door that opens downward, revealing a compartment for newspapers. Above the door is a coin-operated mechanism with a small handle, and a rectangular mail slot or posting aperture. The front panel displays a faded sign reading 'THE POST TODAY', indicating its use for newspaper distribution. The sides and back are plain, with some visible wear and a matching faded sign on one side. The overall structure is robust, with a utilitarian design meant to withstand outdoor urban environments.",
+    "description": "A red, weathered metal newspaper vending box with a front door, coin mechanism, and faded signage.",
+    "description_view_0": "Front view showing the main door, coin mechanism, and the 'THE POST TODAY' sign.",
+    "description_view_1": "Side view highlighting the depth of the box and the faded sign on the side panel.",
+    "description_view_2": "Rear view displaying the plain, unadorned back of the box.",
+    "description_view_3": "Opposite side view with another faded sign and a clear look at the box's rectangular shape.",
+    "category": "postbox",
+    "height": 1.2,
+    "max_dimension": 0.6,
+    "materials": [
+        "painted_steel",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pullable",
+        "pushable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "coin mechanism",
+        "handle",
+        "front door",
+        "mail slot"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_mail_slot_location": "centered on the front face near the top, just below the coin mechanism",
+    "attribute_collection_times_panel": "rectangular panel below the mail slot, displaying 'THE POST TODAY' sign",
+    "attribute_postal_service_logo": "no visible postal service logo; only a faded newspaper sign is present",
+    "attribute_door_or_access_panel": "large rectangular door on the front, hinged at the bottom for newspaper retrieval",
+    "attribute_posting_aperture_design": "horizontal rectangular slot with a metal flap above the main door",
+    "uid": "a523551bcaf84aa8bdf63150a629b6a2",
+    "near_synsets": {
+        "postbox.n.01": 0.4582158983981764,
+        "pillar_box.n.01": 0.5092070405631756,
+        "sentry_box.n.01": 0.5332017054952047,
+        "mailbox.n.01": 0.5352176618135553,
+        "post-office_box.n.01": 0.5432797636511127
+    },
+    "synset": "postbox.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a523551bcaf84aa8bdf63150a629b6a2",
+        "creator_username": "caboose3d",
+        "creator_display_name": "Caboose3d",
+        "creator_profile_url": "https://sketchfab.com/caboose3d"
+    },
+    "filename": "std_a523551bcaf84aa8bdf63150a629b6a2.glb",
+    "length": 0.6555225253105164,
+    "width": 1.667191505432129
+}

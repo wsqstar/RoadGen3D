@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a large commercial jet airliner with a streamlined fuselage, swept-back low-mounted wings, and two prominent turbofan engines mounted under each wing. The aircraft features a distinctive upward-curved wingtip design known as raked wingtips, which enhances aerodynamic efficiency. The tail section consists of a conventional vertical stabilizer and horizontal stabilizers, forming a classic tail assembly. The fuselage is painted primarily white with blue accents, and the tail fin displays a bold '787' marking, indicating it is a Boeing 787 Dreamliner. The cockpit is located at the forward end of the fuselage, with multiple windows providing visibility for the flight crew. The aircraft is designed for long-haul passenger transport and is equipped with retractable tricycle landing gear.",
+    "description": "A large, white and blue Boeing 787 Dreamliner jet airliner with swept low-mounted wings, underwing turbofan engines, and a conventional tail. Features raked wingtips and a forward-mounted cockpit.",
+    "description_view_0": "Front view showing the nose, cockpit windows, both engines under the wings, and the full wingspan with raked wingtips.",
+    "description_view_1": "Left side profile highlighting the fuselage, left wing with engine, tail fin with '787' marking, and cockpit windows.",
+    "description_view_2": "Rear view displaying the tail assembly, horizontal and vertical stabilizers, and the trailing edges of the wings.",
+    "description_view_3": "Right side profile showing the right wing with engine, tail fin, and the full length of the fuselage.",
+    "category": "airplane",
+    "height": 17.0,
+    "max_dimension": 63.0,
+    "materials": [
+        "aluminum",
+        "carbon fiber composite",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.35,
+        0.05,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 130000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 1274000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit window",
+        "engine",
+        "landing gear",
+        "cargo hatch",
+        "control surface"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.08,
+    "surface_finish": "sleek",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.02,
+    "recommended_clearance": 80.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with long, swept-back wings featuring pronounced raked wingtips and slight dihedral angle.",
+    "attribute_engine_type": "Twin turbofan underwing engines, one mounted beneath each wing.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Retractable tricycle landing gear with two main gear units and a single nose gear.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed multi-seat cockpit with multiple front and side windows integrated into the fuselage.",
+    "uid": "6ad0a18e8c3244a2b8f2909cfdd34b68",
+    "near_synsets": {
+        "airplane.n.01": 0.5007837133567099,
+        "jetliner.n.01": 0.514462057846363,
+        "jet.n.01": 0.5240759064931012,
+        "propjet.n.01": 0.5246709046325764,
+        "aircraft.n.01": 0.527348636760941
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6ad0a18e8c3244a2b8f2909cfdd34b68",
+        "creator_username": "adim09",
+        "creator_display_name": "Shawn 684 M",
+        "creator_profile_url": "https://sketchfab.com/adim09"
+    },
+    "filename": "std_6ad0a18e8c3244a2b8f2909cfdd34b68.glb",
+    "length": 30.44689655303955,
+    "width": 32.585174560546875
+}

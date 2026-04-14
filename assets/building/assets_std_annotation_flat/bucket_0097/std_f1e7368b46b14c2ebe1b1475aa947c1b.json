@@ -1,0 +1,91 @@
+{
+    "description_long": "This object is a rectangular concrete jersey barrier, commonly used for traffic control and safety in urban environments. The surface is predominantly gray with patches of yellow discoloration, likely from weathering or paint remnants. The barrier features a slightly tapered profile with a flat top and vertical sides, and there are visible metal loops or rebar protruding from the ends, which are typically used for lifting or securing the barrier. The concrete surface shows signs of aging, with some minor scuffs and surface roughness, but no major structural damage. The overall appearance is utilitarian, with no decorative elements or reflective strips. This type of barrier is designed to be heavy and difficult to move without machinery, providing a robust obstacle for vehicles and pedestrians.",
+    "description": "A weathered gray concrete jersey barrier with yellow discoloration, flat top, and visible metal loops at the ends. The surface is rough and utilitarian, showing minor scuffs but no major damage.",
+    "description_view_0": "End view showing the tapered profile and a central metal loop protruding from the face.",
+    "description_view_1": "Side view displaying the full length, flat top, and yellow discoloration along the upper edge.",
+    "description_view_2": "Opposite end view, similar to view 0, with a visible metal loop and the layered concrete structure.",
+    "description_view_3": "Opposite side view, showing the length and weathered surface with less visible yellow discoloration.",
+    "category": "jersey barrier",
+    "height": 0.8,
+    "max_dimension": 2.5,
+    "materials": [
+        "concrete",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.04,
+        0.01
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 17650,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "metal loop"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.2,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_presence_of_reflective_strips": false,
+    "attribute_presence_of_graffiti_or_markings": false,
+    "attribute_placement_relative_to_road_or_sidewalk": "median",
+    "attribute_presence_of_warning_signs_or_symbols": false,
+    "attribute_visible_damage_or_wear": "minor scuffs",
+    "uid": "f1e7368b46b14c2ebe1b1475aa947c1b",
+    "near_synsets": {
+        "jersey.n.04": 0.5832739785700091,
+        "barrier.n.01": 0.5884235614616425,
+        "barrier.n.03": 0.5928839081874269,
+        "crash_barrier.n.01": 0.5994676499260352,
+        "movable_barrier.n.01": 0.6041258790104561,
+        "barrier.n.02": -1000.0,
+        "jersey.n.03": -1000.0,
+        "jersey.n.05": -1000.0,
+        "jersey.n.02": -1000.0,
+        "new_jersey.n.01": -1000.0
+    },
+    "synset": "crash_barrier.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f1e7368b46b14c2ebe1b1475aa947c1b",
+        "creator_username": "Arthur.Zim",
+        "creator_display_name": "Arthur.Zim",
+        "creator_profile_url": "https://sketchfab.com/Arthur.Zim"
+    },
+    "filename": "std_f1e7368b46b14c2ebe1b1475aa947c1b.glb",
+    "length": 3.354854702949524,
+    "width": 0.9336835145950317
+}

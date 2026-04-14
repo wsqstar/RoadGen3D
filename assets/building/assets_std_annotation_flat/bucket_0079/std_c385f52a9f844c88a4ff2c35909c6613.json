@@ -1,0 +1,94 @@
+{
+    "description_long": "This is an octagonal kiosk structure with a wide, gently sloped, shingle-textured roof and a smaller, matching cupola at the top for ventilation or light. The roof is supported by eight sturdy, dark wooden pillars, each positioned at the corners of the octagonal base. The base itself is made of concrete or stone, forming a raised platform that mirrors the roof's shape. The interior is open and accessible from all sides, with no visible walls or enclosures, and a central circular feature, possibly a counter or planter, is visible inside. The overall design is utilitarian yet inviting, suitable for use in parks, plazas, or public gathering spaces. The structure lacks any visible signage, windows, or doors, emphasizing its open, pavilion-like character.",
+    "description": "An octagonal, open-sided kiosk with a shingled, sloped roof and wooden pillars on a raised stone base. The structure is airy and accessible from all sides, with a central feature inside.",
+    "description_view_0": "The kiosk is seen from an angle highlighting the roof's octagonal shape and the open sides, with the central feature partially visible.",
+    "description_view_1": "This view shows the front of the kiosk, emphasizing the open entry and the symmetry of the pillars and roof.",
+    "description_view_2": "The structure is viewed from another side, with the roof and base's octagonal geometry clearly visible and the central feature inside more apparent.",
+    "description_view_3": "A direct view of the opposite side, showing the open design and the alignment of the pillars and roof.",
+    "category": "kiosk",
+    "height": 4.0,
+    "max_dimension": 8.0,
+    "materials": [
+        "wood",
+        "concrete",
+        "roof_shingles",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.3,
+        0.2,
+        0.15
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "shelter",
+        "gatherable",
+        "shadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "central_counter"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "gray",
+        "beige"
+    ],
+    "colors_composition": [
+        0.45,
+        0.35,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "none",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "none; open entryways on all sides",
+    "attribute_roof_design": "Octagonal, sloped roof with shingle texture and a smaller matching cupola at the top; wide overhangs for shade.",
+    "attribute_architectural_style": "Traditional pavilion with rustic influences",
+    "uid": "c385f52a9f844c88a4ff2c35909c6613",
+    "near_synsets": {
+        "gazebo.n.01": 0.543996475185515,
+        "portico.n.01": 0.5503531257098089,
+        "booth.n.02": 0.5553229175718762,
+        "observation_dome.n.01": 0.5645564605178738,
+        "minaret.n.01": 0.5672222803386635
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c385f52a9f844c88a4ff2c35909c6613",
+        "creator_username": "pepetrincado",
+        "creator_display_name": "pepetrincado",
+        "creator_profile_url": "https://sketchfab.com/pepetrincado"
+    },
+    "filename": "std_c385f52a9f844c88a4ff2c35909c6613.glb",
+    "length": 5.620295524597168,
+    "width": 5.706998825073242
+}

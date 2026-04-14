@@ -1,0 +1,101 @@
+{
+    "description_long": "This combat tactical vehicle features a robust, angular armored body with pronounced geometric facets and a matte dark finish. It is equipped with two large, rugged continuous tracks on either side, designed for enhanced traction and mobility over rough terrain. The front of the vehicle is reinforced with sloped armor and two protruding rods or tusks, likely for ramming or clearing obstacles. Several mechanical gears and components are scattered around, suggesting modular or repairable parts. The vehicle also has visible axles and wheels, with some detached, indicating possible damage or maintenance. A mechanical arm or mount is visible, possibly for weaponry or utility attachments.",
+    "description": "A heavily armored, tracked combat vehicle with angular plating, large treads, and visible mechanical components, finished in a dark matte color.",
+    "description_view_0": "Side view showing the large continuous track, angular body, scattered gears, and a detached wheel.",
+    "description_view_1": "Front view highlighting the sloped armor, two protruding rods, and the symmetrical placement of the tracks.",
+    "description_view_2": "Opposite side view with visible gears, mechanical arm, and the vehicle's angular rear.",
+    "description_view_3": "Rear view displaying the back of the tracks, two wheels, and the mechanical arm attachment.",
+    "category": "combat tactical  vehicle",
+    "height": 1.8,
+    "max_dimension": 4.2,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 5200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "track",
+        "wheel",
+        "mechanical arm",
+        "gear",
+        "protruding rods"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.95,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "group",
+    "attribute_weapon_mounts": "One visible mechanical arm mount on the side, suitable for weapon or utility attachment.",
+    "attribute_armor_plating": "Full body coverage with thick, angular, sloped armor plating; no modular or reactive panels visible.",
+    "attribute_camouflage_pattern": "None visible; solid dark matte color.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable; vehicle uses large continuous tracks with visible rugged tread.",
+    "uid": "ae79e5d5410e42cfa8c24f63d044bafe",
+    "near_synsets": {
+        "tank.n.01": 0.4678949607959569,
+        "military_vehicle.n.01": 0.4766325798827221,
+        "armored_car.n.02": 0.4773731292734605,
+        "armored_vehicle.n.01": 0.4779505976532998,
+        "assault_gun.n.02": 0.503676443441249,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ae79e5d5410e42cfa8c24f63d044bafe",
+        "creator_username": "dumortier.matthieu",
+        "creator_display_name": "dumortier.matthieu",
+        "creator_profile_url": "https://sketchfab.com/dumortier.matthieu"
+    },
+    "filename": "std_ae79e5d5410e42cfa8c24f63d044bafe.glb",
+    "length": 3.1979966163635254,
+    "width": 3.091307759284973
+}

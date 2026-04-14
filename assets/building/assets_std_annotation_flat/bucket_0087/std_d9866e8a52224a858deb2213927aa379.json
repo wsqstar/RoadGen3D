@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a rust-colored, tracked combat vehicle with a compact, boxy hull and a cylindrical turret mounted on top. The vehicle features prominent metal tracks on both sides, with visible suspension and drive wheels, and a short-barreled cannon protruding from the turret. The exterior shows signs of weathering and corrosion, giving it a rugged, battle-worn appearance. The front of the vehicle is flat with a sloped glacis plate, while the sides display hatches and a painted insignia. The rear is angular and enclosed, with no visible access points. The overall design suggests a historical armored fighting vehicle, likely from the early to mid-20th century.",
+    "description": "A rust-colored, tracked combat vehicle with a cylindrical turret, short cannon, and weathered metal exterior, featuring visible tracks and a painted insignia on the side.",
+    "description_view_0": "Front view shows the flat glacis plate, central turret, and the width of the metal tracks.",
+    "description_view_1": "Left side view highlights the full length of the tracks, suspension, and the short-barreled cannon on the turret.",
+    "description_view_2": "Rear view displays the angular back of the hull and the symmetry of the tracks.",
+    "description_view_3": "Right side view reveals the painted insignia, track details, and the turret's cannon.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 5.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.02,
+        0.05,
+        0.08
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 60000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "turret",
+        "hatch",
+        "cannon",
+        "track",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "rust red",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible cannon mounted on the turret front; no other weapon mounts visible.",
+    "attribute_armor_plating": "Full body armor plating is visible, with flat and slightly sloped panels covering the hull and turret. The plating appears thick and robust, with no modular or reactive features apparent.",
+    "attribute_camouflage_pattern": "Solid rust-red color with weathering; no camouflage pattern visible.",
+    "attribute_military_markings": "White insignia painted on the right side of the hull; no other markings visible.",
+    "attribute_tire_type": "not applicable",
+    "uid": "d9866e8a52224a858deb2213927aa379",
+    "near_synsets": {
+        "tank.n.01": 0.499448625595129,
+        "military_vehicle.n.01": 0.5007167694425264,
+        "reconnaissance_vehicle.n.01": 0.5073912005128274,
+        "armored_car.n.02": 0.5370538685642259,
+        "weapons_carrier.n.01": 0.5374341520107563,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d9866e8a52224a858deb2213927aa379",
+        "creator_username": "Peter54",
+        "creator_display_name": "peter54",
+        "creator_profile_url": "https://sketchfab.com/Peter54"
+    },
+    "filename": "std_d9866e8a52224a858deb2213927aa379.glb",
+    "length": 5.2131898403167725,
+    "width": 5.088817358016968
+}

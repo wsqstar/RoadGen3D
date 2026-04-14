@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a modern military jet fighter with a sleek, aerodynamic fuselage and sharply swept-back wings. The wings are low-mounted and feature small wingtip devices, while the tail section includes a single vertical stabilizer and two horizontal stabilizers. The cockpit is positioned at the front of the fuselage, enclosed by a dark, streamlined canopy. The undercarriage is not visible, suggesting retractable landing gear. The surface is finished in a dark green, metallic sheen, giving it a stealthy and high-tech appearance.",
+    "description": "A sleek, dark green military jet fighter with swept-back low wings, a single vertical tail, and a forward-enclosed cockpit.",
+    "description_view_0": "Front view showing the pointed nose, forward cockpit canopy, and symmetrical swept-back wings.",
+    "description_view_1": "Left side view highlighting the elongated fuselage, low-mounted swept wings, and single vertical stabilizer.",
+    "description_view_2": "Rear view displaying the twin horizontal stabilizers, single vertical tail, and the jet exhaust.",
+    "description_view_3": "Right side view similar to the left, showing the streamlined body and aerodynamic features.",
+    "category": "airplane",
+    "height": 4.5,
+    "max_dimension": 15.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "landing gear",
+        "control stick",
+        "throttle",
+        "ejection seat",
+        "flaps",
+        "rudder",
+        "ailerons"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "sleek",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with sharply swept wings and small wingtip devices; no visible dihedral or anhedral angles.",
+    "attribute_engine_type": "Single jet engine integrated within the rear fuselage.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Retractable tricycle landing gear (not visible in images).",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed single-seat cockpit with a streamlined canopy.",
+    "uid": "17b91abe22c942308bbb013590e592ed",
+    "near_synsets": {
+        "aircraft.n.01": 0.4597632819104807,
+        "airplane.n.01": 0.48562506988484433,
+        "warplane.n.01": 0.48866161983229645,
+        "fighter.n.02": 0.48971643204945714,
+        "jet.n.01": 0.4916402020248798
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/17b91abe22c942308bbb013590e592ed",
+        "creator_username": "fahmy",
+        "creator_display_name": "fahmy",
+        "creator_profile_url": "https://sketchfab.com/fahmy"
+    },
+    "filename": "std_17b91abe22c942308bbb013590e592ed.glb",
+    "length": 15.193533420562744,
+    "width": 10.118092060089111
+}

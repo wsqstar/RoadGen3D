@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a modern city transit bus with a rectangular, elongated body and a flat roof featuring two circular ventilation units. The exterior is primarily white with blue and dark blue horizontal stripes along the lower panels, and black window frames. Large, tinted rectangular windows line the passenger area, separated by vertical pillars, providing ample visibility and light inside. The bus has two visible passenger doors on the right side: a wide front entry door and a narrower rear door, both with glass panels. The front of the bus displays an electronic route sign, accessibility symbols, and a license plate, while the rear features tail lights and a similar display panel. The wheels are black with metallic hubs, and the bus is equipped with side mirrors and various small details such as lights and handles.",
+    "description": "A modern city transit bus with a white and blue color scheme, large tinted windows, and two passenger doors on the right side. It features electronic route signage, accessibility symbols, and detailed exterior elements.",
+    "description_view_0": "Side view showing the right side of the bus with two passenger doors, large tinted windows, and blue striping along the lower body.",
+    "description_view_1": "Rear view displaying the back panel with tail lights, a display sign, and the rear license plate.",
+    "description_view_2": "Left side view highlighting the continuous row of large windows and blue striping, with no visible passenger doors.",
+    "description_view_3": "Front view featuring the windshield, electronic route sign, accessibility symbols, headlights, and front license plate.",
+    "category": "bus",
+    "height": 3.2,
+    "max_dimension": 12.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "drivable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "button",
+        "mirror",
+        "display panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 2,
+    "attribute_window_arrangement": "Seven large, rectangular, evenly spaced tinted windows along the passenger area on each side, separated by vertical pillars; windows are uniform in size and shape.",
+    "attribute_route_number_or_destination_sign": "371",
+    "attribute_bus_manufacturer_logo": "No visible manufacturer logo or branding on the exterior.",
+    "attribute_passenger_entry_step_height": 0.35,
+    "uid": "37c0a04a7aef4139b6aa037d17e768e5",
+    "near_synsets": {
+        "bus.n.01": 0.5120733189820743,
+        "public_transit.n.01": 0.5313940204296348,
+        "school_bus.n.01": 0.5357911626082076,
+        "transit_line.n.01": 0.5413742249122013,
+        "minibus.n.01": 0.5437020511541873,
+        "busbar.n.01": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "bus.n.04": -1000.0
+    },
+    "synset": "bus.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/37c0a04a7aef4139b6aa037d17e768e5",
+        "creator_username": "VRC-IW",
+        "creator_display_name": "VRC-IW",
+        "creator_profile_url": "https://sketchfab.com/VRC-IW"
+    },
+    "filename": "std_37c0a04a7aef4139b6aa037d17e768e5.glb",
+    "length": 11.191376686096191,
+    "width": 2.98654842376709
+}

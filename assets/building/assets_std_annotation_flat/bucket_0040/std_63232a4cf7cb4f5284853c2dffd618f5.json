@@ -1,0 +1,108 @@
+{
+    "description_long": "This object consists of a stack of five books, each with a distinct cover color including red, green, blue, brown, and purple. The top two books are closed, while the bottom book is partially open, revealing pages with printed text and illustrations. The books are of varying thicknesses and are stacked in a slightly offset manner, creating a visually dynamic arrangement. The visible pages of the open book display diagrams, handwriting, and some colored markings, suggesting it may be a notebook or a textbook. The covers are solid-colored with no visible illustrations or graphics, and the spines are mostly plain. The overall appearance suggests these are standard hardcover books, commonly found in urban environments such as libraries, schools, or personal bags.",
+    "description": "A stack of five hardcover books in various colors, with one book partially open showing illustrated pages. The covers are plain and the books are arranged in a slightly offset pile.",
+    "description_view_0": "Front view showing the stack of books with the bottom book partially open, revealing illustrated and handwritten pages.",
+    "description_view_1": "Side view highlighting the thickness of the books and the offset stacking, with the open book's pages visible from the side.",
+    "description_view_2": "Angled top-down view showing the colored covers and the open book's pages extending outward.",
+    "description_view_3": "Rear view focusing on the plain covers of the top books and the open book's illustrated pages.",
+    "category": "book",
+    "height": 0.18,
+    "max_dimension": 0.32,
+    "materials": [
+        "paper",
+        "cardboard",
+        "ink",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.04,
+        0.01
+    ],
+    "mass": 2.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cover",
+        "pages"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "green",
+        "blue",
+        "brown",
+        "purple",
+        "white"
+    ],
+    "colors_composition": [
+        0.18,
+        0.18,
+        0.18,
+        0.18,
+        0.1,
+        0.18
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.47,
+    "youngs_modulus": 4000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.4,
+    "asset_composition_type": "group",
+    "attribute_cover_illustration": "No illustration visible.",
+    "attribute_title_text": "None.",
+    "attribute_spine_design": "Not visible.",
+    "attribute_publisher_logo": "None.",
+    "attribute_dust_jacket_presence": false,
+    "uid": "63232a4cf7cb4f5284853c2dffd618f5",
+    "near_synsets": {
+        "book.n.02": 0.5094140827697571,
+        "stacks.n.02": 0.5137082548778682,
+        "bookshelf.n.01": 0.5213569496429642,
+        "book.n.01": 0.5290520982898941,
+        "album.n.02": 0.5422020185415152,
+        "book.n.07": -1000.0,
+        "ledger.n.01": -1000.0,
+        "record.n.05": -1000.0,
+        "koran.n.01": -1000.0,
+        "bible.n.01": -1000.0,
+        "book.n.11": -1000.0,
+        "book.n.10": -1000.0,
+        "script.n.01": -1000.0,
+        "book.n.06": -1000.0
+    },
+    "synset": "book.n.06",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/63232a4cf7cb4f5284853c2dffd618f5",
+        "creator_username": "ViviBow",
+        "creator_display_name": "ViviBow",
+        "creator_profile_url": "https://sketchfab.com/ViviBow"
+    },
+    "filename": "std_63232a4cf7cb4f5284853c2dffd618f5.glb",
+    "length": 0.2657538652420044,
+    "width": 0.34364697337150574
+}

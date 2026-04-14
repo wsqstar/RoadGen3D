@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a small, traditional wooden sailing vessel with a single large, curved white sail mounted on a tall, vertical mast. The hull is narrow and elongated, with a pointed bow and a slightly raised stern, both constructed from planked wood. The deck is open and features several wooden benches or thwarts, with no visible cabin or covered superstructure. The sail is supported by a diagonal boom and rigging, and the mast is centrally positioned. The vessel appears to be designed for manual or wind-powered navigation, suitable for rivers, lakes, or coastal waters. The overall appearance is rustic and functional, with visible wood grain and simple construction details.",
+    "description": "A small, open wooden sailboat with a single large white sail and a pointed bow, featuring a simple deck with benches and no cabin.",
+    "description_view_0": "Side view showing the full length of the hull, the tall mast, and the large, curved sail billowing outward.",
+    "description_view_1": "Front view highlighting the pointed bow, the narrow width of the hull, and the sail's curvature.",
+    "description_view_2": "Opposite side view displaying the open deck, wooden benches, and the sail's attachment to the mast and boom.",
+    "description_view_3": "Rear view showing the raised stern, open deck layout, and the alignment of the mast and sail from behind.",
+    "category": "ship",
+    "height": 6.0,
+    "max_dimension": 10.0,
+    "materials": [
+        "wood",
+        "fabric",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sail",
+        "mast",
+        "boom",
+        "rudder",
+        "benches"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "brown",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a traditional displacement type with a pointed bow and a slightly raised, rounded stern. It is constructed from wooden planks, with visible ribs and thwarts across the open deck. There is no visible keel or bulbous bow, and the hull sits low in the water, optimized for stability and ease of rowing or sailing.",
+    "attribute_superstructure_layout": "There is no enclosed superstructure; the deck is open with several wooden benches running across its width. The mast is centrally located, and there are no cabins, bridges, or towers present.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "benches",
+        "mast",
+        "boom",
+        "sail"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "c84dc721b77442878135427c15e9f8a1",
+    "near_synsets": {
+        "sailboat.n.01": 0.4426475843888969,
+        "catboat.n.01": 0.45478749153782677,
+        "boat.n.01": 0.4548565681172766,
+        "small_boat.n.01": 0.4591800344572004,
+        "small_ship.n.01": 0.46561278228781994,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c84dc721b77442878135427c15e9f8a1",
+        "creator_username": "nickraposo",
+        "creator_display_name": "Center for American Marine Art",
+        "creator_profile_url": "https://sketchfab.com/nickraposo"
+    },
+    "filename": "std_c84dc721b77442878135427c15e9f8a1.glb",
+    "length": 5.479006052017212,
+    "width": 2.586964964866638
+}

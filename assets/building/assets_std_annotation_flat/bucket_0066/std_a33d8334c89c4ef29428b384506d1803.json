@@ -1,0 +1,105 @@
+{
+    "description_long": "This object is a traditional Viking-style longship raft, featuring a long, narrow wooden hull with a slightly curved profile and pointed ends. Along both sides of the hull, there are multiple round shields attached, and a series of long black oars extend outward, indicating manual rowing as a primary means of propulsion. At the center, a tall mast supports a large rectangular sail with bold red and white vertical stripes, adding a striking visual element. The deck appears open, with several benches or seating areas for rowers, and the overall construction suggests a vessel designed for both speed and stability on water. The wood grain texture is visible, and the metallic shields and oar blades provide contrast to the otherwise wooden structure. This raft is evocative of historical watercraft used for exploration or transport, and its size and design imply it could accommodate multiple passengers.",
+    "description": "A Viking-style longship raft with a wooden hull, red-and-white striped sail, round shields, and multiple oars extending from the sides.",
+    "description_view_0": "Front view showing the pointed bow, central mast with striped sail, and symmetrical arrangement of oars and shields.",
+    "description_view_1": "Side view highlighting the elongated hull, row of round shields, and the full length of the oars extending downward.",
+    "description_view_2": "Rear view mirroring the front, with the stern, sail, and oars visible, but the deck and seating more apparent.",
+    "description_view_3": "Opposite side view similar to view 1, showing the hull, shields, and oars from the other side.",
+    "category": "raft",
+    "height": 3.5,
+    "max_dimension": 12.0,
+    "materials": [
+        "wood",
+        "metal",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "rowable",
+        "steerable",
+        "hoistable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "oar",
+        "shield",
+        "sail",
+        "mast",
+        "bench"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "brown",
+        "red",
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_presence_of_flotation_devices": false,
+    "attribute_number_of_seats": 8,
+    "attribute_type_of_propulsion": "oar",
+    "attribute_safety_markings": [],
+    "attribute_attachment_points": 2,
+    "uid": "a33d8334c89c4ef29428b384506d1803",
+    "near_synsets": {
+        "drekkar.n.01": 0.444458370207642,
+        "longship.n.01": 0.47326994417240237,
+        "viking.n.01": 0.5048265764197997,
+        "rowing_boat.n.01": 0.5074055361928953,
+        "sea_king.n.01": 0.5272464149050569,
+        "raft.n.01": -1000.0,
+        "batch.n.02": -1000.0,
+        "raft_foundation.n.01": -1000.0
+    },
+    "synset": "raft_foundation.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a33d8334c89c4ef29428b384506d1803",
+        "creator_username": "gonz45c",
+        "creator_display_name": "Gonzalo S\u00e1nchez",
+        "creator_profile_url": "https://sketchfab.com/gonz45c"
+    },
+    "filename": "std_a33d8334c89c4ef29428b384506d1803.glb",
+    "length": 6.651008129119873,
+    "width": 3.4651880264282227
+}

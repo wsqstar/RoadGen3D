@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a small, modern airplane positioned on a detailed runway segment. The airplane features a streamlined fuselage with a forward-mounted, enclosed cockpit and a pair of straight, low-mounted wings. The wings are equipped with subtle dihedral angles and lack visible winglets. The tail section is conventional, with a single vertical stabilizer and horizontal stabilizers extending from either side. The airplane is depicted with a tricycle landing gear configuration, with two main wheels under the wings and a nose wheel. The runway beneath the airplane is marked with yellow and white lines, simulating a realistic airport environment.",
+    "description": "A small, modern airplane with a forward cockpit, low straight wings, and a conventional tail, shown on a detailed runway segment.",
+    "description_view_0": "Side view showing the airplane's low-mounted wings and the full length of the runway.",
+    "description_view_1": "Front view highlighting the airplane's nose, cockpit, and the tricycle landing gear on the runway.",
+    "description_view_2": "Opposite side view displaying the airplane's profile and the runway's markings.",
+    "description_view_3": "Rear view showing the tail section, including the single vertical stabilizer and horizontal stabilizers.",
+    "category": "airplane",
+    "height": 0.25,
+    "max_dimension": 3.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 11760,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "cockpit canopy"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "black",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 6.0,
+    "asset_composition_type": "group",
+    "attribute_wingspan_configuration": "Low-wing configuration with straight wings and slight dihedral angle, no visible winglets.",
+    "attribute_engine_type": "Twin jet engines mounted under each wing.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Tricycle landing gear with two main wheels and a single nose wheel, fixed.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a single canopy, likely single or dual seat.",
+    "uid": "3f3378dfd5524219810d8b95e5f7d4c5",
+    "near_synsets": {
+        "airplane.n.01": 0.47235260312318467,
+        "aircraft.n.01": 0.4897971266133853,
+        "monoplane.n.01": 0.509125437851673,
+        "aircraft_landing.n.01": 0.513781359096406,
+        "plane_seat.n.01": 0.5168760270547544
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3f3378dfd5524219810d8b95e5f7d4c5",
+        "creator_username": "werniak",
+        "creator_display_name": "Arkadiusz Wernicki",
+        "creator_profile_url": "https://sketchfab.com/werniak"
+    },
+    "filename": "std_3f3378dfd5524219810d8b95e5f7d4c5.glb",
+    "length": 8.651310443878174,
+    "width": 1.2110557556152344
+}

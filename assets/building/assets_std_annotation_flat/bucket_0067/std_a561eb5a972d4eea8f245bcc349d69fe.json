@@ -1,0 +1,104 @@
+{
+    "description_long": "This object is a racing-style vehicle with a low, aerodynamic profile and a wide stance, featuring a predominantly white body adorned with blue and red accents. The exterior is covered in various sponsor logos, including prominent branding for Cheerios and Kroger, and the number 47 is displayed in large red numerals on the roof and sides. The car has black wheels with yellow trim, a rear spoiler, and detailed window and door outlines, but lacks any visible emergency vehicle features such as light bars, sirens, or medical insignia. The front and rear bumpers are reinforced, and the windows appear to be tinted or covered, typical of a race car. The vehicle's surface is glossy, reflecting light and emphasizing its smooth, hard finish. There are no visible compartments or doors for medical access, and the overall design is optimized for speed rather than emergency response.",
+    "description": "A white, blue, and red racing vehicle with sponsor logos, number 47, and a sleek, aerodynamic build. It features a glossy finish, black wheels, and lacks typical ambulance markings or equipment.",
+    "description_view_0": "Rear view showing the wide spoiler, rear bumper, and sponsor logos on the trunk and bumper.",
+    "description_view_1": "Left side view highlighting the number 47, sponsor decals, and the car's low, streamlined profile.",
+    "description_view_2": "Front view displaying the grille, headlights, and prominent Kroger logo on the hood.",
+    "description_view_3": "Right side view similar to the left, with visible sponsor logos and the number 47.",
+    "category": "ambulance",
+    "height": 1.4,
+    "max_dimension": 5.0,
+    "materials": [
+        "metal",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.1,
+        0.1,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 1500,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "trunk",
+        "hood"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "red",
+        "black",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_emergency_light_bar": false,
+    "attribute_ambulance_signage": "No ambulance-specific signage; only racing sponsor logos and number 47.",
+    "attribute_medical_cross_symbol": false,
+    "attribute_siren": false,
+    "attribute_rear_compartment_doors": "single trunk lid",
+    "uid": "a561eb5a972d4eea8f245bcc349d69fe",
+    "near_synsets": {
+        "ambulance.n.01": 0.5160465250661441,
+        "funny_wagon.n.01": 0.577912650089561,
+        "panda_car.n.01": 0.5939337536927257,
+        "military_vehicle.n.01": 0.5983200534493485,
+        "fire_engine.n.01": 0.6004962099973354
+    },
+    "synset": "ambulance.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a561eb5a972d4eea8f245bcc349d69fe",
+        "creator_username": "980084849",
+        "creator_display_name": "Macabre_Void",
+        "creator_profile_url": "https://sketchfab.com/980084849"
+    },
+    "filename": "std_a561eb5a972d4eea8f245bcc349d69fe.glb",
+    "length": 8.45671272277832,
+    "width": 8.456707954406738
+}

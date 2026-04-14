@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a large, heavily armored military tank with a low, wide profile and a long, prominent main cannon extending from the turret. The vehicle features a robust set of road wheels and continuous tracks on both sides, designed for traversing rough and uneven terrain. The upper hull is angular and reinforced, with visible hatches, periscopes, and additional equipment mounted on the turret. The exterior is finished in a dark, camouflage green, suitable for blending into urban or forested environments. The tank's design includes various external storage compartments and antennas, indicating advanced communication capabilities. Its overall construction suggests a focus on durability, firepower, and all-terrain mobility.",
+    "description": "A large, armored military tank with a long cannon, wide tracks, and a dark green camouflage finish, built for rugged all-terrain use.",
+    "description_view_0": "Front view showing the tank's reinforced hull, central cannon, and angular armor plating.",
+    "description_view_1": "Side view highlighting the long cannon, multiple road wheels, and continuous tracks.",
+    "description_view_2": "Rear-front view with the cannon centered, showing the symmetry of the hull and turret details.",
+    "description_view_3": "Opposite side view displaying the full length of the cannon, track system, and turret equipment.",
+    "category": "all-terrain vehicle",
+    "height": 2.4,
+    "max_dimension": 9.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "composite armor",
+        "air",
+        "plastic"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.03,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 48000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "wheel",
+        "track",
+        "antenna",
+        "periscope",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 14,
+    "attribute_tire_tread_pattern": "The tracks feature a blocky, aggressive tread pattern designed for maximum traction on both soft and hard surfaces, suitable for all-terrain mobility.",
+    "attribute_suspension_type": "independent",
+    "attribute_presence_of_roll_cage": false,
+    "attribute_handlebar_or_steering_wheel_type": "round steering wheel",
+    "uid": "d2100f0890674804b34d801dd155ce4a",
+    "near_synsets": {
+        "tank.n.01": 0.4338209572098084,
+        "military_vehicle.n.01": 0.4494740380576629,
+        "assault_gun.n.02": 0.4672129424698116,
+        "armored_vehicle.n.01": 0.4755282554906615,
+        "reconnaissance_vehicle.n.01": 0.477430944513805,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d2100f0890674804b34d801dd155ce4a",
+        "creator_username": "rguedes",
+        "creator_display_name": "rguedes",
+        "creator_profile_url": "https://sketchfab.com/rguedes"
+    },
+    "filename": "std_d2100f0890674804b34d801dd155ce4a.glb",
+    "length": 7.293691635131836,
+    "width": 2.343622326850891
+}

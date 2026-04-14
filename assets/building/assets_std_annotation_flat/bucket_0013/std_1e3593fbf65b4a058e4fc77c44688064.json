@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a futuristic, sci-fi styled aircraft with a sleek, elongated fuselage and four prominent wings arranged in an X-formation. The wings are equipped with cylindrical engines and weapon-like extensions at their tips, giving the vehicle a heavily armed appearance. The body is covered in a camouflage pattern of gray, blue, and black, with visible panel lines and weathering effects that suggest heavy use. The cockpit is centrally located and features a dark, angular canopy, likely made of reinforced glass or transparent material. The overall design is aerodynamic, with no visible rotors or traditional helicopter features, and the landing gear appears to be retractable or integrated into the body. The asset lacks any visible registration numbers or civilian markings, emphasizing its military or tactical purpose.",
+    "description": "A futuristic, camouflaged aircraft with an X-shaped wing configuration, four engines, and a dark, angular cockpit canopy. The design is heavily armed and aerodynamic, with no visible rotors or traditional helicopter features.",
+    "description_view_0": "Front view shows the X-shaped wing arrangement, four cylindrical engines, and the pointed nose with a dark cockpit canopy.",
+    "description_view_1": "Side view highlights the elongated fuselage, the stacked engines, and the thin, extended wings with weapon-like tips.",
+    "description_view_2": "Rear view displays the symmetry of the wings and engines, as well as the narrow tail section and the cockpit's rear framing.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the same elongated body, wing structure, and engine placement.",
+    "category": "helicopter",
+    "height": 2.5,
+    "max_dimension": 12.5,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 9500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 95000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "engine",
+        "wing",
+        "weapon mount",
+        "landing gear"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_rotor_blades": "not visible",
+    "attribute_tail_rotor": "not visible",
+    "attribute_landing_skids": "No traditional landing skids; appears to have integrated or retractable landing gear within the fuselage.",
+    "attribute_cockpit_windows": "Single, large, angular cockpit canopy with dark tint, framed by metal, and no visible markings.",
+    "attribute_registration_number": "not visible",
+    "uid": "1e3593fbf65b4a058e4fc77c44688064",
+    "near_synsets": {
+        "helicopter.n.01": 0.49720208103403435,
+        "single-rotor_helicopter.n.01": 0.5427642623517348,
+        "aircraft.n.01": 0.5430384199201918,
+        "cargo_helicopter.n.01": 0.545396198129324,
+        "x-tail.n.01": 0.5511363852732756
+    },
+    "synset": "cargo_helicopter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1e3593fbf65b4a058e4fc77c44688064",
+        "creator_username": "jchapman1984",
+        "creator_display_name": "jchapman1984",
+        "creator_profile_url": "https://sketchfab.com/jchapman1984"
+    },
+    "filename": "std_1e3593fbf65b4a058e4fc77c44688064.glb",
+    "length": 7.893173456192017,
+    "width": 7.06223726272583
+}

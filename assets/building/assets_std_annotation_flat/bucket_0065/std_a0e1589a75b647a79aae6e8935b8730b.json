@@ -1,0 +1,102 @@
+{
+    "description_long": "This humanoid robot features an exposed, skeletal metallic frame with intricate mechanical details visible throughout its body. Its torso is robust and armored, with various cables and pistons running along the chest and limbs, suggesting a high degree of mechanical complexity. The head is skull-like, lacking any visible facial coverings, and the eyes are hollow, giving it a menacing, utilitarian appearance. One arm is equipped with a large, multi-barreled weapon, integrated directly into the forearm, while the other hand is articulated and claw-like. The legs are jointed and reinforced, with visible actuators and mechanical feet designed for stability and mobility. The overall finish is a weathered, industrial metal with hints of greenish patina, emphasizing its rugged, utilitarian design.",
+    "description": "A skeletal, metallic humanoid robot with exposed mechanical components and a built-in arm weapon, featuring a skull-like head and weathered industrial finish.",
+    "description_view_0": "Front view shows the robot's armored chest, skull-like head, and weaponized right arm, with detailed mechanical joints and exposed cables.",
+    "description_view_1": "Left side view highlights the large, multi-barreled weapon integrated into the right forearm and the intricate mechanical structure of the limbs.",
+    "description_view_2": "Rear view reveals the robot's exposed back with visible actuators, cables, and reinforced leg joints, emphasizing its skeletal frame.",
+    "description_view_3": "Right side view displays the articulated left hand and the robust, mechanical build of the legs and torso, with the weapon arm extended forward.",
+    "category": "humanoid robot",
+    "height": 1.85,
+    "max_dimension": 1.95,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.06,
+        0.01,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1176,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "weapon arm",
+        "articulated hand",
+        "head",
+        "joints"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "green",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with legs slightly apart, right arm extended forward holding a large weapon, left arm relaxed at the side, head facing forward, torso upright.",
+    "attribute_clothing_style": "Unclothed; only integrated metallic panels and exposed mechanical components are visible.",
+    "attribute_facial_features": "The face is skull-like with hollow eye sockets, no visible mouth or nose, and no expressive or display elements.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints at the shoulders, elbows, wrists, hips, knees, and ankles; hands and feet are articulated with mechanical fingers and toes, allowing a wide range of motion.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "a0e1589a75b647a79aae6e8935b8730b",
+    "near_synsets": {
+        "android.n.01": 0.5343849038795314,
+        "cyborg.n.01": 0.5428693158341765,
+        "robotics_equipment.n.01": 0.5464396018317815,
+        "automaton.n.02": 0.5584397124944709,
+        "skeleton.n.01": 0.5778881785050054
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/a0e1589a75b647a79aae6e8935b8730b",
+        "creator_username": "dwigfor",
+        "creator_display_name": "David Wigforss",
+        "creator_profile_url": "https://sketchfab.com/dwigfor"
+    },
+    "filename": "std_a0e1589a75b647a79aae6e8935b8730b.glb",
+    "length": 0.877240926027298,
+    "width": 0.7483396530151367
+}

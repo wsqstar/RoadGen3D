@@ -1,0 +1,110 @@
+{
+    "description_long": "This object consists of a thick brick wall segment with two large, heavy-duty metal safe doors embedded side by side. The left door is narrow, featuring a complex arrangement of metal bars, locking rods, and a rectangular access panel, giving it an industrial, reinforced appearance. The right door is wider, with a prominent circular combination lock mechanism, multiple locking bolts, and a central wheel handle, all set into a robust metal frame. Both doors are set flush with the brick wall, and their surfaces show signs of wear, with some discoloration and patina typical of aged steel. The brickwork is uniform, with reddish-brown tones and mortar lines clearly visible, providing a stark contrast to the metallic doors. No visible signage, branding, or decorative elements are present, emphasizing the utilitarian and secure nature of the installation.",
+    "description": "A brick wall segment with two large, industrial metal safe doors\u2014one narrow with locking bars, the other wide with a combination lock and wheel handle.",
+    "description_view_0": "Front view showing both safe doors embedded in the brick wall, with all locking mechanisms and details clearly visible.",
+    "description_view_1": "Side view revealing the thin profile of the wall and doors, with minimal detail visible except the depth of the structure.",
+    "description_view_2": "Rear view showing the plain, unadorned back of the brick wall with no visible doors or features.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the thin edge of the wall and doors.",
+    "category": "safe box",
+    "height": 1.8,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "brick",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.35,
+        0.15,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "rotatable",
+        "pullable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "combination dial",
+        "locking rods",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red-brown",
+        "gray",
+        "white",
+        "silver"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_lock_mechanism_type": "combination dial and wheel lock (right door), mechanical bar lock (left door)",
+    "attribute_handle_design": "central wheel handle (right door), vertical bar handle (left door)",
+    "attribute_door_hinge_placement": "external hinges on left and right edges of each door",
+    "attribute_brand_or_manufacturer_label": "none",
+    "attribute_ventilation_slots_or_openings": "none",
+    "uid": "defefb4c43fb448bb2f09815fefaee7d",
+    "near_synsets": {
+        "safe.n.01": 0.49593684778103975,
+        "safe-deposit.n.01": 0.5429560410201988,
+        "double_door.n.01": 0.5463052189399037,
+        "vault.n.02": 0.5602898562293454,
+        "strongbox.n.01": 0.562183168286597,
+        "box.n.06": -1000.0,
+        "box.n.09": -1000.0,
+        "box.n.07": -1000.0,
+        "box.n.03": -1000.0,
+        "box.n.08": -1000.0,
+        "box.n.02": -1000.0,
+        "corner.n.08": -1000.0,
+        "box.n.10": -1000.0,
+        "box.n.05": -1000.0,
+        "box.n.01": -1000.0
+    },
+    "synset": "safe.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/defefb4c43fb448bb2f09815fefaee7d",
+        "creator_username": "DuckbillStudio",
+        "creator_display_name": "STUDIO DUCKBILL",
+        "creator_profile_url": "https://sketchfab.com/DuckbillStudio"
+    },
+    "filename": "std_defefb4c43fb448bb2f09815fefaee7d.glb",
+    "length": 0.1736534982919693,
+    "width": 2.253820776939392
+}

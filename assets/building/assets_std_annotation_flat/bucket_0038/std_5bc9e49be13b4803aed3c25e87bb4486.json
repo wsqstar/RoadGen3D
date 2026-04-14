@@ -1,0 +1,92 @@
+{
+    "description_long": "This is a tall, lattice-structured steel tower designed to support high-voltage electrical power lines. The structure features a wide, double-tiered crossarm arrangement, with each tier supporting insulator stacks that hang downward to suspend power lines. The main body of the tower is a tapered, open truss framework, providing both strength and minimal wind resistance. The crossarms are symmetrically arranged, with visible insulator stacks on both sides, indicating multiple circuits. The surface is metallic and appears to be galvanized to resist corrosion, with a dark gray coloration. No visible warning signage or additional mounted electrical equipment is present beyond the insulator assemblies.",
+    "description": "A tall, metallic lattice tower with double-tiered crossarms and multiple insulator stacks for supporting high-voltage power lines. The structure is robust, open-framed, and dark gray in color.",
+    "description_view_0": "Frontal view showing the full width of the double-tiered crossarms and all insulator stacks clearly.",
+    "description_view_1": "Side view revealing the narrow profile of the tower and the depth of the crossarms, with insulator stacks barely visible.",
+    "description_view_2": "Rear view, nearly identical to the front, displaying the crossarms and insulator stacks symmetrically.",
+    "description_view_3": "Opposite side view, again showing the slim profile and the lattice structure with minimal crossarm visibility.",
+    "category": "transformer tower",
+    "height": 32.0,
+    "max_dimension": 36.0,
+    "materials": [
+        "steel",
+        "ceramic",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.04,
+        0.04
+    ],
+    "mass": 8500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "supportable",
+        "connectable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "insulator stack",
+        "crossarm"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "light gray"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.01,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_insulator_stacks": 6,
+    "attribute_arrangement_of_crossarms": "There are two horizontal crossarms arranged in a double-tiered configuration, each spanning the width of the structure and supporting insulator stacks at both ends.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "insulator"
+    ],
+    "attribute_configuration_of_attached_power_lines": "Power lines are attached in a three-phase parallel configuration, with each crossarm tier supporting three insulator stacks, indicating two circuits routed in parallel across the structure.",
+    "uid": "5bc9e49be13b4803aed3c25e87bb4486",
+    "near_synsets": {
+        "pylon.n.02": 0.5051473031431511,
+        "tower.n.01": 0.5471513887812036,
+        "cascade_transformer.n.01": 0.5627834414611546,
+        "trestle.n.01": 0.5640073526578919,
+        "supporting_tower.n.01": 0.5643380144925633,
+        "tugboat.n.01": -1000.0,
+        "transformer.n.01": -1000.0,
+        "column.n.04": -1000.0
+    },
+    "synset": "pylon.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5bc9e49be13b4803aed3c25e87bb4486",
+        "creator_username": "rhcreations",
+        "creator_display_name": "rhcreations",
+        "creator_profile_url": "https://sketchfab.com/rhcreations"
+    },
+    "filename": "std_5bc9e49be13b4803aed3c25e87bb4486.glb",
+    "length": 8.118458271026611,
+    "width": 16.36035919189453
+}

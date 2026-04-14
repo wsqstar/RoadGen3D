@@ -1,0 +1,111 @@
+{
+    "description_long": "This combat tactical vehicle is a tracked, armored machine equipped with a prominent multi-barrel rocket launcher system mounted on its roof. The vehicle features a robust, angular body with heavy-duty treads for traversing rough urban terrain, and its exterior is finished in a dark, glossy color. The front section includes a reinforced bumper and what appears to be a small, remotely operated turret or sensor system. Along the sides, there are visible mechanical arms or robotic appendages, possibly for manipulation or defense. The roof-mounted launcher is loaded with multiple cylindrical projectiles, each capped in alternating red, white, and blue colors, suggesting a modular or reloadable design. The vehicle's overall construction emphasizes durability, firepower, and versatility for urban combat scenarios.",
+    "description": "A heavily armored, tracked combat vehicle with a multi-barrel rocket launcher on its roof and robotic arms on the sides, finished in a dark, glossy color.",
+    "description_view_0": "Front view showing the reinforced bumper, central turret or sensor, and the full array of roof-mounted rockets.",
+    "description_view_1": "Left side view highlighting the tracked undercarriage, side-mounted robotic arm, and the length of the rocket launcher.",
+    "description_view_2": "Rear view focusing on the back of the rocket launcher and the symmetry of the vehicle's design.",
+    "description_view_3": "Right side view displaying the opposite robotic arm and the vehicle's robust track system.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 8500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "rocket launcher",
+        "robotic arm",
+        "track",
+        "turret",
+        "bumper"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "red",
+        "white",
+        "blue"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "glossy",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large multi-barrel rocket launcher on the roof; small turret or sensor system at the front; robotic arms on both sides.",
+    "attribute_armor_plating": "Full body armor plating with thick, angular panels covering all sides; reinforced front bumper; no visible reactive or modular panels.",
+    "attribute_camouflage_pattern": "None visible; vehicle is finished in a solid dark color with colored rocket tips.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable; vehicle uses continuous tracks.",
+    "uid": "b8da7e393132420db74e1dc028782b41",
+    "near_synsets": {
+        "reconnaissance_vehicle.n.01": 0.48458929810073165,
+        "military_vehicle.n.01": 0.4860138203524368,
+        "armored_car.n.02": 0.4936769224582606,
+        "tank.n.01": 0.4969865912908227,
+        "tank_destroyer.n.01": 0.5139953005849597,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b8da7e393132420db74e1dc028782b41",
+        "creator_username": "jesamabin",
+        "creator_display_name": "jesamabin",
+        "creator_profile_url": "https://sketchfab.com/jesamabin"
+    },
+    "filename": "std_b8da7e393132420db74e1dc028782b41.glb",
+    "length": 3.57946240901947,
+    "width": 2.86138916015625
+}

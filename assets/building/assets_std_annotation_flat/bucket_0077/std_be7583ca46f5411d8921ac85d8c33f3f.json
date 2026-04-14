@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a mid-rise office building with a rectangular footprint and a flat roof, featuring a rooftop mechanical structure and several HVAC units. The facade is clad in light gray stone or concrete panels, punctuated by large, evenly spaced rectangular windows arranged in a strict grid pattern across all visible sides. The ground floor includes a series of wide, dark entrances or garage doors, suggesting access for vehicles or loading. The rooftop is surrounded by a low parapet wall, and the mechanical penthouse is set back from the building edge, with visible ventilation equipment. The overall design is utilitarian and modern, with minimal ornamentation and a focus on function. The building's proportions and repetitive window pattern are characteristic of contemporary commercial office architecture.",
+    "description": "A modern, rectangular office building with a flat roof, light gray facade, and large, evenly spaced windows. The ground floor features wide entrances, and the rooftop hosts mechanical equipment.",
+    "description_view_0": "Front view showing the main facade with five rows of large windows and four wide ground-level entrances.",
+    "description_view_1": "Rear view with similar window arrangement, but rooftop mechanical structures are more prominent on the right side.",
+    "description_view_2": "Opposite side view highlighting the central rooftop structure and HVAC units, with the same window grid.",
+    "description_view_3": "Side view showing the mechanical penthouse and rooftop equipment, with consistent window pattern.",
+    "category": "office building",
+    "height": 18.0,
+    "max_dimension": 32.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "steel",
+        "aluminum",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 950000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "garage door",
+        "rooftop access door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 5,
+    "attribute_window_pattern": "Uniform grid of large rectangular windows, evenly spaced in horizontal and vertical rows across all facades.",
+    "attribute_building_entrance_type": "wide recessed entry",
+    "attribute_signage_presence": false,
+    "attribute_architectural_style": "Modernist",
+    "uid": "be7583ca46f5411d8921ac85d8c33f3f",
+    "near_synsets": {
+        "office_building.n.01": 0.46843417861602643,
+        "building.n.01": 0.5359782104866169,
+        "skyscraper.n.01": 0.5393783882534041,
+        "high-rise.n.01": 0.5395618427382997,
+        "office.n.01": 0.5491775737236493,
+        "building.n.04": -1000.0,
+        "construction.n.07": -1000.0,
+        "agency.n.01": -1000.0,
+        "construction.n.01": -1000.0,
+        "office.n.05": -1000.0,
+        "position.n.06": -1000.0,
+        "office.n.06": -1000.0,
+        "office.n.04": -1000.0,
+        "function.n.03": -1000.0
+    },
+    "synset": "office_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/be7583ca46f5411d8921ac85d8c33f3f",
+        "creator_username": "aitortilla01",
+        "creator_display_name": "aitortilla01",
+        "creator_profile_url": "https://sketchfab.com/aitortilla01"
+    },
+    "filename": "std_be7583ca46f5411d8921ac85d8c33f3f.glb",
+    "length": 23.771306037902832,
+    "width": 24.245508193969727
+}

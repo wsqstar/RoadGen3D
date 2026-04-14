@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a historical-style cannon mounted on a wooden carriage with four solid wheels. The cannon barrel is long, cylindrical, and made of dark metal, featuring ornate engravings and reinforced bands at both ends. The wooden carriage is robust, with metal fittings and bolts securing the structure, and includes side handles and a rear towing hook. The wheels are simple, solid discs, also reinforced with metal, allowing the cannon to be repositioned. The overall appearance suggests a design from the age of sail or early industrial era, intended for use in siege or defensive scenarios. The surface of the cannon shows some wear, with patches of discoloration and minor scratches, while the wood has a dark, polished finish.",
+    "description": "A long, ornately engraved metal cannon mounted on a sturdy wooden carriage with four solid wheels and metal fittings. The design is historical, with visible wear and a polished wood finish.",
+    "description_view_0": "Front view showing the circular cannon muzzle, symmetrical wheel arrangement, and the reinforced front of the carriage.",
+    "description_view_1": "Side view displaying the full length of the cannon barrel, ornate engravings, wooden carriage, and two wheels.",
+    "description_view_2": "Rear view highlighting the back of the carriage, the breech of the cannon, and the towing hook.",
+    "description_view_3": "Opposite side view similar to view 1, showing the length of the barrel, carriage details, and wheels.",
+    "category": "combat tactical  vehicle",
+    "height": 1.1,
+    "max_dimension": 3.0,
+    "materials": [
+        "steel",
+        "wood",
+        "iron",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.35,
+        0.08,
+        0.02
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cannon barrel",
+        "wheels",
+        "handles",
+        "towing hook"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "glossy",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One fixed cannon barrel mounted centrally on the wooden carriage.",
+    "attribute_armor_plating": "None visible; the object consists of a metal barrel and wooden carriage with no additional armor plating.",
+    "attribute_camouflage_pattern": "None visible; the cannon is finished in solid black and dark brown with some metallic highlights.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "f48bfb87e4964a6b94ee6eaed8fe34bf",
+    "near_synsets": {
+        "cannon.n.02": 0.4995383524828295,
+        "cannon.n.01": 0.5053038926880666,
+        "military_vehicle.n.01": 0.517214581144126,
+        "tank.n.01": 0.5228682927459612,
+        "weapons_carrier.n.01": 0.5255036236643351,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "cannon.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f48bfb87e4964a6b94ee6eaed8fe34bf",
+        "creator_username": "TKosier",
+        "creator_display_name": "TKosier",
+        "creator_profile_url": "https://sketchfab.com/TKosier"
+    },
+    "filename": "std_f48bfb87e4964a6b94ee6eaed8fe34bf.glb",
+    "length": 3.0501792430877686,
+    "width": 1.1836700439453125
+}

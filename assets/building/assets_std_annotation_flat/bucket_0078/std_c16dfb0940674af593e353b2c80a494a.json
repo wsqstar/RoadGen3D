@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a rustic wooden cabin with a dark, gabled roof and a spacious, wraparound porch on one side. The exterior walls are constructed from horizontal timber logs, giving it a classic log cabin appearance. Multiple windows of varying sizes are distributed asymmetrically across the facade, allowing ample natural light inside. The roof features prominent overhangs and a main gable intersected by a secondary gable, adding architectural interest. A small set of steps leads up to the porch, and the cabin sits on a slightly raised stone or concrete foundation. The structure is surrounded by a circular patch of grass, suggesting a natural, park-like setting.",
+    "description": "A rustic log cabin with a dark gabled roof, wraparound porch, and asymmetrical window arrangement, set on a grassy base.",
+    "description_view_0": "The front view shows the main entrance, a large porch, and several windows beneath the intersecting gables.",
+    "description_view_1": "This side view highlights the extended roof overhang, a side entrance, and the solid log construction.",
+    "description_view_2": "The rear view reveals a smaller porch area, additional windows, and the cabin's raised foundation.",
+    "description_view_3": "This angled view emphasizes the intersecting gables, clustered windows, and the porch wrapping around the corner.",
+    "category": "cabin",
+    "height": 5.5,
+    "max_dimension": 15.0,
+    "materials": [
+        "wood",
+        "glass",
+        "concrete",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.1,
+        0.02,
+        0.05
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "gray",
+        "green"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "Intersecting gable roof with deep overhangs and dark shingle cladding",
+    "attribute_window_arrangement": "Multiple rectangular windows of varying sizes, asymmetrically distributed across the front and sides, with some grouped in pairs and others spaced individually",
+    "attribute_door_placement": "One main door centered on the front facade opening onto the porch, and a secondary door on the side adjacent to the smaller porch area",
+    "attribute_porch_presence": true,
+    "attribute_architectural_style": "log cabin",
+    "uid": "c16dfb0940674af593e353b2c80a494a",
+    "near_synsets": {
+        "log_cabin.n.01": 0.4361236730794825,
+        "cabin.n.02": 0.4493125856846392,
+        "gazebo.n.01": 0.5294871075243758,
+        "farmhouse.n.01": 0.5316344187789882,
+        "cottage_tent.n.01": 0.5335432287660691,
+        "cabin.n.01": -1000.0,
+        "cabin.n.03": -1000.0
+    },
+    "synset": "cabin.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c16dfb0940674af593e353b2c80a494a",
+        "creator_username": "labarch",
+        "creator_display_name": "labarch",
+        "creator_profile_url": "https://sketchfab.com/labarch"
+    },
+    "filename": "std_c16dfb0940674af593e353b2c80a494a.glb",
+    "length": 24.279071807861328,
+    "width": 24.279010772705078
+}

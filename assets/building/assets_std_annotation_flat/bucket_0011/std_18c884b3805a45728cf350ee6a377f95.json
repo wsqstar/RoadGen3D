@@ -1,0 +1,103 @@
+{
+    "description_long": "This object consists of a neatly arranged grid of 49 individual pizzas, each with a round shape and a variety of visible toppings. The pizzas display a range of colors, including reds, browns, yellows, and greens, indicating different toppings such as pepperoni, vegetables, and cheese. The crusts are uniformly thin and slightly raised, with a golden-brown appearance. Each pizza appears to be a personal-sized portion, and the toppings are distributed evenly across the surfaces. The pizzas are placed directly on a flat, neutral background with no visible packaging or serving trays. There are no visible brand markings or logos on any of the pizzas.",
+    "description": "A grid of 49 small, round pizzas with varied toppings and thin, golden-brown crusts, arranged on a flat surface. The pizzas display a colorful assortment of ingredients and are unboxed.",
+    "description_view_0": "A top-down view showing the full grid of pizzas, highlighting the variety of toppings and the uniform arrangement.",
+    "description_view_1": "A low, angled side view emphasizing the thinness of the crusts and the even spacing between pizzas.",
+    "description_view_2": "A top-down view from the opposite side, again showing the grid layout and the diversity of toppings.",
+    "description_view_3": "A low, angled side view from the reverse direction, displaying the crust edges and the colorful toppings.",
+    "category": "pizza",
+    "height": 0.025,
+    "max_dimension": 1.0,
+    "materials": [
+        "bread",
+        "cheese",
+        "tomato sauce",
+        "meat",
+        "vegetables",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 7.0,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 20,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "yellow",
+        "brown",
+        "green",
+        "white"
+    ],
+    "colors_composition": [
+        0.3,
+        0.25,
+        0.2,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "group",
+    "attribute_topping_type": [
+        "pepperoni",
+        "cheese",
+        "mushroom",
+        "green pepper",
+        "sausage"
+    ],
+    "attribute_slice_count": 1,
+    "attribute_crust_style": "thin crust",
+    "attribute_packaging_presence": false,
+    "attribute_brand_logo": "None",
+    "uid": "18c884b3805a45728cf350ee6a377f95",
+    "near_synsets": {
+        "pizza.n.01": 0.5140487155648634,
+        "cheese_pizza.n.01": 0.5210375917171923,
+        "pepperoni_pizza.n.01": 0.5354038271883328,
+        "sicilian_pizza.n.01": 0.5418346790240264,
+        "pizzeria.n.01": 0.5477560458475448
+    },
+    "synset": "sicilian_pizza.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/18c884b3805a45728cf350ee6a377f95",
+        "creator_username": "pocolov",
+        "creator_display_name": "pocolov",
+        "creator_profile_url": "https://sketchfab.com/pocolov"
+    },
+    "filename": "std_18c884b3805a45728cf350ee6a377f95.glb",
+    "length": 1.4762861728668213,
+    "width": 0.9068384170532227
+}

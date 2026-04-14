@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a blue and gray passenger train carriage, likely modeled after Indian Railways AC coaches, with a rectangular body and a flat roof featuring several raised ventilation units. The sides of the carriage display a series of evenly spaced rectangular windows, each with a dark border, and there are small, labeled panels indicating carriage information. The undercarriage is detailed with visible wheels, suspension components, and other mechanical elements. The ends of the carriage are flat, with a blue face, safety markings, and connectors for coupling with other train cars. The roof is metallic gray and features multiple raised vents or air conditioning units. The overall design suggests a modern, long-distance commuter or express train carriage.",
+    "description": "A blue and gray passenger train carriage with rectangular windows, raised roof vents, and detailed undercarriage components.",
+    "description_view_0": "Front view showing the flat blue end of the carriage with safety markings and coupling connectors.",
+    "description_view_1": "Side view displaying a row of rectangular windows, labeled panels, and detailed undercarriage elements.",
+    "description_view_2": "Rear view similar to the front, with a flat blue end, safety markings, and connectors.",
+    "description_view_3": "Opposite side view with a row of rectangular windows and visible undercarriage details.",
+    "category": "train",
+    "height": 4.2,
+    "max_dimension": 23.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.07,
+        0.04,
+        0.02,
+        0.02
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "coupler",
+        "vent"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_train_type": "commuter train",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end",
+    "attribute_window_arrangement": "evenly spaced rectangular windows",
+    "uid": "1e5e4bd92b3b4da092af1ee3c802d3d8",
+    "near_synsets": {
+        "passenger_train.n.01": 0.4724272401721251,
+        "car_train.n.01": 0.4804940119683188,
+        "train.n.01": 0.505178638228757,
+        "boxcar.n.01": 0.5074976750661792,
+        "train_set.n.01": 0.5079817280211703,
+        "train.n.04": -1000.0,
+        "string.n.04": -1000.0,
+        "train.n.05": -1000.0,
+        "caravan.n.01": -1000.0,
+        "gearing.n.01": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1e5e4bd92b3b4da092af1ee3c802d3d8",
+        "creator_username": "virtualmakes",
+        "creator_display_name": "Prabhu Ram",
+        "creator_profile_url": "https://sketchfab.com/virtualmakes"
+    },
+    "filename": "std_1e5e4bd92b3b4da092af1ee3c802d3d8.glb",
+    "length": 19.24838924407959,
+    "width": 2.9778167009353638
+}

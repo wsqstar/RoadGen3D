@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a classic hand grenade, specifically resembling the iconic 'pineapple' style fragmentation grenade. Its body is oval-shaped with a textured, segmented surface for grip, painted in a military olive drab color with a yellow band near the top and a red ring just below the fuse assembly. The top features a robust metal lever (spoon) secured by a circular safety pin and ring, which is attached to a gray metallic fuse housing. The safety lever is held in place by the pin, which must be pulled to arm the grenade. The overall construction appears solid and metallic, with visible wear and slight surface imperfections suggesting rugged use. The object is compact, designed to be easily held and thrown by hand.",
+    "description": "A classic olive drab, segmented hand grenade with a yellow and red banded top, metal safety lever, and pin.",
+    "description_view_0": "Front view showing the grenade's spoon (lever) and safety pin directly facing forward, with the textured body visible.",
+    "description_view_1": "Angled side view revealing the fuse housing, yellow and red bands, and the curvature of the segmented body.",
+    "description_view_2": "Rear view with the spoon and pin visible from behind, highlighting the grenade's symmetrical shape.",
+    "description_view_3": "Side view displaying the circular safety ring, fuse housing, and the 'S 5' marking on the body.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.12,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 0.4,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 4,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable",
+        "throwable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety_pin",
+        "safety_lever",
+        "fuse_housing",
+        "body"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive drab",
+        "gray",
+        "yellow",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the safety pin and releasing the lever, which activates the fuse mechanism inside the top housing.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "79bb22bde40a40a0a2a74b26c0c0a04d",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.5086213089050181,
+        "grenade.n.01": 0.5229424014500431,
+        "pipe_bomb.n.01": 0.5501457522763934,
+        "bomb.n.01": 0.5501901433897453,
+        "bombie.n.01": 0.5607052990679591,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/79bb22bde40a40a0a2a74b26c0c0a04d",
+        "creator_username": "mehran1500",
+        "creator_display_name": "MehraN",
+        "creator_profile_url": "https://sketchfab.com/mehran1500"
+    },
+    "filename": "std_79bb22bde40a40a0a2a74b26c0c0a04d.glb",
+    "length": 0.06668490916490555,
+    "width": 0.05991628207266331
+}

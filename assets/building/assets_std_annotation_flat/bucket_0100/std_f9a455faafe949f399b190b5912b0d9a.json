@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a cylindrical glass bottle with a metallic screw cap, filled with an orange-brown substance that appears to be a liquid or viscous material. The bottle features a paper label with printed text and a barcode, visible on one side, and a nutrition facts label on another. The cap shows signs of wear, with some discoloration and residue, and the bottle's surface has areas where the label is peeling or the contents have left marks. The glass is mostly smooth and glossy, with some smudges and irregularities in the finish. The overall appearance suggests it is a food or medicine bottle, commonly found in urban environments such as sidewalks, parks, or near trash bins.",
+    "description": "A cylindrical glass bottle with a metallic screw cap, orange-brown contents, and worn paper labels. The bottle shows signs of use and residue on the cap and surface.",
+    "description_view_0": "Top-down view showing the metallic screw cap with discoloration and residue, and the upper part of the label.",
+    "description_view_1": "Angled side view highlighting the nutrition facts label, barcode, and the orange-brown contents inside the glass bottle.",
+    "description_view_2": "Rear view displaying the mostly unlabelled glass surface, with visible smudges and some label residue.",
+    "description_view_3": "Side view showing the main paper label, some peeling, and the orange-brown contents inside.",
+    "category": "bottle",
+    "height": 0.14,
+    "max_dimension": 0.14,
+    "materials": [
+        "glass",
+        "metal",
+        "paper",
+        "liquid",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.1,
+        0.05,
+        0.18,
+        0.02
+    ],
+    "mass": 0.32,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 5,
+    "movable": true,
+    "required_force": 3,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "rotatable",
+        "pourable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cap",
+        "label"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "white",
+        "gold",
+        "brown"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_label_or_branding": "There are paper labels with printed text, a barcode, and a nutrition facts panel. The labels are white with dark text and are partially peeling.",
+    "attribute_cap_type": "screw cap",
+    "attribute_transparency": "translucent",
+    "attribute_presence_of_liquid": "present",
+    "attribute_damage_or_deformation": "Discoloration and residue on the cap, peeling labels, and some smudges on the glass surface.",
+    "uid": "f9a455faafe949f399b190b5912b0d9a",
+    "near_synsets": {
+        "bottle.n.01": 0.518371116807762,
+        "bottlecap.n.01": 0.5197524940166938,
+        "bottle_collection.n.01": 0.5254805985517427,
+        "beer_bottle.n.01": 0.5354795364543679,
+        "cap.n.02": 0.5397563940665636,
+        "bottle.n.03": -1000.0,
+        "bottle.n.02": -1000.0
+    },
+    "synset": "bottle.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f9a455faafe949f399b190b5912b0d9a",
+        "creator_username": "ndeyoung",
+        "creator_display_name": "ndeyoung",
+        "creator_profile_url": "https://sketchfab.com/ndeyoung"
+    },
+    "filename": "std_f9a455faafe949f399b190b5912b0d9a.glb",
+    "length": 0.0826750323176384,
+    "width": 0.13618797808885574
+}

@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a portable cement mixer with a cylindrical drum mounted on a sturdy metal frame. The drum is heavily weathered, showing signs of rust and concrete residue, and is supported by two large spoked wheels for mobility. The frame includes two angled handles at the rear, coated in worn paint, allowing for manual transport and positioning. The open mouth of the drum reveals a hollow interior, likely containing mixing blades, and the drum is tilted forward for easy loading and unloading of materials. The support frame is robust, with crossbars and stabilizing legs to keep the mixer steady during operation. The overall appearance suggests frequent use in construction or renovation settings, with a utilitarian and rugged design.",
+    "description": "A weathered, portable cement mixer with a cylindrical drum, large wheels, and sturdy metal handles, showing signs of heavy use and rust.",
+    "description_view_0": "Front-left view showing the open drum mouth, interior details, and both wheels, with handles extending backward.",
+    "description_view_1": "Front-right view highlighting the drum's cylindrical shape, wheel design, and the angled handles for maneuvering.",
+    "description_view_2": "Rear view focusing on the handles, support frame, and the closed back of the drum, with less visibility of the drum's opening.",
+    "description_view_3": "Rear-left view emphasizing the support frame, handles, and the drum's side, with the wheels and stabilizing legs clearly visible.",
+    "category": "cement mixer",
+    "height": 1.1,
+    "max_dimension": 1.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 65,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "drum"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "rust brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_rotating_drum": true,
+    "attribute_chute": false,
+    "attribute_mixing_blades": true,
+    "attribute_truck_cab": false,
+    "attribute_support_frame": true,
+    "uid": "bf05fc1a147b43c28380d0ad7a2cac52",
+    "near_synsets": {
+        "concrete_mixer.n.01": 0.4625521805060264,
+        "hand_mixer.n.01": 0.5453630735603926,
+        "electric_mixer.n.01": 0.5528311307299032,
+        "mixer.n.04": 0.5544254337274842,
+        "stand_mixer.n.01": 0.5564371796013861,
+        "cement.n.03": -1000.0,
+        "cement.n.01": -1000.0,
+        "cement.n.02": -1000.0,
+        "cementum.n.01": -1000.0,
+        "mixer.n.03": -1000.0,
+        "sociable.n.01": -1000.0,
+        "mixer.n.02": -1000.0,
+        "cement.n.04": -1000.0
+    },
+    "synset": "concrete_mixer.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bf05fc1a147b43c28380d0ad7a2cac52",
+        "creator_username": "fermincab",
+        "creator_display_name": "fermincab",
+        "creator_profile_url": "https://sketchfab.com/fermincab"
+    },
+    "filename": "std_bf05fc1a147b43c28380d0ad7a2cac52.glb",
+    "length": 1.0760266780853271,
+    "width": 0.6902332305908203
+}

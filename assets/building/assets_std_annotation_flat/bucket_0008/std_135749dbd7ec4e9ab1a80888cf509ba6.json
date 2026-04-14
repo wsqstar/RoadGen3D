@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a World War II-era German Sturmgesch\u00fctz III (StuG III) assault gun, featuring a low-profile, boxy armored hull with sloped armor plates and a centrally mounted, forward-facing cannon. The vehicle is equipped with six large road wheels on each side, supported by a visible track system designed for traversing rough terrain. The exterior is painted in a weathered tan camouflage, with German military insignia visible on the side armor. The top of the hull has several hatches, vents, and periscopes, indicating crew access and observation points. The front of the vehicle is dominated by the protruding gun mantlet and barrel, while the rear features engine access panels and exhaust outlets. The overall construction is robust, with heavy steel armor and utilitarian design elements typical of mid-20th-century armored fighting vehicles.",
+    "description": "A tan, heavily armored German WWII assault gun with a low profile, forward-facing cannon, and six large road wheels per side. The vehicle features sloped armor, visible hatches, and military insignia.",
+    "description_view_0": "Front view showing the prominent cannon, thick sloped armor, and the two front track sections.",
+    "description_view_1": "Left side view displaying the full track system, six large road wheels, and German cross insignia on the side armor.",
+    "description_view_2": "Rear view highlighting the engine access panels, exhaust outlets, and the back of the track system.",
+    "description_view_3": "Right side view similar to the left, with visible track system, wheels, and side armor details.",
+    "category": "all-terrain vehicle",
+    "height": 2.2,
+    "max_dimension": 6.8,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 23000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "cannon",
+        "wheel",
+        "track",
+        "periscope",
+        "engine panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "brown",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 12,
+    "attribute_tire_tread_pattern": "The tracks feature a blocky, aggressive tread pattern designed for maximum traction on rough and muddy terrain, typical of military all-terrain vehicles.",
+    "attribute_suspension_type": "torsion bar",
+    "attribute_presence_of_roll_cage": false,
+    "attribute_handlebar_or_steering_wheel_type": "round steering wheel",
+    "uid": "135749dbd7ec4e9ab1a80888cf509ba6",
+    "near_synsets": {
+        "assault_gun.n.02": 0.45955524264535047,
+        "panzer.n.01": 0.5068608878820953,
+        "tank.n.01": 0.5094328155451404,
+        "military_vehicle.n.01": 0.5105093645711928,
+        "reconnaissance_vehicle.n.01": 0.5131931815501071,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "assault_gun.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/135749dbd7ec4e9ab1a80888cf509ba6",
+        "creator_username": "JesperLandin",
+        "creator_display_name": "Jesper Landin",
+        "creator_profile_url": "https://sketchfab.com/JesperLandin"
+    },
+    "filename": "std_135749dbd7ec4e9ab1a80888cf509ba6.glb",
+    "length": 5.874156475067139,
+    "width": 3.12795090675354
+}

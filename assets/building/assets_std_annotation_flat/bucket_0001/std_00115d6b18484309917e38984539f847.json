@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a large, rectangular shipping container with a weathered red exterior and visible corrugated metal sides. The front features two large hinged doors, one of which is open, revealing a spacious wooden-floored interior. The container is marked with the MAERSK logo and other identification numbers on its side, indicating its use for freight and cargo transport. The metal surface shows signs of wear, rust, and industrial use, with reinforced corners and heavy-duty locking mechanisms on the doors. The interior is empty, with ample space for storing or transporting goods. The container is designed for placement on the ground or transport vehicles, commonly seen in shipping yards, ports, or urban construction sites.",
+    "description": "A large, red, weathered shipping container with corrugated metal sides, MAERSK branding, and one open door revealing a wooden interior.",
+    "description_view_0": "Front view showing both doors, one open to reveal the wooden interior and locking mechanisms.",
+    "description_view_1": "Side view displaying the full MAERSK logo, container ID, and closed doors at the far end.",
+    "description_view_2": "Rear view with both doors open, providing a clear look into the empty wooden-floored interior.",
+    "description_view_3": "Opposite side view with the MAERSK logo and one door open, showing the door's hinges and locking bars.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "wood",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.04,
+        0.01
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "locking bar"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "red",
+        "blue",
+        "white",
+        "yellow",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.01,
+        0.05,
+        0.01
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "printed MAERSK logo and container ID on side, small yellow warning label",
+    "attribute_handles_or_grips": "two vertical locking bars with integrated handles on each door",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "00115d6b18484309917e38984539f847",
+    "near_synsets": {
+        "cargo_container.n.01": 0.4858004904876104,
+        "container.n.01": 0.4955371238479107,
+        "container_ship.n.01": 0.5418038558894024,
+        "cargo_door.n.01": 0.5462415478528941,
+        "crate.n.01": 0.5471799416915126
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/00115d6b18484309917e38984539f847",
+        "creator_username": "Max-5532",
+        "creator_display_name": "Max",
+        "creator_profile_url": "https://sketchfab.com/Max-5532"
+    },
+    "filename": "std_00115d6b18484309917e38984539f847.glb",
+    "length": 6.358236312866211,
+    "width": 3.385639190673828
+}

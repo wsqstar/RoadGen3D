@@ -1,0 +1,92 @@
+{
+    "description_long": "This object is a double-barreled shotgun with a classic design, featuring two parallel barrels of equal length finished in a dark, matte metal. The receiver and grip are constructed from a wood-textured material, with the grip shaped ergonomically for handheld use and a visible hammer mechanism at the rear. The shotgun has two distinct triggers, each protected by a rounded, elongated trigger guard that accommodates two fingers. The barrels are joined closely together, with no visible ribbing or venting between them, and the overall build is compact, lacking a full shoulder stock. The finish of the wood is smooth with a slight sheen, while the metal barrels appear matte and robust. This type of shotgun is typically used for close-range applications and is often seen in urban or civilian settings.",
+    "description": "A compact, double-barreled shotgun with a wooden grip and dark metal barrels, featuring dual triggers and a rounded trigger guard. The design is robust and ergonomic, suitable for handheld use.",
+    "description_view_0": "Side view showing the full length of the double barrels, wooden grip, dual triggers, and hammer mechanism.",
+    "description_view_1": "Top-down view highlighting the parallel alignment of the barrels and the smooth, contoured wooden grip.",
+    "description_view_2": "Opposite side view displaying the same double-barrel and grip features, with clear visibility of the trigger guard and hammer.",
+    "description_view_3": "Barrel-end view showing the twin barrel openings and the compact width of the shotgun.",
+    "category": "shotgun",
+    "height": 0.15,
+    "max_dimension": 0.65,
+    "materials": [
+        "steel",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "trigger guard",
+        "hammer",
+        "barrels"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.4,
+        0.6
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "side-by-side double-barrel, no visible ribbing or venting, barrels of equal length",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "break-action",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "elongated, rounded trigger guard sized for two fingers, with smooth contours and no visible reinforcement",
+    "uid": "37df2af3a32845a8bf580bd3a872248f",
+    "near_synsets": {
+        "shotgun.n.01": 0.4556036819439906,
+        "sawed-off_shotgun.n.01": 0.4959247969482892,
+        "shotgun_shell.n.01": 0.5280574475940439,
+        "gun_trigger.n.01": 0.5414327176549515,
+        "pistol.n.01": 0.5417090699827164
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/37df2af3a32845a8bf580bd3a872248f",
+        "creator_username": "KasraHomayoniAfshar",
+        "creator_display_name": "Kasra Homayoni Afshar",
+        "creator_profile_url": "https://sketchfab.com/KasraHomayoniAfshar"
+    },
+    "filename": "std_37df2af3a32845a8bf580bd3a872248f.glb",
+    "length": 0.44953811168670654,
+    "width": 0.0366570595651865
+}

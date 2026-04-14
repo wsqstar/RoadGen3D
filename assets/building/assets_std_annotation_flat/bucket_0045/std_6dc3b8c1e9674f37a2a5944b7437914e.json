@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a multi-story brick apartment building with a flat roof and a symmetrical facade. The front features large, regularly spaced windows and several awnings above ground-level entrances, suggesting commercial or communal spaces. The rear side is equipped with multiple metal fire escape staircases, providing emergency access to each floor. The building is set on a concrete base with small landscaped areas and sidewalks in front. The side walls are plain, with no windows, emphasizing the building's urban, row-house style. The overall structure is robust, with a utilitarian yet inviting appearance typical of city apartment complexes.",
+    "description": "A large, brick apartment building with flat roofs, prominent windows, ground-level awnings, and rear fire escapes, set in an urban environment.",
+    "description_view_0": "Side view showing plain brick walls with no windows or entrances.",
+    "description_view_1": "Front view displaying symmetrical windows, multiple awnings, and landscaped sidewalk areas.",
+    "description_view_2": "Opposite side view, identical to view 0, with plain brick walls and no windows.",
+    "description_view_3": "Rear view featuring multiple metal fire escape staircases and back entrances.",
+    "category": "apartment building",
+    "height": 12.0,
+    "max_dimension": 32.0,
+    "materials": [
+        "brick",
+        "concrete",
+        "glass",
+        "metal",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 1800000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "fire escape",
+        "awning"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "gray",
+        "black",
+        "green",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.0,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 3,
+    "attribute_balcony_presence": false,
+    "attribute_window_arrangement": "Windows are symmetrically arranged in vertical and horizontal rows, evenly spaced across the facade, with each floor having a consistent pattern.",
+    "attribute_entrance_type": "multiple entrances",
+    "attribute_architectural_style": "Contemporary",
+    "uid": "6dc3b8c1e9674f37a2a5944b7437914e",
+    "near_synsets": {
+        "apartment_building.n.01": 0.4611532986262693,
+        "block.n.05": 0.5120900690334508,
+        "building.n.04": 0.519628499592133,
+        "apartment.n.01": 0.5214160236866386,
+        "suite.n.02": 0.52394674004034,
+        "building.n.01": -1000.0,
+        "construction.n.07": -1000.0,
+        "construction.n.01": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6dc3b8c1e9674f37a2a5944b7437914e",
+        "creator_username": "rhoce",
+        "creator_display_name": "RH",
+        "creator_profile_url": "https://sketchfab.com/rhoce"
+    },
+    "filename": "std_6dc3b8c1e9674f37a2a5944b7437914e.glb",
+    "length": 14.057149410247803,
+    "width": 31.200034141540527
+}

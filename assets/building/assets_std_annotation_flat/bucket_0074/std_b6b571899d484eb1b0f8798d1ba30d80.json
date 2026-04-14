@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a rustic wooden barrow, commonly known as a wheelbarrow, featuring a single large wooden wheel at the front and two sturdy wooden handles extending from the rear. The tray is shallow and rectangular, constructed from weathered wooden planks, and is currently loaded with several large, brown burlap sacks. The sacks appear heavy and are stacked both on the tray and leaning against the side, suggesting the barrow is used for transporting bulk materials such as sand, soil, or grain. The wheel is reinforced with wooden slats and shows signs of wear, indicating frequent use. Two angled wooden support legs allow the barrow to rest upright when not in motion, and the overall construction is utilitarian, suitable for manual labor in urban or rural settings.",
+    "description": "A weathered wooden wheelbarrow with a single front wheel, loaded with large brown burlap sacks and supported by two angled legs. The barrow is utilitarian and designed for transporting heavy materials.",
+    "description_view_0": "Top-down view showing the full load of burlap sacks on the tray and the circular wooden wheel at the front.",
+    "description_view_1": "Front view highlighting the stacked sacks and the two angled support legs, with the handles extending backward.",
+    "description_view_2": "Side view displaying the length of the handles, the shallow wooden tray, and the single large wheel at the front.",
+    "description_view_3": "Rear view showing the handles, the back of the tray, and the sacks leaning against the side.",
+    "category": "barrow",
+    "height": 0.8,
+    "max_dimension": 1.5,
+    "materials": [
+        "wood",
+        "burlap",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "tray",
+        "support legs"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "brown",
+        "dark brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_number_of_wheels": 1,
+    "attribute_handle_type": "dual straight wooden handles",
+    "attribute_wheel_position": "single front-centered",
+    "attribute_tray_depth": 0.25,
+    "attribute_presence_of_support_legs": true,
+    "uid": "b6b571899d484eb1b0f8798d1ba30d80",
+    "near_synsets": {
+        "barrow.n.03": 0.42477605578925703,
+        "handbarrow.n.01": 0.5112662317547693,
+        "barrow.n.01": 0.5135953193139144,
+        "cart.n.01": 0.5209939790635252,
+        "wagon_wheel.n.01": 0.5271310857170473,
+        "burial_mound.n.01": -1000.0
+    },
+    "synset": "barrow.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b6b571899d484eb1b0f8798d1ba30d80",
+        "creator_username": "peter.pottiez",
+        "creator_display_name": "Asylum Nox",
+        "creator_profile_url": "https://sketchfab.com/peter.pottiez"
+    },
+    "filename": "std_b6b571899d484eb1b0f8798d1ba30d80.glb",
+    "length": 1.838902771472931,
+    "width": 1.006318986415863
+}

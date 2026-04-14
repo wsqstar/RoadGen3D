@@ -1,0 +1,108 @@
+{
+    "description_long": "This object consists of three distinct traffic signs mounted on individual gray metal posts. The leftmost sign is a red octagonal 'STOP' sign with white lettering, commonly used to instruct vehicles to halt. The center sign is a downward-pointing red and white triangle with the word '500 m' below, indicating a yield or caution area ahead in 500 meters. The rightmost sign is a red circle with a horizontal white bar, representing a 'No Entry' or 'Do Not Enter' restriction. All signs are mounted at a height suitable for visibility to drivers and pedestrians. The surfaces are smooth and reflective, designed for high visibility in urban environments.",
+    "description": "A set of three metal post-mounted traffic signs: a red 'STOP' sign, a triangular yield warning with '500 m', and a red 'No Entry' sign, all with reflective surfaces.",
+    "description_view_0": "Rear silhouettes of three traffic signs on posts, showing their geometric shapes: octagon, triangle, and circle.",
+    "description_view_1": "Side profile of the signs, revealing their thinness and the alignment of the posts.",
+    "description_view_2": "Front view displaying the 'STOP', '500 m' yield, and 'No Entry' signs with clear text and symbols.",
+    "description_view_3": "Opposite side profile, again showing the slimness and post alignment.",
+    "category": "traffic sign",
+    "height": 2.2,
+    "max_dimension": 2.4,
+    "materials": [
+        "steel",
+        "aluminum",
+        "reflective plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.04,
+        0.01
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "readable",
+        "signaling"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "sign face",
+        "post"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.55,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_sign_text": "STOP\n500 m",
+    "attribute_symbol_or_pictogram": "White horizontal bar on red circle (No Entry); downward-pointing triangle (Yield)",
+    "attribute_mounting_type": "post-mounted",
+    "attribute_orientation": "perpendicular to road",
+    "attribute_location_context": "urban roadside, intersections, and entry restrictions",
+    "uid": "1f598599402c4dee83fa2f8dad082218",
+    "near_synsets": {
+        "stop_sign.n.01": 0.45227650138837217,
+        "street_sign.n.01": 0.4833371816888462,
+        "traffic_light.n.01": 0.5071526966445029,
+        "stoplight.n.01": 0.5312027082158866,
+        "red_light.n.02": 0.5372103508768795,
+        "traffic.n.01": -1000.0,
+        "sign.n.09": -1000.0,
+        "sign.n.10": -1000.0,
+        "traffic.n.03": -1000.0,
+        "augury.n.01": -1000.0,
+        "signal.n.01": -1000.0,
+        "sign_of_the_zodiac.n.01": -1000.0,
+        "sign.n.02": -1000.0,
+        "polarity.n.02": -1000.0,
+        "sign.n.11": -1000.0,
+        "signboard.n.01": -1000.0,
+        "dealings.n.01": -1000.0,
+        "sign.n.06": -1000.0,
+        "sign.n.01": -1000.0,
+        "traffic.n.02": -1000.0
+    },
+    "synset": "street_sign.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1f598599402c4dee83fa2f8dad082218",
+        "creator_username": "Federico.Terzi",
+        "creator_display_name": "Federico.Terzi",
+        "creator_profile_url": "https://sketchfab.com/Federico.Terzi"
+    },
+    "filename": "std_1f598599402c4dee83fa2f8dad082218.glb",
+    "length": 0.08335016667842865,
+    "width": 3.9001080989837646
+}

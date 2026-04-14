@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a large, tracked combat vehicle resembling a main battle tank, painted in a light desert tan color. The vehicle features a prominent, long-barreled main cannon mounted on a rotating turret, with additional hatches and periscopes visible on the turret roof. The hull is angular and heavily armored, with sloped surfaces and reinforced side skirts protecting the suspension and tracks. The running gear consists of multiple large road wheels on each side, with continuous metal tracks for all-terrain mobility. The rear section includes engine grilles and stowage racks, while the front is sharply angled for deflection. The overall appearance is robust, utilitarian, and designed for urban and battlefield environments.",
+    "description": "A large, tan-colored tracked tank with a long cannon, sloped armor, and multiple road wheels, designed for heavy combat. Its robust, angular body and turret are built for protection and firepower.",
+    "description_view_0": "Front view showing the sharply angled glacis plate, main cannon, and frontal armor.",
+    "description_view_1": "Left side view highlighting the long barrel, turret details, and six large road wheels with side skirts.",
+    "description_view_2": "Rear view displaying the engine grilles, stowage racks, and rear armor structure.",
+    "description_view_3": "Right side view similar to the left, showing the tracks, wheels, and turret profile.",
+    "category": "combat tactical  vehicle",
+    "height": 2.4,
+    "max_dimension": 9.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.07,
+        0.03,
+        0.02,
+        0.03
+    ],
+    "mass": 48000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "wheel",
+        "track",
+        "periscope",
+        "engine grille",
+        "stowage rack"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted centrally on the turret; possible secondary mounts on the turret roof, but only the main cannon is clearly visible.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating on the front, sides, and turret; reinforced side skirts over the tracks; no visible modular or reactive panels.",
+    "attribute_camouflage_pattern": "Solid desert tan color with no visible camouflage pattern.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "81ae81f0dbf24a89804eebd007074ac0",
+    "near_synsets": {
+        "tank.n.01": 0.4354093088213889,
+        "military_vehicle.n.01": 0.4890012146778177,
+        "assault_gun.n.02": 0.494289601430832,
+        "armored_car.n.02": 0.49755471082967295,
+        "tank_destroyer.n.01": 0.504432277129445,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/81ae81f0dbf24a89804eebd007074ac0",
+        "creator_username": "pervonharke",
+        "creator_display_name": "pervonharke",
+        "creator_profile_url": "https://sketchfab.com/pervonharke"
+    },
+    "filename": "std_81ae81f0dbf24a89804eebd007074ac0.glb",
+    "length": 6.685579538345337,
+    "width": 3.540205478668213
+}

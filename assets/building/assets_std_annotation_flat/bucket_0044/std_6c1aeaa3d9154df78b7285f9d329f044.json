@@ -1,0 +1,138 @@
+{
+    "description_long": "This grave yard scene features a large, carved jack-o'-lantern pumpkin with a mischievous face, positioned prominently in the center of a small, fenced plot. The pumpkin is surrounded by a black wrought iron fence with pointed finials, enclosing a patch of green grass. At the rear of the plot stands a gray tombstone with a simple cross engraving, adding a somber touch to the otherwise festive display. The pumpkin's stem is thick and green, with a few curling vines and leaves scattered around its base. The base of the scene is a raised platform with a decorative plaque reading 'Happy Halloween!' on the front. The overall composition blends playful Halloween elements with traditional graveyard motifs, making it suitable for seasonal urban displays.",
+    "description": "A festive grave yard scene with a large jack-o'-lantern, a gray tombstone, and a black wrought iron fence on a grassy platform. The front plaque reads 'Happy Halloween!'",
+    "description_view_0": "Front view showing the jack-o'-lantern's carved face, the tombstone with a cross, and the 'Happy Halloween!' plaque on the base.",
+    "description_view_1": "Rear-left view highlighting the pumpkin's back, the tombstone's side, and more of the pumpkin's stem and leaves.",
+    "description_view_2": "Rear view focusing on the back of the tombstone and the pumpkin, with the fence enclosing the scene.",
+    "description_view_3": "Right-side view showing the tombstone's back and the pumpkin's side, with the fence and grassy base visible.",
+    "category": "grave yard",
+    "height": 0.7,
+    "max_dimension": 1.2,
+    "materials": [
+        "plastic",
+        "metal",
+        "stone",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 35,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "pumpkin",
+        "tombstone",
+        "fence",
+        "plaque"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "black",
+        "gray",
+        "green",
+        "purple",
+        "white"
+    ],
+    "colors_composition": [
+        0.4,
+        0.2,
+        0.15,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "scene",
+    "attribute_tombstone_inscriptions": [],
+    "attribute_crosses": [
+        {
+            "style": "Latin",
+            "height": 0.15,
+            "material": "stone"
+        }
+    ],
+    "attribute_grave_markers": [
+        {
+            "type": "headstone",
+            "material": "stone",
+            "dimensions": [
+                0.6,
+                0.35,
+                0.15
+            ]
+        }
+    ],
+    "attribute_mausoleums": [],
+    "attribute_cemetery_gates": [
+        {
+            "type": "wrought iron",
+            "primary_materials": "metal",
+            "dimensions": [
+                0.3,
+                1.2
+            ],
+            "decorative_elements": [
+                "pointed finials"
+            ]
+        }
+    ],
+    "uid": "6c1aeaa3d9154df78b7285f9d329f044",
+    "near_synsets": {
+        "jack-o'-lantern.n.02": 0.5187612589959646,
+        "allhallowtide.n.01": 0.5435646637137532,
+        "halloween.n.01": 0.5518119847425095,
+        "grave.n.02": 0.5600402474945863,
+        "gravestone.n.01": 0.5828471113353371,
+        "thousand.n.01": -1000.0,
+        "yard.n.02": -1000.0,
+        "yard.n.09": -1000.0,
+        "yard.n.03": -1000.0,
+        "yard.n.06": -1000.0,
+        "cubic_yard.n.01": -1000.0,
+        "yard.n.07": -1000.0,
+        "yard.n.01": -1000.0,
+        "yard.n.08": -1000.0
+    },
+    "synset": "yard.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/6c1aeaa3d9154df78b7285f9d329f044",
+        "creator_username": "LordoftheGoombas",
+        "creator_display_name": "LordoftheGoombas",
+        "creator_profile_url": "https://sketchfab.com/LordoftheGoombas"
+    },
+    "filename": "std_6c1aeaa3d9154df78b7285f9d329f044.glb",
+    "length": 1.2147164940834045,
+    "width": 1.2026878595352173
+}

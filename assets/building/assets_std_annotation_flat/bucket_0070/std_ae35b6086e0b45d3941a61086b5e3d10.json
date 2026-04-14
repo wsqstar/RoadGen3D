@@ -1,0 +1,152 @@
+{
+    "description_long": "This object consists of a dark wooden coffin with a partially open lid, accompanied by four wooden crosses of varying sizes and shapes. The coffin is hexagonal and appears to be constructed from planks, with a simple, rustic finish. The interior of the coffin is visible and appears empty, with the lid propped open. The four crosses are made from rough, unpolished wood and are positioned upright, likely intended as grave markers. The overall appearance is somber and utilitarian, evoking a traditional graveyard setting. There are no visible inscriptions or decorative elements on either the coffin or the crosses.",
+    "description": "A rustic wooden coffin with a partially open lid, accompanied by four simple wooden crosses as grave markers.",
+    "description_view_0": "The coffin is seen from an angle with its lid open, and all four wooden crosses are clearly visible standing upright beside it.",
+    "description_view_1": "The coffin is viewed from the side, with the crosses aligned behind it, showing the length of the coffin and the thin profile of the crosses.",
+    "description_view_2": "The open coffin is seen from the opposite angle, with the crosses in front, highlighting the interior space and the arrangement of the grave markers.",
+    "description_view_3": "The coffin is viewed from the end, with one cross directly in front and the open lid visible, emphasizing the depth of the coffin.",
+    "category": "grave yard",
+    "height": 0.8,
+    "max_dimension": 2.0,
+    "materials": [
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark brown",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_tombstone_inscriptions": [],
+    "attribute_crosses": [
+        {
+            "style": "Latin",
+            "height": 0.7,
+            "material": "wood"
+        },
+        {
+            "style": "Latin",
+            "height": 0.6,
+            "material": "wood"
+        },
+        {
+            "style": "Latin",
+            "height": 0.5,
+            "material": "wood"
+        },
+        {
+            "style": "Latin",
+            "height": 0.4,
+            "material": "wood"
+        }
+    ],
+    "attribute_grave_markers": [
+        {
+            "type": "cross",
+            "material": "wood",
+            "dimensions": [
+                0.7,
+                0.3,
+                0.05
+            ]
+        },
+        {
+            "type": "cross",
+            "material": "wood",
+            "dimensions": [
+                0.6,
+                0.25,
+                0.05
+            ]
+        },
+        {
+            "type": "cross",
+            "material": "wood",
+            "dimensions": [
+                0.5,
+                0.2,
+                0.05
+            ]
+        },
+        {
+            "type": "cross",
+            "material": "wood",
+            "dimensions": [
+                0.4,
+                0.15,
+                0.05
+            ]
+        }
+    ],
+    "attribute_mausoleums": [],
+    "attribute_cemetery_gates": [],
+    "uid": "ae35b6086e0b45d3941a61086b5e3d10",
+    "near_synsets": {
+        "grave.n.02": 0.5128467776684544,
+        "coffin.n.01": 0.5212216172034166,
+        "gravestone.n.01": 0.5265262076573859,
+        "cemetery.n.01": 0.5360407861033892,
+        "cairn.n.01": 0.5384987561578671,
+        "yard.n.01": -1000.0,
+        "yard.n.07": -1000.0,
+        "yard.n.09": -1000.0,
+        "yard.n.03": -1000.0,
+        "cubic_yard.n.01": -1000.0,
+        "yard.n.02": -1000.0,
+        "yard.n.08": -1000.0,
+        "thousand.n.01": -1000.0,
+        "yard.n.06": -1000.0
+    },
+    "synset": "cemetery.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ae35b6086e0b45d3941a61086b5e3d10",
+        "creator_username": "WittigMax",
+        "creator_display_name": "Max Wittig",
+        "creator_profile_url": "https://sketchfab.com/WittigMax"
+    },
+    "filename": "std_ae35b6086e0b45d3941a61086b5e3d10.glb",
+    "length": 1.2405861020088196,
+    "width": 2.452815890312195
+}

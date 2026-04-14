@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a large, rectangular cowshed with a dark, gabled roof featuring multiple evenly spaced translucent panels for natural lighting. The structure is primarily constructed from metal, with open ends supported by sturdy columns, allowing for easy access and ventilation. The roof extends over the sides, providing ample shelter for livestock within. The front view reveals a wide, open entrance with a concrete apron, while the rear is similarly open but without the apron. The sides are solid and opaque, emphasizing the utilitarian design typical of agricultural buildings. The overall appearance is functional and robust, suitable for housing cattle in a rural or peri-urban setting.",
+    "description": "A large, rectangular metal cowshed with a gabled roof and translucent skylight panels, featuring wide open entrances at both ends and solid side walls.",
+    "description_view_0": "Front view showing the solid side walls and the wide, open entrance with a concrete apron.",
+    "description_view_1": "Angled view highlighting the gabled roof with translucent panels and the open front supported by metal columns.",
+    "description_view_2": "Rear view similar to the front but without the concrete apron, showing the open structure and solid sides.",
+    "description_view_3": "Angled rear view emphasizing the open entrance, gabled roof, and the extended concrete apron at the front.",
+    "category": "cowshed",
+    "height": 6.0,
+    "max_dimension": 30.0,
+    "materials": [
+        "steel",
+        "polycarbonate",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.1,
+        0.1,
+        0.2
+    ],
+    "mass": 35000,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "shelter_providing",
+        "livestock_housing"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "entrance",
+        "roof panels"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "livestock"
+    ],
+    "colors": [
+        "black",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gable",
+    "attribute_door_style": "open front and rear, no visible doors; wide entryways supported by metal columns",
+    "attribute_window_presence": "no windows; translucent roof panels provide natural light",
+    "attribute_ventilation_features": "open ends, translucent roof panels for passive ventilation",
+    "attribute_architectural_style": "modern utilitarian",
+    "uid": "1a30f609d1cc469aa598c31f51b249fe",
+    "near_synsets": {
+        "cowbarn.n.01": 0.43939647435708334,
+        "stockyard.n.01": 0.5030553402452663,
+        "cow_pasture.n.01": 0.5088652635758537,
+        "shed.n.01": 0.5091755871762272,
+        "barn.n.01": 0.510870030955875
+    },
+    "synset": "cowbarn.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1a30f609d1cc469aa598c31f51b249fe",
+        "creator_username": "unyxium",
+        "creator_display_name": "Martin Ibbett",
+        "creator_profile_url": "https://sketchfab.com/unyxium"
+    },
+    "filename": "std_1a30f609d1cc469aa598c31f51b249fe.glb",
+    "length": 27.31540012359619,
+    "width": 17.68010902404785
+}

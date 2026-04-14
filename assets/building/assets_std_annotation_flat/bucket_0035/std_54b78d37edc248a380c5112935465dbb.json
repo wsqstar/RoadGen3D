@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a robust, red-painted diesel locomotive with a boxy, utilitarian design and a weathered exterior, typical of mid-20th-century European freight or shunting engines. The locomotive features a central cab with windows on all sides, flanked by long engine compartments on either side, and is mounted on two sets of black bogies with visible wheels and suspension. The front and rear ends are equipped with metal railings, safety steps, and buffer beams, as well as yellow-black hazard stripes at the base. The body is adorned with white striping and a visible identification number, and the VR logo is present on the side, indicating Finnish State Railways. The roof has a small raised section, likely for ventilation or exhaust, and the sides show subtle panel lines and grilles for engine cooling. The overall appearance suggests a heavy-duty, industrial vehicle designed for hauling cargo or shunting operations in rail yards.",
+    "description": "A red, weathered diesel locomotive with a central cab, long engine compartments, and metal railings, marked with the VR logo and hazard stripes. It features a boxy, utilitarian design with visible wheels, grilles, and safety details.",
+    "description_view_0": "Front view showing the locomotive's cab windows, buffer beam, metal railings, and yellow-black hazard stripes.",
+    "description_view_1": "Side view displaying the full length of the locomotive, central cab, VR logo, panel lines, and bogies with wheels.",
+    "description_view_2": "Rear view similar to the front, with cab windows, buffer beam, railings, and hazard stripes visible.",
+    "description_view_3": "Opposite side view showing the locomotive's length, central cab, panel details, and bogies, with less visible logo.",
+    "category": "train",
+    "height": 4.2,
+    "max_dimension": 16.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.04,
+        0.03,
+        0.02,
+        0.03,
+        0.03
+    ],
+    "mass": 80000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "control panel",
+        "steps",
+        "handrail"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "gray",
+        "black",
+        "yellow",
+        "white"
+    ],
+    "colors_composition": [
+        0.65,
+        0.18,
+        0.1,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_train_type": "diesel locomotive",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end",
+    "attribute_window_arrangement": "spaced rectangular windows on cab",
+    "uid": "54b78d37edc248a380c5112935465dbb",
+    "near_synsets": {
+        "diesel_locomotive.n.01": 0.5052446600287784,
+        "train.n.01": 0.5166180271412308,
+        "steam_locomotive.n.01": 0.5221236569946938,
+        "locomotive.n.01": 0.5320917915431038,
+        "train_set.n.01": 0.5351077537966785,
+        "train.n.04": -1000.0,
+        "train.n.05": -1000.0,
+        "string.n.04": -1000.0,
+        "gearing.n.01": -1000.0,
+        "caravan.n.01": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/54b78d37edc248a380c5112935465dbb",
+        "creator_username": "simonpasi96",
+        "creator_display_name": "Simon Pasi",
+        "creator_profile_url": "https://sketchfab.com/simonpasi96"
+    },
+    "filename": "std_54b78d37edc248a380c5112935465dbb.glb",
+    "length": 12.382599353790283,
+    "width": 2.8193359375
+}

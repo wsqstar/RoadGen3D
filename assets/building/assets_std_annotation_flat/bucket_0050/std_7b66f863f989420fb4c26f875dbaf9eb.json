@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a grand piano with a dark wooden exterior, featuring a classic, angular design and a raised lid exposing the golden strings and internal structure. The keyboard consists of alternating black and white keys, and a music stand with sheet music is positioned above the keys. Three gold-colored pedals are visible beneath the keyboard, supported by sturdy wooden legs. The lid is propped open, revealing the piano's harp and string arrangement, while the body has a blocky, geometric style reminiscent of voxel art. The surface appears matte with a slightly rough wood grain texture. The piano is substantial in size and would be a prominent feature in any urban park, plaza, or public space.",
+    "description": "A dark wooden grand piano with a raised lid, visible strings, a music stand, and three gold pedals. The design is blocky and geometric, with a matte, wood-textured finish.",
+    "description_view_0": "Front view showing the full keyboard, music stand with sheet music, and all three pedals.",
+    "description_view_1": "Angled side view highlighting the open lid, internal strings, and the music stand from the side.",
+    "description_view_2": "Rear view focusing on the open lid and the exposed golden strings inside the piano.",
+    "description_view_3": "Side view showing the profile of the piano, the music stand, and the open lid's structure.",
+    "category": "piano",
+    "height": 1.2,
+    "max_dimension": 2.1,
+    "materials": [
+        "wood",
+        "metal",
+        "plastic",
+        "paper",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3430,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "keys",
+        "pedals",
+        "lid",
+        "music stand"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark brown",
+        "black",
+        "white",
+        "gold",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.55,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_keyboard_layout": "Standard layout with 52 white keys and 36 black keys arranged in alternating groups, no missing or split keys.",
+    "attribute_number_of_pedals": 3,
+    "attribute_brand_or_logo": "None",
+    "attribute_lid_position": "fully open",
+    "attribute_presence_of_music_stand": true,
+    "uid": "7b66f863f989420fb4c26f875dbaf9eb",
+    "near_synsets": {
+        "grand_piano.n.01": 0.4736696534140167,
+        "piano.n.01": 0.5041262529531431,
+        "upright.n.02": 0.506243052635916,
+        "concert_grand.n.01": 0.5081825609102483,
+        "baby_grand.n.01": 0.5180179311560865,
+        "piano.n.02": -1000.0
+    },
+    "synset": "piano.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7b66f863f989420fb4c26f875dbaf9eb",
+        "creator_username": "djangospel",
+        "creator_display_name": "djangospel",
+        "creator_profile_url": "https://sketchfab.com/djangospel"
+    },
+    "filename": "std_7b66f863f989420fb4c26f875dbaf9eb.glb",
+    "length": 1.05256986618042,
+    "width": 1.148257553577423
+}

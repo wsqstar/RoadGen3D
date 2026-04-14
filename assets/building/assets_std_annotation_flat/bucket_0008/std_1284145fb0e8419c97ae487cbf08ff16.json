@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a large, turret-like multi-barreled weapon system, featuring four long, cylindrical barrels extending from a robust, angular housing. The main body is heavily armored, with a matte dark finish and visible panel lines, bolts, and reinforced plating. The number '67' is stenciled in white on the side, suggesting a military or tactical designation. The structure includes several hatches, vents, and what appear to be sensor or targeting modules on the upper surface. The base is circular and appears designed for rotation, indicating it is likely mounted on a vehicle or fixed emplacement. The overall design is utilitarian and intimidating, optimized for heavy firepower and durability in urban combat scenarios.",
+    "description": "A large, armored multi-barreled turret weapon with four long barrels and a dark, reinforced housing marked '67'. Its robust, angular design suggests heavy firepower and military use.",
+    "description_view_0": "Side view showing four barrels, the '67' marking, and the angular armored housing.",
+    "description_view_1": "Rear view highlighting the circular base, rear armor, and symmetrical structure.",
+    "description_view_2": "Opposite side view with clear visibility of the barrels and side armor details.",
+    "description_view_3": "Front view emphasizing the four barrels and the aggressive, reinforced front armor.",
+    "category": "rifle",
+    "height": 1.2,
+    "max_dimension": 3.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrels",
+        "hatches",
+        "turret base",
+        "sensors"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "none",
+    "uid": "1284145fb0e8419c97ae487cbf08ff16",
+    "near_synsets": {
+        "rifle.n.01": 0.4946633344898841,
+        "assault_gun.n.02": 0.5191246367029244,
+        "artillery.n.01": 0.5223855307116465,
+        "gun.n.01": 0.5256492536584395,
+        "shotgun.n.01": 0.5262033893040019
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1284145fb0e8419c97ae487cbf08ff16",
+        "creator_username": "Planetrix23",
+        "creator_display_name": "Peter Primini",
+        "creator_profile_url": "https://sketchfab.com/Planetrix23"
+    },
+    "filename": "std_1284145fb0e8419c97ae487cbf08ff16.glb",
+    "length": 4.086914539337158,
+    "width": 2.8143601417541504
+}

@@ -1,0 +1,96 @@
+{
+    "description_long": "This kiosk features a sturdy wooden frame with a rectangular base and a raised platform, topped by a sloped canopy made of green-and-black striped fabric. The canopy is supported by metal rods and brackets, providing shade and shelter for the open front counter area. The base includes two paneled cabinet doors for storage, and the front counter is designed for serving or displaying goods. The wood is dark-stained, giving the structure a rustic and robust appearance, while the metal elements add structural support and a touch of industrial style. The overall design is compact and functional, suitable for use as a street vendor stall, information booth, or small retail point. There are no visible windows or signage, and the kiosk is open at the front for easy interaction with customers.",
+    "description": "A rustic wooden kiosk with a striped fabric canopy, open front counter, and storage cabinets below, supported by metal brackets.",
+    "description_view_0": "Side view showing the sloped canopy, wooden frame, and the depth of the base with visible metal supports.",
+    "description_view_1": "Top-down view highlighting the striped canopy and the rectangular shape of the kiosk's roof and base.",
+    "description_view_2": "Opposite side view mirroring view 0, showing the canopy's slope and the supporting structure.",
+    "description_view_3": "Front view displaying the open counter area, storage cabinets, and the full width of the canopy.",
+    "category": "kiosk",
+    "height": 2.1,
+    "max_dimension": 2.4,
+    "materials": [
+        "wood",
+        "fabric",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.15,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "supportable",
+        "displayable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cabinet doors",
+        "countertop",
+        "canopy"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "green",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.55,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "none",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "two cabinet doors at the base, front-facing",
+    "attribute_roof_design": "sloped canopy made of striped fabric, supported by metal rods, with a slight overhang at the front",
+    "attribute_architectural_style": "rustic with industrial accents",
+    "uid": "26e9d2ebbf2d43c3b795fbca50653984",
+    "near_synsets": {
+        "etagere.n.01": 0.5394101163601414,
+        "booth.n.02": 0.54034421946089,
+        "booth.n.01": 0.5550474921970561,
+        "booth.n.04": 0.5581166791901376,
+        "meat_counter.n.01": 0.5598904789229796
+    },
+    "synset": "booth.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/26e9d2ebbf2d43c3b795fbca50653984",
+        "creator_username": "bulgakov",
+        "creator_display_name": "nikita.bulgakov",
+        "creator_profile_url": "https://sketchfab.com/bulgakov"
+    },
+    "filename": "std_26e9d2ebbf2d43c3b795fbca50653984.glb",
+    "length": 1.0412859320640564,
+    "width": 1.4169330596923828
+}

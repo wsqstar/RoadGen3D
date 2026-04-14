@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a stylized, multi-barreled rifle turret with a futuristic design, featuring three parallel barrels extending from a blue and yellow angular housing. The rear section is dominated by large, vertically oriented, hexagonal metallic cylinders, likely serving as power or ammunition storage. The base is hexagonal and colored in yellow and black, providing stability and a platform for rotation. Thick black cables connect the barrels to the rear cylinders, suggesting an energy or pneumatic mechanism. The overall construction appears robust, with a combination of metallic and composite materials, and the color scheme is primarily blue, yellow, and gray. The design is reminiscent of a stationary, automated defense weapon intended for urban environments.",
+    "description": "A futuristic, multi-barreled rifle turret with blue, yellow, and gray coloring, featuring large rear cylinders and thick connecting cables.",
+    "description_view_0": "Side view showing three parallel barrels, angular blue and yellow housing, and thick cables connecting to large rear cylinders.",
+    "description_view_1": "Rear and angled views highlighting the tall, hexagonal metallic cylinders and the hexagonal base, with minimal visibility of the barrels.",
+    "description_view_2": "Opposite side view displaying the three barrels and the full length of the connecting cables, with the rear cylinders clearly visible.",
+    "description_view_3": "Front and angled views focusing on the muzzle ends of the barrels and the angular blue and yellow housing, with the rear cylinders partially visible.",
+    "category": "rifle",
+    "height": 1.2,
+    "max_dimension": 1.5,
+    "materials": [
+        "metal",
+        "composite",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel",
+        "trigger area",
+        "cylindrical magazine",
+        "base"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "yellow",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "internal",
+    "attribute_sight_type": "none",
+    "attribute_muzzle_device": "none",
+    "uid": "de3be5620dba4415a974dbc48f01b817",
+    "near_synsets": {
+        "gatling_gun.n.01": 0.5226536467574896,
+        "dragunov.n.01": 0.5351708192274698,
+        "light_arm.n.01": 0.5392899049030564,
+        "carbine.n.01": 0.5446751946233115,
+        "machine_gun.n.01": 0.5454203699043239,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/de3be5620dba4415a974dbc48f01b817",
+        "creator_username": "zomrubi",
+        "creator_display_name": "Rubens",
+        "creator_profile_url": "https://sketchfab.com/zomrubi"
+    },
+    "filename": "std_de3be5620dba4415a974dbc48f01b817.glb",
+    "length": 1.4844480752944946,
+    "width": 2.4661762714385986
+}

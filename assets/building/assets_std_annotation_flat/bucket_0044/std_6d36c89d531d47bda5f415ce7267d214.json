@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a medium-sized, fixed-wing airplane with a streamlined fuselage and a classic passenger aircraft design. The body is primarily white with blue accents, featuring a rounded nose and a cockpit with multiple windows. The wings are straight and mounted low on the fuselage, with visible engines attached beneath them. The tail section includes a single vertical stabilizer with a blue stripe and horizontal stabilizers extending from either side. The landing gear appears to be a tricycle configuration, with the main gear under the wings and a nose wheel. The overall appearance suggests a commercial or transport aircraft, suitable for carrying passengers or cargo.",
+    "description": "A white and blue passenger airplane with low-mounted straight wings, a single vertical tail, and a streamlined fuselage. It features a tricycle landing gear and multiple cockpit windows.",
+    "description_view_0": "Front view showing the rounded nose, cockpit windows, and both wings with visible engines beneath them.",
+    "description_view_1": "Left side view highlighting the fuselage length, window row, and the left wing with its engine.",
+    "description_view_2": "Rear view displaying the single vertical stabilizer, horizontal stabilizers, and the back of the wings.",
+    "description_view_3": "Right side view showing the right wing, engine, and the blue-striped tail section.",
+    "category": "airplane",
+    "height": 4.5,
+    "max_dimension": 22.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit window",
+        "landing gear",
+        "engine",
+        "wing",
+        "tail"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with straight wings and no visible winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "Twin piston engines mounted under each wing.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Tricycle landing gear with two main gear units and a single nose gear.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with multiple windows, likely multi-seat.",
+    "uid": "6d36c89d531d47bda5f415ce7267d214",
+    "near_synsets": {
+        "airplane.n.01": 0.49349939744640997,
+        "monoplane.n.01": 0.5115335423336925,
+        "aircraft.n.01": 0.5115842604739247,
+        "biplane.n.01": 0.5162683949431308,
+        "airliner.n.01": 0.5281922462845043
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6d36c89d531d47bda5f415ce7267d214",
+        "creator_username": "grox777",
+        "creator_display_name": "Yo.Ri",
+        "creator_profile_url": "https://sketchfab.com/grox777"
+    },
+    "filename": "std_6d36c89d531d47bda5f415ce7267d214.glb",
+    "length": 13.50016450881958,
+    "width": 13.39982557296753
+}

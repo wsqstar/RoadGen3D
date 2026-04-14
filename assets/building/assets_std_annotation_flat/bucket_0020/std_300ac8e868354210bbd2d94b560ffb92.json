@@ -1,0 +1,99 @@
+{
+    "description_long": "This factory building features a sprawling, modular layout with interconnected rectangular structures and several auxiliary units positioned around the main complex. The exterior is predominantly dark, with large, flat surfaces and a few blue-tinted industrial windows that provide natural light to the interior. A prominent smokestack rises from one section, indicating heavy industrial use, while various cylindrical tanks and smaller outbuildings suggest storage or processing functions. The roofline is punctuated by visible mechanical installations, including vents and rooftop machinery, typical of modern industrial facilities. Loading dock doors are present, designed for freight and vehicle access, and the overall structure is constructed from robust materials such as steel and reinforced concrete. The architectural style is utilitarian, prioritizing function over ornamentation, with a focus on efficiency and durability.",
+    "description": "A large, modular factory building with dark exterior surfaces, blue industrial windows, a smokestack, rooftop machinery, and multiple auxiliary structures.",
+    "description_view_0": "Front view showing the main building mass, smokestack, blue industrial windows, and several cylindrical tanks and auxiliary units.",
+    "description_view_1": "Side/top-down view highlighting the interconnected layout, rooftop machinery, and the arrangement of outbuildings and tanks.",
+    "description_view_2": "Rear view displaying the loading dock doors, additional auxiliary structures, and the extended length of the main building.",
+    "description_view_3": "Opposite side/top-down view focusing on the mechanical rooftop features, smokestack, and the spatial relationship between the main and auxiliary units.",
+    "category": "factory building",
+    "height": 12.0,
+    "max_dimension": 45.0,
+    "materials": [
+        "reinforced concrete",
+        "steel",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.3,
+        0.1,
+        0.05
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "loading dock door",
+        "window",
+        "smokestack",
+        "rooftop machinery"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "blue"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "group",
+    "attribute_number_of_large_industrial_windows": 3,
+    "attribute_presence_of_smokestacks": true,
+    "attribute_loading_dock_doors": 2,
+    "attribute_rooftop_machinery": true,
+    "attribute_architectural_style": "Modern Industrial",
+    "uid": "300ac8e868354210bbd2d94b560ffb92",
+    "near_synsets": {
+        "factory.n.01": 0.490325123672927,
+        "farm_building.n.01": 0.5237047010981123,
+        "plant.n.01": 0.5274714060691374,
+        "building_complex.n.01": 0.5332243670213638,
+        "shop_floor.n.01": 0.5349351026780155,
+        "construction.n.07": -1000.0,
+        "building.n.04": -1000.0,
+        "construction.n.01": -1000.0,
+        "building.n.01": -1000.0
+    },
+    "synset": "factory.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/300ac8e868354210bbd2d94b560ffb92",
+        "creator_username": "martin_mikulic",
+        "creator_display_name": "Martin Mikuli\u0107",
+        "creator_profile_url": "https://sketchfab.com/martin_mikulic"
+    },
+    "filename": "std_300ac8e868354210bbd2d94b560ffb92.glb",
+    "length": 22.305109977722168,
+    "width": 55.600807189941406
+}

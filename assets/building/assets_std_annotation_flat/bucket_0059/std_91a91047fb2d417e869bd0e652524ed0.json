@@ -1,0 +1,113 @@
+{
+    "description_long": "This object is a set of four standard traffic lights, each with three circular signal lenses arranged vertically within a rectangular black housing. The housings are robust and angular, with protective visors extending over each lens to shield them from sunlight and weather. The lenses display the typical red, yellow, and green colors, though some appear dim or unlit, suggesting a realistic, inactive state. The rear and side views reveal the depth and structural solidity of the casings, which are likely made of metal or heavy-duty plastic. The units are grouped closely together, as would be seen at a major intersection, but no mounting hardware or pole is visible. The overall appearance is utilitarian and functional, designed to withstand outdoor urban environments.",
+    "description": "A set of four black, vertically-stacked traffic lights with red, yellow, and green lenses, each housed in a sturdy rectangular casing with protective visors.",
+    "description_view_0": "Front view showing all four traffic lights with visible red, yellow, and green lenses and their protective visors.",
+    "description_view_1": "Side view highlighting the depth of the housings and the protruding visors over each lens.",
+    "description_view_2": "Rear view displaying the solid, featureless backs of the traffic light casings.",
+    "description_view_3": "Opposite side view, again showing the depth and cylindrical protrusions of the signal housings.",
+    "category": "traffic light",
+    "height": 1.2,
+    "max_dimension": 1.6,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "mass": 48,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "signal lens",
+        "visor",
+        "housing cover"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "yellow",
+        "green"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_number_of_signal_lights": 12,
+    "attribute_signal_orientation": "vertical",
+    "attribute_mounting_type": "other",
+    "attribute_presence_of_pedestrian_signals": false,
+    "attribute_control_box_visibility": false,
+    "uid": "91a91047fb2d417e869bd0e652524ed0",
+    "near_synsets": {
+        "traffic_light.n.01": 0.47558162078921346,
+        "stoplight.n.01": 0.5242635627000279,
+        "red_light.n.01": 0.5296479837885443,
+        "taillight.n.01": 0.5423790455743297,
+        "lantern.n.01": 0.5466993624361464,
+        "light.n.07": -1000.0,
+        "traffic.n.01": -1000.0,
+        "light.n.14": -1000.0,
+        "light.n.03": -1000.0,
+        "dealings.n.01": -1000.0,
+        "traffic.n.03": -1000.0,
+        "traffic.n.02": -1000.0,
+        "light.n.09": -1000.0,
+        "light.n.10": -1000.0,
+        "sparkle.n.01": -1000.0,
+        "lighter.n.02": -1000.0,
+        "light.n.05": -1000.0,
+        "light.n.01": -1000.0,
+        "light.n.08": -1000.0,
+        "luminosity.n.01": -1000.0,
+        "light.n.06": -1000.0,
+        "inner_light.n.01": -1000.0,
+        "light.n.02": -1000.0,
+        "light.n.12": -1000.0
+    },
+    "synset": "traffic_light.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/91a91047fb2d417e869bd0e652524ed0",
+        "creator_username": "Signalrenders",
+        "creator_display_name": "Signalrenders",
+        "creator_profile_url": "https://sketchfab.com/Signalrenders"
+    },
+    "filename": "std_91a91047fb2d417e869bd0e652524ed0.glb",
+    "length": 0.19567787647247314,
+    "width": 1.209356427192688
+}

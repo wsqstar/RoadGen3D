@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a large, rectangular, industrial shipping container with a weathered yellow exterior. The surface is covered in rust patches, scratches, and visible wear, indicating prolonged outdoor use. One side features graffiti art in blue and white, while the opposite side displays a faded white 'E-CORP' logo. The front face has double doors with locking bars and various stenciled markings, typical of cargo containers. The structure is made of corrugated steel panels, providing strength and rigidity. The container is designed to be both secure and stackable, suitable for storage or transport in urban environments.",
+    "description": "A large, weathered yellow steel shipping container with graffiti, company markings, and double locking doors.",
+    "description_view_0": "Front view showing double doors with locking bars, stenciled markings, and visible rust.",
+    "description_view_1": "Side view with prominent graffiti art and extensive surface wear.",
+    "description_view_2": "Rear view with a plain, corrugated steel panel and visible rust patches.",
+    "description_view_3": "Opposite side view featuring a faded 'E-CORP' logo and weathered surface.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.92,
+        0.07,
+        0.01
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking bar",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "white",
+        "blue",
+        "gray",
+        "rust brown"
+    ],
+    "colors_composition": [
+        0.75,
+        0.08,
+        0.05,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 2.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "graffiti on one side, 'E-CORP' logo on the other, stenciled markings on doors",
+    "attribute_handles_or_grips": "four vertical locking bars with integrated handles on front doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "56a76ba412ee48dd93876f319a2a08a5",
+    "near_synsets": {
+        "cargo_container.n.01": 0.47376298304556097,
+        "container.n.01": 0.4905106050319944,
+        "cargo_door.n.01": 0.5346256980678447,
+        "box.n.01": 0.547638882691154,
+        "boxcar.n.01": 0.5518023735154972
+    },
+    "synset": "container.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/56a76ba412ee48dd93876f319a2a08a5",
+        "creator_username": "guillaume.p",
+        "creator_display_name": "guillaume.p",
+        "creator_profile_url": "https://sketchfab.com/guillaume.p"
+    },
+    "filename": "std_56a76ba412ee48dd93876f319a2a08a5.glb",
+    "length": 7.2722392082214355,
+    "width": 2.241246223449707
+}

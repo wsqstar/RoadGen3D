@@ -1,0 +1,83 @@
+{
+    "description_long": "This object is a long, narrow concrete sidewalk segment with a slightly raised edge on both sides, forming a shallow channel. The surface is flat and appears to be made of poured concrete, with subtle textural variations and a light gray coloration typical of urban sidewalks. The edges are defined and slightly elevated, suggesting the presence of curbs to separate the sidewalk from adjacent surfaces. The length of the segment is much greater than its width, and the overall form is rectangular with straight, clean lines. There are no visible features such as tactile paving, street furniture, or decorative elements. The sidewalk is designed to provide a stable, walkable surface for pedestrians in an urban environment.",
+    "description": "A long, narrow, light gray concrete sidewalk segment with slightly raised curbs on both sides and a flat walking surface.",
+    "description_view_0": "End-on view showing the narrow width and the raised curbs on both sides.",
+    "description_view_1": "Side view highlighting the long, flat surface and the continuous straight edges of the sidewalk.",
+    "description_view_2": "Opposite end-on view, similar to view 0, showing the narrow width and raised curbs.",
+    "description_view_3": "Opposite side view, again showing the length and flatness of the sidewalk with defined edges.",
+    "category": "sidewalk",
+    "height": 0.15,
+    "max_dimension": 6.0,
+    "materials": [
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.98,
+        0.02
+    ],
+    "mass": 1620,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "guiding"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.2,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": true,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "curb",
+    "attribute_adjacent_street_type": "residential",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "6f62617b9f1f4de88646b1d8fd007e8a",
+    "near_synsets": {
+        "sidewalk.n.01": 0.45052335411572886,
+        "curbside.n.01": 0.48214591035572785,
+        "curb.n.01": 0.5044834824007087,
+        "street.n.01": 0.5202037592850444,
+        "street.n.02": 0.5307813658136002
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6f62617b9f1f4de88646b1d8fd007e8a",
+        "creator_username": "spleen.vision",
+        "creator_display_name": "SPLEEN VISION",
+        "creator_profile_url": "https://sketchfab.com/spleen.vision"
+    },
+    "filename": "std_6f62617b9f1f4de88646b1d8fd007e8a.glb",
+    "length": 6.523107051849365,
+    "width": 1.0527698397636414
+}

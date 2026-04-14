@@ -1,0 +1,100 @@
+{
+    "description_long": "This airplane features a wide, blended wing body design with a smooth transition from the fuselage to the wings, giving it a futuristic and aerodynamic appearance. The wings are long and slightly swept, with a gentle upward dihedral angle, and house multiple engines mounted beneath each wing. The color scheme transitions from a deep red at the rear fuselage to a blue gradient along the wings, ending in light gray at the wingtips. The nose is rounded and streamlined, with a small, dark cockpit window positioned at the front. The undercarriage includes several visible landing gear units, suggesting a heavy-lift or large transport role. The overall surface is sleek and metallic, with minimal surface interruptions and a highly integrated structure.",
+    "description": "A futuristic, wide-bodied airplane with blended wings, multiple underwing engines, and a red-to-blue gradient color scheme. Its sleek, metallic surface and integrated design suggest advanced aerodynamics and heavy-lift capability.",
+    "description_view_0": "Front view showing the wide, gently curved wings and the smooth, blended transition from fuselage to wing, with the cockpit barely visible at the center.",
+    "description_view_1": "Top-down view highlighting the red-to-blue gradient color transition, the full wingspan, and the arrangement of engines beneath the right wing.",
+    "description_view_2": "Rear view displaying the upward dihedral of the wings, the multiple engines beneath each wing, and the broad, integrated fuselage.",
+    "description_view_3": "Bottom-up view showing the landing gear units, the engine placement under the left wing, and the smooth, continuous surface of the airplane.",
+    "category": "airplane",
+    "height": 7.5,
+    "max_dimension": 70.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 1800000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "closable",
+        "openable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "cockpit window",
+        "landing gear",
+        "engine nacelle",
+        "cargo bay"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "blue",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.2,
+        0.3,
+        0.45,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.12,
+    "surface_finish": "sleek",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 80.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing, blended wing body with long, gently swept wings and a slight upward dihedral angle; no visible winglets.",
+    "attribute_engine_type": "Six underwing turbofan engines, three per wing.",
+    "attribute_tail_design": "No conventional tail; features a tailless, blended wing body configuration with no distinct vertical or horizontal stabilizers.",
+    "attribute_landing_gear_type": "Retractable, multi-bogey landing gear with several main gear units visible under the fuselage and wings.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit integrated smoothly into the nose section with a small, dark window.",
+    "uid": "c11546da287a4d94b01847814d658aca",
+    "near_synsets": {
+        "aircraft.n.01": 0.5052494769570653,
+        "airplane.n.01": 0.5228087866649331,
+        "delta_wing.n.01": 0.5496967797102887,
+        "monoplane.n.01": 0.5506433594299862,
+        "jet.n.01": 0.5511174063113151
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/c11546da287a4d94b01847814d658aca",
+        "creator_username": "nightshade3325",
+        "creator_display_name": "Nightshade3325",
+        "creator_profile_url": "https://sketchfab.com/nightshade3325"
+    },
+    "filename": "std_c11546da287a4d94b01847814d658aca.glb",
+    "length": 67.63985443115234,
+    "width": 118.66641235351562
+}

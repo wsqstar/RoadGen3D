@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a single, utilitarian bed with a simple metal frame and a thin, stained mattress. The frame is constructed from tubular metal, forming a rectangular base with rounded corners and vertical supports at both ends, serving as a headboard and footboard. The mattress appears worn and heavily soiled, with visible reddish-brown stains and discoloration across its surface, suggesting neglect or use in a harsh environment. The bed lacks any additional bedding such as sheets, pillows, or blankets, exposing the bare mattress. The overall appearance is industrial and institutional, reminiscent of beds found in shelters, hospitals, or abandoned urban settings. The structure is low to the ground, with a visible metal grid supporting the mattress.",
+    "description": "A low, metal-framed bed with a stained, bare mattress and simple headboard and footboard. The design is utilitarian and worn, with visible discoloration and no additional bedding.",
+    "description_view_0": "The bed is seen from the side, showing the full length of the stained mattress and both the headboard and footboard.",
+    "description_view_1": "The bed is viewed from the foot, highlighting the rectangular frame and the stained mattress surface.",
+    "description_view_2": "The opposite side view reveals the mattress stains and the simple metal frame, similar to view 0 but from the other side.",
+    "description_view_3": "The bed is viewed from the head, showing the headboard and the full width of the mattress with visible stains.",
+    "category": "bed",
+    "height": 0.5,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "fabric",
+        "foam",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.25,
+        0.05
+    ],
+    "mass": 28,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 80,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "sittable",
+        "lieable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "mattress",
+        "frame"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "red"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_headboard_presence": true,
+    "attribute_footboard_presence": true,
+    "attribute_mattress_visibility": true,
+    "attribute_bedding_type": "bare mattress",
+    "attribute_frame_design": "platform",
+    "uid": "e63fff5abcce4fbe8d5c37fe8ae14ed2",
+    "near_synsets": {
+        "bed.n.01": 0.4966855763095073,
+        "platform_bed.n.01": 0.5039987019509643,
+        "built-in_bed.n.01": 0.5366440107306412,
+        "plank-bed.n.01": 0.5372582419539579,
+        "bunk.n.03": 0.5385643990488838,
+        "layer.n.01": -1000.0,
+        "bed.n.08": -1000.0,
+        "seam.n.03": -1000.0,
+        "bed.n.04": -1000.0,
+        "bed.n.02": -1000.0,
+        "bed.n.07": -1000.0,
+        "bed.n.03": -1000.0
+    },
+    "synset": "bed.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e63fff5abcce4fbe8d5c37fe8ae14ed2",
+        "creator_username": "hopefuldesign",
+        "creator_display_name": "hopefuldesign",
+        "creator_profile_url": "https://sketchfab.com/hopefuldesign"
+    },
+    "filename": "std_e63fff5abcce4fbe8d5c37fe8ae14ed2.glb",
+    "length": 1.7722982168197632,
+    "width": 0.9941509962081909
+}

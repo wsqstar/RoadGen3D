@@ -1,0 +1,111 @@
+{
+    "description_long": "This is a small public toilet building constructed primarily from gray brick, with a tiled roof and a paved stone base. The front facade features a rectangular entrance, a small circular window, and a set of blue-framed windows, while the roof is adorned with four white toilets placed in a row, serving as a whimsical decorative element. The left side of the building has a sloped, terracotta-tiled roof section, and the right side is a plain brick wall. The rear of the building displays a large diamond-shaped window, and the paved area extends around the structure. The overall design is utilitarian but includes playful touches, such as the rooftop toilets and the exterior toilet on the pavement. The building appears to be a standalone facility, likely intended for public use in an urban or park setting.",
+    "description": "A small, gray-brick public toilet building with a tiled roof, blue-framed windows, and decorative toilets on the roof. The structure features a main entrance, a diamond window at the back, and a paved base.",
+    "description_view_0": "The front view shows the main entrance, blue-framed windows, a circular window, and a toilet placed on the pavement.",
+    "description_view_1": "The rear view highlights a large diamond-shaped window and the row of toilets on the flat roof.",
+    "description_view_2": "The left side view displays a plain brick wall and the sloped, terracotta-tiled roof section.",
+    "description_view_3": "The back view shows the tiled roof with four toilets and the paved area extending behind the building.",
+    "category": "public toilets",
+    "height": 4.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "brick",
+        "ceramic",
+        "glass",
+        "tile",
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.08,
+        0.05,
+        0.12,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "flushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "toilet",
+        "flush lever"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "white",
+        "blue",
+        "brown",
+        "beige"
+    ],
+    "colors_composition": [
+        0.65,
+        0.12,
+        0.05,
+        0.12,
+        0.06
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_signage": "The word 'WASHROOM' is visible in blue text above the entrance.",
+    "attribute_door_type": "swinging",
+    "attribute_ventilation_features": "windows, diamond-shaped window at rear",
+    "attribute_accessibility_features": "none",
+    "attribute_roof_structure": "Flat roof with terracotta tiles, four decorative toilets, no visible overhangs or gutters.",
+    "uid": "99af21a2a6c94460af08efc18f6dcf36",
+    "near_synsets": {
+        "public_toilet.n.01": 0.4944476323270385,
+        "toilet.n.01": 0.5038316806156631,
+        "washroom.n.01": 0.5123150062602254,
+        "men's_room.n.01": 0.5149542517193123,
+        "latrine.n.01": 0.5277653997508485,
+        "toilet.n.04": -1000.0,
+        "toilet.n.02": -1000.0,
+        "gutter.n.02": -1000.0
+    },
+    "synset": "public_toilet.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/99af21a2a6c94460af08efc18f6dcf36",
+        "creator_username": "Princeps",
+        "creator_display_name": "Princeps",
+        "creator_profile_url": "https://sketchfab.com/Princeps"
+    },
+    "filename": "std_99af21a2a6c94460af08efc18f6dcf36.glb",
+    "length": 5.198605298995972,
+    "width": 5.026153564453125
+}

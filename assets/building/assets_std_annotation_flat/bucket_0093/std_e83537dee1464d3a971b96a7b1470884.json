@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a modern precision rifle featuring a robust, angular chassis with a skeletonized adjustable stock and a prominent pistol grip. The rifle is equipped with a large telescopic scope mounted on the top rail, indicating its use for long-range targeting. The barrel is thick and heavy, designed for stability and accuracy, and extends forward with a short muzzle device. The magazine is a detachable box type, positioned just ahead of the trigger guard. The overall finish is a combination of matte black and metallic gray, with some polymer components visible in the stock and grip. The rifle's design suggests it is intended for tactical or marksman roles, suitable for urban or law enforcement scenarios.",
+    "description": "A modern precision rifle with a skeletonized adjustable stock, large scope, heavy barrel, and detachable box magazine in matte black and gray.",
+    "description_view_0": "Front view showing the circular muzzle, scope lens, and symmetrical bipod legs beneath the barrel.",
+    "description_view_1": "Left side view highlighting the full length of the rifle, scope, adjustable stock, and magazine profile.",
+    "description_view_2": "Rear view displaying the buttstock, cheek rest, and the alignment of the scope with the barrel.",
+    "description_view_3": "Right side view showing the rifle's chassis, scope, and the details of the stock and grip.",
+    "category": "rifle",
+    "height": 0.22,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "polymer",
+        "glass",
+        "aluminum",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 6.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 65,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pullable",
+        "pushable",
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "pistol grip",
+        "trigger",
+        "magazine",
+        "scope",
+        "bolt handle",
+        "barrel",
+        "muzzle device",
+        "bipod"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "skeletonized adjustable",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "scope",
+    "attribute_muzzle_device": "muzzle brake",
+    "uid": "e83537dee1464d3a971b96a7b1470884",
+    "near_synsets": {
+        "dragunov.n.01": 0.49946708170358844,
+        "sniper_rifle.n.01": 0.5094478132667546,
+        "garand_rifle.n.01": 0.5138464229331984,
+        "rifle.n.01": 0.5242092014296071,
+        "twenty-two_rifle.n.01": 0.52463469101072
+    },
+    "synset": "twenty-two_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e83537dee1464d3a971b96a7b1470884",
+        "creator_username": "koshil_max",
+        "creator_display_name": "koshil_max",
+        "creator_profile_url": "https://sketchfab.com/koshil_max"
+    },
+    "filename": "std_e83537dee1464d3a971b96a7b1470884.glb",
+    "length": 0.7760489881038666,
+    "width": 0.07434434816241264
+}

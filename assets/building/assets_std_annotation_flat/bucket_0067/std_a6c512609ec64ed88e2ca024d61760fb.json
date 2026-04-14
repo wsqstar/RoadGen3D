@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a classic airship-style hot-air balloon featuring an elongated, cigar-shaped envelope with a smooth, light gray surface and black end caps. The envelope is attached to a rectangular, woven basket gondola below, which appears to be made of wicker and reinforced with a wooden frame. Two small, dark stabilizing fins are mounted at the rear of the envelope, providing directional stability. The basket is suspended from the envelope by a set of visible cables or ropes, and the burner frame structure is partially visible above the basket. The overall design is reminiscent of early 20th-century dirigibles, with a utilitarian and functional appearance. No visible logos, symbols, or decorative patterns are present on the envelope, giving it a utilitarian look.",
+    "description": "A classic airship-style hot-air balloon with a smooth, gray envelope, black end caps, and a wicker basket suspended below by cables. Rear stabilizing fins and a visible burner frame complete its functional, vintage appearance.",
+    "description_view_0": "Front view showing the rounded black nose of the envelope and a hint of the basket below.",
+    "description_view_1": "Side view displaying the full length of the gray envelope, the wicker basket, and the rear stabilizing fins.",
+    "description_view_2": "Rear view highlighting the black tail end, stabilizing fins, and the basket's attachment points.",
+    "description_view_3": "Opposite side view showing the envelope, basket, and fins from the other profile.",
+    "category": "hot-air balloon",
+    "height": 3.0,
+    "max_dimension": 7.0,
+    "materials": [
+        "fabric",
+        "wicker",
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 50,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "basket",
+        "burner frame",
+        "suspension cables",
+        "fins"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.15
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.4,
+    "youngs_modulus": 500,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "group",
+    "attribute_envelope_pattern": "The envelope is a solid light gray color with black end caps and no visible decorative patterns or markings.",
+    "attribute_basket_presence": true,
+    "attribute_burner_frame_visibility": true,
+    "attribute_suspension_cables": true,
+    "attribute_registration_markings": "none",
+    "uid": "a6c512609ec64ed88e2ca024d61760fb",
+    "near_synsets": {
+        "hot-air_balloon.n.01": 0.4344263173072386,
+        "airship.n.01": 0.5183193449034204,
+        "balloon.n.01": 0.518627393849875,
+        "ballooning.n.01": 0.5216383732532998,
+        "blimp.n.02": 0.5297474028892892,
+        "balloon.n.02": -1000.0
+    },
+    "synset": "hot-air_balloon.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a6c512609ec64ed88e2ca024d61760fb",
+        "creator_username": "tonydpc",
+        "creator_display_name": "anthonydpc",
+        "creator_profile_url": "https://sketchfab.com/tonydpc"
+    },
+    "filename": "std_a6c512609ec64ed88e2ca024d61760fb.glb",
+    "length": 2.883056640625,
+    "width": 4.349001884460449
+}

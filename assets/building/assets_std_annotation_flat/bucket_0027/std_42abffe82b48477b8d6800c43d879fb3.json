@@ -1,0 +1,101 @@
+{
+    "description_long": "This helicopter features a robust, angular fuselage with a predominantly gray and blue color scheme, accented by black and white details. Two large, forward-facing cannons are mounted above the main body, giving it a militaristic and futuristic appearance. The main rotor assembly is not clearly visible, but the structure suggests a heavy-duty design, possibly for urban patrol or combat scenarios. The cockpit is integrated into the front section, with small, angular windows that appear reinforced and tinted. The landing gear consists of sturdy, angular skids, designed for stability on hard surfaces. Various vents, panels, and surface markings add to the technical complexity and realism of the vehicle.",
+    "description": "A futuristic, gray and blue helicopter with dual forward cannons, angular skids, and a reinforced cockpit, designed for urban operations.",
+    "description_view_0": "Side view showing the full length of the helicopter, dual cannons on top, angular skids, and detailed surface panels.",
+    "description_view_1": "Angled rear-top view highlighting the twin cannons, rear engine housing, and the angular design of the skids and tail.",
+    "description_view_2": "Opposite side view displaying the helicopter's length, blue and gray color blocking, and the side profile of the cockpit and skids.",
+    "description_view_3": "Angled front-bottom view emphasizing the underside structure, skids, and the forward placement of the cockpit and cannons.",
+    "category": "helicopter",
+    "height": 3.2,
+    "max_dimension": 9.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.2,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 4200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 41160,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit door",
+        "control panel",
+        "cannons",
+        "landing skids",
+        "rotor assembly"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_rotor_blades": "Not visible; the main rotor assembly is obscured or not modeled in the provided views.",
+    "attribute_tail_rotor": "Not visible; no tail rotor or its configuration can be discerned from the available images.",
+    "attribute_landing_skids": "The helicopter has two angular, robust landing skids made of metal, colored gray and black, with visible support struts and crossbars for stability.",
+    "attribute_cockpit_windows": "There are small, angular cockpit windows at the front, appearing tinted and reinforced, with dark framing and no visible markings.",
+    "attribute_registration_number": "not visible",
+    "uid": "42abffe82b48477b8d6800c43d879fb3",
+    "near_synsets": {
+        "skyhook.n.01": 0.5168475557218805,
+        "cargo_helicopter.n.01": 0.5248863494332637,
+        "helicopter.n.01": 0.5295215003771214,
+        "shuttle_helicopter.n.01": 0.5359594084493642,
+        "single-rotor_helicopter.n.01": 0.5382942242383514
+    },
+    "synset": "single-rotor_helicopter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/42abffe82b48477b8d6800c43d879fb3",
+        "creator_username": "dryk4085",
+        "creator_display_name": "Just Ryk",
+        "creator_profile_url": "https://sketchfab.com/dryk4085"
+    },
+    "filename": "std_42abffe82b48477b8d6800c43d879fb3.glb",
+    "length": 2.4086668491363525,
+    "width": 3.3268046379089355
+}

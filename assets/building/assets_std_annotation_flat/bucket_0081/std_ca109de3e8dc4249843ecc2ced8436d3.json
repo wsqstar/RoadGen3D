@@ -1,0 +1,90 @@
+{
+    "description_long": "This kiosk is a small, standalone wooden structure with a prominent gabled roof covered in reddish-brown tiles. The front features a large open window or serving hatch, framed by thick wooden beams and a small ledge beneath it, likely for transactions or display. The sides are constructed from vertical wooden planks, giving the kiosk a rustic and sturdy appearance. The rear is open, providing access to the interior, which is also framed by wooden beams. The roof extends beyond the walls, creating a protective overhang on all sides. The overall design is simple yet functional, suitable for use as a street vendor booth or information stand in an urban environment.",
+    "description": "A small wooden kiosk with a gabled, reddish-brown tiled roof, open front window, and rustic plank construction. The structure is functional and inviting, ideal for street vending or information services.",
+    "description_view_0": "Front view shows the open serving window with a small ledge and the gabled roof's overhang.",
+    "description_view_1": "Left side view highlights the vertical wooden planks and the sloped roof extending backward.",
+    "description_view_2": "Rear view reveals the open back, allowing access to the kiosk's interior, framed by wooden beams.",
+    "description_view_3": "Right side view mirrors the left, showing the plank construction and the roof's slope.",
+    "category": "kiosk",
+    "height": 2.2,
+    "max_dimension": 2.8,
+    "materials": [
+        "wood",
+        "roof_tile",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.1
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "serving"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "serving window",
+        "window ledge"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "red-brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "none",
+    "attribute_window_presence": "one, front, rectangular",
+    "attribute_door_configuration": "none",
+    "attribute_roof_design": "gabled, sloped, reddish-brown tiles, overhanging edges",
+    "attribute_architectural_style": "rustic, traditional",
+    "uid": "ca109de3e8dc4249843ecc2ced8436d3",
+    "near_synsets": {
+        "booth.n.02": 0.546030269283193,
+        "gazebo.n.01": 0.547773042975209,
+        "booth.n.04": 0.549064767713659,
+        "shopfront.n.01": 0.5510167452715304,
+        "wicket.n.04": 0.5688613296503658
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ca109de3e8dc4249843ecc2ced8436d3",
+        "creator_username": "stefan.lengyel1",
+        "creator_display_name": "Pixel",
+        "creator_profile_url": "https://sketchfab.com/stefan.lengyel1"
+    },
+    "filename": "std_ca109de3e8dc4249843ecc2ced8436d3.glb",
+    "length": 1.7427636981010437,
+    "width": 1.4510908126831055
+}

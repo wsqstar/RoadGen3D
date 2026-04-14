@@ -1,0 +1,92 @@
+{
+    "description_long": "This hospital is a large, multi-story structure with a modern architectural design, featuring a combination of curved and angular facades. The building is composed of two main wings: one with a rounded corner and extensive horizontal window bands, and another with a more rectangular, grid-like appearance. The lower level includes a series of open bays or entrances, likely for vehicle or service access. The exterior is predominantly light-colored, with some subtle textural variation and a hint of a brownish base trim. The windows are arranged in continuous strips, providing ample natural light to the interior spaces. The overall form is functional yet visually dynamic, suitable for a major urban healthcare facility.",
+    "description": "A large, modern hospital with curved and angular facades, horizontal window bands, and a light exterior. The structure features two main wings and multiple entry bays.",
+    "description_view_0": "The front view shows the curved main facade with horizontal window bands and a series of open bays at the base.",
+    "description_view_1": "The side view reveals the depth of the building, the rectangular wing, and the grid-like window arrangement.",
+    "description_view_2": "The rear view highlights the rectangular wing's grid windows and the brownish base trim along the bottom.",
+    "description_view_3": "The opposite end view emphasizes the rounded corner and the stacked, layered appearance of the main wing.",
+    "category": "hospital",
+    "height": 20,
+    "max_dimension": 60,
+    "materials": [
+        "concrete",
+        "glass",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "mass": 1800000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "entrance bay"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 8,
+    "asset_composition_type": "single",
+    "attribute_hospital_signage": false,
+    "attribute_emergency_entrance": false,
+    "attribute_ambulance_bay": false,
+    "attribute_medical_cross_symbol": false,
+    "attribute_architectural_style": "modern",
+    "uid": "839d9c2fd8284f199299ee4a188aec43",
+    "near_synsets": {
+        "medical_building.n.01": 0.5317758989647835,
+        "hospital.n.01": 0.5617062837691847,
+        "hospital.n.02": 0.5701001456343128,
+        "medical_center.n.01": 0.5727762001802221,
+        "hospital_room.n.01": 0.5790621166176192
+    },
+    "synset": "hospital_room.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/839d9c2fd8284f199299ee4a188aec43",
+        "creator_username": "sambrari95",
+        "creator_display_name": "Kyrylo Ilnitskyi",
+        "creator_profile_url": "https://sketchfab.com/sambrari95"
+    },
+    "filename": "std_839d9c2fd8284f199299ee4a188aec43.glb",
+    "length": 27.400636672973633,
+    "width": 58.019527435302734
+}

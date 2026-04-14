@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a military-style combat tactical vehicle with a robust, angular body painted in a matte olive green. The vehicle features a reinforced cabin with two front windows, protective metal grilles, and a covered rear cargo area with a canvas top. Prominent side rails and a front brush guard provide additional protection and utility. The vehicle is equipped with large, rugged off-road tires, and a visible antenna extends from the front right side of the cabin. The doors and panels appear thick and armored, with visible hinges and latches for secure closure. The overall design emphasizes durability, protection, and off-road capability, suitable for urban and tactical operations.",
+    "description": "A heavily armored, olive green combat tactical vehicle with a canvas-covered rear, reinforced body, and rugged off-road tires.",
+    "description_view_0": "Side view showing the angular armored body, side rails, and the canvas-covered rear cargo area.",
+    "description_view_1": "Rear view highlighting the canvas cargo cover, rear door, and the spare tire mount.",
+    "description_view_2": "Opposite side view displaying the armored panels, side rails, and the extended antenna.",
+    "description_view_3": "Front view featuring the reinforced grille, dual front windows, and protective brush guard.",
+    "category": "combat tactical  vehicle",
+    "height": 2.0,
+    "max_dimension": 5.2,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "fabric",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.08,
+        0.05,
+        0.02,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "antenna",
+        "window",
+        "side rail",
+        "rear cargo cover"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "none visible",
+    "attribute_armor_plating": "Full body visible armor plating with thick, angular panels covering the cabin, doors, and front. The doors and front appear reinforced, with no visible modular or reactive panels.",
+    "attribute_camouflage_pattern": "Solid olive green paint scheme with no visible camouflage pattern.",
+    "attribute_military_markings": "none visible",
+    "attribute_tire_type": "Large off-road tires with deep tread pattern, four visible, designed for rugged terrain.",
+    "uid": "89334e81ccc94251821c6a1695628393",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4834834454944601,
+        "reconnaissance_vehicle.n.01": 0.49680755023135265,
+        "tank.n.01": 0.5006792448066194,
+        "armored_car.n.02": 0.5159681661693621,
+        "assault_gun.n.02": 0.5257353838991745,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/89334e81ccc94251821c6a1695628393",
+        "creator_username": "macadaneo",
+        "creator_display_name": "macadaneo",
+        "creator_profile_url": "https://sketchfab.com/macadaneo"
+    },
+    "filename": "std_89334e81ccc94251821c6a1695628393.glb",
+    "length": 3.506981372833252,
+    "width": 1.7407994270324707
+}

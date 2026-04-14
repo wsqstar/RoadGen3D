@@ -1,0 +1,106 @@
+{
+    "description_long": "This object is a rectangular stage structure with a bold, striped black and gray exterior and a prominent set of stairs leading up to the main platform. The interior features a series of vertical red columns arranged in rows, likely serving as decorative or structural elements. The stage area is partially enclosed, with the front open to allow access and visibility, and the back and sides walled off for a more theatrical presentation. The floor and stairs are patterned in alternating black and white stripes, creating a visually striking effect. The central area contains a raised platform or performance space, with some furniture or equipment visible, suggesting use for performances or presentations. The overall design is modern and geometric, with a focus on strong lines and contrasting colors.",
+    "description": "A modern, rectangular stage with bold black and gray stripes, red vertical columns, and a prominent striped staircase leading to a partially enclosed performance area.",
+    "description_view_0": "Side view showing the striped exterior, red interior columns, and the edge of the staircase.",
+    "description_view_1": "Front view revealing the open stage area, striped stairs, and interior platform with visible furniture or equipment.",
+    "description_view_2": "Opposite side view highlighting the striped exterior and the arrangement of red columns inside.",
+    "description_view_3": "Rear view showing the solid black wall and the tops of the red columns inside.",
+    "category": "stage",
+    "height": 4.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "concrete",
+        "paint",
+        "metal",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "performable",
+        "standable",
+        "presentable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "stairs",
+        "platform",
+        "columns"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "gray",
+        "white",
+        "red"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_architectural_style": "Modernist",
+    "attribute_car_model": "",
+    "attribute_car_manufacturer": "",
+    "attribute_building_function": "performance venue",
+    "attribute_street_sign_type": "",
+    "uid": "4f41431e0683481688f879e2fe1d995e",
+    "near_synsets": {
+        "stage.n.03": 0.4509118636711742,
+        "theater_stage.n.01": 0.49269295176806577,
+        "stage.n.04": 0.5007054134880093,
+        "proscenium.n.01": 0.5097841356017684,
+        "catwalk.n.01": 0.5196493205029807,
+        "stagecoach.n.01": -1000.0,
+        "degree.n.02": -1000.0,
+        "phase.n.01": -1000.0,
+        "stage.n.06": -1000.0,
+        "stage.n.08": -1000.0,
+        "stage.n.07": -1000.0
+    },
+    "synset": "stage.n.07",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4f41431e0683481688f879e2fe1d995e",
+        "creator_username": "madalen",
+        "creator_display_name": "Madalen",
+        "creator_profile_url": "https://sketchfab.com/madalen"
+    },
+    "filename": "std_4f41431e0683481688f879e2fe1d995e.glb",
+    "length": 9.509096622467041,
+    "width": 10.43181848526001
+}

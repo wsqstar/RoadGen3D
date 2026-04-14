@@ -1,0 +1,101 @@
+{
+    "description_long": "This gatehouse is constructed primarily from large, weathered stone blocks, giving it a fortress-like appearance reminiscent of medieval architecture. The structure features a sloped, gable-style roof and is set on a stone-tiled base, suggesting durability and permanence. At the front, a prominent arched entryway is flanked by two thick stone columns, with metal double doors providing access. Above the entry, a decorative stone relief adds a touch of ornamentation, while the rear side displays a large, spiked portcullis mechanism, hinting at defensive capabilities. The sides of the gatehouse are solid, with no visible windows, emphasizing security and control of passage. The overall design is imposing and utilitarian, suitable for controlling access to a walled city or important urban area.",
+    "description": "A robust stone gatehouse with an arched entry, metal doors, and a spiked portcullis, featuring a sloped roof and decorative stonework.",
+    "description_view_0": "Side view showing the solid stone wall and the edge of the metal portcullis mechanism protruding from the structure.",
+    "description_view_1": "Front view highlighting the arched entryway, flanking columns, and the spiked portcullis above the entrance.",
+    "description_view_2": "Opposite side view with a clear look at the portcullis mechanism and the absence of windows or additional entry points.",
+    "description_view_3": "Rear view displaying the metal double doors and a decorative stone relief above the entry, with the stone-tiled base visible.",
+    "category": "gatehouse",
+    "height": 6.0,
+    "max_dimension": 14.0,
+    "materials": [
+        "stone",
+        "metal",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "portcullis",
+        "handle"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "dark green",
+        "silver",
+        "orange"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.01,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Medieval",
+    "attribute_roof_type": "gable",
+    "attribute_entryway_design": "Arched stone doorway with metal double doors and flanking columns",
+    "attribute_window_placement": "No visible windows; solid stone walls on all sides",
+    "attribute_security_features": [
+        "portcullis",
+        "metal doors",
+        "thick stone walls"
+    ],
+    "uid": "b36d9a6575a04cc3948405d33c962900",
+    "near_synsets": {
+        "gatehouse.n.01": 0.44703080278527946,
+        "portcullis.n.01": 0.4590193024286921,
+        "lodge.n.03": 0.5108186239964586,
+        "stockade.n.01": 0.523816925826378,
+        "blockhouse.n.01": 0.5267441162504265
+    },
+    "synset": "gatehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b36d9a6575a04cc3948405d33c962900",
+        "creator_username": "lumpypuppy",
+        "creator_display_name": "Christopher Hernandez",
+        "creator_profile_url": "https://sketchfab.com/lumpypuppy"
+    },
+    "filename": "std_b36d9a6575a04cc3948405d33c962900.glb",
+    "length": 17.291854858398438,
+    "width": 17.332763671875
+}

@@ -1,0 +1,86 @@
+{
+    "description_long": "This is a damaged chain-link fence section, featuring a mesh of interwoven metal wires stretched between three vertical posts. The mesh is torn and deformed at both ends, with the wire netting appearing bent and irregular, suggesting it has been subjected to force or vandalism. The central portion of the fence remains relatively intact, with the diamond-shaped wire pattern clearly visible. The posts are cylindrical and metallic, with no visible caps or decorative elements. The overall structure is utilitarian, designed primarily for demarcation or security in urban environments such as parks, lots, or construction sites. The surface of the metal appears matte and slightly rough, typical of galvanized steel used in outdoor fencing.",
+    "description": "A damaged chain-link fence section with three metal posts and torn, deformed wire mesh at both ends. The central mesh is mostly intact, showing a diamond pattern typical of urban security fencing.",
+    "description_view_0": "Side view showing the full length of the fence, with torn mesh at both ends and three upright posts.",
+    "description_view_1": "End-on view highlighting the thin profile of the fence and the extent of mesh deformation at the near end.",
+    "description_view_2": "Opposite side view similar to view 0, but with the rightmost post and torn mesh more prominent.",
+    "description_view_3": "End-on view from the opposite side, again showing the thin profile and mesh damage at the far end.",
+    "category": "fence",
+    "height": 1.5,
+    "max_dimension": 4.0,
+    "materials": [
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.15
+    ],
+    "mass": 35,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "climbable",
+        "blockable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "posts",
+        "mesh"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_top_design_pattern": "irregular/torn",
+    "attribute_post_cap_style": "none",
+    "attribute_number_of_rails": 0,
+    "attribute_decorative_elements": [
+        "none"
+    ],
+    "attribute_gate_presence": false,
+    "uid": "2cf4b7831c934a5f9f19090d462f765f",
+    "near_synsets": {
+        "chainlink_fence.n.01": 0.4634452464384136,
+        "barbed_wire.n.01": 0.5556306486857229,
+        "concertina.n.01": 0.5575854853812449,
+        "fence_line.n.01": 0.5597085420851391,
+        "fence.n.01": 0.5628862871566427,
+        "fence.n.02": -1000.0
+    },
+    "synset": "fence.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/2cf4b7831c934a5f9f19090d462f765f",
+        "creator_username": "lferic",
+        "creator_display_name": "Luka Feric",
+        "creator_profile_url": "https://sketchfab.com/lferic"
+    },
+    "filename": "std_2cf4b7831c934a5f9f19090d462f765f.glb",
+    "length": 1.0392960906028748,
+    "width": 5.650123119354248
+}

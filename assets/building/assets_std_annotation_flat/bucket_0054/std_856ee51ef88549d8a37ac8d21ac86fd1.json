@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a long, cylindrical, tube-like weapon with a green exterior, resembling a classic anti-tank or rocket-propelled grenade launcher such as the M72 LAW. The main body is a straight tube with a consistent diameter, featuring a few protruding elements including a rectangular trigger guard and a prominent grip or handle beneath the center. There are small metallic details, such as latches and sighting elements, distributed along the top and sides of the tube. The ends of the tube are open, with the front end slightly flared and the rear end ringed, suggesting a single-use, disposable launcher design. The surface is matte and painted in a military green, with some black and brown components visible, likely for grip and operational parts. The overall construction appears to be primarily metal with some polymer or composite elements for the grip and trigger area.",
+    "description": "A green, tube-shaped anti-tank or rocket launcher with a matte finish, featuring a central grip and open ends. It has metallic and polymer details, with sighting and trigger components visible.",
+    "description_view_0": "Side view showing the full length of the launcher, with the grip, trigger guard, and sighting elements clearly visible.",
+    "description_view_1": "Front view down the barrel, highlighting the circular opening and the alignment of the sighting elements on top.",
+    "description_view_2": "Opposite side view, displaying the tube's length, grip, and additional details on the body.",
+    "description_view_3": "Rear view down the tube, showing the open rear end and the internal structure of the barrel.",
+    "category": "rifle",
+    "height": 0.22,
+    "max_dimension": 0.9,
+    "materials": [
+        "steel",
+        "polymer",
+        "composite",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "aimable",
+        "triggerable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "sight",
+        "barrel",
+        "safety latch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "none",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "856ee51ef88549d8a37ac8d21ac86fd1",
+    "near_synsets": {
+        "rifle_grenade.n.01": 0.514148616207912,
+        "light_arm.n.01": 0.5143856721990114,
+        "gun.n.01": 0.5198630120375866,
+        "bazooka.n.01": 0.5261998443558172,
+        "assault_gun.n.02": 0.5283892381115437,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/856ee51ef88549d8a37ac8d21ac86fd1",
+        "creator_username": "jnaman87",
+        "creator_display_name": "jnaman87",
+        "creator_profile_url": "https://sketchfab.com/jnaman87"
+    },
+    "filename": "std_856ee51ef88549d8a37ac8d21ac86fd1.glb",
+    "length": 1.2825024127960205,
+    "width": 0.13178158551454544
+}

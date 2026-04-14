@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a flintlock pistol, featuring a long, round metal barrel and a wooden stock with a curved grip. The lock mechanism is prominently visible, including the hammer, frizzen, and trigger guard, all crafted from metal. The wooden grip is smoothly contoured and polished, with a dark finish that contrasts with the metallic components. The barrel is relatively thick and extends well beyond the grip, ending in a simple muzzle with no visible attachments. The overall design is reminiscent of early 19th-century firearms, with ornate but functional metalwork and a robust, utilitarian build. The pistol lacks modern features such as a detachable magazine or advanced sighting systems, emphasizing its historical character.",
+    "description": "A historical flintlock pistol with a long metal barrel, polished wooden grip, and classic metal firing mechanism.",
+    "description_view_0": "Side view showing the full length of the barrel, the wooden grip, and the detailed lock mechanism.",
+    "description_view_1": "Front-on view highlighting the circular muzzle and the alignment of the barrel with the grip.",
+    "description_view_2": "Opposite side view displaying the barrel, grip, and the lock mechanism from the other side.",
+    "description_view_3": "Rear view focusing on the rounded end of the wooden grip and the top of the lock mechanism.",
+    "category": "rifle",
+    "height": 0.15,
+    "max_dimension": 0.45,
+    "materials": [
+        "wood",
+        "steel",
+        "iron",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "hammer",
+        "frizzen",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "silver",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "smooth",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "pistol grip",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "none",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "fd86a36f5b8748eb98da1f3df7dda85f",
+    "near_synsets": {
+        "flintlock.n.01": 0.44730541514754235,
+        "fusil.n.01": 0.46947112859219364,
+        "flintlock.n.02": 0.47039707251849855,
+        "rifle.n.01": 0.49219596825094414,
+        "firearm.n.01": 0.5060598016715702
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fd86a36f5b8748eb98da1f3df7dda85f",
+        "creator_username": "Tidvis",
+        "creator_display_name": "Tidvis",
+        "creator_profile_url": "https://sketchfab.com/Tidvis"
+    },
+    "filename": "std_fd86a36f5b8748eb98da1f3df7dda85f.glb",
+    "length": 0.32331010699272156,
+    "width": 0.07299276441335678
+}

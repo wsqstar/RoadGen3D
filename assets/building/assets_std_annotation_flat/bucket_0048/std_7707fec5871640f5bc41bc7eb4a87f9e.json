@@ -1,0 +1,97 @@
+{
+    "description_long": "This humanoid robot features a sleek, metallic body with a rounded, segmented torso and limbs, primarily finished in a dark gray color with light blue accents on the chest and sides. Its head is rectangular and elongated, with a horizontal slit that may serve as a visual sensor or camera. The arms are articulated and end in claw-like pincers, suggesting dexterous manipulation capabilities. The legs are robust and jointed, with curved, flexible lower segments that resemble mechanical tendons or cables, likely for enhanced mobility. The overall design is streamlined and functional, with smooth, glossy surfaces and minimal external detailing. The robot's posture and limb arrangement indicate readiness for dynamic movement or interaction in urban environments.",
+    "description": "A sleek, dark gray humanoid robot with articulated limbs, claw-like hands, and a rectangular head featuring a horizontal sensor slit. Light blue accents highlight its rounded torso and sides.",
+    "description_view_0": "Front view shows the rectangular head with a horizontal slit, rounded torso, and one arm raised with a visible claw hand.",
+    "description_view_1": "Angled side view highlights the arm articulation, the blue side panel, and the curvature of the legs.",
+    "description_view_2": "Rear view reveals the back of the torso, both articulated arms, and the flexible, cable-like lower legs.",
+    "description_view_3": "Opposite side view displays the other arm extended forward, the rounded hip joints, and the overall limb articulation.",
+    "category": "humanoid robot",
+    "height": 1.5,
+    "max_dimension": 1.5,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "graspable",
+        "pressable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "claw hand",
+        "arm joint",
+        "head sensor",
+        "leg joint"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "light blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.5,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.2,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is standing upright with one arm raised and bent at the elbow, the other arm extended forward, and both legs slightly bent as if in a dynamic or ready stance. The head is facing forward, and the torso is upright.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated metallic and plastic panels with no decorative coverings or external clothing.",
+    "attribute_facial_features": "The face consists of a rectangular head with a single horizontal slit, likely serving as a visual sensor. There are no visible eyes, mouth, or expressive facial features.",
+    "attribute_limb_articulation": "Each arm and leg has at least two visible joints, likely hinge or rotary, allowing for a wide range of motion. The hands are claw-like with articulated pincers, and the legs have flexible, cable-like lower segments.",
+    "attribute_presence_of_sensors": "A horizontal slit on the head likely serves as a camera or visual sensor; no other sensors are visibly apparent.",
+    "uid": "7707fec5871640f5bc41bc7eb4a87f9e",
+    "near_synsets": {
+        "android.n.01": 0.5459467608859205,
+        "robotics_equipment.n.01": 0.5572302436327058,
+        "cyborg.n.01": 0.5591531040757699,
+        "automaton.n.02": 0.5684005004996379,
+        "robotics.n.01": 0.5745829966263267
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7707fec5871640f5bc41bc7eb4a87f9e",
+        "creator_username": "LehaYa",
+        "creator_display_name": "LehaYa",
+        "creator_profile_url": "https://sketchfab.com/LehaYa"
+    },
+    "filename": "std_7707fec5871640f5bc41bc7eb4a87f9e.glb",
+    "length": 1.1193165183067322,
+    "width": 0.983627438545227
+}

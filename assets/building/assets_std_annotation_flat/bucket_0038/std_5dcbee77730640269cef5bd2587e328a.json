@@ -1,0 +1,115 @@
+{
+    "description_long": "This robot dog features a segmented, rectangular yellow body with black mechanical components and articulated limbs. The main chassis is robust, with visible mounting points and structural reinforcements, and is marked with the identifier 'B44' on its side. Four articulated legs, each with multiple joints, are attached to the body, suggesting high mobility and adaptability to various terrains. The legs end in black, cylindrical feet that appear designed for stability and traction. The robot's design includes several exposed mechanical joints and possible sensor housings, indicating advanced functionality and environmental awareness. The overall construction suggests a durable, utilitarian robot dog suitable for urban exploration or patrol tasks.",
+    "description": "A yellow, rectangular-bodied robot dog with four articulated black legs and visible mechanical joints, marked 'B44' on the side. Its robust design and exposed components suggest high mobility and durability.",
+    "description_view_0": "Front view showing the yellow body, two front legs, and cylindrical black feet, with mechanical joints and possible sensor housings visible.",
+    "description_view_1": "Side view highlighting the 'B44' marking, the full length of the body, and the articulation of the legs, with more detail on the leg structure.",
+    "description_view_2": "Top-down view displaying the rectangular body, the arrangement of the legs, and the overall compact footprint of the robot dog.",
+    "description_view_3": "Rear-side view showing the back of the body, rear legs, and the mechanical details of the leg joints and feet.",
+    "category": "robot dog",
+    "height": 0.45,
+    "max_dimension": 0.75,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "leg",
+        "foot",
+        "joint",
+        "sensor housing",
+        "body panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.15,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_mechanical_joints": [
+        "rotary joint",
+        "hinge joint",
+        "linear actuator"
+    ],
+    "attribute_visible_sensors": [
+        "camera",
+        "ultrasonic sensor"
+    ],
+    "attribute_led_indicators": [],
+    "attribute_articulated_limbs": [
+        "front left leg",
+        "front right leg",
+        "rear left leg",
+        "rear right leg"
+    ],
+    "attribute_robotic_face": false,
+    "uid": "5dcbee77730640269cef5bd2587e328a",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5538021854065385,
+        "automaton.n.02": 0.5976854473107656,
+        "quadruped.n.01": 0.5990060127524344,
+        "robotics.n.01": 0.6045157426522327,
+        "animatronics.n.01": 0.605795115814404,
+        "dog.n.03": -1000.0,
+        "andiron.n.01": -1000.0,
+        "cad.n.01": -1000.0,
+        "dog.n.01": -1000.0,
+        "frump.n.01": -1000.0,
+        "frank.n.01": -1000.0,
+        "pawl.n.01": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5dcbee77730640269cef5bd2587e328a",
+        "creator_username": "mckechniegreg6",
+        "creator_display_name": "Greg McKechnie",
+        "creator_profile_url": "https://sketchfab.com/mckechniegreg6"
+    },
+    "filename": "std_5dcbee77730640269cef5bd2587e328a.glb",
+    "length": 3.1114463806152344,
+    "width": 0.8014410436153412
+}

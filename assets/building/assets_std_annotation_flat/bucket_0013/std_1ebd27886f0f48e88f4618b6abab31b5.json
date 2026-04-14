@@ -1,0 +1,91 @@
+{
+    "description_long": "This object is a tall, rectangular freestanding kiosk, commonly found at gas stations or along roadsides. The front face features a large blue and white sign with a prominent logo at the top, followed by a digital or printed price display for various fuel types, written in Cyrillic script. The structure is primarily white with blue accents, and the signage is integrated into the kiosk's body, giving it a clean, modern appearance. The sides are plain and smooth, lacking any windows or additional features. The kiosk appears to be constructed from metal or durable plastic, designed to withstand outdoor conditions. Its overall form is sleek and functional, optimized for visibility and information display rather than customer entry or interaction.",
+    "description": "A tall, rectangular fuel price kiosk with blue and white signage, featuring a logo and digital price display on the front. The sides are plain and smooth, with a modern, durable design.",
+    "description_view_0": "A narrow side view showing the kiosk's slim, rectangular profile with no visible signage or features.",
+    "description_view_1": "The front view displays the blue and white signage, logo, and fuel price information in Cyrillic script.",
+    "description_view_2": "Another narrow side view, identical to view 0, showing the plain, featureless side of the kiosk.",
+    "description_view_3": "A second front view, nearly identical to view 1, with clear visibility of the signage and price display.",
+    "category": "kiosk",
+    "height": 2.2,
+    "max_dimension": 2.2,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "readable",
+        "viewable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "signage panel",
+        "price display"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "Printed and digital display signage integrated into the front structure, with a logo at the top and fuel prices in Cyrillic script below.",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "none",
+    "attribute_roof_design": "Flat roof, flush with the kiosk's rectangular body, no overhangs or decorative elements.",
+    "attribute_architectural_style": "Modern utilitarian with minimalist influences.",
+    "uid": "1ebd27886f0f48e88f4618b6abab31b5",
+    "near_synsets": {
+        "service_station.n.01": 0.5775819026545831,
+        "gasoline_station.n.01": 0.5821546935357242,
+        "gas_pump.n.01": 0.5822260718817217,
+        "booth.n.02": 0.5924345256992757,
+        "shopfront.n.01": 0.592745157270235
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1ebd27886f0f48e88f4618b6abab31b5",
+        "creator_username": "neominigan",
+        "creator_display_name": "Neo_minigan",
+        "creator_profile_url": "https://sketchfab.com/neominigan"
+    },
+    "filename": "std_1ebd27886f0f48e88f4618b6abab31b5.glb",
+    "length": 0.18899434059858322,
+    "width": 0.9325060248374939
+}

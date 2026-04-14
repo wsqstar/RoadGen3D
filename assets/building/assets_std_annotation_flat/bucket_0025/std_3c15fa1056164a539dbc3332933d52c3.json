@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a medium-sized urban box truck with a blue cab and a large, rectangular cargo compartment. The rear doors are white with black hinges and markings, including 'A 981' and 'LT 77 geo'. The left side of the cargo box features a colorful graffiti mural of a cartoon dog, while the right side is covered in various tags and graffiti. The front of the truck has a blue cab with black windshield wipers, side mirrors, and a refrigeration unit mounted above the cab. The truck sits on six black wheels and shows signs of wear and urban use, with visible dirt and weathering on the surfaces. The overall appearance suggests it is used for refrigerated deliveries or transport in city environments.",
+    "description": "A blue-cab box truck with a graffiti-covered cargo compartment, rear doors marked with numbers, and a refrigeration unit above the cab. The truck shows signs of urban use and weathering.",
+    "description_view_0": "Rear view showing white double doors with black hinges, license markings, and some dirt and wear.",
+    "description_view_1": "Left side view highlighting a large, colorful cartoon dog graffiti on the cargo box and the blue cab.",
+    "description_view_2": "Front view displaying the blue cab, black windshield wipers, side mirrors, and a refrigeration unit above the cab.",
+    "description_view_3": "Right side view with multiple graffiti tags and a less colorful, more worn appearance compared to the left side.",
+    "category": "truck",
+    "height": 2.8,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.08,
+        0.07,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "mass": 4200,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 15000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "wheel",
+        "mirror",
+        "windshield wiper",
+        "refrigeration unit"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "white",
+        "black",
+        "red",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.25,
+        0.45,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "box",
+    "attribute_wheelbase": 3.2,
+    "attribute_number_of_axles": 2,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "3c15fa1056164a539dbc3332933d52c3",
+    "near_synsets": {
+        "van.n.05": 0.5279382829893263,
+        "boxcar.n.01": 0.5447880457152111,
+        "cargo_container.n.01": 0.553667498727388,
+        "delivery_truck.n.01": 0.5552556196536091,
+        "refrigerator_car.n.01": 0.5565085685338951,
+        "hand_truck.n.01": -1000.0,
+        "truck.n.01": -1000.0
+    },
+    "synset": "truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3c15fa1056164a539dbc3332933d52c3",
+        "creator_username": "whisper.alt",
+        "creator_display_name": "Alt",
+        "creator_profile_url": "https://sketchfab.com/whisper.alt"
+    },
+    "filename": "std_3c15fa1056164a539dbc3332933d52c3.glb",
+    "length": 4.697402477264404,
+    "width": 2.47694993019104
+}

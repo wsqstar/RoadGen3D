@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a rectangular, single-story Bank of America branch with a flat, dark gray roof and black exterior walls. The front facade features a large red sign with white and blue 'BANK OF AMERICA' lettering and the recognizable Bank of America flag logo. There is a glass entrance door and a large window on the front, as well as a red ATM area to the right of the entrance. The side walls are plain black with a single door and a large Bank of America logo, while the rear is unadorned. The building sits on a light gray concrete base, and a human figure is present for scale at the entrance.",
+    "description": "A modern, single-story Bank of America branch with a flat roof, black walls, prominent signage, and a front-facing ATM area.",
+    "description_view_0": "Side view showing a black wall with a single door and a large Bank of America logo.",
+    "description_view_1": "Front view displaying the main entrance, large signage, glass door, window, and a red ATM area with a person standing nearby.",
+    "description_view_2": "Opposite side view with a black wall, a single door, and a large Bank of America logo.",
+    "description_view_3": "Rear view showing a plain black wall with no visible features or signage.",
+    "category": "bank",
+    "height": 4.0,
+    "max_dimension": 16.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 80000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "ATM",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "red",
+        "white",
+        "blue"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_signage": "Large red sign with white 'BANK OF AMERICA' text and blue/red flag logo above the entrance; additional large Bank of America flag logos on both side walls.",
+    "attribute_atm_presence": true,
+    "attribute_security_features": [],
+    "attribute_architectural_style": "modern",
+    "attribute_entrance_design": "Single glass door with metal frame, flanked by a large window and adjacent to a red ATM area; minimal decorative elements, emphasizing functionality.",
+    "uid": "274029189b2f475ba1b962f46ab2f2f4",
+    "near_synsets": {
+        "bank.n.09": 0.516056121087721,
+        "bank_manager.n.01": 0.5602001443619722,
+        "bank.n.03": 0.5647061671978262,
+        "bank.n.04": 0.5732995734204757,
+        "bank.n.01": 0.5743509356427949,
+        "bank.n.07": -1000.0,
+        "bank.n.05": -1000.0,
+        "bank.n.06": -1000.0,
+        "depository_financial_institution.n.01": -1000.0,
+        "bank.n.10": -1000.0,
+        "savings_bank.n.02": -1000.0
+    },
+    "synset": "savings_bank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/274029189b2f475ba1b962f46ab2f2f4",
+        "creator_username": "Obasogie.Amen.JimmyKlien",
+        "creator_display_name": "Obasogie.Amen.JimmyKlien",
+        "creator_profile_url": "https://sketchfab.com/Obasogie.Amen.JimmyKlien"
+    },
+    "filename": "std_274029189b2f475ba1b962f46ab2f2f4.glb",
+    "length": 16.666664123535156,
+    "width": 7.895153999328613
+}

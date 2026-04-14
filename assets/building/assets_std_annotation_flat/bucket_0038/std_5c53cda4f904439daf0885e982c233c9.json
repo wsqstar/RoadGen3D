@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a large, rectangular outdoor canopy with a peaked roof made of tightly woven beige fabric. The structure is supported by four slender metal poles, each wrapped with matching fabric curtains that are tied back, creating an inviting and sheltered space beneath. The metal frame features decorative scrollwork along the upper edges, adding a touch of elegance and visual interest. The canopy fabric is stretched taut across the top, providing ample shade and protection from the sun. The overall design is both functional and aesthetically pleasing, suitable for parks, patios, or urban gathering spaces. The open sides allow for easy access and airflow, making it ideal for social or recreational use.",
+    "description": "A large, beige fabric canopy with a peaked roof, supported by four metal poles and tied-back curtains. Decorative scrollwork accents the frame, creating an elegant and functional outdoor shelter.",
+    "description_view_0": "Front view showing two tied-back curtains and the decorative scrollwork on the metal frame.",
+    "description_view_1": "Side view revealing all four supporting poles, the full length of the canopy, and the symmetrical arrangement of curtains.",
+    "description_view_2": "Rear view similar to the front, with two tied-back curtains and visible scrollwork details.",
+    "description_view_3": "Opposite side view, mirroring view 1, showing the full canopy length and curtain arrangement.",
+    "category": "canopy",
+    "height": 2.5,
+    "max_dimension": 4.0,
+    "materials": [
+        "fabric",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shadeable",
+        "curtain_drawable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "curtain",
+        "curtain tie",
+        "support pole"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "beige",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_mounting_type": "freestanding, pole-supported",
+    "attribute_support_structure_design": "The canopy is supported by four vertical metal poles, one at each corner, connected by a rectangular metal frame at the top. The frame features decorative scrollwork and provides structural rigidity, while the poles are wrapped with fabric curtains for both function and aesthetics.",
+    "attribute_edge_detailing": "The canopy edges are straight and hemmed, with the fabric tightly stretched and reinforced at the corners. The metal frame is slightly exposed along the perimeter, adding definition and durability.",
+    "attribute_branding_or_signage": "none",
+    "attribute_lighting_integration": "none",
+    "uid": "5c53cda4f904439daf0885e982c233c9",
+    "near_synsets": {
+        "canopy.n.03": 0.47177450749939354,
+        "four-poster.n.01": 0.48165225741457923,
+        "umbrella_tent.n.01": 0.49838563422102977,
+        "gazebo.n.01": 0.5110812354426202,
+        "awning.n.01": 0.5125250262311745,
+        "canopy.n.02": -1000.0,
+        "canopy.n.01": -1000.0
+    },
+    "synset": "canopy.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5c53cda4f904439daf0885e982c233c9",
+        "creator_username": "sadat_s",
+        "creator_display_name": "Syahdat setiawan",
+        "creator_profile_url": "https://sketchfab.com/sadat_s"
+    },
+    "filename": "std_5c53cda4f904439daf0885e982c233c9.glb",
+    "length": 3.474848508834839,
+    "width": 2.736315965652466
+}

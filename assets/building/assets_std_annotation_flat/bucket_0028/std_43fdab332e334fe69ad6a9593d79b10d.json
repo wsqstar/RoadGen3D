@@ -1,0 +1,115 @@
+{
+    "description_long": "This object is a large, horizontally-oriented cylindrical storage tank mounted on a concrete platform, with a rounded dome at each end. The tank is equipped with several visible pipes, valves, and gauges, suggesting it is designed for the storage and transfer of liquids or gases. A prominent red pipe runs along the side, connecting to various control units and a possible pump system, while smaller pipes and fittings are attached at multiple points. The tank features access hatches on the top and a manhole cover, as well as a small fenced-off area with control panels and monitoring equipment. The exterior is primarily metallic gray, with some black and red components, and the overall construction appears robust and industrial. This type of storage tank is commonly found in urban utility areas, industrial sites, or near infrastructure requiring bulk liquid storage.",
+    "description": "A large, horizontal cylindrical storage tank with domed ends, mounted on a concrete base and fitted with multiple pipes, valves, and control units. The tank is metallic gray with red and black attachments, designed for industrial liquid or gas storage.",
+    "description_view_0": "Front view showing the rounded end of the tank, main access pipes, control panels, and attached monitoring equipment.",
+    "description_view_1": "Side view highlighting the length of the cylindrical tank, top hatches, and the red pipe running along the side.",
+    "description_view_2": "Rear view displaying the opposite domed end, with visible pipe connections and the concrete platform.",
+    "description_view_3": "Opposite side view showing additional pipework, valves, and the fenced control area adjacent to the tank.",
+    "category": "storage tank",
+    "height": 2.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "concrete",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.01,
+        0.04
+    ],
+    "mass": 9000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "valve",
+        "pipe",
+        "hatch",
+        "control panel",
+        "gauge"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [
+        "inlet pipe",
+        "outlet pipe",
+        "valve",
+        "gauge"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_architectural_style": "cylindrical horizontal",
+    "uid": "43fdab332e334fe69ad6a9593d79b10d",
+    "near_synsets": {
+        "tank.n.02": 0.4482466160159647,
+        "gas_holder.n.01": 0.524336437300663,
+        "tank_farm.n.01": 0.5251529950984489,
+        "reservoir.n.03": 0.5279154589465612,
+        "gas_tank.n.01": 0.5310163012479058,
+        "tank.n.03": -1000.0,
+        "repositing.n.01": -1000.0,
+        "storage.n.01": -1000.0,
+        "storage.n.03": -1000.0,
+        "storage.n.04": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "memory.n.04": -1000.0,
+        "tank.n.01": -1000.0,
+        "cooler.n.03": -1000.0,
+        "tank_car.n.01": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/43fdab332e334fe69ad6a9593d79b10d",
+        "creator_username": "ADS_3D",
+        "creator_display_name": "ADS_3D",
+        "creator_profile_url": "https://sketchfab.com/ADS_3D"
+    },
+    "filename": "std_43fdab332e334fe69ad6a9593d79b10d.glb",
+    "length": 5.225586175918579,
+    "width": 3.16583251953125
+}

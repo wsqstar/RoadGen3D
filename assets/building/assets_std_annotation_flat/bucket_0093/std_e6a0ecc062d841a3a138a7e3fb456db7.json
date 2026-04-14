@@ -1,0 +1,98 @@
+{
+    "description_long": "This tunnel structure is long and rectangular, featuring a series of evenly spaced red doors along its length, set into a dark gray facade with large window-like panels. The roof is flat and solid, suggesting a robust construction, likely reinforced concrete or steel. Both ends of the tunnel are closed off with blue and black panels, possibly indicating service or emergency exits. The overall design is utilitarian, with minimal decorative elements and a focus on function over form. The windows along the sides may provide natural light or visibility into the tunnel's interior. The structure appears suitable for urban environments, such as subways, pedestrian underpasses, or service tunnels.",
+    "description": "A long, rectangular tunnel with red doors, gray facade, and large window panels, featuring closed blue ends and a utilitarian design.",
+    "description_view_0": "The side view shows the full length of the tunnel with multiple red doors and large window panels along a gray facade.",
+    "description_view_1": "The end view reveals a closed blue and black panel, indicating a sealed entrance or exit, with the roof and side walls visible.",
+    "description_view_2": "The opposite side view mirrors the first, displaying the same arrangement of red doors and window panels along the tunnel's length.",
+    "description_view_3": "The other end view also shows a closed blue and black panel, similar to the first end, with the flat roof and side walls visible.",
+    "category": "tunnel",
+    "height": 4.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "reinforced concrete",
+        "glass",
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "red",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "Rectangular entrances at both ends, constructed from reinforced concrete and steel, with blue and black panel closures and no visible gates or doors.",
+    "attribute_lighting_fixtures": [],
+    "attribute_signage": [],
+    "attribute_surrounding_infrastructure": "No visible surrounding infrastructure; the tunnel is isolated in the images with no adjacent roads, tracks, or walkways.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "e6a0ecc062d841a3a138a7e3fb456db7",
+    "near_synsets": {
+        "railroad_tunnel.n.01": 0.5149034588622209,
+        "tunnel.n.01": 0.5319416706248573,
+        "interior_door.n.01": 0.5529190628739973,
+        "corridor.n.01": 0.553330265229781,
+        "door.n.04": 0.5565556738594373,
+        "burrow.n.01": -1000.0
+    },
+    "synset": "tunnel.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e6a0ecc062d841a3a138a7e3fb456db7",
+        "creator_username": "krot.rock1",
+        "creator_display_name": "krot.rock1",
+        "creator_profile_url": "https://sketchfab.com/krot.rock1"
+    },
+    "filename": "std_e6a0ecc062d841a3a138a7e3fb456db7.glb",
+    "length": 4.139793395996094,
+    "width": 30.897350311279297
+}

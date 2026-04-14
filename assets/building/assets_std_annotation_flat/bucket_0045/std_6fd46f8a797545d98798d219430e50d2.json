@@ -1,0 +1,91 @@
+{
+    "description_long": "This is a large, rectangular tunnel structure constructed primarily from reinforced concrete, featuring a broad, flat roof and thick side walls. The tunnel has two main arched entryways, each reinforced with concrete, and a pair of metallic, grid-like conduits or ducts running parallel through the tunnel interior. The roof is bordered by raised parapets and includes a central, slightly recessed section, possibly for ventilation or maintenance access. The tunnel entrances are flanked by solid concrete abutments, and the structure appears robust and engineered for heavy-duty urban or infrastructural use. The visible surfaces are predominantly light gray, with metallic blue-gray elements marking the conduits. The overall design is utilitarian, prioritizing function and durability over decorative elements.",
+    "description": "A robust, rectangular concrete tunnel with arched entrances and metallic conduits running through its interior. The structure is utilitarian, with thick walls, a flat roof, and minimal decorative features.",
+    "description_view_0": "Front view showing two arched tunnel entrances and metallic conduits inside, flanked by thick concrete abutments.",
+    "description_view_1": "Side view highlighting the flat, broad roof and the parapet edges, with the conduits partially visible at the base.",
+    "description_view_2": "Rear view mirroring the front, with arched exits and visible conduits, emphasizing the tunnel's throughway design.",
+    "description_view_3": "Opposite side view similar to view 1, showing the flat roof and parapet, with conduits visible at the base.",
+    "category": "tunnel",
+    "height": 4.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "reinforced concrete",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "driveable",
+        "shelterable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "car",
+        "truck",
+        "bus"
+    ],
+    "colors": [
+        "light gray",
+        "blue-gray"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "Rectangular with arched openings, constructed from reinforced concrete, open-ended with no doors or gates.",
+    "attribute_lighting_fixtures": [],
+    "attribute_signage": [],
+    "attribute_surrounding_infrastructure": "Metallic conduits or ducts run through the tunnel interior, with thick concrete abutments and parapets forming the immediate surroundings.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "6fd46f8a797545d98798d219430e50d2",
+    "near_synsets": {
+        "railroad_tunnel.n.01": 0.489525512211908,
+        "tunnel.n.01": 0.5087031819165534,
+        "conduit.n.01": 0.5344458881866552,
+        "steel_arch_bridge.n.01": 0.5405144611756647,
+        "culvert.n.01": 0.5435549549734583,
+        "burrow.n.01": -1000.0
+    },
+    "synset": "tunnel.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6fd46f8a797545d98798d219430e50d2",
+        "creator_username": "benjamintang2012",
+        "creator_display_name": "benjamintang2012",
+        "creator_profile_url": "https://sketchfab.com/benjamintang2012"
+    },
+    "filename": "std_6fd46f8a797545d98798d219430e50d2.glb",
+    "length": 29.145465850830078,
+    "width": 14.835179328918457
+}

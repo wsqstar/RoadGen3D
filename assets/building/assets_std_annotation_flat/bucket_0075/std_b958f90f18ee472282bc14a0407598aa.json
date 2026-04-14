@@ -1,0 +1,88 @@
+{
+    "description_long": "This is a straight wooden ladder with two parallel side rails and a series of evenly spaced rectangular rungs. The wood grain is visible throughout, giving it a natural, unfinished appearance. The ladder is constructed with solid, rectangular side rails and flat, wide rungs, making it suitable for climbing. There are no visible safety features such as anti-slip feet or handrails, and the ends of the rails are squared off. The overall design is simple and utilitarian, likely intended for use in residential or light commercial settings. The ladder appears sturdy and functional, with a traditional form factor.",
+    "description": "A straight, natural wood ladder with rectangular side rails and evenly spaced flat rungs. It has a simple, utilitarian design with visible wood grain and no added safety features.",
+    "description_view_0": "Front view showing the full length of the ladder, with all rungs and both side rails clearly visible.",
+    "description_view_1": "Angled side view highlighting the thickness of the side rails and the depth of the rungs.",
+    "description_view_2": "Top-down view showing the width of the ladder and the squared ends of the side rails.",
+    "description_view_3": "Opposite angled side view, similar to view 1, emphasizing the rung spacing and rail profile.",
+    "category": "ladder",
+    "height": 2.4,
+    "max_dimension": 2.4,
+    "materials": [
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 10,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 50,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "climbable",
+        "liftable",
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "rung",
+        "side rail"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "light brown"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rungs": 11,
+    "attribute_rung_spacing": 0.22,
+    "attribute_side_rail_profile": "rectangular wooden",
+    "attribute_mounting_position": "leaning",
+    "attribute_presence_of_safety_features": [],
+    "uid": "b958f90f18ee472282bc14a0407598aa",
+    "near_synsets": {
+        "ladder.n.01": 0.5060940367464186,
+        "rope_ladder.n.01": 0.5257035560925759,
+        "articulated_ladder.n.01": 0.5415917218919498,
+        "step_ladder.n.01": 0.544334078601727,
+        "extension_ladder.n.01": 0.5446853389752419,
+        "run.n.13": -1000.0,
+        "ladder.n.02": -1000.0
+    },
+    "synset": "ladder.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b958f90f18ee472282bc14a0407598aa",
+        "creator_username": "tkstairs",
+        "creator_display_name": "TKstairs.com",
+        "creator_profile_url": "https://sketchfab.com/tkstairs"
+    },
+    "filename": "std_b958f90f18ee472282bc14a0407598aa.glb",
+    "length": 2.585197925567627,
+    "width": 0.7846155762672424
+}

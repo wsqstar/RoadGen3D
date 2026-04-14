@@ -1,0 +1,92 @@
+{
+    "description_long": "This object is a cylindrical cigarette with a brown paper exterior and a distinct black filter at one end. Around the midsection, there is a decorative gold band featuring a stylized emblem or crest, adding a touch of branding or ornamentation. The cigarette appears unlit, with no visible burn marks or ash at either end. The paper surface is matte and slightly textured, typical of tobacco products. The filter is visibly darker and has a slightly rougher appearance compared to the rest of the body. No packaging is present, and the cigarette is shown as a single, loose item.",
+    "description": "A brown cigarette with a black filter and a gold decorative band, unlit and loose with no packaging.",
+    "description_view_0": "The cigarette is viewed from the filter end, showing the dark, textured filter and a hint of the gold band.",
+    "description_view_1": "A side view reveals the full length of the cigarette, the brown paper, the gold band, and the black filter.",
+    "description_view_2": "The cigarette is seen from the rounded tobacco end, with the gold band visible and no burn marks or ash.",
+    "description_view_3": "Another side view, opposite to view 1, again showing the brown paper, gold band, and black filter.",
+    "category": "cigarette",
+    "height": 0.009,
+    "max_dimension": 0.09,
+    "materials": [
+        "paper",
+        "tobacco",
+        "filter_material",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "mass": 0.0012,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0.01,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "graspable",
+        "ignitable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "filter",
+        "tobacco_end",
+        "decorative_band"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "gold"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 0.5,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.05,
+    "asset_composition_type": "single",
+    "attribute_brand_logo": "A gold decorative band with a stylized emblem or crest is visible, but no specific brand name or text is discernible.",
+    "attribute_filter_presence": true,
+    "attribute_burn_mark": "none",
+    "attribute_ash_tip": false,
+    "attribute_packaging_type": "none",
+    "uid": "63a0cc2192284d9c8cfdec0ed630ba03",
+    "near_synsets": {
+        "filter-tipped_cigarette.n.01": 0.5072088667255182,
+        "cigarette_butt.n.01": 0.5124305400817711,
+        "cigarette.n.01": 0.518077785934829,
+        "cigarillo.n.01": 0.5299621207906469,
+        "cigarette_holder.n.01": 0.5339336954958928
+    },
+    "synset": "cigarette_holder.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/63a0cc2192284d9c8cfdec0ed630ba03",
+        "creator_username": "Escoly",
+        "creator_display_name": "Escoly",
+        "creator_profile_url": "https://sketchfab.com/Escoly"
+    },
+    "filename": "std_63a0cc2192284d9c8cfdec0ed630ba03.glb",
+    "length": 0.008999825920909643,
+    "width": 0.07810096070170403
+}

@@ -1,0 +1,107 @@
+{
+    "description_long": "This object is a covered car rental station featuring a long, rectangular canopy roof supported by a series of evenly spaced columns. Beneath the roof, there are multiple parking bays, each with a visible car parked in a designated slot. The roof appears to be made of translucent or tinted panels, possibly glass or polycarbonate, with a grid-like pattern. The structure is mounted on a flat concrete or paved base, providing stability and a clear boundary for the parking area. The front and rear views reveal signage or display panels above each parking bay, likely for car identification or rental instructions. The overall design is modern and functional, suitable for urban environments such as airports, train stations, or city centers.",
+    "description": "A modern, long car rental station with a translucent canopy roof and multiple parking bays, each housing a car. The structure is supported by columns and sits on a flat paved base.",
+    "description_view_0": "The front view shows the full length of the car rental station, with the canopy roof, visible cars in each bay, and signage above each slot.",
+    "description_view_1": "The side view highlights the depth of the canopy roof and the alignment of the parking bays beneath it, with less detail visible for individual cars.",
+    "description_view_2": "The rear view mirrors the front, showing the cars from behind and the structure's full length, including the signage or display panels above each bay.",
+    "description_view_3": "The opposite side view again emphasizes the depth of the structure and the arrangement of the bays, with minimal detail on the cars themselves.",
+    "category": "car rental",
+    "height": 3.0,
+    "max_dimension": 24.0,
+    "materials": [
+        "metal",
+        "glass",
+        "concrete",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.2,
+        0.2,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rentable",
+        "parkable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "signage panel",
+        "parking bay",
+        "roof panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "green",
+        "black",
+        "yellow",
+        "red"
+    ],
+    "colors_composition": [
+        0.45,
+        0.3,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_car_manufacturer": "None",
+    "attribute_car_model": "None",
+    "attribute_license_plate": "None",
+    "attribute_rental_company_branding": "None",
+    "attribute_vehicle_type": "None",
+    "uid": "588cf87ecdb24e0bba97b65c712d762b",
+    "near_synsets": {
+        "car_rental.n.01": 0.5359886952965177,
+        "porte-cochere.n.02": 0.5438754762178581,
+        "carport.n.01": 0.5440203402246033,
+        "parking.n.01": 0.5500555368473778,
+        "drive-in.n.01": 0.5623708188943917,
+        "lease.n.01": -1000.0,
+        "car.n.01": -1000.0,
+        "car.n.04": -1000.0,
+        "car.n.02": -1000.0,
+        "cable_car.n.01": -1000.0,
+        "car.n.03": -1000.0,
+        "rental.n.02": -1000.0
+    },
+    "synset": "car_rental.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/588cf87ecdb24e0bba97b65c712d762b",
+        "creator_username": "podval21",
+        "creator_display_name": "podval21",
+        "creator_profile_url": "https://sketchfab.com/podval21"
+    },
+    "filename": "std_588cf87ecdb24e0bba97b65c712d762b.glb",
+    "length": 9.167778491973877,
+    "width": 30.534642219543457
+}

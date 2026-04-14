@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a freestanding ATM-style self-service payment kiosk, primarily constructed from dark metal with a robust, rectangular body. The front features a recessed transaction area with a digital display screen, a numeric keypad, card slot, and cash dispenser, all surrounded by a lighter gray bezel. Above the transaction area is a prominent blue display panel labeled 'ATM' and '24 HOUR BANKING', flanked by various payment network logos. The sides are plain and angular, with a slight protrusion at the top housing the upper display. The rear is flat and featureless, designed to be placed against a wall or in an open public space. The overall design is utilitarian, emphasizing security, durability, and ease of access for users.",
+    "description": "A robust, freestanding ATM-style payment kiosk with a digital display, keypad, card slot, and cash dispenser, finished in dark metal with a prominent blue screen and payment logos.",
+    "description_view_0": "Side view showing the kiosk's angular profile, with the upper display protruding forward and the transaction area slightly recessed.",
+    "description_view_1": "Front view displaying the main interactive area: digital screen, keypad, card slot, cash dispenser, payment logos, and the large blue ATM sign above.",
+    "description_view_2": "Opposite side view mirroring the left, highlighting the protruding upper display and the slim card slot visible from the side.",
+    "description_view_3": "Rear view showing a plain, flat surface with no visible interactive features or openings.",
+    "category": "self-service payment kiosk or terminal",
+    "height": 1.6,
+    "max_dimension": 1.7,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "electronic components",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 220,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "insertable",
+        "swipeable",
+        "tapable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "display screen",
+        "keypad",
+        "card slot",
+        "cash dispenser",
+        "receipt slot",
+        "buttons"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "blue",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_display_screen": "Two display screens are present: a large, rectangular blue screen at the top with a thick bezel displaying 'ATM' and '24 HOUR BANKING', and a smaller, square digital interface screen in the transaction area, both oriented vertically and flush with the kiosk's front.",
+    "attribute_payment_interface": "The payment interface includes a card slot, numeric keypad, and cash dispenser, all located in the recessed transaction area below the main display; there are also visible payment network logos indicating support for multiple card types.",
+    "attribute_branding_or_logo": "A large, printed blue 'ATM' sign with '24 HOUR BANKING' is prominently displayed on the upper screen, with additional small printed payment network logos (e.g., VISA, MasterCard) below the transaction area.",
+    "attribute_instructional_signage": "Instructional signage includes printed payment network logos and a digital interface on the transaction screen, providing user guidance through text and icons.",
+    "attribute_receipt_dispenser": "A small, rectangular receipt dispenser slot is present below the keypad in the transaction area, easily accessible to users.",
+    "uid": "efd5d7593cf44a51b5af435f8e77caa2",
+    "near_synsets": {
+        "cash_machine.n.01": 0.4932800924398547,
+        "pay-phone.n.01": 0.5609221667589744,
+        "vending_machine.n.01": 0.5695830820648159,
+        "cash_register.n.01": 0.5741012685737731,
+        "automat.n.01": 0.5762394053301548,
+        "payment.n.01": -1000.0,
+        "end.n.01": -1000.0,
+        "booth.n.02": -1000.0,
+        "requital.n.02": -1000.0,
+        "terminal.n.02": -1000.0,
+        "terminal.n.01": -1000.0,
+        "payment.n.02": -1000.0,
+        "terminal.n.04": -1000.0
+    },
+    "synset": "cash_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/efd5d7593cf44a51b5af435f8e77caa2",
+        "creator_username": "Murk",
+        "creator_display_name": "Murkablo",
+        "creator_profile_url": "https://sketchfab.com/Murk"
+    },
+    "filename": "std_efd5d7593cf44a51b5af435f8e77caa2.glb",
+    "length": 0.6343026459217072,
+    "width": 0.7110529541969299
+}

@@ -1,0 +1,120 @@
+{
+    "description_long": "This delivery robot features a rounded, cylindrical body with a predominantly orange and green color scheme, accented by weathered metallic and mechanical details. It stands on four articulated, claw-like legs, each with a red protective cover and metallic joints, suggesting robust mobility over urban terrain. The front displays a vertical array of three circular lights or sensors, while the rear is equipped with a large, rectangular access panel and a prominent cylindrical module with coiled tubing and an antenna. The surface is worn and matte, indicating frequent use in outdoor environments. Various mechanical components, such as exposed pistons, tubing, and handles, are visible, enhancing its utilitarian appearance. The overall design suggests a functional, industrial robot built for autonomous delivery tasks in city settings.",
+    "description": "A rugged, orange and green cylindrical delivery robot with four clawed legs, front-facing lights, and a rear access panel, designed for urban environments.",
+    "description_view_0": "Front view shows the vertical array of three circular lights or sensors and the symmetrical arrangement of the four clawed legs.",
+    "description_view_1": "Side-rear view reveals the cylindrical module with coiled tubing, an antenna, and the side profile of the access panel.",
+    "description_view_2": "Rear view highlights the large, rectangular access panel with visible hinges and the symmetrical leg arrangement.",
+    "description_view_3": "Opposite side-rear view shows the cylindrical module, tubing, and the side of the access panel, with more detail on the leg mechanisms.",
+    "category": "delivery robot",
+    "height": 1.1,
+    "max_dimension": 1.2,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "glass",
+        "air",
+        "electronics"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "lights",
+        "access panel",
+        "antenna",
+        "legs",
+        "tubing",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "green",
+        "red",
+        "beige",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.15,
+        0.1,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_brand_logo": "none",
+    "attribute_sensor_array": [
+        {
+            "type": "camera or sensor cluster",
+            "shape": "circular",
+            "location": "front vertical array"
+        }
+    ],
+    "attribute_wheel_configuration": "none",
+    "attribute_compartment_access_panel": "Large rectangular access panel on the rear, with visible hinges and a handle, likely for cargo access.",
+    "attribute_display_screen": "none",
+    "uid": "ce6299aac3c843228f8a878b736439fb",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5526547377173331,
+        "automaton.n.02": 0.5892419660467584,
+        "robotics.n.01": 0.5956107447185336,
+        "android.n.01": 0.6043802562182389,
+        "automaton.n.03": 0.6058005365595162,
+        "delivery.n.01": -1000.0,
+        "pitch.n.02": -1000.0,
+        "manner_of_speaking.n.01": -1000.0,
+        "delivery.n.04": -1000.0,
+        "delivery.n.07": -1000.0,
+        "delivery.n.02": -1000.0,
+        "rescue.n.01": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ce6299aac3c843228f8a878b736439fb",
+        "creator_username": "azizim8",
+        "creator_display_name": "azizim8",
+        "creator_profile_url": "https://sketchfab.com/azizim8"
+    },
+    "filename": "std_ce6299aac3c843228f8a878b736439fb.glb",
+    "length": 0.7851994931697845,
+    "width": 0.7852828204631805
+}

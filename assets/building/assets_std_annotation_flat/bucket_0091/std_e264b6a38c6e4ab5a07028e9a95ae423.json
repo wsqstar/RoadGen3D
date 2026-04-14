@@ -1,0 +1,108 @@
+{
+    "description_long": "This combat tactical vehicle features a robust, angular chassis with a low profile and heavy armor plating, painted in a weathered desert tan with dark accents. The front is equipped with three prominent intake or exhaust grilles, flanked by angular armored panels and embedded weapon mounts. The sides display thick, reinforced armor with visible panel lines and mechanical detailing, suggesting modular construction and high durability. The top of the vehicle includes a central turret or command module, with additional weapon mounts and sensor arrays, as well as hatches and access panels. The rear is heavily armored, with large exhaust vents and additional structural reinforcements. The overall design emphasizes protection, firepower, and urban maneuverability, with a utilitarian, military aesthetic.",
+    "description": "A heavily armored, desert-tan combat vehicle with angular plating, multiple weapon mounts, and prominent intake grilles, designed for urban tactical operations.",
+    "description_view_0": "Side view showing thick, angular armor plating, a central turret structure, and mechanical detailing along the hull.",
+    "description_view_1": "Front view highlighting three large intake/exhaust grilles, angular armored panels, and forward-facing weapon mounts.",
+    "description_view_2": "Opposite side view mirroring the left, with visible armor panels, turret, and side-mounted features.",
+    "description_view_3": "Rear view displaying large exhaust vents, reinforced rear armor, and the top-mounted turret structure.",
+    "category": "combat tactical  vehicle",
+    "height": 3.2,
+    "max_dimension": 8.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.05,
+        0.05,
+        0.03,
+        0.07
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 160000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "weapon mount",
+        "door",
+        "sensor array",
+        "vent"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.03,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Four visible weapon mounts: two on the front corners, one on the central turret, and one on the rear roof, likely for machine guns or cannons.",
+    "attribute_armor_plating": "Full-body, thick angular armor plating with reinforced panels on all sides, including sloped and modular sections for increased protection.",
+    "attribute_camouflage_pattern": "Desert camouflage with a weathered tan base and irregular dark brown and black streaks and patches.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "not applicable",
+    "uid": "e264b6a38c6e4ab5a07028e9a95ae423",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.49473006182202156,
+        "assault_gun.n.02": 0.5026383979646369,
+        "tank.n.01": 0.50426017073858,
+        "armored_vehicle.n.01": 0.5089681539406992,
+        "reconnaissance_vehicle.n.01": 0.5134724271124407,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "fomite.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e264b6a38c6e4ab5a07028e9a95ae423",
+        "creator_username": "id17317",
+        "creator_display_name": "Andrey Mikheev",
+        "creator_profile_url": "https://sketchfab.com/id17317"
+    },
+    "filename": "std_e264b6a38c6e4ab5a07028e9a95ae423.glb",
+    "length": 7.606321811676025,
+    "width": 6.366163730621338
+}

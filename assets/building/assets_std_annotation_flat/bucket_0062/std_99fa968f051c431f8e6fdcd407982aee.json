@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a small, fixed-wing airplane with a straight, mid-mounted wing configuration and a compact fuselage. The wings are painted in a light color with visible markings, while the fuselage features a contrasting, darker central section. The airplane has a conventional tail with a single vertical stabilizer and horizontal stabilizers extending from either side. The cockpit is positioned at the front of the fuselage and appears to be enclosed, with a canopy or windshield visible. The landing gear is fixed and consists of two main wheels under the wings and a smaller nose wheel. The overall design suggests a light utility or trainer aircraft, suitable for short-range flights.",
+    "description": "A small, light-colored fixed-wing airplane with a mid-mounted wing, conventional tail, and front cockpit. It features fixed tricycle landing gear and a compact, streamlined fuselage.",
+    "description_view_0": "Front view showing the straight wings, central cockpit, and nose wheel.",
+    "description_view_1": "Side view highlighting the streamlined fuselage, fixed landing gear, and tail assembly.",
+    "description_view_2": "Rear view displaying the tail configuration and horizontal stabilizers.",
+    "description_view_3": "Opposite side view showing the wing and landing gear profile.",
+    "category": "airplane",
+    "height": 1.8,
+    "max_dimension": 8.5,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit canopy",
+        "wheel",
+        "control yoke",
+        "button",
+        "lever"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.18,
+        0.12,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.07,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing, straight wings with no visible winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "Single nose-mounted piston engine",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers",
+    "attribute_landing_gear_type": "Fixed tricycle landing gear with two main wheels and one nose wheel",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a single canopy",
+    "uid": "99fa968f051c431f8e6fdcd407982aee",
+    "near_synsets": {
+        "airplane.n.01": 0.4571345617909106,
+        "aircraft.n.01": 0.49119333414096866,
+        "monoplane.n.01": 0.503264138125087,
+        "biplane.n.01": 0.5221780206522562,
+        "narrowbody_aircraft.n.01": 0.5271848845056254
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/99fa968f051c431f8e6fdcd407982aee",
+        "creator_username": "jonathon42",
+        "creator_display_name": "jonathon42",
+        "creator_profile_url": "https://sketchfab.com/jonathon42"
+    },
+    "filename": "std_99fa968f051c431f8e6fdcd407982aee.glb",
+    "length": 5.9690282344818115,
+    "width": 4.865398406982422
+}

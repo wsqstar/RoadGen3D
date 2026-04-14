@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a compact, wheeled excavator with a robust steel frame and a large, black digging bucket attached to an articulated boom. The vehicle features four thick, treaded tires for maneuverability on urban surfaces, and a protective operator cab with mesh side panels and a transparent front windshield. The cab is positioned centrally above the chassis, providing good visibility for the operator. The rear of the vehicle is covered with a yellow engine housing, contrasting with the predominantly black structure. Hydraulic arms and linkages are visible on both sides, enabling the bucket to be raised and extended for digging or loading tasks. The overall design is functional and rugged, suitable for construction or landscaping work in urban environments.",
+    "description": "A compact, wheeled excavator with a black digging bucket, yellow engine housing, and a central operator cab protected by mesh panels.",
+    "description_view_0": "Front view showing the large black bucket raised above the cab, with thick treaded tires and the operator cab visible behind the bucket.",
+    "description_view_1": "Left side view highlighting the articulated boom, hydraulic arms, mesh cab panel, and yellow engine housing at the rear.",
+    "description_view_2": "Rear view displaying the yellow engine housing, rear lights, and the transparent cab window, with the boom and bucket extended overhead.",
+    "description_view_3": "Right side view similar to the left, showing the boom, hydraulic arms, mesh cab panel, and yellow engine housing.",
+    "category": "excavator",
+    "height": 2.2,
+    "max_dimension": 3.2,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.12,
+        0.03,
+        0.05
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 15680,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bucket",
+        "boom",
+        "hydraulic arm",
+        "wheel",
+        "cab door",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "yellow",
+        "gray",
+        "red"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_boom_type": "mono boom",
+    "attribute_cab_position": "centered",
+    "attribute_track_or_wheel_type": "wheeled",
+    "attribute_bucket_design": "standard digging bucket",
+    "attribute_brand_logo": "none",
+    "uid": "0ca90083bdf34659b559b26a2583e619",
+    "near_synsets": {
+        "backhoe.n.01": 0.4662788647411823,
+        "power_shovel.n.01": 0.4667395878325564,
+        "excavator.n.01": 0.4722810637153661,
+        "scoop.n.05": 0.4981412570471724,
+        "digger.n.01": 0.5283122732587082
+    },
+    "synset": "excavator.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0ca90083bdf34659b559b26a2583e619",
+        "creator_username": "robiworks",
+        "creator_display_name": "robiworks",
+        "creator_profile_url": "https://sketchfab.com/robiworks"
+    },
+    "filename": "std_0ca90083bdf34659b559b26a2583e619.glb",
+    "length": 2.110228180885315,
+    "width": 1.0136762261390686
+}

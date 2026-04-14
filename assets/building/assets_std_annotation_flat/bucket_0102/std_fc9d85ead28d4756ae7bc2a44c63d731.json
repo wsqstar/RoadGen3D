@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a heavily armored, tactical combat vehicle with a boxy, angular design and reinforced body panels. The exterior is painted in a solid matte gray color, with visible police-style light bars on the roof and front grille, suggesting law enforcement or paramilitary use. The vehicle features four large, rugged off-road tires, side steps, and multiple hatches and doors for personnel entry and exit. The roof has a circular hatch, likely for observation or mounting equipment, and the windows are small and reinforced for protection. The rear of the vehicle has double doors for cargo or personnel access, and the overall build emphasizes durability and security. The vehicle's design is utilitarian, prioritizing protection and mobility in urban or hostile environments.",
+    "description": "A matte gray, heavily armored tactical vehicle with reinforced panels, police lights, and rugged off-road tires. It features multiple entry points, a roof hatch, and a robust, utilitarian design.",
+    "description_view_0": "Front view shows the angular armored grille, reinforced windshield, and police-style light bars above the cab.",
+    "description_view_1": "Left side view highlights the four large off-road tires, side steps, small reinforced windows, and roof hatch.",
+    "description_view_2": "Rear view displays the double armored doors, rear lights, and the vehicle's boxy, secure structure.",
+    "description_view_3": "Right side view mirrors the left, showing the rugged tires, side steps, and armored body panels.",
+    "category": "combat tactical  vehicle",
+    "height": 2.6,
+    "max_dimension": 6.2,
+    "materials": [
+        "armored steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.78,
+        0.07,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 8500,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "wheel",
+        "hatch",
+        "light bar",
+        "mirror"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "red",
+        "blue"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.025,
+        0.025
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One circular roof hatch suitable for a weapon mount is visible on top; no fixed weapon mounts or hardpoints are clearly present.",
+    "attribute_armor_plating": "Full body coverage with thick, angular armored plating, including reinforced doors, roof, and front grille; panels appear solid and robust.",
+    "attribute_camouflage_pattern": "None visible; vehicle is painted in a solid matte gray color.",
+    "attribute_military_markings": "None visible; only police-style light bars are present.",
+    "attribute_tire_type": "Four large off-road tires with deep tread pattern, suitable for rugged terrain; appear reinforced.",
+    "uid": "fc9d85ead28d4756ae7bc2a44c63d731",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.5041573349839646,
+        "reconnaissance_vehicle.n.01": 0.5239996212318211,
+        "armored_car.n.02": 0.534880545336305,
+        "tank.n.01": 0.5407126061746225,
+        "assault_gun.n.02": 0.5449921037597835,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "armored_car.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fc9d85ead28d4756ae7bc2a44c63d731",
+        "creator_username": "Stas_SayHallo",
+        "creator_display_name": "Stan",
+        "creator_profile_url": "https://sketchfab.com/Stas_SayHallo"
+    },
+    "filename": "std_fc9d85ead28d4756ae7bc2a44c63d731.glb",
+    "length": 6.2322492599487305,
+    "width": 3.3353233337402344
+}

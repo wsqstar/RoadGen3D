@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a medium-sized ship with a white and gray superstructure and a red and brown hull. The hull is streamlined with a slightly raised bow and a flat stern, suggesting a displacement-type design suitable for stable navigation. The superstructure features multiple decks, a central bridge, and several visible masts or funnels, indicating areas for navigation and communication equipment. The deck is equipped with various fixtures, including antennas and possibly radar domes, enhancing its operational capabilities. The ship's exterior is primarily metallic, with painted surfaces and some glass elements for windows or observation areas. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A medium-sized ship with a red-brown hull, white-gray superstructure, and multiple decks, featuring masts and deck equipment. The vessel has a streamlined hull and is equipped for navigation and communication.",
+    "description_view_0": "Side view showing the full length of the ship, the red-brown hull, and the white-gray superstructure with masts and deck equipment.",
+    "description_view_1": "Front (bow) view highlighting the ship's narrow profile, raised bow, and central superstructure.",
+    "description_view_2": "Opposite side view similar to view 0, showing the hull and superstructure from the other side.",
+    "description_view_3": "Rear (stern) view displaying the flat stern, deck layout, and the arrangement of the superstructure.",
+    "category": "ship",
+    "height": 15,
+    "max_dimension": 70,
+    "materials": [
+        "steel",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1800000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "steerable",
+        "dockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "bridge",
+        "deck",
+        "mast",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "red",
+        "brown"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 20,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a streamlined, elongated shape, a slightly raised bow, and a flat stern. The hull features a red-brown coloration with a visible waterline and appears to lack any visible keels or bulbous bows.",
+    "attribute_superstructure_layout": "The superstructure consists of multiple decks with a central bridge, several cabins, and masts or funnels positioned above the main deck. The design is compact, with equipment and fixtures distributed along the upper decks.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "antenna",
+        "radar"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "38fca50067954743afed2897a2212e37",
+    "near_synsets": {
+        "ship.n.01": 0.477794667132644,
+        "cargo_ship.n.01": 0.48018702467212976,
+        "vessel.n.02": 0.4833921261631854,
+        "small_ship.n.01": 0.4949971249162591,
+        "sailing_vessel.n.01": 0.5014587028011339
+    },
+    "synset": "small_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/38fca50067954743afed2897a2212e37",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_38fca50067954743afed2897a2212e37.glb",
+    "length": 229.94049072265625,
+    "width": 237.0422592163086
+}

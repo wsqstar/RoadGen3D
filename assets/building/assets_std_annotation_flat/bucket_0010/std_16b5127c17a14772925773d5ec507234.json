@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a robust, heavy-duty truck with a black cab and a distinctive red and orange chassis and wheel covers, designed for urban and industrial environments. The cab features a large windshield, two side mirrors, and dual exhaust stacks, with blue and purple accents on the side panels. The truck has a multi-axle configuration, with three axles supporting six wheels, indicating a high load capacity. The rear section is flat and open, suitable for carrying cargo or equipment, and the front grille is prominent with a metallic finish. Additional components, such as a spare tire and a small box, are visible beside the main truck, suggesting modular or customizable features. The overall design is utilitarian, with rugged textures and a focus on durability and functionality.",
+    "description": "A heavy-duty black and red multi-axle truck with a flat cargo bed, blue accents, and rugged industrial features. The design emphasizes durability and high load capacity.",
+    "description_view_0": "Side view showing the full length of the truck, all three axles, and additional components like a spare tire and box beside the vehicle.",
+    "description_view_1": "Front view highlighting the large windshield, grille, dual exhaust stacks, and the symmetry of the cab and wheels.",
+    "description_view_2": "Opposite side view similar to view 0, with clear visibility of the blue side panels and the truck's length.",
+    "description_view_3": "Rear view displaying the flat cargo bed, rear lights, and the back of the cab, with additional components visible to the side.",
+    "category": "truck",
+    "height": 3.2,
+    "max_dimension": 8.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.08,
+        0.12,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 9500,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "mirror",
+        "exhaust stack",
+        "cargo bed",
+        "spare tire"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "orange",
+        "blue",
+        "purple",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.4,
+        0.25,
+        0.15,
+        0.08,
+        0.04,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.07,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "group",
+    "attribute_cab_configuration": "day cab",
+    "attribute_cargo_bed_type": "flatbed",
+    "attribute_wheelbase": 4.2,
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "16b5127c17a14772925773d5ec507234",
+    "near_synsets": {
+        "flatbed.n.02": 0.5085003661051941,
+        "truck.n.01": 0.5110846239486867,
+        "van.n.05": 0.5234237982949888,
+        "lorry.n.02": 0.5355602070065975,
+        "truck_bed.n.01": 0.5460549830424312,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/16b5127c17a14772925773d5ec507234",
+        "creator_username": "Rysky",
+        "creator_display_name": "Jorma Rysky (Joona Ven\u00e4l\u00e4inen)",
+        "creator_profile_url": "https://sketchfab.com/Rysky"
+    },
+    "filename": "std_16b5127c17a14772925773d5ec507234.glb",
+    "length": 6.641558647155762,
+    "width": 21.292722702026367
+}

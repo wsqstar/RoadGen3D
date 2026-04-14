@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a tall, vertically-oriented storage tank with a cylindrical body and a rounded, domed top. The tank features a prominent pipe or vent extending from the top, likely for pressure release or ventilation. The lower section includes a complex assembly of valves and pipework, suggesting it is designed for controlled dispensing or filling of liquids or gases. The body of the tank is mostly smooth, with some vent-like cutouts near the upper section, possibly for airflow or inspection. The rear side appears to have a large, flat access panel or maintenance hatch. The overall construction is robust, indicating it is built to withstand high internal pressures and outdoor urban conditions.",
+    "description": "A tall, cylindrical storage tank with a domed top, pipe attachments, and a valve assembly at the base. It features a smooth body with vent cutouts and a rear access panel.",
+    "description_view_0": "Front view shows the domed top, central pipe, and the main valve assembly at the base.",
+    "description_view_1": "Side view highlights the cylindrical profile and the protruding pipe at the top.",
+    "description_view_2": "Rear view reveals a large, flat access panel and the continuation of the top pipe.",
+    "description_view_3": "Opposite side view displays the smooth cylindrical body and the upper vent cutouts.",
+    "category": "storage tank",
+    "height": 2.2,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.02,
+        0.08
+    ],
+    "mass": 320,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "valve",
+        "pipe",
+        "access panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "metallic"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_location": "urban rooftop",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [
+        "outlet valve",
+        "vent pipe"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_architectural_style": "cylindrical vertical",
+    "uid": "f5ae4061ed3c448b9fd6739f011e6343",
+    "near_synsets": {
+        "tank.n.02": 0.5114503000430992,
+        "reservoir.n.03": 0.5480757849710161,
+        "gas_holder.n.01": 0.5568763896205294,
+        "water_tower.n.01": 0.5664803959419096,
+        "gas_tank.n.01": 0.5691407707734729,
+        "storage.n.03": -1000.0,
+        "tank.n.01": -1000.0,
+        "cooler.n.03": -1000.0,
+        "storage.n.04": -1000.0,
+        "storage.n.01": -1000.0,
+        "memory.n.04": -1000.0,
+        "tank.n.03": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "repositing.n.01": -1000.0,
+        "storehouse.n.01": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/f5ae4061ed3c448b9fd6739f011e6343",
+        "creator_username": "mitkrakow",
+        "creator_display_name": "Museum of Engineering and Technology, Krakow",
+        "creator_profile_url": "https://sketchfab.com/mitkrakow"
+    },
+    "filename": "std_f5ae4061ed3c448b9fd6739f011e6343.glb",
+    "length": 0.8037298917770386,
+    "width": 0.8705568611621857
+}

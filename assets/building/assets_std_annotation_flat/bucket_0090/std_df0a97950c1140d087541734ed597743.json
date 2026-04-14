@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a heavy, dual-barreled automatic rifle system mounted on a robust tripod base, designed for stationary use in urban defense or checkpoint scenarios. The main body is encased in angular, armored panels, providing protection to the firing mechanism and operator. Two parallel barrels extend forward, each equipped with prominent muzzle devices, and are supported by a reinforced frame. The rear section features a mechanical assembly likely for ammunition feeding and operation, with visible box magazines attached to each side. The tripod legs are splayed for stability, with flat feet to distribute weight on hard surfaces. The overall finish is matte dark gray, suggesting a military or tactical application, and the construction appears to be primarily metal with some polymer or composite components.",
+    "description": "A dual-barreled, tripod-mounted automatic rifle system with armored casing and side-mounted box magazines, finished in matte dark gray. Designed for stationary urban defense, it features robust metal construction and prominent muzzle devices.",
+    "description_view_0": "Front view shows the armored faceplate, dual barrels, and the central firing mechanism, with the tripod base visible below.",
+    "description_view_1": "Left side view highlights the length of the barrels, the angular armor, and the side-mounted box magazine.",
+    "description_view_2": "Rear view reveals the mechanical assembly, both box magazines, and the full spread of the tripod legs.",
+    "description_view_3": "Right side view mirrors the left, showing the other barrel, armor profile, and the second box magazine.",
+    "category": "rifle",
+    "height": 1.1,
+    "max_dimension": 1.6,
+    "materials": [
+        "steel",
+        "polymer",
+        "composite",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "aimable",
+        "fireable",
+        "reloadable",
+        "adjustable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel",
+        "magazine",
+        "trigger assembly",
+        "tripod legs",
+        "muzzle device"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "muzzle brake",
+    "uid": "df0a97950c1140d087541734ed597743",
+    "near_synsets": {
+        "automatic_rifle.n.01": 0.4836277778340091,
+        "machine_gun.n.01": 0.49188588161891167,
+        "browning_automatic_rifle.n.01": 0.507616803621824,
+        "submachine_gun.n.01": 0.5084223347705911,
+        "carbine.n.01": 0.5117463657873687,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/df0a97950c1140d087541734ed597743",
+        "creator_username": "Sleepykingzzz",
+        "creator_display_name": "Sleepykingzzz",
+        "creator_profile_url": "https://sketchfab.com/Sleepykingzzz"
+    },
+    "filename": "std_df0a97950c1140d087541734ed597743.glb",
+    "length": 0.9826217591762543,
+    "width": 1.540164589881897
+}

@@ -1,0 +1,98 @@
+{
+    "description_long": "This humanoid robot features a cylindrical metallic torso with a rounded dome-shaped head, giving it a friendly and approachable appearance. Its head is equipped with two circular eye-like features, suggesting basic visual sensors, and the body is marked with the text 'TEST UNIT #3157' and directional arrows. The robot has articulated arms attached at the shoulders, each ending in a three-pronged claw-like hand, and its legs are mechanical with visible joints and broad, stable feet. The surface is a matte, dark metallic color, with subtle panel lines and bolts indicating modular construction. The overall design is utilitarian, with exposed joints and mechanical details that imply functionality in urban environments.",
+    "description": "A matte dark metallic humanoid robot with a cylindrical body, dome head, articulated arms, and claw-like hands, marked as 'TEST UNIT #3157'.",
+    "description_view_0": "Side view showing the rounded head, cylindrical torso, articulated arm, and mechanical leg with broad foot.",
+    "description_view_1": "Rear view highlighting the back of the dome head, cylindrical body, both arms, and mechanical legs.",
+    "description_view_2": "Opposite side view displaying the other arm, leg, and the curvature of the head and torso.",
+    "description_view_3": "Front view revealing two circular eyes, 'TEST UNIT #3157' marking, both arms, and the robot's symmetrical design.",
+    "category": "humanoid robot",
+    "height": 1.6,
+    "max_dimension": 0.7,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 110,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1078,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "pressable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arm",
+        "hand",
+        "leg",
+        "foot",
+        "head",
+        "eye"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.8,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms hanging down at the sides, legs straight and feet flat on the ground, head facing forward.",
+    "attribute_clothing_style": "Unclothed; exterior consists of integrated metallic panels with visible bolts and markings.",
+    "attribute_facial_features": "Face features two circular eye-like elements, no visible mouth or nose, and a smooth dome surface with no expressive features.",
+    "attribute_limb_articulation": "Arms have visible shoulder and elbow joints, hands have three articulated prongs; legs have hip, knee, and ankle joints, all appearing as rotary or hinge types, suggesting moderate range of motion.",
+    "attribute_presence_of_sensors": "Two circular eye-like features on the head likely serve as visual sensors; no other sensors visible.",
+    "uid": "b10326178dea43f8bfa876a6bb3a0698",
+    "near_synsets": {
+        "android.n.01": 0.5579618431395545,
+        "robotics_equipment.n.01": 0.5673145000350419,
+        "automaton.n.02": 0.5711024785021037,
+        "automaton.n.03": 0.5934073874746258,
+        "robotics.n.01": 0.5962977206899576
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b10326178dea43f8bfa876a6bb3a0698",
+        "creator_username": "ELIZION",
+        "creator_display_name": "ELIZION",
+        "creator_profile_url": "https://sketchfab.com/ELIZION"
+    },
+    "filename": "std_b10326178dea43f8bfa876a6bb3a0698.glb",
+    "length": 0.6254936158657074,
+    "width": 0.8471923470497131
+}

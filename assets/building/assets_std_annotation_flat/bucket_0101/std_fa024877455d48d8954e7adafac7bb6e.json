@@ -1,0 +1,94 @@
+{
+    "description_long": "This shelter features a large, pitched gabled roof covered with reddish-brown terracotta tiles, providing ample protection from sun and rain. The roof is supported by four sturdy wooden posts, one at each corner, which are anchored into a rectangular concrete slab foundation. The open-sided design allows for easy access from all directions, making it suitable for public spaces such as parks, bus stops, or picnic areas. The underside of the roof reveals wooden beams that add structural integrity and a rustic aesthetic. The concrete base is smooth and slightly elevated, offering a clean, stable surface beneath the shelter. No signage or decorative elements are present, emphasizing a functional and utilitarian design.",
+    "description": "A large, open-sided shelter with a terracotta-tiled gabled roof supported by wooden posts on a concrete slab. The structure is functional and unadorned, ideal for public or communal spaces.",
+    "description_view_0": "The shelter is seen from the gable end, highlighting the triangular roof profile, wooden beams, and two front support posts.",
+    "description_view_1": "A side view showing the full expanse of the tiled roof and the two side support posts, with the concrete base visible below.",
+    "description_view_2": "The opposite gable end is visible, mirroring the front with a clear view of the roof's pitch and support structure.",
+    "description_view_3": "Another side view, similar to view 1, displaying the length of the roof and the supporting posts on the concrete base.",
+    "category": "shelter",
+    "height": 3.2,
+    "max_dimension": 6.0,
+    "materials": [
+        "wood",
+        "terracotta",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.25,
+        0.35,
+        0.3,
+        0.1
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shelter_providing",
+        "shade_providing",
+        "rain_protecting"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "red-brown",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gabled terracotta tile roof",
+    "attribute_entryway_design": "open passage with no doors or barriers",
+    "attribute_support_structure": "four wooden posts anchored to a concrete slab",
+    "attribute_signage": "none",
+    "attribute_transparency": "fully opaque",
+    "uid": "fa024877455d48d8954e7adafac7bb6e",
+    "near_synsets": {
+        "shelter.n.01": 0.48364674139681235,
+        "shelter.n.02": 0.4939560757661692,
+        "pithouse.n.01": 0.515547428241452,
+        "shelter.n.05": 0.5238409951840969,
+        "gazebo.n.01": 0.5252346597791403,
+        "protection.n.04": -1000.0,
+        "tax_shelter.n.01": -1000.0
+    },
+    "synset": "tax_shelter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fa024877455d48d8954e7adafac7bb6e",
+        "creator_username": "rafakp",
+        "creator_display_name": "rafakp",
+        "creator_profile_url": "https://sketchfab.com/rafakp"
+    },
+    "filename": "std_fa024877455d48d8954e7adafac7bb6e.glb",
+    "length": 4.0616185665130615,
+    "width": 3.2523605823516846
+}

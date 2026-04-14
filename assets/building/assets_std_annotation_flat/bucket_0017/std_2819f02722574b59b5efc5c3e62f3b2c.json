@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a large, articulated container truck with a yellow cab and a long, rectangular gray cargo container attached to the rear. The container is prominently labeled with the word 'CONTAINER' in blue capital letters on both sides. The cab features detailed elements such as side mirrors, a windshield, and a front grille, while the container section is supported by three axles with six wheels at the rear and a single axle with two wheels at the front. The rear of the container displays reinforced doors with visible locking mechanisms, typical of shipping containers. The truck's overall design suggests it is used for transporting large freight loads in urban and industrial environments. The materials and construction indicate a robust, heavy-duty vehicle built for durability and long-distance hauling.",
+    "description": "A yellow cab container truck with a long gray cargo container labeled 'CONTAINER' in blue, featuring multiple axles and detailed exterior features. Built for heavy-duty freight transport in urban settings.",
+    "description_view_0": "Side view showing the yellow cab, the full length of the gray container, and the 'CONTAINER' label in blue.",
+    "description_view_1": "Front view highlighting the yellow cab, windshield, and grille, with the container extending directly behind.",
+    "description_view_2": "Opposite side view similar to view 0, showing the cab, container, and 'CONTAINER' label, with wheel details visible.",
+    "description_view_3": "Rear view displaying the back doors of the container, locking mechanisms, and the supporting wheels underneath.",
+    "category": "truck",
+    "height": 4.0,
+    "max_dimension": 14.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 16000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "handle",
+        "mirror",
+        "container doors"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "gray",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.15,
+        0.7,
+        0.05,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "day cab",
+    "attribute_cargo_bed_type": "box",
+    "attribute_wheelbase": 7.0,
+    "attribute_number_of_axles": 4,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "2819f02722574b59b5efc5c3e62f3b2c",
+    "near_synsets": {
+        "cargo_container.n.01": 0.4463821981168931,
+        "container.n.01": 0.4891543194985225,
+        "van.n.05": 0.5064436923928559,
+        "car_carrier.n.02": 0.5138415678106287,
+        "truck.n.01": 0.5265416178436061,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2819f02722574b59b5efc5c3e62f3b2c",
+        "creator_username": "skudgee",
+        "creator_display_name": "Willy Decarpentrie",
+        "creator_profile_url": "https://sketchfab.com/skudgee"
+    },
+    "filename": "std_2819f02722574b59b5efc5c3e62f3b2c.glb",
+    "length": 15.480499744415283,
+    "width": 2.4178619384765625
+}

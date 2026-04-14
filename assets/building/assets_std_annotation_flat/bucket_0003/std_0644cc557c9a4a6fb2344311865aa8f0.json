@@ -1,0 +1,106 @@
+{
+    "description_long": "This object is a large, horizontally-oriented cylindrical storage tank mounted on a rectangular concrete or metal containment platform. The tank is constructed from metal, with visible welded seams and reinforced by two sturdy support legs. A metal access ladder is attached to one side, leading up to a circular hatch or manway on the top of the tank. On one end, there are several pipe attachments and a valve assembly, likely for filling, draining, or monitoring the tank's contents. The overall appearance suggests industrial use, with a utilitarian design and weathered, matte gray finish.",
+    "description": "A large, horizontal metal storage tank with welded seams, support legs, an access ladder, and pipe attachments, set on a rectangular containment platform.",
+    "description_view_0": "The tank is viewed from the end, showing the circular end cap, support legs, and the rectangular containment platform.",
+    "description_view_1": "A side view reveals the full cylindrical body, welded seams, support legs, and the pipe/valve assembly on the right side.",
+    "description_view_2": "The opposite end view highlights the circular end cap, support legs, and the pipe/valve assembly extending outward.",
+    "description_view_3": "This side view displays the access ladder attached to the tank, the top hatch, and the full length of the containment platform.",
+    "category": "storage tank",
+    "height": 1.8,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "iron",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.15,
+        0.05
+    ],
+    "mass": 3200,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "ladder",
+        "hatch",
+        "valve",
+        "pipe"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "rust brown"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": true,
+    "attribute_valve_or_pipe_attachments": [
+        "valve",
+        "pipe"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_architectural_style": "cylindrical horizontal",
+    "uid": "0644cc557c9a4a6fb2344311865aa8f0",
+    "near_synsets": {
+        "tank.n.02": 0.4939157881212018,
+        "tank_farm.n.01": 0.5221561979074234,
+        "reservoir.n.03": 0.5301588859987185,
+        "container.n.01": 0.5335931526800758,
+        "water_tower.n.01": 0.5402470567382582,
+        "memory.n.04": -1000.0,
+        "cooler.n.03": -1000.0,
+        "tank.n.03": -1000.0,
+        "storage.n.03": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "tank.n.01": -1000.0,
+        "storage.n.04": -1000.0,
+        "storage.n.01": -1000.0,
+        "repositing.n.01": -1000.0,
+        "tank_car.n.01": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0644cc557c9a4a6fb2344311865aa8f0",
+        "creator_username": "PusztaiAndras",
+        "creator_display_name": "PAndras",
+        "creator_profile_url": "https://sketchfab.com/PusztaiAndras"
+    },
+    "filename": "std_0644cc557c9a4a6fb2344311865aa8f0.glb",
+    "length": 2.752819299697876,
+    "width": 4.7217841148376465
+}

@@ -1,0 +1,92 @@
+{
+    "description_long": "This object consists of two brown cardboard parcels of different sizes placed side by side. Both parcels have a rectangular box shape with visible creases and subtle surface irregularities, suggesting they are made from corrugated cardboard. The larger parcel is more rigid and has a pronounced central seam, likely where the box is taped shut, while the smaller parcel appears slightly compressed and less perfectly rectangular. The surfaces of both parcels are matte and show faint lines and folds typical of cardboard packaging. The color is a uniform medium brown, with the tape strip being only slightly lighter in tone. These parcels are commonly seen in urban environments such as sidewalks, porches, or near delivery vehicles.",
+    "description": "Two brown cardboard parcels, one large and one small, with visible tape seams and subtle surface creases. Both have a matte, slightly irregular finish typical of shipping boxes.",
+    "description_view_0": "Front view showing both parcels side by side, highlighting their size difference and the central tape seam on the larger box.",
+    "description_view_1": "End-on view of the larger parcel, showing its rectangular face and the central tape strip running vertically.",
+    "description_view_2": "Rear view with both parcels visible, emphasizing the length of the larger box and the compressed shape of the smaller one.",
+    "description_view_3": "Top-down view showing the tape seams on both parcels and their relative positions.",
+    "category": "parcels",
+    "height": 0.35,
+    "max_dimension": 0.6,
+    "materials": [
+        "corrugated_cardboard",
+        "adhesive_tape",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 2.5,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "flap",
+        "tape_seam"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.48,
+    "youngs_modulus": 4000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "group",
+    "attribute_architectural_style": "",
+    "attribute_car_model": "",
+    "attribute_building_number": "",
+    "attribute_storefront_signage": "",
+    "attribute_street_name": "",
+    "uid": "1731bfd5249349d5be36054c5664097e",
+    "near_synsets": {
+        "packing_box.n.02": 0.5385218490617081,
+        "packaging.n.03": 0.5475447164333388,
+        "carton.n.02": 0.5557218359168062,
+        "packaging.n.01": 0.5697761627282842,
+        "pack.n.03": 0.5725715131901236,
+        "package.n.01": -1000.0,
+        "tract.n.01": -1000.0,
+        "parcel.n.02": -1000.0,
+        "package.n.02": -1000.0
+    },
+    "synset": "package.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1731bfd5249349d5be36054c5664097e",
+        "creator_username": "lleach5221",
+        "creator_display_name": "lleach5221",
+        "creator_profile_url": "https://sketchfab.com/lleach5221"
+    },
+    "filename": "std_1731bfd5249349d5be36054c5664097e.glb",
+    "length": 0.3434624671936035,
+    "width": 0.9574851989746094
+}

@@ -1,0 +1,99 @@
+{
+    "description_long": "This handcart features a rectangular wooden platform with a weathered blue finish, supported by four large, red, solid wheels at each corner. A vertical metal pipe, likely serving as a handle or support, is mounted near one end of the platform, and a metallic mug is placed next to it, suggesting the cart may be used for carrying small items. The wheels are robust and slightly protrude beyond the platform's edges, providing stability and ease of movement. The platform itself is flat and solid, constructed from several wooden planks joined together. There are no side rails or barriers, leaving the load area open for easy access. The overall design is utilitarian, with visible wear and a simple, functional aesthetic suitable for urban environments.",
+    "description": "A flat wooden handcart with four large red wheels, a vertical metal handle, and an open platform with a metal mug placed on top. The cart has a weathered blue finish and no side rails.",
+    "description_view_0": "Front view showing the vertical metal handle and mug on the wooden platform, with two red wheels visible on each side.",
+    "description_view_1": "Side view highlighting all four red wheels, the flat blue wooden platform, and the upright metal handle with the mug beside it.",
+    "description_view_2": "Rear view displaying the open platform, the mug positioned near the handle, and the red wheels flanking the sides.",
+    "description_view_3": "Opposite side view showing the mug and handle from a different angle, with all four wheels and the flat platform clearly visible.",
+    "category": "handcart",
+    "height": 0.45,
+    "max_dimension": 0.9,
+    "materials": [
+        "wood",
+        "metal",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 35,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheels",
+        "platform"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "blue",
+        "red",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.08,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_number_of_wheels": 4,
+    "attribute_handle_type": "vertical pipe",
+    "attribute_wheel_position": "all corners",
+    "attribute_presence_of_side_rails": false,
+    "attribute_load_platform_design": "flat solid surface",
+    "uid": "0292b47486774a538c0f891605c7bda1",
+    "near_synsets": {
+        "handcart.n.01": 0.4736223074216407,
+        "hand_truck.n.01": 0.48243000172611483,
+        "serving_cart.n.01": 0.48734362772180206,
+        "shopping_cart.n.01": 0.4954695980088314,
+        "laundry_cart.n.01": 0.497005602391871
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0292b47486774a538c0f891605c7bda1",
+        "creator_username": "kobyla",
+        "creator_display_name": "Kobyla",
+        "creator_profile_url": "https://sketchfab.com/kobyla"
+    },
+    "filename": "std_0292b47486774a538c0f891605c7bda1.glb",
+    "length": 0.7787356376647949,
+    "width": 0.5886519551277161
+}

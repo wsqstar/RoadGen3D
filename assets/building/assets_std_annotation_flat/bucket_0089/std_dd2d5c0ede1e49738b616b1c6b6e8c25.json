@@ -1,0 +1,107 @@
+{
+    "description_long": "This object is a group of vending machines, each with a rectangular, upright form and a variety of colorful front panels. The front faces display product images, selection buttons, and payment interfaces, with some machines featuring illuminated display areas. The machines are arranged in two rows, with visible branding and signage such as 'BOSS' and 'TOBACCO' on some units. The sides and backs of the machines are mostly solid colors, with minimal detailing. The materials appear to be primarily metal and plastic, with glass or acrylic panels on the front for product display. These vending machines are typical of those found on urban sidewalks, in train stations, or near public parks.",
+    "description": "A group of upright, colorful vending machines with product displays, selection buttons, and visible branding on the front panels.",
+    "description_view_0": "Side view showing the depth and arrangement of the vending machines in two rows, with some colored panels visible.",
+    "description_view_1": "Front view displaying the vending machines' product windows, selection buttons, payment interfaces, and prominent branding.",
+    "description_view_2": "Opposite side view highlighting the backs and sides of the machines, with some branding visible on the side panels.",
+    "description_view_3": "Rear view showing the solid-colored backs of the vending machines, with minimal detail or features.",
+    "category": "vending machine",
+    "height": 1.8,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "air",
+        "electronic components"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "display panel",
+        "payment slot",
+        "retrieval slot",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "gray",
+        "red",
+        "green"
+    ],
+    "colors_composition": [
+        0.4,
+        0.25,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "smooth",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_display_panel": "Large rectangular display panels are present on the front of each vending machine, showing product images and illuminated areas, occupying the upper to middle sections.",
+    "attribute_payment_interface": "Multiple payment interfaces are visible, including coin slots and bill acceptors, located on the front panels near the product selection area.",
+    "attribute_product_selection_buttons": "Individual product selection buttons are arranged in vertical or grid patterns on the front, each labeled with product images or numbers.",
+    "attribute_product_retrieval_slot": "Rectangular retrieval slots are located at the lower front of each machine, some with flaps or small doors.",
+    "attribute_branding_or_signage": "Visible branding includes logos and text such as 'BOSS' and 'TOBACCO' on the front and side panels, with colorful signage and product advertisements.",
+    "uid": "dd2d5c0ede1e49738b616b1c6b6e8c25",
+    "near_synsets": {
+        "vending_machine.n.01": 0.44977346532899376,
+        "automat.n.01": 0.5047248378322409,
+        "fruit_machine.n.01": 0.5692484886132491,
+        "automat.n.02": 0.5699425602021235,
+        "meat_counter.n.01": 0.5740799565012986,
+        "machine.n.02": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.05": -1000.0,
+        "machine.n.01": -1000.0,
+        "car.n.01": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dd2d5c0ede1e49738b616b1c6b6e8c25",
+        "creator_username": "Elbolilloduro",
+        "creator_display_name": "Elbolillo",
+        "creator_profile_url": "https://sketchfab.com/Elbolilloduro"
+    },
+    "filename": "std_dd2d5c0ede1e49738b616b1c6b6e8c25.glb",
+    "length": 3.6721248626708984,
+    "width": 4.052157163619995
+}

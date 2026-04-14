@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a vintage green tram with a boxy, symmetrical body and a prominent roof-mounted diamond pantograph for overhead electric power collection. The tram features a central cabin with large, rectangular windows on both sides, providing ample visibility for passengers and operators. The exterior is painted in a classic green color, accented by black undercarriage components and a dark roof, with visible signage and emblems on the side panels. The front and rear ends are nearly identical, each equipped with coupling mechanisms, buffers, and headlamps, as well as small windows for operator visibility. The tram rides on two sets of black bogies with detailed wheel assemblies, and the side panels display museum-related insignia. The overall design suggests a historical or heritage tram, likely used for display or special service in an urban environment.",
+    "description": "A vintage green tram with a diamond pantograph, large side windows, and detailed black undercarriage, featuring museum insignia and symmetrical front and rear ends.",
+    "description_view_0": "Rear view showing the green back panel, coupling mechanism, buffers, and roof-mounted pantograph structure.",
+    "description_view_1": "Side view highlighting the long green body, large rectangular windows, museum insignia, and detailed black undercarriage.",
+    "description_view_2": "Front view similar to the rear, with green panel, coupling, buffers, and clear view of the pantograph on the roof.",
+    "description_view_3": "Opposite side view with matching window arrangement, green body, and visible museum insignia.",
+    "category": "tram",
+    "height": 3.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 9,
+    "movable": true,
+    "required_force": 40000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "pantograph",
+        "coupling",
+        "headlamp",
+        "control lever"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_pantograph_type": "diamond",
+    "attribute_door_configuration": "two sliding doors, one on each side, centrally located",
+    "attribute_window_arrangement": "Four large rectangular windows per side, evenly spaced, separated by vertical frames, with additional smaller windows at the ends",
+    "attribute_route_number_display": "none",
+    "attribute_front_signage": "white printed number 'G 051' on the lower left, no other signage visible",
+    "uid": "9883bf84abe54f4e99bcd2b90e317917",
+    "near_synsets": {
+        "streetcar.n.01": 0.5637467318991423,
+        "streamliner.n.01": 0.5665596987313005,
+        "scenic_railway.n.01": 0.5677577645419067,
+        "berlin.n.03": 0.5684309436891888,
+        "train.n.01": 0.5687059222133523,
+        "tramcar.n.01": -1000.0,
+        "tramway.n.01": -1000.0
+    },
+    "synset": "tramway.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/9883bf84abe54f4e99bcd2b90e317917",
+        "creator_username": "mitkrakow",
+        "creator_display_name": "Museum of Engineering and Technology, Krakow",
+        "creator_profile_url": "https://sketchfab.com/mitkrakow"
+    },
+    "filename": "std_9883bf84abe54f4e99bcd2b90e317917.glb",
+    "length": 5.1463623046875,
+    "width": 2.011898636817932
+}

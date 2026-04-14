@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a two-story brick pizzeria with a flat concrete roof and boarded-up windows, giving it an abandoned or derelict appearance. The front facade features a shattered glass window, a partially open door, and wooden planks nailed across the upper windows. A graffiti-covered white van is parked to the side, and a wooden picnic table with benches and a blue trash bin are placed near the entrance. The building's lower level has a large window and door, while the upper level is characterized by smaller, uniformly spaced windows. The overall scene suggests urban decay, with visible signs of neglect and vandalism.",
+    "description": "A two-story, boarded-up brick pizzeria with a flat roof, broken windows, graffiti-covered van, and outdoor picnic table, evoking urban decay.",
+    "description_view_0": "Front view showing the main entrance, shattered window, boarded windows, blue trash bin, picnic table, and graffiti van.",
+    "description_view_1": "Side view highlighting the length of the van, boarded side windows, and partial view of the picnic table and trash bin.",
+    "description_view_2": "Rear view displaying fully boarded windows on both floors and the back of the van, with no visible entrance.",
+    "description_view_3": "Opposite side view showing the blue trash bin, picnic table, and boarded windows, with the van partially visible.",
+    "category": "pizzeria",
+    "height": 6.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "brick",
+        "concrete",
+        "wood",
+        "glass",
+        "metal",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.12,
+        0.05,
+        0.07,
+        0.03,
+        0.01,
+        0.02
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "breakable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "trash bin",
+        "picnic table",
+        "van door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "white",
+        "blue",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_signage": false,
+    "attribute_outdoor_seating": true,
+    "attribute_pizza_oven_chimney": false,
+    "attribute_menu_display": false,
+    "attribute_architectural_style": "industrial",
+    "uid": "b15bb6cc863c46c48b265801d313b7ac",
+    "near_synsets": {
+        "pizzeria.n.01": 0.5308393194329732,
+        "ruin.n.02": 0.555291875726404,
+        "cityscape.n.02": 0.5574632396317917,
+        "rattrap.n.02": 0.5673084058989196,
+        "restaurant.n.01": 0.5783074580063104
+    },
+    "synset": "pizzeria.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b15bb6cc863c46c48b265801d313b7ac",
+        "creator_username": "gigachel",
+        "creator_display_name": "gigachel",
+        "creator_profile_url": "https://sketchfab.com/gigachel"
+    },
+    "filename": "std_b15bb6cc863c46c48b265801d313b7ac.glb",
+    "length": 7.600288391113281,
+    "width": 9.477654457092285
+}

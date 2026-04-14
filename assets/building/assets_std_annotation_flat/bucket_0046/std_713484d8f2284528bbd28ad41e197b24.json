@@ -1,0 +1,97 @@
+{
+    "description_long": "A stack of four cardboard parcels is shown, each box varying slightly in size and orientation, creating a precarious, leaning tower. The boxes are made of brown corrugated cardboard, with visible black packing tape sealing the seams and edges. Some boxes display printed symbols such as recycling logos, directional arrows, and caution signs, adding to their realistic appearance. The topmost box is partially open, revealing a glimpse of the empty interior. The surfaces of the boxes are matte and slightly rough, with subtle creases and folds typical of handled cardboard. The overall look suggests these parcels are ready for delivery or have just been dropped off in an urban environment.",
+    "description": "A leaning stack of four brown cardboard parcels, sealed with black tape and marked with shipping symbols. The top box is partially open, revealing an empty interior.",
+    "description_view_0": "A side view of the stacked parcels, highlighting the leaning arrangement and visible tape seams, with the top box slightly ajar.",
+    "description_view_1": "A top-down view showing the square tops of the boxes, with the open flaps of the uppermost box and the taped seams clearly visible.",
+    "description_view_2": "A rear side view emphasizing the staggered alignment of the boxes and the printed symbols on the surfaces.",
+    "description_view_3": "A bottom-up perspective showing the open top box and the interior, as well as the taped and printed surfaces of the lower boxes.",
+    "category": "parcels",
+    "height": 1.1,
+    "max_dimension": 1.1,
+    "materials": [
+        "corrugated_cardboard",
+        "adhesive_tape",
+        "ink",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.01,
+        0.09
+    ],
+    "mass": 3.5,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "box flaps",
+        "tape seams"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.92,
+        0.07,
+        0.01
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 4000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "group",
+    "attribute_architectural_style": "",
+    "attribute_car_model": "",
+    "attribute_building_number": "",
+    "attribute_storefront_signage": "",
+    "attribute_street_name": "",
+    "uid": "713484d8f2284528bbd28ad41e197b24",
+    "near_synsets": {
+        "packing_box.n.02": 0.5193196901081589,
+        "mail.n.01": 0.5339597191933988,
+        "carton.n.02": 0.5397636956994459,
+        "parcel_post.n.01": 0.5401803807530504,
+        "package.n.02": 0.5440098586423672,
+        "tract.n.01": -1000.0,
+        "parcel.n.02": -1000.0,
+        "package.n.01": -1000.0
+    },
+    "synset": "carton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/713484d8f2284528bbd28ad41e197b24",
+        "creator_username": "juancarloscr",
+        "creator_display_name": "JuanCarlos CR",
+        "creator_profile_url": "https://sketchfab.com/juancarloscr"
+    },
+    "filename": "std_713484d8f2284528bbd28ad41e197b24.glb",
+    "length": 1.1704266667366028,
+    "width": 1.2250909805297852
+}

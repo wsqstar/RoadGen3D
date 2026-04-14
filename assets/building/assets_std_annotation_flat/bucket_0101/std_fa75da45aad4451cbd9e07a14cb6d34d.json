@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a Kalashnikov-style assault rifle, featuring a distinctive curved magazine and a skeletal metal folding stock. The receiver and barrel assembly are constructed from dark, matte-finished metal, with a wooden or polymer handguard and pistol grip in a reddish-brown hue. The rifle includes a prominent front sight post and a rear notch sight, both mounted on the barrel and receiver, respectively. The magazine is detachable and box-shaped, designed to hold multiple rounds of ammunition. The overall design is utilitarian, with minimal ornamentation and a focus on durability and function. The rifle's proportions and features are consistent with those commonly seen in urban environments, such as law enforcement or military contexts.",
+    "description": "A Kalashnikov-style assault rifle with a curved magazine, folding metal stock, and a mix of dark metal and reddish-brown polymer or wood components.",
+    "description_view_0": "Side view showing the full length of the rifle, including the folding stock, curved magazine, and both front and rear sights.",
+    "description_view_1": "Front-on view highlighting the barrel's muzzle, front sight post, and the narrow profile of the rifle.",
+    "description_view_2": "Opposite side view displaying the same key features as view 0, with the magazine and folding stock visible from the other side.",
+    "description_view_3": "Rear-on view showing the end of the folding stock, the rear sight, and the slim profile of the receiver and barrel.",
+    "category": "rifle",
+    "height": 0.22,
+    "max_dimension": 0.88,
+    "materials": [
+        "steel",
+        "polymer",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "pistol grip",
+        "magazine",
+        "trigger",
+        "charging handle",
+        "safety lever",
+        "front sight",
+        "rear sight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark brown",
+        "red-brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "folding",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "flash hider",
+    "uid": "fa75da45aad4451cbd9e07a14cb6d34d",
+    "near_synsets": {
+        "kalashnikov.n.01": 0.4244595023684339,
+        "assault_rifle.n.01": 0.4720481899735211,
+        "kalashnikov_culture.n.01": 0.5192356161264833,
+        "garand_rifle.n.01": 0.522810923745011,
+        "light_arm.n.01": 0.5344079862737965,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fa75da45aad4451cbd9e07a14cb6d34d",
+        "creator_username": "Tyolo",
+        "creator_display_name": "Tyolo",
+        "creator_profile_url": "https://sketchfab.com/Tyolo"
+    },
+    "filename": "std_fa75da45aad4451cbd9e07a14cb6d34d.glb",
+    "length": 0.7820965051651001,
+    "width": 0.05330865643918514
+}

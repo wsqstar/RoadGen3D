@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a modern, tactical-style rifle with a large cylindrical drum magazine, a collapsible stock, and a prominent foregrip. The main body is robust and features a rail system along the top for mounting accessories. The barrel is relatively short and thick, suggesting a design optimized for close-quarters or urban use. The stock is adjustable, with a skeletal design for reduced weight and improved ergonomics. The overall finish is matte black, giving it a non-reflective, utilitarian appearance. The rifle's controls, such as the trigger, magazine release, and charging handle, are all clearly defined and accessible.",
+    "description": "A tactical rifle with a drum magazine, collapsible stock, and matte black finish, designed for urban environments. Features include a foregrip, rail system, and robust construction.",
+    "description_view_0": "Front view showing the circular drum magazine and the short, thick barrel.",
+    "description_view_1": "Side view highlighting the collapsible stock, foregrip, and large drum magazine.",
+    "description_view_2": "Rear view displaying the skeletal stock and the back of the drum magazine.",
+    "description_view_3": "Opposite side view showing the same features as view 1, with more detail on the stock and grip.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 0.85,
+    "materials": [
+        "polymer",
+        "steel",
+        "aluminum",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "mass": 5.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "trigger",
+        "magazine",
+        "foregrip",
+        "charging handle",
+        "rail"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "collapsible",
+    "attribute_barrel_type": "short",
+    "attribute_magazine_type": "drum",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "none",
+    "uid": "ef63d33e180d46678b481fa414c626d0",
+    "near_synsets": {
+        "assault_rifle.n.01": 0.535509310478143,
+        "garand_rifle.n.01": 0.5459052517821273,
+        "dragunov.n.01": 0.547217823237725,
+        "light_arm.n.01": 0.5523071555047389,
+        "automatic_rifle.n.01": 0.5558303389437117,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ef63d33e180d46678b481fa414c626d0",
+        "creator_username": "Theo_Nelson",
+        "creator_display_name": "Theo_Nelson",
+        "creator_profile_url": "https://sketchfab.com/Theo_Nelson"
+    },
+    "filename": "std_ef63d33e180d46678b481fa414c626d0.glb",
+    "length": 0.7610855996608734,
+    "width": 0.2284635528922081
+}

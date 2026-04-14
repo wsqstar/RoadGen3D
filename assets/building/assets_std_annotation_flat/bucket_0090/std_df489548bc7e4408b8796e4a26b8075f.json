@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a small, fixed-wing airplane with a straight, high-mounted wing configuration and a compact fuselage. The wings are broad and rectangular, extending symmetrically from the central body, with metallic-looking tips. The fuselage is primarily a light tan color, with a cockpit area situated at the front and a tail section that rises slightly above the main body. The landing gear consists of two main wheels and a smaller tail wheel, all appearing robust and blocky. The engine is mounted at the nose, with a visible propeller assembly. The tail features a conventional vertical stabilizer and horizontal stabilizers, forming a classic tail design.",
+    "description": "A small, tan airplane with high-mounted straight wings, a front propeller engine, and a conventional tail. The landing gear is fixed and robust, and the cockpit is positioned at the front.",
+    "description_view_0": "Front view showing the broad wingspan, central propeller engine, and main landing gear beneath the fuselage.",
+    "description_view_1": "Angled side view highlighting the length of the fuselage, the cockpit at the front, and the tail section with its stabilizers.",
+    "description_view_2": "Rear view displaying the tail assembly, horizontal and vertical stabilizers, and the full wingspan.",
+    "description_view_3": "Opposite angled side view emphasizing the tail wheel, rear fuselage, and the engine at the nose.",
+    "category": "airplane",
+    "height": 2.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.08,
+        0.02,
+        0.1
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 6000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "cockpit canopy",
+        "wheels",
+        "doors",
+        "control surfaces"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 12.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "High-wing, straight configuration with no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Single front-mounted piston engine with a propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Fixed taildragger landing gear with two main wheels and one tail wheel.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a single seat visible at the front of the fuselage.",
+    "uid": "df489548bc7e4408b8796e4a26b8075f",
+    "near_synsets": {
+        "airplane.n.01": 0.47622427256065897,
+        "propjet.n.01": 0.5056260223197062,
+        "landing_gear.n.01": 0.5093516510294023,
+        "propeller_plane.n.01": 0.5111329688248708,
+        "aircraft.n.01": 0.5119362423969034
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/df489548bc7e4408b8796e4a26b8075f",
+        "creator_username": "madexc",
+        "creator_display_name": "madexc",
+        "creator_profile_url": "https://sketchfab.com/madexc"
+    },
+    "filename": "std_df489548bc7e4408b8796e4a26b8075f.glb",
+    "length": 4.062499284744263,
+    "width": 5.624998569488525
+}

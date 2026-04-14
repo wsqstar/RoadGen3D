@@ -1,0 +1,104 @@
+{
+    "description_long": "This is an old, heavily damaged sedan with a faded green exterior and extensive structural deformation. The roof is caved in and torn open, with large holes exposing the interior, and the windows are shattered or missing entirely. Both side doors are bent and warped, with one hanging open, and the front grille is dented and partially detached. The tires are worn and the wheel wells show signs of rust and decay. The front and rear bumpers are twisted and misaligned, and the headlights are either broken or missing. The overall appearance suggests the car has been abandoned for a long time, possibly after a severe accident or exposure to harsh conditions.",
+    "description": "A severely damaged, faded green vintage sedan with a caved-in roof, broken windows, and twisted doors and bumpers.",
+    "description_view_0": "Left side view showing the collapsed roof, torn doors, and missing windows, with the front door partially open.",
+    "description_view_1": "Front view highlighting the dented grille, broken headlight, twisted bumper, and gaping holes in the windshield and roof.",
+    "description_view_2": "Right side view displaying similar damage as the left, with the rear door more intact but still warped and the roof heavily damaged.",
+    "description_view_3": "Rear view showing the broken rear window, bent trunk, and misaligned rear bumper, with the right rear door open.",
+    "category": "sedan",
+    "height": 1.5,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.06,
+        0.03,
+        0.03
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 3500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "trunk",
+        "hood",
+        "window",
+        "bumper"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "gray",
+        "black",
+        "rust-brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_number_of_doors": 4,
+    "attribute_license_plate": "none",
+    "attribute_wheel_design": "Simple steel wheels with a solid, dark hubcap and no visible spokes; tires are worn and aged.",
+    "uid": "eb0941fd91e64707b2cc0917bff204e2",
+    "near_synsets": {
+        "car_window.n.01": 0.537355500260134,
+        "car_door.n.01": 0.5503326394999659,
+        "brougham.n.02": 0.5526769467783901,
+        "sedan.n.01": 0.5543031897860845,
+        "boneshaker.n.01": 0.571619692807903,
+        "sedan.n.02": -1000.0
+    },
+    "synset": "sedan.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/eb0941fd91e64707b2cc0917bff204e2",
+        "creator_username": "rajibkc",
+        "creator_display_name": "rajibkc",
+        "creator_profile_url": "https://sketchfab.com/rajibkc"
+    },
+    "filename": "std_eb0941fd91e64707b2cc0917bff204e2.glb",
+    "length": 3.9728710651397705,
+    "width": 1.9279663562774658
+}

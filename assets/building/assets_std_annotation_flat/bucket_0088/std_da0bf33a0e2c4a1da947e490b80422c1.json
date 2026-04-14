@@ -1,0 +1,82 @@
+{
+    "description_long": "This object is a rectangular section of sidewalk composed of sixteen square concrete slabs arranged in a 4x4 grid. The surface displays a uniform gray coloration with subtle variations in tone, likely due to weathering and minor surface imperfections. Each slab is separated by narrow, straight grooves that define the grid pattern and provide drainage. The concrete surface appears slightly rough, with small speckles and occasional patches of discoloration, suggesting exposure to outdoor elements. The edges of the sidewalk are straight and flush, with no visible curb or raised border. There are no embedded features such as tactile paving, street furniture, or decorative elements present.",
+    "description": "A rectangular grid of sixteen gray concrete sidewalk slabs with visible grooves and a slightly rough, weathered surface.",
+    "description_view_0": "The sidewalk is seen from a low angle, highlighting the grid pattern and subtle surface texture on the concrete slabs.",
+    "description_view_1": "This view shows the sidewalk from the opposite side, emphasizing the uniformity of the slab arrangement and the straightness of the edges.",
+    "description_view_2": "From this angle, the grooves between the slabs are clearly visible, and minor surface imperfections are more apparent.",
+    "description_view_3": "The sidewalk is viewed from another side, showing consistent slab size and coloration across the entire surface.",
+    "category": "sidewalk",
+    "height": 0.08,
+    "max_dimension": 3.2,
+    "materials": [
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.98,
+        0.02
+    ],
+    "mass": 1530,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.46,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.2,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": false,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "flush",
+    "attribute_adjacent_street_type": "residential",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "da0bf33a0e2c4a1da947e490b80422c1",
+    "near_synsets": {
+        "sidewalk.n.01": 0.5128641709360888,
+        "paved_surface.n.01": 0.5406365425915942,
+        "cement.n.01": 0.5476953821619691,
+        "curbside.n.01": 0.5513115630712474,
+        "macadam.n.01": 0.5517403682195352
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/da0bf33a0e2c4a1da947e490b80422c1",
+        "creator_username": "2w",
+        "creator_display_name": "Forest Run Forever",
+        "creator_profile_url": "https://sketchfab.com/2w"
+    },
+    "filename": "std_da0bf33a0e2c4a1da947e490b80422c1.glb",
+    "length": 0.29966071248054504,
+    "width": 0.30079619586467743
+}

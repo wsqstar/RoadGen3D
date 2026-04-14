@@ -1,0 +1,108 @@
+{
+    "description_long": "This object is a steam-powered, wheeled combat vehicle reminiscent of late 19th-century artillery or a steampunk-inspired weapon platform. It features a prominent multi-barreled rotary cannon mounted at the front, with a visible steam exhaust stack emitting vapor at the rear. The vehicle is supported by two large wooden-spoked wheels on either side and two long, metallic stabilizing arms extending forward. The main body is constructed from dark metal, with riveted panels and mechanical components exposed, including gears and pipes. The overall design suggests a blend of historical and fantastical engineering, with a focus on firepower and mobility.",
+    "description": "A steam-powered, wheeled combat vehicle with a rotary cannon, large wooden wheels, and a prominent steam exhaust stack.",
+    "description_view_0": "Front view showing the multi-barreled rotary cannon, forward-extending stabilizing arms, and the steam stack behind.",
+    "description_view_1": "Side view highlighting the large wooden wheel, exposed mechanical components, and the steam stack emitting vapor.",
+    "description_view_2": "Rear view displaying the steam stack, riveted metal body, and the back of the wooden wheels.",
+    "description_view_3": "Opposite side view with a clear look at the rotary cannon, wooden wheel, and mechanical details.",
+    "category": "combat tactical  vehicle",
+    "height": 1.6,
+    "max_dimension": 3.2,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 9000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pushable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "cannon",
+        "steam stack",
+        "lever",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "brown",
+        "silver",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large rotary cannon mounted at the front center of the vehicle.",
+    "attribute_armor_plating": "Riveted metal panels cover the main body, providing moderate armor protection to the front and sides.",
+    "attribute_camouflage_pattern": "None visible; the vehicle is finished in solid dark and metallic colors.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable; the vehicle uses two large wooden-spoked wheels.",
+    "uid": "df854e802f7c49af8bccd5c60206a2d9",
+    "near_synsets": {
+        "steam_locomotive.n.01": 0.5198166694808795,
+        "stanley_steamer.n.01": 0.5266550507124812,
+        "tank.n.01": 0.5286006770963624,
+        "steam_engine.n.01": 0.530788045461532,
+        "traction_engine.n.01": 0.5339969260364829,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/df854e802f7c49af8bccd5c60206a2d9",
+        "creator_username": "Crysis007-94",
+        "creator_display_name": "Osho",
+        "creator_profile_url": "https://sketchfab.com/Crysis007-94"
+    },
+    "filename": "std_df854e802f7c49af8bccd5c60206a2d9.glb",
+    "length": 3.3889180421829224,
+    "width": 3.388916492462158
+}

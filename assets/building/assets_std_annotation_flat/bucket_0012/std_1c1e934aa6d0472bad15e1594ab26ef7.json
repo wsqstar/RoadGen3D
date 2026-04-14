@@ -1,0 +1,99 @@
+{
+    "description_long": "This apartment building features a simple, boxy structure with two visible floors and a flat roof. The exterior is clad in horizontal panels, giving it a uniform, modern appearance. Windows are symmetrically arranged in rows, each with white shutters, and the building includes a partially recessed balcony or open area on one side. The ground floor appears to have a sheltered space supported by a single column, possibly serving as a carport or entryway. The color palette is primarily gray with white accents, and the overall design is utilitarian and functional. The building's surfaces are hard and matte, with minimal decorative elements.",
+    "description": "A two-story, modern apartment building with a flat roof, gray panel exterior, and symmetrically arranged shuttered windows. Features a recessed balcony and a sheltered ground-level area.",
+    "description_view_0": "Front view showing three shuttered windows on each floor, with a uniform gray panel facade.",
+    "description_view_1": "Side view revealing a recessed balcony or open area with a wooden floor and a supporting column below.",
+    "description_view_2": "Opposite side view highlighting the balcony's depth and the continuation of the window pattern.",
+    "description_view_3": "Rear view with a similar window arrangement as the front, but no visible balcony or entryway.",
+    "category": "apartment building",
+    "height": 6.0,
+    "max_dimension": 14.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.02,
+        0.1
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "window",
+        "shutter",
+        "balcony railing",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "brown"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 2,
+    "attribute_balcony_presence": true,
+    "attribute_window_arrangement": "Windows are symmetrically arranged in horizontal rows on each floor, evenly spaced and aligned vertically and horizontally, with each window featuring shutters.",
+    "attribute_entrance_type": "single door",
+    "attribute_architectural_style": "Contemporary",
+    "uid": "1c1e934aa6d0472bad15e1594ab26ef7",
+    "near_synsets": {
+        "apartment_building.n.01": 0.49177725154283725,
+        "gallery.n.06": 0.5304214240774922,
+        "suite.n.02": 0.530768507855518,
+        "apartment.n.01": 0.5356113733191774,
+        "block.n.05": 0.5377369125813289,
+        "building.n.04": -1000.0,
+        "building.n.01": -1000.0,
+        "construction.n.01": -1000.0,
+        "construction.n.07": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1c1e934aa6d0472bad15e1594ab26ef7",
+        "creator_username": "lsmith17",
+        "creator_display_name": "Logan Smith",
+        "creator_profile_url": "https://sketchfab.com/lsmith17"
+    },
+    "filename": "std_1c1e934aa6d0472bad15e1594ab26ef7.glb",
+    "length": 9.8226318359375,
+    "width": 9.5123872756958
+}

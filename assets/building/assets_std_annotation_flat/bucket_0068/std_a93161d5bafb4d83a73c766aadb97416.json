@@ -1,0 +1,101 @@
+{
+    "description_long": "This parking meter is a tall, rectangular device with a sturdy yellow metal body mounted on a square pedestal post. The upper section features a control panel with a digital display, several buttons, and a slot for payment, all clearly visible on the front face. Below the main interface, there is a black box-like compartment with a label reading 'TOMO', likely for ticket dispensing or receipt collection. The post is solid and robust, designed to be fixed to the ground, and the base is wide for stability. The sides and back of the meter are plain, with no visible controls or openings, emphasizing its front-facing functionality. The overall design is utilitarian, built to withstand outdoor urban environments and frequent public use.",
+    "description": "A tall, yellow metal parking meter with a digital display, payment interface, and a black ticket compartment on a sturdy pedestal post. The front features all interactive elements, while the sides and back are plain.",
+    "description_view_0": "Front view showing the digital display, payment interface, buttons, and the black ticket compartment labeled 'TOMO'.",
+    "description_view_1": "Left side view revealing the depth of the meter and the protruding black compartment, with no visible controls.",
+    "description_view_2": "Rear view displaying a plain yellow surface with no interactive features or openings.",
+    "description_view_3": "Right side view similar to the left, showing the black compartment's profile and the solid post.",
+    "category": "parking meter",
+    "height": 1.5,
+    "max_dimension": 1.5,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "electronic components",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "insertable",
+        "readable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "button",
+        "digital display",
+        "coin slot",
+        "ticket compartment"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_payment_interface": "Front panel features a digital display, several buttons, and a coin slot for payment. No visible card or contactless interface.",
+    "attribute_coin_slot": "Present on the front panel, rectangular slot above the buttons, marked for coin insertion.",
+    "attribute_digital_display": "Present on the front panel, rectangular in shape, displaying information above the buttons.",
+    "attribute_identification_number": "None",
+    "attribute_mounting_post": "Present; yellow metal square post, solid construction, connects base to main meter body.",
+    "uid": "a93161d5bafb4d83a73c766aadb97416",
+    "near_synsets": {
+        "parking_meter.n.01": 0.4584262489020354,
+        "parking_ticket.n.01": 0.5493051205725755,
+        "taximeter.n.01": 0.557344361061427,
+        "parking.n.01": 0.5602398462385427,
+        "postage_meter.n.01": 0.5727558452909581,
+        "meter.n.04": -1000.0,
+        "meter.n.01": -1000.0,
+        "meter.n.02": -1000.0,
+        "meter.n.03": -1000.0,
+        "parking.n.02": -1000.0
+    },
+    "synset": "parking_meter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a93161d5bafb4d83a73c766aadb97416",
+        "creator_username": "AndreiVNK",
+        "creator_display_name": "AndreiVNK",
+        "creator_profile_url": "https://sketchfab.com/AndreiVNK"
+    },
+    "filename": "std_a93161d5bafb4d83a73c766aadb97416.glb",
+    "length": 0.32189540565013885,
+    "width": 0.32366806268692017
+}

@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a large, boxy tactical vehicle painted in a dark green color, with a rectangular cargo compartment mounted on a robust truck chassis. The side panels display the text 'S.W.A.T. Special Weapons and Tactics Unit Shakur County' in black, indicating its use for law enforcement or tactical operations. The cab features a reinforced front bumper and side steps, while the rear cargo area is enclosed with double doors secured by visible locking bars. The vehicle has four wheels, with the rear wheels supporting the heavy cargo section. The roof and sides are smooth, with no visible weapon mounts or external armor plating. The overall design prioritizes utility and secure transport of personnel or equipment.",
+    "description": "A dark green, boxy SWAT tactical vehicle with a secure cargo compartment and law enforcement markings. It features a reinforced cab, smooth sides, and double rear doors.",
+    "description_view_0": "Side view showing the full length of the vehicle, SWAT markings, and the cab with side step.",
+    "description_view_1": "Front view highlighting the reinforced bumper, grille, and the width of the cab.",
+    "description_view_2": "Opposite side view with identical markings and clear view of the cargo compartment and wheels.",
+    "description_view_3": "Rear view displaying the double cargo doors with locking bars and the solid rear panel.",
+    "category": "combat tactical  vehicle",
+    "height": 2.8,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 6500,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "handle",
+        "step",
+        "mirror"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "none visible",
+    "attribute_armor_plating": "none visible",
+    "attribute_camouflage_pattern": "solid dark green color, no camouflage pattern visible",
+    "attribute_military_markings": "Black text 'S.W.A.T. Special Weapons and Tactics Unit Shakur County' on both sides; 'Unit 32' on the roof",
+    "attribute_tire_type": "Four standard all-terrain tires with moderate tread, no visible reinforcement or special features",
+    "uid": "c34e9fdc36c1410895e784eecaed9487",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.5396070485423619,
+        "weapons_carrier.n.01": 0.5453572868242571,
+        "reconnaissance_vehicle.n.01": 0.546376272988781,
+        "technical.n.01": 0.5569777198102732,
+        "swat_team.n.01": 0.5606733249292727,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c34e9fdc36c1410895e784eecaed9487",
+        "creator_username": "David_Holiday",
+        "creator_display_name": "David_Holiday",
+        "creator_profile_url": "https://sketchfab.com/David_Holiday"
+    },
+    "filename": "std_c34e9fdc36c1410895e784eecaed9487.glb",
+    "length": 7.031975269317627,
+    "width": 2.354339361190796
+}

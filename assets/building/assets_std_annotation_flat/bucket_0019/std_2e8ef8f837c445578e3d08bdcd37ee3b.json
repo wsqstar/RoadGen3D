@@ -1,0 +1,109 @@
+{
+    "description_long": "This object is a collection of various red and white regulatory traffic signs, each mounted on a slender vertical post. The signs include familiar shapes such as octagons, rectangles, and triangles, with bold, high-contrast text and symbols for maximum visibility. The group features multiple 'STOP' signs, 'WRONG WAY', 'NO PARKING', 'DO NOT ENTER', and several prohibition signs with red circles and slashes over black pictograms. The posts are thin and dark, likely made of metal, and are evenly spaced to form a row. The signs are designed to be easily readable from a distance and are typically used to control or restrict vehicle and pedestrian movement. The overall appearance is utilitarian, with a focus on clarity and durability for outdoor urban environments.",
+    "description": "A group of red and white regulatory traffic signs on metal posts, featuring STOP, WRONG WAY, and prohibition symbols, arranged in a row for urban roadside use.",
+    "description_view_0": "Side view showing the thin profile of the signs and posts, with little detail visible on the sign faces.",
+    "description_view_1": "Front view displaying the full array of sign faces, including STOP, WRONG WAY, and various prohibition signs with clear text and symbols.",
+    "description_view_2": "Opposite side view, again showing the thin edges of the signs and posts, with no visible text or symbols.",
+    "description_view_3": "Rear view revealing the blank backs of the signs and the supporting posts, with no visible markings.",
+    "category": "traffic sign",
+    "height": 1.8,
+    "max_dimension": 2.5,
+    "materials": [
+        "metal",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 25,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "readable",
+        "blockable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "sign face",
+        "post"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.45,
+        0.35,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_sign_text": "DO NOT ENTER, WRONG WAY, STOP, NO PARKING, YIELD",
+    "attribute_symbol_or_pictogram": "Red circles with diagonal slashes over black pictograms indicating prohibited actions (e.g., no left turn, no U-turn, no right turn, no pedestrian crossing).",
+    "attribute_mounting_type": "post-mounted",
+    "attribute_orientation": "perpendicular to road",
+    "attribute_location_context": "urban roadside, intersections, parking lot entrances",
+    "uid": "2e8ef8f837c445578e3d08bdcd37ee3b",
+    "near_synsets": {
+        "stop_sign.n.01": 0.45005927402476564,
+        "street_sign.n.01": 0.49622287479950566,
+        "traffic_light.n.01": 0.5197044645644784,
+        "direction_sign.n.01": 0.522055602346846,
+        "stoplight.n.01": 0.5349608917926505,
+        "sign_of_the_zodiac.n.01": -1000.0,
+        "traffic.n.03": -1000.0,
+        "dealings.n.01": -1000.0,
+        "sign.n.09": -1000.0,
+        "sign.n.10": -1000.0,
+        "sign.n.02": -1000.0,
+        "polarity.n.02": -1000.0,
+        "traffic.n.02": -1000.0,
+        "traffic.n.01": -1000.0,
+        "sign.n.11": -1000.0,
+        "augury.n.01": -1000.0,
+        "sign.n.01": -1000.0,
+        "sign.n.06": -1000.0,
+        "signal.n.01": -1000.0,
+        "signboard.n.01": -1000.0
+    },
+    "synset": "street_sign.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2e8ef8f837c445578e3d08bdcd37ee3b",
+        "creator_username": "caboose3d",
+        "creator_display_name": "Caboose3d",
+        "creator_profile_url": "https://sketchfab.com/caboose3d"
+    },
+    "filename": "std_2e8ef8f837c445578e3d08bdcd37ee3b.glb",
+    "length": 2.0653553009033203,
+    "width": 5.421777725219727
+}

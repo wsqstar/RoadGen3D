@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a traditional wooden sailing ship, resembling a Chinese junk, with a broad, rounded hull and three prominent masts, each rigged with large, battened sails made of light-colored fabric. The hull is constructed from dark brown wood, featuring a raised stern and bow, and open deck spaces with visible railings and support beams. The sails are supported by a network of ropes and rigging, and the ship's deck is mostly open, with minimal superstructure and no enclosed cabins visible. The stern has a slightly elevated platform, possibly for steering or navigation, and the bow is gently upturned. The ship's design is utilitarian, optimized for stability and cargo or passenger transport, with no visible modern equipment or machinery. There are no visible registration markings, flags, or identifying symbols on the hull or sails.",
+    "description": "A traditional wooden sailing ship with three large battened sails, open decks, and a rounded hull, resembling a Chinese junk. The ship is constructed mainly of dark wood and light fabric, with visible rigging and minimal superstructure.",
+    "description_view_0": "Side view showing the full length of the ship, all three masts with their sails, and the open deck layout.",
+    "description_view_1": "Front view highlighting the ship's pointed bow, central mast, and the symmetrical arrangement of the sails.",
+    "description_view_2": "Opposite side view similar to view 0, showing the hull's curvature and the arrangement of the masts and sails.",
+    "description_view_3": "Rear view focusing on the stern's raised platform and the alignment of the masts along the ship's centerline.",
+    "category": "ship",
+    "height": 13.0,
+    "max_dimension": 32.0,
+    "materials": [
+        "wood",
+        "fabric",
+        "rope",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "steerable",
+        "hoistable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sails",
+        "masts",
+        "rigging",
+        "deck",
+        "rudder"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "white",
+        "beige"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single, broad, displacement type with a rounded bottom, gently upturned bow, and a slightly raised stern. There are no visible keels or bulbous bows, and the hull features open gunwales and a flat deck area.",
+    "attribute_superstructure_layout": "The superstructure is minimal, with an open deck and a slightly elevated stern platform. There are no enclosed cabins, bridges, or towers visible; the deck is largely unobstructed except for the masts and rigging.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "masts",
+        "sails",
+        "rigging",
+        "railings"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "9439705696e043fd88d08085783c91db",
+    "near_synsets": {
+        "bark.n.03": 0.48200572391340124,
+        "sail.n.03": 0.4950600580306947,
+        "windjammer.n.01": 0.49642393186596034,
+        "junk.n.02": 0.4984073787329613,
+        "cargo_ship.n.01": 0.49946046914058784,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9439705696e043fd88d08085783c91db",
+        "creator_username": "fan3d",
+        "creator_display_name": "fan3d",
+        "creator_profile_url": "https://sketchfab.com/fan3d"
+    },
+    "filename": "std_9439705696e043fd88d08085783c91db.glb",
+    "length": 16.851871490478516,
+    "width": 4.511929273605347
+}

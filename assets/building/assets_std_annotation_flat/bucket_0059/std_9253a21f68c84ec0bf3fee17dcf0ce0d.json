@@ -1,0 +1,99 @@
+{
+    "description_long": "This industrial robot arm features a robust, angular design with three main articulated segments connected by visible circular joints. The arm is mounted on a sturdy, square metal base, suggesting it is designed for stability and heavy-duty tasks. Its surface is predominantly dark, with a weathered, metallic finish and patches of red, indicating wear or industrial use. The end effector appears to be a simple, flat tool or plate, possibly for gripping or manipulating objects, with a small protruding element that could function as a clamp or hook. The joints are reinforced and likely house powerful actuators, while the overall construction suggests a high load-bearing capacity. No visible wiring or cabling is present, and the arm's structure is solid and utilitarian, suitable for urban industrial environments such as factories, garages, or workshops.",
+    "description": "A heavy-duty, weathered industrial robot arm with three articulated segments and a flat tool end, mounted on a square metal base. Its dark, metallic surface shows signs of wear and is accented with red patches.",
+    "description_view_0": "Side view showing the angular profile of the arm and the flat end effector, with the base and joint structure clearly visible.",
+    "description_view_1": "Front-angled view highlighting the circular joints and the alignment of the arm segments, with the end effector facing forward.",
+    "description_view_2": "Rear-angled view emphasizing the length of the arm and the robust mounting base, with less detail visible on the end effector.",
+    "description_view_3": "Opposite side view displaying the articulated segments and the flat end effector, with joint details and base structure prominent.",
+    "category": "robot arm",
+    "height": 1.1,
+    "max_dimension": 1.4,
+    "materials": [
+        "steel",
+        "iron",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "joints",
+        "end effector",
+        "base"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_joint_type": "revolute",
+    "attribute_number_of_segments": 3,
+    "attribute_end_effector_type": "flat tool plate",
+    "attribute_visible_wiring_or_cabling": false,
+    "attribute_mounting_location": "floor-mounted",
+    "uid": "9253a21f68c84ec0bf3fee17dcf0ce0d",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5107943182868455,
+        "automaton.n.02": 0.5674353112240097,
+        "arm.n.02": 0.5749308795175874,
+        "tone_arm.n.01": 0.5788395134462373,
+        "automaton.n.03": 0.580348139627109,
+        "branch.n.01": -1000.0,
+        "arm.n.01": -1000.0,
+        "arm.n.04": -1000.0,
+        "sleeve.n.01": -1000.0,
+        "weapon.n.01": -1000.0
+    },
+    "synset": "arm.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9253a21f68c84ec0bf3fee17dcf0ce0d",
+        "creator_username": "gvsvn",
+        "creator_display_name": "gvsvn",
+        "creator_profile_url": "https://sketchfab.com/gvsvn"
+    },
+    "filename": "std_9253a21f68c84ec0bf3fee17dcf0ce0d.glb",
+    "length": 0.7377386689186096,
+    "width": 0.7972494661808014
+}

@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a heavy, mounted automatic rifle or machine gun, designed for stationary use and supported by a robust tripod base. The weapon features a long, cylindrical barrel with a prominent muzzle and a complex receiver assembly, including visible mechanical components and a rear sight. The tripod has four wide, stable feet and reinforced struts, suggesting it is built to absorb significant recoil and remain stable during firing. The rear of the weapon includes a padded or contoured shoulder rest or stock, and the overall construction appears to be primarily metal with a dark, matte finish. The design is utilitarian, with exposed bolts, levers, and a possible ammunition feed system, indicating a focus on durability and function over aesthetics. This type of weapon would typically be found in military or security settings within urban environments, such as checkpoints or defensive positions.",
+    "description": "A heavy, tripod-mounted automatic rifle with a long barrel, robust metal construction, and a dark matte finish. It features a stable four-legged base and detailed mechanical components.",
+    "description_view_0": "Front view showing the twin-barrel assembly, reinforced tripod legs, and the central receiver block.",
+    "description_view_1": "Side view highlighting the long barrel, receiver details, and the full length of the tripod base.",
+    "description_view_2": "Rear view displaying the contoured stock, rear sight, and the symmetrical tripod support structure.",
+    "description_view_3": "Opposite side view showing the barrel, receiver, and mechanical linkages, mirroring view 1.",
+    "category": "rifle",
+    "height": 1.1,
+    "max_dimension": 1.5,
+    "materials": [
+        "steel",
+        "polymer",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 38,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "aimable",
+        "fireable",
+        "rotatable",
+        "adjustable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "barrel",
+        "stock",
+        "sight",
+        "tripod legs",
+        "ammunition feed"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "282a894d2a594db79b4a1e95e0cb09e0",
+    "near_synsets": {
+        "automatic_rifle.n.01": 0.49253136760006344,
+        "carbine.n.01": 0.5030116311358362,
+        "rifle.n.01": 0.5060980458529525,
+        "sniper_rifle.n.01": 0.5129511379790865,
+        "light_arm.n.01": 0.5129742000980643
+    },
+    "synset": "sniper_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/282a894d2a594db79b4a1e95e0cb09e0",
+        "creator_username": "livrosparacriancas",
+        "creator_display_name": "Leonardo Carvalho",
+        "creator_profile_url": "https://sketchfab.com/livrosparacriancas"
+    },
+    "filename": "std_282a894d2a594db79b4a1e95e0cb09e0.glb",
+    "length": 1.4002095460891724,
+    "width": 0.9090578556060791
+}

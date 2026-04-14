@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a large, wooden sailing ship with a dark brown hull and a prominent raised stern structure. The vessel features a single tall central mast with rigging lines extending to the bow and stern, and a horizontal yardarm at the top. The hull is robust and rounded, with a pointed bow and a squared-off stern, both reinforced with visible planking. The deck is divided into two main levels: a lower open area at the bow and a higher, enclosed section at the stern, likely serving as the captain's quarters or storage. The ship's sides are adorned with horizontal striping, and the rigging is detailed, suggesting historical or early-modern maritime design. No visible modern equipment or markings are present, giving the ship an antique, possibly medieval or Renaissance-era appearance.",
+    "description": "A large, dark wooden sailing ship with a single tall mast, detailed rigging, and a raised stern structure. The hull is rounded and reinforced, with horizontal striping and an antique maritime design.",
+    "description_view_0": "Front view showing the pointed bow, central mast, and symmetrical rigging lines.",
+    "description_view_1": "Side view revealing the full length of the hull, raised stern, open bow deck, and detailed rigging.",
+    "description_view_2": "Rear view highlighting the squared-off stern, raised superstructure, and central mast.",
+    "description_view_3": "Opposite side view displaying the hull's curvature, stern structure, and mast rigging.",
+    "category": "ship",
+    "height": 18.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "wood",
+        "rope",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 800000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "mast",
+        "rigging",
+        "deck",
+        "stairs",
+        "hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a rounded, reinforced structure, a pointed bow, and a squared-off stern. There are no visible keels or bulbous bows, and the hull features horizontal striping and prominent planking.",
+    "attribute_superstructure_layout": "The superstructure consists of a raised stern section with at least two deck levels, an open bow deck, and a central mast with rigging. The stern structure appears to serve as a cabin or storage area.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "mast",
+        "rigging",
+        "stairs"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "86edaa68e7044e069ec68065e21c39df",
+    "near_synsets": {
+        "sail.n.03": 0.48072752293971993,
+        "sailing_vessel.n.01": 0.4833521255638459,
+        "bark.n.03": 0.48474694462249407,
+        "cargo_ship.n.01": 0.4867160227606602,
+        "hull.n.06": 0.49056368578003007,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/86edaa68e7044e069ec68065e21c39df",
+        "creator_username": "dangry",
+        "creator_display_name": "Daniel Gryningstjerna",
+        "creator_profile_url": "https://sketchfab.com/dangry"
+    },
+    "filename": "std_86edaa68e7044e069ec68065e21c39df.glb",
+    "length": 24.565866470336914,
+    "width": 10.832365036010742
+}

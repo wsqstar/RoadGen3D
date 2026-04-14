@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a robust metal trolley designed for transporting goods in urban environments such as warehouses, garages, or sidewalks. The trolley features a flat, open grid platform made of metal bars, providing a sturdy surface for carrying various items. It is equipped with four large wheels, allowing for smooth movement across flat surfaces, and a single, continuous metal handlebar that extends upward and backward for easy pushing or pulling. The frame and platform are constructed from tubular and grid metal, giving the trolley a durable and industrial appearance. The open design of the platform allows for easy loading and unloading of items, while the handlebar is ergonomically angled for comfortable maneuvering. No visible branding or signage is present on the trolley.",
+    "description": "A sturdy metal trolley with a flat grid platform, four wheels, and a single angled handlebar for pushing or pulling. Its open design and robust construction make it ideal for transporting goods in urban settings.",
+    "description_view_0": "Front view showing the wide grid platform, two front wheels, and the upright handlebar.",
+    "description_view_1": "Side view highlighting the length of the platform, all four wheels, and the angled handlebar extending backward.",
+    "description_view_2": "Rear view displaying the handlebar's full width and the back of the platform with two rear wheels.",
+    "description_view_3": "Opposite side view showing the same features as view 1 from the other side, with clear visibility of the platform and wheels.",
+    "category": "trolley",
+    "height": 1.1,
+    "max_dimension": 1.3,
+    "materials": [
+        "steel",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 22,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 35,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "platform"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_handle_type": "single bar handle, made of tubular steel, straight with angled sides for ergonomic grip",
+    "attribute_number_of_wheels": 4,
+    "attribute_wheel_arrangement": "four wheels, one at each corner, likely all swivel for maneuverability",
+    "attribute_basket_or_platform_presence": "platform",
+    "attribute_branding_or_signage": "none",
+    "uid": "8bc88c3dbd8e46a590f6f742acde004a",
+    "near_synsets": {
+        "trolleybus.n.01": 0.5288467162872059,
+        "hand_truck.n.01": 0.5294988208588207,
+        "trolley_line.n.01": 0.5296007639735504,
+        "handcart.n.01": 0.5382991324890211,
+        "shopping_cart.n.01": 0.5427103778716955,
+        "streetcar.n.01": -1000.0
+    },
+    "synset": "trolley_line.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8bc88c3dbd8e46a590f6f742acde004a",
+        "creator_username": "knorke",
+        "creator_display_name": "Zuckergelee",
+        "creator_profile_url": "https://sketchfab.com/knorke"
+    },
+    "filename": "std_8bc88c3dbd8e46a590f6f742acde004a.glb",
+    "length": 1.4911940097808838,
+    "width": 0.8780147433280945
+}

@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a compact, black firearm with a boxy receiver, a cylindrical suppressor attached to the barrel, and a wire-style folding stock. The main body is constructed from matte-finished metal, with a pistol grip and a detachable magazine visible alongside several loose cartridges. The suppressor is detachable, and the magazine is shown removed in some views, highlighting the modularity of the weapon. The trigger guard is squared and robust, providing protection for the trigger mechanism. The overall design is utilitarian, with minimal ornamentation and a focus on functionality, making it suitable for close-quarters urban environments.",
+    "description": "A compact, black firearm with a suppressor, folding wire stock, and detachable magazine, designed for urban use. The weapon is utilitarian and modular, with a matte metal finish.",
+    "description_view_0": "Side view showing the full length of the firearm, suppressor attached, folding stock extended, and magazine with loose cartridges.",
+    "description_view_1": "Top-down view highlighting the wire stock, suppressor, and the open magazine well with ammunition visible.",
+    "description_view_2": "Opposite side view displaying the suppressor, folding stock, and the magazine with cartridges laid out.",
+    "description_view_3": "Front-on view focusing on the muzzle end of the suppressor, the wire stock, and the arrangement of the magazine and cartridges.",
+    "category": "shotgun",
+    "height": 0.25,
+    "max_dimension": 0.55,
+    "materials": [
+        "steel",
+        "polymer",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "loadable",
+        "fireable",
+        "reloadable",
+        "attachable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "magazine",
+        "suppressor",
+        "stock",
+        "safety",
+        "charging handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "brass"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_barrel_configuration": "single-barrel, cylindrical suppressor attached, no visible ribbing or venting",
+    "attribute_stock_type": "folding stock",
+    "attribute_action_mechanism": "semi-automatic",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "squared, medium-sized, robust with no finger grooves or reinforcement",
+    "uid": "48ea3c70f68449baa3e88752834f308c",
+    "near_synsets": {
+        "shotgun.n.01": 0.49736370535726,
+        "sawed-off_shotgun.n.01": 0.517093721956196,
+        "gun.n.01": 0.51730092619022,
+        "submachine_gun.n.01": 0.5226139209987849,
+        "silencer.n.01": 0.5281658020372713
+    },
+    "synset": "sawed-off_shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/48ea3c70f68449baa3e88752834f308c",
+        "creator_username": "UnFyKilianZ",
+        "creator_display_name": "UnFy KilianZ",
+        "creator_profile_url": "https://sketchfab.com/UnFyKilianZ"
+    },
+    "filename": "std_48ea3c70f68449baa3e88752834f308c.glb",
+    "length": 0.15937726199626923,
+    "width": 0.3203136473894119
+}

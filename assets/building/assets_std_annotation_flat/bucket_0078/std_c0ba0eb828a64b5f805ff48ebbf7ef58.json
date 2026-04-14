@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a tall, cylindrical tower with a segmented structure, featuring alternating bands of gray and reddish-brown. The upper section is topped with a circular observation deck or control room, which is ringed by small, evenly spaced windows. Above this deck, a thin antenna extends vertically, suggesting a communication or broadcast function. The base of the tower is slightly wider and appears reinforced, possibly for stability. The surface is smooth and metallic, with minimal decorative elements, giving it a utilitarian and modern appearance. The overall design is reminiscent of urban communication or observation towers found in cityscapes.",
+    "description": "A tall, cylindrical tower with a circular observation deck, small windows, and a prominent antenna, finished in gray and reddish-brown bands.",
+    "description_view_0": "Front view showing the full height, the circular observation deck with windows, and the central antenna clearly visible.",
+    "description_view_1": "Side view highlighting the cylindrical body, the observation deck's overhang, and the antenna's alignment.",
+    "description_view_2": "Rear view with the observation deck and antenna visible, and the reddish-brown banding more prominent on the lower section.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the smooth cylindrical form and the observation deck's structure.",
+    "category": "tower",
+    "height": 45.0,
+    "max_dimension": 45.0,
+    "materials": [
+        "steel",
+        "glass",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.2,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "viewable",
+        "signal_transmittable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "antenna",
+        "windows",
+        "observation deck"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "reddish-brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Modernist",
+    "attribute_number_of_windows": 8,
+    "attribute_presence_of_antennas_or_dishes": true,
+    "attribute_type_of_entrance": "no visible entrance",
+    "attribute_decorative_elements": [],
+    "uid": "c0ba0eb828a64b5f805ff48ebbf7ef58",
+    "near_synsets": {
+        "clock_tower.n.01": 0.4753534185475156,
+        "watchtower.n.01": 0.5096986562638515,
+        "church_tower.n.01": 0.5119165685885887,
+        "control_tower.n.01": 0.5122407782349623,
+        "tower.n.01": 0.5157503803508187,
+        "tugboat.n.01": -1000.0,
+        "column.n.04": -1000.0
+    },
+    "synset": "tower.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c0ba0eb828a64b5f805ff48ebbf7ef58",
+        "creator_username": "kuuttisiitonen",
+        "creator_display_name": "Kuutti Siitonen",
+        "creator_profile_url": "https://sketchfab.com/kuuttisiitonen"
+    },
+    "filename": "std_c0ba0eb828a64b5f805ff48ebbf7ef58.glb",
+    "length": 6.138136625289917,
+    "width": 6.138096332550049
+}

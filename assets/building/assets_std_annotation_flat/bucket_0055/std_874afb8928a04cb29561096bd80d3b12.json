@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a small, gabled wooden shelter resembling a classic doghouse, constructed primarily from horizontal wooden planks with a pitched, dark-colored roof. The front features a wide, arched entryway framed in a darker trim, and above the entrance is a rectangular metallic nameplate. The roof is steeply pitched and extends slightly beyond the walls, providing extra protection from the elements. The side of the shelter has a small, square window, also trimmed in dark material, while the back is solid wood with no openings. The structure is elevated slightly off the ground by four short, sturdy legs, and the wood shows a weathered, rustic finish suitable for outdoor urban or park environments.",
+    "description": "A small, rustic wooden shelter with a pitched dark roof, arched entryway, and a side window, elevated on four legs.",
+    "description_view_0": "Front view showing the arched entryway, metallic nameplate, and pitched roof.",
+    "description_view_1": "Top-down view of the roof, highlighting its dark color and overhanging edges.",
+    "description_view_2": "Rear view displaying the solid wooden back wall and the gabled roof structure.",
+    "description_view_3": "Side view featuring the small, square window and the horizontal wooden planks.",
+    "category": "shelter",
+    "height": 1.0,
+    "max_dimension": 1.3,
+    "materials": [
+        "wood",
+        "asphalt_shingle",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 45,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "shelterable",
+        "labelable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "entryway",
+        "window",
+        "nameplate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gabled roof with dark asphalt shingles and wooden trim",
+    "attribute_entryway_design": "arched open entryway with dark trim and a metallic nameplate above",
+    "attribute_support_structure": "horizontal wooden planks supported by four wooden corner posts",
+    "attribute_signage": "rectangular metallic nameplate above the entryway",
+    "attribute_transparency": "fully opaque",
+    "uid": "874afb8928a04cb29561096bd80d3b12",
+    "near_synsets": {
+        "shelter.n.01": 0.4560731782454185,
+        "shelter.n.02": 0.4566545690095556,
+        "shed.n.01": 0.4911313107006689,
+        "half-dugout.n.01": 0.49613290618403144,
+        "birdhouse.n.01": 0.5002307793430342,
+        "protection.n.04": -1000.0,
+        "tax_shelter.n.01": -1000.0,
+        "shelter.n.05": -1000.0
+    },
+    "synset": "shelter.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/874afb8928a04cb29561096bd80d3b12",
+        "creator_username": "mauriggb",
+        "creator_display_name": "mauriggb",
+        "creator_profile_url": "https://sketchfab.com/mauriggb"
+    },
+    "filename": "std_874afb8928a04cb29561096bd80d3b12.glb",
+    "length": 1.2620489597320557,
+    "width": 1.1675424575805664
+}

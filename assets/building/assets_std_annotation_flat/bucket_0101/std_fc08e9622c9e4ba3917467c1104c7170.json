@@ -1,0 +1,120 @@
+{
+    "description_long": "This robot dog features a rugged, mechanical body with a camouflaged, weathered finish, suggesting durability for urban or outdoor environments. Its four articulated legs are constructed from robust metal components, each jointed for agile movement and stability on uneven terrain. The main body is compact and rounded, with visible mechanical details such as vents, cylindrical housings, and what appear to be sensor modules on the sides. The surface is predominantly dark with mottled gray and brown tones, giving it a tactical, stealthy appearance. Prominent circular elements on the sides may house sensors or cameras, while the rear features additional mechanical structures, possibly for power or exhaust. The overall design is utilitarian, with exposed joints and hardware emphasizing its functional, robotic nature.",
+    "description": "A rugged, camouflaged robot dog with articulated metal legs, sensor housings, and a compact, weathered body designed for urban environments.",
+    "description_view_0": "Side view showing two robot dogs with visible cylindrical sensor housings and detailed leg joints.",
+    "description_view_1": "Rear three-quarter view highlighting the mechanical structures at the back and the robust, jointed legs.",
+    "description_view_2": "Front three-quarter view displaying the rounded body, sensor modules, and the articulated front legs.",
+    "description_view_3": "Angled rear view emphasizing the exposed mechanical components and the camouflaged surface texture.",
+    "category": "robot dog",
+    "height": 0.6,
+    "max_dimension": 1.0,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "leg",
+        "sensor housing",
+        "joint",
+        "vent"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "brown",
+        "black",
+        "metallic silver"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_mechanical_joints": [
+        "rotary joint",
+        "hinge joint",
+        "ball-and-socket joint"
+    ],
+    "attribute_visible_sensors": [
+        "camera",
+        "ultrasonic sensor"
+    ],
+    "attribute_led_indicators": [],
+    "attribute_articulated_limbs": [
+        "front left leg",
+        "front right leg",
+        "rear left leg",
+        "rear right leg"
+    ],
+    "attribute_robotic_face": false,
+    "uid": "fc08e9622c9e4ba3917467c1104c7170",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5482493927297454,
+        "android.n.01": 0.5827000846047976,
+        "robotics.n.01": 0.5834588814207968,
+        "animatronics.n.01": 0.5849382925141177,
+        "housedog.n.01": 0.5886570265332137,
+        "cad.n.01": -1000.0,
+        "dog.n.03": -1000.0,
+        "pawl.n.01": -1000.0,
+        "frump.n.01": -1000.0,
+        "frank.n.01": -1000.0,
+        "automaton.n.02": -1000.0,
+        "andiron.n.01": -1000.0,
+        "dog.n.01": -1000.0
+    },
+    "synset": "animatronics.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fc08e9622c9e4ba3917467c1104c7170",
+        "creator_username": "nataliedesign",
+        "creator_display_name": "nataliedesign",
+        "creator_profile_url": "https://sketchfab.com/nataliedesign"
+    },
+    "filename": "std_fc08e9622c9e4ba3917467c1104c7170.glb",
+    "length": 1.7507556676864624,
+    "width": 1.6798518300056458
+}

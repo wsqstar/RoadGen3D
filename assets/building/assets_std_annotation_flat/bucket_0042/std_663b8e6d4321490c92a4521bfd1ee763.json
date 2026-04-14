@@ -1,0 +1,104 @@
+{
+    "description_long": "This is an industrial-style yellow robot arm mounted on a sturdy rectangular base, featuring a cylindrical central column and multiple articulated segments. The arm is constructed from robust metal, with visible joints and pivot points allowing for a wide range of motion. Black and yellow hazard stripes are present on the base and end effector, indicating safety precautions typical in urban or industrial environments. The arm's segments are connected by circular joints, and some wiring is visible, suggesting electrical actuation. The base is labeled with 'KEEP OUT' and a warning for authorized personnel only, reinforcing its use in restricted or hazardous areas. The end effector appears to be a simple tool mount or sensor, rather than a gripper or manipulator.",
+    "description": "A yellow industrial robot arm with articulated joints, mounted on a hazard-striped base and featuring visible wiring and safety warnings.",
+    "description_view_0": "Front view showing the cylindrical base, central column, and the arm's segments stacked vertically with visible wiring at the top.",
+    "description_view_1": "Side view highlighting the full extension of the arm, the warning label, and the circular joints connecting each segment.",
+    "description_view_2": "Rear view displaying the back of the base with hazard stripes, the arm's segments aligned, and the 'KEEP OUT' label clearly visible.",
+    "description_view_3": "Opposite side view showing the arm's articulation, the tool mount at the end, and the overall mechanical structure.",
+    "category": "robot arm",
+    "height": 0.9,
+    "max_dimension": 1.1,
+    "materials": [
+        "painted steel",
+        "plastic",
+        "rubber",
+        "copper",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "joint",
+        "base",
+        "end effector",
+        "wiring"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "gray",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.13,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_joint_type": "revolute",
+    "attribute_number_of_segments": 2,
+    "attribute_end_effector_type": "tool mount",
+    "attribute_visible_wiring_or_cabling": true,
+    "attribute_mounting_location": "floor-mounted",
+    "uid": "663b8e6d4321490c92a4521bfd1ee763",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5217026226123396,
+        "automaton.n.02": 0.5766150253143568,
+        "automaton.n.03": 0.5815249662184985,
+        "robotics.n.01": 0.5830532291174152,
+        "automation.n.03": 0.5920382902776636,
+        "branch.n.01": -1000.0,
+        "arm.n.04": -1000.0,
+        "weapon.n.01": -1000.0,
+        "arm.n.02": -1000.0,
+        "sleeve.n.01": -1000.0,
+        "arm.n.01": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/663b8e6d4321490c92a4521bfd1ee763",
+        "creator_username": "chenkl",
+        "creator_display_name": "chenkl",
+        "creator_profile_url": "https://sketchfab.com/chenkl"
+    },
+    "filename": "std_663b8e6d4321490c92a4521bfd1ee763.glb",
+    "length": 0.9571834802627563,
+    "width": 0.47608886659145355
+}

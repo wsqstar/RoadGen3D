@@ -1,0 +1,92 @@
+{
+    "description_long": "This is a large, rectangular, industrial shipping container, painted in a vivid red color. The exterior is constructed from corrugated metal panels, providing both structural strength and a distinctive ribbed texture. The container features double doors on one end, reinforced with vertical and horizontal metal bars for added security and rigidity. Small ventilation slots are visible near the base, likely to prevent moisture buildup inside. The container is designed to be weather-resistant and stackable, with corner fittings for secure lifting and transport. Its robust build and standardized form make it suitable for storage, shipping, or temporary placement in urban environments.",
+    "description": "A large red corrugated metal shipping container with reinforced double doors and ventilation slots, designed for secure storage and transport.",
+    "description_view_0": "Side view showing the long, ribbed metal wall with no visible doors or openings.",
+    "description_view_1": "End view displaying the double doors with vertical and horizontal reinforcements and ventilation slots at the bottom.",
+    "description_view_2": "Opposite side view, identical to view 0, showing the long, ribbed metal wall.",
+    "description_view_3": "Opposite end view, identical to view 1, showing the reinforced double doors and ventilation slots.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.95,
+        0.04,
+        0.01
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 15000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking bar",
+        "ventilation slot"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.92,
+        0.06,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "none",
+    "attribute_handles_or_grips": "vertical locking bars on doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "2846600122034d7a866b0a6a474771f8",
+    "near_synsets": {
+        "container.n.01": 0.4196737513233729,
+        "cargo_container.n.01": 0.446670695206967,
+        "box.n.01": 0.5071767412015195,
+        "container_ship.n.01": 0.5118539964961809,
+        "drum.n.04": 0.5162562075867743
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/2846600122034d7a866b0a6a474771f8",
+        "creator_username": "WittigMax",
+        "creator_display_name": "Max Wittig",
+        "creator_profile_url": "https://sketchfab.com/WittigMax"
+    },
+    "filename": "std_2846600122034d7a866b0a6a474771f8.glb",
+    "length": 6.410128593444824,
+    "width": 2.7526838779449463
+}

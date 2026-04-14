@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a heavily armored tracked combat vehicle, featuring a boxy, angular hull with reinforced plating on all sides. The vehicle is equipped with a prominent forward-facing cannon and several mounted machine guns, with visible hatches and observation ports on the roof and sides. Two human figures are positioned at the top, one manning a weapon and the other near an open hatch, suggesting crew operation. The tracks are wide and robust, designed for traversing rough terrain, and the side panels have slatted armor for additional protection. The vehicle's exterior is painted in a solid, muted gray color, with no visible camouflage or military insignia. The overall design emphasizes protection, firepower, and urban combat readiness.",
+    "description": "A heavily armored, gray tracked combat vehicle with mounted weapons, reinforced plating, and crew hatches, designed for urban tactical operations.",
+    "description_view_0": "Front view shows the reinforced sloped armor, forward cannon, and two crew members on top.",
+    "description_view_1": "Left side view highlights the wide tracks, slatted side armor, and roof-mounted weapon station.",
+    "description_view_2": "Rear view reveals the back hatch, track system, and the open crew compartment.",
+    "description_view_3": "Right side view displays the side armor, tracks, and crew positions at the front and roof.",
+    "category": "combat tactical  vehicle",
+    "height": 2.6,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.03,
+        0.07,
+        0.02,
+        0.03
+    ],
+    "mass": 18000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "door",
+        "cannon",
+        "machine gun mount",
+        "track",
+        "periscope",
+        "handle",
+        "view port"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "tan"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Three visible weapon mounts: one forward-facing cannon at the front, one machine gun mount on the roof, and one side-mounted machine gun.",
+    "attribute_armor_plating": "Full body coverage with thick, angular steel armor plating, including reinforced sloped front, side slatted armor, and roof hatches.",
+    "attribute_camouflage_pattern": "None visible; solid gray paint scheme.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "cf64e37bcbb24a7b83709174ba8b6f31",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4759074451518024,
+        "tank.n.01": 0.47628538465128223,
+        "armored_vehicle.n.01": 0.4917313275549271,
+        "armored_car.n.02": 0.49340755522998997,
+        "assault_gun.n.02": 0.49679172553102324,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cf64e37bcbb24a7b83709174ba8b6f31",
+        "creator_username": "vaclon",
+        "creator_display_name": "Vaclon",
+        "creator_profile_url": "https://sketchfab.com/vaclon"
+    },
+    "filename": "std_cf64e37bcbb24a7b83709174ba8b6f31.glb",
+    "length": 4.244402170181274,
+    "width": 1.80322265625
+}

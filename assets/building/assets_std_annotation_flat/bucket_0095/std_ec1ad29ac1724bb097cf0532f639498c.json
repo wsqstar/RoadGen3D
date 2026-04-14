@@ -1,0 +1,99 @@
+{
+    "description_long": "This rickshaw features a lightweight frame with a single front wheel and two larger rear wheels, supporting a covered passenger compartment. The passenger area is semi-enclosed with a curved, soft fabric canopy in a light green shade, providing shade and partial protection from the elements. The sides of the compartment are decorated with bicycle motifs and are partially open, allowing for ventilation and visibility. The driver's seat is positioned at the front, equipped with handlebars and pedals, indicating that this is a pedal-powered vehicle. The structure appears to be primarily constructed from metal tubing, with fabric and possibly some plastic or wood elements for the seating and canopy. The overall design is utilitarian yet inviting, suitable for short-distance urban transport.",
+    "description": "A pedal-powered rickshaw with a green fabric canopy, open sides, and decorative panels, featuring a front driver's seat and a rear passenger compartment.",
+    "description_view_0": "Side view showing the full length, the curved canopy, decorative side panels, and the seating arrangement.",
+    "description_view_1": "Front angle highlighting the single front wheel, handlebars, and the open entry to the passenger compartment.",
+    "description_view_2": "Rear three-quarter view displaying the back of the canopy, rear wheels, and the open structure of the passenger area.",
+    "description_view_3": "Direct rear view emphasizing the open back, the canopy's curve, and the rear wheels.",
+    "category": "rickshaw",
+    "height": 1.7,
+    "max_dimension": 2.8,
+    "materials": [
+        "metal",
+        "fabric",
+        "plastic",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 65,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handlebar",
+        "pedal",
+        "seat",
+        "wheel",
+        "canopy"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "white",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 3,
+    "attribute_passenger_seating_arrangement": "One rear bench seat, forward-facing, positioned behind the driver.",
+    "attribute_driver_position": "front center",
+    "attribute_roof_type": "soft fabric roof",
+    "attribute_presence_of_open_sides": true,
+    "uid": "ec1ad29ac1724bb097cf0532f639498c",
+    "near_synsets": {
+        "pedicab.n.01": 0.4804318645011739,
+        "jinrikisha.n.01": 0.5143396659463515,
+        "gig.n.05": 0.5434177701024177,
+        "tricycle.n.01": 0.5532169518088776,
+        "hansom.n.01": 0.555677169985063
+    },
+    "synset": "pedicab.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ec1ad29ac1724bb097cf0532f639498c",
+        "creator_username": "peru_cargo_bike",
+        "creator_display_name": "Peru_cargo_bike",
+        "creator_profile_url": "https://sketchfab.com/peru_cargo_bike"
+    },
+    "filename": "std_ec1ad29ac1724bb097cf0532f639498c.glb",
+    "length": 2.6754376888275146,
+    "width": 1.3394911289215088
+}

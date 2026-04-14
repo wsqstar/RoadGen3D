@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a traditional windmill with a tall, tapered, red-brick tower and a four-bladed rotor mounted at the top. The structure features a polygonal, gray metal roof and several small windows and doors at the base, suggesting interior access. The windmill's blades are large, wooden frames with open latticework, attached to a central hub that extends outward from the roof. The surrounding ground is a patchy, grassy terrain with some bare earth and scattered stones, indicating an outdoor, possibly rural or park-like setting. Wooden support beams extend from the tower to the ground, providing additional structural stability. The overall appearance is weathered and utilitarian, typical of historical windmills found in European or North American landscapes.",
+    "description": "A tall, red-brick windmill with a polygonal metal roof and four large wooden lattice blades, set on a grassy, uneven terrain with visible support beams.",
+    "description_view_0": "Front view showing the full four-blade rotor, the main entrance, and the windmill's brick tower with windows and doors.",
+    "description_view_1": "Side view highlighting the depth of the blades, the polygonal roof, and the wooden support beams extending to the ground.",
+    "description_view_2": "Rear view displaying the back of the tower, additional support beams, and the full height of the structure.",
+    "description_view_3": "Opposite side view showing the windmill's profile, the arrangement of the blades, and the ground area around the base.",
+    "category": "windmill",
+    "height": 10.0,
+    "max_dimension": 13.0,
+    "materials": [
+        "brick",
+        "wood",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "rotatable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "rotor",
+        "blades"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "gray",
+        "brown",
+        "white",
+        "green"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 15000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_blades": 4,
+    "attribute_blade_orientation": "horizontal-axis",
+    "attribute_tower_structure_type": "wooden post",
+    "attribute_presence_of_nacelle": false,
+    "attribute_mounting_location": "ground-mounted",
+    "uid": "2a43c8bd492d4d11ad73e1d3f7ccb58a",
+    "near_synsets": {
+        "windmill.n.01": 0.4461150583408071,
+        "windmill.n.02": 0.5097924207121722,
+        "wind_turbine.n.01": 0.5231178650922104,
+        "water_mill.n.01": 0.535912476867201,
+        "clock_tower.n.01": 0.5445703989129806
+    },
+    "synset": "windmill.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2a43c8bd492d4d11ad73e1d3f7ccb58a",
+        "creator_username": "thesidekick",
+        "creator_display_name": "Lassi Kaukonen",
+        "creator_profile_url": "https://sketchfab.com/thesidekick"
+    },
+    "filename": "std_2a43c8bd492d4d11ad73e1d3f7ccb58a.glb",
+    "length": 10.814820289611816,
+    "width": 12.812346458435059
+}

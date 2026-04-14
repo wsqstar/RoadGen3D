@@ -1,0 +1,91 @@
+{
+    "description_long": "This humanoid robot features a highly stylized, minimalist design with a slender, elongated central body mounted vertically on a thick, circular base. The torso is a smooth, metallic spindle that tapers at both ends, with a smaller, oval-shaped head perched atop. The head is slightly separated from the body and displays a dark, glossy oval on its front, possibly representing a sensor or visual interface. The robot lacks visible arms or legs, giving it a streamlined, monolithic appearance. The surface is metallic and reflective, with subtle gradients of gray and hints of blue on the head's front. The overall form is futuristic and abstract, suggesting a stationary or display-oriented function.",
+    "description": "A sleek, minimalist humanoid robot with a spindle-shaped metallic body, oval head, and circular base, featuring a glossy dark sensor area on the head.",
+    "description_view_0": "Front view shows the slender metallic body, oval head with a dark glossy front, and the thick circular base.",
+    "description_view_1": "Side view highlights the thin profile of the body and head, with the head's dark sensor area visible as a narrow ellipse.",
+    "description_view_2": "Rear view reveals the smooth, uninterrupted metallic surface of the body and head, with no visible features or sensors.",
+    "description_view_3": "Back/side view emphasizes the thickness of the base and the elongated form of the body, with the head's dark area partially visible.",
+    "category": "humanoid robot",
+    "height": 1.6,
+    "max_dimension": 1.6,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 5,
+    "movable": true,
+    "required_force": 450,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head",
+        "sensor/display area"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "blue"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.12,
+    "surface_finish": "smooth",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is in a neutral, upright pose with its spindle-shaped body vertically aligned and the head positioned directly above the torso. No arms or legs are present.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated metallic and glass-like panels with no decorative elements.",
+    "attribute_facial_features": "The head is oval with a prominent dark, glossy area on the front, possibly serving as a sensor or display. No eyes, mouth, or nose are visible.",
+    "attribute_limb_articulation": "No visible arms, legs, hands, or feet; the body and head appear rigid with no articulation points.",
+    "attribute_presence_of_sensors": "A single, dark glossy area on the front of the head, likely functioning as a camera or visual sensor.",
+    "uid": "a2ed553617174eabb53ab584c2960c04",
+    "near_synsets": {
+        "android.n.01": 0.5408776755659837,
+        "robotics_equipment.n.01": 0.5646313858082046,
+        "cyborg.n.01": 0.569758195760757,
+        "automaton.n.02": 0.5719519666697028,
+        "machine.n.02": 0.5819377039882841
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a2ed553617174eabb53ab584c2960c04",
+        "creator_username": "jonasfn",
+        "creator_display_name": "jonasfn",
+        "creator_profile_url": "https://sketchfab.com/jonasfn"
+    },
+    "filename": "std_a2ed553617174eabb53ab584c2960c04.glb",
+    "length": 1.0462398529052734,
+    "width": 1.3192545175552368
+}

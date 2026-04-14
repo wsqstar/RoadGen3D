@@ -1,0 +1,86 @@
+{
+    "description_long": "This is a large, rectangular, industrial-style metal container, commonly seen in urban environments for storage or shipping purposes. The exterior is painted a deep blue, with some visible weathering and streaks, suggesting outdoor use. One end features a set of vertical locking bars and hinges, indicating a secure, door-like opening mechanism typical of shipping containers. The sides and top are flat, solid panels with reinforced edges, providing structural rigidity. The container appears to be made primarily of steel, with a hollow interior suitable for holding large items or bulk materials. There are no visible handles, signage, or decorative elements, emphasizing its utilitarian function.",
+    "description": "A large, blue, industrial metal container with reinforced edges and a secure, barred door on one end. Its weathered surface and robust build suggest use for storage or shipping in urban settings.",
+    "description_view_0": "The end panel is solid and featureless, showing the container's flat, reinforced construction.",
+    "description_view_1": "A long, flat side panel with visible weathering and no openings or features.",
+    "description_view_2": "The opposite end features vertical locking bars and hinges, indicating a secure door for access.",
+    "description_view_3": "Another long side panel, similar to view 1, with a slightly darker, weathered appearance.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "storable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking bars",
+        "hinges"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "glossy",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "swinging end door with locking bars",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "none",
+    "attribute_handles_or_grips": "none",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "44c56f0f58b546009e19a8698d581e2e",
+    "near_synsets": {
+        "container.n.01": 0.4369087900583093,
+        "cargo_container.n.01": 0.47979825888874067,
+        "box.n.01": 0.5134123063904811,
+        "drum.n.04": 0.5236957976753729,
+        "bin.n.01": 0.5360671921267652
+    },
+    "synset": "cargo_container.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/44c56f0f58b546009e19a8698d581e2e",
+        "creator_username": "gunnarcorrea",
+        "creator_display_name": "Gunnar Correa",
+        "creator_profile_url": "https://sketchfab.com/gunnarcorrea"
+    },
+    "filename": "std_44c56f0f58b546009e19a8698d581e2e.glb",
+    "length": 6.683319091796875,
+    "width": 2.4723358154296875
+}

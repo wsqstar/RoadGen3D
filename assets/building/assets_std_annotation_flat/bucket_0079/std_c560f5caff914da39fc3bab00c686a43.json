@@ -1,0 +1,97 @@
+{
+    "description_long": "This object consists of a large, vertical cylindrical tank made of brick-like material connected to a horizontal, capsule-shaped metallic chamber. The cylindrical tank stands upright and is connected to the chamber by a series of pipes, likely for fluid transfer. The horizontal chamber features several protruding elements, such as pipe inlets/outlets and metal brackets, and is capped at both ends. The surface of the chamber is smooth and metallic, while the cylindrical tank has a rough, brick-textured exterior. The pipes and connectors are metallic and run between the two main components, suggesting a functional relationship for pumping or processing fluids. The overall structure is robust and industrial, suitable for installation in urban utility areas.",
+    "description": "A large, industrial pumping station with a vertical brick-textured tank connected to a smooth, metallic horizontal chamber by pipes and brackets.",
+    "description_view_0": "Front view showing the rounded end of the metallic chamber and the vertical cylindrical tank behind it, with visible pipe connections.",
+    "description_view_1": "Angled side view highlighting the length of the horizontal chamber, the connecting pipes, and the full height of the cylindrical tank.",
+    "description_view_2": "Rear view dominated by the cylindrical tank's brick texture, with only the edges of the horizontal chamber visible.",
+    "description_view_3": "Opposite angled side view showing the other end of the metallic chamber and the connection to the cylindrical tank.",
+    "category": "pumping station",
+    "height": 6.0,
+    "max_dimension": 8.0,
+    "materials": [
+        "brick",
+        "steel",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "valve",
+        "pipe",
+        "bracket"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_building_signage": "none",
+    "attribute_ventilation_grilles": "none",
+    "attribute_security_fencing": "none",
+    "attribute_access_hatches": "none",
+    "attribute_warning_lights": "none",
+    "uid": "c560f5caff914da39fc3bab00c686a43",
+    "near_synsets": {
+        "pump_house.n.01": 0.5087769528714033,
+        "water_tower.n.01": 0.5386983934292954,
+        "standpipe.n.01": 0.5434852838969862,
+        "pump.n.01": 0.549524451928622,
+        "pump_room.n.01": 0.5521035765868123,
+        "station.n.01": -1000.0,
+        "place.n.10": -1000.0,
+        "station.n.03": -1000.0,
+        "post.n.01": -1000.0,
+        "station.n.05": -1000.0
+    },
+    "synset": "pump_house.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c560f5caff914da39fc3bab00c686a43",
+        "creator_username": "periklis",
+        "creator_display_name": "Periklis",
+        "creator_profile_url": "https://sketchfab.com/periklis"
+    },
+    "filename": "std_c560f5caff914da39fc3bab00c686a43.glb",
+    "length": 7.084417819976807,
+    "width": 2.3755117654800415
+}

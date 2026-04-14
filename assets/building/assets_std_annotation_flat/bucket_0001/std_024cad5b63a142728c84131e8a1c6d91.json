@@ -1,0 +1,96 @@
+{
+    "description_long": "This trolley features a robust, rectangular metal frame with three flat, open platforms arranged at different heights, suitable for carrying various items. The structure is reinforced with horizontal and vertical bars, providing stability and durability. The uppermost platform is partially enclosed by railings on three sides, while the middle and lower platforms are open for easy loading and unloading. The trolley is supported by a set of sturdy legs, with visible wheel mounts at the base, suggesting mobility. A single horizontal handlebar is integrated at one end for pushing or pulling. The overall design is utilitarian, with a matte gray finish and no visible decorative elements or branding.",
+    "description": "A sturdy, multi-tiered metal trolley with three open platforms, railings, and a single handlebar, finished in matte gray.",
+    "description_view_0": "Front view shows the handlebar, three stacked platforms, and the open, accessible design.",
+    "description_view_1": "Side view highlights the sloped upper railings, staggered platforms, and the structural frame.",
+    "description_view_2": "Rear view reveals the open backs of the platforms and the supporting frame structure.",
+    "description_view_3": "Opposite side view displays the same sloped railings and platform arrangement, with visible wheel mounts.",
+    "category": "trolley",
+    "height": 1.2,
+    "max_dimension": 1.6,
+    "materials": [
+        "steel",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 38,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 25,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "platform",
+        "wheel"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_handle_type": "single bar handle, straight, made of steel, integrated into the frame with no ergonomic padding",
+    "attribute_number_of_wheels": 4,
+    "attribute_wheel_arrangement": "four wheels, one at each corner, likely all swivel for maneuverability",
+    "attribute_basket_or_platform_presence": "platform",
+    "attribute_branding_or_signage": "none",
+    "uid": "024cad5b63a142728c84131e8a1c6d91",
+    "near_synsets": {
+        "trolley_line.n.01": 0.5382273531546903,
+        "trolleybus.n.01": 0.548022314358581,
+        "trestle.n.02": 0.5556195645426882,
+        "trundle.n.02": 0.5559366868824721,
+        "laundry_cart.n.01": 0.5597143493191818,
+        "streetcar.n.01": -1000.0
+    },
+    "synset": "trolleybus.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/024cad5b63a142728c84131e8a1c6d91",
+        "creator_username": "korzekwa",
+        "creator_display_name": "Eng\u00ba Korzekwa",
+        "creator_profile_url": "https://sketchfab.com/korzekwa"
+    },
+    "filename": "std_024cad5b63a142728c84131e8a1c6d91.glb",
+    "length": 1.0915249586105347,
+    "width": 0.6931977868080139
+}

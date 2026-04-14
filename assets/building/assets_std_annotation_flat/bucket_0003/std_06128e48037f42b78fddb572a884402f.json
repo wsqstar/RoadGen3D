@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a compact drone with a central rectangular body housing a prominent red circular element on its front face, possibly a sensor or camera. Two large, octagonal rotor rings are symmetrically mounted on either side of the body, each containing a visible propeller mechanism within. A slender antenna or mast extends upward from the top of the central body, suggesting communication or remote control capability. The underside features a cylindrical component, likely a camera or sensor pod, positioned centrally beneath the main body. The drone's exterior is primarily metallic with a matte finish, and the design is utilitarian, suitable for urban surveillance or delivery tasks. The overall structure is lightweight, with open rotor rings and minimal solid mass, indicating an emphasis on agility and efficiency.",
+    "description": "A compact, dual-rotor drone with a central red sensor, open octagonal rotor rings, and a matte metallic finish. Features an antenna and a cylindrical sensor or camera pod beneath the body.",
+    "description_view_0": "Front view shows the red circular sensor, both rotor rings, the central body, and the cylindrical pod beneath.",
+    "description_view_1": "Side view highlights the thickness of the central body, the antenna, and the depth of the rotor rings.",
+    "description_view_2": "Rear view displays the back of the central body, both rotor rings, and the cylindrical pod, with no visible red sensor.",
+    "description_view_3": "Opposite side view similar to view 1, showing the antenna, rotor ring depth, and the cylindrical pod from the other side.",
+    "category": "drone",
+    "height": 0.25,
+    "max_dimension": 0.7,
+    "materials": [
+        "aluminum",
+        "plastic",
+        "glass",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "mass": 2.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 22,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "antenna",
+        "rotor",
+        "sensor pod",
+        "red sensor/camera"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 2,
+    "attribute_rotor_configuration": "bicopter parallel",
+    "attribute_landing_gear_type": "none",
+    "attribute_camera_presence": true,
+    "attribute_propeller_guard_presence": false,
+    "uid": "06128e48037f42b78fddb572a884402f",
+    "near_synsets": {
+        "drone.n.04": 0.5627014040862306,
+        "single-rotor_helicopter.n.01": 0.5730944823258894,
+        "rotor.n.03": 0.5811029342473265,
+        "scanner.n.03": 0.5956185315133073,
+        "main_rotor.n.01": 0.6073111896852386,
+        "drone.n.01": -1000.0,
+        "dawdler.n.01": -1000.0,
+        "monotone.n.01": -1000.0,
+        "drone.n.05": -1000.0
+    },
+    "synset": "drone.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/06128e48037f42b78fddb572a884402f",
+        "creator_username": "JordiKruk",
+        "creator_display_name": "Jordi Kruk",
+        "creator_profile_url": "https://sketchfab.com/JordiKruk"
+    },
+    "filename": "std_06128e48037f42b78fddb572a884402f.glb",
+    "length": 0.13914752006530762,
+    "width": 0.38973572850227356
+}

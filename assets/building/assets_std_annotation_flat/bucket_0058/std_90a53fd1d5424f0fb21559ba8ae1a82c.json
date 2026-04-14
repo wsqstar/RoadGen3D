@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a large, heavy-duty rifle with a long barrel and a robust, industrial design, likely intended for military or heavy support use. The rifle features a prominent fixed wooden stock and a long, cylindrical barrel with a front sight post and a flash hider at the muzzle. The receiver is boxy and metallic, with a visible belt-fed ammunition system, suggesting it is a machine gun or automatic rifle variant. The magazine is a side-mounted, box-shaped container, and the trigger assembly is housed within a metallic guard. The rifle's finish is primarily matte black metal with wooden accents on the stock and grip, and brass-colored ammunition is visible in the feed tray. The overall construction appears solid and utilitarian, with exposed mechanical components and a rugged, functional aesthetic.",
+    "description": "A large, belt-fed automatic rifle with a long barrel, fixed wooden stock, and matte black metal finish, featuring a side-mounted box magazine and visible brass ammunition.",
+    "description_view_0": "The rifle is shown from a three-quarter angle, highlighting the long barrel, wooden stock, side-mounted box magazine, and visible belt of brass ammunition.",
+    "description_view_1": "A direct side view, emphasizing the slim profile of the barrel and the boxy receiver, with the magazine and stock partially obscured.",
+    "description_view_2": "The rear three-quarter view displays the wooden stock, the length of the barrel, and the feed mechanism, with the magazine and ammunition belt visible.",
+    "description_view_3": "A direct front view, showing the muzzle, front sight post, and the alignment of the barrel, with the magazine and receiver visible to the side.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 1.3,
+    "materials": [
+        "steel",
+        "wood",
+        "brass",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.08,
+        0.03,
+        0.02
+    ],
+    "mass": 12.0,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "trigger",
+        "magazine",
+        "charging handle",
+        "sight",
+        "ammunition belt"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "brass",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "belt-fed box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "flash hider",
+    "uid": "90a53fd1d5424f0fb21559ba8ae1a82c",
+    "near_synsets": {
+        "automatic_rifle.n.01": 0.4539286195204421,
+        "assault_rifle.n.01": 0.4628812397359767,
+        "rifle.n.01": 0.47104961190903083,
+        "garand_rifle.n.01": 0.47964396561761574,
+        "browning_automatic_rifle.n.01": 0.4878459356417858
+    },
+    "synset": "browning_automatic_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/90a53fd1d5424f0fb21559ba8ae1a82c",
+        "creator_username": "caliope",
+        "creator_display_name": "caliope",
+        "creator_profile_url": "https://sketchfab.com/caliope"
+    },
+    "filename": "std_90a53fd1d5424f0fb21559ba8ae1a82c.glb",
+    "length": 0.42921651899814606,
+    "width": 0.1530175432562828
+}

@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a spherical hand grenade with a matte, dark metallic body and a prominent safety lever and pull ring at the top. The main body is robust and slightly textured, with a horizontal seam running around its circumference, suggesting a two-part construction. The upper section features a cylindrical fuse assembly, which is attached to a metal safety lever and a circular pull ring, both of which are metallic and slightly reflective. The safety lever is elongated and curves slightly outward, designed to be held in place by the ring until activation. The surface of the grenade shows signs of wear and subtle pitting, indicating a rugged, utilitarian design. No visible warning labels or digital components are present, and the overall appearance is consistent with classic military fragmentation grenades.",
+    "description": "A dark, spherical hand grenade with a metal safety lever and pull ring, featuring a rugged, matte finish and a cylindrical fuse assembly on top.",
+    "description_view_0": "Front view shows the grenade's safety lever and pull ring clearly, with the cylindrical fuse assembly centered above the spherical body.",
+    "description_view_1": "This angled view highlights the curvature of the safety lever and the attachment of the pull ring, with more detail visible on the lever's side.",
+    "description_view_2": "Rear view focuses on the back of the grenade, showing the spherical body and the top fuse assembly with the pull ring partially visible.",
+    "description_view_3": "Another angled view, similar to view 1 but from the opposite side, showing the lever's curve and the seam around the grenade's body.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.12,
+    "materials": [
+        "steel",
+        "aluminum",
+        "explosive_compound",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.18,
+        0.02
+    ],
+    "mass": 0.4,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "throwable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "fuse assembly"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is likely initiated by pulling the safety ring, which releases the lever and activates the internal fuse mechanism.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "37a4da02d47d4e298e40c9925b3f78fb",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.48848010762433536,
+        "grenade.n.01": 0.509539361255048,
+        "bomb.n.01": 0.5271695379699488,
+        "rifle_grenade.n.01": 0.5359717326340971,
+        "pipe_bomb.n.01": 0.5403876465376155,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/37a4da02d47d4e298e40c9925b3f78fb",
+        "creator_username": "hophobb",
+        "creator_display_name": "Andrey Novichkov",
+        "creator_profile_url": "https://sketchfab.com/hophobb"
+    },
+    "filename": "std_37a4da02d47d4e298e40c9925b3f78fb.glb",
+    "length": 0.06604667752981186,
+    "width": 0.059149667620658875
+}

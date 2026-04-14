@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a long-barreled firearm with a dark metallic finish and a wooden grip, resembling a classic revolver-style shotgun. The barrel is notably extended, giving it a distinctive silhouette, and the cylinder is prominent, suggesting a revolving action. The grip is ergonomically shaped and appears to be made of polished wood, contrasting with the matte metal of the rest of the body. The trigger guard is rounded and encloses a visible trigger, while the hammer is exposed at the rear. There are no visible pump or lever mechanisms, and the overall design is streamlined with minimal external embellishments. The object is robust and solid, with a hard, smooth surface finish.",
+    "description": "A long-barreled, dark metallic shotgun with a wooden grip and a prominent revolving cylinder, featuring a rounded trigger guard and exposed hammer.",
+    "description_view_0": "Side view showing the full length of the barrel, the wooden grip, and the revolving cylinder.",
+    "description_view_1": "Front-on view highlighting the circular barrel opening and the narrow profile of the grip.",
+    "description_view_2": "Opposite side view displaying the barrel, grip, and cylinder from the other side.",
+    "description_view_3": "Rear view focusing on the back of the grip and the end of the cylinder, with the hammer visible.",
+    "category": "shotgun",
+    "height": 0.16,
+    "max_dimension": 0.45,
+    "materials": [
+        "steel",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "mass": 2.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 22,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "cylinder",
+        "hammer",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, long and unvented with no visible ribbing",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "revolving-cylinder action",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with smooth edges and no finger grooves",
+    "uid": "0e933c3355f3418b8405f61ced019a74",
+    "near_synsets": {
+        "shotgun.n.01": 0.45491758496901324,
+        "sawed-off_shotgun.n.01": 0.4617517721082298,
+        "shotgun_shell.n.01": 0.4845940496614007,
+        "gun.n.01": 0.4872909888665694,
+        "gun_muzzle.n.01": 0.49466015146320114
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0e933c3355f3418b8405f61ced019a74",
+        "creator_username": "JordanDanko",
+        "creator_display_name": "JordanDanko",
+        "creator_profile_url": "https://sketchfab.com/JordanDanko"
+    },
+    "filename": "std_0e933c3355f3418b8405f61ced019a74.glb",
+    "length": 0.5359116792678833,
+    "width": 0.04997589439153671
+}

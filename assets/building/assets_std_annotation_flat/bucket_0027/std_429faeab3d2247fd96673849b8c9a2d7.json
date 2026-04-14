@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a pixelated, military-style single-propeller airplane with a green camouflage paint scheme and red insignia on its wings. The fuselage is streamlined with a glass canopy cockpit situated near the front, featuring a multi-panel window design. The wings are straight and low-mounted, each bearing a red circular marking, and the tail section includes a vertical stabilizer and horizontal stabilizers in a conventional arrangement. The propeller is wooden and mounted at the nose, with a black engine cowling behind it. The landing gear is fixed, with two main wheels under the wings and a small tail wheel. The overall design is reminiscent of World War II-era fighter aircraft, with blocky, voxel-style geometry.",
+    "description": "A green, pixelated single-propeller military airplane with red insignia, a glass canopy cockpit, and fixed landing gear. The design is reminiscent of a WWII fighter with a streamlined fuselage and conventional tail.",
+    "description_view_0": "Side view showing the green fuselage, glass canopy, wooden propeller, and red insignia on the wing.",
+    "description_view_1": "Rear view highlighting the tail structure, both wings with red insignia, and the fixed landing gear.",
+    "description_view_2": "Opposite side view displaying the cockpit, propeller, and tail wheel, with clear visibility of the wing insignia.",
+    "description_view_3": "Front view focusing on the propeller, engine cowling, cockpit canopy, and symmetrical wing layout.",
+    "category": "airplane",
+    "height": 2.8,
+    "max_dimension": 8.5,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "wood",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.08,
+        0.05,
+        0.05,
+        0.07,
+        0.05
+    ],
+    "mass": 2200,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 21580,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "cockpit canopy",
+        "landing gear",
+        "wheels",
+        "control stick"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "red",
+        "black",
+        "brown",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.1,
+        0.08,
+        0.07,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.08,
+    "recommended_clearance": 12.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, straight wings with no visible dihedral or winglets; classic monoplane layout.",
+    "attribute_engine_type": "Single nose-mounted piston engine with a wooden propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Taildragger configuration with two main fixed wheels and a single tail wheel.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a multi-panel glass canopy, likely single-seat.",
+    "uid": "429faeab3d2247fd96673849b8c9a2d7",
+    "near_synsets": {
+        "aircraft.n.01": 0.5106816553551561,
+        "airplane.n.01": 0.5116468756305659,
+        "propeller_plane.n.01": 0.5210211077352315,
+        "single_prop.n.01": 0.5246399524424676,
+        "combat_pilot.n.01": 0.5262114775529848
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/429faeab3d2247fd96673849b8c9a2d7",
+        "creator_username": "madexc",
+        "creator_display_name": "madexc",
+        "creator_profile_url": "https://sketchfab.com/madexc"
+    },
+    "filename": "std_429faeab3d2247fd96673849b8c9a2d7.glb",
+    "length": 6.999997615814209,
+    "width": 8.600000381469727
+}

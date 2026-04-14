@@ -1,0 +1,91 @@
+{
+    "description_long": "This is a yellow hand truck, also known as a dolly, featuring a sturdy metal frame with two vertical handles and a flat loading platform at the base. The frame is constructed from tubular metal bars, with two horizontal crossbars for added structural support. The loading platform is rectangular and shows visible signs of wear, including a darkened patch in the center. The hand truck is equipped with two large, solid black wheels mounted on either side of the base, allowing for easy maneuverability. The overall design is utilitarian, with no visible motorized or hydraulic components, and is intended for manually transporting heavy loads. The asset is compact and practical, suitable for use in urban environments such as warehouses, garages, or sidewalks.",
+    "description": "A yellow metal hand truck with a flat loading platform, two large black wheels, and a sturdy tubular frame. The platform shows signs of wear, and the design is simple and utilitarian.",
+    "description_view_0": "Front view showing the full width of the yellow frame, both black wheels, and the worn loading platform.",
+    "description_view_1": "Side view highlighting the thin profile of the frame, the depth of the loading platform, and the circular shape of the wheels.",
+    "description_view_2": "Rear view displaying the back of the frame, both wheels, and the platform from behind.",
+    "description_view_3": "Opposite side view showing the same features as view 1 but from the other side, with the wheels and platform visible.",
+    "category": "forklift",
+    "height": 1.2,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 15,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "platform"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_fork_arms": "The loading platform acts as a single, flat fork arm, rectangular in shape, moderately thick, and positioned at the base of the frame. It shows a darkened, worn area in the center, indicating frequent use. There are no visible attachments or adjustability features.",
+    "attribute_overhead_guard": "There is no overhead guard present on this object; the frame consists only of two vertical handles and horizontal crossbars.",
+    "attribute_mast": "No mast is present; the frame is a simple, single-stage tubular construction with no lift chains, rollers, or hydraulic components.",
+    "attribute_operator_seat": "There is no operator seat; the object is designed to be operated manually by standing behind the handles.",
+    "attribute_warning_lights": "No warning lights are visible on any part of the object.",
+    "uid": "4ca4915c16e64a5c8f46fe03ac8777bf",
+    "near_synsets": {
+        "forklift.n.01": 0.4516586766646351,
+        "hand_truck.n.01": 0.49926472220957235,
+        "dump_truck.n.01": 0.5412773963698603,
+        "lifting_device.n.01": 0.544906176580533,
+        "pallet.n.02": 0.5495629967373409
+    },
+    "synset": "forklift.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4ca4915c16e64a5c8f46fe03ac8777bf",
+        "creator_username": "louir-muir",
+        "creator_display_name": "louis-muir",
+        "creator_profile_url": "https://sketchfab.com/louir-muir"
+    },
+    "filename": "std_4ca4915c16e64a5c8f46fe03ac8777bf.glb",
+    "length": 0.48299598693847656,
+    "width": 0.5723726153373718
+}

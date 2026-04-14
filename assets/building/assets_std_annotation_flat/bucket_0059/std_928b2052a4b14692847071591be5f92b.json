@@ -1,0 +1,89 @@
+{
+    "description_long": "This kiosk is a compact, polygonal structure with a distinctive tapered base and a wider, flat-topped roof. The exterior is predominantly black, giving it a sleek and modern appearance. On one side, there is a single rectangular window, likely serving as a service or transaction point for customers. The kiosk has no visible doors or signage, emphasizing a minimalist and utilitarian design. The roof is flat with slightly angled edges, providing a subtle geometric accent. The overall form suggests a sturdy, standalone unit suitable for urban environments such as sidewalks, parks, or plazas.",
+    "description": "A sleek, black polygonal kiosk with a flat roof and a single rectangular window on one side, featuring a minimalist and modern design.",
+    "description_view_0": "A solid black polygonal face with a tapered base and no visible features.",
+    "description_view_1": "The main service side with a rectangular window centered on the black facade.",
+    "description_view_2": "A solid black polygonal face, mirroring view 0, with no visible features.",
+    "description_view_3": "A wider, flat black face with no windows or openings, forming the rear or side of the kiosk.",
+    "category": "kiosk",
+    "height": 2.5,
+    "max_dimension": 3.0,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "serviceable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "none",
+    "attribute_window_presence": "one rectangular window on the front side",
+    "attribute_door_configuration": "none",
+    "attribute_roof_design": "flat roof with slightly angled edges, no visible overhangs or decorative elements",
+    "attribute_architectural_style": "minimalist modern",
+    "uid": "928b2052a4b14692847071591be5f92b",
+    "near_synsets": {
+        "booth.n.02": 0.5512313079801795,
+        "shopfront.n.01": 0.5650545340385935,
+        "desktop.n.01": 0.5757753661019872,
+        "wicket.n.04": 0.5813846475479304,
+        "window.n.07": 0.5823809714362457
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/928b2052a4b14692847071591be5f92b",
+        "creator_username": "stefanreichmann",
+        "creator_display_name": "stefanreichmann",
+        "creator_profile_url": "https://sketchfab.com/stefanreichmann"
+    },
+    "filename": "std_928b2052a4b14692847071591be5f92b.glb",
+    "length": 1.9380376935005188,
+    "width": 2.6815836429595947
+}

@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a square concrete slab with a circular metal manhole cover embedded in its center. The manhole cover features an ornate floral or geometric pattern with petal-like segments radiating from a central hub, surrounded by a ring of raised dots and two keyhole-shaped slots for lifting. The cover is set flush with the concrete, which has a rough, grainy texture and slightly irregular edges. The underside of the slab is faceted, forming a shallow pyramid shape, likely for structural support. The metal cover appears dark gray, contrasting with the lighter, speckled concrete. There are small inscriptions or markings visible on the cover, adding to its urban utility character.",
+    "description": "A square concrete slab with a decorative circular metal manhole cover featuring a floral pattern and keyhole slots, set flush within the rough-textured concrete.",
+    "description_view_0": "Front view showing the full ornate manhole cover design and surrounding concrete slab.",
+    "description_view_1": "Side profile revealing the slab's thickness and the slightly protruding metal cover.",
+    "description_view_2": "Bottom view displaying the faceted, pyramid-like underside of the concrete slab.",
+    "description_view_3": "Opposite side profile, again showing the slab's thickness and the edge of the metal cover.",
+    "category": "manhole cover",
+    "height": 0.18,
+    "max_dimension": 0.65,
+    "materials": [
+        "concrete",
+        "cast iron",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.29,
+        0.01
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1176,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cover",
+        "keyhole slots"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pattern_design": "Ornate floral or geometric motif with petal-like segments, raised dots, and two keyhole slots; includes small inscriptions.",
+    "attribute_presence_of_inscriptions": true,
+    "attribute_presence_of_bolts_or_fasteners": false,
+    "attribute_manufacturer_logo": false,
+    "attribute_surrounding_pavement_type": "concrete",
+    "uid": "eb9dc61965db44ba81cbd22b1f630aaf",
+    "near_synsets": {
+        "manhole_cover.n.01": 0.4277247273654644,
+        "manhole.n.01": 0.4699643798532332,
+        "hole.n.01": 0.5613246933345762,
+        "hole.n.02": 0.5659763619336887,
+        "keyhole.n.01": 0.5699999897969237,
+        "cover.n.10": -1000.0,
+        "top.n.09": -1000.0,
+        "binding.n.05": -1000.0,
+        "cover_charge.n.01": -1000.0,
+        "covering.n.01": -1000.0,
+        "cover.n.07": -1000.0,
+        "cover.n.09": -1000.0,
+        "screen.n.04": -1000.0,
+        "cover.n.03": -1000.0,
+        "blanket.n.01": -1000.0
+    },
+    "synset": "manhole_cover.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/eb9dc61965db44ba81cbd22b1f630aaf",
+        "creator_username": "hamsay",
+        "creator_display_name": "hamsay",
+        "creator_profile_url": "https://sketchfab.com/hamsay"
+    },
+    "filename": "std_eb9dc61965db44ba81cbd22b1f630aaf.glb",
+    "length": 0.0344696044921875,
+    "width": 0.17862892150878906
+}

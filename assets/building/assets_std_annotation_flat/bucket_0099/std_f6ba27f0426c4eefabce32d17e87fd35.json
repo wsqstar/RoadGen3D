@@ -1,0 +1,109 @@
+{
+    "description_long": "This police station is a two-story building with a modern, boxy design, featuring a prominent blue vertical sign labeled 'POLICE' at the entrance. The facade combines white and dark gray sections, with large rectangular windows on both floors and a gold shield emblem mounted on the right side. A rooftop helipad marked with an 'H' is visible, suggesting support for aerial operations. The building is accompanied by a black-and-white police car parked at the front, reinforcing its function. Additional details include rooftop HVAC units and a main entrance door beneath the signage. The overall structure is clean, geometric, and functional, with minimal decorative elements.",
+    "description": "A modern, two-story police station with a blue 'POLICE' sign, rooftop helipad, gold shield emblem, and a police car parked in front.",
+    "description_view_0": "Front view showing the main entrance, blue 'POLICE' sign, gold shield emblem, large windows, and a police car parked outside.",
+    "description_view_1": "Side view highlighting the rooftop helipad, rear HVAC units, and the police car partially visible near the entrance.",
+    "description_view_2": "Rear view displaying the building's geometric structure, window arrangements, and the blue vertical sign extending above the roof.",
+    "description_view_3": "Opposite side view showing the plain facade with two HVAC units and the police car barely visible at the front.",
+    "category": "police station",
+    "height": 8.0,
+    "max_dimension": 22.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.04,
+        0.01,
+        0.05
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "windows",
+        "helipad",
+        "signage",
+        "vehicle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "white",
+        "gray",
+        "black",
+        "gold"
+    ],
+    "colors_composition": [
+        0.3,
+        0.25,
+        0.25,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "group",
+    "attribute_police_signage": "Large vertical blue sign with white 'POLICE' text at the front entrance; gold shield emblem on the right facade.",
+    "attribute_police_vehicle_presence": "One black-and-white police car parked in front of the building, marked with 'POLICE' and a rooftop light bar.",
+    "attribute_building_facade_features": "Large rectangular windows, main entrance door, blue vertical 'POLICE' sign, gold shield emblem, rooftop helipad, rooftop HVAC units.",
+    "attribute_security_cameras": "none",
+    "attribute_architectural_style": "modern",
+    "uid": "f6ba27f0426c4eefabce32d17e87fd35",
+    "near_synsets": {
+        "police_station.n.01": 0.5101701477624561,
+        "lockup.n.01": 0.5339689283724294,
+        "panda_car.n.01": 0.5717062838469905,
+        "police_department.n.01": 0.5747558578760136,
+        "fire_station.n.01": 0.576579051921069,
+        "post.n.01": -1000.0,
+        "station.n.01": -1000.0,
+        "station.n.03": -1000.0,
+        "station.n.05": -1000.0,
+        "police.n.01": -1000.0,
+        "place.n.10": -1000.0
+    },
+    "synset": "police_station.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f6ba27f0426c4eefabce32d17e87fd35",
+        "creator_username": "katarzynaszemla",
+        "creator_display_name": "katarzynaszemla",
+        "creator_profile_url": "https://sketchfab.com/katarzynaszemla"
+    },
+    "filename": "std_f6ba27f0426c4eefabce32d17e87fd35.glb",
+    "length": 9.76481294631958,
+    "width": 16.924206733703613
+}

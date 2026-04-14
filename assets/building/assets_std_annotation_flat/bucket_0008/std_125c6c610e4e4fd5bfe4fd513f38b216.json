@@ -1,0 +1,96 @@
+{
+    "description_long": "This factory building features a long, rectangular footprint with multiple elongated wings extending from a central core, typical of industrial complexes designed for manufacturing or warehousing. The structure is primarily composed of concrete and steel, with large, flat roof sections and several rows of expansive industrial windows along the sides, allowing for ample natural light. A prominent block-like section, likely housing administrative offices or machinery, is attached to one side, while the rest of the building is segmented into parallel bays. The exterior is utilitarian, with minimal decorative elements, emphasizing function over form. No smokestacks are visible, but there are indications of rooftop machinery, such as vents or HVAC units, suggesting active industrial use. The color palette is dominated by shades of gray and metallic tones, reinforcing the building's modern industrial character.",
+    "description": "A large, rectangular factory building with multiple elongated wings, expansive industrial windows, and visible rooftop machinery, finished in gray and metallic tones.",
+    "description_view_0": "Side view showing the full length of the building, with parallel wings and the main block section clearly visible.",
+    "description_view_1": "Top-down view highlighting the symmetrical layout of the wings and the central connecting corridor.",
+    "description_view_2": "Opposite side view, revealing the mirrored structure of the wings and the main block, with industrial windows visible.",
+    "description_view_3": "Alternate top-down view, emphasizing the parallel arrangement of the building's wings and the attached block section.",
+    "category": "factory building",
+    "height": 12,
+    "max_dimension": 80,
+    "materials": [
+        "concrete",
+        "steel",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "mass": 950000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "rooftop machinery"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "metallic",
+        "blue"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 10,
+    "asset_composition_type": "single",
+    "attribute_number_of_large_industrial_windows": 8,
+    "attribute_presence_of_smokestacks": false,
+    "attribute_loading_dock_doors": 2,
+    "attribute_rooftop_machinery": true,
+    "attribute_architectural_style": "Modern Industrial",
+    "uid": "125c6c610e4e4fd5bfe4fd513f38b216",
+    "near_synsets": {
+        "factory.n.01": 0.5161316667968784,
+        "plant.n.01": 0.5404109266069171,
+        "farm_building.n.01": 0.5407857850773735,
+        "loft.n.01": 0.5413992565778157,
+        "shop_floor.n.01": 0.5493962507199806,
+        "construction.n.01": -1000.0,
+        "building.n.01": -1000.0,
+        "construction.n.07": -1000.0,
+        "building.n.04": -1000.0
+    },
+    "synset": "factory.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/125c6c610e4e4fd5bfe4fd513f38b216",
+        "creator_username": "michael_m",
+        "creator_display_name": "michael_m",
+        "creator_profile_url": "https://sketchfab.com/michael_m"
+    },
+    "filename": "std_125c6c610e4e4fd5bfe4fd513f38b216.glb",
+    "length": 45.03515815734863,
+    "width": 166.15234375
+}

@@ -1,0 +1,102 @@
+{
+    "description_long": "This combat tactical vehicle features a robust, angular body with a faceted, armored exterior, suggesting heavy protection. The vehicle is equipped with multiple cylindrical exhausts or thrusters at the rear, and several protruding modules along the sides, possibly for sensors or auxiliary equipment. The front is sharply sloped, likely for deflection and enhanced protection, and there is a visible weapon mount on the roof. The surface is composed of interlocking panels, giving it a modular, reinforced appearance. The color scheme is a uniform gray, with no visible camouflage or military markings. The vehicle appears to be constructed primarily from metal, with some plastic or composite elements for detailing.",
+    "description": "A heavily armored, angular combat tactical vehicle with a faceted gray exterior, rear thrusters, and a roof-mounted weapon. The design is robust and modular, emphasizing protection and utility.",
+    "description_view_0": "Side view showing the angular body, side modules, and the roof-mounted weapon.",
+    "description_view_1": "Rear view highlighting multiple cylindrical thrusters and the vehicle's wide, armored back.",
+    "description_view_2": "Opposite side view with similar features to view 0, showing side modules and armored panels.",
+    "description_view_3": "Front view displaying the sharply sloped, faceted front armor and two prominent front modules.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "composite armor",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "weapon mount",
+        "thruster",
+        "sensor module"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible weapon mount on the roof, located toward the front center, suitable for a machine gun or similar armament.",
+    "attribute_armor_plating": "Full body coverage with thick, faceted armor plating; panels are sloped and modular, providing enhanced protection.",
+    "attribute_camouflage_pattern": "none visible",
+    "attribute_military_markings": "none visible",
+    "attribute_tire_type": "not applicable",
+    "uid": "065b84ee47a0405dbfdf36f941225fb8",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.5033619089076126,
+        "tank.n.01": 0.512968876583058,
+        "reconnaissance_vehicle.n.01": 0.5193143916063405,
+        "assault_gun.n.02": 0.5201569287480495,
+        "armored_car.n.02": 0.532461458248643,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/065b84ee47a0405dbfdf36f941225fb8",
+        "creator_username": "mccorkle",
+        "creator_display_name": "mccorkle",
+        "creator_profile_url": "https://sketchfab.com/mccorkle"
+    },
+    "filename": "std_065b84ee47a0405dbfdf36f941225fb8.glb",
+    "length": 4.0506203174591064,
+    "width": 1.8717731833457947
+}

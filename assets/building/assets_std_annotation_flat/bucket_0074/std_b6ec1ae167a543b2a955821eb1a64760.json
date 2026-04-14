@@ -1,0 +1,98 @@
+{
+    "description_long": "This humanoid robot stands upright on two mechanical legs, each featuring multiple articulated joints and robust feet designed for stability. Its torso is broad and armored, with a prominent chest plate and two large cylindrical structures extending from the back, possibly functioning as power units or exhausts. The arms are asymmetrical: the left arm ends in a claw-like manipulator, while the right arm is bulkier and appears to incorporate a tool or weapon. The head is integrated into the torso, with a smooth, helmet-like dome and no visible facial features. Tubes and cables run from the back to the arms and torso, suggesting a complex internal power or hydraulic system. The robot is mounted on a circular, dark wooden platform, emphasizing its display or operational readiness.",
+    "description": "A robust, armored humanoid robot with articulated limbs, a dome-shaped head, and prominent back-mounted cylinders, standing on a circular wooden platform.",
+    "description_view_0": "Front view shows the broad chest plate, dome-shaped head, asymmetrical arms, and detailed leg joints.",
+    "description_view_1": "Left side view highlights the claw-like left hand, back-mounted cylinders, and visible tubing running from the back to the arm.",
+    "description_view_2": "Rear view reveals the full structure of the back-mounted cylinders, cable connections, and the mechanical design of the legs and feet.",
+    "description_view_3": "Right side view emphasizes the bulkier right arm, additional tubing, and the mechanical articulation of the legs.",
+    "category": "humanoid robot",
+    "height": 2.0,
+    "max_dimension": 2.2,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 250,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1500,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "rotatable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "claw hand",
+        "tool arm",
+        "legs",
+        "feet",
+        "back cylinders",
+        "tubing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "dark brown"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both legs straight, left arm extended forward with a claw open, right arm bent at the elbow and held slightly forward, head facing straight ahead, and torso upright.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated metal and plastic panels with visible mechanical and hydraulic components.",
+    "attribute_facial_features": "No visible facial features; head is a smooth, dome-shaped structure with no eyes, mouth, or nose.",
+    "attribute_limb_articulation": "Arms and legs have multiple hinge and rotary joints at the shoulders, elbows, wrists, hips, knees, and ankles, allowing for a wide range of motion; hands and feet are mechanical and articulated.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "b6ec1ae167a543b2a955821eb1a64760",
+    "near_synsets": {
+        "android.n.01": 0.5345138499555898,
+        "robotics_equipment.n.01": 0.5391930843999075,
+        "automaton.n.02": 0.5457277383895273,
+        "cyborg.n.01": 0.5518429851917587,
+        "automaton.n.03": 0.5723976291587908
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b6ec1ae167a543b2a955821eb1a64760",
+        "creator_username": "AlexandreKr3D",
+        "creator_display_name": "AlexandreKr3D",
+        "creator_profile_url": "https://sketchfab.com/AlexandreKr3D"
+    },
+    "filename": "std_b6ec1ae167a543b2a955821eb1a64760.glb",
+    "length": 2.8554422855377197,
+    "width": 2.8551077842712402
+}

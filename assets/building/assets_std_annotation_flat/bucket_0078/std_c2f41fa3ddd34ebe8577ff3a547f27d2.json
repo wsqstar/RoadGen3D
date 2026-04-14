@@ -1,0 +1,92 @@
+{
+    "description_long": "This is a large, rectangular, industrial shipping container with a weathered yellow exterior and visible rust patches, indicating prolonged outdoor use. The sides are corrugated for structural strength, and both long faces display the word 'International' in large white letters, accompanied by a geometric logo. One short end features a set of reinforced double doors with vertical locking bars and additional warning signage, while the opposite end is solid and unadorned. The top surface is flat and ribbed, showing signs of dirt and corrosion. The container is constructed primarily from heavy-duty metal, designed to withstand harsh environments and secure its contents during transport or storage.",
+    "description": "A large, weathered yellow metal shipping container with corrugated sides, 'International' branding, and reinforced double doors on one end.",
+    "description_view_0": "The long side of the yellow container is visible, featuring the 'International' logo and significant rust and weathering.",
+    "description_view_1": "The end with reinforced double doors and locking bars is shown, including warning signage and heavy rust.",
+    "description_view_2": "The opposite long side is visible, also displaying the 'International' logo and similar weathering.",
+    "description_view_3": "The solid, unadorned short end of the container is shown, with visible corrugation and rust but no doors or signage.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.03,
+        0.05
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking bar",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "large printed 'International' logo and geometric symbol on both long sides; warning signage on door end",
+    "attribute_handles_or_grips": "vertical locking bars with integrated handles on door end",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "c2f41fa3ddd34ebe8577ff3a547f27d2",
+    "near_synsets": {
+        "container.n.01": 0.4636314537145961,
+        "cargo_container.n.01": 0.48235125171441173,
+        "container_ship.n.01": 0.5430689696409842,
+        "box.n.01": 0.5432726954214873,
+        "drum.n.04": 0.5492385218741332
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c2f41fa3ddd34ebe8577ff3a547f27d2",
+        "creator_username": "ikorca",
+        "creator_display_name": "ikorca",
+        "creator_profile_url": "https://sketchfab.com/ikorca"
+    },
+    "filename": "std_c2f41fa3ddd34ebe8577ff3a547f27d2.glb",
+    "length": 6.128316879272461,
+    "width": 2.4771599769592285
+}

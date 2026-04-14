@@ -1,0 +1,88 @@
+{
+    "description_long": "This object is a hand tool with a long, narrow, serrated metal blade and a straight wooden handle. The blade is silver-gray, featuring a row of fine teeth along one edge, suitable for slicing through soft materials. The handle is rectangular, made of a medium-brown wood, and appears smooth and polished for comfortable gripping. The tool lacks any visible mechanical or powered components, such as a motor, chain, or safety guard. There are no visible logos, switches, or power indicators on the handle or blade. The overall design is simple and utilitarian, resembling a bread knife more than a powered chainsaw.",
+    "description": "A hand tool with a serrated metal blade and a straight wooden handle, lacking any powered or mechanical components. The design is simple and utilitarian, with no visible logos or safety features.",
+    "description_view_0": "Front view showing the full width of the serrated blade and the wooden handle behind it.",
+    "description_view_1": "Side view highlighting the length of the blade and handle, with the serrated edge clearly visible.",
+    "description_view_2": "End-on view showing the thickness of the blade and the rectangular profile of the handle.",
+    "description_view_3": "Opposite side view displaying the straight alignment of the handle and blade, with the serrated edge on the lower side.",
+    "category": "chainsaw",
+    "height": 0.04,
+    "max_dimension": 0.35,
+    "materials": [
+        "steel",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.45,
+        0.05
+    ],
+    "mass": 0.25,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 2,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "cuttable",
+        "grippable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "blade"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "silver",
+        "brown"
+    ],
+    "colors_composition": [
+        0.55,
+        0.45
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "smooth",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_brand_logo": "none",
+    "attribute_chain_type": "unknown",
+    "attribute_handle_design": "Single straight wooden handle, rectangular in shape, with no visible ergonomic or safety features.",
+    "attribute_safety_guard_presence": false,
+    "attribute_power_source_indicator": "unknown",
+    "uid": "864bce843f494963a3729205521516da",
+    "near_synsets": {
+        "saw.n.02": 0.450093881407609,
+        "chain_saw.n.01": 0.47615062049794715,
+        "handsaw.n.01": 0.48425795734427624,
+        "portable_circular_saw.n.01": 0.49443975798126594,
+        "hacksaw.n.01": 0.5029017827588262
+    },
+    "synset": "saw.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/864bce843f494963a3729205521516da",
+        "creator_username": "manopereira",
+        "creator_display_name": "Mano Pereira",
+        "creator_profile_url": "https://sketchfab.com/manopereira"
+    },
+    "filename": "std_864bce843f494963a3729205521516da.glb",
+    "length": 0.20720117539167404,
+    "width": 0.025286735966801643
+}

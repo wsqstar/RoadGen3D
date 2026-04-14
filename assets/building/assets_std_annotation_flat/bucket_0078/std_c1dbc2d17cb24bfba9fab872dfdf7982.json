@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a classic steam locomotive with a cylindrical red boiler, black smokestack, and a black cab at the rear. The locomotive features six large spoked wheels on each side, connected by visible rods and axles. The front of the train is equipped with a cowcatcher, a headlamp, and two prominent smokestacks. The cab has a rectangular window on each side, and the body is adorned with pipes and metallic details, including a silver vent on top. The overall design is reminiscent of 19th-century steam engines, with a robust, industrial appearance. The exterior is primarily metal, with a glossy finish on the red and black painted surfaces.",
+    "description": "A vintage steam locomotive with a red boiler, black cab, and large spoked wheels, featuring a cowcatcher and dual smokestacks. The design is industrial and detailed, evoking classic 19th-century trains.",
+    "description_view_0": "Side view showing the full length of the locomotive, including the red boiler, black cab with a window, and six large spoked wheels.",
+    "description_view_1": "Rear view highlighting the back of the cab and the alignment of the wheels, with minimal detail visible on the boiler.",
+    "description_view_2": "Opposite side view similar to view 0, showing the red boiler, black cab, and wheel arrangement, with pipes and details mirrored.",
+    "description_view_3": "Front view displaying the cowcatcher, headlamp, dual smokestacks, and the rounded front of the boiler.",
+    "category": "train",
+    "height": 2.8,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "iron",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 35000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "door",
+        "window",
+        "headlamp",
+        "smokestack",
+        "cowcatcher"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "steam locomotive",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end",
+    "attribute_window_arrangement": "single rectangular window on each side of the cab",
+    "uid": "c1dbc2d17cb24bfba9fab872dfdf7982",
+    "near_synsets": {
+        "steam_locomotive.n.01": 0.4635453504318029,
+        "train.n.01": 0.5068902815071257,
+        "locomotive.n.01": 0.5086925690145759,
+        "diesel_locomotive.n.01": 0.5096716540809432,
+        "traction_engine.n.01": 0.5158466946153035,
+        "train.n.05": -1000.0,
+        "caravan.n.01": -1000.0,
+        "gearing.n.01": -1000.0,
+        "train.n.04": -1000.0,
+        "string.n.04": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c1dbc2d17cb24bfba9fab872dfdf7982",
+        "creator_username": "belattimartin.e",
+        "creator_display_name": "Belatti Mart\u00edn",
+        "creator_profile_url": "https://sketchfab.com/belattimartin.e"
+    },
+    "filename": "std_c1dbc2d17cb24bfba9fab872dfdf7982.glb",
+    "length": 5.894076824188232,
+    "width": 2.43402099609375
+}

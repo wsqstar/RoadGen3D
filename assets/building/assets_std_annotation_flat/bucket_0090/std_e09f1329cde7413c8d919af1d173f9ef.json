@@ -1,0 +1,113 @@
+{
+    "description_long": "This object is a section of a stone graveyard wall, featuring a weathered surface with embedded gravestones or plaques of varying shapes and sizes. The wall is constructed from irregularly shaped stones, giving it a rustic and aged appearance, with some stones protruding slightly. Several rectangular and rounded grave markers are set into the wall, some of which appear to be partially eroded or broken. The coloration is predominantly gray and brown, with patches of moss or discoloration suggesting exposure to the elements. The top edge of the wall is flat, while one end features a perpendicular extension, possibly serving as a corner or boundary marker. No visible inscriptions or decorative elements are present on the grave markers.",
+    "description": "A weathered stone graveyard wall with embedded gravestones and plaques, featuring a rustic, aged appearance and a perpendicular corner extension.",
+    "description_view_0": "Side view showing the wall's thickness and the perpendicular extension at one end, with some gravestones visible.",
+    "description_view_1": "Top-down view highlighting the flat upper surface and the full length of the wall, with the perpendicular extension clearly visible.",
+    "description_view_2": "Opposite side view showing the narrow profile of the wall and the perpendicular extension, with minimal detail visible.",
+    "description_view_3": "Front view displaying the main face of the wall with multiple embedded gravestones and plaques, showing the most detail.",
+    "category": "grave yard",
+    "height": 1.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "stone",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.0,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_tombstone_inscriptions": [],
+    "attribute_crosses": [],
+    "attribute_grave_markers": [
+        {
+            "type": "headstone",
+            "material": "stone",
+            "dimensions": [
+                0.5,
+                0.4,
+                0.1
+            ]
+        },
+        {
+            "type": "plaque",
+            "material": "stone",
+            "dimensions": [
+                0.3,
+                0.2,
+                0.05
+            ]
+        }
+    ],
+    "attribute_mausoleums": [],
+    "attribute_cemetery_gates": [],
+    "uid": "e09f1329cde7413c8d919af1d173f9ef",
+    "near_synsets": {
+        "grave.n.02": 0.49246742473907656,
+        "gravestone.n.01": 0.5008194469101405,
+        "cairn.n.01": 0.5289142132812669,
+        "cemetery.n.01": 0.5304717289437054,
+        "grave.n.01": 0.541600175775635,
+        "cubic_yard.n.01": -1000.0,
+        "yard.n.09": -1000.0,
+        "yard.n.06": -1000.0,
+        "yard.n.07": -1000.0,
+        "yard.n.08": -1000.0,
+        "thousand.n.01": -1000.0,
+        "yard.n.03": -1000.0,
+        "yard.n.01": -1000.0,
+        "yard.n.02": -1000.0
+    },
+    "synset": "gravestone.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e09f1329cde7413c8d919af1d173f9ef",
+        "creator_username": "ahmetguner",
+        "creator_display_name": "AhmetGuner3d",
+        "creator_profile_url": "https://sketchfab.com/ahmetguner"
+    },
+    "filename": "std_e09f1329cde7413c8d919af1d173f9ef.glb",
+    "length": 1.1215612292289734,
+    "width": 4.669993877410889
+}

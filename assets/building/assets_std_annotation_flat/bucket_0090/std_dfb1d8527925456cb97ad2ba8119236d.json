@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a vintage-style vending machine with a boxy, rectangular form and rounded top edges. The front features a large circular emblem at the top with the text 'Double Tap II Root Beer' and a price of 10\u00a2, set against a weathered, olive-green background. Below the emblem, there is a metallic panel with a coin slot, a small rectangular window, and a product retrieval area, all surrounded by horizontal ridges. The lower section is black with gold text reading 'Double Tap II.' The sides are plain with some venting and subtle striping, while the back is a solid, slightly rusted metal panel. The machine has a worn, utilitarian appearance, suggesting it is made primarily of metal with some plastic or glass components.",
+    "description": "A weathered, vintage vending machine with a 'Double Tap II Root Beer' emblem, metallic front panel, and black lower section with gold text.",
+    "description_view_0": "Front view showing the emblem, coin slot, product retrieval area, and branding.",
+    "description_view_1": "Left side view displaying a plain olive surface with a vent and subtle striping.",
+    "description_view_2": "Rear view revealing a solid, slightly rusted metal back panel with no interactive features.",
+    "description_view_3": "Right side view similar to the left, with a vent and striping visible.",
+    "category": "vending machine",
+    "height": 1.6,
+    "max_dimension": 0.8,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "coin slot",
+        "button",
+        "product retrieval slot",
+        "display panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "black",
+        "gold",
+        "silver",
+        "white",
+        "orange"
+    ],
+    "colors_composition": [
+        0.55,
+        0.18,
+        0.07,
+        0.12,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A small rectangular display panel is located on the front metallic section, above the coin slot, appearing as a dark window or screen.",
+    "attribute_payment_interface": "A coin slot is present on the front metallic panel, to the right of the display panel, with a small return slot below it.",
+    "attribute_product_selection_buttons": "A single button is visible on the front metallic panel, adjacent to the coin slot.",
+    "attribute_product_retrieval_slot": "A rectangular product retrieval slot is located on the lower front metallic panel, beneath the coin slot and button.",
+    "attribute_branding_or_signage": "A large circular emblem at the top front displays 'Double Tap II Root Beer' with a star and orange background, and the lower front has gold 'Double Tap II' text on a black background.",
+    "uid": "dfb1d8527925456cb97ad2ba8119236d",
+    "near_synsets": {
+        "vending_machine.n.01": 0.5356338322269876,
+        "automat.n.01": 0.5687949113280995,
+        "root_beer.n.01": 0.5764689841434465,
+        "soda_fountain.n.02": 0.5787119363971455,
+        "root_beer_float.n.01": 0.5860433591471091,
+        "machine.n.04": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.05": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.02": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dfb1d8527925456cb97ad2ba8119236d",
+        "creator_username": "orenfaz",
+        "creator_display_name": "Oren Faz",
+        "creator_profile_url": "https://sketchfab.com/orenfaz"
+    },
+    "filename": "std_dfb1d8527925456cb97ad2ba8119236d.glb",
+    "length": 0.49225853383541107,
+    "width": 0.9009396433830261
+}

@@ -1,0 +1,113 @@
+{
+    "description_long": "This is a large, horizontally-oriented cylindrical storage tank mounted on a rectangular concrete platform. The tank is supported by a robust metal frame and features several visible pipe connections and control units, likely for monitoring and regulating the contents. On one side, there is a complex assembly of valves, gauges, and possibly pumps, indicating its use for storing and dispensing liquids or gases. The tank has a smooth, white exterior with a small access hatch or vent on the top and additional fittings along the sides. The base structure is dark-colored, contrasting with the tank's body, and the entire unit appears industrial and purpose-built. The setup suggests it is designed for secure, high-capacity storage in an urban or industrial environment.",
+    "description": "A large, white, horizontal cylindrical storage tank on a concrete base with visible pipes, valves, and control units. The tank is industrial in appearance and features a robust metal support frame.",
+    "description_view_0": "Side view showing the full length of the cylindrical tank, its supporting frame, and attached control units on the left.",
+    "description_view_1": "End view displaying the circular face of the tank and the supporting frame beneath, with minimal visible attachments.",
+    "description_view_2": "Opposite side view highlighting additional pipework and fittings attached to the tank, as well as the main body and support structure.",
+    "description_view_3": "Rear view focusing on the complex assembly of valves, gauges, and control units, with the tank's end face and top hatch visible.",
+    "category": "storage tank",
+    "height": 2.2,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "concrete",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.01,
+        0.04
+    ],
+    "mass": 4200,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "valve",
+        "pipe",
+        "gauge",
+        "control panel",
+        "hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "black",
+        "blue"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [
+        "inlet pipe",
+        "outlet valve",
+        "pressure relief valve"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_architectural_style": "cylindrical horizontal",
+    "uid": "9fcdc1c3364d41be9824df8c3fdae0e9",
+    "near_synsets": {
+        "tank.n.02": 0.4899464649546863,
+        "tank_farm.n.01": 0.5327043430155098,
+        "water_tower.n.01": 0.5337705973110073,
+        "reservoir.n.03": 0.5395793374261549,
+        "container.n.01": 0.5522498062159054,
+        "storehouse.n.01": -1000.0,
+        "storage.n.01": -1000.0,
+        "tank.n.01": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "repositing.n.01": -1000.0,
+        "tank.n.03": -1000.0,
+        "storage.n.04": -1000.0,
+        "memory.n.04": -1000.0,
+        "cooler.n.03": -1000.0,
+        "storage.n.03": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/9fcdc1c3364d41be9824df8c3fdae0e9",
+        "creator_username": "mediaware",
+        "creator_display_name": "Mediaware",
+        "creator_profile_url": "https://sketchfab.com/mediaware"
+    },
+    "filename": "std_9fcdc1c3364d41be9824df8c3fdae0e9.glb",
+    "length": 4.631820917129517,
+    "width": 3.323275923728943
+}

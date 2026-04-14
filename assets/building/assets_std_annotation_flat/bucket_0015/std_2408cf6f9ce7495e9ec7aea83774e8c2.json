@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a cylindrical, stick-handled device resembling the classic German Model 24 Stielhandgranate, commonly known as a 'stick grenade.' The main body consists of a green cylindrical metal canister attached to a long, straight wooden handle. The canister appears to be made of metal, likely steel, and is painted in a matte olive green, showing some wear and weathering. The handle is wooden, with a natural finish and visible grain, and is slightly tapered with a metal cap at the end. The overall construction suggests a robust, utilitarian design intended for manual throwing. There are no visible buttons, wires, or timer displays on the exterior, and the object lacks any clear warning labels or hazard symbols.",
+    "description": "A green cylindrical metal canister attached to a long wooden handle, resembling a classic stick grenade with a utilitarian, weathered finish.",
+    "description_view_0": "The object is seen from the end of the handle, showing the circular base and the length of the handle extending away.",
+    "description_view_1": "A full side profile reveals the cylindrical green canister and the entire length of the wooden handle, highlighting the object's proportions.",
+    "description_view_2": "Viewed from the canister end, the circular face of the metal canister is prominent, with the handle receding behind it.",
+    "description_view_3": "Another side profile, opposite to view 1, again showing the canister and handle but from the reverse direction.",
+    "category": "bomb",
+    "height": 0.35,
+    "max_dimension": 0.35,
+    "materials": [
+        "wood",
+        "steel",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 0.6,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "throwable",
+        "grippable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "canister",
+        "end cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.45,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The object appears to use a mechanical or friction-based detonation mechanism, likely activated by unscrewing or pulling the end cap and striking or pulling a fuse inside the handle.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "2408cf6f9ce7495e9ec7aea83774e8c2",
+    "near_synsets": {
+        "pipe_bomb.n.01": 0.5006196958517289,
+        "hand_grenade.n.01": 0.5055972672676513,
+        "grenade.n.01": 0.5059515449169465,
+        "cluster_bomb.n.01": 0.5182831253869513,
+        "bomb.n.01": 0.5190045096727103,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2408cf6f9ce7495e9ec7aea83774e8c2",
+        "creator_username": "den4ik4irik",
+        "creator_display_name": "den4ik4irik",
+        "creator_profile_url": "https://sketchfab.com/den4ik4irik"
+    },
+    "filename": "std_2408cf6f9ce7495e9ec7aea83774e8c2.glb",
+    "length": 0.34999969601631165,
+    "width": 1.974024772644043
+}

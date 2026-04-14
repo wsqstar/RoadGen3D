@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a heavily armored, tracked combat vehicle reminiscent of early 20th-century tanks, featuring a robust, boxy hull with sloped sides and prominent continuous tracks running along the full length of the body. The exterior is painted in a military olive drab with black and white accents, and it displays visible rivets and panel lines, suggesting reinforced steel construction. On both sides, there are large handles and hatches, as well as visible gun ports and exhaust vents, indicating multiple access points and weapon placements. The front and rear are flat and reinforced, with a protruding cannon or machine gun mount at the front. Distinctive markings, including numbers and insignia, are painted on the sides, along with a red and white striped section near the rear. The vehicle's design is utilitarian, prioritizing protection and firepower, and it is clearly intended for urban or battlefield deployment.",
+    "description": "A heavily armored, olive drab tracked combat vehicle with visible gun mounts, military markings, and reinforced steel plating. It features full-length tracks, side hatches, and prominent rivets.",
+    "description_view_0": "Front view shows the reinforced flat face, central gun mount, and the wide, continuous tracks flanking the hull.",
+    "description_view_1": "Left side view highlights the full-length tracks, side hatches, large handles, '00' marking, and a red-white insignia near the rear.",
+    "description_view_2": "Rear view displays the back armor, exhaust vents, and the continuation of the tracks, with less visible weaponry.",
+    "description_view_3": "Right side view mirrors the left, with '00' marking, side hatches, handles, and the red-white insignia.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.02,
+        0.03,
+        0.1
+    ],
+    "mass": 28000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "handle",
+        "gun mount",
+        "track",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive drab",
+        "black",
+        "white",
+        "red"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One central gun mount at the front, two side gun ports (one on each side), no visible roof or rear mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, riveted steel armor plating; sloped sides and reinforced front and rear panels.",
+    "attribute_camouflage_pattern": "Solid olive drab with black, white, and red accent markings; no complex camouflage pattern visible.",
+    "attribute_military_markings": "White '00' on both sides, red and white vertical stripe with a yellow-black insignia on the rear sides, and additional small stenciled symbols.",
+    "attribute_tire_type": "not applicable",
+    "uid": "a919a9bb23de488582f7dcb80afdf861",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.49290032284719776,
+        "tank.n.01": 0.5083170044014426,
+        "armored_car.n.02": 0.508716597083726,
+        "reconnaissance_vehicle.n.01": 0.5103374397892736,
+        "armored_vehicle.n.01": 0.5117202898293627,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a919a9bb23de488582f7dcb80afdf861",
+        "creator_username": "dimmimoto",
+        "creator_display_name": "dimmimoto",
+        "creator_profile_url": "https://sketchfab.com/dimmimoto"
+    },
+    "filename": "std_a919a9bb23de488582f7dcb80afdf861.glb",
+    "length": 7.238450527191162,
+    "width": 3.4373704195022583
+}

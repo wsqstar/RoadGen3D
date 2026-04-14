@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a compact, utilitarian combat tactical vehicle with a flatbed cargo area and two large, camouflaged wheels on either side. The body is constructed from interlocking, rectangular panels in a mix of brown, black, and gray, giving it a rugged, modular appearance. Two long, parallel handles or tow bars extend from the front, suggesting it is designed to be pulled or towed rather than self-propelled. The sides and rear are enclosed with solid panels, while the top is open, allowing for easy loading and unloading of equipment or personnel. The wheels are partially covered by the side panels and feature a matching camouflage pattern. There are no visible windows, doors, or mounted weaponry, and the overall design prioritizes function and durability over comfort or speed.",
+    "description": "A compact, camouflaged tactical vehicle with a flatbed cargo area, two large wheels, and long tow bars, designed for rugged utility and transport. Its body is made of interlocking panels in brown, black, and gray.",
+    "description_view_0": "Side view showing the full length of the vehicle, the two large camouflaged wheels, and the interlocking panel construction.",
+    "description_view_1": "Front view highlighting the two long tow bars and the open cargo area between the side panels.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the wheels and the modular panel design.",
+    "description_view_3": "Rear view displaying the open cargo area and the symmetry of the side panels.",
+    "category": "combat tactical  vehicle",
+    "height": 1.2,
+    "max_dimension": 3.2,
+    "materials": [
+        "metal",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 420,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "tow bar",
+        "cargo bed"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "none visible.",
+    "attribute_armor_plating": "None visible; the panels appear to be standard metal with no additional armor or reinforcement.",
+    "attribute_camouflage_pattern": "Blocky camouflage pattern in brown, black, and gray geometric shapes.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "Two large wheels with a basic tread pattern, not clearly off-road or reinforced.",
+    "uid": "216abeb437454c53bb556148bec71404",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4959532479031998,
+        "tank.n.01": 0.5052915105972055,
+        "weapons_carrier.n.01": 0.5056290395630706,
+        "reconnaissance_vehicle.n.01": 0.5064156605921438,
+        "technical.n.01": 0.5251025186778859,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/216abeb437454c53bb556148bec71404",
+        "creator_username": "pkerstoff",
+        "creator_display_name": "098416",
+        "creator_profile_url": "https://sketchfab.com/pkerstoff"
+    },
+    "filename": "std_216abeb437454c53bb556148bec71404.glb",
+    "length": 4.0517871379852295,
+    "width": 1.9597285389900208
+}

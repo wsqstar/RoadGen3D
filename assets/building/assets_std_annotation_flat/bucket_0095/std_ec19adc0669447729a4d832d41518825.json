@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a wooden half-pipe skate ramp, commonly found in urban parks or recreational areas. The ramp features a smooth, curved wooden surface for skating, flanked by two vertical end platforms with red metal safety railings. The side panels are constructed from dark-stained wood, giving the structure a robust and sturdy appearance. The red railings provide both safety and a visual accent, contrasting with the natural wood tones. The ramp is designed for activities such as skateboarding, BMX biking, or scootering, allowing users to perform tricks and transitions. The open central area and elevated platforms make it suitable for multiple users and spectators.",
+    "description": "A wooden half-pipe skate ramp with red metal safety railings and dark-stained wooden side panels, designed for skateboarding and similar activities.",
+    "description_view_0": "Front view showing the full curved ramp surface and both red safety railings on the end platforms.",
+    "description_view_1": "Side view highlighting the solid wooden side panel and the red railing, with the ramp surface partially visible.",
+    "description_view_2": "Rear view similar to the front, displaying the ramp's curve and both red railings from the opposite side.",
+    "description_view_3": "Opposite side view, mirroring view 1, showing the other wooden side panel and railing.",
+    "category": "playground",
+    "height": 1.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 900,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "skateable",
+        "climbable",
+        "grindable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "ramp surface",
+        "platform",
+        "safety railing"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "skateboard",
+        "bicycle",
+        "scooter"
+    ],
+    "colors": [
+        "brown",
+        "red",
+        "beige"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_playground_equipment_type": "skate ramp",
+    "attribute_presence_of_safety_barriers": true,
+    "attribute_number_of_play_structures": 1,
+    "attribute_presence_of_shade_structures": false,
+    "attribute_architectural_style": "modern",
+    "uid": "ec19adc0669447729a4d832d41518825",
+    "near_synsets": {
+        "skateboarding.n.01": 0.5109146399263258,
+        "slide.n.04": 0.5405657947079423,
+        "skateboard.n.01": 0.5406760496559103,
+        "playground.n.02": 0.5428210746983841,
+        "skateboarder.n.01": 0.5446099231182961,
+        "resort_area.n.01": -1000.0
+    },
+    "synset": "playground.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ec19adc0669447729a4d832d41518825",
+        "creator_username": "FinBeastMode",
+        "creator_display_name": "FinBeastMode",
+        "creator_profile_url": "https://sketchfab.com/FinBeastMode"
+    },
+    "filename": "std_ec19adc0669447729a4d832d41518825.glb",
+    "length": 1.7454044222831726,
+    "width": 3.4883716106414795
+}

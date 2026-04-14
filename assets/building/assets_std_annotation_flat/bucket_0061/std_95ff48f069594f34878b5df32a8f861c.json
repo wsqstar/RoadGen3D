@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a single-carriage urban commuter train with a rectangular, elongated body and a flat roof. The exterior features a two-tone color scheme, with a tan upper section and a maroon lower section separated by a black trim. Large, rectangular windows are evenly spaced along both sides, providing visibility into the passenger compartment. The train has visible doors integrated into the side panels, and the undercarriage includes detailed wheel assemblies and suspension components. The front and rear ends are flat, with the front end featuring a window and coupling mechanism. The overall design suggests a modern, functional vehicle intended for city transit systems.",
+    "description": "A tan and maroon single-car commuter train with large rectangular windows and side doors, designed for urban passenger transport.",
+    "description_view_0": "Side view showing the full length of the train, with evenly spaced windows and doors, and visible undercarriage details.",
+    "description_view_1": "End view showing the flat front of the train with a window and coupling mechanism, highlighting the train's width and entry point.",
+    "description_view_2": "Opposite side view similar to view 0, displaying the same window and door arrangement and undercarriage features.",
+    "description_view_3": "Rear view showing the flat back of the train, with a window and coupling, emphasizing the train's height and rear entry.",
+    "category": "train",
+    "height": 3.8,
+    "max_dimension": 20.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 35000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "coupling",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "maroon",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.45,
+        0.35,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "commuter train",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "evenly spaced along both sides",
+    "attribute_window_arrangement": "continuous row of rectangular windows",
+    "uid": "95ff48f069594f34878b5df32a8f861c",
+    "near_synsets": {
+        "car_train.n.01": 0.45073858889396157,
+        "passenger_train.n.01": 0.4589265088096772,
+        "train.n.01": 0.4648641327663753,
+        "commuter.n.01": 0.46971709077889356,
+        "subway_train.n.01": 0.48417181567951995,
+        "train.n.05": -1000.0,
+        "string.n.04": -1000.0,
+        "caravan.n.01": -1000.0,
+        "gearing.n.01": -1000.0,
+        "train.n.04": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/95ff48f069594f34878b5df32a8f861c",
+        "creator_username": "continentialvoxels",
+        "creator_display_name": "voxellation",
+        "creator_profile_url": "https://sketchfab.com/continentialvoxels"
+    },
+    "filename": "std_95ff48f069594f34878b5df32a8f861c.glb",
+    "length": 19.327584266662598,
+    "width": 3.406896471977234
+}

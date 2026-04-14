@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a bolt-action military rifle with a wooden stock and a long, blued steel barrel. The rifle features a fixed bayonet attached to the muzzle, giving it a distinctive elongated profile. The stock is made of polished wood, extending from the butt to the fore-end, and includes a metal buttplate. A canvas or leather sling is attached to the underside, running from the buttstock to the fore-end for easier carrying. The action is bolt-operated, with the bolt handle clearly visible on the right side. Iron sights are mounted on top of the barrel, and the magazine is internal, not protruding from the bottom of the rifle.",
+    "description": "A classic bolt-action rifle with a wooden stock, fixed bayonet, and iron sights, featuring a sling for carrying. The rifle has a long steel barrel and an internal magazine.",
+    "description_view_0": "Front view showing the pointed bayonet and the narrow profile of the barrel and stock.",
+    "description_view_1": "Side view displaying the full length of the rifle, wooden stock, attached sling, and bayonet.",
+    "description_view_2": "Rear view highlighting the buttstock and the alignment of the barrel and bayonet.",
+    "description_view_3": "Opposite side view showing the bolt handle, trigger guard, and the full length of the rifle with sling and bayonet.",
+    "category": "rifle",
+    "height": 0.22,
+    "max_dimension": 1.25,
+    "materials": [
+        "wood",
+        "steel",
+        "leather",
+        "canvas",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.45,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 4.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 45,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pullable",
+        "pushable",
+        "rotatable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "bolt handle",
+        "trigger",
+        "magazine",
+        "sling",
+        "bayonet",
+        "safety",
+        "iron sights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "silver",
+        "green"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "internal",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "bayonet",
+    "uid": "f6a2160daf134071a84e3cae5f831875",
+    "near_synsets": {
+        "bayonet.n.01": 0.5071454485308013,
+        "garand_rifle.n.01": 0.5122235558875905,
+        "rifle.n.01": 0.5193447247357255,
+        "browning_automatic_rifle.n.01": 0.5208831529633872,
+        "light_arm.n.01": 0.536204658339461
+    },
+    "synset": "browning_automatic_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f6a2160daf134071a84e3cae5f831875",
+        "creator_username": "Moony_State",
+        "creator_display_name": "Moony_State",
+        "creator_profile_url": "https://sketchfab.com/Moony_State"
+    },
+    "filename": "std_f6a2160daf134071a84e3cae5f831875.glb",
+    "length": 1.0539697408676147,
+    "width": 0.058273863047361374
+}

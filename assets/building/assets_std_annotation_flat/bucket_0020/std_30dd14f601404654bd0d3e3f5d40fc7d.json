@@ -1,0 +1,115 @@
+{
+    "description_long": "This is a large, multi-platform train station structure featuring several parallel covered platforms with canopies, a main brick building, and a pedestrian overpass connecting the platforms. The platforms are separated by multiple train tracks, and the main building includes rooftop details such as HVAC units and greenery. There are stairways and elevators providing access between the platforms and the overpass, as well as a secondary entrance with a covered walkway. The station is bordered by roads, sidewalks, and parking areas, with visible signage and access points for both vehicles and pedestrians. The overall design is utilitarian, with a focus on functionality and accessibility, and the materials appear to be primarily concrete, metal, and glass. The structure is expansive, accommodating multiple trains and large numbers of passengers simultaneously.",
+    "description": "A large, multi-platform train station with covered platforms, a brick main building, and a pedestrian overpass, designed for high passenger flow and accessibility.",
+    "description_view_0": "View 0 shows the platforms and tracks from above, highlighting the canopies, stairways, and the main building's rooftop details.",
+    "description_view_1": "View 1 presents the rear of the main building, the overpass, and the arrangement of platforms and tracks from a different angle.",
+    "description_view_2": "View 2 focuses on the station's street-facing side, with visible signage, secondary entrance, and access points for vehicles and pedestrians.",
+    "description_view_3": "View 3 displays the opposite side of the station, emphasizing the overpass, parking area, and the full length of the platforms and tracks.",
+    "category": "platform",
+    "height": 10.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "concrete",
+        "metal",
+        "glass",
+        "brick",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "waitable",
+        "boardable",
+        "shelterable",
+        "ascendable",
+        "descendable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "stairs",
+        "elevators",
+        "doors",
+        "benches",
+        "ticket machines",
+        "signage"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "red",
+        "green",
+        "blue",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.4,
+        0.25,
+        0.1,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "scene",
+    "attribute_architectural_style": "Modernist",
+    "attribute_manufacturer_or_brand": "Unknown",
+    "attribute_distinctive_signage": "Green and white signage with the text 'DAO SHI\u00d3' on the street-facing side of the main building.",
+    "attribute_unique_ornamentation": "Rooftop greenery and HVAC units provide minor decorative distinction.",
+    "attribute_structural_features": "Multiple covered platforms, pedestrian overpass, stairways, elevators, brick main building, canopies, railings, and parking areas.",
+    "uid": "30dd14f601404654bd0d3e3f5d40fc7d",
+    "near_synsets": {
+        "platform.n.06": 0.41854527444001866,
+        "subway_station.n.01": 0.5032733455760657,
+        "railway_station.n.01": 0.5229385065001538,
+        "platform.n.01": 0.526105101317952,
+        "footbridge.n.01": 0.5332355722205196,
+        "platform.n.02": -1000.0,
+        "platform.n.03": -1000.0,
+        "chopine.n.01": -1000.0,
+        "platform.n.04": -1000.0
+    },
+    "synset": "platform.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/30dd14f601404654bd0d3e3f5d40fc7d",
+        "creator_username": "2030645",
+        "creator_display_name": "2030645",
+        "creator_profile_url": "https://sketchfab.com/2030645"
+    },
+    "filename": "std_30dd14f601404654bd0d3e3f5d40fc7d.glb",
+    "length": 43.10341835021973,
+    "width": 43.103416442871094
+}

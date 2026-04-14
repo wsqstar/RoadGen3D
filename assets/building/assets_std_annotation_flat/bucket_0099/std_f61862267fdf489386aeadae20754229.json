@@ -1,0 +1,105 @@
+{
+    "description_long": "This lift gate consists of a long, horizontal barrier arm attached to a robust vertical post. The arm and post are painted with alternating red and white stripes, which are slightly weathered, providing high visibility and a clear warning to approaching vehicles or pedestrians. The vertical post is capped with a dark, polygonal top, likely made of metal or reinforced material for durability. The arm appears to be constructed from metal, possibly steel, and is designed to pivot upward to allow or restrict access. The structure is utilitarian, with no visible handle or control panel, suggesting it may be operated remotely or automatically. The overall design is typical for urban access control points such as parking lots, garages, or restricted roadways.",
+    "description": "A red and white striped metal lift gate with a sturdy vertical post and a long horizontal arm, designed for access control in urban environments. The surface is weathered and highly visible, with a dark cap on the post.",
+    "description_view_0": "Front view showing the full length of the striped barrier arm and the vertical post with a dark cap.",
+    "description_view_1": "Side view highlighting the thickness of the post and the narrow profile of the barrier arm.",
+    "description_view_2": "Top-down view displaying the polygonal shape of the post cap and the alignment of the arm with the post.",
+    "description_view_3": "Opposite side view showing the arm's edge and the post's width, with the striped pattern visible.",
+    "category": "lift gate",
+    "height": 1.0,
+    "max_dimension": 3.0,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrier arm",
+        "pivot post"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.45,
+        0.45,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_mounting_location": "ground-level curb or driveway entrance",
+    "attribute_handle_type": "no visible handle",
+    "attribute_hinge_mechanism": "rotational pin hinge",
+    "attribute_locking_system": "no visible locking system",
+    "attribute_warning_signage": "red and white hazard stripes",
+    "uid": "f61862267fdf489386aeadae20754229",
+    "near_synsets": {
+        "lock-gate.n.01": 0.5115202348616262,
+        "turnstile.n.01": 0.5301752576585245,
+        "gate.n.01": 0.5359339653061922,
+        "hinging_post.n.01": 0.545769224513673,
+        "gateway.n.01": 0.5494312548424913,
+        "ski_tow.n.01": -1000.0,
+        "lift.n.06": -1000.0,
+        "lift.n.07": -1000.0,
+        "aerodynamic_lift.n.01": -1000.0,
+        "gate.n.04": -1000.0,
+        "lift.n.04": -1000.0,
+        "lift.n.12": -1000.0,
+        "gate.n.02": -1000.0,
+        "lift.n.11": -1000.0,
+        "airlift.n.01": -1000.0,
+        "elevator.n.01": -1000.0,
+        "elevation.n.01": -1000.0,
+        "lift.n.01": -1000.0,
+        "face_lift.n.01": -1000.0,
+        "gate.n.03": -1000.0
+    },
+    "synset": "gate.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f61862267fdf489386aeadae20754229",
+        "creator_username": "tridentcorp",
+        "creator_display_name": "TridentCorp",
+        "creator_profile_url": "https://sketchfab.com/tridentcorp"
+    },
+    "filename": "std_f61862267fdf489386aeadae20754229.glb",
+    "length": 0.3187883198261261,
+    "width": 2.0604851245880127
+}

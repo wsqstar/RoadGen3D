@@ -1,0 +1,102 @@
+{
+    "description_long": "This apartment building features a rectangular, block-like structure with a flat roof and a symmetrical facade. The front side displays multiple rows of evenly spaced windows, each floor separated by horizontal bands, and a central vertical section that likely houses stairwells or elevators. The exterior is primarily composed of red brickwork on the lower levels, with lighter-colored panels and large windows on the upper floors. Balconies are visible on one side, adding depth and outdoor space for residents. The roof is flat and appears to have mechanical units or vents, typical for urban residential buildings. The side and rear views show a continuation of the window pattern and additional utility structures, emphasizing its function as a multi-family dwelling.",
+    "description": "A rectangular, multi-story apartment building with a flat roof, red brick lower facade, large windows, and balconies on one side. The design is symmetrical and modern, with clear separation between floors and a central vertical section.",
+    "description_view_0": "The front view shows the main facade with rows of windows, horizontal bands, and a central vertical section, as well as balconies on the left side.",
+    "description_view_1": "The left side view reveals the building's depth, the end of the balconies, and utility structures, with minimal window visibility.",
+    "description_view_2": "The rear view displays a similar window arrangement as the front, but without balconies, and highlights rooftop mechanical units.",
+    "description_view_3": "The right side view mirrors the left, showing the building's depth and utility structures, with a plain wall and few windows.",
+    "category": "apartment building",
+    "height": 15.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "concrete",
+        "brick",
+        "glass",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 1200000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "balcony railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "gray",
+        "black",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.4,
+        0.25,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 4,
+    "attribute_balcony_presence": true,
+    "attribute_window_arrangement": "The windows are arranged in horizontal rows with consistent spacing, creating a symmetrical and orderly grid pattern across the facade.",
+    "attribute_entrance_type": "single door",
+    "attribute_architectural_style": "Contemporary",
+    "uid": "d67ac47bc20844eb80239b32499ab988",
+    "near_synsets": {
+        "apartment_building.n.01": 0.46382299555343015,
+        "block.n.05": 0.5129034988533233,
+        "railroad_flat.n.01": 0.5240161347280828,
+        "high-rise.n.01": 0.5247076350379519,
+        "apartment.n.01": 0.5261536720825438,
+        "construction.n.07": -1000.0,
+        "building.n.04": -1000.0,
+        "construction.n.01": -1000.0,
+        "building.n.01": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d67ac47bc20844eb80239b32499ab988",
+        "creator_username": "ariosgeo",
+        "creator_display_name": "ariosgeo",
+        "creator_profile_url": "https://sketchfab.com/ariosgeo"
+    },
+    "filename": "std_d67ac47bc20844eb80239b32499ab988.glb",
+    "length": 12.496156692504883,
+    "width": 50.853759765625
+}

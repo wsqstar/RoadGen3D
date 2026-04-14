@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a beige, six-wheeled armored combat tactical vehicle with a low, angular profile and a turret mounted on top. The vehicle features a sloped front with reinforced armor plating, multiple vision ports, and a prominent gun barrel extending from the turret. The sides display large, rugged off-road tires and various hatches, handles, and equipment mounts, while the rear has dual access panels and additional storage compartments. The exterior is finished in a solid desert tan color, with no visible camouflage patterns or military markings. The vehicle's design suggests heavy protection and mobility, suitable for urban or rugged environments. Its surface appears matte and hard, with visible bolts and panel lines indicating modular armor construction.",
+    "description": "A beige, six-wheeled armored combat vehicle with a turret and gun, rugged tires, and reinforced angular plating. The exterior is matte and solid, with no visible markings or camouflage.",
+    "description_view_0": "Front view shows the sloped armored nose, vision ports, and the turret with a gun barrel; headlights and bumper details are visible.",
+    "description_view_1": "Left side view highlights the three large off-road tires, side hatches, turret, and gun barrel; surface details and equipment mounts are visible.",
+    "description_view_2": "Rear view displays dual access panels, rear lights, and storage compartments; the vehicle's angular armor and tire arrangement are evident.",
+    "description_view_3": "Right side view mirrors the left, showing three tires, side hatches, and the turret; additional equipment mounts and surface details are visible.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.82,
+        0.1,
+        0.03,
+        0.02,
+        0.03
+    ],
+    "mass": 8500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "wheel",
+        "turret",
+        "gun barrel",
+        "handle",
+        "headlight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "black"
+    ],
+    "colors_composition": [
+        0.92,
+        0.08
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible gun mount on the turret roof, forward-facing; no other weapon mounts or hardpoints are visible.",
+    "attribute_armor_plating": "Full body coverage with angular, sloped steel armor plating; appears thick and reinforced, especially at the front and turret. Visible bolts and panel lines suggest modular construction.",
+    "attribute_camouflage_pattern": "None visible; solid beige paint scheme.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Six large off-road tires with deep tread pattern, suitable for rugged terrain; no visible reinforcement or chains.",
+    "uid": "ac21ee98f6584d729e76cdaad5ca481c",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.492310691246165,
+        "tank.n.01": 0.503554463784962,
+        "armored_car.n.02": 0.5173761275305512,
+        "reconnaissance_vehicle.n.01": 0.5184652302078642,
+        "assault_gun.n.02": 0.5225730063342159,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "armored_car.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ac21ee98f6584d729e76cdaad5ca481c",
+        "creator_username": "LucaKawe",
+        "creator_display_name": "Luca Kawe",
+        "creator_profile_url": "https://sketchfab.com/LucaKawe"
+    },
+    "filename": "std_ac21ee98f6584d729e76cdaad5ca481c.glb",
+    "length": 4.432114124298096,
+    "width": 2.210453987121582
+}

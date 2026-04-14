@@ -1,0 +1,90 @@
+{
+    "description_long": "This object is a compact, tactical-style shotgun with a matte black finish and a short barrel, making it suitable for close-quarters use. The shotgun features a prominent pump-action fore-end with ribbed texturing for grip, and a pistol grip stock for enhanced maneuverability. The barrel and magazine tube run parallel, with the barrel slightly shorter than the magazine tube, both finished in a non-reflective black. The receiver is streamlined and lacks any visible external sights or rails, emphasizing a minimalist, utilitarian design. The trigger guard is rounded and moderately sized, providing protection for the trigger while allowing easy access. The overall construction appears robust, with most components likely made from steel and polymer for durability and reduced weight.",
+    "description": "A compact, matte black pump-action shotgun with a ribbed fore-end and pistol grip, designed for tactical use. Its short barrel and minimalist design make it suitable for close-quarters scenarios.",
+    "description_view_0": "Side view showing the full length of the shotgun, highlighting the ribbed pump, pistol grip, and parallel barrel and magazine tube.",
+    "description_view_1": "Front view displaying the circular muzzle opening and the alignment of the barrel and magazine tube, with the pistol grip visible below.",
+    "description_view_2": "Opposite side view mirroring view 0, showing the same features from the other side, including the pump and grip.",
+    "description_view_3": "Rear view focusing on the back of the receiver and the pistol grip, with the barrel and magazine tube aligned above.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.75,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "pumpable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pump",
+        "trigger",
+        "trigger guard",
+        "pistol grip",
+        "barrel",
+        "magazine tube"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, with a ribbed pump fore-end and a parallel magazine tube beneath the barrel",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "rounded, moderately sized trigger guard with a smooth contour and no visible finger grooves or reinforcement",
+    "uid": "ab47322e2c4a49bf8a86efd5599795a5",
+    "near_synsets": {
+        "pump_action.n.01": 0.4825617962938719,
+        "sawed-off_shotgun.n.01": 0.506760151927688,
+        "shotgun.n.01": 0.5193250457616926,
+        "pistol.n.01": 0.5482442571151301,
+        "gas_gun.n.01": 0.5490193332666904
+    },
+    "synset": "shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ab47322e2c4a49bf8a86efd5599795a5",
+        "creator_username": "griffin6622",
+        "creator_display_name": "SavageJerry",
+        "creator_profile_url": "https://sketchfab.com/griffin6622"
+    },
+    "filename": "std_ab47322e2c4a49bf8a86efd5599795a5.glb",
+    "length": 0.7758066654205322,
+    "width": 0.04855438508093357
+}

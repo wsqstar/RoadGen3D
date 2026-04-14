@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a rectangular, two-story hostel building with a flat, slightly sloped roof featuring four dormer windows on each side. The exterior is painted in two shades of blue, with darker blue accents around the windows, roofline, and base. The front facade has a small metal awning above the main entrance, which is located slightly off-center and marked by a yellow number sign. The windows are symmetrically arranged, with three on each side of the entrance and two on each end, all featuring simple rectangular frames. The roof appears to be made of metal panels, showing some weathering and discoloration. The overall design is utilitarian, with minimal decorative elements, suitable for urban residential use.",
+    "description": "A blue, two-story hostel with a metal roof, symmetrical windows, and a small awning above the main entrance. The building has a simple, functional design with minimal ornamentation.",
+    "description_view_0": "Front view showing the main entrance with a metal awning, symmetrical windows, and a yellow number sign.",
+    "description_view_1": "Side view highlighting the building's depth, the sloped metal roof, and the arrangement of dormer windows.",
+    "description_view_2": "Rear view with a similar window arrangement as the front but without an awning or signage.",
+    "description_view_3": "Opposite side view showing the building's length, roof structure, and window placement.",
+    "category": "hostel",
+    "height": 8.5,
+    "max_dimension": 20.0,
+    "materials": [
+        "concrete",
+        "brick",
+        "glass",
+        "metal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "windows",
+        "awning"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "dark blue",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_signage": "A small, rectangular yellow number sign with black text is located to the right of the main entrance, just above eye level.",
+    "attribute_entrance_design": "The main entrance is located on the front facade, slightly off-center, and features a single door with a small, flat metal awning above it. The awning is supported by simple brackets and is painted in a matching blue tone. The entrance is flush with the building, with no visible steps or ramp, and is marked by a yellow number sign.",
+    "attribute_window_arrangement": "Windows are symmetrically arranged in two vertical rows on both the front and rear facades, with three windows on each side of the entrance and two on each end. All windows are rectangular, similarly sized, and framed with dark blue trim. The roof features four dormer windows on each side, evenly spaced.",
+    "attribute_balcony_presence": "none",
+    "attribute_architectural_style": "Contemporary utilitarian with minimal ornamentation and a focus on function over decorative elements.",
+    "uid": "305a61a885b24540af1c408b78a01b45",
+    "near_synsets": {
+        "hostel.n.01": 0.522733821235818,
+        "hostel.n.02": 0.5334449947703148,
+        "hosteller.n.02": 0.5567014400814579,
+        "house.n.12": 0.5636525882195058,
+        "rest_house.n.01": 0.5738326148964145
+    },
+    "synset": "hosteller.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/305a61a885b24540af1c408b78a01b45",
+        "creator_username": "lowlypoly",
+        "creator_display_name": "LowlyPoly",
+        "creator_profile_url": "https://sketchfab.com/lowlypoly"
+    },
+    "filename": "std_305a61a885b24540af1c408b78a01b45.glb",
+    "length": 6.843871355056763,
+    "width": 12.822290420532227
+}

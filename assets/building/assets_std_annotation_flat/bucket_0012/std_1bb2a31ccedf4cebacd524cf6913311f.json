@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a large, rectangular office desk with a wood grain finish on the top and sides, and a combination of light gray and natural wood tones. The front side features a modesty panel and two solid side panels, while the back side is equipped with multiple drawers and a cabinet, providing ample storage space. The desk has a flat, spacious work surface suitable for computers, paperwork, or other office equipment. The drawers are fitted with round handles, and the overall construction appears sturdy and functional. The desk sits on small, unobtrusive feet, elevating it slightly off the ground. Its design is modern and practical, making it suitable for professional or home office environments.",
+    "description": "A large, modern office desk with a wood grain finish, multiple drawers, and a spacious work surface. The design combines light gray and natural wood tones for a professional appearance.",
+    "description_view_0": "Front view showing the modesty panel and solid side panels, with no visible drawers or handles.",
+    "description_view_1": "Side view displaying the wood grain texture and the solid, flat panel construction.",
+    "description_view_2": "Back view revealing multiple drawers and a cabinet with round handles, highlighting the desk's storage features.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the wood grain texture and solid panel.",
+    "category": "desk",
+    "height": 0.75,
+    "max_dimension": 1.6,
+    "materials": [
+        "engineered wood",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 60,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "pullable",
+        "pushable",
+        "supportable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "drawer",
+        "handle",
+        "cabinet door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "natural wood brown"
+    ],
+    "colors_composition": [
+        0.5,
+        0.5
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 4000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_location": "office",
+    "attribute_orientation": "The user-facing side is the one with the modesty panel and solid side panels, while the back side with drawers and cabinet is intended for storage access.",
+    "attribute_condition": "new",
+    "attribute_presence_of_attached_objects": [
+        "drawer",
+        "cabinet door",
+        "handle"
+    ],
+    "attribute_usage_context": "computer workstation or executive office desk",
+    "uid": "1bb2a31ccedf4cebacd524cf6913311f",
+    "near_synsets": {
+        "desk.n.01": 0.4576660473485722,
+        "office_furniture.n.01": 0.49285605840298213,
+        "desktop.n.01": 0.5260583366291904,
+        "writing_desk.n.02": 0.5293142253539511,
+        "writing_desk.n.01": 0.5385495870212552
+    },
+    "synset": "writing_desk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1bb2a31ccedf4cebacd524cf6913311f",
+        "creator_username": "vestram",
+        "creator_display_name": "vestram",
+        "creator_profile_url": "https://sketchfab.com/vestram"
+    },
+    "filename": "std_1bb2a31ccedf4cebacd524cf6913311f.glb",
+    "length": 0.5841064453125,
+    "width": 1.5648193359375
+}

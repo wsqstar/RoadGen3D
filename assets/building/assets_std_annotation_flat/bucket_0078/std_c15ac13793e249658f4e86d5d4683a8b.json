@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a classic submachine gun with a robust metallic receiver and a long, cylindrical barrel. The stock and foregrip are made of wood, featuring a smooth, polished finish and a warm brown color. The magazine is a detachable box type, positioned below the receiver, and the trigger guard is clearly visible. The rifle is equipped with simple iron sights, with the front and rear sights aligned along the top of the barrel and receiver. The muzzle is plain, with no visible attachments or devices. The overall design is reminiscent of early to mid-20th-century military firearms, combining utilitarian metalwork with ergonomic wooden components.",
+    "description": "A classic submachine gun with a metallic body, wooden stock and foregrip, and a detachable box magazine. It features iron sights and a plain barrel with no muzzle device.",
+    "description_view_0": "Front view showing the circular muzzle, aligned iron sights, and the width of the wooden foregrip.",
+    "description_view_1": "Side view highlighting the full length of the rifle, the wooden stock and foregrip, and the box magazine beneath the receiver.",
+    "description_view_2": "Rear view displaying the broad wooden stock and the alignment of the barrel and iron sights.",
+    "description_view_3": "Opposite side view showing the metallic receiver, wooden components, and the magazine, mirroring the details of view 1.",
+    "category": "rifle",
+    "height": 0.22,
+    "max_dimension": 0.85,
+    "materials": [
+        "steel",
+        "wood",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.3,
+        0.03,
+        0.02
+    ],
+    "mass": 4.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 45,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "foregrip",
+        "trigger",
+        "magazine",
+        "barrel",
+        "sight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.35,
+        0.6,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "c15ac13793e249658f4e86d5d4683a8b",
+    "near_synsets": {
+        "submachine_gun.n.01": 0.4941898314833898,
+        "sten_gun.n.01": 0.5122953151130194,
+        "garand_rifle.n.01": 0.5146283405486055,
+        "tommy_gun.n.01": 0.5157241906037113,
+        "light_machine_gun.n.01": 0.5191747859077144,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c15ac13793e249658f4e86d5d4683a8b",
+        "creator_username": "Quantum-Bit",
+        "creator_display_name": "Quantum bit",
+        "creator_profile_url": "https://sketchfab.com/Quantum-Bit"
+    },
+    "filename": "std_c15ac13793e249658f4e86d5d4683a8b.glb",
+    "length": 0.792150616645813,
+    "width": 0.15001116693019867
+}

@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a full-sized, upright vending machine with a vibrant red exterior and decorative koi fish graphics on the lower front panel. The front face features three rows of assorted beverages and snacks, each clearly visible through a large glass display window. To the right of the display are a digital display panel, a payment interface with coin and bill acceptors, and a keypad for product selection. The product retrieval slot is located at the bottom center of the front panel, beneath the display window. The sides and back of the machine are solid red with no visible features or openings. The overall build is robust, with a metal body and plastic components for the display and interface areas.",
+    "description": "A red vending machine with koi fish graphics, a glass display window showing drinks and snacks, and a payment and selection interface on the front.",
+    "description_view_0": "Front view showing the glass display window, product shelves, payment interface, keypad, and product retrieval slot, along with decorative graphics.",
+    "description_view_1": "Left side view showing a plain, solid red metal panel with no visible features.",
+    "description_view_2": "Rear view displaying a featureless, solid red back panel.",
+    "description_view_3": "Right side view with a plain, solid red metal panel, similar to the left side.",
+    "category": "vending machine",
+    "height": 1.8,
+    "max_dimension": 1.8,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "electronics",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.1,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 220,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "display panel",
+        "coin slot",
+        "bill acceptor",
+        "card reader",
+        "product retrieval slot",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "white",
+        "gray",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A small rectangular digital display panel is located on the upper right section of the front face, above the payment interface, showing illuminated content.",
+    "attribute_payment_interface": "The payment interface includes a coin slot, bill acceptor, and card reader, all clustered on the right side of the front panel below the display panel.",
+    "attribute_product_selection_buttons": "A vertical row of individual product selection buttons is present to the right of the display window, each labeled and corresponding to a product row.",
+    "attribute_product_retrieval_slot": "A wide, rectangular product retrieval slot with a flap is located at the bottom center of the front panel.",
+    "attribute_branding_or_signage": "Large koi fish graphics and a red color scheme dominate the lower front panel, with additional branding and signage in the upper right corner, including a circular logo and some Japanese text.",
+    "uid": "4768555100004c75b5167d1aa02c683b",
+    "near_synsets": {
+        "vending_machine.n.01": 0.49635928331716406,
+        "automat.n.01": 0.5368130514569643,
+        "soda_fountain.n.02": 0.574634367532614,
+        "fruit_machine.n.01": 0.5781943164827915,
+        "soda_fountain.n.01": 0.5794881925943566,
+        "car.n.01": -1000.0,
+        "machine.n.02": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.05": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4768555100004c75b5167d1aa02c683b",
+        "creator_username": "filadog",
+        "creator_display_name": "filadog",
+        "creator_profile_url": "https://sketchfab.com/filadog"
+    },
+    "filename": "std_4768555100004c75b5167d1aa02c683b.glb",
+    "length": 0.711234986782074,
+    "width": 1.01897394657135
+}

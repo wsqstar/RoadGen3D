@@ -1,0 +1,92 @@
+{
+    "description_long": "This object is a large, olive-drab aerial bomb with a streamlined cylindrical body and a rounded nose, typical of mid-20th-century ordnance. The rear section features a prominent fin assembly with a cage-like structure, designed to stabilize the bomb during its descent. The central body is smooth and metallic, with a matte finish and no visible markings or labels. The tail fins are arranged in a geometric, open framework, providing aerodynamic stability. The bomb appears to be constructed primarily from metal, likely steel, with internal components for explosive payload and detonation. There are no visible wires, switches, or external detonation mechanisms on the surface.",
+    "description": "A large, olive-green aerial bomb with a smooth cylindrical body and a cage-like fin assembly at the rear, designed for aerodynamic stability.",
+    "description_view_0": "The bomb is viewed head-on, showing the rounded nose and the symmetrical, open framework of the tail fins.",
+    "description_view_1": "A side profile reveals the elongated cylindrical body, the central band, and the full length of the fin assembly at the rear.",
+    "description_view_2": "The rear view highlights the geometric, cage-like structure of the tail fins and the central axis of the bomb.",
+    "description_view_3": "Another side profile, opposite to view 1, showing the same cylindrical body and fin assembly, with the nose pointing left.",
+    "category": "bomb",
+    "height": 0.5,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "aluminum",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.08,
+        0.02
+    ],
+    "mass": 250,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2450,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "tail fins",
+        "nose"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.02,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "No visible external detonation mechanism; likely uses an internal impact or timed fuse based on standard bomb design.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "56aa80deca474b2c91a4646c6592cedd",
+    "near_synsets": {
+        "buzz_bomb.n.01": 0.5031895160192764,
+        "bomber.n.01": 0.5187863057699525,
+        "cluster_bomb.n.01": 0.5214416249315956,
+        "aerial_torpedo.n.01": 0.5285485983761241,
+        "aircraft.n.01": 0.536240724399794,
+        "bomb.n.01": -1000.0,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/56aa80deca474b2c91a4646c6592cedd",
+        "creator_username": "klopikc",
+        "creator_display_name": "Pavluha",
+        "creator_profile_url": "https://sketchfab.com/klopikc"
+    },
+    "filename": "std_56aa80deca474b2c91a4646c6592cedd.glb",
+    "length": 1.6377818584442139,
+    "width": 0.5010645389556885
+}

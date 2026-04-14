@@ -1,0 +1,111 @@
+{
+    "description_long": "This is a large, classic sailing ship with three tall masts, each rigged with multiple square sails and intricate rigging lines. The hull is painted in a combination of yellow and black, with a row of gunports along the sides, indicating it is likely a historical warship or frigate. The stern features ornate detailing and windows, while the bow is elongated and pointed, designed to cut through water efficiently. A prominent blue and white naval flag is displayed at the stern, and the deck is equipped with various fixtures such as cannons and railings. The ship's superstructure is minimal, with the main deck exposed and only a small raised section amidships. The overall construction suggests a wooden vessel with metal reinforcements and canvas sails.",
+    "description": "A large, historic wooden sailing ship with three masts, square sails, and a yellow-black hull featuring gunports and ornate stern detailing. The deck is open with visible cannons and a blue and white flag at the stern.",
+    "description_view_0": "Side view showing the full length of the ship, three masts with sails, gunports, and the blue and white flag at the stern.",
+    "description_view_1": "Front view highlighting the pointed bow, the arrangement of sails, and the narrow profile of the hull.",
+    "description_view_2": "Opposite side view similar to view 0, with clear visibility of the masts, sails, gunports, and the flag at the stern.",
+    "description_view_3": "Rear view showing the ornate stern, windows, and the flag, with the three masts and sails aligned behind.",
+    "category": "ship",
+    "height": 35,
+    "max_dimension": 60,
+    "materials": [
+        "wood",
+        "canvas",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 120000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 1800000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "openable",
+        "closable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "door",
+        "cannon",
+        "hatch",
+        "sail",
+        "anchor",
+        "rigging"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "white",
+        "brown",
+        "blue"
+    ],
+    "colors_composition": [
+        0.35,
+        0.25,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 20,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a classic displacement type with a long, narrow profile, rounded bow, and a high, ornate stern. The sides feature a row of gunports, and the hull sits low in the water, typical of historical warships. No bulbous bow or visible keels are present.",
+    "attribute_superstructure_layout": "The superstructure is minimal, with an open main deck, a small raised section amidships, and an ornate stern with windows. There are no large bridges or towers, and the focus is on the deck and rigging.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "cannon",
+        "anchor",
+        "rigging",
+        "flag"
+    ],
+    "attribute_registration_markings": "blue and white naval flag at the stern",
+    "uid": "2e0c2c37a55f48bba314c894ca5e5f0b",
+    "near_synsets": {
+        "bark.n.03": 0.4711497854019521,
+        "galleon.n.01": 0.47503917957851466,
+        "sailing_vessel.n.01": 0.48740770693076646,
+        "schooner.n.02": 0.4924200868670593,
+        "windjammer.n.01": 0.4973586149335797,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2e0c2c37a55f48bba314c894ca5e5f0b",
+        "creator_username": "Museovirasto",
+        "creator_display_name": "Museovirasto Museiverket Finnish Heritage Agency",
+        "creator_profile_url": "https://sketchfab.com/Museovirasto"
+    },
+    "filename": "std_2e0c2c37a55f48bba314c894ca5e5f0b.glb",
+    "length": 54.932559967041016,
+    "width": 16.82600975036621
+}

@@ -1,0 +1,93 @@
+{
+    "description_long": "This tent features a simple, rugged design with a rectangular canopy made from two-toned fabric in muted green and brown, reminiscent of camouflage. The canopy is supported by a visible wooden pole framework, with four main vertical posts at the corners and crossbeams securing the structure. The tent's roof is slightly arched, and the fabric appears to be tightly stretched and lashed to the poles with rope or cord. The front and rear views show a solid fabric wall, while the side views reveal an open triangular entrance supported by angled poles. The overall construction suggests a primitive or rustic shelter, suitable for temporary use in parks, urban camps, or outdoor events.",
+    "description": "A rustic tent with a green and brown fabric canopy, supported by a wooden pole frame and rope lashings, featuring a triangular open entrance on the sides.",
+    "description_view_0": "Front view showing the rectangular canopy with green and brown patches, supported by wooden poles and a solid fabric wall.",
+    "description_view_1": "Side view revealing the triangular open entrance, angled support poles, and visible rope lashings.",
+    "description_view_2": "Rear view similar to the front, displaying the rectangular canopy and solid fabric wall with no visible entrance.",
+    "description_view_3": "Opposite side view, again showing the triangular open entrance and angled support poles.",
+    "category": "tent",
+    "height": 1.6,
+    "max_dimension": 2.5,
+    "materials": [
+        "fabric",
+        "wood",
+        "rope",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.05,
+        0.15
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "closable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "canopy",
+        "poles",
+        "guy lines"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "green",
+        "brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.4
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 500,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "open triangular flap entrance located on the sides, supported by angled poles, no visible door or closure mechanism.",
+    "attribute_number_of_poles": 6,
+    "attribute_guy_line_configuration": "Guy lines are attached at the four corners and at the base of the angled side poles, totaling at least six, with simple rope lashings.",
+    "attribute_ventilation_openings": [],
+    "attribute_branding_or_logo": "none",
+    "uid": "d0baa32bd42e43398eae9b1798dd0915",
+    "near_synsets": {
+        "field_tent.n.01": 0.4553438576175768,
+        "cottage_tent.n.01": 0.46064344932042506,
+        "canvas_tent.n.01": 0.47364725049229667,
+        "wall_tent.n.01": 0.4848752938676093,
+        "tent.n.01": 0.4894821363058195,
+        "tent.n.02": -1000.0
+    },
+    "synset": "tent.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d0baa32bd42e43398eae9b1798dd0915",
+        "creator_username": "_SeF_",
+        "creator_display_name": "_SeF_",
+        "creator_profile_url": "https://sketchfab.com/_SeF_"
+    },
+    "filename": "std_d0baa32bd42e43398eae9b1798dd0915.glb",
+    "length": 2.7970495223999023,
+    "width": 3.1087799072265625
+}

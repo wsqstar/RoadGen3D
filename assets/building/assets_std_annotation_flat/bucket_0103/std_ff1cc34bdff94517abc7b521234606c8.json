@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a small, traditional wooden sailboat with a single large triangular sail mounted on a central mast. The hull is dark and appears to be constructed from planks, with a slightly curved bow and a flat stern. The deck is open, with minimal superstructure, and features a simple cabin or covered area near the stern. Rigging lines are visible, supporting the mast and sail, and the sail itself is weathered, showing signs of use. The boat is equipped with basic deck fittings, such as cleats and possibly a rudder at the stern. The overall appearance suggests a utilitarian vessel, likely used for fishing or short-distance transport on calm waters.",
+    "description": "A small, traditional wooden sailboat with a single large triangular sail, open deck, and minimal superstructure. The hull is dark and plank-built, with visible rigging and a weathered sail.",
+    "description_view_0": "Side view showing the full length of the boat, the large triangular sail, central mast, and open deck with a small covered area at the stern.",
+    "description_view_1": "Front view highlighting the narrow bow, the mast and sail directly in line, and the width of the hull.",
+    "description_view_2": "Opposite side view displaying the sail, rigging, and the open deck, with the stern's covered area more visible.",
+    "description_view_3": "Rear view showing the flat stern, the back of the covered area, and the alignment of the mast and sail.",
+    "category": "ship",
+    "height": 7.0,
+    "max_dimension": 12.0,
+    "materials": [
+        "wood",
+        "fabric",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 1800,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "steerable",
+        "hoistable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sail",
+        "mast",
+        "rudder",
+        "rigging lines",
+        "cabin hatch"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "dark brown",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a gently curved bow and a flat stern, constructed from wooden planks. There is no visible keel or bulbous bow, and the hull sits low in the water, suggesting stability and traditional craftsmanship.",
+    "attribute_superstructure_layout": "The superstructure is minimal, consisting of a small covered area or cabin near the stern, with the rest of the deck open and unobstructed. There are no additional decks, bridges, or towers visible.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "mast",
+        "sail",
+        "rigging lines",
+        "cabin hatch"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "ff1cc34bdff94517abc7b521234606c8",
+    "near_synsets": {
+        "sailboat.n.01": 0.4482297265035781,
+        "sail.n.03": 0.47384151615433845,
+        "schooner.n.02": 0.47396340568087386,
+        "small_boat.n.01": 0.4747733588505189,
+        "small_ship.n.01": 0.4754341414676853,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ff1cc34bdff94517abc7b521234606c8",
+        "creator_username": "Satellitm",
+        "creator_display_name": "Satellitm",
+        "creator_profile_url": "https://sketchfab.com/Satellitm"
+    },
+    "filename": "std_ff1cc34bdff94517abc7b521234606c8.glb",
+    "length": 7.170185565948486,
+    "width": 2.0088396072387695
+}

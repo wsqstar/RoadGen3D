@@ -1,0 +1,101 @@
+{
+    "description_long": "This humanoid robot features a robust, military-inspired design with a predominantly olive-green armored exterior and heavy, cylindrical limbs. The torso is broad and barrel-shaped, with metallic accents and two circular details on the chest, possibly for access or sensors. Its arms and legs are thick and jointed, ending in claw-like appendages, suggesting strength and stability. The head is a short, turret-like structure with a blue visor or panel at the front, lacking traditional facial features. Red markings and numbers add to its utilitarian, industrial appearance, while the overall build implies durability and power. The robot's surfaces are matte with some wear, indicating use in rugged urban environments.",
+    "description": "A heavily armored, olive-green humanoid robot with cylindrical limbs, clawed feet, and a turret-like head featuring a blue visor. Red markings and metallic accents give it a rugged, industrial look.",
+    "description_view_0": "Front view shows the broad chest, blue visor, and symmetrical, cylindrical arms and legs with clawed feet.",
+    "description_view_1": "Left side view highlights the rounded shoulder, red number marking, and the layered, jointed arm structure.",
+    "description_view_2": "Rear view reveals the back panel, symmetrical limb attachment points, and the robust, armored build.",
+    "description_view_3": "Right side view displays the smooth, rounded shoulder and the cylindrical arm with visible joint details.",
+    "category": "humanoid robot",
+    "height": 2.0,
+    "max_dimension": 2.2,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3430,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "legs",
+        "claws",
+        "chest panel",
+        "head/visor"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "gray",
+        "red",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms slightly bent at the elbows and legs apart, head facing forward. The torso is upright and symmetrical.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated armored panels with metallic and plastic coverings, featuring utilitarian markings.",
+    "attribute_facial_features": "No traditional facial features; head has a turret-like structure with a blue visor or panel, lacking eyes, mouth, or nose.",
+    "attribute_limb_articulation": "Arms and legs have visible rotary and hinge joints at shoulders, elbows, hips, and knees, allowing for a moderate range of motion. Clawed feet and hands suggest additional articulation.",
+    "attribute_presence_of_sensors": "Possible sensor in the blue visor/panel area on the head; none visible elsewhere.",
+    "uid": "3808a0230acc4b94b43089fb04032ebd",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5576743073349466,
+        "android.n.01": 0.5621320004684285,
+        "cyborg.n.01": 0.5630456997214102,
+        "automaton.n.02": 0.5731334344600947,
+        "toy_soldier.n.01": 0.584671022890841
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3808a0230acc4b94b43089fb04032ebd",
+        "creator_username": "EDIIIC",
+        "creator_display_name": "Ethan Cragun",
+        "creator_profile_url": "https://sketchfab.com/EDIIIC"
+    },
+    "filename": "std_3808a0230acc4b94b43089fb04032ebd.glb",
+    "length": 1.1182060241699219,
+    "width": 1.8089015483856201
+}

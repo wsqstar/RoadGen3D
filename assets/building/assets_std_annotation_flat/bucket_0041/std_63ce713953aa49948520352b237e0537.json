@@ -1,0 +1,100 @@
+{
+    "description_long": "This humanoid robot features a compact, white and black body with a rounded torso and a distinctively angular, orange-topped head. Its head is equipped with a grid of red lights, likely functioning as visual indicators or a display, and a small orange crest on top. The robot's arms are long, black, and segmented, ending in large, blocky hands, with the left arm extended straight and the right arm bent at the elbow. The legs are short and robust, with wide, flat feet designed for stability, and the joints are clearly defined for articulation. The overall design is sleek and functional, with smooth, hard surfaces and minimal decorative elements. The robot's appearance suggests it is built for urban environments, possibly for service, maintenance, or interaction tasks.",
+    "description": "A compact, white and black humanoid robot with a rounded torso, angular orange-topped head, long segmented arms, and sturdy legs. Its head features a grid of red lights and a small orange crest.",
+    "description_view_0": "Front view showing the robot's head with red lights, orange crest, and both arms extended outward, highlighting the blocky hands and broad stance.",
+    "description_view_1": "Left side view emphasizing the robot's profile, the angular head shape, and the length of the left arm and leg.",
+    "description_view_2": "Rear view displaying the back of the head with the orange crest, the symmetrical arms, and the wide, flat feet.",
+    "description_view_3": "Right side view focusing on the robot's right arm and leg, as well as the back contour of the head and torso.",
+    "category": "humanoid robot",
+    "height": 1.2,
+    "max_dimension": 2.0,
+    "materials": [
+        "plastic",
+        "metal",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head display",
+        "arms",
+        "hands",
+        "legs",
+        "feet"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "orange",
+        "red"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "smooth",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both legs apart, left arm extended straight outward, right arm bent at the elbow, head facing forward, and torso upright.",
+    "attribute_clothing_style": "No visible clothing; the robot is covered in integrated, smooth panels with a white and black color scheme and orange accent on the head.",
+    "attribute_facial_features": "The face consists of a grid of red lights on a black panel, with no visible mouth or nose, and an orange crest on top of the head; the design is expressive but non-human.",
+    "attribute_limb_articulation": "Arms have at least two visible joints (shoulder and elbow) with possible rotary or hinge articulation; legs have hip and knee joints; hands and feet are blocky with limited visible articulation.",
+    "attribute_presence_of_sensors": "Visible sensor array on the head, likely cameras or visual sensors integrated into the red light grid; no other sensors are clearly visible.",
+    "uid": "63ce713953aa49948520352b237e0537",
+    "near_synsets": {
+        "android.n.01": 0.5302167499389554,
+        "cyborg.n.01": 0.551501653972101,
+        "robotics_equipment.n.01": 0.5613274347510436,
+        "automaton.n.02": 0.569864727727773,
+        "robotics.n.01": 0.5846983063754883
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/63ce713953aa49948520352b237e0537",
+        "creator_username": "anjouang02",
+        "creator_display_name": "anjouang02",
+        "creator_profile_url": "https://sketchfab.com/anjouang02"
+    },
+    "filename": "std_63ce713953aa49948520352b237e0537.glb",
+    "length": 0.45827701687812805,
+    "width": 1.1122514605522156
+}

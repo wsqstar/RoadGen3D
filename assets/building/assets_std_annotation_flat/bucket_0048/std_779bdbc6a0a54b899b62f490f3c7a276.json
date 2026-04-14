@@ -1,0 +1,96 @@
+{
+    "description_long": "This kiosk features an octagonal structure with ornate columns supporting a domed roof, reminiscent of classical pavilion designs. The roof is dark and slightly weathered, with a ribbed texture and a gentle overhang that provides shade to the open sides below. Each side of the kiosk is framed by slender, decorative pillars, and the base is surrounded by a circular platform that slightly elevates the structure from the ground. The open archways between the columns allow for easy access and visibility from all directions, making it suitable for public parks or plazas. The overall color palette is a combination of light stone or concrete for the columns and base, and a darker, metallic or shingled material for the roof. There are no visible windows, doors, or signage, emphasizing its function as an open, accessible public structure.",
+    "description": "An octagonal, open-sided kiosk with ornate columns and a domed, ribbed roof, set on a circular platform. The structure is light-colored with a darker roof and features classical architectural details.",
+    "description_view_0": "Front view shows the open archways and ornate columns, with the domed roof prominently visible above.",
+    "description_view_1": "This view highlights the symmetry of the columns and the circular base, with the roof's ribbed texture clearly visible.",
+    "description_view_2": "The rear view displays the same open archways and column arrangement, emphasizing the uniformity of the structure.",
+    "description_view_3": "This side view shows the depth of the overhanging roof and the consistent spacing of the columns around the kiosk.",
+    "category": "kiosk",
+    "height": 3.5,
+    "max_dimension": 5.0,
+    "materials": [
+        "stone",
+        "concrete",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.2
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shelter",
+        "shadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "columns",
+        "roof",
+        "platform"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "white",
+        "gray",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "none",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "none; open archways on all sides",
+    "attribute_roof_design": "Domed roof with ribbed texture, slight overhang, likely metal or shingled, no skylights or decorative finials.",
+    "attribute_architectural_style": "Classical pavilion with ornate columns and symmetrical design.",
+    "uid": "779bdbc6a0a54b899b62f490f3c7a276",
+    "near_synsets": {
+        "portico.n.01": 0.5355030558618729,
+        "observation_dome.n.01": 0.5482729327793657,
+        "dome.n.04": 0.5496249411835614,
+        "cupola.n.02": 0.5514421520840905,
+        "arcade.n.02": 0.5552881702614854,
+        "booth.n.02": -1000.0
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/779bdbc6a0a54b899b62f490f3c7a276",
+        "creator_username": "Sinabani",
+        "creator_display_name": "Sina Bani",
+        "creator_profile_url": "https://sketchfab.com/Sinabani"
+    },
+    "filename": "std_779bdbc6a0a54b899b62f490f3c7a276.glb",
+    "length": 9.040570735931396,
+    "width": 10.03515338897705
+}

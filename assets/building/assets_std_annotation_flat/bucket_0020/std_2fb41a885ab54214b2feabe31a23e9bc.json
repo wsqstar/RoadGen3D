@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a compact, cylindrical hand grenade with a matte black finish and a segmented, grid-like lower body for grip. The upper section features a prominent safety lever and a visible pull ring, both metallic in appearance, suggesting a classic pin-and-lever detonation mechanism. A small red dot and the marking 'MMGH21' are visible on the top, possibly indicating a model or batch number. The body transitions from a wider, rounded base to a narrower neck, with a subtle bronze or dark metallic band separating the two sections. The surface appears hard and slightly reflective, with a robust, utilitarian design typical of military or tactical explosives. No visible wiring or timer display is present, and the object is designed to be hand-held and easily thrown.",
+    "description": "A matte black, cylindrical hand grenade with a segmented grip, metallic safety lever, and pull ring, marked 'MMGH21' on the top.",
+    "description_view_0": "Front view shows the cylindrical body and grid-patterned lower section, with the top cap and pull ring barely visible.",
+    "description_view_1": "Side view reveals the metallic safety lever, pull ring, and the 'MMGH21' marking with a red dot on the top.",
+    "description_view_2": "Rear view highlights the full length of the safety lever and pull ring, with the body\u2019s grid pattern clearly visible.",
+    "description_view_3": "Opposite side view shows the lever and ring from a different angle, with the top and body contours visible.",
+    "category": "bomb",
+    "height": 0.14,
+    "max_dimension": 0.14,
+    "materials": [
+        "steel",
+        "plastic",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.1,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 0.45,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 5,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable",
+        "throwable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "pin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "bronze",
+        "silver",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.8,
+        0.08,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is likely initiated by pulling the pin and releasing the safety lever, which would trigger an internal fuse.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "2fb41a885ab54214b2feabe31a23e9bc",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.5018878765390424,
+        "grenade.n.01": 0.5421726938111037,
+        "rifle_grenade.n.01": 0.5752483373064278,
+        "zip_gun.n.01": 0.5775828493254971,
+        "bomb.n.01": 0.5800666901676296,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2fb41a885ab54214b2feabe31a23e9bc",
+        "creator_username": "LINES171",
+        "creator_display_name": "LINES171",
+        "creator_profile_url": "https://sketchfab.com/LINES171"
+    },
+    "filename": "std_2fb41a885ab54214b2feabe31a23e9bc.glb",
+    "length": 0.06607227772474289,
+    "width": 0.07467038929462433
+}

@@ -1,0 +1,100 @@
+{
+    "description_long": "This humanoid robot features a rounded, metallic blue torso with a single, prominent circular eye or sensor at the top front, encased in a dome-like head. Its arms and legs are constructed from segmented, jointed metal components, with visible bolts and mechanical details, and the hands are designed with articulated fingers. The robot stands on two broad, flat feet attached to a circular base, suggesting stability and mobility. Police insignia and warning labels are visible on the arms and back, indicating a law enforcement or security function. The surface is mostly smooth and glossy, with some matte areas and visible panel lines, giving it a robust, industrial appearance. The overall design is humanoid but distinctly mechanical, with exposed joints and a utilitarian aesthetic.",
+    "description": "A blue, police-themed humanoid robot with a rounded torso, single eye, articulated limbs, and visible mechanical joints, standing on a circular base.",
+    "description_view_0": "Front view shows the robot's single eye, police insignia, and articulated arms and legs.",
+    "description_view_1": "Left side view highlights the arm's mechanical joints and police insignia, with the head's dome shape visible.",
+    "description_view_2": "Rear view displays warning labels, mechanical back details, and the symmetrical design of the legs and arms.",
+    "description_view_3": "Right side view reveals additional arm details, joint structure, and the curvature of the torso.",
+    "category": "humanoid robot",
+    "height": 1.6,
+    "max_dimension": 0.9,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 110,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "eye sensor",
+        "arms",
+        "hands",
+        "legs",
+        "feet",
+        "torso panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "white",
+        "gray",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is standing upright with both legs straight and feet flat on the base. Its arms hang naturally at its sides, slightly bent at the elbows, and the head is facing forward.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated metallic panels and police insignia as decorative elements.",
+    "attribute_facial_features": "The face consists of a single, large circular eye or sensor at the center of the head, with no visible mouth, nose, or expressive features.",
+    "attribute_limb_articulation": "The robot has articulated arms and legs with visible hinge and rotary joints at the shoulders, elbows, hips, and knees. The hands have articulated fingers, and the limbs appear rigid but jointed for a wide range of motion.",
+    "attribute_presence_of_sensors": "A single large optical sensor or camera is visible at the front of the head; no other sensors are clearly visible.",
+    "uid": "643353e8aebf4a00b074cd92e764e09f",
+    "near_synsets": {
+        "android.n.01": 0.5658250848306046,
+        "cyborg.n.01": 0.5677266088545322,
+        "robotics_equipment.n.01": 0.5767941092938563,
+        "automaton.n.02": 0.5847530354585856,
+        "animatronics.n.01": 0.5855262870958489
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/643353e8aebf4a00b074cd92e764e09f",
+        "creator_username": "ilasolomon",
+        "creator_display_name": "ilasolomon",
+        "creator_profile_url": "https://sketchfab.com/ilasolomon"
+    },
+    "filename": "std_643353e8aebf4a00b074cd92e764e09f.glb",
+    "length": 0.9972174167633057,
+    "width": 0.9991887807846069
+}

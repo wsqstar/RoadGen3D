@@ -1,0 +1,98 @@
+{
+    "description_long": "This traffic barricade consists of a robust concrete base with a slightly sloped front face, featuring a series of diagonal yellow and black caution stripes. Rising from the base is a metal mesh fence, constructed from a grid of interlocking steel rods, providing visibility while acting as a physical barrier. The mesh is framed by two vertical metal posts that are embedded into the concrete base for stability. The rear of the base is plain concrete, while the front is marked for high visibility in urban environments. The overall construction suggests durability and resistance to impact, suitable for controlling pedestrian or vehicular access. The materials and design indicate it is intended for outdoor use in areas such as streets, parking lots, or construction zones.",
+    "description": "A heavy concrete-based traffic barricade with a metal mesh fence and yellow-black caution stripes on the front. Designed for high visibility and robust access control in urban settings.",
+    "description_view_0": "Side view showing the thin profile of the metal mesh and the depth of the concrete base.",
+    "description_view_1": "Front view highlighting the yellow-black diagonal caution stripes and the full mesh fence structure.",
+    "description_view_2": "Opposite side view, again showing the thinness of the mesh and the angled front of the base.",
+    "description_view_3": "Rear view displaying the plain concrete back and the mesh fence without any caution markings.",
+    "category": "traffic barricade",
+    "height": 1.2,
+    "max_dimension": 2.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 450,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "blockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "mesh fence",
+        "concrete base"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "yellow",
+        "black",
+        "rust"
+    ],
+    "colors_composition": [
+        0.75,
+        0.12,
+        0.08,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_reflective_striping_pattern": "Diagonal yellow and black stripes, medium width, repeated across the sloped front face of the concrete base.",
+    "attribute_warning_signage": [],
+    "attribute_number_of_support_legs": 2,
+    "attribute_attachment_fixtures": [],
+    "attribute_presence_of_lights": false,
+    "uid": "7844539472574fd28ea45c3edd0e28b6",
+    "near_synsets": {
+        "roadblock.n.02": 0.5458224974922051,
+        "crash_barrier.n.01": 0.5532258456460448,
+        "gate.n.01": 0.5538998163483184,
+        "chainlink_fence.n.01": 0.5544216124638959,
+        "barbed_wire.n.01": 0.5562090511773553,
+        "traffic.n.03": -1000.0,
+        "traffic.n.01": -1000.0,
+        "barricade.n.02": -1000.0,
+        "dealings.n.01": -1000.0,
+        "traffic.n.02": -1000.0
+    },
+    "synset": "roadblock.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7844539472574fd28ea45c3edd0e28b6",
+        "creator_username": "qaz840530",
+        "creator_display_name": "Vivi Chen",
+        "creator_profile_url": "https://sketchfab.com/qaz840530"
+    },
+    "filename": "std_7844539472574fd28ea45c3edd0e28b6.glb",
+    "length": 0.34199927747249603,
+    "width": 1.2495117783546448
+}

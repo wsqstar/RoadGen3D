@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a rectangular, mid-rise office building with a flat, dark roof and a facade composed primarily of tan and beige brickwork. The front and rear elevations each feature four large, vertically aligned windows per floor, with the front including a prominent double-door entrance at street level. The side elevations are more austere, with one side displaying two windows and the other side being windowless, emphasizing the building's utilitarian design. The window frames are dark, contrasting with the lighter brick, and the base of the building is slightly recessed with a small set of steps leading to the entrance. The overall appearance is functional and modern, with minimal ornamentation and a focus on symmetry. The structure is typical of urban commercial office buildings found in city centers.",
+    "description": "A rectangular, tan-brick office building with a flat dark roof, large grid windows, and a double-door entrance. The design is modern and utilitarian, with symmetrical window placement and minimal decorative features.",
+    "description_view_0": "Front view showing four large windows per floor and a double-door entrance with steps at the base.",
+    "description_view_1": "Side view displaying a long, windowless tan brick wall and the flat dark roof.",
+    "description_view_2": "Rear view with four large windows per floor and a secondary entrance at the base.",
+    "description_view_3": "Opposite side view with two windows on the upper floor and a long expanse of tan brick.",
+    "category": "office building",
+    "height": 15.0,
+    "max_dimension": 30.0,
+    "materials": [
+        "brick",
+        "glass",
+        "concrete",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.15,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "windows"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "beige",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 20000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 3,
+    "attribute_window_pattern": "Regular vertical grid with four large rectangular windows per floor on front and rear, two windows on one side, none on the other.",
+    "attribute_building_entrance_type": "double door",
+    "attribute_signage_presence": false,
+    "attribute_architectural_style": "Modernist",
+    "uid": "a934787b413346f4b7bdd9e78656528e",
+    "near_synsets": {
+        "office_building.n.01": 0.4925941657652334,
+        "government_building.n.01": 0.5619795061641376,
+        "high-rise.n.01": 0.5631788168429042,
+        "rendering.n.06": 0.5637331652406076,
+        "building.n.01": 0.5649594369499318,
+        "office.n.01": -1000.0,
+        "agency.n.01": -1000.0,
+        "construction.n.07": -1000.0,
+        "construction.n.01": -1000.0,
+        "position.n.06": -1000.0,
+        "office.n.05": -1000.0,
+        "office.n.04": -1000.0,
+        "function.n.03": -1000.0,
+        "building.n.04": -1000.0,
+        "office.n.06": -1000.0
+    },
+    "synset": "office_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a934787b413346f4b7bdd9e78656528e",
+        "creator_username": "hamma085",
+        "creator_display_name": "hamma085",
+        "creator_profile_url": "https://sketchfab.com/hamma085"
+    },
+    "filename": "std_a934787b413346f4b7bdd9e78656528e.glb",
+    "length": 30.05103302001953,
+    "width": 7.012377738952637
+}

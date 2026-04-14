@@ -1,0 +1,88 @@
+{
+    "description_long": "This is a large, rectangular green shipping container with corrugated metal sides and a flat, ribbed roof. The front face features two large doors secured by multiple vertical locking bars and hinges, typical of intermodal freight containers. The sides and back are solid panels with evenly spaced vertical ridges for structural reinforcement. The container is constructed from heavy-duty steel, designed to withstand stacking and transport in urban or industrial environments. Its surface is painted a uniform green, with no visible markings or signage. The container is likely hollow inside, providing ample space for storage or transport of goods.",
+    "description": "A large green steel shipping container with ribbed sides and double locking doors on one end, designed for secure storage or transport.",
+    "description_view_0": "Front view showing double doors with multiple locking bars and hinges.",
+    "description_view_1": "Side view displaying the long, ribbed metal panel with no openings or features.",
+    "description_view_2": "End view showing a solid, ribbed panel with no doors or features.",
+    "description_view_3": "Opposite side view, identical to the other side, with ribbed metal and no openings.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.08
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking bar",
+        "hinge"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "gray"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "none",
+    "attribute_handles_or_grips": "vertical locking bars on doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "5382043d95c145a5a96aaf1d48f5b57a",
+    "near_synsets": {
+        "container.n.01": 0.42097897540137047,
+        "cargo_container.n.01": 0.4439433922510011,
+        "container_ship.n.01": 0.503129482397753,
+        "box.n.01": 0.5064864794537857,
+        "drum.n.04": 0.5136181182665658
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5382043d95c145a5a96aaf1d48f5b57a",
+        "creator_username": "jsabbott",
+        "creator_display_name": "Jen S Abbott",
+        "creator_profile_url": "https://sketchfab.com/jsabbott"
+    },
+    "filename": "std_5382043d95c145a5a96aaf1d48f5b57a.glb",
+    "length": 6.0386364459991455,
+    "width": 1.8138926029205322
+}

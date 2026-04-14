@@ -1,0 +1,94 @@
+{
+    "description_long": "This is a large, modern sniper rifle with a long, heavy barrel and a prominent scope mounted on top for precision aiming. The rifle features a bipod at the front for stability during long-range shooting, and a fixed stock at the rear for shoulder support. The magazine is a detachable box type, positioned just in front of the trigger guard. The muzzle is equipped with a muzzle brake, which helps reduce recoil when firing. The overall finish is matte black, giving it a tactical and utilitarian appearance. The rifle is constructed primarily from metal, with some polymer components likely used in the stock and grip.",
+    "description": "A large, matte black sniper rifle with a long barrel, mounted scope, bipod, and detachable box magazine. It has a tactical appearance and is built for precision shooting.",
+    "description_view_0": "Front view showing the bipod legs splayed out and the muzzle brake at the end of the barrel.",
+    "description_view_1": "Side view displaying the full length of the rifle, including the scope, bipod, fixed stock, and detachable box magazine.",
+    "description_view_2": "Rear view highlighting the fixed stock and the symmetrical arrangement of the bipod legs.",
+    "description_view_3": "Opposite side view showing the same features as view 1, with clear visibility of the scope and magazine.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 1.5,
+    "materials": [
+        "steel",
+        "polymer",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 13,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 130,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pullable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "magazine",
+        "bolt",
+        "scope",
+        "bipod",
+        "safety",
+        "stock"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.8,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "scope",
+    "attribute_muzzle_device": "muzzle brake",
+    "uid": "30b6f11c80514600bea29b7513685b30",
+    "near_synsets": {
+        "sniper_rifle.n.01": 0.45642824756597045,
+        "dragunov.n.01": 0.4874740434611981,
+        "rifle.n.01": 0.5192361583400473,
+        "light_arm.n.01": 0.5340063477035606,
+        "garand_rifle.n.01": 0.5349635693572585
+    },
+    "synset": "garand_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/30b6f11c80514600bea29b7513685b30",
+        "creator_username": "pashtetuser",
+        "creator_display_name": "pashtetuser",
+        "creator_profile_url": "https://sketchfab.com/pashtetuser"
+    },
+    "filename": "std_30b6f11c80514600bea29b7513685b30.glb",
+    "length": 1.1443099975585938,
+    "width": 0.261187881231308
+}

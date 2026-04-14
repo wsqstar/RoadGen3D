@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a medium-sized, gray naval ship with a streamlined hull and a slightly raised bow and stern. The deck features multiple gun turrets, cylindrical structures, and a central superstructure with a bridge and communication equipment. The ship is equipped with a tall mast and several smaller fixtures, including what appear to be lifeboats and hatches. The hull has a red lower section, indicating anti-fouling paint, and the deck is detailed with various access points and equipment. The overall design suggests a military or patrol function, with a focus on armament and operational utility.",
+    "description": "A gray, medium-sized naval ship with gun turrets, a central superstructure, and a tall mast, featuring a red lower hull and detailed deck equipment.",
+    "description_view_0": "Side profile showing the full length of the ship, highlighting the hull shape, superstructure, and mast.",
+    "description_view_1": "Top-down view revealing the deck layout, gun placements, and arrangement of superstructure and equipment.",
+    "description_view_2": "Opposite side profile, similar to view 0, with clear visibility of the hull and deck fixtures.",
+    "description_view_3": "Bottom-up view focusing on the stern and bow alignment, with deck details and equipment visible.",
+    "category": "ship",
+    "height": 7.0,
+    "max_dimension": 110.0,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "gun turret",
+        "ladder",
+        "wheel",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.03,
+    "recommended_clearance": 15.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a streamlined, elongated shape, a slightly raised bow, and a flat stern. The lower hull is painted red, and there are no visible keels or bulbous bows. The sides are smooth with minimal protrusions.",
+    "attribute_superstructure_layout": "The superstructure is centrally located with a bridge, several cylindrical towers, and a tall mast. There are multiple gun turrets and deck fixtures symmetrically arranged along the length of the ship.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "gun turret",
+        "lifeboat",
+        "hatch",
+        "antenna",
+        "ladder"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "b37939147c854e61857f5b248f9efd29",
+    "near_synsets": {
+        "naval_gun.n.01": 0.4794679658497919,
+        "capital_ship.n.01": 0.4939841669347477,
+        "surface_ship.n.01": 0.497333152890759,
+        "frigate.n.01": 0.4982643775480537,
+        "cargo_ship.n.01": 0.5005379506856799,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b37939147c854e61857f5b248f9efd29",
+        "creator_username": "everlastinggrey",
+        "creator_display_name": "everlasting17th",
+        "creator_profile_url": "https://sketchfab.com/everlastinggrey"
+    },
+    "filename": "std_b37939147c854e61857f5b248f9efd29.glb",
+    "length": 32.306312561035156,
+    "width": 3.239777088165283
+}

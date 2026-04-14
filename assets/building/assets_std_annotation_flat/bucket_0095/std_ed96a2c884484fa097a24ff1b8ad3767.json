@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a classic hand grenade, featuring an olive-green, segmented, ovoid metal body with a prominent safety lever and a circular pull ring attached to the top. The body is divided into geometric panels, giving it a rugged, faceted appearance typical of fragmentation grenades like the Mk 2. The top section is metallic gray, with a cylindrical fuse housing and a visible safety pin mechanism. The safety lever is angular and extends down the side, held in place by the pull ring. The overall finish is matte, with no visible markings or labels. The object is compact and designed to be easily gripped and thrown by hand.",
+    "description": "A compact, olive-green hand grenade with a segmented body, metallic top, and a safety lever with a pull ring. The design is rugged and utilitarian, typical of classic fragmentation grenades.",
+    "description_view_0": "Front view showing the safety lever and pull ring clearly aligned with the segmented body.",
+    "description_view_1": "Side view highlighting the curvature of the safety lever and the cylindrical fuse housing.",
+    "description_view_2": "Rear view with the pull ring partially visible and the segmented body panels prominent.",
+    "description_view_3": "Opposite side view showing the safety lever extending down and the top fuse assembly.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.12,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 0.4,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 4,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "fuse housing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the safety ring, releasing the lever, which activates the internal fuse mechanism.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "ed96a2c884484fa097a24ff1b8ad3767",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.4906457140231601,
+        "grenade.n.01": 0.5197102722488778,
+        "fragmentation_bomb.n.01": 0.5270335127138022,
+        "rifle_grenade.n.01": 0.5446916211877453,
+        "general-purpose_bomb.n.01": 0.5488061123455784,
+        "bomb_calorimeter.n.01": -1000.0,
+        "bomb.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ed96a2c884484fa097a24ff1b8ad3767",
+        "creator_username": "dazhen",
+        "creator_display_name": "dazhen",
+        "creator_profile_url": "https://sketchfab.com/dazhen"
+    },
+    "filename": "std_ed96a2c884484fa097a24ff1b8ad3767.glb",
+    "length": 0.061757273972034454,
+    "width": 0.05802938714623451
+}

@@ -1,0 +1,105 @@
+{
+    "description_long": "This object is a World War II-era military fighter airplane, featuring a camouflage paint scheme with U.S. Air Force insignia on the fuselage and wings. The aircraft has a single propeller at the nose, a rounded engine cowling, and a streamlined fuselage with a bubble canopy cockpit positioned near the front. Its wings are straight and slightly tapered, with visible ailerons and insignia, and the tail section includes a single vertical stabilizer and horizontal stabilizers. The landing gear is not visible, suggesting it may be retracted or not modeled. The airplane's surface appears metallic with matte camouflage paint, and the propeller is rendered in a light gray color. The overall design is reminiscent of the Republic P-47 Thunderbolt or similar WWII fighter aircraft.",
+    "description": "A WWII-era military fighter airplane with camouflage paint, a single propeller, bubble canopy cockpit, and U.S. Air Force insignia. Features straight wings, a single vertical tail, and a streamlined fuselage.",
+    "description_view_0": "Side view showing the camouflage fuselage, bubble canopy, single propeller, and U.S. insignia on the wing and body.",
+    "description_view_1": "Top-down view highlighting the straight wings, wing insignia, and the full span of the horizontal stabilizers.",
+    "description_view_2": "Opposite side view displaying the camouflage pattern, propeller, and tail details, with insignia visible on the fuselage and wing.",
+    "description_view_3": "Front view focusing on the circular propeller, rounded engine cowling, and symmetrical wing layout.",
+    "category": "airplane",
+    "height": 1.8,
+    "max_dimension": 11.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 4500,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 6,
+    "movable": true,
+    "required_force": 44100,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "cockpit canopy",
+        "control stick",
+        "throttle",
+        "landing gear"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "brown",
+        "gray",
+        "white",
+        "red",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.45,
+        0.2,
+        0.15,
+        0.08,
+        0.05,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 15.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with straight, slightly tapered wings and no visible winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "Single nose-mounted piston engine with a propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Landing gear not visible; likely retractable based on typical design, but not confirmed in images.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed bubble canopy cockpit, likely single-seat.",
+    "uid": "8abfbb19897e4c4caa53a2d1c9642b9f",
+    "near_synsets": {
+        "warplane.n.01": 0.5052005113202875,
+        "combat_pilot.n.01": 0.5077533914534076,
+        "aircraft.n.01": 0.5201011280274811,
+        "fighter.n.02": 0.5233720242051445,
+        "airplane.n.01": 0.5329035363971457
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8abfbb19897e4c4caa53a2d1c9642b9f",
+        "creator_username": "mudroljub",
+        "creator_display_name": "mudroljub",
+        "creator_profile_url": "https://sketchfab.com/mudroljub"
+    },
+    "filename": "std_8abfbb19897e4c4caa53a2d1c9642b9f.glb",
+    "length": 4.4345550537109375,
+    "width": 5.442110538482666
+}

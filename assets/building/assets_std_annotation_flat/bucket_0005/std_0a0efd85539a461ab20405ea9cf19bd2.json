@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a mid-rise apartment building with four distinct floors, each featuring a red brick facade and a series of regularly spaced rectangular windows. The building is equipped with prominent black metal balconies and external staircases on both sides, providing access to each floor. The rear and front faces display multiple doors, suggesting individual apartment units per floor, and the presence of a satellite dish and rooftop structures indicate modern amenities. The overall structure is narrow and vertically oriented, with a utilitarian design that emphasizes function over ornamentation. The windows and doors are symmetrically arranged, and the balconies are cantilevered, offering outdoor space for residents. The building's exterior materials and fire escape ladders evoke a classic urban residential style commonly found in dense city neighborhoods.",
+    "description": "A four-story red brick apartment building with black metal balconies, external staircases, and symmetrically arranged windows and doors. The design is utilitarian and typical of urban residential architecture.",
+    "description_view_0": "Side view showing the red brick facade, three black metal balconies, and external staircases running vertically along the building.",
+    "description_view_1": "Rear view highlighting multiple brown doors for each unit, metal balcony platforms, and the grid-like arrangement of doors and balconies.",
+    "description_view_2": "Opposite side view mirroring view 0, with visible staircases, balconies, and a satellite dish on the roof.",
+    "description_view_3": "Front view displaying the main entrances to each unit, balconies, and the symmetrical arrangement of doors and windows.",
+    "category": "apartment building",
+    "height": 16.0,
+    "max_dimension": 18.0,
+    "materials": [
+        "brick",
+        "concrete",
+        "steel",
+        "glass",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "balcony railing",
+        "staircase",
+        "satellite dish"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "gray",
+        "brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.55,
+        0.2,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 4,
+    "attribute_balcony_presence": true,
+    "attribute_window_arrangement": "The windows are symmetrically arranged in vertical columns on each side of the building, with even spacing between them and alignment across all floors.",
+    "attribute_entrance_type": "multiple entrances",
+    "attribute_architectural_style": "Contemporary",
+    "uid": "0a0efd85539a461ab20405ea9cf19bd2",
+    "near_synsets": {
+        "apartment_building.n.01": 0.493045680641661,
+        "high-rise.n.01": 0.5388676355793642,
+        "block.n.05": 0.542163894518272,
+        "suite.n.02": 0.5465903143866688,
+        "skyscraper.n.01": 0.5483749613684364,
+        "building.n.01": -1000.0,
+        "construction.n.07": -1000.0,
+        "building.n.04": -1000.0,
+        "construction.n.01": -1000.0,
+        "apartment.n.01": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0a0efd85539a461ab20405ea9cf19bd2",
+        "creator_username": "David06",
+        "creator_display_name": "David06",
+        "creator_profile_url": "https://sketchfab.com/David06"
+    },
+    "filename": "std_0a0efd85539a461ab20405ea9cf19bd2.glb",
+    "length": 7.454224348068237,
+    "width": 7.231216669082642
+}

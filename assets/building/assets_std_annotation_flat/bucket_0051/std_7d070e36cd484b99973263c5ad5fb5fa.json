@@ -1,0 +1,106 @@
+{
+    "description_long": "This object is a towed artillery piece, featuring a long, slender barrel mounted on a robust carriage with two large spoked wheels. The carriage includes two stabilizing trails that extend rearward, likely for anchoring the gun during firing. The main body is constructed from heavy metal, with a shield plate positioned behind the barrel to provide limited protection for operators. The surface is covered in a mottled camouflage paint, showing signs of wear and rust, suggesting extensive outdoor use. The wheels are solid and rugged, designed for movement across rough terrain, and the overall structure is utilitarian, with exposed mechanical linkages and mounting points.",
+    "description": "A weathered towed artillery gun with a long barrel, large spoked wheels, and a camouflage-painted metal body featuring a protective shield and stabilizing trails.",
+    "description_view_0": "Rear view showing the split trails extended outward and the protective shield behind the barrel.",
+    "description_view_1": "Side view highlighting the length of the barrel, the two large wheels, and the extended trails.",
+    "description_view_2": "Front view focusing on the muzzle of the barrel, the shield, and the wheels flanking the carriage.",
+    "description_view_3": "Angled view displaying the full length of the gun, the wheels, and the camouflaged surface.",
+    "category": "combat tactical  vehicle",
+    "height": 1.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 7,
+    "movable": true,
+    "required_force": 3000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "rotatable",
+        "aimable",
+        "deployable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "barrel",
+        "trails",
+        "shield",
+        "mounting points"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "brown",
+        "green",
+        "black",
+        "rust"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One fixed cannon mount at the front center of the carriage.",
+    "attribute_armor_plating": "A single angled shield plate behind the barrel, covering the front operator area; moderate thickness, no visible modular or reactive features.",
+    "attribute_camouflage_pattern": "Mottled camouflage pattern in tan, brown, and green with irregular patches and weathered appearance.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "Two large spoked wheels with solid rubber tires, no visible tread pattern or special features.",
+    "uid": "7d070e36cd484b99973263c5ad5fb5fa",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4924890253091208,
+        "tank.n.01": 0.500751771079094,
+        "weapons_carrier.n.01": 0.5134853666181896,
+        "assault_gun.n.02": 0.5150018138167741,
+        "armored_car.n.02": 0.5200270698903331,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/7d070e36cd484b99973263c5ad5fb5fa",
+        "creator_username": "amac35",
+        "creator_display_name": "AMAC35",
+        "creator_profile_url": "https://sketchfab.com/amac35"
+    },
+    "filename": "std_7d070e36cd484b99973263c5ad5fb5fa.glb",
+    "length": 5.909781217575073,
+    "width": 4.2792487144470215
+}

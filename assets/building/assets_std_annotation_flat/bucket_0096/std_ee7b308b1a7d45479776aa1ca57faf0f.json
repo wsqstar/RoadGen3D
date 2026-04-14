@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a modern, belt-fed machine gun with a robust black metal frame and a fixed stock. It features a prominent bipod for stability during firing, a large green ammunition box mounted beneath the receiver, and a scope attached to the top rail for enhanced targeting. The barrel is long and slender, extending forward from the main body, and is supported by the bipod legs. The receiver area is detailed with various mechanical components, including a charging handle and ejection port. The overall design is utilitarian, built for durability and sustained fire in urban combat scenarios.",
+    "description": "A black, belt-fed machine gun with a fixed stock, bipod, scope, and green ammo box, designed for stability and sustained fire.",
+    "description_view_0": "Front view showing the bipod legs, barrel end, and the green ammo box beneath the receiver.",
+    "description_view_1": "Side view highlighting the full length of the barrel, fixed stock, scope, and the mounted green ammunition box.",
+    "description_view_2": "Rear view displaying the stock, scope alignment, and the back of the green ammo box.",
+    "description_view_3": "Opposite side view showing the same features as view 1, with details of the receiver and bipod.",
+    "category": "rifle",
+    "height": 0.45,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "polymer",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 8.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 90,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "aimable",
+        "deployable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "trigger",
+        "magazine/ammo box",
+        "bipod",
+        "scope",
+        "charging handle",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "green"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "belt-fed box",
+    "attribute_sight_type": "scope",
+    "attribute_muzzle_device": "none",
+    "uid": "ee7b308b1a7d45479776aa1ca57faf0f",
+    "near_synsets": {
+        "browning_machine_gun.n.01": 0.49364503403026017,
+        "automatic_rifle.n.01": 0.49701275319045524,
+        "machine_gun.n.01": 0.5071282305792242,
+        "rifle.n.01": 0.5096442328579756,
+        "garand_rifle.n.01": 0.5114491733776543
+    },
+    "synset": "garand_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ee7b308b1a7d45479776aa1ca57faf0f",
+        "creator_username": "chipmunkman",
+        "creator_display_name": "chipmunkman",
+        "creator_profile_url": "https://sketchfab.com/chipmunkman"
+    },
+    "filename": "std_ee7b308b1a7d45479776aa1ca57faf0f.glb",
+    "length": 1.3069288730621338,
+    "width": 0.27604568004608154
+}

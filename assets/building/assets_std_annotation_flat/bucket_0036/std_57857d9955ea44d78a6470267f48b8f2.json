@@ -1,0 +1,105 @@
+{
+    "description_long": "This humanoid robot features a rounded, friendly head with large, expressive eyes and a small beak-like mouth, giving it a bird-like appearance. Its torso is compact and smoothly contoured, with two long, articulated arms extending horizontally, each ending in flat, paddle-shaped hands. The robot's lower body is mounted on a robust, wheeled base, suggesting mobility and stability on urban surfaces. Visible wiring connects the torso to the arms, adding a functional, industrial touch. The color palette is primarily light blue and gray, with subtle accents and a glossy finish. The overall design is approachable and modern, suitable for public interaction in urban environments.",
+    "description": "A light blue and gray humanoid robot with a bird-like head, articulated arms, and a wheeled base, designed for approachable urban interaction.",
+    "description_view_0": "Front view shows the robot's expressive face, outstretched arms, and wheeled base.",
+    "description_view_1": "Side view highlights the robot's profile, the curvature of the torso, and the depth of the wheeled base.",
+    "description_view_2": "Rear view reveals the back of the head, torso, and the attachment points of the arms and wiring.",
+    "description_view_3": "Opposite side view displays the same profile as view 1, emphasizing the arm's length and base structure.",
+    "category": "humanoid robot",
+    "height": 1.5,
+    "max_dimension": 2.0,
+    "materials": [
+        "plastic",
+        "metal",
+        "rubber",
+        "glass",
+        "wiring",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.08,
+        0.05,
+        0.04,
+        0.03
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pressable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "hands",
+        "wheels",
+        "head",
+        "torso",
+        "wiring"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light blue",
+        "gray",
+        "black",
+        "white",
+        "orange"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms extended horizontally to the sides, head facing forward, and torso upright on a wheeled base.",
+    "attribute_clothing_style": "No clothing; the robot is covered in integrated, smooth panels with a glossy finish and visible wiring.",
+    "attribute_facial_features": "The face has large, round eyes, a small beak-like mouth, and a smooth, rounded head with no visible nose or expressive display screens.",
+    "attribute_limb_articulation": "Arms have multiple visible joints, likely hinge or rotary, allowing for wide range of motion; hands are flat and paddle-shaped; no visible legs, base is wheeled.",
+    "attribute_presence_of_sensors": "Possible visual sensors in the eyes; no other sensors are clearly visible.",
+    "uid": "57857d9955ea44d78a6470267f48b8f2",
+    "near_synsets": {
+        "android.n.01": 0.5475431456398543,
+        "animatronics.n.01": 0.5721596615719684,
+        "cyborg.n.01": 0.5778201496277899,
+        "robotics_equipment.n.01": 0.5801737258367196,
+        "automaton.n.02": 0.5801820265543627
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/57857d9955ea44d78a6470267f48b8f2",
+        "creator_username": "Eire",
+        "creator_display_name": "Eire",
+        "creator_profile_url": "https://sketchfab.com/Eire"
+    },
+    "filename": "std_57857d9955ea44d78a6470267f48b8f2.glb",
+    "length": 0.3057057708501816,
+    "width": 1.8128174543380737
+}

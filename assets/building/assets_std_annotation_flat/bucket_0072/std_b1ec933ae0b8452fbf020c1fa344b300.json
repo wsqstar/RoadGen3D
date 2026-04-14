@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a mid-rise apartment building with a rectangular footprint and a flat roof, featuring five stories above a ground floor. The front facade is characterized by a series of balconies with railings, each corresponding to an apartment unit, and a central vertical strip of brown accent panels. The ground floor includes a main entrance and what appears to be a garage or commercial space with a wide opening. The side and rear facades are plain, lacking windows or decorative elements, and are finished in a light gray material. The roof includes a raised utility structure, likely for elevator or mechanical access. The overall design is functional and modern, with a focus on symmetry and regularity in the window and balcony arrangement.",
+    "description": "A modern, five-story apartment building with balconies on the front facade and a flat roof, featuring a central entrance and plain side and rear walls.",
+    "description_view_0": "Front view showing balconies, central brown accent panels, main entrance, and ground-level garage or commercial opening.",
+    "description_view_1": "Left side view displaying a plain, windowless gray wall and the protruding rooftop utility structure.",
+    "description_view_2": "Rear view with a completely featureless, flat gray wall and the rooftop structure visible.",
+    "description_view_3": "Right side view similar to the left, with a plain wall and rooftop utility structure.",
+    "category": "apartment building",
+    "height": 18.0,
+    "max_dimension": 12.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "brick",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "mass": 540000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "balcony railing",
+        "garage door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.0,
+    "bounciness": 0.01,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 6,
+    "attribute_balcony_presence": true,
+    "attribute_window_arrangement": "Windows are symmetrically arranged in horizontal rows on each floor, grouped in pairs for each apartment unit, and aligned vertically with the balconies.",
+    "attribute_entrance_type": "single door",
+    "attribute_architectural_style": "Contemporary",
+    "uid": "b1ec933ae0b8452fbf020c1fa344b300",
+    "near_synsets": {
+        "apartment_building.n.01": 0.4717888777711544,
+        "apartment.n.01": 0.5209401271900693,
+        "suite.n.02": 0.5238889780588855,
+        "high-rise.n.01": 0.5248017971367284,
+        "gallery.n.06": 0.5278507100384133,
+        "building.n.01": -1000.0,
+        "construction.n.07": -1000.0,
+        "building.n.04": -1000.0,
+        "construction.n.01": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b1ec933ae0b8452fbf020c1fa344b300",
+        "creator_username": "eliasacg01",
+        "creator_display_name": "eliasacg01",
+        "creator_profile_url": "https://sketchfab.com/eliasacg01"
+    },
+    "filename": "std_b1ec933ae0b8452fbf020c1fa344b300.glb",
+    "length": 9.421877384185791,
+    "width": 12.49999189376831
+}

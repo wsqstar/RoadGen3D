@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a mid-rise office building with a weathered, utilitarian facade, featuring multiple stories and a flat roof. The exterior is dominated by concrete and metal, with rows of rectangular windows set in repetitive horizontal bands across each floor. Many windows are shaded by corrugated metal awnings, some of which are rusted or discolored, and several air conditioning units are mounted externally. The building's facade is punctuated by balconies and protruding elements, giving it a layered, modular appearance. The overall color palette is muted, with off-white, gray, and hints of green and rust. The structure appears to be designed for practical use rather than aesthetic appeal, reflecting a functional, Brutalist architectural style.",
+    "description": "A multi-story, concrete office building with repetitive window bands, metal awnings, and a flat roof, showing signs of weathering and utilitarian design.",
+    "description_view_0": "Front view showing prominent metal awnings, external AC units, and a dense arrangement of windows and balconies.",
+    "description_view_1": "Side view with similar window and awning patterns, but fewer external AC units and a more symmetrical appearance.",
+    "description_view_2": "Rear view with visible rooftop structures, fewer awnings, and a more uniform window arrangement.",
+    "description_view_3": "Opposite side view with minimal awnings and a plainer facade, highlighting the building's modular structure.",
+    "category": "office building",
+    "height": 18.0,
+    "max_dimension": 24.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 900000.0,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "balcony railing",
+        "awning"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "off-white",
+        "gray",
+        "green",
+        "rust"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 6.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 5,
+    "attribute_window_pattern": "Horizontally aligned, rectangular windows in continuous bands with regular spacing and repetitive arrangement across all floors.",
+    "attribute_building_entrance_type": "recessed entry",
+    "attribute_signage_presence": false,
+    "attribute_architectural_style": "Brutalist",
+    "uid": "b8c1e7cc696341059d834f1bbf2ac517",
+    "near_synsets": {
+        "office_building.n.01": 0.5082251614192349,
+        "building.n.01": 0.5509935419668069,
+        "skyscraper.n.01": 0.5531718753307437,
+        "elevation.n.07": 0.5566932474714664,
+        "farm_building.n.01": 0.5620587985465948,
+        "office.n.01": -1000.0,
+        "office.n.06": -1000.0,
+        "construction.n.07": -1000.0,
+        "agency.n.01": -1000.0,
+        "office.n.05": -1000.0,
+        "building.n.04": -1000.0,
+        "office.n.04": -1000.0,
+        "function.n.03": -1000.0,
+        "position.n.06": -1000.0,
+        "construction.n.01": -1000.0
+    },
+    "synset": "office_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b8c1e7cc696341059d834f1bbf2ac517",
+        "creator_username": "otaru",
+        "creator_display_name": "otaru",
+        "creator_profile_url": "https://sketchfab.com/otaru"
+    },
+    "filename": "std_b8c1e7cc696341059d834f1bbf2ac517.glb",
+    "length": 16.412614822387695,
+    "width": 17.35793972015381
+}

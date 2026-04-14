@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a rustic wooden greengrocer stall featuring a rectangular frame with an open canopy structure above. The main display area consists of a divided wooden crate, neatly sectioned into six compartments, each filled with different types of fresh produce. The produce includes green cabbages, round light green fruits or vegetables, brownish potatoes, and orange carrots, all arranged for easy viewing and access. A hand-painted wooden sign on the front reads 'Elizabeth's Food Stand,' adding a personal and welcoming touch. The stall is elevated on sturdy wooden legs, providing stability and a traditional market feel. The overall construction and arrangement evoke a classic street market or farmer's market ambiance.",
+    "description": "A rustic wooden greengrocer stall with a divided produce crate, open canopy frame, and a hand-painted sign, displaying various fresh vegetables and fruits.",
+    "description_view_0": "Front view showing the divided produce crate with green cabbages, round fruits, and a partial view of the sign.",
+    "description_view_1": "Angled side view highlighting the depth of the crate, the open canopy frame, and the arrangement of produce.",
+    "description_view_2": "Direct front view displaying all produce compartments, the full 'Elizabeth's Food Stand' sign, and the stall's symmetrical structure.",
+    "description_view_3": "Opposite angled side view showing the rear compartments, more green cabbages, and the wooden frame's construction details.",
+    "category": "greengrocer",
+    "height": 1.4,
+    "max_dimension": 1.8,
+    "materials": [
+        "wood",
+        "air",
+        "paper",
+        "produce (vegetables/fruits)"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.01,
+        0.14
+    ],
+    "mass": 45,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable",
+        "supportive",
+        "displayable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "produce compartments",
+        "sign"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "green",
+        "light green",
+        "orange",
+        "gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_produce_display_stands": [
+        "wooden crates"
+    ],
+    "attribute_visible_fresh_fruits_and_vegetables": [
+        "cabbage",
+        "potato",
+        "carrot",
+        "green apple"
+    ],
+    "attribute_signage_indicating_prices_or_produce": true,
+    "attribute_open_storefront_or_awning": true,
+    "attribute_architectural_style": "rustic",
+    "uid": "2f5369d4ba6448f39ea02d90163b4afa",
+    "near_synsets": {
+        "greengrocer.n.01": 0.43393168417669276,
+        "greengrocery.n.01": 0.4343585052134265,
+        "greengrocery.n.02": 0.4477276504429433,
+        "produce.n.01": 0.4657777770745918,
+        "farmer's_market.n.01": 0.5127338164324605
+    },
+    "synset": "greengrocery.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2f5369d4ba6448f39ea02d90163b4afa",
+        "creator_username": "bpcrews",
+        "creator_display_name": "bpcrews",
+        "creator_profile_url": "https://sketchfab.com/bpcrews"
+    },
+    "filename": "std_2f5369d4ba6448f39ea02d90163b4afa.glb",
+    "length": 4.7162768840789795,
+    "width": 1.3999993801116943
+}

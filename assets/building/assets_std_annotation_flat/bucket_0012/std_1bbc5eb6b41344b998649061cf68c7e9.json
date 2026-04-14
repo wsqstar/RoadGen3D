@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a modern, two-story garage structure with a flat roof and clean, minimalist lines. The front features a large, single-panel garage door on the ground level and a balcony with a metal railing on the upper level, accessible by an exterior staircase. The upper floor has a wooden entry door and large, dark-framed windows, providing ample natural light. The side and rear elevations are mostly solid, with additional large windows and minimal decorative elements. The exterior is finished in smooth white and gray surfaces, with black and metallic accents on the railings and window frames. The overall design emphasizes functionality and contemporary aesthetics, suitable for urban residential environments.",
+    "description": "A modern, two-story garage with a flat roof, large windows, and an exterior staircase leading to a balcony. The structure features a single-panel garage door and minimalist architectural details.",
+    "description_view_0": "Front view showing the main garage door, upper balcony with metal railing, wooden entry door, and large windows.",
+    "description_view_1": "Side view highlighting expansive windows on both levels and the clean, uninterrupted wall surfaces.",
+    "description_view_2": "Rear view displaying a plain, windowless wall and the side profile of the exterior staircase and balcony.",
+    "description_view_3": "Side view with a clear view of the exterior staircase, balcony, and secondary doors, emphasizing access points.",
+    "category": "garage",
+    "height": 6.0,
+    "max_dimension": 12.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 48000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "garage door",
+        "entry door",
+        "balcony railing",
+        "windows",
+        "staircase"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "black",
+        "wood brown",
+        "metallic silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_garage_door_type": "single panel",
+    "attribute_number_of_garage_doors": 1,
+    "attribute_presence_of_driveway": false,
+    "attribute_door_hardware_style": "minimalist",
+    "attribute_architectural_style": "modern",
+    "uid": "1bbc5eb6b41344b998649061cf68c7e9",
+    "near_synsets": {
+        "garage.n.01": 0.5018775254408165,
+        "carport.n.01": 0.5046322682558179,
+        "gallery.n.06": 0.5448149539996266,
+        "elevation.n.07": 0.5535135747439246,
+        "loft.n.02": 0.5623352610800241,
+        "garage.n.02": -1000.0
+    },
+    "synset": "garage.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1bbc5eb6b41344b998649061cf68c7e9",
+        "creator_username": "supermonolit",
+        "creator_display_name": "Supermonolit",
+        "creator_profile_url": "https://sketchfab.com/supermonolit"
+    },
+    "filename": "std_1bbc5eb6b41344b998649061cf68c7e9.glb",
+    "length": 7.800427675247192,
+    "width": 7.38693380355835
+}

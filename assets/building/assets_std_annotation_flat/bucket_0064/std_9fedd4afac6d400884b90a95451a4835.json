@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a vintage medium-duty cargo truck with a weathered blue cab and a large, rectangular cargo bed covered by a gray, wrinkled tarpaulin. The cab features rounded fenders, a vertical slatted grille, and two circular headlights, with visible signs of rust and wear on the body. The cargo area is constructed from wooden slats and metal framing, giving it a utilitarian, rugged appearance. The wheels are robust, with thick tires suitable for urban and light industrial environments. The rear of the truck is open, revealing the spacious cargo compartment, while the front displays a classic, utilitarian design typical of mid-20th-century trucks. The overall look suggests durability and functionality, ideal for transporting goods in an urban setting.",
+    "description": "A weathered blue vintage cargo truck with a gray tarpaulin-covered wooden bed and robust wheels, showing signs of age and heavy use.",
+    "description_view_0": "Side view showing the blue cab, rust details, and the full length of the gray tarpaulin-covered cargo bed.",
+    "description_view_1": "Rear view highlighting the open back of the cargo bed and the wooden slat construction.",
+    "description_view_2": "Opposite side view with similar features to view 0, showing the cab and cargo bed from the other side.",
+    "description_view_3": "Front view displaying the rounded fenders, vertical grille, and two circular headlights of the cab.",
+    "category": "truck",
+    "height": 2.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "wood",
+        "rubber",
+        "glass",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.1,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "cargo bed",
+        "headlight",
+        "grille",
+        "side mirror"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "black",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.35,
+        0.4,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "box",
+    "attribute_wheelbase": "3.5",
+    "attribute_number_of_axles": 2,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "9fedd4afac6d400884b90a95451a4835",
+    "near_synsets": {
+        "van.n.05": 0.5018762996194539,
+        "truck.n.01": 0.5274541067496632,
+        "truck_bed.n.01": 0.528099056009829,
+        "cargo_container.n.01": 0.5330394985836894,
+        "flatbed.n.02": 0.5354779170460254,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9fedd4afac6d400884b90a95451a4835",
+        "creator_username": "lokeig",
+        "creator_display_name": "lokeig",
+        "creator_profile_url": "https://sketchfab.com/lokeig"
+    },
+    "filename": "std_9fedd4afac6d400884b90a95451a4835.glb",
+    "length": 5.619462490081787,
+    "width": 2.1869001388549805
+}

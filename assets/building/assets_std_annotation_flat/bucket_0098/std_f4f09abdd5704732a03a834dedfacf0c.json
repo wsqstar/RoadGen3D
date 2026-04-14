@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a classic hand grenade, commonly known as a fragmentation grenade, with a robust, olive-green segmented body designed for grip and shrapnel dispersal. The top features a hexagonal metal cap, and a prominent, weathered metallic safety lever runs down one side, secured by a circular pull ring. The lever and ring are both metallic and show signs of wear, suggesting frequent handling or exposure to harsh conditions. The body is divided into raised rectangular segments, which enhance grip and facilitate fragmentation upon detonation. The overall finish is matte, with the metal parts appearing slightly rough and aged. No visible markings, labels, or electronic components are present on the exterior.",
+    "description": "A classic olive-green hand grenade with a segmented body, metallic safety lever, and pull ring. The surface is matte and slightly worn, with no visible labels or electronics.",
+    "description_view_0": "The grenade is shown from a three-quarter angle, highlighting the segmented body, hexagonal cap, and the metallic safety lever partially extended.",
+    "description_view_1": "This front view centers the metallic safety lever and circular pull ring, both prominently visible against the segmented body.",
+    "description_view_2": "The opposite side view displays the lever from a different angle, showing the lever's attachment to the cap and the grenade's textured body.",
+    "description_view_3": "The rear view focuses on the back of the grenade, with the pull ring clearly visible and the lever mostly hidden behind the body.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.12,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 0.4,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "throwable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.18,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the safety ring, which releases the lever and triggers the internal fuse mechanism.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "f4f09abdd5704732a03a834dedfacf0c",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.528831094334082,
+        "grenade.n.01": 0.5564570358949803,
+        "rifle_grenade.n.01": 0.58191190162015,
+        "bombie.n.01": 0.5906613883004607,
+        "pipe_bomb.n.01": 0.5926270451990602,
+        "turkey.n.05": -1000.0,
+        "bomb.n.01": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f4f09abdd5704732a03a834dedfacf0c",
+        "creator_username": "JavierGomezGarcia",
+        "creator_display_name": "Javi",
+        "creator_profile_url": "https://sketchfab.com/JavierGomezGarcia"
+    },
+    "filename": "std_f4f09abdd5704732a03a834dedfacf0c.glb",
+    "length": 0.08835092931985855,
+    "width": 0.07639344409108162
+}

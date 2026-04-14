@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a large, wooden dam-like structure featuring a deep, curved basin flanked by high vertical walls. The main body is constructed from light-colored wood panels, with a smooth, continuous surface forming the interior curve. Metal railings run along the top edges for safety, and a prominent stairway leads up to a raised platform on one side. The structure includes a rectangular opening in the central wall, possibly for access or water flow. The overall design is robust and utilitarian, with visible support beams and a functional, industrial appearance.",
+    "description": "A large, light-wood dam structure with a deep curved basin, metal railings, and a raised platform with stairs.",
+    "description_view_0": "Side view showing the full length of the dam, the curved basin, and the central rectangular opening.",
+    "description_view_1": "Frontal view into the deep curved basin, highlighting the smooth wooden surface and perimeter railings.",
+    "description_view_2": "Rear view showing the back wall, the rectangular opening, and the stairway structure on the right.",
+    "description_view_3": "Angled rear view emphasizing the raised platform, stairway, and the depth of the curved basin.",
+    "category": "dam",
+    "height": 6.0,
+    "max_dimension": 18.0,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "descendable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "stairs",
+        "platform",
+        "railings"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_spillway_presence": false,
+    "attribute_control_gates": [
+        "none"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_water_outflow": "none",
+    "attribute_perimeter_fencing": true,
+    "uid": "772067a8eb7d4868b891fecd104763c4",
+    "near_synsets": {
+        "dam.n.01": 0.5031689804590634,
+        "milldam.n.01": 0.5172318837313346,
+        "weir.n.01": 0.5206499662630413,
+        "flashboard.n.01": 0.5413364474144255,
+        "aqueduct.n.01": 0.5440256022936576,
+        "dam.n.03": -1000.0,
+        "decameter.n.01": -1000.0
+    },
+    "synset": "dam.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/772067a8eb7d4868b891fecd104763c4",
+        "creator_username": "speterson",
+        "creator_display_name": "speterson",
+        "creator_profile_url": "https://sketchfab.com/speterson"
+    },
+    "filename": "std_772067a8eb7d4868b891fecd104763c4.glb",
+    "length": 14.911755561828613,
+    "width": 13.695039749145508
+}

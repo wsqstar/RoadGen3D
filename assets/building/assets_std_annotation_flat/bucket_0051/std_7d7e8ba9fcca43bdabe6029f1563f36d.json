@@ -1,0 +1,102 @@
+{
+    "description_long": "This humanoid robot features a rounded, metallic head with two large, expressive blue eyes set into a smooth faceplate, giving it a friendly and approachable appearance. Its body is composed of segmented, cylindrical sections connected by visible joints, allowing for a wide range of motion. The arms and legs are robust and mechanical, with articulated elbows, knees, and fingers, each ending in three-pronged hands and feet. The back of the head displays a prominent red circular element, possibly a sensor or light. The robot's exterior is primarily a matte gray metal with black accents, and the overall design is sleek and functional, reminiscent of urban service or companion robots. The construction suggests durability and mobility, suitable for navigating city environments.",
+    "description": "A sleek, gray humanoid robot with large blue eyes, articulated limbs, and a rounded head featuring a red rear sensor. Its segmented metallic body and expressive face suggest a friendly, functional urban design.",
+    "description_view_0": "Front view shows the robot's large blue eyes, rounded head, and articulated arms and legs with three-pronged hands and feet.",
+    "description_view_1": "Side view highlights the robot's cylindrical body segments, jointed limbs, and the prominent red circular sensor on the back of the head.",
+    "description_view_2": "Rear view reveals the segmented back, symmetrical limb joints, and the red sensor centered on the back of the head.",
+    "description_view_3": "Opposite side view again emphasizes the cylindrical body, articulated joints, and the red sensor on the head's rear.",
+    "category": "humanoid robot",
+    "height": 1.4,
+    "max_dimension": 1.4,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 55,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "eyes",
+        "arms",
+        "hands",
+        "legs",
+        "feet",
+        "head",
+        "red sensor"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "blue",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms relaxed at the sides, legs straight, and head facing forward. Limbs are slightly bent at the joints, suggesting readiness for movement.",
+    "attribute_clothing_style": "No visible clothing; exterior consists of integrated metallic and plastic panels with some black accent bands.",
+    "attribute_facial_features": "Face features two large, round blue eyes set into a smooth, featureless faceplate. No visible mouth or nose; eyes are expressive and prominent.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible joints, including ball or hinge joints at shoulders, elbows, hips, and knees. Hands and feet have three articulated prongs each, allowing for grasping and stability.",
+    "attribute_presence_of_sensors": "Visible sensors include two large blue optical sensors (eyes) on the front of the head and a red circular sensor on the back of the head.",
+    "uid": "7d7e8ba9fcca43bdabe6029f1563f36d",
+    "near_synsets": {
+        "android.n.01": 0.5493460322880069,
+        "cyborg.n.01": 0.5634905671078729,
+        "robotics_equipment.n.01": 0.5724635818961301,
+        "robotics.n.01": 0.5804162444514579,
+        "automaton.n.02": 0.5833601441238863
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7d7e8ba9fcca43bdabe6029f1563f36d",
+        "creator_username": "Connorallery",
+        "creator_display_name": "Connorallery",
+        "creator_profile_url": "https://sketchfab.com/Connorallery"
+    },
+    "filename": "std_7d7e8ba9fcca43bdabe6029f1563f36d.glb",
+    "length": 0.47021718323230743,
+    "width": 0.6875983774662018
+}

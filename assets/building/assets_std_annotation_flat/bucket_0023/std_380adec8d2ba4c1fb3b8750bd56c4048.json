@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a compact, industrial-style shotgun with a cylindrical metal barrel and a robust, utilitarian design. The barrel is thick and appears to be constructed from dark, matte-finished steel, with a slightly wider muzzle and a series of stepped rings along its length. The shotgun features a vertical foregrip made of metal, attached beneath the barrel, and a wooden pistol grip with visible screws, providing ergonomic handling. The trigger is exposed, and there is a small, simple trigger guard integrated into the frame. The overall construction is minimalistic, with no visible stock and a focus on functionality over aesthetics. The combination of metal and wood elements gives it a rugged, makeshift appearance suitable for urban environments.",
+    "description": "A compact, industrial shotgun with a thick metal barrel, vertical foregrip, and wooden pistol grip, featuring a rugged, utilitarian design.",
+    "description_view_0": "Side view showing the cylindrical metal barrel, vertical foregrip, and wooden pistol grip with visible screws.",
+    "description_view_1": "Front view highlighting the wide, circular muzzle and alignment of the foregrip and pistol grip.",
+    "description_view_2": "Opposite side view displaying the same key features as view 0, with the trigger and grip details visible.",
+    "description_view_3": "Rear view focusing on the back of the pistol grip and the end of the barrel, with the foregrip directly in line.",
+    "category": "shotgun",
+    "height": 0.25,
+    "max_dimension": 0.55,
+    "materials": [
+        "steel",
+        "wood",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.18,
+        0.02,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "aimable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pistol grip",
+        "vertical foregrip",
+        "trigger",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "brown",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.65,
+        0.25,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, cylindrical with no visible ribbing or venting",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "unknown",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "minimal, small and rounded, closely integrated with the trigger area",
+    "uid": "380adec8d2ba4c1fb3b8750bd56c4048",
+    "near_synsets": {
+        "sawed-off_shotgun.n.01": 0.471229700762612,
+        "shotgun.n.01": 0.47817213521235535,
+        "shotgun_shell.n.01": 0.5126121159871742,
+        "gun.n.01": 0.5175543606800322,
+        "pistol.n.01": 0.521424210550865
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/380adec8d2ba4c1fb3b8750bd56c4048",
+        "creator_username": "morvos",
+        "creator_display_name": "Morvos",
+        "creator_profile_url": "https://sketchfab.com/morvos"
+    },
+    "filename": "std_380adec8d2ba4c1fb3b8750bd56c4048.glb",
+    "length": 0.429618239402771,
+    "width": 0.08699062839150429
+}

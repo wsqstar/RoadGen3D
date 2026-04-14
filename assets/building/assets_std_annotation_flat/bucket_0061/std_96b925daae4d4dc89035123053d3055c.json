@@ -1,0 +1,84 @@
+{
+    "description_long": "This object is a cylindrical, metallic can with a slightly tapered top and a rounded bottom, typical of beverage containers like soda or beer cans. The surface is smooth and unadorned, with a uniform metallic gray color and no visible branding, text, or decorative elements. The top features a recessed circular area with a raised rim and a standard pull tab opening mechanism, though the tab itself is not clearly visible. The can appears to be empty, as indicated by the lack of any visible contents or deformation from internal pressure. There are no signs of rust, dents, or damage, and the surface finish is consistent throughout. The object is likely made primarily of aluminum, with an air-filled interior.",
+    "description": "A smooth, metallic gray beverage can with a recessed top and no visible branding or damage. The surface is clean and unmarked, typical of an empty aluminum can.",
+    "description_view_0": "The can is viewed from the front, showing the smooth cylindrical body and the recessed top with a faint outline of the pull tab area.",
+    "description_view_1": "This side view highlights the can's uniform curvature and the subtle transition from the body to the top rim.",
+    "description_view_2": "The can is seen from a slightly different angle, emphasizing the smooth, unbroken surface and the rounded bottom edge.",
+    "description_view_3": "Another side view, similar to view 1, showing the consistent metallic finish and the can's vertical symmetry.",
+    "category": "discarded can",
+    "height": 0.12,
+    "max_dimension": 0.065,
+    "materials": [
+        "aluminum",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 0.014,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0.2,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable",
+        "crushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pull tab",
+        "can body"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.08,
+    "surface_finish": "smooth",
+    "reflectivity": 0.5,
+    "index_of_refraction": 1.44,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.2,
+    "recommended_clearance": 0.05,
+    "asset_composition_type": "single",
+    "attribute_brand_logo": "None",
+    "attribute_label_text": "None",
+    "attribute_barcode": "None",
+    "attribute_pull_tab_type": "standard ring pull",
+    "attribute_rust_or_damage_marks": "None",
+    "uid": "96b925daae4d4dc89035123053d3055c",
+    "near_synsets": {
+        "soda_can.n.01": 0.518628320395418,
+        "can.n.01": 0.5518353310032952,
+        "beer_can.n.01": 0.5560725465888734,
+        "empty.n.01": 0.564978339942698,
+        "bottle.n.01": 0.5753308984374556
+    },
+    "synset": "can.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/96b925daae4d4dc89035123053d3055c",
+        "creator_username": "nunny117",
+        "creator_display_name": "Adam Nunn",
+        "creator_profile_url": "https://sketchfab.com/nunny117"
+    },
+    "filename": "std_96b925daae4d4dc89035123053d3055c.glb",
+    "length": 0.0629049614071846,
+    "width": 0.06290492415428162
+}

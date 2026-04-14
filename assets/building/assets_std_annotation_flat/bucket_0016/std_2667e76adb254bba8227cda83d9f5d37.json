@@ -1,0 +1,107 @@
+{
+    "description_long": "This object is a large, urban half-pipe structure resembling a skateboarding ramp, constructed primarily from light-colored wood with a concrete or stone base. The sides are adorned with graffiti, including a prominent green 'HUMBLE' tag and other colorful street art. Metal railings run along the top edges for safety, and a tall wooden staircase with a platform provides access to the upper level. The interior of the ramp is smooth and continuous, designed for wheeled sports, with the graffiti art extending onto the ramp surface. The structure is open at both ends, allowing for easy entry and exit, and is surrounded by a sturdy perimeter fence.",
+    "description": "A large wooden half-pipe ramp with graffiti art, metal railings, and a tall staircase, set on a concrete base.",
+    "description_view_0": "Side view showing the smooth wooden curve, central opening, and the staircase with metal railings.",
+    "description_view_1": "Top-down view into the ramp, highlighting the green graffiti and the open, bowl-like interior.",
+    "description_view_2": "Opposite side view with extensive graffiti art, the central opening, and the staircase structure visible.",
+    "description_view_3": "Rear view showing the ramp's depth, graffiti on the ramp floor, and the staircase platform.",
+    "category": "dam",
+    "height": 6.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "wood",
+        "concrete",
+        "metal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "slideable",
+        "grindable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "stairs",
+        "platform",
+        "railings"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "skateboard"
+    ],
+    "colors": [
+        "light brown",
+        "gray",
+        "green",
+        "black",
+        "orange"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.12,
+        0.06,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.08,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_spillway_presence": false,
+    "attribute_control_gates": [
+        "none"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_water_outflow": "none",
+    "attribute_perimeter_fencing": true,
+    "uid": "2667e76adb254bba8227cda83d9f5d37",
+    "near_synsets": {
+        "dam.n.01": 0.5607909155934236,
+        "stairhead.n.01": 0.5714730853360313,
+        "standpipe.n.01": 0.5747778062994899,
+        "ramp.n.03": 0.5817235226838593,
+        "flume.n.02": 0.5833885307629415,
+        "dam.n.03": -1000.0,
+        "decameter.n.01": -1000.0
+    },
+    "synset": "dam.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2667e76adb254bba8227cda83d9f5d37",
+        "creator_username": "Dessertfox",
+        "creator_display_name": "Dessertfox",
+        "creator_profile_url": "https://sketchfab.com/Dessertfox"
+    },
+    "filename": "std_2667e76adb254bba8227cda83d9f5d37.glb",
+    "length": 14.630541801452637,
+    "width": 16.15091323852539
+}

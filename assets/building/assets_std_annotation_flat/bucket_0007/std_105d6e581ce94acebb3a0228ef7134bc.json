@@ -1,0 +1,99 @@
+{
+    "description_long": "This helicopter features a streamlined, elongated fuselage with a pointed nose and a dark, glossy exterior. The main rotor consists of four long, flat blades extending horizontally from the top, while the tail section is equipped with a smaller, angled rotor and multiple stabilizing fins. The cockpit is located at the front, with a large, curved window that wraps around the nose, providing wide visibility. The landing gear consists of two parallel skids mounted beneath the fuselage, designed for stable ground contact. The helicopter's body is primarily black with subtle yellow accents near the nose and along the edges. No visible registration numbers or detailed markings are present on the exterior.",
+    "description": "A sleek, black helicopter with a pointed nose, four-blade main rotor, and parallel landing skids. The cockpit features a large, curved window and the tail has multiple stabilizing fins.",
+    "description_view_0": "Front view shows the pointed nose, large curved cockpit window, and the symmetrical spread of the main rotor blades.",
+    "description_view_1": "Side view highlights the elongated fuselage, parallel landing skids, and the main and tail rotors' alignment.",
+    "description_view_2": "Rear view displays the tail rotor, multiple stabilizing fins, and the back of the landing skids.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the fuselage, skids, and rotor configuration from the other side.",
+    "category": "helicopter",
+    "height": 1.8,
+    "max_dimension": 6.5,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.18,
+        0.12,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 11760,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "main rotor",
+        "tail rotor",
+        "cockpit door",
+        "landing skids",
+        "cockpit window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_rotor_blades": "Four long, flat main rotor blades, likely made of composite material, colored dark gray to black with no visible markings. The blades are straight and extend symmetrically from the rotor hub.",
+    "attribute_tail_rotor": "Tail rotor is present, with four short blades arranged in an X-configuration, colored gray, and mounted at the end of the tail boom. No protective shroud or visible markings.",
+    "attribute_landing_skids": "Two parallel, straight landing skids made of metal or composite, colored dark gray to black, with simple supports connecting them to the fuselage. No visible crossbars or footpads.",
+    "attribute_cockpit_windows": "One large, curved cockpit window wrapping around the front of the helicopter, slightly tinted, with minimal visible framing and no markings.",
+    "attribute_registration_number": "not visible",
+    "uid": "105d6e581ce94acebb3a0228ef7134bc",
+    "near_synsets": {
+        "helicopter.n.01": 0.4903589135501492,
+        "main_rotor.n.01": 0.5120864720984142,
+        "single-rotor_helicopter.n.01": 0.514596197368487,
+        "landing_skid.n.01": 0.5206914139846608,
+        "rotor_blade.n.01": 0.5237992681206368
+    },
+    "synset": "single-rotor_helicopter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/105d6e581ce94acebb3a0228ef7134bc",
+        "creator_username": "josephcan232",
+        "creator_display_name": "josephcan232",
+        "creator_profile_url": "https://sketchfab.com/josephcan232"
+    },
+    "filename": "std_105d6e581ce94acebb3a0228ef7134bc.glb",
+    "length": 6.242265701293945,
+    "width": 6.100110054016113
+}

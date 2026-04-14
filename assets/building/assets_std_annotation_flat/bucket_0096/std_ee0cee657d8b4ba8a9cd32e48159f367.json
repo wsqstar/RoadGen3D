@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a military-style attack helicopter with a streamlined, angular fuselage painted in a dark green and brown camouflage pattern. It features a prominent cockpit with multiple angular, tinted windows and a nose-mounted sensor or weapon system. The helicopter is equipped with a four-blade main rotor and a smaller tail rotor, both in matte black. Its landing gear consists of two robust, rectangular skids with cross-supports, designed for stability on rough terrain. The sides of the fuselage display alphanumeric markings, and the helicopter is outfitted with external weapon pylons and equipment pods. The overall design emphasizes durability, maneuverability, and combat readiness, suitable for urban or battlefield environments.",
+    "description": "A camouflaged military attack helicopter with a four-blade main rotor, angular cockpit windows, and robust landing skids. It features external weapon mounts and alphanumeric markings on its sides.",
+    "description_view_0": "Side view showing the full length of the helicopter, main rotor, tail rotor, cockpit, landing skids, and visible '01' marking.",
+    "description_view_1": "Top-down view highlighting the four-blade main rotor, weapon pylons, and the narrow profile of the fuselage.",
+    "description_view_2": "Opposite side view displaying the tail boom, main and tail rotors, cockpit, and landing skids, with visible camouflage and markings.",
+    "description_view_3": "Frontal view emphasizing the angular cockpit windows, nose-mounted equipment, and the symmetry of the landing skids.",
+    "category": "helicopter",
+    "height": 4.0,
+    "max_dimension": 15.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.2,
+        0.1,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "mass": 6000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 58860,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit window",
+        "rotor blade",
+        "tail rotor",
+        "landing skid",
+        "weapon pylon",
+        "control stick",
+        "button",
+        "switch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "brown",
+        "black",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_rotor_blades": "Four long, straight main rotor blades made of composite material, colored matte black with no visible markings. The blades are evenly spaced and appear robust, suitable for heavy-duty use.",
+    "attribute_tail_rotor": "A small, two-blade tail rotor mounted vertically at the end of the tail boom, colored black with no visible markings or protective shroud.",
+    "attribute_landing_skids": "Two rectangular, robust landing skids made of metal, painted dark gray or black, with visible crossbars for structural support and stability.",
+    "attribute_cockpit_windows": "Multiple angular cockpit windows, including a large front window and smaller side panels, all tinted and framed in dark material, providing wide visibility for the crew.",
+    "attribute_registration_number": "'01' is visible in white on the nose and tail boom; no other registration number is visible.",
+    "uid": "ee0cee657d8b4ba8a9cd32e48159f367",
+    "near_synsets": {
+        "helicopter.n.01": 0.5356199639947471,
+        "landing_skid.n.01": 0.5437528410529916,
+        "cargo_helicopter.n.01": 0.5442171893151486,
+        "main_rotor.n.01": 0.5511176632660237,
+        "single-rotor_helicopter.n.01": 0.5584502779670331
+    },
+    "synset": "single-rotor_helicopter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ee0cee657d8b4ba8a9cd32e48159f367",
+        "creator_username": "Shreyaxh",
+        "creator_display_name": "Shreyash",
+        "creator_profile_url": "https://sketchfab.com/Shreyaxh"
+    },
+    "filename": "std_ee0cee657d8b4ba8a9cd32e48159f367.glb",
+    "length": 14.921507358551025,
+    "width": 11.743217468261719
+}

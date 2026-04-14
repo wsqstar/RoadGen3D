@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a large, cylindrical blue metal barrel with visible signs of wear, scratches, and rust, suggesting prolonged outdoor or industrial use. The barrel features two prominent horizontal metal reinforcement bands around its body and a flat, closed top with a small circular cap or bung for filling or emptying contents. On one side, there is a prominent warning label with the word 'CORROSIVE' and the UN 1719 code, along with a pictogram indicating hazardous material. A streak of green liquid appears to be leaking from a seam beneath the label, hinting at the presence of dangerous chemicals inside. The surface is mostly matte with patches of discoloration and grime, giving it a rugged, utilitarian appearance. The overall construction and markings indicate it is used for storing or transporting hazardous industrial substances.",
+    "description": "A weathered blue metal barrel with reinforcement bands, a corrosive warning label, and a green chemical leak.",
+    "description_view_0": "Shows the blue barrel's top with a small cap and visible wear, no label or leak visible.",
+    "description_view_1": "Displays the side with a streak of green liquid leaking down, no label visible.",
+    "description_view_2": "Shows the top cap and part of the warning label, with surface scratches.",
+    "description_view_3": "Features the full corrosive warning label and green leak, highlighting the hazardous nature.",
+    "category": "barrel or bucket",
+    "height": 0.9,
+    "max_dimension": 0.6,
+    "materials": [
+        "steel",
+        "air",
+        "chemical liquid"
+    ],
+    "materials_composition": [
+        0.92,
+        0.05,
+        0.03
+    ],
+    "mass": 35,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cap",
+        "body"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "green",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.03,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "metal hoops around body",
+    "attribute_labeling_or_markings": "corrosive warning label, UN 1719 code, hazard pictogram",
+    "attribute_placement_location": "industrial",
+    "uid": "29d4bc6e4e5c4b73b5b416964cb48f3a",
+    "near_synsets": {
+        "carboy.n.01": 0.5358372645810149,
+        "barrel.n.02": 0.537706947741283,
+        "rain_barrel.n.01": 0.550943378741675,
+        "beer_barrel.n.01": 0.5536794224967577,
+        "bucket.n.01": 0.5536834034812257,
+        "barrel.n.05": -1000.0,
+        "barrel.n.01": -1000.0,
+        "barrel.n.04": -1000.0,
+        "bucket.n.02": -1000.0,
+        "barrel.n.03": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/29d4bc6e4e5c4b73b5b416964cb48f3a",
+        "creator_username": "Aaron.L",
+        "creator_display_name": "Aaron.L",
+        "creator_profile_url": "https://sketchfab.com/Aaron.L"
+    },
+    "filename": "std_29d4bc6e4e5c4b73b5b416964cb48f3a.glb",
+    "length": 0.6200241446495056,
+    "width": 0.6166278719902039
+}

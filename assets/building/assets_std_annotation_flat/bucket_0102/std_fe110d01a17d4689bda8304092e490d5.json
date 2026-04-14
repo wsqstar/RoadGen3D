@@ -1,0 +1,112 @@
+{
+    "description_long": "This is a large, modern offshore supply ship with a robust red hull and a white superstructure. The vessel features a flat, open aft deck with a marked helipad, surrounded by safety railings and equipped with a visible crane for cargo handling. The bow is sharply angled, designed for efficient movement through water, and the hull sides are lined with fenders and safety equipment. The superstructure is multi-leveled, with a bridge located at the front and several antennae and masts on the roof. Portholes and windows are distributed along the superstructure, providing visibility and light to the interior. The ship's overall design suggests it is built for heavy-duty maritime operations, likely in support of offshore platforms or similar environments.",
+    "description": "A large red and white offshore supply ship with a flat aft deck, helipad, crane, and multi-level superstructure. The vessel is robustly built for heavy-duty maritime operations.",
+    "description_view_0": "Side view showing the full length of the ship, the red hull, white superstructure, crane, and safety railings.",
+    "description_view_1": "Front view highlighting the sharp bow, bridge windows, and the ship's width.",
+    "description_view_2": "Opposite side view displaying the hull, superstructure, crane, and open aft deck with helipad markings.",
+    "description_view_3": "Rear view focusing on the open aft deck, helipad, and the back of the superstructure.",
+    "category": "ship",
+    "height": 15,
+    "max_dimension": 70,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 250000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "operable",
+        "landable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "crane",
+        "doors",
+        "windows",
+        "antenna",
+        "bridge controls",
+        "railings"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "gray",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 20,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a sharply angled bow and a flat stern. The sides are lined with fenders, and the hull sits low in the water, indicating a design for stability and heavy loads. No bulbous bow or keels are visible, but the structure is robust and reinforced.",
+    "attribute_superstructure_layout": "The superstructure is multi-leveled, positioned toward the bow, with a bridge at the front and several decks above the main hull. Windows and portholes are distributed along the sides, and the roof is equipped with antennae and masts. The aft section is open and flat, designed for cargo or helicopter operations.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "crane",
+        "antenna",
+        "radar",
+        "lifeboat",
+        "fenders",
+        "helipad"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "fe110d01a17d4689bda8304092e490d5",
+    "near_synsets": {
+        "cargo_ship.n.01": 0.5096615891270299,
+        "troopship.n.01": 0.5262924628554563,
+        "tender.n.06": 0.5317098089152336,
+        "container_ship.n.01": 0.5325524480757602,
+        "transport_ship.n.01": 0.5352871698324589,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fe110d01a17d4689bda8304092e490d5",
+        "creator_username": "1to3fall5",
+        "creator_display_name": "1to3fall5",
+        "creator_profile_url": "https://sketchfab.com/1to3fall5"
+    },
+    "filename": "std_fe110d01a17d4689bda8304092e490d5.glb",
+    "length": 35.48844337463379,
+    "width": 8.636160850524902
+}

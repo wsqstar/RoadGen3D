@@ -1,0 +1,89 @@
+{
+    "description_long": "This is a long, industrial-style ladder structure composed primarily of metal, featuring four distinct sections with horizontal rungs and vertical side rails. The ladder includes handrails on both sides for added safety, and one end has a platform area, possibly for standing or transitioning to another surface. The frame is supported by multiple vertical legs, suggesting it is designed for stability and possibly semi-permanent installation. The metallic finish is uniform, with a matte gray appearance, and the construction appears robust, suitable for heavy-duty urban or industrial use. The open framework allows visibility through the structure, and the rungs are evenly spaced for safe climbing.",
+    "description": "A long, metal industrial ladder with handrails, multiple rungs, and a platform at one end, supported by sturdy vertical legs. The structure is robust and designed for safe climbing in urban or industrial settings.",
+    "description_view_0": "End-on view showing the narrow profile, handrails, and the depth of the ladder's sections.",
+    "description_view_1": "Side view highlighting the full length, evenly spaced rungs, and the platform at the far end.",
+    "description_view_2": "Opposite end-on view, showing the platform and the arrangement of the handrails and rungs.",
+    "description_view_3": "Side view from the opposite direction, again showing the length, rungs, and platform, but from the other side.",
+    "category": "ladder",
+    "height": 1.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "climbable",
+        "grippable",
+        "standable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "rungs",
+        "handrails",
+        "platform"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rungs": 8,
+    "attribute_rung_spacing": 0.3,
+    "attribute_side_rail_profile": "rectangular steel",
+    "attribute_mounting_position": "freestanding",
+    "attribute_presence_of_safety_features": [
+        "handrails"
+    ],
+    "uid": "e6b170b919d54f95bb9071e15eef1356",
+    "near_synsets": {
+        "ladder.n.01": 0.46995092830335666,
+        "extension_ladder.n.01": 0.48886801121751855,
+        "rope_ladder.n.01": 0.5139838289405314,
+        "step_ladder.n.01": 0.5172219911462866,
+        "aerial_ladder.n.01": 0.5181635885676923,
+        "run.n.13": -1000.0,
+        "ladder.n.02": -1000.0
+    },
+    "synset": "ladder.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e6b170b919d54f95bb9071e15eef1356",
+        "creator_username": "engenheiro.ronnybastos",
+        "creator_display_name": "engenheiro.ronnybastos",
+        "creator_profile_url": "https://sketchfab.com/engenheiro.ronnybastos"
+    },
+    "filename": "std_e6b170b919d54f95bb9071e15eef1356.glb",
+    "length": 2.8631582260131836,
+    "width": 0.5894821882247925
+}

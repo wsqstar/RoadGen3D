@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a cargo tricycle equipped with a large, polygonal cargo box at the front, designed for transporting goods or items. The tricycle features a prominent teal and gray umbrella mounted above the cargo area, providing shade for both the cargo and the operator. The frame is constructed from metal tubing, painted teal, and includes a single saddle seat and a straight handlebar for steering. The tricycle has three large, spoked wheels, with two at the front supporting the cargo box and one at the rear. Inside the cargo box, several colorful packages or boxes are visible, suggesting its use for vending or delivery. The overall design is utilitarian yet visually appealing, suitable for urban environments such as parks, sidewalks, or markets.",
+    "description": "A teal and gray cargo tricycle with a large front box, a sun umbrella, and visible packages inside. It features three wheels, a single saddle seat, and a straight handlebar.",
+    "description_view_0": "Front view showing the cargo box filled with packages, the umbrella overhead, and the tricycle's front wheels.",
+    "description_view_1": "Side view highlighting the full length of the tricycle, the umbrella, the cargo box, and the rear wheel with the seat and handlebar visible.",
+    "description_view_2": "Rear view focusing on the back of the tricycle, the rear wheel, the seat, and the umbrella's coverage.",
+    "description_view_3": "Opposite side view showing the cargo box, the umbrella, and the tricycle's frame and wheels from a different angle.",
+    "category": "tricycle",
+    "height": 1.8,
+    "max_dimension": 2.2,
+    "materials": [
+        "metal",
+        "plastic",
+        "fabric",
+        "rubber",
+        "cardboard",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.15,
+        0.15,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "sittable",
+        "steerable",
+        "pedalable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handlebar",
+        "pedal",
+        "wheel",
+        "seat",
+        "umbrella",
+        "cargo box"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "teal",
+        "gray",
+        "black",
+        "white",
+        "pink",
+        "blue"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_number_of_wheels": 3,
+    "attribute_presence_of_pedals": true,
+    "attribute_handlebar_type": "straight",
+    "attribute_seat_configuration": "single saddle",
+    "attribute_presence_of_rear_cargo_basket": false,
+    "uid": "3def3a53f2614f99927d75cb7b7a69c3",
+    "near_synsets": {
+        "tricycle.n.01": 0.5079007564352044,
+        "luggage_carrier.n.01": 0.536576714756559,
+        "umbrella.n.01": 0.5618941002709267,
+        "pedicab.n.01": 0.5713719232073019,
+        "tandem_trailer.n.01": 0.5724226099826983
+    },
+    "synset": "tricycle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3def3a53f2614f99927d75cb7b7a69c3",
+        "creator_username": "titcoune",
+        "creator_display_name": "Antoine Gaumond",
+        "creator_profile_url": "https://sketchfab.com/titcoune"
+    },
+    "filename": "std_3def3a53f2614f99927d75cb7b7a69c3.glb",
+    "length": 2.195068597793579,
+    "width": 1.612347960472107
+}

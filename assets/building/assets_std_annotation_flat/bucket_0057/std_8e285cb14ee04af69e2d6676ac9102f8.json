@@ -1,0 +1,82 @@
+{
+    "description_long": "This object is a rectangular section of sidewalk composed of uniformly sized, gray paving stones arranged in a herringbone pattern. The surface is flat and even, with clearly defined grout lines separating each stone, giving it a neat and orderly appearance. The paving stones are likely made of concrete, providing a durable and hard-wearing walking surface suitable for urban environments. The color is a consistent medium gray, typical of modern sidewalks, and the finish appears matte with a slight texture for slip resistance. There are no visible curbs, tactile paving, or street furniture present along the edges or on the surface. The edges of the sidewalk are flush, blending seamlessly with the surrounding ground level.",
+    "description": "A flat, rectangular gray sidewalk section with a herringbone pattern of concrete paving stones and flush edges.",
+    "description_view_0": "The sidewalk is seen from a slightly elevated angle, showing the full herringbone pattern and flush edges.",
+    "description_view_1": "This view is nearly identical to view 0, with the same herringbone pattern and no visible curbs or features.",
+    "description_view_2": "The sidewalk is shown from another rotated angle, maintaining the same flat, patterned surface and flush edges.",
+    "description_view_3": "This view mirrors the previous ones, highlighting the uniformity of the paving stones and the absence of edge features.",
+    "category": "sidewalk",
+    "height": 0.08,
+    "max_dimension": 4.0,
+    "materials": [
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.98,
+        0.02
+    ],
+    "mass": 768,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": false,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "flush",
+    "attribute_adjacent_street_type": "residential",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "8e285cb14ee04af69e2d6676ac9102f8",
+    "near_synsets": {
+        "sidewalk.n.01": 0.4902101714252303,
+        "paved_surface.n.01": 0.504700678423837,
+        "paving_stone.n.01": 0.5184675145305033,
+        "cobble.n.01": 0.5229458069392166,
+        "curb.n.01": 0.5352002631332958
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8e285cb14ee04af69e2d6676ac9102f8",
+        "creator_username": "DolmosStudio",
+        "creator_display_name": "DolmosStudio",
+        "creator_profile_url": "https://sketchfab.com/DolmosStudio"
+    },
+    "filename": "std_8e285cb14ee04af69e2d6676ac9102f8.glb",
+    "length": 595420.6875,
+    "width": 595420.3125
+}

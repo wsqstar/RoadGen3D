@@ -1,0 +1,107 @@
+{
+    "description_long": "This ship features a long, streamlined hull with a flat deck and a raised central superstructure. The deck is bordered by railings and includes several large, dome-shaped structures, likely for protection or storage. A prominent mast rises from the center, with rigging and spars extending outward, and a single funnel is positioned just aft of the superstructure. The hull is painted in a dark color along the waterline, while the deck and superstructure are lighter, with wood-toned and white surfaces. The bow is sharply pointed, and the stern is rounded, both designed for efficient movement through water. The ship appears to be modeled after a historical or military vessel, with visible hatches, deck equipment, and a symmetrical, balanced layout.",
+    "description": "A large, streamlined ship with a pointed bow, rounded stern, central superstructure, mast, and funnel, featuring a wood-toned deck and white upper structures.",
+    "description_view_0": "Side view showing the ship's long hull, central superstructure, mast, funnel, and deck details.",
+    "description_view_1": "Front (bow) view highlighting the pointed bow, central mast, and symmetrical deck layout.",
+    "description_view_2": "Opposite side view displaying the hull, superstructure, mast, funnel, and deck features from the other side.",
+    "description_view_3": "Rear (stern) view showing the rounded stern, deck equipment, and the arrangement of the superstructure.",
+    "category": "ship",
+    "height": 12,
+    "max_dimension": 80,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.03,
+        0.05,
+        0.02
+    ],
+    "mass": 350000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "steerable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "wheel",
+        "mast",
+        "funnel",
+        "deck railings"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "wood brown",
+        "gray",
+        "black",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 10,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single, elongated displacement type with a sharply pointed bow and a rounded stern. The sides are smooth and slightly flared, with a dark-painted waterline and no visible keels or bulbous bows. The deck is flat and bordered by railings.",
+    "attribute_superstructure_layout": "The superstructure is centrally located, with a single main deckhouse, a prominent mast, and a funnel just aft. The deck is open with several dome-shaped structures and hatches, and the layout is symmetrical along the ship's centerline.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "mast",
+        "funnel",
+        "hatch",
+        "deck railing"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "69b3ba83bbeb4da092df5e0c69520233",
+    "near_synsets": {
+        "figurehead.n.02": 0.49095281853836714,
+        "cargo_ship.n.01": 0.4949806841704932,
+        "ship.n.01": 0.49896329619402674,
+        "vessel.n.02": 0.5028233407201464,
+        "schooner.n.02": 0.5040772616224459
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/69b3ba83bbeb4da092df5e0c69520233",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_69b3ba83bbeb4da092df5e0c69520233.glb",
+    "length": 48.29361152648926,
+    "width": 8.113326072692871
+}

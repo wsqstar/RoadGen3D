@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a dark green, armored combat tactical vehicle with a low, angular profile and robust construction. The vehicle features six large, rugged wheels designed for off-road and urban mobility, and its body is covered in flat, sloped armor panels for enhanced protection. On the roof, there is a mounted weapon system, likely a machine gun or autocannon, positioned centrally for a wide field of fire. The sides and front display official insignia and the number '32', indicating organizational use, while the rear is flat with two vertical red lights and no visible entry hatch. The vehicle's surface is matte, with visible vents and hatches on the roof, and reinforced wheel wells. The overall design suggests a focus on urban tactical operations, with heavy armor and weaponry for personnel protection and engagement.",
+    "description": "A dark green, heavily armored tactical vehicle with six rugged wheels, roof-mounted weapon, and official insignia. Its angular, matte body and reinforced features suggest urban combat readiness.",
+    "description_view_0": "Front-left view shows the sloped armored front, roof weapon mount, insignia, and number '32' on the side.",
+    "description_view_1": "Rear-left view highlights the flat rear panel with two vertical red lights and the absence of a visible entry hatch.",
+    "description_view_2": "Rear-right view displays the side insignia, number '32', and the full set of six wheels, as well as the roof weapon mount.",
+    "description_view_3": "Front-right view emphasizes the armored front, insignia on the hood, and the angular design of the vehicle.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.12,
+        0.03,
+        0.05
+    ],
+    "mass": 8500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "door",
+        "hatch",
+        "weapon mount",
+        "button",
+        "light"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "white",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible weapon mount on the roof, centrally located, equipped with a machine gun or autocannon.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped steel armor plating; reinforced wheel wells and angular panels for deflection.",
+    "attribute_camouflage_pattern": "Solid dark green paint scheme with no visible camouflage pattern.",
+    "attribute_military_markings": "White insignia and text on the sides and hood, number '32' on the sides, and official seal on the doors and hood.",
+    "attribute_tire_type": "Six large, rugged off-road tires with deep tread pattern and reinforced sidewalls.",
+    "uid": "914ae23f4de949e989a84ba33e81606d",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.49341420181063067,
+        "reconnaissance_vehicle.n.01": 0.5157621191477992,
+        "armored_car.n.02": 0.5182667955979275,
+        "tank.n.01": 0.5264706414031696,
+        "assault_gun.n.02": 0.5314397775249236,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/914ae23f4de949e989a84ba33e81606d",
+        "creator_username": "kastle",
+        "creator_display_name": "Kastle",
+        "creator_profile_url": "https://sketchfab.com/kastle"
+    },
+    "filename": "std_914ae23f4de949e989a84ba33e81606d.glb",
+    "length": 5.090826749801636,
+    "width": 5.620929479598999
+}

@@ -1,0 +1,96 @@
+{
+    "description_long": "This humanoid robot is composed of segmented, smooth, and slightly rounded components that mimic the proportions of a human body. The robot's limbs and torso are separated, revealing joint mechanisms at the shoulders, elbows, hips, and knees, suggesting a high degree of articulation. The head is stylized with a simplified, helmet-like design, lacking detailed facial features but shaped to imply a face. The exterior appears to be made of a hard, matte material, likely plastic or composite, with darker accent areas at the joints and extremities. The robot's build is athletic and streamlined, with no visible coverings or clothing, and the internal structure is partially visible due to the disassembled state. The overall design is utilitarian and modern, suitable for urban environments where interaction with humans and navigation of complex spaces is required.",
+    "description": "A segmented, modern humanoid robot with smooth, hard surfaces and articulated limbs, featuring a stylized head and exposed joint mechanisms.",
+    "description_view_0": "The robot's head, torso, and one arm are most prominent, with the right leg and forearm visible; the head is angled upward.",
+    "description_view_1": "The robot's torso and both upper legs are clearly visible, with the head detached and positioned above the body; both lower legs are separated and visible.",
+    "description_view_2": "The robot is viewed from the back, showing the rear of the torso, both legs, and a detached arm; the head is less visible.",
+    "description_view_3": "The robot's head is turned to the side, with both upper legs and lower legs separated and visible; the torso is prominent.",
+    "category": "humanoid robot",
+    "height": 1.6,
+    "max_dimension": 1.6,
+    "materials": [
+        "plastic",
+        "metal",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head",
+        "arm",
+        "leg",
+        "joint",
+        "hand"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_pose": "The robot is in a disassembled pose with the head, torso, arms, and legs separated and spaced apart, suggesting a neutral or inactive state with no specific gesture.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated panels and smooth exterior surfaces with no decorative elements.",
+    "attribute_facial_features": "The face is stylized and helmet-like, lacking detailed features such as eyes, mouth, or nose; no expressive elements or display screens are visible.",
+    "attribute_limb_articulation": "Visible articulation points include ball or rotary joints at the shoulders, elbows, hips, and knees, allowing for a wide range of motion; limbs appear rigid with no visible fingers or toes.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "9177364c88ac49d6bf4ea993c970b4c3",
+    "near_synsets": {
+        "android.n.01": 0.520785847615088,
+        "cyborg.n.01": 0.5427602892670804,
+        "automaton.n.02": 0.5492853391981042,
+        "robotics_equipment.n.01": 0.5554626562788627,
+        "robotics.n.01": 0.564972943130713
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9177364c88ac49d6bf4ea993c970b4c3",
+        "creator_username": "sumanakash842",
+        "creator_display_name": "sumanakash842",
+        "creator_profile_url": "https://sketchfab.com/sumanakash842"
+    },
+    "filename": "std_9177364c88ac49d6bf4ea993c970b4c3.glb",
+    "length": 2.0636451840400696,
+    "width": 1.757127046585083
+}

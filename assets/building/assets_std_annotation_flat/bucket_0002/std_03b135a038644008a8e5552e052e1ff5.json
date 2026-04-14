@@ -1,0 +1,105 @@
+{
+    "description_long": "This humanoid robot features a robust, armored exterior with a predominantly metallic build, characterized by broad shoulders, thick limbs, and a domed torso. The front displays a large, black, visor-like surface, possibly functioning as a sensor or display, flanked by geometric markings and numeric decals. Its arms end in large, claw-like manipulators, and the legs are wide and sturdy, designed for stability and heavy-duty movement. The back is equipped with mechanical tubing and vent-like structures, suggesting cooling or power distribution systems. The color palette consists of muted greens, grays, and maroon, giving it a utilitarian, industrial appearance. The overall design is functional and imposing, suitable for urban environments requiring strength and resilience.",
+    "description": "A heavily armored, industrial humanoid robot with a large black visor, clawed hands, and reinforced limbs, finished in muted green, gray, and maroon tones.",
+    "description_view_0": "Front view shows the large black visor, numeric decals, and symmetrical, broad shoulders with clawed hands extended.",
+    "description_view_1": "Left side view highlights the domed torso, arm articulation, and the layered armor plating along the limbs.",
+    "description_view_2": "Rear view reveals mechanical tubing, vent-like structures, and the robust, reinforced back and legs.",
+    "description_view_3": "Right side view mirrors the left, showing the arm and leg structure, as well as the side profile of the visor and chest.",
+    "category": "humanoid robot",
+    "height": 2.1,
+    "max_dimension": 2.3,
+    "materials": [
+        "steel",
+        "composite polymer",
+        "glass",
+        "rubber",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.07,
+        0.05,
+        0.05,
+        0.03
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 4200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "pullable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "visor",
+        "claw hands",
+        "arm joints",
+        "leg joints",
+        "back tubing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "gray",
+        "maroon",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms slightly bent at the elbows and legs apart for stability; head and torso facing forward.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated armored panels and mechanical coverings in industrial style.",
+    "attribute_facial_features": "No traditional facial features; the face area is a large, black, visor-like surface with no visible eyes, mouth, or nose.",
+    "attribute_limb_articulation": "Arms and legs have visible hinge and rotary joints at shoulders, elbows, hips, and knees; hands are claw-like with limited articulation; limbs appear rigid and robust.",
+    "attribute_presence_of_sensors": "Possible sensor array behind the black visor on the front of the head; no other visible sensors.",
+    "uid": "03b135a038644008a8e5552e052e1ff5",
+    "near_synsets": {
+        "android.n.01": 0.5359231916306677,
+        "cyborg.n.01": 0.5418977238124679,
+        "robotics_equipment.n.01": 0.5497090246286013,
+        "automaton.n.02": 0.5621377279512281,
+        "automaton.n.03": 0.5871479662750152
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/03b135a038644008a8e5552e052e1ff5",
+        "creator_username": "Zoinks360",
+        "creator_display_name": "Zoinks360",
+        "creator_profile_url": "https://sketchfab.com/Zoinks360"
+    },
+    "filename": "std_03b135a038644008a8e5552e052e1ff5.glb",
+    "length": 1.1074044108390808,
+    "width": 2.28012752532959
+}

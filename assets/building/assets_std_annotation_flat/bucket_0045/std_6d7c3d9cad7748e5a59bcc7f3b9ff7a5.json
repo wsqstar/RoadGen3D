@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a medium-sized naval ship with a streamlined, elongated hull painted primarily in gray with a red lower section. The vessel features a raised superstructure amidships, equipped with multiple turrets and what appear to be gun emplacements, suggesting a military or patrol function. The bow is sharply pointed, while the stern is squared off, and the deck is populated with various fixtures, including a prominent mast and rigging. The ship's surface is hard and metallic, with visible hatches, railings, and deck equipment. No visible registration markings or flags are present on the hull or superstructure. The overall design is robust, with a focus on functionality and durability for maritime operations.",
+    "description": "A gray, military-style ship with a pointed bow, raised superstructure, and visible deck equipment including a mast and turrets. The hull is streamlined and robust, with a red lower section.",
+    "description_view_0": "Side profile showing the full length of the ship, highlighting the superstructure, turrets, and mast.",
+    "description_view_1": "Front view emphasizing the pointed bow and the symmetry of the deck layout.",
+    "description_view_2": "Opposite side profile, mirroring view 0 but with subtle differences in visible deck equipment and superstructure details.",
+    "description_view_3": "Top-down view revealing the arrangement of turrets, hatches, and the overall deck layout.",
+    "category": "ship",
+    "height": 18,
+    "max_dimension": 110,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.03,
+        0.01,
+        0.04
+    ],
+    "mass": 250000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "hatch",
+        "door",
+        "mast",
+        "railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.03,
+    "recommended_clearance": 15,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a sharply pointed bow and a squared stern. The sides are relatively straight with a slight flare at the bow, and the hull sits low in the water, indicating a stable, seaworthy design. No bulbous bow or visible keels are present.",
+    "attribute_superstructure_layout": "The superstructure is centrally located and moderately raised, featuring multiple decks and a bridge area. There are several turrets and hatches, with a prominent mast rising above the main deck. The layout is compact and functional, with clear separation between operational and navigation areas.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "mast",
+        "turret",
+        "hatch",
+        "railing"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "6d7c3d9cad7748e5a59bcc7f3b9ff7a5",
+    "near_synsets": {
+        "surface_ship.n.01": 0.5046563513992731,
+        "cargo_ship.n.01": 0.5061078299409619,
+        "troopship.n.01": 0.5102125672446197,
+        "capital_ship.n.01": 0.5144197092243777,
+        "superstructure.n.01": 0.5158903348034877,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6d7c3d9cad7748e5a59bcc7f3b9ff7a5",
+        "creator_username": "Swanky_Spitfire",
+        "creator_display_name": "rpratt",
+        "creator_profile_url": "https://sketchfab.com/Swanky_Spitfire"
+    },
+    "filename": "std_6d7c3d9cad7748e5a59bcc7f3b9ff7a5.glb",
+    "length": 54.278079986572266,
+    "width": 6.378427505493164
+}

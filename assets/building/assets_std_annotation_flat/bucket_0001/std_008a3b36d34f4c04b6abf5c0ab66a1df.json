@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a modern commercial jet airliner with a streamlined fuselage, swept-back low-mounted wings, and a pair of large turbofan engines mounted beneath the wings. The airplane features a blue vertical stabilizer adorned with white stars and a logo reading 'HiFly' on the forward fuselage. The wings are equipped with subtle winglets at the tips, and the aircraft has a conventional tail with a single vertical stabilizer and horizontal stabilizers. The windows are arranged in a single row along the fuselage, indicating a typical passenger configuration. The landing gear is not visible in these views, suggesting it is likely retractable and currently stowed. The overall color scheme is primarily white with blue accents on the engines and tail.",
+    "description": "A sleek, white commercial jet airliner with blue engines and a star-patterned blue tail, featuring swept low-mounted wings and a 'HiFly' logo.",
+    "description_view_0": "Top-down view showing the full wingspan, twin underwing engines, and the blue tail with star pattern.",
+    "description_view_1": "Left side profile highlighting the 'HiFly' logo, row of windows, blue engine, and the swept wing and tail design.",
+    "description_view_2": "Rear view displaying the horizontal stabilizers, twin engines, and the symmetry of the wings and tail.",
+    "description_view_3": "Right side profile similar to view 1, showing the opposite engine, windows, and tail details.",
+    "category": "airplane",
+    "height": 17.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.07,
+        0.06,
+        0.02,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "engine",
+        "landing gear",
+        "cockpit controls",
+        "cargo hold"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.12,
+    "surface_finish": "sleek",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.02,
+    "recommended_clearance": 80.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, swept-back wings with small upward winglets at the tips and moderate dihedral angle.",
+    "attribute_engine_type": "Twin turbofan underwing",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers",
+    "attribute_landing_gear_type": "Retractable tricycle (not visible, inferred from typical configuration and absence in images)",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with multi-seat configuration and multiple windows",
+    "uid": "008a3b36d34f4c04b6abf5c0ab66a1df",
+    "near_synsets": {
+        "aircraft.n.01": 0.5043435575295572,
+        "airplane.n.01": 0.5058511858387769,
+        "airliner.n.01": 0.5182957050188589,
+        "jet.n.01": 0.5293190245588133,
+        "plane_seat.n.01": 0.5338352375146812
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/008a3b36d34f4c04b6abf5c0ab66a1df",
+        "creator_username": "gregoirebonnin",
+        "creator_display_name": "Greg",
+        "creator_profile_url": "https://sketchfab.com/gregoirebonnin"
+    },
+    "filename": "std_008a3b36d34f4c04b6abf5c0ab66a1df.glb",
+    "length": 69.7846794128418,
+    "width": 65.50379180908203
+}

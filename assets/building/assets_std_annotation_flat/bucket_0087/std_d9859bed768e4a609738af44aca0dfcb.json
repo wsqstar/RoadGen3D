@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a large, armored combat tactical vehicle with a robust, angular body and a matte dark green finish. The vehicle features a high ground clearance and an 8-wheel configuration, each wheel equipped with heavy-duty, off-road tires. The exterior is covered in visible armor plating with numerous bolts and reinforced panels, especially around the doors and lower body. The front of the vehicle has a sloped windshield with protective covers and a pair of side mirrors, while the roof is equipped with long, thin antennas. There are no visible weapon mounts or turrets on the roof or sides, and the rear is solid with reinforced doors. The vehicle is designed for urban and tactical operations, providing protection and mobility for personnel.",
+    "description": "A large, armored, dark green combat tactical vehicle with 8 off-road tires, reinforced panels, and long roof antennas.",
+    "description_view_0": "Front view showing the sloped windshield, protective covers, and side mirrors.",
+    "description_view_1": "Left side view highlighting the 8-wheel configuration, side doors, and long roof antenna.",
+    "description_view_2": "Rear view displaying reinforced rear doors and the solid armored back.",
+    "description_view_3": "Right side view similar to the left, showing the wheels, side panels, and antenna.",
+    "category": "combat tactical  vehicle",
+    "height": 3.2,
+    "max_dimension": 9.5,
+    "materials": [
+        "armored steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "mirror",
+        "antenna",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "none visible",
+    "attribute_armor_plating": "Full body coverage with thick, bolted armor plating; reinforced panels on doors and rear; sloped front armor.",
+    "attribute_camouflage_pattern": "solid color, matte dark green",
+    "attribute_military_markings": "none visible",
+    "attribute_tire_type": "Eight large off-road tires with deep tread pattern, suitable for rough terrain; no visible special reinforcements.",
+    "uid": "d9859bed768e4a609738af44aca0dfcb",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.49649810025139246,
+        "reconnaissance_vehicle.n.01": 0.4972098178255811,
+        "tank.n.01": 0.5142621019100775,
+        "assault_gun.n.02": 0.5234304154380868,
+        "armored_car.n.02": 0.5313242741409065,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "armored_car.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d9859bed768e4a609738af44aca0dfcb",
+        "creator_username": "Mayess",
+        "creator_display_name": "Mayess",
+        "creator_profile_url": "https://sketchfab.com/Mayess"
+    },
+    "filename": "std_d9859bed768e4a609738af44aca0dfcb.glb",
+    "length": 3.46692430973053,
+    "width": 1.0937350988388062
+}

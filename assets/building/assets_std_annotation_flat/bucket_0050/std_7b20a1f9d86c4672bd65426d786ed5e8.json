@@ -1,0 +1,111 @@
+{
+    "description_long": "This is a mid-rise brick office building with five stories, featuring a flat roof topped by a cylindrical, rusted water tower. The front facade is adorned with arched white window frames and a prominent metal fire escape running vertically between the windows. The ground floor includes a recessed entryway and large windows, while the upper floors have regularly spaced, rectangular windows. The side facades are simpler, with one side displaying a large section of light gray brick and a vertical row of windows, while the rear facade is entirely brown brick with a grid of windows. The building sits on a concrete base, and air conditioning units are visible on several windows. The overall appearance suggests early 20th-century industrial or warehouse conversion architecture, commonly found in dense urban environments.",
+    "description": "A five-story brick office building with arched windows, a rooftop water tower, and a metal fire escape on the front facade.",
+    "description_view_0": "Front view showing arched windows, a metal fire escape, and the main entrance at the base.",
+    "description_view_1": "Side view with a large light gray brick section and a vertical row of windows, plus the rooftop water tower.",
+    "description_view_2": "Rear view with a uniform grid of rectangular windows set in brown brick and no visible entrances.",
+    "description_view_3": "Opposite side view mirroring the other side, with light gray brick and a vertical window row.",
+    "category": "office building",
+    "height": 18.0,
+    "max_dimension": 20.0,
+    "materials": [
+        "brick",
+        "concrete",
+        "glass",
+        "steel",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.1,
+        0.1,
+        0.02,
+        0.08
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "fire escape",
+        "water tower access hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "white",
+        "black",
+        "rust"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 20000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 5,
+    "attribute_window_pattern": "Regularly spaced, vertically aligned rectangular windows with arched tops on the front; grid pattern on the rear; single vertical rows on the sides.",
+    "attribute_building_entrance_type": "recessed entry",
+    "attribute_signage_presence": false,
+    "attribute_architectural_style": "Early 20th-century Industrial",
+    "uid": "7b20a1f9d86c4672bd65426d786ed5e8",
+    "near_synsets": {
+        "office_building.n.01": 0.5014433459973486,
+        "skyscraper.n.01": 0.5211778798942548,
+        "high-rise.n.01": 0.5256333495087802,
+        "government_building.n.01": 0.5444624614033244,
+        "building.n.04": 0.5488401471884505,
+        "office.n.01": -1000.0,
+        "construction.n.07": -1000.0,
+        "office.n.05": -1000.0,
+        "agency.n.01": -1000.0,
+        "function.n.03": -1000.0,
+        "position.n.06": -1000.0,
+        "office.n.06": -1000.0,
+        "office.n.04": -1000.0,
+        "building.n.01": -1000.0,
+        "construction.n.01": -1000.0
+    },
+    "synset": "office_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/7b20a1f9d86c4672bd65426d786ed5e8",
+        "creator_username": "saraab",
+        "creator_display_name": "saraab",
+        "creator_profile_url": "https://sketchfab.com/saraab"
+    },
+    "filename": "std_7b20a1f9d86c4672bd65426d786ed5e8.glb",
+    "length": 9.59402847290039,
+    "width": 9.885743141174316
+}

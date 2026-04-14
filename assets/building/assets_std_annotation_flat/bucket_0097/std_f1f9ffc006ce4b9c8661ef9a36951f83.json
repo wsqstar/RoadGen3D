@@ -1,0 +1,113 @@
+{
+    "description_long": "This is a modern four-door police car with a streamlined sedan body, painted primarily in a metallic gray with dark-tinted windows and black roof. The vehicle features a prominent roof-mounted component, likely for emergency lights or communication equipment, and a long, thin antenna extending from the rear. Both sides display a blue and gold stripe with a circular police insignia, and yellow text near the rear wheel arch. The front grille is marked with a black Chevrolet emblem, and the rear has a visible license plate area. The wheels are solid black, and the car's overall appearance is robust, suitable for urban law enforcement duties.",
+    "description": "A metallic gray police sedan with blue and gold markings, roof equipment, and black wheels, designed for urban law enforcement.",
+    "description_view_0": "Side view showing the black roof, gold and blue police markings, and rear antenna.",
+    "description_view_1": "Front view highlighting the black hood, grille with Chevrolet emblem, and tinted windshield.",
+    "description_view_2": "Opposite side view with visible blue and gold stripe, police insignia, and yellow text near the rear.",
+    "description_view_3": "Rear view showing the black trunk, license plate area, and rear lights.",
+    "category": "police car",
+    "height": 1.5,
+    "max_dimension": 4.9,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.12,
+        0.1,
+        0.08,
+        0.03,
+        0.02
+    ],
+    "mass": 1700,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 5,
+    "movable": true,
+    "required_force": 4000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "trunk",
+        "hood",
+        "antenna",
+        "emergency light",
+        "side mirror"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "blue",
+        "gold",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_police_markings": "Blue and gold stripe with a circular police insignia on both sides, yellow text near the rear wheel arch, and a black Chevrolet emblem on the front grille.",
+    "attribute_emergency_lights": "A roof-mounted rectangular component likely serving as an emergency light bar, but no distinct colored lights are visible.",
+    "attribute_siren": "Not visible",
+    "attribute_police_insignia": "Circular police insignia in gold on both side doors within the blue and gold stripe.",
+    "attribute_license_plate": "License plate area visible on the rear, but no readable text or special markings are discernible.",
+    "uid": "f1f9ffc006ce4b9c8661ef9a36951f83",
+    "near_synsets": {
+        "panda_car.n.01": 0.4799665213916373,
+        "cruiser.n.01": 0.5156260319355639,
+        "police_van.n.01": 0.5364477457403746,
+        "traffic_cop.n.01": 0.547976121041611,
+        "police_department.n.01": 0.5535482135152179,
+        "car.n.01": -1000.0,
+        "car.n.03": -1000.0,
+        "police.n.01": -1000.0,
+        "car.n.04": -1000.0,
+        "cable_car.n.01": -1000.0,
+        "car.n.02": -1000.0
+    },
+    "synset": "cruiser.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f1f9ffc006ce4b9c8661ef9a36951f83",
+        "creator_username": "David_Holiday",
+        "creator_display_name": "David_Holiday",
+        "creator_profile_url": "https://sketchfab.com/David_Holiday"
+    },
+    "filename": "std_f1f9ffc006ce4b9c8661ef9a36951f83.glb",
+    "length": 3.83690869808197,
+    "width": 1.5661630630493164
+}

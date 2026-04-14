@@ -1,0 +1,103 @@
+{
+    "description_long": "This object is a classic M26A2 fragmentation hand grenade, featuring an olive drab, egg-shaped metal body with a slightly rough, pitted surface and visible rust patches. The top section is fitted with a robust, dark metal safety lever and a prominent pull ring attached to a safety pin, both of which are essential for arming the device. Yellow paint marks are visible near the top, indicating the explosive nature of the grenade, and there is stenciled text on the front providing model and warning information. The seam around the midsection suggests a two-part construction, typical for fragmentation grenades. The bottom is slightly rounded with a metallic base cap. The overall appearance is utilitarian, with all components designed for durability and reliable function in harsh environments.",
+    "description": "A military-style M26A2 fragmentation hand grenade with an olive drab, textured metal body, yellow markings, and a prominent safety lever and pull ring.",
+    "description_view_0": "The grenade is viewed directly from the side, showing the full length of the safety lever and the pull ring profile.",
+    "description_view_1": "This angled view highlights the safety lever, the pull ring, and the top assembly, with the yellow paint and surface texture clearly visible.",
+    "description_view_2": "The front view displays the stenciled warning text, yellow band, and the full curvature of the grenade body.",
+    "description_view_3": "This perspective emphasizes the pull ring and safety pin, with the lever extending along the side and the grenade's rounded form visible.",
+    "category": "bomb",
+    "height": 0.11,
+    "max_dimension": 0.12,
+    "materials": [
+        "steel",
+        "paint",
+        "explosive_compound",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.05,
+        0.2,
+        0.05
+    ],
+    "mass": 0.4,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 9,
+    "movable": true,
+    "required_force": 4,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "safety pin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive drab",
+        "yellow",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [
+        "M26 A2 HE FRAGMENTATION",
+        "COMMR",
+        "GTE 3M-2-4",
+        "SCD 17-2-4"
+    ],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the safety pin and releasing the safety lever, which triggers a timed fuse inside the grenade.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "0ff4821eb3e241f0ba7d562c7293d2ff",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.508236560242924,
+        "grenade.n.01": 0.5294853913728856,
+        "rifle_grenade.n.01": 0.5503296357852283,
+        "general-purpose_bomb.n.01": 0.5588075945957546,
+        "mine.n.02": 0.5603572636731486,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0,
+        "bomb.n.01": -1000.0
+    },
+    "synset": "bomb.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0ff4821eb3e241f0ba7d562c7293d2ff",
+        "creator_username": "harsh.kompally",
+        "creator_display_name": "harsh.kompally",
+        "creator_profile_url": "https://sketchfab.com/harsh.kompally"
+    },
+    "filename": "std_0ff4821eb3e241f0ba7d562c7293d2ff.glb",
+    "length": 0.0720839872956276,
+    "width": 0.0631977766752243
+}

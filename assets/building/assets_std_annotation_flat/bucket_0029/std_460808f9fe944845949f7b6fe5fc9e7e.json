@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a mid-rise apartment building with a rectangular footprint, featuring five stories above ground and a flat roof. The facade is predominantly white with regularly spaced windows and balconies on the front side, providing outdoor space for residents. The ground floor is elevated on columns, creating a sheltered area beneath, possibly for parking or communal use. The building is surrounded by a low boundary wall and a paved area, with a main entrance gate at the front. The side and rear elevations are simpler, with fewer windows and no balconies, emphasizing privacy and structural simplicity. The overall design is functional and modern, suitable for dense urban neighborhoods.",
+    "description": "A five-story, white apartment building with balconies on the front, a flat roof, and a ground floor elevated on columns, surrounded by a low wall.",
+    "description_view_0": "Front view showing balconies, main entrance gate, and the most detailed facade with multiple windows.",
+    "description_view_1": "Side view highlighting the linear arrangement of windows and balconies, with the building's depth visible.",
+    "description_view_2": "Rear view showing a plain facade with minimal windows and no balconies, supported by columns.",
+    "description_view_3": "Opposite side view with a simple wall, few windows, and visible roof structures.",
+    "category": "apartment building",
+    "height": 15.0,
+    "max_dimension": 25.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "balcony railing",
+        "gate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 5,
+    "attribute_balcony_presence": true,
+    "attribute_window_arrangement": "Windows are symmetrically arranged in horizontal rows on each floor, with regular spacing and alignment, especially prominent on the front facade.",
+    "attribute_entrance_type": "double doors",
+    "attribute_architectural_style": "Contemporary",
+    "uid": "460808f9fe944845949f7b6fe5fc9e7e",
+    "near_synsets": {
+        "apartment_building.n.01": 0.4676479623732048,
+        "balcony.n.02": 0.5094689064966458,
+        "penthouse.n.01": 0.5141314523701537,
+        "high-rise.n.01": 0.5147436191672778,
+        "gallery.n.06": 0.5182094765306532,
+        "building.n.01": -1000.0,
+        "apartment.n.01": -1000.0,
+        "construction.n.07": -1000.0,
+        "building.n.04": -1000.0,
+        "construction.n.01": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/460808f9fe944845949f7b6fe5fc9e7e",
+        "creator_username": "Ramesh0208",
+        "creator_display_name": "Ramesh0208",
+        "creator_profile_url": "https://sketchfab.com/Ramesh0208"
+    },
+    "filename": "std_460808f9fe944845949f7b6fe5fc9e7e.glb",
+    "length": 22.692052841186523,
+    "width": 14.709725856781006
+}

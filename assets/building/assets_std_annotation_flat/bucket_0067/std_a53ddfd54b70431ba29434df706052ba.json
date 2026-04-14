@@ -1,0 +1,90 @@
+{
+    "description_long": "This object consists of two cardboard boxes, one of which is open with its flaps partially spread, while the other is closed and positioned adjacent to the open box. The open box reveals a hollow interior, with four flaps extending outward, typical of corrugated packaging used for shipping or storage. The closed box is a simple rectangular prism with no visible openings or markings. Both boxes have a light brown, matte finish, characteristic of standard cardboard material. The surfaces are flat and slightly textured, with sharp, well-defined edges and corners. These boxes are commonly found in urban environments for parcel delivery, moving, or storage purposes.",
+    "description": "Two light brown cardboard boxes, one open with flaps extended and one closed, both with a matte, slightly textured surface.",
+    "description_view_0": "The open box is prominently displayed with its flaps spread, and the closed box sits to its left, showing its top surface.",
+    "description_view_1": "The open box is viewed from an angle emphasizing its interior and the arrangement of its flaps, with the closed box less visible.",
+    "description_view_2": "Both boxes are visible, with the open box's flaps and the closed box's top surface clearly shown from a rear-side angle.",
+    "description_view_3": "The closed box is in the foreground, showing its top, while the open box is behind, partially obscured but with flaps still visible.",
+    "category": "parcels",
+    "height": 0.5,
+    "max_dimension": 0.7,
+    "materials": [
+        "cardboard",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.15
+    ],
+    "mass": 1.2,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "flaps",
+        "box lid"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light brown"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 4000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "group",
+    "attribute_architectural_style": "",
+    "attribute_car_model": "",
+    "attribute_building_number": "",
+    "attribute_storefront_signage": "",
+    "attribute_street_name": "",
+    "uid": "a53ddfd54b70431ba29434df706052ba",
+    "near_synsets": {
+        "carton.n.02": 0.5151669406069564,
+        "box.n.05": 0.562583765922202,
+        "packaging.n.03": 0.562601523577129,
+        "matchbox.n.01": 0.5675416282826329,
+        "card.n.04": 0.5688606355894328,
+        "tract.n.01": -1000.0,
+        "package.n.01": -1000.0,
+        "parcel.n.02": -1000.0,
+        "package.n.02": -1000.0
+    },
+    "synset": "carton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a53ddfd54b70431ba29434df706052ba",
+        "creator_username": "proxy_doug",
+        "creator_display_name": "proxy_doug",
+        "creator_profile_url": "https://sketchfab.com/proxy_doug"
+    },
+    "filename": "std_a53ddfd54b70431ba29434df706052ba.glb",
+    "length": 1.2807055711746216,
+    "width": 1.277535617351532
+}

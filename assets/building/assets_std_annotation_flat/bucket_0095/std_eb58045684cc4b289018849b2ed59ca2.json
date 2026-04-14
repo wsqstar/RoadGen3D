@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a straight segment of a primary road, featuring a dark asphalt surface with a single dashed white line running down its center. The dashed line divides the road into two lanes, suggesting it is intended for bidirectional traffic. The road surface is flat and smooth, with no visible curbs, sidewalks, or additional markings such as arrows or turn lanes. The edges of the road are clean and unmarked, and there are no visible features such as lighting fixtures, signage, or pedestrian crossings. The overall appearance is utilitarian, designed for efficient vehicular movement in an urban or suburban context. The road segment is relatively narrow, suitable for standard vehicles but not for multi-lane traffic.",
+    "description": "A straight, dark asphalt road segment with a dashed white center line dividing two lanes, lacking curbs or additional markings.",
+    "description_view_0": "A side view showing the flat, elongated profile of the road and the dashed center line.",
+    "description_view_1": "A frontal view highlighting the road's width and the dashed white line running down the center.",
+    "description_view_2": "A rear side view similar to view 0, showing the length and dashed center line.",
+    "description_view_3": "A rear frontal view, mirroring view 1, with the dashed center line visible.",
+    "category": "road",
+    "height": 0.15,
+    "max_dimension": 8.0,
+    "materials": [
+        "asphalt",
+        "paint",
+        "aggregate",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.08,
+        0.02
+    ],
+    "mass": 2200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "car",
+        "bicycle",
+        "motorcycle",
+        "bus",
+        "truck"
+    ],
+    "colors": [
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.92,
+        0.08
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.53,
+    "youngs_modulus": 10000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.01,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_lane_markings": "One dashed white line in the center, dividing the road into two lanes; no other markings present.",
+    "attribute_signage": "none",
+    "attribute_curb_presence": false,
+    "attribute_lighting_fixtures": "none",
+    "attribute_pedestrian_crossings": "none",
+    "uid": "eb58045684cc4b289018849b2ed59ca2",
+    "near_synsets": {
+        "white_line.n.01": 0.4566536709126999,
+        "traffic_lane.n.01": 0.4967647528218783,
+        "lane.n.01": 0.5125285020155762,
+        "straightaway.n.01": 0.5138432158062706,
+        "road_surface.n.01": 0.5170181148694576,
+        "road.n.01": -1000.0,
+        "road.n.02": -1000.0
+    },
+    "synset": "road.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/eb58045684cc4b289018849b2ed59ca2",
+        "creator_username": "jlauryan",
+        "creator_display_name": "Johandy Lauryan",
+        "creator_profile_url": "https://sketchfab.com/jlauryan"
+    },
+    "filename": "std_eb58045684cc4b289018849b2ed59ca2.glb",
+    "length": 33.004364013671875,
+    "width": 8.316694259643555
+}

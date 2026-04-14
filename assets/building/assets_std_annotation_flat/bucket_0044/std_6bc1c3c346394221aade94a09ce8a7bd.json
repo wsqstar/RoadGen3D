@@ -1,0 +1,95 @@
+{
+    "description_long": "This object appears to be a fragmented and partially reconstructed airplane, with several disconnected sections visible. The central fuselage is discernible, with a cockpit area and what seems to be a wing structure extending from either side. There are hints of a blue component, possibly a part of the tail or an engine nacelle, and some brown and metallic textures suggesting exposed internal or undercarriage elements. The wings are not fully intact, and the overall structure is incomplete, with significant gaps and missing surfaces. The surface finish is mostly matte with some roughness, and the colors are predominantly gray, blue, and brown. The object gives the impression of a damaged or deconstructed airplane, possibly a small civilian or utility aircraft.",
+    "description": "A fragmented, partially reconstructed airplane with visible fuselage, wings, and blue and brown components. The structure is incomplete, with rough, matte surfaces and significant gaps.",
+    "description_view_0": "The front and central fuselage are visible, with a blue component and scattered wing fragments.",
+    "description_view_1": "Side view showing the elongated wing fragments and the blue part more clearly separated from the main body.",
+    "description_view_2": "Rear view with the central fuselage and blue component on the right, highlighting the incomplete tail section.",
+    "description_view_3": "Opposite side view, showing the brown and metallic textures and the fragmented nature of the wings and fuselage.",
+    "category": "airplane",
+    "height": 0.6,
+    "max_dimension": 2.5,
+    "materials": [
+        "aluminum",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 2,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit",
+        "wing",
+        "tail section",
+        "engine area"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with straight, fragmented wings and no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Single engine, placement unclear due to fragmentation.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer, though incomplete and partially missing.",
+    "attribute_landing_gear_type": "Landing gear not clearly visible; configuration indeterminate.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with single-seat configuration implied by size and shape.",
+    "uid": "6bc1c3c346394221aade94a09ce8a7bd",
+    "near_synsets": {
+        "aircraft.n.01": 0.5184812578597595,
+        "fuselage.n.01": 0.5270796923622545,
+        "airframe.n.01": 0.5362658501272921,
+        "airplane.n.01": 0.5369000837259971,
+        "airplane_mechanics.n.01": 0.5471294800177325
+    },
+    "synset": "airplane_mechanics.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/6bc1c3c346394221aade94a09ce8a7bd",
+        "creator_username": "corvenia",
+        "creator_display_name": "corvenia",
+        "creator_profile_url": "https://sketchfab.com/corvenia"
+    },
+    "filename": "std_6bc1c3c346394221aade94a09ce8a7bd.glb",
+    "length": 2.985623598098755,
+    "width": 2.1031582355499268
+}

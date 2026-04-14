@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a round pizza with a golden-brown crust, topped with a generous layer of melted cheese and evenly distributed pepperoni slices. The pizza is housed in an octagonal cardboard box, which features a decorative pattern on the lid in shades of orange and white. The box is partially open, revealing a single pizza slice being lifted, exposing the gooey cheese and toppings. The pizza appears to be freshly baked, with a slightly raised, hand-tossed style crust. The box is sturdy and designed for takeout or delivery, typical for urban food service. No visible brand logo is present on the box or pizza.",
+    "description": "A pepperoni pizza with melted cheese in an octagonal patterned cardboard box, with one slice being lifted and the box partially open.",
+    "description_view_0": "The pizza box is mostly closed, with the patterned lid covering most of the pizza, but the edge of the pizza and some toppings are visible.",
+    "description_view_1": "The box lid is lifted, clearly showing the pizza inside with a slice being removed, revealing the toppings and crust.",
+    "description_view_2": "A similar view to view 1 but from the opposite side, showing the pizza with a slice being lifted and more of the pizza surface visible.",
+    "description_view_3": "The box lid is mostly off to the side, exposing the pizza almost entirely, with the patterned lid visible and the pizza's toppings and crust in clear view.",
+    "category": "pizza",
+    "height": 0.07,
+    "max_dimension": 0.36,
+    "materials": [
+        "cardboard",
+        "cheese",
+        "bread",
+        "pepperoni",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "separable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "box lid",
+        "pizza slice"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "orange",
+        "yellow",
+        "red",
+        "brown"
+    ],
+    "colors_composition": [
+        0.4,
+        0.2,
+        0.18,
+        0.15,
+        0.07
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 300,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_topping_type": [
+        "pepperoni",
+        "cheese"
+    ],
+    "attribute_slice_count": 8,
+    "attribute_crust_style": "hand-tossed",
+    "attribute_packaging_presence": true,
+    "attribute_brand_logo": "None",
+    "uid": "bc22cad43838433c971654ff21a12003",
+    "near_synsets": {
+        "pepperoni_pizza.n.01": 0.4574852032056982,
+        "cheese_pizza.n.01": 0.4926032138830761,
+        "pizza.n.01": 0.5164828427786383,
+        "pepperoni.n.01": 0.5291240653776271,
+        "sausage_pizza.n.01": 0.5295040448044243
+    },
+    "synset": "sausage_pizza.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bc22cad43838433c971654ff21a12003",
+        "creator_username": "mastergorte",
+        "creator_display_name": "mastergorte",
+        "creator_profile_url": "https://sketchfab.com/mastergorte"
+    },
+    "filename": "std_bc22cad43838433c971654ff21a12003.glb",
+    "length": 0.40787774324417114,
+    "width": 0.4468446224927902
+}

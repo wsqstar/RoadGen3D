@@ -1,0 +1,92 @@
+{
+    "description_long": "This gondola features a wooden hull with a gently curved deck and a metallic structure mounted centrally, resembling a large cannon or mechanical device. Four wooden oars extend from the sides, two on each side, attached to the hull with visible oarlocks. The metallic structure includes a cylindrical base and a spherical element, giving the gondola a unique, almost steampunk appearance. The wood grain is visible on the hull and oars, while the metallic parts have a matte, slightly worn finish. The interior appears open, with no visible seats or upholstery, and the prow and stern are both rounded without elaborate ornamentation. The overall design is functional, with a blend of traditional gondola elements and industrial features.",
+    "description": "A wooden gondola with a central metallic structure and four oars, blending traditional and industrial design elements. The hull is open and unadorned, with visible wood grain and matte metal parts.",
+    "description_view_0": "Top-down view showing the open hull, central metallic structure, and symmetrical arrangement of four oars.",
+    "description_view_1": "Side view highlighting the curved wooden hull, the metallic device mounted centrally, and the two oars on the visible side.",
+    "description_view_2": "Front view displaying the rounded prow, the cylindrical metallic base, and the alignment of the oars extending outward.",
+    "description_view_3": "Opposite side view similar to view 1, showing the metallic structure and the other pair of oars.",
+    "category": "gondola",
+    "height": 1.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 7,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "rowable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "oar",
+        "oarlock",
+        "metallic structure"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_passenger_compartment_design": "The passenger compartment is open and lacks enclosure, with a simple wooden floor and no visible upholstery or decorative elements. The design is utilitarian, focusing on function rather than comfort or ornamentation.",
+    "attribute_prow_ornamentation": "none",
+    "attribute_oarlock_type": "The oarlocks are simple, open wooden or metal brackets attached to the sides of the hull, designed to hold the oars securely in place.",
+    "attribute_seating_arrangement": "No distinct seats or benches are visible; passengers would likely sit directly on the wooden floor of the hull. There are no cushions, armrests, or backrests present.",
+    "attribute_canopy_presence": "false",
+    "uid": "2a5cfbccd12f4d429a394e340d360144",
+    "near_synsets": {
+        "gondola.n.02": 0.4489205146336844,
+        "gondola_car.n.01": 0.5277030991952276,
+        "gondolier.n.01": 0.5491461820867162,
+        "rowing_boat.n.01": 0.5804245903911844,
+        "galley.n.02": 0.582653756807511,
+        "car.n.03": -1000.0
+    },
+    "synset": "gondola_car.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2a5cfbccd12f4d429a394e340d360144",
+        "creator_username": "AbsoluteMadLadd",
+        "creator_display_name": "AbsoluteMadLadd",
+        "creator_profile_url": "https://sketchfab.com/AbsoluteMadLadd"
+    },
+    "filename": "std_2a5cfbccd12f4d429a394e340d360144.glb",
+    "length": 1.5513275861740112,
+    "width": 1.8612584471702576
+}

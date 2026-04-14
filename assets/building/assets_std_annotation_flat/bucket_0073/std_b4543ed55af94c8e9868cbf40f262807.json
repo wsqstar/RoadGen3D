@@ -1,0 +1,86 @@
+{
+    "description_long": "This windmill features a slender, cylindrical tower that supports a compact nacelle at the top. The nacelle houses the rotor, which is equipped with three evenly spaced blades extending outward. The blades are relatively short compared to the height of the tower, suggesting a small-scale wind turbine, possibly for urban or residential use. The structure appears to be made primarily of metal, with a smooth, matte finish and a light gray coloration. The base of the tower is slightly flared for stability, and there are no visible ladders or access panels. The overall design is minimalist and functional, suitable for integration into modern urban environments.",
+    "description": "A small, modern windmill with a slim metal tower and three short blades, finished in light gray. The design is minimalist and suitable for urban settings.",
+    "description_view_0": "Front view showing the full height of the slender tower and the nacelle with three blades extending outward.",
+    "description_view_1": "Side view highlighting the cylindrical shape of the tower and the profile of the nacelle and blades.",
+    "description_view_2": "Rear view displaying the back of the nacelle and the alignment of the blades with the tower.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the side profile of the nacelle and blades.",
+    "category": "windmill",
+    "height": 3.0,
+    "max_dimension": 3.2,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "blades",
+        "nacelle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_blades": 3,
+    "attribute_blade_orientation": "horizontal-axis",
+    "attribute_tower_structure_type": "tubular",
+    "attribute_presence_of_nacelle": true,
+    "attribute_mounting_location": "ground-mounted",
+    "uid": "b4543ed55af94c8e9868cbf40f262807",
+    "near_synsets": {
+        "windmill.n.01": 0.45864214724032565,
+        "windmill.n.02": 0.49862942863979554,
+        "wind_turbine.n.01": 0.5133344471847797,
+        "water_mill.n.01": 0.5428184429017915,
+        "wind_farm.n.01": 0.5513579048665229
+    },
+    "synset": "windmill.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b4543ed55af94c8e9868cbf40f262807",
+        "creator_username": "Welllan",
+        "creator_display_name": "Sean",
+        "creator_profile_url": "https://sketchfab.com/Welllan"
+    },
+    "filename": "std_b4543ed55af94c8e9868cbf40f262807.glb",
+    "length": 2.4039965867996216,
+    "width": 3.706886649131775
+}

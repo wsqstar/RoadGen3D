@@ -1,0 +1,82 @@
+{
+    "description_long": "This object is a large, flat, rectangular slab with a uniform, slightly mottled gray surface, resembling poured concrete or stone. The surface appears smooth but not glossy, with a subtle texture that suggests durability and slip resistance, typical of urban sidewalks. The edges are straight and clean, with no visible curbs, barriers, or raised features, indicating a flush installation with the surrounding ground. There are no markings, tactile paving, or embedded features such as drainage grates or expansion joints. The color is a consistent medium gray, commonly found in city sidewalks and pedestrian walkways. Its size and proportions suggest it is designed to accommodate foot traffic in a residential or mixed-use urban environment.",
+    "description": "A large, flat, rectangular gray slab with a smooth, slightly textured surface, resembling a typical urban sidewalk.",
+    "description_view_0": "A flat, rectangular gray surface with a subtle texture, viewed from a low angle.",
+    "description_view_1": "The same flat, gray slab seen from the opposite side, showing consistent surface and edge details.",
+    "description_view_2": "A slightly rotated view of the gray, featureless sidewalk slab, highlighting its uniformity.",
+    "description_view_3": "Another angled view of the flat, gray surface, with no visible curbs or features.",
+    "category": "sidewalk",
+    "height": 0.1,
+    "max_dimension": 4.0,
+    "materials": [
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.98,
+        0.02
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": false,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "flush",
+    "attribute_adjacent_street_type": "residential",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "b5e52c3f9a0a43dd86f5865b715aed05",
+    "near_synsets": {
+        "sidewalk.n.01": 0.4404838903459974,
+        "paved_surface.n.01": 0.49943069729520206,
+        "street.n.01": 0.5147245499810925,
+        "road_surface.n.01": 0.5192173712400067,
+        "pavement.n.01": 0.5211429550556718
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b5e52c3f9a0a43dd86f5865b715aed05",
+        "creator_username": "Arthur.Zim",
+        "creator_display_name": "Arthur.Zim",
+        "creator_profile_url": "https://sketchfab.com/Arthur.Zim"
+    },
+    "filename": "std_b5e52c3f9a0a43dd86f5865b715aed05.glb",
+    "length": 330043.65625,
+    "width": 330043.625
+}

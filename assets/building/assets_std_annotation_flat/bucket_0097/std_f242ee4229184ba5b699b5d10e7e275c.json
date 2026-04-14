@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a medium-sized wooden barrel with a cylindrical body, reinforced by four wide metal hoops spaced evenly along its length. The wood staves are vertically aligned and show natural grain and some weathering, suggesting outdoor use. A thick, twisted rope is wrapped around the barrel in a crisscross pattern, looping over the top and sides, and secured at the top with a wooden knob. The barrel sits on a simple wooden stand that elevates it slightly off the ground. At one end, there is a metal spigot for dispensing liquid, indicating the barrel is designed to hold and pour contents. The overall appearance is rustic and functional, suitable for urban outdoor or semi-industrial settings.",
+    "description": "A rustic wooden barrel with metal hoops, rope reinforcement, and a metal spigot, set on a wooden stand.",
+    "description_view_0": "Front view showing the circular wooden face, metal spigot at the bottom center, and rope knots on top.",
+    "description_view_1": "Side view displaying the full cylindrical body, four metal hoops, and the crisscrossed rope pattern.",
+    "description_view_2": "Rear view with a plain wooden face, no spigot, and visible metal hoops and rope on top.",
+    "description_view_3": "Opposite side view showing the cylindrical body, metal hoops, and rope pattern, similar to view 1.",
+    "category": "barrel or bucket",
+    "height": 0.7,
+    "max_dimension": 0.9,
+    "materials": [
+        "wood",
+        "metal",
+        "rope",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 25,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pourable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "spigot",
+        "rope",
+        "stand",
+        "wooden knob"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": false,
+    "attribute_handle_type": "rope wrap",
+    "attribute_banding_or_reinforcement": "metal hoops",
+    "attribute_labeling_or_markings": "none",
+    "attribute_placement_location": "outdoor",
+    "uid": "f242ee4229184ba5b699b5d10e7e275c",
+    "near_synsets": {
+        "barrel.n.02": 0.46193504591067136,
+        "barrel.n.03": 0.4731482912491448,
+        "beer_barrel.n.01": 0.4749163337758887,
+        "barrels.n.01": 0.5032448859236335,
+        "bucket.n.01": 0.5051448278862287,
+        "barrel.n.01": -1000.0,
+        "barrel.n.05": -1000.0,
+        "barrel.n.04": -1000.0,
+        "bucket.n.02": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f242ee4229184ba5b699b5d10e7e275c",
+        "creator_username": "Alexanderus",
+        "creator_display_name": "Alexanderus",
+        "creator_profile_url": "https://sketchfab.com/Alexanderus"
+    },
+    "filename": "std_f242ee4229184ba5b699b5d10e7e275c.glb",
+    "length": 0.6638347804546356,
+    "width": 0.5697250366210938
+}

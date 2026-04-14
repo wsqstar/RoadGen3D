@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a cylindrical stick grenade, reminiscent of the classic German Model 24 Stielhandgranate, featuring a long, straight wooden handle and a dark, metallic cylindrical head. The head is robust and slightly wider than the handle, with a flat top and bottom, and appears to be made of metal, likely steel, to contain the explosive charge. The handle is textured and colored to resemble wood, providing a secure grip for throwing. There is a subtle seam where the handle meets the head, suggesting a screw or locking mechanism for arming or disassembly. The overall design is utilitarian, with no visible markings, labels, or external wires. The object is compact and portable, designed for manual deployment in urban environments.",
+    "description": "A stick grenade with a dark metal cylindrical head and a long, textured wooden handle, designed for handheld use. The object is robust, utilitarian, and lacks visible markings or external components.",
+    "description_view_0": "Front view showing the cylindrical head and straight handle, with the seam between head and handle visible.",
+    "description_view_1": "Side view highlighting the length of the handle and the uniform cylindrical shape of the head.",
+    "description_view_2": "Rear view similar to the front, with the handle and head alignment clearly visible.",
+    "description_view_3": "Opposite side view, again showing the handle's length and the head's cylindrical form.",
+    "category": "bomb",
+    "height": 0.35,
+    "max_dimension": 0.35,
+    "materials": [
+        "wood",
+        "steel",
+        "explosive_compound",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "mass": 0.6,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 6,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "throwable",
+        "activatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "head",
+        "arming_mechanism"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.4
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 20000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The detonation mechanism is likely activated by a pull cord or twist action at the base of the handle, as suggested by the seam between the handle and the head, but no external trigger or button is visible.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "1bb3e98aecad44d9adc617ed6ebd0fdb",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.4815767409231698,
+        "grenade.n.01": 0.5014327465566657,
+        "pipe_bomb.n.01": 0.5169715587113628,
+        "bomb.n.01": 0.5321457002925966,
+        "rifle_grenade.n.01": 0.5377940716762554,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1bb3e98aecad44d9adc617ed6ebd0fdb",
+        "creator_username": "royzhang",
+        "creator_display_name": "Sparkykun",
+        "creator_profile_url": "https://sketchfab.com/royzhang"
+    },
+    "filename": "std_1bb3e98aecad44d9adc617ed6ebd0fdb.glb",
+    "length": 0.06911863386631012,
+    "width": 0.06911855190992355
+}

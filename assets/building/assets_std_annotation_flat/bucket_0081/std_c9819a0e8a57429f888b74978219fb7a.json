@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a medium-sized wooden sailing ship with a single large square sail at the center, adorned with a red emblem featuring two birds and a cross. The hull is robust and rounded, constructed from dark timber planks, and features a raised stern and bow. The deck is open and uncluttered, with visible rigging, masts, and spars, as well as a rudder at the stern for steering. The ship has minimal superstructure, with no enclosed cabins or upper decks, emphasizing its utilitarian design. The rigging and ropes are clearly visible, supporting the masts and sail, and the ship appears to be modeled after historical vessels such as a caravel or cog. The overall appearance suggests a vessel designed for coastal or riverine navigation, with ample space on deck for crew or cargo.",
+    "description": "A wooden sailing ship with a large square sail featuring a red emblem, open deck, and visible rigging. The hull is rounded and robust, with a raised bow and stern.",
+    "description_view_0": "Front view showing the large square sail with a red emblem and the rounded bow.",
+    "description_view_1": "Side view highlighting the length of the hull, the open deck, and the arrangement of masts and rigging.",
+    "description_view_2": "Rear view displaying the stern, rudder, and the back of the sail with emblem details.",
+    "description_view_3": "Angled rear-side view showing the deck layout, masts, and the ship's overall structure.",
+    "category": "ship",
+    "height": 12.0,
+    "max_dimension": 28.0,
+    "materials": [
+        "wood",
+        "fabric",
+        "rope",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "steerable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sail",
+        "rudder",
+        "mast",
+        "rigging",
+        "deck"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "white",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a rounded, full-bodied shape, a pronounced bow, and a slightly raised stern. The keel is visible along the bottom, and the hull is constructed from horizontal wooden planks. There are no bulbous bows or catamaran features.",
+    "attribute_superstructure_layout": "The ship has an open deck with no enclosed cabins or superstructure. The deck is flat and unobstructed, with masts and rigging as the primary features.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "rudder",
+        "rigging",
+        "masts",
+        "sail"
+    ],
+    "attribute_registration_markings": "A red emblem with two birds and a cross on the sail; no other registration markings visible.",
+    "uid": "c9819a0e8a57429f888b74978219fb7a",
+    "near_synsets": {
+        "square-rigger.n.01": 0.4714225126733714,
+        "sail.n.03": 0.48644860199528256,
+        "outer_jib.n.01": 0.4941735451273201,
+        "brig.n.01": 0.49817368612901874,
+        "figurehead.n.02": 0.49845459583627644,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c9819a0e8a57429f888b74978219fb7a",
+        "creator_username": "suttonj94",
+        "creator_display_name": "Ginny Sutton",
+        "creator_profile_url": "https://sketchfab.com/suttonj94"
+    },
+    "filename": "std_c9819a0e8a57429f888b74978219fb7a.glb",
+    "length": 16.500475883483887,
+    "width": 8.612768650054932
+}

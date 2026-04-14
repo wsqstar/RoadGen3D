@@ -1,0 +1,96 @@
+{
+    "description_long": "This structure is a tall, lattice-framed tower constructed primarily from metallic beams arranged in a crisscross pattern for stability and strength. It features three prominent horizontal crossarms, each supported by angled braces and equipped with insulator stacks at their ends. The crossarms are spaced vertically along the upper half of the tower, providing attachment points for high-voltage power lines. The metallic frame is predominantly silver-gray, with some brownish elements likely representing wooden or composite braces. The tower is open and skeletal, allowing air and light to pass through its structure. No visible signage or mounted electrical equipment such as transformers or circuit breakers is present, and the design is optimized for supporting overhead power transmission lines in urban or suburban environments.",
+    "description": "A tall, silver-gray lattice tower with three horizontal crossarms and insulator stacks, designed for supporting high-voltage power lines. The structure is open-framed and reinforced with crisscrossed beams and angled braces.",
+    "description_view_0": "Front view showing the narrow profile of the tower, with the crossarms and insulator stacks extending laterally.",
+    "description_view_1": "Side view highlighting the full length of the three crossarms and the insulator stacks at their ends, as well as the lattice structure.",
+    "description_view_2": "Rear view similar to the front, displaying the vertical alignment of the crossarms and the open lattice frame.",
+    "description_view_3": "Opposite side view, again showing the three crossarms and their insulator stacks, with clear visibility of the supporting braces.",
+    "category": "transformer tower",
+    "height": 18.0,
+    "max_dimension": 20.0,
+    "materials": [
+        "steel",
+        "composite",
+        "wood",
+        "ceramic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "support_power_lines"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "crossarm",
+        "insulator stack",
+        "mounting bracket"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_insulator_stacks": 6,
+    "attribute_arrangement_of_crossarms": "Three horizontal crossarms are arranged in a vertically stacked configuration, each supported by angled braces and spaced evenly along the upper section.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [],
+    "attribute_configuration_of_attached_power_lines": "Three sets of power lines are attached in a parallel, vertically stacked arrangement, likely supporting a three-phase circuit with each phase routed along a separate crossarm.",
+    "uid": "40c0f7519e83429883ea0d9fb2b69aad",
+    "near_synsets": {
+        "pylon.n.02": 0.5131927191305117,
+        "trestle.n.01": 0.5558905230395719,
+        "tower.n.01": 0.560330043391931,
+        "supporting_tower.n.01": 0.5605397382762926,
+        "cascade_transformer.n.01": 0.5636403115463647,
+        "column.n.04": -1000.0,
+        "transformer.n.01": -1000.0,
+        "tugboat.n.01": -1000.0
+    },
+    "synset": "pylon.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/40c0f7519e83429883ea0d9fb2b69aad",
+        "creator_username": "tarm",
+        "creator_display_name": "tarm",
+        "creator_profile_url": "https://sketchfab.com/tarm"
+    },
+    "filename": "std_40c0f7519e83429883ea0d9fb2b69aad.glb",
+    "length": 9.354860782623291,
+    "width": 6.125
+}

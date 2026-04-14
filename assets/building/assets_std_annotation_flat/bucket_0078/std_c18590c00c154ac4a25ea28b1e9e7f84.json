@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a large, heavily armored tracked combat vehicle resembling a World War II-era tank, featuring a prominent central turret with a long barrel cannon. The hull is rectangular with sloped armor on the front and sides, and the vehicle rides on a set of wide, robust tracks with multiple road wheels visible along the lower edge. The turret is boxy and sits atop the hull, with visible hatches and surface details such as rivets and panel lines. The front of the vehicle is reinforced and slightly angled, providing additional protection, while the rear is more squared off. The exterior is uniformly colored in a matte, military gray, with no visible camouflage or markings. There are no visible external accessories or stowage, and the vehicle's design emphasizes protection and firepower.",
+    "description": "A large, gray, heavily armored tracked combat vehicle with a central turret and long barrel cannon, featuring sloped armor and robust tracks.",
+    "description_view_0": "Side view showing the full length of the tank, tracks, road wheels, and the boxy turret with its cannon.",
+    "description_view_1": "Front view highlighting the sloped frontal armor, central turret, and the protruding cannon barrel.",
+    "description_view_2": "Opposite side view similar to view 0, showing the tracks, turret, and hull details from the other side.",
+    "description_view_3": "Rear view displaying the squared-off back of the hull, rear armor, and the back of the turret.",
+    "category": "combat tactical  vehicle",
+    "height": 2.7,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 40000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "closable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "track",
+        "wheel",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted centrally on the turret; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body armor plating with sloped frontal and side sections, thick and riveted, covering the entire hull and turret.",
+    "attribute_camouflage_pattern": "None visible; solid matte gray color.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "c18590c00c154ac4a25ea28b1e9e7f84",
+    "near_synsets": {
+        "tank.n.01": 0.4627355903165793,
+        "military_vehicle.n.01": 0.4786296502614844,
+        "assault_gun.n.02": 0.49507317267627876,
+        "reconnaissance_vehicle.n.01": 0.49868254733699324,
+        "armored_car.n.02": 0.5012680517138167,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/c18590c00c154ac4a25ea28b1e9e7f84",
+        "creator_username": "ThomasBeerens",
+        "creator_display_name": "ThomasBeerens",
+        "creator_profile_url": "https://sketchfab.com/ThomasBeerens"
+    },
+    "filename": "std_c18590c00c154ac4a25ea28b1e9e7f84.glb",
+    "length": 8.161698818206787,
+    "width": 3.5071516036987305
+}

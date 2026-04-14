@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a detailed model of a NASA Space Shuttle orbiter, featuring a white fuselage with black thermal protection tiles along the nose, wing edges, and underbelly. The wings are delta-shaped and low-mounted, with a slight upward dihedral and no visible winglets. The rear of the shuttle displays three large main engines flanked by two smaller orbital maneuvering system (OMS) pods. The tail section includes a single tall vertical stabilizer with a rudder and a split speed brake. The cockpit is located at the forward end of the fuselage, with multiple windows arranged in a wraparound configuration. Markings include the United States flag, NASA insignia, and the words 'United States' on the side.",
+    "description": "A NASA Space Shuttle orbiter with a white and black color scheme, delta wings, three main engines, and a forward-mounted cockpit with multiple windows.",
+    "description_view_0": "Front view showing the pointed nose, cockpit windows, and the delta wing planform with black leading edges.",
+    "description_view_1": "Left side view highlighting the 'United States' and NASA markings, the low-mounted delta wing, and the tall vertical stabilizer.",
+    "description_view_2": "Rear view displaying the three main engines, two OMS pods, and the full span of the delta wings.",
+    "description_view_3": "Right side view showing the shuttle's profile, including the OMS pods, vertical stabilizer, and fuselage details.",
+    "category": "airplane",
+    "height": 17.3,
+    "max_dimension": 37.2,
+    "materials": [
+        "aluminum alloy",
+        "titanium",
+        "reinforced carbon-carbon",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.1,
+        0.1,
+        0.08,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "mass": 78000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 765000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cockpit door",
+        "landing gear",
+        "cargo bay doors",
+        "control surfaces",
+        "engine nozzles",
+        "windows",
+        "OMS pods"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "gray",
+        "blue",
+        "red"
+    ],
+    "colors_composition": [
+        0.75,
+        0.18,
+        0.04,
+        0.02,
+        0.01
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.02,
+    "recommended_clearance": 40.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-mounted delta wings with slight upward dihedral, no winglets, and straight trailing edges.",
+    "attribute_engine_type": "Three rear-mounted rocket engines with two additional OMS pods flanking the main engines.",
+    "attribute_tail_design": "Conventional tail with a single tall vertical stabilizer and integrated rudder; no horizontal stabilizers visible.",
+    "attribute_landing_gear_type": "Retractable tricycle landing gear with one nose gear and two main gear units (not visible in deployed state).",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed multi-seat cockpit with a wraparound window configuration at the nose of the fuselage.",
+    "uid": "4774a9ffd4bb481481125ead57669781",
+    "near_synsets": {
+        "space_shuttle.n.01": 0.4846334084179693,
+        "delta_wing.n.01": 0.5404517447986014,
+        "space_rocket.n.01": 0.5447052862520223,
+        "national_aeronautics_and_space_administration.n.01": 0.5576424480331515,
+        "aircraft.n.01": 0.5580202040087205,
+        "airplane.n.01": -1000.0
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4774a9ffd4bb481481125ead57669781",
+        "creator_username": "ty.briscoe",
+        "creator_display_name": "ty.briscoe",
+        "creator_profile_url": "https://sketchfab.com/ty.briscoe"
+    },
+    "filename": "std_4774a9ffd4bb481481125ead57669781.glb",
+    "length": 41.09366226196289,
+    "width": 26.02659034729004
+}

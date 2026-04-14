@@ -1,0 +1,97 @@
+{
+    "description_long": "This kiosk is a compact, rectangular structure with a prominent service window and a small overhanging roof. The front features a large glass display area, possibly for serving or selling goods, and signage above the window. The side panels are solid, with one side finished in a wood-like texture and the other in a dark, likely metallic or composite material. The rear is plain and unadorned, suggesting it is not intended for customer interaction. The roof is flat and slightly projects over the front, providing minimal shelter for customers. The overall design is functional and modern, suitable for urban environments such as sidewalks or parks.",
+    "description": "A small, modern kiosk with a glass service window, flat overhanging roof, and mixed wood and dark paneling.",
+    "description_view_0": "Front view showing the glass service window, signage, and overhanging roof.",
+    "description_view_1": "Angled view highlighting the front and left side, with visible signage and dark side panel.",
+    "description_view_2": "Rear view showing a plain, solid back panel with no windows or signage.",
+    "description_view_3": "Side view displaying the wood-textured panel and the flat roof's edge.",
+    "category": "kiosk",
+    "height": 2.5,
+    "max_dimension": 3.0,
+    "materials": [
+        "metal",
+        "glass",
+        "wood",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 900,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "window",
+        "door",
+        "signage"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "gray",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "printed sign above the service window with visible text and graphics",
+    "attribute_window_presence": "one large rectangular window at the front",
+    "attribute_door_configuration": "one single door at the rear",
+    "attribute_roof_design": "flat roof with a slight overhang at the front, constructed from metal or composite material",
+    "attribute_architectural_style": "modern with minimalist and functional influences",
+    "uid": "08a4ca40b4c34a2384f6aef3bc6bef4a",
+    "near_synsets": {
+        "booth.n.02": 0.5196034862395335,
+        "window.n.07": 0.5358411033849432,
+        "booth.n.01": 0.5442528014177708,
+        "shopfront.n.01": 0.5462183344363647,
+        "booth.n.04": 0.554235667927698
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/08a4ca40b4c34a2384f6aef3bc6bef4a",
+        "creator_username": "alexeraque",
+        "creator_display_name": "Alex Eraque",
+        "creator_profile_url": "https://sketchfab.com/alexeraque"
+    },
+    "filename": "std_08a4ca40b4c34a2384f6aef3bc6bef4a.glb",
+    "length": 19.463035583496094,
+    "width": 19.46302890777588
+}

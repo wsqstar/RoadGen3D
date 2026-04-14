@@ -1,0 +1,106 @@
+{
+    "description_long": "This parking meter features a tall, rectangular body with a predominantly reddish-brown exterior and green accent panels. The front face displays a payment interface area, including a green slot and a digital screen, with a prominent white logo and iconography. At the top, a cylindrical sensor or camera is visible, and above it, a stylized green dollar sign is suspended, possibly as a decorative or functional indicator. The sides are mostly plain, with one side showing a protruding black cable or hose and a vent panel, while the rear is unadorned except for additional cabling and a small access panel. The base is sturdy and boxy, designed to be fixed to the ground, and the overall construction suggests a robust, weather-resistant build suitable for outdoor urban environments. The materials appear to be mostly metal with some plastic and rubber components.",
+    "description": "A tall, rectangular parking meter with a reddish-brown body, green payment interface, and a suspended green dollar sign above. Features include a digital display, coin slot, and visible cabling.",
+    "description_view_0": "Front view shows the green payment interface, digital display, white logo, and the suspended green dollar sign above.",
+    "description_view_1": "Left side view reveals the depth of the meter, the protruding cable or hose at the base, and a side vent panel.",
+    "description_view_2": "Rear view displays the back panel, additional cabling, and a small access panel, with minimal markings.",
+    "description_view_3": "Right side view highlights the side profile, green accent panel, and the top-mounted sensor or camera.",
+    "category": "parking meter",
+    "height": 1.5,
+    "max_dimension": 1.5,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "insertable",
+        "swipeable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "payment slot",
+        "digital display",
+        "button",
+        "coin slot",
+        "card reader"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "reddish-brown",
+        "green",
+        "black",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_payment_interface": "Front face features a green payment slot, a digital display, and a card reader; accepts coins and cards, with buttons for input.",
+    "attribute_coin_slot": "Present on the front, rectangular slot below the digital display, marked by a green accent.",
+    "attribute_digital_display": "Present on the front, rectangular and located above the payment slot, with a dark screen area.",
+    "attribute_identification_number": "None",
+    "attribute_mounting_post": "Base is boxy and integrated, with visible black cables or hoses at the bottom; no separate mounting post visible.",
+    "uid": "d832e7e25e1d49668c601ef0e714d773",
+    "near_synsets": {
+        "parking_meter.n.01": 0.4646087140238242,
+        "parking_ticket.n.01": 0.5737463344444346,
+        "parking.n.01": 0.576041072090341,
+        "taximeter.n.01": 0.5791963030069858,
+        "parking_space.n.01": 0.597292818125487,
+        "meter.n.04": -1000.0,
+        "meter.n.03": -1000.0,
+        "parking.n.02": -1000.0,
+        "meter.n.02": -1000.0,
+        "meter.n.01": -1000.0
+    },
+    "synset": "parking_meter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d832e7e25e1d49668c601ef0e714d773",
+        "creator_username": "arnedecoster",
+        "creator_display_name": "ArneDC",
+        "creator_profile_url": "https://sketchfab.com/arnedecoster"
+    },
+    "filename": "std_d832e7e25e1d49668c601ef0e714d773.glb",
+    "length": 0.3813440501689911,
+    "width": 0.6579031050205231
+}

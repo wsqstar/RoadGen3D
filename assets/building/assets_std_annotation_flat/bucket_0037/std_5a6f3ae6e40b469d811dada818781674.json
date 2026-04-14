@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a large, modern main battle tank with a low, angular profile and a robust, armored hull. The vehicle features a prominent turret with a long, smoothbore cannon extending forward, and several hatches and periscopes are visible on the turret roof. The hull is wide and flat, with thick, sloped armor panels along the sides and front, providing substantial protection. The tank is equipped with continuous metal tracks for mobility, which are partially covered by side skirts. An antenna is mounted on the turret, suggesting communication capabilities. The overall finish is a uniform, light gray color with no visible camouflage or military markings.",
+    "description": "A modern main battle tank with a long cannon, thick sloped armor, and continuous metal tracks, finished in solid light gray.",
+    "description_view_0": "Front-left view showing the sloped frontal armor, turret with cannon, and side skirts over the tracks.",
+    "description_view_1": "Rear-left view highlighting the back of the turret, rear hull, and the antenna mounted on the turret.",
+    "description_view_2": "Rear-right view displaying the turret's rear, the length of the cannon, and the right side armor.",
+    "description_view_3": "Top-down view revealing the tank's overall shape, turret placement, and the full width of the tracks.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 9.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 62000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 5,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "antenna",
+        "periscope",
+        "track"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted on the turret; no other weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating on the hull and turret; side skirts provide additional protection over the tracks.",
+    "attribute_camouflage_pattern": "None visible; solid light gray color.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "5a6f3ae6e40b469d811dada818781674",
+    "near_synsets": {
+        "tank.n.01": 0.45940373183594047,
+        "military_vehicle.n.01": 0.5032778671221113,
+        "armored_car.n.02": 0.5100364117920455,
+        "panzer.n.01": 0.5122747338182816,
+        "mechanized_cavalry.n.01": 0.5132354524896513,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5a6f3ae6e40b469d811dada818781674",
+        "creator_username": "AkaIntensity",
+        "creator_display_name": "AkaIntensity",
+        "creator_profile_url": "https://sketchfab.com/AkaIntensity"
+    },
+    "filename": "std_5a6f3ae6e40b469d811dada818781674.glb",
+    "length": 8.285583972930908,
+    "width": 8.687175273895264
+}

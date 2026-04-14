@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a horizontally oriented cylindrical storage tank mounted on a pair of rail bogies, resembling a classic rail tanker car. The tank is primarily white with a smooth, metallic surface and features a prominent metal safety railing running along the top. There is a visible access ladder attached to one end, providing access to the top platform. The undercarriage is black and robust, supporting the tank with two sets of wheels for rail transport. The tank appears to be constructed from steel, designed for the secure storage and transport of liquids or gases in an urban or industrial setting.",
+    "description": "A white cylindrical rail-mounted storage tank with a top safety railing and access ladder, supported by black rail bogies.",
+    "description_view_0": "Side view showing the full length of the cylindrical tank, the top safety railing, and both sets of rail wheels.",
+    "description_view_1": "End view highlighting the circular face of the tank, the attached access ladder, and the rail undercarriage.",
+    "description_view_2": "Opposite side view similar to view 0, showing the tank's length, railing, and wheels, but the ladder is less visible.",
+    "description_view_3": "Rear end view showing the circular tank face and the rail undercarriage, with no ladder visible.",
+    "category": "storage tank",
+    "height": 2.8,
+    "max_dimension": 8.5,
+    "materials": [
+        "steel",
+        "air",
+        "rubber",
+        "paint"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "access ladder",
+        "top railing",
+        "hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": true,
+    "attribute_valve_or_pipe_attachments": [],
+    "attribute_warning_signage": false,
+    "attribute_architectural_style": "cylindrical horizontal",
+    "uid": "4d3c983e3f284bef8dbe0e403dfa51b1",
+    "near_synsets": {
+        "tank.n.02": 0.5440120323352599,
+        "tank_farm.n.01": 0.5443584911637059,
+        "tank_car.n.01": 0.5473572746259469,
+        "tender.n.04": 0.5496949755886815,
+        "water_tower.n.01": 0.5525838270063047,
+        "storehouse.n.01": -1000.0,
+        "tank.n.03": -1000.0,
+        "cooler.n.03": -1000.0,
+        "storage.n.01": -1000.0,
+        "memory.n.04": -1000.0,
+        "storage.n.03": -1000.0,
+        "repositing.n.01": -1000.0,
+        "storage.n.04": -1000.0,
+        "tank.n.01": -1000.0
+    },
+    "synset": "tank_car.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4d3c983e3f284bef8dbe0e403dfa51b1",
+        "creator_username": "benjamintang2012",
+        "creator_display_name": "benjamintang2012",
+        "creator_profile_url": "https://sketchfab.com/benjamintang2012"
+    },
+    "filename": "std_4d3c983e3f284bef8dbe0e403dfa51b1.glb",
+    "length": 6.840187311172485,
+    "width": 1.7396802306175232
+}

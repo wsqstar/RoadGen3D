@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a rectangular, mid-rise office building with a flat roof and a minimalist, utilitarian facade. The exterior is primarily composed of light gray concrete or stucco, punctuated by a grid of evenly spaced, square windows on all sides. The ground floor features a slightly recessed base with a darker, weathered appearance and a central entrance flanked by vertical columns. The roof is flat and finished with a brownish, tiled surface, and includes a few small rooftop fixtures such as vents or pipes. The overall design is stark and functional, with little ornamentation, reflecting a focus on practicality over aesthetics. There is some subtle weathering and discoloration on the lower facade, suggesting exposure to urban elements.",
+    "description": "A rectangular, gray office building with a grid of square windows and a flat, brown-tiled roof. The facade is minimalist and functional, with a recessed ground floor entrance and subtle weathering.",
+    "description_view_0": "Front view showing the main entrance, grid of windows, and the recessed, darker ground floor.",
+    "description_view_1": "Side view highlighting the building's depth, uniform window pattern, and rooftop fixtures.",
+    "description_view_2": "Rear view mirroring the front, but without a visible entrance, showing the same window grid and base.",
+    "description_view_3": "Opposite side view with rooftop fixtures and consistent window arrangement, no entrance visible.",
+    "category": "office building",
+    "height": 15.0,
+    "max_dimension": 30.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 1200000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "windows",
+        "roof access hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 5,
+    "attribute_window_pattern": "Uniform grid of square windows, evenly spaced in horizontal and vertical rows on all facades.",
+    "attribute_building_entrance_type": "recessed double doors",
+    "attribute_signage_presence": true,
+    "attribute_architectural_style": "Brutalist",
+    "uid": "310b09eb39644f57b9386a9008611bfa",
+    "near_synsets": {
+        "office_building.n.01": 0.49642924587682935,
+        "facade.n.01": 0.5482612413012719,
+        "elevation.n.07": 0.5526383736618242,
+        "rendering.n.06": 0.5558124544229883,
+        "farm_building.n.01": 0.5564389513570769,
+        "building.n.04": -1000.0,
+        "construction.n.01": -1000.0,
+        "office.n.06": -1000.0,
+        "office.n.04": -1000.0,
+        "position.n.06": -1000.0,
+        "agency.n.01": -1000.0,
+        "office.n.01": -1000.0,
+        "construction.n.07": -1000.0,
+        "office.n.05": -1000.0,
+        "building.n.01": -1000.0,
+        "function.n.03": -1000.0
+    },
+    "synset": "office_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/310b09eb39644f57b9386a9008611bfa",
+        "creator_username": "mariobatman403",
+        "creator_display_name": "mariobatman403",
+        "creator_profile_url": "https://sketchfab.com/mariobatman403"
+    },
+    "filename": "std_310b09eb39644f57b9386a9008611bfa.glb",
+    "length": 11.774096012115479,
+    "width": 26.143863677978516
+}

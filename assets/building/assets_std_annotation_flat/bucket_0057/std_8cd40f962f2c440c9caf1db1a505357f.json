@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a large, blue and silver tanker truck with a prominent cylindrical tank mounted on its chassis. The cab is painted blue and features a classic, robust design with a visible front grille, side mirrors, and a pair of headlights. The tanker section is metallic silver, smooth, and extends the majority of the truck's length, supported by a set of three axles with blue wheels. The rear of the truck is flat and features safety markings and lights, while the side view reveals a ladder and piping typically used for loading and unloading liquids. The truck's overall build suggests it is designed for transporting bulk liquids such as fuel or water in urban and industrial environments.",
+    "description": "A large blue and silver tanker truck with a cylindrical tank, blue cab, and multiple axles, designed for transporting liquids.",
+    "description_view_0": "Front view showing the blue cab, grille, headlights, and the cylindrical tank behind.",
+    "description_view_1": "Side view highlighting the full length of the silver tank, blue cab, three axles, and visible ladder and piping.",
+    "description_view_2": "Rear view displaying the flat end of the tank, rear lights, and safety markings.",
+    "description_view_3": "Opposite side view similar to view 1, showing the tank, cab, and wheel arrangement.",
+    "category": "truck",
+    "height": 3.5,
+    "max_dimension": 11.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.08,
+        0.05,
+        0.05,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "ladder",
+        "mirror",
+        "tank cap",
+        "headlight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "silver",
+        "black",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.25,
+        0.65,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "day cab",
+    "attribute_cargo_bed_type": "tanker",
+    "attribute_wheelbase": 6.0,
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "8cd40f962f2c440c9caf1db1a505357f",
+    "near_synsets": {
+        "tanker_truck.n.01": 0.429084736918994,
+        "tank_car.n.01": 0.44247184624152774,
+        "truck.n.01": 0.4886847633411875,
+        "water_truck.n.01": 0.4911861607137678,
+        "transporter.n.01": 0.5004388715184077,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8cd40f962f2c440c9caf1db1a505357f",
+        "creator_username": "Garrett.Windus",
+        "creator_display_name": "Garrett.Windus",
+        "creator_profile_url": "https://sketchfab.com/Garrett.Windus"
+    },
+    "filename": "std_8cd40f962f2c440c9caf1db1a505357f.glb",
+    "length": 15.565516471862793,
+    "width": 2.538252592086792
+}

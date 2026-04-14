@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a classic Radio Flyer red wagon with a rectangular metal body and four white-rimmed black wheels. The wagon features a long, black pull handle with a rectangular grip, attached to the front axle for steering. The body of the wagon is painted red, with visible wear and dirt, and the iconic 'Radio Flyer' logo in white on the side. The wheels are solid and slightly worn, with yellow hubcaps at the center. The interior of the wagon is open and spacious, designed to carry small loads or children. The overall construction appears sturdy, with a metal frame and a simple, utilitarian design.",
+    "description": "A red Radio Flyer wagon with a metal body, four wheels, and a black pull handle, featuring the classic white logo on the side.",
+    "description_view_0": "Front view showing the rectangular open body, black handle with grip, and two front wheels.",
+    "description_view_1": "Side view highlighting the 'Radio Flyer' logo, the full length of the handle, and all four wheels.",
+    "description_view_2": "Rear view displaying the open back of the wagon and the two rear wheels.",
+    "description_view_3": "Opposite side view without visible branding, showing the handle angled upward and all four wheels.",
+    "category": "trolley",
+    "height": 0.45,
+    "max_dimension": 0.95,
+    "materials": [
+        "metal",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 8.0,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 15,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "rotatable",
+        "supportive"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "axle"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "red",
+        "black",
+        "white",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.13,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_handle_type": "single bar handle with a rectangular plastic grip, attached to a metal rod; ergonomic and designed for pulling",
+    "attribute_number_of_wheels": 4,
+    "attribute_wheel_arrangement": "four wheels, two front steerable and two rear fixed",
+    "attribute_basket_or_platform_presence": "platform",
+    "attribute_branding_or_signage": "White 'Radio Flyer' logo on the side of the wagon body",
+    "uid": "35d5166f87ac409b957b3209c406709f",
+    "near_synsets": {
+        "wagon.n.04": 0.5520440730502257,
+        "four-wheeler.n.01": 0.5618450420258708,
+        "trundle.n.02": 0.5718714034142308,
+        "cart.n.01": 0.5752135180520327,
+        "trolley_line.n.01": 0.5776059510906791,
+        "streetcar.n.01": -1000.0
+    },
+    "synset": "trolley_line.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/35d5166f87ac409b957b3209c406709f",
+        "creator_username": "cukooart",
+        "creator_display_name": "cukoo",
+        "creator_profile_url": "https://sketchfab.com/cukooart"
+    },
+    "filename": "std_35d5166f87ac409b957b3209c406709f.glb",
+    "length": 0.6158118546009064,
+    "width": 0.30433574318885803
+}

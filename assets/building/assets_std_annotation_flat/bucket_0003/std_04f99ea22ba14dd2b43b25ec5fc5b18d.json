@@ -1,0 +1,91 @@
+{
+    "description_long": "This object resembles a large, segmented crustacean with a reddish-pink exoskeleton and a pronounced, arched body. Its body is divided into several broad, rounded segments, each equipped with pairs of jointed legs that radiate outward. The front features two prominent claws (chelae) and a rounded head with small, dark eyes set close together. The underside is slightly paler and smoother, while the dorsal side is more armored and textured. The legs and claws are detailed, with pointed tips and articulated joints, giving the creature a lifelike, dynamic appearance. The overall form is reminiscent of a giant lobster or scorpion, with a sinuous, flexible posture.",
+    "description": "A large, segmented reddish-pink crustacean with prominent claws, many jointed legs, and a rounded, armored body. The creature has a lifelike, flexible posture and detailed anatomical features.",
+    "description_view_0": "Side view showing the arched, segmented body, all legs, and both claws extended forward.",
+    "description_view_1": "Front view highlighting the rounded head, both claws, and the symmetrical arrangement of legs.",
+    "description_view_2": "Opposite side view with the body curve and claws visible, emphasizing the segmentation and leg articulation.",
+    "description_view_3": "Top-down view displaying the full segmentation of the body and the radial arrangement of the legs.",
+    "category": "crustacean",
+    "height": 0.6,
+    "max_dimension": 1.2,
+    "materials": [
+        "chitin",
+        "protein",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 8.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 90,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "claws",
+        "legs",
+        "body segments"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "pink",
+        "pale beige"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.56,
+    "youngs_modulus": 3500,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.08,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_legs": 12,
+    "attribute_presence_of_claws": true,
+    "attribute_body_segmentation": "cephalothorax and abdomen",
+    "attribute_antennae_visibility": false,
+    "attribute_eye_placement": "sessile on head",
+    "uid": "04f99ea22ba14dd2b43b25ec5fc5b18d",
+    "near_synsets": {
+        "crustacean.n.01": 0.4247900089258473,
+        "decapod_crustacean.n.01": 0.4539591082270861,
+        "crab.n.01": 0.47028963962506787,
+        "crayfish.n.03": 0.47107558239833086,
+        "true_lobster.n.01": 0.4850128483798969
+    },
+    "synset": "decapod_crustacean.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/04f99ea22ba14dd2b43b25ec5fc5b18d",
+        "creator_username": "Batuhan13",
+        "creator_display_name": "Batuhan13",
+        "creator_profile_url": "https://sketchfab.com/Batuhan13"
+    },
+    "filename": "std_04f99ea22ba14dd2b43b25ec5fc5b18d.glb",
+    "length": 0.9819451570510864,
+    "width": 0.5847015380859375
+}

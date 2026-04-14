@@ -1,0 +1,108 @@
+{
+    "description_long": "This object consists of a group of upright rectangular traffic signs, each mounted on a slender vertical post. The signs display a variety of regulatory and directional messages, such as 'NO TURNS', 'ROAD CLOSED', 'DO NOT PASS', and arrows indicating directions. The sign faces are predominantly white with black text and symbols, and the surfaces show signs of weathering and dirt, suggesting outdoor use. The posts appear to be metallic, likely steel, with a brownish or rusted finish. The reverse sides of the signs are plain and show more pronounced weathering. The arrangement and diversity of the signs suggest they are intended for use in urban or roadside environments to guide and regulate vehicle and pedestrian movement.",
+    "description": "A weathered group of upright, rectangular traffic signs on metal posts, each displaying regulatory or directional messages in black on white backgrounds.",
+    "description_view_0": "A narrow, edge-on view showing the thin profiles of the signs and posts, with little detail visible.",
+    "description_view_1": "The front view reveals the faces of all signs, displaying various regulatory texts and directional arrows.",
+    "description_view_2": "Another edge-on view similar to view 0, showing the thinness of the signs and posts.",
+    "description_view_3": "The rear view shows the backs of the signs, which are plain and heavily weathered, with no visible text or symbols.",
+    "category": "traffic sign",
+    "height": 1.8,
+    "max_dimension": 3.5,
+    "materials": [
+        "steel",
+        "aluminum",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "readable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "sign face",
+        "post"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_sign_text": "NO TURNS, ROAD CLOSED, KEEP RIGHT, ONE WAY, STAY IN LANE, DETOUR, DO NOT PASS, STOP, ONLY",
+    "attribute_symbol_or_pictogram": "Arrows pointing left, right, and straight; no U-turn symbol",
+    "attribute_mounting_type": "post-mounted",
+    "attribute_orientation": "perpendicular to road",
+    "attribute_location_context": "urban roadside, intersections, construction zones",
+    "uid": "d195a258a20c4b67bd95822e86f4495d",
+    "near_synsets": {
+        "street_sign.n.01": 0.4657450120093555,
+        "signage.n.01": 0.5015061908137035,
+        "direction_sign.n.01": 0.5169110654095137,
+        "stop_sign.n.01": 0.5198529660096547,
+        "signboard.n.01": 0.5294105024611971,
+        "sign.n.09": -1000.0,
+        "sign.n.02": -1000.0,
+        "sign.n.06": -1000.0,
+        "sign.n.11": -1000.0,
+        "augury.n.01": -1000.0,
+        "dealings.n.01": -1000.0,
+        "traffic.n.02": -1000.0,
+        "signal.n.01": -1000.0,
+        "sign.n.10": -1000.0,
+        "traffic.n.01": -1000.0,
+        "polarity.n.02": -1000.0,
+        "sign.n.01": -1000.0,
+        "traffic.n.03": -1000.0,
+        "sign_of_the_zodiac.n.01": -1000.0
+    },
+    "synset": "street_sign.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d195a258a20c4b67bd95822e86f4495d",
+        "creator_username": "caboose3d",
+        "creator_display_name": "Caboose3d",
+        "creator_profile_url": "https://sketchfab.com/caboose3d"
+    },
+    "filename": "std_d195a258a20c4b67bd95822e86f4495d.glb",
+    "length": 2.1629085540771484,
+    "width": 5.662975788116455
+}

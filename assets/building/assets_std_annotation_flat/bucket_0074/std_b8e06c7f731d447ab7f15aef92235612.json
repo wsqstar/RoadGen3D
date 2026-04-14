@@ -1,0 +1,131 @@
+{
+    "description_long": "This canal scene features a picturesque waterfront with colorful Mediterranean-style buildings perched on stone embankments. The canal itself is bordered by robust stone masonry walls, with water flowing beneath an arched tunnel and along the quay. Several boats are moored at the water's edge, and a small plaza with trees, benches, and outdoor seating overlooks the canal. The buildings display vibrant facades in red, yellow, and pink, with balconies, green shutters, and laundry hanging from lines. Metal railings line the upper walkways, and the area is detailed with cobblestone paths, stairways, and lush greenery climbing the embankment.",
+    "description": "A vibrant canal scene with colorful buildings, stone embankments, boats, and a lively plaza with trees and outdoor seating.",
+    "description_view_0": "Shows the canal's arched tunnel, plaza with trees and tables, and the main red building with balconies and laundry.",
+    "description_view_1": "Highlights the yellow building's cracked wall, boats moored at the quay, and the rear facades of the buildings.",
+    "description_view_2": "Displays the back of the yellow building, the stone embankment, and the winding cobblestone path leading to the canal.",
+    "description_view_3": "Focuses on the main red building, the arched canal entrance, and the plaza area with trees and seating above the water.",
+    "category": "canal",
+    "height": 10.0,
+    "max_dimension": 18.0,
+    "materials": [
+        "stone",
+        "brick",
+        "plaster",
+        "wood",
+        "metal",
+        "glass",
+        "tile",
+        "water",
+        "vegetation",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.2,
+        0.1,
+        0.08,
+        0.05,
+        0.04,
+        0.03,
+        0.07,
+        0.05,
+        0.02,
+        0.01
+    ],
+    "mass": 350000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "sittable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "balcony railing",
+        "bench",
+        "table",
+        "stairs"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "boat"
+    ],
+    "colors": [
+        "red",
+        "yellow",
+        "pink",
+        "green",
+        "gray",
+        "brown",
+        "blue",
+        "white"
+    ],
+    "colors_composition": [
+        0.25,
+        0.18,
+        0.12,
+        0.1,
+        0.15,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_water_presence": true,
+    "attribute_embankment_type": "stone masonry",
+    "attribute_edge_barrier_style": "metal railing",
+    "attribute_waterway_signage": [
+        "no signage"
+    ],
+    "attribute_bridge_structures": [
+        "no bridge"
+    ],
+    "uid": "b8e06c7f731d447ab7f15aef92235612",
+    "near_synsets": {
+        "canal.n.03": 0.5179392364721245,
+        "cityscape.n.02": 0.5440741681517073,
+        "cityscape.n.01": 0.5895522057748678,
+        "waterfront.n.01": 0.5915862256819092,
+        "plaza.n.02": 0.5923996596455422,
+        "canal.n.01": -1000.0,
+        "duct.n.01": -1000.0
+    },
+    "synset": "canal.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b8e06c7f731d447ab7f15aef92235612",
+        "creator_username": "MelissaJuice",
+        "creator_display_name": "Mel Syme-Lapper",
+        "creator_profile_url": "https://sketchfab.com/MelissaJuice"
+    },
+    "filename": "std_b8e06c7f731d447ab7f15aef92235612.glb",
+    "length": 13.303529262542725,
+    "width": 13.410171508789062
+}

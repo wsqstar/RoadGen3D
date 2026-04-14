@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a large, heavy-duty truck with a robust, boxy cab painted in a muted reddish-brown color. The front features a prominent rectangular grille, large headlights, and a slightly sloped hood, giving it a classic American semi-truck appearance. The cab is equipped with side mirrors mounted on long arms and has a set of five marker lights on the roof. The rear section consists of a chassis cab with dual rear wheels and a fifth-wheel coupling, designed for hauling trailers. The truck's frame and wheel wells are painted in a contrasting dark gray, while the rear features visible air and electrical lines for trailer connections. The overall design suggests a utilitarian vehicle built for transporting heavy loads in urban and industrial environments.",
+    "description": "A large, reddish-brown semi-truck with a boxy cab, dual rear wheels, and a fifth-wheel coupling for trailers. It features a prominent grille, roof marker lights, and visible trailer connections at the rear.",
+    "description_view_0": "Front three-quarter view showing the boxy cab, large grille, headlights, and the front wheels.",
+    "description_view_1": "Side view highlighting the length of the cab, the dual rear wheels, and the exposed chassis with the fifth-wheel coupling.",
+    "description_view_2": "Rear view displaying the dual rear wheels, trailer coupling, and visible air/electrical lines.",
+    "description_view_3": "Rear-side view emphasizing the chassis cab, rear wheels, and the connection area for trailers.",
+    "category": "truck",
+    "height": 3.2,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.08,
+        0.06,
+        0.03,
+        0.03
+    ],
+    "mass": 8500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 5,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "pullable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "mirror",
+        "fifth-wheel coupling",
+        "headlight",
+        "step",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red-brown",
+        "gray",
+        "black",
+        "white",
+        "orange",
+        "blue"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "day cab",
+    "attribute_cargo_bed_type": "chassis cab",
+    "attribute_wheelbase": 4.2,
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "9747674af6784cb2afac972aaa6d9005",
+    "near_synsets": {
+        "trailer_truck.n.01": 0.47749984806893564,
+        "truck.n.01": 0.5143133593484613,
+        "trailer.n.03": 0.5201175577558764,
+        "tandem_trailer.n.01": 0.5305805570128446,
+        "tractor.n.02": 0.5318034465028041,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9747674af6784cb2afac972aaa6d9005",
+        "creator_username": "David_Holiday",
+        "creator_display_name": "David_Holiday",
+        "creator_profile_url": "https://sketchfab.com/David_Holiday"
+    },
+    "filename": "std_9747674af6784cb2afac972aaa6d9005.glb",
+    "length": 7.4154534339904785,
+    "width": 5.852655410766602
+}

@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a classic submachine gun, visually reminiscent of the Thompson 'Tommy Gun' with a distinctive round drum magazine. The rifle features a wooden fixed stock and foregrip, both with a rich brown finish, contrasting with the matte black metal receiver and barrel. The long, slender barrel extends from the main body, ending in a simple muzzle with no visible attachments. The drum magazine is prominent and centrally located beneath the receiver, giving the weapon a robust and iconic appearance. Iron sights are mounted along the top of the receiver and barrel, providing basic aiming capability. The overall design is utilitarian, with a blend of wood and metal materials typical of early-to-mid 20th-century firearms.",
+    "description": "A classic submachine gun with a wooden stock and foregrip, black metal body, and a large round drum magazine. Features iron sights and a long, slender barrel.",
+    "description_view_0": "Side view showing the full profile, including the wooden stock, foregrip, drum magazine, and long barrel.",
+    "description_view_1": "Front-on view highlighting the circular drum magazine and the alignment of the barrel and sights.",
+    "description_view_2": "Opposite side view, mirroring the first but with the stock and foregrip visible from the other side.",
+    "description_view_3": "Rear view focusing on the wooden stock and the back of the receiver, with the drum magazine visible below.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 0.85,
+    "materials": [
+        "steel",
+        "wood",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 4.8,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 48,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "foregrip",
+        "trigger",
+        "magazine",
+        "barrel",
+        "sight",
+        "charging handle",
+        "safety selector"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "drum",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "0a75b2d8176f445190cc42efacd51f43",
+    "near_synsets": {
+        "submachine_gun.n.01": 0.5079160305053421,
+        "kalashnikov.n.01": 0.51464487648029,
+        "sten_gun.n.01": 0.5161113898134624,
+        "garand_rifle.n.01": 0.5162434087159304,
+        "tommy_gun.n.01": 0.5195162718581593,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0a75b2d8176f445190cc42efacd51f43",
+        "creator_username": "theboyoutside",
+        "creator_display_name": "TheBoyOutside",
+        "creator_profile_url": "https://sketchfab.com/theboyoutside"
+    },
+    "filename": "std_0a75b2d8176f445190cc42efacd51f43.glb",
+    "length": 0.9816926121711731,
+    "width": 0.18169403076171875
+}

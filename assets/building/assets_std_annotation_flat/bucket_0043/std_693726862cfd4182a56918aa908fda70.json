@@ -1,0 +1,104 @@
+{
+    "description_long": "This object is a blocky, stylized airplane with a straight, low-mounted wing configuration and a prominent, squared-off tail featuring a checkerboard pattern. The fuselage is primarily gray with blue and red insignia on the wings, reminiscent of World War II fighter aircraft. The nose is colored in yellow and orange, suggesting a propeller hub, while the cockpit is enclosed with transparent blocks, simulating glass panels. The landing gear consists of two main wheels and a smaller tail wheel, all rendered in dark colors. The wings are broad and flat, with no visible dihedral or winglets, and the tail section is conventional with a single vertical stabilizer. The overall construction appears to be inspired by modular or voxel-based design, giving it a toy-like or digital appearance.",
+    "description": "A blocky, stylized gray airplane with checkerboard tail, colored nose, and blue-red wing insignia, featuring a transparent cockpit and conventional landing gear.",
+    "description_view_0": "Front view showing the broad, straight wings with blue and red insignia, the yellow-orange nose, and the squared-off tail.",
+    "description_view_1": "Left side view highlighting the checkerboard tail, transparent cockpit canopy, and the colored propeller hub at the nose.",
+    "description_view_2": "Rear view displaying the single vertical stabilizer, the full wingspan, and the tail wheel beneath the tail section.",
+    "description_view_3": "Right side view showing the same checkerboard tail pattern, cockpit, and wing insignia as the left, with the propeller hub visible at the nose.",
+    "category": "airplane",
+    "height": 1.2,
+    "max_dimension": 7.0,
+    "materials": [
+        "plastic",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 9500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "propeller",
+        "landing gear",
+        "control surfaces"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "yellow",
+        "orange",
+        "blue",
+        "red",
+        "black",
+        "white",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.55,
+        0.08,
+        0.05,
+        0.08,
+        0.08,
+        0.08,
+        0.04,
+        0.04
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, straight configuration with no visible dihedral or winglets; broad, rectangular wings.",
+    "attribute_engine_type": "Single front-mounted piston engine with a visible propeller hub.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers; checkerboard pattern on the tail fin.",
+    "attribute_landing_gear_type": "Taildragger configuration with two main fixed gear and a single tail wheel.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a multi-panel transparent canopy.",
+    "uid": "693726862cfd4182a56918aa908fda70",
+    "near_synsets": {
+        "aircraft.n.01": 0.5108863658950804,
+        "airplane.n.01": 0.5178728244377218,
+        "aircraft_landing.n.01": 0.5299598794812065,
+        "biplane.n.01": 0.536095651875934,
+        "wings.n.02": 0.5390867150735249
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/693726862cfd4182a56918aa908fda70",
+        "creator_username": "madexc",
+        "creator_display_name": "madexc",
+        "creator_profile_url": "https://sketchfab.com/madexc"
+    },
+    "filename": "std_693726862cfd4182a56918aa908fda70.glb",
+    "length": 3.0455093383789062,
+    "width": 3.575164556503296
+}

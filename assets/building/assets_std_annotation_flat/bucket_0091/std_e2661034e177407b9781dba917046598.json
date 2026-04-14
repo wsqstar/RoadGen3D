@@ -1,0 +1,105 @@
+{
+    "description_long": "This humanoid robot is a large, heavily armored machine with a robust, angular exoskeleton composed of interlocking metal plates. Its design features a prominent central torso with a large cannon mounted on the chest, flanked by two articulated arms equipped with mechanical joints and reinforced armor. The head is compact and integrated into the upper torso, with multiple antennae and sensor arrays protruding from the top, suggesting advanced communication and targeting capabilities. The legs are thick and segmented, designed for stability and heavy load-bearing, with visible hydraulic actuators and reinforced feet for traction. Additional weaponry and equipment are mounted on the shoulders, including what appear to be missile pods and sensor turrets. The overall appearance is utilitarian and militaristic, optimized for urban combat or defense scenarios.",
+    "description": "A large, armored humanoid robot with a central chest cannon, reinforced limbs, and multiple sensor and weapon mounts, designed for urban combat.",
+    "description_view_0": "Front view shows the chest-mounted cannon, symmetrical armored arms, and prominent sensor and weapon systems on the shoulders.",
+    "description_view_1": "Left side view highlights the length of the chest cannon, the angular armor plating, and the profile of the shoulder-mounted equipment.",
+    "description_view_2": "Rear view reveals the back armor, additional mechanical details, and the symmetrical structure of the legs and arms.",
+    "description_view_3": "Right side view displays the extended cannon, side armor, and the arrangement of sensors and antennae on the upper body.",
+    "category": "humanoid robot",
+    "height": 3.2,
+    "max_dimension": 3.8,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "glass",
+        "rubber",
+        "air",
+        "copper"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.04,
+        0.03,
+        0.03,
+        0.02
+    ],
+    "mass": 2100,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 20586,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cannon",
+        "arms",
+        "legs",
+        "antennae",
+        "shoulder weapon mounts",
+        "sensor arrays"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "orange",
+        "silver"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.32,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is standing upright with both legs straight and slightly apart, arms relaxed at its sides, and the head facing forward. The torso is upright and symmetrical.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated armor panels and mechanical coverings with a utilitarian, military aesthetic.",
+    "attribute_facial_features": "The face is minimalistic, lacking traditional human features; instead, it has a compact armored head with sensor clusters, antennae, and no visible eyes, mouth, or nose.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints at the shoulders, elbows, hips, and knees, allowing for a wide range of motion. The limbs appear robust and rigid, designed for strength rather than flexibility.",
+    "attribute_presence_of_sensors": "Visible sensors include multiple camera-like devices and sensor pods on the head and shoulders, as well as antennae for communication.",
+    "uid": "e2661034e177407b9781dba917046598",
+    "near_synsets": {
+        "cyborg.n.01": 0.5367768850018968,
+        "android.n.01": 0.5368136283069842,
+        "robotics_equipment.n.01": 0.5525648876730915,
+        "automaton.n.02": 0.5665560045405356,
+        "man-at-arms.n.01": 0.575145292758836
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/e2661034e177407b9781dba917046598",
+        "creator_username": "EddyNL",
+        "creator_display_name": "EddyNL",
+        "creator_profile_url": "https://sketchfab.com/EddyNL"
+    },
+    "filename": "std_e2661034e177407b9781dba917046598.glb",
+    "length": 2.709304451942444,
+    "width": 1.464456856250763
+}

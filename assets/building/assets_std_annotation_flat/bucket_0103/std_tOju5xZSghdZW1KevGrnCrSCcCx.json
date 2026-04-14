@@ -1,0 +1,96 @@
+{
+    "description_long": "This object consists of four large, cylindrical yellow barrels arranged in a 2x2 grid on a wooden pallet. Each barrel has a slightly faceted, octagonal profile with two horizontal reinforcement bands and a small circular cap on the top surface. The barrels are opaque and have a matte finish, with a faint radioactive warning symbol visible on the side of two barrels. The wooden pallet beneath is constructed from light-colored planks with visible grain and two open slots for forklift access. The barrels appear to be made of metal, likely steel, and are designed for the storage or transport of hazardous materials. The overall appearance suggests industrial use, particularly for the containment of dangerous substances.",
+    "description": "Four yellow metal barrels with radioactive warning symbols are grouped on a wooden pallet, featuring reinforced bands and small top caps.",
+    "description_view_0": "Front view showing two barrels with a visible radioactive warning symbol and the wooden pallet base.",
+    "description_view_1": "Side view with all four barrels visible, no warning symbols apparent, and the pallet's slats and forklift slots clearly seen.",
+    "description_view_2": "Rear view of the barrels, no visible markings, showing the uniform yellow color and the structure of the pallet.",
+    "description_view_3": "Opposite side view with a radioactive warning symbol on the leftmost barrel and the pallet's structure visible.",
+    "category": "barrel or bucket",
+    "height": 1.0,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 220,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cap",
+        "barrel body",
+        "pallet"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.18,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "integrated metal reinforcement rings",
+    "attribute_labeling_or_markings": "radioactive warning symbol",
+    "attribute_placement_location": "industrial",
+    "uid": "tOju5xZSghdZW1KevGrnCrSCcCx",
+    "near_synsets": {
+        "barrels.n.01": 0.5311198881411685,
+        "barrel.n.02": 0.5421221137513413,
+        "barrel.n.03": 0.5612206203682361,
+        "barrel.n.05": 0.5661113826361649,
+        "beer_barrel.n.01": 0.5664513356789928,
+        "barrel.n.04": -1000.0,
+        "barrel.n.01": -1000.0,
+        "bucket.n.02": -1000.0,
+        "bucket.n.01": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/tOju5xZSghdZW1KevGrnCrSCcCx",
+        "creator_username": "brandonselvar",
+        "creator_display_name": "brandonselvar",
+        "creator_profile_url": "https://sketchfab.com/brandonselvar"
+    },
+    "filename": "std_tOju5xZSghdZW1KevGrnCrSCcCx.glb",
+    "length": 1.4085619449615479,
+    "width": 1.3902885913848877
+}

@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a classic hand grenade, specifically resembling the iconic 'pineapple' style fragmentation grenade. Its body is dark green with a textured, segmented surface designed to enhance grip and fragmentation upon detonation. The top features a metallic safety lever and a prominent pull ring attached to a pin, both rendered in a dark gray metal. A thin yellow band encircles the neck of the grenade, indicating a typical marking for live ordnance. The overall form is compact and ovoid, with a robust, utilitarian appearance. The materials and construction suggest it is designed for manual deployment in tactical or urban environments.",
+    "description": "A dark green, segmented hand grenade with a metal safety lever, pull ring, and a yellow neck band, designed for manual use.",
+    "description_view_0": "The grenade's side is visible, showing the pull ring, safety lever, and the yellow band around the neck.",
+    "description_view_1": "A direct top-down view of the grenade, highlighting the alignment of the safety lever and the pull ring.",
+    "description_view_2": "The opposite side of the grenade, with the safety lever and pull ring visible but less prominent than in view 0.",
+    "description_view_3": "A rear view showing the back of the grenade, with the yellow band and the segmented body clearly visible.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.07,
+    "materials": [
+        "steel",
+        "plastic",
+        "explosive_compound",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.1,
+        0.2,
+        0.05
+    ],
+    "mass": 0.4,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "throwable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "pin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "gray",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the safety pin and releasing the safety lever, which triggers an internal fuse mechanism.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "cc87b0bb449c470bb57dd019182e72b4",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.4418747760474109,
+        "grenade.n.01": 0.5017380932797544,
+        "rifle_grenade.n.01": 0.5313146851995787,
+        "pipe_bomb.n.01": 0.5476491565455892,
+        "bomb.n.01": 0.548402116879694,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cc87b0bb449c470bb57dd019182e72b4",
+        "creator_username": "bellarockt",
+        "creator_display_name": "BellaMoon",
+        "creator_profile_url": "https://sketchfab.com/bellarockt"
+    },
+    "filename": "std_cc87b0bb449c470bb57dd019182e72b4.glb",
+    "length": 0.09196911752223969,
+    "width": 0.09196531772613525
+}

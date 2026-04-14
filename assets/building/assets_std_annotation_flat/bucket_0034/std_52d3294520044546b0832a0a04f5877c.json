@@ -1,0 +1,91 @@
+{
+    "description_long": "This object is a large, cylindrical form with a continuous, panoramic painting of a forested landscape at sunset or sunrise. The exterior surface features a gradient sky transitioning from deep blue to warm orange and yellow hues, with scattered clouds and a low sun near the horizon. The lower portion of the cylinder is bordered by a silhouette of pine trees, creating a natural scene that wraps seamlessly around the object. The interior appears hollow, with the top open and the inside surface painted in a lighter blue, mimicking the sky. There are no visible wheels, windows, doors, or any vehicle-specific features such as lights, sirens, or signage. The object is smooth and glossy, resembling a decorative or artistic installation rather than a functional vehicle.",
+    "description": "A large, open-topped cylindrical object with a continuous painted forest landscape and sky, featuring a sunset or sunrise scene. The surface is smooth and glossy, with no visible vehicle features.",
+    "description_view_0": "This view shows a mostly blue sky with a single white cloud and the silhouette of pine trees at the base.",
+    "description_view_1": "This view reveals a vibrant orange and pink sky with several clouds, transitioning from the blue sky, and the forest silhouette below.",
+    "description_view_2": "This view centers on the bright sun low on the horizon, surrounded by orange and yellow clouds, with the forest silhouette at the bottom.",
+    "description_view_3": "This view displays a mix of blue and orange sky with dark clouds, continuing the forest silhouette around the base.",
+    "category": "ambulance",
+    "height": 1.2,
+    "max_dimension": 1.2,
+    "materials": [
+        "painted metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.15
+    ],
+    "mass": 35,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "containable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "blue",
+        "orange",
+        "yellow",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.4,
+        0.25,
+        0.15,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.1,
+    "surface_finish": "glossy",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_emergency_light_bar": false,
+    "attribute_ambulance_signage": "No ambulance-specific signage visible",
+    "attribute_medical_cross_symbol": false,
+    "attribute_siren": false,
+    "attribute_rear_compartment_doors": "none visible",
+    "uid": "52d3294520044546b0832a0a04f5877c",
+    "near_synsets": {
+        "ambulance.n.01": 0.49892883497591906,
+        "funny_wagon.n.01": 0.5569068374082002,
+        "landscape.n.02": 0.5831035362224124,
+        "cityscape.n.02": 0.5888641332650075,
+        "skyline.n.01": 0.5920103836379043
+    },
+    "synset": "ambulance.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/52d3294520044546b0832a0a04f5877c",
+        "creator_username": "Andywoodhead",
+        "creator_display_name": "Andy Woodhead",
+        "creator_profile_url": "https://sketchfab.com/Andywoodhead"
+    },
+    "filename": "std_52d3294520044546b0832a0a04f5877c.glb",
+    "length": 1.241682529449463,
+    "width": 1.2434663772583008
+}

@@ -1,0 +1,102 @@
+{
+    "description_long": "This object consists of three sedans in various states of decay and damage, arranged side by side. The leftmost sedan is heavily rusted, missing most of its body panels, and has large holes throughout its structure, exposing the interior. The middle sedan is also rusted and damaged, with shattered windows and a partially collapsed roof, but retains more of its original shape. The rightmost sedan is the least damaged, with a faded blue exterior, visible rust patches, and broken windows, but its body panels and doors are mostly intact. All three vehicles have significant weathering, with corroded metal surfaces and missing or broken components. The interiors are exposed, especially in the more deteriorated sedans, revealing empty or gutted cabins. These sedans evoke an abandoned, post-apocalyptic urban environment, with extensive signs of neglect and destruction.",
+    "description": "Three sedans in varying states of rust and decay, with broken windows and corroded metal, arranged side by side. The leftmost is almost skeletal, the middle is heavily damaged, and the rightmost retains a faded blue exterior.",
+    "description_view_0": "Top-down view showing the extent of rust, missing roofs, and shattered windows across all three sedans.",
+    "description_view_1": "Rear view highlighting the progression from a mostly intact blue sedan to two increasingly skeletal, rusted frames.",
+    "description_view_2": "Front view displaying the faded blue paint on the rightmost sedan and the exposed, damaged interiors of the other two.",
+    "description_view_3": "Back view emphasizing the hollowed-out, rusted shells of the left and middle sedans, with the blue sedan's rear still mostly intact.",
+    "category": "sedan",
+    "height": 1.5,
+    "max_dimension": 4.8,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.03,
+        0.07
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 7,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "pushable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "trunk",
+        "hood",
+        "steering wheel",
+        "seat",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "rust brown",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.25,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.9,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_number_of_doors": 4,
+    "attribute_license_plate": "none",
+    "attribute_wheel_design": "unknown",
+    "uid": "d25d934c35c44c8f86073a485d7e848c",
+    "near_synsets": {
+        "sedan.n.01": 0.560709851062592,
+        "car_window.n.01": 0.5718911301976003,
+        "used-car.n.01": 0.5871528339817138,
+        "car_door.n.01": 0.5889228012479963,
+        "disrepair.n.01": 0.5897322484193053,
+        "sedan.n.02": -1000.0
+    },
+    "synset": "sedan.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/d25d934c35c44c8f86073a485d7e848c",
+        "creator_username": "kryik1023",
+        "creator_display_name": "Renafox",
+        "creator_profile_url": "https://sketchfab.com/kryik1023"
+    },
+    "filename": "std_d25d934c35c44c8f86073a485d7e848c.glb",
+    "length": 4.8133225440979,
+    "width": 6.6871044635772705
+}

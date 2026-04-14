@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a modern semi-automatic firearm with a matte black finish, featuring a rectangular polymer frame and a detachable magazine. The barrel is extended and fitted with a cylindrical suppressor, giving the weapon a streamlined appearance. The magazine is shown removed from the grip, with several brass-colored cartridges visible nearby, indicating the firearm is in a disassembled or reloading state. The grip is textured for improved handling, and the slide has a metallic sheen, suggesting a steel construction. There are no visible external sights or optics mounted on the top of the slide. The overall design is compact and tactical, suitable for urban environments where concealment and maneuverability are important.",
+    "description": "A compact, black semi-automatic firearm with a suppressor, detachable magazine, and visible cartridges, designed for tactical use.",
+    "description_view_0": "Side view showing the full length of the firearm, suppressor, detached magazine, and two cartridges.",
+    "description_view_1": "Angled view highlighting the grip texture, open magazine well, and the alignment of the suppressor and barrel.",
+    "description_view_2": "Opposite side view displaying the metallic slide, suppressor, and the magazine with cartridges beside it.",
+    "description_view_3": "Rear angled view focusing on the back of the grip, the open magazine well, and the suppressor extending forward.",
+    "category": "rifle",
+    "height": 0.15,
+    "max_dimension": 0.35,
+    "materials": [
+        "polymer",
+        "steel",
+        "brass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "loadable",
+        "triggerable",
+        "reloadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "magazine",
+        "slide",
+        "suppressor",
+        "magazine release"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "brass"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_stock_type": "pistol grip",
+    "attribute_barrel_type": "integrally suppressed",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "none",
+    "attribute_muzzle_device": "suppressor",
+    "uid": "82348ee381b348f8b4a79ee63824411a",
+    "near_synsets": {
+        "assault_rifle.n.01": 0.4620070130817058,
+        "automatic_rifle.n.01": 0.47208583070366816,
+        "garand_rifle.n.01": 0.4863743292743503,
+        "sniper_rifle.n.01": 0.49945955050421026,
+        "carbine.n.01": 0.501682618321777,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/82348ee381b348f8b4a79ee63824411a",
+        "creator_username": "klopikc",
+        "creator_display_name": "Pavluha",
+        "creator_profile_url": "https://sketchfab.com/klopikc"
+    },
+    "filename": "std_82348ee381b348f8b4a79ee63824411a.glb",
+    "length": 0.7241004705429077,
+    "width": 1.566406011581421
+}

@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a rustic wooden cabin with a partially collapsed gable roof, exposing the rafters and interior structure. The exterior walls are constructed from horizontal wooden planks, and the roof appears to be made of wooden shingles, many of which are missing or damaged. The front facade features a small covered porch supported by thin posts, with a single door and a couple of small windows. Scattered around the cabin are various objects, including a wooden crate, a wheelbarrow, and some debris, suggesting a state of disrepair or abandonment. The windows are small and rectangular, asymmetrically placed, and the door is centrally located on the front side. The overall appearance is weathered, with muted brown and beige tones dominating the structure.",
+    "description": "A weathered wooden cabin with a damaged gable roof, small porch, and scattered debris, featuring muted brown tones and rustic details.",
+    "description_view_0": "Front view showing the porch, central door, two small windows, and debris including a crate and wheelbarrow.",
+    "description_view_1": "Side view highlighting the gable roof's exposed rafters, the porch's depth, and the arrangement of exterior objects.",
+    "description_view_2": "Rear view displaying the back wall with no visible doors or windows, emphasizing the roof's damaged state.",
+    "description_view_3": "Opposite side view showing the gable end, roof structure, and exterior objects from a different angle.",
+    "category": "cabin",
+    "height": 3.2,
+    "max_dimension": 8.0,
+    "materials": [
+        "wood",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.07
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "porch",
+        "roof"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gable roof with significant damage and exposed rafters, constructed from wooden shingles",
+    "attribute_window_arrangement": "Two small, rectangular windows asymmetrically placed on the front facade, with no visible windows on the sides or rear",
+    "attribute_door_placement": "Single exterior door centered on the front facade, opening onto the porch",
+    "attribute_porch_presence": true,
+    "attribute_architectural_style": "rustic",
+    "uid": "16e66de565dc46bd895047b6cf33dbcc",
+    "near_synsets": {
+        "cabin.n.02": 0.47267260970246416,
+        "log_cabin.n.01": 0.4942167413689786,
+        "gazebo.n.01": 0.5448739481001268,
+        "farmhouse.n.01": 0.545974041380222,
+        "cottage_tent.n.01": 0.5518119483611115,
+        "cabin.n.01": -1000.0,
+        "cabin.n.03": -1000.0
+    },
+    "synset": "cabin.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/16e66de565dc46bd895047b6cf33dbcc",
+        "creator_username": "zubastka",
+        "creator_display_name": "Zubastka",
+        "creator_profile_url": "https://sketchfab.com/zubastka"
+    },
+    "filename": "std_16e66de565dc46bd895047b6cf33dbcc.glb",
+    "length": 17.450775146484375,
+    "width": 17.45077133178711
+}

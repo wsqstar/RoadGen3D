@@ -1,0 +1,91 @@
+{
+    "description_long": "This is a modern, minimalist tent structure featuring a star-shaped canopy supported by four vertical poles at each corner. The canopy is made from a taut, light-colored fabric that stretches between the poles, creating a peaked center and gently sloping triangular sections. The design is open on all sides, providing shade and shelter while allowing for easy access from any direction. The poles appear to be made of metal, likely aluminum or steel, offering stability and durability. The tent lacks any visible doors, windows, or additional coverings, emphasizing its function as a simple sunshade or event shelter. Its clean lines and geometric form make it suitable for parks, plazas, or outdoor gatherings in urban environments.",
+    "description": "A star-shaped canopy tent with four metal poles and a taut, light-colored fabric cover, open on all sides. Designed for shade and shelter in urban outdoor settings.",
+    "description_view_0": "The tent is seen from above, highlighting the star-shaped canopy and the symmetrical arrangement of the four supporting poles.",
+    "description_view_1": "Viewed from the side, the tent's peaked center and sloping fabric panels are visible, with all four poles supporting the structure.",
+    "description_view_2": "This angle shows the tent's open sides and the tensioned fabric stretching between the poles, emphasizing the geometric design.",
+    "description_view_3": "From this perspective, the tent's open, accessible layout and the uniform height of the poles are apparent.",
+    "category": "tent",
+    "height": 2.5,
+    "max_dimension": 4.5,
+    "materials": [
+        "fabric",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "mass": 35,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "provides_shelter",
+        "shadeable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "poles",
+        "canopy fabric"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 700,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "Open-sided; accessible from all directions with no doors or flaps.",
+    "attribute_number_of_poles": 4,
+    "attribute_guy_line_configuration": "No visible guy lines; canopy is tensioned directly between the four corner poles.",
+    "attribute_ventilation_openings": [],
+    "attribute_branding_or_logo": "none",
+    "uid": "c10b6019e8c540998336843dee95872b",
+    "near_synsets": {
+        "umbrella_tent.n.01": 0.436027025879017,
+        "wall_tent.n.01": 0.4588641818602414,
+        "tent.n.01": 0.46323691578621584,
+        "field_tent.n.01": 0.46643605260270177,
+        "canvas_tent.n.01": 0.46986315585805366,
+        "tent.n.02": -1000.0
+    },
+    "synset": "tent.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c10b6019e8c540998336843dee95872b",
+        "creator_username": "raxtrox",
+        "creator_display_name": "raxtrox",
+        "creator_profile_url": "https://sketchfab.com/raxtrox"
+    },
+    "filename": "std_c10b6019e8c540998336843dee95872b.glb",
+    "length": 3.325687050819397,
+    "width": 4.72672700881958
+}

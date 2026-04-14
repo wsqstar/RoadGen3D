@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a large, tracked combat vehicle resembling a World War II-era tank, featuring a long, prominent main cannon mounted on a rotating turret. The hull is angular and robust, with thick armor plating covering the front, sides, and turret, and visible hatches and access panels on the upper surfaces. The tracks are wide and supported by multiple large road wheels, providing stability and traction over rough terrain. The exterior is painted in a desert camouflage pattern with irregular brown and tan patches, and there are visible signs of weathering and wear. The turret includes a commander's cupola and additional vision ports, while the rear of the vehicle shows exhaust outlets and storage compartments. No visible military insignia or unit markings are present, and the vehicle is designed for heavy combat roles in urban or open environments.",
+    "description": "A heavily armored, tracked combat vehicle with a long cannon, desert camouflage, and robust hull and turret. Features wide tracks, multiple road wheels, and weathered exterior details.",
+    "description_view_0": "Front view shows the thick frontal armor, main cannon barrel, and the wide tracks flanking the hull.",
+    "description_view_1": "Left side view highlights the full length of the cannon, the turret's angular shape, and the detailed track and wheel assembly.",
+    "description_view_2": "Rear view displays the back armor, exhaust outlets, and upper hatches, with the turret and cannon extending forward.",
+    "description_view_3": "Right side view mirrors the left, showing the cannon, turret, and track system, with visible weathering on the hull.",
+    "category": "combat tactical  vehicle",
+    "height": 3.0,
+    "max_dimension": 9.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 48000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "closable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "track",
+        "wheel",
+        "vision port",
+        "exhaust outlet"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted on the turret; no other visible weapon mounts or hardpoints.",
+    "attribute_armor_plating": "Full body armor plating with significant thickness, especially at the front and turret; features sloped and angular surfaces for deflection.",
+    "attribute_camouflage_pattern": "Desert camouflage with irregular tan and brown patches in a blotchy, weathered style.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "fdcb0a51f6ea44e9a3ad66029b1716a2",
+    "near_synsets": {
+        "tank.n.01": 0.4693411145736842,
+        "military_vehicle.n.01": 0.48587469518237597,
+        "reconnaissance_vehicle.n.01": 0.4967936489382214,
+        "armored_car.n.02": 0.4978374507003944,
+        "assault_gun.n.02": 0.5120829904354819,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fdcb0a51f6ea44e9a3ad66029b1716a2",
+        "creator_username": "aviatorsatisfaction",
+        "creator_display_name": "exellent_WG",
+        "creator_profile_url": "https://sketchfab.com/aviatorsatisfaction"
+    },
+    "filename": "std_fdcb0a51f6ea44e9a3ad66029b1716a2.glb",
+    "length": 10.495714664459229,
+    "width": 3.319232940673828
+}

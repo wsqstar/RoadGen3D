@@ -1,0 +1,94 @@
+{
+    "description_long": "This is a fixed, elevated platform ladder with a short flight of steps leading up to a small landing area, commonly seen in urban or industrial environments. The structure features a set of evenly spaced rectangular rungs, supported by robust side rails and vertical posts. The landing area is bordered by a sturdy handrail on two sides, providing additional safety for users. The ladder appears to be constructed primarily from painted or coated metal, giving it a uniform, muted brownish-gray color. The design is utilitarian, with open space beneath the platform and no visible anti-slip features on the steps. This type of ladder is typically used for accessing raised platforms, loading docks, or maintenance areas in public or commercial settings.",
+    "description": "A fixed metal platform ladder with handrails, rectangular rungs, and a small landing area, finished in a muted brownish-gray color. Designed for safe access to elevated urban or industrial platforms.",
+    "description_view_0": "Angled view showing the full length of the ladder, the handrails, and the platform with its surrounding guardrail.",
+    "description_view_1": "Side view highlighting the thickness of the platform, the vertical posts, and the alignment of the rungs beneath.",
+    "description_view_2": "Rear view displaying the open underside of the platform, the supporting posts, and the full run of the steps.",
+    "description_view_3": "Direct side view focusing on the straight alignment of the rungs and the side profile of the handrail and platform.",
+    "category": "ladder",
+    "height": 1.5,
+    "max_dimension": 2.2,
+    "materials": [
+        "painted steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "climbable",
+        "graspable",
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handrail",
+        "steps",
+        "platform"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rungs": 8,
+    "attribute_rung_spacing": 0.18,
+    "attribute_side_rail_profile": "rectangular painted steel",
+    "attribute_mounting_position": "fixed wall-mounted",
+    "attribute_presence_of_safety_features": [
+        "handrails",
+        "guardrail"
+    ],
+    "uid": "0370471a1fed4e85b094fd74aab42983",
+    "near_synsets": {
+        "ladder.n.01": 0.49314808920716563,
+        "extension_ladder.n.01": 0.5234506189609226,
+        "step_ladder.n.01": 0.5273490427333924,
+        "articulated_ladder.n.01": 0.5382316976166814,
+        "landing.n.01": 0.5408849303074899,
+        "ladder.n.02": -1000.0,
+        "run.n.13": -1000.0
+    },
+    "synset": "ladder.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0370471a1fed4e85b094fd74aab42983",
+        "creator_username": "sam_ogon",
+        "creator_display_name": "sam_ogon",
+        "creator_profile_url": "https://sketchfab.com/sam_ogon"
+    },
+    "filename": "std_0370471a1fed4e85b094fd74aab42983.glb",
+    "length": 0.3703988790512085,
+    "width": 1.3274359107017517
+}

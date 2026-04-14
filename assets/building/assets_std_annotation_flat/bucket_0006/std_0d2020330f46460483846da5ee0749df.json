@@ -1,0 +1,97 @@
+{
+    "description_long": "This vending machine features a rectangular, upright form with a robust, industrial appearance, predominantly finished in matte black. The front face includes a large, recessed display panel occupying the upper half, with a smaller rectangular slot and a protruding payment interface below. The sides are plain and unadorned, with subtle panel lines and a hinge visible on one side, suggesting a door mechanism for maintenance or restocking. The back is featureless, emphasizing the utilitarian design. The machine's overall construction appears to be primarily metal, with some plastic components for the interface and retrieval slot. Its design is typical for urban environments, offering secure, weather-resistant access to products.",
+    "description": "A matte black, rectangular vending machine with a large front display panel, payment interface, and product retrieval slot, designed for urban use.",
+    "description_view_0": "Side view showing a plain, solid panel with a visible hinge, indicating the door's location.",
+    "description_view_1": "Front view displaying a large upper display panel, a payment interface, and a product retrieval slot below.",
+    "description_view_2": "Opposite side view, plain and featureless, with no visible interactive elements.",
+    "description_view_3": "Rear view, completely flat and unadorned, emphasizing the machine's boxy structure.",
+    "category": "vending machine",
+    "height": 1.7,
+    "max_dimension": 0.8,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 120,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "pressable",
+        "closable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "button",
+        "payment slot",
+        "retrieval slot"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A large, square display panel is located on the upper front, occupying most of the top half; it appears dark and unlit, with no visible content.",
+    "attribute_payment_interface": "A small, rectangular payment interface is present on the lower right front, likely for coins or bills, but no card reader or contactless terminal is visible.",
+    "attribute_product_selection_buttons": "None.",
+    "attribute_product_retrieval_slot": "A rectangular retrieval slot is located on the lower left front, slightly recessed, with no visible flap or door.",
+    "attribute_branding_or_signage": "None.",
+    "uid": "0d2020330f46460483846da5ee0749df",
+    "near_synsets": {
+        "vending_machine.n.01": 0.43176002589249035,
+        "automat.n.01": 0.48063730753529604,
+        "coin_box.n.01": 0.5496388512345773,
+        "slot_machine.n.01": 0.5503966277780101,
+        "automat.n.02": 0.5523131230158518,
+        "machine.n.04": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.02": -1000.0,
+        "machine.n.05": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.01": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0d2020330f46460483846da5ee0749df",
+        "creator_username": "carlosbarrera_10",
+        "creator_display_name": "carlosbarrera_10",
+        "creator_profile_url": "https://sketchfab.com/carlosbarrera_10"
+    },
+    "filename": "std_0d2020330f46460483846da5ee0749df.glb",
+    "length": 0.7205169796943665,
+    "width": 0.9253557026386261
+}

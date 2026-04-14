@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a classic British police telephone box, most famously known as the TARDIS from Doctor Who. It is a tall, rectangular structure painted in a deep blue color, with a flat roof and a small cylindrical light fixture on top. The front features a prominent sign reading 'POLICE PUBLIC CALL BOX' above two sets of paned windows, and a white instruction panel below the left window. The sides and back are similarly paneled, with windows on each face, but only the front has the signage and instruction panel. The structure appears to be made primarily of wood or metal, with glass window panes and painted surfaces. The booth is large enough for a person to enter and stand inside, and is designed to be placed on sidewalks or street corners in urban environments.",
+    "description": "A tall, blue British police telephone box with paned windows, a flat roof, and prominent 'POLICE PUBLIC CALL BOX' signage. The front features a white instruction panel and a small light fixture on top.",
+    "description_view_0": "Front view showing the 'POLICE PUBLIC CALL BOX' sign, two paned windows, and a white instruction panel below the left window.",
+    "description_view_1": "Side view with the 'POLICE PUBLIC CALL BOX' sign and two paned windows, but no instruction panel visible.",
+    "description_view_2": "Rear view with two paned windows and no signage or instruction panel.",
+    "description_view_3": "Opposite side view with the 'POLICE PUBLIC CALL BOX' sign and two paned windows, similar to view 1, but no instruction panel.",
+    "category": "telephone booth",
+    "height": 2.5,
+    "max_dimension": 2.5,
+    "materials": [
+        "wood",
+        "glass",
+        "metal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 350,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "windows",
+        "signage panel",
+        "light fixture"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 10000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_enclosure_type": "fully enclosed",
+    "attribute_door_presence": true,
+    "attribute_window_configuration": "two rectangular paned windows on each side",
+    "attribute_signage_or_labeling": "White 'POLICE PUBLIC CALL BOX' sign above the windows on each side; white instruction panel on the front below the left window",
+    "attribute_handset_visibility": false,
+    "uid": "57e44d268c42403ab0f1f6bce7e7538e",
+    "near_synsets": {
+        "telephone_booth.n.01": 0.4749593894409851,
+        "telephone_pole.n.01": 0.5500578788891131,
+        "signal_box.n.01": 0.5543065908844618,
+        "pillar_box.n.01": 0.5613224469170416,
+        "postbox.n.01": 0.5711111716160442,
+        "booth.n.01": -1000.0,
+        "telephone.n.02": -1000.0,
+        "telephone.n.01": -1000.0,
+        "booth.n.02": -1000.0,
+        "booth.n.04": -1000.0,
+        "booth.n.03": -1000.0
+    },
+    "synset": "telephone_booth.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/57e44d268c42403ab0f1f6bce7e7538e",
+        "creator_username": "Jenna-W",
+        "creator_display_name": "Jenna Ward",
+        "creator_profile_url": "https://sketchfab.com/Jenna-W"
+    },
+    "filename": "std_57e44d268c42403ab0f1f6bce7e7538e.glb",
+    "length": 1.1935662031173706,
+    "width": 1.224511981010437
+}

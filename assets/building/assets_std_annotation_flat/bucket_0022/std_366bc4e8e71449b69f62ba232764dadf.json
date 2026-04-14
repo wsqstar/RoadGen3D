@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a stylized, compact military airplane with a green fuselage and prominent blue-tinted canopy, reminiscent of World War II fighter aircraft. The wings are short and straight, each bearing a white star insignia on a blue circle, typical of U.S. military markings. The nose features a black propeller and visible exhaust pipes, while the landing gear is fixed and robust, with two main wheels and a small tail wheel. The tail section is conventional, with a single vertical stabilizer and horizontal stabilizers, all painted in matching green with black tips. The cockpit is enclosed with a bubble canopy, positioned centrally on the fuselage, and the overall design is cartoonish with exaggerated proportions. The surface appears metallic with some matte and glossy highlights, and the airplane is detailed with panel lines and rivets.",
+    "description": "A stylized green military airplane with a blue-tinted bubble canopy, short straight wings, and U.S. star insignia. Features a black propeller, visible exhausts, and a conventional tail with fixed landing gear.",
+    "description_view_0": "Front view showing the black propeller, twin exhausts, bubble canopy, and symmetrical wing layout with star insignia.",
+    "description_view_1": "Left side view highlighting the cockpit canopy, side exhausts, wing insignia, and fixed landing gear.",
+    "description_view_2": "Rear view displaying the tail section, horizontal and vertical stabilizers, and the back of the canopy.",
+    "description_view_3": "Right side view showing the propeller, cockpit, exhausts, and wing insignia, mirroring the left side.",
+    "category": "airplane",
+    "height": 1.2,
+    "max_dimension": 3.5,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.06,
+        0.04,
+        0.02
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 9500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "cockpit canopy",
+        "landing gear",
+        "wheels",
+        "exhaust pipes",
+        "control stick"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "blue",
+        "black",
+        "white",
+        "yellow",
+        "brown"
+    ],
+    "colors_composition": [
+        0.65,
+        0.12,
+        0.1,
+        0.07,
+        0.04,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, straight wings with no visible dihedral or anhedral angle, no winglets.",
+    "attribute_engine_type": "Single nose-mounted piston engine with visible propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Fixed taildragger landing gear with two main wheels and one tail wheel.",
+    "attribute_cockpit_placement": "Mid-fuselage, enclosed single-seat cockpit with a blue-tinted bubble canopy.",
+    "uid": "366bc4e8e71449b69f62ba232764dadf",
+    "near_synsets": {
+        "aircraft.n.01": 0.5106772699626992,
+        "airplane.n.01": 0.5241363400809563,
+        "wings.n.02": 0.5246473896660642,
+        "propeller_plane.n.01": 0.5427949295257428,
+        "propjet.n.01": 0.5444551042800853
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/366bc4e8e71449b69f62ba232764dadf",
+        "creator_username": "nlsinh",
+        "creator_display_name": "Sinh Nguy\u1ec5n",
+        "creator_profile_url": "https://sketchfab.com/nlsinh"
+    },
+    "filename": "std_366bc4e8e71449b69f62ba232764dadf.glb",
+    "length": 2.413926839828491,
+    "width": 2.7968831062316895
+}

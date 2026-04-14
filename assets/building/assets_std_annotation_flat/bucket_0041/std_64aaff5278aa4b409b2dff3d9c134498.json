@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a small, stylized pond set within a rectangular patch of deep blue water, surrounded by numerous green lily pads scattered across the surface. At one end of the pond, a cluster of tall, slender cattails rises vertically, their brown seed heads contrasting with the green stems. A large, white water lily flower with layered petals sits atop a prominent lily pad, serving as a focal point. The pond's edge is defined by the water's boundary, with no visible artificial border, giving it a naturalistic appearance. The scene is tranquil and decorative, evoking a peaceful park or garden setting. The overall composition suggests a carefully maintained urban water feature, ideal for public spaces.",
+    "description": "A decorative pond with blue water, green lily pads, tall cattails, and a large white water lily flower. The scene is naturalistic and tranquil, suitable for parks or gardens.",
+    "description_view_0": "Front view showing the white water lily flower, surrounding lily pads, and a dense row of cattails behind the flower.",
+    "description_view_1": "Side view highlighting the vertical alignment of the cattails and the spatial separation between the flower and the reeds.",
+    "description_view_2": "Rear view with the water lily flower in the foreground and the cattails spread out in the background.",
+    "description_view_3": "Opposite side view showing the cattails from the other side and the water lily flower positioned further away.",
+    "category": "pond",
+    "height": 0.5,
+    "max_dimension": 2.0,
+    "materials": [
+        "water",
+        "plant_matter",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "viewable",
+        "decorative"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "lily_pad",
+        "water_lily_flower",
+        "cattails"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "green",
+        "white",
+        "brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "soft",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.33,
+    "youngs_modulus": 0.002,
+    "friction_coefficient": 0.1,
+    "bounciness": 0.0,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "scene",
+    "attribute_water_presence": true,
+    "attribute_surrounding_vegetation": [
+        "cattails",
+        "lily pads",
+        "water lily flower"
+    ],
+    "attribute_edge_treatment": "The pond has a natural edge with no visible artificial border, blending seamlessly into the surrounding water surface and vegetation.",
+    "attribute_reflections": false,
+    "attribute_wildlife_activity": [],
+    "uid": "64aaff5278aa4b409b2dff3d9c134498",
+    "near_synsets": {
+        "lily_pad.n.01": 0.469668867499219,
+        "fishpond.n.01": 0.50489646316442,
+        "spatterdock.n.01": 0.5249272515368475,
+        "flower_garden.n.01": 0.542849739001223,
+        "watercress.n.02": 0.5450517963915521,
+        "pond.n.01": -1000.0
+    },
+    "synset": "pond.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/64aaff5278aa4b409b2dff3d9c134498",
+        "creator_username": "TheRealMudkippz",
+        "creator_display_name": "LeoB",
+        "creator_profile_url": "https://sketchfab.com/TheRealMudkippz"
+    },
+    "filename": "std_64aaff5278aa4b409b2dff3d9c134498.glb",
+    "length": 1.8430871963500977,
+    "width": 1.8430865406990051
+}

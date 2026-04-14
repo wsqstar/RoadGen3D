@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a robust, rectangular vending machine with a brushed dark metallic exterior and a prominent front-facing interface. The upper section features two labeled slots: one for receipts and one for coins, with a central area for bill insertion and a clear list of accepted denominations ($1, $5, $10, and $20 bills). Below the payment area, the word 'TOKENS' is boldly displayed in green, indicating the machine dispenses tokens. At the bottom, a rounded retrieval slot is visible, likely where tokens are dispensed. The sides and back are plain, with no visible openings or features, emphasizing the machine's utilitarian design. The overall appearance suggests durability and suitability for high-traffic urban environments such as arcades, laundromats, or public transit stations.",
+    "description": "A sturdy, dark metallic vending machine with labeled payment slots, a green 'TOKENS' sign, and a token retrieval slot at the bottom front.",
+    "description_view_0": "Front view showing labeled receipt and coin slots, bill acceptor, green 'TOKENS' signage, and a rounded token retrieval slot at the bottom.",
+    "description_view_1": "Left side view displaying a flat, featureless metallic surface with the token retrieval slot protruding slightly at the bottom.",
+    "description_view_2": "Rear view showing a plain, unadorned metallic back with no visible openings or features.",
+    "description_view_3": "Right side view similar to the left, with a flat metallic surface and the token retrieval slot visible at the bottom.",
+    "category": "vending machine",
+    "height": 1.5,
+    "max_dimension": 0.7,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "paper",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.01,
+        0.04
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "insertable",
+        "retrievable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "coin slot",
+        "bill acceptor",
+        "receipt slot",
+        "token retrieval slot"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "green",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A rectangular printed instruction panel is located on the upper front, displaying accepted bill denominations and usage instructions in white text.",
+    "attribute_payment_interface": "The payment interface includes a coin slot and a bill acceptor, both located on the upper front, with clear labeling for each; no card reader or contactless terminal is visible.",
+    "attribute_product_selection_buttons": "none",
+    "attribute_product_retrieval_slot": "A rounded, protruding slot at the bottom front serves as the token retrieval area.",
+    "attribute_branding_or_signage": "The word 'TOKENS' is prominently displayed in large green letters on the front, with additional white text above the payment area indicating accepted bills and usage instructions.",
+    "uid": "f48c13d90d7a4ddb95ec84066db55e8c",
+    "near_synsets": {
+        "vending_machine.n.01": 0.464610428232444,
+        "token.n.03": 0.4981492129838619,
+        "coin_slot.n.01": 0.5146669560801773,
+        "automat.n.01": 0.5152633786189064,
+        "coin_box.n.01": 0.5263319869357873,
+        "machine.n.03": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.05": -1000.0,
+        "machine.n.02": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.01": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f48c13d90d7a4ddb95ec84066db55e8c",
+        "creator_username": "chin4grci4",
+        "creator_display_name": "House Doctor",
+        "creator_profile_url": "https://sketchfab.com/chin4grci4"
+    },
+    "filename": "std_f48c13d90d7a4ddb95ec84066db55e8c.glb",
+    "length": 0.6683378517627716,
+    "width": 0.9188324511051178
+}

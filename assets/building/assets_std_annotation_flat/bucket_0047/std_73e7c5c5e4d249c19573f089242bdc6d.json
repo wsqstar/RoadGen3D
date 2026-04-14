@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a firearm with a classic design, featuring a long, cylindrical barrel and a wooden stock and foregrip. The receiver and barrel are constructed from dark metal, with the barrel extending forward in a straight line and ending in a simple muzzle. The wooden stock is robust and smoothly contoured, providing a comfortable shoulder rest, while the foregrip is also wooden and matches the stock in color and finish. The trigger assembly is housed within a metal guard, and a box magazine is visible beneath the receiver. The overall appearance is reminiscent of early to mid-20th century submachine guns, with a blend of wood and metal materials and a utilitarian, rugged aesthetic.",
+    "description": "A classic firearm with a long metal barrel, wooden stock, and foregrip, featuring a box magazine and a robust, utilitarian design.",
+    "description_view_0": "The object is seen from the front, showing the narrow profile of the barrel and the alignment of the stock and foregrip.",
+    "description_view_1": "The left side view reveals the full length of the barrel, the wooden stock, foregrip, and the box magazine beneath the receiver.",
+    "description_view_2": "The rear view highlights the width of the wooden stock and the alignment of the barrel, with the trigger guard and magazine barely visible.",
+    "description_view_3": "The right side view mirrors the left, showing the barrel, stock, foregrip, and magazine, with clear visibility of the trigger guard.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.85,
+    "materials": [
+        "steel",
+        "wood",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.35,
+        0.03,
+        0.02
+    ],
+    "mass": 4.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 45,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "graspable",
+        "triggerable",
+        "loadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "foregrip",
+        "barrel",
+        "trigger",
+        "trigger guard",
+        "magazine",
+        "safety switch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.65,
+        0.35
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, long and cylindrical with no visible ribbing or venting",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "semi-automatic",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized metal guard with no visible finger grooves or reinforcement",
+    "uid": "73e7c5c5e4d249c19573f089242bdc6d",
+    "near_synsets": {
+        "shotgun.n.01": 0.47629245008254545,
+        "gun.n.01": 0.48911502212703545,
+        "sawed-off_shotgun.n.01": 0.49948621559149853,
+        "stock.n.03": 0.5033291597849021,
+        "firearm.n.01": 0.5052478814776936
+    },
+    "synset": "sawed-off_shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/73e7c5c5e4d249c19573f089242bdc6d",
+        "creator_username": "doctor10",
+        "creator_display_name": "Admiral Tributon",
+        "creator_profile_url": "https://sketchfab.com/doctor10"
+    },
+    "filename": "std_73e7c5c5e4d249c19573f089242bdc6d.glb",
+    "length": 0.571880429983139,
+    "width": 0.03173055499792099
+}

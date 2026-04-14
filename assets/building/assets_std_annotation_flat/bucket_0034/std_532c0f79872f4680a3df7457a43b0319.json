@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a classic wooden barrel with a cylindrical, bulging body constructed from vertical wooden staves. The staves are tightly bound by four prominent black metal hoops, which reinforce the structure and provide durability. The top and bottom surfaces are flat and appear to be made of the same wood as the body, with the top covered by a fitted wooden lid secured by a metal rim. The wood grain is visible, giving the barrel a rustic and natural appearance, while the metal bands show slight texturing and rivets for added realism. One side of the barrel features a small wooden bung, suggesting it can be used for storing or dispensing liquids. The overall finish is matte, with the wood showing moderate roughness and the metal bands having a slightly smoother, semi-glossy look.",
+    "description": "A wooden barrel with black metal hoops, visible wood grain, and a fitted lid, featuring a small bung on one side. The barrel has a rustic, reinforced appearance suitable for storage or transport.",
+    "description_view_0": "The barrel is shown with its wood grain and metal hoops clearly visible, with the top lid and metal rim in full view.",
+    "description_view_1": "This view highlights the curvature of the barrel and the even spacing of the metal hoops, with no bung visible.",
+    "description_view_2": "The barrel's side with a small wooden bung is visible, indicating a functional opening for dispensing contents.",
+    "description_view_3": "The opposite side of the barrel is shown, with uninterrupted wood staves and metal hoops, no bung present.",
+    "category": "barrel or bucket",
+    "height": 0.9,
+    "max_dimension": 0.7,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "mass": 35,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "bung"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "metal hoops",
+    "attribute_labeling_or_markings": "none",
+    "attribute_placement_location": "outdoor",
+    "uid": "532c0f79872f4680a3df7457a43b0319",
+    "near_synsets": {
+        "barrel.n.02": 0.4457741100350522,
+        "barrel.n.03": 0.45058101202465284,
+        "beer_barrel.n.01": 0.47636737808338625,
+        "barrel.n.05": 0.48684693445166016,
+        "barrel.n.04": 0.487782939269611,
+        "bucket.n.02": -1000.0,
+        "barrel.n.01": -1000.0,
+        "bucket.n.01": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/532c0f79872f4680a3df7457a43b0319",
+        "creator_username": "LoganPomper",
+        "creator_display_name": "LoganPomper",
+        "creator_profile_url": "https://sketchfab.com/LoganPomper"
+    },
+    "filename": "std_532c0f79872f4680a3df7457a43b0319.glb",
+    "length": 0.8115274310112,
+    "width": 0.810474693775177
+}

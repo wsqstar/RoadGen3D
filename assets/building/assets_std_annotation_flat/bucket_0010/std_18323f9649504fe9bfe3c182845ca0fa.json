@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a modern electric locomotive with a streamlined, rectangular body and a dark blue and black color scheme. The train features two pantographs on the roof for overhead electric power collection, and a series of large, rectangular windows run along both sides of the carriage. The undercarriage is detailed with visible wheels, suspension, and mechanical components, while the sides display angular, geometric patterns. The front and rear ends are flat with headlights and coupling mechanisms, and there are no visible doors on the sides, suggesting access may be from the ends. The overall design is robust and functional, suitable for urban or intercity rail transport.",
+    "description": "A modern electric locomotive with a dark blue and black body, large side windows, and roof-mounted pantographs for overhead power. The train has a streamlined, rectangular shape with detailed undercarriage and geometric side patterns.",
+    "description_view_0": "Side view showing the full length of the locomotive, large rectangular windows, geometric side patterns, and both pantographs on the roof.",
+    "description_view_1": "Front view displaying the flat face of the locomotive, headlights, coupling mechanism, and roof-mounted pantograph details.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the full length, windows, and roof details from the other side.",
+    "description_view_3": "Rear view with a flat end, visible coupling, and roof equipment, mirroring the front but without headlights.",
+    "category": "train",
+    "height": 4.2,
+    "max_dimension": 19.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.82,
+        0.08,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 85000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pantograph",
+        "door",
+        "window",
+        "headlight",
+        "coupling"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark blue",
+        "black",
+        "gray",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_train_type": "electric locomotive",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end",
+    "attribute_window_arrangement": "continuous row of rectangular windows",
+    "uid": "18323f9649504fe9bfe3c182845ca0fa",
+    "near_synsets": {
+        "electric_locomotive.n.01": 0.4651425860473234,
+        "train.n.01": 0.479104531721842,
+        "diesel-electric_locomotive.n.01": 0.49230954316843617,
+        "locomotive.n.01": 0.4924245660150718,
+        "steam_locomotive.n.01": 0.4932333298349963,
+        "train.n.04": -1000.0,
+        "gearing.n.01": -1000.0,
+        "train.n.05": -1000.0,
+        "caravan.n.01": -1000.0,
+        "string.n.04": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/18323f9649504fe9bfe3c182845ca0fa",
+        "creator_username": "chinarailstory",
+        "creator_display_name": "chinarailstory",
+        "creator_profile_url": "https://sketchfab.com/chinarailstory"
+    },
+    "filename": "std_18323f9649504fe9bfe3c182845ca0fa.glb",
+    "length": 19.899174690246582,
+    "width": 2.9289146661758423
+}

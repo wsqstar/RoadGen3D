@@ -1,0 +1,96 @@
+{
+    "description_long": "This object consists of a set of five tall, slender columns arranged on a rectangular stone-tiled base, resembling the ruins of a classical structure. The columns are topped with green, blocky capitals, some of which are slightly askew, suggesting age or disrepair. Two columns have fallen and lie across the base, adding to the impression of an ancient, partially collapsed kiosk. The base is composed of a cobblestone pattern, giving the scene a historic, archaeological feel. There are no visible walls, windows, or doors, and the structure is open on all sides. The overall appearance is reminiscent of Greco-Roman ruins, with a focus on vertical elements and open space.",
+    "description": "A kiosk-like structure made of five tall stone columns with green capitals, some toppled, set on a cobblestone base, evoking ancient ruins. The open design and scattered columns suggest a historic, archaeological site.",
+    "description_view_0": "Front view showing five columns, two of which are toppled on the cobblestone base, with green capitals visible on the standing columns.",
+    "description_view_1": "Side view highlighting the open space between the columns and the fallen columns lying across the base.",
+    "description_view_2": "Rear view displaying the alignment of the columns and the scattered arrangement of the toppled pieces.",
+    "description_view_3": "Opposite side view emphasizing the open structure and the placement of the fallen columns on the cobblestone base.",
+    "category": "kiosk",
+    "height": 2.5,
+    "max_dimension": 3.0,
+    "materials": [
+        "stone",
+        "concrete",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "leanable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "column",
+        "base"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "white",
+        "gray",
+        "green"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_signage_type": "none",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "none",
+    "attribute_roof_design": "none; open to the sky with only column tops visible",
+    "attribute_architectural_style": "classical ruin, Greco-Roman influence",
+    "uid": "30d2706271a945eca29b1a7647d8516f",
+    "near_synsets": {
+        "acropolis.n.01": 0.5473016661892189,
+        "minaret.n.01": 0.5597043777476133,
+        "obelisk.n.01": 0.5623697392225654,
+        "abacus.n.01": 0.5630261873838542,
+        "arcade.n.02": 0.5635882845584713,
+        "booth.n.02": -1000.0
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/30d2706271a945eca29b1a7647d8516f",
+        "creator_username": "blackwind191121",
+        "creator_display_name": "blackwind191121",
+        "creator_profile_url": "https://sketchfab.com/blackwind191121"
+    },
+    "filename": "std_30d2706271a945eca29b1a7647d8516f.glb",
+    "length": 506.73199141025543,
+    "width": 541.669921875
+}

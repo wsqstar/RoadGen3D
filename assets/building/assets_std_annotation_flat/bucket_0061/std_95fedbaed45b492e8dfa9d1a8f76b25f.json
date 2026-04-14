@@ -1,0 +1,103 @@
+{
+    "description_long": "This object is a large, fixed-wing aerial vehicle resembling a military aerial refueling tanker, specifically modeled after the Boeing KC-135 Stratotanker. It features a long, cylindrical fuselage with a rounded nose and a tapered tail section, complemented by a T-tail horizontal stabilizer. The wings are straight and extend outward from the midsection, each supporting two large jet engines mounted beneath. The surface is painted in a matte gray-blue color, with visible markings and insignia, including 'USAF' and a tail number, indicating its military affiliation. The landing gear is not visible, suggesting it is either retracted or not modeled. The overall construction appears robust, with smooth, hard surfaces and minimal surface detailing aside from the engines and markings.",
+    "description": "A large, gray-blue military jet drone with four underwing engines and a T-tail, modeled after a KC-135 Stratotanker. It features a cylindrical fuselage, straight wings, and visible military markings.",
+    "description_view_0": "Top-down view showing the full wingspan, four engines, and the T-tail configuration.",
+    "description_view_1": "Side profile highlighting the cylindrical fuselage, two visible engines, and detailed tail markings.",
+    "description_view_2": "Front view displaying the rounded nose, cockpit windows, and all four engines under the wings.",
+    "description_view_3": "Opposite side profile with similar features to view 1, showing the other side's engines and tail details.",
+    "category": "drone",
+    "height": 12.7,
+    "max_dimension": 41.5,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 104000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1020000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "engine",
+        "door",
+        "cockpit window",
+        "tail fin",
+        "wing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray-blue",
+        "black",
+        "white",
+        "green"
+    ],
+    "colors_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.02,
+    "recommended_clearance": 50.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 4,
+    "attribute_rotor_configuration": "fixed-wing quadjet",
+    "attribute_landing_gear_type": "none",
+    "attribute_camera_presence": false,
+    "attribute_propeller_guard_presence": false,
+    "uid": "95fedbaed45b492e8dfa9d1a8f76b25f",
+    "near_synsets": {
+        "drone.n.04": 0.5221953169299403,
+        "aircraft.n.01": 0.5389877494179035,
+        "reconnaissance_plane.n.01": 0.5602689354508561,
+        "warplane.n.01": 0.5676902935772455,
+        "drogue.n.01": 0.5688962597789841,
+        "drone.n.01": -1000.0,
+        "monotone.n.01": -1000.0,
+        "drone.n.05": -1000.0,
+        "dawdler.n.01": -1000.0
+    },
+    "synset": "drone.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/95fedbaed45b492e8dfa9d1a8f76b25f",
+        "creator_username": "adastra",
+        "creator_display_name": "Adastra",
+        "creator_profile_url": "https://sketchfab.com/adastra"
+    },
+    "filename": "std_95fedbaed45b492e8dfa9d1a8f76b25f.glb",
+    "length": 43.58749961853027,
+    "width": 42.56478500366211
+}

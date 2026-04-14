@@ -1,0 +1,93 @@
+{
+    "description_long": "This shelter is a small, rectangular wooden structure with a steeply pitched, red gabled roof made of shingle-like panels. The exterior walls are constructed from horizontal light-colored wooden planks, giving it a rustic yet orderly appearance. The front features a large, open rectangular entryway without a door, providing easy access to the interior. The roof overhangs slightly on all sides, supported by visible wooden beams along the eaves. There are no windows or additional openings visible on any side, and the back wall is solid. The structure is elevated slightly above the ground, likely supported by a wooden or brick foundation.",
+    "description": "A small wooden shelter with a red gabled shingle roof and a large open entryway, featuring horizontal plank walls and no windows.",
+    "description_view_0": "Front view showing the open rectangular entryway and the gabled roof's peak.",
+    "description_view_1": "Side view displaying the full length of the red shingle roof and horizontal wooden planks, with no openings.",
+    "description_view_2": "Rear view showing a solid wooden wall with no entry or windows, and the gabled roof's peak.",
+    "description_view_3": "Opposite side view mirroring view 1, with the same roof and wall features.",
+    "category": "shelter",
+    "height": 2.8,
+    "max_dimension": 4.0,
+    "materials": [
+        "wood",
+        "asphalt_shingle",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.1
+    ],
+    "mass": 1200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shelter",
+        "protectable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "entryway"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light beige",
+        "red",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gabled shingle roof with steep pitch and overhanging eaves",
+    "attribute_entryway_design": "large open rectangular entryway without a door or covering",
+    "attribute_support_structure": "horizontal wooden plank walls with exposed wooden beams supporting the roof",
+    "attribute_signage": "none",
+    "attribute_transparency": "fully opaque",
+    "uid": "ac1c18b20cce42d8b14ea429f223da88",
+    "near_synsets": {
+        "shelter.n.02": 0.453303304112132,
+        "shelter.n.01": 0.4639327775914652,
+        "birdhouse.n.01": 0.502327963539046,
+        "shed.n.01": 0.5025560276823224,
+        "shelter.n.05": 0.5081535016116943,
+        "protection.n.04": -1000.0,
+        "tax_shelter.n.01": -1000.0
+    },
+    "synset": "tax_shelter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ac1c18b20cce42d8b14ea429f223da88",
+        "creator_username": "crownoakbuildingsdesigns",
+        "creator_display_name": "crownoakbuildingsdesigns",
+        "creator_profile_url": "https://sketchfab.com/crownoakbuildingsdesigns"
+    },
+    "filename": "std_ac1c18b20cce42d8b14ea429f223da88.glb",
+    "length": 3.405826449394226,
+    "width": 2.7433836460113525
+}

@@ -1,0 +1,91 @@
+{
+    "description_long": "This object is a rectangular section of sidewalk composed of irregularly shaped, light gray stone tiles arranged in a mosaic pattern. The stones are separated by thin, uneven lines of mortar, with some green moss or grass growing in the gaps, giving it a slightly weathered and natural appearance. The surface is mostly flat but has a rough, uneven texture due to the stone arrangement. One corner of the sidewalk is chipped or broken, exposing an irregular edge. The color palette is dominated by shades of gray with subtle hints of green from the moss. The sidewalk is typical of pedestrian walkways found in urban or residential neighborhoods.",
+    "description": "A rectangular, mosaic-patterned stone sidewalk with irregular gray tiles and some green moss in the joints. One corner is chipped, giving it a slightly worn look.",
+    "description_view_0": "The sidewalk is seen from a short end, highlighting the irregular stone pattern and the chipped front right corner.",
+    "description_view_1": "A long side view shows the full length of the sidewalk and the uneven, broken edge on the left.",
+    "description_view_2": "The opposite short end view displays the stone pattern and the intact edge, with the chipped corner less visible.",
+    "description_view_3": "Another long side view, similar to view 1, but the chipped edge is now on the right side.",
+    "category": "sidewalk",
+    "height": 0.08,
+    "max_dimension": 3.0,
+    "materials": [
+        "stone",
+        "mortar",
+        "moss",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 540,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "walkable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "green",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.54,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.95,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": false,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "flush",
+    "attribute_adjacent_street_type": "residential",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "cab20eda996a43d8879e048fd761c3d2",
+    "near_synsets": {
+        "cobble.n.01": 0.5155915139616845,
+        "sidewalk.n.01": 0.5158016537340441,
+        "paving_stone.n.01": 0.51846389174424,
+        "macadam.n.01": 0.526794802785599,
+        "bluestone.n.01": 0.5305538384231613
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cab20eda996a43d8879e048fd761c3d2",
+        "creator_username": "zhengzhangxun",
+        "creator_display_name": "Game industry veteran",
+        "creator_profile_url": "https://sketchfab.com/zhengzhangxun"
+    },
+    "filename": "std_cab20eda996a43d8879e048fd761c3d2.glb",
+    "length": 3.298153877258301,
+    "width": 1.8705704808235168
+}

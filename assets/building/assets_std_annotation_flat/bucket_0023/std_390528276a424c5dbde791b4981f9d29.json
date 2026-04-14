@@ -1,0 +1,101 @@
+{
+    "description_long": "This combat tactical vehicle features a robust, angular chassis with a wide, semi-circular armored shield at the front, likely designed for deflection and protection. The vehicle is equipped with heavy-duty, tank-like treads for traversing rough urban terrain, and a central articulated arm or turret that appears capable of rotation and elevation. The arm ends in a mechanical device that could serve as a manipulator or weapon mount, with visible metallic components suggesting reinforced construction. The surface is covered in a matte, desert-camouflage pattern, with subtle panel lines and bolts indicating modular armor plating. The rear of the vehicle is more enclosed, with the treads partially shielded by the body, and the overall build suggests a focus on durability and tactical versatility. No visible windows or crew compartments are present, implying remote or autonomous operation.",
+    "description": "A heavily armored, tracked combat vehicle with a semi-circular shield, articulated arm, and desert-camouflage finish. It features robust treads and modular armor plating for urban tactical operations.",
+    "description_view_0": "Front view shows the wide, semi-circular armored shield and the central articulated arm above the heavy treads.",
+    "description_view_1": "Angled side view reveals the mechanical arm's structure, the shield's thickness, and the detailed tread pattern.",
+    "description_view_2": "Rear view highlights the enclosed back, shield curvature, and the dual treads extending from beneath the body.",
+    "description_view_3": "Opposite angled side view displays the arm's extension, shield's side profile, and the tread's rugged design.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 8500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "treads",
+        "arm",
+        "shield",
+        "manipulator"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible mount at the end of the articulated arm, suitable for a manipulator or weapon attachment.",
+    "attribute_armor_plating": "Full body coverage with thick, modular, sloped armor plating, especially prominent on the front shield and sides.",
+    "attribute_camouflage_pattern": "Matte desert camouflage with tan and gray geometric shapes.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "390528276a424c5dbde791b4981f9d29",
+    "near_synsets": {
+        "tank.n.01": 0.47727247605789214,
+        "armored_vehicle.n.01": 0.4843841014052765,
+        "military_vehicle.n.01": 0.4882988234477978,
+        "armored_car.n.02": 0.49370626071479407,
+        "reconnaissance_vehicle.n.01": 0.4962253783766026,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/390528276a424c5dbde791b4981f9d29",
+        "creator_username": "ZeroCardinal",
+        "creator_display_name": "ZeroCardinal",
+        "creator_profile_url": "https://sketchfab.com/ZeroCardinal"
+    },
+    "filename": "std_390528276a424c5dbde791b4981f9d29.glb",
+    "length": 2.8217926025390625,
+    "width": 1.8890138864517212
+}

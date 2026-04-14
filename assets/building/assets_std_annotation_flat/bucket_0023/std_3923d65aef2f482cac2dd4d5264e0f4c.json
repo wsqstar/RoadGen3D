@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a modern combat tactical vehicle with a low-profile, angular armored hull and a prominent dual-barrel main cannon mounted on a rotating turret. The vehicle features a sleek, metallic exterior with a combination of matte and glossy black and silver panels, giving it a futuristic appearance. The hull is heavily armored, with sloped surfaces designed to deflect incoming projectiles, and reinforced side skirts for additional protection. The turret is centrally positioned and equipped with two large-caliber barrels, suggesting significant firepower. The vehicle moves on a tracked base, which is partially covered by armored skirts, enhancing its survivability in urban combat scenarios. No visible markings or camouflage patterns are present, and the design emphasizes both protection and offensive capability.",
+    "description": "A heavily armored, dual-barrel combat vehicle with a sleek, angular design and metallic black and silver finish. It features a central turret, reinforced hull, and tracked base for urban tactical operations.",
+    "description_view_0": "Side view showing the long dual-barrel turret, angular armored hull, and partially covered tracks.",
+    "description_view_1": "Front view highlighting the twin barrels, sloped frontal armor, and wide, reinforced stance.",
+    "description_view_2": "Opposite side view with clear visibility of the turret, armored side panels, and track details.",
+    "description_view_3": "Rear view displaying the back of the turret, rear armor plating, and the track system.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "hatch",
+        "cannon barrel",
+        "track",
+        "side skirt"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "silver",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "sleek",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One dual-barrel cannon mounted on the central turret; no other visible mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating on the hull and turret; reinforced side skirts and rear panels.",
+    "attribute_camouflage_pattern": "None visible.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "3923d65aef2f482cac2dd4d5264e0f4c",
+    "near_synsets": {
+        "tank.n.01": 0.49231343345083406,
+        "armored_car.n.02": 0.5120849220512012,
+        "military_vehicle.n.01": 0.5122289994461462,
+        "assault_gun.n.02": 0.5176744636634897,
+        "armored_vehicle.n.01": 0.5261971689683745,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3923d65aef2f482cac2dd4d5264e0f4c",
+        "creator_username": "elarja41",
+        "creator_display_name": "elarja41",
+        "creator_profile_url": "https://sketchfab.com/elarja41"
+    },
+    "filename": "std_3923d65aef2f482cac2dd4d5264e0f4c.glb",
+    "length": 7.946345329284668,
+    "width": 4.220764398574829
+}

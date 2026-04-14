@@ -1,0 +1,94 @@
+{
+    "description_long": "This shelter is a simple, rustic structure with a pitched roof made from overlapping, uneven wooden planks, giving it a hand-built appearance. The walls are constructed from large, flat wooden panels, with visible gaps and irregularities that suggest a temporary or makeshift build. Inside, there is minimal furnishing, including a small table and a box, both also appearing to be made from wood. The entryway is wide and open, lacking a door or covering, which allows easy access and visibility into the interior. The roof extends well beyond the walls, providing additional protection from the elements. The overall color palette is a natural, light brown, consistent with untreated or lightly finished wood.",
+    "description": "A rustic wooden shelter with a pitched, plank roof and open entryway, featuring minimal interior furnishings and a natural wood finish.",
+    "description_view_0": "Front view showing the open entryway, interior furnishings, and the pitched plank roof.",
+    "description_view_1": "Top-down view highlighting the overlapping wooden planks of the roof and the overall rectangular footprint.",
+    "description_view_2": "Side view displaying the sloped roof and the solid wooden wall with visible irregularities.",
+    "description_view_3": "Rear top-down view emphasizing the roof's construction and the back wall's solid panel.",
+    "category": "shelter",
+    "height": 2.2,
+    "max_dimension": 3.5,
+    "materials": [
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.15
+    ],
+    "mass": 350,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shelterable",
+        "storeable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "entryway",
+        "table",
+        "box"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light brown",
+        "dark brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "pitched roof made from overlapping wooden planks",
+    "attribute_entryway_design": "wide open entryway without a door or covering",
+    "attribute_support_structure": "large flat wooden panels and overlapping wooden roof planks",
+    "attribute_signage": "none",
+    "attribute_transparency": "fully opaque",
+    "uid": "d493aacf70074fabbff3ff52136fff44",
+    "near_synsets": {
+        "shelter.n.02": 0.47793847625158664,
+        "shelter.n.01": 0.48486724408704585,
+        "cottage_tent.n.01": 0.5083445304601458,
+        "shed.n.01": 0.5086623063556923,
+        "pithouse.n.01": 0.5113985647605113,
+        "protection.n.04": -1000.0,
+        "tax_shelter.n.01": -1000.0,
+        "shelter.n.05": -1000.0
+    },
+    "synset": "shelter.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d493aacf70074fabbff3ff52136fff44",
+        "creator_username": "zalfornt",
+        "creator_display_name": "zalfornt",
+        "creator_profile_url": "https://sketchfab.com/zalfornt"
+    },
+    "filename": "std_d493aacf70074fabbff3ff52136fff44.glb",
+    "length": 2.4216678142547607,
+    "width": 2.5835821628570557
+}

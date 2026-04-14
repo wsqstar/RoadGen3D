@@ -1,0 +1,94 @@
+{
+    "description_long": "This is a large, rectangular metal shipping container with a weathered blue exterior, showing significant rust and wear across its surfaces. The container features reinforced black metal bars along its edges and doors, providing structural integrity and security. On the front, there are two large doors with visible hinges and locking mechanisms, as well as a red recycling symbol and a flammable warning sign. The sides display faded hazard markings and streaks of rust, indicating prolonged outdoor exposure. The top surface is flat and also exhibits rust patches and scratches, consistent with heavy use in industrial or urban environments. This container is typically used for storage or transport of goods and is commonly found in shipping yards, construction sites, or urban backlots.",
+    "description": "A large, weathered blue metal shipping container with rust patches, reinforced edges, and hazard markings. It features double front doors with locking bars and warning signs.",
+    "description_view_0": "Front view showing double doors with black locking bars, a red recycling symbol, and a flammable warning sign.",
+    "description_view_1": "Side view displaying a long, flat blue surface with rust patches and a faded hazard triangle marking.",
+    "description_view_2": "Rear view with a plain blue surface, vertical ridges, and a large, faded red hazard symbol.",
+    "description_view_3": "Opposite side view with similar blue and rusted surface, vertical ridges, and a red warning triangle.",
+    "category": "container",
+    "height": 2.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.05,
+        0.03
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking bar",
+        "hinge"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "rust brown",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "red recycling symbol and flammable warning on front, faded hazard triangles on sides",
+    "attribute_handles_or_grips": "integrated locking bars on front doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "36a23745d12c43c09233ac7d940fe14f",
+    "near_synsets": {
+        "container.n.01": 0.48519185001880744,
+        "cargo_container.n.01": 0.485290745922724,
+        "box.n.01": 0.5473592528445176,
+        "cargo_door.n.01": 0.5492447465857867,
+        "crate.n.01": 0.5528241288228176
+    },
+    "synset": "cargo_container.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/36a23745d12c43c09233ac7d940fe14f",
+        "creator_username": "prokopenko25ds",
+        "creator_display_name": "Prokopenko Dmytro",
+        "creator_profile_url": "https://sketchfab.com/prokopenko25ds"
+    },
+    "filename": "std_36a23745d12c43c09233ac7d940fe14f.glb",
+    "length": 5.203866958618164,
+    "width": 2.1303234100341797
+}

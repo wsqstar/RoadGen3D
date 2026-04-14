@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a large, modern refrigerated box truck with a deep red cab and a long, rectangular cargo compartment. The cab features a prominent windshield, side mirrors, and detailed headlights, while the cargo area is enclosed with smooth, light gray panels and reinforced rear doors. The truck has three axles, with six wheels visible, and a robust undercarriage suitable for heavy loads. The rear compartment is marked with 'REFRIGERATED' signage, indicating its specialized function for transporting perishable goods. The rear doors are double-hinged for wide access, and the side profile reveals a streamlined, aerodynamic design. The overall build suggests durability and functionality for urban delivery or logistics operations.",
+    "description": "A large, red-cab refrigerated box truck with a long, enclosed cargo area and three axles, designed for urban delivery of perishable goods.",
+    "description_view_0": "Front view showing the red cab, windshield, side mirrors, and headlights.",
+    "description_view_1": "Side view highlighting the long, gray refrigerated cargo box, three axles, and the truck's length.",
+    "description_view_2": "Rear view displaying the double-hinged cargo doors and the reinforced rear structure.",
+    "description_view_3": "Opposite side view with clear visibility of the 'REFRIGERATED' signage and the full length of the truck.",
+    "category": "truck",
+    "height": 3.8,
+    "max_dimension": 10.5,
+    "materials": [
+        "steel",
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.2,
+        0.05,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "handle",
+        "mirror",
+        "headlight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "day cab",
+    "attribute_cargo_bed_type": "box",
+    "attribute_wheelbase": 6.0,
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "28d6c7d1096345e3b99119e5b6b9f5f2",
+    "near_synsets": {
+        "delivery_truck.n.01": 0.49050848832900906,
+        "refrigerator_car.n.01": 0.4935061305435164,
+        "van.n.05": 0.49750322127367397,
+        "cargo_container.n.01": 0.5132647265973938,
+        "truck.n.01": 0.5159192644969561,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/28d6c7d1096345e3b99119e5b6b9f5f2",
+        "creator_username": "kevmartineza",
+        "creator_display_name": "COLD CHAIN SERVICES",
+        "creator_profile_url": "https://sketchfab.com/kevmartineza"
+    },
+    "filename": "std_28d6c7d1096345e3b99119e5b6b9f5f2.glb",
+    "length": 11.703853607177734,
+    "width": 4.008118629455566
+}

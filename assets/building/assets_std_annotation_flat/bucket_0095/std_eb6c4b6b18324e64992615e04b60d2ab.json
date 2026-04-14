@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a historical field artillery cannon, featuring a long, cylindrical barrel mounted on a sturdy carriage with two large spoked wheels. The barrel is supported by a robust frame, which extends rearward into a long tail with a ring for towing or anchoring. A prominent armored shield is mounted in front of the wheels, providing some protection for the operators. The wheels are wooden with metal rims, designed for mobility across rough terrain. The overall construction is utilitarian, with a dark, matte finish and no visible markings or camouflage.",
+    "description": "A dark, wheeled field artillery cannon with a long barrel, armored shield, and spoked wheels, designed for tactical deployment.",
+    "description_view_0": "Front view showing the armored shield, the two large spoked wheels, and the barrel pointing forward.",
+    "description_view_1": "Angled side view highlighting the length of the barrel, the spoked wheels, and the extended tail for towing.",
+    "description_view_2": "Rear view focusing on the barrel's muzzle, the shield, and the symmetrical placement of the wheels.",
+    "description_view_3": "Opposite angled side view, similar to view 1, showing the tail and the overall silhouette of the cannon.",
+    "category": "combat tactical  vehicle",
+    "height": 1.3,
+    "max_dimension": 4.2,
+    "materials": [
+        "steel",
+        "wood",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "rotatable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "barrel",
+        "shield",
+        "tail ring"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One fixed cannon barrel mounted centrally on the carriage.",
+    "attribute_armor_plating": "A single armored shield plate is mounted at the front, covering the area between the wheels; thickness appears moderate and flat.",
+    "attribute_camouflage_pattern": "none visible",
+    "attribute_military_markings": "none visible",
+    "attribute_tire_type": "not applicable",
+    "uid": "eb6c4b6b18324e64992615e04b60d2ab",
+    "near_synsets": {
+        "tank.n.01": 0.4911410471978942,
+        "military_vehicle.n.01": 0.4930836699813253,
+        "armored_car.n.02": 0.49572538725906673,
+        "cannon.n.01": 0.5036147688838886,
+        "artillery.n.01": 0.506987508407225,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "cannon.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/eb6c4b6b18324e64992615e04b60d2ab",
+        "creator_username": "DopamineWarlock",
+        "creator_display_name": "DopamineWarlock",
+        "creator_profile_url": "https://sketchfab.com/DopamineWarlock"
+    },
+    "filename": "std_eb6c4b6b18324e64992615e04b60d2ab.glb",
+    "length": 3.7048505544662476,
+    "width": 1.250698983669281
+}

@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a compact, stylized ambulance vehicle with a predominantly red body and a boxy, upright profile. The sides feature large white medical cross symbols and the word 'AMBULANCE' in bold white letters, making it easily identifiable as an emergency vehicle. The front is equipped with a white bumper, a windshield with a single wiper, and the word 'AMBULANCE' displayed above the grille. On the roof, there is a prominent red emergency light bar and a siren unit, both essential for signaling during emergencies. The vehicle has four black wheels with red hubcaps and minimalistic detailing, giving it a cartoon-like appearance. The rear of the ambulance displays a large white cross and what appears to be a single rear compartment door.",
+    "description": "A small, boxy red ambulance with white medical cross symbols, bold 'AMBULANCE' signage, and a prominent emergency light bar and siren on the roof.",
+    "description_view_0": "Side view showing a large white cross, 'AMBULANCE' text, and two wheels with a clear view of the emergency light bar on the roof.",
+    "description_view_1": "Front view highlighting the windshield, single wiper, 'AMBULANCE' text above the grille, and the emergency light bar and siren on the roof.",
+    "description_view_2": "Opposite side view similar to view 0, with the white cross and 'AMBULANCE' text, and a clear view of the wheels and roof light bar.",
+    "description_view_3": "Rear view showing a large white cross and a single rear compartment door, with the emergency light bar visible on the roof.",
+    "category": "ambulance",
+    "height": 2.2,
+    "max_dimension": 3.5,
+    "materials": [
+        "painted metal",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.1,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "mass": 1400,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "emergency light bar",
+        "siren",
+        "windshield wiper"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.07,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_emergency_light_bar": true,
+    "attribute_ambulance_signage": "White 'AMBULANCE' text on both sides and front, no region-specific markings.",
+    "attribute_medical_cross_symbol": true,
+    "attribute_siren": true,
+    "attribute_rear_compartment_doors": "single rear door",
+    "uid": "8c15c5881ca94ecf83a181be9731bf78",
+    "near_synsets": {
+        "ambulance.n.01": 0.47263902610768205,
+        "funny_wagon.n.01": 0.5391810769272924,
+        "skull_and_crossbones.n.01": 0.5759044868805916,
+        "paramedic.n.01": 0.5768362979120579,
+        "street_sign.n.01": 0.5784586445998239
+    },
+    "synset": "ambulance.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8c15c5881ca94ecf83a181be9731bf78",
+        "creator_username": "Elias.Khshaiboun",
+        "creator_display_name": "Elias.Khshaiboun",
+        "creator_profile_url": "https://sketchfab.com/Elias.Khshaiboun"
+    },
+    "filename": "std_8c15c5881ca94ecf83a181be9731bf78.glb",
+    "length": 1.8068240880966187,
+    "width": 0.831512451171875
+}

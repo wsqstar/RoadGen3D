@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a vintage biplane with a boxy fuselage and two sets of straight, parallel wings connected by struts and wires. The wings are fabric-covered and supported by a lightweight frame, with the upper and lower wings separated by vertical struts. The cockpit is open and centrally located, with a simple seat and basic controls visible. The tail section features a rudimentary horizontal stabilizer and a single vertical fin, with exposed framework and control surfaces. The landing gear consists of two main wheels and a tail skid, all fixed and non-retractable, giving the airplane a classic early-aviation appearance.",
+    "description": "A vintage biplane with fabric-covered straight wings, open cockpit, exposed framework, and fixed landing gear.",
+    "description_view_0": "Top-down view showing the full wingspan, open cockpit, and exposed framework of the biplane.",
+    "description_view_1": "Front view highlighting the dual wings, open cockpit, and fixed landing gear beneath the fuselage.",
+    "description_view_2": "Bottom-up view revealing the undercarriage, tail skid, and structural struts between the wings.",
+    "description_view_3": "Rear view displaying the tail assembly, horizontal stabilizer, and the open cockpit from behind.",
+    "category": "airplane",
+    "height": 2.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "fabric",
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3430,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit controls",
+        "wheels",
+        "propeller",
+        "rudder",
+        "elevator",
+        "ailerons"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 10000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Biplane configuration with two sets of straight, parallel wings in a staggered arrangement, no winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Single front-mounted piston engine with a visible propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizer.",
+    "attribute_landing_gear_type": "Fixed taildragger landing gear with two main wheels and a tail skid.",
+    "attribute_cockpit_placement": "Open, centrally located cockpit in the mid-fuselage, single-seat configuration.",
+    "uid": "b2c3159bae2b424cbc405be70aa4af13",
+    "near_synsets": {
+        "biplane.n.01": 0.4464503037679771,
+        "monoplane.n.01": 0.487078650944238,
+        "aircraft.n.01": 0.4981065144603531,
+        "airplane.n.01": 0.5008140494222578,
+        "glider.n.01": 0.5341819140643701
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b2c3159bae2b424cbc405be70aa4af13",
+        "creator_username": "Acum100ani.ro",
+        "creator_display_name": "Romania 100 - Marea Unire",
+        "creator_profile_url": "https://sketchfab.com/Acum100ani.ro"
+    },
+    "filename": "std_b2c3159bae2b424cbc405be70aa4af13.glb",
+    "length": 7.598783493041992,
+    "width": 10.7481107711792
+}

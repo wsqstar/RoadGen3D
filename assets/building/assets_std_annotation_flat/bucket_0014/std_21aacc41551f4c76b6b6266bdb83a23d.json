@@ -1,0 +1,88 @@
+{
+    "description_long": "This object is a flat, rectangular chessboard with a classic checkered pattern composed of alternating black and white squares. The board is thin and appears to be made from a solid, hard material, likely wood or plastic, with a smooth, matte finish. The checkered playing surface is divided into an 8x8 grid, with each square being perfectly uniform in size and shape. The edges of the board are straight and unadorned, with no visible border ornamentation, inscriptions, or decorative elements. The board sits flush against the ground, making it suitable for tabletop or ground-level play in urban parks, plazas, or recreational areas. The overall appearance is clean, minimalistic, and functional, emphasizing clarity and ease of use for gameplay.",
+    "description": "A flat, rectangular chessboard with a classic black and white checkered 8x8 grid and a simple, unadorned border. The surface is smooth and matte, suitable for urban recreational settings.",
+    "description_view_0": "The chessboard is seen from a low, front-facing angle, highlighting the uniform checkered pattern and the thin, flat profile of the board.",
+    "description_view_1": "This view shows the chessboard from a slightly rotated angle, maintaining the clear visibility of the 8x8 grid and the board's flatness.",
+    "description_view_2": "The board is viewed from another rotated perspective, similar to the previous views, with the checkered pattern and straight edges remaining prominent.",
+    "description_view_3": "A final rotated view, again emphasizing the regularity of the checkered grid and the board's minimalistic, flat design.",
+    "category": "chessboard",
+    "height": 0.03,
+    "max_dimension": 0.5,
+    "materials": [
+        "plastic",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "playable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.5
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_board_pattern": "The playing surface features a regular, alternating pattern of black and white squares arranged in a perfect grid, with each square being the same size and shape. The pattern is simple and classic, with no decorative or unique elements beyond the standard checkered layout.",
+    "attribute_square_grid": "8x8",
+    "attribute_alternating_light_and_dark_squares": true,
+    "attribute_presence_of_chess_pieces": false,
+    "attribute_border_design": "The border is minimal and unadorned, matching the material and color of the board's edge, with no visible ornamentation, inscriptions, or markings. The edge is straight and flush with the playing surface.",
+    "uid": "21aacc41551f4c76b6b6266bdb83a23d",
+    "near_synsets": {
+        "chessboard.n.01": 0.4108330178872813,
+        "chess_set.n.01": 0.4323133919707192,
+        "checkerboard.n.01": 0.4595921361413699,
+        "chess.n.02": 0.4959059367838186,
+        "board.n.09": 0.4971860670783086
+    },
+    "synset": "chessboard.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/21aacc41551f4c76b6b6266bdb83a23d",
+        "creator_username": "williamchalk",
+        "creator_display_name": "williamchalk",
+        "creator_profile_url": "https://sketchfab.com/williamchalk"
+    },
+    "filename": "std_21aacc41551f4c76b6b6266bdb83a23d.glb",
+    "length": 3.0,
+    "width": 3.0000001192092896
+}

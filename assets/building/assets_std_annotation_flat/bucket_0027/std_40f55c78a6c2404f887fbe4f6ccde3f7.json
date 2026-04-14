@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a stylized, blocky rifle with a dark gray body and a ribbed brown grip, reminiscent of a submachine gun or compact assault rifle. The rifle features a detachable box magazine, which is shown separated from the main body, and a prominent trigger guard. The barrel is straight and extends from the main receiver, with a simple iron sight at the front. The stock is minimalistic, appearing as a straight extension from the rear of the receiver, and the overall design is angular and geometric, likely inspired by voxel or low-poly art styles. The rifle's construction suggests it is primarily made of metal with polymer or wood-like material for the grip.",
+    "description": "A blocky, dark gray rifle with a ribbed brown grip and a detachable box magazine, featuring a simple iron sight and minimalistic stock.",
+    "description_view_0": "Side view showing the rifle's profile, detachable magazine, and ribbed brown grip.",
+    "description_view_1": "Angled view highlighting the magazine well, trigger area, and the rear stock extension.",
+    "description_view_2": "Front-angled view emphasizing the muzzle, iron sight, and the ribbed grip detail.",
+    "description_view_3": "Rear view showing the back of the stock and the overall length of the rifle.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 0.7,
+    "materials": [
+        "steel",
+        "polymer",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 7,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "magazine",
+        "stock",
+        "barrel",
+        "sight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "brown",
+        "black",
+        "orange"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "40f55c78a6c2404f887fbe4f6ccde3f7",
+    "near_synsets": {
+        "garand_rifle.n.01": 0.5231984407116366,
+        "rifle.n.01": 0.52757473054825,
+        "carbine.n.01": 0.5278720761990637,
+        "light_arm.n.01": 0.5320394220200271,
+        "dragunov.n.01": 0.5335595313806515
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/40f55c78a6c2404f887fbe4f6ccde3f7",
+        "creator_username": "Rosstail",
+        "creator_display_name": "Rosstail",
+        "creator_profile_url": "https://sketchfab.com/Rosstail"
+    },
+    "filename": "std_40f55c78a6c2404f887fbe4f6ccde3f7.glb",
+    "length": 0.410246804356575,
+    "width": 0.4201846569776535
+}

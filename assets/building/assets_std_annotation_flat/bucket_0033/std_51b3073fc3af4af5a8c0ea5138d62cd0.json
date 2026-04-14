@@ -1,0 +1,92 @@
+{
+    "description_long": "This object is a compact, circular bomb with a rugged, military-style design. Its body is primarily olive drab with a matte finish, showing signs of wear and scuff marks, suggesting it is built for durability in harsh environments. The bomb features a prominent, slightly domed black central cap on the top, surrounded by evenly spaced, reinforced vertical ridges that provide structural strength and possibly aid in handling or placement. A visible seam runs horizontally around the object's circumference, indicating a two-part construction, likely for assembly or maintenance. The overall form is squat and robust, with no visible buttons, wires, or digital displays, giving it a low-profile and tamper-resistant appearance. The design suggests it is intended for ground placement, possibly as an anti-vehicle or anti-personnel device in urban settings.",
+    "description": "A rugged, circular olive drab bomb with a black domed cap and reinforced vertical ridges, showing wear and built for ground deployment.",
+    "description_view_0": "Front view shows the circular shape, black domed cap, and vertical ridges evenly spaced around the olive drab body.",
+    "description_view_1": "This view is nearly identical to view 0, highlighting the same features with minor changes in lighting and ridge alignment.",
+    "description_view_2": "Similar to previous views, this angle emphasizes the horizontal seam and the rugged, worn surface texture.",
+    "description_view_3": "This view shows the vertical ridges and seam clearly, with the black cap centered and the object's symmetry evident.",
+    "category": "bomb",
+    "height": 0.18,
+    "max_dimension": 0.32,
+    "materials": [
+        "steel",
+        "plastic",
+        "explosive_compound",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.25,
+        0.05
+    ],
+    "mass": 4.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 45,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "central cap",
+        "body seam"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive drab",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The central black cap may function as a pressure or impact trigger, with no visible external switches or wires, suggesting a concealed or tamper-resistant detonation mechanism.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "51b3073fc3af4af5a8c0ea5138d62cd0",
+    "near_synsets": {
+        "cluster_bomb.n.01": 0.5397391091378068,
+        "bomb.n.01": 0.5427038124784259,
+        "olive_drab.n.03": 0.5473906284260002,
+        "pipe_bomb.n.01": 0.548033469399401,
+        "general-purpose_bomb.n.01": 0.5508588120868393,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/51b3073fc3af4af5a8c0ea5138d62cd0",
+        "creator_username": "nick2046",
+        "creator_display_name": "nick2046",
+        "creator_profile_url": "https://sketchfab.com/nick2046"
+    },
+    "filename": "std_51b3073fc3af4af5a8c0ea5138d62cd0.glb",
+    "length": 0.30759334564208984,
+    "width": 0.30760908126831055
+}

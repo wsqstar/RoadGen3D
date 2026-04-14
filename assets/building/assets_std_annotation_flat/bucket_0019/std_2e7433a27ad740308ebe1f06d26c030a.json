@@ -1,0 +1,107 @@
+{
+    "description_long": "This toll booth consists of a small rectangular structure with a flat roof, topped by a solar panel. The booth features a large window and a blue door on one side, likely for operator access and interaction with drivers. The structure is situated on a wide, circular black platform, which may represent a road or base. In front of the booth, there is a yellow-bordered hatch or panel embedded in the ground, possibly for maintenance or access. The booth's exterior appears to be made of metal and glass, with the roof and base constructed from sturdy materials. The overall design is functional and modern, suitable for urban roadways or parking facilities.",
+    "description": "A modern toll booth with a flat roof, solar panel, large window, and blue door, set on a circular black platform with a yellow-bordered ground panel.",
+    "description_view_0": "Front view showing the booth's entry door, window, and the yellow-bordered ground panel directly in front.",
+    "description_view_1": "Side view highlighting the large window, blue door, and the solar panel on the roof.",
+    "description_view_2": "Rear view showing the back of the booth and the solar panel, with minimal visible features.",
+    "description_view_3": "Opposite side view displaying the booth's side wall and the yellow-bordered ground panel further away.",
+    "category": "toll booth",
+    "height": 2.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "concrete",
+        "solar panel",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.15,
+        0.1,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "solar panel",
+        "ground panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "blue",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_payment_booth_window": true,
+    "attribute_barrier_arm": false,
+    "attribute_payment_machine": false,
+    "attribute_overhead_signage": false,
+    "attribute_lane_markings": false,
+    "uid": "2e7433a27ad740308ebe1f06d26c030a",
+    "near_synsets": {
+        "toll_plaza.n.01": 0.4733015480401566,
+        "tollbooth.n.01": 0.4887907921345289,
+        "tollgate.n.01": 0.535454779134267,
+        "toll_bridge.n.01": 0.538538457518812,
+        "telephone_booth.n.01": 0.5630663824723983,
+        "booth.n.04": -1000.0,
+        "booth.n.02": -1000.0,
+        "booth.n.01": -1000.0,
+        "toll.n.01": -1000.0,
+        "booth.n.03": -1000.0,
+        "bell.n.03": -1000.0,
+        "price.n.03": -1000.0
+    },
+    "synset": "tollbooth.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2e7433a27ad740308ebe1f06d26c030a",
+        "creator_username": "djengala",
+        "creator_display_name": "djengala",
+        "creator_profile_url": "https://sketchfab.com/djengala"
+    },
+    "filename": "std_2e7433a27ad740308ebe1f06d26c030a.glb",
+    "length": 9.66041898727417,
+    "width": 9.66045331954956
+}

@@ -1,0 +1,111 @@
+{
+    "description_long": "This object is a collection of various road traffic signs, each mounted on slender vertical posts. The signs include a mix of shapes such as circles, rectangles, triangles, and octagons, with some displaying familiar symbols like a stop sign, yield sign, and construction warning. The surfaces of the signs are brightly colored, featuring red, white, yellow, and black, with reflective finishes for visibility. The posts appear to be made of metal, likely steel or aluminum, and are painted or coated in a dark color. The signs themselves are made from metal or composite materials with printed or painted graphics. This set is typically found along urban streets, intersections, and pedestrian crossings to regulate, warn, or inform road users.",
+    "description": "A group of urban road traffic signs on metal posts, featuring various shapes, colors, and symbols for traffic regulation and warning.",
+    "description_view_0": "Front view showing the faces of all traffic signs, with visible symbols and text such as stop, yield, and construction warnings.",
+    "description_view_1": "Side view showing the thin profiles of the signs and posts, with minimal visibility of sign faces.",
+    "description_view_2": "Rear view showing the backs of the signs and posts, with some sign shapes and mounting details visible.",
+    "description_view_3": "Opposite side view, again showing the thin profiles of the signs and posts, with no visible sign faces.",
+    "category": "traffic sign",
+    "height": 2.2,
+    "max_dimension": 2.5,
+    "materials": [
+        "metal",
+        "reflective paint",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 35,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "readable",
+        "viewable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "sign face",
+        "post"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "yellow",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.25,
+        0.25,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "glossy",
+    "reflectivity": 0.6,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_sign_text": "STOP",
+    "attribute_symbol_or_pictogram": "Yield triangle, construction worker, pedestrian crossing, exclamation mark, and other standard road symbols",
+    "attribute_mounting_type": "post-mounted",
+    "attribute_orientation": "perpendicular to road",
+    "attribute_location_context": "urban roadside, intersections, pedestrian crossings",
+    "uid": "25ebbe36a9274344bd779a55d97bfca3",
+    "near_synsets": {
+        "street_sign.n.01": 0.457517633793344,
+        "traffic_light.n.01": 0.48415217128139976,
+        "stop_sign.n.01": 0.4843352687900051,
+        "direction_sign.n.01": 0.5011144017819117,
+        "signage.n.01": 0.5040669564008411,
+        "traffic.n.01": -1000.0,
+        "dealings.n.01": -1000.0,
+        "sign.n.01": -1000.0,
+        "sign.n.02": -1000.0,
+        "sign.n.10": -1000.0,
+        "traffic.n.02": -1000.0,
+        "augury.n.01": -1000.0,
+        "signboard.n.01": -1000.0,
+        "sign.n.09": -1000.0,
+        "polarity.n.02": -1000.0,
+        "signal.n.01": -1000.0,
+        "sign.n.11": -1000.0,
+        "sign_of_the_zodiac.n.01": -1000.0,
+        "sign.n.06": -1000.0,
+        "traffic.n.03": -1000.0
+    },
+    "synset": "street_sign.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/25ebbe36a9274344bd779a55d97bfca3",
+        "creator_username": "Satik64",
+        "creator_display_name": "Satik64",
+        "creator_profile_url": "https://sketchfab.com/Satik64"
+    },
+    "filename": "std_25ebbe36a9274344bd779a55d97bfca3.glb",
+    "length": 0.7053354382514954,
+    "width": 6.57928466796875
+}

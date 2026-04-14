@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a wooden rowing ship with a long, narrow hull and a pointed bow and stern, reminiscent of ancient galleys or triremes. The vessel features two rows of oars on each side, with each oar extending outward from the hull, indicating it is powered primarily by manual rowing. The deck is open, with visible benches for rowers and a central walkway. Two tall masts are present, supported by rigging, but no sails are visible. The ship's exterior is finished in natural wood tones, with a lighter color on the hull and darker accents on the upper structures. The overall design suggests a historical or classical watercraft, likely used for transport or warfare.",
+    "description": "A long, narrow wooden rowing ship with two masts, multiple oars, and an open deck with benches for rowers. The hull is pointed at both ends and finished in natural wood tones.",
+    "description_view_0": "Front view showing the pointed bow, symmetrical arrangement of oars, and the open deck layout.",
+    "description_view_1": "Side view highlighting the length of the hull, the two masts with rigging, and the full extension of the oars.",
+    "description_view_2": "Rear view displaying the stern's pointed shape, the arrangement of benches, and the oars extending outward.",
+    "description_view_3": "Opposite side view similar to view 1, showing the hull's curvature, masts, and oar configuration.",
+    "category": "ship",
+    "height": 2.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "wood",
+        "metal",
+        "rope",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "rowable",
+        "sittable",
+        "steerable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "oar",
+        "mast",
+        "bench",
+        "tiller"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "beige",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a long, narrow, and symmetrical shape, featuring a pointed bow and stern. The sides are slightly curved, and the hull sits low in the water, optimized for rowing efficiency. No keels or bulbous bows are visible, and the hull appears to be constructed from wooden planks.",
+    "attribute_superstructure_layout": "The ship has an open deck with no enclosed cabins or superstructure. Benches for rowers are arranged along the length of the deck, and two masts are centrally positioned with rigging attached. There are no bridges, towers, or additional decks visible.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "oar",
+        "mast",
+        "bench",
+        "rigging"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "19815466b4b34ee69649c87e9fc60ee9",
+    "near_synsets": {
+        "rowing_boat.n.01": 0.44653109971464644,
+        "scull.n.01": 0.4794463987696293,
+        "monoreme.n.01": 0.49287379577609586,
+        "yawl.n.01": 0.4949802985132073,
+        "catamaran.n.01": 0.49999680586466777,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/19815466b4b34ee69649c87e9fc60ee9",
+        "creator_username": "Museovirasto",
+        "creator_display_name": "Museovirasto Museiverket Finnish Heritage Agency",
+        "creator_profile_url": "https://sketchfab.com/Museovirasto"
+    },
+    "filename": "std_19815466b4b34ee69649c87e9fc60ee9.glb",
+    "length": 4.661239147186279,
+    "width": 3.9892120361328125
+}

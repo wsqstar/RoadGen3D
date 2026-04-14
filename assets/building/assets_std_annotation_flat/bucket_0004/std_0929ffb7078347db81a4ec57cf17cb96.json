@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a compact, blue industrial locomotive with a robust, angular body and a flat roof featuring a large metallic vent or exhaust system. The locomotive has a pair of sturdy railings running along both sides, providing safety for operators moving along the exterior. The front and rear ends are equipped with black and yellow hazard stripes on the bumpers, emphasizing its industrial use. The windows are rectangular and reinforced, with two on each side of the cab and two at the front, offering visibility for the operator. The undercarriage is black, housing two sets of heavy-duty wheels and axles, and the body is adorned with subtle panel lines and access hatches. The overall design suggests a utilitarian, freight-oriented locomotive suitable for shunting or short-haul tasks in urban or industrial rail yards.",
+    "description": "A blue, industrial locomotive with a flat roof vent, safety railings, hazard-striped bumpers, and reinforced windows, designed for freight or shunting tasks.",
+    "description_view_0": "Side view showing the blue body, safety railings, panel lines, and the large roof vent; wheels and undercarriage are clearly visible.",
+    "description_view_1": "Front view highlighting the hazard-striped bumper, dual front windows, and the prominent grille below the windshield.",
+    "description_view_2": "Opposite side view similar to view 0, with visible railings, windows, and roof vent; subtle differences in panel details.",
+    "description_view_3": "Rear view showing the back bumper with hazard stripes, rear windows, and the flat back panel with minimal detailing.",
+    "category": "train",
+    "height": 3.8,
+    "max_dimension": 10.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 60000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "control panel",
+        "handrail",
+        "bumper"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black",
+        "gray",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_train_type": "freight locomotive",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end",
+    "attribute_window_arrangement": "rectangular windows on sides and front",
+    "uid": "0929ffb7078347db81a4ec57cf17cb96",
+    "near_synsets": {
+        "train.n.01": 0.4865746371260462,
+        "boxcar.n.01": 0.5041707295912696,
+        "freight_train.n.01": 0.5054223071015177,
+        "steam_locomotive.n.01": 0.5067752463690918,
+        "locomotive.n.01": 0.5106536437442107,
+        "gearing.n.01": -1000.0,
+        "train.n.05": -1000.0,
+        "train.n.04": -1000.0,
+        "caravan.n.01": -1000.0,
+        "string.n.04": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/0929ffb7078347db81a4ec57cf17cb96",
+        "creator_username": "accessviolation",
+        "creator_display_name": "accessviolation",
+        "creator_profile_url": "https://sketchfab.com/accessviolation"
+    },
+    "filename": "std_0929ffb7078347db81a4ec57cf17cb96.glb",
+    "length": 8.693721771240234,
+    "width": 2.8733783960342407
+}

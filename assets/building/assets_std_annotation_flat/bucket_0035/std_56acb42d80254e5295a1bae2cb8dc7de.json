@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a tactical shotgun with a matte black finish, featuring a robust and modern design. It has a prominent cylindrical barrel with a visible pump-action fore-end, equipped with a ribbed grip for secure handling. The receiver is fitted with a Picatinny rail system on top, allowing for the attachment of various accessories such as sights or scopes. The stock is an adjustable, collapsible type with a textured buttplate and ergonomic pistol grip, enhancing user comfort and control. The magazine is detachable and box-shaped, positioned just ahead of the trigger guard. The overall construction appears to be primarily metal with some polymer components, giving it a rugged and utilitarian appearance suitable for urban tactical scenarios.",
+    "description": "A modern, matte black tactical shotgun with a pump-action fore-end, adjustable stock, and accessory rail system. It features a detachable magazine and ergonomic grip for enhanced control.",
+    "description_view_0": "Front view showing the circular muzzle, pump grip, and the alignment of the barrel and rail system.",
+    "description_view_1": "Side view highlighting the full length of the shotgun, including the adjustable stock, pistol grip, magazine, and accessory rails.",
+    "description_view_2": "Rear view displaying the buttstock, pistol grip, and the symmetry of the shotgun's components.",
+    "description_view_3": "Opposite side view mirroring view 1, showing the other side of the adjustable stock, magazine, and fore-end.",
+    "category": "shotgun",
+    "height": 0.25,
+    "max_dimension": 0.95,
+    "materials": [
+        "steel",
+        "polymer",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pump grip",
+        "trigger",
+        "magazine",
+        "stock",
+        "rail",
+        "safety switch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel with visible ribbing and a cylindrical profile",
+    "attribute_stock_type": "adjustable full stock with pistol grip",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with integrated finger grooves and reinforced edges",
+    "uid": "56acb42d80254e5295a1bae2cb8dc7de",
+    "near_synsets": {
+        "pump_action.n.01": 0.4945174533305857,
+        "sawed-off_shotgun.n.01": 0.5354040381765421,
+        "shotgun.n.01": 0.5393790004531823,
+        "gas_gun.n.01": 0.5588494230386181,
+        "machine_gun.n.01": 0.5594152970008526
+    },
+    "synset": "shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/56acb42d80254e5295a1bae2cb8dc7de",
+        "creator_username": "I_Live",
+        "creator_display_name": "ARIA",
+        "creator_profile_url": "https://sketchfab.com/I_Live"
+    },
+    "filename": "std_56acb42d80254e5295a1bae2cb8dc7de.glb",
+    "length": 0.7907958328723907,
+    "width": 0.06013685464859009
+}

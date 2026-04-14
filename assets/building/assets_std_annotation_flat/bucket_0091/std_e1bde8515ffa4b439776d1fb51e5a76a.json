@@ -1,0 +1,102 @@
+{
+    "description_long": "This mud patch is an irregularly shaped, flat expanse of compacted earth with a rough, uneven surface. The coloration is predominantly a mix of light and medium browns, interspersed with small stones and patches of slightly lighter silt. The surface texture appears gritty and granular, with visible embedded pebbles and occasional shallow depressions. The edges of the patch are jagged and blend gradually into the surrounding ground, suggesting natural formation or wear. There are no visible signs of standing water, but the surface looks dry and firm, typical of a well-trodden urban mud patch. Scattered small rocks and minor debris are present, adding to the naturalistic appearance.",
+    "description": "A flat, irregular mud patch with a rough, gritty surface and scattered small stones, blending naturally into its surroundings.",
+    "description_view_0": "From this view, the mud patch's irregular outline and scattered stones are clearly visible, with a mix of light and medium brown tones.",
+    "description_view_1": "This angle highlights the patch's thin profile and the subtle undulations across its surface, with a few embedded pebbles.",
+    "description_view_2": "The mud patch appears especially flat and thin from this side, with minimal visible debris and a mostly uniform texture.",
+    "description_view_3": "Here, the patch's jagged edge and a prominent embedded stone are visible, along with a slightly lighter area of silt.",
+    "category": "mud patch",
+    "height": 0.04,
+    "max_dimension": 1.8,
+    "materials": [
+        "soil",
+        "silt",
+        "small stones",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "coverable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "light brown",
+        "medium brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 50,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_location": "urban roadside or sidewalk edge",
+    "attribute_boundary_definition": "The boundaries are irregular and blend gradually into the surrounding ground, with no sharp transitions.",
+    "attribute_presence_of_footprints_or_tire_marks": "none visible",
+    "attribute_water_accumulation": "none visible",
+    "attribute_surrounding_debris": "small stones",
+    "uid": "e1bde8515ffa4b439776d1fb51e5a76a",
+    "near_synsets": {
+        "mud_puddle.n.01": 0.49736508044578986,
+        "mud_flat.n.01": 0.5062588260411192,
+        "mud_stain.n.01": 0.5130304281445187,
+        "mud.n.01": 0.5164055886867618,
+        "pebble.n.01": 0.535951024057175,
+        "spot.n.05": -1000.0,
+        "while.n.01": -1000.0,
+        "temporary_hookup.n.01": -1000.0,
+        "patch.n.05": -1000.0,
+        "mud.n.02": -1000.0,
+        "bandage.n.01": -1000.0,
+        "eyepatch.n.01": -1000.0,
+        "patch.n.03": -1000.0,
+        "plot.n.02": -1000.0,
+        "mend.n.01": -1000.0
+    },
+    "synset": "spot.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e1bde8515ffa4b439776d1fb51e5a76a",
+        "creator_username": "Mastcam-Z",
+        "creator_display_name": "Mastcam-Z",
+        "creator_profile_url": "https://sketchfab.com/Mastcam-Z"
+    },
+    "filename": "std_e1bde8515ffa4b439776d1fb51e5a76a.glb",
+    "length": 0.1302698478102684,
+    "width": 0.13880296796560287
+}

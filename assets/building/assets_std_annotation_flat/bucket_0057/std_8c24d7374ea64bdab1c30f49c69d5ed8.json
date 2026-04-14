@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a modern, belt-fed machine gun with a robust, matte-black metal body and a prominent barrel extending from the front. The weapon features a fixed stock at the rear, a pistol grip, and a large box magazine attached beneath the receiver, with visible linked ammunition. The top of the receiver has a carrying handle and iron sights, while the barrel is long and slender, ending in a simple muzzle device. The overall construction is utilitarian, with exposed mechanical components and a rugged, functional design. The weapon is designed for sustained fire and is typically used in military or paramilitary urban operations.",
+    "description": "A matte-black, belt-fed machine gun with a fixed stock, box magazine, and visible linked ammunition, featuring a long barrel and iron sights.",
+    "description_view_0": "Front view showing the circular muzzle, barrel alignment, and the box magazine protruding below.",
+    "description_view_1": "Side view displaying the full length of the rifle, the fixed stock, pistol grip, box magazine, and visible belt of ammunition.",
+    "description_view_2": "Rear view highlighting the stock, pistol grip, and the back of the receiver.",
+    "description_view_3": "Opposite side view showing the box magazine, fixed stock, and the length of the barrel.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "polymer",
+        "brass",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "mass": 11.0,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 110,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "pistol grip",
+        "trigger",
+        "magazine",
+        "charging handle",
+        "barrel",
+        "iron sights",
+        "carrying handle",
+        "muzzle device"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "brass"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "box (belt-fed)",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "8c24d7374ea64bdab1c30f49c69d5ed8",
+    "near_synsets": {
+        "automatic_rifle.n.01": 0.49263859061159143,
+        "rifle.n.01": 0.49569289504345904,
+        "garand_rifle.n.01": 0.5007549131227574,
+        "browning_machine_gun.n.01": 0.5064063948811632,
+        "machine_gun.n.01": 0.512898669705366
+    },
+    "synset": "garand_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8c24d7374ea64bdab1c30f49c69d5ed8",
+        "creator_username": "bumstrum",
+        "creator_display_name": "DJMaesen",
+        "creator_profile_url": "https://sketchfab.com/bumstrum"
+    },
+    "filename": "std_8c24d7374ea64bdab1c30f49c69d5ed8.glb",
+    "length": 1.085359811782837,
+    "width": 0.139324851334095
+}

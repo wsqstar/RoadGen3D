@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a small, modular building with a simple, boxy layout, representing an internet cafe. The structure is composed of several partitioned rooms or booths, each separated by textured white walls with a subtle wave pattern. The exterior features prominent signage with the word 'Qseg' in a modern, sans-serif font, placed on the front-facing walls. The interior layout suggests multiple private or semi-private spaces, likely for individual computer stations, but no furniture or equipment is visible. The building sits on a flat, gray base, indicating a foundation or floor slab. The overall design is minimalist, with no visible windows, doors, or decorative elements aside from the signage.",
+    "description": "A minimalist, modular internet cafe building with textured white walls, partitioned interior spaces, and bold 'Qseg' signage on the exterior.",
+    "description_view_0": "Front view showing two main entry panels with small black-and-white labels and a glimpse of the partitioned interior layout.",
+    "description_view_1": "Side view highlighting the large 'Qseg' signage on both exterior walls and the depth of the partitioned rooms inside.",
+    "description_view_2": "Rear view similar to the front, with visible partitioned spaces and small labels on the exterior panels.",
+    "description_view_3": "Opposite side view with 'Qseg' signage, mirroring view 1 and showing the modular, boxy structure.",
+    "category": "internet cafe",
+    "height": 2.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "gypsum board",
+        "concrete",
+        "plastic",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "partitionable",
+        "labelable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "doorway",
+        "partition wall"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "white",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_signage": "Large, painted or printed 'Qseg' logos in black, modern sans-serif font, placed on the front and side exterior walls. Small black-and-white labels are also present on the front panels.",
+    "attribute_window_advertisements": "none",
+    "attribute_computer_station_visibility": "none",
+    "attribute_neon_lighting": "none",
+    "attribute_architectural_style": "minimalist",
+    "uid": "c1584a24e97448a2a59e2f746ead7caa",
+    "near_synsets": {
+        "cybercafe.n.01": 0.5278584000521581,
+        "espresso_shop.n.01": 0.5763252269281143,
+        "estaminet.n.01": 0.5996159034381042,
+        "cafe_curtain.n.01": 0.6001375751227922,
+        "cafe.n.01": 0.6015431495446087,
+        "internet.n.01": -1000.0
+    },
+    "synset": "cybercafe.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c1584a24e97448a2a59e2f746ead7caa",
+        "creator_username": "exhibitbook",
+        "creator_display_name": "exhibitbook",
+        "creator_profile_url": "https://sketchfab.com/exhibitbook"
+    },
+    "filename": "std_c1584a24e97448a2a59e2f746ead7caa.glb",
+    "length": 7.380859375,
+    "width": 7.381103515625
+}

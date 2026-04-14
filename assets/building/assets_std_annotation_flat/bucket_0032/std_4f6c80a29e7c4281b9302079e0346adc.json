@@ -1,0 +1,101 @@
+{
+    "description_long": "This warehouse is a large, rectangular brick building with a prominent sawtooth roof structure, featuring multiple angled skylights for natural lighting. The facade is composed of reddish-brown brickwork, with black-painted sections and several industrial-style windows. There are two large garage doors, one on the front and one on the rear, suitable for truck access, as well as a visible loading dock area. Metal signage is mounted on the exterior walls, indicating company branding and possibly operational information. The roof includes both flat and angled sections, with visible skylights and a metal framework, likely for ventilation or additional storage. The overall design is functional and robust, typical of urban industrial zones.",
+    "description": "A large brick warehouse with a sawtooth roof, industrial windows, and multiple garage doors, featuring company signage and a functional loading dock.",
+    "description_view_0": "The front view shows the main entrance, black-painted facade sections, two company signs, a large garage door, and a loading dock.",
+    "description_view_1": "The left side view highlights the sawtooth roof, metal framework, and the rear garage door, with minimal windows visible.",
+    "description_view_2": "The rear view displays a plain brick wall, the full length of the sawtooth roof, and no visible doors or windows.",
+    "description_view_3": "The right side view shows the rear garage door, a small awning, and the side brick wall with minimal architectural features.",
+    "category": "warehouse",
+    "height": 8.0,
+    "max_dimension": 32.0,
+    "materials": [
+        "brick",
+        "concrete",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.2,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "mass": 420000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "garage door",
+        "window",
+        "signage"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red-brown",
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.02,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main facade features reddish-brown brickwork with black-painted sections, industrial-style windows, two prominent company signs, and a large garage door with a loading dock. The entryway is functional, with minimal decorative elements, emphasizing utility and accessibility.",
+    "attribute_loading_dock_presence": true,
+    "attribute_signage_type": [
+        "company logo",
+        "advertisement"
+    ],
+    "attribute_roof_structure": "The roof is a sawtooth design with multiple angled skylights, constructed from metal and concrete, and includes a visible metal framework likely for ventilation or additional storage.",
+    "attribute_architectural_style": "modern industrial",
+    "uid": "4f6c80a29e7c4281b9302079e0346adc",
+    "near_synsets": {
+        "warehouse.n.01": 0.5176316340824522,
+        "loft.n.01": 0.5349410779471969,
+        "lumberyard.n.01": 0.5527126016763726,
+        "cargo_door.n.01": 0.5565119685894677,
+        "shop_floor.n.01": 0.5590500957138099
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4f6c80a29e7c4281b9302079e0346adc",
+        "creator_username": "Max-5532",
+        "creator_display_name": "Max",
+        "creator_profile_url": "https://sketchfab.com/Max-5532"
+    },
+    "filename": "std_4f6c80a29e7c4281b9302079e0346adc.glb",
+    "length": 12.090075016021729,
+    "width": 26.3779354095459
+}

@@ -1,0 +1,112 @@
+{
+    "description_long": "This kiosk is a compact, modern retail or service structure with three solid walls and an open front, featuring a light-colored wooden frame and pale walls. The interior is organized with a central rectangular counter, a patterned area rug, and multiple shelving units displaying small green and beige containers and hats. A tall cylindrical floor lamp with a blue base and white shade stands in one corner, while a large black beanbag and a blue cylindrical object are positioned near the back wall. The flooring is a warm-toned wood, and the overall layout is clean and functional, with a focus on accessibility and display. The kiosk is well-lit and designed for customer interaction from the open front, with no visible windows or external signage.",
+    "description": "A modern, open-front kiosk with pale walls, wood flooring, display shelves, a central counter, and minimal furnishings including a floor lamp and beanbag.",
+    "description_view_0": "Front view showing the open entrance, central counter, display shelves, area rug, floor lamp, and beanbag.",
+    "description_view_1": "Rear view highlighting the shelving, blue cylindrical object, and beanbag, with the open front not visible.",
+    "description_view_2": "Side view showing the solid wall, partial view of the counter, and the floor lamp near the corner.",
+    "description_view_3": "Opposite side view with a clear look at the shelving and floor lamp, but the entrance and counter are less visible.",
+    "category": "kiosk",
+    "height": 2.5,
+    "max_dimension": 4.5,
+    "materials": [
+        "wood",
+        "painted drywall",
+        "fabric",
+        "plastic",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.1,
+        0.08,
+        0.05,
+        0.02,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "displayable",
+        "organizable",
+        "illuminable",
+        "sittable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "counter",
+        "shelves",
+        "lamp",
+        "beanbag"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "white",
+        "light wood",
+        "gray",
+        "blue",
+        "black",
+        "green",
+        "beige"
+    ],
+    "colors_composition": [
+        0.35,
+        0.25,
+        0.15,
+        0.1,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "scene",
+    "attribute_signage_type": "none",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "single open entryway at front",
+    "attribute_roof_design": "flat roof, light-colored, no visible overhangs or decorative elements",
+    "attribute_architectural_style": "modern minimalist",
+    "uid": "7c9a67cd502b4e4ea95861a636567db6",
+    "near_synsets": {
+        "booth.n.02": 0.517546993934208,
+        "etagere.n.01": 0.5464913979987551,
+        "shopfront.n.01": 0.5473338950835538,
+        "booth.n.01": 0.5476064750198314,
+        "meat_counter.n.01": 0.5485455702202557
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7c9a67cd502b4e4ea95861a636567db6",
+        "creator_username": "clairenicole22",
+        "creator_display_name": "clairenicole22",
+        "creator_profile_url": "https://sketchfab.com/clairenicole22"
+    },
+    "filename": "std_7c9a67cd502b4e4ea95861a636567db6.glb",
+    "length": 5.5752105712890625,
+    "width": 5.6212849617004395
+}

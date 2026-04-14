@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a compact, World War II-era submachine gun with a distinctive folding metal stock and a dark, blued steel finish. The receiver and barrel are constructed from metal, with a cylindrical foregrip and a wooden or polymer pistol grip for handling. The magazine is inserted from below and is not visible in these views, but the magazine well is present. The rifle features simple iron sights, with a front post and a rear notch, and a prominent charging handle on the right side. The barrel is relatively short and ends with a plain muzzle, lacking any visible muzzle device. The overall design is utilitarian, with minimal ornamentation and a focus on functionality, making it suitable for close-quarters urban environments.",
+    "description": "A compact, metal submachine gun with a folding stock, short barrel, and iron sights, finished in dark blued steel and wood or polymer grip.",
+    "description_view_0": "Side view showing the folding metal stock, pistol grip, and the full length of the barrel and receiver.",
+    "description_view_1": "Front view highlighting the circular muzzle, front sight post, and the narrow profile of the stock.",
+    "description_view_2": "Opposite side view displaying the folding stock, grip, and the receiver with charging handle details.",
+    "description_view_3": "Rear view showing the open loop of the folding stock and the alignment of the iron sights.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 0.85,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 4.0,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "foldable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "trigger",
+        "pistol grip",
+        "charging handle",
+        "magazine well",
+        "barrel",
+        "iron sights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "folding",
+    "attribute_barrel_type": "short",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "7ec7e1f9656e4319b8edae0d785699ad",
+    "near_synsets": {
+        "submachine_gun.n.01": 0.46901644695809813,
+        "garand_rifle.n.01": 0.4877019914294124,
+        "sten_gun.n.01": 0.4911352492518942,
+        "kalashnikov.n.01": 0.4914007492890346,
+        "light_arm.n.01": 0.4963611040215828,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7ec7e1f9656e4319b8edae0d785699ad",
+        "creator_username": "Moony_State",
+        "creator_display_name": "Moony_State",
+        "creator_profile_url": "https://sketchfab.com/Moony_State"
+    },
+    "filename": "std_7ec7e1f9656e4319b8edae0d785699ad.glb",
+    "length": 0.7387110888957977,
+    "width": 0.06010342948138714
+}

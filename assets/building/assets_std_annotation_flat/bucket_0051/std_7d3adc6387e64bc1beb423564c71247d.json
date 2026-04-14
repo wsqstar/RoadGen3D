@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a twin-engine, propeller-driven airplane with a classic streamlined fuselage and a low-wing configuration. The aircraft is painted primarily in white and red, with 'MARINES' and 'WZ' markings visible on the fuselage and tail, suggesting a military or training role. The wings are straight and low-mounted, each supporting a large engine nacelle with a visible propeller and attached floats, indicating amphibious capability. The tail section features a conventional design with a single vertical stabilizer and horizontal stabilizers. The cockpit is located at the forward section of the fuselage, with multiple windows suggesting a multi-seat, enclosed arrangement. The landing gear consists of prominent floats under the wings, suitable for water landings, and a small tailwheel for ground support.",
+    "description": "A twin-propeller, amphibious airplane with a red and white color scheme, low-mounted straight wings, and prominent floats for water landings. Marked with 'MARINES' and 'WZ', it features a forward, multi-seat cockpit and a conventional tail.",
+    "description_view_0": "Side view showing the red and white fuselage, low-mounted wings with floats, and the 'WZ' marking on the tail.",
+    "description_view_1": "Rear view highlighting the twin floats, horizontal stabilizers, and the 'MARINES' marking on the wing.",
+    "description_view_2": "Opposite side view displaying the engine nacelles, floats, and the full length of the fuselage and tail.",
+    "description_view_3": "Top-down view revealing the straight, low-mounted wings, twin propellers, and the overall planform of the airplane.",
+    "category": "airplane",
+    "height": 3.5,
+    "max_dimension": 13.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "mass": 4200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 25000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "propeller",
+        "cockpit window",
+        "ladder",
+        "float",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.55,
+        0.3,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, straight configuration with no visible winglets or pronounced dihedral/anhedral angles; floats attached beneath each wing.",
+    "attribute_engine_type": "Twin piston engines mounted on the wings, each with a visible propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Float landing gear with two main floats under the wings and a small tailwheel.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with multiple windows, likely multi-seat.",
+    "uid": "7d3adc6387e64bc1beb423564c71247d",
+    "near_synsets": {
+        "amphibian.n.02": 0.522052875545474,
+        "floatplane.n.01": 0.5373222551897825,
+        "propeller_plane.n.01": 0.548899890380892,
+        "pontoon.n.02": 0.5494169750274716,
+        "airplane.n.01": 0.5541486067532276
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7d3adc6387e64bc1beb423564c71247d",
+        "creator_username": "helijah",
+        "creator_display_name": "helijah",
+        "creator_profile_url": "https://sketchfab.com/helijah"
+    },
+    "filename": "std_7d3adc6387e64bc1beb423564c71247d.glb",
+    "length": 11.560720920562744,
+    "width": 8.834297180175781
+}

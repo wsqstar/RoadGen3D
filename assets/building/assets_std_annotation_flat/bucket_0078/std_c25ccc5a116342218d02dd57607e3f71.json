@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a heavily weathered and partially stripped sedan with a boxy, compact body style. The exterior is primarily white with extensive rust patches, especially along the lower panels, wheel arches, and roof edges, indicating prolonged exposure to the elements. Both front doors are open, revealing a sparse and dark interior with minimal visible seating or controls, suggesting the vehicle is abandoned or derelict. The windows are either missing or heavily tinted, and the rear of the car shows a large, rusted area with no visible lights or license plate. The wheels are dark, with a simple, utilitarian design, and the overall structure appears dented and damaged. The car's overall condition and missing components make it appear as a non-functional, possibly scrapped vehicle often found in neglected urban environments.",
+    "description": "A rusted, white sedan with open doors, missing windows, and a damaged, abandoned appearance. The car is heavily weathered, with visible rust and a sparse, dark interior.",
+    "description_view_0": "Side view showing the left profile, open front and rear doors, extensive rust, and missing window glass.",
+    "description_view_1": "Rear view highlighting the rusted trunk area, lack of rear lights, and open left rear door.",
+    "description_view_2": "Side view of the right profile, both doors open, visible rust, and damaged body panels.",
+    "description_view_3": "Front view showing the hood, open front doors, rusted bumper, and missing windshield.",
+    "category": "sedan",
+    "height": 1.5,
+    "max_dimension": 4.2,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.08,
+        0.08,
+        0.07,
+        0.02,
+        0.05
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 4,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "trunk",
+        "hood",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "rust brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_number_of_doors": 4,
+    "attribute_license_plate": "none",
+    "attribute_wheel_design": "Dark, simple wheels with a basic multi-spoke pattern, partially obscured by rust and dirt.",
+    "uid": "c25ccc5a116342218d02dd57607e3f71",
+    "near_synsets": {
+        "sedan.n.01": 0.5398422264372054,
+        "car_door.n.01": 0.5403432494136114,
+        "car_window.n.01": 0.5503276262805968,
+        "used-car.n.01": 0.5646821867540155,
+        "sedan.n.02": 0.5734935148660848
+    },
+    "synset": "sedan.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c25ccc5a116342218d02dd57607e3f71",
+        "creator_username": "LeandroAndrade",
+        "creator_display_name": "Leandro Andrade",
+        "creator_profile_url": "https://sketchfab.com/LeandroAndrade"
+    },
+    "filename": "std_c25ccc5a116342218d02dd57607e3f71.glb",
+    "length": 4.420253753662109,
+    "width": 2.261491060256958
+}

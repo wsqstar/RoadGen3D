@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a classic steam locomotive with a cylindrical boiler, a tall smokestack, and a cowcatcher at the front. The body is predominantly dark green with gold trim and red accents, especially on the spoked wheels. The locomotive features a covered cab at the rear, with visible domes and piping along the top of the boiler. The front is equipped with a prominent headlamp and a red-and-white striped cowcatcher, while the rear has an open section for the operator. The wheels are large and spoked, with red centers and black rims, and the overall design is reminiscent of 19th-century American steam engines.",
+    "description": "A detailed, dark green steam locomotive with gold trim, red spoked wheels, and a striped cowcatcher at the front. Features include a tall smokestack, domed boiler, and a covered operator cab.",
+    "description_view_0": "Front-left view showing the cowcatcher, headlamp, smokestack, and detailed wheel arrangement.",
+    "description_view_1": "Rear-left view highlighting the covered cab and the length of the locomotive, with less detail on the front features.",
+    "description_view_2": "Rear-right view focusing on the cab and the back of the locomotive, with the smokestack and domes visible along the top.",
+    "description_view_3": "Front-right view displaying the cowcatcher, headlamp, and the full set of wheels, with the cab receding into the background.",
+    "category": "train",
+    "height": 2.8,
+    "max_dimension": 8.5,
+    "materials": [
+        "steel",
+        "iron",
+        "glass",
+        "wood",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 35000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "door",
+        "lever",
+        "headlamp",
+        "cowcatcher",
+        "smokestack"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "red",
+        "gold",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "glossy",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_train_type": "steam locomotive",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end of the cab",
+    "attribute_window_arrangement": "no visible windows",
+    "uid": "29910176fa8e42fba97fdc011fd840cc",
+    "near_synsets": {
+        "steam_locomotive.n.01": 0.4839325803419507,
+        "diesel_locomotive.n.01": 0.5095444124947283,
+        "train.n.01": 0.5103377262392508,
+        "train_set.n.01": 0.5179492754101216,
+        "traction_engine.n.01": 0.5279095840463434,
+        "train.n.05": -1000.0,
+        "caravan.n.01": -1000.0,
+        "train.n.04": -1000.0,
+        "string.n.04": -1000.0,
+        "gearing.n.01": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/29910176fa8e42fba97fdc011fd840cc",
+        "creator_username": "jayspm",
+        "creator_display_name": "supamas",
+        "creator_profile_url": "https://sketchfab.com/jayspm"
+    },
+    "filename": "std_29910176fa8e42fba97fdc011fd840cc.glb",
+    "length": 4.704795837402344,
+    "width": 5.784962892532349
+}

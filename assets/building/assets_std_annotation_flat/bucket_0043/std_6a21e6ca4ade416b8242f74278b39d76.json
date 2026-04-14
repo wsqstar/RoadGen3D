@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a large, mounted artillery rifle or anti-tank gun, featuring a long, cylindrical barrel with visible reinforcement rings and a robust breech mechanism. The rifle is affixed to a heavy-duty, circular base platform with stabilizing arms extending outward, likely for recoil absorption and stability during firing. The central assembly includes a complex arrangement of gears, levers, and sighting devices, indicating manual aiming and adjustment capabilities. The structure is predominantly metallic, with dark, matte surfaces and some lighter metallic highlights, suggesting steel or similar alloys. The overall design is utilitarian, with exposed mechanical components and minimal ergonomic features, emphasizing function over comfort. This type of weapon would typically be found in military or fortified urban environments, possibly as a defensive emplacement.",
+    "description": "A large, mounted artillery rifle with a long barrel, heavy circular base, and exposed mechanical components for manual operation. The object is primarily metallic and designed for stability and precision in urban defense scenarios.",
+    "description_view_0": "Front view showing the muzzle of the long barrel, central breech, and symmetrical stabilizing arms extending from the base.",
+    "description_view_1": "Side view highlighting the full length of the barrel, the complex breech mechanism, and the layered, circular base platform.",
+    "description_view_2": "Rear view displaying the breech assembly, aiming mechanisms, and the symmetrical layout of the stabilizing arms.",
+    "description_view_3": "Opposite side view emphasizing the barrel's length, side-mounted controls, and the robust mounting structure.",
+    "category": "rifle",
+    "height": 1.2,
+    "max_dimension": 3.5,
+    "materials": [
+        "steel",
+        "aluminum",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "pullable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel",
+        "breech",
+        "sight",
+        "elevation wheel",
+        "traverse wheel",
+        "trigger mechanism"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "6a21e6ca4ade416b8242f74278b39d76",
+    "near_synsets": {
+        "rifle.n.01": 0.47454289831211866,
+        "artillery.n.01": 0.4804283173848315,
+        "light_arm.n.01": 0.49674430437807027,
+        "automatic_rifle.n.01": 0.49928974535919013,
+        "sniper_rifle.n.01": 0.5023324793618168
+    },
+    "synset": "sniper_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/6a21e6ca4ade416b8242f74278b39d76",
+        "creator_username": "Amirov",
+        "creator_display_name": "Amirov",
+        "creator_profile_url": "https://sketchfab.com/Amirov"
+    },
+    "filename": "std_6a21e6ca4ade416b8242f74278b39d76.glb",
+    "length": 3.2826660871505737,
+    "width": 2.934481382369995
+}

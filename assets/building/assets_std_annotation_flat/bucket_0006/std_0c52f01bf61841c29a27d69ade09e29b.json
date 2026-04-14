@@ -1,0 +1,111 @@
+{
+    "description_long": "This is a large, classic sailing ship with a black hull accented by gold trim and multiple rows of gunports, reminiscent of an 18th or 19th-century warship such as a frigate or ship-of-the-line. The vessel features three tall masts, each rigged with multiple square sails and spars, and topped with golden flags. The deck is detailed with railings, rigging, and a prominent raised stern section adorned with decorative gold elements. The bow is elongated and curves upward, ending in a figurehead, while the stern is broad and ornate, with windows and additional gold embellishments. The ship's rigging is extensive, with ropes and lines connecting the masts, sails, and spars, contributing to its authentic historical appearance. No modern equipment or markings are visible, emphasizing its period-specific design.",
+    "description": "A large, ornate black-and-gold sailing ship with three masts, square sails, and detailed rigging, styled after a historical warship. The hull is decorated with gold trim and multiple gunports, and the stern is elaborately adorned.",
+    "description_view_0": "Side view showing the full length of the ship, three masts with sails, black hull with gold trim, and detailed rigging.",
+    "description_view_1": "Front (bow) view highlighting the upward-curved prow, central mast, and symmetrical arrangement of sails and rigging.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the stern's gold decorations and the ship's full profile.",
+    "description_view_3": "Rear (stern) view displaying the ornate, gold-adorned stern, windows, and the arrangement of the masts and sails from behind.",
+    "category": "ship",
+    "height": 45,
+    "max_dimension": 65,
+    "materials": [
+        "wood",
+        "canvas",
+        "metal",
+        "rope",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "rotatable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sails",
+        "masts",
+        "rigging",
+        "deck",
+        "cannons",
+        "wheel",
+        "hatches",
+        "doors"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gold",
+        "white",
+        "brown"
+    ],
+    "colors_composition": [
+        0.55,
+        0.2,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 20,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a classic displacement type with a long, narrow profile, rounded bow, and a broad, ornate stern. The hull features multiple rows of gunports, gold trim, and a pronounced upward curve at the bow, with no visible keels or bulbous bows.",
+    "attribute_superstructure_layout": "The superstructure consists of a raised stern deck with decorative gold elements, multiple open decks, and three tall masts. There are no enclosed bridges or modern cabins, but the stern features windows and railings.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "sails",
+        "rigging",
+        "cannons",
+        "railings",
+        "wheel"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "0c52f01bf61841c29a27d69ade09e29b",
+    "near_synsets": {
+        "galleon.n.01": 0.46533794223730945,
+        "sailing_warship.n.01": 0.4945703555962686,
+        "bark.n.03": 0.49700405979332496,
+        "cargo_ship.n.01": 0.5090294723453541,
+        "windjammer.n.01": 0.510278323627521,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0c52f01bf61841c29a27d69ade09e29b",
+        "creator_username": "thomas005",
+        "creator_display_name": "Thomas Andris",
+        "creator_profile_url": "https://sketchfab.com/thomas005"
+    },
+    "filename": "std_0c52f01bf61841c29a27d69ade09e29b.glb",
+    "length": 56.5650520324707,
+    "width": 27.72882080078125
+}

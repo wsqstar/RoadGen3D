@@ -1,0 +1,99 @@
+{
+    "description_long": "This tram is a long, articulated public transport vehicle with a streamlined, rectangular body and a low profile, designed for urban rail systems. The exterior is primarily metallic gray with dark-tinted windows evenly spaced along the sides, and subtle yellow accents near the base. The tram features multiple passenger doors distributed along its length, likely sliding in type, and a series of roof-mounted equipment, including a pantograph for overhead electric power collection. The windows are large and regularly spaced, providing ample visibility for passengers. The undercarriage is set low to the ground, suggesting easy boarding access. The overall design is modern and functional, suitable for high-capacity urban transit.",
+    "description": "A long, modern gray tram with large, evenly spaced windows, multiple sliding doors, and roof-mounted electrical equipment, designed for urban passenger transport.",
+    "description_view_0": "The tram is seen from the narrow front, showing a flat face with possible signage and the pantograph visible on the roof.",
+    "description_view_1": "A full side view reveals the tram's length, multiple large windows, and several sliding doors along the side.",
+    "description_view_2": "The rear view mirrors the front, with a flat end and roof equipment visible, but no clear signage.",
+    "description_view_3": "Another full side view, identical to view 1, showing the opposite side with windows and doors.",
+    "category": "tram",
+    "height": 3.2,
+    "max_dimension": 32.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "pantograph",
+        "button",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_pantograph_type": "single-arm",
+    "attribute_door_configuration": "Four sliding doors on each side, evenly spaced along the length of the tram.",
+    "attribute_window_arrangement": "Large, rectangular windows arranged in a continuous, evenly spaced pattern along both sides, separated by narrow vertical frames.",
+    "attribute_route_number_display": "none",
+    "attribute_front_signage": "none",
+    "uid": "07d7a69ffb544ec48442ae3448ee6f1f",
+    "near_synsets": {
+        "tramway.n.01": 0.4975472594311433,
+        "trolleybus.n.01": 0.500047171788274,
+        "streetcar.n.01": 0.5017787200486904,
+        "tramline.n.01": 0.5174973392171728,
+        "train.n.01": 0.5202273315785123,
+        "tramcar.n.01": -1000.0
+    },
+    "synset": "tramcar.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/07d7a69ffb544ec48442ae3448ee6f1f",
+        "creator_username": "salphytheunemployed",
+        "creator_display_name": "PolyDucky",
+        "creator_profile_url": "https://sketchfab.com/salphytheunemployed"
+    },
+    "filename": "std_07d7a69ffb544ec48442ae3448ee6f1f.glb",
+    "length": 52.506568908691406,
+    "width": 1.90740168094635
+}

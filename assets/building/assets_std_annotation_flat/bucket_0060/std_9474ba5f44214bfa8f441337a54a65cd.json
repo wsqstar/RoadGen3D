@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a firearm with a distinctive curved magazine, a long cylindrical barrel, and a solid, angular stock. The receiver and handguard are robust and streamlined, with a metallic finish that suggests durability and utilitarian design. The trigger is housed within a rounded guard, and the grip is ergonomically shaped for secure handling. The barrel is relatively long and unadorned, with no visible ribbing or venting, and the front sight is mounted near the muzzle. The stock is full and straight, providing stability for aiming and firing. The overall appearance is consistent with a military-style shotgun, designed for reliability and rugged use in urban environments.",
+    "description": "A metallic, military-style shotgun with a curved magazine, long barrel, and full stock, featuring a robust and utilitarian design.",
+    "description_view_0": "Side view showing the full length of the shotgun, including the curved magazine, full stock, and long barrel.",
+    "description_view_1": "Narrow end-on view highlighting the slim profile of the barrel and stock, with minimal visible detail.",
+    "description_view_2": "Opposite side view displaying the same key features as view 0, with the magazine, stock, and barrel clearly visible.",
+    "description_view_3": "End-on view from the muzzle, showing the circular barrel opening and the alignment of the stock and receiver.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.9,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 4.0,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "magazine",
+        "stock",
+        "barrel",
+        "safety",
+        "grip"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, no visible ribbing or venting, standard barrel length",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "semi-automatic",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with smooth edges and no visible reinforcement",
+    "uid": "9474ba5f44214bfa8f441337a54a65cd",
+    "near_synsets": {
+        "sawed-off_shotgun.n.01": 0.47842626915348646,
+        "shotgun.n.01": 0.48502359996739147,
+        "gun.n.01": 0.49367102462675844,
+        "shotgun_shell.n.01": 0.5035189113282631,
+        "case_shot.n.01": 0.514737927145423
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9474ba5f44214bfa8f441337a54a65cd",
+        "creator_username": "zopinel",
+        "creator_display_name": "zopinel",
+        "creator_profile_url": "https://sketchfab.com/zopinel"
+    },
+    "filename": "std_9474ba5f44214bfa8f441337a54a65cd.glb",
+    "length": 0.5694353878498077,
+    "width": 0.028978326357901096
+}

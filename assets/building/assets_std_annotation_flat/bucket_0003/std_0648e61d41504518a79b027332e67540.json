@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a blocky, pixelated toilet with a classic design, featuring a rounded bowl and a rectangular cistern mounted at the back. The toilet seat is present and raised, revealing the interior of the bowl, which is also rendered in a stepped, voxel-like style. The cistern has a visible flush lever on the side, and the base of the toilet is detailed with alternating bands, giving it a stylized, geometric appearance. The overall color is a uniform white with some gray shading, and the surfaces appear hard and smooth, typical of ceramic toilets. The toilet is floor-mounted, with a solid base extending to the ground. There are no visible accessibility features such as grab bars or raised seats.",
+    "description": "A stylized, blocky white toilet with a raised seat, rectangular cistern, and visible flush lever, rendered in a geometric, voxel-like style.",
+    "description_view_0": "Front view showing the open seat, rounded bowl, and the rectangular cistern with a flush lever on the right.",
+    "description_view_1": "Right side view highlighting the raised seat, the stepped base, and the flush lever on the cistern.",
+    "description_view_2": "Rear view displaying the back of the cistern and the solid base, with no visible functional parts.",
+    "description_view_3": "Left side view showing the open seat, the stepped base, and the flush lever on the left side of the cistern.",
+    "category": "toilets",
+    "height": 0.8,
+    "max_dimension": 0.75,
+    "materials": [
+        "ceramic",
+        "plastic",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 32,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "flushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "seat",
+        "lid",
+        "flush lever"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.55,
+    "youngs_modulus": 50000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_installation_type": "floor-mounted",
+    "attribute_flush_mechanism_visibility": true,
+    "attribute_seat_presence": true,
+    "attribute_cistern_design": "exposed cistern",
+    "attribute_accessibility_features": [],
+    "uid": "0648e61d41504518a79b027332e67540",
+    "near_synsets": {
+        "toilet.n.02": 0.5031013392174989,
+        "toilet_bowl.n.01": 0.527116683643349,
+        "toilet_seat.n.01": 0.5387807642342435,
+        "toilet.n.01": 0.5402970277214694,
+        "flush_toilet.n.01": 0.5459812722162536,
+        "gutter.n.02": -1000.0,
+        "toilet.n.04": -1000.0
+    },
+    "synset": "toilet.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0648e61d41504518a79b027332e67540",
+        "creator_username": "BradleyRyan",
+        "creator_display_name": "BradleyRyan",
+        "creator_profile_url": "https://sketchfab.com/BradleyRyan"
+    },
+    "filename": "std_0648e61d41504518a79b027332e67540.glb",
+    "length": 0.8000001907348633,
+    "width": 0.7012346982955933
+}

@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a military-style utility helicopter with an olive drab exterior, featuring a long, streamlined fuselage and a prominent main rotor mounted on top. The helicopter has a pair of landing skids extending beneath the body, providing stable ground support. The cockpit is located at the front, with multiple rectangular windows offering visibility for the pilots and crew. The tail section is elongated, ending in a vertical stabilizer and a tail rotor for directional control. The surface appears matte and robust, with minimal visible markings or insignia. The overall design suggests durability and functionality, suitable for urban or rugged environments.",
+    "description": "An olive drab military-style helicopter with a streamlined body, large main rotor, and landing skids, featuring multiple cockpit windows and a tail rotor.",
+    "description_view_0": "Front view showing the narrow profile, cockpit windows, and the main rotor shaft above.",
+    "description_view_1": "Side view displaying the full length of the fuselage, main rotor, landing skids, and tail rotor.",
+    "description_view_2": "Rear view highlighting the tail boom, vertical stabilizer, and tail rotor assembly.",
+    "description_view_3": "Opposite side view similar to view 1, showing the other side of the fuselage and rotor configuration.",
+    "category": "helicopter",
+    "height": 3.5,
+    "max_dimension": 17.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.12,
+        0.1,
+        0.07,
+        0.03,
+        0.03
+    ],
+    "mass": 4200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 41160,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit window",
+        "main rotor",
+        "tail rotor",
+        "landing skids",
+        "control stick",
+        "button",
+        "lever"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive drab",
+        "black",
+        "gray",
+        "clear"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_rotor_blades": "The main rotor has two long, narrow blades made of composite or metal, colored dark gray or black, with no visible markings.",
+    "attribute_tail_rotor": "The tail rotor is present on the vertical stabilizer, featuring two short blades oriented vertically, colored dark gray or black, with no visible protective shroud.",
+    "attribute_landing_skids": "The landing skids are tubular, metallic, and painted in olive drab, with a simple curved shape and crossbars for structural support.",
+    "attribute_cockpit_windows": "There are multiple rectangular cockpit windows at the front and sides, framed in metal, with a slight tint and no visible markings.",
+    "attribute_registration_number": "not visible",
+    "uid": "0be66e8de906484dbced0b315e765633",
+    "near_synsets": {
+        "helicopter.n.01": 0.49452245291171054,
+        "single-rotor_helicopter.n.01": 0.5133735515423508,
+        "cargo_helicopter.n.01": 0.5159223744495152,
+        "landing_skid.n.01": 0.5209014654939533,
+        "main_rotor.n.01": 0.5223780802171378
+    },
+    "synset": "cargo_helicopter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0be66e8de906484dbced0b315e765633",
+        "creator_username": "fancyfennec",
+        "creator_display_name": "FancyFennec",
+        "creator_profile_url": "https://sketchfab.com/fancyfennec"
+    },
+    "filename": "std_0be66e8de906484dbced0b315e765633.glb",
+    "length": 11.240155220031738,
+    "width": 2.017864227294922
+}

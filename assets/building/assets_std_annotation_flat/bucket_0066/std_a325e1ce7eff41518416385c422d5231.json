@@ -1,0 +1,112 @@
+{
+    "description_long": "This object depicts a modern urban parking lot situated between two multi-story apartment buildings. The lot features clearly marked parking spaces, including a designated accessible parking spot with the International Symbol of Access painted in blue and white. The surface is paved and bordered by green grass strips, and a single red car is parked in one of the spaces. The apartment buildings have multiple balconies, windows, and entryways facing the lot, with some color accents on the window frames. The parking area includes painted lines for organization and a wide driveway for vehicle maneuvering. The overall scene is clean, organized, and designed for residential use.",
+    "description": "A paved urban parking lot between two apartment buildings, featuring marked spaces and an accessible parking spot.",
+    "description_view_0": "Front view showing the parking lot, accessible space, red car, and the main facades of both apartment buildings.",
+    "description_view_1": "Angled view highlighting the parking lot layout, accessible space, and the side of the right apartment building.",
+    "description_view_2": "Side view showing the blank exterior walls of the buildings and the edge of the parking lot.",
+    "description_view_3": "Rear view focusing on the back of the buildings with no visible parking features.",
+    "category": "parking",
+    "height": 12.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "concrete",
+        "asphalt",
+        "glass",
+        "metal",
+        "plastic",
+        "paint",
+        "air",
+        "grass"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.1,
+        0.07,
+        0.03,
+        0.02,
+        0.05,
+        0.03
+    ],
+    "mass": 1200000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "parkable",
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "parking space",
+        "accessible parking marking",
+        "driveway",
+        "building entrance",
+        "balcony"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "car"
+    ],
+    "colors": [
+        "gray",
+        "white",
+        "blue",
+        "green",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.1,
+        0.05,
+        0.1,
+        0.03,
+        0.12
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "scene",
+    "attribute_parking_signage": true,
+    "attribute_marked_parking_lines": true,
+    "attribute_payment_meter_or_kiosk": false,
+    "attribute_reserved_space_indicators": true,
+    "attribute_accessibility_markings": true,
+    "uid": "a325e1ce7eff41518416385c422d5231",
+    "near_synsets": {
+        "parking.n.01": 0.4422245872593218,
+        "parking_space.n.01": 0.455886988661149,
+        "parking_lot.n.01": 0.46817388143254357,
+        "parking.n.02": 0.5058527067661394,
+        "park.n.02": 0.5220120035008735
+    },
+    "synset": "parking.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a325e1ce7eff41518416385c422d5231",
+        "creator_username": "s25200DS",
+        "creator_display_name": "s25200DS",
+        "creator_profile_url": "https://sketchfab.com/s25200DS"
+    },
+    "filename": "std_a325e1ce7eff41518416385c422d5231.glb",
+    "length": 25.815129280090332,
+    "width": 25.815120697021484
+}

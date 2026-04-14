@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a large, military-style cargo truck with a robust, utilitarian design and a dark, matte finish. The truck features a single cab with a rounded roof and prominent front fenders, as well as a spacious open cargo bed with reinforced side panels. It has three axles, supporting six large, rugged tires suitable for heavy loads and rough terrain. The front grille is vertically slatted, flanked by round headlights and a sturdy bumper, while side mirrors extend outward for enhanced visibility. The cargo bed is bordered by high, solid metal sides, and the rear is open for easy loading and unloading. The overall construction suggests a steel body with minimal decorative elements, emphasizing function over form.",
+    "description": "A large, dark military-style cargo truck with a single cab and an open, reinforced cargo bed, supported by six rugged wheels.",
+    "description_view_0": "Side view showing the full length of the truck, the single cab, and the open cargo bed with three axles and six wheels clearly visible.",
+    "description_view_1": "Front view highlighting the rounded cab, vertical grille, round headlights, and extended side mirrors.",
+    "description_view_2": "Opposite side view similar to view 0, showing the cab, cargo bed, and all six wheels from the other side.",
+    "description_view_3": "Rear view displaying the open cargo bed, rear bumper, and the back of the cab, with the truck's width and bed depth visible.",
+    "category": "truck",
+    "height": 2.7,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.82,
+        0.1,
+        0.04,
+        0.02,
+        0.02
+    ],
+    "mass": 5200,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "cargo bed",
+        "mirror",
+        "headlight",
+        "bumper"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "flatbed",
+    "attribute_wheelbase": 3.8,
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "5c1c4ff26bee4754aa3288b13d5a6830",
+    "near_synsets": {
+        "van.n.05": 0.47936485153356,
+        "truck.n.01": 0.49071731293923543,
+        "flatbed.n.02": 0.49194293327320965,
+        "military_vehicle.n.01": 0.4981165481836714,
+        "weapons_carrier.n.01": 0.5073604605714155,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5c1c4ff26bee4754aa3288b13d5a6830",
+        "creator_username": "danieljorge435",
+        "creator_display_name": "danieljorge435",
+        "creator_profile_url": "https://sketchfab.com/danieljorge435"
+    },
+    "filename": "std_5c1c4ff26bee4754aa3288b13d5a6830.glb",
+    "length": 7.446619510650635,
+    "width": 3.9734113216400146
+}

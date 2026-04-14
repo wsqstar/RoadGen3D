@@ -1,0 +1,102 @@
+{
+    "description_long": "This combat tactical vehicle features a sleek, angular body with a low profile and wide wings, suggesting advanced aerodynamics and stealth capabilities. The exterior is clad in a matte, dark gray armor with a subtle digital camouflage pattern, providing both protection and visual disruption. The front section is equipped with two prominent, rectangular modules that may serve as thrusters or sensor arrays, flanking a reinforced central hull. The rear view reveals multiple illuminated panels and what appear to be exhaust ports or engine outlets, indicating high mobility. The sides display integrated panels and hatches, with no visible wheels or tracks, implying a hover or anti-gravity propulsion system. The overall design is futuristic, with smooth, hard surfaces and minimal external ornamentation, emphasizing function and durability.",
+    "description": "A futuristic, low-profile combat tactical vehicle with angular armor, digital camouflage, and prominent thruster or sensor modules. Its sleek, wide body and illuminated rear panels suggest advanced mobility and stealth.",
+    "description_view_0": "Front view shows the angular nose, two large rectangular modules on either side, and a central reinforced hull.",
+    "description_view_1": "Left side view highlights the wide, flat wing structure, integrated panels, and the absence of visible wheels or tracks.",
+    "description_view_2": "Rear view reveals multiple illuminated panels, exhaust ports, and the broad, sloped back of the vehicle.",
+    "description_view_3": "Right side view mirrors the left, showing the wing structure, paneling, and streamlined body.",
+    "category": "combat tactical  vehicle",
+    "height": 1.8,
+    "max_dimension": 8.0,
+    "materials": [
+        "composite armor",
+        "reinforced metal",
+        "glass",
+        "synthetic polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 25000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "hatch",
+        "control panel",
+        "thruster module"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "yellow (lights)"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 150000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "None visible.",
+    "attribute_armor_plating": "Full body coverage with angular, sloped armor plating; appears thick and robust, with no visible modular or reactive panels.",
+    "attribute_camouflage_pattern": "Digital camouflage pattern in shades of dark gray and black.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "19a3f2b572704d76b03c07a1f014bba4",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.5322986327626936,
+        "reconnaissance_vehicle.n.01": 0.5337011929020269,
+        "tank.n.01": 0.5467862262171302,
+        "armored_car.n.02": 0.5486184926876421,
+        "weapons_carrier.n.01": 0.5520923964576426,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/19a3f2b572704d76b03c07a1f014bba4",
+        "creator_username": "Sanos",
+        "creator_display_name": "Sol",
+        "creator_profile_url": "https://sketchfab.com/Sanos"
+    },
+    "filename": "std_19a3f2b572704d76b03c07a1f014bba4.glb",
+    "length": 10.987847328186035,
+    "width": 10.589825630187988
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a compact, futuristic quadcopter-style airplane with a robust, rectangular central fuselage and four large, angular propeller arms extending from each corner. The body is predominantly black with striking orange highlights and intricate surface detailing, suggesting a high-tech, possibly armored design. The propeller arms are thick and reinforced, each ending in a large, enclosed rotor with visible mechanical joints and green accent markings. The undercarriage features two sturdy, metallic landing skids, each attached to articulated supports, and a cylindrical component mounted centrally beneath the fuselage. The front and rear of the fuselage are equipped with gridded, vent-like structures, possibly for cooling or intake, and the overall build appears optimized for urban aerial operations. The design lacks traditional airplane wings and tail, instead relying on its four rotors for lift and maneuverability, resembling a heavy-duty drone more than a conventional fixed-wing aircraft.",
+    "description": "A compact, quadcopter-style airplane with a black and orange armored body, four large propeller arms, and robust landing skids. Its design is futuristic and optimized for urban aerial use.",
+    "description_view_0": "Front view shows the rectangular fuselage, two forward-facing propeller arms, and prominent gridded intake or vent at the nose.",
+    "description_view_1": "Side/rear view highlights the landing skids, cylindrical undercarriage component, and the rear-facing propeller arms with visible mechanical joints.",
+    "description_view_2": "Rear view displays the back gridded vent, all four propeller arms, and the symmetrical, reinforced structure of the fuselage.",
+    "description_view_3": "Opposite side/rear view similar to view 1, showing the landing skids, undercarriage, and rear propeller arms from the other side.",
+    "category": "airplane",
+    "height": 0.6,
+    "max_dimension": 2.2,
+    "materials": [
+        "carbon fiber",
+        "aluminum",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 38,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "landing skid",
+        "rotor arm",
+        "vent grille",
+        "undercarriage cylinder"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "orange",
+        "gray",
+        "green"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "sleek",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.12,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "No traditional wings; features four mid-mounted, straight, rigid rotor arms extending from each corner with no dihedral or anhedral angle.",
+    "attribute_engine_type": "Four electric motors, each mounted at the end of a rotor arm, driving enclosed propellers.",
+    "attribute_tail_design": "No conventional tail; lacks vertical or horizontal stabilizers, relying on quadcopter configuration for stability.",
+    "attribute_landing_gear_type": "Fixed skid landing gear with two main skids mounted beneath the fuselage.",
+    "attribute_cockpit_placement": "No visible cockpit; control and avionics likely integrated within the central fuselage, with no windows or canopy present.",
+    "uid": "8c6ffbf4f37b4dbaab88cab98f9ba1a5",
+    "near_synsets": {
+        "aircraft.n.01": 0.5086046375162069,
+        "airplane.n.01": 0.5255331941661571,
+        "orthopter.n.01": 0.5299561264002083,
+        "propeller_plane.n.01": 0.533445949468685,
+        "propjet.n.01": 0.5349172184180427
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8c6ffbf4f37b4dbaab88cab98f9ba1a5",
+        "creator_username": "Helindu",
+        "creator_display_name": "Helindu",
+        "creator_profile_url": "https://sketchfab.com/Helindu"
+    },
+    "filename": "std_8c6ffbf4f37b4dbaab88cab98f9ba1a5.glb",
+    "length": 1.1466064453125,
+    "width": 1.3736866116523743
+}

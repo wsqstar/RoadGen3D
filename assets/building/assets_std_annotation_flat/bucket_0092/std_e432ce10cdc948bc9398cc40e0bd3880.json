@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a vintage motorcycle sidecar attachment, featuring a single large wheel on one side and a streamlined, enclosed passenger compartment. The body is constructed from dark, weathered metal with a matte finish, and the seating area is covered in a worn, brown leather or vinyl material. The sidecar has a small windshield at the front, metal framework along the sides, and a rear fender with a red reflector or taillight. The undercarriage and wheel assembly are exposed, showing metal spokes and a robust axle. There are also some wooden blocks and logs placed near the base, possibly for stabilization or as props. The overall design is utilitarian, with visible rivets and bolts, and the sidecar appears to be designed for attachment to a motorcycle rather than independent operation.",
+    "description": "A vintage, weathered motorcycle sidecar with a single wheel, enclosed passenger compartment, and brown leather seat. The body is dark metal with a small windshield and rear reflector.",
+    "description_view_0": "Side view showing the large spoked wheel, brown seat cover, and the full length of the sidecar body.",
+    "description_view_1": "Front view highlighting the windshield, narrow profile, and the placement of wooden blocks at the base.",
+    "description_view_2": "Opposite side view displaying the metal framework, seat, and logs beneath the sidecar.",
+    "description_view_3": "Rear view showing the fender, taillight/reflector, and the back of the seat.",
+    "category": "tricycle",
+    "height": 0.95,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "leather",
+        "glass",
+        "rubber",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 85,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "seat",
+        "windshield",
+        "fender",
+        "reflector",
+        "frame"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "gray",
+        "red"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 1,
+    "attribute_presence_of_pedals": false,
+    "attribute_handlebar_type": "none",
+    "attribute_seat_configuration": "single passenger seat",
+    "attribute_presence_of_rear_cargo_basket": false,
+    "uid": "e432ce10cdc948bc9398cc40e0bd3880",
+    "near_synsets": {
+        "tricycle.n.01": 0.46597328415969674,
+        "sidecar.n.02": 0.47850648648425975,
+        "motorcycle.n.01": 0.5157938183385529,
+        "pedicab.n.01": 0.5294836700343083,
+        "motorcyclist.n.01": 0.5362775909781353
+    },
+    "synset": "tricycle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e432ce10cdc948bc9398cc40e0bd3880",
+        "creator_username": "zhenko",
+        "creator_display_name": "zhenkoest",
+        "creator_profile_url": "https://sketchfab.com/zhenko"
+    },
+    "filename": "std_e432ce10cdc948bc9398cc40e0bd3880.glb",
+    "length": 1.6446002125740051,
+    "width": 1.0522361397743225
+}

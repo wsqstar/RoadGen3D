@@ -1,0 +1,102 @@
+{
+    "description_long": "This mud patch is a shallow, irregularly shaped area of soft, wet earth with a slightly raised, uneven rim and a central depression. The surface is mottled with various shades of gray and brown, indicating a mix of moist soil and silt. There are a few small clumps and lumps of mud, as well as a distinct shallow puddle occupying part of the patch, suggesting recent water accumulation. The edges of the patch are diffuse and blend gradually into the surrounding ground, with no sharp boundary. The texture appears rough and sticky, with visible micro-variations in height and some minor debris embedded in the mud. This patch would likely be found in an urban environment where water runoff collects, such as near a sidewalk, roadside, or construction site.",
+    "description": "A shallow, irregular mud patch with a central depression and a small puddle, featuring rough, mottled textures and gradual edges. The surface is moist and uneven, blending into the surrounding ground.",
+    "description_view_0": "From this view, the central depression and small puddle are clearly visible, along with a few raised clumps of mud on the left side.",
+    "description_view_1": "This angle highlights the uneven rim and the gradual blending of the mud patch into the surrounding surface, with the puddle less prominent.",
+    "description_view_2": "The depression and puddle are visible from a different angle, showing more of the rough, lumpy texture and the irregular boundary.",
+    "description_view_3": "This view emphasizes the patch's irregular shape and the subtle elevation changes, with the puddle partially obscured.",
+    "category": "mud patch",
+    "height": 0.07,
+    "max_dimension": 0.85,
+    "materials": [
+        "mud",
+        "water",
+        "soil",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "splashable",
+        "imprintable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "gray",
+        "brown",
+        "beige"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.35,
+    "youngs_modulus": 0.01,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_location": "urban roadside or construction site",
+    "attribute_boundary_definition": "The boundaries are irregular and blend gradually into the surrounding ground, with no sharp transitions.",
+    "attribute_presence_of_footprints_or_tire_marks": "none visible",
+    "attribute_water_accumulation": "A small shallow puddle is present in the central depression, covering part of the patch.",
+    "attribute_surrounding_debris": "none visible",
+    "uid": "f69c9327f2bc42cf98ce070fde7df648",
+    "near_synsets": {
+        "mud_puddle.n.01": 0.4616607594864755,
+        "mud.n.01": 0.5052844534293652,
+        "mud_stain.n.01": 0.5180939485231844,
+        "mud_flat.n.01": 0.5247810556009171,
+        "puddle.n.01": 0.5354060152703612,
+        "while.n.01": -1000.0,
+        "temporary_hookup.n.01": -1000.0,
+        "bandage.n.01": -1000.0,
+        "mud.n.02": -1000.0,
+        "spot.n.05": -1000.0,
+        "mend.n.01": -1000.0,
+        "eyepatch.n.01": -1000.0,
+        "plot.n.02": -1000.0,
+        "patch.n.05": -1000.0,
+        "patch.n.03": -1000.0
+    },
+    "synset": "mud_puddle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/f69c9327f2bc42cf98ce070fde7df648",
+        "creator_username": "patritevi",
+        "creator_display_name": "patritevi",
+        "creator_profile_url": "https://sketchfab.com/patritevi"
+    },
+    "filename": "std_f69c9327f2bc42cf98ce070fde7df648.glb",
+    "length": 0.5889365673065186,
+    "width": 0.6471006274223328
+}

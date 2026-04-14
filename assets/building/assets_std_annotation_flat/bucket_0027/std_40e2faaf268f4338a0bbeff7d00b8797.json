@@ -1,0 +1,106 @@
+{
+    "description_long": "This structure is a large, industrial transformer tower complex situated on a concrete platform, surrounded by four lattice-frame transmission towers at the corners. The central tower is a tall, rectangular building with a blue and yellow crane mounted on top, likely used for maintenance or construction. The main tower features multiple stacked platforms and external staircases, with several insulator stacks and electrical equipment visible along its height. Around the base, there are small orange utility boxes and scattered green shrubs, adding detail to the scene. The four lattice towers are interconnected by cables and are spaced symmetrically around the central structure. The overall appearance is highly engineered, with a focus on electrical transmission and safety.",
+    "description": "A large blue transformer tower complex with a central tower, four lattice transmission towers, and visible electrical equipment, set on a concrete platform with utility boxes and shrubs.",
+    "description_view_0": "Front view showing the main tower, crane, all four lattice towers, and a row of orange utility boxes at the base.",
+    "description_view_1": "Side view highlighting the depth of the central tower, the crane's profile, and the arrangement of the lattice towers.",
+    "description_view_2": "Rear view displaying the stacked platforms, external staircases, and the symmetrical placement of the lattice towers.",
+    "description_view_3": "Opposite side view focusing on the crane, the main tower's vertical structure, and the spatial relationship of the surrounding towers.",
+    "category": "transformer tower",
+    "height": 35,
+    "max_dimension": 50,
+    "materials": [
+        "steel",
+        "concrete",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "toggleable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "crane",
+        "external staircase",
+        "utility box",
+        "insulator stack"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "yellow",
+        "green",
+        "orange"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 10,
+    "asset_composition_type": "scene",
+    "attribute_number_of_insulator_stacks": 6,
+    "attribute_arrangement_of_crossarms": "Crossarms are arranged in multiple horizontal tiers along the height of the central tower, with each tier supporting several insulator stacks in a parallel configuration.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "insulator stack",
+        "crane",
+        "utility box"
+    ],
+    "attribute_configuration_of_attached_power_lines": "Power lines are routed from the central tower to the four surrounding lattice towers in a parallel configuration, likely supporting multiple circuits with a three-phase arrangement.",
+    "uid": "40e2faaf268f4338a0bbeff7d00b8797",
+    "near_synsets": {
+        "substation.n.01": 0.538300102557324,
+        "pylon.n.02": 0.5393345754667332,
+        "power_system.n.01": 0.5661468436522762,
+        "transformer.n.01": 0.5671810686202858,
+        "cascade_transformer.n.01": 0.5682519488800203,
+        "tugboat.n.01": -1000.0,
+        "tower.n.01": -1000.0,
+        "column.n.04": -1000.0
+    },
+    "synset": "substation.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/40e2faaf268f4338a0bbeff7d00b8797",
+        "creator_username": "Danie141092l",
+        "creator_display_name": "Danie141092l",
+        "creator_profile_url": "https://sketchfab.com/Danie141092l"
+    },
+    "filename": "std_40e2faaf268f4338a0bbeff7d00b8797.glb",
+    "length": 55.719642639160156,
+    "width": 79.633544921875
+}

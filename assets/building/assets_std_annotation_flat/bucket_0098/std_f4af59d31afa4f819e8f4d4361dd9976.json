@@ -1,0 +1,97 @@
+{
+    "description_long": "This humanoid robot features a skeletal, exoskeleton-like frame with articulated limbs and a segmented torso. The arms are extended horizontally and appear to have multiple joints, allowing for a wide range of motion. The legs are long and mechanical, with visible hinges at the knees and ankles, and end in open, foot-like structures designed for stability. The torso is compact and reinforced, with a central spine-like structure and mechanical components visible throughout. The robot is primarily constructed from dark metallic materials, accented with yellow and orange highlights, and has a utilitarian, industrial appearance. There are no visible coverings or decorative elements, and the head area is minimalistic, lacking distinct facial features.",
+    "description": "A skeletal, industrial humanoid robot with articulated limbs, a segmented torso, and open mechanical feet, primarily dark metal with yellow and orange accents.",
+    "description_view_0": "Front view shows the full width of the outstretched arms, segmented torso, and symmetrical mechanical legs with open feet.",
+    "description_view_1": "Side view highlights the thin profile, visible arm and leg joints, and the spine-like structure of the torso.",
+    "description_view_2": "Rear view reveals the back of the torso, additional mechanical details, and the symmetrical arrangement of the limbs.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the arm and leg articulation and the mechanical structure from the other side.",
+    "category": "humanoid robot",
+    "height": 1.8,
+    "max_dimension": 2.2,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "legs",
+        "joints",
+        "feet"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "yellow",
+        "orange"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms fully extended horizontally to the sides, legs straight and parallel, torso upright, and head area facing forward.",
+    "attribute_clothing_style": "Unclothed; only integrated mechanical panels and structural components are visible.",
+    "attribute_facial_features": "No visible facial features; head area is minimalistic and lacks eyes, mouth, or expressive elements.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints, allowing for significant articulation; limbs appear rigid but highly jointed.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "f4af59d31afa4f819e8f4d4361dd9976",
+    "near_synsets": {
+        "android.n.01": 0.5343699226123801,
+        "robotics_equipment.n.01": 0.5466915318625991,
+        "cyborg.n.01": 0.5467835009142857,
+        "automaton.n.02": 0.5563273892200049,
+        "robotics.n.01": 0.572937438825807
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f4af59d31afa4f819e8f4d4361dd9976",
+        "creator_username": "nikita_enakaev",
+        "creator_display_name": "nikita_enakaev",
+        "creator_profile_url": "https://sketchfab.com/nikita_enakaev"
+    },
+    "filename": "std_f4af59d31afa4f819e8f4d4361dd9976.glb",
+    "length": 0.3318273574113846,
+    "width": 1.762803077697754
+}

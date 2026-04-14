@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a small, modern bakery building with a flat roof and a simple, geometric structure. The facade features a large blue-framed glass door flanked by two windows, each topped with a blue-and-white striped awning. Beneath the left window are two planter boxes with green shrubs, adding a touch of greenery to the storefront. The roof has a raised edge and a small, square rooftop unit with a circular vent and a pipe. The building is painted in a light cream color, with blue accents on the door and awnings, giving it a clean and inviting appearance. The overall design is minimalistic, with no visible signage or branding, and the windows do not display any baked goods.",
+    "description": "A small, modern cream-colored bakery with blue accents, striped awnings, and planter boxes beneath the windows. The building features a flat roof and a simple, geometric design.",
+    "description_view_0": "The side view shows a single window with a blue-and-white striped awning and part of a rooftop unit visible.",
+    "description_view_1": "The front view displays the main entrance with a blue-framed glass door, two windows with striped awnings, and planter boxes beneath the left window.",
+    "description_view_2": "This side view highlights the building's flat roof, the edge of the awning, and the rooftop unit, with minimal facade detail.",
+    "description_view_3": "The rear view shows a plain cream wall with the rooftop unit and no windows or decorative features.",
+    "category": "bakery",
+    "height": 4.0,
+    "max_dimension": 8.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "plastic",
+        "wood",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.7,
+        0.08,
+        0.07,
+        0.05,
+        0.03,
+        0.05,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "windows",
+        "awnings",
+        "planter boxes",
+        "rooftop unit"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "cream",
+        "blue",
+        "white",
+        "green",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.05,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_storefront_signage": "none",
+    "attribute_display_window_with_baked_goods": "none",
+    "attribute_awning_with_bakery_branding": "There are blue-and-white striped awnings above the windows and door, made of fabric or plastic, but no visible bakery branding, logos, or text.",
+    "attribute_outdoor_seating_area": "none",
+    "attribute_architectural_style": "Modern minimalist with geometric lines, flat roof, and simple decorative elements such as striped awnings and planter boxes.",
+    "uid": "22d1d3a882fc47569403f651f78d163f",
+    "near_synsets": {
+        "bakery.n.01": 0.5181837599719258,
+        "patisserie.n.01": 0.5251017550811887,
+        "baker.n.01": 0.5580952245527634,
+        "pastry_cart.n.01": 0.5622344478074466,
+        "petit_four.n.01": 0.5624153875116659
+    },
+    "synset": "bakery.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/22d1d3a882fc47569403f651f78d163f",
+        "creator_username": "Federico.Terzi",
+        "creator_display_name": "Federico.Terzi",
+        "creator_profile_url": "https://sketchfab.com/Federico.Terzi"
+    },
+    "filename": "std_22d1d3a882fc47569403f651f78d163f.glb",
+    "length": 6.29684042930603,
+    "width": 8.125636577606201
+}

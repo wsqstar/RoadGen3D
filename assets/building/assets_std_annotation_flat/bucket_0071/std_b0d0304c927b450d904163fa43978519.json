@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a large, rectangular metal dumpster with a weathered and rusted exterior, featuring patches of green, brown, and purple graffiti and paint stains. The top consists of two large, flat, hinged lids with visible handles for opening, and the surface shows signs of wear and grime. Both sides of the dumpster have sturdy, angular metal reinforcements and side handles, while the front displays colorful graffiti and a faded warning sticker. The rear is plain and unadorned, with a continuous metal surface and no visible openings or features. The base is solid and slightly raised, designed to keep the dumpster stable and off the ground. This type of dumpster is commonly found in urban environments for waste collection and temporary storage.",
+    "description": "A large, weathered metal dumpster with flat, hinged lids, graffiti, and side handles, designed for urban waste collection.",
+    "description_view_0": "Front view showing two flat, hinged lids, side handles, colorful graffiti, and a faded warning sticker.",
+    "description_view_1": "Left side view highlighting the angular metal reinforcement and side handle, with visible paint stains and graffiti.",
+    "description_view_2": "Rear view displaying a plain, continuous metal surface with no openings or markings.",
+    "description_view_3": "Right side view similar to the left, showing angular reinforcement, side handle, and graffiti.",
+    "category": "dumpster",
+    "height": 1.3,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "paint",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "lid"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "black",
+        "purple",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "split, flat, hinged metal lids (2 sections) with visible handles, no locking mechanism visible",
+    "attribute_wheel_presence": false,
+    "attribute_handle_design": "Two rectangular metal bar handles, one on each side near the top edge",
+    "attribute_warning_labels": [
+        {
+            "color": "yellow",
+            "shape": "rectangular",
+            "content": "faded warning text and symbols"
+        }
+    ],
+    "attribute_placement_location": "outdoor commercial area or residential alley",
+    "uid": "b0d0304c927b450d904163fa43978519",
+    "near_synsets": {
+        "dumpster.n.01": 0.41002166797953243,
+        "garbage.n.03": 0.48693936945102495,
+        "garbage_truck.n.01": 0.4871246003374093,
+        "recycling_bin.n.01": 0.5181315924893863,
+        "dump.n.02": 0.5221849567694583
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b0d0304c927b450d904163fa43978519",
+        "creator_username": "design.ruben",
+        "creator_display_name": "EXHALE",
+        "creator_profile_url": "https://sketchfab.com/design.ruben"
+    },
+    "filename": "std_b0d0304c927b450d904163fa43978519.glb",
+    "length": 1.329551339149475,
+    "width": 2.0619351863861084
+}

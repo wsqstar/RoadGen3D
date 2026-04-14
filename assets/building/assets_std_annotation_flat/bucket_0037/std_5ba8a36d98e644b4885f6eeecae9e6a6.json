@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a large, modern ferry with a streamlined hull and a flat, open deck area, likely designed for both passenger and vehicle transport. The vessel features a robust steel structure with a gray exterior, accented by brown and black elements, possibly representing deck equipment and superstructure. The bow and stern are both rounded, with the stern area housing a raised section that includes the bridge and control cabin, as well as lifeboats and other operational equipment. The deck is segmented with visible hatches or access points, and there are railings along the perimeter for safety. Small flags are mounted at both ends, adding a touch of color and indicating national or company affiliation. The overall design suggests functionality and durability, suitable for urban waterways or harbor crossings.",
+    "description": "A large, gray steel ferry with an open deck, raised bridge, and safety railings, designed for transporting passengers and vehicles across water. Features include deck equipment, lifeboats, and small flags at both ends.",
+    "description_view_0": "Front view showing the pointed bow, open deck, and safety railings.",
+    "description_view_1": "Side profile highlighting the long, flat deck, raised bridge at the rear, and deck equipment.",
+    "description_view_2": "Rear view displaying the stern, raised bridge, lifeboats, and access points.",
+    "description_view_3": "Opposite side profile with similar features to view 1, showing the full length and deck layout.",
+    "category": "ferry",
+    "height": 8.0,
+    "max_dimension": 65.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "wood",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2500000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "dockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "lifeboat",
+        "bridge controls",
+        "railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "black",
+        "white",
+        "blue",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.06,
+        0.04,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_passenger_decks": 1,
+    "attribute_vehicle_loading_ramps": false,
+    "attribute_large_windows": false,
+    "attribute_multiple_entry_points": true,
+    "attribute_prominent_smokestack": false,
+    "uid": "5ba8a36d98e644b4885f6eeecae9e6a6",
+    "near_synsets": {
+        "ferry.n.01": 0.41857523234041766,
+        "ferry.n.02": 0.4719244589701571,
+        "car-ferry.n.01": 0.4747694204388372,
+        "ferryman.n.01": 0.5140890145114758,
+        "drawbridge.n.01": 0.5187913462494966
+    },
+    "synset": "ferryman.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5ba8a36d98e644b4885f6eeecae9e6a6",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_5ba8a36d98e644b4885f6eeecae9e6a6.glb",
+    "length": 64.06279754638672,
+    "width": 11.507555961608887
+}

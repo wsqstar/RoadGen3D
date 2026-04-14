@@ -1,0 +1,86 @@
+{
+    "description_long": "This object is a rectangular section of sidewalk composed of interlocking stone pavers, arranged in a staggered, brick-like pattern. The surface is uneven, with each stone slightly raised or lowered relative to its neighbors, giving a rugged, cobblestone appearance. The stones are predominantly gray, with subtle variations in shade, suggesting natural stone or weathered concrete. The edges are straight and clean, with no visible curb or barrier, indicating a flush transition to adjacent surfaces. The overall form is long and narrow, typical of a sidewalk segment found in urban or residential environments. There are no visible features such as tactile paving, street furniture, or embedded markings.",
+    "description": "A long, narrow sidewalk segment made of interlocking gray stone pavers with a rugged, cobblestone texture and flush edges.",
+    "description_view_0": "A side view showing the thin profile and the uneven, stone-textured surface.",
+    "description_view_1": "An end view highlighting the narrow width and the staggered arrangement of the stone pavers.",
+    "description_view_2": "A side view similar to view 0, displaying the full length and rugged surface of the sidewalk.",
+    "description_view_3": "An end view like view 1, emphasizing the cobblestone pattern and narrow width.",
+    "category": "sidewalk",
+    "height": 0.08,
+    "max_dimension": 3.0,
+    "materials": [
+        "stone",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.95,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": false,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "flush",
+    "attribute_adjacent_street_type": "residential",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "12d91558d0d44357a7ce10d0722f77fc",
+    "near_synsets": {
+        "sidewalk.n.01": 0.47881030929912916,
+        "cobble.n.01": 0.5022140975605603,
+        "paving_stone.n.01": 0.503541661670762,
+        "bluestone.n.01": 0.5147395956187257,
+        "curb.n.01": 0.5223818791717957
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/12d91558d0d44357a7ce10d0722f77fc",
+        "creator_username": "william.dahm",
+        "creator_display_name": "william.dahm",
+        "creator_profile_url": "https://sketchfab.com/william.dahm"
+    },
+    "filename": "std_12d91558d0d44357a7ce10d0722f77fc.glb",
+    "length": 6.564599990844727,
+    "width": 1.7505617141723633
+}

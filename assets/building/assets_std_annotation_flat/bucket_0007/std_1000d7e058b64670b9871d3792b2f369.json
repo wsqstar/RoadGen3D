@@ -1,0 +1,107 @@
+{
+    "description_long": "This humanoid robot features a sleek, glossy black exterior with red accent lights and streamlined, muscular contours reminiscent of advanced exoskeletons. Its head is helmet-like, with a smooth, rounded surface and a dark visor area, suggesting a sensor or camera array. The torso is broad and armored, tapering to a narrow waist, while the limbs are robust and segmented, with visible joint structures at the shoulders, elbows, hips, knees, and ankles. The arms and legs are proportionate to a human, with articulated fingers and feet designed for stability and dexterity. Red illuminated elements are integrated into the shoulders, forearms, thighs, and shins, enhancing its futuristic appearance. The overall design suggests a high-performance, agile robot suitable for urban environments, possibly for security, assistance, or patrol roles.",
+    "description": "A glossy black humanoid robot with red accent lights, muscular contours, and articulated limbs, featuring a helmet-like head and armored torso.",
+    "description_view_0": "Front view shows the broad armored chest, helmet-like head with dark visor, and outstretched arms with red lights on shoulders and forearms.",
+    "description_view_1": "Left side view highlights the robot's streamlined profile, segmented limb joints, and the curvature of the helmet and torso.",
+    "description_view_2": "Rear view reveals the back armor plating, red lights on the back and legs, and the symmetrical design of the limbs and torso.",
+    "description_view_3": "Right side view mirrors the left, showing the same articulated joints, sleek limb design, and the side profile of the helmet.",
+    "category": "humanoid robot",
+    "height": 1.85,
+    "max_dimension": 2.1,
+    "materials": [
+        "glossy polymer",
+        "carbon fiber",
+        "aluminum alloy",
+        "synthetic rubber",
+        "LED elements",
+        "air",
+        "circuitry"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.05,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 110,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head",
+        "arms",
+        "hands",
+        "fingers",
+        "legs",
+        "feet",
+        "shoulder lights",
+        "forearm lights",
+        "thigh lights",
+        "shin lights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.08,
+    "surface_finish": "glossy",
+    "reflectivity": 0.7,
+    "index_of_refraction": 1.55,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.15,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms extended horizontally to the sides, legs straight and together, head facing forward, and torso erect.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated glossy black panels with red illuminated accents and armored plating.",
+    "attribute_facial_features": "Face is covered by a smooth, helmet-like visor with no visible eyes, mouth, or nose; the visor area is dark and featureless, possibly housing sensors.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible joints: ball or rotary joints at shoulders and hips, hinge joints at elbows and knees, articulated fingers and feet; limbs appear highly flexible and capable of a wide range of motion.",
+    "attribute_presence_of_sensors": "Possible sensor array in the head/visor region; no other visible sensors.",
+    "uid": "1000d7e058b64670b9871d3792b2f369",
+    "near_synsets": {
+        "android.n.01": 0.5345643339493087,
+        "robotics_equipment.n.01": 0.5543531426494561,
+        "cyborg.n.01": 0.554535636787268,
+        "automaton.n.02": 0.5670742281581221,
+        "human_head.n.01": 0.588527908486944
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1000d7e058b64670b9871d3792b2f369",
+        "creator_username": "JonnyMANSON",
+        "creator_display_name": "JonnyMANSON",
+        "creator_profile_url": "https://sketchfab.com/JonnyMANSON"
+    },
+    "filename": "std_1000d7e058b64670b9871d3792b2f369.glb",
+    "length": 0.5415881872177124,
+    "width": 2.166271686553955
+}

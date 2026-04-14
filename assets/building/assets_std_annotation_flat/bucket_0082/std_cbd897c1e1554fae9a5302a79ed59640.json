@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a large, heavy-duty rifle mounted on a two-wheeled carriage, resembling a crew-served weapon such as a heavy machine gun or anti-materiel rifle. The main body is robust and rectangular, with a long, cylindrical barrel extending from one end, indicating high-caliber ammunition capability. The carriage features two solid wheels for transport and a stabilizing leg or support for stationary firing. There are visible handles and a trigger mechanism, as well as a side-mounted box or magazine for ammunition feeding. The surface is matte black or dark gray, with a metallic sheen, and the construction appears to be primarily steel or similar metal. The overall design is utilitarian, built for durability and sustained use in urban or field environments.",
+    "description": "A large, wheeled heavy rifle with a long barrel, robust metal body, and side-mounted magazine, designed for stationary or crew-served use. The surface is matte black and metallic, with visible handles and support structures.",
+    "description_view_0": "The rifle is viewed from the muzzle end, showing the narrow profile of the barrel and the two wheels aligned behind it.",
+    "description_view_1": "A side view reveals the full length of the barrel, the rectangular receiver, the side-mounted magazine, and the two supporting wheels.",
+    "description_view_2": "Viewed from the rear, the handle, trigger area, and the back of the receiver are visible, with the wheels flanking the body.",
+    "description_view_3": "The opposite side view displays the long barrel, receiver, and carriage, with the support leg and wheels clearly visible.",
+    "category": "rifle",
+    "height": 0.6,
+    "max_dimension": 1.8,
+    "materials": [
+        "steel",
+        "polymer",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 38,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "aimable",
+        "wheeled"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "trigger",
+        "magazine",
+        "wheels",
+        "barrel",
+        "support leg"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "cbd897c1e1554fae9a5302a79ed59640",
+    "near_synsets": {
+        "rifle.n.01": 0.44499750670850236,
+        "assault_rifle.n.01": 0.4862410691782241,
+        "light_arm.n.01": 0.49630024689399843,
+        "sniper_rifle.n.01": 0.4964484548543505,
+        "garand_rifle.n.01": 0.5017382182481281
+    },
+    "synset": "garand_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cbd897c1e1554fae9a5302a79ed59640",
+        "creator_username": "britdawgmasterfunk",
+        "creator_display_name": "britdawgmasterfunk",
+        "creator_profile_url": "https://sketchfab.com/britdawgmasterfunk"
+    },
+    "filename": "std_cbd897c1e1554fae9a5302a79ed59640.glb",
+    "length": 3.80103600025177,
+    "width": 0.58015176653862
+}

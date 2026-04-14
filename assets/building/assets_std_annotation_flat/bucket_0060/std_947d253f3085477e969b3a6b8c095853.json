@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a modern commuter train with a streamlined, elongated body and a predominantly gray exterior accented by red details at the ends and along the lower sides. The train consists of multiple carriages connected in a straight line, each featuring a series of evenly spaced rectangular windows along both sides. The roof is flat with subtle raised sections, likely for ventilation or electrical equipment, and the undercarriage is detailed with visible wheels and suspension components. Doors are distributed evenly along the length of the train, suggesting multiple entry and exit points for passengers. The overall design is sleek and functional, optimized for efficient urban or suburban passenger transport. The train's appearance suggests it is constructed primarily from metal, with glass windows and some plastic or rubber components for detailing and insulation.",
+    "description": "A sleek, modern commuter train with a gray body, red accents, and multiple carriages featuring evenly spaced windows and doors. The design is streamlined and functional, suitable for urban passenger transport.",
+    "description_view_0": "Side view showing the full length of the train, highlighting the gray body, red accents, and the series of windows and doors along both sides.",
+    "description_view_1": "End view displaying the narrow front of the train with red detailing and the alignment of the carriages behind it.",
+    "description_view_2": "Opposite side view similar to view 0, showing the full length, window arrangement, and red accents along the base.",
+    "description_view_3": "Rear end view mirroring view 1, showing the back of the train and the linear arrangement of carriages.",
+    "category": "train",
+    "height": 3.8,
+    "max_dimension": 48.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.07,
+        0.03,
+        0.03
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "button",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_train_type": "commuter train",
+    "attribute_number_of_carriages": 4,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "evenly spaced along both sides",
+    "attribute_window_arrangement": "continuous row of rectangular windows",
+    "uid": "947d253f3085477e969b3a6b8c095853",
+    "near_synsets": {
+        "commuter.n.01": 0.4787093491441411,
+        "train.n.01": 0.48865100182575016,
+        "car_train.n.01": 0.49066467661700813,
+        "passenger_train.n.01": 0.4925972283640796,
+        "subway_train.n.01": 0.49673216161612316,
+        "string.n.04": -1000.0,
+        "train.n.04": -1000.0,
+        "gearing.n.01": -1000.0,
+        "caravan.n.01": -1000.0,
+        "train.n.05": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/947d253f3085477e969b3a6b8c095853",
+        "creator_username": "Vladiviriy",
+        "creator_display_name": "Vladiviriy",
+        "creator_profile_url": "https://sketchfab.com/Vladiviriy"
+    },
+    "filename": "std_947d253f3085477e969b3a6b8c095853.glb",
+    "length": 48.74500274658203,
+    "width": 2.7862462997436523
+}

@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a long-barreled firearm with a robust, metallic frame and a wooden grip, resembling a classic revolver-style shotgun. The barrel is elongated and cylindrical, with a matte dark finish, and the frame features a large, rectangular housing for the cylinder. The grip is ergonomically shaped, made of wood with visible grain and a subtle checkered pattern for improved handling. The trigger guard is metallic and rounded, enclosing a single trigger, and the hammer is exposed at the rear. The overall construction suggests durability, with a mix of metal and wood materials, and the design is reminiscent of 19th-century firearms, suitable for display or use in period urban settings.",
+    "description": "A long-barreled, revolver-style shotgun with a dark metal frame and a wooden grip, featuring a prominent cylinder and rounded trigger guard. The design combines classic metallic and wooden elements for a robust, vintage appearance.",
+    "description_view_0": "Front view showing the narrow, circular barrel opening and the alignment of the barrel with the frame.",
+    "description_view_1": "Side view displaying the full length of the barrel, the large cylinder, wooden grip, and the rounded trigger guard.",
+    "description_view_2": "Rear view highlighting the back of the grip, the hammer, and the top of the frame.",
+    "description_view_3": "Opposite side view showing the same features as view 1, with the wooden grip and metallic frame clearly visible.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.45,
+    "materials": [
+        "steel",
+        "wood",
+        "brass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 2.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 22,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "rotatable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "cylinder",
+        "hammer",
+        "barrel",
+        "trigger guard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "gold"
+    ],
+    "colors_composition": [
+        0.65,
+        0.3,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, long and cylindrical with no visible ribbing or venting",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "revolver-action",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized metallic guard with a smooth contour and no finger grooves",
+    "uid": "634f653ee7564ff7a13824a954d54f54",
+    "near_synsets": {
+        "shotgun.n.01": 0.47994497949153236,
+        "sawed-off_shotgun.n.01": 0.4915264453261663,
+        "shotgun_shell.n.01": 0.522747218044885,
+        "rifle.n.01": 0.5250545352895282,
+        "gun.n.01": 0.5291946017259817
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/634f653ee7564ff7a13824a954d54f54",
+        "creator_username": "Falxxx",
+        "creator_display_name": "Falxxx",
+        "creator_profile_url": "https://sketchfab.com/Falxxx"
+    },
+    "filename": "std_634f653ee7564ff7a13824a954d54f54.glb",
+    "length": 0.4538682848215103,
+    "width": 0.05006833001971245
+}

@@ -1,0 +1,111 @@
+{
+    "description_long": "This is a large, heavily armored military tank with a low, wide profile and angular surfaces designed for deflection and protection. The vehicle features a prominent central turret equipped with a long-barreled main cannon and several secondary weapon mounts, including missile pods and machine guns on the front and sides. Its exterior is painted in a green camouflage pattern with white diagonal stripes and visible weathering, suggesting use in rugged environments. The tank has wide, reinforced tracks for traversing difficult terrain, and the hull is covered in thick, sloped armor plating for maximum defense. Markings such as 'UNSC' and serial numbers are stenciled on the upper surfaces, indicating military designation. The vehicle's design emphasizes both offensive capability and survivability in urban combat scenarios.",
+    "description": "A large, green military tank with a central turret, heavy armor, and multiple weapon mounts, featuring white stripes and military markings.",
+    "description_view_0": "Front view shows the wide, armored hull, dual missile pods, and the main cannon centered above the reinforced front plate.",
+    "description_view_1": "Left side view highlights the long main cannon, sloped armor, track system, and visible serial numbers on the turret.",
+    "description_view_2": "Rear view displays the back armor, exhausts, and the continuation of the white camouflage stripes across the hull.",
+    "description_view_3": "Right side view mirrors the left, showing the main cannon, side armor, and track details, with visible hatches and panels.",
+    "category": "combat tactical  vehicle",
+    "height": 3.2,
+    "max_dimension": 10.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.05,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 65000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "missile pod",
+        "track",
+        "viewports",
+        "side panels"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.12,
+        0.1,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.03,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large main cannon on the central turret, two missile pods on the front left and right, and several smaller mounts for machine guns or secondary weapons on the hull and turret sides.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating; reinforced front and side panels; modular sections visible on the hull and turret.",
+    "attribute_camouflage_pattern": "Green base with irregular white diagonal stripes and patches, resembling a woodland camouflage style.",
+    "attribute_military_markings": "White 'UNSC' stenciled on the left front hull, serial number 'DUM 1364' on the turret, and additional white stripes and symbols on the upper surfaces.",
+    "attribute_tire_type": "not applicable",
+    "uid": "e6ce193e72d44720893adce7631f9d2c",
+    "near_synsets": {
+        "tank.n.01": 0.4475625314670351,
+        "military_vehicle.n.01": 0.47556843099777407,
+        "assault_gun.n.02": 0.501943151198752,
+        "armored_car.n.02": 0.5152771047294412,
+        "armored_vehicle.n.01": 0.5261749694348045,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e6ce193e72d44720893adce7631f9d2c",
+        "creator_username": "CalvinRA",
+        "creator_display_name": "CalvinRA",
+        "creator_profile_url": "https://sketchfab.com/CalvinRA"
+    },
+    "filename": "std_e6ce193e72d44720893adce7631f9d2c.glb",
+    "length": 7.804678678512573,
+    "width": 5.764535427093506
+}

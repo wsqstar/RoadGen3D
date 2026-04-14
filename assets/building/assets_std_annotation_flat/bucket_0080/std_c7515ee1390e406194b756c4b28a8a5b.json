@@ -1,0 +1,112 @@
+{
+    "description_long": "This object is a modern four-door police car with a sleek, aerodynamic body and a distinctive black-and-white color scheme. The vehicle features a roof-mounted emergency light bar with red, blue, and white segments, which is a hallmark of law enforcement vehicles. The car has tinted windows, smooth contoured panels, and visible door seams, with alloy wheels and standard side mirrors. The front and rear bumpers are integrated into the body, and the headlights and taillights are streamlined into the design. The car's overall appearance is robust and functional, suitable for urban patrol and emergency response. There are no visible police markings, insignia, or license plates on the exterior.",
+    "description": "A modern black-and-white police car with a roof-mounted red, blue, and white emergency light bar, tinted windows, and a streamlined body.",
+    "description_view_0": "Front and side view showing the emergency light bar, black-and-white paint, and smooth body lines.",
+    "description_view_1": "Rear and side view highlighting the taillights, rear bumper, and the emergency light bar from behind.",
+    "description_view_2": "Rear three-quarter view showing the back window, taillights, and the car's overall silhouette.",
+    "description_view_3": "Front three-quarter view emphasizing the headlights, front grille, and the emergency light bar.",
+    "category": "police car",
+    "height": 1.5,
+    "max_dimension": 4.8,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.12,
+        0.1,
+        0.07,
+        0.03,
+        0.03
+    ],
+    "mass": 1700,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 4000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "light bar",
+        "mirror",
+        "handle",
+        "trunk",
+        "hood"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "white",
+        "red",
+        "blue"
+    ],
+    "colors_composition": [
+        0.55,
+        0.35,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.08,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "group",
+    "attribute_police_markings": "None",
+    "attribute_emergency_lights": "A rectangular roof-mounted light bar with red, blue, and white segments, positioned centrally on the roof.",
+    "attribute_siren": "Not visible",
+    "attribute_police_insignia": "None",
+    "attribute_license_plate": "None",
+    "uid": "c7515ee1390e406194b756c4b28a8a5b",
+    "near_synsets": {
+        "panda_car.n.01": 0.504401401567784,
+        "cruiser.n.01": 0.5483306184710989,
+        "traffic_cop.n.01": 0.5626611574314236,
+        "police_van.n.01": 0.563545485481922,
+        "car_window.n.01": 0.5647130960487556,
+        "cable_car.n.01": -1000.0,
+        "car.n.04": -1000.0,
+        "car.n.01": -1000.0,
+        "police.n.01": -1000.0,
+        "car.n.02": -1000.0,
+        "car.n.03": -1000.0
+    },
+    "synset": "cruiser.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c7515ee1390e406194b756c4b28a8a5b",
+        "creator_username": "David_Holiday",
+        "creator_display_name": "David_Holiday",
+        "creator_profile_url": "https://sketchfab.com/David_Holiday"
+    },
+    "filename": "std_c7515ee1390e406194b756c4b28a8a5b.glb",
+    "length": 6.694753170013428,
+    "width": 6.720065593719482
+}

@@ -1,0 +1,107 @@
+{
+    "description_long": "This combat tactical vehicle is a heavily armored, futuristic aircraft with a robust, angular fuselage and dual large engine nacelles mounted on either side of the main body. The front section features multiple forward-facing cannons and sensor arrays, suggesting a focus on offensive capabilities. The hull is dark, with a weathered, matte finish and subtle panel lines, indicating reinforced armor plating across the entire body. The undercarriage includes retractable landing gear, and the rear section is streamlined for aerodynamic efficiency. No visible windows or hatches are present, implying advanced sensor or remote operation. The overall design is utilitarian, prioritizing durability and firepower for urban combat scenarios.",
+    "description": "A heavily armored, dark aircraft with dual engines, forward-facing cannons, and a robust, angular body designed for urban combat. Its matte finish and reinforced plating emphasize durability and firepower.",
+    "description_view_0": "Side view showing the full length of the vehicle, highlighting the large engine nacelle on top and the forward-mounted cannons.",
+    "description_view_1": "Front view emphasizing the dual engines, forward-facing weaponry, and the narrow, armored cockpit area.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the engine nacelle and weapon mounts.",
+    "description_view_3": "Rear view displaying the twin engines' exhausts and the streamlined tail section, with landing gear visible underneath.",
+    "category": "combat tactical  vehicle",
+    "height": 4.5,
+    "max_dimension": 15.0,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.05,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit hatch",
+        "landing gear",
+        "weapon mount",
+        "engine nacelle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "metallic silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Four forward-facing cannon mounts on the nose section; no visible side or roof mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating; reinforced around the cockpit and engine nacelles; visible panel lines and heavy-duty construction.",
+    "attribute_camouflage_pattern": "Solid dark gray and black paint scheme with a weathered, matte finish; no distinct camouflage pattern.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "f6932d684d0046299c0be85d872d2c23",
+    "near_synsets": {
+        "tank.n.01": 0.516379440550912,
+        "military_vehicle.n.01": 0.5170157717655199,
+        "armored_car.n.02": 0.5186958970209842,
+        "assault_gun.n.02": 0.5293193550749501,
+        "armored_vehicle.n.01": 0.5373629199716511,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "armored_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f6932d684d0046299c0be85d872d2c23",
+        "creator_username": "aerquinty",
+        "creator_display_name": "aerquinty",
+        "creator_profile_url": "https://sketchfab.com/aerquinty"
+    },
+    "filename": "std_f6932d684d0046299c0be85d872d2c23.glb",
+    "length": 13.187161922454834,
+    "width": 10.109632015228271
+}

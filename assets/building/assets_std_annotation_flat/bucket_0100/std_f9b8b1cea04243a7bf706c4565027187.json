@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a large, modern dam structure constructed primarily from light-colored concrete or stone, featuring a deep, curved basin designed to hold or channel water. The dam is equipped with robust metal railings along the upper edges for safety, and a prominent multi-level stairway tower is attached to one side, providing access to the top of the dam. The central section of the dam wall includes a large rectangular opening, possibly for maintenance or controlled water passage. The interior basin is smooth and continuous, with high vertical walls and a wide, open floor area. The overall design is utilitarian, with minimal decorative elements, focusing on structural integrity and safety.",
+    "description": "A large, light-colored dam with a deep curved basin, metal railings, and a multi-level stairway tower. The structure features a central opening and smooth, high walls.",
+    "description_view_0": "Front view showing the dam's flat wall with a large central opening and metal railings along the top.",
+    "description_view_1": "Angled view highlighting the deep curved basin, smooth interior, and the stairway tower on the right.",
+    "description_view_2": "Rear view displaying the full height of the dam, the stairway tower, and the central opening from the opposite side.",
+    "description_view_3": "Top-down angled view emphasizing the wide, open basin and the stairway tower's connection to the dam's upper edge.",
+    "category": "dam",
+    "height": 10.0,
+    "max_dimension": 25.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 500000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "barrier",
+        "containable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "stairway",
+        "railing",
+        "opening"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light beige",
+        "gray",
+        "metallic"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_spillway_presence": false,
+    "attribute_control_gates": [
+        "none"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_water_outflow": "none",
+    "attribute_perimeter_fencing": true,
+    "uid": "f9b8b1cea04243a7bf706c4565027187",
+    "near_synsets": {
+        "dam.n.01": 0.5270528521423866,
+        "water_tower.n.01": 0.538342954546108,
+        "weir.n.01": 0.5461829324518678,
+        "milldam.n.01": 0.5556430415847963,
+        "aqueduct.n.01": 0.571648224062887,
+        "decameter.n.01": -1000.0,
+        "dam.n.03": -1000.0
+    },
+    "synset": "dam.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f9b8b1cea04243a7bf706c4565027187",
+        "creator_username": "drewkressler",
+        "creator_display_name": "drewkressler",
+        "creator_profile_url": "https://sketchfab.com/drewkressler"
+    },
+    "filename": "std_f9b8b1cea04243a7bf706c4565027187.glb",
+    "length": 23.424800872802734,
+    "width": 24.859935760498047
+}

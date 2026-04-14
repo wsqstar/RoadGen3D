@@ -1,0 +1,100 @@
+{
+    "description_long": "This humanoid robot features a rounded head with a smooth, two-tone faceplate and large, circular eye-like structures that suggest the presence of cameras or sensors. Its body is composed of segmented, metallic-looking panels with articulated joints at the shoulders, elbows, hips, knees, and ankles, allowing for a wide range of motion. The arms and legs are robust and mechanical, with visible joint mechanisms and fingered hands designed for dexterity. The torso is compact and cylindrical, with a central circular detail on the back that may serve as a power port or additional sensor. The robot's feet are broad and stable, providing balance for upright movement. The overall design is sleek and functional, with a monochrome color scheme and a futuristic, utilitarian aesthetic.",
+    "description": "A sleek, monochrome humanoid robot with a rounded head, large circular eyes, articulated limbs, and a compact, segmented body designed for urban environments.",
+    "description_view_0": "Front view shows the robot's face with large circular eyes, articulated arms and legs, and a compact torso.",
+    "description_view_1": "Left side view highlights the rounded head, circular ear-like detail, and the layered structure of the limbs.",
+    "description_view_2": "Rear view reveals the back of the head with rectangular panels, a central circular detail on the back, and the symmetrical design of the limbs.",
+    "description_view_3": "Right side view mirrors the left, showing the head's circular side detail and the mechanical articulation of the limbs.",
+    "category": "humanoid robot",
+    "height": 1.6,
+    "max_dimension": 0.7,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head",
+        "arms",
+        "hands",
+        "legs",
+        "feet",
+        "eye sensors",
+        "back port"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms relaxed at the sides, legs straight, and head facing forward. The limbs are slightly bent at the joints, indicating readiness for movement.",
+    "attribute_clothing_style": "No visible clothing; the robot is covered in integrated, smooth panels with a monochrome finish, giving it a streamlined, unclothed appearance.",
+    "attribute_facial_features": "The face features a smooth, white plate with two large, circular, dark eye-like structures and no visible mouth or nose. The eyes are prominent and may function as cameras or sensors.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible articulation points, including ball or rotary joints at the shoulders, elbows, hips, and knees. Hands have articulated fingers, and feet are jointed at the ankles. Limbs appear highly flexible and capable of a wide range of motion.",
+    "attribute_presence_of_sensors": "Visible sensors include two large circular eye-like structures on the face, likely cameras or optical sensors. No other sensors are clearly visible.",
+    "uid": "045d0417bed5490b831b77ef974781cb",
+    "near_synsets": {
+        "android.n.01": 0.516452093328475,
+        "cyborg.n.01": 0.5287914161050236,
+        "automaton.n.02": 0.5501586713599816,
+        "robotics_equipment.n.01": 0.5593444272972108,
+        "robotics.n.01": 0.5661775463642362
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/045d0417bed5490b831b77ef974781cb",
+        "creator_username": "sleepwalker77",
+        "creator_display_name": "sleepwalker77",
+        "creator_profile_url": "https://sketchfab.com/sleepwalker77"
+    },
+    "filename": "std_045d0417bed5490b831b77ef974781cb.glb",
+    "length": 1.6315741539001465,
+    "width": 1.195215106010437
+}

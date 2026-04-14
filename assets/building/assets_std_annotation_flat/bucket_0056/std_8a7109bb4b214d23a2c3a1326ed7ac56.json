@@ -1,0 +1,91 @@
+{
+    "description_long": "This object consists of two medium-sized rectangular parcels wrapped in brown paper, both showing significant creasing, crumpling, and torn edges. Each parcel has a white oval label or marking on its top surface, which stands out against the brown wrapping. The paper appears to be thin and slightly glossy, with visible folds and some areas where the paper is torn or bent, exposing the inner contents. The parcels are slightly deformed, suggesting they have been handled or dropped, and the wrapping is not tightly sealed. The overall appearance is utilitarian, typical of packages found on urban sidewalks, in mailrooms, or near doorsteps. The parcels are placed close together, but not stacked, and their irregular shapes give a sense of recent transit or delivery.",
+    "description": "Two crumpled brown paper parcels with white oval labels, showing torn edges and visible creases, typical of recently delivered packages.",
+    "description_view_0": "View 0 shows both parcels from above and at an angle, highlighting the white oval labels and the torn, crumpled edges of the brown wrapping.",
+    "description_view_1": "View 1 presents the parcels from a side angle, emphasizing the depth of the creases and the partially open, bent ends of the packages.",
+    "description_view_2": "View 2 displays the parcels from a lower side, revealing the open flaps and the interior shadows, with the labels still visible on top.",
+    "description_view_3": "View 3 shows the parcels from the opposite side, focusing on the exposed, open ends and the irregular, folded surfaces of the wrapping.",
+    "category": "parcels",
+    "height": 0.09,
+    "max_dimension": 0.32,
+    "materials": [
+        "paper",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.15
+    ],
+    "mass": 0.5,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 5,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wrapping",
+        "label"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.47,
+    "youngs_modulus": 0.5,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "group",
+    "attribute_architectural_style": "",
+    "attribute_car_model": "",
+    "attribute_building_number": "0",
+    "attribute_storefront_signage": "",
+    "attribute_street_name": "",
+    "uid": "8a7109bb4b214d23a2c3a1326ed7ac56",
+    "near_synsets": {
+        "post.n.11": 0.5628535124097074,
+        "mail.n.01": 0.5651624879418173,
+        "packaged_goods.n.01": 0.5677879891545958,
+        "parcel_post.n.01": 0.5684105031885605,
+        "packaging.n.03": 0.5685243811383454,
+        "tract.n.01": -1000.0,
+        "package.n.01": -1000.0,
+        "parcel.n.02": -1000.0,
+        "package.n.02": -1000.0
+    },
+    "synset": "package.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8a7109bb4b214d23a2c3a1326ed7ac56",
+        "creator_username": "SeanLewisArtistry",
+        "creator_display_name": "Sean Lewis Artistry",
+        "creator_profile_url": "https://sketchfab.com/SeanLewisArtistry"
+    },
+    "filename": "std_8a7109bb4b214d23a2c3a1326ed7ac56.glb",
+    "length": 0.7646665275096893,
+    "width": 0.69573974609375
+}

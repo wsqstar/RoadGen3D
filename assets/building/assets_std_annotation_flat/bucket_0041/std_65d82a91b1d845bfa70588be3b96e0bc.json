@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a large, rectangular storage tank with a dark, matte exterior and a visible open top filled with a blue liquid, possibly water or chemicals. The tank's sides are smooth and feature minimal surface detailing, except for a few geometric insets and a small horizontal slot on one face. One side displays a recessed panel with a subtle pattern, possibly an access hatch or maintenance door, and another side has a faint octagonal outline, suggesting a service port. The tank appears to be constructed primarily from metal, likely steel, with a robust and industrial design suitable for urban or industrial environments. The top surface is flat and open, exposing the liquid contents, and there are no visible ladders or extensive pipework attached. The overall appearance is utilitarian, emphasizing function over decorative elements.",
+    "description": "A large, rectangular, open-topped storage tank with a dark metal exterior and blue liquid inside. Minimal surface features and a utilitarian, industrial design.",
+    "description_view_0": "Front view shows a dark, smooth face with a vertical metallic strip and a small horizontal slot near the top.",
+    "description_view_1": "This side features a faint octagonal outline and a small horizontal slot, likely for access or inspection.",
+    "description_view_2": "A plain, uninterrupted dark surface with no visible features except for subtle surface texture.",
+    "description_view_3": "This view reveals a recessed, patterned panel, possibly an access hatch, on the left side of the tank.",
+    "category": "storage tank",
+    "height": 2.5,
+    "max_dimension": 3.0,
+    "materials": [
+        "steel",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 4200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "fillable",
+        "drainable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "access hatch",
+        "inspection port",
+        "liquid surface"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "blue"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_location": "urban rooftop",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [],
+    "attribute_warning_signage": false,
+    "attribute_architectural_style": "rectangular vertical",
+    "uid": "65d82a91b1d845bfa70588be3b96e0bc",
+    "near_synsets": {
+        "tank.n.02": 0.45855087279475326,
+        "reservoir.n.03": 0.5028130875341916,
+        "tank_farm.n.01": 0.512978603501435,
+        "container.n.01": 0.5295802344569864,
+        "gas_tank.n.01": 0.5329042705288027,
+        "tank.n.01": -1000.0,
+        "repositing.n.01": -1000.0,
+        "storage.n.04": -1000.0,
+        "storage.n.01": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "storage.n.03": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "cooler.n.03": -1000.0,
+        "memory.n.04": -1000.0,
+        "tank.n.03": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/65d82a91b1d845bfa70588be3b96e0bc",
+        "creator_username": "AlexLinham",
+        "creator_display_name": "AlexLinham",
+        "creator_profile_url": "https://sketchfab.com/AlexLinham"
+    },
+    "filename": "std_65d82a91b1d845bfa70588be3b96e0bc.glb",
+    "length": 2.497090220451355,
+    "width": 2.523956298828125
+}

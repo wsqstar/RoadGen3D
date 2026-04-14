@@ -1,0 +1,105 @@
+{
+    "description_long": "This object is a large, multi-barreled rotary rifle mounted on a sturdy, three-legged tripod base. The main body is cylindrical with metallic and brass components, featuring a visible ammunition belt feeding into the chamber from a side-mounted box. The barrels are arranged in a Gatling-style configuration, suggesting a high rate of fire, and are supported by a robust frame with mechanical details and exposed gears. Decorative elements, such as a shield with a patriotic motif, are present on the side, adding a historical or ceremonial touch. The tripod legs are curved and reinforced, providing stability for the heavy weapon. The overall construction is predominantly metal, with a mix of dark, bronze, and steel tones, and the design is reminiscent of late 19th to early 20th-century heavy machine guns.",
+    "description": "A large, tripod-mounted, multi-barreled rotary rifle with a visible ammo belt and decorative shield, constructed mainly from dark metals and brass.",
+    "description_view_0": "Front view showing the circular arrangement of the barrels and the central axis of the rotary mechanism.",
+    "description_view_1": "Side view highlighting the length of the barrels, the ammo belt, and the decorative shield on the body.",
+    "description_view_2": "Rear view displaying the back of the main body, the ammo box, and the tripod's rear leg.",
+    "description_view_3": "Opposite side view showing the shield's design and the full length of the barrels from another angle.",
+    "category": "rifle",
+    "height": 1.1,
+    "max_dimension": 1.6,
+    "materials": [
+        "steel",
+        "brass",
+        "wood",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel cluster",
+        "ammo belt",
+        "ammo box",
+        "tripod legs",
+        "crank handle",
+        "shield"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "brass",
+        "brown",
+        "red",
+        "blue",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "rotary",
+    "attribute_magazine_type": "belt-fed",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "98fc8f99cea548ab857c5b4927530b99",
+    "near_synsets": {
+        "rifle.n.01": 0.4974724572880084,
+        "light_arm.n.01": 0.5064738889913566,
+        "gatling_gun.n.01": 0.5143957176919997,
+        "garand_rifle.n.01": 0.5251523359562892,
+        "twenty-two_rifle.n.01": 0.5268391807944756
+    },
+    "synset": "twenty-two_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/98fc8f99cea548ab857c5b4927530b99",
+        "creator_username": "skeptic",
+        "creator_display_name": "skeptic",
+        "creator_profile_url": "https://sketchfab.com/skeptic"
+    },
+    "filename": "std_98fc8f99cea548ab857c5b4927530b99.glb",
+    "length": 1.5056613683700562,
+    "width": 0.6275835633277893
+}

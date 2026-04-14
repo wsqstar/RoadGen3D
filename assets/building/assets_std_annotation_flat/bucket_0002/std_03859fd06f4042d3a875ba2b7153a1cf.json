@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a large, cylindrical black metal barrel with a closed top and two prominent horizontal metal reinforcement bands encircling its body. The surface is mostly matte black, but there are visible streaks of bright green liquid running down from the top, suggesting leakage or spillage. On one side, there is a yellow warning label with a radiation symbol and the text 'RADIOACTIVE TOXIC,' indicating hazardous contents. The top of the barrel features a small, circular cap or bung, likely for filling or emptying the barrel. The overall appearance is industrial and utilitarian, with signs of wear and hazardous use. This type of barrel is commonly found in industrial, urban, or hazardous waste environments.",
+    "description": "A large black metal barrel with green liquid stains and a radioactive warning label, featuring metal reinforcement bands and a capped top.",
+    "description_view_0": "Front view showing the radioactive warning label and green liquid streaks on the left side.",
+    "description_view_1": "Side view with green liquid streaks visible, label partially visible on the left edge.",
+    "description_view_2": "Rear view with the cap and some green liquid visible, no label present.",
+    "description_view_3": "Opposite rear view, showing the cap and top surface, no label or liquid streaks visible.",
+    "category": "barrel or bucket",
+    "height": 0.9,
+    "max_dimension": 0.6,
+    "materials": [
+        "steel",
+        "paint",
+        "air",
+        "liquid (unknown, possibly toxic/chemical)"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 35,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cap",
+        "body"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "yellow",
+        "green"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "metal hoops at top and bottom",
+    "attribute_labeling_or_markings": "radioactive warning label with symbol and text",
+    "attribute_placement_location": "industrial",
+    "uid": "03859fd06f4042d3a875ba2b7153a1cf",
+    "near_synsets": {
+        "barrel.n.02": 0.502300770634632,
+        "barrel.n.03": 0.5248472686614044,
+        "beer_barrel.n.01": 0.5340622593485773,
+        "barrel.n.05": 0.5355623885290727,
+        "barrels.n.01": 0.538994356717353,
+        "barrel.n.01": -1000.0,
+        "bucket.n.02": -1000.0,
+        "bucket.n.01": -1000.0,
+        "barrel.n.04": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/03859fd06f4042d3a875ba2b7153a1cf",
+        "creator_username": "czarina",
+        "creator_display_name": "Czarina",
+        "creator_profile_url": "https://sketchfab.com/czarina"
+    },
+    "filename": "std_03859fd06f4042d3a875ba2b7153a1cf.glb",
+    "length": 0.64163738489151,
+    "width": 0.6416369080543518
+}

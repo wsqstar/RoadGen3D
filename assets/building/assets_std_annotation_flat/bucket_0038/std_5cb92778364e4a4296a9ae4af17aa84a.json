@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a modern main battle tank with a low-profile, angular hull and turret, finished in a multi-tone camouflage pattern. The vehicle features a long, prominent main cannon mounted on a rotating turret, with additional hatches and periscopes visible on the turret roof. The hull is wide and flat, with sloped armor panels and a set of large, rugged road wheels supporting continuous tracks on both sides. The rear of the vehicle has a vented engine compartment, suggesting a powerful internal combustion engine. The exterior is covered in hard, metallic armor plating, with no visible windows or soft surfaces. The tank's design emphasizes protection, firepower, and mobility for urban and battlefield environments.",
+    "description": "A camouflaged main battle tank with a long cannon, sloped armor, and continuous tracks, designed for heavy combat. Its angular hull and turret are covered in hard armor plating and military camouflage.",
+    "description_view_0": "Front view shows the tank's sloped frontal armor, central main cannon, and the wide, flat hull.",
+    "description_view_1": "Left side view highlights the length of the cannon, the full set of road wheels, and the continuous track system.",
+    "description_view_2": "Rear view reveals the vented engine compartment and the back of the turret, with no visible weapon mounts.",
+    "description_view_3": "Right side view mirrors the left, showing the turret, cannon, and track system, with camouflage pattern visible.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 9.0,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 60000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cannon",
+        "hatch",
+        "turret",
+        "track",
+        "road wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "black",
+        "tan"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted centrally on the turret; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating on the hull and turret; no modular or reactive panels visible.",
+    "attribute_camouflage_pattern": "Woodland camouflage with irregular patches of green, brown, black, and tan in a disruptive pattern.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "5cb92778364e4a4296a9ae4af17aa84a",
+    "near_synsets": {
+        "tank.n.01": 0.43660766076212776,
+        "military_vehicle.n.01": 0.4949888535364067,
+        "armored_car.n.02": 0.5024831497080214,
+        "armored_vehicle.n.01": 0.5075132758054721,
+        "assault_gun.n.02": 0.5095562433643024,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5cb92778364e4a4296a9ae4af17aa84a",
+        "creator_username": "salphytheunemployed",
+        "creator_display_name": "PolyDucky",
+        "creator_profile_url": "https://sketchfab.com/salphytheunemployed"
+    },
+    "filename": "std_5cb92778364e4a4296a9ae4af17aa84a.glb",
+    "length": 9.279212951660156,
+    "width": 3.3401567935943604
+}

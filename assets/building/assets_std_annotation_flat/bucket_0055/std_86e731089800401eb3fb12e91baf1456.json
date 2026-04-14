@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a large, modern semi-truck tractor unit with a high-roof sleeper cab, painted primarily in orange with gray and metallic accents. The front features a prominent grille, large windshield, and side mirrors, with the Volvo logo visible on the grille. The side views reveal aerodynamic fairings, integrated steps, and a spacious cab designed for long-haul comfort. The rear section is a chassis cab, equipped with dual rear axles and a fifth wheel coupling for attaching trailers. The wheels are robust, and the truck's bodywork is streamlined for efficiency. The overall build suggests a heavy-duty vehicle intended for transporting large cargo trailers in urban and highway environments.",
+    "description": "A modern orange Volvo semi-truck tractor with a high-roof sleeper cab, dual rear axles, and a chassis cab for trailer attachment.",
+    "description_view_0": "Rear view showing the chassis cab, dual rear axles, and fifth wheel coupling for trailer attachment.",
+    "description_view_1": "Left side view highlighting the aerodynamic cab, integrated steps, and the length of the chassis.",
+    "description_view_2": "Front view displaying the large grille, windshield, side mirrors, and Volvo logo.",
+    "description_view_3": "Right side view similar to the left, showing the cab's height and streamlined design.",
+    "category": "truck",
+    "height": 3.8,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.07,
+        0.07,
+        0.06,
+        0.03,
+        0.02
+    ],
+    "mass": 8000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 10,
+    "movable": true,
+    "required_force": 40000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "mirror",
+        "step",
+        "handle",
+        "fifth wheel coupling",
+        "window",
+        "grille"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "gray",
+        "black",
+        "silver",
+        "blue"
+    ],
+    "colors_composition": [
+        0.65,
+        0.18,
+        0.1,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "sleeper cab",
+    "attribute_cargo_bed_type": "chassis cab",
+    "attribute_wheelbase": 4.0,
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "Volvo",
+    "uid": "86e731089800401eb3fb12e91baf1456",
+    "near_synsets": {
+        "trailer_truck.n.01": 0.502532715185733,
+        "tandem_trailer.n.01": 0.513624527468905,
+        "tractor.n.02": 0.5264362191728796,
+        "van.n.05": 0.5268754192480196,
+        "truck.n.01": 0.5283153953980888,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/86e731089800401eb3fb12e91baf1456",
+        "creator_username": "selvab603",
+        "creator_display_name": "selvab603",
+        "creator_profile_url": "https://sketchfab.com/selvab603"
+    },
+    "filename": "std_86e731089800401eb3fb12e91baf1456.glb",
+    "length": 6.018675327301025,
+    "width": 2.827995538711548
+}

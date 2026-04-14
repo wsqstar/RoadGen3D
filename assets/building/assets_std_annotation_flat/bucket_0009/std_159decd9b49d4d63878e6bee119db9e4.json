@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a compact, tracked combat vehicle resembling a World War II-era tank, featuring a low-profile turret with a long-barreled cannon mounted at the front. The hull and turret are constructed from thick, angular armor plating, with visible hatches and periscopes on the top. The vehicle is painted in a solid gray color, with the number '122' and a cross insignia on the turret, indicating military use. The tracks are robust, with multiple road wheels and return rollers, designed for traversing rough terrain. Surrounding the vehicle are several large artillery shells and two wooden crates, suggesting an ammunition resupply scenario. The vehicle is displayed on a grid-patterned mat, emphasizing its scale and context.",
+    "description": "A compact, gray military tank with a long cannon, thick armor, and visible military markings, surrounded by artillery shells and crates.",
+    "description_view_0": "Front-left view showing the tank's cannon, turret details, and a cluster of artillery shells and crates in front.",
+    "description_view_1": "Left side view highlighting the tank's tracks, rear hull, and the arrangement of shells and crates beside the detached cannon.",
+    "description_view_2": "Rear-right view focusing on the tank's back armor, turret, and the proximity of crates and shells near the rear.",
+    "description_view_3": "Rear-left view displaying the tank's back, the full length of the cannon, and the spread of shells and crates.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 5.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "wood",
+        "cardboard",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.07,
+        0.01,
+        0.04,
+        0.01,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "track",
+        "wheel",
+        "crate lid"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "brown",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "group",
+    "attribute_weapon_mounts": "One main cannon mounted on the turret front; no additional mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, angular steel armor plating; sloped surfaces on turret and hull for deflection.",
+    "attribute_camouflage_pattern": "Solid gray paint scheme; no camouflage pattern visible.",
+    "attribute_military_markings": "White number '122' and a white cross insignia on the turret sides.",
+    "attribute_tire_type": "not applicable",
+    "uid": "159decd9b49d4d63878e6bee119db9e4",
+    "near_synsets": {
+        "tank.n.01": 0.4259743641118469,
+        "military_vehicle.n.01": 0.478166393630586,
+        "armored_car.n.02": 0.4994020052078113,
+        "tank_shell.n.01": 0.5021014876020723,
+        "weapons_carrier.n.01": 0.5024856316214995,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/159decd9b49d4d63878e6bee119db9e4",
+        "creator_username": "SybranAerts",
+        "creator_display_name": "SybranAerts",
+        "creator_profile_url": "https://sketchfab.com/SybranAerts"
+    },
+    "filename": "std_159decd9b49d4d63878e6bee119db9e4.glb",
+    "length": 6.058175802230835,
+    "width": 6.163202524185181
+}

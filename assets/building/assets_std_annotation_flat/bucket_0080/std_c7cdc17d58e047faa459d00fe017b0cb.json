@@ -1,0 +1,94 @@
+{
+    "description_long": "This sunshade features a rectangular canopy made of alternating light and medium blue fabric panels, supported by a simple wooden frame. The canopy is slightly sloped and drapes loosely over the frame, with the fabric edges hanging down in a casual, uneven manner. The supporting structure consists of four vertical wooden posts connected by horizontal crossbars, providing stability and a rustic appearance. The frame is constructed from light brown wood, with visible joints and braces for reinforcement. The sunshade is open on all sides, allowing for easy access and airflow beneath the canopy. There are no visible logos, text, or decorative patterns on the fabric, giving it a clean and utilitarian look suitable for markets, parks, or street-side amenities.",
+    "description": "A rustic wooden sunshade with a blue-striped rectangular fabric canopy and open sides, supported by a simple cross-braced frame.",
+    "description_view_0": "The sunshade is seen from a front angle, highlighting the draped blue canopy and the open, accessible space beneath.",
+    "description_view_1": "This side view emphasizes the sloped canopy and the sturdy wooden frame, with the fabric hanging lower on the left.",
+    "description_view_2": "A direct view of the sunshade's front, showing the symmetrical arrangement of the canopy and the cross-braced wooden supports.",
+    "description_view_3": "The rear angle reveals the back crossbars and the way the canopy fabric drapes over the frame, with more visible structure.",
+    "category": "sunshade",
+    "height": 1.7,
+    "max_dimension": 2.0,
+    "materials": [
+        "wood",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 7,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shade_providing",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "canopy",
+        "frame"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light blue",
+        "medium blue",
+        "light brown"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.3
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_mounting_type": "freestanding base",
+    "attribute_canopy_design": "rectangular, multi-panel, loosely draped, no vent",
+    "attribute_support_structure_style": "four straight wooden posts with horizontal crossbars and braces, minimalist and functional",
+    "attribute_edge_detailing": "plain hem",
+    "attribute_branding_or_signage": "no visible branding",
+    "uid": "c7cdc17d58e047faa459d00fe017b0cb",
+    "near_synsets": {
+        "window_shade.n.01": 0.48269421335494156,
+        "awning.n.01": 0.5065989414540994,
+        "gazebo.n.01": 0.5137491464294636,
+        "shade.n.03": 0.5149908799105323,
+        "canopy.n.03": 0.5201277743015169,
+        "parasol.n.01": -1000.0
+    },
+    "synset": "awning.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c7cdc17d58e047faa459d00fe017b0cb",
+        "creator_username": "lakos",
+        "creator_display_name": "lakos",
+        "creator_profile_url": "https://sketchfab.com/lakos"
+    },
+    "filename": "std_c7cdc17d58e047faa459d00fe017b0cb.glb",
+    "length": 1.2269276976585388,
+    "width": 1.5911717414855957
+}

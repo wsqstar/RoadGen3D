@@ -1,0 +1,99 @@
+{
+    "description_long": "This humanoid robot features a sleek, insect-inspired design with a predominantly green and dark metallic color scheme. Its head is rounded and slightly bulbous, with two protruding antenna-like structures extending forward, suggesting sensory or communication functions. The torso is compact and streamlined, with yellow markings or symbols on the chest and abdomen, adding a touch of visual complexity. The arms are long and thin, extending horizontally with tapered ends, while the legs are similarly slender and end in claw-like feet, giving the robot an agile, lightweight appearance. The surface finish is smooth and glossy, with visible panel lines and joints indicating articulated movement. The overall form is both functional and futuristic, suitable for urban environments where maneuverability and interaction are important.",
+    "description": "A sleek, green and dark metallic humanoid robot with long, thin limbs, a rounded head with antennae, and claw-like feet. Its smooth, glossy surface and articulated joints give it an agile, futuristic appearance.",
+    "description_view_0": "Front view shows the robot's rounded head with forward-facing antennae, outstretched arms, and visible yellow markings on the chest and abdomen.",
+    "description_view_1": "Left side view highlights the curved profile of the head, the segmented torso, and the articulation of the arms and legs.",
+    "description_view_2": "Rear view displays the back of the head, the symmetrical arm extension, and the back of the legs, with less visible detail on the torso.",
+    "description_view_3": "Right side view mirrors the left, showing the head's side profile, arm and leg articulation, and the curvature of the limbs.",
+    "category": "humanoid robot",
+    "height": 1.6,
+    "max_dimension": 2.2,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "synthetic rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "legs",
+        "antennae",
+        "torso panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "dark gray",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.2,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is in a standing pose with both arms extended horizontally to the sides and both legs straight and parallel, feet pointing downward. The head is upright and facing forward.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated panels and surface markings as part of its body design.",
+    "attribute_facial_features": "The face is rounded with no visible eyes, mouth, or nose; two antenna-like structures extend from the head, and there are no expressive or display elements visible.",
+    "attribute_limb_articulation": "Arms and legs have visible joints at the shoulders, elbows, hips, and knees, suggesting hinge or rotary articulation; limbs appear rigid but capable of multi-axis movement.",
+    "attribute_presence_of_sensors": "None visible",
+    "uid": "c8adb0658f9a481387c284b759ea311e",
+    "near_synsets": {
+        "android.n.01": 0.5307820310468316,
+        "cyborg.n.01": 0.5488503957564281,
+        "automaton.n.02": 0.5620008500489999,
+        "robotics_equipment.n.01": 0.5628104211035831,
+        "automaton.n.03": 0.5896875866969555
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c8adb0658f9a481387c284b759ea311e",
+        "creator_username": "merose",
+        "creator_display_name": "Mark Rose",
+        "creator_profile_url": "https://sketchfab.com/merose"
+    },
+    "filename": "std_c8adb0658f9a481387c284b759ea311e.glb",
+    "length": 0.5157034397125244,
+    "width": 2.5064680576324463
+}

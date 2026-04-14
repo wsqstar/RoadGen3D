@@ -1,0 +1,97 @@
+{
+    "description_long": "This kiosk is a modern, open-plan structure with a hexagonal base and a large central circular black area, possibly for display or gathering. The perimeter is defined by a series of white partition walls of varying heights, some of which feature integrated display panels with images and text. The kiosk is open on all sides, allowing easy access, and the partitions create semi-private zones for interaction or information dissemination. Above the kiosk, a suspended sign with the word 'Temrak' is visible, serving as clear branding. The overall design is minimalist, with clean lines and a focus on functionality and visibility.",
+    "description": "A modern, open-sided kiosk with white partition walls, integrated display panels, and a central black circular area, topped by a suspended 'Temrak' sign.",
+    "description_view_0": "View 0 shows the kiosk from a corner angle, highlighting the open layout, the central black circle, and the prominent 'Temrak' sign above.",
+    "description_view_1": "View 1 presents the kiosk from the opposite corner, emphasizing the display panels and the open access from multiple sides.",
+    "description_view_2": "View 2 focuses on the rear partitions and the central area, with the 'Temrak' sign visible in reverse above.",
+    "description_view_3": "View 3 shows the kiosk from another corner, displaying the arrangement of the partitions and the integrated display panels.",
+    "category": "kiosk",
+    "height": 2.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "laminated wood",
+        "glass",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.15,
+        0.15,
+        0.05,
+        0.15
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "displayable",
+        "partitionable",
+        "mountable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "display panel",
+        "partition wall"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 5000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_signage_type": "Suspended printed sign above the kiosk with the text 'Temrak', serving as a logo and identifier.",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "none",
+    "attribute_roof_design": "No traditional roof; open-top with a suspended sign above, flat partition walls define the perimeter.",
+    "attribute_architectural_style": "modern minimalist",
+    "uid": "224a2f5dee2549b7895a7d9b6fc63833",
+    "near_synsets": {
+        "booth.n.02": 0.5436148653505566,
+        "shopfront.n.01": 0.573051329709308,
+        "window.n.07": 0.575996916066716,
+        "pop-up.n.03": 0.5780773736631022,
+        "arcade.n.01": 0.5785969805504423
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/224a2f5dee2549b7895a7d9b6fc63833",
+        "creator_username": "taomeow",
+        "creator_display_name": "taomeow",
+        "creator_profile_url": "https://sketchfab.com/taomeow"
+    },
+    "filename": "std_224a2f5dee2549b7895a7d9b6fc63833.glb",
+    "length": 3.7510236501693726,
+    "width": 3.7510234117507935
+}

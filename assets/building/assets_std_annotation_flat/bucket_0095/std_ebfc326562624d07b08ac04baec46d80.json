@@ -1,0 +1,104 @@
+{
+    "description_long": "This object is a classic American-style hot dog, featuring a plump sausage nestled inside a soft, slightly uneven white bread bun. The sausage is topped with a generous zigzag of bright yellow mustard, applied along its length. The bun appears lightly baked, with some areas showing a more compressed or torn texture, especially at the ends. The sausage is smooth and pinkish, with no visible grill marks, and is mostly exposed along the top, with the bun cradling it from below. There is no visible packaging or tray, and the hot dog is presented as if ready to eat. The overall appearance is appetizing and typical of street food found in urban parks or at food stands.",
+    "description": "A plump sausage in a white bread bun, topped with a zigzag of yellow mustard and no visible packaging. The hot dog looks fresh and ready to eat, with the sausage mostly exposed.",
+    "description_view_0": "Side view showing the full length of the hot dog, with the sausage and mustard clearly visible and the bun slightly torn at one end.",
+    "description_view_1": "Front-facing view highlighting the open end of the bun and the sausage, with mustard drizzled along the top.",
+    "description_view_2": "Opposite side view, displaying the bun's underside and the sausage with mustard, with the bun appearing more intact.",
+    "description_view_3": "Rear angled view showing the back end of the sausage and bun, with mustard visible and the bun slightly compressed.",
+    "category": "hot dog",
+    "height": 0.07,
+    "max_dimension": 0.18,
+    "materials": [
+        "bread",
+        "sausage",
+        "mustard",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "mass": 0.13,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "graspable",
+        "edible"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "bun",
+        "sausage",
+        "mustard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "light brown",
+        "pink",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "single",
+    "attribute_bun_presence": true,
+    "attribute_sausage_visibility": 0.7,
+    "attribute_condiment_application": [
+        "mustard"
+    ],
+    "attribute_grill_marks": false,
+    "attribute_packaging_type": "none",
+    "uid": "ebfc326562624d07b08ac04baec46d80",
+    "near_synsets": {
+        "hotdog.n.02": 0.4866661414381342,
+        "frank.n.01": 0.5258253498754407,
+        "vienna_sausage.n.01": 0.5332341515691829,
+        "reuben.n.02": 0.5426254857002162,
+        "frankfurter_bun.n.01": 0.5503683275047494,
+        "andiron.n.01": -1000.0,
+        "pawl.n.01": -1000.0,
+        "cad.n.01": -1000.0,
+        "frump.n.01": -1000.0,
+        "dog.n.03": -1000.0,
+        "hotdog.n.01": -1000.0,
+        "dog.n.01": -1000.0
+    },
+    "synset": "hotdog.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ebfc326562624d07b08ac04baec46d80",
+        "creator_username": "djbehar",
+        "creator_display_name": "Danny Behar",
+        "creator_profile_url": "https://sketchfab.com/djbehar"
+    },
+    "filename": "std_ebfc326562624d07b08ac04baec46d80.glb",
+    "length": 0.2295033261179924,
+    "width": 0.08332138881087303
+}

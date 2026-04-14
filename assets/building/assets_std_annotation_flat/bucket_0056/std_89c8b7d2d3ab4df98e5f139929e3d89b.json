@@ -1,0 +1,109 @@
+{
+    "description_long": "This object is a compact, cylindrical storage tank with a rounded base and a slightly domed top, commonly recognized as a propane or LPG gas cylinder. The main body is made of smooth, metallic material, painted in a light gray color, and features a horizontal seam around its midsection. At the top, there is a robust metal collar with cutouts, protecting a brass valve assembly that protrudes upward and is centrally located. The valve includes a threaded nozzle for hose attachment and a handwheel for opening or closing the gas flow. The tank is designed to be portable and is typically used for storing pressurized gases in urban or residential settings such as backyards, garages, or outdoor grills.",
+    "description": "A compact, cylindrical metal storage tank with a domed top, protective collar, and brass valve assembly, typically used for storing pressurized gas.",
+    "description_view_0": "Front view showing the brass valve and handwheel assembly clearly, with the protective collar and nozzle facing forward.",
+    "description_view_1": "Angled view highlighting the side of the collar with cutouts and partial visibility of the valve assembly.",
+    "description_view_2": "Rear view with the valve partially obscured by the collar, showing the smooth, uninterrupted surface of the tank body.",
+    "description_view_3": "Side view with the collar's cutouts and the valve assembly visible from a different angle, emphasizing the tank's cylindrical shape.",
+    "category": "storage tank",
+    "height": 0.45,
+    "max_dimension": 0.3,
+    "materials": [
+        "steel",
+        "brass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.04,
+        0.01,
+        0.03
+    ],
+    "mass": 8.5,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 90,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "liftable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "valve",
+        "handwheel",
+        "nozzle",
+        "collar"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brass",
+        "black"
+    ],
+    "colors_composition": [
+        0.92,
+        0.06,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_location": "urban garage",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [
+        "valve",
+        "nozzle"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_architectural_style": "cylindrical vertical",
+    "uid": "89c8b7d2d3ab4df98e5f139929e3d89b",
+    "near_synsets": {
+        "tank.n.02": 0.42391626092389184,
+        "gas_tank.n.01": 0.4821987014183866,
+        "gas_holder.n.01": 0.48981367425230216,
+        "reservoir.n.03": 0.5018779575762329,
+        "tank_farm.n.01": 0.5178021366983657,
+        "cooler.n.03": -1000.0,
+        "memory.n.04": -1000.0,
+        "storage.n.01": -1000.0,
+        "tank.n.03": -1000.0,
+        "tank.n.01": -1000.0,
+        "storage.n.04": -1000.0,
+        "storage.n.03": -1000.0,
+        "repositing.n.01": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "storehouse.n.01": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/89c8b7d2d3ab4df98e5f139929e3d89b",
+        "creator_username": "gestLT",
+        "creator_display_name": "Gest.lt",
+        "creator_profile_url": "https://sketchfab.com/gestLT"
+    },
+    "filename": "std_89c8b7d2d3ab4df98e5f139929e3d89b.glb",
+    "length": 0.2831549644470215,
+    "width": 0.28313878178596497
+}

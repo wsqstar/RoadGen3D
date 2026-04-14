@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a medium-sized, tan-colored hexacopter drone with six evenly spaced rotors mounted on extended arms radiating from a central body. The central body is boxy with a cylindrical, ribbed module on top, likely housing electronics or a cooling system. The arms are robust and feature cutouts for weight reduction, while the rotors are large and flat, designed for stable lift. The landing gear consists of fixed, sturdy legs at the end of each arm, providing ground clearance for the body and rotors. The drone lacks visible cameras or propeller guards, giving it a utilitarian, industrial appearance. Its overall design suggests durability and functionality for urban aerial tasks.",
+    "description": "A tan, six-rotor drone with a boxy central body, ribbed top module, and fixed landing legs. The design is robust and utilitarian, with no visible cameras or propeller guards.",
+    "description_view_0": "Front-left view showing the ribbed cylindrical top, three visible rotors, and the cutout structure of the arms.",
+    "description_view_1": "Side view highlighting the symmetrical arm layout, central body, and the even spacing of all six rotors.",
+    "description_view_2": "Front-right view similar to view 0, with clear visibility of the landing legs and arm cutouts.",
+    "description_view_3": "Side view from the opposite direction of view 1, showing the same symmetrical rotor and arm arrangement.",
+    "category": "drone",
+    "height": 0.35,
+    "max_dimension": 1.2,
+    "materials": [
+        "plastic",
+        "aluminum",
+        "carbon fiber",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 4.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 45,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotor",
+        "landing leg",
+        "central module"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 7000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 6,
+    "attribute_rotor_configuration": "hexacopter '+'",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": false,
+    "attribute_propeller_guard_presence": false,
+    "uid": "789d9939cdfa4cf7ad5de199eaed42c6",
+    "near_synsets": {
+        "drone.n.04": 0.5330049285078005,
+        "single-rotor_helicopter.n.01": 0.5579884530560489,
+        "rotor.n.03": 0.5667128072155249,
+        "orthopter.n.01": 0.5840622052211034,
+        "main_rotor.n.01": 0.587467530859202,
+        "drone.n.05": -1000.0,
+        "dawdler.n.01": -1000.0,
+        "drone.n.01": -1000.0,
+        "monotone.n.01": -1000.0
+    },
+    "synset": "drone.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/789d9939cdfa4cf7ad5de199eaed42c6",
+        "creator_username": "aeracoop",
+        "creator_display_name": "Aeracoop",
+        "creator_profile_url": "https://sketchfab.com/aeracoop"
+    },
+    "filename": "std_789d9939cdfa4cf7ad5de199eaed42c6.glb",
+    "length": 1.0472323298454285,
+    "width": 1.012107014656067
+}

@@ -1,0 +1,96 @@
+{
+    "description_long": "This lantern features a cylindrical cage-like structure composed of vertical wooden or metal bars, capped at the top and bottom with weathered, metallic-looking plates. A sturdy metal chain and loop are attached to the top, allowing the lantern to be suspended from above. Inside the cage, a small, boxy light source, likely a candle or oil lamp, hangs from a short chain. The base appears to be made of rough, stone-like material, providing stability and a rustic aesthetic. The overall design is utilitarian with a slightly medieval or vintage feel, lacking ornate decorative elements but emphasizing durability and function.",
+    "description": "A rustic, cylindrical hanging lantern with a metal cage, stone base, and a suspended candle or oil lamp inside.",
+    "description_view_0": "Top-down view highlighting the metal cap, chain attachment, and the circular arrangement of the cage bars.",
+    "description_view_1": "Side view showing the vertical bars, the hanging light source, and the stone-like base inside the cage.",
+    "description_view_2": "Frontal view with a clear look at the suspended candle or lamp and the symmetrical cage structure.",
+    "description_view_3": "Another side view similar to view 1, with slight rotation revealing the internal light source and cage details.",
+    "category": "lantern",
+    "height": 0.45,
+    "max_dimension": 0.45,
+    "materials": [
+        "metal",
+        "wood",
+        "stone",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.15
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 7,
+    "movable": true,
+    "required_force": 35,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "hangable",
+        "liftable",
+        "lightable",
+        "replaceable_light_source"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "chain",
+        "cage door (implied)",
+        "light source (candle/oil lamp)"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "black",
+        "beige"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 20000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "single",
+    "attribute_mounting_type": "hanging",
+    "attribute_light_source_type": "candle",
+    "attribute_decorative_elements": [],
+    "attribute_number_of_bulbs": 1,
+    "attribute_glass_enclosure_style": "no glass",
+    "uid": "f64b5035c0ba440396b17ef73963ccaa",
+    "near_synsets": {
+        "lantern.n.01": 0.4795948918670844,
+        "hurricane_lamp.n.01": 0.4840602464198577,
+        "candelabrum.n.01": 0.49607137884617275,
+        "chandelier.n.01": 0.5029382870729795,
+        "chinese_lantern.n.01": 0.5067503961005391
+    },
+    "synset": "chinese_lantern.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f64b5035c0ba440396b17ef73963ccaa",
+        "creator_username": "guurme",
+        "creator_display_name": "bruyere",
+        "creator_profile_url": "https://sketchfab.com/guurme"
+    },
+    "filename": "std_f64b5035c0ba440396b17ef73963ccaa.glb",
+    "length": 0.21726152300834656,
+    "width": 0.2172614187002182
+}

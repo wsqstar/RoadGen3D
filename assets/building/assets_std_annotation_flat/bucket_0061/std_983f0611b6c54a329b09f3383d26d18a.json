@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a large, cylindrical bomb with a dark green, weathered metal body and a prominent red circular marking on its nose. The surface is scratched and worn, with yellow hazard markings, including a radiation warning symbol, indicating its dangerous contents. The rear section features a square, box-like stabilizer assembly with four metal struts converging toward the center, providing aerodynamic stability. The bomb's body tapers slightly toward the nose and is capped at the rear by the stabilizer, which is painted in a similar green but with more pronounced wear and metallic edges. The overall construction suggests a heavy, solid metal casing, likely filled with explosive material. This type of bomb would be highly conspicuous and hazardous if found in an urban environment.",
+    "description": "A large, weathered green metal bomb with a red nose, yellow hazard markings, and a square stabilizer at the rear. The surface is scratched and worn, with a prominent radiation warning symbol.",
+    "description_view_0": "Front view shows the rounded nose with a red circular marking and the yellow radiation warning symbol on the body.",
+    "description_view_1": "Side view reveals the cylindrical body, the transition to the square stabilizer, and the worn green paint with yellow markings.",
+    "description_view_2": "Rear view highlights the square stabilizer assembly with four internal struts and the red marking at the center.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the bomb's length, stabilizer, and surface wear.",
+    "category": "bomb",
+    "height": 0.6,
+    "max_dimension": 1.8,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3430,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "nose",
+        "stabilizer fins"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "red",
+        "yellow",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.75,
+        0.05,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [
+        "radiation warning symbol"
+    ],
+    "attribute_detonation_mechanism": "No visible external detonation mechanism; detonation is likely initiated internally or via impact at the nose.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "983f0611b6c54a329b09f3383d26d18a",
+    "near_synsets": {
+        "dirty_bomb.n.01": 0.4989908381314836,
+        "plastic_bomb.n.01": 0.5480141848964308,
+        "bomb.n.01": 0.5508165301269983,
+        "pipe_bomb.n.01": 0.5541641348615034,
+        "remote-control_bomb.n.01": 0.554273185553547,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/983f0611b6c54a329b09f3383d26d18a",
+        "creator_username": "FWTeastwood",
+        "creator_display_name": "FWTeastwood",
+        "creator_profile_url": "https://sketchfab.com/FWTeastwood"
+    },
+    "filename": "std_983f0611b6c54a329b09f3383d26d18a.glb",
+    "length": 1.7867369055747986,
+    "width": 0.5866212844848633
+}

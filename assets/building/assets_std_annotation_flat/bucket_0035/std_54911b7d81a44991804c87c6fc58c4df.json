@@ -1,0 +1,109 @@
+{
+    "description_long": "This object is a manual wheelchair occupied by a person, designed for mobility assistance in urban environments. The wheelchair features a sturdy metal frame with two large rear wheels equipped with handrims for self-propulsion and two smaller front caster wheels for maneuverability. The seat and backrest are made of a dark brown material, likely synthetic leather or vinyl, providing support and comfort for the user. The person is seated upright, with their torso aligned with the backrest and feet resting on the dual footrests. The wheelchair includes armrests and push handles at the back, allowing for assistance by another individual if needed. The overall construction is robust, suitable for navigating sidewalks, streets, and other urban surfaces.",
+    "description": "A manual wheelchair with a seated person, featuring a metal frame, large rear wheels with handrims, small front casters, and dark brown seat and backrest. The user sits upright with feet on footrests and hands resting on their lap.",
+    "description_view_0": "Front view showing the upright seated person, the contoured backrest, armrests, and both footrests clearly visible.",
+    "description_view_1": "Left side view highlighting the large rear wheel, handrim, armrest, and the alignment of the person's legs and feet on the footrests.",
+    "description_view_2": "Rear view displaying the back of the seat, both large wheels, and the push handles extending from the top of the frame.",
+    "description_view_3": "Right side view similar to the left, showing the wheel, handrim, armrest, and the user's posture with feet on the footrests.",
+    "category": "wheelchair user",
+    "height": 1.25,
+    "max_dimension": 1.3,
+    "materials": [
+        "steel",
+        "synthetic leather",
+        "rubber",
+        "plastic",
+        "air",
+        "human tissue"
+    ],
+    "materials_composition": [
+        0.45,
+        0.12,
+        0.08,
+        0.05,
+        0.05,
+        0.25
+    ],
+    "mass": 82,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "pushable",
+        "drivable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "handrim",
+        "footrest",
+        "armrest"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "gray",
+        "blue",
+        "white"
+    ],
+    "colors_composition": [
+        0.35,
+        0.3,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "group",
+    "attribute_presence_of_wheelchair_frame": true,
+    "attribute_wheel_configuration": "two large rear wheels and two small front casters",
+    "attribute_handrim_visibility": true,
+    "attribute_seating_posture": "upright with hands resting on lap and feet placed on footrests",
+    "attribute_mobility_aid_accessories": [
+        "footrests"
+    ],
+    "uid": "54911b7d81a44991804c87c6fc58c4df",
+    "near_synsets": {
+        "wheelchair.n.01": 0.49648257644725213,
+        "motorized_wheelchair.n.01": 0.5218532907140926,
+        "bath_chair.n.01": 0.5470253302064484,
+        "chair.n.01": 0.5615431914458098,
+        "handwheel.n.01": 0.5674360019923848,
+        "user.n.01": -1000.0,
+        "exploiter.n.01": -1000.0,
+        "drug_user.n.01": -1000.0
+    },
+    "synset": "wheelchair.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/54911b7d81a44991804c87c6fc58c4df",
+        "creator_username": "maxencerouillet",
+        "creator_display_name": "Maxence Rouillet",
+        "creator_profile_url": "https://sketchfab.com/maxencerouillet"
+    },
+    "filename": "std_54911b7d81a44991804c87c6fc58c4df.glb",
+    "length": 1.2599778771400452,
+    "width": 0.8449686765670776
+}

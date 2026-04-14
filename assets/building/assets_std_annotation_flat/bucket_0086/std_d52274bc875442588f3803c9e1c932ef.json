@@ -1,0 +1,102 @@
+{
+    "description_long": "This object consists of two visually identical rifles placed side by side, each featuring a long, metallic barrel and a robust, angular wooden stock. The rifles are equipped with large, boxy optical scopes mounted on top, complete with flip-up lens covers and adjustment knobs, suggesting precision targeting capability. The stocks are blocky and appear to be made from a dark brown wood or wood-like material, while the main receiver and barrel assemblies are rendered in shades of gray, indicating metal construction. The rifles have prominent trigger guards and magazine wells, though the magazines themselves are not clearly visible. The front ends of the barrels are unadorned, lacking any visible muzzle devices. The overall design is utilitarian, with a focus on function and durability, suitable for urban tactical or marksman roles.",
+    "description": "Pair of long-barreled rifles with wooden stocks and large optical scopes, featuring robust metal construction and flip-up scope covers.",
+    "description_view_0": "Front angled view showing the twin rifles' scopes, lens covers, and the full length of the wooden stocks.",
+    "description_view_1": "Rear angled view highlighting the back of the stocks and the mounting of the scopes.",
+    "description_view_2": "Top-down view emphasizing the parallel alignment of the barrels and the scope housings.",
+    "description_view_3": "Side view displaying the length of the barrels and the profile of the stocks and scopes.",
+    "category": "rifle",
+    "height": 0.18,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 8.0,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "grippable",
+        "aimable",
+        "triggerable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "scope",
+        "trigger",
+        "bolt",
+        "magazine well",
+        "lens cover"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "black",
+        "light blue"
+    ],
+    "colors_composition": [
+        0.3,
+        0.5,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "scope",
+    "attribute_muzzle_device": "none",
+    "uid": "d52274bc875442588f3803c9e1c932ef",
+    "near_synsets": {
+        "rifle.n.01": 0.49833763478276233,
+        "garand_rifle.n.01": 0.5163875026525195,
+        "dragunov.n.01": 0.5186209232499559,
+        "light_arm.n.01": 0.5237647151835864,
+        "twenty-two_rifle.n.01": 0.5268030037696069
+    },
+    "synset": "twenty-two_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d52274bc875442588f3803c9e1c932ef",
+        "creator_username": "Rosstail",
+        "creator_display_name": "Rosstail",
+        "creator_profile_url": "https://sketchfab.com/Rosstail"
+    },
+    "filename": "std_d52274bc875442588f3803c9e1c932ef.glb",
+    "length": 0.5835701823234558,
+    "width": 0.5113002955913544
+}

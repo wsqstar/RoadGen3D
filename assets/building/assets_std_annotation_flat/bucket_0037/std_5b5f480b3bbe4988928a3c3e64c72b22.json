@@ -1,0 +1,92 @@
+{
+    "description_long": "This object is a rectangular chessboard with a classic 8x8 grid of alternating black and white squares, set on a flat, slightly elevated platform. The board's surface is smooth and appears to be made of polished stone or marble, with a subtle speckled texture visible on the lighter squares. The border of the board is a solid, dark band that frames the playing area, providing a clean and defined edge. Two chess pieces, both black with gold bases, are positioned on the board: a pawn and a queen, each rendered with detailed contours and a glossy finish. The chessboard is of a size suitable for tabletop or park use, and the pieces are proportionally scaled to the board. The overall appearance is elegant and functional, making it suitable for public spaces or recreational areas.",
+    "description": "A polished chessboard with an 8x8 grid of black and white squares, bordered by a dark frame and featuring two black chess pieces with gold bases.",
+    "description_view_0": "The chessboard is seen from a front-left angle, clearly showing the pawn and queen on adjacent squares and the alternating square pattern.",
+    "description_view_1": "Viewed from the left side, the chess pieces are aligned along the edge, and the board's depth and border are more prominent.",
+    "description_view_2": "From the back, the chess pieces are seen from behind, and the alternating pattern of the squares is fully visible.",
+    "description_view_3": "The right-side view highlights the chess pieces from a different angle, with the board's border and surface pattern in clear view.",
+    "category": "chessboard",
+    "height": 0.08,
+    "max_dimension": 0.45,
+    "materials": [
+        "stone",
+        "plastic",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 35,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "playable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "board surface",
+        "chess pieces"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "white",
+        "gold"
+    ],
+    "colors_composition": [
+        0.45,
+        0.45,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.54,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_board_pattern": "The board features a regular grid of 64 squares arranged in an 8x8 pattern, with alternating black and white squares. The squares are perfectly aligned and evenly sized, creating a classic checkerboard appearance. The surface is flat and polished, with no decorative elements or inscriptions within the playing area.",
+    "attribute_square_grid": "8x8",
+    "attribute_alternating_light_and_dark_squares": true,
+    "attribute_presence_of_chess_pieces": true,
+    "attribute_border_design": "The border is a solid, dark band that runs around the entire perimeter of the board, slightly raised above the playing surface. It is simple and unadorned, with a matte finish and no visible ornamentation, inscriptions, or markings.",
+    "uid": "5b5f480b3bbe4988928a3c3e64c72b22",
+    "near_synsets": {
+        "chess_set.n.01": 0.40421216042049823,
+        "chessboard.n.01": 0.42943696995466146,
+        "checkerboard.n.01": 0.46307348424458744,
+        "chess.n.02": 0.4681733370296921,
+        "chessman.n.01": 0.5023644988293322
+    },
+    "synset": "chessboard.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5b5f480b3bbe4988928a3c3e64c72b22",
+        "creator_username": "BGSnake",
+        "creator_display_name": "BryanGG",
+        "creator_profile_url": "https://sketchfab.com/BGSnake"
+    },
+    "filename": "std_5b5f480b3bbe4988928a3c3e64c72b22.glb",
+    "length": 0.3085445761680603,
+    "width": 0.32067301869392395
+}

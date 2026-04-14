@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a military jet aircraft with a distinctive delta wing configuration and a camouflage gray exterior. The wings are broad and sharply swept, blending smoothly into the fuselage, and feature roundels with a blue and yellow insignia, indicating Swedish Air Force markings. The nose is pointed and painted black, with a forward-placed, enclosed cockpit that has a light blue-tinted canopy. The tail section is tall and angular, with a single vertical stabilizer and no visible horizontal stabilizers extending beyond the delta wing. The aircraft's surface appears metallic and matte, with subtle panel lines and minimal external protrusions. The overall design is streamlined for high-speed flight, with no visible external weaponry or landing gear in the current views.",
+    "description": "A gray, delta-wing military jet with Swedish insignia, a pointed black nose, and a forward, enclosed cockpit under a blue-tinted canopy.",
+    "description_view_0": "Side view showing the full length of the jet, the delta wing shape, Swedish roundel, and the pointed black nose.",
+    "description_view_1": "Front view highlighting the wide delta wings, central cockpit canopy, and the symmetry of the aircraft's design.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the wing insignia and the aircraft's streamlined profile.",
+    "description_view_3": "Rear view displaying the broad delta wings, single vertical stabilizer, and the aircraft's overall triangular planform.",
+    "category": "airplane",
+    "height": 5.2,
+    "max_dimension": 16.5,
+    "materials": [
+        "aluminum",
+        "titanium",
+        "glass",
+        "rubber",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.05,
+        0.03,
+        0.1,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "control stick",
+        "throttle",
+        "landing gear lever",
+        "ejection seat",
+        "instrument panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "blue",
+        "yellow",
+        "light blue"
+    ],
+    "colors_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing delta configuration with sharply swept, triangular wings and no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Single rear-mounted jet engine (exhaust visible at the rear).",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer integrated into the delta wing planform.",
+    "attribute_landing_gear_type": "Retractable landing gear (not visible in current views).",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed single-seat cockpit with a prominent, light blue-tinted canopy.",
+    "uid": "3db817954c0b446abab9ae1eafb8747e",
+    "near_synsets": {
+        "aircraft.n.01": 0.5126482475823968,
+        "delta_wing.n.01": 0.516905759751243,
+        "wings.n.02": 0.5240145861959048,
+        "airplane.n.01": 0.5369617018344504,
+        "warplane.n.01": 0.5470908391250112
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3db817954c0b446abab9ae1eafb8747e",
+        "creator_username": "Tim.Ferbeek",
+        "creator_display_name": "Tim.Ferbeek",
+        "creator_profile_url": "https://sketchfab.com/Tim.Ferbeek"
+    },
+    "filename": "std_3db817954c0b446abab9ae1eafb8747e.glb",
+    "length": 16.217230796813965,
+    "width": 12.039360046386719
+}

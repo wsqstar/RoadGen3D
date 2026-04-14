@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a classic hand grenade, specifically resembling the Mk 2 fragmentation grenade, with a robust, oval-shaped metal body featuring a deeply segmented, pineapple-like texture for enhanced grip. The surface is dark, weathered, and shows signs of wear, with patches of rust and scuff marks, indicating heavy use or age. At the top, a prominent metal safety lever and a circular pull ring are attached to a rectangular fuse housing, both of which are metallic and slightly corroded. The lever is long and angular, extending down the side of the grenade, while the pull ring is looped and appears functional. The body is solid and heavy, designed to contain explosive material, with the segments aiding in fragmentation upon detonation. The overall construction is utilitarian, with no visible markings or labels, emphasizing function over aesthetics.",
+    "description": "A dark, weathered metal hand grenade with a segmented, pineapple-like body, a prominent safety lever, and a circular pull ring. The surface is rugged and shows signs of age and use.",
+    "description_view_0": "Front view showing the rounded, segmented body and the top-mounted fuse housing with the safety lever and pull ring partially visible.",
+    "description_view_1": "Side view highlighting the full length of the safety lever, the circular pull ring, and the rectangular fuse housing atop the grenade.",
+    "description_view_2": "Rear view displaying the vertical seam of the grenade body and the back of the fuse housing, with the lever and ring mostly obscured.",
+    "description_view_3": "Opposite side view showing the safety lever and pull ring from the other side, with the segmented body and fuse housing clearly visible.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.12,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 0.6,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 6,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "fuse housing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "rust brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.0,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the safety ring, which releases the lever and activates the internal fuse mechanism.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "a5426ee5eaba4a1b87aba52918a85231",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.5048313372303854,
+        "grenade.n.01": 0.5251448961555225,
+        "pipe_bomb.n.01": 0.5544760792775798,
+        "zip_gun.n.01": 0.5601586091443768,
+        "bomb.n.01": 0.5620520972973003,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a5426ee5eaba4a1b87aba52918a85231",
+        "creator_username": "Adriancgmask",
+        "creator_display_name": "Adriancgmask",
+        "creator_profile_url": "https://sketchfab.com/Adriancgmask"
+    },
+    "filename": "std_a5426ee5eaba4a1b87aba52918a85231.glb",
+    "length": 0.090934157371521,
+    "width": 0.06718623638153076
+}

@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a group of skyscrapers, each with distinct architectural forms and varying heights, arranged in a linear fashion. The buildings feature a mix of rectangular, cylindrical, and pointed roof designs, with facades dominated by glass and steel, giving a modern urban skyline appearance. Some towers have dark, reflective surfaces, while others display lighter, more transparent glass exteriors. The collection includes both slender, needle-like structures and broader, blockier towers, suggesting a diverse cityscape. The buildings are closely spaced, with some showing detailed window patterns and others appearing more monolithic. The overall impression is of a bustling metropolitan area with a variety of commercial high-rises.",
+    "description": "A diverse group of modern skyscrapers with glass and steel facades, featuring a mix of shapes and heights, arranged in a cityscape lineup.",
+    "description_view_0": "Side view showing the narrow profiles of the skyscrapers, highlighting their varying depths and the alignment of their facades.",
+    "description_view_1": "Frontal view displaying the full range of building shapes, heights, and facade details, with clear visibility of window patterns and architectural diversity.",
+    "description_view_2": "Opposite side view emphasizing the depth and silhouette of the buildings, with less detail visible on the facades.",
+    "description_view_3": "Rear angled view showing the backs and sides of the skyscrapers, with some window and facade details visible but less prominent than the front.",
+    "category": "skyscraper",
+    "height": 0.25,
+    "max_dimension": 1.0,
+    "materials": [
+        "glass",
+        "steel",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "mass": 1200000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "elevator"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "black",
+        "white",
+        "beige"
+    ],
+    "colors_composition": [
+        0.4,
+        0.25,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "glossy",
+    "reflectivity": 0.5,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.0,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_architectural_style": "Modernist",
+    "attribute_number_of_floors": 50,
+    "attribute_facade_design": "The facades are primarily composed of reflective glass panels framed by steel, with some buildings featuring smooth, continuous surfaces and others displaying vertical or horizontal divisions. Occasional textural variations and color shifts add visual interest, while the overall look is sleek and contemporary.",
+    "attribute_window_pattern": "vertical strips",
+    "attribute_building_signage": "none",
+    "uid": "e7922fe0f7b14ed786f84529f9217dac",
+    "near_synsets": {
+        "skyscraper.n.01": 0.43803944757658125,
+        "high-rise.n.01": 0.5029777089817247,
+        "cityscape.n.01": 0.5306380573702277,
+        "cityscape.n.02": 0.5344495230019604,
+        "building_complex.n.01": 0.5560651963231448
+    },
+    "synset": "skyscraper.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e7922fe0f7b14ed786f84529f9217dac",
+        "creator_username": "sumitmangela",
+        "creator_display_name": "sumitmangela",
+        "creator_profile_url": "https://sketchfab.com/sumitmangela"
+    },
+    "filename": "std_e7922fe0f7b14ed786f84529f9217dac.glb",
+    "length": 0.48787736892700195,
+    "width": 1.0410675406455994
+}

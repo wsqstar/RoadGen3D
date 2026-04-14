@@ -1,0 +1,100 @@
+{
+    "description_long": "This rifle features a long, slender barrel with a bipod attached near the muzzle for stability during firing. The receiver and stock are predominantly black, with a wooden handguard and pistol grip providing a classic appearance. The stock is fixed and robust, designed for shoulder support, while the bipod legs are splayed outward for balance. The rifle is equipped with iron sights, and the magazine is not visible, suggesting it may be internal or not attached. The overall construction appears to be primarily metal with some wooden components, giving it a durable and utilitarian look. The design is reminiscent of mid-20th-century military rifles, suitable for use in urban environments where stability and accuracy are important.",
+    "description": "A long, black rifle with a fixed stock, wooden handguard, and attached bipod, featuring iron sights and a robust, utilitarian design.",
+    "description_view_0": "Front view showing the bipod legs splayed outward and the muzzle facing forward, with the wooden handguard and iron sight visible.",
+    "description_view_1": "Side profile highlighting the full length of the barrel, the fixed stock, wooden handguard, and the bipod attached near the muzzle.",
+    "description_view_2": "Rear view displaying the stock and the alignment of the barrel, with the bipod legs visible at the far end.",
+    "description_view_3": "Opposite side profile showing the same features as view 1, with clear visibility of the stock, handguard, and bipod.",
+    "category": "rifle",
+    "height": 0.35,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 8.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 90,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pullable",
+        "pushable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "bolt",
+        "bipod",
+        "safety",
+        "stock",
+        "handguard",
+        "barrel",
+        "iron sights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "b4bcfe01008a4fe3ab297fc80655eeef",
+    "near_synsets": {
+        "rifle.n.01": 0.4668950233458323,
+        "light_arm.n.01": 0.49547233553471687,
+        "garand_rifle.n.01": 0.4971043844244404,
+        "musket.n.01": 0.5154690554093552,
+        "sniper_rifle.n.01": 0.5176654988874103
+    },
+    "synset": "sniper_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/b4bcfe01008a4fe3ab297fc80655eeef",
+        "creator_username": "kacperokacper",
+        "creator_display_name": "Kacper Obcowski",
+        "creator_profile_url": "https://sketchfab.com/kacperokacper"
+    },
+    "filename": "std_b4bcfe01008a4fe3ab297fc80655eeef.glb",
+    "length": 1.5308457016944885,
+    "width": 0.4066488593816757
+}

@@ -1,0 +1,100 @@
+{
+    "description_long": "This is an old, heavily rusted sedan with a boxy, vintage design reminiscent of mid-20th-century vehicles. The body is predominantly covered in a faded green paint, with extensive patches of reddish-brown rust and weathering across the roof, hood, doors, and trunk. The windows are opaque and appear to be frosted or dirty, obscuring any view of the interior. The car features four doors, a simple rectangular grille, and black, worn-out wheels with basic hubcaps. The overall condition suggests long-term abandonment, making it suitable for post-apocalyptic or urban decay environments.",
+    "description": "A vintage, boxy sedan with faded green paint and extensive rust patches, featuring opaque windows and worn black wheels.",
+    "description_view_0": "Front view showing the rectangular grille, rusted hood, and opaque windshield; the right side mirror is visible.",
+    "description_view_1": "Left side view highlighting the boxy profile, two doors, rusted roof, and both wheels; windows are opaque.",
+    "description_view_2": "Rear view displaying the trunk, rusted roof, and rear windshield; taillights are barely visible.",
+    "description_view_3": "Right side view similar to the left, showing two doors, rusted surfaces, and both wheels.",
+    "category": "sedan",
+    "height": 1.4,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.08,
+        0.04,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 3000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "side mirror",
+        "trunk",
+        "hood"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "rust (reddish-brown)",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_number_of_doors": 4,
+    "attribute_license_plate": "none",
+    "attribute_wheel_design": "Simple black wheels with no visible spokes or hubcap details, heavily worn",
+    "uid": "20da1947e6fe4d86a4bc37ab2ebcb92a",
+    "near_synsets": {
+        "car_window.n.01": 0.5571182991106953,
+        "sedan.n.01": 0.5592347634597316,
+        "bus.n.04": 0.5657797537355799,
+        "boneshaker.n.01": 0.5699450951267033,
+        "brougham.n.02": 0.5707537983004697,
+        "sedan.n.02": -1000.0
+    },
+    "synset": "sedan.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/20da1947e6fe4d86a4bc37ab2ebcb92a",
+        "creator_username": "andrey.chen",
+        "creator_display_name": "andrey.chen",
+        "creator_profile_url": "https://sketchfab.com/andrey.chen"
+    },
+    "filename": "std_20da1947e6fe4d86a4bc37ab2ebcb92a.glb",
+    "length": 3.9133507013320923,
+    "width": 1.6972423791885376
+}

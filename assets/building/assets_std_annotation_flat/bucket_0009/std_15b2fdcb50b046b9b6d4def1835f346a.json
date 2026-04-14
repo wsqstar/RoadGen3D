@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a military-style tandem rotor helicopter, reminiscent of the Boeing CH-47 Chinook, with a long, cylindrical fuselage painted in a dark green camouflage color. It features two large, horizontally-aligned main rotors mounted at the front and rear, each with multiple long, straight blades. The cockpit is located at the front, with a sloped, multi-pane windshield made of tinted glass, and the landing gear consists of two sets of robust wheels attached to the underside. The tail section is squared off, with vertical stabilizers on either side, each bearing a red marking. The surface appears to be made of metal, with a matte finish and minimal visible rivets or seams. The helicopter is designed for heavy lifting and troop transport, with a spacious interior likely accessible via side or rear doors.",
+    "description": "A dark green, tandem rotor military helicopter with a long fuselage, two large rotors, and a multi-pane cockpit windshield. It features robust landing gear and squared tail stabilizers with red markings.",
+    "description_view_0": "Front-left view showing the cockpit windows, front rotor, and landing gear clearly.",
+    "description_view_1": "Rear-left view highlighting the squared tail, rear rotor, and vertical stabilizers with red markings.",
+    "description_view_2": "Rear-right view focusing on the length of the fuselage, rear rotor, and tail stabilizers.",
+    "description_view_3": "Front-right view displaying the cockpit, front rotor, and landing gear from a different angle.",
+    "category": "helicopter",
+    "height": 5.5,
+    "max_dimension": 16.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.08,
+        0.07,
+        0.12,
+        0.03,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotor blades",
+        "cockpit door",
+        "side door",
+        "landing gear",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "gray",
+        "red"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_rotor_blades": "Two main rotors, each with three long, straight blades made of composite or metal, colored black with no visible markings. The blades are slender and extend well beyond the width of the fuselage.",
+    "attribute_tail_rotor": "No traditional tail rotor; instead, the helicopter uses a tandem rotor configuration with both rotors mounted horizontally at the front and rear.",
+    "attribute_landing_skids": "No skids; the helicopter is equipped with two sets of robust, wheeled landing gear, each with visible struts and support structures.",
+    "attribute_cockpit_windows": "The cockpit has a multi-pane windshield with at least four large, angular windows, slightly tinted and framed in dark material, providing wide visibility for pilots.",
+    "attribute_registration_number": "not visible",
+    "uid": "15b2fdcb50b046b9b6d4def1835f346a",
+    "near_synsets": {
+        "single-rotor_helicopter.n.01": 0.5117396532396732,
+        "helicopter.n.01": 0.5202477493528257,
+        "main_rotor.n.01": 0.5205178707665145,
+        "cargo_helicopter.n.01": 0.522872420278383,
+        "tail_rotor.n.01": 0.5310560328353124
+    },
+    "synset": "cargo_helicopter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/15b2fdcb50b046b9b6d4def1835f346a",
+        "creator_username": "manilov.ap",
+        "creator_display_name": "manilov.ap",
+        "creator_profile_url": "https://sketchfab.com/manilov.ap"
+    },
+    "filename": "std_15b2fdcb50b046b9b6d4def1835f346a.glb",
+    "length": 17.62755584716797,
+    "width": 21.145344734191895
+}

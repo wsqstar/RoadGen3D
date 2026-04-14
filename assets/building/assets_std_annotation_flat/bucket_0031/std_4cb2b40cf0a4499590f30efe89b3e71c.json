@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a detailed model of a mobile construction crane, featuring a long, angled boom with a lattice structure and multiple circular cutouts along its length. The base of the crane is mounted on a wheeled chassis with six visible wheels and four extendable outriggers for stability during operation. The main body houses a raised compartment, likely for machinery or controls, but no distinct operator cabin is visible. The boom extends far beyond the base, and there is no visible hook or lifting mechanism at its tip. The entire structure appears to be made of a uniform, metallic material with a brownish finish, giving it a cohesive and industrial appearance. The design suggests it is intended for heavy lifting and construction tasks in urban environments.",
+    "description": "A brown, wheeled construction crane with a long lattice boom and extendable outriggers, lacking a visible hook or operator cabin.",
+    "description_view_0": "Side view showing the full length of the lattice boom, six wheels, and four outriggers extended from the base.",
+    "description_view_1": "Front view highlighting the narrow profile of the boom and the symmetrical placement of the outriggers.",
+    "description_view_2": "Opposite side view similar to view 0, displaying the boom, wheels, and outriggers from the other side.",
+    "description_view_3": "Rear view showing the back of the main body, the boom's alignment, and the arrangement of the wheels and outriggers.",
+    "category": "crane",
+    "height": 2.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "metal",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.01,
+        0.06
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "extendable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheels",
+        "outriggers",
+        "boom",
+        "rotating base"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_boom_type": "lattice boom",
+    "attribute_counterweight_presence": false,
+    "attribute_operator_cabin_visibility": false,
+    "attribute_hook_or_lifting_mechanism": "none visible",
+    "attribute_support_structure_design": "wheeled chassis",
+    "uid": "4cb2b40cf0a4499590f30efe89b3e71c",
+    "near_synsets": {
+        "crane.n.04": 0.44429363965859764,
+        "derrick.n.02": 0.4699472781680275,
+        "transporter.n.02": 0.5190488981432795,
+        "stacker_crane.n.01": 0.5232724201064447,
+        "crane.n.05": 0.5309776312285688,
+        "crane.n.01": -1000.0,
+        "crane.n.02": -1000.0,
+        "grus.n.01": -1000.0
+    },
+    "synset": "crane.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4cb2b40cf0a4499590f30efe89b3e71c",
+        "creator_username": "trinityscsp",
+        "creator_display_name": "trinityscsp",
+        "creator_profile_url": "https://sketchfab.com/trinityscsp"
+    },
+    "filename": "std_4cb2b40cf0a4499590f30efe89b3e71c.glb",
+    "length": 3.2380036115646362,
+    "width": 1.0786557793617249
+}

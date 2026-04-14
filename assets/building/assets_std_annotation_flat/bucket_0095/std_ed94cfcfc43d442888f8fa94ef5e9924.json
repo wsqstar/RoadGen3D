@@ -1,0 +1,112 @@
+{
+    "description_long": "This object is a small, enclosed room-like structure with white walls, a blue door, and several posters and maps affixed to the interior surfaces. The walls appear to be made of painted wood or drywall, and the door is a solid panel with a window insert, likely made of metal or composite material. The interior contains a carpeted floor and a wardrobe or storage cabinet, suggesting it is used for secure storage or as a private locker room. The posters on the walls feature animated movie themes, adding a personalized touch to the otherwise utilitarian space. The structure is mostly enclosed, with some open areas at the top, and is large enough for a person to enter and move around inside. There are no visible ventilation patterns or external handles, and the door seems to be the primary point of access.",
+    "description": "A small, enclosed white-walled storage room with a blue door, interior posters, and a wardrobe, designed for secure personal storage. The structure is large enough to enter and features a carpeted floor and decorated walls.",
+    "description_view_0": "View 0 shows the interior with a blue door, posters, a wardrobe, and a carpeted floor visible through a partially open roof.",
+    "description_view_1": "View 1 highlights the exterior white walls, a world map, and several posters, with the blue door partially visible.",
+    "description_view_2": "View 2 focuses on the corner with the blue door and wardrobe, showing the clean white exterior and minimal decoration.",
+    "description_view_3": "View 3 presents the back wall with multiple posters and a whiteboard, emphasizing the decorated interior wall.",
+    "category": "storage locker",
+    "height": 2.4,
+    "max_dimension": 3.2,
+    "materials": [
+        "painted wood",
+        "drywall",
+        "metal",
+        "glass",
+        "carpet",
+        "paper",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.1,
+        0.03,
+        0.07,
+        0.02,
+        0.08
+    ],
+    "mass": 650,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "storable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wardrobe",
+        "cabinet handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "beige",
+        "gray",
+        "multicolor"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "scene",
+    "attribute_number_of_doors": 1,
+    "attribute_locking_mechanism_type": "no lock visible",
+    "attribute_ventilation_pattern": "none visible",
+    "attribute_handle_design": "no handle visible",
+    "attribute_placement_location": "indoor",
+    "uid": "ed94cfcfc43d442888f8fa94ef5e9924",
+    "near_synsets": {
+        "cabinet.n.03": 0.4910834546749011,
+        "storage_space.n.01": 0.5031019585284745,
+        "cupboard.n.01": 0.5152158891506204,
+        "locker_room.n.01": 0.5182135814856466,
+        "wardrobe.n.01": 0.5240242027481099,
+        "storage.n.03": -1000.0,
+        "locker.n.02": -1000.0,
+        "memory.n.04": -1000.0,
+        "repositing.n.01": -1000.0,
+        "storage.n.01": -1000.0,
+        "footlocker.n.01": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "storage.n.04": -1000.0
+    },
+    "synset": "cupboard.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ed94cfcfc43d442888f8fa94ef5e9924",
+        "creator_username": "jiamingsun",
+        "creator_display_name": "Jiaming Sun",
+        "creator_profile_url": "https://sketchfab.com/jiamingsun"
+    },
+    "filename": "std_ed94cfcfc43d442888f8fa94ef5e9924.glb",
+    "length": 4.226022481918335,
+    "width": 3.970942735671997
+}

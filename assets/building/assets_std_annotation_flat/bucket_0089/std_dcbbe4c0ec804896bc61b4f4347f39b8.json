@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a modern military fighter jet, characterized by a sleek, aerodynamic fuselage and sharply swept-back wings. The jet features a single, large engine exhaust at the rear and a bubble canopy cockpit positioned near the front of the fuselage, providing excellent visibility for the pilot. The wings are mid-mounted with noticeable leading-edge extensions and are equipped with hardpoints for external stores or weaponry. The tail section includes a single vertical stabilizer and two horizontal stabilizers, forming a conventional tail design. The surface is finished in a matte gray camouflage, typical for combat aircraft, and the overall build suggests a high-performance, supersonic capability. The landing gear is not visible, indicating it is likely retractable and integrated into the fuselage and wings.",
+    "description": "A sleek, gray military fighter jet with swept-back mid-mounted wings, a single rear engine, and a bubble canopy cockpit. The jet has a conventional tail and a streamlined, aerodynamic design.",
+    "description_view_0": "Front view showing the pointed nose, bubble canopy, and swept-back wings with visible hardpoints.",
+    "description_view_1": "Left side profile highlighting the elongated fuselage, single engine exhaust, and mid-mounted wings.",
+    "description_view_2": "Rear view displaying the single vertical stabilizer, horizontal stabilizers, and the large engine exhaust.",
+    "description_view_3": "Right side profile similar to the left, showing the cockpit, wing configuration, and tail assembly.",
+    "category": "airplane",
+    "height": 4.8,
+    "max_dimension": 15.0,
+    "materials": [
+        "aluminum",
+        "titanium",
+        "composite",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "canopy",
+        "cockpit controls",
+        "landing gear",
+        "engine",
+        "wing hardpoints"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "transparent",
+        "white"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing configuration with sharply swept-back wings and leading-edge extensions; no visible winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "Single rear-mounted jet engine",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers",
+    "attribute_landing_gear_type": "Retractable tricycle landing gear (not visible, inferred from typical design)",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed single-seat cockpit with a bubble canopy",
+    "uid": "dcbbe4c0ec804896bc61b4f4347f39b8",
+    "near_synsets": {
+        "aircraft.n.01": 0.47225653320785377,
+        "airplane.n.01": 0.4882037825201875,
+        "warplane.n.01": 0.4975374316505487,
+        "jet.n.01": 0.49802926222258315,
+        "fighter.n.02": 0.5003086647183052
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dcbbe4c0ec804896bc61b4f4347f39b8",
+        "creator_username": "ArioJoe",
+        "creator_display_name": "ArioJoe",
+        "creator_profile_url": "https://sketchfab.com/ArioJoe"
+    },
+    "filename": "std_dcbbe4c0ec804896bc61b4f4347f39b8.glb",
+    "length": 15.801206588745117,
+    "width": 10.044586658477783
+}

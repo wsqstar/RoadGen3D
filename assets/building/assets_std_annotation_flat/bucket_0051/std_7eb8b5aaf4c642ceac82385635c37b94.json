@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a large, armored combat tactical vehicle with a robust, angular body designed for urban and tactical operations. The exterior is predominantly gray, featuring reinforced panels and a high, boxy roofline for maximum internal volume. The vehicle has four large, rugged tires with deep treads suitable for off-road and urban environments, and visible antennae on the roof suggest advanced communication capabilities. The front is equipped with a sloped hood and protective grilles, while the sides display armored doors and small, reinforced windows. The rear features a heavy-duty door, likely for troop or equipment access, and additional storage or utility mounts. The overall design emphasizes protection, mobility, and utility in potentially hostile environments.",
+    "description": "A large, gray armored combat tactical vehicle with reinforced panels, rugged tires, and a boxy, utilitarian design for urban operations.",
+    "description_view_0": "Side view showing the vehicle's length, armored doors, and rugged tires, with visible antennae and roof details.",
+    "description_view_1": "Front view highlighting the sloped hood, protective grille, and the vehicle's wide, imposing stance.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the armored panels, doors, and tire details.",
+    "description_view_3": "Rear view displaying the heavy-duty rear door, utility mounts, and the vehicle's robust, armored back.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "armored steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 8500,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "antenna",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "none visible",
+    "attribute_armor_plating": "Full body coverage with thick, angular armored panels; reinforced doors and hood; sloped front for deflection.",
+    "attribute_camouflage_pattern": "none visible",
+    "attribute_military_markings": "none visible",
+    "attribute_tire_type": "Four large, off-road tires with deep tread pattern; appear reinforced for durability.",
+    "uid": "7eb8b5aaf4c642ceac82385635c37b94",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4731472568141067,
+        "tank.n.01": 0.485657308765792,
+        "reconnaissance_vehicle.n.01": 0.4882130585305989,
+        "assault_gun.n.02": 0.5014637247694729,
+        "armored_vehicle.n.01": 0.5069106753704198,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7eb8b5aaf4c642ceac82385635c37b94",
+        "creator_username": "Dashenka.Naumova",
+        "creator_display_name": "Dashenka.Naumova",
+        "creator_profile_url": "https://sketchfab.com/Dashenka.Naumova"
+    },
+    "filename": "std_7eb8b5aaf4c642ceac82385635c37b94.glb",
+    "length": 5.32449197769165,
+    "width": 2.0450525283813477
+}

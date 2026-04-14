@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a single-story bungalow with a dark gable roof and light-colored exterior walls, situated on a rectangular grassy plot with a driveway leading to a garage. The front facade features a covered porch supported by columns, and the main entrance is centrally located. Windows are symmetrically arranged on the front, with additional windows on the sides and rear, providing ample natural light. The attached garage is set to one side, accessible via a concrete driveway that connects to a main road. The roofline is simple, with a prominent gable over the main living area and a secondary gable above the garage. The overall design is compact and functional, typical of suburban residential neighborhoods.",
+    "description": "A single-story bungalow with a dark gable roof, light exterior walls, a covered front porch, and an attached garage on a grassy lot.",
+    "description_view_0": "Front view showing the covered porch, main entrance, and driveway leading to the garage.",
+    "description_view_1": "Side view highlighting the garage, driveway, and side windows.",
+    "description_view_2": "Rear view displaying the back wall, rear windows, and the garage's side.",
+    "description_view_3": "Opposite side view showing the side facade and the driveway extending to the road.",
+    "category": "bungalow",
+    "height": 5.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "wood",
+        "concrete",
+        "glass",
+        "asphalt_shingles",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 95000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "garage door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "black",
+        "green"
+    ],
+    "colors_composition": [
+        0.4,
+        0.2,
+        0.15,
+        0.25
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Ranch",
+    "attribute_roof_type": "gable",
+    "attribute_number_of_stories": 1,
+    "attribute_porch_presence": true,
+    "attribute_window_arrangement": "symmetrical front-facing windows with additional side and rear windows",
+    "uid": "72b089f86512491ebbfffa15704dbd64",
+    "near_synsets": {
+        "bungalow.n.01": 0.4128774860929037,
+        "villa.n.02": 0.5056608098306926,
+        "ranch_house.n.01": 0.5089197056155418,
+        "semi-detached_house.n.01": 0.5304510568257212,
+        "porch.n.01": 0.5332251791875021
+    },
+    "synset": "bungalow.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/72b089f86512491ebbfffa15704dbd64",
+        "creator_username": "oakbridge",
+        "creator_display_name": "OakBridge Development",
+        "creator_profile_url": "https://sketchfab.com/oakbridge"
+    },
+    "filename": "std_72b089f86512491ebbfffa15704dbd64.glb",
+    "length": 57.277191162109375,
+    "width": 48.71712112426758
+}

@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a modern military fighter jet with a sleek, aerodynamic fuselage and a camouflage paint scheme in tan, brown, and light gray. The wings are sharply swept back and mounted low on the fuselage, each equipped with multiple hardpoints carrying missiles and external fuel tanks. The jet features a single vertical stabilizer at the tail, a bubble canopy cockpit positioned forward on the fuselage, and a prominent air intake beneath the cockpit. The landing gear is deployed, with a tricycle configuration visible, including a nose wheel and two main wheels under the wings. The overall design is optimized for high-speed flight and maneuverability, with detailed surface paneling and markings indicating military use.",
+    "description": "A modern military fighter jet with swept-back low wings, camouflage paint, external missiles, and a forward bubble canopy cockpit.",
+    "description_view_0": "Top-down view showing the full wingspan, camouflage pattern, and external stores on the wings.",
+    "description_view_1": "Left side profile highlighting the nose, cockpit canopy, landing gear, and underwing armaments.",
+    "description_view_2": "Rear view displaying the single engine exhaust, tail structure, and symmetry of the wings and stabilizers.",
+    "description_view_3": "Right side profile similar to view 1, showing the opposite side's landing gear and external stores.",
+    "category": "airplane",
+    "height": 4.8,
+    "max_dimension": 15.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.08,
+        0.04,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "closable",
+        "openable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "landing gear",
+        "missile hardpoints",
+        "control surfaces",
+        "wheels"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "brown",
+        "light gray",
+        "black",
+        "blue"
+    ],
+    "colors_composition": [
+        0.35,
+        0.25,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, sharply swept wings with multiple hardpoints and slight anhedral angle; no visible winglets.",
+    "attribute_engine_type": "Single jet engine with central rear exhaust.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Tricycle retractable landing gear with one nose wheel and two main wheels.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed bubble canopy cockpit, likely single-seat.",
+    "uid": "42bf014476684e8ea2141ff373bd240a",
+    "near_synsets": {
+        "aircraft.n.01": 0.47144569300712513,
+        "fighter.n.02": 0.48135358835138436,
+        "warplane.n.01": 0.48152204065692195,
+        "combat_pilot.n.01": 0.4969683752875914,
+        "airplane.n.01": 0.5134527902046018
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/42bf014476684e8ea2141ff373bd240a",
+        "creator_username": "jratanatharathorn",
+        "creator_display_name": "Yo Boy",
+        "creator_profile_url": "https://sketchfab.com/jratanatharathorn"
+    },
+    "filename": "std_42bf014476684e8ea2141ff373bd240a.glb",
+    "length": 14.152985572814941,
+    "width": 9.375661849975586
+}

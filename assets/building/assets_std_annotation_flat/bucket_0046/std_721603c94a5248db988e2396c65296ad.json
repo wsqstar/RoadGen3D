@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a large, cylindrical bomb with a rounded nose and a distinctive black and yellow spiral pattern on its front face. The body is painted with alternating black and white horizontal bands, and several metallic clamps or bands encircle the midsection. The rear of the bomb features a robust, boxy tail assembly with four large stabilizing fins arranged in a cross pattern, likely for aerodynamic stability during flight. The surface appears metallic and slightly weathered, with some visible wear and scuff marks. There are no visible wires, buttons, or digital displays on the exterior, and the overall construction suggests a heavy, solid build typical of mid-20th-century ordnance such as the 'Fat Man' atomic bomb.",
+    "description": "A large, cylindrical bomb with black and white stripes, a yellow spiral nose, and a boxy finned tail. The surface is metallic and robust, with no visible external controls.",
+    "description_view_0": "Front view showing the rounded nose with a striking black and yellow spiral pattern and the cylindrical body.",
+    "description_view_1": "Side view highlighting the alternating black and white bands, metallic clamps, and the length of the bomb.",
+    "description_view_2": "Rear view displaying the square, cross-shaped tail fin assembly and the central exhaust or attachment point.",
+    "description_view_3": "Opposite side view similar to view 1, showing the tail fins and banded body.",
+    "category": "bomb",
+    "height": 1.5,
+    "max_dimension": 3.0,
+    "materials": [
+        "steel",
+        "aluminum",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.25,
+        0.04,
+        0.01
+    ],
+    "mass": 4500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 44100,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "nose cone",
+        "tail fins",
+        "clamps"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "white",
+        "yellow",
+        "gray"
+    ],
+    "colors_composition": [
+        0.45,
+        0.35,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.02,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "No visible external detonation mechanism; detonation is likely initiated internally or via a concealed fuse or impact trigger.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "721603c94a5248db988e2396c65296ad",
+    "near_synsets": {
+        "buzz_bomb.n.01": 0.5452951111498611,
+        "remote-control_bomb.n.01": 0.5532247599818577,
+        "pipe_bomb.n.01": 0.5534260751559102,
+        "plastic_bomb.n.01": 0.5577678866926452,
+        "bomb.n.01": 0.5619718029526095,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/721603c94a5248db988e2396c65296ad",
+        "creator_username": "raphi14",
+        "creator_display_name": "raphi14",
+        "creator_profile_url": "https://sketchfab.com/raphi14"
+    },
+    "filename": "std_721603c94a5248db988e2396c65296ad.glb",
+    "length": 3.166467547416687,
+    "width": 1.4999997019767761
+}

@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a blocky, stylized airplane with a predominantly white fuselage accented by dark brown and gray sections, reminiscent of a private jet or small commercial aircraft. The wings are mid-mounted and feature geometric patterns in blue, orange, and black, adding a decorative touch. The tail section is conventional, with a single vertical stabilizer and horizontal stabilizers extending from either side. The airplane has multiple windows along the fuselage, suggesting a passenger configuration, and two visible engines mounted on the wings. The landing gear appears to be a tricycle type, with main gear under the wings and a nose gear at the front. The cockpit is located at the forward end of the fuselage, with a row of windows indicating an enclosed, multi-seat arrangement.",
+    "description": "A stylized, blocky white and brown airplane with mid-mounted patterned wings, a conventional tail, and visible engines under the wings. The fuselage features multiple windows and a forward cockpit.",
+    "description_view_0": "Side view showing the full length of the fuselage, patterned left wing, and tail details.",
+    "description_view_1": "Front view highlighting the nose, cockpit windows, and symmetrical wing and engine placement.",
+    "description_view_2": "Opposite side view displaying the right wing's pattern and the airplane's overall length.",
+    "description_view_3": "Rear view focusing on the tail structure, horizontal stabilizers, and the back of the wings.",
+    "category": "airplane",
+    "height": 5.0,
+    "max_dimension": 25.0,
+    "materials": [
+        "plastic",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "drivable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "engine",
+        "landing gear",
+        "cockpit controls"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "brown",
+        "gray",
+        "blue",
+        "orange",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.08,
+        0.05,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing configuration with straight wings featuring geometric patterns and no visible winglets.",
+    "attribute_engine_type": "Twin jet engines mounted under each wing.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Tricycle landing gear with two main units under the wings and a single nose gear.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with multiple windows, likely multi-seat.",
+    "uid": "d26521cb7a90426185266e7f63553879",
+    "near_synsets": {
+        "airplane.n.01": 0.49725892467007327,
+        "fuselage.n.01": 0.5063501490369533,
+        "aircraft.n.01": 0.5155478593793257,
+        "monoplane.n.01": 0.5261141534055751,
+        "biplane.n.01": 0.5350911360636188
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d26521cb7a90426185266e7f63553879",
+        "creator_username": "madexc",
+        "creator_display_name": "madexc",
+        "creator_profile_url": "https://sketchfab.com/madexc"
+    },
+    "filename": "std_d26521cb7a90426185266e7f63553879.glb",
+    "length": 17.60001277923584,
+    "width": 17.200005531311035
+}

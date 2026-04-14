@@ -1,0 +1,83 @@
+{
+    "description_long": "This object is a rectangular section of sidewalk composed of concrete slabs with a series of parallel grooves running lengthwise, likely for drainage or anti-slip purposes. The surface is segmented into panels, each separated by visible expansion joints, which help prevent cracking due to temperature changes. The concrete is a light gray color, with subtle variations and minor imperfections that add realism. The edges are straight and flush, with no visible curb or raised border, suggesting it is designed to be level with the adjacent ground or street. There are no embedded features such as tactile paving, street furniture, or decorative elements. The overall appearance is utilitarian, typical of sidewalks found in residential or mixed-use urban environments.",
+    "description": "A rectangular, grooved concrete sidewalk section with visible expansion joints and a flush edge, finished in light gray.",
+    "description_view_0": "The sidewalk is seen from the short end, showing the parallel grooves and the flush, straight edge.",
+    "description_view_1": "A side view highlights the lengthwise grooves and the segmented concrete panels.",
+    "description_view_2": "The opposite short end view reveals the same flush edge and subtle surface imperfections.",
+    "description_view_3": "Another side view, similar to view 1, emphasizing the uniform grooves and expansion joints.",
+    "category": "sidewalk",
+    "height": 0.12,
+    "max_dimension": 3.0,
+    "materials": [
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.98,
+        0.02
+    ],
+    "mass": 864,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "segmentable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": false,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "flush",
+    "attribute_adjacent_street_type": "residential",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "c704fafeb4574573a0ad2ae5da4daf77",
+    "near_synsets": {
+        "sidewalk.n.01": 0.5351383075735064,
+        "cement.n.01": 0.559485094490038,
+        "paved_surface.n.01": 0.5634084540551352,
+        "curb.n.01": 0.5748386790986303,
+        "curbside.n.01": 0.5752542381499854
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c704fafeb4574573a0ad2ae5da4daf77",
+        "creator_username": "neominigan",
+        "creator_display_name": "Neo_minigan",
+        "creator_profile_url": "https://sketchfab.com/neominigan"
+    },
+    "filename": "std_c704fafeb4574573a0ad2ae5da4daf77.glb",
+    "length": 6.112346172332764,
+    "width": 2.623610258102417
+}

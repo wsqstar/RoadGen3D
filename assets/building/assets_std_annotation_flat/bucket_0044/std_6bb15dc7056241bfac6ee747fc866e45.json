@@ -1,0 +1,115 @@
+{
+    "description_long": "This is a charming street market greengrocer stall with a blue and white striped canopy, set on a cobblestone surface. The stall features a wooden counter draped with a matching striped cloth, displaying an assortment of fresh produce such as bananas, apples, and cabbages in wooden crates and baskets. To the left, a large wooden barrel holds more vegetables, while a chalkboard sign stands nearby, likely advertising specials or prices. The rear of the stall is partially enclosed, with additional crates of produce stacked for easy access. The overall structure is made of painted wood, with open sides for customer interaction and a pitched roof for weather protection. The setup is inviting and functional, evoking the feel of a traditional open-air market.",
+    "description": "A blue and white striped market stall with crates and baskets of fresh produce, set on cobblestones and featuring a chalkboard sign and wooden barrel.",
+    "description_view_0": "Front view showing the striped canopy, main produce counter, wooden barrel, and a crate of apples on the right.",
+    "description_view_1": "Side view highlighting the chalkboard sign, stacked crates of produce, and the depth of the stall's structure.",
+    "description_view_2": "Rear view with the striped counter, visible crates of produce, and the arrangement of items behind the stall.",
+    "description_view_3": "Opposite side view showing the wooden barrel, stacked crates, and the chalkboard sign from a different angle.",
+    "category": "greengrocer",
+    "height": 2.2,
+    "max_dimension": 2.8,
+    "materials": [
+        "wood",
+        "fabric",
+        "metal",
+        "produce",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.05,
+        0.2,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "liftable",
+        "pushable",
+        "pullable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "produce crates",
+        "chalkboard sign",
+        "countertop",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "white",
+        "brown",
+        "green",
+        "red",
+        "yellow",
+        "gray"
+    ],
+    "colors_composition": [
+        0.22,
+        0.22,
+        0.28,
+        0.12,
+        0.07,
+        0.05,
+        0.04
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.08,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_produce_display_stands": [
+        "wooden crates",
+        "barrel",
+        "table"
+    ],
+    "attribute_visible_fresh_fruits_and_vegetables": [
+        "bananas",
+        "apples",
+        "cabbages",
+        "tomatoes",
+        "grapes"
+    ],
+    "attribute_signage_indicating_prices_or_produce": true,
+    "attribute_open_storefront_or_awning": true,
+    "attribute_architectural_style": "street market",
+    "uid": "6bb15dc7056241bfac6ee747fc866e45",
+    "near_synsets": {
+        "greengrocery.n.01": 0.4287012379931209,
+        "greengrocer.n.01": 0.44745588432899214,
+        "greengrocery.n.02": 0.44920770277212885,
+        "produce.n.01": 0.492407336627845,
+        "farmer's_market.n.01": 0.5045655766195547
+    },
+    "synset": "greengrocery.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6bb15dc7056241bfac6ee747fc866e45",
+        "creator_username": "kiselevmiki",
+        "creator_display_name": "Kisielev Mikhail",
+        "creator_profile_url": "https://sketchfab.com/kiselevmiki"
+    },
+    "filename": "std_6bb15dc7056241bfac6ee747fc866e45.glb",
+    "length": 2.74680495262146,
+    "width": 3.5699217319488525
+}

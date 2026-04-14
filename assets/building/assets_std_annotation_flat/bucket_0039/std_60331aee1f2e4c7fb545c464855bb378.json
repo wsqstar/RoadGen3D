@@ -1,0 +1,121 @@
+{
+    "description_long": "This object is a rectangular outdoor tennis court set within a low, dark-colored base, surrounded by a scattering of stylized green trees and shrubbery. The court surface is a muted green with clearly defined white boundary lines, including baselines, sidelines, service boxes, and a central net. A mesh fence structure is visible at one end of the court, likely serving as a backstop, while the rest of the perimeter is open. The trees are evenly distributed around the court, suggesting a landscaped park or recreational area. The overall design is clean and modern, with a focus on functional sports space and minimalistic landscaping.",
+    "description": "A rectangular green tennis court with white markings, surrounded by stylized green trees and a partial mesh fence at one end. The court sits on a dark base, evoking a landscaped recreational area.",
+    "description_view_0": "Front view showing the tennis court with the mesh fence structure at the far end and trees distributed around the perimeter.",
+    "description_view_1": "Side view highlighting the length of the court, the mesh fence on the left, and the arrangement of trees along the side.",
+    "description_view_2": "Rear view with the mesh fence in the foreground and a clear view of the court's markings and surrounding trees.",
+    "description_view_3": "Opposite side view showing the court's width, the mesh fence on the right, and the trees along the edge.",
+    "category": "tennis court",
+    "height": 0.5,
+    "max_dimension": 24.0,
+    "materials": [
+        "asphalt",
+        "concrete",
+        "paint",
+        "metal",
+        "plastic",
+        "synthetic mesh",
+        "wood",
+        "soil",
+        "air",
+        "foliage"
+    ],
+    "materials_composition": [
+        0.45,
+        0.2,
+        0.05,
+        0.05,
+        0.02,
+        0.03,
+        0.01,
+        0.04,
+        0.1,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "playable",
+        "fence_climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "net",
+        "fence",
+        "court surface"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "green",
+        "white",
+        "gray",
+        "black",
+        "yellow-green"
+    ],
+    "colors_composition": [
+        0.5,
+        0.05,
+        0.2,
+        0.1,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "scene",
+    "attribute_net_type": "Braided synthetic mesh net, likely nylon, black color, supported by two metal posts with visible tensioning mechanism.",
+    "attribute_court_line_markings": "All standard tennis court lines present, white color, medium width, complete and clearly visible.",
+    "attribute_surrounding_fence": "Partial perimeter mesh fence, likely metal, gray color, medium height, located at one end of the court.",
+    "attribute_lighting_fixtures": "None.",
+    "attribute_architectural_style": "Modern utilitarian with minimalistic landscaping.",
+    "uid": "60331aee1f2e4c7fb545c464855bb378",
+    "near_synsets": {
+        "tennis_court.n.01": 0.4207561014654424,
+        "tennis.n.01": 0.5157049081599587,
+        "volleyball_court.n.01": 0.5171736083863726,
+        "badminton_court.n.01": 0.5194953177116106,
+        "royal_tennis.n.01": 0.524834404552832,
+        "court.n.06": -1000.0,
+        "court.n.01": -1000.0,
+        "motor_hotel.n.01": -1000.0,
+        "court.n.04": -1000.0,
+        "court.n.05": -1000.0,
+        "court.n.10": -1000.0,
+        "court.n.08": -1000.0,
+        "court.n.09": -1000.0,
+        "court.n.03": -1000.0,
+        "court.n.02": -1000.0
+    },
+    "synset": "tennis_court.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/60331aee1f2e4c7fb545c464855bb378",
+        "creator_username": "akviran",
+        "creator_display_name": "Gazi Akviran",
+        "creator_profile_url": "https://sketchfab.com/akviran"
+    },
+    "filename": "std_60331aee1f2e4c7fb545c464855bb378.glb",
+    "length": 5.77022385597229,
+    "width": 4.000142812728882
+}

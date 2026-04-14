@@ -1,0 +1,100 @@
+{
+    "description_long": "This hospital building features a clean, modern design with a predominantly white facade and large blue-tinted windows arranged in horizontal rows. The front entrance is marked by a prominent canopy supported by two pillars, above which a bold red 'HOSPITAL' sign is displayed. At the top of the central section, a large green medical cross symbol is mounted, making the building easily identifiable as a healthcare facility. The structure is composed of three main rectangular volumes of varying heights, with the tallest section at the center and stepped lower wings on either side. The windows are symmetrically distributed, providing ample natural light to the interior spaces. The overall appearance is functional and welcoming, suitable for an urban healthcare environment.",
+    "description": "A modern, white hospital building with blue windows, a red 'HOSPITAL' sign, and a green medical cross on top. The structure features a stepped design and a prominent front entrance canopy.",
+    "description_view_0": "The front view shows the main entrance with a canopy, the red 'HOSPITAL' sign, and the green medical cross above the central section.",
+    "description_view_1": "The left side view reveals the stepped structure, side windows, and the protruding canopy, with the green cross visible from the side.",
+    "description_view_2": "The rear view displays the full width of the building, with rows of blue windows and no signage or entrance features.",
+    "description_view_3": "The right side view mirrors the left, showing the stepped design, side windows, and the green cross from a different angle.",
+    "category": "hospital",
+    "height": 12.0,
+    "max_dimension": 24.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "entrance canopy"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "green",
+        "red",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.03,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 6.0,
+    "asset_composition_type": "single",
+    "attribute_hospital_signage": true,
+    "attribute_emergency_entrance": false,
+    "attribute_ambulance_bay": false,
+    "attribute_medical_cross_symbol": true,
+    "attribute_architectural_style": "modern",
+    "uid": "72e26a3f5a5548e09485496af1e3f9ae",
+    "near_synsets": {
+        "medical_building.n.01": 0.49712336818332986,
+        "hospital.n.01": 0.5435285040055347,
+        "hospital.n.02": 0.5474595484475366,
+        "medical_center.n.01": 0.5559624753282822,
+        "hospital_room.n.01": 0.5571008958468727
+    },
+    "synset": "hospital_room.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/72e26a3f5a5548e09485496af1e3f9ae",
+        "creator_username": "linus1178",
+        "creator_display_name": "linus1178",
+        "creator_profile_url": "https://sketchfab.com/linus1178"
+    },
+    "filename": "std_72e26a3f5a5548e09485496af1e3f9ae.glb",
+    "length": 10.044624328613281,
+    "width": 16.275236129760742
+}

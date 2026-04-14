@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a large, modern sniper rifle with a long, angular barrel and a robust receiver, supported by a bipod at the front for stability. The rifle features a fixed stock at the rear, designed for shoulder support, and a prominent magazine well beneath the receiver, with a detachable box magazine and a single large-caliber cartridge visible nearby. The barrel is long and straight, likely optimized for accuracy and range, and the overall construction appears to be primarily metal with some polymer components. The rifle is finished in a matte, light gray color with black accents on the stock, grip, and bipod. The sighting system is not clearly visible, suggesting either iron sights or a mounting rail for optics. The design and scale indicate this is a high-caliber, anti-materiel or sniper rifle, suitable for long-range engagements in urban or open environments.",
+    "description": "A large, modern sniper rifle with a long barrel, bipod, fixed stock, and detachable box magazine, finished in matte gray and black. It is designed for stability and long-range precision.",
+    "description_view_0": "Front view showing the bipod legs extended and the barrel pointing forward, with the magazine and cartridge visible to the side.",
+    "description_view_1": "Side view highlighting the full length of the barrel, the fixed stock, the bipod, and the detachable magazine and cartridge placed below.",
+    "description_view_2": "Rear view showing the stock and the back of the receiver, with the magazine and cartridge to the left.",
+    "description_view_3": "Opposite side view displaying the rifle's profile, including the stock, barrel, and bipod, with the magazine and cartridge below.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 1.4,
+    "materials": [
+        "steel",
+        "polymer",
+        "aluminum",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 13,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 130,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pullable",
+        "pushable",
+        "rotatable",
+        "loadable",
+        "unloadable",
+        "aimable",
+        "triggerable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "bipod",
+        "magazine",
+        "trigger",
+        "bolt",
+        "grip",
+        "magazine release"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "none",
+    "uid": "bf19b2ff1cf54f1a8038040c4aa5d913",
+    "near_synsets": {
+        "sniper_rifle.n.01": 0.4289077334058435,
+        "dragunov.n.01": 0.4878218828266821,
+        "rifle.n.01": 0.5094282658953442,
+        "sniper.n.01": 0.513405056122741,
+        "snipe.n.02": 0.5292350317171353
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bf19b2ff1cf54f1a8038040c4aa5d913",
+        "creator_username": "pasquill",
+        "creator_display_name": "pasquill",
+        "creator_profile_url": "https://sketchfab.com/pasquill"
+    },
+    "filename": "std_bf19b2ff1cf54f1a8038040c4aa5d913.glb",
+    "length": 1.1428793668746948,
+    "width": 0.3352627456188202
+}

@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a rectangular, in-ground jacuzzi with a tiled deck surrounding a central water basin. The jacuzzi features a light blue water interior, bordered by beige or tan tiles that extend outward to form a wide platform. One end of the jacuzzi has a set of built-in steps, likely for easy entry and exit, while the opposite end features a slightly raised, angled section of the deck. The perimeter of the jacuzzi is enclosed by a transparent or glass-like safety barrier, supported by metallic posts. The water appears clean and inviting, filling the basin nearly to the top edge. The overall design is modern and functional, suitable for installation in urban parks, residential complexes, or recreational facilities.",
+    "description": "A modern, rectangular in-ground jacuzzi with beige tile decking, a blue water basin, glass safety barriers, and built-in entry steps. The water is nearly full, and the design is sleek and urban.",
+    "description_view_0": "Side view showing the full length of the jacuzzi, the blue water, beige tile deck, glass safety barrier, and the built-in steps on the left.",
+    "description_view_1": "End view highlighting the rectangular water basin, tiled deck, and the glass barrier at both ends.",
+    "description_view_2": "Opposite side view displaying the long glass safety barrier, the tiled deck, and the water basin.",
+    "description_view_3": "View from the end with the steps, showing the entry stairs, tiled deck, and the glass barrier wrapping around the corner.",
+    "category": "jacuzzi",
+    "height": 1.0,
+    "max_dimension": 7.0,
+    "materials": [
+        "ceramic tile",
+        "glass",
+        "metal",
+        "water",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.15,
+        0.05,
+        0.25,
+        0.15,
+        0.05
+    ],
+    "mass": 6500,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "leanable",
+        "stepable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "steps",
+        "glass barrier"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "blue",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.45,
+        0.35,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_jets": [],
+    "attribute_control_panel": "none visible",
+    "attribute_water_level": "nearly full, water close to the top edge",
+    "attribute_cover": false,
+    "attribute_steps": [
+        {
+            "location": "side",
+            "number_of_steps": 4,
+            "material": "ceramic tile"
+        }
+    ],
+    "uid": "82664f61fb10462b8c64e25f06348974",
+    "near_synsets": {
+        "hot_tub.n.01": 0.5439071484070745,
+        "bath_water.n.01": 0.5718085407101956,
+        "bathtub.n.01": 0.586267176348707,
+        "lido_deck.n.01": 0.5869816060452804,
+        "swimming_pool.n.01": 0.5962710776434973
+    },
+    "synset": "hot_tub.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/82664f61fb10462b8c64e25f06348974",
+        "creator_username": "mr.sparc",
+        "creator_display_name": "Mr.Sparc",
+        "creator_profile_url": "https://sketchfab.com/mr.sparc"
+    },
+    "filename": "std_82664f61fb10462b8c64e25f06348974.glb",
+    "length": 3.402521252632141,
+    "width": 8.736551284790039
+}

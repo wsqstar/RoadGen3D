@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a large, modern cargo or transport airplane with a robust fuselage and a high-mounted, swept wing configuration. The aircraft features four prominent turbofan engines mounted under the wings, indicating significant thrust capability for heavy loads. The tail section is equipped with a conventional vertical stabilizer and a horizontal stabilizer, forming a classic T-tail design. The cockpit is positioned at the forward end of the fuselage, with multiple windows suggesting a multi-seat, enclosed arrangement. The landing gear appears to be a tricycle configuration, with main gear under the wings and a nose gear under the cockpit. The exterior is primarily a dark gray or black color, with some lighter gray visible on the wings and tail surfaces.",
+    "description": "A large, dark gray cargo airplane with four underwing turbofan engines, high-mounted swept wings, and a T-tail. The forward cockpit and tricycle landing gear are clearly visible.",
+    "description_view_0": "Side view showing the full length of the fuselage, high-mounted swept wings, and two visible underwing engines.",
+    "description_view_1": "Top-down view highlighting the wingspan, wing sweep, and the T-tail configuration.",
+    "description_view_2": "Opposite side view mirroring view 0, with the tail and two engines visible.",
+    "description_view_3": "Front view displaying the four turbofan engines, cockpit windows, and the full width of the wings.",
+    "category": "airplane",
+    "height": 16.0,
+    "max_dimension": 53.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "cockpit window",
+        "landing gear",
+        "engine",
+        "cargo ramp"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "light gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 60.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "High-wing, swept wings with slight anhedral angle and no visible winglets.",
+    "attribute_engine_type": "Four underwing turbofan engines.",
+    "attribute_tail_design": "Conventional T-tail with a single vertical stabilizer and high-mounted horizontal stabilizer.",
+    "attribute_landing_gear_type": "Tricycle retractable landing gear with two main gear units and one nose gear.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed multi-seat cockpit with multiple windows.",
+    "uid": "f5b9d4022cd34dd881e4111559201044",
+    "near_synsets": {
+        "aircraft.n.01": 0.5195242052681908,
+        "propjet.n.01": 0.5377202416911427,
+        "landing_gear.n.01": 0.538622075419854,
+        "airplane.n.01": 0.5403655100247342,
+        "aircraft_engine.n.01": 0.5411688082038801
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f5b9d4022cd34dd881e4111559201044",
+        "creator_username": "polyflow3d",
+        "creator_display_name": "polyflow3d",
+        "creator_profile_url": "https://sketchfab.com/polyflow3d"
+    },
+    "filename": "std_f5b9d4022cd34dd881e4111559201044.glb",
+    "length": 58.18986129760742,
+    "width": 56.17425346374512
+}

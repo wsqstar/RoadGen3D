@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a large, industrial forklift painted in a uniform yellow color, featuring a robust, boxy cab with black-tinted windows and a prominent exhaust pipe on the right side. The vehicle is equipped with four oversized, deep-treaded tires designed for heavy-duty terrain, and the rear section includes a visible hitch and hydraulic components. The body is constructed from heavy metal panels, with visible bolts and seams, and the side is marked with the model designation 'K-700' in red. The front and rear both have reinforced bumpers and attachment points, while the cab is elevated for improved operator visibility. There are no visible fork arms or mast typical of standard forklifts; instead, the front and rear have articulated joints and mechanical linkages, suggesting a specialized industrial or construction application. The overall design emphasizes durability, power, and functionality for demanding urban or construction environments.",
+    "description": "A large, yellow industrial forklift with a boxy cab, oversized tires, and heavy-duty metal construction, marked 'K-700' on the side. It features robust mechanical linkages and an elevated operator cab for enhanced visibility.",
+    "description_view_0": "Front view shows the wide, reinforced bumper, large tires, and the cab with black-tinted windows and a central exhaust pipe.",
+    "description_view_1": "Left side view highlights the 'K-700' marking, the boxy cab, the prominent exhaust pipe, and the articulated mechanical linkage at the front.",
+    "description_view_2": "Rear view displays the back window, rear bumper, and attachment points, as well as the symmetrical tire arrangement.",
+    "description_view_3": "Right side view mirrors the left, showing the cab, exhaust, and mechanical linkage, with clear visibility of the rear hydraulic components.",
+    "category": "forklift",
+    "height": 3.2,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "door",
+        "window",
+        "exhaust pipe",
+        "hydraulic linkage",
+        "bumper",
+        "hitch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.85,
+        0.13,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_fork_arms": "No traditional fork arms are visible; instead, the front features a robust articulated mechanical linkage and attachment points, likely for specialized implements. The linkage is thick, metallic, and reinforced, with hydraulic components and a hitch mechanism.",
+    "attribute_overhead_guard": "There is no distinct overhead guard structure visible; the cab roof is solid and flat, constructed from heavy metal, providing some protection but lacking a separate cage or mesh guard.",
+    "attribute_mast": "No standard forklift mast is present; the front section consists of a heavy-duty articulated arm and hydraulic linkage, with no visible lift chains or rollers. The construction is solid and industrial, designed for strength rather than vertical lifting.",
+    "attribute_operator_seat": "The operator seat is not clearly visible through the tinted windows, but the cab appears spacious and likely contains a single, centrally positioned seat with basic controls.",
+    "attribute_warning_lights": "No visible warning lights are present on the exterior; the vehicle is equipped with standard metal panels and exhaust components, but lacks illuminated or colored safety lights.",
+    "uid": "faabea28b1de4b1485da39e069c19eb6",
+    "near_synsets": {
+        "forklift.n.01": 0.4730466040718383,
+        "stacker_crane.n.01": 0.5507623896145948,
+        "crane.n.04": 0.5808483451751177,
+        "lifting_device.n.01": 0.5894404868982958,
+        "skyhook.n.01": 0.5948214282806431
+    },
+    "synset": "forklift.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/faabea28b1de4b1485da39e069c19eb6",
+        "creator_username": "yigitayyildiz",
+        "creator_display_name": "yigitayyildiz",
+        "creator_profile_url": "https://sketchfab.com/yigitayyildiz"
+    },
+    "filename": "std_faabea28b1de4b1485da39e069c19eb6.glb",
+    "length": 6.21533989906311,
+    "width": 2.696181297302246
+}

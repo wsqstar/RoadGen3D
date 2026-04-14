@@ -1,0 +1,100 @@
+{
+    "description_long": "This object consists of several rifle cartridges and a metallic magazine, arranged in a scattered manner. The cartridges are brass-colored with pointed copper tips, typical of rifle ammunition, and are shown both loose and partially loaded into the magazine. The magazine itself is curved and metallic, with a dark gray finish and visible seams along its body. The bullets are cylindrical with a tapered tip, and the primer ends are visible on some of the loose rounds. The overall appearance suggests these are centerfire rifle rounds, likely for a military-style rifle. The materials and details indicate a utilitarian, robust design suitable for urban or tactical environments.",
+    "description": "A group of brass rifle cartridges and a curved metallic magazine, with bullets both loose and partially loaded. The arrangement highlights the robust, utilitarian design of the ammunition and magazine.",
+    "description_view_0": "View 0 shows the magazine lying on its side with several cartridges scattered around, some standing upright and others lying flat.",
+    "description_view_1": "View 1 presents the magazine from a slightly rear angle, emphasizing the open end and the alignment of cartridges inside and outside the magazine.",
+    "description_view_2": "View 2 displays the bullets and magazine from above, highlighting the pointed tips and the arrangement of loose rounds.",
+    "description_view_3": "View 3 offers a perspective where the magazine and bullets are seen from the opposite side, with the primer ends of some cartridges visible.",
+    "category": "rifle",
+    "height": 0.06,
+    "max_dimension": 0.25,
+    "materials": [
+        "brass",
+        "copper",
+        "steel",
+        "lead",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.15,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "mass": 0.7,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 7,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "loadable",
+        "insertable",
+        "removable",
+        "graspable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "magazine",
+        "cartridge",
+        "bullet tip",
+        "primer"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brass",
+        "copper",
+        "gray",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.15,
+        0.25,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 110000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "group",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "none",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "none",
+    "attribute_muzzle_device": "none",
+    "uid": "d3a16185a04145fa9d79ef00d144a0b6",
+    "near_synsets": {
+        "cartridge.n.01": 0.4754537920084223,
+        "action.n.11": 0.5182565218080943,
+        "cartridge_brass.n.01": 0.5204984259098762,
+        "jacket.n.05": 0.5211301967315052,
+        "ball_cartridge.n.01": 0.5264908602779639,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d3a16185a04145fa9d79ef00d144a0b6",
+        "creator_username": "Evanz",
+        "creator_display_name": "Evan",
+        "creator_profile_url": "https://sketchfab.com/Evanz"
+    },
+    "filename": "std_d3a16185a04145fa9d79ef00d144a0b6.glb",
+    "length": 0.2658997178077698,
+    "width": 0.265899658203125
+}

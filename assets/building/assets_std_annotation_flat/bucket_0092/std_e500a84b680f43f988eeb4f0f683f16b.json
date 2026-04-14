@@ -1,0 +1,108 @@
+{
+    "description_long": "This object is a cross-sectional model of a modern stage and auditorium facility, featuring a large, curved proscenium stage at the front and tiered seating arranged in a semi-circular pattern. The seating area is composed of multiple rows of blue seats, rising in elevation towards the back to provide clear sightlines for the audience. Flanking the stage are tall, vertical walls that likely serve as acoustic barriers or backstage divisions, with additional enclosed spaces behind the stage that may function as dressing rooms or technical areas. The structure is primarily constructed from concrete or similar materials, with visible support beams and a solid foundation. The front of the stage is open, allowing for audience access and clear views of performances. The overall design is utilitarian and functional, with a focus on maximizing audience capacity and stage visibility.",
+    "description": "A modern auditorium cross-section with a curved stage, tiered blue seating, and backstage areas, designed for optimal audience viewing and acoustics.",
+    "description_view_0": "Side cutaway showing the full depth of the stage, tiered seating, and backstage rooms.",
+    "description_view_1": "Rear view highlighting the enclosed backstage and technical areas behind the stage.",
+    "description_view_2": "Opposite side cutaway, mirroring the seating and stage layout from the other direction.",
+    "description_view_3": "Front view displaying the curved stage, audience seating, and proscenium opening.",
+    "category": "stage",
+    "height": 10.0,
+    "max_dimension": 35.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "plastic",
+        "wood",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.1,
+        0.08,
+        0.02,
+        0.1
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "performable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "seats",
+        "stage platform",
+        "backstage doors"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "blue",
+        "orange",
+        "white"
+    ],
+    "colors_composition": [
+        0.55,
+        0.2,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "scene",
+    "attribute_architectural_style": "Modernist",
+    "attribute_car_model": "",
+    "attribute_car_manufacturer": "",
+    "attribute_building_function": "performance venue",
+    "attribute_street_sign_type": "",
+    "uid": "e500a84b680f43f988eeb4f0f683f16b",
+    "near_synsets": {
+        "auditorium.n.01": 0.4579381373930894,
+        "stage.n.03": 0.46496319868647684,
+        "theater_stage.n.01": 0.4933755656698622,
+        "tiered_seat.n.01": 0.49986757397218023,
+        "orchestra.n.02": 0.5041590386377749,
+        "stage.n.04": -1000.0,
+        "stagecoach.n.01": -1000.0,
+        "stage.n.08": -1000.0,
+        "stage.n.07": -1000.0,
+        "degree.n.02": -1000.0,
+        "stage.n.06": -1000.0,
+        "phase.n.01": -1000.0
+    },
+    "synset": "stage.n.06",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e500a84b680f43f988eeb4f0f683f16b",
+        "creator_username": "Pal.Oros",
+        "creator_display_name": "Pal.Oros",
+        "creator_profile_url": "https://sketchfab.com/Pal.Oros"
+    },
+    "filename": "std_e500a84b680f43f988eeb4f0f683f16b.glb",
+    "length": 24.712424278259277,
+    "width": 12.615569591522217
+}

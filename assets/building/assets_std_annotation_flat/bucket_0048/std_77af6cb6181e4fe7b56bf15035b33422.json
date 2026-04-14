@@ -1,0 +1,123 @@
+{
+    "description_long": "This is a full-sized outdoor basketball court with a blue playing surface, surrounded by a tall chain-link fence for safety and ball containment. The court features two basketball hoops with rectangular glass backboards, positioned at either end of the court. White court markings are clearly visible, including the three-point lines, free throw lines, center circle, keys, sidelines, and baselines, all conforming to standard basketball layout. The court is set within a raised concrete or asphalt border, which provides structural support and defines the play area. The fencing is supported by metal posts anchored into the border, ensuring durability and security. The overall design is typical of urban recreational facilities, intended for public or community use.",
+    "description": "A blue outdoor basketball court with white markings, enclosed by a chain-link fence and featuring two glass backboard hoops. The court is bordered by a raised concrete or asphalt edge, typical of urban recreational spaces.",
+    "description_view_0": "A wide, angled view showing the full court, both hoops, and the complete fence enclosure.",
+    "description_view_1": "A direct end-on view focusing on one hoop, the backboard, and the length of the court with visible fence posts.",
+    "description_view_2": "A similar wide view as view 0, but from the opposite side, showing the other hoop and the court entrance.",
+    "description_view_3": "A direct end-on view from the opposite end, highlighting the second hoop and the court's length.",
+    "category": "basketball court",
+    "height": 4.0,
+    "max_dimension": 30.0,
+    "materials": [
+        "asphalt",
+        "concrete",
+        "metal",
+        "glass",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.2,
+        0.1,
+        0.05,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "playable",
+        "shootable",
+        "throwable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hoop",
+        "backboard",
+        "fence gate"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "blue",
+        "white",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.1,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_hoop_presence": true,
+    "attribute_backboard_type": "rectangular glass",
+    "attribute_court_markings": [
+        "three-point line",
+        "free throw line",
+        "center circle",
+        "key",
+        "sidelines",
+        "baseline"
+    ],
+    "attribute_fence_enclosure": true,
+    "attribute_architectural_style": "urban outdoor",
+    "uid": "77af6cb6181e4fe7b56bf15035b33422",
+    "near_synsets": {
+        "basketball_court.n.01": 0.44468321282641093,
+        "basket.n.03": 0.5168747550953348,
+        "volleyball_court.n.01": 0.5204348126588041,
+        "tennis_court.n.01": 0.5249070965112206,
+        "key.n.09": 0.5264201992833984,
+        "basketball.n.01": -1000.0,
+        "court.n.01": -1000.0,
+        "court.n.03": -1000.0,
+        "court.n.02": -1000.0,
+        "court.n.09": -1000.0,
+        "court.n.04": -1000.0,
+        "motor_hotel.n.01": -1000.0,
+        "court.n.06": -1000.0,
+        "basketball.n.02": -1000.0,
+        "court.n.08": -1000.0,
+        "court.n.05": -1000.0,
+        "court.n.10": -1000.0
+    },
+    "synset": "basketball_court.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/77af6cb6181e4fe7b56bf15035b33422",
+        "creator_username": "Enzeru",
+        "creator_display_name": "Angel K.",
+        "creator_profile_url": "https://sketchfab.com/Enzeru"
+    },
+    "filename": "std_77af6cb6181e4fe7b56bf15035b33422.glb",
+    "length": 21.926485061645508,
+    "width": 16.444865226745605
+}

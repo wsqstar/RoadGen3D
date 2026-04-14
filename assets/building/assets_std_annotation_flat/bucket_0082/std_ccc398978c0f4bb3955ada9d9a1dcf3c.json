@@ -1,0 +1,91 @@
+{
+    "description_long": "This warehouse is a low, rectangular structure with a robust concrete exterior and a slightly sloped, ridged roof. The facade features a series of reinforced entryways, some highlighted with blue and green structural elements, likely indicating loading or service bays. The main body is solid and windowless, emphasizing security and storage capacity, while the roof has a central recessed channel, possibly for drainage or ventilation. The base is set on a flat concrete pad, and the overall design is utilitarian, prioritizing function over ornamentation. The visible entry points are large enough to accommodate vehicles or heavy equipment, typical for industrial storage. The muted gray color dominates, with subtle accents from the colored structural supports.",
+    "description": "A solid, concrete warehouse with a ridged roof, reinforced entryways, and blue-green structural accents, designed for industrial storage and vehicle access.",
+    "description_view_0": "The front view shows the main entryways with blue and green structural supports and the sloped roof's central channel.",
+    "description_view_1": "The side view reveals the long, windowless concrete wall and the roof's ridged structure, with entry points less visible.",
+    "description_view_2": "The rear view mirrors the front but features only blue supports and similar entryways, maintaining the robust, industrial look.",
+    "description_view_3": "The opposite side view again highlights the elongated, windowless wall and the roof's central channel, with entry points at the base.",
+    "category": "warehouse",
+    "height": 4.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "loadable",
+        "unloadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "entryway",
+        "loading dock"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "green"
+    ],
+    "colors_composition": [
+        0.92,
+        0.06,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main facade is constructed from solid concrete with minimal ornamentation, featuring large, reinforced entryways accented by blue and green steel supports. There are no windows or decorative elements, emphasizing a purely functional, industrial aesthetic.",
+    "attribute_loading_dock_presence": true,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is slightly sloped with a central recessed channel, constructed from concrete and designed for durability and efficient drainage. There are no visible skylights or rooftop equipment.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "ccc398978c0f4bb3955ada9d9a1dcf3c",
+    "near_synsets": {
+        "warehouse.n.01": 0.5117266115723165,
+        "storehouse.n.01": 0.5409219654183193,
+        "loft.n.01": 0.5485133077079176,
+        "storage_space.n.01": 0.5505525950258368,
+        "storage.n.03": 0.5535626360348219
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ccc398978c0f4bb3955ada9d9a1dcf3c",
+        "creator_username": "samuelbrunner",
+        "creator_display_name": "samuelbrunner",
+        "creator_profile_url": "https://sketchfab.com/samuelbrunner"
+    },
+    "filename": "std_ccc398978c0f4bb3955ada9d9a1dcf3c.glb",
+    "length": 29.27224063873291,
+    "width": 29.272236824035645
+}

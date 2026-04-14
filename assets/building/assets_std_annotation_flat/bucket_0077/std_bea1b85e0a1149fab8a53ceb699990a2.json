@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a rectangular, kiosk-style awning structure with a solid, dark brown sloped roof and a large, protruding metal canopy on one side. The main body is clad in vertical beige paneling with dark brown trim at the corners and base, giving it a sturdy, utilitarian appearance. One side features a single brown door and a small rectangular window, while the opposite side is dominated by a wide, dark-tinted window beneath the extended canopy, likely serving as a service or transaction counter. The canopy itself is made of corrugated metal, matching the roof, and provides substantial shade and weather protection. The structure appears to be constructed primarily from metal and wood, with glass used for the windows. This type of awning is commonly found in urban environments as a street food kiosk, ticket booth, or small retail stand.",
+    "description": "A rectangular kiosk-style awning structure with a brown metal roof, beige paneling, and a large protruding canopy over a wide service window.",
+    "description_view_0": "Shows the side with a brown door and a small rectangular window, highlighting the beige paneling and brown trim.",
+    "description_view_1": "Displays the narrow end of the structure with solid beige paneling and the edge of the sloped roof and canopy.",
+    "description_view_2": "Presents the front with a wide, dark-tinted window beneath a large brown metal canopy, emphasizing the service counter area.",
+    "description_view_3": "Shows the opposite narrow end, similar to view 1, with solid beige paneling and the canopy edge visible.",
+    "category": "awning",
+    "height": 2.5,
+    "max_dimension": 5.0,
+    "materials": [
+        "metal",
+        "wood",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "shadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "canopy"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "beige",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_mounting_location": "freestanding, ground-mounted kiosk with canopy attached to main facade above service window",
+    "attribute_canopy_pattern": "solid color, dark brown with subtle corrugated texture",
+    "attribute_edge_trim_style": "straight edge with no decorative trim, matching the utilitarian design",
+    "attribute_branding_or_signage": "none",
+    "attribute_support_structure_type": "fixed frame with integrated canopy, supported by rigid side panels and roof structure",
+    "uid": "bea1b85e0a1149fab8a53ceb699990a2",
+    "near_synsets": {
+        "awning.n.01": 0.5267531845656563,
+        "gazebo.n.01": 0.5270005473389202,
+        "canopy.n.03": 0.5272356368853157,
+        "porte-cochere.n.02": 0.5318618471020196,
+        "window.n.07": 0.5382412235216478
+    },
+    "synset": "awning.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bea1b85e0a1149fab8a53ceb699990a2",
+        "creator_username": "StarTone",
+        "creator_display_name": "StarTone",
+        "creator_profile_url": "https://sketchfab.com/StarTone"
+    },
+    "filename": "std_bea1b85e0a1149fab8a53ceb699990a2.glb",
+    "length": 3.4442909955978394,
+    "width": 4.742185592651367
+}

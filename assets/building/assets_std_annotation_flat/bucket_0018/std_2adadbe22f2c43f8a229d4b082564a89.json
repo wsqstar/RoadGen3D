@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a tan-colored tracked combat vehicle with a long, forward-facing cannon mounted on a rotating turret. The hull is angular with sloped armor plating, and the vehicle features prominent caterpillar tracks on both sides for all-terrain mobility. The turret has a circular hatch and several periscopes or vision blocks, while the rear of the vehicle displays engine grilles and exhaust ports. Distinctive markings, including a black cross and the number '280', are visible on the sides and rear. The vehicle's exterior is matte and appears to be constructed primarily from heavy metal armor. Its design is robust, with reinforced surfaces and minimal external accessories.",
+    "description": "A tan, heavily-armored tracked combat vehicle with a long cannon, sloped armor, and military markings. Features include a rotating turret, caterpillar tracks, and visible engine grilles.",
+    "description_view_0": "Front view showing the long cannon, sloped frontal armor, and caterpillar tracks.",
+    "description_view_1": "Left side view highlighting the full length of the cannon, turret details, side armor, and black cross marking.",
+    "description_view_2": "Rear view displaying engine grilles, exhaust ports, and the number '280' marking.",
+    "description_view_3": "Right side view similar to the left, with visible turret, tracks, and side armor.",
+    "category": "combat tactical  vehicle",
+    "height": 3.0,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.01,
+        0.05,
+        0.01
+    ],
+    "mass": 57000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "closable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "hatch",
+        "cannon",
+        "tracks",
+        "vision block",
+        "engine grille"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.92,
+        0.06,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted on the turret; no other weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating; reinforced turret and hull; no modular or reactive panels visible.",
+    "attribute_camouflage_pattern": "Solid tan color; no camouflage pattern visible.",
+    "attribute_military_markings": "Black cross on both sides of the hull; white number '280' on the rear.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "2adadbe22f2c43f8a229d4b082564a89",
+    "near_synsets": {
+        "tank.n.01": 0.45807876122007657,
+        "military_vehicle.n.01": 0.5014710737926298,
+        "reconnaissance_vehicle.n.01": 0.5039452327762458,
+        "armored_car.n.02": 0.5210687519115768,
+        "caterpillar.n.02": 0.530923766740192,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2adadbe22f2c43f8a229d4b082564a89",
+        "creator_username": "BedoyaCamilo",
+        "creator_display_name": "BedoyaCamilo",
+        "creator_profile_url": "https://sketchfab.com/BedoyaCamilo"
+    },
+    "filename": "std_2adadbe22f2c43f8a229d4b082564a89.glb",
+    "length": 8.850555896759033,
+    "width": 3.9498523473739624
+}

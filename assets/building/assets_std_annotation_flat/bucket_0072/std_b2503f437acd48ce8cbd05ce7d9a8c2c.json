@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a robust, futuristic all-terrain vehicle with a boxy, industrial orange body mounted on six large, rugged wheels. The vehicle features a raised chassis for high ground clearance, with visible suspension arms and reinforced wheel wells, suggesting excellent off-road capability. The roof is equipped with multiple antennas, satellite dishes, and sensor arrays, indicating advanced communication and navigation systems. There are several hatches, vents, and access panels on the body, as well as a rear ladder and side railings for access. The front and rear both have protruding mechanical arms or grippers, likely for manipulation or obstacle clearing. The windows are small and reinforced, and the overall design is utilitarian, hinting at use in exploration, rescue, or heavy-duty urban environments.",
+    "description": "A heavy-duty, orange all-terrain vehicle with six rugged wheels, advanced roof sensors, and mechanical arms for urban or exploration tasks.",
+    "description_view_0": "Front view shows the reinforced bumper, dual mechanical arms, and prominent roof sensors and antennas.",
+    "description_view_1": "Side view highlights the six large wheels, side railings, and the extended mechanical arm at the front.",
+    "description_view_2": "Rear view displays the rear bumper, access ladder, and additional roof equipment, with the vehicle's number visible.",
+    "description_view_3": "Opposite side view reveals more roof details, side hatches, and the rear mechanical arm, emphasizing the vehicle's symmetry.",
+    "category": "all-terrain vehicle",
+    "height": 2.8,
+    "max_dimension": 5.2,
+    "materials": [
+        "metal",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.05,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 4200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "antenna",
+        "mechanical arm",
+        "ladder",
+        "hatch",
+        "window",
+        "satellite dish"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "black",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.07,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 6,
+    "attribute_tire_tread_pattern": "The tires have a knobby, blocky tread pattern designed for maximum grip on rough and uneven terrain, suitable for all-terrain use.",
+    "attribute_suspension_type": "independent",
+    "attribute_presence_of_roll_cage": true,
+    "attribute_handlebar_or_steering_wheel_type": "round steering wheel",
+    "uid": "b2503f437acd48ce8cbd05ce7d9a8c2c",
+    "near_synsets": {
+        "reconnaissance_vehicle.n.01": 0.522493255793645,
+        "military_vehicle.n.01": 0.542469904295011,
+        "jeep.n.01": 0.5473219079624191,
+        "humvee.n.01": 0.5483430790283372,
+        "sport_utility.n.01": 0.5497428430027557,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b2503f437acd48ce8cbd05ce7d9a8c2c",
+        "creator_username": "bigbadcat",
+        "creator_display_name": "bigbadcat",
+        "creator_profile_url": "https://sketchfab.com/bigbadcat"
+    },
+    "filename": "std_b2503f437acd48ce8cbd05ce7d9a8c2c.glb",
+    "length": 3.3900294303894043,
+    "width": 2.779123067855835
+}

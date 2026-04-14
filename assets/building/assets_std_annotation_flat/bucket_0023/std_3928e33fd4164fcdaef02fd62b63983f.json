@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a large, heavily armored combat vehicle resembling a modern main battle tank, featuring a low-profile, angular turret mounted centrally on a broad, rectangular chassis. The turret is equipped with a long, prominent main cannon extending forward, and the hull is covered in thick, sloped armor plating for maximum protection. The vehicle rides on continuous tracks, which are partially shielded by side skirts, enhancing its defensive capabilities and allowing for traversal over rough terrain. The surface is finished in a uniform, matte gray color, with no visible camouflage or military insignia. The top of the turret includes a circular hatch and several small protrusions, likely for observation or mounting additional equipment. No visible windows or external weapon mounts other than the main cannon are present.",
+    "description": "A large, gray, heavily armored tracked combat vehicle with a long main cannon and angular turret, designed for battlefield durability and firepower.",
+    "description_view_0": "Front view shows the wide, sloped glacis plate, central main cannon, and the angular turret profile.",
+    "description_view_1": "Left side view highlights the length of the main cannon, the continuous tracks, and the low, angular turret.",
+    "description_view_2": "Rear view reveals the flat back of the hull, engine grilles, and the absence of visible rear armament.",
+    "description_view_3": "Right side view mirrors the left, showing the main cannon, tracks, and armored side skirts.",
+    "category": "combat tactical  vehicle",
+    "height": 3.0,
+    "max_dimension": 10.0,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 65000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 2000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "tracks",
+        "engine grilles"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large main cannon mounted on the turret; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating on the hull and turret; side skirts protect the tracks.",
+    "attribute_camouflage_pattern": "None visible; solid matte gray color.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "3928e33fd4164fcdaef02fd62b63983f",
+    "near_synsets": {
+        "tank.n.01": 0.4658857964711335,
+        "military_vehicle.n.01": 0.48149726944634214,
+        "assault_gun.n.02": 0.489155015813128,
+        "armored_car.n.02": 0.5083971137602243,
+        "reconnaissance_vehicle.n.01": 0.5102846468821506,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3928e33fd4164fcdaef02fd62b63983f",
+        "creator_username": "WoT_2006",
+        "creator_display_name": "WoT_2006",
+        "creator_profile_url": "https://sketchfab.com/WoT_2006"
+    },
+    "filename": "std_3928e33fd4164fcdaef02fd62b63983f.glb",
+    "length": 9.308557033538818,
+    "width": 3.117364525794983
+}

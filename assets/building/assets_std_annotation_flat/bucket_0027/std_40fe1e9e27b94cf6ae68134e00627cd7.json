@@ -1,0 +1,89 @@
+{
+    "description_long": "This object is a tall, narrow, triangular parcel locker or drop box, commonly found in urban environments for secure package storage or delivery. The exterior is uniformly covered in a grid-like pattern, suggesting reinforced metal panels or a textured finish for durability. The top of the object is capped with a slightly sloped, triangular roof, possibly to prevent water accumulation. The front face features a vertical seam or possible access panel, indicating where parcels might be deposited or retrieved. The color is a consistent matte brown, giving it a utilitarian and unobtrusive appearance suitable for public spaces. There are no visible handles, windows, or signage, emphasizing its secure and tamper-resistant design.",
+    "description": "A tall, triangular, brown parcel locker or drop box with a grid-textured exterior and a sloped top, designed for secure package storage in urban settings.",
+    "description_view_0": "A direct view of the narrow, triangular front face with a visible seam running vertically down the center.",
+    "description_view_1": "An angled side view showing the grid-textured panel and the sloped top, highlighting the object's depth and triangular shape.",
+    "description_view_2": "A straight-on view of the broad, flat side with horizontal grid lines and the sloped roof visible at the top.",
+    "description_view_3": "Another angled side view, nearly identical to view 1, showing the opposite side panel and the triangular form.",
+    "category": "parcels",
+    "height": 2.0,
+    "max_dimension": 2.0,
+    "materials": [
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.15
+    ],
+    "mass": 120,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "depositable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "access panel",
+        "deposit slot"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Utilitarian",
+    "attribute_car_model": "",
+    "attribute_building_number": "",
+    "attribute_storefront_signage": "",
+    "attribute_street_name": "",
+    "uid": "40fe1e9e27b94cf6ae68134e00627cd7",
+    "near_synsets": {
+        "safe.n.01": 0.5149915784573952,
+        "mailbox.n.01": 0.5160118306016346,
+        "packing_box.n.02": 0.5197776271722302,
+        "postbox.n.01": 0.5198062329365706,
+        "box.n.01": 0.5277964666982066,
+        "parcel.n.02": -1000.0,
+        "package.n.01": -1000.0,
+        "package.n.02": -1000.0,
+        "tract.n.01": -1000.0
+    },
+    "synset": "safe.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/40fe1e9e27b94cf6ae68134e00627cd7",
+        "creator_username": "artgeorg22",
+        "creator_display_name": "artgeorg22",
+        "creator_profile_url": "https://sketchfab.com/artgeorg22"
+    },
+    "filename": "std_40fe1e9e27b94cf6ae68134e00627cd7.glb",
+    "length": 1.06074720621109,
+    "width": 0.5544186234474182
+}

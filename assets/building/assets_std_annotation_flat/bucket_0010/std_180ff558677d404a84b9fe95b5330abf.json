@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a single-wheeled electric hoverboard, commonly known as a Onewheel, designed for personal urban transportation. It features a large, centrally mounted rubber tire encased in a protective plastic fender, which allows for balance and maneuverability. The deck consists of two textured footpads on either side of the wheel, made from a combination of wood and composite materials, providing grip and stability for the rider. The footpads are slightly raised at the ends and show signs of wear, indicating frequent use. The wheel is robust and wide, suitable for both smooth and slightly rough urban surfaces. There are no visible lights, control interfaces, or brand logos on the exterior.",
+    "description": "A single-wheeled electric hoverboard with a central rubber tire, textured footpads, and a protective fender, designed for urban personal transport.",
+    "description_view_0": "Side view showing the large central wheel, protective fender, and both footpads with visible wear.",
+    "description_view_1": "Front view highlighting the rounded fender and the narrow profile of the board.",
+    "description_view_2": "Opposite side view displaying the wheel, fender, and footpads from a slightly different angle.",
+    "description_view_3": "Top-down view revealing the full length of the footpads, the fender, and the deck's surface texture.",
+    "category": "hoverboard",
+    "height": 0.28,
+    "max_dimension": 0.75,
+    "materials": [
+        "plastic",
+        "rubber",
+        "wood",
+        "metal",
+        "composite",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.25,
+        0.15,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 12,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "footpad",
+        "fender"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "light green",
+        "brown"
+    ],
+    "colors_composition": [
+        0.35,
+        0.3,
+        0.25,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "grippy",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.12,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_wheel_configuration": "Single large central wheel, rubber, encased in a plastic fender, positioned between two footpads.",
+    "attribute_footpad_design": "Two rectangular footpads on either side of the wheel, made of wood or composite with textured, grippy surfaces; slightly raised at the ends, showing wear, and designed for secure footing.",
+    "attribute_lighting_features": "none",
+    "attribute_brand_logo": "none",
+    "attribute_control_interface": "none",
+    "uid": "180ff558677d404a84b9fe95b5330abf",
+    "near_synsets": {
+        "hoverboard.n.01": 0.39433053986575034,
+        "segway.n.01": 0.4969837712303173,
+        "skateboard.n.01": 0.5111141823498786,
+        "surfboard.n.01": 0.5481948773647438,
+        "scooter.n.02": 0.5485439206698136
+    },
+    "synset": "hoverboard.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/180ff558677d404a84b9fe95b5330abf",
+        "creator_username": "mikkoh",
+        "creator_display_name": "Mikko Haapoja",
+        "creator_profile_url": "https://sketchfab.com/mikkoh"
+    },
+    "filename": "std_180ff558677d404a84b9fe95b5330abf.glb",
+    "length": 0.4460076093673706,
+    "width": 0.20549499243497849
+}

@@ -1,0 +1,118 @@
+{
+    "description_long": "This object is a rectangular football field flanked by two large, symmetrical grandstands on either side. The field itself is marked with white lines indicating yardage, end zones, and boundaries, and is covered in a vibrant green surface. The grandstands are constructed with a series of tiered seating sections, colored in gradients of blue and purple, and are encased in solid, light gray structural walls. The seating areas are angled to provide optimal viewing of the field, and the stands are open at both ends, allowing for unobstructed access to the playing area. The field lacks visible goal posts, center circle, and penalty area markings, suggesting a stylized or simplified representation. The overall design is reminiscent of a modern, urban sports facility with a focus on functionality and clear sightlines.",
+    "description": "A rectangular football field with green turf and white markings, flanked by two large, tiered grandstands with blue and purple seating. The structure is modern and open, with solid gray walls and no visible goal posts or detailed field markings.",
+    "description_view_0": "The field is viewed from the side, showing both grandstands and the full length of the playing surface with clear yard lines.",
+    "description_view_1": "This end-on view highlights the width of the field and the depth of the grandstands, with seating sections visible in blue and purple.",
+    "description_view_2": "Similar to view 0, this side view shows the opposite angle, again displaying both grandstands and the field's full length.",
+    "description_view_3": "This end-on view mirrors view 1, showing the field's width and the arrangement of the grandstands from the opposite end.",
+    "category": "football field",
+    "height": 12.0,
+    "max_dimension": 110.0,
+    "materials": [
+        "concrete",
+        "plastic",
+        "synthetic turf",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 250000.0,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "playable",
+        "viewable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "seating",
+        "field surface"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "green",
+        "white",
+        "gray",
+        "blue",
+        "purple"
+    ],
+    "colors_composition": [
+        0.45,
+        0.05,
+        0.25,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "scene",
+    "attribute_goal_posts": false,
+    "attribute_center_circle_marking": false,
+    "attribute_penalty_area_markings": false,
+    "attribute_corner_flags": false,
+    "attribute_architectural_style": "modern urban stadium",
+    "uid": "b8b619079f784164af31554dafbf9136",
+    "near_synsets": {
+        "football_field.n.01": 0.47428305217786254,
+        "football_stadium.n.01": 0.4918136701773153,
+        "playing_field.n.02": 0.5193602874962143,
+        "yard_line.n.01": 0.5231216258592167,
+        "stadium.n.01": 0.5281202207216559,
+        "discipline.n.01": -1000.0,
+        "football.n.01": -1000.0,
+        "plain.n.01": -1000.0,
+        "field.n.03": -1000.0,
+        "battlefield.n.01": -1000.0,
+        "field.n.15": -1000.0,
+        "field.n.01": -1000.0,
+        "field.n.05": -1000.0,
+        "field.n.13": -1000.0,
+        "field.n.10": -1000.0,
+        "field.n.12": -1000.0,
+        "field.n.14": -1000.0,
+        "field.n.11": -1000.0,
+        "airfield.n.01": -1000.0,
+        "field.n.06": -1000.0,
+        "football.n.02": -1000.0,
+        "sphere.n.01": -1000.0,
+        "field.n.16": -1000.0
+    },
+    "synset": "football_field.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b8b619079f784164af31554dafbf9136",
+        "creator_username": "metin1",
+        "creator_display_name": "metin1",
+        "creator_profile_url": "https://sketchfab.com/metin1"
+    },
+    "filename": "std_b8b619079f784164af31554dafbf9136.glb",
+    "length": 66.10039520263672,
+    "width": 73.60504150390625
+}

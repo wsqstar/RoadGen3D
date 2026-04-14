@@ -1,0 +1,99 @@
+{
+    "description_long": "This ATM is a robust, polygonal structure with a predominantly red exterior and a slightly weathered, industrial finish. The front face features a recessed rectangular screen, a small keypad below it, and a few additional interface elements, all set within a darkened panel. The body is octagonal at the base and top, with beveled edges and a midsection that slightly protrudes, giving it a fortified appearance. The sides are mostly flat with some angular paneling, and the back is plain with no visible access points or features. The overall design suggests durability and resistance to tampering, suitable for outdoor urban environments. The ATM stands on a wide, stable base, ensuring it remains securely in place.",
+    "description": "A sturdy, red, polygonal ATM with a recessed screen, keypad, and interface panel on the front, set on a wide octagonal base. Its weathered finish and angular design suggest durability for outdoor urban use.",
+    "description_view_0": "The back of the ATM, showing a plain, flat red surface with no visible features or access points.",
+    "description_view_1": "A side view revealing the angular, beveled paneling and the protruding midsection, with no interface elements visible.",
+    "description_view_2": "The front of the ATM, displaying the screen, keypad, and interface panel, all set within a darkened rectangular recess.",
+    "description_view_3": "The opposite side view, similar to view 1, showing the angular paneling and the robust, polygonal structure.",
+    "category": "atm",
+    "height": 1.5,
+    "max_dimension": 0.7,
+    "materials": [
+        "painted metal",
+        "plastic",
+        "glass",
+        "electronic components",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "insertable",
+        "receivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "screen",
+        "keypad",
+        "card slot",
+        "receipt dispenser",
+        "button"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "dark gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_screen_interface": "A medium-sized, rectangular screen is recessed into the front panel, surrounded by a dark frame, with a small keypad and several buttons directly below it. The interface appears to be static with no visible touch capability.",
+    "attribute_card_slot": "A single card slot is visible below the screen, horizontally oriented, with a dark outline but no illumination or labeling.",
+    "attribute_keypad_layout": "A compact keypad with a grid layout of small, square keys is positioned directly below the screen and card slot, likely containing numbers and function keys.",
+    "attribute_bank_branding": "none visible",
+    "attribute_receipt_dispenser": "A small, rectangular slot is present below the keypad, likely serving as the receipt dispenser, with no visible labeling or door.",
+    "uid": "70752f2d5d5840e1930c20ccf46d8ee7",
+    "near_synsets": {
+        "cash_machine.n.01": 0.5681740440451456,
+        "automat.n.01": 0.5996797019808409,
+        "active_matrix_screen.n.01": 0.6130614152542123,
+        "terminal.n.04": 0.6140892570060985,
+        "card.n.04": 0.6191211665898834,
+        "asynchronous_transfer_mode.n.01": -1000.0,
+        "standard_atmosphere.n.01": -1000.0
+    },
+    "synset": "standard_atmosphere.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/70752f2d5d5840e1930c20ccf46d8ee7",
+        "creator_username": "Pabooklas",
+        "creator_display_name": "Pabooklas",
+        "creator_profile_url": "https://sketchfab.com/Pabooklas"
+    },
+    "filename": "std_70752f2d5d5840e1930c20ccf46d8ee7.glb",
+    "length": 0.6819300055503845,
+    "width": 0.8777367472648621
+}

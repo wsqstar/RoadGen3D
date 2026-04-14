@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a compact, dark-colored shotgun with a streamlined, utilitarian design. The receiver and barrel are constructed from metal, exhibiting a worn, slightly reflective black finish with some visible scuff marks and wear. The shotgun features a prominent vertical magazine protruding below the receiver, and a short, cylindrical barrel with a simple front sight. The stock is minimalistic, resembling a pistol grip rather than a traditional full stock, and the trigger guard is rounded and closely fitted to the grip. Several metallic cartridges are visible nearby, suggesting the weapon is magazine-fed and designed for rapid reloading. The overall build is robust, with a focus on functionality and durability, suitable for urban tactical scenarios.",
+    "description": "A compact, black, magazine-fed shotgun with a worn metallic finish, pistol grip, and short barrel. The design is utilitarian and robust, with visible cartridges and a rounded trigger guard.",
+    "description_view_0": "Side profile showing the full length of the shotgun, the vertical magazine, and the pistol grip clearly.",
+    "description_view_1": "Front view highlighting the barrel opening, front sight, and the alignment of the magazine below the receiver.",
+    "description_view_2": "Opposite side profile, showing the other side of the receiver, grip, and the magazine's position.",
+    "description_view_3": "Rear view focusing on the back of the receiver and grip, with the barrel pointing away.",
+    "category": "shotgun",
+    "height": 0.35,
+    "max_dimension": 0.75,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "magazine",
+        "pistol grip",
+        "barrel",
+        "trigger guard",
+        "front sight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray",
+        "metallic silver"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "glossy",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, short cylindrical barrel with no visible ribbing or venting",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "semi-automatic",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, compact trigger guard closely fitted to the grip, with no visible finger grooves or reinforcement",
+    "uid": "3685dd295e5d4773bdf59929e2dae71c",
+    "near_synsets": {
+        "sawed-off_shotgun.n.01": 0.4891442161354482,
+        "shotgun.n.01": 0.514007437584566,
+        "pump_action.n.01": 0.5266466106354842,
+        "shotgun_shell.n.01": 0.5332561133742882,
+        "gas_gun.n.01": 0.5359576934600593
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3685dd295e5d4773bdf59929e2dae71c",
+        "creator_username": "Matt-AeroLab",
+        "creator_display_name": "Matt Rafferty",
+        "creator_profile_url": "https://sketchfab.com/Matt-AeroLab"
+    },
+    "filename": "std_3685dd295e5d4773bdf59929e2dae71c.glb",
+    "length": 0.7255463600158691,
+    "width": 0.6792798638343811
+}

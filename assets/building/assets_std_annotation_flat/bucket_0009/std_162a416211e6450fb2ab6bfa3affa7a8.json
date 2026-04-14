@@ -1,0 +1,106 @@
+{
+    "description_long": "This transformer tower features a tall, cylindrical wooden pole as its main structure, reinforced with several horizontal metal bands. Attached to the pole are multiple red-orange cylindrical electrical components, likely insulators or transformers, mounted on metal brackets and platforms. Several metallic crossarms extend horizontally from the pole at different heights, supporting the attachment of power lines. On one side, there are two large, flat, orange-brown shield-like components, possibly serving as protective barriers or signage. The surface of the pole is textured to resemble wood, while the attached equipment and crossarms have a metallic and painted finish. The overall construction suggests a robust, weather-resistant design suitable for outdoor urban environments.",
+    "description": "A tall wooden pole reinforced with metal bands, featuring red-orange electrical equipment, metallic crossarms, and shield-like attachments, designed for urban power distribution.",
+    "description_view_0": "The front view shows the cylindrical pole with two red-orange electrical components and a metal platform prominently attached to the left side.",
+    "description_view_1": "This side view reveals the arrangement of multiple crossarms, the shield-like orange-brown components, and the alignment of the electrical equipment.",
+    "description_view_2": "From this angle, the pole's vertical structure is clear, with the orange-brown shields and additional electrical components visible on the right.",
+    "description_view_3": "This view highlights the rear side, showing the crossarms extending outward and the shield-like components more prominently.",
+    "category": "transformer tower",
+    "height": 4.5,
+    "max_dimension": 4.8,
+    "materials": [
+        "wood",
+        "steel",
+        "ceramic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "mountable",
+        "connectable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "crossarm",
+        "insulator",
+        "platform",
+        "electrical equipment",
+        "shield"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "red-orange",
+        "orange-brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.15,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.65,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_number_of_insulator_stacks": 2,
+    "attribute_arrangement_of_crossarms": "There are multiple horizontal crossarms arranged at two distinct levels, with each level supporting several parallel arms extending outward from the pole.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "insulator",
+        "transformer"
+    ],
+    "attribute_configuration_of_attached_power_lines": "The power lines are attached in a parallel configuration across the crossarms, likely supporting a three-phase circuit with lines spaced evenly at each level.",
+    "uid": "162a416211e6450fb2ab6bfa3affa7a8",
+    "near_synsets": {
+        "pylon.n.02": 0.4899789479135026,
+        "telephone_pole.n.01": 0.4974429156993363,
+        "power_system.n.01": 0.520132502166905,
+        "transformer.n.01": 0.5283635516264317,
+        "power_line.n.01": 0.531204159703069,
+        "column.n.04": -1000.0,
+        "tower.n.01": -1000.0,
+        "tugboat.n.01": -1000.0
+    },
+    "synset": "telephone_pole.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/162a416211e6450fb2ab6bfa3affa7a8",
+        "creator_username": "brandonmijnders",
+        "creator_display_name": "brandonmijnders",
+        "creator_profile_url": "https://sketchfab.com/brandonmijnders"
+    },
+    "filename": "std_162a416211e6450fb2ab6bfa3affa7a8.glb",
+    "length": 2.0902585983276367,
+    "width": 1.3768384456634521
+}

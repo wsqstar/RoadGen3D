@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a compact, industrial forklift with a visibly weathered yellow exterior, showing signs of heavy use and exposure to the elements. The forklift features two long, rusted metal fork arms extending from the front, designed for lifting and transporting pallets or heavy loads. Its overhead guard is constructed from tubular metal bars, providing protection for the operator while leaving the sides open for visibility. The mast is tall and robust, with visible wear and rust, and supports the lifting mechanism. The operator's seat is basic, dark in color, and appears to be made of molded plastic or vinyl, with no visible armrests or headrest. A large gas cylinder is mounted at the rear, indicating it is powered by liquid propane, and the vehicle is equipped with solid rubber tires suitable for urban and industrial environments.",
+    "description": "A weathered yellow industrial forklift with rusted fork arms, a tubular overhead guard, and a rear-mounted propane tank. The vehicle shows signs of heavy use and is designed for lifting and transporting loads in urban or industrial settings.",
+    "description_view_0": "Front-left view showing the propane tank at the rear, the overhead guard, and the left side of the operator's seat.",
+    "description_view_1": "Front-right view highlighting the full length of the fork arms, the mast, and the right side wheels.",
+    "description_view_2": "Rear-right view focusing on the back of the mast, the rear wheels, and the propane tank.",
+    "description_view_3": "Rear-left view showing the propane tank, the left side of the overhead guard, and the back of the operator's seat.",
+    "category": "forklift",
+    "height": 2.1,
+    "max_dimension": 2.7,
+    "materials": [
+        "steel",
+        "rubber",
+        "plastic",
+        "glass",
+        "vinyl",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 15680,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "steering wheel",
+        "seat",
+        "fork arms",
+        "mast",
+        "overhead guard",
+        "propane tank",
+        "wheels",
+        "control levers"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "gray",
+        "rust brown"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_fork_arms": "The forklift has two long, parallel fork arms made of metal, showing significant rust and wear. They are straight, rectangular in cross-section, and extend forward from the base of the mast. The arms are thick and robust, suitable for heavy lifting, with no visible attachments or adjustability features.",
+    "attribute_overhead_guard": "The overhead guard is constructed from tubular metal bars, forming a rectangular protective cage above the operator's seat. It covers the top and partially the sides, providing safety from falling objects. The structure is painted yellow and shows signs of wear and rust, with no visible padding or additional safety features.",
+    "attribute_mast": "The mast is a tall, double-stage structure made of heavy steel, with visible rust and wear. It features vertical channels for the fork carriage and has exposed lift chains and rollers. The mast is robust and designed for significant lifting height, with hydraulic components partially visible.",
+    "attribute_operator_seat": "The operator seat is a simple, contoured design made of dark plastic or vinyl. It is medium-sized, with a low backrest and no visible armrests, headrest, or seatbelt. The seat appears worn and functional, suitable for industrial use.",
+    "attribute_warning_lights": "No visible warning lights are present on the forklift in any of the views.",
+    "uid": "e79f0768aec6431d8e6f3874e5acc5f2",
+    "near_synsets": {
+        "forklift.n.01": 0.45487593452092273,
+        "hayfork.n.01": 0.5536309876889013,
+        "fork.n.04": 0.5593682772922037,
+        "lifting_device.n.01": 0.5646462897843632,
+        "hand_truck.n.01": 0.5734869821793602
+    },
+    "synset": "forklift.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e79f0768aec6431d8e6f3874e5acc5f2",
+        "creator_username": "alban",
+        "creator_display_name": "alban",
+        "creator_profile_url": "https://sketchfab.com/alban"
+    },
+    "filename": "std_e79f0768aec6431d8e6f3874e5acc5f2.glb",
+    "length": 2.0305210947990417,
+    "width": 2.556137800216675
+}

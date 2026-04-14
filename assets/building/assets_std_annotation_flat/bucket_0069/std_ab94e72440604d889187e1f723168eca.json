@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a small, A-frame style tent with a sharply peaked roof and two sloping sides made of a reddish-brown fabric. The tent is supported by a central pole structure, visible at the front and rear, which holds up the fabric canopy. The entrance is a triangular opening at the front, with the fabric pulled back to reveal a dark interior and a groundsheet. The sides of the tent are solid panels with no visible windows or ventilation openings. The tent appears compact and lightweight, suitable for one or two people, and is designed for temporary outdoor shelter in urban parks or green spaces. The overall construction suggests a simple, utilitarian design with minimal external features.",
+    "description": "A small, reddish-brown A-frame tent with a peaked roof, central pole, and triangular front entrance. The sides are solid panels with no visible windows or vents.",
+    "description_view_0": "Front view showing the triangular entrance, central pole, and interior groundsheet.",
+    "description_view_1": "Side view displaying a solid reddish-brown fabric panel with no openings or features.",
+    "description_view_2": "Rear view mirroring the front, with a peaked roof and central pole but no visible entrance.",
+    "description_view_3": "Opposite side view, identical to view 1, showing a plain fabric panel.",
+    "category": "tent",
+    "height": 1.4,
+    "max_dimension": 2.2,
+    "materials": [
+        "fabric",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 4.5,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "closable",
+        "openable",
+        "foldable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "entrance flap",
+        "central pole"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "reddish-brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 500,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "flap entrance at the front, triangular opening with no visible zipper or mesh, fabric pulled back for access",
+    "attribute_number_of_poles": 1,
+    "attribute_guy_line_configuration": "No guy lines are visible; tent appears to rely on central pole and fabric tension for structure.",
+    "attribute_ventilation_openings": [],
+    "attribute_branding_or_logo": "none",
+    "uid": "ab94e72440604d889187e1f723168eca",
+    "near_synsets": {
+        "sibley_tent.n.01": 0.4771957668471784,
+        "cottage_tent.n.01": 0.4790082196732383,
+        "umbrella_tent.n.01": 0.4872628963254167,
+        "field_tent.n.01": 0.4931995574231591,
+        "bell_tent.n.01": 0.4968183969130525,
+        "tent.n.01": -1000.0,
+        "tent.n.02": -1000.0
+    },
+    "synset": "tent.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ab94e72440604d889187e1f723168eca",
+        "creator_username": "cookienoir",
+        "creator_display_name": "CookieNoir",
+        "creator_profile_url": "https://sketchfab.com/cookienoir"
+    },
+    "filename": "std_ab94e72440604d889187e1f723168eca.glb",
+    "length": 1.7969924211502075,
+    "width": 1.751832365989685
+}

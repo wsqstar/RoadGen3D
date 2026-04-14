@@ -1,0 +1,91 @@
+{
+    "description_long": "This is a large, rectangular metal container with a green exterior and ribbed paneling along its sides and top. The word 'Maintenance' is prominently stenciled in white across both of its longer sides, indicating its likely use for storing tools or equipment related to maintenance work. One end of the container features vertical reinforcement bars, suggesting this is the access point, possibly with doors that swing open. The other end is flat and featureless, providing structural rigidity. The container's robust construction and industrial appearance make it suitable for outdoor or urban environments, such as construction sites, garages, or maintenance yards. Its size and design imply it is intended for secure, weather-resistant storage.",
+    "description": "A large green metal maintenance container with ribbed sides, stenciled 'Maintenance' labels, and reinforced door bars on one end.",
+    "description_view_0": "The end view shows a flat, solid green panel with vertical ribbing and no visible openings or markings.",
+    "description_view_1": "This side view displays the full length of the container, with the word 'Maintenance' stenciled in white across the center.",
+    "description_view_2": "The opposite end view reveals vertical reinforcement bars, likely indicating the presence of doors or an access point.",
+    "description_view_3": "This side view is identical to view 1, showing the 'Maintenance' label and ribbed green paneling.",
+    "category": "container",
+    "height": 2.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.92,
+        0.07,
+        0.01
+    ],
+    "mass": 1800,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "storable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "reinforcement bars"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.92,
+        0.06,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double swinging doors with vertical reinforcement bars",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "white stenciled 'Maintenance' label on both long sides",
+    "attribute_handles_or_grips": "none visible",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "59374b7c4b444e7c83837e09de9520c2",
+    "near_synsets": {
+        "container.n.01": 0.5108796886540088,
+        "cargo_container.n.01": 0.5458710692922593,
+        "receptacle.n.01": 0.5573597930993958,
+        "bin.n.01": 0.5610429550003883,
+        "empty.n.01": 0.5631320877183142
+    },
+    "synset": "cargo_container.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/59374b7c4b444e7c83837e09de9520c2",
+        "creator_username": "gunnarcorrea",
+        "creator_display_name": "Gunnar Correa",
+        "creator_profile_url": "https://sketchfab.com/gunnarcorrea"
+    },
+    "filename": "std_59374b7c4b444e7c83837e09de9520c2.glb",
+    "length": 5.68182373046875,
+    "width": 2.6022720336914062
+}

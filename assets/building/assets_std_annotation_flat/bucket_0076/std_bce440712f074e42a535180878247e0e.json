@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a classic AK-47 style assault rifle, featuring a combination of dark metal and polished wood components. The receiver, barrel, and magazine are constructed from matte black steel, while the stock, handguard, and pistol grip are made from reddish-brown wood with a smooth finish. The rifle has a curved detachable box magazine, typical of the AK platform, and a fixed wooden stock for shoulder support. Iron sights are mounted on the top, with a front post and rear notch visible. The muzzle end appears to have a simple slant compensator, and the overall design is robust and utilitarian, suitable for rugged urban environments.",
+    "description": "A classic AK-47 style rifle with a black metal body, curved magazine, and reddish-brown wooden stock and grips. It features iron sights and a slant compensator at the muzzle.",
+    "description_view_0": "The rifle is seen from a front-left angle, highlighting the curved magazine, wooden stock, and the front sight post.",
+    "description_view_1": "A direct side view showing the slim profile of the rifle, with the magazine edge-on and the wooden stock and handguard aligned.",
+    "description_view_2": "The rifle is viewed from a front-right angle, displaying the magazine curve, trigger, and the wooden grip and stock.",
+    "description_view_3": "A direct rear view, focusing on the back of the wooden stock and the straight alignment of the barrel and receiver.",
+    "category": "rifle",
+    "height": 0.88,
+    "max_dimension": 0.88,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.3,
+        0.03,
+        0.02
+    ],
+    "mass": 4.3,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 43,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "pistol grip",
+        "trigger",
+        "magazine",
+        "charging handle",
+        "safety lever",
+        "iron sights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.65,
+        0.32,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "slant compensator",
+    "uid": "bce440712f074e42a535180878247e0e",
+    "near_synsets": {
+        "kalashnikov.n.01": 0.5106303347082511,
+        "garand_rifle.n.01": 0.5420723635294832,
+        "dragunov.n.01": 0.5543150169901642,
+        "assault_rifle.n.01": 0.5593565298632048,
+        "automatic_rifle.n.01": 0.5629411718250943,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bce440712f074e42a535180878247e0e",
+        "creator_username": "SHEMSKA_DEV",
+        "creator_display_name": "Rizqi Studio",
+        "creator_profile_url": "https://sketchfab.com/SHEMSKA_DEV"
+    },
+    "filename": "std_bce440712f074e42a535180878247e0e.glb",
+    "length": 0.07099845632910728,
+    "width": 0.509939894080162
+}

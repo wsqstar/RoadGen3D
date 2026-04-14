@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a large, single-story warehouse building with a flat, gray-tiled roof and plain white exterior walls. The structure features multiple entry points, including a main double-door entrance and several loading dock doors along the sides. The surrounding area includes a paved parking lot with marked spaces for cars, accessible parking, and a small landscaped section with trees. The windows are minimal and evenly spaced, contributing to a utilitarian appearance. The building is set on a wide lot, providing ample space for vehicle maneuvering and access. The overall design is functional, prioritizing storage and logistics operations.",
+    "description": "A large, white warehouse with a flat gray roof, multiple loading docks, and a surrounding parking lot with trees and marked spaces.",
+    "description_view_0": "Front view showing the main double-door entrance, parking spaces, and a landscaped area with trees.",
+    "description_view_1": "Side view highlighting several loading dock doors and additional parking, with minimal windows visible.",
+    "description_view_2": "Rear view displaying a plain wall, parking spaces, and the continuation of the landscaped area.",
+    "description_view_3": "Opposite side view with more parking spaces, a loading dock, and a visible accessible parking spot near the trees.",
+    "category": "warehouse",
+    "height": 7.0,
+    "max_dimension": 45.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "glass",
+        "asphalt",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 1200000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "loading dock door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "green"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "scene",
+    "attribute_facade_design": "The main facade is plain white with a central double-door entrance, minimal rectangular windows spaced evenly, and a lack of decorative elements. The entry is flanked by parking spaces and a small landscaped area with trees, emphasizing functionality.",
+    "attribute_loading_dock_presence": true,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is flat and covered with gray tiles, with no visible skylights, HVAC units, or other rooftop structures, maintaining a simple and utilitarian appearance.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "871e75c330d94e6588daf54f57de671e",
+    "near_synsets": {
+        "warehouse.n.01": 0.48557460009391057,
+        "loft.n.01": 0.522283972185181,
+        "storehouse.n.01": 0.5432535449143693,
+        "lumberyard.n.01": 0.5521979569911656,
+        "godown.n.01": 0.5528059593449808
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/871e75c330d94e6588daf54f57de671e",
+        "creator_username": "homedesign3d",
+        "creator_display_name": "Home Design 3D",
+        "creator_profile_url": "https://sketchfab.com/homedesign3d"
+    },
+    "filename": "std_871e75c330d94e6588daf54f57de671e.glb",
+    "length": 51.89628028869629,
+    "width": 53.221431732177734
+}

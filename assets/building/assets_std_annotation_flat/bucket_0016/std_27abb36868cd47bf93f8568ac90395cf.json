@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a large, heavily armored combat vehicle with a low, elongated profile and a distinctive dual-turret configuration, each turret equipped with a long-barreled cannon. The exterior is covered in angular, sloped armor plating, providing extensive protection across the entire body. The vehicle features a camouflage paint scheme with green and brown stripes, designed to break up its outline. Visible details include hatches, periscopes, and various external fixtures such as tow hooks and exhausts. The tracks run the full length of the vehicle, indicating it is a tracked rather than wheeled vehicle. The overall design suggests a focus on heavy firepower and survivability in combat scenarios.",
+    "description": "A large, dual-turreted, tracked combat vehicle with sloped armor and a green-brown striped camouflage pattern.",
+    "description_view_0": "Front view showing the sloped frontal armor, central hull details, and the two turrets aligned behind.",
+    "description_view_1": "Side view highlighting the full length of the vehicle, both turrets with cannons, and the continuous track system.",
+    "description_view_2": "Rear view similar to the front, with visible rear armor and the back ends of the turrets.",
+    "description_view_3": "Opposite side view, mirroring view 1, showing the dual turrets and track system.",
+    "category": "combat tactical  vehicle",
+    "height": 3.0,
+    "max_dimension": 11.0,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "closable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "hatch",
+        "cannon",
+        "track",
+        "periscope",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Two large cannon mounts, one on each turret located on the left and right sides of the vehicle's roof.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating; angular design for deflection; no visible modular or reactive panels.",
+    "attribute_camouflage_pattern": "Woodland-style camouflage with green and brown diagonal stripes over the entire exterior.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "27abb36868cd47bf93f8568ac90395cf",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.48057111195827923,
+        "tank.n.01": 0.48937283935219295,
+        "reconnaissance_vehicle.n.01": 0.49077798662309563,
+        "assault_gun.n.02": 0.5171069489294717,
+        "armored_car.n.02": 0.5208016373165381,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/27abb36868cd47bf93f8568ac90395cf",
+        "creator_username": "ezbreneman",
+        "creator_display_name": "ezbreneman",
+        "creator_profile_url": "https://sketchfab.com/ezbreneman"
+    },
+    "filename": "std_27abb36868cd47bf93f8568ac90395cf.glb",
+    "length": 12.359885692596436,
+    "width": 2.844637632369995
+}

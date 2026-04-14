@@ -1,0 +1,110 @@
+{
+    "description_long": "This object depicts a human figure dressed in full personal protective equipment (PPE) commonly used by healthcare emergency workers. The figure is wearing a loose-fitting, long-sleeved yellow isolation gown with elastic cuffs, blue disposable gloves, and a transparent face shield with a blue headband. The gown appears to be made of a lightweight, synthetic material, likely designed for single-use or limited reuse. The face shield covers the entire face, providing protection from airborne particles and splashes, while the gloves offer barrier protection for the hands. The head and neck are otherwise uncovered, and there are no visible insignia, patches, or additional equipment attached to the uniform.",
+    "description": "A healthcare emergency worker in a yellow isolation gown, blue gloves, and a clear face shield with a blue headband. The attire is typical of medical personnel in infectious environments.",
+    "description_view_0": "Front view showing the full yellow gown, blue gloves, and clear face shield with blue headband; hands are visible and slightly extended.",
+    "description_view_1": "Left side view highlighting the profile of the face shield, the loose fit of the gown, and the blue gloves; the back of the gown is partially visible.",
+    "description_view_2": "Rear view displaying the back of the yellow gown, the elastic cuffs, and the headband of the face shield; gloves are less visible.",
+    "description_view_3": "Right side view showing the side profile of the face shield, the drape of the gown, and the blue gloves; the neckline and sleeve details are visible.",
+    "category": "emergency worker",
+    "height": 1.75,
+    "max_dimension": 1.75,
+    "materials": [
+        "polyester",
+        "polyethylene",
+        "polycarbonate",
+        "latex",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 72,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "face shield",
+        "gloves",
+        "gown"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "blue",
+        "clear",
+        "beige",
+        "white"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 50000000.0,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_uniform_type": "A disposable yellow isolation gown made of lightweight synthetic material with elastic cuffs, paired with blue disposable gloves and a clear polycarbonate face shield with a blue plastic headband. The gown is loose-fitting and covers the body from neck to below the knees, with no visible reflective stripes or insignia.",
+    "attribute_badge_or_insignia": [],
+    "attribute_equipment_carried": [
+        "face shield",
+        "disposable gloves",
+        "isolation gown"
+    ],
+    "attribute_vehicle_markings": "",
+    "attribute_helmet_or_headgear": "A clear polycarbonate face shield with a blue plastic headband, covering the entire face and providing splash protection.",
+    "uid": "8c9b86c14f6e418d86b54fb7ecaae167",
+    "near_synsets": {
+        "protective_garment.n.01": 0.5633803204385569,
+        "gown.n.04": 0.5672661824212911,
+        "biohazard_suit.n.01": 0.5683594855385468,
+        "quarantine.n.02": 0.5754680923017971,
+        "hygienist.n.01": 0.5798381665093864,
+        "worker.n.03": -1000.0,
+        "hand_brake.n.01": -1000.0,
+        "emergency.n.02": -1000.0,
+        "emergency.n.01": -1000.0,
+        "worker.n.01": -1000.0,
+        "actor.n.02": -1000.0,
+        "proletarian.n.01": -1000.0
+    },
+    "synset": "worker.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8c9b86c14f6e418d86b54fb7ecaae167",
+        "creator_username": "AVL",
+        "creator_display_name": "Advanced Visualization Lab - Indiana University",
+        "creator_profile_url": "https://sketchfab.com/AVL"
+    },
+    "filename": "std_8c9b86c14f6e418d86b54fb7ecaae167.glb",
+    "length": 0.8330571353435516,
+    "width": 0.7446089088916779
+}

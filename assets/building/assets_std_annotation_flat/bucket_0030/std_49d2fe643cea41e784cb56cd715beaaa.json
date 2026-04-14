@@ -1,0 +1,100 @@
+{
+    "description_long": "This kiosk is a small, weathered structure with a gabled roof and a partially open front, suggesting it serves as a point-of-sale or information booth. The exterior is primarily constructed from corrugated metal or wood, with visible signs of rust and aging, giving it a rustic, utilitarian appearance. There are several signs and posters attached to the front and side, including a blue sign and a white placard, indicating commercial or informational use. The front features a large open window and a counter area, with a small mailbox or drop box and a post in front. The roof has a slight overhang, providing some shelter to the front area. The ground around the kiosk appears to be paved or covered in a light material, possibly concrete or gravel.",
+    "description": "A small, rustic kiosk with a gabled roof, open front window, and multiple signs, showing signs of age and weathering.",
+    "description_view_0": "Front view showing the open window, counter, signage, and posts in front of the kiosk.",
+    "description_view_1": "Side view highlighting the depth of the structure, the overhanging roof, and the side signage.",
+    "description_view_2": "Rear view with the gabled roof and back wall, less signage visible, and a clear view of the structure's weathered materials.",
+    "description_view_3": "Opposite side view showing the side wall, roof overhang, and partial view of the front opening.",
+    "category": "kiosk",
+    "height": 2.3,
+    "max_dimension": 3.2,
+    "materials": [
+        "wood",
+        "metal",
+        "glass",
+        "plastic",
+        "paper",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 4,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "window",
+        "counter",
+        "mailbox",
+        "signage"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "blue",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "Printed signs and placards, attached to the front and side panels, including a blue sign and white placard with text.",
+    "attribute_window_presence": "One large rectangular window at the front.",
+    "attribute_door_configuration": "Single open entryway at the front, no visible door.",
+    "attribute_roof_design": "Gabled roof with moderate overhang, constructed from corrugated metal or wood, visibly weathered.",
+    "attribute_architectural_style": "Rustic utilitarian with simple, functional design and visible aging.",
+    "uid": "49d2fe643cea41e784cb56cd715beaaa",
+    "near_synsets": {
+        "shopfront.n.01": 0.5572259891472026,
+        "booth.n.02": 0.560173243294848,
+        "booth.n.04": 0.5633025404724222,
+        "estaminet.n.01": 0.5679825876332282,
+        "pop-up.n.03": 0.5682716106754372
+    },
+    "synset": "booth.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/49d2fe643cea41e784cb56cd715beaaa",
+        "creator_username": "alban",
+        "creator_display_name": "alban",
+        "creator_profile_url": "https://sketchfab.com/alban"
+    },
+    "filename": "std_49d2fe643cea41e784cb56cd715beaaa.glb",
+    "length": 1.6830305457115173,
+    "width": 2.6548216342926025
+}

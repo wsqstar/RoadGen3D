@@ -1,0 +1,95 @@
+{
+    "description_long": "This ferry features a rectangular, elongated hull with a blue and white exterior and a series of evenly spaced, upright red seats arranged in rows along its length. The sides of the vessel are bordered by solid blue panels with a white stripe running horizontally, giving it a modern and streamlined appearance. The front section is slightly raised and enclosed, likely serving as the control cabin, while the rear and sides remain open for easy passenger access. The seating area is open-air, with no visible roof or overhead covering, and the seats are separated by individual backrests. The ferry appears to be designed for short-distance urban water transport, such as river or harbor crossings, with a focus on passenger seating rather than vehicle transport. There are no visible ramps, large windows, or smokestacks, and the overall design is utilitarian and functional.",
+    "description": "A blue and white open-air ferry with rows of red passenger seats and a streamlined, modern hull. The vessel is designed for urban water transport and features a simple, functional layout.",
+    "description_view_0": "Side view showing the full length of the ferry, with all rows of red seats and the blue and white hull clearly visible.",
+    "description_view_1": "Front view highlighting the width of the ferry, the arrangement of the red seats, and the slightly raised control cabin at the front.",
+    "description_view_2": "Opposite side view, similar to view 0, displaying the seating arrangement and hull details from the other side.",
+    "description_view_3": "Rear view showing the open back of the ferry and the alignment of the red seats, with the blue hull framing the seating area.",
+    "category": "ferry",
+    "height": 2.2,
+    "max_dimension": 12.0,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 6500,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 35000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "seat",
+        "backrest",
+        "control cabin"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "blue",
+        "white",
+        "red"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_passenger_decks": 1,
+    "attribute_vehicle_loading_ramps": false,
+    "attribute_large_windows": false,
+    "attribute_multiple_entry_points": false,
+    "attribute_prominent_smokestack": false,
+    "uid": "8ce9ac67726541f38aabab2ca32a87ae",
+    "near_synsets": {
+        "ferry.n.01": 0.4818801303114731,
+        "ferry.n.02": 0.5024958025369652,
+        "car-ferry.n.01": 0.503515737033911,
+        "ferryman.n.01": 0.5288368498550331,
+        "wherry.n.02": 0.5301374799681028
+    },
+    "synset": "ferryman.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8ce9ac67726541f38aabab2ca32a87ae",
+        "creator_username": "Taiyaki1199",
+        "creator_display_name": "Kevin Mar",
+        "creator_profile_url": "https://sketchfab.com/Taiyaki1199"
+    },
+    "filename": "std_8ce9ac67726541f38aabab2ca32a87ae.glb",
+    "length": 8.899999141693115,
+    "width": 3.600000500679016
+}

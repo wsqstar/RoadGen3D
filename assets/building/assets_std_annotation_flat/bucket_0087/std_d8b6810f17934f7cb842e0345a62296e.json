@@ -1,0 +1,90 @@
+{
+    "description_long": "This object consists of a collection of rectangular concrete blocks arranged in a staggered, interlocking pattern, resembling paving stones or modular bricks. The blocks vary in shades of gray, with some lighter and others darker, and are separated by thin, reddish-brown lines that suggest mortar or dirt-filled gaps. The surface is flat and even, with the tops of the blocks aligned to form a walkable platform, while the sides reveal the full height of each block. The texture appears rough and grainy, typical of unfinished concrete, and the edges are sharp and well-defined. The overall form is rectangular, and the arrangement suggests it was once part of a larger paved surface, now dislodged and left as debris. This type of object is commonly found in urban environments, especially after construction or demolition activities.",
+    "description": "A group of interlocking gray concrete blocks arranged in a staggered, rectangular pattern with visible mortar lines. The surface is flat, rough, and walkable, resembling broken paving stones.",
+    "description_view_0": "A staggered arrangement of rectangular concrete blocks with alternating light and dark gray tones, viewed from the side, showing the layered pattern and flat top surface.",
+    "description_view_1": "The blocks are seen from the end, emphasizing the uniform height and the linear alignment of the rows, with visible color variation between blocks.",
+    "description_view_2": "Similar to view 0 but from the opposite side, showing the same staggered block pattern and the flat, walkable surface.",
+    "description_view_3": "Viewed from the opposite end of view 1, highlighting the parallel rows of blocks and the alternating color pattern.",
+    "category": "debris",
+    "height": 0.18,
+    "max_dimension": 2.0,
+    "materials": [
+        "concrete",
+        "mortar",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.06,
+        0.02
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 3500,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "climbable",
+        "blockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "dark gray",
+        "reddish-brown"
+    ],
+    "colors_composition": [
+        0.45,
+        0.45,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_location": "urban street",
+    "attribute_context": "Likely the result of pavement or sidewalk demolition, where concrete blocks have been dislodged and left as debris.",
+    "attribute_object_type": "concrete paving block",
+    "attribute_condition": "intact but displaced, with minor surface wear and dirt in the joints",
+    "attribute_associated_infrastructure": [
+        "road",
+        "sidewalk"
+    ],
+    "uid": "d8b6810f17934f7cb842e0345a62296e",
+    "near_synsets": {
+        "cinder_block.n.01": 0.5081511142803112,
+        "cobble.n.01": 0.5202242796402127,
+        "brick.n.01": 0.5223372135851434,
+        "paving_stone.n.01": 0.5233806664785835,
+        "concrete.n.01": 0.5255587542926744,
+        "debris.n.01": -1000.0
+    },
+    "synset": "debris.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d8b6810f17934f7cb842e0345a62296e",
+        "creator_username": "Revitspace",
+        "creator_display_name": "bimstore",
+        "creator_profile_url": "https://sketchfab.com/Revitspace"
+    },
+    "filename": "std_d8b6810f17934f7cb842e0345a62296e.glb",
+    "length": 1.9966838955879211,
+    "width": 2.7842214107513428
+}

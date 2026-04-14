@@ -1,0 +1,96 @@
+{
+    "description_long": "This dam structure is constructed primarily from wood, featuring a large, curved central section reminiscent of a half-pipe, flanked by vertical walls on either side. The surface is smooth and segmented, with visible seams between the wooden panels. Metal railings run along the top edges for safety, and a stairway is present on one end, leading to an elevated platform. The dam sits on a flat, gray base, which may represent concrete or paved ground. There is a rectangular opening at the base of one wall, possibly for water passage or maintenance access.",
+    "description": "A large, wooden dam with a curved central section, metal railings, and a stairway leading to an elevated platform.",
+    "description_view_0": "Front view showing the curved wooden face, metal railings, and a central rectangular opening at the base.",
+    "description_view_1": "Side view highlighting the depth of the curved section and the stairway structure on the right.",
+    "description_view_2": "Rear view displaying the flat back wall, the rectangular opening, and the vertical stairway enclosure.",
+    "description_view_3": "Opposite side view showing the full length of the curved section and the stairway enclosure on the left.",
+    "category": "dam",
+    "height": 5.5,
+    "max_dimension": 15.0,
+    "materials": [
+        "wood",
+        "metal",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "stairway",
+        "platform",
+        "railings"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_spillway_presence": false,
+    "attribute_control_gates": [
+        "none"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_water_outflow": "none",
+    "attribute_perimeter_fencing": true,
+    "uid": "f1f7619352964e88b2159322649dc002",
+    "near_synsets": {
+        "dam.n.01": 0.5106081394570006,
+        "weir.n.01": 0.5240109915682072,
+        "milldam.n.01": 0.530672125599311,
+        "flashboard.n.01": 0.5406918993980083,
+        "aqueduct.n.01": 0.5436079102605839,
+        "decameter.n.01": -1000.0,
+        "dam.n.03": -1000.0
+    },
+    "synset": "dam.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f1f7619352964e88b2159322649dc002",
+        "creator_username": "Llego_Draws_Stuff",
+        "creator_display_name": "Llego_Draws_Stuff",
+        "creator_profile_url": "https://sketchfab.com/Llego_Draws_Stuff"
+    },
+    "filename": "std_f1f7619352964e88b2159322649dc002.glb",
+    "length": 15.941207885742188,
+    "width": 22.373310089111328
+}

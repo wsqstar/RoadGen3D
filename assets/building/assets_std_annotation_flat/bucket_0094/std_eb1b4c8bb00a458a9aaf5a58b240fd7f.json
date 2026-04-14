@@ -1,0 +1,98 @@
+{
+    "description_long": "This humanoid robot features a sleek, streamlined body with a predominantly blue and gray color scheme, accented by darker and lighter panels at the joints and torso. Its head is rounded and helmet-like, with a large, dark, featureless faceplate that suggests a display or sensor array. The arms and legs are proportionate to a human, with visible joint segments at the shoulders, elbows, hips, and knees, and the hands are shaped with distinct fingers. The robot's torso is contoured, with subtle panel lines and mechanical details, and the overall build is athletic and agile. The surface appears smooth and hard, likely constructed from advanced polymers or composite materials, with metallic elements at the joints. This robot is designed for urban environments, possibly for assistance, patrolling, or interaction with people.",
+    "description": "A sleek, blue and gray humanoid robot with a rounded helmet-like head, jointed limbs, and a smooth, contoured body. Its faceplate is dark and featureless, and the design is athletic and agile.",
+    "description_view_0": "Front view shows the robot's outstretched arms, dark faceplate, and detailed torso and limb panels.",
+    "description_view_1": "Left side view highlights the robot's profile, rounded head, and the curvature of the torso and limbs.",
+    "description_view_2": "Rear view reveals the smooth back, joint details, and the overall symmetry of the robot's design.",
+    "description_view_3": "Right side view mirrors the left, showing the side profile and limb articulation.",
+    "category": "humanoid robot",
+    "height": 1.7,
+    "max_dimension": 2.0,
+    "materials": [
+        "polymer composite",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "faceplate",
+        "arms",
+        "hands",
+        "legs",
+        "joints"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 5000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.2,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms extended horizontally to the sides, legs straight and together, head facing forward, and torso erect.",
+    "attribute_clothing_style": "No separate clothing; the robot is covered in integrated, form-fitting panels with a futuristic, armored appearance.",
+    "attribute_facial_features": "The face consists of a large, dark, featureless faceplate with no visible eyes, mouth, or nose; no expressive elements are present.",
+    "attribute_limb_articulation": "Visible articulation at shoulders, elbows, wrists, hips, knees, and ankles; limbs appear to have hinge and rotary joints, allowing for a wide range of motion.",
+    "attribute_presence_of_sensors": "Possible sensor array behind the faceplate; no other visible sensors.",
+    "uid": "eb1b4c8bb00a458a9aaf5a58b240fd7f",
+    "near_synsets": {
+        "cyborg.n.01": 0.5492572314116101,
+        "android.n.01": 0.5526844607190828,
+        "robotics_equipment.n.01": 0.5633567188670027,
+        "automaton.n.02": 0.5844511289190812,
+        "human_head.n.01": 0.5910613544308619
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/eb1b4c8bb00a458a9aaf5a58b240fd7f",
+        "creator_username": "cappy_adams",
+        "creator_display_name": "CappyAdams",
+        "creator_profile_url": "https://sketchfab.com/cappy_adams"
+    },
+    "filename": "std_eb1b4c8bb00a458a9aaf5a58b240fd7f.glb",
+    "length": 0.3836788684129715,
+    "width": 2.056088089942932
+}

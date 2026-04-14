@@ -1,0 +1,91 @@
+{
+    "description_long": "This object is a freestanding defibrillator (AED) unit with a robust, industrial design, featuring a rectangular metal box mounted atop a sturdy vertical pole and a weighted base. The front face of the box displays a black screen with a prominent yellow-green waveform, reminiscent of a heart monitor, bordered by visible bolts at each corner. The sides and rear of the box are plain, with subtle panel lines and rivets, suggesting a reinforced, tamper-resistant enclosure. The pole is metallic and cylindrical, connecting the box to a broad, stable base equipped with small feet for floor placement. The overall finish is a matte, bluish-gray metal, giving it a utilitarian and durable appearance suitable for high-traffic public areas. No visible handles, access panels, or instructional diagrams are present, and the design prioritizes visibility and security.",
+    "description": "A freestanding, industrial-style AED unit with a metal box displaying a yellow-green waveform on a black screen, mounted on a sturdy pole and base.",
+    "description_view_0": "Front view shows the black screen with a yellow-green waveform and four corner bolts, highlighting the AED's display.",
+    "description_view_1": "Left side view reveals the box's depth and panel lines, with no visible signage or access points.",
+    "description_view_2": "Rear view displays a plain metal surface with subtle panel lines and no distinguishing features.",
+    "description_view_3": "Right side view mirrors the left, showing the box's protrusion and industrial construction.",
+    "category": "defibrillator (aed)",
+    "height": 1.3,
+    "max_dimension": 0.5,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "mass": 32,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "screen",
+        "button (implied)"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "yellow-green"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_aed_signage": "The front face features a black screen with a yellow-green waveform, which may suggest a medical or AED function, but there is no explicit AED text or standardized signage visible.",
+    "attribute_emergency_symbol": "none",
+    "attribute_access_panel": "none",
+    "attribute_instructional_diagram": "none",
+    "attribute_public_placement_location": "Most likely placed in a public indoor area such as a train station platform, airport terminal, or shopping mall corridor, where visibility and accessibility are important.",
+    "uid": "205e6897da614f3eb42776dfb49ed887",
+    "near_synsets": {
+        "defibrillator.n.01": 0.5465102879622808,
+        "display.n.06": 0.5947897685599366,
+        "pacemaker.n.03": 0.5950104175398402,
+        "exercise_device.n.01": 0.5966951635199601,
+        "cardiac_monitor.n.01": 0.5970110816942897
+    },
+    "synset": "defibrillator.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/205e6897da614f3eb42776dfb49ed887",
+        "creator_username": "resistance-studios",
+        "creator_display_name": "resistance-studios",
+        "creator_profile_url": "https://sketchfab.com/resistance-studios"
+    },
+    "filename": "std_205e6897da614f3eb42776dfb49ed887.glb",
+    "length": 0.45540979504585266,
+    "width": 0.5134803950786591
+}

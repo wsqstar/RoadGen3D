@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a pump-action shotgun with a matte black finish, featuring a long, cylindrical barrel and a robust, synthetic full stock. The fore-end is ribbed for grip and is positioned beneath the barrel, indicating a pump-action mechanism. The receiver is compact and streamlined, with a visible trigger and a rounded trigger guard. A single red shotgun shell is depicted adjacent to the loading port, emphasizing its ammunition type. The overall design is utilitarian, with minimal decorative elements and a focus on durability and functionality.",
+    "description": "A matte black pump-action shotgun with a ribbed fore-end, full synthetic stock, and a visible red shotgun shell near the loading port.",
+    "description_view_0": "Front view showing the narrow profile of the barrel and fore-end, with the red shotgun shell visible to the left.",
+    "description_view_1": "Side view displaying the full length of the shotgun, including the barrel, ribbed pump, trigger guard, and full stock.",
+    "description_view_2": "Rear view highlighting the textured butt of the stock and the linear alignment of the barrel and receiver.",
+    "description_view_3": "Opposite side view showing the loading port area, ribbed pump, and the red shotgun shell positioned below the receiver.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 1.1,
+    "materials": [
+        "polymer",
+        "steel",
+        "brass",
+        "lead",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.35,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "pumpable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "pump",
+        "trigger",
+        "trigger guard",
+        "loading port"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "silver"
+    ],
+    "colors_composition": [
+        0.9,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_barrel_configuration": "single-barrel, no visible ribbing or venting, standard barrel length",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with smooth edges and no visible finger grooves or reinforcement",
+    "uid": "5857d138ac6a400aa6dd909ef63fc51e",
+    "near_synsets": {
+        "pump_action.n.01": 0.5163394151345936,
+        "sawed-off_shotgun.n.01": 0.5236797459423261,
+        "shotgun_shell.n.01": 0.5339342097716062,
+        "shotgun.n.01": 0.5451297345445114,
+        "gas_gun.n.01": 0.5506101372429159
+    },
+    "synset": "shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5857d138ac6a400aa6dd909ef63fc51e",
+        "creator_username": "Medji",
+        "creator_display_name": "Medji",
+        "creator_profile_url": "https://sketchfab.com/Medji"
+    },
+    "filename": "std_5857d138ac6a400aa6dd909ef63fc51e.glb",
+    "length": 0.9755613505840302,
+    "width": 0.07065733894705772
+}

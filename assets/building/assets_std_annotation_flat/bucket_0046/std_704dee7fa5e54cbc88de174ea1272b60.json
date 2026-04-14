@@ -1,0 +1,94 @@
+{
+    "description_long": "This cowshed is a large, rectangular agricultural building with a low-pitched, hipped roof featuring a prominent raised central section for ventilation. The exterior walls are constructed from a combination of dark metal or wood panels and a lower brick or masonry base, providing both durability and insulation. The structure is supported by a series of evenly spaced columns along the perimeter, creating open bays that likely serve as entry points or for airflow. The roof includes a long, narrow ridge vent running along the top, enhancing internal ventilation for livestock. There are no visible windows, but the open bays and roof vent suggest a focus on air circulation. The overall design is utilitarian, prioritizing function and robustness for housing cattle in an urban or peri-urban setting.",
+    "description": "A large, rectangular cowshed with a hipped roof, brick base, dark paneled walls, and open bays supported by columns. The structure features a raised central roof vent for enhanced ventilation.",
+    "description_view_0": "Front view showing the main entrance with open bays and supporting columns, as well as the raised central roof vent.",
+    "description_view_1": "Side view highlighting the long expanse of the building, multiple open bays, and the continuous ridge vent along the roof.",
+    "description_view_2": "Rear view similar to the front, with open bays and columns visible, but no prominent entrance.",
+    "description_view_3": "Opposite side view mirroring view 1, showing the length of the building, open bays, and roof vent.",
+    "category": "cowshed",
+    "height": 7.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "metal",
+        "brick",
+        "wood",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.01,
+        0.14
+    ],
+    "mass": 120000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "vent",
+        "column"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 20000000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "hipped with raised ridge vent",
+    "attribute_door_style": "wide open bays with possible sliding or hinged metal doors",
+    "attribute_window_presence": "no windows; open bays provide light and air",
+    "attribute_ventilation_features": "long ridge vent, open bays",
+    "attribute_architectural_style": "modern utilitarian",
+    "uid": "704dee7fa5e54cbc88de174ea1272b60",
+    "near_synsets": {
+        "cowbarn.n.01": 0.4384326989247156,
+        "shed.n.01": 0.5117442526937974,
+        "farm_building.n.01": 0.511747198616999,
+        "barn.n.01": 0.5128931835988346,
+        "stockyard.n.01": 0.5149458232866764
+    },
+    "synset": "cowbarn.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/704dee7fa5e54cbc88de174ea1272b60",
+        "creator_username": "Lost_Gecko",
+        "creator_display_name": "Lost Gecko",
+        "creator_profile_url": "https://sketchfab.com/Lost_Gecko"
+    },
+    "filename": "std_704dee7fa5e54cbc88de174ea1272b60.glb",
+    "length": 19.69317626953125,
+    "width": 13.862957954406738
+}

@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a medium-sized, rectangular cardboard box with partially open flaps on the top, revealing an empty interior. The exterior is a natural brown color typical of corrugated cardboard, with visible fold lines and taped seams along the edges. On one side, there is a black 'this side up' symbol with two arrows, indicating the correct orientation for handling. Another side features the number '30' written in black, likely for identification or inventory purposes. The box is reinforced with strips of yellowish packing tape along the top seams. The overall appearance suggests it is a standard shipping or moving parcel, commonly found in urban environments such as sidewalks, garages, or delivery areas.",
+    "description": "A brown cardboard box with open flaps, packing tape, and handling symbols, typical for shipping or moving. Markings include a 'this side up' symbol and the number '30' on the exterior.",
+    "description_view_0": "Front view showing the open top flaps, the 'this side up' symbol, and a clean, unmarked surface.",
+    "description_view_1": "Side view highlighting the open flaps and the taped seam running along the top edge.",
+    "description_view_2": "Opposite side view with the 'this side up' symbol visible and a partially open flap on the left.",
+    "description_view_3": "Rear view displaying the number '30' written on the side and the taped seam along the top.",
+    "category": "parcels",
+    "height": 0.4,
+    "max_dimension": 0.7,
+    "materials": [
+        "corrugated_cardboard",
+        "adhesive_tape",
+        "ink",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 0.7,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 7,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "top_flaps"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.08,
+        0.07
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 4000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "",
+    "attribute_car_model": "",
+    "attribute_building_number": "30",
+    "attribute_storefront_signage": "",
+    "attribute_street_name": "",
+    "uid": "7a555aa6459b461eac234b8aedef03ce",
+    "near_synsets": {
+        "packing_box.n.02": 0.5052914077174433,
+        "carton.n.02": 0.5098370536241279,
+        "packaging.n.01": 0.5514535215846583,
+        "mail.n.01": 0.5552173085948269,
+        "parcel_post.n.01": 0.5558854196235521,
+        "package.n.01": -1000.0,
+        "parcel.n.02": -1000.0,
+        "package.n.02": -1000.0,
+        "tract.n.01": -1000.0
+    },
+    "synset": "carton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7a555aa6459b461eac234b8aedef03ce",
+        "creator_username": "thedrone",
+        "creator_display_name": "TheDrone",
+        "creator_profile_url": "https://sketchfab.com/thedrone"
+    },
+    "filename": "std_7a555aa6459b461eac234b8aedef03ce.glb",
+    "length": 0.3632856160402298,
+    "width": 0.7325552999973297
+}

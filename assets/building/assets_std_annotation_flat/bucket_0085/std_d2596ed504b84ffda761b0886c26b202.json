@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a modern tactical rifle with a tan and black color scheme, featuring a robust polymer and metal construction. The rifle is equipped with a telescopic scope mounted on the top rail, providing enhanced aiming capabilities for long-range engagements. The stock is adjustable and ergonomically designed, with a pronounced cheek rest and a rubberized buttpad for recoil absorption. The handguard is ventilated and includes a vertical foregrip for improved weapon control, as well as multiple accessory rails for attachments. The magazine is a detachable box type, and the barrel is of medium length with a visible muzzle brake at the end. The overall design is sleek and functional, suitable for urban tactical scenarios.",
+    "description": "A modern tan and black tactical rifle with a scope, adjustable stock, vertical foregrip, and detachable magazine, designed for urban use.",
+    "description_view_0": "Side view showing the full profile, including the scope, adjustable stock, vertical foregrip, and muzzle brake.",
+    "description_view_1": "Front view highlighting the barrel, muzzle brake, and the alignment of the scope above the receiver.",
+    "description_view_2": "Opposite side view displaying the magazine, handguard, and ergonomic stock details.",
+    "description_view_3": "Rear view focusing on the stock's cheek rest, buttpad, and the rear of the scope.",
+    "category": "rifle",
+    "height": 0.22,
+    "max_dimension": 0.95,
+    "materials": [
+        "polymer",
+        "steel",
+        "aluminum",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 4.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 45,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "aimable",
+        "triggerable",
+        "reloadable",
+        "attachable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "trigger",
+        "magazine",
+        "scope",
+        "foregrip",
+        "barrel",
+        "muzzle brake",
+        "safety selector"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "adjustable",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "scope",
+    "attribute_muzzle_device": "muzzle brake",
+    "uid": "d2596ed504b84ffda761b0886c26b202",
+    "near_synsets": {
+        "light_arm.n.01": 0.5253687915210921,
+        "garand_rifle.n.01": 0.5267183928327147,
+        "assault_rifle.n.01": 0.5272140723916363,
+        "dragunov.n.01": 0.5291609327585233,
+        "telescopic_sight.n.01": 0.5357447006401601,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/d2596ed504b84ffda761b0886c26b202",
+        "creator_username": "ptis",
+        "creator_display_name": "Ptis",
+        "creator_profile_url": "https://sketchfab.com/ptis"
+    },
+    "filename": "std_d2596ed504b84ffda761b0886c26b202.glb",
+    "length": 0.46254897117614746,
+    "width": 0.04218498058617115
+}

@@ -1,0 +1,100 @@
+{
+    "description_long": "This raft features a flat, rectangular wooden deck supported by two parallel pontoons, each shaped like a canoe and positioned on either side for stability. The deck is constructed from planks, giving it a robust and rustic appearance, and is wide enough to accommodate several passengers or cargo. Four visible wheels or rollers are attached to the sides, possibly for ease of movement or docking. Blue structural elements are visible between the pontoons, likely reinforcing the raft's frame and providing additional buoyancy. The raft sits low to the water, maximizing stability, and has a small raised section at one end, which may serve as a mounting point or a rudimentary control area. The overall design suggests a utilitarian craft suitable for calm waters, with clear flotation features and ample space for standing or sitting.",
+    "description": "A sturdy wooden raft with two canoe-like pontoons, a flat plank deck, and blue structural reinforcements. It features wheels on the sides and a small raised section at one end.",
+    "description_view_0": "Side view showing both pontoons, the flat deck, and the side-mounted wheels.",
+    "description_view_1": "Front view highlighting the pointed ends of the pontoons, the wide deck, and the small raised section at the center.",
+    "description_view_2": "Opposite side view, similar to view 0, with clear visibility of the pontoons and wheels.",
+    "description_view_3": "Rear view showing the open space between the pontoons and the blue structural elements beneath the deck.",
+    "category": "raft",
+    "height": 0.4,
+    "max_dimension": 2.5,
+    "materials": [
+        "wood",
+        "plastic",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "deck",
+        "pontoons",
+        "wheels",
+        "attachment points"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_presence_of_flotation_devices": true,
+    "attribute_number_of_seats": 4,
+    "attribute_type_of_propulsion": "paddle",
+    "attribute_safety_markings": [],
+    "attribute_attachment_points": 4,
+    "uid": "f25fa0dfc595497e9d4e8369b0956ea5",
+    "near_synsets": {
+        "pontoon.n.01": 0.4960584104012708,
+        "pontoon.n.02": 0.49670951981877176,
+        "balsa_raft.n.01": 0.5074189390384513,
+        "raft.n.01": 0.5078418094037424,
+        "canoe.n.01": 0.5087402363902176,
+        "raft_foundation.n.01": -1000.0,
+        "batch.n.02": -1000.0
+    },
+    "synset": "raft_foundation.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f25fa0dfc595497e9d4e8369b0956ea5",
+        "creator_username": "OlegJob",
+        "creator_display_name": "Oleg",
+        "creator_profile_url": "https://sketchfab.com/OlegJob"
+    },
+    "filename": "std_f25fa0dfc595497e9d4e8369b0956ea5.glb",
+    "length": 4.357239246368408,
+    "width": 4.357239723205566
+}

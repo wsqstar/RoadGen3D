@@ -1,0 +1,104 @@
+{
+    "description_long": "This hamburger features a golden-brown sesame seed bun with a generous scattering of white sesame seeds on its top surface. The bun encases a breaded and fried patty, likely chicken or fish, which is visible along the sides. A thick layer of creamy white sauce, possibly mayonnaise, oozes from the edges, especially on one side, and there are hints of melted cheese beneath the top bun. The bottom bun is slightly compressed, and the overall structure appears soft and fresh. No visible vegetables or additional toppings are present, and the hamburger is unwrapped, with no packaging in sight.",
+    "description": "A sesame seed hamburger with a breaded patty, creamy sauce, and melted cheese, all encased in a soft, golden bun.",
+    "description_view_0": "Top-down view showing the sesame seed-covered bun with no interior ingredients visible.",
+    "description_view_1": "Side view highlighting the thick layer of sauce and the breaded patty protruding from the bun.",
+    "description_view_2": "Bottom-up view revealing the patty, melted cheese, and sauce spilling out from the bun's edges.",
+    "description_view_3": "Opposite side view with visible sauce and patty, showing the bun's roundness and texture.",
+    "category": "hamburger",
+    "height": 0.08,
+    "max_dimension": 0.11,
+    "materials": [
+        "bread",
+        "sesame seeds",
+        "fried meat patty",
+        "cheese",
+        "sauce",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.02,
+        0.3,
+        0.1,
+        0.1,
+        0.03
+    ],
+    "mass": 0.18,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "graspable",
+        "separable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "top bun",
+        "bottom bun",
+        "patty",
+        "cheese",
+        "sauce"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light brown",
+        "white",
+        "golden brown",
+        "yellow",
+        "off-white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.15,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.35,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.08,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_bun_type": "sesame seed bun",
+    "attribute_patty_visibility": "partially visible",
+    "attribute_topping_arrangement": "A thick layer of sauce and melted cheese is distributed unevenly around the patty, with no visible vegetables or additional toppings.",
+    "attribute_packaging_presence": false,
+    "attribute_sesame_seed_presence": true,
+    "uid": "cec9234fcdf445358d3105d965d02c5a",
+    "near_synsets": {
+        "cheeseburger.n.01": 0.4742532032831624,
+        "hamburger.n.01": 0.48425097332205125,
+        "hamburger_bun.n.01": 0.5149864577850611,
+        "reuben.n.02": 0.5376184090330595,
+        "tunaburger.n.01": 0.539761231925966,
+        "ground_beef.n.01": -1000.0
+    },
+    "synset": "hamburger_bun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cec9234fcdf445358d3105d965d02c5a",
+        "creator_username": "yhyow",
+        "creator_display_name": "yhyow",
+        "creator_profile_url": "https://sketchfab.com/yhyow"
+    },
+    "filename": "std_cec9234fcdf445358d3105d965d02c5a.glb",
+    "length": 0.0819549672305584,
+    "width": 0.05182075500488281
+}

@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a medium-sized quadcopter drone with a lightweight, open-frame structure primarily composed of yellow and black materials. It features four large black propellers mounted on extended arms, each arm radiating from a central body that houses electronic components and wiring. The central body is reinforced with a visible frame, likely made of carbon fiber or plastic, and contains a vertical stack of circuit boards and connectors. The drone's arms are slender and appear to be designed for both strength and minimal weight, with exposed wiring running along their length. The landing gear consists of simple, fixed legs that provide ground clearance for the propellers and central electronics. There is no visible camera or propeller guards, making this drone suitable for open urban environments where maneuverability and speed are prioritized.",
+    "description": "A yellow and black quadcopter drone with four large propellers, an open-frame body, and fixed landing legs. The design is lightweight and functional, with exposed electronics and no visible camera or propeller guards.",
+    "description_view_0": "The drone is seen from a slight angle, showing all four propellers, the open-frame body, and the fixed landing legs clearly.",
+    "description_view_1": "This view is nearly identical to view 0, with a clear look at the central electronics stack and the symmetrical arm layout.",
+    "description_view_2": "The drone's structure and propeller arrangement remain prominent, with the open frame and exposed wiring visible.",
+    "description_view_3": "Similar to previous views, this angle highlights the quadcopter's frame, propellers, and fixed landing legs, with no additional features visible.",
+    "category": "drone",
+    "height": 0.18,
+    "max_dimension": 0.55,
+    "materials": [
+        "carbon fiber",
+        "plastic",
+        "metal",
+        "electronic components",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "landing leg",
+        "battery compartment",
+        "power button"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "blue"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 4,
+    "attribute_rotor_configuration": "quadcopter X",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": false,
+    "attribute_propeller_guard_presence": false,
+    "uid": "c5dfafed7f5a4003a25e8e22a5e701d9",
+    "near_synsets": {
+        "drone.n.04": 0.5174893522336026,
+        "orthopter.n.01": 0.5686243350482563,
+        "helicopter.n.01": 0.5729947707920816,
+        "buzz_bomb.n.01": 0.5791677730538162,
+        "single-rotor_helicopter.n.01": 0.5826391991300425,
+        "drone.n.05": -1000.0,
+        "dawdler.n.01": -1000.0,
+        "drone.n.01": -1000.0,
+        "monotone.n.01": -1000.0
+    },
+    "synset": "drone.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c5dfafed7f5a4003a25e8e22a5e701d9",
+        "creator_username": "tflexcad",
+        "creator_display_name": "T-FLEX CAD ST (Free)",
+        "creator_profile_url": "https://sketchfab.com/tflexcad"
+    },
+    "filename": "std_c5dfafed7f5a4003a25e8e22a5e701d9.glb",
+    "length": 0.9205152988433838,
+    "width": 0.9205152988433838
+}

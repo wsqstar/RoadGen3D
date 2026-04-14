@@ -1,0 +1,103 @@
+{
+    "description_long": "This object is a segment of railway track consisting of two parallel steel rails mounted on a series of evenly spaced wooden sleepers. The rails are dark brown and show signs of weathering, with a slightly rusty appearance, while the sleepers are thick, rectangular, and have a dark, aged wood texture. The rails are fastened securely to the sleepers, which are arranged perpendicular to the rails and provide structural support. There is no visible ballast bed beneath the sleepers, and the track segment appears to be freestanding, not embedded in pavement or surrounded by gravel. The construction is robust, designed to support the weight and movement of trains or rail vehicles. No signage, electrical components, or additional features are present.",
+    "description": "A weathered railway track segment with two parallel steel rails mounted on dark wooden sleepers, showing no ballast or pavement embedding.",
+    "description_view_0": "Side view showing the parallel rails and the full length of the wooden sleepers beneath.",
+    "description_view_1": "End-on view highlighting the thickness and spacing of the sleepers and the rails' alignment.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the rails and sleepers from the other side.",
+    "description_view_3": "Opposite end-on view, emphasizing the sleepers' width and the rails' parallel structure.",
+    "category": "railway track",
+    "height": 0.18,
+    "max_dimension": 2.5,
+    "materials": [
+        "steel",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.5,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "guiding"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "rail",
+        "sleeper"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "dark brown",
+        "rust"
+    ],
+    "colors_composition": [
+        0.4,
+        0.5,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_parallel_metal_rails": true,
+    "attribute_wooden_or_concrete_sleepers": "wood",
+    "attribute_ballast_bed": false,
+    "attribute_embedded_in_pavement": false,
+    "attribute_railway_crossing_signage": false,
+    "uid": "4c2803efa7eb4a21bc66df35e7cbd24a",
+    "near_synsets": {
+        "railroad_bed.n.01": 0.4883324385169953,
+        "railhead.n.02": 0.5112091801527705,
+        "track.n.09": 0.5145118470507245,
+        "railroad_track.n.01": 0.5177844154505383,
+        "line.n.14": 0.5206240497187846,
+        "lead.n.03": -1000.0,
+        "cut.n.08": -1000.0,
+        "track.n.08": -1000.0,
+        "railway.n.01": -1000.0,
+        "path.n.04": -1000.0,
+        "track.n.06": -1000.0,
+        "track.n.07": -1000.0,
+        "track.n.10": -1000.0,
+        "track.n.03": -1000.0,
+        "racetrack.n.01": -1000.0,
+        "track.n.11": -1000.0
+    },
+    "synset": "track.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4c2803efa7eb4a21bc66df35e7cbd24a",
+        "creator_username": "gav11",
+        "creator_display_name": "gav",
+        "creator_profile_url": "https://sketchfab.com/gav11"
+    },
+    "filename": "std_4c2803efa7eb4a21bc66df35e7cbd24a.glb",
+    "length": 1.790911316871643,
+    "width": 1.261990249156952
+}

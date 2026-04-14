@@ -1,0 +1,90 @@
+{
+    "description_long": "This is a heavily damaged, two-story theater building with a rectangular footprint and a partially collapsed roof. The facade features a series of arched windows on the ground floor and rectangular windows above, with remnants of decorative molding and pilasters. Large sections of the roof and upper walls are missing, exposing the interior and creating jagged, irregular openings throughout the structure. The exterior is constructed from weathered stone or concrete, giving it a somber, abandoned appearance. The front facade includes a blank marquee panel above the main entrance, though no signage remains. The overall look suggests a once-grand theater now left in ruins, possibly due to conflict or disaster.",
+    "description": "A ruined, two-story stone theater with arched windows, a collapsed roof, and a blank marquee above the entrance. The structure is weathered and partially destroyed, exposing the interior.",
+    "description_view_0": "Front view showing the main facade with arched windows, a blank marquee panel, and extensive roof collapse.",
+    "description_view_1": "Rear view highlighting the jagged, broken roof and missing upper wall sections, with less ornamentation visible.",
+    "description_view_2": "Side view displaying the length of the building, arched windows, and the extent of structural damage.",
+    "description_view_3": "Opposite end view with a clear look at the destroyed roof and upper floor, and the symmetry of the facade.",
+    "category": "theater",
+    "height": 8.0,
+    "max_dimension": 20.0,
+    "materials": [
+        "stone",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "shelter",
+        "viewing"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "marquee panel",
+        "windows",
+        "doorways"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.0,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_marquee_signage": true,
+    "attribute_ticket_booth": false,
+    "attribute_facade_ornamentation": "The facade features decorative molding, pilasters, and a blank marquee panel, with arched window frames and subtle relief details along the upper story.",
+    "attribute_entrance_canopy": false,
+    "attribute_architectural_style": "Neoclassical",
+    "uid": "109afc849d9e4432a7b48779cf804a6f",
+    "near_synsets": {
+        "ruin.n.02": 0.5127025418087264,
+        "theater.n.01": 0.5488723152631345,
+        "arena_theater.n.01": 0.5673436731848905,
+        "fleapit.n.01": 0.569516920791025,
+        "loge.n.01": 0.5698375580782763,
+        "dramaturgy.n.01": -1000.0,
+        "field.n.11": -1000.0
+    },
+    "synset": "arena_theater.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/109afc849d9e4432a7b48779cf804a6f",
+        "creator_username": "tonyflanagan",
+        "creator_display_name": "tonyflanagan",
+        "creator_profile_url": "https://sketchfab.com/tonyflanagan"
+    },
+    "filename": "std_109afc849d9e4432a7b48779cf804a6f.glb",
+    "length": 16.901086807250977,
+    "width": 22.18894672393799
+}

@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a traditional grinding wheel mounted on a sturdy wooden frame, commonly used for sharpening tools. The main feature is a large, circular stone wheel, centrally positioned and supported by a robust wooden structure with angled legs for stability. A metal crank handle is attached to the axle, allowing manual rotation of the stone. There is a small wooden platform or tray on one side, likely for holding tools or water for cooling during sharpening. The frame is reinforced with crossbars and metal fasteners, and a foot pedal is attached to the lower part for additional control. The overall construction is utilitarian, with visible wood grain and a weathered, practical appearance.",
+    "description": "A traditional grinding wheel set in a wooden frame with a hand crank and foot pedal, used for sharpening tools. The structure includes a stone wheel, wooden tray, and sturdy support legs.",
+    "description_view_0": "Front view showing the full circular stone wheel, wooden frame, crank handle, and foot pedal.",
+    "description_view_1": "Side view highlighting the thickness of the stone wheel and the narrow profile of the wooden frame.",
+    "description_view_2": "Rear view displaying the back of the stone wheel, frame structure, and the tray platform.",
+    "description_view_3": "Opposite side view showing the stone wheel's edge and the alignment of the frame's legs.",
+    "category": "barrow",
+    "height": 1.0,
+    "max_dimension": 1.2,
+    "materials": [
+        "wood",
+        "stone",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "crank handle",
+        "foot pedal",
+        "stone wheel",
+        "tray"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.55,
+        0.35,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 1,
+    "attribute_handle_type": "single straight crank handle",
+    "attribute_wheel_position": "centered between frame legs",
+    "attribute_tray_depth": 0.08,
+    "attribute_presence_of_support_legs": true,
+    "uid": "87a7bb85433843059c1299ac2cd2fe7f",
+    "near_synsets": {
+        "grindstone.n.01": 0.483966774944557,
+        "grinder.n.04": 0.5208139620763613,
+        "quern.n.01": 0.5237761861623452,
+        "grinding_wheel.n.01": 0.5261402782489666,
+        "file.n.04": 0.5327679921343079,
+        "burial_mound.n.01": -1000.0,
+        "barrow.n.01": -1000.0,
+        "barrow.n.03": -1000.0
+    },
+    "synset": "barrow.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/87a7bb85433843059c1299ac2cd2fe7f",
+        "creator_username": "Funkadelc",
+        "creator_display_name": "Funkadelc",
+        "creator_profile_url": "https://sketchfab.com/Funkadelc"
+    },
+    "filename": "std_87a7bb85433843059c1299ac2cd2fe7f.glb",
+    "length": 0.42609402537345886,
+    "width": 0.9488776326179504
+}

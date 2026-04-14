@@ -1,0 +1,102 @@
+{
+    "description_long": "This humanoid robot features a rugged, industrial design with a metallic, weathered exterior and visible signs of rust and wear. Its head is asymmetrical, with a prominent red circular element that may serve as a sensor or eye, and several protruding cylindrical components on top. The torso is barrel-shaped with ribbed segments, and the limbs are constructed from jointed rods and plates, giving it a mechanical, skeletal appearance. The hands are claw-like, each with three articulated fingers, and the feet are broad and flat, designed for stability. The robot's joints are exposed, suggesting a high degree of articulation and flexibility. The overall aesthetic is utilitarian, with no decorative coverings, emphasizing function over form.",
+    "description": "A weathered, industrial humanoid robot with a metallic, rusted exterior, exposed joints, and a prominent red sensor on its asymmetrical head.",
+    "description_view_0": "Front three-quarter view showing the robot's red circular sensor, asymmetrical head, and claw-like hands extended outward.",
+    "description_view_1": "Side view highlighting the cylindrical components atop the head, the ribbed torso, and the layered, jointed limbs.",
+    "description_view_2": "Rear view displaying the segmented back, mechanical spine, and the broad, flat feet with visible wear.",
+    "description_view_3": "Opposite side view emphasizing the arm articulation, exposed joints, and the mechanical structure of the legs and feet.",
+    "category": "humanoid robot",
+    "height": 1.7,
+    "max_dimension": 1.0,
+    "materials": [
+        "steel",
+        "iron",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 110,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "rotatable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hand",
+        "arm",
+        "head",
+        "torso",
+        "fingers",
+        "sensor"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "rust brown",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.65,
+        0.25,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.8,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing with legs apart, left arm bent and raised, right arm extended forward, head slightly tilted, and torso upright.",
+    "attribute_clothing_style": "Unclothed; only integrated metallic panels and mechanical components are visible, with no decorative coverings.",
+    "attribute_facial_features": "Asymmetrical head with a single prominent red circular sensor, no visible mouth or nose, and several cylindrical protrusions on top; lacks expressive facial features.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints, allowing for a wide range of motion; hands have three articulated fingers each, and feet are jointed for stability.",
+    "attribute_presence_of_sensors": "One large red circular sensor on the head, possibly a camera or optical sensor; no other sensors visible.",
+    "uid": "cb320fb6a71a4c558249eb48f9cd1729",
+    "near_synsets": {
+        "android.n.01": 0.5388528741877366,
+        "robotics_equipment.n.01": 0.5498134559332124,
+        "cyborg.n.01": 0.5650188153540604,
+        "robotics.n.01": 0.580715210019598,
+        "automaton.n.02": 0.5822318926136989
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cb320fb6a71a4c558249eb48f9cd1729",
+        "creator_username": "taraNC",
+        "creator_display_name": "taraNC",
+        "creator_profile_url": "https://sketchfab.com/taraNC"
+    },
+    "filename": "std_cb320fb6a71a4c558249eb48f9cd1729.glb",
+    "length": 0.8823085129261017,
+    "width": 1.446577548980713
+}

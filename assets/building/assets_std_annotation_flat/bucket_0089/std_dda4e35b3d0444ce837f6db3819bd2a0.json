@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a dual-tank rail trailer designed for transporting liquids, featuring two large cylindrical tanks mounted within a robust steel frame. The tanks are horizontally oriented and secured with metal bracing, and the entire structure sits atop a set of four axles with eight visible wheels. The exterior of the tanks is adorned with graffiti and weathered paint, giving it an urban, industrial appearance. The frame includes protective grating on top and side ladders for access, while the ends of the trailer display circular tank ends with visible hatches and warning signage. There are no visible doors or windows, and the trailer is equipped with standard rail couplings for attachment to other rail cars.",
+    "description": "A dual-tank rail trailer with a weathered steel frame, graffiti, and eight wheels, designed for liquid transport. Features protective grating, side ladders, and standard rail couplings.",
+    "description_view_0": "Front view showing the circular end of one tank, protective frame, and rail coupling.",
+    "description_view_1": "Side view displaying both cylindrical tanks, graffiti, grating, and all eight wheels.",
+    "description_view_2": "Rear view mirroring the front, with the end of the second tank and frame details.",
+    "description_view_3": "Opposite side view with similar features to view 1, highlighting graffiti and tank structure.",
+    "category": "trailer",
+    "height": 2.8,
+    "max_dimension": 10.5,
+    "materials": [
+        "steel",
+        "aluminum",
+        "paint",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 25000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "connectable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "hatch",
+        "ladder",
+        "rail coupling"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "white",
+        "red"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_number_of_wheels": 8,
+    "attribute_hitch_type": "rail coupling",
+    "attribute_door_configuration": "no doors visible",
+    "attribute_branding_or_signage": "graffiti and warning signage on tank ends",
+    "attribute_window_presence": "no windows visible",
+    "uid": "dda4e35b3d0444ce837f6db3819bd2a0",
+    "near_synsets": {
+        "tandem_trailer.n.01": 0.5307158676690724,
+        "trailer.n.03": 0.5355067037776687,
+        "tender.n.04": 0.5445962225538145,
+        "tank_car.n.01": 0.5462500190997492,
+        "watering_cart.n.01": 0.5543771355770398,
+        "preview.n.01": -1000.0,
+        "dawdler.n.01": -1000.0,
+        "trailer.n.04": -1000.0
+    },
+    "synset": "trailer.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dda4e35b3d0444ce837f6db3819bd2a0",
+        "creator_username": "yrdoes",
+        "creator_display_name": "Yaroslav Dubovikov",
+        "creator_profile_url": "https://sketchfab.com/yrdoes"
+    },
+    "filename": "std_dda4e35b3d0444ce837f6db3819bd2a0.glb",
+    "length": 8.919987678527832,
+    "width": 1.9991605281829834
+}

@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a rectangular, single-story auto repair shop with a bright yellow exterior and a flat, weathered gray roof. The front facade features two large garage doors, one of which is open to reveal a white van inside, and a smaller pedestrian door. Above the garage doors is a prominent sign with Cyrillic text and an orange fruit logo, indicating the business name. To the right of the entrance, there is a small fenced area with what appears to be a bench and some miscellaneous items. The sides and rear of the building are plain, with a few utility boxes, a back door, and air conditioning units mounted on the wall. The overall appearance is utilitarian, with minimal decorative elements and a focus on function.",
+    "description": "A bright yellow, rectangular auto repair shop with a flat gray roof, large garage doors, and prominent signage in Cyrillic. The building features utility boxes, a fenced area, and a simple, functional design.",
+    "description_view_0": "The view shows the flat, gray roof and the plain yellow side of the building, with minimal visible features except a small cylindrical object near the corner.",
+    "description_view_1": "This is the front view, displaying two garage doors (one open with a van inside), a pedestrian door, a large sign with Cyrillic text and an orange logo, and a fenced area with a bench and items.",
+    "description_view_2": "The opposite side view reveals the yellow wall, the edge of the fenced area, and the flat roof, with no doors or windows visible.",
+    "description_view_3": "The rear view shows a plain yellow wall with a single door and two white air conditioning units mounted on the exterior.",
+    "category": "auto repair shop",
+    "height": 4.0,
+    "max_dimension": 16.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 65000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "garage door",
+        "pedestrian door",
+        "fence gate",
+        "bench",
+        "air conditioning unit"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "gray",
+        "white",
+        "brown",
+        "black",
+        "orange"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.07,
+        0.03,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_signage": "Large sign with Cyrillic text '\u0410\u041f\u0415\u041b\u042c\u0421\u0418\u041d \u0410\u0412\u0422\u041e \u041c\u041e\u0419\u041a\u0410' and an orange fruit logo above the garage doors on the front facade.",
+    "attribute_garage_doors": "2 visible garage doors on the front, likely roll-up type, made of metal, each approximately 2.5 meters wide and 3 meters tall.",
+    "attribute_vehicle_lifts": "none",
+    "attribute_parked_cars_awaiting_service": "1 white van visible inside the open garage door at the front of the building.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "8ee8b486a9c3422aa1723910476fad58",
+    "near_synsets": {
+        "repair_shop.n.01": 0.5130934934447904,
+        "garage.n.02": 0.5188754295405293,
+        "garage.n.01": 0.5633017062962699,
+        "auto_mechanics.n.01": 0.573487583380801,
+        "service_area.n.01": 0.583708803302084,
+        "repair.n.01": -1000.0,
+        "repair.n.02": -1000.0,
+        "workshop.n.01": -1000.0,
+        "car.n.01": -1000.0,
+        "shop_class.n.01": -1000.0,
+        "shop.n.01": -1000.0,
+        "haunt.n.01": -1000.0
+    },
+    "synset": "garage.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8ee8b486a9c3422aa1723910476fad58",
+        "creator_username": "alwayshasbean",
+        "creator_display_name": "bean(alwayshasbean)",
+        "creator_profile_url": "https://sketchfab.com/alwayshasbean"
+    },
+    "filename": "std_8ee8b486a9c3422aa1723910476fad58.glb",
+    "length": 8.712892532348633,
+    "width": 13.333014011383057
+}

@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a mid-rise brick hotel building with four main stories and a flat roof, topped by two cylindrical metal water towers. The facade features regularly spaced rectangular windows, some with air conditioning units, and a prominent vertical neon sign reading 'HOTEL' on one corner. Fire escapes run along one side of the building, providing emergency egress from each floor. The ground level includes a recessed main entrance, flanked by a few small street-level details such as a fire hydrant, trash bins, and a lamppost. The surrounding sidewalk and street are detailed with urban elements like road markings, utility covers, and scattered debris, enhancing the city atmosphere.",
+    "description": "A four-story brick hotel with rooftop water towers, fire escapes, and a neon 'HOTEL' sign, set in a detailed urban streetscape.",
+    "description_view_0": "Front view showing the main entrance, two rooftop water towers, and a clear view of the brick facade with windows and street-level details.",
+    "description_view_1": "Side view highlighting the metal fire escapes, a single rooftop water tower, and more urban street elements like trash bins and a lamppost.",
+    "description_view_2": "Rear view with the neon 'HOTEL' sign visible, two water towers, and a less detailed ground level with a utility cover and street markings.",
+    "description_view_3": "Opposite side view showing a plain brick wall, service doors, and minimal street features, with one water tower visible on the roof.",
+    "category": "hotel",
+    "height": 16.0,
+    "max_dimension": 20.0,
+    "materials": [
+        "brick",
+        "concrete",
+        "glass",
+        "metal",
+        "wood",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.1,
+        0.1,
+        0.05,
+        0.01,
+        0.04
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "fire escape",
+        "signage"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "gray",
+        "black",
+        "blue",
+        "green",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.08,
+        0.05,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_hotel_signage": "Vertical illuminated sign reading 'HOTEL' on the corner of the building, visible in view 2.",
+    "attribute_number_of_windows": 24,
+    "attribute_entrance_canopy": "none",
+    "attribute_presence_of_doorman_or_bellhop": false,
+    "attribute_architectural_style": "Early 20th Century Urban",
+    "uid": "79b37df90c954eb2a236ddb6468fb818",
+    "near_synsets": {
+        "cityscape.n.02": 0.5564934016845919,
+        "hotel.n.01": 0.564159985654651,
+        "high-rise.n.01": 0.5659658206310622,
+        "skyscraper.n.01": 0.5680433176814464,
+        "hotel-casino.n.02": 0.5715891291589453
+    },
+    "synset": "hotel-casino.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/79b37df90c954eb2a236ddb6468fb818",
+        "creator_username": "kvelazquez",
+        "creator_display_name": "kvelazquez",
+        "creator_profile_url": "https://sketchfab.com/kvelazquez"
+    },
+    "filename": "std_79b37df90c954eb2a236ddb6468fb818.glb",
+    "length": 18.836875915527344,
+    "width": 17.93687629699707
+}

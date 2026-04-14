@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a large, heavy-duty dump truck with a robust, angular cab painted in dark gray and a spacious, high-walled cargo bed in olive green. The cab features wide side mirrors, a broad windshield, and a solid front grille, designed for urban and construction environments. The cargo bed is open-topped, reinforced with vertical ribs, and equipped with a rear gate for unloading bulk materials. The truck rides on three axles with six large wheels, providing stability and load-bearing capacity. Underneath, visible fuel tanks and chassis components suggest a diesel-powered engine and a reinforced frame. The overall design emphasizes utility, durability, and the ability to transport and dump heavy loads efficiently.",
+    "description": "A heavy-duty dump truck with a dark gray cab and a large olive green open cargo bed, built for hauling and dumping materials. It features six wheels, a reinforced frame, and prominent side mirrors.",
+    "description_view_0": "Front view showing the wide windshield, large side mirrors, and the imposing grille of the truck.",
+    "description_view_1": "Left side view highlighting the full length of the olive green dump bed, three axles, and visible fuel tank.",
+    "description_view_2": "Rear view displaying the open cargo bed, rear gate, and the truck's dumping mechanism.",
+    "description_view_3": "Right side view similar to the left, showing the cab, dump bed, and undercarriage details.",
+    "category": "truck",
+    "height": 3.2,
+    "max_dimension": 8.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.08,
+        0.05,
+        0.05,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "dumpable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "mirror",
+        "cargo bed",
+        "tailgate",
+        "fuel tank",
+        "steps"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "dark gray",
+        "black",
+        "blue"
+    ],
+    "colors_composition": [
+        0.55,
+        0.35,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "day cab",
+    "attribute_cargo_bed_type": "dump bed",
+    "attribute_wheelbase": 4.2,
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "781c616da8f44982a59cb3fc3fa67f98",
+    "near_synsets": {
+        "dump_truck.n.01": 0.4820760834918632,
+        "truck.n.01": 0.5088458207590502,
+        "flatbed.n.02": 0.5092214656073074,
+        "dumpster.n.01": 0.522581043411825,
+        "lorry.n.02": 0.5262592950318353,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/781c616da8f44982a59cb3fc3fa67f98",
+        "creator_username": "ElectroNick",
+        "creator_display_name": "ElectroNick",
+        "creator_profile_url": "https://sketchfab.com/ElectroNick"
+    },
+    "filename": "std_781c616da8f44982a59cb3fc3fa67f98.glb",
+    "length": 8.09093713760376,
+    "width": 3.026084542274475
+}

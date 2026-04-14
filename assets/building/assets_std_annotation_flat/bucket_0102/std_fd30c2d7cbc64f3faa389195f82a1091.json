@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a stylized rifle resembling the iconic AK-47, featuring a black metal body with wooden accents on the handguard and pistol grip. The rifle has a distinctive curved magazine, also rendered in black, and a skeletonized metal stock at the rear. The barrel is long and slender, with a simple front sight post and a rear notch sight, both integrated into the upper receiver. The wooden elements provide a visual contrast to the otherwise matte black finish of the metal components. The overall design is utilitarian, with clear separations between the functional parts such as the stock, grip, magazine, and barrel.",
+    "description": "A stylized AK-47-style rifle with a black metal body, wooden handguard and grip, a curved magazine, and a skeletonized stock.",
+    "description_view_0": "Side view showing the full profile, including the wooden handguard, pistol grip, curved magazine, and skeletonized stock.",
+    "description_view_1": "Narrow end-on view showing the rifle's thin profile, with the barrel and stock aligned and minimal detail visible.",
+    "description_view_2": "Opposite side view, mirroring view 0, with the same features visible but from the other side.",
+    "description_view_3": "Rear end-on view, showing the back of the stock and the alignment of the grip and magazine.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 0.9,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 4.3,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 45,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "pistol grip",
+        "handguard",
+        "magazine",
+        "trigger",
+        "barrel",
+        "sights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.75,
+        0.25
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "skeletonized",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "fd30c2d7cbc64f3faa389195f82a1091",
+    "near_synsets": {
+        "kalashnikov.n.01": 0.48245845507700086,
+        "garand_rifle.n.01": 0.5319473002012299,
+        "dragunov.n.01": 0.5337207565628339,
+        "light_arm.n.01": 0.5399844801049056,
+        "assault_rifle.n.01": 0.5452003969648387,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fd30c2d7cbc64f3faa389195f82a1091",
+        "creator_username": "arisbars",
+        "creator_display_name": "arisbars",
+        "creator_profile_url": "https://sketchfab.com/arisbars"
+    },
+    "filename": "std_fd30c2d7cbc64f3faa389195f82a1091.glb",
+    "length": 0.020070101134479046,
+    "width": 0.733123242855072
+}

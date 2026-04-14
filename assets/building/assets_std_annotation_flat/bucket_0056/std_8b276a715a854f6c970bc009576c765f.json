@@ -1,0 +1,94 @@
+{
+    "description_long": "This shelter is a small, rectangular structure with weathered, stained concrete or plaster walls and a corrugated metal roof. The front features a single wooden door with vertical slats and a rectangular window opening, both framed in wood. The roof is pitched, extending beyond the walls to provide additional protection from rain. The exterior walls show signs of age and wear, with patches of discoloration and peeling. The window is open and lacks glass, suggesting a utilitarian design for ventilation. The overall appearance is functional and robust, suitable for use as a basic urban shelter or utility shed.",
+    "description": "A small, weathered shelter with a corrugated metal roof, wooden door, and open window set in stained concrete walls.",
+    "description_view_0": "Side view showing the pitched corrugated metal roof and a plain, stained wall with no openings.",
+    "description_view_1": "Front view displaying the wooden door and open window framed in wood, with the corrugated roof above.",
+    "description_view_2": "Opposite side view mirroring view 0, showing the roof and a plain, weathered wall.",
+    "description_view_3": "Rear view with a large, unbroken, stained wall and the overhanging corrugated roof.",
+    "category": "shelter",
+    "height": 2.2,
+    "max_dimension": 3.5,
+    "materials": [
+        "concrete",
+        "corrugated metal",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "gray",
+        "brown",
+        "beige"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "pitched corrugated metal roof",
+    "attribute_entryway_design": "single wooden door with vertical slats and a rectangular open window",
+    "attribute_support_structure": "concrete or plaster walls with wooden framing and corrugated metal roof panels",
+    "attribute_signage": "none",
+    "attribute_transparency": "fully opaque except for open window",
+    "uid": "8b276a715a854f6c970bc009576c765f",
+    "near_synsets": {
+        "shelter.n.02": 0.43773476955842083,
+        "shelter.n.01": 0.47188755005756683,
+        "shelter.n.05": 0.4929702361882299,
+        "sentry_box.n.01": 0.5044829422099063,
+        "shed.n.01": 0.5102654416156259,
+        "protection.n.04": -1000.0,
+        "tax_shelter.n.01": -1000.0
+    },
+    "synset": "tax_shelter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8b276a715a854f6c970bc009576c765f",
+        "creator_username": "AhmetErenUskut",
+        "creator_display_name": "Ahmet Eren",
+        "creator_profile_url": "https://sketchfab.com/AhmetErenUskut"
+    },
+    "filename": "std_8b276a715a854f6c970bc009576c765f.glb",
+    "length": 2.130889415740967,
+    "width": 3.7004185914993286
+}

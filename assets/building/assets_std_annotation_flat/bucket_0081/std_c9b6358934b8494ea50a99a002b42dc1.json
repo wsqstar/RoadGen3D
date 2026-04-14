@@ -1,0 +1,112 @@
+{
+    "description_long": "This object is a tall, metallic utility structure featuring a vertical pole with multiple electrical components mounted at various heights. At the base, there is a blue electrical cabinet, a small blue cylindrical container, a brown bench, and a bicycle leaning against the pole, all situated on a gridded platform. The pole is equipped with insulator stacks and crossarms supporting electrical equipment, with visible wiring and cables running vertically and horizontally. The electrical cabinet appears to have a control panel or display on its front, and the bench provides a place for people to sit nearby. The overall setup suggests a functional installation for power distribution or transformation in an urban environment, with clear access for maintenance and public interaction. The materials used are primarily metal, plastic, and glass, with some wood or composite for the bench.",
+    "description": "A tall metal transformer tower with electrical equipment, a blue cabinet, a bench, and a bicycle on a gridded platform. The structure is detailed with insulators, crossarms, and visible wiring.",
+    "description_view_0": "The front view shows the pole, electrical cabinet with display, bench, blue container, and bicycle all clearly visible on the platform.",
+    "description_view_1": "The side view highlights the depth of the cabinet, the bench's position, and the cylindrical container, with the pole and electrical equipment in profile.",
+    "description_view_2": "The rear view focuses on the back of the cabinet and the pole, with the bicycle and bench less visible, emphasizing the vertical structure.",
+    "description_view_3": "This angled view shows the cabinet's front, the bench from the side, and the arrangement of the platform and pole, with the bicycle partially visible.",
+    "category": "transformer tower",
+    "height": 7.5,
+    "max_dimension": 7.7,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "glass",
+        "wood",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.05,
+        0.04,
+        0.01,
+        0.02
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "sittable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cabinet door",
+        "control panel",
+        "bench",
+        "bicycle",
+        "container"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "brown",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.18,
+        0.1,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_number_of_insulator_stacks": 2,
+    "attribute_arrangement_of_crossarms": "There are two crossarms arranged horizontally at different heights, each supporting electrical equipment and insulators.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "transformer",
+        "insulator",
+        "control cabinet"
+    ],
+    "attribute_configuration_of_attached_power_lines": "Multiple power lines are attached in a parallel configuration, likely supporting a three-phase circuit with lines routed horizontally from the crossarms.",
+    "uid": "c9b6358934b8494ea50a99a002b42dc1",
+    "near_synsets": {
+        "transformer.n.01": 0.5397694636442681,
+        "pylon.n.02": 0.5478247701923686,
+        "substation.n.01": 0.5610246792978207,
+        "power_system.n.01": 0.5667480670788817,
+        "step-up_transformer.n.01": 0.5682551306942237,
+        "column.n.04": -1000.0,
+        "tugboat.n.01": -1000.0,
+        "tower.n.01": -1000.0
+    },
+    "synset": "pylon.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c9b6358934b8494ea50a99a002b42dc1",
+        "creator_username": "RobbeDenis",
+        "creator_display_name": "RobbeDenis",
+        "creator_profile_url": "https://sketchfab.com/RobbeDenis"
+    },
+    "filename": "std_c9b6358934b8494ea50a99a002b42dc1.glb",
+    "length": 3.4297600984573364,
+    "width": 3.4082069396972656
+}

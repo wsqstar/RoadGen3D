@@ -1,0 +1,97 @@
+{
+    "description_long": "This object depicts a school complex situated within a city block, featuring a large, L-shaped main building with a flat roof and numerous evenly spaced windows. The school is surrounded by green lawns and paved roads, with a few trees and minimal landscaping. Adjacent to the school, there is a multi-story residential building, a tram or bus stop with shelters, and a main road with vehicles. The school building is rendered in a minimalist, utilitarian style, with a white or light gray facade and simple rectangular forms. The grounds are open, with no visible playground equipment or sports fields, and the area is bordered by sidewalks and intersecting streets. The overall layout suggests a planned urban environment with clear zoning between educational, residential, and transportation spaces.",
+    "description": "A large, L-shaped school building with a flat roof, surrounded by green lawns, roads, and a nearby residential tower in a minimalist urban setting.",
+    "description_view_0": "The school is seen from an angle showing the L-shape, with the main road, tram stop, and residential building to the left.",
+    "description_view_1": "The front of the school is visible, facing the main road and tram stop, with the residential building in the background.",
+    "description_view_2": "The school is viewed from the opposite side, highlighting the open green area and the proximity of the residential building to the right.",
+    "description_view_3": "A direct view of the school's long facade, with the residential building in the foreground and the tram stop and road in front.",
+    "category": "school",
+    "height": 12.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 1800000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "scene",
+    "attribute_building_signage": false,
+    "attribute_playground_equipment": false,
+    "attribute_flagpole": false,
+    "attribute_school_bus_stop": true,
+    "attribute_architectural_style": "Modernist",
+    "uid": "2c3c67402f4f4d03b2ed94164b264328",
+    "near_synsets": {
+        "schoolyard.n.01": 0.46283201275870434,
+        "school.n.02": 0.46522368532044217,
+        "school.n.01": 0.47671454934412977,
+        "school.n.06": 0.4992319596936934,
+        "college.n.03": 0.5092189039441305,
+        "school.n.04": -1000.0,
+        "school.n.05": -1000.0,
+        "school.n.03": -1000.0,
+        "school.n.07": -1000.0
+    },
+    "synset": "school.n.07",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2c3c67402f4f4d03b2ed94164b264328",
+        "creator_username": "zhs_77",
+        "creator_display_name": "BIMVR",
+        "creator_profile_url": "https://sketchfab.com/zhs_77"
+    },
+    "filename": "std_2c3c67402f4f4d03b2ed94164b264328.glb",
+    "length": 62.40374755859375,
+    "width": 65.29302978515625
+}

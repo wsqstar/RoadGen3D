@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a large, gray military ship with a flat, expansive flight deck and a prominent central superstructure, characteristic of an aircraft carrier. The hull is long and streamlined, with a slightly raised bow and a flat stern, and a visible waterline marked by a brownish-red lower section. The superstructure, or island, is positioned off-center and features multiple antennas, radar domes, and a control tower. The deck is mostly clear, with safety railings along the edges and some small fixtures visible. The ship's overall appearance is robust and functional, designed for naval operations and the deployment of aircraft.",
+    "description": "A large gray aircraft carrier with a flat flight deck, central superstructure, and streamlined hull. The ship features antennas, radar domes, and safety railings.",
+    "description_view_0": "Narrow end-on view showing the ship's bow and the width of the flight deck.",
+    "description_view_1": "Side profile highlighting the full length of the hull, the flat deck, and the central superstructure with antennas.",
+    "description_view_2": "Top-down view displaying the entire flight deck, superstructure placement, and overall ship outline.",
+    "description_view_3": "Opposite side profile, similar to view 1, showing the hull, deck, and superstructure from the other side.",
+    "category": "ship",
+    "height": 25,
+    "max_dimension": 260,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.03,
+        0.01,
+        0.04
+    ],
+    "mass": 90000000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "antenna",
+        "radar",
+        "control tower"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a long, streamlined profile, a slightly raised bow, and a flat stern. The waterline is visible with a brownish-red lower section, and the hull sides are vertical with no visible bulbous bow or keels.",
+    "attribute_superstructure_layout": "The superstructure is centrally located on the starboard side of the flight deck, featuring a multi-level control tower with antennas and radar domes. The deck is open and flat, with safety railings along the edges.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "antenna",
+        "radar",
+        "safety railing"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "6925890e1e8b43e6a0f2816becba0d00",
+    "near_synsets": {
+        "aircraft_carrier.n.01": 0.42040567053507055,
+        "flight_deck.n.01": 0.5019037125360999,
+        "surface_ship.n.01": 0.5086984180227402,
+        "cargo_ship.n.01": 0.5118144380311016,
+        "three-decker.n.03": 0.5230852392884557,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6925890e1e8b43e6a0f2816becba0d00",
+        "creator_username": "shangus930",
+        "creator_display_name": "shangus930",
+        "creator_profile_url": "https://sketchfab.com/shangus930"
+    },
+    "filename": "std_6925890e1e8b43e6a0f2816becba0d00.glb",
+    "length": 111.92330551147461,
+    "width": 21.79664421081543
+}

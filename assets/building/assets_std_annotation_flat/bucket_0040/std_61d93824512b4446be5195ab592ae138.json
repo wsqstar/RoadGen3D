@@ -1,0 +1,85 @@
+{
+    "description_long": "This object is a rectangular, elongated structure with high perimeter walls, resembling a secure prison compound. The walls are thick and feature regularly spaced vertical ridges or crenellations, likely for added security and structural integrity. At one end, there are three distinct protrusions that may represent entry points or reinforced gates, while the opposite end has a cylindrical feature that could be a guard post or utility structure. The interior is open and hollow, suggesting a courtyard or central yard typical of prison layouts. The overall color is a uniform light beige, giving it a utilitarian and institutional appearance. The structure is devoid of decorative elements, emphasizing function and security.",
+    "description": "A rectangular, beige prison structure with high perimeter walls, crenellations, and entry points, designed for maximum security.",
+    "description_view_0": "This view highlights the entry side with three protruding gate-like features and the start of the high perimeter walls.",
+    "description_view_1": "This side view shows the full length of the high perimeter walls and the crenellated detailing along the top edges.",
+    "description_view_2": "This view reveals the opposite end with a cylindrical feature, possibly a guard post, and the open interior space.",
+    "description_view_3": "This angle emphasizes the long, uninterrupted perimeter walls and the open central area within the structure.",
+    "category": "prison",
+    "height": 2.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "blockable",
+        "securable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "gate",
+        "guard post"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_barbed_wire": false,
+    "attribute_guard_towers": 1,
+    "attribute_high_perimeter_walls": true,
+    "attribute_security_cameras": 0,
+    "attribute_architectural_style": "utilitarian",
+    "uid": "61d93824512b4446be5195ab592ae138",
+    "near_synsets": {
+        "prison.n.02": 0.48315689817615787,
+        "cell.n.07": 0.5040210594410939,
+        "prison.n.01": 0.5079747585075216,
+        "bullpen.n.02": 0.5085816886098051,
+        "penal_institution.n.01": 0.5286416679073418
+    },
+    "synset": "prison.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/61d93824512b4446be5195ab592ae138",
+        "creator_username": "Karpulya",
+        "creator_display_name": "Karpulya",
+        "creator_profile_url": "https://sketchfab.com/Karpulya"
+    },
+    "filename": "std_61d93824512b4446be5195ab592ae138.glb",
+    "length": 24.33808135986328,
+    "width": 17.187366485595703
+}

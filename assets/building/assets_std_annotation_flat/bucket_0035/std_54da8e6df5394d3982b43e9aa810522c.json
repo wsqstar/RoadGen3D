@@ -1,0 +1,85 @@
+{
+    "description_long": "This object is a cylindrical urban bollard with a textured black surface and two prominent gold bands encircling its upper and lower sections. The front features a gold circular emblem with a pictogram of a person depositing trash into a bin, indicating its dual function as a waste receptacle. The top is rounded and slightly domed, while the front upper section is recessed to form an opening for depositing waste. The rear is solid and unadorned, with no visible openings or features. The bollard appears robust and is likely constructed from metal or heavy-duty composite materials, suitable for outdoor urban environments. Its design is both functional and decorative, providing access control while serving as a public litter bin.",
+    "description": "A black cylindrical bollard with gold bands and a waste bin opening, featuring a pictogram for trash disposal. The surface is textured and robust, suitable for urban settings.",
+    "description_view_0": "Front view showing the gold pictogram, waste bin opening, and both gold bands.",
+    "description_view_1": "Angled side view highlighting the recessed waste opening and the cylindrical form.",
+    "description_view_2": "Rear view showing a solid, unadorned surface with only the gold bands visible.",
+    "description_view_3": "Opposite angled side view, again showing the waste opening and the cylindrical structure.",
+    "category": "bollard",
+    "height": 1.0,
+    "max_dimension": 0.45,
+    "materials": [
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "mass": 45,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "depositable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "waste opening"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gold"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_mounting_location": "surface-mounted",
+    "attribute_reflective_markings": false,
+    "attribute_cap_design": "rounded",
+    "attribute_base_type": "flat",
+    "attribute_presence_of_chains_or_connectors": false,
+    "uid": "54da8e6df5394d3982b43e9aa810522c",
+    "near_synsets": {
+        "recycling_bin.n.01": 0.5731110305524505,
+        "bollard.n.01": 0.5744167651027581,
+        "garbage.n.03": 0.5796237422290531,
+        "dumpster.n.01": 0.5852315281906548,
+        "pillar_box.n.01": 0.5901625919676996
+    },
+    "synset": "bollard.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/54da8e6df5394d3982b43e9aa810522c",
+        "creator_username": "rhcreations",
+        "creator_display_name": "rhcreations",
+        "creator_profile_url": "https://sketchfab.com/rhcreations"
+    },
+    "filename": "std_54da8e6df5394d3982b43e9aa810522c.glb",
+    "length": 0.47191673517227173,
+    "width": 0.47189512848854065
+}

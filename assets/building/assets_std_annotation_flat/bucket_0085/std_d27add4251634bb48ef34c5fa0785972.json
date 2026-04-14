@@ -1,0 +1,106 @@
+{
+    "description_long": "This structure is a tall, lattice-framed tower constructed primarily from dark metal beams, forming a triangular cross-section that tapers to a point at the top. At its base, there is a platform with a large, boxy transformer unit and several cylindrical components, likely insulators or bushings, mounted on the platform. The tower features multiple horizontal crossarms at regular intervals, providing structural support and attachment points for electrical equipment. The metal framework is open, allowing visibility through the structure, and the base is anchored to a concrete or metal foundation. The equipment mounted on the platform includes visible coils and bushings, suggesting high-voltage electrical transformation. The overall appearance is industrial, robust, and designed for outdoor installation in urban or suburban environments.",
+    "description": "A tall, metal lattice tower with a transformer unit and electrical equipment mounted on a platform at its base. The structure features multiple crossarms and insulators, giving it a robust, industrial look.",
+    "description_view_0": "Front view showing the full height of the tower, the triangular lattice structure, and the transformer unit at the base.",
+    "description_view_1": "Side view highlighting the depth of the platform, the arrangement of electrical equipment, and the crossarms extending outward.",
+    "description_view_2": "Rear view displaying the symmetry of the lattice frame and the transformer unit from behind.",
+    "description_view_3": "Opposite side view showing the platform, insulators, and the crossarms from a different angle.",
+    "category": "transformer tower",
+    "height": 18.0,
+    "max_dimension": 18.0,
+    "materials": [
+        "steel",
+        "ceramic",
+        "copper",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.05,
+        0.07,
+        0.05
+    ],
+    "mass": 4200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "connectable",
+        "mountable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "crossarm",
+        "insulator",
+        "transformer unit",
+        "bushing",
+        "platform"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "red",
+        "silver",
+        "green"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_insulator_stacks": 2,
+    "attribute_arrangement_of_crossarms": "There are multiple single horizontal crossarms arranged at regular vertical intervals along the tower, each spanning the width of the structure.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "transformer",
+        "insulator",
+        "bushing"
+    ],
+    "attribute_configuration_of_attached_power_lines": "Power lines are attached in a parallel configuration, likely supporting a three-phase circuit, with lines routed horizontally from the crossarms.",
+    "uid": "d27add4251634bb48ef34c5fa0785972",
+    "near_synsets": {
+        "pylon.n.02": 0.5182983876929694,
+        "tower.n.01": 0.5421548020296562,
+        "transformer.n.01": 0.5472004243019948,
+        "supporting_tower.n.01": 0.5569925520909557,
+        "substation.n.01": 0.5597545252096863,
+        "tugboat.n.01": -1000.0,
+        "column.n.04": -1000.0
+    },
+    "synset": "pylon.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d27add4251634bb48ef34c5fa0785972",
+        "creator_username": "zeneric9",
+        "creator_display_name": "Zeneric",
+        "creator_profile_url": "https://sketchfab.com/zeneric9"
+    },
+    "filename": "std_d27add4251634bb48ef34c5fa0785972.glb",
+    "length": 7.700595855712891,
+    "width": 4.853625774383545
+}

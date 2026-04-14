@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a stylized, low-poly airplane with a streamlined fuselage and a single propeller mounted at the nose. The wings are straight and mid-mounted, each featuring a roundel insignia, suggesting a military or vintage design. The cockpit is centrally located and appears to be enclosed with a blue canopy. The tail section includes a single vertical stabilizer and horizontal stabilizers, forming a conventional tail layout. The landing gear is not visibly extended, indicating either a retracted or simplified design. The color scheme is primarily blue-gray with accents of brown and blue on the propeller and canopy.",
+    "description": "A stylized blue-gray airplane with a nose propeller, mid-mounted straight wings, and a central enclosed cockpit.",
+    "description_view_0": "Front view showing the propeller, nose, and symmetrical wing placement with roundels.",
+    "description_view_1": "Left side view highlighting the elongated fuselage, cockpit canopy, and tail structure.",
+    "description_view_2": "Top-down view displaying the full wingspan, roundels, and tailplane layout.",
+    "description_view_3": "Right side view showing the propeller, cockpit, and tail, mirroring the left side.",
+    "category": "airplane",
+    "height": 1.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 5,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "cockpit canopy",
+        "wings",
+        "tail",
+        "landing gear"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue-gray",
+        "blue",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing configuration with straight wings and no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Single nose-mounted piston engine with a four-blade propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "Landing gear not visibly extended; configuration not clearly shown.",
+    "attribute_cockpit_placement": "Mid-fuselage, enclosed single-seat cockpit with a blue canopy.",
+    "uid": "9e0eedbb1712418cb5ccfe66242dcd14",
+    "near_synsets": {
+        "airplane.n.01": 0.47504765380974523,
+        "propeller_plane.n.01": 0.48674711094444945,
+        "aircraft.n.01": 0.5052250602281841,
+        "propjet.n.01": 0.5132974076318779,
+        "biplane.n.01": 0.513323331195132
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9e0eedbb1712418cb5ccfe66242dcd14",
+        "creator_username": "afeste2900",
+        "creator_display_name": "afeste2900",
+        "creator_profile_url": "https://sketchfab.com/afeste2900"
+    },
+    "filename": "std_9e0eedbb1712418cb5ccfe66242dcd14.glb",
+    "length": 3.3424025774002075,
+    "width": 2.444828510284424
+}

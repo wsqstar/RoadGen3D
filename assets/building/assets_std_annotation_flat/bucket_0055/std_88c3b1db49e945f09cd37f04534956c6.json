@@ -1,0 +1,101 @@
+{
+    "description_long": "This trolleybus features a rectangular, elongated body with a weathered, rust-streaked exterior, primarily in shades of white and reddish-brown. The sides are lined with large, rectangular windows, allowing ample light into the passenger compartment, and there are multiple sliding doors with metallic frames for entry and exit. The roof is flat and slightly worn, with a prominent black pantograph pole mounted on top for connecting to overhead electric wires. The undercarriage reveals visible wheels and mechanical components, while the front and rear ends are slightly beveled with large, panoramic windows for the driver. The overall appearance suggests a utilitarian, urban public transport vehicle that has seen extensive use.",
+    "description": "A weathered, rectangular trolleybus with large windows, sliding doors, and a roof-mounted pantograph pole, finished in white and reddish-brown tones.",
+    "description_view_0": "Side view showing the full length of the trolleybus, with multiple windows and three sliding doors visible, as well as the pantograph pole on the roof.",
+    "description_view_1": "Front view highlighting the beveled front end, large panoramic windshield, and the pantograph pole base on the roof.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the windows, doors, and pantograph pole from the other side.",
+    "description_view_3": "Rear view displaying the beveled back end, large rear window, and the pantograph pole extending from the roof.",
+    "category": "trolleybus",
+    "height": 3.2,
+    "max_dimension": 12.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "mass": 14000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 35000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "drivable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "pantograph pole",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "rust brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_pantograph_poles": true,
+    "attribute_overhead_wire_connection": true,
+    "attribute_route_number_display": false,
+    "attribute_articulated_body_sections": 1,
+    "attribute_passenger_entry_doors": 6,
+    "uid": "88c3b1db49e945f09cd37f04534956c6",
+    "near_synsets": {
+        "trolleybus.n.01": 0.4871476827862133,
+        "trolley_line.n.01": 0.5093144501106728,
+        "boxcar.n.01": 0.5486006769974122,
+        "gondola_car.n.01": 0.5662285849631037,
+        "streetcar.n.01": 0.5663893928712346
+    },
+    "synset": "trolleybus.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/88c3b1db49e945f09cd37f04534956c6",
+        "creator_username": "kmv91",
+        "creator_display_name": "kmv91",
+        "creator_profile_url": "https://sketchfab.com/kmv91"
+    },
+    "filename": "std_88c3b1db49e945f09cd37f04534956c6.glb",
+    "length": 9.537839412689209,
+    "width": 2.085044264793396
+}

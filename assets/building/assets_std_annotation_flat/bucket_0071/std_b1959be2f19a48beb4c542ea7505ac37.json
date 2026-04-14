@@ -1,0 +1,100 @@
+{
+    "description_long": "This humanoid robot features a stylized, armored design reminiscent of a medieval knight, with a metallic blue and gray color scheme. Its helmet has a prominent vertical visor and a decorative, curled crest on top, while the shoulders are broad and rounded with layered plating. The arms and legs are segmented with jointed armor, and the hands are shaped like gloves with articulated fingers. The torso is rounded and robust, with a slightly protruding chest and reinforced waist, and the back includes a skirt-like panel. Gold accents and bolts are visible at the joints and along the armor, adding to the mechanical aesthetic.",
+    "description": "A stylized, armored humanoid robot with a blue and gray metallic finish, knight-like helmet, and jointed limbs with gold accents.",
+    "description_view_0": "Front view shows the full armored body, helmet with vertical visor, curled crest, and outstretched arms.",
+    "description_view_1": "Left side view highlights the helmet's crest, layered shoulder armor, and the segmented arm and leg joints.",
+    "description_view_2": "Rear view reveals the back of the helmet, the skirt-like panel, and the symmetrical armor plating on the limbs.",
+    "description_view_3": "Right side view mirrors the left, showing the helmet crest, arm, and leg articulation.",
+    "category": "humanoid robot",
+    "height": 1.5,
+    "max_dimension": 1.5,
+    "materials": [
+        "painted metal",
+        "plastic",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "helmet visor",
+        "arms",
+        "hands",
+        "legs",
+        "crest"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "black",
+        "gold"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "glossy",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms slightly extended outward and legs straight, head facing forward.",
+    "attribute_clothing_style": "No separate clothing; the robot is covered in integrated, stylized armor plating with decorative elements.",
+    "attribute_facial_features": "The face is covered by a helmet with a vertical slotted visor; no eyes, mouth, or expressive features are visible.",
+    "attribute_limb_articulation": "Arms and legs have visible segmented joints at the shoulders, elbows, wrists, hips, knees, and ankles, suggesting hinge or rotary articulation; hands have articulated fingers.",
+    "attribute_presence_of_sensors": "None visible",
+    "uid": "b1959be2f19a48beb4c542ea7505ac37",
+    "near_synsets": {
+        "android.n.01": 0.5331602921617183,
+        "automaton.n.02": 0.557398658001881,
+        "cyborg.n.01": 0.5580702782396115,
+        "robotics_equipment.n.01": 0.5595922908476908,
+        "toy_soldier.n.01": 0.5793267003838889
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b1959be2f19a48beb4c542ea7505ac37",
+        "creator_username": "julianilevy",
+        "creator_display_name": "Julian Levy",
+        "creator_profile_url": "https://sketchfab.com/julianilevy"
+    },
+    "filename": "std_b1959be2f19a48beb4c542ea7505ac37.glb",
+    "length": 0.4638183265924454,
+    "width": 1.2690725922584534
+}

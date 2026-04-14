@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a historical watermill mechanism set on a rectangular stone or concrete base, featuring a large wooden overshot water wheel with visible wooden paddles and a central hub. The wheel is connected to a system of wooden gears and axles, which transfer rotational energy to a secondary gear assembly. The mill race, a stone-lined trough, channels water beneath the wheel, partially filled with water and containing several small clay jugs or vessels. The structure is open, with no enclosing building, exposing all mechanical components and the water channel. The wood appears aged and weathered, with metal fastenings and supports visible at key joints, and the stone base shows signs of wear and water staining.",
+    "description": "A historical watermill mechanism with a large wooden overshot wheel, exposed gears, and a stone-lined water channel, all set on a rectangular stone base.",
+    "description_view_0": "Front view showing the large wooden water wheel, central hub, and the stone trough directly beneath the wheel.",
+    "description_view_1": "Side view highlighting the wooden handle, gear assembly, and the open water channel with visible clay vessels.",
+    "description_view_2": "Rear view focusing on the back of the water wheel, gear teeth, and the supporting metal and wooden frame.",
+    "description_view_3": "Opposite side view showing the gear mechanism, water channel, and the arrangement of clay vessels within the trough.",
+    "category": "watermill",
+    "height": 1.2,
+    "max_dimension": 2.2,
+    "materials": [
+        "wood",
+        "stone",
+        "metal",
+        "clay",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.3,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "water wheel",
+        "gear",
+        "handle",
+        "axle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "white",
+        "black",
+        "beige"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_water_wheel": "Overshot wooden water wheel, approximately 1.0 meters in diameter, constructed from aged wood with about 16 visible paddles, a central wooden hub, and metal fastenings; features visible wear and weathering.",
+    "attribute_mill_race": "Present; stone-lined open channel, approximately 1.2 meters long and 0.4 meters wide, partially filled with water and containing several clay vessels.",
+    "attribute_building_structure": "No main building structure present; only the exposed mechanical components and stone base are visible.",
+    "attribute_roof_type": "Not visible; no roof structure present.",
+    "attribute_window_style": "Not visible.",
+    "uid": "69d3e9e420b24c11812a176f5c360ab0",
+    "near_synsets": {
+        "water_mill.n.01": 0.44110398686425295,
+        "millwheel.n.01": 0.46391372848316487,
+        "windmill.n.01": 0.5128477108233834,
+        "waterwheel.n.01": 0.5136365376177454,
+        "waterwheel.n.02": 0.5276653471410475
+    },
+    "synset": "water_mill.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/69d3e9e420b24c11812a176f5c360ab0",
+        "creator_username": "giravolt",
+        "creator_display_name": "Giravolt",
+        "creator_profile_url": "https://sketchfab.com/giravolt"
+    },
+    "filename": "std_69d3e9e420b24c11812a176f5c360ab0.glb",
+    "length": 1.5327420830726624,
+    "width": 1.7331327199935913
+}

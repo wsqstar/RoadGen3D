@@ -1,0 +1,130 @@
+{
+    "description_long": "This object depicts a small graveyard plot with three distinct gravestones set on a rectangular patch of grassy terrain. The gravestones vary in size and shape: one is tall and arched with weathered brown stone, another is a medium-sized rectangular stone with visible inscriptions, and the third is a smaller, squarer stone. The grass base is uneven and textured, simulating natural ground with some patches of exposed earth. Moss and lichen are visible on the gravestones, indicating age and exposure to the elements. The overall scene conveys a sense of quiet solemnity, typical of a historical or rural cemetery corner.",
+    "description": "A small graveyard plot with three weathered gravestones on a grassy, uneven patch of ground.",
+    "description_view_0": "Front view showing all three gravestones clearly, with the central stone featuring a visible symbol or inscription.",
+    "description_view_1": "Side view highlighting the thickness of the gravestones and the depth of the grassy plot.",
+    "description_view_2": "Rear view with the largest gravestone most prominent and the inscriptions on the central stone partially visible.",
+    "description_view_3": "Opposite side view showing the profile of the gravestones and the length of the plot.",
+    "category": "grave yard",
+    "height": 0.7,
+    "max_dimension": 2.0,
+    "materials": [
+        "stone",
+        "soil",
+        "grass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "readable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "gray",
+        "beige"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.54,
+    "youngs_modulus": 30000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.0,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_tombstone_inscriptions": [
+        "aged 70",
+        "loving memory",
+        "22"
+    ],
+    "attribute_crosses": [],
+    "attribute_grave_markers": [
+        {
+            "type": "headstone",
+            "material": "stone",
+            "dimensions": [
+                0.7,
+                0.5,
+                0.1
+            ]
+        },
+        {
+            "type": "headstone",
+            "material": "stone",
+            "dimensions": [
+                0.4,
+                0.3,
+                0.08
+            ]
+        },
+        {
+            "type": "headstone",
+            "material": "stone",
+            "dimensions": [
+                0.5,
+                0.4,
+                0.09
+            ]
+        }
+    ],
+    "attribute_mausoleums": [],
+    "attribute_cemetery_gates": [],
+    "uid": "ca6d8a7bf2574e18b1fef6231cd24e78",
+    "near_synsets": {
+        "grave.n.02": 0.5065369712422592,
+        "gravestone.n.01": 0.5278665560289061,
+        "cemetery.n.01": 0.5279975409169423,
+        "grave.n.01": 0.5471135584590846,
+        "potter's_field.n.01": 0.5478587686892088,
+        "yard.n.01": -1000.0,
+        "yard.n.08": -1000.0,
+        "cubic_yard.n.01": -1000.0,
+        "yard.n.09": -1000.0,
+        "thousand.n.01": -1000.0,
+        "yard.n.06": -1000.0,
+        "yard.n.07": -1000.0,
+        "yard.n.02": -1000.0,
+        "yard.n.03": -1000.0
+    },
+    "synset": "cemetery.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ca6d8a7bf2574e18b1fef6231cd24e78",
+        "creator_username": "GGLPArchaeology",
+        "creator_display_name": "GGLPArchaeology",
+        "creator_profile_url": "https://sketchfab.com/GGLPArchaeology"
+    },
+    "filename": "std_ca6d8a7bf2574e18b1fef6231cd24e78.glb",
+    "length": 1.0800498723983765,
+    "width": 2.029466152191162
+}

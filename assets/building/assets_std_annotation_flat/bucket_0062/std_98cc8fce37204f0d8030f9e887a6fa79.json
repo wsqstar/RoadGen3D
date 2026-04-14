@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a modern commuter train composed of two connected carriages, each featuring a streamlined black roof and a series of rectangular windows along the sides. The sides of the train display multiple evenly spaced doors, highlighted in a contrasting magenta color, suggesting easy passenger access. The undercarriage is detailed with visible wheels and mechanical components, while the ends of the train are marked by yellow and black warning patterns, likely for safety and visibility. The exterior is primarily black with magenta and yellow accents, giving it a contemporary urban appearance. The train's design and features indicate it is intended for efficient passenger transport within city environments.",
+    "description": "A sleek, two-car commuter train with black exteriors, magenta doors, and yellow safety markings, designed for urban passenger transport.",
+    "description_view_0": "The end view shows the train's front face with yellow and black warning patterns and a streamlined black roof.",
+    "description_view_1": "The side view reveals two connected carriages, multiple magenta doors, a row of rectangular windows, and detailed undercarriage components.",
+    "description_view_2": "The opposite end view mirrors the first, displaying the train's rear face with similar yellow and black safety markings.",
+    "description_view_3": "The opposite side view is identical to the first side, showing the same arrangement of doors, windows, and undercarriage details.",
+    "category": "train",
+    "height": 3.8,
+    "max_dimension": 40.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 110000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "button",
+        "coupler"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "magenta",
+        "yellow",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.12,
+        0.08,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.04,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "group",
+    "attribute_train_type": "commuter train",
+    "attribute_number_of_carriages": 2,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "evenly spaced along both sides",
+    "attribute_window_arrangement": "continuous row of rectangular windows",
+    "uid": "98cc8fce37204f0d8030f9e887a6fa79",
+    "near_synsets": {
+        "car_train.n.01": 0.45684975941561967,
+        "train.n.01": 0.46624821535084154,
+        "commuter.n.01": 0.46883130154601327,
+        "passenger_train.n.01": 0.4738181605758597,
+        "subway_train.n.01": 0.47503067445909064,
+        "caravan.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "gearing.n.01": -1000.0,
+        "train.n.04": -1000.0,
+        "train.n.05": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/98cc8fce37204f0d8030f9e887a6fa79",
+        "creator_username": "timblewee",
+        "creator_display_name": "timblewee",
+        "creator_profile_url": "https://sketchfab.com/timblewee"
+    },
+    "filename": "std_98cc8fce37204f0d8030f9e887a6fa79.glb",
+    "length": 39.32457160949707,
+    "width": 2.7594900131225586
+}

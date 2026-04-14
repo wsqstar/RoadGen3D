@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a modern, tactical shotgun with a compact, bullpup design, featuring a matte black finish and angular contours. The main body is robust and streamlined, with a prominent barrel extending from the front and a thick, integrated stock at the rear. The grip is ergonomic and positioned forward, with a visible trigger guard and a magazine or loading port beneath the main body. Small colored indicators, such as a red triangle and blue marking, are present on the sides, likely for safety or operational status. The top of the shotgun includes a rail or sighting mechanism, and the overall construction suggests a blend of metal and polymer materials. The design is utilitarian, suitable for urban tactical scenarios, and emphasizes durability and ease of handling.",
+    "description": "A compact, bullpup-style tactical shotgun with a matte black finish, ergonomic grip, and integrated stock, featuring colored indicators and a robust, modern design.",
+    "description_view_0": "Side view showing the full length, ergonomic grip, trigger guard, colored indicators, and the compact bullpup configuration.",
+    "description_view_1": "Front view highlighting the twin-barrel muzzle, sighting rail, and the narrow, angular profile of the shotgun.",
+    "description_view_2": "Opposite side view displaying the same bullpup layout, grip, and colored indicators, with clear visibility of the loading port and stock.",
+    "description_view_3": "Rear view showing the back of the stock, the compact width, and the alignment of the barrels and sighting mechanism.",
+    "category": "shotgun",
+    "height": 0.25,
+    "max_dimension": 0.8,
+    "materials": [
+        "polymer",
+        "steel",
+        "aluminum",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 35,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "grip",
+        "magazine/loading port",
+        "safety switch",
+        "barrel",
+        "stock",
+        "sight/rail"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "blue",
+        "gray"
+    ],
+    "colors_composition": [
+        0.92,
+        0.03,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel with a thick, vented muzzle and no visible ribbing or secondary barrel",
+    "attribute_stock_type": "integrated bullpup stock",
+    "attribute_action_mechanism": "semi-automatic",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "elongated, rounded trigger guard with a smooth contour and no visible finger grooves",
+    "uid": "ca6a5f68538c442d99e9152611bcffca",
+    "near_synsets": {
+        "shotgun.n.01": 0.5269252789661585,
+        "sawed-off_shotgun.n.01": 0.5340862001518795,
+        "pump_action.n.01": 0.5342248110937953,
+        "gas_gun.n.01": 0.5441511414228221,
+        "bb_gun.n.01": 0.55306036596737
+    },
+    "synset": "sawed-off_shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ca6a5f68538c442d99e9152611bcffca",
+        "creator_username": "royzhang",
+        "creator_display_name": "Sparkykun",
+        "creator_profile_url": "https://sketchfab.com/royzhang"
+    },
+    "filename": "std_ca6a5f68538c442d99e9152611bcffca.glb",
+    "length": 0.7744551301002502,
+    "width": 0.07971572875976562
+}

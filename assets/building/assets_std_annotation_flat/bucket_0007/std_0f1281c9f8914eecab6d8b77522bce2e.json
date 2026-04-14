@@ -1,0 +1,101 @@
+{
+    "description_long": "This humanoid robot features a rounded, oversized head with two large, expressive black oval eyes set in a white face, giving it a friendly and approachable appearance. Its body is sleek and streamlined, with a gray torso accented by blue and black joints at the shoulders, elbows, hips, and knees. The arms are outstretched horizontally, ending in hands with four black, finger-like appendages, each tipped with a spring-like coil. The legs are robust and end in large, rounded feet with blue highlights, suggesting stability and balance. The back of the robot is smooth and unadorned, with visible joint mechanisms at the shoulders and hips. The overall design is modern and functional, with a focus on mobility and interaction in urban environments.",
+    "description": "A sleek, friendly humanoid robot with a large round head, expressive eyes, and articulated limbs with black, spring-tipped fingers and blue accents.",
+    "description_view_0": "Front view shows the robot's large eyes, outstretched arms, and detailed torso and leg design.",
+    "description_view_1": "Left side view highlights the rounded head, arm and leg joints, and the profile of the spring-tipped fingers.",
+    "description_view_2": "Rear view reveals the smooth back, visible shoulder and hip joints, and the back of the large feet.",
+    "description_view_3": "Right side view mirrors the left, showing the side profile of the head, limbs, and hand details.",
+    "category": "humanoid robot",
+    "height": 1.2,
+    "max_dimension": 1.6,
+    "materials": [
+        "plastic",
+        "metal",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 38,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hand",
+        "arm",
+        "head",
+        "torso",
+        "leg",
+        "eye"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "black",
+        "blue"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.18,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms extended horizontally to the sides, legs straight and feet flat on the ground, head facing forward.",
+    "attribute_clothing_style": "No clothing; the robot has integrated panels and coverings in white, gray, and blue, with black accents.",
+    "attribute_facial_features": "Large, oval black eyes set in a white face, no visible mouth or nose, giving a simple and expressive appearance.",
+    "attribute_limb_articulation": "Arms and legs have visible rotary and hinge joints at shoulders, elbows, hips, and knees; hands have four articulated fingers each, likely with rotary joints; limbs appear flexible and capable of a wide range of motion.",
+    "attribute_presence_of_sensors": "Visible sensors include two large camera-like eyes on the face; no other sensors are visible.",
+    "uid": "0f1281c9f8914eecab6d8b77522bce2e",
+    "near_synsets": {
+        "android.n.01": 0.529438525934087,
+        "cyborg.n.01": 0.5535615821685559,
+        "robotics_equipment.n.01": 0.5631434178062017,
+        "automaton.n.02": 0.5638165929442464,
+        "robotics.n.01": 0.5762960166125438
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0f1281c9f8914eecab6d8b77522bce2e",
+        "creator_username": "nico-arch",
+        "creator_display_name": "Nico Arch",
+        "creator_profile_url": "https://sketchfab.com/nico-arch"
+    },
+    "filename": "std_0f1281c9f8914eecab6d8b77522bce2e.glb",
+    "length": 0.4930243343114853,
+    "width": 1.2291420102119446
+}

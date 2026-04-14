@@ -1,0 +1,101 @@
+{
+    "description_long": "This object consists of several parallel clotheslines strung horizontally, each holding a variety of garments such as shirts, pants, and socks. The lines are suspended between two points, likely poles or walls, and the clothing is attached with small clothespins. The garments are primarily red and blue, with some yellow clothespins visible, and are spaced at irregular intervals along the lines. The lines themselves appear to be made of a thin, flexible material, possibly rope or twine. The overall structure is lightweight and open, with significant gaps between the lines and garments, allowing air to circulate freely. This setup is typical for outdoor urban environments where residents hang laundry to dry in shared or private spaces.",
+    "description": "A set of parallel clotheslines with red and blue garments attached by yellow clothespins, suspended in an open, airy arrangement.",
+    "description_view_0": "Front view showing all three clotheslines with a clear display of red shirts, blue pants, and yellow clothespins evenly spaced.",
+    "description_view_1": "Side view revealing the thinness of the lines and the way garments hang, with less detail visible on the clothing itself.",
+    "description_view_2": "Rear view similar to the front, but with garments facing the opposite direction and some items partially obscured.",
+    "description_view_3": "Opposite side view, again emphasizing the slim profile of the lines and the hanging garments' silhouettes.",
+    "category": "hanger",
+    "height": 1.2,
+    "max_dimension": 2.5,
+    "materials": [
+        "cotton",
+        "polyester",
+        "wood",
+        "rope",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.05,
+        0.15,
+        0.1
+    ],
+    "mass": 2.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 10,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "hangable",
+        "dryable",
+        "attachable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "clothesline",
+        "clothespin",
+        "garment"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "red",
+        "blue",
+        "yellow",
+        "brown"
+    ],
+    "colors_composition": [
+        0.45,
+        0.35,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 500,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_location_relative_to_buildings": "isolated",
+    "attribute_presence_of_signage": "none",
+    "attribute_entryway_type": "not visible",
+    "attribute_roof_structure": "not visible",
+    "attribute_door_size": "not visible",
+    "uid": "b73f8c34d9d441f2993c9f4178b7dad7",
+    "near_synsets": {
+        "clothesline.n.01": 0.46106727451916973,
+        "hanger.n.02": 0.4696986365573319,
+        "hang.n.02": 0.4843570088113,
+        "hanger.n.01": 0.49222187684929863,
+        "coat_hanger.n.01": 0.4957681427319483
+    },
+    "synset": "coat_hanger.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b73f8c34d9d441f2993c9f4178b7dad7",
+        "creator_username": "agustinpanes2003",
+        "creator_display_name": "Agustin Panes",
+        "creator_profile_url": "https://sketchfab.com/agustinpanes2003"
+    },
+    "filename": "std_b73f8c34d9d441f2993c9f4178b7dad7.glb",
+    "length": 3.309388756752014,
+    "width": 6.276108264923096
+}

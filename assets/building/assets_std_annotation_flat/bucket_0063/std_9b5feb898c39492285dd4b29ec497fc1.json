@@ -1,0 +1,96 @@
+{
+    "description_long": "This kiosk features a two-level structure with a prominent overhanging flat roof, supported by a central vertical column. The lower level includes a wide, light-colored counter surface that extends outward, providing ample space for transactions or displays. A staircase with wooden steps and railings connects the ground to the upper level, which is partially enclosed by railings and a solid back wall. The kiosk sits on a square, light wood-patterned platform, suggesting a semi-permanent installation. The materials appear to be a mix of concrete or stone for the main structure, wood for the stairs and railings, and composite or laminate for the counter. The overall design is modern and functional, with clean lines and minimal ornamentation.",
+    "description": "A modern, two-level kiosk with a flat overhanging roof, wood stairs, and a wide counter on a square platform. The structure combines concrete, wood, and composite materials for a sleek, functional appearance.",
+    "description_view_0": "Front view showing the staircase, railings, and the wide counter surface extending outward.",
+    "description_view_1": "Side view highlighting the staircase and the depth of the counter, with the central column visible.",
+    "description_view_2": "Rear view displaying the solid back wall and the overhanging roof, with minimal openings.",
+    "description_view_3": "Opposite side view showing the structure's depth and the alignment of the two levels.",
+    "category": "kiosk",
+    "height": 3.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "concrete",
+        "wood",
+        "composite",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "leanable",
+        "displayable",
+        "transactionable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "stairs",
+        "counter",
+        "railings"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "light brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "none",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "open archway at front, no visible doors",
+    "attribute_roof_design": "Flat overhanging roof with a slight lip, constructed from concrete or composite, providing shade and weather protection.",
+    "attribute_architectural_style": "modern minimalist with functional, geometric lines and exposed materials",
+    "uid": "9b5feb898c39492285dd4b29ec497fc1",
+    "near_synsets": {
+        "booth.n.02": 0.5736312094097261,
+        "stairhead.n.01": 0.585690655010322,
+        "decker.n.02": 0.5862387717065837,
+        "platform.n.01": 0.5872871599143286,
+        "counter.n.01": 0.5888715071912519
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9b5feb898c39492285dd4b29ec497fc1",
+        "creator_username": "stolmark",
+        "creator_display_name": "Stolmark",
+        "creator_profile_url": "https://sketchfab.com/stolmark"
+    },
+    "filename": "std_9b5feb898c39492285dd4b29ec497fc1.glb",
+    "length": 4.179547309875488,
+    "width": 5.040594100952148
+}

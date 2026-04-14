@@ -1,0 +1,98 @@
+{
+    "description_long": "This rifle features a skeletonized barrel shroud with a lattice structure, providing both reduced weight and enhanced cooling. The receiver is robust and boxy, with a visible belt-fed ammunition system hanging below, indicating a design for sustained fire. The stock is a simple, curved metal piece, likely for shoulder support, and the grip is integrated into the lower receiver. The front sight is a circular iron sight, while the rear sight is a simple notch, both fixed to the barrel. The overall finish is matte black with some olive drab accents, and the construction appears to be primarily metal with some polymer or composite elements. The rifle's design suggests it is intended for heavy-duty use, possibly as a squad automatic weapon or light machine gun in urban environments.",
+    "description": "A belt-fed, skeletonized rifle with a lattice barrel shroud, boxy receiver, and curved metal stock, finished in matte black and olive drab. Features include a circular iron front sight and visible ammunition belt.",
+    "description_view_0": "Front view shows the circular iron front sight, the open lattice barrel shroud, and the muzzle.",
+    "description_view_1": "Side view highlights the long, skeletonized barrel, the boxy receiver, and the hanging belt-fed ammunition.",
+    "description_view_2": "Rear view displays the curved metal stock, the rear sight notch, and the grip area.",
+    "description_view_3": "Opposite side view reveals the ammunition belt feed and the overall length of the rifle.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "polymer",
+        "composite",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 10.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "trigger",
+        "magazine/belt feed",
+        "sight",
+        "grip",
+        "charging handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "olive drab",
+        "gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "skeletonized",
+    "attribute_barrel_type": "skeletonized",
+    "attribute_magazine_type": "belt-fed",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "2b54609e4b6f416aba5a6a9ba9994bb7",
+    "near_synsets": {
+        "carbine.n.01": 0.5320926277679583,
+        "rifle.n.01": 0.5347474614913524,
+        "cartridge_belt.n.01": 0.5497699433795579,
+        "dragunov.n.01": 0.5562248671614912,
+        "light_arm.n.01": 0.5585751807852596
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2b54609e4b6f416aba5a6a9ba9994bb7",
+        "creator_username": "jkillgore",
+        "creator_display_name": "jkillgore",
+        "creator_profile_url": "https://sketchfab.com/jkillgore"
+    },
+    "filename": "std_2b54609e4b6f416aba5a6a9ba9994bb7.glb",
+    "length": 0.5263637900352478,
+    "width": 0.17363058030605316
+}

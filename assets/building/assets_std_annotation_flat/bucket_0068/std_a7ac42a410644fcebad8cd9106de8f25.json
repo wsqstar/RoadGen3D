@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a double-action revolver with a polished metallic finish and a long, robust barrel. The frame and cylinder are made of stainless steel, with the cylinder featuring visible chambers loaded with brass cartridges. The grip is black, contoured, and appears to be made of a textured synthetic material, adorned with a gold emblem. The trigger guard is rounded and sturdy, providing ample space for finger placement. The barrel is engraved with markings, and the overall construction suggests durability and precision, suitable for use in law enforcement or personal defense scenarios.",
+    "description": "A polished stainless steel revolver with a long barrel, black ergonomic grip, and visible brass cartridges in the cylinder.",
+    "description_view_0": "Side view showing the full length of the barrel, the black grip with gold emblem, and the cylinder with cartridge chambers.",
+    "description_view_1": "Top-down view highlighting the alignment of the barrel, the open cylinder with visible brass cartridges, and the width of the grip.",
+    "description_view_2": "Opposite side view displaying the barrel, grip, and cylinder, with clear visibility of the frame and trigger guard.",
+    "description_view_3": "Front view focusing on the muzzle opening, barrel profile, and the circular arrangement of the cylinder.",
+    "category": "handgun",
+    "height": 0.15,
+    "max_dimension": 0.32,
+    "materials": [
+        "steel",
+        "polymer",
+        "brass",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "rotatable",
+        "pressable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "cylinder",
+        "hammer",
+        "barrel",
+        "trigger guard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "silver",
+        "black",
+        "gold",
+        "brass"
+    ],
+    "colors_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.65,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_grip_design": "The grip is black, contoured, and ergonomically shaped to fit the hand comfortably. It features a smooth yet slightly textured surface for improved handling, with a gold circular emblem embedded near the top. The grip appears to be made of a durable synthetic material, possibly rubberized or polymer, and includes subtle finger grooves for enhanced control and stability.",
+    "attribute_trigger_guard_style": "The trigger guard is rounded and robust, with a smooth metallic finish matching the frame. It is of medium thickness, providing ample protection for the trigger while allowing easy access. The guard is slightly undercut at the rear to facilitate a higher grip and does not feature any additional texturing or integrated accessories.",
+    "attribute_barrel_type": "The barrel is long and cylindrical with a polished stainless steel finish. It is of standard profile, not threaded or ported, and features clear linear engravings along the side. The muzzle is clean and unadorned, with no compensators or suppressor threads visible.",
+    "attribute_slide_markings": "The barrel is engraved with the marking 'SMITH & WESSON' on the left side, rendered in a clear, capitalized font. There are no other visible engravings, serial numbers, or decorative patterns on the frame or cylinder in the provided views.",
+    "attribute_magazine_base_shape": "As a revolver, this handgun does not have a traditional magazine base or floorplate. The base of the grip is rounded and smooth, with no extensions, flares, or finger rests, and features a seamless transition from the grip material to the frame.",
+    "uid": "a7ac42a410644fcebad8cd9106de8f25",
+    "near_synsets": {
+        "revolver.n.01": 0.49224961524093597,
+        "colt.n.02": 0.49843441885039547,
+        "pistol.n.01": 0.5153082929837842,
+        "twenty-two_pistol.n.01": 0.5280659803207812,
+        "derringer.n.01": 0.532409420147654
+    },
+    "synset": "revolver.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a7ac42a410644fcebad8cd9106de8f25",
+        "creator_username": "JasperCarmack",
+        "creator_display_name": "Jasper Carmack",
+        "creator_profile_url": "https://sketchfab.com/JasperCarmack"
+    },
+    "filename": "std_a7ac42a410644fcebad8cd9106de8f25.glb",
+    "length": 0.2793130576610565,
+    "width": 0.04433623142540455
+}

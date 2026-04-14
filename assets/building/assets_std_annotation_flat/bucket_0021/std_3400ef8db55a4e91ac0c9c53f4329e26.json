@@ -1,0 +1,97 @@
+{
+    "description_long": "This raft is constructed from several large, cylindrical bamboo poles laid parallel to each other and bound together with crosswise wooden slats and rope lashings. The bamboo poles are uniform in size and appear to be hollow, contributing to the raft's buoyancy. The raft is rectangular in shape, with the ends of the bamboo poles exposed and rounded. A single long wooden pole, likely used for propulsion, rests diagonally across the top surface. The lashings are evenly spaced, securing the bamboo poles tightly and providing structural integrity. The overall appearance is rustic and utilitarian, suitable for use on calm waters or as a simple floating platform.",
+    "description": "A rustic bamboo raft bound with rope and wooden slats, featuring a long wooden pole for propulsion. The raft is rectangular, with exposed bamboo ends and a natural, weathered finish.",
+    "description_view_0": "Front view showing the flat face of the bamboo raft with the pole resting diagonally across the surface.",
+    "description_view_1": "Top-down view highlighting the parallel arrangement of bamboo poles and the full length of the propulsion pole.",
+    "description_view_2": "Rear view similar to the front, displaying the lashings and the ends of the bamboo poles.",
+    "description_view_3": "Bottom-up view showing the underside structure and the alignment of the bamboo poles and crosswise slats.",
+    "category": "raft",
+    "height": 0.25,
+    "max_dimension": 2.0,
+    "materials": [
+        "bamboo",
+        "wood",
+        "rope",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 35,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 80,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "floatable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "propulsion pole",
+        "bamboo deck",
+        "rope lashings"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "light brown",
+        "tan",
+        "beige"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 10000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_presence_of_flotation_devices": false,
+    "attribute_number_of_seats": 2,
+    "attribute_type_of_propulsion": "paddle",
+    "attribute_safety_markings": [],
+    "attribute_attachment_points": 4,
+    "uid": "3400ef8db55a4e91ac0c9c53f4329e26",
+    "near_synsets": {
+        "balsa_raft.n.01": 0.48990563825059535,
+        "raft.n.01": 0.5098951320911885,
+        "rowing_boat.n.01": 0.5117834285473499,
+        "bamboo.n.01": 0.54818436136283,
+        "river_boat.n.01": 0.5510003215163962,
+        "batch.n.02": -1000.0,
+        "raft_foundation.n.01": -1000.0
+    },
+    "synset": "raft_foundation.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/3400ef8db55a4e91ac0c9c53f4329e26",
+        "creator_username": "alexmartire",
+        "creator_display_name": "Alex Martire",
+        "creator_profile_url": "https://sketchfab.com/alexmartire"
+    },
+    "filename": "std_3400ef8db55a4e91ac0c9c53f4329e26.glb",
+    "length": 1.4334411025047302,
+    "width": 3.264867067337036
+}

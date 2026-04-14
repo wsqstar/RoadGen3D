@@ -1,0 +1,89 @@
+{
+    "description_long": "This is a large, rectangular metal container with a ribbed exterior and a pair of hinged doors on one end. The surface is weathered, showing a mix of rust and greenish patina, suggesting prolonged outdoor exposure. The doors are reinforced with horizontal bars and open outward, revealing a spacious, empty interior. The container's structure is solid and industrial, with vertical slats running along the sides and top for added strength. There are no visible handles, signage, or markings on the exterior. Its size and robust build indicate it is designed for secure storage or transport of goods in urban or industrial environments.",
+    "description": "A large, weathered metal container with ribbed sides and hinged double doors, showing rust and green patina. The doors open outward, revealing a spacious, empty interior.",
+    "description_view_0": "Front view showing the open double doors and the empty interior space.",
+    "description_view_1": "Side view displaying the ribbed metal surface and one door partially open.",
+    "description_view_2": "Rear view highlighting the closed, ribbed back panel with both doors visible at the far end.",
+    "description_view_3": "Opposite side view with both doors open, emphasizing the container's length and ribbed texture.",
+    "category": "container",
+    "height": 2.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3500,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "rust brown",
+        "green"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "swing open on side hinges",
+    "attribute_labeling_or_signage": "none",
+    "attribute_handles_or_grips": "none",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "095b16d048f145ce91b168378b4cd1eb",
+    "near_synsets": {
+        "container.n.01": 0.5005592119540219,
+        "empty.n.01": 0.5229645493514988,
+        "cargo_container.n.01": 0.5267248171538438,
+        "can.n.01": 0.5381100856811178,
+        "pan.n.03": 0.5523686418448484
+    },
+    "synset": "cargo_container.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/095b16d048f145ce91b168378b4cd1eb",
+        "creator_username": "chris.berghs",
+        "creator_display_name": "chris.berghs",
+        "creator_profile_url": "https://sketchfab.com/chris.berghs"
+    },
+    "filename": "std_095b16d048f145ce91b168378b4cd1eb.glb",
+    "length": 7.718303918838501,
+    "width": 3.577622652053833
+}

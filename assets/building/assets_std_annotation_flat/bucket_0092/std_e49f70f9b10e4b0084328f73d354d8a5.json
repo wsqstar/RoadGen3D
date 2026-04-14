@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a futuristic, angular airplane with a predominantly red body accented by black and gold details. The fuselage is sharply contoured, with a pointed nose and a canopy-style cockpit featuring a blue-tinted windshield. The wings are integrated into the lower section of the body, extending outward as thick, black structures with metallic cylindrical elements at the ends, suggesting advanced propulsion or landing systems. The tail section is swept and tapers to a geometric point, with no visible vertical stabilizer, giving it a sleek, aggressive profile. The underside and side panels display a checkered red-and-black pattern, and the overall design is reminiscent of a high-speed, urban-capable aircraft. Visible surface materials suggest a combination of metal and composite, with a glossy, hard finish.",
+    "description": "A sleek, angular red airplane with black and gold accents, featuring a pointed nose, integrated low wings, and a blue-tinted canopy cockpit. The design is futuristic, with thick black wing structures and a swept, geometric tail.",
+    "description_view_0": "Front view shows the pointed nose, blue-tinted cockpit canopy, and the wide, black wing structures extending outward with metallic ends.",
+    "description_view_1": "Left side view highlights the sharply contoured fuselage, checkered side panels, and the thick, low-mounted black wings with visible cylindrical propulsion elements.",
+    "description_view_2": "Rear view reveals the swept, angular tail section, the geometric tapering of the fuselage, and the broad stance of the wing structures.",
+    "description_view_3": "Right side view mirrors the left, showing the checkered pattern, wing configuration, and the streamlined, aggressive profile.",
+    "category": "airplane",
+    "height": 2.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "composite",
+        "aluminum",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 17640,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "control panel",
+        "landing gear",
+        "engine access panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "gold",
+        "blue"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with thick, integrated wings extending from the lower fuselage; wings are straight with no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Twin jet engines integrated into the ends of the wing structures.",
+    "attribute_tail_design": "Swept tail with no visible vertical stabilizer, featuring a geometric, angular design.",
+    "attribute_landing_gear_type": "Skid-type landing gear integrated into the underside of the wing structures; no visible wheels.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed single-seat cockpit with a blue-tinted canopy.",
+    "uid": "e49f70f9b10e4b0084328f73d354d8a5",
+    "near_synsets": {
+        "aircraft.n.01": 0.5176809653462664,
+        "airplane.n.01": 0.5337050889711347,
+        "wings.n.02": 0.5578633661848472,
+        "monoplane.n.01": 0.5586075181906613,
+        "fuselage.n.01": 0.5601460991949946
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e49f70f9b10e4b0084328f73d354d8a5",
+        "creator_username": "3DLaba",
+        "creator_display_name": "3DLab",
+        "creator_profile_url": "https://sketchfab.com/3DLaba"
+    },
+    "filename": "std_e49f70f9b10e4b0084328f73d354d8a5.glb",
+    "length": 7.57548975944519,
+    "width": 4.398141384124756
+}

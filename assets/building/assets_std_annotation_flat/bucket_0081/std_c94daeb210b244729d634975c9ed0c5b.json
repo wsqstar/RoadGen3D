@@ -1,0 +1,104 @@
+{
+    "description_long": "This is an older model, four-door sedan with a boxy, utilitarian design reminiscent of Eastern European vehicles from the late 20th century. The body is painted in a faded, weathered blue with visible signs of wear, rust, and grime, suggesting prolonged outdoor exposure. The windows are darkened, possibly tinted or dirty, and the trim and bumpers are black, contrasting with the body color. The headlights and taillights are rectangular, and the car features simple, black steel wheels with no visible hubcaps. The overall appearance is rugged and functional, with minimal decorative elements. The vehicle's proportions and details indicate it is designed for everyday urban use, likely prioritizing durability over luxury.",
+    "description": "A weathered, boxy blue four-door sedan with black trim and simple steel wheels, showing signs of age and urban wear.",
+    "description_view_0": "Side view showing the full length of the sedan, four doors, and black steel wheels.",
+    "description_view_1": "Front view highlighting the rectangular headlights, grille, and the worn hood surface.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the other profile and door arrangement.",
+    "description_view_3": "Rear view displaying the rectangular taillights, trunk, and absence of a visible license plate.",
+    "category": "sedan",
+    "height": 1.45,
+    "max_dimension": 4.3,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.12,
+        0.08,
+        0.08,
+        0.04,
+        0.03
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 3500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "trunk",
+        "hood",
+        "handle",
+        "mirror"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.18,
+        0.07
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.55,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_number_of_doors": 4,
+    "attribute_license_plate": "none",
+    "attribute_wheel_design": "Simple black steel wheels with no visible spokes or hubcaps.",
+    "uid": "c94daeb210b244729d634975c9ed0c5b",
+    "near_synsets": {
+        "sedan.n.01": 0.5259992017279407,
+        "car_door.n.01": 0.5486477599570306,
+        "car_window.n.01": 0.5549324569954016,
+        "steel_blue.n.01": 0.5673015041184225,
+        "used-car.n.01": 0.5685264039148802,
+        "sedan.n.02": -1000.0
+    },
+    "synset": "sedan.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/c94daeb210b244729d634975c9ed0c5b",
+        "creator_username": "kryik1023",
+        "creator_display_name": "Renafox",
+        "creator_profile_url": "https://sketchfab.com/kryik1023"
+    },
+    "filename": "std_c94daeb210b244729d634975c9ed0c5b.glb",
+    "length": 4.243549585342407,
+    "width": 1.7582401037216187
+}

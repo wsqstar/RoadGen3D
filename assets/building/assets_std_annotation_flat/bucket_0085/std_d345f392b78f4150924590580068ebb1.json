@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a rustic, wooden handcart reminiscent of those used in the 19th century, featuring a rectangular cargo bed with high side panels and a pair of large, spoked wooden wheels on each side. The cart is equipped with a long, forked wooden handle at the front for pulling or steering, and has several curved metal hoops arching over the cargo area, likely intended to support a fabric cover. The wood appears weathered and textured, with visible grain and knots, giving it an authentic, aged appearance. The wheels are robust and reinforced with metal rims, suitable for traversing uneven urban or rural terrain. The interior is open and spacious, designed to carry goods or supplies, and the side panels provide containment for the cargo. The overall construction is utilitarian, with exposed fasteners and a simple, functional design.",
+    "description": "A weathered wooden handcart with high side panels, large spoked wheels, and arched metal hoops for a cover. The open cargo bed and sturdy handle make it ideal for transporting goods.",
+    "description_view_0": "Front view showing the forked wooden handle, high side panels, and the arched metal hoops over the cargo bed.",
+    "description_view_1": "Side view highlighting the length of the cart, the four large spoked wheels, and the open, rectangular cargo area.",
+    "description_view_2": "Rear view displaying the back panel, the symmetry of the side rails, and the continuation of the arched hoops.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the wheels, side panels, and the open interior from the other side.",
+    "category": "handcart",
+    "height": 1.5,
+    "max_dimension": 2.5,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 70,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "side panel",
+        "cargo bed"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light brown",
+        "dark brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 4,
+    "attribute_handle_type": "long forked wooden bar",
+    "attribute_wheel_position": "side-mounted",
+    "attribute_presence_of_side_rails": true,
+    "attribute_load_platform_design": "flat solid wooden surface",
+    "uid": "d345f392b78f4150924590580068ebb1",
+    "near_synsets": {
+        "hand_truck.n.01": 0.4798512921176806,
+        "handcart.n.01": 0.4830400753849252,
+        "cart.n.01": 0.4918876091562823,
+        "shopping_cart.n.01": 0.49246793218006235,
+        "laundry_cart.n.01": 0.4988643994742554
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d345f392b78f4150924590580068ebb1",
+        "creator_username": "Autonarch",
+        "creator_display_name": "Autonarch",
+        "creator_profile_url": "https://sketchfab.com/Autonarch"
+    },
+    "filename": "std_d345f392b78f4150924590580068ebb1.glb",
+    "length": 2.122176170349121,
+    "width": 1.1598628759384155
+}

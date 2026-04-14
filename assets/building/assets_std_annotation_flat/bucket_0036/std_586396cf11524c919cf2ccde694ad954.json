@@ -1,0 +1,106 @@
+{
+    "description_long": "This object is a vintage-style cash register with a robust, angular body finished in a matte red color. The front features a large rectangular display window at the top and a secondary, smaller display or label window to the left. Below the main display is a grid of numerous rectangular keys, arranged in several vertical columns, likely for entering prices or codes. The base is broad and slightly stepped, suggesting stability and space for an internal cash drawer. The keys are metallic or plastic, contrasting with the red body, and the overall construction appears to be primarily metal with some plastic components. The design is utilitarian, with no visible branding or decorative elements, and is typical of cash registers found in older retail or urban commercial environments.",
+    "description": "A vintage red cash register with a grid of rectangular keys, two display windows, and a broad, stepped base. The design is utilitarian and robust, with metallic or plastic keys contrasting the red body.",
+    "description_view_0": "The left side view shows the angular, stepped profile of the red body and the slanted surface where the keys are mounted.",
+    "description_view_1": "The front view highlights the grid of rectangular keys, two display windows, and the broad base, providing the main interactive interface.",
+    "description_view_2": "The right side view mirrors the left, showing the sloped key area and the solid, unadorned red side panel.",
+    "description_view_3": "The rear view displays a plain, flat red surface with no visible features or openings.",
+    "category": "cash register",
+    "height": 0.45,
+    "max_dimension": 0.55,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.1
+    ],
+    "mass": 14,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 140,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "keypad",
+        "display screen",
+        "cash drawer"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "single",
+    "attribute_display_screen_type": "numeric segment display",
+    "attribute_keypad_layout": "vertical grid of approximately 40 rectangular keys, arranged in multiple columns, likely numeric and function keys",
+    "attribute_cash_drawer_presence": true,
+    "attribute_receipt_printer_slot": false,
+    "attribute_brand_logo": "none",
+    "uid": "586396cf11524c919cf2ccde694ad954",
+    "near_synsets": {
+        "cash_register.n.01": 0.4817693208296716,
+        "cashbox.n.01": 0.5871202723041477,
+        "victrola.n.01": 0.5913150294912112,
+        "cashier.n.02": 0.5925658133979002,
+        "keyboard.n.02": 0.5925709161600011,
+        "register.n.02": -1000.0,
+        "register.n.05": -1000.0,
+        "register.n.01": -1000.0,
+        "cash.n.03": -1000.0,
+        "cash.n.02": -1000.0,
+        "register.n.04": -1000.0,
+        "cash.n.01": -1000.0,
+        "register.n.03": -1000.0,
+        "register.n.06": -1000.0
+    },
+    "synset": "cash_register.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/586396cf11524c919cf2ccde694ad954",
+        "creator_username": "downrev",
+        "creator_display_name": "DownRev",
+        "creator_profile_url": "https://sketchfab.com/downrev"
+    },
+    "filename": "std_586396cf11524c919cf2ccde694ad954.glb",
+    "length": 0.4112069308757782,
+    "width": 0.38793113827705383
+}

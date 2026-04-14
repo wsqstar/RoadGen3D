@@ -1,0 +1,94 @@
+{
+    "description_long": "This stone gatehouse features a robust rectangular structure with four prominent cylindrical corner towers, each capped with battlements. The walls are constructed from light gray, rough-hewn stone blocks, giving the building a fortified medieval appearance. The front facade includes a large, arched entryway at ground level, flanked by the two front towers, and a central open courtyard or passage visible from above. The roof is flat and open, bordered by crenellated parapets, and the towers are topped with classic battlements for defensive purposes. There are no visible windows, emphasizing the defensive nature of the structure. The entire gatehouse sits on a broad, flat stone base, suggesting permanence and stability.",
+    "description": "A fortified stone gatehouse with four cylindrical corner towers, battlements, and a large arched entryway, all constructed from rough gray stone blocks.",
+    "description_view_0": "Front view showing the main arched entryway and two prominent cylindrical towers with battlements.",
+    "description_view_1": "Rear view displaying a solid stone wall with no entryway and the back two cylindrical towers.",
+    "description_view_2": "Side view highlighting the flat stone wall and the symmetrical arrangement of the corner towers.",
+    "description_view_3": "Opposite side view, similar to view 2, with the same flat wall and corner towers visible.",
+    "category": "gatehouse",
+    "height": 7.0,
+    "max_dimension": 15.0,
+    "materials": [
+        "stone",
+        "mortar",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 350000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "defendable",
+        "blockable",
+        "guardable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "entryway",
+        "battlements",
+        "towers"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Medieval",
+    "attribute_roof_type": "flat",
+    "attribute_entryway_design": "Large arched stone entryway with no visible doors.",
+    "attribute_window_placement": "No visible windows on any facade.",
+    "attribute_security_features": [
+        "battlements",
+        "thick stone walls",
+        "elevated towers"
+    ],
+    "uid": "fef4063236674493b5be736339b794cf",
+    "near_synsets": {
+        "gatehouse.n.01": 0.4760703669099317,
+        "portcullis.n.01": 0.4986585949721962,
+        "castle.n.02": 0.5014777660256655,
+        "blockhouse.n.01": 0.508951914497638,
+        "machicolation.n.01": 0.5183109895258169
+    },
+    "synset": "gatehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fef4063236674493b5be736339b794cf",
+        "creator_username": "tenor3",
+        "creator_display_name": "Tenor3",
+        "creator_profile_url": "https://sketchfab.com/tenor3"
+    },
+    "filename": "std_fef4063236674493b5be736339b794cf.glb",
+    "length": 17.672935485839844,
+    "width": 17.672932624816895
+}

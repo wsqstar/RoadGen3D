@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a large, elevated barn structure with a weathered, corrugated metal gable roof and wooden siding. The barn is supported by numerous vertical wooden posts, raising it above ground level, and features a prominent covered loading ramp extending from one side. There are two main sections: a larger central barn and a smaller adjacent outbuilding connected by a walkway. The main barn has multiple rectangular windows and a wide double-door opening, while the outbuilding has a single large opening and a sloped walkway. The exterior siding is composed of horizontal wooden planks, and the overall appearance suggests a utilitarian, rural design adapted for agricultural storage or processing. The structure is robust and functional, with ample space for entry and movement inside.",
+    "description": "A large, elevated wooden barn with a corrugated metal gable roof, supported by posts and featuring a covered loading ramp and adjacent outbuilding. The structure has multiple windows, wide doors, and horizontal plank siding.",
+    "description_view_0": "Front view showing the main barn's wide double-door entrance, multiple windows, and the adjacent outbuilding connected by a walkway.",
+    "description_view_1": "Side view highlighting the long covered loading ramp, the barn's elevated structure, and the outbuilding's open entrance.",
+    "description_view_2": "Rear view displaying the barn's double-door opening, the length of the loading ramp, and the outbuilding's side profile.",
+    "description_view_3": "Opposite side view showing the barn's horizontal siding, window arrangement, and the connection between the main barn and outbuilding.",
+    "category": "barn",
+    "height": 6.5,
+    "max_dimension": 22.0,
+    "materials": [
+        "wood",
+        "corrugated metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "loadable",
+        "unloadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "ramp",
+        "windows"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "gray",
+        "rust"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "group",
+    "attribute_roof_type": "corrugated metal gable roof",
+    "attribute_siding_pattern": "horizontal lap siding",
+    "attribute_door_style": "double sliding barn doors on main structure, single large opening on outbuilding",
+    "attribute_window_arrangement": "multiple rectangular windows evenly spaced along the main barn's facade",
+    "attribute_architectural_style": "traditional American utilitarian barn",
+    "uid": "b6b8eedbe92c42359bf10ee855d45369",
+    "near_synsets": {
+        "barn.n.01": 0.4840316290979353,
+        "farm_building.n.01": 0.5121431030813479,
+        "barn_door.n.01": 0.5182248625430939,
+        "cowbarn.n.01": 0.520175649000287,
+        "barnyard.n.01": 0.5385533357399406,
+        "barn.n.02": -1000.0
+    },
+    "synset": "barn.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b6b8eedbe92c42359bf10ee855d45369",
+        "creator_username": "nermin",
+        "creator_display_name": "nermin",
+        "creator_profile_url": "https://sketchfab.com/nermin"
+    },
+    "filename": "std_b6b8eedbe92c42359bf10ee855d45369.glb",
+    "length": 6.655387878417969,
+    "width": 5.091373443603516
+}

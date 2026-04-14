@@ -1,0 +1,95 @@
+{
+    "description_long": "This cowshed is a rectangular, open-sided structure with a prominent gable roof clad in red metal panels. The frame is constructed from light-colored timber, with visible trusses and support beams providing structural integrity. The front and one side are open, while the rear and the opposite side are partially enclosed with horizontal wooden planks, offering shelter and some protection from the elements. The roof overhangs the structure, providing additional shade and rain cover. The base of the support posts appears to be reinforced with concrete footings. The overall design is utilitarian, prioritizing ventilation and ease of access for livestock.",
+    "description": "A timber-framed cowshed with a red gable metal roof, open front, and partially enclosed rear and side walls.",
+    "description_view_0": "Front view showing the open entrance, exposed timber trusses, and the red gable roof.",
+    "description_view_1": "Top-down view highlighting the full expanse of the red metal roof and the open front.",
+    "description_view_2": "Rear view displaying the partially enclosed back wall with horizontal wooden planks and the gable roof structure.",
+    "description_view_3": "Side view showing the partially enclosed side wall and the open opposite side, with the roof's overhang visible.",
+    "category": "cowshed",
+    "height": 3.2,
+    "max_dimension": 7.5,
+    "materials": [
+        "wood",
+        "metal",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.15
+    ],
+    "mass": 3200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shelter_providing",
+        "animal_housing"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "entrance",
+        "enclosed wall panels"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "livestock"
+    ],
+    "colors": [
+        "red",
+        "light brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.45,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gable",
+    "attribute_door_style": "open entrance, no visible doors",
+    "attribute_window_presence": "no windows",
+    "attribute_ventilation_features": "open eaves, open front and side",
+    "attribute_architectural_style": "traditional rural",
+    "uid": "c7ffda69e0454a9b87df8f9c24e52ac6",
+    "near_synsets": {
+        "cowbarn.n.01": 0.42671321886950797,
+        "stockyard.n.01": 0.4903087017718367,
+        "farm_building.n.01": 0.4913364241019607,
+        "barn.n.01": 0.4959551752170268,
+        "woodshed.n.01": 0.49652065349797364
+    },
+    "synset": "cowbarn.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c7ffda69e0454a9b87df8f9c24e52ac6",
+        "creator_username": "crownoakbuildingsdesigns",
+        "creator_display_name": "crownoakbuildingsdesigns",
+        "creator_profile_url": "https://sketchfab.com/crownoakbuildingsdesigns"
+    },
+    "filename": "std_c7ffda69e0454a9b87df8f9c24e52ac6.glb",
+    "length": 4.760150194168091,
+    "width": 4.736135005950928
+}

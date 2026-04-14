@@ -1,0 +1,103 @@
+{
+    "description_long": "This object is a short segment of railway track, featuring two parallel metallic rails mounted atop four evenly spaced wooden sleepers. The rails are rendered in a metallic gray color, while the sleepers are depicted in a natural wood tone with red markings at the ends, suggesting reinforcement or warning indicators. The rails are rectangular in cross-section and are securely fastened to the sleepers, which are slightly raised above the ground. There is no visible ballast bed or underlying gravel, and the track appears to be designed for above-ground installation rather than being embedded in pavement. The overall construction is robust, suitable for supporting the weight and movement of rail vehicles. The design is simple and functional, typical of railway infrastructure found in urban or industrial environments.",
+    "description": "A short section of railway track with two gray metal rails mounted on four wooden sleepers, each marked with red ends. The track is sturdy and designed for supporting rail vehicles, with no ballast or pavement embedding visible.",
+    "description_view_0": "Front view showing the two parallel gray rails and four wooden sleepers with red ends clearly visible.",
+    "description_view_1": "Side view highlighting the thickness of the rails and sleepers, with the sleepers' ends extending beyond the rails.",
+    "description_view_2": "Rear view similar to the front, showing the rails and sleepers from the opposite direction.",
+    "description_view_3": "Opposite side view, again emphasizing the profile of the rails and sleepers, mirroring view 1.",
+    "category": "railway track",
+    "height": 0.15,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.45,
+        0.05
+    ],
+    "mass": 60,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "guiding"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "rails",
+        "sleepers"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "brown",
+        "red"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_parallel_metal_rails": true,
+    "attribute_wooden_or_concrete_sleepers": "wood",
+    "attribute_ballast_bed": false,
+    "attribute_embedded_in_pavement": false,
+    "attribute_railway_crossing_signage": false,
+    "uid": "1d23a225ea6f4ec8b357f12ad6588182",
+    "near_synsets": {
+        "railroad_bed.n.01": 0.4446057669493891,
+        "track.n.09": 0.4735546221862,
+        "railroad_track.n.01": 0.48368585535922676,
+        "line.n.14": 0.48622522280929886,
+        "switch.n.04": 0.4870352396094567,
+        "track.n.06": -1000.0,
+        "railway.n.01": -1000.0,
+        "track.n.08": -1000.0,
+        "cut.n.08": -1000.0,
+        "track.n.03": -1000.0,
+        "path.n.04": -1000.0,
+        "racetrack.n.01": -1000.0,
+        "track.n.07": -1000.0,
+        "track.n.11": -1000.0,
+        "track.n.10": -1000.0,
+        "lead.n.03": -1000.0
+    },
+    "synset": "track.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1d23a225ea6f4ec8b357f12ad6588182",
+        "creator_username": "mareoncz",
+        "creator_display_name": "Mareon",
+        "creator_profile_url": "https://sketchfab.com/mareoncz"
+    },
+    "filename": "std_1d23a225ea6f4ec8b357f12ad6588182.glb",
+    "length": 2.399993896484375,
+    "width": 2.0999984741210938
+}

@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a white emergency ambulance van with a red medical cross symbol and Cyrillic text along its sides, indicating it is a Russian medical vehicle. The van features a blue emergency light bar on the roof and the number '03' on both the front and rear, which is a common emergency number in Russia. The side windows are partially covered with metal shutters, and the vehicle has standard black tires with silver hubcaps. The rear of the ambulance is equipped with two hinged doors, each with a window, and additional emergency markings. The overall design is utilitarian, with clear medical and emergency identification, and the body is constructed primarily from metal with glass windows. The vehicle is designed to transport patients and medical personnel in urban environments.",
+    "description": "A white Russian ambulance van with red medical markings, blue roof lights, and rear double doors, designed for emergency medical transport.",
+    "description_view_0": "Front view showing the windshield, blue roof light, and '03' emergency number.",
+    "description_view_1": "Left side view displaying the red medical cross, Cyrillic emergency text, and side window with a metal shutter.",
+    "description_view_2": "Rear view highlighting two hinged compartment doors, rear windows, and the '03' number.",
+    "description_view_3": "Right side view similar to the left, with medical cross, emergency text, and side window.",
+    "category": "ambulance",
+    "height": 2.3,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "mass": 2800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 7000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "handle",
+        "light bar",
+        "window",
+        "side shutter"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "blue",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.08,
+        0.03,
+        0.06,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.42,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_emergency_light_bar": true,
+    "attribute_ambulance_signage": "Red cross symbol, '\u0421\u041a\u041e\u0420\u0410\u042f \u041c\u0415\u0414\u0418\u0426\u0418\u041d\u0421\u041a\u0410\u042f \u041f\u041e\u041c\u041e\u0429\u042c' in Cyrillic, and '03' emergency number",
+    "attribute_medical_cross_symbol": true,
+    "attribute_siren": false,
+    "attribute_rear_compartment_doors": "two hinged doors",
+    "uid": "f3daf79ea4e843c8a159e8ead7af6e74",
+    "near_synsets": {
+        "ambulance.n.01": 0.4747808664748719,
+        "funny_wagon.n.01": 0.5260190337742154,
+        "police_van.n.01": 0.541284633250651,
+        "van.n.05": 0.5659209709946621,
+        "medical_evacuation.n.01": 0.5736938369593066
+    },
+    "synset": "ambulance.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f3daf79ea4e843c8a159e8ead7af6e74",
+        "creator_username": "grox777",
+        "creator_display_name": "Yo.Ri",
+        "creator_profile_url": "https://sketchfab.com/grox777"
+    },
+    "filename": "std_f3daf79ea4e843c8a159e8ead7af6e74.glb",
+    "length": 5.098721504211426,
+    "width": 1.685718297958374
+}

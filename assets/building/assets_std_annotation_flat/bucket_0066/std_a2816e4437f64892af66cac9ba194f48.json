@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a large, twin-rotor military-style helicopter, resembling the Boeing CH-47 Chinook, with a long, cylindrical fuselage and two prominent horizontal rotors mounted at the front and rear. The body is painted in a dark, matte color, likely black or dark green, and features a streamlined cockpit at the front with a slightly raised tail section. The helicopter is supported by a set of robust landing wheels rather than skids, which are visible beneath the fuselage. The main rotors are long and slender, each with three blades, and are positioned parallel to the body, providing lift and stability. The windows are small and rectangular, arranged along the side of the cockpit and fuselage, with a slight tint. No visible registration numbers or markings are present on the exterior.",
+    "description": "A large, twin-rotor military-style helicopter with a long, dark fuselage, robust landing wheels, and two sets of three-bladed rotors. The cockpit features small, tinted windows and the body is streamlined for urban or tactical use.",
+    "description_view_0": "Front view showing the cockpit, forward rotor, and the cylindrical body with landing wheels visible beneath.",
+    "description_view_1": "Side view highlighting the full length of the fuselage, both rotors, and the landing wheels; cockpit and windows are partially visible.",
+    "description_view_2": "Rear view with the aft rotor prominent, tail section visible, and landing wheels beneath the body.",
+    "description_view_3": "Opposite side view showing the length of the fuselage, both rotors, and landing wheels; cockpit windows are less visible.",
+    "category": "helicopter",
+    "height": 5.7,
+    "max_dimension": 15.5,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "air",
+        "steel"
+    ],
+    "materials_composition": [
+        0.55,
+        0.18,
+        0.1,
+        0.07,
+        0.07,
+        0.03
+    ],
+    "mass": 11000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 107800,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotor blades",
+        "cockpit door",
+        "cargo door",
+        "landing wheels",
+        "windows"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark green"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.04,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_rotor_blades": "Two main rotors, each with three long, slender blades made of composite material, colored black with no visible markings.",
+    "attribute_tail_rotor": "Not visible; this helicopter uses a tandem rotor configuration and does not have a traditional tail rotor.",
+    "attribute_landing_skids": "Not present; the helicopter uses a set of robust landing wheels, likely made of steel and rubber, with visible support struts.",
+    "attribute_cockpit_windows": "Multiple small, rectangular cockpit windows with a slight tint, arranged at the front and along the sides of the cockpit.",
+    "attribute_registration_number": "not visible",
+    "uid": "a2816e4437f64892af66cac9ba194f48",
+    "near_synsets": {
+        "helicopter.n.01": 0.48042871282562005,
+        "single-rotor_helicopter.n.01": 0.48978095563865737,
+        "main_rotor.n.01": 0.4964978362846468,
+        "rotor_blade.n.01": 0.501564195766374,
+        "tail_rotor.n.01": 0.5103415426072426
+    },
+    "synset": "single-rotor_helicopter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a2816e4437f64892af66cac9ba194f48",
+        "creator_username": "Artjomka81",
+        "creator_display_name": "Artjomka81",
+        "creator_profile_url": "https://sketchfab.com/Artjomka81"
+    },
+    "filename": "std_a2816e4437f64892af66cac9ba194f48.glb",
+    "length": 25.076078414916992,
+    "width": 18.320578575134277
+}

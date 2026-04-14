@@ -1,0 +1,89 @@
+{
+    "description_long": "This object is a double-barreled shotgun with a side-by-side barrel configuration, featuring a metallic finish on the barrels and a wooden grip. The barrels are cylindrical and appear to be constructed from steel, showing a slightly weathered, matte texture. The grip is curved and made of wood, contrasting with the metallic body, and is ergonomically shaped for handheld use. The shotgun lacks a visible stock, ending with the wooden grip, and does not display any pump or lever mechanisms. The trigger guard is not visible in the provided views, and the overall design is compact, likely intended for close-quarters use. The coloration is primarily dark gray metal with a brown wooden grip.",
+    "description": "A compact, side-by-side double-barreled shotgun with a metallic body and a curved wooden grip, lacking a visible stock or pump mechanism.",
+    "description_view_0": "Side view showing the full length of the barrels and the curved wooden grip.",
+    "description_view_1": "Front view displaying the two parallel barrels and the open muzzles.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the barrels and grip.",
+    "description_view_3": "Rear view highlighting the end of the wooden grip and the back of the barrels.",
+    "category": "shotgun",
+    "height": 0.15,
+    "max_dimension": 0.7,
+    "materials": [
+        "steel",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "aimable",
+        "triggerable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrels",
+        "grip",
+        "trigger area"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "side-by-side double-barrel, no visible ribbing or venting, barrels of equal length",
+    "attribute_stock_type": "no stock",
+    "attribute_action_mechanism": "break-action",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "not visible",
+    "uid": "4146dbea6e3e4ed39c4842ef4733ad00",
+    "near_synsets": {
+        "sawed-off_shotgun.n.01": 0.4364453427677819,
+        "shotgun.n.01": 0.43822665792238863,
+        "pump_action.n.01": 0.49750021533823957,
+        "shotgun_shell.n.01": 0.5032812917690281,
+        "maxim_gun.n.01": 0.5087700747596148
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4146dbea6e3e4ed39c4842ef4733ad00",
+        "creator_username": "AaronVerheyden",
+        "creator_display_name": "AaronVerheyden",
+        "creator_profile_url": "https://sketchfab.com/AaronVerheyden"
+    },
+    "filename": "std_4146dbea6e3e4ed39c4842ef4733ad00.glb",
+    "length": 0.677333652973175,
+    "width": 0.1026865802705288
+}

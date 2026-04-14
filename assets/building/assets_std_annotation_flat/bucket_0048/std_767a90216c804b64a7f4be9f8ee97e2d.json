@@ -1,0 +1,103 @@
+{
+    "description_long": "This vending machine features a modern, rectangular design with a predominantly dark exterior and a large, illuminated display panel at the top right, which shows an image of ice cubes. The front face includes a vertical section with a keypad and a digital display for user interaction, as well as a series of transparent or semi-transparent product slots below. The left side of the front is a smooth, light-colored panel with a subtle wave pattern, likely for aesthetic appeal. The sides and back of the machine are solid and unadorned, emphasizing its utilitarian function. The overall construction suggests a robust, metal frame with glass or plastic panels for product visibility and user interface.",
+    "description": "A modern, dark-colored vending machine with an illuminated display, keypad, and visible product slots on the front. The design is sleek with a mix of metal and glass or plastic surfaces.",
+    "description_view_0": "Front view showing the illuminated display panel, keypad, product slots, and decorative side panel.",
+    "description_view_1": "Rear view, entirely solid and featureless, emphasizing the machine's boxy structure.",
+    "description_view_2": "Side view revealing the stepped profile and the depth of the machine, with no visible interactive features.",
+    "description_view_3": "Opposite side view, also featureless and solid, showing the machine's width.",
+    "category": "vending machine",
+    "height": 1.8,
+    "max_dimension": 1.8,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "electronic components",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 220,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "keypad",
+        "display panel",
+        "product retrieval slot",
+        "payment interface",
+        "product slots"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "white",
+        "blue"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A rectangular, illuminated display panel is located at the top right of the front face, showing an image of ice cubes.",
+    "attribute_payment_interface": "A small digital payment interface is present above the keypad, likely supporting card or contactless payments.",
+    "attribute_product_selection_buttons": "A vertical keypad with multiple round buttons is located below the payment interface on the front panel.",
+    "attribute_product_retrieval_slot": "A horizontal product retrieval slot is located below the keypad and product selection area, with a transparent or semi-transparent cover.",
+    "attribute_branding_or_signage": "The illuminated display panel at the top right features an image of ice cubes, but no explicit branding, logos, or text are visible.",
+    "uid": "767a90216c804b64a7f4be9f8ee97e2d",
+    "near_synsets": {
+        "vending_machine.n.01": 0.4567817093318039,
+        "automat.n.01": 0.5178940235591164,
+        "display.n.06": 0.5669754876838417,
+        "slot_machine.n.01": 0.567748928169364,
+        "coin_box.n.01": 0.5773449240588724,
+        "machine.n.02": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.05": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.01": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/767a90216c804b64a7f4be9f8ee97e2d",
+        "creator_username": "Marco.Chacon",
+        "creator_display_name": "Marco.Chacon",
+        "creator_profile_url": "https://sketchfab.com/Marco.Chacon"
+    },
+    "filename": "std_767a90216c804b64a7f4be9f8ee97e2d.glb",
+    "length": 0.8425936698913574,
+    "width": 0.9776096343994141
+}

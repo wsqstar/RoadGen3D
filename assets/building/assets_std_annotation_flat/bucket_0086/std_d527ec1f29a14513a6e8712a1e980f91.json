@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a medium-sized, open-topped corrugated cardboard box with four flaps partially folded outward. The exterior is primarily brown with a subtle ribbed texture, and the top edges are reinforced with a glossy black strip, likely tape. One side features a white shipping label with printed text, while another side displays standard handling symbols such as a wine glass and umbrella, indicating fragility and a need to keep dry. Two sides have gray tape strips applied vertically near the bottom, suggesting previous sealing or reinforcement. The interior is visible and empty, showing the same brown corrugated material. The box appears lightweight and is commonly used for shipping or moving items in urban environments.",
+    "description": "A brown corrugated cardboard box with open flaps, black tape reinforcement, shipping label, and handling symbols. The box is empty and shows signs of previous use with gray tape strips.",
+    "description_view_0": "This view shows the box from above with the flaps open, revealing the interior and a vertical strip of gray tape on the near side.",
+    "description_view_1": "This side displays the handling symbols (fragile and keep dry) and the black tape along the top edge, with the flaps partially open.",
+    "description_view_2": "This view is similar to view 0 but from the opposite side, showing another vertical strip of gray tape and the open interior.",
+    "description_view_3": "This side features a white shipping label with printed text and the black tape along the top edge, with the flaps open.",
+    "category": "parcels",
+    "height": 0.5,
+    "max_dimension": 0.6,
+    "materials": [
+        "corrugated_cardboard",
+        "adhesive_tape",
+        "air",
+        "ink"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.09,
+        0.01
+    ],
+    "mass": 0.7,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 7,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "flaps",
+        "tape",
+        "label"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 4000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "",
+    "attribute_car_model": "",
+    "attribute_building_number": "",
+    "attribute_storefront_signage": "",
+    "attribute_street_name": "",
+    "uid": "d527ec1f29a14513a6e8712a1e980f91",
+    "near_synsets": {
+        "carton.n.02": 0.517685123657075,
+        "packing_box.n.02": 0.5355439082861181,
+        "packaging.n.03": 0.5547816460161396,
+        "parcel_post.n.01": 0.5567576354773058,
+        "mail.n.01": 0.5583861971974232,
+        "parcel.n.02": -1000.0,
+        "package.n.02": -1000.0,
+        "package.n.01": -1000.0,
+        "tract.n.01": -1000.0
+    },
+    "synset": "carton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d527ec1f29a14513a6e8712a1e980f91",
+        "creator_username": "lloydrostek",
+        "creator_display_name": "J0Y",
+        "creator_profile_url": "https://sketchfab.com/lloydrostek"
+    },
+    "filename": "std_d527ec1f29a14513a6e8712a1e980f91.glb",
+    "length": 0.5367896258831024,
+    "width": 0.7462525963783264
+}

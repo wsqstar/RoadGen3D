@@ -1,0 +1,107 @@
+{
+    "description_long": "This object consists of three distinct sections of railway track, each featuring two parallel steel rails mounted on a series of evenly spaced sleepers. One section is straight, another is gently curved, and the third includes a flat metallic plate, likely representing a road or pedestrian crossing. The rails are metallic gray, while the sleepers appear to be a muted brown, suggesting wood or weathered concrete. The metallic plate is a lighter gray and sits flush with the rails, indicating an urban crossing point. The overall construction is robust, designed to support the weight and movement of trains or trams in an urban environment.",
+    "description": "A set of three railway track segments: one straight, one curved, and one with a crossing plate, featuring parallel metal rails and brown sleepers.",
+    "description_view_0": "Three railway track segments are visible from an angled perspective, showing the curved, straight, and crossing-plate sections side by side.",
+    "description_view_1": "The tracks are viewed from above, clearly displaying the curvature, straightness, and the rectangular crossing plate on one segment.",
+    "description_view_2": "The tracks are seen from the opposite angle, highlighting the metallic crossing plate on the leftmost segment and the curvature of the rightmost track.",
+    "description_view_3": "A top-down view reveals the full length of each segment, with the crossing plate most prominent on the upper track and the curve on the lower track.",
+    "category": "railway track",
+    "height": 0.15,
+    "max_dimension": 2.5,
+    "materials": [
+        "steel",
+        "wood",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "guiding"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "rails",
+        "sleepers",
+        "crossing plate"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "gray",
+        "brown",
+        "light gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_parallel_metal_rails": true,
+    "attribute_wooden_or_concrete_sleepers": "wood",
+    "attribute_ballast_bed": false,
+    "attribute_embedded_in_pavement": true,
+    "attribute_railway_crossing_signage": false,
+    "uid": "b600a4300b814c19b83ae27fcd02778f",
+    "near_synsets": {
+        "railroad_bed.n.01": 0.45206543868282384,
+        "track.n.09": 0.46045714439158103,
+        "line.n.14": 0.4661013222593061,
+        "railroad_track.n.01": 0.4736083752149232,
+        "switch.n.04": 0.47857489823267435,
+        "track.n.10": -1000.0,
+        "racetrack.n.01": -1000.0,
+        "cut.n.08": -1000.0,
+        "track.n.08": -1000.0,
+        "track.n.03": -1000.0,
+        "path.n.04": -1000.0,
+        "track.n.11": -1000.0,
+        "track.n.07": -1000.0,
+        "railway.n.01": -1000.0,
+        "lead.n.03": -1000.0,
+        "track.n.06": -1000.0
+    },
+    "synset": "track.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b600a4300b814c19b83ae27fcd02778f",
+        "creator_username": "gradislav23",
+        "creator_display_name": "Vladislav Horiainov",
+        "creator_profile_url": "https://sketchfab.com/gradislav23"
+    },
+    "filename": "std_b600a4300b814c19b83ae27fcd02778f.glb",
+    "length": 7.185989856719971,
+    "width": 6.261999130249023
+}

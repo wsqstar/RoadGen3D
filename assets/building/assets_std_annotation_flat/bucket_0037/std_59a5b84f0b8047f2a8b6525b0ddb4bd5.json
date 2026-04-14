@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a stylized, voxel-based wooden sailing ship with a rounded hull and prominent vertical planking. The ship features three tall masts, each equipped with white square sails and small crow's nests. The bow is pointed and reinforced, while the stern is slightly elevated and squared off. Dark horizontal stripes run along the hull, suggesting structural ribs or decorative elements. The deck is open, with no visible cabins or superstructure, and the ship sits on a flat display base. The overall design is reminiscent of classic galleons or pirate ships, with a simplified, blocky aesthetic.",
+    "description": "A voxel-style wooden sailing ship with three masts, white sails, and a rounded, striped hull. The deck is open and the ship has a classic galleon-like appearance.",
+    "description_view_0": "Front view showing the pointed bow, central mast, and the layered arrangement of the sails.",
+    "description_view_1": "Left side view highlighting the full length of the hull, all three masts, and the staggered sails.",
+    "description_view_2": "Rear view displaying the squared stern, the back of the sails, and the symmetry of the hull.",
+    "description_view_3": "Right side view similar to the left, showing the hull's curvature and the arrangement of masts and sails.",
+    "category": "ship",
+    "height": 0.35,
+    "max_dimension": 0.8,
+    "materials": [
+        "wood",
+        "fabric",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 250,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 3000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "steerable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sails",
+        "masts",
+        "deck",
+        "rudder"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "white",
+        "black",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a rounded displacement type with a pointed bow and a squared stern. It features vertical planking and dark horizontal stripes, with no visible keels or bulbous bows. The hull is robust and slightly elevated at the stern.",
+    "attribute_superstructure_layout": "There is no visible superstructure; the deck is open with three masts rising from it. No cabins, bridges, or towers are present, and the design is minimalistic.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "masts",
+        "sails",
+        "crow's nests"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "59a5b84f0b8047f2a8b6525b0ddb4bd5",
+    "near_synsets": {
+        "galleon.n.01": 0.49366629180652216,
+        "sailing_vessel.n.01": 0.5173067102320852,
+        "bark.n.03": 0.5262545527775901,
+        "sail.n.03": 0.5344935427312565,
+        "galley.n.01": 0.5346569652208252,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/59a5b84f0b8047f2a8b6525b0ddb4bd5",
+        "creator_username": "E_Johansson",
+        "creator_display_name": "E_Johansson",
+        "creator_profile_url": "https://sketchfab.com/E_Johansson"
+    },
+    "filename": "std_59a5b84f0b8047f2a8b6525b0ddb4bd5.glb",
+    "length": 0.4516128599643707,
+    "width": 0.45161280035972595
+}

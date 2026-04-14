@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a sleek, metallic airplane with a streamlined fuselage and sharply pointed nose, designed for high-speed flight. The wings are mid-mounted and sharply swept back, giving it a modern, aerodynamic profile. The surface is predominantly silver-gray with a few visible panel lines and a dark, tinted cockpit canopy near the front. The tail section features a single vertical stabilizer and a conventional horizontal stabilizer arrangement. The engine intake is located at the rear of the fuselage, suggesting a single rear-mounted jet engine. There are no visible external landing gear or armaments, emphasizing a clean, high-performance design.",
+    "description": "A sleek, silver-gray airplane with swept mid-mounted wings, a pointed nose, and a rear jet engine, featuring a dark cockpit canopy.",
+    "description_view_0": "Front view showing the pointed nose, mid-mounted swept wings, and the narrow fuselage profile.",
+    "description_view_1": "Side view highlighting the elongated fuselage, swept-back wings, and the forward-placed cockpit canopy.",
+    "description_view_2": "Rear view displaying the single engine exhaust, vertical stabilizer, and the symmetrical wing layout.",
+    "description_view_3": "Opposite side view mirroring view 1, with clear visibility of the cockpit and wing sweep.",
+    "category": "airplane",
+    "height": 3.5,
+    "max_dimension": 15.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.05,
+        0.07,
+        0.05
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 63750,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "engine intake",
+        "control surfaces",
+        "doors"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.12,
+    "surface_finish": "sleek",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing, sharply swept wings with no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Single rear-mounted jet engine.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "No visible landing gear.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a dark, streamlined canopy.",
+    "uid": "883e51762adf41fdb603e824fdad8f32",
+    "near_synsets": {
+        "aircraft.n.01": 0.4887693108016453,
+        "airplane.n.01": 0.4965787904446493,
+        "monoplane.n.01": 0.5197374776617295,
+        "jet.n.01": 0.5282192827904297,
+        "propeller_plane.n.01": 0.5360035101990882
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/883e51762adf41fdb603e824fdad8f32",
+        "creator_username": "uperesito",
+        "creator_display_name": "uperesito",
+        "creator_profile_url": "https://sketchfab.com/uperesito"
+    },
+    "filename": "std_883e51762adf41fdb603e824fdad8f32.glb",
+    "length": 33.521114349365234,
+    "width": 15.923247337341309
+}

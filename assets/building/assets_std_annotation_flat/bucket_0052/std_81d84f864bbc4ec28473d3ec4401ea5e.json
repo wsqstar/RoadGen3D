@@ -1,0 +1,97 @@
+{
+    "description_long": "This kiosk is a small, rectangular structure with a steeply sloped, gabled roof, entirely covered in intricate, colorful murals depicting human figures, animals, and symbolic motifs. The front features a large open archway, likely serving as the main entrance, flanked by painted scenes that suggest ceremonial or cultural significance. The sides and rear are also adorned with faded but detailed artwork, with the left and right panels showing more abstract and animalistic designs. The surface appears to be made of plaster or stucco over a masonry or stone core, giving it a solid, heavy appearance. The roof is continuous with the walls, with no visible overhangs or separate roofing material, and the entire structure has a weathered, matte finish. There are no visible windows or signage, and the kiosk's design evokes influences from ancient or traditional architectural styles, possibly Mesoamerican.",
+    "description": "A small, gabled kiosk covered in colorful, weathered murals with a large open archway and no visible windows or signage. The structure is solid and adorned with intricate, faded artwork on all sides.",
+    "description_view_0": "Front view showing the large open archway and the most detailed mural work with human figures and ceremonial scenes.",
+    "description_view_1": "Left side view highlighting faded murals with animalistic and abstract motifs, and no visible openings.",
+    "description_view_2": "Rear view with the least detailed and most faded artwork, no openings or architectural features.",
+    "description_view_3": "Right side view similar to the left, with visible murals and a partial view of the open archway.",
+    "category": "kiosk",
+    "height": 2.2,
+    "max_dimension": 3.0,
+    "materials": [
+        "plaster",
+        "stone",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.1
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "displayable",
+        "shelterable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "archway"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "red",
+        "yellow",
+        "gray",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.3,
+        0.25,
+        0.2,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 15000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "none",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "single open archway at front",
+    "attribute_roof_design": "steeply gabled, continuous with walls, covered in murals, no overhangs or separate roofing material",
+    "attribute_architectural_style": "traditional, with strong Mesoamerican or ancient ceremonial influences",
+    "uid": "81d84f864bbc4ec28473d3ec4401ea5e",
+    "near_synsets": {
+        "arcade.n.01": 0.5541405429967723,
+        "gazebo.n.01": 0.5576153617557504,
+        "gallery.n.05": 0.5662761492462953,
+        "booth.n.02": 0.5729174808164704,
+        "portico.n.01": 0.5744587699986087
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/81d84f864bbc4ec28473d3ec4401ea5e",
+        "creator_username": "rmark",
+        "creator_display_name": "rmark",
+        "creator_profile_url": "https://sketchfab.com/rmark"
+    },
+    "filename": "std_81d84f864bbc4ec28473d3ec4401ea5e.glb",
+    "length": 2.8875573873519897,
+    "width": 3.0884519815444946
+}

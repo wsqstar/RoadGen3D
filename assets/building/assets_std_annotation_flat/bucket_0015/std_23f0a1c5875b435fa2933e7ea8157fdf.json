@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a large, industrial-style dumpster with a dark green, ribbed metal body and a black, ridged plastic or metal lid. The front features prominent yellow caution and warning labels, while the sides show signs of rust, scratches, and weathering, indicating prolonged outdoor use. The lid is slightly sloped and appears to be a single hinged section, designed to be lifted from the front. The base is reinforced and elevated with a pallet-like structure, likely for forklift access. There are no visible wheels or handles, and the overall construction is robust, suitable for heavy waste loads. The surface is mostly matte with some glossy wear marks, and the object is clearly intended for use in urban or commercial outdoor environments.",
+    "description": "A large, weathered green dumpster with a black ridged lid, yellow caution labels, and a reinforced base. It is designed for outdoor waste collection in urban or commercial settings.",
+    "description_view_0": "Side view showing the sloped black lid, green metal body with rust and scratches, and the reinforced base.",
+    "description_view_1": "Front view displaying yellow caution and warning labels, the ribbed lid, and the pallet-style base.",
+    "description_view_2": "Opposite side view similar to view 0, highlighting the sloped lid and weathered green surface.",
+    "description_view_3": "Rear view showing the plain ribbed green back, no labels, and the elevated base structure.",
+    "category": "dumpster",
+    "height": 1.4,
+    "max_dimension": 2.1,
+    "materials": [
+        "steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "yellow",
+        "brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "hinged, single-section, sloped, black plastic or metal lid with no visible locking mechanism",
+    "attribute_wheel_presence": false,
+    "attribute_handle_design": "none",
+    "attribute_warning_labels": [
+        {
+            "color": "yellow",
+            "shape": "rectangular",
+            "content": "CAUTION DO NOT PLAY IN OR AROUND DUMPSTER"
+        },
+        {
+            "color": "yellow",
+            "shape": "rectangular",
+            "content": "DO NOT PARK IN FRONT OF DUMPSTER"
+        }
+    ],
+    "attribute_placement_location": "outdoor commercial area",
+    "uid": "23f0a1c5875b435fa2933e7ea8157fdf",
+    "near_synsets": {
+        "dumpster.n.01": 0.4275970732545129,
+        "garbage.n.03": 0.4962193494992969,
+        "garbage_truck.n.01": 0.5029258048427598,
+        "recycling_bin.n.01": 0.5177839027358888,
+        "dump.n.02": 0.5295669051779494
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/23f0a1c5875b435fa2933e7ea8157fdf",
+        "creator_username": "ob1style",
+        "creator_display_name": "Romain PERRONE",
+        "creator_profile_url": "https://sketchfab.com/ob1style"
+    },
+    "filename": "std_23f0a1c5875b435fa2933e7ea8157fdf.glb",
+    "length": 1.2061787843704224,
+    "width": 1.7915393114089966
+}

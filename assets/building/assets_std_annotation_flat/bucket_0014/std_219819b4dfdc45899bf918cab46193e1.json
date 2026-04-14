@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a historical artillery cannon, featuring a long, cylindrical metal barrel mounted on a sturdy, two-wheeled carriage. The barrel is dark and weathered, with a slightly flared muzzle and a rear touch hole for ignition. The carriage is constructed from metal plates and supports, with large spoked wheels on either side for mobility. The wheels are robust and designed to handle rough terrain, while the carriage includes angular side panels and a reinforced axle. The overall appearance is utilitarian, with visible bolts and rivets securing the structure. The cannon is reminiscent of 19th-century field artillery, intended for use in combat scenarios.",
+    "description": "A weathered metal artillery cannon with a long barrel mounted on a two-wheeled carriage, featuring large spoked wheels and reinforced side panels.",
+    "description_view_0": "Front-left view showing the full length of the barrel, the circular muzzle, and both large spoked wheels.",
+    "description_view_1": "Rear-left view highlighting the breech end of the barrel, the touch hole, and the inner structure of the carriage.",
+    "description_view_2": "Rear-right view focusing on the back of the barrel, the axle, and the right wheel's spokes.",
+    "description_view_3": "Front-right view displaying the barrel's length, the right wheel, and the angular side panel of the carriage.",
+    "category": "combat tactical  vehicle",
+    "height": 1.2,
+    "max_dimension": 2.5,
+    "materials": [
+        "steel",
+        "iron",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "rotatable",
+        "aimable",
+        "loadable",
+        "fireable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "barrel",
+        "axle",
+        "touch hole"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One fixed cannon barrel mounted centrally on the carriage.",
+    "attribute_armor_plating": "None visible; carriage and barrel are exposed metal with no additional armor plating.",
+    "attribute_camouflage_pattern": "None visible; surface is a solid dark metallic color.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable; vehicle uses large spoked metal wheels.",
+    "uid": "219819b4dfdc45899bf918cab46193e1",
+    "near_synsets": {
+        "cannon.n.01": 0.4892643997538292,
+        "caisson.n.02": 0.4924625867400945,
+        "tank.n.01": 0.4980710558633515,
+        "cannon.n.02": 0.5003476474513736,
+        "military_vehicle.n.01": 0.5029060767414827,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "cannon.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/219819b4dfdc45899bf918cab46193e1",
+        "creator_username": "Astrien",
+        "creator_display_name": "Astrien",
+        "creator_profile_url": "https://sketchfab.com/Astrien"
+    },
+    "filename": "std_219819b4dfdc45899bf918cab46193e1.glb",
+    "length": 2.407609462738037,
+    "width": 2.4799394607543945
+}

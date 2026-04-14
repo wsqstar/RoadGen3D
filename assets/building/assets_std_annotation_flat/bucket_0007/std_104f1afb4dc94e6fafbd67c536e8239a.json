@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a large, heavy-duty rotary machine gun, resembling a minigun or Gatling-style weapon, with a prominent multi-barrel assembly at the front. The barrels are encased in a cylindrical shroud, and the rear section features a robust, boxy housing likely containing the firing mechanism and ammunition feed. Two distinct handles are mounted on top, one with a squared-off grip and another with a more angular, serrated design, providing stability and control during operation. The body is primarily composed of dark gray and black materials, with some lighter gray accents and a small red detail at the rear, possibly an indicator or safety switch. The overall construction suggests a weapon designed for sustained, high-rate fire, typically mounted or carried with significant support. Its imposing size and industrial design make it suitable for urban defense or heavy assault scenarios.",
+    "description": "A large, multi-barreled rotary machine gun with dual top handles, dark metallic body, and a cylindrical barrel shroud, designed for heavy firepower.",
+    "description_view_0": "Front-left view showing the multi-barrel assembly, both top handles, and the cylindrical shroud clearly.",
+    "description_view_1": "Front-right view highlighting the length of the barrels and the angular handle structure.",
+    "description_view_2": "Rear-left view focusing on the boxy housing, handle grips, and the small red detail at the back.",
+    "description_view_3": "Rear-right view displaying the rear housing, both handles, and the full length of the barrel assembly.",
+    "category": "rifle",
+    "height": 0.35,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "polymer",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "liftable",
+        "rotatable",
+        "pressable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "trigger",
+        "barrel",
+        "magazine housing",
+        "sight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray",
+        "light gray",
+        "red"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.13,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "rotary",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "104f1afb4dc94e6fafbd67c536e8239a",
+    "near_synsets": {
+        "gatling_gun.n.01": 0.457457193894783,
+        "rifle.n.01": 0.4643500333649011,
+        "automatic_rifle.n.01": 0.47269816122075886,
+        "machine_gun.n.01": 0.472880097537438,
+        "shotgun.n.01": 0.4773693613380926
+    },
+    "synset": "automatic_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/104f1afb4dc94e6fafbd67c536e8239a",
+        "creator_username": "Rosstail",
+        "creator_display_name": "Rosstail",
+        "creator_profile_url": "https://sketchfab.com/Rosstail"
+    },
+    "filename": "std_104f1afb4dc94e6fafbd67c536e8239a.glb",
+    "length": 0.5849703252315521,
+    "width": 0.5333063006401062
+}

@@ -1,0 +1,94 @@
+{
+    "description_long": "This is a large, cylindrical yellow barrel with three prominent horizontal reinforcement bands encircling its body. The surface is marked with black stenciled text and warning symbols, including a radiation hazard and biohazard sign, indicating it is used for storing dangerous or toxic materials. Green liquid appears to be leaking from the seams and top, suggesting the contents are hazardous and possibly corrosive. The barrel has a flat, sealed lid with no visible openings or handles, and the exterior shows some grime and wear, consistent with industrial or outdoor use. The overall construction appears to be metal, likely steel, designed for durability and containment. Its size and markings make it suitable for placement in industrial, urban, or hazardous waste management environments.",
+    "description": "A large yellow metal barrel with black hazard markings and green toxic liquid seeping from the seams, used for storing dangerous materials.",
+    "description_view_0": "Front view shows stenciled text (ESP, 1.6, 9.3.G19) and green liquid dripping from the top and middle seam.",
+    "description_view_1": "Side view displays radiation and biohazard warning symbols, with green liquid visible at the top seam.",
+    "description_view_2": "Back view highlights more green liquid seeping from the top and middle seams, with no visible text or symbols.",
+    "description_view_3": "Opposite front view again shows stenciled text and green liquid, with the text more prominent than in other views.",
+    "category": "barrel or bucket",
+    "height": 0.9,
+    "max_dimension": 0.6,
+    "materials": [
+        "steel",
+        "toxic liquid",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 35,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "integrated steel reinforcement rings",
+    "attribute_labeling_or_markings": "black stenciled text, radiation and biohazard warning symbols",
+    "attribute_placement_location": "industrial",
+    "uid": "4dc0e2f1409e4ca18df3c01441666577",
+    "near_synsets": {
+        "barrel.n.02": 0.48027882575695613,
+        "carboy.n.01": 0.5074191637859554,
+        "barrel.n.03": 0.5074726148063234,
+        "bucket.n.01": 0.5131934937763986,
+        "barrel.n.04": 0.5193802974657361,
+        "bucket.n.02": -1000.0,
+        "barrel.n.01": -1000.0,
+        "barrel.n.05": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4dc0e2f1409e4ca18df3c01441666577",
+        "creator_username": "gasparh2001",
+        "creator_display_name": "gasparh2001",
+        "creator_profile_url": "https://sketchfab.com/gasparh2001"
+    },
+    "filename": "std_4dc0e2f1409e4ca18df3c01441666577.glb",
+    "length": 0.6297117471694946,
+    "width": 0.6297112703323364
+}

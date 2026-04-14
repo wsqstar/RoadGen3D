@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a compact, modern firearm with a predominantly black and red color scheme, featuring a sleek, angular design. The frame and grip are accented in red, with a textured pattern for improved handling, while the main body and slide are black with metallic highlights. The barrel is short and integrated into the upper receiver, and a single brass cartridge is visible beneath the chamber area, suggesting a semi-automatic mechanism. The top of the firearm has a ribbed section, likely for sight alignment, and the trigger guard is squared and robust, providing ample space for finger placement. The overall build appears to be constructed from metal and polymer materials, with a glossy and smooth finish. This weapon is designed for close-quarters use, typical of urban environments.",
+    "description": "A compact, black and red modern shotgun with a short barrel, textured grip, and squared trigger guard, featuring metallic and polymer construction.",
+    "description_view_0": "Side view showing the full profile, red grip, black slide, and visible brass cartridge below the chamber.",
+    "description_view_1": "Front view highlighting the ribbed top section, squared trigger guard, and the compact width of the firearm.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the red grip, black slide, and brass cartridge.",
+    "description_view_3": "Rear view focusing on the ribbed top, rear sight, and the back of the grip, showing the firearm's symmetry.",
+    "category": "shotgun",
+    "height": 0.15,
+    "max_dimension": 0.28,
+    "materials": [
+        "steel",
+        "polymer",
+        "brass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.35,
+        0.03,
+        0.02
+    ],
+    "mass": 2.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 22,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "trigger guard",
+        "slide",
+        "barrel",
+        "magazine well",
+        "sights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "silver",
+        "brass"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, short and integrated with the upper receiver, no visible ribbing or venting",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "semi-automatic",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "squared, robust, medium-sized with a flat lower edge and no visible finger grooves",
+    "uid": "75820acde04e49f3a32d1080d1ceeea2",
+    "near_synsets": {
+        "sawed-off_shotgun.n.01": 0.5002809856530137,
+        "shotgun.n.01": 0.5183071526561523,
+        "pump_action.n.01": 0.5276694661853022,
+        "shotgun_shell.n.01": 0.5394194887242643,
+        "gas_gun.n.01": 0.544453492699372
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/75820acde04e49f3a32d1080d1ceeea2",
+        "creator_username": "rzyas",
+        "creator_display_name": "Rzyas",
+        "creator_profile_url": "https://sketchfab.com/rzyas"
+    },
+    "filename": "std_75820acde04e49f3a32d1080d1ceeea2.glb",
+    "length": 0.25790490210056305,
+    "width": 0.02838134765625
+}

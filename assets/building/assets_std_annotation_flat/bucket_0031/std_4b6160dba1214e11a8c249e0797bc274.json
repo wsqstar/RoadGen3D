@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a rustic wooden barrow with a rectangular tray formed by vertical slats on the sides and a flat plank base. The barrow features two large, solid wooden wheels mounted on either side, providing stability and mobility. At the front, a pair of long, straight wooden handles extend outward, allowing for easy pushing or pulling. The tray is open at the top and both ends, making it suitable for carrying loose or bulky items. The wood appears untreated or lightly finished, giving the barrow a matte, natural brown appearance. The construction is robust, with visible joints and reinforcements at stress points, typical of traditional handcarts used in urban or rural settings.",
+    "description": "A sturdy wooden barrow with two large side wheels, open tray, and long straight handles, finished in natural brown. Ideal for transporting goods in urban or rustic environments.",
+    "description_view_0": "Front view showing the open tray, vertical side slats, and the two long handles extending forward.",
+    "description_view_1": "Side view highlighting the large circular wooden wheel, the length of the tray, and the full extension of the handles.",
+    "description_view_2": "Rear view displaying the open back of the tray and the symmetry of the side slats and wheels.",
+    "description_view_3": "Opposite side view, again showing the wheel and tray, with the handles extending away from the viewer.",
+    "category": "barrow",
+    "height": 0.9,
+    "max_dimension": 2.0,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.03,
+        0.05
+    ],
+    "mass": 28,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "rotatable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "tray"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 2,
+    "attribute_handle_type": "dual straight wooden bars",
+    "attribute_wheel_position": "dual side-mounted near rear",
+    "attribute_tray_depth": 0.35,
+    "attribute_presence_of_support_legs": true,
+    "uid": "4b6160dba1214e11a8c249e0797bc274",
+    "near_synsets": {
+        "barrow.n.03": 0.43117761751421063,
+        "handbarrow.n.01": 0.4808141352639611,
+        "cart.n.01": 0.5054037129957643,
+        "barrow.n.01": 0.5190906145431543,
+        "shopping_basket.n.01": 0.5269057142662578,
+        "burial_mound.n.01": -1000.0
+    },
+    "synset": "barrow.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4b6160dba1214e11a8c249e0797bc274",
+        "creator_username": "stefan.lengyel1",
+        "creator_display_name": "Pixel",
+        "creator_profile_url": "https://sketchfab.com/stefan.lengyel1"
+    },
+    "filename": "std_4b6160dba1214e11a8c249e0797bc274.glb",
+    "length": 2.2375025749206543,
+    "width": 1.1666533946990967
+}

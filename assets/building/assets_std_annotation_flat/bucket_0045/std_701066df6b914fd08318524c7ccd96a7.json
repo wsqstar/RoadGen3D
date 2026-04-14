@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a heavily damaged and burned sedan, with its exterior showing extensive charring and corrosion. The windows are missing, and the roof structure is partially collapsed, exposing the interior framework. The body panels are warped and dented, with the front and rear bumpers almost entirely destroyed. The paint is stripped away, leaving a mottled surface of bare, oxidized metal and soot. The wheels are either melted or deformed, and the interior is gutted, with no visible seats or dashboard components. The overall appearance suggests the vehicle has been abandoned after a severe fire or explosion.",
+    "description": "A severely burned and corroded sedan with missing windows, warped panels, and a gutted interior, showing extensive fire damage.",
+    "description_view_0": "Front and rear of the sedan are visible, both showing heavy charring, missing bumpers, and collapsed roof sections.",
+    "description_view_1": "Side view reveals the warped doors, missing windows, and the skeletal roof frame, with extensive surface corrosion.",
+    "description_view_2": "Opposite front and rear angles, highlighting the stripped paint, exposed metal, and deformed wheel wells.",
+    "description_view_3": "Other side view shows more of the collapsed roof, gutted interior, and the overall skeletal, burned structure.",
+    "category": "sedan",
+    "height": 1.4,
+    "max_dimension": 4.6,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 700,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 3500,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "trunk",
+        "hood"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_number_of_doors": 4,
+    "attribute_license_plate": "none",
+    "attribute_wheel_design": "unknown",
+    "uid": "701066df6b914fd08318524c7ccd96a7",
+    "near_synsets": {
+        "car_window.n.01": 0.5570818999532915,
+        "sedan.n.01": 0.5683029029473132,
+        "burn.n.04": 0.5811926238866696,
+        "brougham.n.02": 0.5837294157515424,
+        "car_door.n.01": 0.5875882120031257,
+        "sedan.n.02": -1000.0
+    },
+    "synset": "sedan.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/701066df6b914fd08318524c7ccd96a7",
+        "creator_username": "kryik1023",
+        "creator_display_name": "Renafox",
+        "creator_profile_url": "https://sketchfab.com/kryik1023"
+    },
+    "filename": "std_701066df6b914fd08318524c7ccd96a7.glb",
+    "length": 4.7635650634765625,
+    "width": 4.5614471435546875
+}

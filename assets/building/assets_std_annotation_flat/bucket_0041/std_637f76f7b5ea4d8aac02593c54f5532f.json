@@ -1,0 +1,103 @@
+{
+    "description_long": "This object is a heavily armored, quadrupedal robotic weapon platform with a military aesthetic, featuring a weathered olive drab paint scheme and visible wear and tear. The main body is boxy and reinforced, with mechanical joints and pistons connecting four robust, articulated legs designed for stability and mobility on urban terrain. Prominently mounted on the side is a large, cylindrical rotary cannon resembling a Gatling-style rifle, with visible barrels and ammunition feed mechanisms. The front of the platform displays a reinforced armored plate with hazard stripes and a star insignia, suggesting military or paramilitary use. Additional details include exposed gears, hydraulic pistons, and various access panels, giving the object a rugged, utilitarian appearance. The overall design suggests a weaponized robot intended for urban combat or patrol scenarios, rather than a handheld rifle.",
+    "description": "A heavily armored, quadrupedal robotic weapon platform with a rotary cannon and military markings, designed for urban combat. Its rugged, mechanical build features articulated legs and a weathered olive drab finish.",
+    "description_view_0": "Side view showing the large rotary cannon, exposed gears, and star insignia on the armored body.",
+    "description_view_1": "Front view highlighting the reinforced armored plate with hazard stripes and the symmetrical arrangement of the legs.",
+    "description_view_2": "Opposite side view with visible rotary cannon, mechanical joints, and additional access panels.",
+    "description_view_3": "Rear view displaying the back armor, mechanical leg attachments, and the robust structure of the platform.",
+    "category": "rifle",
+    "height": 1.6,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 850,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "shootable",
+        "rotatable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotary cannon",
+        "access panel",
+        "mechanical leg",
+        "control interface"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive drab",
+        "black",
+        "yellow",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "rotary",
+    "attribute_magazine_type": "belt-fed",
+    "attribute_sight_type": "none",
+    "attribute_muzzle_device": "none",
+    "uid": "637f76f7b5ea4d8aac02593c54f5532f",
+    "near_synsets": {
+        "light_arm.n.01": 0.5128052058741193,
+        "automatic_rifle.n.01": 0.5190942650064847,
+        "platform.n.04": 0.5313246661802247,
+        "machine_gun.n.01": 0.5351619618955918,
+        "military_vehicle.n.01": 0.5370779890541509,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/637f76f7b5ea4d8aac02593c54f5532f",
+        "creator_username": "dmitryshayakhmetov",
+        "creator_display_name": "Dmitry Shark",
+        "creator_profile_url": "https://sketchfab.com/dmitryshayakhmetov"
+    },
+    "filename": "std_637f76f7b5ea4d8aac02593c54f5532f.glb",
+    "length": 1.7662343978881836,
+    "width": 1.7662345170974731
+}

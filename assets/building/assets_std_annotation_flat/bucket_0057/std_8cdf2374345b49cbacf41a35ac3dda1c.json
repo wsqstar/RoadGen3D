@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a modern, military-style rifle with a matte black finish, featuring a fixed synthetic stock and a prominent pistol grip. The upper receiver includes a carry handle with integrated iron sights, and the handguard is ribbed for improved grip. The barrel is long and slender, ending in a flash hider, and the magazine is a detachable box type, partially protruding from the lower receiver. The overall design is utilitarian, with minimal decorative elements, emphasizing function and durability. The rifle's construction appears to be primarily metal with polymer components, typical of contemporary service rifles. Its proportions and features suggest it is modeled after the M16 or AR-15 family, commonly seen in urban and tactical environments.",
+    "description": "A matte black, military-style rifle with a fixed stock, ribbed handguard, carry handle, and detachable box magazine. The design is functional and robust, with a long barrel and integrated iron sights.",
+    "description_view_0": "Side view showing the full length of the rifle, including the fixed stock, carry handle, ribbed handguard, and flash hider.",
+    "description_view_1": "Front-on view highlighting the narrow barrel profile and the alignment of the iron sights atop the carry handle.",
+    "description_view_2": "Opposite side view displaying the magazine, trigger, and the overall symmetry of the rifle's design.",
+    "description_view_3": "Rear view focusing on the buttstock and the back of the carry handle, with the barrel extending away from the viewer.",
+    "category": "rifle",
+    "height": 0.22,
+    "max_dimension": 1.0,
+    "materials": [
+        "steel",
+        "polymer",
+        "aluminum",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "unloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "pistol grip",
+        "trigger",
+        "magazine",
+        "carry handle",
+        "barrel",
+        "handguard",
+        "safety selector",
+        "charging handle",
+        "iron sights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "flash hider",
+    "uid": "8cdf2374345b49cbacf41a35ac3dda1c",
+    "near_synsets": {
+        "rifle.n.01": 0.5102656938263042,
+        "garand_rifle.n.01": 0.5105896973285868,
+        "carbine.n.01": 0.5243717886780184,
+        "assault_rifle.n.01": 0.53606260647842,
+        "light_arm.n.01": 0.536168307191778
+    },
+    "synset": "assault_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8cdf2374345b49cbacf41a35ac3dda1c",
+        "creator_username": "FiftyPeak",
+        "creator_display_name": "FiftyPeak",
+        "creator_profile_url": "https://sketchfab.com/FiftyPeak"
+    },
+    "filename": "std_8cdf2374345b49cbacf41a35ac3dda1c.glb",
+    "length": 0.8833276331424713,
+    "width": 0.06199724040925503
+}

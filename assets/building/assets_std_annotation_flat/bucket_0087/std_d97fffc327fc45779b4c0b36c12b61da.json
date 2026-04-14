@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a large, fixed-wing airplane with a high-wing configuration and a robust, boxy fuselage, reminiscent of military or cargo transport aircraft. The wings are straight and mounted high on the fuselage, each supporting two visible turboprop engines with prominent propellers. The nose is blunt and painted black, while the cockpit windows are clearly defined at the front. The tail features a conventional vertical stabilizer and horizontal stabilizers, forming a classic tail design. The landing gear is not fully visible, but the structure suggests a tricycle configuration with main gear under the wings and a nose gear.",
+    "description": "A high-wing, four-engine turboprop airplane with a boxy fuselage, blunt black nose, and conventional tail, resembling a military or cargo transport.",
+    "description_view_0": "Side view showing the high-mounted wings, four turboprop engines, and the blunt black nose.",
+    "description_view_1": "Front view highlighting the cockpit windows, four propellers, and the broad wingspan.",
+    "description_view_2": "Opposite side view similar to view 0, with clear visibility of the engines and tail structure.",
+    "description_view_3": "Rear view displaying the tail assembly, horizontal stabilizers, and the full wingspan.",
+    "category": "airplane",
+    "height": 5.0,
+    "max_dimension": 30.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 70000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 2000000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit window",
+        "propeller",
+        "landing gear",
+        "engine"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "green",
+        "white"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 35.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "High-wing, straight wings with no visible winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "Four turboprop engines mounted on the wings.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "Tricycle configuration, likely fixed or retractable, with main gear under the wings and a nose gear.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with multiple windows, likely multi-seat.",
+    "uid": "d97fffc327fc45779b4c0b36c12b61da",
+    "near_synsets": {
+        "airplane.n.01": 0.4543389496059423,
+        "propjet.n.01": 0.46934732008716235,
+        "aircraft.n.01": 0.48728894675003365,
+        "propeller_plane.n.01": 0.49158903146225913,
+        "jet.n.01": 0.5043711221454301
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d97fffc327fc45779b4c0b36c12b61da",
+        "creator_username": "slava2019",
+        "creator_display_name": "slava2019",
+        "creator_profile_url": "https://sketchfab.com/slava2019"
+    },
+    "filename": "std_d97fffc327fc45779b4c0b36c12b61da.glb",
+    "length": 14.91332721710205,
+    "width": 18.407442092895508
+}

@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a traditional wooden sailboat with a single large, rectangular sail mounted on a central mast. The hull is constructed from dark, weathered wooden planks, giving it a rustic and historical appearance. The boat features a simple open deck with visible ribs and crossbeams, and the bow and stern are both slightly upturned, typical of ancient or medieval watercraft. The sail is made of a coarse, brownish fabric, supported by a horizontal yard and rigged with ropes that connect to the hull and mast. There are no visible modern mechanical components, and the boat is designed for manual or wind-powered navigation. The overall design suggests it is intended for river or coastal use, with enough space for several passengers or cargo.",
+    "description": "A rustic wooden sailboat with a single large brown sail, open deck, and upturned bow and stern, evoking a historical or traditional style.",
+    "description_view_0": "Side view showing the full length of the boat, the large rectangular sail, and the open wooden deck.",
+    "description_view_1": "Front view highlighting the pointed bow, the curvature of the hull, and the central mast with rigging.",
+    "description_view_2": "Opposite side view mirroring view 0, displaying the sail, hull, and deck structure from the other side.",
+    "description_view_3": "Rear view showing the stern's upturn, the width of the hull, and the alignment of the mast and rigging.",
+    "category": "boat",
+    "height": 6.0,
+    "max_dimension": 10.0,
+    "materials": [
+        "wood",
+        "fabric",
+        "rope",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 800,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sail",
+        "mast",
+        "rigging ropes",
+        "deck"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "brown",
+        "dark brown",
+        "tan"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_hull_type": "monohull",
+    "attribute_propulsion_type": "sail",
+    "attribute_registration_number": "none",
+    "attribute_presence_of_trailer": false,
+    "attribute_visible_boat_name": "none",
+    "uid": "5af384cb4d4a4f1d81b5256936db78b4",
+    "near_synsets": {
+        "sailboat.n.01": 0.4640999419081952,
+        "catboat.n.01": 0.46520256823590983,
+        "boat.n.01": 0.47055284175727413,
+        "rowing_boat.n.01": 0.4816649557800254,
+        "sail.n.03": 0.4831824773899315,
+        "gravy_boat.n.01": -1000.0
+    },
+    "synset": "gravy_boat.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5af384cb4d4a4f1d81b5256936db78b4",
+        "creator_username": "Tidvis",
+        "creator_display_name": "Tidvis",
+        "creator_profile_url": "https://sketchfab.com/Tidvis"
+    },
+    "filename": "std_5af384cb4d4a4f1d81b5256936db78b4.glb",
+    "length": 6.551593542098999,
+    "width": 2.3233166933059692
+}

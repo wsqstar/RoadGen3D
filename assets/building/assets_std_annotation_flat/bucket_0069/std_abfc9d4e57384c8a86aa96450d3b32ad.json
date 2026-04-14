@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a World War II-era single-propeller military airplane with a camouflage paint scheme of green, brown, and yellow, featuring roundels and insignia on the wings and tail. The aircraft has a streamlined fuselage, a single engine mounted at the nose with a visible propeller, and a cockpit situated just behind the engine, likely for a single pilot. The wings are straight and low-mounted, with rounded tips and no visible winglets, and the tail section includes a single vertical stabilizer and horizontal stabilizers. The landing gear is fixed and consists of two main wheels under the wings and a smaller tail wheel. Markings such as \"F-G-50\" are visible on the fuselage, indicating a specific model or registration. The overall design suggests a robust, maneuverable aircraft suitable for reconnaissance or light combat roles.",
+    "description": "A WWII-era single-propeller military airplane with camouflage paint, low-mounted straight wings, and fixed landing gear. Features include a single cockpit, visible propeller, and distinctive roundel markings.",
+    "description_view_0": "Rear view showing the full wingspan, tail section, and camouflage pattern on the wings and fuselage.",
+    "description_view_1": "Left side view highlighting the propeller, cockpit canopy, fixed landing gear, and 'F-G-50' marking on the fuselage.",
+    "description_view_2": "Front view displaying the nose-mounted propeller, cockpit placement, and symmetrical wing structure.",
+    "description_view_3": "Right side view similar to the left, showing the propeller, cockpit, and tail details with camouflage pattern.",
+    "category": "airplane",
+    "height": 3.2,
+    "max_dimension": 8.5,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 2200,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "cockpit canopy",
+        "landing gear",
+        "wheels",
+        "control surfaces"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "yellow",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 12.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with straight, rounded wings and no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Single nose-mounted piston engine with a two-blade propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Fixed taildragger landing gear with two main wheels and a single tail wheel.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed single-seat cockpit with a clear canopy just behind the engine.",
+    "uid": "abfc9d4e57384c8a86aa96450d3b32ad",
+    "near_synsets": {
+        "airplane.n.01": 0.5061660571869794,
+        "warplane.n.01": 0.511998688019834,
+        "single_prop.n.01": 0.5131185983536525,
+        "propeller_plane.n.01": 0.5211383318289766,
+        "monoplane.n.01": 0.5225889320952923
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/abfc9d4e57384c8a86aa96450d3b32ad",
+        "creator_username": "mudroljub",
+        "creator_display_name": "mudroljub",
+        "creator_profile_url": "https://sketchfab.com/mudroljub"
+    },
+    "filename": "std_abfc9d4e57384c8a86aa96450d3b32ad.glb",
+    "length": 7.512711048126221,
+    "width": 10.419004440307617
+}

@@ -1,0 +1,90 @@
+{
+    "description_long": "This cowshed is a rectangular, single-story agricultural building with a prominent red hip roof made of corrugated metal or shingles. The structure is supported by sturdy wooden posts and beams, with the lower half of the walls clad in horizontal wooden planks. The front side is open, allowing easy access for livestock, while the sides and rear are fully enclosed for protection. The roof overhangs the structure, providing additional shelter from rain and sun. There are no visible windows, but the open front and possible gaps under the eaves suggest some passive ventilation.",
+    "description": "A rectangular cowshed with a red hip roof, open front, and wooden plank walls, designed for sheltering livestock.",
+    "description_view_0": "Front view showing the open entrance supported by wooden posts and the overhanging red hip roof.",
+    "description_view_1": "Side angle emphasizing the full width of the red roof and the solid wooden wall at the rear.",
+    "description_view_2": "Oblique rear view highlighting the enclosed wooden plank wall and the roof's overhang.",
+    "description_view_3": "Direct rear view showing the uninterrupted wooden plank wall and the symmetrical hip roof.",
+    "category": "cowshed",
+    "height": 4.0,
+    "max_dimension": 10.0,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "mass": 8000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "entrance",
+        "roof",
+        "support posts"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "brown",
+        "beige"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "hip",
+    "attribute_door_style": "open front, no visible doors",
+    "attribute_window_presence": "no windows",
+    "attribute_ventilation_features": "open eaves, open front",
+    "attribute_architectural_style": "traditional rural",
+    "uid": "4d9548ce7d484f8b85f4b3ea6298102a",
+    "near_synsets": {
+        "cowbarn.n.01": 0.41205567037315133,
+        "stockyard.n.01": 0.4707675755454207,
+        "cow_pasture.n.01": 0.48146202664373533,
+        "shed.n.01": 0.48622527705530116,
+        "barn.n.01": 0.4919297595503496
+    },
+    "synset": "cowbarn.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4d9548ce7d484f8b85f4b3ea6298102a",
+        "creator_username": "crownoakbuildingsdesigns",
+        "creator_display_name": "crownoakbuildingsdesigns",
+        "creator_profile_url": "https://sketchfab.com/crownoakbuildingsdesigns"
+    },
+    "filename": "std_4d9548ce7d484f8b85f4b3ea6298102a.glb",
+    "length": 5.089003801345825,
+    "width": 6.455495357513428
+}

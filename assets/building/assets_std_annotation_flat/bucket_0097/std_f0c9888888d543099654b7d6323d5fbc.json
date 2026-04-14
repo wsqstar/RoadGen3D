@@ -1,0 +1,102 @@
+{
+    "description_long": "This all-terrain vehicle features a robust, angular chassis with two main body segments connected by a central joint, suggesting enhanced maneuverability over rough surfaces. It is equipped with six large, deeply treaded rubber tires, each mounted on heavy-duty suspension arms, ideal for absorbing shocks and navigating uneven urban or off-road environments. The exterior is finished in a matte, military-style dark green and gray, with visible metallic panels, bolts, and reinforced edges for durability. The vehicle's undercarriage reveals complex suspension components and axles, while the top surfaces are adorned with vent-like details and access hatches. There are no visible windows or cockpit, implying it may be remotely operated or autonomous. The overall design emphasizes ruggedness, stability, and adaptability for traversing a variety of urban terrains.",
+    "description": "A rugged, six-wheeled all-terrain vehicle with a segmented, armored body and heavy-duty suspension, finished in matte green and gray. Its large, deeply treaded tires and robust construction make it ideal for navigating rough urban environments.",
+    "description_view_0": "Side view showing the segmented body, three large wheels, and visible suspension components on one side.",
+    "description_view_1": "Front view highlighting the wide stance, six tires, and armored front panel with vent details.",
+    "description_view_2": "Opposite side view mirroring view 0, with similar wheel and suspension visibility.",
+    "description_view_3": "Rear view displaying the back panel, rear suspension, and the full width of the six tires.",
+    "category": "all-terrain vehicle",
+    "height": 1.2,
+    "max_dimension": 3.2,
+    "materials": [
+        "metal",
+        "rubber",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "suspension arm",
+        "hatch",
+        "panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "gray",
+        "black",
+        "bronze"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.95,
+    "bounciness": 0.12,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 6,
+    "attribute_tire_tread_pattern": "The tires feature a deep, blocky, all-terrain tread pattern with pronounced grooves and ridges, designed for maximum traction on both paved and unpaved surfaces.",
+    "attribute_suspension_type": "independent",
+    "attribute_presence_of_roll_cage": false,
+    "attribute_handlebar_or_steering_wheel_type": "round steering wheel",
+    "uid": "f0c9888888d543099654b7d6323d5fbc",
+    "near_synsets": {
+        "sport_utility.n.01": 0.5300127721061061,
+        "reconnaissance_vehicle.n.01": 0.5301417917648732,
+        "military_vehicle.n.01": 0.5361551228686514,
+        "assault_gun.n.02": 0.5393013560936863,
+        "armored_vehicle.n.01": 0.5474927831618615,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "armored_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f0c9888888d543099654b7d6323d5fbc",
+        "creator_username": "ki.4",
+        "creator_display_name": "ki.4",
+        "creator_profile_url": "https://sketchfab.com/ki.4"
+    },
+    "filename": "std_f0c9888888d543099654b7d6323d5fbc.glb",
+    "length": 2.962601065635681,
+    "width": 2.174105405807495
+}

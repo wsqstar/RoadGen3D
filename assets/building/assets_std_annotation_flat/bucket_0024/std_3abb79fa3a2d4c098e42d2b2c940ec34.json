@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a large, heavily armored combat vehicle resembling a World War II-era German Tiger tank. Its exterior is covered in thick, sloped armor plating with a prominent, long-barreled main cannon mounted on a rotating turret. The vehicle features wide, robust tracks for traversing rough terrain, with visible road wheels and suspension components along the sides. The upper hull and turret are adorned with a light tan and green camouflage pattern, designed to break up its outline. The rear section includes exhaust ports and storage compartments, while the front is dominated by the gun mantlet and reinforced glacis plate. No visible military markings or insignia are present on the hull or turret.",
+    "description": "A large, camouflaged, heavily armored tank with a long main cannon and wide tracks, featuring sloped armor and a rotating turret.",
+    "description_view_0": "Front view shows the thick frontal armor, gun mantlet, and the main cannon pointing forward.",
+    "description_view_1": "Left side view highlights the length of the main cannon, the turret's profile, and the full track assembly.",
+    "description_view_2": "Rear view displays the exhaust ports, rear armor, and the back of the turret and hull.",
+    "description_view_3": "Right side view reveals the turret's shape, the cannon's length, and the right track system.",
+    "category": "combat tactical  vehicle",
+    "height": 3.0,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.85,
+        0.07,
+        0.02,
+        0.04,
+        0.02
+    ],
+    "mass": 57000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "hatch",
+        "cannon",
+        "tracks",
+        "wheels",
+        "exhaust port"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large main cannon mounted on the turret; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating on the hull and turret; no visible modular or reactive panels.",
+    "attribute_camouflage_pattern": "Tan and green irregular camouflage pattern with soft-edged patches.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "3abb79fa3a2d4c098e42d2b2c940ec34",
+    "near_synsets": {
+        "tank.n.01": 0.425297375894723,
+        "military_vehicle.n.01": 0.47410147680664955,
+        "armored_car.n.02": 0.48818702280620313,
+        "assault_gun.n.02": 0.48941148218902225,
+        "reconnaissance_vehicle.n.01": 0.49244009049990206,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3abb79fa3a2d4c098e42d2b2c940ec34",
+        "creator_username": "rickyowings",
+        "creator_display_name": "Ricky Owings",
+        "creator_profile_url": "https://sketchfab.com/rickyowings"
+    },
+    "filename": "std_3abb79fa3a2d4c098e42d2b2c940ec34.glb",
+    "length": 8.746309757232666,
+    "width": 3.78613018989563
+}

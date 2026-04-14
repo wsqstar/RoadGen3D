@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a heavily armored tracked combat vehicle with a low, angular profile and a prominent central turret. The vehicle features wide, robust treads on both sides, designed for traversing rough urban terrain, and a large-caliber cannon mounted at the front of the turret. The body is encased in thick, dark armor plating with visible panel lines and reinforced sections, especially around the front and sides. The turret appears to have additional hatches and possible vision ports, while the rear section is bulkier, likely housing the engine and other critical systems. The overall design emphasizes protection, firepower, and mobility, making it suitable for tactical operations in urban environments.",
+    "description": "A dark, heavily armored tracked combat vehicle with a central turret and large front-mounted cannon, designed for urban tactical operations.",
+    "description_view_0": "Front view shows the wide treads, reinforced frontal armor, and the central cannon barrel protruding from the turret.",
+    "description_view_1": "Left side view highlights the length of the treads, the angular turret, and the compact, low-slung body.",
+    "description_view_2": "Rear view reveals the back armor, exhausts, and the full width of the treads, with the turret and cannon visible above.",
+    "description_view_3": "Right side view mirrors the left, showing the turret, cannon, and the detailed tread system.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "treads",
+        "vision port"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "dark green"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large-caliber cannon mounted centrally on the turret; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, angular armor plating; reinforced at the front and sides; sloped surfaces for deflection.",
+    "attribute_camouflage_pattern": "Solid dark color scheme with subtle panel shading; no distinct camouflage pattern visible.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "5da07fca1a1c4c12b78dff9024316275",
+    "near_synsets": {
+        "tank.n.01": 0.47241078788920166,
+        "military_vehicle.n.01": 0.4853775614557286,
+        "armored_car.n.02": 0.48711794876928866,
+        "assault_gun.n.02": 0.4991392637200095,
+        "reconnaissance_vehicle.n.01": 0.5072752729488702,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5da07fca1a1c4c12b78dff9024316275",
+        "creator_username": "leoxx300",
+        "creator_display_name": "leoxx300",
+        "creator_profile_url": "https://sketchfab.com/leoxx300"
+    },
+    "filename": "std_5da07fca1a1c4c12b78dff9024316275.glb",
+    "length": 6.90213942527771,
+    "width": 4.686282396316528
+}

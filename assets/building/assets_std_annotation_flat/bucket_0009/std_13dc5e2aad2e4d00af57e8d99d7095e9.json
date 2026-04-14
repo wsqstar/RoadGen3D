@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a compact, white utility truck with a single cab and a flatbed cargo area, designed for urban transport and light hauling. The cab features two side mirrors, a windshield, and a front grille with a small, rectangular logo. The left door is open, revealing a simple interior with a steering wheel and basic controls. The flatbed is metallic and ribbed for durability, with low side rails and an open rear for easy loading and unloading. The truck has two axles and four wheels, with visible wheel wells and a utilitarian design. Its overall appearance is functional and minimalistic, suitable for city deliveries or small business use.",
+    "description": "A compact white single-cab flatbed truck with a simple, utilitarian design and an open cargo area for urban hauling.",
+    "description_view_0": "Front view showing the windshield, grille, headlights, side mirrors, and the left door open.",
+    "description_view_1": "Left side view highlighting the open cab door, flatbed cargo area, and two visible wheels.",
+    "description_view_2": "Rear view displaying the open flatbed, rear window, and both cab doors (left door open).",
+    "description_view_3": "Right side view with the right cab door open, showing the flatbed and both wheels on this side.",
+    "category": "truck",
+    "height": 1.7,
+    "max_dimension": 4.2,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 1200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 6000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "steering wheel",
+        "seat",
+        "wheel",
+        "mirror",
+        "cargo bed"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "black",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "flatbed",
+    "attribute_wheelbase": 2.5,
+    "attribute_number_of_axles": 2,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "13dc5e2aad2e4d00af57e8d99d7095e9",
+    "near_synsets": {
+        "flatbed.n.02": 0.46176068984789603,
+        "van.n.05": 0.4889007309156521,
+        "pickup.n.01": 0.49311257928112884,
+        "flatcar.n.01": 0.5023393921963863,
+        "truck.n.01": 0.5039037409420034,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/13dc5e2aad2e4d00af57e8d99d7095e9",
+        "creator_username": "sgrosjean",
+        "creator_display_name": "grs",
+        "creator_profile_url": "https://sketchfab.com/sgrosjean"
+    },
+    "filename": "std_13dc5e2aad2e4d00af57e8d99d7095e9.glb",
+    "length": 3.1569894552230835,
+    "width": 2.0873258113861084
+}

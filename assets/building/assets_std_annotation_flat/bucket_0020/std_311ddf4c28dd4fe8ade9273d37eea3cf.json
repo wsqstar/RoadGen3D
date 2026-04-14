@@ -1,0 +1,103 @@
+{
+    "description_long": "This is an old, weathered minivan with a boxy, utilitarian design and a camouflage green paint job that is faded and chipped in several places. The vehicle has four doors, with the front left door open, revealing a hollow and stripped interior. The windows are large and rectangular, with some missing or broken glass, and the rear side windows are particularly wide. The wheels appear damaged or incomplete, and the overall body shows signs of rust, wear, and neglect. The roof is flat and lacks any racks or rails, and the front grille and headlights are simple and unadorned. The minivan's overall appearance suggests it has been abandoned or used in harsh conditions, possibly for military or survival scenarios.",
+    "description": "A battered, camouflaged minivan with open doors, missing windows, and a heavily worn, rusted exterior. The interior is stripped and the vehicle shows signs of long-term neglect.",
+    "description_view_0": "Side view showing the left front door open, revealing the empty interior and damaged wheels.",
+    "description_view_1": "Rear view highlighting the wide rear window and the absence of a roof rack.",
+    "description_view_2": "Right side view with both side doors visible, showing the boxy shape and missing window glass.",
+    "description_view_3": "Front view displaying the simple grille, headlights, and the open left door.",
+    "category": "minivan",
+    "height": 1.7,
+    "max_dimension": 4.8,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.06,
+        0.01,
+        0.05
+    ],
+    "mass": 1700,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 5,
+    "movable": true,
+    "required_force": 8500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "handle",
+        "seat"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_number_of_sliding_doors": 0,
+    "attribute_window_configuration": "Large rectangular front, rear, and side windows; some missing or broken glass; wide rear side windows.",
+    "attribute_roof_rack_presence": false,
+    "uid": "311ddf4c28dd4fe8ade9273d37eea3cf",
+    "near_synsets": {
+        "minivan.n.01": 0.5357818947290637,
+        "van.n.05": 0.5515919893016487,
+        "passenger_van.n.01": 0.5517154752097189,
+        "boneshaker.n.01": 0.5568840862272947,
+        "van.n.04": 0.5585683998479932
+    },
+    "synset": "minivan.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/311ddf4c28dd4fe8ade9273d37eea3cf",
+        "creator_username": "kryik1023",
+        "creator_display_name": "Renafox",
+        "creator_profile_url": "https://sketchfab.com/kryik1023"
+    },
+    "filename": "std_311ddf4c28dd4fe8ade9273d37eea3cf.glb",
+    "length": 6.675352096557617,
+    "width": 3.9838926792144775
+}

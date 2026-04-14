@@ -1,0 +1,104 @@
+{
+    "description_long": "This object is a military-style rifle with a robust, dark metallic body and a wooden or polymer fixed stock. The rifle features a long barrel equipped with a cylindrical suppressor at the muzzle, and a bipod is attached near the front for stability during firing. A detachable box magazine is inserted below the receiver, and a telescopic scope is mounted on the top rail for precision aiming. The trigger guard, pistol grip, and various mechanical components are clearly visible, indicating a functional and detailed design. The rifle is depicted firing, with a visible muzzle flash emerging from the suppressor, emphasizing its operational state.",
+    "description": "A detailed, military-style rifle with a suppressor, bipod, scope, and fixed stock, shown firing with a visible muzzle flash.",
+    "description_view_0": "Front view showing the suppressor, bipod legs, and muzzle flash directly facing the viewer.",
+    "description_view_1": "Side view highlighting the full length of the rifle, the fixed stock, scope, magazine, and the suppressor emitting a muzzle flash.",
+    "description_view_2": "Rear view focusing on the buttstock and the alignment of the bipod and suppressor from behind.",
+    "description_view_3": "Opposite side view displaying the rifle's profile, including the scope, magazine, and the suppressor with a visible muzzle flash.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "polymer",
+        "wood",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 5.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "aimable",
+        "deployable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "magazine",
+        "scope",
+        "bipod",
+        "safety",
+        "bolt",
+        "stock",
+        "suppressor"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark brown",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "scope",
+    "attribute_muzzle_device": "suppressor",
+    "uid": "2cd63366353b4e8fbc9eff81b1fe922f",
+    "near_synsets": {
+        "dragunov.n.01": 0.504662241197845,
+        "sniper_rifle.n.01": 0.5119706861228044,
+        "gun_muzzle.n.01": 0.5181094091622501,
+        "silencer.n.01": 0.5184846664948197,
+        "rifle.n.01": 0.5231032816871124
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2cd63366353b4e8fbc9eff81b1fe922f",
+        "creator_username": "best3deu",
+        "creator_display_name": "Ulrik Langvandsbr\u00e5ten",
+        "creator_profile_url": "https://sketchfab.com/best3deu"
+    },
+    "filename": "std_2cd63366353b4e8fbc9eff81b1fe922f.glb",
+    "length": 0.8495388925075531,
+    "width": 0.5222426354885101
+}

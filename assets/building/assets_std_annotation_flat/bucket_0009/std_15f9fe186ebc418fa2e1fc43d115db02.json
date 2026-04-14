@@ -1,0 +1,119 @@
+{
+    "description_long": "This is a modern urban basketball court featuring a dark playing surface with bold red and white court markings, including a prominent center circle and key. The court is flanked by tiered bleacher seating on both sides, providing ample space for spectators. At one end, a large, illuminated backdrop wall with cityscape imagery and integrated basketball hoop and backboard creates a dramatic focal point. The opposite end is open, allowing for easy access and visibility. The materials appear to be a combination of concrete or asphalt for the court, metal and plastic for the hoop and backboard, and composite or metal for the bleachers. The overall design is sleek and contemporary, suitable for urban recreational use.",
+    "description": "A sleek, urban basketball court with dark surface, red and white markings, tiered bleachers, and a dramatic cityscape backdrop with an integrated hoop.",
+    "description_view_0": "Top-down view showing the full court layout, markings, and both sets of bleachers.",
+    "description_view_1": "Front view highlighting the cityscape backdrop, basketball hoop, and the bleachers facing the court.",
+    "description_view_2": "Angled side view emphasizing the court's length, markings, and the arrangement of bleachers.",
+    "description_view_3": "Rear view focusing on the court surface, bleachers, and the prominent backdrop wall with hoop.",
+    "category": "basketball court",
+    "height": 6.0,
+    "max_dimension": 28.0,
+    "materials": [
+        "concrete",
+        "metal",
+        "plastic",
+        "composite",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "playable",
+        "shootable",
+        "spectatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "basketball hoop",
+        "backboard",
+        "bleachers"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "red",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.0,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_hoop_presence": true,
+    "attribute_backboard_type": "rectangular glass",
+    "attribute_court_markings": [
+        "three-point line",
+        "free throw line",
+        "center circle",
+        "key",
+        "sidelines",
+        "baseline"
+    ],
+    "attribute_fence_enclosure": false,
+    "attribute_architectural_style": "urban outdoor",
+    "uid": "15f9fe186ebc418fa2e1fc43d115db02",
+    "near_synsets": {
+        "basketball_court.n.01": 0.4357842438172377,
+        "volleyball_court.n.01": 0.5280478083149468,
+        "home_court.n.01": 0.5302310660957257,
+        "basket.n.03": 0.531083803435676,
+        "tennis_court.n.01": 0.5331684556800432,
+        "motor_hotel.n.01": -1000.0,
+        "court.n.09": -1000.0,
+        "court.n.04": -1000.0,
+        "court.n.08": -1000.0,
+        "court.n.01": -1000.0,
+        "court.n.03": -1000.0,
+        "court.n.06": -1000.0,
+        "court.n.05": -1000.0,
+        "court.n.02": -1000.0,
+        "basketball.n.01": -1000.0,
+        "court.n.10": -1000.0,
+        "basketball.n.02": -1000.0
+    },
+    "synset": "basketball_court.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/15f9fe186ebc418fa2e1fc43d115db02",
+        "creator_username": "gishman",
+        "creator_display_name": "gishman",
+        "creator_profile_url": "https://sketchfab.com/gishman"
+    },
+    "filename": "std_15f9fe186ebc418fa2e1fc43d115db02.glb",
+    "length": 27.821758270263672,
+    "width": 23.820556640625
+}

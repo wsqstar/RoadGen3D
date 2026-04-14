@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a compact solar energy infrastructure installation, featuring a single rectangular photovoltaic panel mounted on a small, robust support structure. The solar panel has a dark blue, glass-like surface, likely composed of multiple photovoltaic cells, and is set at a noticeable tilt to optimize sunlight capture. The mounting structure appears metallic, possibly made from aluminum or steel, and is anchored to a flat, dark base that simulates ground or pavement. The panel is relatively small, suggesting it is designed for localized power generation, such as for streetlights, signage, or small urban devices. No visible electrical cabling or inverter housing is present, indicating a streamlined and minimalistic design. The overall appearance is modern and utilitarian, suitable for integration into urban environments like sidewalks, parks, or public plazas.",
+    "description": "A small, tilted solar panel mounted on a sturdy metallic support, set on a flat dark base, designed for urban solar energy collection.",
+    "description_view_0": "The solar panel is seen from the front, showing its tilted blue surface and the supporting structure emerging from the dark base.",
+    "description_view_1": "The side view highlights the thin profile of the solar panel and the metallic mounting structure beneath it.",
+    "description_view_2": "The rear angled view shows the back of the panel and the support, with the blue surface partially visible.",
+    "description_view_3": "The top-down view reveals the rectangular shape of the solar panel and its central placement on the base.",
+    "category": "solar energy infrastructure",
+    "height": 0.5,
+    "max_dimension": 2.0,
+    "materials": [
+        "glass",
+        "aluminum",
+        "steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 90,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "panel surface",
+        "mounting bracket"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "blue",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_panel_orientation": "tilted at approximately 30 degrees, azimuth direction not clearly specified, orientation appears fixed",
+    "attribute_mounting_structure_type": "ground-mounted on a metallic support structure, likely aluminum or steel frame",
+    "attribute_electrical_inverter_presence": false,
+    "attribute_cabling_visibility": "not visible",
+    "attribute_array_configuration": "single panel, centrally mounted",
+    "uid": "5a3a5a0b073044af8b388cb494ff0869",
+    "near_synsets": {
+        "solar_array.n.01": 0.5003213098874839,
+        "solar_thermal_system.n.01": 0.5159182915839652,
+        "solar_energy.n.01": 0.5246213341405145,
+        "solar_house.n.01": 0.5314594925153787,
+        "solar_cell.n.01": 0.5375043155115863,
+        "energy.n.05": -1000.0,
+        "energy.n.03": -1000.0,
+        "department_of_energy.n.01": -1000.0,
+        "infrastructure.n.01": -1000.0,
+        "energy.n.01": -1000.0,
+        "energy.n.06": -1000.0,
+        "energy.n.04": -1000.0,
+        "energy.n.02": -1000.0,
+        "infrastructure.n.02": -1000.0
+    },
+    "synset": "solar_array.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5a3a5a0b073044af8b388cb494ff0869",
+        "creator_username": "antonmoek",
+        "creator_display_name": "antonmoek",
+        "creator_profile_url": "https://sketchfab.com/antonmoek"
+    },
+    "filename": "std_5a3a5a0b073044af8b388cb494ff0869.glb",
+    "length": 8.867908477783203,
+    "width": 8.86790657043457
+}

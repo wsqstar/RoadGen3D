@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a large, classic ocean liner with a streamlined hull painted black below the waterline and a cream color above. The ship features two prominent yellow funnels positioned along the centerline, and several thin masts or rigging poles distributed fore and aft. The superstructure is multi-tiered, with a series of decks and portholes running along the length of the vessel. The bow is sharply pointed, while the stern is rounded, giving the ship an elegant, elongated profile. Deck details include raised structures and small fixtures, suggesting bridge and cabin areas, but no lifeboats or heavy equipment are visible.",
+    "description": "A classic ocean liner with a black-and-cream hull, two yellow funnels, and multiple decks with thin masts. The ship has a pointed bow, rounded stern, and detailed superstructure.",
+    "description_view_0": "Side view showing the full length of the ship, two yellow funnels, and multiple thin masts along the deck.",
+    "description_view_1": "Angled front view highlighting the pointed bow, forward masts, and the layered superstructure.",
+    "description_view_2": "Opposite side view displaying the rounded stern, both funnels, and the arrangement of deck structures.",
+    "description_view_3": "Angled rear view emphasizing the stern curvature, aft masts, and the ship's overall symmetry.",
+    "category": "ship",
+    "height": 0.12,
+    "max_dimension": 1.2,
+    "materials": [
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 1.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 15,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "funnels",
+        "masts"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "cream",
+        "black",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a classic displacement type with a sharply pointed bow and a rounded stern. The sides are smooth with a row of portholes, and there are no visible keels or bulbous bows. The hull sits low and long, emphasizing stability and streamlined movement through water.",
+    "attribute_superstructure_layout": "The superstructure consists of multiple decks with raised sections amidships and towards the bow and stern. Two large funnels are centrally located, and there are several small deckhouses and bridge-like structures, but no visible lifeboats or cranes.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "masts",
+        "funnels"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "bb4f108dbad14cd6a1ed029dfbbaaa16",
+    "near_synsets": {
+        "liner.n.04": 0.49759190722335506,
+        "cabin_liner.n.01": 0.515931389805936,
+        "cargo_ship.n.01": 0.5219355842369224,
+        "schooner.n.02": 0.5251228949751631,
+        "cargo_liner.n.01": 0.5252231451002556,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bb4f108dbad14cd6a1ed029dfbbaaa16",
+        "creator_username": "nmm",
+        "creator_display_name": "National Maritime Museum in Gda\u0144sk (Poland)",
+        "creator_profile_url": "https://sketchfab.com/nmm"
+    },
+    "filename": "std_bb4f108dbad14cd6a1ed029dfbbaaa16.glb",
+    "length": 0.12479031085968018,
+    "width": 0.13607096672058105
+}

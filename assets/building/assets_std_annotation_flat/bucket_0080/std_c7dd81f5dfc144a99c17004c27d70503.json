@@ -1,0 +1,111 @@
+{
+    "description_long": "This waste station is a rectangular, modern structure with a flat roof bordered by a prominent red frame. The front features a central entrance with large glass panels, flanked by additional glass sections, suggesting a public-access facility. The roof is divided into two sections, each marked with a large, colored symbol: a red 'X' and a blue recycling triangle, indicating separate waste compartments for general and recyclable materials. The sides and rear are also lined with glass panels, giving the building a transparent, accessible appearance. The overall design is clean and geometric, with smooth surfaces and minimal external ornamentation. The structure appears robust and is likely constructed from reinforced materials suitable for urban environments.",
+    "description": "A modern, rectangular waste station with a red-framed flat roof, large glass panels, and distinct waste compartment symbols on top.",
+    "description_view_0": "Front view shows the main entrance with a red frame and two large waste symbols on the roof.",
+    "description_view_1": "Side view highlights the depth of the structure and the prominence of the roof symbols.",
+    "description_view_2": "Rear view displays a continuous glass panel wall and both waste compartment symbols on the roof.",
+    "description_view_3": "Opposite side view emphasizes the building's length and the clear separation of roof symbols.",
+    "category": "waste station",
+    "height": 3.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "glass",
+        "reinforced concrete",
+        "painted metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "depositable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "waste compartment lid",
+        "recycling compartment lid"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "gray",
+        "blue",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.25,
+        0.4,
+        0.1,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_compartments": 2,
+    "attribute_presence_of_signage_or_labels": true,
+    "attribute_type_of_opening_mechanism": [
+        "open slot"
+    ],
+    "attribute_presence_of_recycling_symbols": true,
+    "attribute_placement_relative_to_street_features": "not specified",
+    "uid": "c7dd81f5dfc144a99c17004c27d70503",
+    "near_synsets": {
+        "garbage.n.03": 0.5241115948996629,
+        "dumpster.n.01": 0.5355917957357215,
+        "recycling_bin.n.01": 0.5401386079058256,
+        "wastepaper_basket.n.01": 0.5468931183542366,
+        "bottle_bank.n.01": 0.5593246515654088,
+        "waste.n.05": -1000.0,
+        "post.n.01": -1000.0,
+        "station.n.03": -1000.0,
+        "barren.n.01": -1000.0,
+        "waste.n.01": -1000.0,
+        "waste.n.02": -1000.0,
+        "place.n.10": -1000.0,
+        "station.n.05": -1000.0,
+        "thriftlessness.n.01": -1000.0,
+        "station.n.01": -1000.0
+    },
+    "synset": "garbage.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c7dd81f5dfc144a99c17004c27d70503",
+        "creator_username": "ivonelao",
+        "creator_display_name": "Ivone",
+        "creator_profile_url": "https://sketchfab.com/ivonelao"
+    },
+    "filename": "std_c7dd81f5dfc144a99c17004c27d70503.glb",
+    "length": 4.7432639598846436,
+    "width": 7.608141899108887
+}

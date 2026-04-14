@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a medium-sized, stylized sailing ship with a black hull and two prominent red sails, each mounted on a vertical mast. The hull features a series of square portholes along the sides, and the deck is open with visible wooden planks and crossbeams. The bow is pointed and slightly raised, while the stern is squared off and houses a raised structure, possibly a cabin or helm area. The sails are decorated with a skull and crossbones motif, suggesting a pirate or themed vessel. The ship lacks visible modern equipment, instead featuring classic rigging and a simple, robust design. The overall appearance is both functional and decorative, with a focus on traditional maritime aesthetics.",
+    "description": "A stylized black-hulled sailing ship with two red, skull-marked sails and an open wooden deck. The vessel features classic pirate motifs and a robust, traditional design.",
+    "description_view_0": "Front view showing the pointed bow, two red sails aligned vertically, and the open deck with visible crossbeams.",
+    "description_view_1": "Side view highlighting the length of the hull, square portholes, and the profile of the raised stern structure and masts.",
+    "description_view_2": "Rear view displaying the squared stern, raised cabin or helm area, and the back of the sails with the skull motif visible.",
+    "description_view_3": "Opposite side view showing the hull's shape, portholes, and the arrangement of the masts and sails from a different angle.",
+    "category": "ship",
+    "height": 7.0,
+    "max_dimension": 18.0,
+    "materials": [
+        "wood",
+        "fabric",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "steerable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sails",
+        "masts",
+        "helm",
+        "deck",
+        "cabin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a pointed bow and squared stern, featuring a series of evenly spaced square portholes along the sides. The hull appears robust and angular, with no visible keels or bulbous bows.",
+    "attribute_superstructure_layout": "The superstructure consists of a single raised section at the stern, likely serving as a cabin or helm, with an open main deck and no additional decks or towers visible.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "masts",
+        "sails",
+        "crossbeams"
+    ],
+    "attribute_registration_markings": "skull and crossbones motif on sails",
+    "uid": "ea25ec41665c49a0953fa25401a8b49f",
+    "near_synsets": {
+        "pirate.n.03": 0.47739077774284694,
+        "black_flag.n.01": 0.4945306816431144,
+        "figurehead.n.02": 0.516305300397272,
+        "corsair.n.02": 0.5179553454340186,
+        "bark.n.03": 0.5191770589334097,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ea25ec41665c49a0953fa25401a8b49f",
+        "creator_username": "itsyagirl_amber",
+        "creator_display_name": "itsyagirl_amber",
+        "creator_profile_url": "https://sketchfab.com/itsyagirl_amber"
+    },
+    "filename": "std_ea25ec41665c49a0953fa25401a8b49f.glb",
+    "length": 9.336910247802734,
+    "width": 3.9510241746902466
+}

@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a small, single-propeller airplane with a high-wing configuration and a conventional tail. The fuselage is primarily metallic gray with blue accents on the engine cowling, wing tips, and tail fin. The cockpit is located at the front of the fuselage and appears to be enclosed, with windows visible around the nose section. The landing gear is fixed and consists of two main wheels under the wings and a smaller tail wheel. The propeller is mounted at the nose, and the wings are straight with no visible winglets or dihedral angle. The overall design suggests a utility or general aviation aircraft suitable for short takeoff and landing operations.",
+    "description": "A small, high-wing, single-propeller airplane with a metallic gray body and blue accents, featuring fixed landing gear and an enclosed forward cockpit.",
+    "description_view_0": "Side view showing the high-mounted straight wing, blue engine cowling, and tail details.",
+    "description_view_1": "Top-down view highlighting the full wingspan, blue-tipped wings, and the straight alignment of the tail and fuselage.",
+    "description_view_2": "Opposite side view displaying the propeller, cockpit windows, and blue accents on the tail and wing.",
+    "description_view_3": "Front view emphasizing the nose-mounted propeller, forward cockpit, and fixed landing gear under the wings.",
+    "category": "airplane",
+    "height": 2.8,
+    "max_dimension": 10.5,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "door",
+        "landing gear",
+        "cockpit window",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.07,
+    "recommended_clearance": 12.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "High-wing, straight wings with no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Single nose-mounted piston engine with a two-blade propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "Fixed taildragger landing gear with two main wheels and a single tail wheel.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with side windows, likely single or dual seat.",
+    "uid": "7ca548bc42a04856907cd22bdc093831",
+    "near_synsets": {
+        "airplane.n.01": 0.437594729717355,
+        "aircraft.n.01": 0.46897436172185175,
+        "monoplane.n.01": 0.48112521321836843,
+        "propeller_plane.n.01": 0.48723643597586475,
+        "single_prop.n.01": 0.4873427960476331
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7ca548bc42a04856907cd22bdc093831",
+        "creator_username": "helijah",
+        "creator_display_name": "helijah",
+        "creator_profile_url": "https://sketchfab.com/helijah"
+    },
+    "filename": "std_7ca548bc42a04856907cd22bdc093831.glb",
+    "length": 8.212954998016357,
+    "width": 12.485173225402832
+}

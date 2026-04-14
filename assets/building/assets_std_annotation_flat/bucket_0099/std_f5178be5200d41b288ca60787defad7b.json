@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a compact, tracked combat vehicle with a low, angular profile and a single, prominent cannon mounted on a boxy turret. The hull is constructed from riveted metal plates, with a sloped front and sides for deflection and protection. The vehicle features continuous rubberized tracks supported by large, spoked road wheels, providing mobility over rough terrain. The rear section has vented grilles, likely for engine cooling, and the turret is centrally positioned with visible hatches and paneling. The surface is painted in a weathered, pale green with subtle rust and wear, giving it a utilitarian, battle-worn appearance. No visible markings or insignia are present, and the design emphasizes function and protection over aesthetics.",
+    "description": "A small, tracked combat vehicle with a boxy turret, single cannon, and weathered green armor plating. It features sloped metal surfaces, large road wheels, and vented rear grilles.",
+    "description_view_0": "Side view showing the full length of the tracks, the spoked wheels, and the cannon extending from the turret.",
+    "description_view_1": "Rear view highlighting the vented grilles, the back armor plate, and the width of the tracks.",
+    "description_view_2": "Opposite side view, similar to view 0, with the cannon and turret visible, and the tracks fully displayed.",
+    "description_view_3": "Front view showing the cannon head-on, the sloped front armor, and the symmetrical tracks.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 6,
+    "movable": true,
+    "required_force": 60000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "track",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "gray",
+        "black",
+        "rust-brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the central turret; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body coverage with riveted, sloped steel armor plating; moderate thickness with visible panel seams and reinforced turret.",
+    "attribute_camouflage_pattern": "Solid, weathered pale green paint with rust and wear; no distinct camouflage pattern.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "f5178be5200d41b288ca60787defad7b",
+    "near_synsets": {
+        "tank.n.01": 0.4873024614638825,
+        "military_vehicle.n.01": 0.5022552430979413,
+        "reconnaissance_vehicle.n.01": 0.5027546155317957,
+        "armored_car.n.02": 0.5184970550104587,
+        "assault_gun.n.02": 0.5199665709609186,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f5178be5200d41b288ca60787defad7b",
+        "creator_username": "AaronBovey",
+        "creator_display_name": "AaronBovey",
+        "creator_profile_url": "https://sketchfab.com/AaronBovey"
+    },
+    "filename": "std_f5178be5200d41b288ca60787defad7b.glb",
+    "length": 4.021742343902588,
+    "width": 2.642412781715393
+}

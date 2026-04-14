@@ -1,0 +1,113 @@
+{
+    "description_long": "This is a modern gas station structure featuring a large, flat rectangular canopy supported by two robust columns, providing shelter for the fueling area beneath. The canopy is primarily white with a distinct red accent line running along its edge, and it covers a single, centrally positioned fuel pump. Adjacent to the fueling area is a rectangular building with large glass windows, likely serving as a convenience store or attendant booth, and a visible utility box on one side. The ground surface is a dark, paved platform that extends around the building and fueling area, demarcating the station's operational zone. The overall design is minimalist, with clean lines and a functional layout, but there is no visible branding, signage, or price display board. The structure appears to be constructed mainly from concrete, glass, and metal, with a focus on durability and ease of maintenance.",
+    "description": "A modern gas station with a flat canopy, single central fuel pump, and an adjacent glass-fronted building, all set on a dark paved platform. The design is minimalist, with white and gray tones accented by a red stripe.",
+    "description_view_0": "Front angled view showing the canopy, single fuel pump, and glass-fronted building with interior details visible.",
+    "description_view_1": "Rear view highlighting the plain back of the building and canopy, with no visible pumps or windows.",
+    "description_view_2": "Side view displaying the utility box, small window, and the full length of the canopy and building.",
+    "description_view_3": "Direct front view emphasizing the two supporting columns, the fuel pump between them, and the open fueling area.",
+    "category": "gas station",
+    "height": 4.5,
+    "max_dimension": 16.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "plastic",
+        "asphalt",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.15,
+        0.05,
+        0.08,
+        0.02
+    ],
+    "mass": 65000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "fuel pump",
+        "door",
+        "window",
+        "utility box"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "black",
+        "red",
+        "green"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.03,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "group",
+    "attribute_fuel_pumps": "One modern, rectangular fuel pump is visible, centrally located under the canopy. It is gray with a simple design, featuring a hose and nozzle, but no visible branding or digital display.",
+    "attribute_canopy_structure": "A large, flat, rectangular canopy covers the fueling area, supported by two thick columns. The canopy is white with a red accent stripe along the edge, constructed from concrete and metal, with no visible lighting or signage attached.",
+    "attribute_station_signage": "None visible.",
+    "attribute_price_display_board": "None visible.",
+    "attribute_convenience_store_entrance": "A single glass door is located on the front of the adjacent building, next to large windows. The entrance is manual, framed in metal, with no visible signage or branding above or near the door.",
+    "uid": "d7d71aecd9f1484fa69b3bc219e876aa",
+    "near_synsets": {
+        "service_station.n.01": 0.5169699431190234,
+        "gas_pump.n.01": 0.5270035692276182,
+        "gasoline_station.n.01": 0.5294598914494277,
+        "gas_tank.n.01": 0.5696516377405191,
+        "service_area.n.01": 0.5877271702202073,
+        "flatulence.n.01": -1000.0,
+        "station.n.05": -1000.0,
+        "accelerator.n.01": -1000.0,
+        "natural_gas.n.01": -1000.0,
+        "gas.n.02": -1000.0,
+        "station.n.01": -1000.0,
+        "post.n.01": -1000.0,
+        "station.n.03": -1000.0,
+        "place.n.10": -1000.0,
+        "gasoline.n.01": -1000.0,
+        "gas.n.01": -1000.0
+    },
+    "synset": "gasoline_station.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d7d71aecd9f1484fa69b3bc219e876aa",
+        "creator_username": "urz",
+        "creator_display_name": "Ula Rz\u0105dkowska",
+        "creator_profile_url": "https://sketchfab.com/urz"
+    },
+    "filename": "std_d7d71aecd9f1484fa69b3bc219e876aa.glb",
+    "length": 10.568806171417236,
+    "width": 10.568804740905762
+}

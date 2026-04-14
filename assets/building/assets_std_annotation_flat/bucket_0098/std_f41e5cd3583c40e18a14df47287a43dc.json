@@ -1,0 +1,111 @@
+{
+    "description_long": "This is a modern double-decker commuter train carriage, primarily painted in yellow with a blue stripe running horizontally along its length. The carriage features two levels of rectangular windows, indicating its double-decker design, and displays the number '2' to denote second-class seating. The front of the train is streamlined, with a sloped nose and visible headlights, while the roof includes a pantograph for overhead electric power collection. Entry doors are located at both ends of the carriage, and the undercarriage houses visible bogies and mechanical components. The overall design is sleek and functional, suitable for high-capacity urban and regional passenger transport.",
+    "description": "A yellow and blue double-decker commuter train carriage with two levels of windows, end doors, and a roof-mounted pantograph for electric power.",
+    "description_view_0": "Side view showing the full length of the double-decker carriage, two rows of windows, blue stripe, and end doors.",
+    "description_view_1": "Front view highlighting the streamlined nose, headlights, and the narrow profile of the carriage.",
+    "description_view_2": "Opposite side view similar to view 0, showing the double-decker window arrangement, blue stripe, and pantograph.",
+    "description_view_3": "Rear view showing the back end of the carriage, rear lights, and the overall width.",
+    "category": "train",
+    "height": 4.5,
+    "max_dimension": 26.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air",
+        "fabric"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.05,
+        0.05,
+        0.02
+    ],
+    "mass": 48000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "pressable",
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "pantograph",
+        "headlight",
+        "control panel",
+        "seat"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "blue",
+        "black",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "double-decker commuter train",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end",
+    "attribute_window_arrangement": "two continuous rows of rectangular windows on both levels",
+    "uid": "f41e5cd3583c40e18a14df47287a43dc",
+    "near_synsets": {
+        "train.n.01": 0.4797067226852371,
+        "passenger_train.n.01": 0.4834266234055874,
+        "car_train.n.01": 0.49669720572287246,
+        "subway_train.n.01": 0.4973005914311857,
+        "commuter.n.01": 0.5066217336823806,
+        "train.n.04": -1000.0,
+        "caravan.n.01": -1000.0,
+        "train.n.05": -1000.0,
+        "string.n.04": -1000.0,
+        "gearing.n.01": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f41e5cd3583c40e18a14df47287a43dc",
+        "creator_username": "continentialvoxels",
+        "creator_display_name": "voxellation",
+        "creator_profile_url": "https://sketchfab.com/continentialvoxels"
+    },
+    "filename": "std_f41e5cd3583c40e18a14df47287a43dc.glb",
+    "length": 22.449997901916504,
+    "width": 2.9000028371810913
+}

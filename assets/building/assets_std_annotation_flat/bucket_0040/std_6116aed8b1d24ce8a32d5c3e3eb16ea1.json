@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a large, rectangular metal dumpster with a sloped, ribbed lid and visible graffiti on all sides. The body is primarily a weathered teal-green color, with patches of rust, dirt, and faded paint, indicating prolonged outdoor exposure. The lid is made of corrugated metal, painted a lighter gray, and appears to be split into two hinged sections for opening. On the front, there are warning labels, a recycling system sticker, and reinforced metal panels, while the sides feature additional graffiti and a protruding latch or lock mechanism. The rear is mostly plain, covered in faded graffiti tags, and the base shows signs of grime and moss buildup. The overall construction is robust, designed to withstand heavy use in urban environments.",
+    "description": "A large, weathered metal dumpster with a ribbed, split lid, graffiti, and warning labels, showing signs of outdoor use and wear.",
+    "description_view_0": "Side view showing graffiti, a ribbed metal lid, and a protruding latch or lock mechanism.",
+    "description_view_1": "Front view with warning labels, a recycling sticker, reinforced panels, and the split lid clearly visible.",
+    "description_view_2": "Opposite side view with more graffiti, the ribbed lid, and another latch or lock mechanism.",
+    "description_view_3": "Rear view dominated by faded graffiti and a mostly plain, weathered surface.",
+    "category": "dumpster",
+    "height": 1.4,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "latch",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "teal",
+        "gray",
+        "rust",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "split, hinged, ribbed metal lid with two sections, no visible locking mechanism but has latches",
+    "attribute_wheel_presence": false,
+    "attribute_handle_design": "two bar handles, metal, located on each side near the front",
+    "attribute_warning_labels": [
+        "white rectangular recycling system sticker with green text and symbol",
+        "blue square sticker",
+        "white rectangular label"
+    ],
+    "attribute_placement_location": "outdoor commercial area, residential alley, or near garages",
+    "uid": "6116aed8b1d24ce8a32d5c3e3eb16ea1",
+    "near_synsets": {
+        "dumpster.n.01": 0.481359881165669,
+        "garbage.n.03": 0.5314932265051097,
+        "scrapheap.n.02": 0.5397813110984003,
+        "recycling_bin.n.01": 0.5427072902675816,
+        "garbage_truck.n.01": 0.556149933981252
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6116aed8b1d24ce8a32d5c3e3eb16ea1",
+        "creator_username": "crufro",
+        "creator_display_name": "Crew Froebel",
+        "creator_profile_url": "https://sketchfab.com/crufro"
+    },
+    "filename": "std_6116aed8b1d24ce8a32d5c3e3eb16ea1.glb",
+    "length": 1.8629570603370667,
+    "width": 1.8346492648124695
+}

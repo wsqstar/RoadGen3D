@@ -1,0 +1,94 @@
+{
+    "description_long": "This object consists of two large, rectangular packages wrapped in tan straps, resembling parcels or crates, with several black spherical bombs featuring wooden fuses clustered beside them. The packages have a smooth, matte finish and are tightly bound, suggesting they are used to conceal or transport the bombs. The bombs themselves are stylized with faceted black surfaces and tan bands, each topped with a short, protruding fuse. The overall appearance is utilitarian, with no visible digital or analog timers, and the bombs are grouped in a way that suggests they are ready for deployment. The packages and bombs are visually distinct, with the bombs' dark color contrasting against the lighter tan of the packages. There are no visible warning labels or hazard symbols on the exterior.",
+    "description": "Two tan-wrapped rectangular packages are paired with several black spherical bombs featuring wooden fuses, all with a smooth, matte finish and no visible warning labels.",
+    "description_view_0": "Two tan packages are stacked, with a cluster of black bombs partially visible on the right side.",
+    "description_view_1": "The front view shows both packages and all five black bombs with wooden fuses clearly displayed in front.",
+    "description_view_2": "The rear view highlights the plain tan surfaces of the packages, with only one bomb partially visible on the left.",
+    "description_view_3": "The left side shows the packages side by side, with the bombs mostly obscured behind the right package.",
+    "category": "bomb",
+    "height": 0.5,
+    "max_dimension": 0.8,
+    "materials": [
+        "plastic",
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "fuse",
+        "bomb body",
+        "package strap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "group",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The bombs feature visible wooden fuses, suggesting ignition is initiated by lighting the fuse, with no electronic or remote triggering components apparent.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "15d6c916400a4cbdbfae2d1f8098a4aa",
+    "near_synsets": {
+        "briefcase_bomb.n.01": 0.5231015700252725,
+        "letter_bomb.n.01": 0.529525640711051,
+        "pipe_bomb.n.01": 0.5340857826288866,
+        "plastic_bomb.n.01": 0.5445596840651461,
+        "bomb.n.01": 0.5562871610942299,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/15d6c916400a4cbdbfae2d1f8098a4aa",
+        "creator_username": "kythulu",
+        "creator_display_name": "kythulu",
+        "creator_profile_url": "https://sketchfab.com/kythulu"
+    },
+    "filename": "std_15d6c916400a4cbdbfae2d1f8098a4aa.glb",
+    "length": 0.7864451110363007,
+    "width": 1.0974563360214233
+}

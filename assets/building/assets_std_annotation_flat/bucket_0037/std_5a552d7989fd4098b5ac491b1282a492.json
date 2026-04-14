@@ -1,0 +1,120 @@
+{
+    "description_long": "This object is a colorful amusement park structure featuring three large conical tents with alternating red and white panels, arranged around a central, larger tent with a pointed roof. The central tent is flanked by two tall, cylindrical towers that resemble observation or lighting posts. Surrounding the main tents are several rectangular platforms and smaller structures, some of which appear to be seating or ticketing areas, with blue and white surfaces. There are also multiple flagpoles with small flags, and a section with rows of white chairs and tables, suggesting an outdoor waiting or dining area. The overall layout is open, with clear pathways and designated zones for different activities. The design is festive and inviting, with a focus on bright colors and geometric shapes.",
+    "description": "A vibrant amusement park attraction with three red-and-white conical tents, observation towers, blue platforms, and outdoor seating areas. The structure is festive, open, and designed for guest interaction.",
+    "description_view_0": "Front view showing the main entrance to the central tent, flanked by two observation towers and outdoor seating in the foreground.",
+    "description_view_1": "Side view highlighting the arrangement of the tents, blue platforms, and a clear view of the flagpoles and outdoor seating area.",
+    "description_view_2": "Rear view displaying the back entrances to the tents, the two observation towers, and the layout of the surrounding platforms.",
+    "description_view_3": "Angled side view emphasizing the proximity of the tents, the blue platforms, and the arrangement of the outdoor seating and flagpoles.",
+    "category": "amusement park",
+    "height": 8.0,
+    "max_dimension": 22.0,
+    "materials": [
+        "fabric",
+        "metal",
+        "plastic",
+        "wood",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.05,
+        0.01,
+        0.09
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "queueable",
+        "waitable",
+        "viewable",
+        "interactable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "gate",
+        "ticket booth window",
+        "seating",
+        "flagpole",
+        "lighting post"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "blue",
+        "pink",
+        "gray"
+    ],
+    "colors_composition": [
+        0.32,
+        0.32,
+        0.18,
+        0.1,
+        0.08
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "scene",
+    "attribute_ride_type": "circus tent attraction",
+    "attribute_theming_elements": [
+        "circus tents",
+        "flagpoles",
+        "observation towers",
+        "colorful seating"
+    ],
+    "attribute_signage": "None",
+    "attribute_lighting_features": [
+        "tower spotlights"
+    ],
+    "attribute_queue_design": "Outdoor queue area with rows of white chairs and tables, separated by flagpoles and open barriers, allowing for organized guest flow.",
+    "uid": "5a552d7989fd4098b5ac491b1282a492",
+    "near_synsets": {
+        "theme_park.n.01": 0.5213837600201359,
+        "amusement_park.n.01": 0.5307163397664855,
+        "scenic_railway.n.01": 0.5537178527578683,
+        "roller_coaster.n.02": 0.5708895013451112,
+        "pavilion.n.01": 0.577675845039604,
+        "park.n.06": -1000.0,
+        "amusement.n.01": -1000.0,
+        "entertainment.n.01": -1000.0,
+        "parking_lot.n.01": -1000.0,
+        "ballpark.n.01": -1000.0,
+        "park.n.01": -1000.0,
+        "park.n.02": -1000.0,
+        "park.n.04": -1000.0
+    },
+    "synset": "amusement_park.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/5a552d7989fd4098b5ac491b1282a492",
+        "creator_username": "homedesign3d",
+        "creator_display_name": "Home Design 3D",
+        "creator_profile_url": "https://sketchfab.com/homedesign3d"
+    },
+    "filename": "std_5a552d7989fd4098b5ac491b1282a492.glb",
+    "length": 29.590691566467285,
+    "width": 21.276708602905273
+}

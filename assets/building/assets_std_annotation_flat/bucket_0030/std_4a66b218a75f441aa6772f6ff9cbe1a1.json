@@ -1,0 +1,97 @@
+{
+    "description_long": "This humanoid robot features a sleek, athletic build with a predominantly yellow and black color scheme. Its body is composed of segmented limbs and a broad, angular torso, with visible mechanical joints at the shoulders, elbows, hips, knees, and ankles. The head is rounded and helmet-like, with a smooth, featureless face except for two large, dark eye sockets. The robot's right hand is gripping a brown, football-shaped object, suggesting a sports or athletic function. The arms and legs are proportioned similarly to a human's, with articulated fingers and toes, and the overall design emphasizes mobility and strength. The surface finish is smooth and metallic, with some matte black accents at the joints and extremities.",
+    "description": "A yellow and black humanoid robot with articulated limbs, a helmet-like head, and a football in its right hand. Its design is athletic and mechanical, with smooth metallic surfaces and visible joints.",
+    "description_view_0": "Front view showing the robot's broad chest, helmet-like head, and football held in the right hand.",
+    "description_view_1": "Left side view highlighting the robot's profile, arm and leg articulation, and the football partially visible.",
+    "description_view_2": "Rear view displaying the robot's back structure, segmented limbs, and the football in the right hand.",
+    "description_view_3": "Right side view showing the robot's arm and leg articulation, with the football clearly visible in the right hand.",
+    "category": "humanoid robot",
+    "height": 1.85,
+    "max_dimension": 1.95,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "mass": 95,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "legs",
+        "hands",
+        "fingers",
+        "head",
+        "torso"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.18,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is in a walking pose, with its left leg forward and right leg back, right arm bent holding a football, and left arm slightly extended. The head is upright and facing forward, and the torso is straight.",
+    "attribute_clothing_style": "The robot is unclothed, featuring integrated yellow and black panels as part of its mechanical structure, with no separate clothing or decorative coverings.",
+    "attribute_facial_features": "The face is smooth and helmet-like, with two large, dark, circular eye sockets and no visible mouth, nose, or expressive features.",
+    "attribute_limb_articulation": "The robot has visible hinge and rotary joints at the shoulders, elbows, wrists, hips, knees, and ankles, allowing for a wide range of motion. The fingers and toes are segmented, suggesting dexterous movement.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "4a66b218a75f441aa6772f6ff9cbe1a1",
+    "near_synsets": {
+        "android.n.01": 0.5365151127165552,
+        "robotics_equipment.n.01": 0.5497154698820992,
+        "cyborg.n.01": 0.5593474530962546,
+        "automaton.n.02": 0.5691414234622728,
+        "robotics.n.01": 0.5755358225236593
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4a66b218a75f441aa6772f6ff9cbe1a1",
+        "creator_username": "shaderbytes",
+        "creator_display_name": "shaderbytes",
+        "creator_profile_url": "https://sketchfab.com/shaderbytes"
+    },
+    "filename": "std_4a66b218a75f441aa6772f6ff9cbe1a1.glb",
+    "length": 0.9221819043159485,
+    "width": 0.9884321689605713
+}

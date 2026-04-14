@@ -1,0 +1,111 @@
+{
+    "description_long": "This gas station features a rectangular fueling area covered by a large, flat red canopy supported by four columns. Adjacent to the canopy is a boxy convenience store building with a flat roof, also trimmed in red, and two visible rooftop fixtures. The fueling area is open on all sides, with a small green strip and a vertical sign or post located at the edge of the property. The ground is paved in gray, providing ample space for vehicles to maneuver. The overall design is simple and modern, with minimal decorative elements and a focus on functionality. The color palette is dominated by red, white, and gray, giving the station a clean and easily recognizable appearance.",
+    "description": "A modern gas station with a red canopy over the fueling area, a boxy convenience store, and a small signpost on a paved lot. The design is clean and functional with red, white, and gray colors.",
+    "description_view_0": "Front view showing the red canopy supported by columns, the convenience store to the right, and a small signpost on a green strip to the left.",
+    "description_view_1": "Rear view highlighting the back of the convenience store and the canopy structure behind it, with rooftop fixtures visible.",
+    "description_view_2": "Side view displaying the convenience store on the left and the canopy on the right, with the signpost and green strip at the far edge.",
+    "description_view_3": "Opposite front view focusing on the open fueling area under the canopy, with the convenience store building behind it and the signpost in the foreground.",
+    "category": "gas station",
+    "height": 5.0,
+    "max_dimension": 20.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "glass",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "fueling",
+        "purchasing"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "fuel pump area",
+        "store entrance",
+        "signpost"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "gray",
+        "green",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.3,
+        0.3,
+        0.3,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "scene",
+    "attribute_fuel_pumps": "none visible",
+    "attribute_canopy_structure": "A large, flat, rectangular red canopy supported by four columns, covering the fueling area. The canopy is simple in design with no visible lighting or signage attached.",
+    "attribute_station_signage": "A single vertical signpost is visible on a green strip near the edge of the property. No branding, text, or logos are discernible.",
+    "attribute_price_display_board": "none visible",
+    "attribute_convenience_store_entrance": "none visible",
+    "uid": "e2d22c2e3a2c455ba1ed9de93da809b3",
+    "near_synsets": {
+        "service_station.n.01": 0.5124258973191813,
+        "gasoline_station.n.01": 0.5213775634760572,
+        "gas_pump.n.01": 0.5544462953298662,
+        "convenience_store.n.01": 0.578277986073624,
+        "gas_tank.n.01": 0.5798652817733775,
+        "station.n.01": -1000.0,
+        "gas.n.02": -1000.0,
+        "gas.n.01": -1000.0,
+        "post.n.01": -1000.0,
+        "station.n.05": -1000.0,
+        "accelerator.n.01": -1000.0,
+        "station.n.03": -1000.0,
+        "place.n.10": -1000.0,
+        "flatulence.n.01": -1000.0,
+        "gasoline.n.01": -1000.0,
+        "natural_gas.n.01": -1000.0
+    },
+    "synset": "gasoline_station.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e2d22c2e3a2c455ba1ed9de93da809b3",
+        "creator_username": "virginiavidonis",
+        "creator_display_name": "Virginia Vidonis",
+        "creator_profile_url": "https://sketchfab.com/virginiavidonis"
+    },
+    "filename": "std_e2d22c2e3a2c455ba1ed9de93da809b3.glb",
+    "length": 29.83297824859619,
+    "width": 31.111546516418457
+}

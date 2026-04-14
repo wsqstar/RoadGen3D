@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a single banana with a pronounced curve, featuring a partially peeled skin that exposes the pale, creamy interior fruit. The peel is mottled with brown spots and blemishes, indicating some aging and handling, and is split open along one side, curling away from the flesh. The exposed fruit appears soft and slightly fibrous, with a few minor surface imperfections. The stem is intact but shows signs of drying and darkening, while the tip of the banana is slightly bruised. The overall surface of the peel is matte with a semi-soft texture, and the coloration transitions from yellow to brown with some greenish undertones near the stem. This banana would commonly be found discarded or dropped in urban environments such as sidewalks, parks, or near trash bins.",
+    "description": "A partially peeled, curved banana with a mottled yellow and brown peel, exposing the pale interior fruit and showing signs of bruising and blemishes.",
+    "description_view_0": "Side view showing the banana's pronounced curve, partially peeled skin, and exposed fruit along the length.",
+    "description_view_1": "End-on view highlighting the open, split peel and the rounded tip of the exposed fruit.",
+    "description_view_2": "Opposite side view displaying the mostly intact peel with brown spots and a visible bruise.",
+    "description_view_3": "View from the stem end, showing the split peel curling away and the fibrous texture of the fruit.",
+    "category": "banana",
+    "height": 0.04,
+    "max_dimension": 0.19,
+    "materials": [
+        "banana peel",
+        "banana flesh",
+        "air"
+    ],
+    "materials_composition": [
+        0.25,
+        0.7,
+        0.05
+    ],
+    "mass": 0.13,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "peel",
+        "flesh",
+        "stem"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "brown",
+        "cream",
+        "green"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.36,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "single",
+    "attribute_peel_condition": "The banana's peel is partially split and peeled back, with visible brown spots, blemishes, and some bruising. The surface shows signs of wear and minor tearing, especially along the split edge.",
+    "attribute_ripeness_stage": "overripe",
+    "attribute_sticker_presence": false,
+    "attribute_curvature": 110,
+    "attribute_proximity_to_litter": false,
+    "uid": "f0525338badc4e02b6bdb1e660bc96ba",
+    "near_synsets": {
+        "banana.n.02": 0.4654317444141806,
+        "banana_peel.n.01": 0.47611844162501704,
+        "edible_banana.n.01": 0.5190210890018332,
+        "papaya.n.02": 0.5259065381252785,
+        "banana_bread.n.01": 0.5296616507843298,
+        "banana.n.01": -1000.0
+    },
+    "synset": "banana.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f0525338badc4e02b6bdb1e660bc96ba",
+        "creator_username": "ashkanpakzad",
+        "creator_display_name": "Ashkan Pakzad",
+        "creator_profile_url": "https://sketchfab.com/ashkanpakzad"
+    },
+    "filename": "std_f0525338badc4e02b6bdb1e660bc96ba.glb",
+    "length": 0.02012468595057726,
+    "width": 0.07657681405544281
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This cabin features a rectangular wooden structure with a prominent, double-layered gable roof covered in textured shingles. The exterior walls are clad in horizontal wooden planks, giving it a rustic yet sturdy appearance. Windows are symmetrically placed on the longer sides, each with a simple frame and divided panes, while the shorter sides have a single window or none. A covered porch with railings extends from one end, supported by posts and accessible via a small set of steps. The foundation appears slightly elevated, with a stone or concrete base visible beneath the wooden siding. The cabin sits on a grassy terrain with a stone path leading up to the porch, suggesting a welcoming residential setting.",
+    "description": "A rustic wooden cabin with a double-layered gable roof, symmetrical windows, and a covered porch on a raised foundation.",
+    "description_view_0": "Side view showing two windows on the wooden facade and a partial view of the porch on the left.",
+    "description_view_1": "End view highlighting the covered porch with railings and steps, and the double-layered gable roof above.",
+    "description_view_2": "Opposite side view with two windows and a clear view of the wooden siding and stone foundation.",
+    "description_view_3": "Rear view with a single window centered on the wooden wall and no visible porch.",
+    "category": "cabin",
+    "height": 4.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "wood",
+        "asphalt_shingles",
+        "glass",
+        "concrete",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "porch railing",
+        "steps"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "white",
+        "green"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "double-layered gable roof with moderate overhangs and shingle cladding",
+    "attribute_window_arrangement": "Four rectangular windows symmetrically placed on the longer sides, each with divided panes; one single window centered on the rear short side; no windows visible on the porch end.",
+    "attribute_door_placement": "Single exterior door located on the porch side, offset to the left when facing the porch, adjacent to the steps.",
+    "attribute_porch_presence": true,
+    "attribute_architectural_style": "rustic",
+    "uid": "c5e7d6c7b782404dad43bd5806f5d8ed",
+    "near_synsets": {
+        "cabin.n.02": 0.4355464116900928,
+        "log_cabin.n.01": 0.4472396618195356,
+        "gazebo.n.01": 0.5209067866370468,
+        "farmhouse.n.01": 0.5264601260876981,
+        "chalet.n.01": 0.5291550213935581,
+        "cabin.n.03": -1000.0,
+        "cabin.n.01": -1000.0
+    },
+    "synset": "cabin.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c5e7d6c7b782404dad43bd5806f5d8ed",
+        "creator_username": "verkhohlyad",
+        "creator_display_name": "verkhohlyad",
+        "creator_profile_url": "https://sketchfab.com/verkhohlyad"
+    },
+    "filename": "std_c5e7d6c7b782404dad43bd5806f5d8ed.glb",
+    "length": 11.665039539337158,
+    "width": 9.48828125
+}

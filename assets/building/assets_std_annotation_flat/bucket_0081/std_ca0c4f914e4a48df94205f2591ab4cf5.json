@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a pair of connected, weathered wooden boxcars with a rectangular form, each mounted on two sets of black metal wheels. The boxcars feature a muted brown wood plank exterior, a slightly pitched gray metal roof, and visible sliding doors on the sides, one of which is open. Small, rectangular ventilation windows are present near the top of the side panels. The undercarriage and couplers are constructed from dark metal, and the cars are joined by a central coupling mechanism. The overall appearance suggests a utilitarian design, likely for transporting goods or livestock, with minimal decorative elements.",
+    "description": "A pair of connected, weathered wooden boxcars with gray metal roofs, sliding side doors, and small ventilation windows, mounted on black metal wheels.",
+    "description_view_0": "Side view showing both boxcars, their wood plank texture, gray roofs, and closed sliding doors.",
+    "description_view_1": "End view showing the flat, rectangular ends of both boxcars and the pitched roofs.",
+    "description_view_2": "Opposite side view with one boxcar's sliding door open, revealing the entryway.",
+    "description_view_3": "End view similar to view 1, showing the boxcars' ends and roof shapes.",
+    "category": "train",
+    "height": 3.8,
+    "max_dimension": 18.0,
+    "materials": [
+        "wood",
+        "steel",
+        "iron",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.35,
+        0.05,
+        0.01,
+        0.04
+    ],
+    "mass": 32000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "coupler"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.25,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "group",
+    "attribute_train_type": "freight train",
+    "attribute_number_of_carriages": 2,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "sliding doors on the sides of each boxcar",
+    "attribute_window_arrangement": "small rectangular windows near the top of each side",
+    "uid": "ca0c4f914e4a48df94205f2591ab4cf5",
+    "near_synsets": {
+        "boxcar.n.01": 0.4668334339625117,
+        "train.n.01": 0.4985814335472977,
+        "train_set.n.01": 0.5008861001718569,
+        "car_train.n.01": 0.5026363747017352,
+        "coal_car.n.01": 0.5134540840122908,
+        "train.n.05": -1000.0,
+        "string.n.04": -1000.0,
+        "train.n.04": -1000.0,
+        "caravan.n.01": -1000.0,
+        "gearing.n.01": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ca0c4f914e4a48df94205f2591ab4cf5",
+        "creator_username": "Yaloken",
+        "creator_display_name": "yaloken",
+        "creator_profile_url": "https://sketchfab.com/Yaloken"
+    },
+    "filename": "std_ca0c4f914e4a48df94205f2591ab4cf5.glb",
+    "length": 3.3612568378448486,
+    "width": 18.312278747558594
+}

@@ -1,0 +1,111 @@
+{
+    "description_long": "This is a compact, tracked combat tactical vehicle with a low-profile armored hull and a rotating turret mounted centrally. The vehicle is painted in a blue and gray angular camouflage pattern, with a prominent cannon protruding from the front of the turret. The tracks are wide and robust, designed for traversing rough terrain, and the sides feature multiple road wheels. On the turret and rear, there are visible antennae, suggesting communication capabilities. The vehicle's armor appears to be sloped and covers the entire body, with reinforced sections on the front and turret. Distinctive military insignia are visible on the turret sides, and the overall design is utilitarian and functional for urban or battlefield environments.",
+    "description": "A compact, blue-gray camouflaged tracked combat vehicle with a central turret, prominent cannon, and visible military insignia. Features sloped armor, robust tracks, and communication antennae.",
+    "description_view_0": "Front view shows the sloped frontal armor, central cannon, and wide tracks, with the turret and antennae visible on top.",
+    "description_view_1": "Left side view highlights the full length of the tracks, road wheels, side armor, turret with cannon, and a large antenna at the rear.",
+    "description_view_2": "Rear view displays the back armor, engine grilles, rear storage, and the base of the antenna, with tracks extending outward.",
+    "description_view_3": "Right side view mirrors the left, showing the tracks, wheels, turret, cannon, and antenna, with visible insignia on the turret.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 90000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "antenna",
+        "track",
+        "wheel",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "black",
+        "white",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.04,
+        0.01
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the turret front; no other visible weapon mounts or hardpoints.",
+    "attribute_armor_plating": "Full body coverage with sloped armor plating, especially thick on the front and turret; no modular or reactive panels visible.",
+    "attribute_camouflage_pattern": "Blue and gray angular camouflage pattern with sharp, irregular shapes.",
+    "attribute_military_markings": "White vertical stripe with a yellow insignia on both sides of the turret.",
+    "attribute_tire_type": "not applicable",
+    "uid": "147f7aa97d3b41748ee6cc2f20a9dd75",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.486863624519335,
+        "tank.n.01": 0.4906248414645398,
+        "reconnaissance_vehicle.n.01": 0.4974162199315299,
+        "armored_car.n.02": 0.5225837160431123,
+        "weapons_carrier.n.01": 0.5278851339791095,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/147f7aa97d3b41748ee6cc2f20a9dd75",
+        "creator_username": "larrynguyen",
+        "creator_display_name": "larrynguyen",
+        "creator_profile_url": "https://sketchfab.com/larrynguyen"
+    },
+    "filename": "std_147f7aa97d3b41748ee6cc2f20a9dd75.glb",
+    "length": 4.141247987747192,
+    "width": 1.943851113319397
+}

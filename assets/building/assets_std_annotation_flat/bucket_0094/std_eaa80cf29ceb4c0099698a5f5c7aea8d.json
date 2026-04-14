@@ -1,0 +1,99 @@
+{
+    "description_long": "This shelter consists of two distinct structures: a larger open-sided canopy with a pitched roof and a smaller, tent-like enclosure. The main canopy is supported by four wooden posts and features a green, weather-resistant fabric roof, providing shade and protection from the elements. The smaller structure resembles a classic A-frame tent, also covered in green fabric, with an open front for easy access. Both structures are elevated slightly above the ground, with the main canopy including a wooden platform or bench beneath it. The materials appear to be a combination of wood for the frame and posts, and heavy-duty canvas or tarpaulin for the roofing and tent walls. The overall design is utilitarian, suitable for parks, outdoor events, or temporary urban installations.",
+    "description": "A dual-structure shelter with a wooden-framed canopy and a green fabric tent, offering shade and basic protection. The main canopy is open-sided, while the tent provides a more enclosed space.",
+    "description_view_0": "Front view showing both the open-sided canopy with a wooden platform and the smaller A-frame tent, highlighting the entry points and roof structure.",
+    "description_view_1": "Side view emphasizing the depth of both the canopy and tent, with the fabric roof and wooden supports clearly visible.",
+    "description_view_2": "Rear view displaying the back of the canopy and tent, showing the continuous fabric roof and the open rear of the main shelter.",
+    "description_view_3": "Opposite side view focusing on the open back of the canopy and the tent's rear, with the wooden platform visible beneath the canopy.",
+    "category": "shelter",
+    "height": 2.2,
+    "max_dimension": 3.5,
+    "materials": [
+        "wood",
+        "canvas",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.35,
+        0.05,
+        0.1
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shelter",
+        "shadable",
+        "restable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "tent flap",
+        "platform",
+        "roof"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "olive green",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_roof_type": "pitched canvas roof with wooden frame",
+    "attribute_entryway_design": "open front with fabric tent flap and unobstructed canopy access",
+    "attribute_support_structure": "wooden posts and beams supporting canvas roof and tent",
+    "attribute_signage": "none",
+    "attribute_transparency": "fully opaque",
+    "uid": "eaa80cf29ceb4c0099698a5f5c7aea8d",
+    "near_synsets": {
+        "shelter.n.02": 0.4501575285211821,
+        "shelter.n.01": 0.4641314560540209,
+        "canopy.n.03": 0.47416644641637246,
+        "tent.n.01": 0.48955793195991154,
+        "cottage_tent.n.01": 0.49129547723399125,
+        "protection.n.04": -1000.0,
+        "shelter.n.05": -1000.0,
+        "tax_shelter.n.01": -1000.0
+    },
+    "synset": "tax_shelter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/eaa80cf29ceb4c0099698a5f5c7aea8d",
+        "creator_username": "anyrpg",
+        "creator_display_name": "AnyRPG",
+        "creator_profile_url": "https://sketchfab.com/anyrpg"
+    },
+    "filename": "std_eaa80cf29ceb4c0099698a5f5c7aea8d.glb",
+    "length": 2.3957138061523438,
+    "width": 8.238950252532959
+}

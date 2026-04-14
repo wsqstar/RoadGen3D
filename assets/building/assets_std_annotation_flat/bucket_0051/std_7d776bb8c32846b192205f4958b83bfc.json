@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a large, military-style cargo truck with a robust, utilitarian design. The truck features a single cab with two doors and a flat, open cargo bed with metal railings on all sides, suitable for transporting goods or equipment. The exterior is painted in a matte olive drab color, typical of military or utility vehicles, and the cargo bed is constructed from wooden planks supported by a metal frame. The truck has three axles and six large, rugged tires designed for heavy loads and off-road capability. The front grille is simple, with rectangular headlights and a license plate, while the side mirrors extend outward for enhanced visibility. The cab interior appears to have basic seating and controls, emphasizing function over comfort.",
+    "description": "A large, olive drab military-style cargo truck with a single cab and an open flatbed with metal railings and wooden flooring, supported by six rugged tires.",
+    "description_view_0": "Rear view showing the open flatbed cargo area with wooden planks and metal railings, as well as the back of the cab and rear lights.",
+    "description_view_1": "Right side view highlighting the length of the flatbed, the three axles with six large tires, and the utilitarian cab design.",
+    "description_view_2": "Front view displaying the cab's windshield, grille, headlights, and license plate, with a clear look into the cab's interior.",
+    "description_view_3": "Left side view similar to the right, showing the flatbed, three axles, and the cab's door and side mirror.",
+    "category": "truck",
+    "height": 2.7,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.05,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 6500,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "steering wheel",
+        "pedal",
+        "gear shift",
+        "cargo bed gate",
+        "side mirror"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive drab",
+        "black",
+        "wood brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "flatbed",
+    "attribute_wheelbase": 4.2,
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "7d776bb8c32846b192205f4958b83bfc",
+    "near_synsets": {
+        "flatbed.n.02": 0.48519339519566407,
+        "military_vehicle.n.01": 0.49982860056941936,
+        "van.n.05": 0.4999878938940883,
+        "truck_bed.n.01": 0.5031725537080377,
+        "truck.n.01": 0.509254636322899,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7d776bb8c32846b192205f4958b83bfc",
+        "creator_username": "mickeleanjelo",
+        "creator_display_name": "mickeleanjelo",
+        "creator_profile_url": "https://sketchfab.com/mickeleanjelo"
+    },
+    "filename": "std_7d776bb8c32846b192205f4958b83bfc.glb",
+    "length": 6.059082984924316,
+    "width": 2.82293701171875
+}

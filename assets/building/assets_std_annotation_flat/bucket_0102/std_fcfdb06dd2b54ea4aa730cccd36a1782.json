@@ -1,0 +1,118 @@
+{
+    "description_long": "This is a robust, industrial-grade electrical control cabinet, typically found in urban environments such as streets, sidewalks, or utility areas. The cabinet is constructed from metal, likely steel, and features double front doors with prominent warning labels indicating high voltage and automatic equipment. The sides and rear of the cabinet are equipped with ventilation grilles and multiple access panels, some with additional warning signs. The cabinet stands on four sturdy legs, elevating it above the ground for protection against water and debris. The top is flat with lifting hooks, suggesting it can be transported or installed with heavy machinery. The exterior is primarily a matte gray, with black handles and yellow caution symbols, emphasizing its utilitarian and safety-focused design.",
+    "description": "A heavy-duty metal electrical control cabinet with double doors, warning labels, ventilation grilles, and elevated legs, designed for urban utility use. Its gray finish and prominent caution signs highlight its industrial and safety-oriented purpose.",
+    "description_view_0": "Front view showing double doors with two black handles and multiple warning labels, including 'DANGER HIGH VOLTAGE' and 'AUTOMATIC EQUIPMENT'.",
+    "description_view_1": "Side view displaying a vertical access panel with a warning label, two protruding switches or connectors, and a set of horizontal ventilation slits.",
+    "description_view_2": "Rear view featuring a large central access panel with a 'HIGH VOLTAGE' warning, three lower connection boxes with caution symbols, and visible cable entries.",
+    "description_view_3": "Opposite side view with two access panels, both bearing warning labels, and a large horizontal ventilation grille at the bottom.",
+    "category": "control cabinets",
+    "height": 1.5,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.07,
+        0.01,
+        0.02,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "door",
+        "access panel",
+        "switch",
+        "connector"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "yellow",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.07,
+        0.04,
+        0.02,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_door_handle_type": "T-handle",
+    "attribute_lock_mechanism_presence": true,
+    "attribute_ventilation_grille_pattern": "horizontal slits",
+    "attribute_warning_or_information_labels": [
+        "high voltage",
+        "automatic equipment",
+        "danger"
+    ],
+    "attribute_mounting_style": "floor-standing",
+    "uid": "fcfdb06dd2b54ea4aa730cccd36a1782",
+    "near_synsets": {
+        "control_panel.n.01": 0.5444948554776381,
+        "cabinet.n.04": 0.5609823053302065,
+        "cabinet.n.01": 0.5687879254846937,
+        "cabinet.n.03": 0.5747744191621282,
+        "safe.n.02": 0.5806542896879886,
+        "dominance.n.02": -1000.0,
+        "control.n.03": -1000.0,
+        "control.n.05": -1000.0,
+        "restraint.n.02": -1000.0,
+        "control.n.01": -1000.0,
+        "control_condition.n.01": -1000.0,
+        "control.n.10": -1000.0,
+        "control.n.09": -1000.0,
+        "command.n.06": -1000.0,
+        "control.n.11": -1000.0,
+        "control.n.02": -1000.0,
+        "cabinet.n.02": -1000.0
+    },
+    "synset": "cabinet.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fcfdb06dd2b54ea4aa730cccd36a1782",
+        "creator_username": "MikePunisher",
+        "creator_display_name": "Mike Polyakovich",
+        "creator_profile_url": "https://sketchfab.com/MikePunisher"
+    },
+    "filename": "std_fcfdb06dd2b54ea4aa730cccd36a1782.glb",
+    "length": 0.6300465762615204,
+    "width": 0.9742753207683563
+}

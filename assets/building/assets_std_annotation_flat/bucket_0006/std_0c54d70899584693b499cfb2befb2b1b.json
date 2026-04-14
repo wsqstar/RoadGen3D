@@ -1,0 +1,98 @@
+{
+    "description_long": "This humanoid robot features a tall, slender build with a metallic green torso, orange lower limbs, and large, black cylindrical arms. Its head is topped with a wide, conical red hat reminiscent of a traditional Asian rice hat, providing a distinctive silhouette. The robot's legs are thin and straight, ending in simple rectangular feet, while the arms are robust and appear to be constructed from a different, more rugged material. The torso is angular and geometric, with visible joints at the shoulders, elbows, hips, and knees, suggesting a functional range of motion. The face area is a dark, flat panel with no visible facial features, giving it a mysterious, utilitarian appearance. The overall design combines utilitarian industrial elements with cultural motifs, making it suitable for urban environments.",
+    "description": "A tall, slender humanoid robot with a green torso, orange legs, large black cylindrical arms, and a wide red conical hat. Its face is a featureless dark panel, and its design blends industrial and cultural elements.",
+    "description_view_0": "Front view showing the full conical red hat, green torso, orange legs, and large black arms with a featureless dark face panel.",
+    "description_view_1": "Side view highlighting the thin profile, the width of the hat, and the cylindrical shape of the arms; legs and feet are aligned.",
+    "description_view_2": "Rear view mirroring the front, with the back of the hat, torso, and legs visible; arms and legs are symmetrical.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the side profile of the hat, arm, and leg alignment.",
+    "category": "humanoid robot",
+    "height": 1.8,
+    "max_dimension": 1.9,
+    "materials": [
+        "painted metal",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "legs",
+        "head",
+        "torso"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "orange",
+        "black",
+        "red",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.3,
+        0.25,
+        0.2,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms hanging straight down at the sides, legs together, and head facing forward.",
+    "attribute_clothing_style": "Wearing a wide, conical red hat resembling a traditional Asian rice hat; otherwise unclothed with visible colored panels as part of the robot's structure.",
+    "attribute_facial_features": "No visible facial features; the face area is a flat, dark panel with no eyes, mouth, or nose.",
+    "attribute_limb_articulation": "Visible hinge joints at shoulders, elbows, hips, and knees; arms and legs appear to have basic articulation for movement, with rigid, straight segments.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "0c54d70899584693b499cfb2befb2b1b",
+    "near_synsets": {
+        "android.n.01": 0.5371415561629344,
+        "cyborg.n.01": 0.5478179918110678,
+        "automaton.n.02": 0.5669757915036145,
+        "robotics_equipment.n.01": 0.572766199697783,
+        "automaton.n.03": 0.5857493768728661
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0c54d70899584693b499cfb2befb2b1b",
+        "creator_username": "karob",
+        "creator_display_name": "karob",
+        "creator_profile_url": "https://sketchfab.com/karob"
+    },
+    "filename": "std_0c54d70899584693b499cfb2befb2b1b.glb",
+    "length": 0.5693376660346985,
+    "width": 0.7019901275634766
+}

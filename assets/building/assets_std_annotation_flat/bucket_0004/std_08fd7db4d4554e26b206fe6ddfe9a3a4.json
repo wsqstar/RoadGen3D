@@ -1,0 +1,104 @@
+{
+    "description_long": "This rifle object has a heavily industrial and weathered appearance, featuring a robust, rusted metal body with multiple cylindrical and boxy components. The front section is dominated by two large, rounded tanks or reservoirs, flanking a central barrel assembly that extends outward. The main body is constructed from thick, plate-like segments with visible bolts and seams, and the surface is mottled with patches of rust and worn paint, suggesting prolonged exposure to harsh conditions. The rear section includes a cylindrical chamber with a cap and a cable or hose attachment, adding to its utilitarian design. Several mechanical linkages, pipes, and protruding elements are visible, giving the object a complex, almost steampunk aesthetic. The overall build is bulky and solid, indicating a weapon designed for durability and heavy use in urban environments.",
+    "description": "A bulky, rusted rifle with dual front tanks, a central barrel, and a heavily industrial, weathered metal body. The design features multiple mechanical components, pipes, and a rugged, utilitarian appearance.",
+    "description_view_0": "Front view shows the dual rounded tanks flanking the central barrel, with visible rust and mechanical details.",
+    "description_view_1": "Side view highlights the cylindrical rear chamber, the protruding barrel, and the complex arrangement of pipes and linkages.",
+    "description_view_2": "Rear view reveals the boxy main body, capped chamber, and attached cable, with the barrel extending forward.",
+    "description_view_3": "Opposite side view displays the tanks, mechanical arms, and the rear cylindrical component, emphasizing the object's asymmetry.",
+    "category": "rifle",
+    "height": 0.8,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "iron",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 32,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 320,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "aimable",
+        "triggerable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel",
+        "trigger",
+        "grip",
+        "magazine port",
+        "sight",
+        "tank",
+        "cable"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "rust brown",
+        "gray",
+        "dark brown",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "none",
+    "uid": "08fd7db4d4554e26b206fe6ddfe9a3a4",
+    "near_synsets": {
+        "rifle.n.01": 0.5340947168005742,
+        "maxim_gun.n.01": 0.539414380768058,
+        "garand_rifle.n.01": 0.5394632920411288,
+        "browning_automatic_rifle.n.01": 0.5411408307672961,
+        "assault_rifle.n.01": 0.5509501749679074
+    },
+    "synset": "assault_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/08fd7db4d4554e26b206fe6ddfe9a3a4",
+        "creator_username": "gd50varun",
+        "creator_display_name": "Varun Sonti",
+        "creator_profile_url": "https://sketchfab.com/gd50varun"
+    },
+    "filename": "std_08fd7db4d4554e26b206fe6ddfe9a3a4.glb",
+    "length": 0.7980705499649048,
+    "width": 0.5294389724731445
+}

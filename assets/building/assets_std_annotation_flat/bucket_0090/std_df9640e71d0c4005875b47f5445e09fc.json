@@ -1,0 +1,106 @@
+{
+    "description_long": "This object is a metallic trash bin with a cylindrical, ribbed body and a removable, flat lid that is partially open. Emerging from the bin is a robotic mechanism featuring a large, red-lensed eye and a segmented, articulated arm ending in a pincer-like claw. The bin has two external, side-mounted handles for lifting, and the lid is equipped with a small, central handle for manual removal. The surface of the bin is matte gray, with visible wear and subtle texturing that suggests a utilitarian, industrial design. There are no visible wheels or labeling on the exterior, and the robotic components appear to be integrated into the bin's structure. The overall appearance is both functional and whimsical, blending classic urban waste management design with a science fiction twist.",
+    "description": "A gray, ribbed metal trash bin with a partially open flat lid, featuring a robotic eye and claw arm emerging from inside. The bin has side handles and a matte, industrial finish.",
+    "description_view_0": "Front view showing the partially open lid, the robotic eye, and the claw arm emerging from the bin.",
+    "description_view_1": "Side view highlighting the full extension of the robotic claw arm and the side-mounted handle.",
+    "description_view_2": "Rear view showing the closed portion of the lid and the back of the robotic arm, with both side handles visible.",
+    "description_view_3": "Opposite side view focusing on the closed lid and the extended claw arm, with the handle and ribbed body visible.",
+    "category": "trash bin",
+    "height": 0.85,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 22,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pullable",
+        "pushable",
+        "grippable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "side handle",
+        "top handle",
+        "robotic arm",
+        "claw"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_lid_type": "removable flat lid",
+    "attribute_opening_mechanism": "hand lift",
+    "attribute_presence_of_wheels": false,
+    "attribute_handle_design": "external side-mounted handles and a top-mounted lid handle",
+    "attribute_labeling_or_signage": "unmarked",
+    "uid": "df9640e71d0c4005875b47f5445e09fc",
+    "near_synsets": {
+        "recycling_bin.n.01": 0.5357654265247247,
+        "dumpster.n.01": 0.5573497240731499,
+        "bin_liner.n.01": 0.5575928425084489,
+        "garbage.n.03": 0.5598012094466109,
+        "parts_bin.n.01": 0.5615043970093929,
+        "methamphetamine.n.01": -1000.0,
+        "trash.n.02": -1000.0,
+        "bin.n.02": -1000.0,
+        "folderol.n.01": -1000.0,
+        "ashcan.n.01": -1000.0,
+        "rubbish.n.01": -1000.0,
+        "bin.n.01": -1000.0,
+        "bank_identification_number.n.01": -1000.0
+    },
+    "synset": "ashcan.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/df9640e71d0c4005875b47f5445e09fc",
+        "creator_username": "Baptiste.Barbe",
+        "creator_display_name": "Baptiste.Barbe",
+        "creator_profile_url": "https://sketchfab.com/Baptiste.Barbe"
+    },
+    "filename": "std_df9640e71d0c4005875b47f5445e09fc.glb",
+    "length": 1.0442208051681519,
+    "width": 0.8098445236682892
+}

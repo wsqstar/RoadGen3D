@@ -1,0 +1,141 @@
+{
+    "description_long": "This object depicts a small graveyard scene set on a circular base with a misty, atmospheric backdrop featuring a full moon and bare trees. At the center is a single upright tombstone made of gray stone, flanked by two smaller gravestones. In front of the main tombstone lies a stone path, bordered by two white candles and a carved pumpkin with a green hand emerging from it, suggesting a Halloween or spooky theme. The ground is covered in a grassy texture with patches of fog, enhancing the eerie ambiance. The backdrop is a curved panel printed with a blue-toned, foggy forest and moonlit sky. The overall composition is compact and decorative, suitable for thematic urban displays or seasonal installations.",
+    "description": "A compact graveyard scene with a central tombstone, candles, a pumpkin with a green hand, and a misty moonlit forest backdrop.",
+    "description_view_0": "Front view shows the main tombstone, two smaller gravestones, candles, pumpkin with green hand, and the full moon backdrop.",
+    "description_view_1": "Side view reveals the curved backdrop's depth and the alignment of the tombstones and path.",
+    "description_view_2": "Rear view displays mostly the printed moonlit forest backdrop with minimal graveyard elements visible.",
+    "description_view_3": "Opposite side view highlights the tombstone's thickness and the spatial arrangement of the graveyard elements.",
+    "category": "grave yard",
+    "height": 0.4,
+    "max_dimension": 0.7,
+    "materials": [
+        "stone",
+        "plastic",
+        "paper",
+        "fabric",
+        "wax",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.15,
+        0.15,
+        0.05,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 8,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "candles",
+        "pumpkin",
+        "backdrop panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "green",
+        "orange",
+        "white",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.4,
+        0.15,
+        0.1,
+        0.1,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "scene",
+    "attribute_tombstone_inscriptions": [],
+    "attribute_crosses": [],
+    "attribute_grave_markers": [
+        {
+            "type": "headstone",
+            "material": "stone",
+            "dimensions": [
+                0.3,
+                0.2,
+                0.05
+            ]
+        },
+        {
+            "type": "headstone",
+            "material": "stone",
+            "dimensions": [
+                0.15,
+                0.1,
+                0.03
+            ]
+        },
+        {
+            "type": "headstone",
+            "material": "stone",
+            "dimensions": [
+                0.15,
+                0.1,
+                0.03
+            ]
+        }
+    ],
+    "attribute_mausoleums": [],
+    "attribute_cemetery_gates": [],
+    "uid": "61727e60504641908904f55dd59b34d5",
+    "near_synsets": {
+        "grave.n.02": 0.5470223020755827,
+        "cemetery.n.01": 0.5548894643797518,
+        "cairn.n.01": 0.5665943926953937,
+        "gravestone.n.01": 0.5681327205739009,
+        "ghost_town.n.01": 0.5751041722693331,
+        "yard.n.09": -1000.0,
+        "cubic_yard.n.01": -1000.0,
+        "yard.n.01": -1000.0,
+        "thousand.n.01": -1000.0,
+        "yard.n.06": -1000.0,
+        "yard.n.07": -1000.0,
+        "yard.n.03": -1000.0,
+        "yard.n.02": -1000.0,
+        "yard.n.08": -1000.0
+    },
+    "synset": "cemetery.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/61727e60504641908904f55dd59b34d5",
+        "creator_username": "101GameDev",
+        "creator_display_name": "101GameDev",
+        "creator_profile_url": "https://sketchfab.com/101GameDev"
+    },
+    "filename": "std_61727e60504641908904f55dd59b34d5.glb",
+    "length": 0.4845300614833832,
+    "width": 0.7899828255176544
+}

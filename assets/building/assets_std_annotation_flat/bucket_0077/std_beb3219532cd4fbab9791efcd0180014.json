@@ -1,0 +1,101 @@
+{
+    "description_long": "This humanoid robot features a robust, industrial design with a segmented, cylindrical torso and articulated limbs composed of multiple mechanical joints. Its head is angular and asymmetrical, with a prominent red circular element on the front, possibly functioning as a sensor or camera, and several cylindrical protrusions on top resembling antennae or connectors. The arms and legs are constructed from a series of metallic rods and plates, with hands that have three large, finger-like appendages, each ending in a flat, perforated plate. The feet are broad and reinforced, suggesting stability and support for movement on urban surfaces. The robot's exterior is primarily dark metallic with subtle highlights, giving it a rugged, utilitarian appearance. Overall, the design emphasizes functionality and durability, suitable for navigating and interacting within urban environments.",
+    "description": "A rugged, dark metallic humanoid robot with articulated limbs, a prominent red sensor on its head, and broad, reinforced feet. Its industrial design features multiple joints and finger-like hands, emphasizing durability and urban utility.",
+    "description_view_0": "The robot is seen from the front, highlighting its red circular sensor, angular head, and articulated arms with three-pronged hands.",
+    "description_view_1": "A side view reveals the cylindrical torso, the layered structure of the head, and the mechanical joints in the limbs.",
+    "description_view_2": "The back view shows the segmented torso, mechanical spine, and the robust construction of the legs and feet.",
+    "description_view_3": "This angle emphasizes the robot's head details, the protruding cylindrical elements, and the articulation of the right arm and hand.",
+    "category": "humanoid robot",
+    "height": 1.7,
+    "max_dimension": 1.0,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 95,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 950,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "rotatable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hand",
+        "finger",
+        "head sensor",
+        "arm joint",
+        "leg joint"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "red",
+        "silver"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.05,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is standing upright with its left arm bent and raised, right arm extended forward, left leg slightly bent, and right leg supporting its weight. The head is angled slightly upward.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated metallic panels and mechanical components with no decorative coverings.",
+    "attribute_facial_features": "The face consists of a single prominent red circular sensor in the center, with no visible eyes, mouth, or nose. The head has several cylindrical protrusions and an angular, armored design.",
+    "attribute_limb_articulation": "The robot has multiple visible hinge and rotary joints in its arms, legs, and hands, allowing for a wide range of motion. Each hand has three articulated fingers, and the feet are jointed for stability.",
+    "attribute_presence_of_sensors": "A single large red circular sensor is visible on the front of the head, likely functioning as a camera or visual sensor. No other sensors are visible.",
+    "uid": "beb3219532cd4fbab9791efcd0180014",
+    "near_synsets": {
+        "android.n.01": 0.5367219772366187,
+        "robotics_equipment.n.01": 0.5540671064476985,
+        "cyborg.n.01": 0.5690179806027167,
+        "robotics.n.01": 0.5717824258325219,
+        "automaton.n.02": 0.5854914432837791
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/beb3219532cd4fbab9791efcd0180014",
+        "creator_username": "Dav96",
+        "creator_display_name": "Dave",
+        "creator_profile_url": "https://sketchfab.com/Dav96"
+    },
+    "filename": "std_beb3219532cd4fbab9791efcd0180014.glb",
+    "length": 0.8823085129261017,
+    "width": 1.446577548980713
+}

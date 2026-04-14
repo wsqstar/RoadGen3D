@@ -1,0 +1,110 @@
+{
+    "description_long": "This object is a collection of various traffic and safety signs, each with distinct shapes, colors, and warning symbols. The signs include triangular yellow hazard warnings, red and white prohibition signs, and rectangular caution and danger notices. Some signs feature pictograms such as hands, arrows, and electrical hazards, while others display bold text like 'DANGER', 'WARNING', and 'DO NOT POINT'. The signs are thin and flat, likely made from metal or plastic, and one is mounted on a vertical post. The group is arranged in a row, with each sign designed to be highly visible and legible from a distance. These signs are typically used to alert pedestrians and drivers to hazards or provide important safety instructions in urban or industrial environments.",
+    "description": "A set of flat, colorful traffic and safety signs with various warning symbols and texts, including one post-mounted sign.",
+    "description_view_0": "Front view showing all sign faces, including hazard symbols, arrows, and warning texts in yellow, red, and orange.",
+    "description_view_1": "Side view revealing the thin, flat profile of the signs and the post supporting one sign.",
+    "description_view_2": "Rear view displaying the backs of the signs, with no visible symbols or text.",
+    "description_view_3": "Opposite side view again highlighting the thinness and arrangement of the signs.",
+    "category": "traffic sign",
+    "height": 1.2,
+    "max_dimension": 2.0,
+    "materials": [
+        "metal",
+        "plastic",
+        "ink/paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.1
+    ],
+    "mass": 8.0,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "sign face",
+        "post"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "red",
+        "white",
+        "black",
+        "orange"
+    ],
+    "colors_composition": [
+        0.35,
+        0.25,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_sign_text": "WARNING\nDANGER\nSTAY CLEAR\nDO NOT POINT",
+    "attribute_symbol_or_pictogram": "Hand with lines (shock hazard), arrows, hand with prohibition symbol, exclamation mark, electrical hazard symbol",
+    "attribute_mounting_type": "post-mounted",
+    "attribute_orientation": "perpendicular to road",
+    "attribute_location_context": "urban roadside, industrial area, parking lot entrance",
+    "uid": "2772b4fa631140d8908704d12dcddfc4",
+    "near_synsets": {
+        "street_sign.n.01": 0.4606601001647529,
+        "stop_sign.n.01": 0.47299180574028693,
+        "signage.n.01": 0.4918966171516455,
+        "traffic_light.n.01": 0.4943194583822763,
+        "direction_sign.n.01": 0.5134726203288267,
+        "traffic.n.03": -1000.0,
+        "traffic.n.02": -1000.0,
+        "sign.n.06": -1000.0,
+        "traffic.n.01": -1000.0,
+        "augury.n.01": -1000.0,
+        "signboard.n.01": -1000.0,
+        "sign_of_the_zodiac.n.01": -1000.0,
+        "sign.n.01": -1000.0,
+        "dealings.n.01": -1000.0,
+        "sign.n.09": -1000.0,
+        "sign.n.10": -1000.0,
+        "sign.n.11": -1000.0,
+        "polarity.n.02": -1000.0,
+        "signal.n.01": -1000.0,
+        "sign.n.02": -1000.0
+    },
+    "synset": "street_sign.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2772b4fa631140d8908704d12dcddfc4",
+        "creator_username": "Brendan_489",
+        "creator_display_name": "B._.render",
+        "creator_profile_url": "https://sketchfab.com/Brendan_489"
+    },
+    "filename": "std_2772b4fa631140d8908704d12dcddfc4.glb",
+    "length": 1.7436806559562683,
+    "width": 3.2626097202301025
+}

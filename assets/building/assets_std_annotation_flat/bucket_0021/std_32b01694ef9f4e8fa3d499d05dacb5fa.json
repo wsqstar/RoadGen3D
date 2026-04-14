@@ -1,0 +1,112 @@
+{
+    "description_long": "This is a large, old-fashioned sailing ship with a weathered wooden hull and multiple tattered sails mounted on tall masts. The ship features intricate rigging, a raised stern, and a prominent bow, with visible cannons along the sides, suggesting a historical or pirate theme. The deck is cluttered with ropes and nautical equipment, and a red flag flies from the tallest mast. The hull is dark and appears reinforced, with ornate carvings and a lantern at the stern. The ship floats on a textured water surface, with splashes and wake indicating movement. The overall appearance is rugged, aged, and evocative of classic seafaring vessels from the Age of Sail.",
+    "description": "A large, weathered wooden sailing ship with tattered sails, ornate carvings, and visible cannons, evoking a historical or pirate theme.",
+    "description_view_0": "The ship is seen head-on, highlighting the pointed bow, tall masts, and tattered sails, with the red flag visible at the top.",
+    "description_view_1": "A side view reveals the length of the hull, multiple cannons, intricate rigging, and the raised stern with a lantern.",
+    "description_view_2": "The stern view shows the ship's rear structure, lantern, and the broad, reinforced hull, with the wake trailing behind.",
+    "description_view_3": "The opposite side view displays the ship's ornate carvings, additional cannons, and the complex arrangement of sails and rigging.",
+    "category": "ship",
+    "height": 22,
+    "max_dimension": 48,
+    "materials": [
+        "wood",
+        "canvas",
+        "metal",
+        "rope",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.01,
+        0.04
+    ],
+    "mass": 350000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sails",
+        "masts",
+        "cannons",
+        "lantern",
+        "rigging",
+        "deck",
+        "rudder",
+        "anchor"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "beige",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.55,
+        0.2,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 10,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a pointed bow and a broad, rounded stern. The sides are reinforced and feature multiple gunports for cannons. The hull is adorned with ornate carvings and has a lantern mounted at the stern. No bulbous bow or visible keels are present.",
+    "attribute_superstructure_layout": "The superstructure consists of a raised stern deck, a main deck, and several masts with complex rigging. There are no visible enclosed cabins or bridges, but the stern is elevated and likely houses the captain's quarters. The deck is open and cluttered with nautical equipment.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "cannons",
+        "lantern",
+        "rigging",
+        "anchor"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "32b01694ef9f4e8fa3d499d05dacb5fa",
+    "near_synsets": {
+        "pirate.n.03": 0.47049188869564423,
+        "windjammer.n.01": 0.48685972540172096,
+        "abandoned_ship.n.01": 0.4883180390095503,
+        "shipwreck.n.01": 0.49068724717837875,
+        "treasure_ship.n.01": 0.492455016195758,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/32b01694ef9f4e8fa3d499d05dacb5fa",
+        "creator_username": "samize",
+        "creator_display_name": "Samize",
+        "creator_profile_url": "https://sketchfab.com/samize"
+    },
+    "filename": "std_32b01694ef9f4e8fa3d499d05dacb5fa.glb",
+    "length": 57.20037269592285,
+    "width": 57.20035934448242
+}

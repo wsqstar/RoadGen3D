@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a large, multi-masted sailing ship reminiscent of historical naval vessels, featuring three tall masts rigged with numerous spars and complex rigging. The hull is elongated and robust, painted primarily in black with a yellow band along the gunwale and red accents near the gun ports. The ship's deck is detailed with visible cannons, railings, and intricate rigging, suggesting a warship or frigate from the Age of Sail. The bow is pointed and slightly raised, while the stern is squared off and features ornate detailing. The ship's superstructure includes multiple open decks, with no enclosed bridge or modern navigation equipment visible. The overall construction appears to be primarily wooden, with metal elements for cannons and fittings.",
+    "description": "A large, three-masted wooden sailing ship with black, yellow, and red hull details, outfitted with cannons and intricate rigging. The vessel features multiple open decks and ornate stern detailing.",
+    "description_view_0": "Front view showing the pointed bow, central bowsprit, and symmetrical arrangement of masts and rigging.",
+    "description_view_1": "Port side view highlighting the full length of the hull, rows of gun ports, and the detailed rigging on all three masts.",
+    "description_view_2": "Stern view displaying the squared-off, ornate stern structure and the alignment of the masts and decks.",
+    "description_view_3": "Starboard side view similar to the port side, showing the hull's curvature, gun ports, and rigging details.",
+    "category": "ship",
+    "height": 0.8,
+    "max_dimension": 2.0,
+    "materials": [
+        "wood",
+        "metal",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "cannon",
+        "hatch",
+        "door",
+        "anchor",
+        "rigging",
+        "sail"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "yellow",
+        "red",
+        "brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a long, narrow profile, pointed bow, and squared stern. It features a prominent gunwale, multiple gun ports, and a continuous deck line. No bulbous bow or visible keel extensions are present.",
+    "attribute_superstructure_layout": "The superstructure consists of multiple open decks with railings, no enclosed bridge, and raised stern and bow sections. There are no visible cabins or towers, but the deck is detailed with cannons and rigging.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "cannon",
+        "anchor",
+        "rigging",
+        "sail"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "f82f40ca04d84a24868a453c4e3a16c2",
+    "near_synsets": {
+        "bark.n.03": 0.4741930271939079,
+        "galleon.n.01": 0.48271155007330135,
+        "three-decker.n.03": 0.48874316839794035,
+        "three-decker.n.02": 0.4953819511617809,
+        "windjammer.n.01": 0.49824492087927874,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f82f40ca04d84a24868a453c4e3a16c2",
+        "creator_username": "Museovirasto",
+        "creator_display_name": "Museovirasto Museiverket Finnish Heritage Agency",
+        "creator_profile_url": "https://sketchfab.com/Museovirasto"
+    },
+    "filename": "std_f82f40ca04d84a24868a453c4e3a16c2.glb",
+    "length": 1.0486761331558228,
+    "width": 0.3518618047237396
+}

@@ -1,0 +1,97 @@
+{
+    "description_long": "This humanoid robot features a rounded, white head with two vertical, dark blue oval eye-like markings, giving it a friendly and approachable appearance. Its torso is a smooth, rectangular white body with rounded edges, connected to two articulated arms that are attached at black spherical shoulder joints. The arms are cylindrical and end in simple, three-pronged hands, suggesting basic grasping functionality. The lower body consists of a black, segmented cylindrical structure that tapers into a large black sphere, possibly serving as a base or mobility mechanism. The robot's design is minimalist, with a clean color palette of white and black accented by the blue eyes, and lacks any visible clothing or decorative elements. The overall form is compact and non-threatening, suitable for urban environments where interaction with humans is expected.",
+    "description": "A compact, white and black humanoid robot with a round head, blue oval eyes, articulated arms, and a segmented black base. Its minimalist design and simple features make it approachable and functional for urban settings.",
+    "description_view_0": "Front view shows the robot's round head with blue oval eyes, both arms extended outward, and the full frontal torso and base.",
+    "description_view_1": "Left side view highlights the profile of the head, the cylindrical arm, and the segmented black base, with one eye partially visible.",
+    "description_view_2": "Rear view displays the back of the head and torso, both arms extended outward, and the back of the segmented base.",
+    "description_view_3": "Right side view mirrors the left, showing the profile of the head, arm, and base, with one blue eye visible.",
+    "category": "humanoid robot",
+    "height": 1.2,
+    "max_dimension": 1.2,
+    "materials": [
+        "plastic",
+        "metal",
+        "rubber",
+        "air",
+        "glass"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.08,
+        0.02
+    ],
+    "mass": 28,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "hands",
+        "head",
+        "base"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "blue"
+    ],
+    "colors_composition": [
+        0.65,
+        0.3,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.48,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.18,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is in a neutral standing pose with both arms extended outward at shoulder height, head facing forward, and the base aligned vertically beneath the torso.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated panels and smooth exterior surfaces with no decorative elements.",
+    "attribute_facial_features": "The face consists of a smooth, round surface with two vertical, dark blue oval eye markings and no visible mouth, nose, or expressive features.",
+    "attribute_limb_articulation": "Each arm is attached via a spherical shoulder joint, allowing for multi-directional movement, and ends in a simple three-pronged hand; no visible elbow or wrist joints, and the base appears to be a single articulated segment.",
+    "attribute_presence_of_sensors": "None visible",
+    "uid": "7ce9957ba0394d85bb87a0f7fa7df765",
+    "near_synsets": {
+        "android.n.01": 0.537453069305555,
+        "automaton.n.02": 0.5675836902944008,
+        "cyborg.n.01": 0.5691423322238129,
+        "robotics_equipment.n.01": 0.5719269672262428,
+        "robotics.n.01": 0.5847661903192743
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7ce9957ba0394d85bb87a0f7fa7df765",
+        "creator_username": "zafkial",
+        "creator_display_name": "zafkial",
+        "creator_profile_url": "https://sketchfab.com/zafkial"
+    },
+    "filename": "std_7ce9957ba0394d85bb87a0f7fa7df765.glb",
+    "length": 0.6740040481090546,
+    "width": 1.0945556163787842
+}

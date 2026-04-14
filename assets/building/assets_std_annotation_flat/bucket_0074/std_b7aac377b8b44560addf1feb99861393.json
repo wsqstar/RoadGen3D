@@ -1,0 +1,91 @@
+{
+    "description_long": "This object is a modern pump-action shotgun with a matte black finish, featuring a long, smooth barrel with a ventilated rib running along the top for improved aiming. The stock is a full, synthetic design, ergonomically shaped for shoulder support and recoil absorption. The fore-end is ribbed for grip and is visibly designed to slide back and forth, indicating a pump-action mechanism. The trigger guard is rounded and moderately sized, providing ample space for finger placement and protection. The overall construction appears robust, with a streamlined profile and minimal decorative elements, emphasizing functionality. The shotgun's exterior is primarily composed of synthetic polymer and metal, giving it a utilitarian and durable appearance suitable for urban environments.",
+    "description": "A matte black, pump-action shotgun with a full synthetic stock, ribbed fore-end, and a long ventilated barrel. Its design is streamlined and functional, emphasizing durability and ease of use.",
+    "description_view_0": "Side view showing the full length of the shotgun, including the stock, ribbed fore-end, trigger guard, and long ventilated barrel.",
+    "description_view_1": "Front view highlighting the narrow barrel profile and the ribbing along the top, with minimal visible detail of the stock or trigger area.",
+    "description_view_2": "Opposite side view mirroring view 0, displaying the same features from the other side, including the full stock and pump fore-end.",
+    "description_view_3": "Rear view showing the back of the stock and the alignment of the barrel, with the ribbing and fore-end visible along the top.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 1.1,
+    "materials": [
+        "polymer",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "pumpable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "fore-end",
+        "trigger",
+        "trigger guard",
+        "barrel",
+        "pump"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel with a ventilated rib along the top",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "rounded, moderately sized trigger guard with smooth edges and no visible finger grooves",
+    "uid": "b7aac377b8b44560addf1feb99861393",
+    "near_synsets": {
+        "pump_action.n.01": 0.5186344247569985,
+        "sawed-off_shotgun.n.01": 0.5342012260700105,
+        "shotgun.n.01": 0.5463100590945771,
+        "gas_gun.n.01": 0.5687355219186478,
+        "shotgun_shell.n.01": 0.5735354868863696
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b7aac377b8b44560addf1feb99861393",
+        "creator_username": "day9",
+        "creator_display_name": "day9",
+        "creator_profile_url": "https://sketchfab.com/day9"
+    },
+    "filename": "std_b7aac377b8b44560addf1feb99861393.glb",
+    "length": 1.1540182828903198,
+    "width": 0.0630909651517868
+}

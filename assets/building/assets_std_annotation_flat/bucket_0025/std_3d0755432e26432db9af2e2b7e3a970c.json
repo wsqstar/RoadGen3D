@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a modern road bicycle with a lightweight, streamlined frame and aerodynamic design, suitable for high-speed urban commuting or racing. The frame is constructed from what appears to be metal or carbon fiber, with a matte gray finish and yellow accents on the wheels and chainstay. The bicycle features drop handlebars, optimized for an aggressive riding posture, and thin, smooth tires designed for minimal rolling resistance on paved surfaces. The drivetrain includes a visible crankset and chain, with no visible fenders or racks, emphasizing speed and efficiency. The seat is a narrow racing saddle, positioned for optimal power transfer. Branding is visible on the frame, suggesting a high-performance model intended for enthusiasts or competitive cyclists.",
+    "description": "A sleek, gray and yellow road bicycle with drop handlebars, thin tires, and a racing saddle, designed for speed and urban commuting.",
+    "description_view_0": "Side view showing the full frame geometry, drop handlebars, and both wheels with yellow accents.",
+    "description_view_1": "Front view highlighting the narrow profile, drop handlebars, and thin front tire.",
+    "description_view_2": "Opposite side view displaying the frame, crankset, and rear wheel details.",
+    "description_view_3": "Rear view showing the seat, rear wheel, and the alignment of the frame and handlebars.",
+    "category": "bicycle",
+    "height": 1.0,
+    "max_dimension": 1.8,
+    "materials": [
+        "aluminum",
+        "carbon fiber",
+        "rubber",
+        "plastic",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 8.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 25,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handlebar",
+        "wheel",
+        "pedal",
+        "seat",
+        "crankset",
+        "chain"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "yellow",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 2,
+    "attribute_handlebar_type": "drop",
+    "attribute_frame_geometry": "diamond",
+    "attribute_presence_of_basket_or_rack": false,
+    "attribute_type_of_seat": "racing saddle",
+    "uid": "3d0755432e26432db9af2e2b7e3a970c",
+    "near_synsets": {
+        "bicycle_wheel.n.01": 0.49460453212002076,
+        "bicycling.n.01": 0.5015999446284742,
+        "bicycle.n.01": 0.5018563760600734,
+        "handlebar.n.01": 0.5061929480412768,
+        "bicycle_traffic.n.01": 0.5104361497778745
+    },
+    "synset": "bicycle_traffic.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3d0755432e26432db9af2e2b7e3a970c",
+        "creator_username": "francesco.campanelli",
+        "creator_display_name": "francesco.campanelli",
+        "creator_profile_url": "https://sketchfab.com/francesco.campanelli"
+    },
+    "filename": "std_3d0755432e26432db9af2e2b7e3a970c.glb",
+    "length": 1.6735697984695435,
+    "width": 0.46371230483055115
+}

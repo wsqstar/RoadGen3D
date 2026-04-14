@@ -1,0 +1,111 @@
+{
+    "description_long": "This is a modern city bus with a rectangular, boxy shape and a predominantly white exterior accented by colored stripes in teal, orange, and pink. The bus features large, rectangular windows along both sides, separated by vertical pillars, and has two main passenger doors on the right side. The roof is equipped with raised panels and ventilation units, and the bus displays route information on digital signs at the front and rear. Branding and signage, including the 'Nishitetsu' logo, are visible on the sides and front, along with accessibility symbols. The wheels are black with metallic hubs, and the bus has a low-floor design for easy passenger entry.",
+    "description": "A modern, low-floor city bus with a white body, colored stripes, large side windows, and digital route signs. It features two main passenger doors and visible branding.",
+    "description_view_0": "Side view showing the right side with two large passenger doors, multiple rectangular windows, and colored stripes.",
+    "description_view_1": "Rear view displaying the digital route sign, rear window, colored stripes, and branding details.",
+    "description_view_2": "Side view of the left side with no visible passenger doors, large windows, and colored stripes.",
+    "description_view_3": "Front view highlighting the digital route sign, windshield, accessibility symbols, and the main entry door.",
+    "category": "bus",
+    "height": 3.0,
+    "max_dimension": 11.0,
+    "materials": [
+        "painted metal",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "button",
+        "display panel",
+        "mirror"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "teal",
+        "orange",
+        "pink",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.08,
+        0.07,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 2,
+    "attribute_window_arrangement": "Seven large, rectangular windows on each side, evenly spaced and separated by vertical pillars, with consistent size and shape throughout.",
+    "attribute_route_number_or_destination_sign": "5321",
+    "attribute_bus_manufacturer_logo": "The 'Nishitetsu' logo is visible on the side and front of the bus, featuring blue text and a small red accent.",
+    "attribute_passenger_entry_step_height": 0.35,
+    "uid": "f8a7ccbc09d942ddb98499d092a3dc1e",
+    "near_synsets": {
+        "bus.n.01": 0.5144186214258013,
+        "minibus.n.01": 0.526227028687145,
+        "bus_route.n.01": 0.5352407323015266,
+        "bus_traffic.n.01": 0.5400283464785652,
+        "school_bus.n.01": 0.5401740480039848,
+        "bus_topology.n.01": -1000.0,
+        "busbar.n.01": -1000.0,
+        "bus.n.04": -1000.0
+    },
+    "synset": "bus.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/f8a7ccbc09d942ddb98499d092a3dc1e",
+        "creator_username": "VRC-IW",
+        "creator_display_name": "VRC-IW",
+        "creator_profile_url": "https://sketchfab.com/VRC-IW"
+    },
+    "filename": "std_f8a7ccbc09d942ddb98499d092a3dc1e.glb",
+    "length": 10.49191951751709,
+    "width": 2.79988956451416
+}

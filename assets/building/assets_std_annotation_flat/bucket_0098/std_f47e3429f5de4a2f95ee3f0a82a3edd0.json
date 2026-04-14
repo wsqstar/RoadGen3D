@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a rustic wooden handcart with a rectangular open cargo bed constructed from weathered wooden slats. The cart features four large spoked wheels with dark metal rims, providing stability and ease of movement. The sides of the cart are enclosed with horizontal wooden planks, forming sturdy side rails to contain cargo. At the front, a simple wooden yoke extends outward, designed for manual pulling or attachment to an animal. Inside the cart, there are a couple of burlap sacks, suggesting its use for transporting goods or materials. The overall appearance is utilitarian, evoking a traditional, old-fashioned style suitable for urban or rural settings.",
+    "description": "A weathered wooden handcart with four large spoked wheels, side rails, and a slatted open cargo bed containing burlap sacks.",
+    "description_view_0": "Front view showing the wooden yoke, slatted cargo bed, and the front ends of the side rails.",
+    "description_view_1": "Side view highlighting the length of the cart, the four large spoked wheels, and the horizontal side rails.",
+    "description_view_2": "Rear view displaying the open cargo bed with visible burlap sacks and the full width of the slatted platform.",
+    "description_view_3": "Opposite side view showing the side rails, wheels, and a clear look at the front yoke and one burlap sack.",
+    "category": "handcart",
+    "height": 1.1,
+    "max_dimension": 2.2,
+    "materials": [
+        "wood",
+        "metal",
+        "burlap",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 65,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle/yoke",
+        "wheel",
+        "side rail",
+        "load platform"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "black",
+        "beige"
+    ],
+    "colors_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 4,
+    "attribute_handle_type": "straight wooden yoke",
+    "attribute_wheel_position": "all corners",
+    "attribute_presence_of_side_rails": true,
+    "attribute_load_platform_design": "open slats",
+    "uid": "f47e3429f5de4a2f95ee3f0a82a3edd0",
+    "near_synsets": {
+        "cart.n.01": 0.4784417966493665,
+        "shopping_cart.n.01": 0.48278763704093774,
+        "handcart.n.01": 0.483862739203321,
+        "laundry_cart.n.01": 0.4877135972397174,
+        "serving_cart.n.01": 0.49841647194489214
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f47e3429f5de4a2f95ee3f0a82a3edd0",
+        "creator_username": "hasscm2",
+        "creator_display_name": "Carly Hasson",
+        "creator_profile_url": "https://sketchfab.com/hasscm2"
+    },
+    "filename": "std_f47e3429f5de4a2f95ee3f0a82a3edd0.glb",
+    "length": 2.8366273641586304,
+    "width": 1.9291585087776184
+}

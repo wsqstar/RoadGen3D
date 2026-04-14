@@ -1,0 +1,86 @@
+{
+    "description_long": "This object is a hexagonal tunnel structure with a metallic, industrial appearance. The tunnel features a straight, elongated body with a consistent cross-section, and the interior is visible from both open ends. The exterior surface is smooth and matte, with a uniform gray coloration, and the tunnel appears to be constructed from reinforced metal panels joined at the edges. The interior is dark, with visible bolts or rivets at the corners, suggesting a robust, engineered design. There are no visible doors, gates, or additional fixtures, and the tunnel is devoid of any decorative elements, emphasizing its utilitarian function.",
+    "description": "A hexagonal, metallic tunnel with smooth gray surfaces and open ends, designed for robust, utilitarian use.",
+    "description_view_0": "Front view showing the open hexagonal entrance with visible interior bolts at the corners.",
+    "description_view_1": "Side view displaying the elongated, uniform exterior surface with no visible openings or features.",
+    "description_view_2": "Rear view mirroring the front, with another open hexagonal end and visible interior bolts.",
+    "description_view_3": "Opposite side view, identical to view 1, showing the smooth, featureless exterior.",
+    "category": "tunnel",
+    "height": 2.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.15
+    ],
+    "mass": 9500,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "passable",
+        "sheltering"
+    ],
+    "support_surface": false,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "vehicle"
+    ],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "Hexagonal open ends constructed from reinforced steel panels, with visible bolts at the corners and no doors or gates.",
+    "attribute_lighting_fixtures": [],
+    "attribute_signage": [],
+    "attribute_surrounding_infrastructure": "No surrounding infrastructure is visible; the tunnel is isolated with no adjacent roads, tracks, or barriers.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "7a098f6c8188460ea24ae887d0ebbd28",
+    "near_synsets": {
+        "railroad_tunnel.n.01": 0.5159636767852221,
+        "tunnel.n.01": 0.5224273444609594,
+        "well.n.04": 0.5489175712336133,
+        "corridor.n.01": 0.5706796552552847,
+        "ribbed_vault.n.01": 0.5736736000544499,
+        "burrow.n.01": -1000.0
+    },
+    "synset": "tunnel.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7a098f6c8188460ea24ae887d0ebbd28",
+        "creator_username": "jennag",
+        "creator_display_name": "jennag",
+        "creator_profile_url": "https://sketchfab.com/jennag"
+    },
+    "filename": "std_7a098f6c8188460ea24ae887d0ebbd28.glb",
+    "length": 7.72558069229126,
+    "width": 2.9699177742004395
+}

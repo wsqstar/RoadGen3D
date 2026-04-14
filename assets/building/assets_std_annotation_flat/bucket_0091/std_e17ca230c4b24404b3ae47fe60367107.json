@@ -1,0 +1,85 @@
+{
+    "description_long": "This object is a rectangular section of sidewalk composed of interlocking rectangular paving stones in alternating shades of gray. The pavers are arranged in a staggered, brick-like pattern, creating a visually appealing and stable walking surface. The surface appears flat and even, with minimal gaps between the stones, suggesting careful installation. The color palette consists of light and medium gray tones, which are typical for urban pedestrian walkways. The edges of the sidewalk are straight and flush, with no visible curbs or barriers. There are no signs of tactile paving, street furniture, or other features, making this a standard, utilitarian sidewalk segment suitable for residential or commercial urban environments.",
+    "description": "A rectangular, flat sidewalk section made of interlocking gray paving stones in a staggered pattern, with smooth, flush edges and no visible curbs or tactile features.",
+    "description_view_0": "The sidewalk is seen from a low angle, highlighting the staggered arrangement of the rectangular gray pavers and the flush, straight edge.",
+    "description_view_1": "Viewed from above, the alternating light and medium gray pavers and the even, grid-like pattern are clearly visible.",
+    "description_view_2": "This view shows the sidewalk from the opposite side, again emphasizing the uniform, staggered paver layout and the flat surface.",
+    "description_view_3": "From this angle, the sidewalk's rectangular shape and the consistent, interlocking paver pattern are apparent, with no curbs or additional features.",
+    "category": "sidewalk",
+    "height": 0.08,
+    "max_dimension": 2.0,
+    "materials": [
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.98,
+        0.02
+    ],
+    "mass": 380,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "segmentable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light gray",
+        "medium gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": false,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "flush",
+    "attribute_adjacent_street_type": "residential",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "e17ca230c4b24404b3ae47fe60367107",
+    "near_synsets": {
+        "sidewalk.n.01": 0.4563983720193085,
+        "paved_surface.n.01": 0.49348703750634854,
+        "curb.n.01": 0.4961136890869061,
+        "cobble.n.01": 0.5016027138141156,
+        "paving_stone.n.01": 0.5061945630599614
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e17ca230c4b24404b3ae47fe60367107",
+        "creator_username": "joeshu",
+        "creator_display_name": "joeshu",
+        "creator_profile_url": "https://sketchfab.com/joeshu"
+    },
+    "filename": "std_e17ca230c4b24404b3ae47fe60367107.glb",
+    "length": 3.694001078605652,
+    "width": 2.898293972015381
+}

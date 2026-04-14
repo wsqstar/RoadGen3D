@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a large, industrial garbage truck with a boxy, robust body painted in a muted teal color. The cab is positioned at the front, featuring a white grille and windshield, and the truck sits on four prominent wheels. The rear section is a sizable, enclosed compartment for waste storage, with subtle panel lines and a metallic accent on the side. Flanking the truck on both sides are what appear to be waste bins or containers, arranged in parallel. The vehicle has a utilitarian design, with minimal decorative elements and a focus on functionality. No visible hydraulic arms or rear hoppers are present, and the truck lacks any obvious warning signage or reflective safety markings.",
+    "description": "A teal, boxy garbage truck with a white cab and four wheels, flanked by waste bins. The design is utilitarian and robust, with minimal decorative features.",
+    "description_view_0": "Side view showing the full length of the truck, the cab, and the waste compartment, with bins visible on either side.",
+    "description_view_1": "Rear view highlighting the back of the truck and the parallel arrangement of waste bins on both sides.",
+    "description_view_2": "Opposite side view similar to view 0, showing the truck's length and the bins, with the cab partially visible.",
+    "description_view_3": "Front view focusing on the cab, grille, and windshield, with bins visible on either side of the truck.",
+    "category": "garbage truck",
+    "height": 3.2,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "bin",
+        "compartment panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "teal",
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_waste_container_attachment": "No visible waste container attachment mechanisms such as arms, forks, clamps, or rails are present on the truck. The bins are placed beside the truck but do not appear to be mechanically interfaced.",
+    "attribute_hydraulic_lift_mechanism": "None. There are no visible hydraulic cylinders, pistons, or hoses integrated into the truck's structure.",
+    "attribute_rear_loading_hopper": "None. The rear of the truck is flat and enclosed, with no visible hopper, flaps, or loading mechanisms.",
+    "attribute_warning_signage": "None. There are no visible warning signs, text, or hazard symbols on the truck.",
+    "attribute_reflective_safety_markings": "None. There are no visible reflective stripes, chevrons, or panels on the truck's exterior.",
+    "uid": "c999333c40c54b50ac2e33fefc3df62e",
+    "near_synsets": {
+        "garbage_truck.n.01": 0.48945860789858003,
+        "dumpster.n.01": 0.5073916453605604,
+        "garbage.n.03": 0.5517868859300259,
+        "laundry_truck.n.01": 0.5609253061865987,
+        "truck.n.01": 0.563234233988397,
+        "drivel.n.01": -1000.0,
+        "hand_truck.n.01": -1000.0,
+        "garbage.n.01": -1000.0
+    },
+    "synset": "garbage_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c999333c40c54b50ac2e33fefc3df62e",
+        "creator_username": "Trashbulldogproductions",
+        "creator_display_name": "Trashbulldogproductions",
+        "creator_profile_url": "https://sketchfab.com/Trashbulldogproductions"
+    },
+    "filename": "std_c999333c40c54b50ac2e33fefc3df62e.glb",
+    "length": 21.643702507019043,
+    "width": 21.643702507019043
+}

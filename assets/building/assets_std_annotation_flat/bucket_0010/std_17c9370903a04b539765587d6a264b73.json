@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a tan-colored, boxy combat tactical vehicle with a robust, angular design and a flat roof, reminiscent of a military Humvee. The vehicle features four large, rugged wheels with deep treads suitable for off-road and urban environments. Its body is constructed with reinforced, panel-like doors and visible rivets, suggesting armored protection. The front grille is wide and flanked by rectangular headlights, while the rear is simple with two large tail lights and a flat cargo area. The windows are small and likely reinforced, and the vehicle lacks visible weapon mounts or external accessories. The overall appearance is utilitarian, emphasizing durability and protection.",
+    "description": "A tan, armored combat tactical vehicle with a boxy shape, reinforced doors, and large rugged wheels. Its design is utilitarian, with small windows and no visible weapon mounts.",
+    "description_view_0": "Side view showing the full length, four doors with reinforced panels, and large rugged wheels.",
+    "description_view_1": "Front view highlighting the wide grille, rectangular headlights, and flat hood.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the other side's doors and wheels.",
+    "description_view_3": "Rear view displaying the flat cargo area, two large tail lights, and simple rear panel.",
+    "category": "combat tactical  vehicle",
+    "height": 1.9,
+    "max_dimension": 4.8,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.07,
+        0.1,
+        0.03,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "headlight",
+        "taillight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "none visible",
+    "attribute_armor_plating": "Full body visible armor plating with reinforced doors and panels, moderate thickness, no sloped or modular features apparent.",
+    "attribute_camouflage_pattern": "solid tan color, no camouflage pattern visible",
+    "attribute_military_markings": "none visible",
+    "attribute_tire_type": "Four large, off-road tires with deep tread pattern, no visible reinforcement or chains",
+    "uid": "17c9370903a04b539765587d6a264b73",
+    "near_synsets": {
+        "tank.n.01": 0.49423936646918415,
+        "military_vehicle.n.01": 0.4968306005621975,
+        "reconnaissance_vehicle.n.01": 0.5085490228782451,
+        "assault_gun.n.02": 0.5206081639416357,
+        "armored_car.n.02": 0.5210848569320399,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/17c9370903a04b539765587d6a264b73",
+        "creator_username": "LZBlocks",
+        "creator_display_name": "LZ Blocks",
+        "creator_profile_url": "https://sketchfab.com/LZBlocks"
+    },
+    "filename": "std_17c9370903a04b539765587d6a264b73.glb",
+    "length": 4.720981121063232,
+    "width": 2.747371792793274
+}

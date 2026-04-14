@@ -1,0 +1,105 @@
+{
+    "description_long": "This object is a section of standard railway track, featuring two parallel steel rails mounted on a series of evenly spaced rectangular sleepers. The rails are dark metallic in color, showing signs of weathering and use, and are fastened securely to the sleepers with visible metal fasteners. The sleepers, likely made of wood, display a slightly aged, grayish-brown appearance with subtle grain and texture. There is no visible ballast bed beneath the sleepers, and the track is not embedded in any pavement, making it appear as a standalone segment. The structure is robust and linear, designed to support the weight and movement of trains or rail vehicles. No signage, signals, or additional railway infrastructure is present in this object.",
+    "description": "A weathered railway track segment with two parallel steel rails mounted on wooden sleepers, showing realistic metal and wood textures.",
+    "description_view_0": "The railway track is viewed head-on, emphasizing the parallel alignment of the rails and the repetitive pattern of the sleepers.",
+    "description_view_1": "A side view reveals the full length of the track, highlighting the linear arrangement and the spacing between the sleepers.",
+    "description_view_2": "Another head-on view from the opposite end, similar to view 0, showing the rails and sleepers in perspective.",
+    "description_view_3": "A side view from the opposite side, mirroring view 1, with clear visibility of the rails and sleeper arrangement.",
+    "category": "railway track",
+    "height": 0.15,
+    "max_dimension": 3.0,
+    "materials": [
+        "steel",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.4,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "guiding"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "rail",
+        "sleeper",
+        "fastener"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "train"
+    ],
+    "colors": [
+        "gray",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.01,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_parallel_metal_rails": true,
+    "attribute_wooden_or_concrete_sleepers": "wood",
+    "attribute_ballast_bed": false,
+    "attribute_embedded_in_pavement": false,
+    "attribute_railway_crossing_signage": false,
+    "uid": "ca1cc6ea0ae84816882cf790cb980aec",
+    "near_synsets": {
+        "railroad_bed.n.01": 0.5053212107939052,
+        "track.n.09": 0.5235712923176614,
+        "railhead.n.02": 0.5273002578382177,
+        "rail.n.04": 0.5278130652500513,
+        "railroad_track.n.01": 0.5288686375686881,
+        "track.n.06": -1000.0,
+        "track.n.10": -1000.0,
+        "racetrack.n.01": -1000.0,
+        "track.n.08": -1000.0,
+        "railway.n.01": -1000.0,
+        "lead.n.03": -1000.0,
+        "track.n.07": -1000.0,
+        "track.n.03": -1000.0,
+        "path.n.04": -1000.0,
+        "track.n.11": -1000.0,
+        "cut.n.08": -1000.0
+    },
+    "synset": "track.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/ca1cc6ea0ae84816882cf790cb980aec",
+        "creator_username": "Alexey..Tverdohleb",
+        "creator_display_name": "HardBread",
+        "creator_profile_url": "https://sketchfab.com/Alexey..Tverdohleb"
+    },
+    "filename": "std_ca1cc6ea0ae84816882cf790cb980aec.glb",
+    "length": 4.442338943481445,
+    "width": 1.1994316577911377
+}

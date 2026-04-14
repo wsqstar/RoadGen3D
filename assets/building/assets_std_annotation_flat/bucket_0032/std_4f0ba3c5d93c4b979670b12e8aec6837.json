@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a classic hand grenade, specifically resembling the Mk 2 fragmentation grenade, commonly known as the 'pineapple' grenade due to its segmented, textured cast-iron body. The main body is dark gray with a rough, grid-like pattern for grip and fragmentation, and a yellow band encircles the neck just below the safety lever. The top features a prominent metal safety lever (spoon) and a circular pull ring attached to a visible safety pin, both rendered in a slightly lighter metallic gray. The lever is held in place by the pin, which, when pulled, would allow the lever to release and initiate the fuse mechanism. The overall form is compact and ovoid, designed to be easily held and thrown by hand. The object is solid and robust, with no visible seams or openings other than the functional components at the top.",
+    "description": "A dark gray, segmented hand grenade with a yellow neck band, metal safety lever, and pull ring. Its robust, ovoid body features a textured grip and classic fragmentation design.",
+    "description_view_0": "Front view showing the grenade's segmented body, yellow neck band, and the top of the safety lever and pin.",
+    "description_view_1": "Side view highlighting the full length of the safety lever and the circular pull ring, with the yellow band clearly visible.",
+    "description_view_2": "Rear view displaying the back of the grenade and the safety lever, with the pull ring partially visible.",
+    "description_view_3": "Angled side view showing the lever, pin, and ring from a different perspective, emphasizing the grenade's ovoid shape.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.07,
+    "materials": [
+        "steel",
+        "iron",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.15,
+        0.03,
+        0.02
+    ],
+    "mass": 0.6,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 6,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable",
+        "throwable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety_lever",
+        "pull_ring",
+        "safety_pin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "yellow",
+        "silver"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the safety pin and releasing the lever, which activates an internal timed fuse.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "4f0ba3c5d93c4b979670b12e8aec6837",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.4837279730363493,
+        "grenade.n.01": 0.5237514049475377,
+        "rifle_grenade.n.01": 0.5507254490065543,
+        "bomb.n.01": 0.5587948166363307,
+        "fragmentation_bomb.n.01": 0.5638715585259797,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4f0ba3c5d93c4b979670b12e8aec6837",
+        "creator_username": "Tactical_Beard",
+        "creator_display_name": "Tactical_Gamer",
+        "creator_profile_url": "https://sketchfab.com/Tactical_Beard"
+    },
+    "filename": "std_4f0ba3c5d93c4b979670b12e8aec6837.glb",
+    "length": 0.059721462428569794,
+    "width": 0.06621947884559631
+}

@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a heavily armored combat tactical vehicle with a low, angular profile and a wide, reinforced chassis. The vehicle features a prominent rotating turret mounted centrally on the roof, equipped with a large-caliber cannon and what appear to be additional weapon modules or sensor arrays on the sides. The body is constructed from thick, dark metal plating, with sloped surfaces designed to deflect incoming projectiles. The front and sides are protected by extended armor skirts, and the rear is enclosed, providing full coverage. The vehicle lacks visible wheels or tracks, suggesting a possible hover or concealed track system, and its exterior is finished in a solid, dark color with a slightly worn, matte appearance.",
+    "description": "A dark, heavily armored combat vehicle with a central turret and reinforced, angular body panels. It features a large cannon and side modules, with a solid, matte finish.",
+    "description_view_0": "Front view shows the wide, sloped armor, central turret, and large cannon extending forward.",
+    "description_view_1": "Rear view highlights the enclosed back, angular armor, and the rear of the turret assembly.",
+    "description_view_2": "Left side view displays the turret, cannon, and side modules, as well as the extended armor skirts.",
+    "description_view_3": "Right side view mirrors the left, showing the turret, cannon, and angular armor details.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "side modules"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large-caliber cannon mounted on a central rotating turret on the roof; additional side modules on the turret may serve as secondary weapon mounts or sensor pods.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating; reinforced front and side skirts; no visible modular or reactive panels.",
+    "attribute_camouflage_pattern": "Solid dark color with a slightly worn, matte finish; no visible camouflage pattern.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "b8e752a9f1324303bc348ebe9c31288e",
+    "near_synsets": {
+        "tank.n.01": 0.49433189694427426,
+        "armored_car.n.02": 0.5043497171019103,
+        "military_vehicle.n.01": 0.509037363986915,
+        "assault_gun.n.02": 0.5130014382482794,
+        "armored_vehicle.n.01": 0.5229375867989399,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b8e752a9f1324303bc348ebe9c31288e",
+        "creator_username": "CaiPerkins",
+        "creator_display_name": "CaiPerkins",
+        "creator_profile_url": "https://sketchfab.com/CaiPerkins"
+    },
+    "filename": "std_b8e752a9f1324303bc348ebe9c31288e.glb",
+    "length": 3.6962207555770874,
+    "width": 2.1596070528030396
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This combat tactical vehicle features a low, angular profile with a predominantly black and dark red color scheme, giving it a stealthy and aggressive appearance. The body is heavily armored with flat, faceted panels and reinforced sections, especially around the front and sides. The vehicle is equipped with multiple protruding elements, including what appear to be weapon mounts or sensor arrays on the roof and rear. Its base is wide and stable, with four large, angular supports or skids instead of traditional wheels, suggesting enhanced stability and off-road capability. The cockpit or crew compartment is centrally located and protected by thick armor, with additional raised structures at the rear for equipment or personnel. The overall design emphasizes protection, firepower, and urban maneuverability.",
+    "description": "A heavily armored, angular combat tactical vehicle in black and dark red, featuring multiple mounts and wide, skid-like supports instead of wheels.",
+    "description_view_0": "Side view showing the elongated armored body, angular skids, and raised rear equipment section.",
+    "description_view_1": "Rear view highlighting the dual rear skids, central equipment mounts, and the vehicle's wide stance.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the cockpit and rear structures.",
+    "description_view_3": "Front view displaying the reinforced front armor, angular skids, and forward-facing mounts.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 6.5,
+    "materials": [
+        "armored steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 9500,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 6,
+    "movable": true,
+    "required_force": 35000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "door",
+        "control panel",
+        "weapon mount",
+        "skid"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Two visible mounts on the roof and rear section, likely for machine guns or sensor arrays.",
+    "attribute_armor_plating": "Full body coverage with thick, angular armor plating; reinforced front and side panels with sloped surfaces for deflection.",
+    "attribute_camouflage_pattern": "Solid color scheme in black and dark red; no camouflage pattern visible.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "0674bc9e0f664a8fbefeb6542d77105c",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4899624162645807,
+        "tank.n.01": 0.50483786794029,
+        "armored_car.n.02": 0.5056757063531842,
+        "reconnaissance_vehicle.n.01": 0.5116600014534423,
+        "assault_gun.n.02": 0.5141607236069309,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0674bc9e0f664a8fbefeb6542d77105c",
+        "creator_username": "Matheus.Filipe",
+        "creator_display_name": "Matheus.Filipe",
+        "creator_profile_url": "https://sketchfab.com/Matheus.Filipe"
+    },
+    "filename": "std_0674bc9e0f664a8fbefeb6542d77105c.glb",
+    "length": 6.073467016220093,
+    "width": 3.6647281646728516
+}

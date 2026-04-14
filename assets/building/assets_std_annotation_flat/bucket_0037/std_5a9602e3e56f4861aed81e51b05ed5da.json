@@ -1,0 +1,102 @@
+{
+    "description_long": "This combat tactical vehicle features a low, angular profile with a broad, flat body constructed from interlocking panels in shades of gray and black. The front is characterized by a central raised section and a recessed rectangular viewport or sensor, flanked by sloped armor plating. The sides display a grid-like pattern of panels, with subtle vent-like details and layered armor, suggesting reinforced protection. The rear is equipped with three prominent circular exhausts or thrusters, highlighted in blue, and a central rectangular panel, possibly for access or additional equipment. The overall design is highly geometric, with minimal protrusions and a focus on stealth and durability. The vehicle's surface appears hard and matte, with no visible wheels or tracks, indicating a possible hover or anti-gravity propulsion system.",
+    "description": "A low-profile, angular combat tactical vehicle with reinforced gray and black armor, blue rear thrusters, and a geometric, stealthy design.",
+    "description_view_0": "Front view shows a central raised section with a recessed viewport and sloped armor panels.",
+    "description_view_1": "Left side view reveals the grid-like paneling, vent details, and layered armor structure.",
+    "description_view_2": "Rear view highlights three blue circular thrusters and a central rectangular panel.",
+    "description_view_3": "Right side view mirrors the left, with visible paneling and vent-like features.",
+    "category": "combat tactical  vehicle",
+    "height": 1.8,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 8500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 40000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "viewport",
+        "thruster",
+        "panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "blue"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "none visible",
+    "attribute_armor_plating": "Full body coverage with thick, angular, and sloped armor panels; reinforced and modular appearance.",
+    "attribute_camouflage_pattern": "Solid color scheme with alternating gray and black geometric panels; no camouflage pattern visible.",
+    "attribute_military_markings": "none visible",
+    "attribute_tire_type": "not applicable",
+    "uid": "5a9602e3e56f4861aed81e51b05ed5da",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.5134797248327633,
+        "reconnaissance_vehicle.n.01": 0.517001607106613,
+        "assault_gun.n.02": 0.5418670458833885,
+        "weapons_carrier.n.01": 0.5428384717501513,
+        "tank.n.01": 0.5438740872557026,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5a9602e3e56f4861aed81e51b05ed5da",
+        "creator_username": "Guard13007",
+        "creator_display_name": "Guard13007",
+        "creator_profile_url": "https://sketchfab.com/Guard13007"
+    },
+    "filename": "std_5a9602e3e56f4861aed81e51b05ed5da.glb",
+    "length": 4.757143974304199,
+    "width": 6.685711860656738
+}

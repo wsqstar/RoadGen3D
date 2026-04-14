@@ -1,0 +1,102 @@
+{
+    "description_long": "This ferry terminal features a long, elevated structure supported by numerous slender columns, with a series of interconnected covered walkways and pavilions. The roof is composed of dark, gently sloping tiles, punctuated by several gabled sections and small overhangs, providing shelter along the length of the terminal. The main body is constructed from a combination of wood and metal, with open sides allowing for airflow and visibility. The terminal appears to have designated entry and exit points, as well as sheltered waiting areas for passengers. The structure is designed to accommodate foot traffic and facilitate boarding and disembarking from ferries. Its architectural style suggests a blend of traditional and modern influences, suitable for urban waterfront environments.",
+    "description": "A long, elevated ferry terminal with covered walkways, gabled roofs, and open sides supported by slender columns. The structure provides sheltered waiting areas and facilitates passenger movement to and from ferries.",
+    "description_view_0": "A wide, frontal view showing the full length of the terminal, with its multiple gabled roofs and open, column-supported walkways.",
+    "description_view_1": "A side view highlighting the narrow profile of the terminal and the depth of the roof structure.",
+    "description_view_2": "A rear or opposite side view displaying the repeating gabled sections and the open framework beneath the roof.",
+    "description_view_3": "Another side view, similar to view 1, emphasizing the terminal's linear form and the arrangement of the covered walkways.",
+    "category": "ferry terminal",
+    "height": 6.0,
+    "max_dimension": 32.0,
+    "materials": [
+        "wood",
+        "metal",
+        "roof tile",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "shelterable",
+        "waitable",
+        "boardable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "entryway",
+        "waiting area",
+        "boarding platform"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "dark gray",
+        "red-brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_ferry_dock_signage": false,
+    "attribute_passenger_waiting_area": true,
+    "attribute_ticket_booth_or_kiosk": false,
+    "attribute_boarding_ramps_or_gangways": true,
+    "attribute_water_access_with_mooring_structures": false,
+    "uid": "3a28eb0aee514e458671e75f1b393a4c",
+    "near_synsets": {
+        "ferry.n.01": 0.528865465140005,
+        "ferry.n.02": 0.5298285643700316,
+        "gate.n.04": 0.5377763823502862,
+        "car-ferry.n.01": 0.5499828101584765,
+        "covered_bridge.n.01": 0.5505759214753322,
+        "terminal.n.02": -1000.0,
+        "end.n.01": -1000.0,
+        "terminal.n.01": -1000.0,
+        "terminal.n.04": -1000.0
+    },
+    "synset": "terminal.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3a28eb0aee514e458671e75f1b393a4c",
+        "creator_username": "matthewnixon",
+        "creator_display_name": "matthewnixon",
+        "creator_profile_url": "https://sketchfab.com/matthewnixon"
+    },
+    "filename": "std_3a28eb0aee514e458671e75f1b393a4c.glb",
+    "length": 4.857007741928101,
+    "width": 16.13484001159668
+}

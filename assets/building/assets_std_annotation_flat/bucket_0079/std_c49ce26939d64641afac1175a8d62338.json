@@ -1,0 +1,103 @@
+{
+    "description_long": "This object is a classic stick grenade, commonly known as a 'potato masher' due to its distinctive shape. The head is a cylindrical metal canister painted olive green, featuring white stenciled German text and a prominent metal clip on the side. The handle is made of wood, showing a natural grain and some wear, and is attached to the metal head with a reinforced collar. The bottom of the handle has a threaded metal cap, which is typically unscrewed to access the fuse mechanism. The overall construction combines metal and wood, giving it a rugged, utilitarian appearance. The object is compact and designed to be easily gripped and thrown by hand.",
+    "description": "A German stick grenade with a green metal canister head, wooden handle, and white stenciled text, featuring a metal clip and threaded cap.",
+    "description_view_0": "The grenade is shown in full profile, highlighting the green canister head with white text, the metal clip, and the wooden handle with visible grain.",
+    "description_view_1": "This angled view emphasizes the length of the wooden handle and the cylindrical shape of the metal head, with the clip and text partially visible.",
+    "description_view_2": "The grenade is seen from a slightly elevated angle, showing the top of the canister, the handle, and the attachment collar in detail.",
+    "description_view_3": "A top-down view focusing on the circular end of the canister, with the clip and some camouflage wear visible on the head.",
+    "category": "bomb",
+    "height": 0.35,
+    "max_dimension": 0.35,
+    "materials": [
+        "steel",
+        "wood",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.35,
+        0.15,
+        0.03,
+        0.02
+    ],
+    "mass": 0.6,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 6,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "throwable",
+        "unscrewable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "metal cap",
+        "clip"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "brown",
+        "silver",
+        "white"
+    ],
+    "colors_composition": [
+        0.45,
+        0.35,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 20000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [
+        "VOR GEBRAUCH SPRENGKAPSEL EINSETZEN"
+    ],
+    "attribute_detonation_mechanism": "The grenade is likely detonated by unscrewing the metal cap at the base of the handle to access and pull a friction igniter, which triggers the internal fuse.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "c49ce26939d64641afac1175a8d62338",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.5207116406739116,
+        "grenade.n.01": 0.5421963757717561,
+        "spandau.n.01": 0.5451063499983142,
+        "pipe_bomb.n.01": 0.5451154632343107,
+        "cluster_bomb.n.01": 0.5533511181485226,
+        "bomb_calorimeter.n.01": -1000.0,
+        "bomb.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c49ce26939d64641afac1175a8d62338",
+        "creator_username": "janovich3D",
+        "creator_display_name": "Janovich",
+        "creator_profile_url": "https://sketchfab.com/janovich3D"
+    },
+    "filename": "std_c49ce26939d64641afac1175a8d62338.glb",
+    "length": 0.2169230580329895,
+    "width": 0.43756456673145294
+}

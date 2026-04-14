@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a tall, yellow tower crane commonly used on construction sites for lifting and moving heavy materials. The crane features a vertical lattice mast supporting a long horizontal jib, which extends outward and is stabilized by tension cables. At the end of the jib, a single hook is suspended for hoisting loads, while a counterweight is visible at the opposite end to balance the structure. The support structure consists of a fixed base, anchoring the crane securely to the ground. The lattice design of both the mast and jib provides strength while minimizing weight. No operator cabin is visible, suggesting remote or ground-based operation.",
+    "description": "A tall yellow tower crane with a lattice mast, long horizontal jib, visible counterweight, and a single hook for lifting materials.",
+    "description_view_0": "A narrow end-on view showing the slim profile of the vertical mast and the tip of the jib.",
+    "description_view_1": "A full side view displaying the entire length of the horizontal jib, the suspended hook, and the counterweight at the rear.",
+    "description_view_2": "A rear end-on view highlighting the counterweight and the lattice structure of the mast.",
+    "description_view_3": "A mirrored side view similar to view 1, showing the jib, hook, and counterweight from the opposite side.",
+    "category": "crane",
+    "height": 40,
+    "max_dimension": 60,
+    "materials": [
+        "steel",
+        "concrete",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 35000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hook",
+        "jib",
+        "counterweight",
+        "cables"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.01,
+    "recommended_clearance": 10,
+    "asset_composition_type": "single",
+    "attribute_boom_type": "lattice boom",
+    "attribute_counterweight_presence": true,
+    "attribute_operator_cabin_visibility": false,
+    "attribute_hook_or_lifting_mechanism": "single hook",
+    "attribute_support_structure_design": "fixed base",
+    "uid": "0f8befc223734608a5d54aad4904951f",
+    "near_synsets": {
+        "crane.n.04": 0.4359896891501569,
+        "derrick.n.02": 0.48415097446222244,
+        "stacker_crane.n.01": 0.5169156688159452,
+        "hoist.n.01": 0.5195597060228034,
+        "lift_capacity.n.01": 0.5214353542385607,
+        "crane.n.01": -1000.0,
+        "crane.n.02": -1000.0,
+        "crane.n.05": -1000.0,
+        "grus.n.01": -1000.0
+    },
+    "synset": "crane.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0f8befc223734608a5d54aad4904951f",
+        "creator_username": "cem.alagozlu",
+        "creator_display_name": "Cem Alagozlu",
+        "creator_profile_url": "https://sketchfab.com/cem.alagozlu"
+    },
+    "filename": "std_0f8befc223734608a5d54aad4904951f.glb",
+    "length": 4.459405183792114,
+    "width": 53.53110313415527
+}

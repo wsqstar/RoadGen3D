@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a modern unmanned aerial vehicle (UAV) with a long, slender fuselage and a straight, high-mounted wing configuration. The aircraft features a single rear-mounted propeller engine and is equipped with multiple underwing pylons carrying ordnance or sensor pods. The tail section has a conventional design with a single vertical stabilizer and horizontal stabilizers. The landing gear is tricycle-type, with two main gear units and a nose gear, all of which appear to be fixed. The cockpit is located at the forward end of the fuselage and is enclosed, though it is likely remotely operated given the UAV design.",
+    "description": "A modern UAV with a high-mounted straight wing, rear propeller, underwing payloads, and a conventional tail. It has a tricycle landing gear and an enclosed forward cockpit.",
+    "description_view_0": "Top-down view showing the straight high-mounted wings, underwing payloads, and the full length of the fuselage.",
+    "description_view_1": "Front view highlighting the wingspan, symmetrical wing configuration, and visible underwing payloads.",
+    "description_view_2": "Bottom-up view displaying the landing gear, payloads, and the rear propeller engine.",
+    "description_view_3": "Rear view focusing on the tail section, rear propeller, and the alignment of the landing gear.",
+    "category": "airplane",
+    "height": 1.8,
+    "max_dimension": 11.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 1100,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 10780,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "landing gear",
+        "payload pylons",
+        "cockpit hatch",
+        "control surfaces"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "black",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.85,
+        0.13,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 15.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "High-wing, straight configuration with no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Single rear-mounted propeller engine.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "Tricycle landing gear with two main gear units and a nose gear, all fixed.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit at the front of the fuselage.",
+    "uid": "eff549610fee4f20904f7b388a3a0830",
+    "near_synsets": {
+        "aircraft.n.01": 0.5111061205128595,
+        "airplane.n.01": 0.551938750571238,
+        "autogiro.n.01": 0.5564516637800088,
+        "propjet.n.01": 0.5604000577804654,
+        "orthopter.n.01": 0.5627272989806814
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/eff549610fee4f20904f7b388a3a0830",
+        "creator_username": "TVHowell",
+        "creator_display_name": "Tyler V Howell",
+        "creator_profile_url": "https://sketchfab.com/TVHowell"
+    },
+    "filename": "std_eff549610fee4f20904f7b388a3a0830.glb",
+    "length": 6.301918029785156,
+    "width": 14.494503021240234
+}

@@ -1,0 +1,94 @@
+{
+    "description_long": "This kiosk is a small, standalone structure with a rectangular footprint and a prominent, red-tiled gabled roof. The exterior walls are white with subtle architectural detailing, and the front features a wide open service window beneath the roof overhang, suggesting a counter for transactions. The roof is supported by four visible columns at the corners, and the open design allows for easy interaction with customers from the front. There are no visible doors or windows on the sides or rear, emphasizing its function as a service kiosk rather than an enclosed space. The overall style is traditional, with a focus on symmetry and clean lines, and the materials appear to be primarily masonry and tile. The kiosk is compact, likely intended for use in parks, plazas, or along busy sidewalks.",
+    "description": "A small, white masonry kiosk with a red-tiled gabled roof and an open front service counter, supported by four columns. Traditional design with clean lines and no visible doors or side windows.",
+    "description_view_0": "The kiosk is seen from the front, showing the open service counter, four supporting columns, and the red-tiled gabled roof.",
+    "description_view_1": "Viewed from above and behind, the gabled roof and the rear wall are visible, with no openings or windows.",
+    "description_view_2": "The side view reveals the solid white walls and the depth of the roof overhang, with no windows or doors on the sides.",
+    "description_view_3": "From the rear, the kiosk's closed back wall and the full length of the gabled roof are visible, with no entry points.",
+    "category": "kiosk",
+    "height": 2.5,
+    "max_dimension": 3.0,
+    "materials": [
+        "masonry",
+        "ceramic tile",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.1
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "serving"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "service counter",
+        "shutter/panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "none",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "none",
+    "attribute_roof_design": "Gabled roof with red ceramic tiles, moderate overhang, supported by columns at corners.",
+    "attribute_architectural_style": "Traditional, with simple masonry and tiled roof influences.",
+    "uid": "f4aec381290c42ac9d5dfba7e5056ebf",
+    "near_synsets": {
+        "booth.n.02": 0.5288302031841496,
+        "wicket.n.04": 0.5503047279403824,
+        "shopfront.n.01": 0.5564825430236011,
+        "portico.n.01": 0.5672771157298521,
+        "gazebo.n.01": 0.5701014700494293
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f4aec381290c42ac9d5dfba7e5056ebf",
+        "creator_username": "ruingato",
+        "creator_display_name": "ruingato",
+        "creator_profile_url": "https://sketchfab.com/ruingato"
+    },
+    "filename": "std_f4aec381290c42ac9d5dfba7e5056ebf.glb",
+    "length": 1.9455595016479492,
+    "width": 10.864410400390625
+}

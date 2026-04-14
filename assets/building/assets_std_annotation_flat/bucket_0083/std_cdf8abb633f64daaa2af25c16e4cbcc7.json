@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a small, standalone public toilet structure with vertical wooden paneling on its exterior walls and a slightly sloped, weathered metal roof. The front features a single swinging door, partially open, revealing a simple interior with a floor and what appears to be a cylindrical toilet fixture. The roof has visible rectangular cutouts or vents, likely for ventilation, and is supported by metal brackets at the corners. The structure is elevated slightly above the ground on short concrete or stone footings. There are no visible windows, signage, or accessibility features on the exterior. The overall appearance is utilitarian, with a focus on basic shelter and privacy.",
+    "description": "A compact wooden public toilet with a sloped metal roof, swinging door, and minimalistic design. The structure is elevated on short footings and features roof cutouts for ventilation.",
+    "description_view_0": "Side view showing the vertical wooden paneling, sloped metal roof, and the edge of the open door.",
+    "description_view_1": "Front view with the swinging door open, revealing the interior and the cylindrical toilet fixture inside.",
+    "description_view_2": "Opposite side view, similar to view 0, with the door less visible and the roof's slope more apparent.",
+    "description_view_3": "Rear view showing the full width of the sloped metal roof and the back wall with no openings or features.",
+    "category": "public toilets",
+    "height": 2.2,
+    "max_dimension": 2.8,
+    "materials": [
+        "wood",
+        "metal",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "mass": 650,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "light brown",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_signage": "none",
+    "attribute_door_type": "swinging",
+    "attribute_ventilation_features": "rectangular cutouts in the roof for ventilation",
+    "attribute_accessibility_features": "none",
+    "attribute_roof_structure": "Sloped, single-pitch roof made of weathered metal with rectangular ventilation cutouts and slight overhangs.",
+    "uid": "cdf8abb633f64daaa2af25c16e4cbcc7",
+    "near_synsets": {
+        "public_toilet.n.01": 0.519981071881705,
+        "latrine.n.01": 0.5462790827591478,
+        "men's_room.n.01": 0.5499704950459156,
+        "washroom.n.01": 0.5612400685666209,
+        "outhouse.n.01": 0.561707701125678,
+        "toilet.n.01": -1000.0,
+        "toilet.n.04": -1000.0,
+        "toilet.n.02": -1000.0,
+        "gutter.n.02": -1000.0
+    },
+    "synset": "outhouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cdf8abb633f64daaa2af25c16e4cbcc7",
+        "creator_username": "artkrane",
+        "creator_display_name": "artkrane",
+        "creator_profile_url": "https://sketchfab.com/artkrane"
+    },
+    "filename": "std_cdf8abb633f64daaa2af25c16e4cbcc7.glb",
+    "length": 2.1162062883377075,
+    "width": 2.378616690635681
+}

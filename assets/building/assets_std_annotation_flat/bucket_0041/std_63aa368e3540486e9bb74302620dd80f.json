@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a compact submachine gun-style rifle with a rectangular upper receiver and a perforated barrel shroud featuring multiple circular vents. The grip is angled and appears to be made of a dark, textured material, likely polymer or plastic, with a visible trigger guard and a detachable box magazine extending downward. The top of the receiver is flat and unadorned, lacking any visible optics or rail systems, and the rear of the weapon is squared off without a traditional rifle stock. The barrel is short and cylindrical, protruding slightly from the shroud, and the overall design is utilitarian, with minimal external embellishments. The magazine is boxy and metallic, matching the industrial aesthetic of the rest of the weapon. The color palette is primarily gray and black, giving it a modern, tactical appearance suitable for urban environments.",
+    "description": "A compact, gray and black submachine gun-style rifle with a perforated barrel shroud, box magazine, and angled pistol grip. The design is minimalistic and modern, lacking a traditional stock or advanced sighting systems.",
+    "description_view_0": "Side view showing the full length of the rifle, perforated barrel shroud, box magazine, and angled grip.",
+    "description_view_1": "Front view highlighting the circular barrel opening, symmetrical shroud vents, and the width of the magazine and grip.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the magazine, grip, and barrel shroud.",
+    "description_view_3": "Rear view showing the back of the receiver, the alignment of the barrel, and the top of the magazine.",
+    "category": "rifle",
+    "height": 0.28,
+    "max_dimension": 0.45,
+    "materials": [
+        "steel",
+        "polymer",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 2.8,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 35,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "magazine",
+        "barrel",
+        "barrel shroud"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "short",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "none",
+    "attribute_muzzle_device": "none",
+    "uid": "63aa368e3540486e9bb74302620dd80f",
+    "near_synsets": {
+        "submachine_gun.n.01": 0.4749827790891542,
+        "kalashnikov.n.01": 0.4993600716519257,
+        "sten_gun.n.01": 0.5072591453495102,
+        "uzi.n.01": 0.5137885346102397,
+        "garand_rifle.n.01": 0.5144968296857045,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/63aa368e3540486e9bb74302620dd80f",
+        "creator_username": "HummeL_AL",
+        "creator_display_name": "HummeL",
+        "creator_profile_url": "https://sketchfab.com/HummeL_AL"
+    },
+    "filename": "std_63aa368e3540486e9bb74302620dd80f.glb",
+    "length": 0.35877595841884613,
+    "width": 0.06019025854766369
+}

@@ -1,0 +1,92 @@
+{
+    "description_long": "This is a robust, industrial-style metal ladder structure with a staircase-like design, featuring a series of evenly spaced rungs and prominent side handrails for safety. The ladder is mounted on three large cylindrical supports, elevating it above the ground and providing stability. The handrails run the full length of the stairs, constructed from the same dark metal as the rest of the frame, and are composed of vertical bars for added grip. The steps themselves are flat and wide, suitable for safe climbing, and the entire structure has a utilitarian, weathered appearance, suggesting it is designed for outdoor or heavy-duty urban use. The underside of the ladder is open, with the cylindrical supports clearly visible, and the exit end of the ladder is a solid, inclined platform. The overall finish is matte with some visible wear, indicating frequent use in a public or industrial setting.",
+    "description": "A heavy-duty metal staircase ladder with handrails and three cylindrical supports, designed for urban or industrial environments. The structure is dark, weathered, and features wide, flat steps and full-length handrails.",
+    "description_view_0": "Front view showing the narrow width, evenly spaced rungs, and the parallel handrails.",
+    "description_view_1": "Side view revealing the full staircase profile, three cylindrical supports, and the inclined exit platform.",
+    "description_view_2": "Rear view highlighting the solid inclined platform and the open underside of the structure.",
+    "description_view_3": "Opposite side view mirroring view 1, showing the handrails, steps, and cylindrical supports.",
+    "category": "ladder",
+    "height": 1.5,
+    "max_dimension": 3.5,
+    "materials": [
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.08
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "climbable",
+        "grippable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handrail",
+        "steps",
+        "platform"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "black",
+        "dark brown"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.0,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rungs": 9,
+    "attribute_rung_spacing": 0.17,
+    "attribute_side_rail_profile": "rectangular steel",
+    "attribute_mounting_position": "fixed wall-mounted",
+    "attribute_presence_of_safety_features": [
+        "handrails"
+    ],
+    "uid": "730df597290d483b85e5f4162e50dd44",
+    "near_synsets": {
+        "ladder.n.01": 0.5141988172822215,
+        "extension_ladder.n.01": 0.5327255820092307,
+        "step_ladder.n.01": 0.5360184895450683,
+        "tread.n.04": 0.5402309015311199,
+        "aerial_ladder.n.01": 0.5449382192500063,
+        "ladder.n.02": -1000.0,
+        "run.n.13": -1000.0
+    },
+    "synset": "ladder.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/730df597290d483b85e5f4162e50dd44",
+        "creator_username": "Refin_ken",
+        "creator_display_name": "Refin_ken",
+        "creator_profile_url": "https://sketchfab.com/Refin_ken"
+    },
+    "filename": "std_730df597290d483b85e5f4162e50dd44.glb",
+    "length": 4.334173917770386,
+    "width": 0.6127076745033264
+}

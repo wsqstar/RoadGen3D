@@ -1,0 +1,105 @@
+{
+    "description_long": "This object consists of several heavily rusted, damaged sedans, each exhibiting significant wear and structural collapse. The bodies are covered in reddish-brown corrosion, with many panels dented, missing, or bent out of shape. Some cars are missing doors, hoods, or trunks, and one is overturned, exposing its undercarriage and internal components. The windows are either shattered or absent, and the interiors appear gutted or filled with debris. The tires are either missing or deflated, and the metal framework is exposed in several places. These sedans evoke a sense of abandonment and decay, typical of vehicles left derelict in urban wastelands or post-apocalyptic environments.",
+    "description": "A group of rusted, wrecked sedans with missing parts, exposed interiors, and heavy corrosion, evoking abandonment and decay.",
+    "description_view_0": "Two sedans are upright and mostly intact, while two others are overturned and severely damaged, with exposed undercarriages and missing panels.",
+    "description_view_1": "The side profiles reveal extensive rust, missing wheels, and collapsed roofs, with one sedan flipped on its side showing the underbody.",
+    "description_view_2": "The front view highlights the damaged grilles, missing headlights, and the hollow, empty interiors of the sedans.",
+    "description_view_3": "The rear and side angles show broken trunks, missing rear windows, and the full extent of the rust and structural damage.",
+    "category": "sedan",
+    "height": 1.5,
+    "max_dimension": 4.8,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.05,
+        0.05,
+        0.03,
+        0.07
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 6,
+    "movable": true,
+    "required_force": 6000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "trunk",
+        "hood",
+        "wheel",
+        "window",
+        "steering wheel",
+        "seat"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "rust brown",
+        "gray",
+        "black",
+        "green"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_number_of_doors": 4,
+    "attribute_license_plate": "none",
+    "attribute_wheel_design": "unknown",
+    "uid": "e024443136a14f2fbc00e517295ceac6",
+    "near_synsets": {
+        "wreck.n.01": 0.537338491755861,
+        "sedan.n.01": 0.5420999301218397,
+        "wreckage.n.01": 0.5449175367609173,
+        "bus.n.04": 0.5456433522197417,
+        "ruin.n.02": 0.5519897353297809,
+        "sedan.n.02": -1000.0
+    },
+    "synset": "sedan.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/e024443136a14f2fbc00e517295ceac6",
+        "creator_username": "kryik1023",
+        "creator_display_name": "Renafox",
+        "creator_profile_url": "https://sketchfab.com/kryik1023"
+    },
+    "filename": "std_e024443136a14f2fbc00e517295ceac6.glb",
+    "length": 5.855421304702759,
+    "width": 9.356183052062988
+}

@@ -1,0 +1,109 @@
+{
+    "description_long": "This object is a small gas station structure featuring a dark, rectangular canopy with a starry night pattern, supported by a single main building beneath. The fueling area is partially covered by the canopy, with two visible fuel pumps positioned near the center, each with a distinct color and simple boxy design. The pumps are illuminated, suggesting the presence of lighting fixtures under the canopy. The main building is compact and appears to serve as a convenience store, with a small entrance area visible from the front. The overall color palette is dominated by deep blue and black, with some white and red accents on the pumps and building. There is no visible signage or price display board, and the architectural style is minimalistic and modern.",
+    "description": "A compact gas station with a dark, star-patterned canopy, two illuminated fuel pumps, and a small convenience store building beneath. The design is minimalistic with blue, black, white, and red accents.",
+    "description_view_0": "Front view showing the main building, two fuel pumps under the canopy, and the illuminated fueling area.",
+    "description_view_1": "Side view highlighting the canopy's extension and the arrangement of the pumps relative to the building.",
+    "description_view_2": "Rear view showing the back of the canopy and building, with no pumps or entrance visible.",
+    "description_view_3": "Opposite rear view focusing on the back and side of the canopy, with minimal detail visible.",
+    "category": "gas station",
+    "height": 5.0,
+    "max_dimension": 15.0,
+    "materials": [
+        "concrete",
+        "metal",
+        "glass",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 25000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 5,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "fuel_dispensing",
+        "door_openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "fuel pump nozzle",
+        "fuel pump display",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black",
+        "white",
+        "red"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 6.0,
+    "asset_composition_type": "scene",
+    "attribute_fuel_pumps": "Two fuel pumps are visible, positioned side by side under the canopy. They have a simple, boxy design with one primarily white and the other red, each featuring a hose and nozzle. No branding or digital displays are visible.",
+    "attribute_canopy_structure": "A large, flat, rectangular canopy with a starry night pattern covers the fueling area. It is supported by the main building and possibly additional columns not clearly visible. The canopy is dark blue with white star-like dots and appears to have integrated lighting.",
+    "attribute_station_signage": "None visible.",
+    "attribute_price_display_board": "None visible.",
+    "attribute_convenience_store_entrance": "A small entrance is visible at the front of the main building, likely a single manual door, with no visible signage or branding above or near the entrance.",
+    "uid": "7c34f15435764ad9a7ef51f609dc5190",
+    "near_synsets": {
+        "service_station.n.01": 0.5311206862805542,
+        "gasoline_station.n.01": 0.5395551076835146,
+        "gas_pump.n.01": 0.5436226593205564,
+        "convenience_store.n.01": 0.5780424728680603,
+        "gas_tank.n.01": 0.5901626356527419,
+        "gasoline.n.01": -1000.0,
+        "post.n.01": -1000.0,
+        "place.n.10": -1000.0,
+        "flatulence.n.01": -1000.0,
+        "gas.n.01": -1000.0,
+        "station.n.05": -1000.0,
+        "gas.n.02": -1000.0,
+        "station.n.03": -1000.0,
+        "accelerator.n.01": -1000.0,
+        "natural_gas.n.01": -1000.0,
+        "station.n.01": -1000.0
+    },
+    "synset": "gasoline_station.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7c34f15435764ad9a7ef51f609dc5190",
+        "creator_username": "zekeyspaceylizard",
+        "creator_display_name": "zekeyspaceylizard",
+        "creator_profile_url": "https://sketchfab.com/zekeyspaceylizard"
+    },
+    "filename": "std_7c34f15435764ad9a7ef51f609dc5190.glb",
+    "length": 11.364591121673584,
+    "width": 14.143643856048584
+}

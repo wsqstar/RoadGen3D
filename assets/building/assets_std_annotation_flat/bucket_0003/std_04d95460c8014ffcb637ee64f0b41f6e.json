@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a rustic, wooden covered wagon with a rectangular cargo bed and four large spoked wheels. The wagon features a bench seat at the front for a driver, and a set of curved wooden arches that would typically support a canvas cover. A wooden barrel is attached to the side, suggesting storage for water or supplies. The wood is weathered and dark, giving the cart an aged, utilitarian appearance. The wheels are reinforced with metal rims, and the overall construction is robust, suitable for transporting goods or people across uneven terrain.",
+    "description": "A weathered wooden covered wagon with four large spoked wheels, a front bench seat, and a side-mounted barrel.",
+    "description_view_0": "Front view showing the bench seat, the open cargo bed, and the barrel mounted on the left side.",
+    "description_view_1": "Side view highlighting the length of the cargo bed, the four large wheels, and the supporting arches for the cover.",
+    "description_view_2": "Rear view displaying the open cargo area, the back of the bench seat, and the barrel on the right side.",
+    "description_view_3": "Opposite side view with a clear look at the barrel, the spoked wheels, and the wooden slat construction.",
+    "category": "handcart",
+    "height": 1.7,
+    "max_dimension": 3.2,
+    "materials": [
+        "wood",
+        "metal",
+        "cloth",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 180,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "drivable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench seat",
+        "wheel",
+        "barrel",
+        "arches"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "gray",
+        "beige"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_number_of_wheels": 4,
+    "attribute_handle_type": "none",
+    "attribute_wheel_position": "side-mounted",
+    "attribute_presence_of_side_rails": true,
+    "attribute_load_platform_design": "flat solid surface",
+    "uid": "04d95460c8014ffcb637ee64f0b41f6e",
+    "near_synsets": {
+        "handcart.n.01": 0.461229995945296,
+        "cart.n.01": 0.4709314411806358,
+        "serving_cart.n.01": 0.49510795109222616,
+        "four-wheeler.n.01": 0.5021035860633131,
+        "shopping_cart.n.01": 0.5067212497152883
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/04d95460c8014ffcb637ee64f0b41f6e",
+        "creator_username": "filiperubin",
+        "creator_display_name": "Rubin",
+        "creator_profile_url": "https://sketchfab.com/filiperubin"
+    },
+    "filename": "std_04d95460c8014ffcb637ee64f0b41f6e.glb",
+    "length": 2.084917664527893,
+    "width": 1.4227763414382935
+}

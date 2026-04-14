@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a cylindrical hand grenade labeled 'HMX HI-EXPLOSIVE GRENADE' with a matte dark gray body and a prominent red band near the top. The front features large white text and technical details, while the back displays a '40 M' marking, indicating a 40-meter minimum safe distance. The top is fitted with a robust metal safety lever and a circular pull ring, both rendered in a metallic gray. The base and top have angular, reinforced segments, suggesting durability and secure containment. The surface is smooth with subtle panel lines and bolts, giving it a modern, industrial appearance. The overall design is compact, functional, and clearly intended for manual deployment in tactical scenarios.",
+    "description": "A compact, cylindrical high-explosive grenade with a matte gray body, red safety band, and metallic safety lever and pull ring. Prominent white labeling and reinforced segments give it a modern, tactical look.",
+    "description_view_0": "The grenade is shown from the side, highlighting the safety lever, pull ring, and a vertical serial number along the body.",
+    "description_view_1": "The front view displays the 'HMX HI-EXPLOSIVE GRENADE' label and technical details in large white text, with the safety lever and pull ring clearly visible.",
+    "description_view_2": "The rear side is mostly plain, showing the smooth gray surface and the red band, with minimal text or features.",
+    "description_view_3": "The back view features the '40 M MINIMUM SAFE DISTANCE' marking and a diagram, with the safety lever and pull ring visible from the side.",
+    "category": "bomb",
+    "height": 0.14,
+    "max_dimension": 0.07,
+    "materials": [
+        "steel",
+        "plastic",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 0.45,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 5,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "pin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.08,
+        0.12,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [
+        "40 M MINIMUM SAFE DISTANCE",
+        "HI-EXPLOSIVE GRENADE"
+    ],
+    "attribute_detonation_mechanism": "Detonation is likely initiated by pulling the safety pin and releasing the lever, which would trigger an internal fuse mechanism.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "b0f9d3b8a15d4204b56a60395812f524",
+    "near_synsets": {
+        "grenade.n.01": 0.5202897826705546,
+        "hand_grenade.n.01": 0.5235102929381421,
+        "bomb.n.01": 0.5264209209178324,
+        "general-purpose_bomb.n.01": 0.5278405179761552,
+        "cherry_bomb.n.01": 0.5329849116428431,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b0f9d3b8a15d4204b56a60395812f524",
+        "creator_username": "lexanime",
+        "creator_display_name": "lexanime",
+        "creator_profile_url": "https://sketchfab.com/lexanime"
+    },
+    "filename": "std_b0f9d3b8a15d4204b56a60395812f524.glb",
+    "length": 0.07656431570649147,
+    "width": 0.075677040964365
+}

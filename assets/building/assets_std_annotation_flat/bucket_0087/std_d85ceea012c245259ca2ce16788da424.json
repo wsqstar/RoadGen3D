@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a medium-sized, early 20th-century warship with a steel hull painted light gray above the waterline and red below. The ship features a prominent central superstructure with a tall funnel, a mast, and several gun turrets positioned fore and aft. The deck is equipped with various fixtures, including lifeboats, anchors, and railings, and the bow and stern are both slightly raised. The hull is streamlined for efficient movement through water, with a rounded bow and a flat stern. The ship displays flags at both the bow and stern, and the overall design suggests a military or patrol function. The vessel's surface is hard and metallic, with a smooth, slightly glossy finish.",
+    "description": "A steel-hulled, early 20th-century warship with a central superstructure, gun turrets, and visible deck equipment. The ship is painted gray and red, with flags at both ends.",
+    "description_view_0": "Side view showing the full length of the ship, central superstructure, funnel, mast, and deck equipment.",
+    "description_view_1": "Front (bow) view highlighting the ship's narrow, rounded bow and symmetrical deck layout.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the stern and deck fixtures.",
+    "description_view_3": "Rear (stern) view showing the flat stern, propeller area, and symmetrical arrangement of deck equipment.",
+    "category": "ship",
+    "height": 12,
+    "max_dimension": 80,
+    "materials": [
+        "steel",
+        "glass",
+        "wood",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.03,
+        0.05,
+        0.05,
+        0.02
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 12000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "gun turret",
+        "lifeboat",
+        "anchor",
+        "ladder",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.03,
+    "recommended_clearance": 20,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a rounded bow and flat stern, painted red below the waterline and gray above. It features a continuous deck with slightly raised bow and stern sections, and no visible bulbous bow or keels.",
+    "attribute_superstructure_layout": "The superstructure is centrally located with a single tall funnel, a mast, and several gun turrets fore and aft. There are multiple deck levels, with lifeboats and other fixtures distributed along the sides.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "gun turret",
+        "lifeboat",
+        "anchor",
+        "ladder",
+        "railings"
+    ],
+    "attribute_registration_markings": "flags at bow and stern",
+    "uid": "d85ceea012c245259ca2ce16788da424",
+    "near_synsets": {
+        "sailing_warship.n.01": 0.488572411340529,
+        "ironclad.n.01": 0.49187081987129216,
+        "surface_ship.n.01": 0.4985717144215478,
+        "capital_ship.n.01": 0.5039487738221292,
+        "battleship.n.01": 0.5058612691974674,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d85ceea012c245259ca2ce16788da424",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_d85ceea012c245259ca2ce16788da424.glb",
+    "length": 29.18183994293213,
+    "width": 7.348291873931885
+}

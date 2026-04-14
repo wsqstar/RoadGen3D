@@ -1,0 +1,93 @@
+{
+    "description_long": "This factory building features a rectangular, utilitarian structure with a flat roof and two prominent cylindrical smokestacks rising from one side. The exterior is clad in a light, concrete-like material, with a band of horizontal vents or narrow windows running along the upper portion of the walls. At the rear, a large loading dock door is visible, accompanied by a wide concrete ramp for vehicle access. The building sits on a slightly raised base, suggesting a reinforced foundation. The overall design is functional, with minimal ornamentation and a focus on industrial efficiency.",
+    "description": "A rectangular, flat-roofed factory building with two tall smokestacks, horizontal vents, and a large loading dock door with a ramp.",
+    "description_view_0": "Front and side of the building with both smokestacks visible and the horizontal vent band prominent.",
+    "description_view_1": "Side view highlighting the base of the smokestacks and the extended concrete ramp.",
+    "description_view_2": "Rear view showing the large loading dock door and both smokestacks, with the ramp leading up to the entrance.",
+    "description_view_3": "Opposite side view with one smokestack partially visible and the ramp extending away from the building.",
+    "category": "factory building",
+    "height": 15.0,
+    "max_dimension": 35.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "loading dock door",
+        "smokestack access hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_large_industrial_windows": 0,
+    "attribute_presence_of_smokestacks": true,
+    "attribute_loading_dock_doors": 1,
+    "attribute_rooftop_machinery": false,
+    "attribute_architectural_style": "Modern Industrial",
+    "uid": "df2661ff042c4083b838d86d50a593bd",
+    "near_synsets": {
+        "factory.n.01": 0.5311640611082145,
+        "farm_building.n.01": 0.5397530911266347,
+        "plant.n.01": 0.5502875119759449,
+        "loft.n.01": 0.5552670453115691,
+        "shop_floor.n.01": 0.5560797781565765,
+        "building.n.01": -1000.0,
+        "construction.n.01": -1000.0,
+        "building.n.04": -1000.0,
+        "construction.n.07": -1000.0
+    },
+    "synset": "factory.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/df2661ff042c4083b838d86d50a593bd",
+        "creator_username": "desertfox2",
+        "creator_display_name": "Martin",
+        "creator_profile_url": "https://sketchfab.com/desertfox2"
+    },
+    "filename": "std_df2661ff042c4083b838d86d50a593bd.glb",
+    "length": 22.502108573913574,
+    "width": 17.65514373779297
+}

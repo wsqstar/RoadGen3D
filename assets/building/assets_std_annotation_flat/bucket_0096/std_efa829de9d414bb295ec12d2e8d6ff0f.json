@@ -1,0 +1,124 @@
+{
+    "description_long": "This is a quadrupedal robot dog, modeled after the Boston Dynamics Spot robot, with a sleek, rectangular yellow body and four articulated legs. The legs are jointed and appear to be made of sturdy black metal or composite, designed for agile movement and stability on various terrains. The main body is smooth and streamlined, featuring a few visible panels and a small set of ports or sensors on the side, along with the 'Boston Dynamics' logo. The robot's legs are attached at the corners of the body, each ending in a rounded footpad for traction. There are no visible facial features, but the front end has a vent-like structure and possible sensor housings. The overall design is utilitarian and robust, suitable for urban environments and capable of navigating obstacles.",
+    "description": "A yellow, quadrupedal robot dog with articulated black legs and a streamlined, panelled body, modeled after Boston Dynamics Spot. It features visible joints, sensor housings, and a robust, utilitarian design.",
+    "description_view_0": "Side view showing the full length of the yellow body, two articulated black legs, and the 'Boston Dynamics' logo.",
+    "description_view_1": "Front view highlighting the narrow, rectangular front with vent-like features and the alignment of the front legs.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the other two legs and the smooth, panelled body.",
+    "description_view_3": "Rear view displaying the back of the body and the alignment of the rear legs, with no visible facial features.",
+    "category": "robot dog",
+    "height": 0.85,
+    "max_dimension": 1.1,
+    "materials": [
+        "aluminum",
+        "plastic",
+        "carbon fiber",
+        "rubber",
+        "glass",
+        "air",
+        "circuitry"
+    ],
+    "materials_composition": [
+        0.4,
+        0.25,
+        0.15,
+        0.1,
+        0.03,
+        0.04,
+        0.03
+    ],
+    "mass": 32,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 320,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "leg",
+        "footpad",
+        "sensor panel",
+        "port cover",
+        "button"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "sleek",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_mechanical_joints": [
+        "rotary joint",
+        "hinge joint",
+        "linear actuator"
+    ],
+    "attribute_visible_sensors": [
+        "camera",
+        "lidar"
+    ],
+    "attribute_led_indicators": [
+        "status LED"
+    ],
+    "attribute_articulated_limbs": [
+        "front left leg",
+        "front right leg",
+        "rear left leg",
+        "rear right leg"
+    ],
+    "attribute_robotic_face": false,
+    "uid": "efa829de9d414bb295ec12d2e8d6ff0f",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5763405356022221,
+        "boston_bull.n.01": 0.5994505868591863,
+        "robotics.n.01": 0.6018458708452877,
+        "quadruped.n.01": 0.6028752212806254,
+        "dogcart.n.01": 0.6083231740810792,
+        "automaton.n.02": -1000.0,
+        "dog.n.01": -1000.0,
+        "pawl.n.01": -1000.0,
+        "frump.n.01": -1000.0,
+        "cad.n.01": -1000.0,
+        "dog.n.03": -1000.0,
+        "frank.n.01": -1000.0,
+        "andiron.n.01": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/efa829de9d414bb295ec12d2e8d6ff0f",
+        "creator_username": "demetra_great",
+        "creator_display_name": "Demetra Great",
+        "creator_profile_url": "https://sketchfab.com/demetra_great"
+    },
+    "filename": "std_efa829de9d414bb295ec12d2e8d6ff0f.glb",
+    "length": 1.2774764895439148,
+    "width": 0.38157445192337036
+}

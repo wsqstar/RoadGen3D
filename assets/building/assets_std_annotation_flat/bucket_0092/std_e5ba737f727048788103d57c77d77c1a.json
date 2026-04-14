@@ -1,0 +1,102 @@
+{
+    "description_long": "This object consists of a bundle of six red cylindrical sticks, resembling dynamite, tightly held together by two black bands. Atop the bundle sits a compact electronic circuit board featuring a central button or switch, several copper traces, and a few small components, suggesting a triggering mechanism. Multiple thin red wires extend from one end of the bundle, converging into a single black wire that trails away, likely serving as a detonator lead. The overall construction is compact and utilitarian, with the electronic module securely mounted on the dynamite sticks. The surface of the cylinders is smooth and matte, while the circuit board has a metallic and plastic appearance. No visible warning labels or text are present on the exterior.",
+    "description": "A bundle of red dynamite sticks bound together with black bands, topped with an electronic circuit board and trailing wires.",
+    "description_view_0": "Side view showing the six red sticks, black bands, and the full electronic circuit board on top.",
+    "description_view_1": "End-on view highlighting the circular arrangement of the sticks and the cluster of wires emerging from the end.",
+    "description_view_2": "Opposite side view displaying the length of the dynamite bundle and the mounted circuit board.",
+    "description_view_3": "Rear end-on view showing the flat ends of the sticks and the black bands encircling the bundle.",
+    "category": "bomb",
+    "height": 0.08,
+    "max_dimension": 0.25,
+    "materials": [
+        "plastic",
+        "metal",
+        "copper",
+        "explosive_compound",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.15,
+        0.05,
+        0.4,
+        0.03,
+        0.02
+    ],
+    "mass": 1.8,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 18,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "button",
+        "wires",
+        "circuit board"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "gray",
+        "copper",
+        "orange"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.06,
+        0.04
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "group",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The detonation mechanism appears to involve a central button or switch on the circuit board, with multiple wires connecting the electronics to the dynamite sticks, suggesting either remote or timed activation.",
+    "attribute_wiring_visibility": true,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": true,
+    "uid": "e5ba737f727048788103d57c77d77c1a",
+    "near_synsets": {
+        "bomb.n.01": 0.4866993536680274,
+        "remote-control_bomb.n.01": 0.5008829422711386,
+        "pipe_bomb.n.01": 0.5009388707547157,
+        "briefcase_bomb.n.01": 0.5083044345619714,
+        "cherry_bomb.n.01": 0.5090509890931587,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e5ba737f727048788103d57c77d77c1a",
+        "creator_username": "kwikstrom",
+        "creator_display_name": "Kennady Wikstrom",
+        "creator_profile_url": "https://sketchfab.com/kwikstrom"
+    },
+    "filename": "std_e5ba737f727048788103d57c77d77c1a.glb",
+    "length": 0.08378401771187782,
+    "width": 0.4469555914402008
+}

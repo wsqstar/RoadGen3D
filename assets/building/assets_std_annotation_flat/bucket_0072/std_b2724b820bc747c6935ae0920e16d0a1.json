@@ -1,0 +1,95 @@
+{
+    "description_long": "This object resembles a classic stick grenade, featuring a long cylindrical wooden handle attached to a beige cylindrical head. The head is capped with a blue circular element on both ends, with one end featuring a ribbed or segmented texture, possibly for grip or structural reinforcement. The handle appears smooth and slightly tapered, made to be easily grasped. The beige head is likely constructed from a hard material, possibly metal or plastic, and is securely fastened to the handle. The blue caps may serve as safety mechanisms or triggering devices. The overall design is utilitarian, with no visible markings or labels, and the object is compact enough to be carried by hand.",
+    "description": "A stick grenade with a wooden handle and a beige cylindrical head, capped with blue circular elements. The head features ribbed texturing and the handle is smooth and ergonomic.",
+    "description_view_0": "Front view showing the blue cap on the end of the cylindrical head and the smooth wooden handle extending horizontally.",
+    "description_view_1": "Rear angled view highlighting the ribbed texture on the head and the blue cap at the far end, with the handle extending backward.",
+    "description_view_2": "Side view displaying the full length of the handle and the cylindrical head, with both blue caps visible.",
+    "description_view_3": "Angled rear view focusing on the handle's rounded end and the smooth connection to the beige head.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.32,
+    "materials": [
+        "wood",
+        "plastic",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "mass": 0.7,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 7,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "head",
+        "blue cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "brown",
+        "blue"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The blue cap at the end of the head likely serves as a triggering device, possibly activated by pressing, twisting, or pulling to initiate detonation.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "b2724b820bc747c6935ae0920e16d0a1",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.5160989793986915,
+        "grenade.n.01": 0.5397794892205766,
+        "pipe_bomb.n.01": 0.5499219444735205,
+        "plastic_bomb.n.01": 0.5575040861430097,
+        "bomb.n.01": 0.5656627205620324,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b2724b820bc747c6935ae0920e16d0a1",
+        "creator_username": "CHooverShrimp",
+        "creator_display_name": "CHooverShrimp",
+        "creator_profile_url": "https://sketchfab.com/CHooverShrimp"
+    },
+    "filename": "std_b2724b820bc747c6935ae0920e16d0a1.glb",
+    "length": 0.34847308695316315,
+    "width": 0.3572986125946045
+}

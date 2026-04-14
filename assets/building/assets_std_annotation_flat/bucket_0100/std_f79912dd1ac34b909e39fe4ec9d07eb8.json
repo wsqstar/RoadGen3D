@@ -1,0 +1,87 @@
+{
+    "description_long": "This object consists of two stacked rectangular shipping containers, one grayish-blue and the other orange-brown, each featuring reinforced corners and ribbed side panels for structural strength. The containers have a boxy, industrial design with visible vertical and horizontal ridges, typical of intermodal freight containers used for storage and transport. The top and bottom edges are accentuated with thicker framing, and the corners are slightly protruded, likely for stacking and securing purposes. The surfaces are matte and appear metallic, with no visible windows, doors, or openings from these views. There are no visible handles, signage, or decorative elements, emphasizing a utilitarian function. The containers are likely hollow inside, designed to store or transport goods in urban or industrial environments.",
+    "description": "Two stacked, ribbed metal shipping containers\u2014one gray-blue, one orange-brown\u2014feature reinforced corners and a utilitarian, industrial design.",
+    "description_view_0": "The containers are viewed from the short end, showing the ribbed end panels and reinforced corners, with the gray-blue container on top and the orange-brown one below.",
+    "description_view_1": "A broad side view reveals the long, ribbed panels of both containers, highlighting their length and the stacked configuration.",
+    "description_view_2": "The opposite short end is visible, similar to view 0, with the same ribbed end panels and reinforced corners.",
+    "description_view_3": "Another broad side view, nearly identical to view 1, showing the long ribbed sides and stacked arrangement.",
+    "category": "container",
+    "height": 5.0,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 4800,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "stackable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door (implied)",
+        "locking mechanism (implied)"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray-blue",
+        "orange-brown"
+    ],
+    "colors_composition": [
+        0.5,
+        0.5
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_lid_type": "none",
+    "attribute_opening_mechanism": "swing door (implied)",
+    "attribute_labeling_or_signage": "none",
+    "attribute_handles_or_grips": "none",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "f79912dd1ac34b909e39fe4ec9d07eb8",
+    "near_synsets": {
+        "container.n.01": 0.4886025521674341,
+        "cargo_container.n.01": 0.5169996252816487,
+        "box.n.01": 0.5440205445616976,
+        "container_ship.n.01": 0.5542968143102737,
+        "bin.n.01": 0.5574918944911458
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f79912dd1ac34b909e39fe4ec9d07eb8",
+        "creator_username": "liendre",
+        "creator_display_name": "liendre",
+        "creator_profile_url": "https://sketchfab.com/liendre"
+    },
+    "filename": "std_f79912dd1ac34b909e39fe4ec9d07eb8.glb",
+    "length": 4.852945327758789,
+    "width": 2.2058818340301514
+}

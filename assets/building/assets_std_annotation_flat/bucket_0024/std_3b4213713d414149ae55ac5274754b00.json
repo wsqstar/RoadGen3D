@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a weathered, gray cargo van with a boxy shape and a utilitarian design, featuring prominent red warning text and symbols on its sides and rear. The van's body is covered in a matte, slightly rough finish, with visible wear and grime, giving it a neglected or abandoned appearance. Large red stenciled letters reading 'KEEP OUT' dominate both side panels, accompanied by a skull-and-crossbones symbol, suggesting hazardous contents or restricted access. The rear of the van displays additional warnings, including 'STAY CLEAR' and a yellow caution label, as well as a small red devil face. The wheels are simple, dark, and stylized, lacking detailed hubcaps or treads. There are no visible windows on the sides or rear, only the windshield at the front, reinforcing its cargo or utility function.",
+    "description": "A battered gray cargo van with red 'KEEP OUT' warnings, skull symbols, and a single front windshield, exuding a hazardous and forbidding presence.",
+    "description_view_0": "Left side view showing 'KEEP OUT' in red, a skull symbol, and no side windows.",
+    "description_view_1": "Rear view with 'STAY CLEAR' in red, a yellow warning label, and no rear windows.",
+    "description_view_2": "Right side view mirroring the left, with 'KEEP OUT' and a skull symbol, no side windows.",
+    "description_view_3": "Front view showing a plain windshield, no grille details, and a worn bumper.",
+    "category": "van",
+    "height": 1.9,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.08,
+        0.04,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 5,
+    "movable": true,
+    "required_force": 6000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "windshield",
+        "bumper"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_car_model": "cargo van",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_license_plate": "",
+    "attribute_number_of_windows": 1,
+    "attribute_door_configuration": "two front doors, two rear doors",
+    "uid": "3b4213713d414149ae55ac5274754b00",
+    "near_synsets": {
+        "van.n.05": 0.5099422203829701,
+        "guard's_van.n.01": 0.5337440159801867,
+        "skull_and_crossbones.n.01": 0.5507231599704397,
+        "police_van.n.01": 0.5508550559443165,
+        "warning.n.01": 0.5519622751524575,
+        "avant-garde.n.01": -1000.0,
+        "vanguard.n.01": -1000.0,
+        "van.n.03": -1000.0,
+        "van.n.04": -1000.0
+    },
+    "synset": "van.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3b4213713d414149ae55ac5274754b00",
+        "creator_username": "RyanAdamsNC",
+        "creator_display_name": "RyanAdamsNC",
+        "creator_profile_url": "https://sketchfab.com/RyanAdamsNC"
+    },
+    "filename": "std_3b4213713d414149ae55ac5274754b00.glb",
+    "length": 4.704699277877808,
+    "width": 2.0243372917175293
+}

@@ -1,0 +1,104 @@
+{
+    "description_long": "This object is a modern escalator, featuring a long, inclined moving staircase with a series of evenly spaced steps. The escalator is flanked by transparent glass or acrylic side panels and has continuous handrails on both sides, which curve smoothly at the top and bottom landings. The base and structural frame are constructed from a solid, light-colored material, likely concrete or metal, providing stability and support. The steps are metallic with a ribbed texture for traction, and the handrails are dark, likely rubber or plastic, designed for grip and safety. The overall design is sleek and functional, suitable for high-traffic urban environments such as shopping malls, transit stations, or public buildings. There are no visible doors, control panels, or indicator displays, as this is an open, walk-on escalator rather than a traditional enclosed elevator.",
+    "description": "A modern, inclined escalator with glass side panels, metallic steps, and dark handrails, designed for public urban spaces.",
+    "description_view_0": "The escalator is seen from a high angle, showing the full length of the steps, both handrails, and the transparent side panels.",
+    "description_view_1": "This side view highlights the incline, the solid base, and the continuous handrail, with the steps less visible.",
+    "description_view_2": "The opposite side view shows the escalator's structure and handrail, with the steps partially obscured by the angle.",
+    "description_view_3": "A top-down perspective reveals the step pattern, both handrails, and the clear side panels along the entire length.",
+    "category": "elevator",
+    "height": 2.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "rubber",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.15,
+        0.15,
+        0.05,
+        0.15,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "grippable",
+        "stepable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handrail",
+        "steps"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "black",
+        "transparent",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "smooth",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_door_type": "none (open escalator, no doors present)",
+    "attribute_control_panel_location": "none visible",
+    "attribute_call_button_design": "none visible",
+    "attribute_indicator_display": "none visible",
+    "attribute_accessibility_features": [
+        "handrails",
+        "ribbed steps"
+    ],
+    "uid": "93fbc863638144e182946c4472c40230",
+    "near_synsets": {
+        "elevator.n.01": 0.4775037376362461,
+        "escalator.n.02": 0.4997614177537229,
+        "elevator_shaft.n.01": 0.5086662044060368,
+        "elevator.n.02": 0.5288891328605799,
+        "elevator_operator.n.01": 0.5412558203871102
+    },
+    "synset": "elevator_operator.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/93fbc863638144e182946c4472c40230",
+        "creator_username": "sahrastudios",
+        "creator_display_name": "Sahra Studios",
+        "creator_profile_url": "https://sketchfab.com/sahrastudios"
+    },
+    "filename": "std_93fbc863638144e182946c4472c40230.glb",
+    "length": 4.368189573287964,
+    "width": 4.173461437225342
+}

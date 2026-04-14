@@ -1,0 +1,100 @@
+{
+    "description_long": "This kiosk features a rectangular, box-like structure elevated on a platform with a light-colored overhang. The main body is constructed from gray, concrete-like panels, forming a tall, open-topped enclosure. The front of the kiosk is accessible via a small wooden staircase, flanked by a series of vertical slats that provide partial visual screening and a modern aesthetic. The interior appears open and spacious, with a human figure visible inside, suggesting it is designed for walk-in service or interaction. The kiosk sits on a patterned, light-brown base that mimics tiled flooring, and the overall design is minimalist with clean, geometric lines. There are no visible windows or signage, and the roof is flat and integrated seamlessly with the structure.",
+    "description": "A modern, gray rectangular kiosk with a flat roof, open front entry, and vertical slat accents on a light-tiled base. The design is minimalist and walk-in accessible.",
+    "description_view_0": "Front view shows the open entry with a wooden staircase and vertical slats, revealing the interior and a human figure.",
+    "description_view_1": "Side view highlights the solid gray panels and the overhanging roof, with no visible entry or windows.",
+    "description_view_2": "Rear view displays the open back of the kiosk, showing the interior space and the back of the human figure.",
+    "description_view_3": "Opposite side view emphasizes the vertical slats and staircase, with the entry partially visible and the solid panel structure.",
+    "category": "kiosk",
+    "height": 3.2,
+    "max_dimension": 5.0,
+    "materials": [
+        "concrete",
+        "wood",
+        "metal",
+        "tile",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 4200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "leanable",
+        "displayable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "staircase",
+        "vertical slats",
+        "platform"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "light brown",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "none",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "single open entryway at front, no physical door",
+    "attribute_roof_design": "flat roof, seamless with main structure, gray concrete-like material, no overhangs or decorative elements",
+    "attribute_architectural_style": "modern minimalist",
+    "uid": "2fbfbbd977f24b2ca35f03f8ecf8bd37",
+    "near_synsets": {
+        "booth.n.02": 0.5511292772316889,
+        "shopfront.n.01": 0.5771577757850735,
+        "wicket.n.04": 0.58085961990106,
+        "walk-in.n.04": 0.5846755736042369,
+        "window.n.07": 0.5876843585652174
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2fbfbbd977f24b2ca35f03f8ecf8bd37",
+        "creator_username": "stolmark",
+        "creator_display_name": "Stolmark",
+        "creator_profile_url": "https://sketchfab.com/stolmark"
+    },
+    "filename": "std_2fbfbbd977f24b2ca35f03f8ecf8bd37.glb",
+    "length": 5.4786598682403564,
+    "width": 3.625443458557129
+}

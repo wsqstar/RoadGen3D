@@ -1,0 +1,94 @@
+{
+    "description_long": "This is a tall, red tower crane commonly seen at construction sites in urban environments. The crane features a lattice steel structure for both the vertical mast and the horizontal jib, providing strength while minimizing weight. A large counterweight is mounted at the short end of the jib, balancing the long arm used for lifting heavy loads. The base is robust and reinforced, designed to anchor the crane securely to the ground. The crane's boom extends horizontally, and the lifting mechanism appears to be located at the end of the long arm, though no hook is visible. The overall design is utilitarian, optimized for stability, reach, and heavy lifting.",
+    "description": "A tall, red lattice tower crane with a long horizontal boom and a visible counterweight, designed for heavy lifting at construction sites.",
+    "description_view_0": "Side view showing the full height of the crane, the long horizontal boom, and the counterweight on the left.",
+    "description_view_1": "Front view displaying the narrow profile of the crane, with the boom extending directly away and the counterweight visible at the end.",
+    "description_view_2": "Opposite side view with the boom extending to the left and the counterweight on the right, mirroring view 0.",
+    "description_view_3": "Rear view showing the counterweight most prominently, with the boom extending away from the viewer.",
+    "category": "crane",
+    "height": 40.0,
+    "max_dimension": 50.0,
+    "materials": [
+        "steel",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 35000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 10,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "boom",
+        "counterweight",
+        "lifting mechanism"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "yellow",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.0,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_boom_type": "lattice boom",
+    "attribute_counterweight_presence": true,
+    "attribute_operator_cabin_visibility": false,
+    "attribute_hook_or_lifting_mechanism": "none visible",
+    "attribute_support_structure_design": "fixed base",
+    "uid": "3b445aa9a17b4b7897a60359d54aa176",
+    "near_synsets": {
+        "crane.n.04": 0.41346149686076383,
+        "derrick.n.02": 0.4813138731907784,
+        "stacker_crane.n.01": 0.5161590469507445,
+        "lift_capacity.n.01": 0.5229185460803953,
+        "transporter.n.02": 0.5264369552994831,
+        "crane.n.05": -1000.0,
+        "crane.n.01": -1000.0,
+        "crane.n.02": -1000.0,
+        "grus.n.01": -1000.0
+    },
+    "synset": "crane.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3b445aa9a17b4b7897a60359d54aa176",
+        "creator_username": "jmarco2000",
+        "creator_display_name": "jmarco2000",
+        "creator_profile_url": "https://sketchfab.com/jmarco2000"
+    },
+    "filename": "std_3b445aa9a17b4b7897a60359d54aa176.glb",
+    "length": 20.658157348632812,
+    "width": 2.6454451084136963
+}

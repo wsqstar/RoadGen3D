@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a cylindrical stone tower with a slightly flared base and a crenellated parapet at the top, reminiscent of medieval fortifications. The surface is textured with small, irregular indentations and weathering marks, suggesting age and exposure to the elements. At the top, a wooden platform supports a mechanical device resembling a small catapult or ballista, with visible arm and counterweight components. The tower features narrow vertical slits, likely intended as arrow loops or ventilation, and a small, arched entrance at the base. The color palette is primarily a weathered gray stone with some brownish wooden elements. The overall design evokes a defensive structure, suitable for use as a watchtower or outpost in a historical or fantasy urban setting.",
+    "description": "A weathered stone cylindrical tower with a crenellated top and a wooden ballista-like device mounted on its parapet. The structure features arrow slits, a small arched entrance, and a rugged, aged appearance.",
+    "description_view_0": "Front view showing the main cylindrical body, crenellated parapet, and partial view of the wooden ballista; the entrance is not visible.",
+    "description_view_1": "Side view highlighting the protruding arm of the ballista and more of the tower's weathered stone surface; no entrance visible.",
+    "description_view_2": "Rear-side view with a clear look at the ballista mechanism and the tower's arrow slits; entrance still not visible.",
+    "description_view_3": "Back view showing the small arched entrance at the base and the rear of the ballista, with the crenellations and stone texture prominent.",
+    "category": "tower",
+    "height": 9.0,
+    "max_dimension": 4.5,
+    "materials": [
+        "stone",
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.02,
+        0.03
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "rotatable",
+        "operable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "entrance door",
+        "ballista arm",
+        "ballista crank"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.92,
+        0.08
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Medieval",
+    "attribute_number_of_windows": 0,
+    "attribute_presence_of_antennas_or_dishes": false,
+    "attribute_type_of_entrance": "arched doorway",
+    "attribute_decorative_elements": [],
+    "uid": "a8365bb02c064acea2c9371893bc5feb",
+    "near_synsets": {
+        "clock_tower.n.01": 0.48746767833590376,
+        "church_tower.n.01": 0.4951157119002289,
+        "turret.n.01": 0.4996881229638438,
+        "martello_tower.n.01": 0.5067589229536701,
+        "minaret.n.01": 0.5162734471235102,
+        "column.n.04": -1000.0,
+        "tugboat.n.01": -1000.0,
+        "tower.n.01": -1000.0
+    },
+    "synset": "tower.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a8365bb02c064acea2c9371893bc5feb",
+        "creator_username": "lakos",
+        "creator_display_name": "lakos",
+        "creator_profile_url": "https://sketchfab.com/lakos"
+    },
+    "filename": "std_a8365bb02c064acea2c9371893bc5feb.glb",
+    "length": 5.4238317012786865,
+    "width": 5.35969352722168
+}

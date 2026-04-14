@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a large, gray military-style ship with a long, narrow hull and a prominent superstructure featuring multiple tall masts and antennae. The hull is streamlined with a pointed bow and a slightly raised stern, suggesting a displacement-type design for stability and endurance. The superstructure is centrally located and includes several decks, with visible gun turrets and what appear to be radar or communication arrays. The deck is equipped with various fixtures, including what look like lifeboats or small craft on the sides, and several large cylindrical structures that may be funnels or additional equipment. The ship's surface is mostly matte gray with some darker and lighter accents, and there are no visible registration markings or flags. The overall design is robust and functional, typical of naval vessels intended for extended operations at sea.",
+    "description": "A large, gray military-style ship with a streamlined hull, tall masts, and a central superstructure featuring gun turrets and deck equipment. The vessel has a robust, functional appearance with no visible markings.",
+    "description_view_0": "Side view showing the full length of the ship, with the superstructure, masts, and deck equipment clearly visible along the centerline.",
+    "description_view_1": "Front (bow) view highlighting the pointed bow, central superstructure, and symmetrical arrangement of masts and equipment.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the ship's length, superstructure, and deck features from the other side.",
+    "description_view_3": "Rear (stern) view displaying the stern's shape, the alignment of the superstructure, and the arrangement of masts and deck fixtures.",
+    "category": "ship",
+    "height": 18,
+    "max_dimension": 180,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.02,
+        0.08
+    ],
+    "mass": 250000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "gun turret",
+        "antenna",
+        "lifeboat"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is long and narrow with a displacement-type form, featuring a pointed bow and a slightly raised stern. The sides are straight with minimal flare, and there are no visible keels or bulbous bows. The hull appears robust and suited for stability in open water.",
+    "attribute_superstructure_layout": "The superstructure is centrally located with multiple decks, tall masts, and several cylindrical structures. It includes gun turrets, antennae, and possible radar arrays, with lifeboats or small craft mounted on the sides.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "gun turret",
+        "antenna",
+        "lifeboat",
+        "radar"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "5b7900140e6c4d05ade1c5cdb3d08441",
+    "near_synsets": {
+        "cargo_ship.n.01": 0.4760764564690415,
+        "transport_ship.n.01": 0.4856131368575385,
+        "troopship.n.01": 0.4904065416971009,
+        "surface_ship.n.01": 0.4907775205536003,
+        "battleship.n.01": 0.4936123599152598,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5b7900140e6c4d05ade1c5cdb3d08441",
+        "creator_username": "aucklandmuseum",
+        "creator_display_name": "Auckland Museum",
+        "creator_profile_url": "https://sketchfab.com/aucklandmuseum"
+    },
+    "filename": "std_5b7900140e6c4d05ade1c5cdb3d08441.glb",
+    "length": 43.71428298950195,
+    "width": 8.285714149475098
+}

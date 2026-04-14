@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a vintage-style utility vehicle with a compact, boxy cab and an open cargo bed at the rear, finished in a deep reddish-brown color. The cab features a single door on each side, blacked-out windows, and a prominent front grille with round headlights and a classic bumper. The cargo bed is constructed with wooden slats and contains a large, weathered crate, suggesting its use for transporting goods or equipment. The wheels are relatively small, with chrome hubcaps and beige sidewalls, and the fenders are painted a contrasting dark gray. The vehicle bears a visible logo on the door reading 'Falkenstein's Contractors,' indicating it may be used for light construction or delivery work. The overall design is reminiscent of early 20th-century pickup trucks, with a utilitarian yet stylish appearance suitable for urban or semi-urban environments.",
+    "description": "A vintage reddish-brown utility vehicle with a wooden cargo bed, classic round headlights, and a contractor's logo on the door. It features a weathered crate in the back and chrome-accented wheels.",
+    "description_view_0": "Side view showing the full length of the vehicle, the contractor's logo on the door, and the wooden cargo bed with a crate.",
+    "description_view_1": "Rear view highlighting the open cargo bed, wooden slats, and the crate inside, with the tailgate down.",
+    "description_view_2": "Opposite side view mirroring the first, showing the other door and the cargo bed with crate.",
+    "description_view_3": "Front view displaying the classic grille, round headlights, and the vehicle's compact cab.",
+    "category": "tractor",
+    "height": 1.6,
+    "max_dimension": 4.2,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "wood",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.08,
+        0.1,
+        0.1,
+        0.05,
+        0.02
+    ],
+    "mass": 1200,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable",
+        "pullable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "steering wheel",
+        "cargo bed",
+        "tailgate",
+        "headlight",
+        "crate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "reddish-brown",
+        "black",
+        "gray",
+        "beige",
+        "wood brown",
+        "chrome"
+    ],
+    "colors_composition": [
+        0.55,
+        0.15,
+        0.1,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_tractor_brand": "Falkenstein's Contractors",
+    "attribute_tractor_model": "unknown",
+    "attribute_wheel_configuration": "four wheels, all similar in size, likely two-wheel drive",
+    "attribute_presence_of_agricultural_implements": false,
+    "attribute_cabin_design": "Enclosed cabin with windows and doors, no visible protective structures, basic ergonomic features",
+    "uid": "e3ecbcbb25fa42e482d4f4bdf37ccaff",
+    "near_synsets": {
+        "tractor.n.02": 0.5101930527156857,
+        "tractor.n.01": 0.5133080567371696,
+        "truck.n.01": 0.5233288087685855,
+        "skidder.n.03": 0.5321214339681111,
+        "van.n.05": 0.5447273704067906
+    },
+    "synset": "tractor.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e3ecbcbb25fa42e482d4f4bdf37ccaff",
+        "creator_username": "Voronin_37",
+        "creator_display_name": "Voronin_37",
+        "creator_profile_url": "https://sketchfab.com/Voronin_37"
+    },
+    "filename": "std_e3ecbcbb25fa42e482d4f4bdf37ccaff.glb",
+    "length": 4.055148363113403,
+    "width": 2.222624182701111
+}

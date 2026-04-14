@@ -1,0 +1,109 @@
+{
+    "description_long": "This combat tactical vehicle is an improvised, armored car constructed from a patchwork of metal panels, including repurposed road signs and sheet metal, giving it a rugged, makeshift appearance. The body is angular and boxy, with a high, sloped front and a tall, turret-like upper section, suggesting enhanced protection for occupants. The exterior is covered in various traffic signs, such as 'Freeway Entrance,' 'Detour,' and 'Do Not Pass,' which serve as both armor and visual camouflage. The vehicle has four visible wheels with a utilitarian tread, and the rear features a large, flat door with bold lettering. There are several hatches and protrusions on the roof, possibly for observation or mounting equipment. The overall look is utilitarian and defensive, with a chaotic but purposeful assembly of materials.",
+    "description": "Improvised armored combat vehicle made from welded road signs and metal panels, featuring a tall, angular body and rugged wheels. The exterior is covered in traffic signage, providing both armor and visual disruption.",
+    "description_view_0": "Left side view showing patchwork metal panels, a large 'H' sign, and a prominent sloped front with rugged wheels.",
+    "description_view_1": "Front-top view highlighting the 'Freeway Entrance' sign as the front armor, with a heavily patched roof and visible hatches.",
+    "description_view_2": "Right side view displaying a '100' speed limit sign, 'Detour' signage, and the vehicle's angular, armored profile.",
+    "description_view_3": "Rear view featuring a large 'Do Not Pass' sign as the rear door, with visible hinges and additional signage.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 3.8,
+    "materials": [
+        "steel",
+        "aluminum",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.04,
+        0.01,
+        0.05
+    ],
+    "mass": 2100,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 4200,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "white",
+        "brown",
+        "yellow",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.3,
+        0.25,
+        0.15,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible mount on the roof, likely for a light machine gun or similar weapon.",
+    "attribute_armor_plating": "Full body coverage with improvised armor made from thick, overlapping metal panels and road signs; armor appears sloped and reinforced in key areas.",
+    "attribute_camouflage_pattern": "Patchwork pattern of various colored road signs and metal panels, creating a disruptive, irregular visual effect.",
+    "attribute_military_markings": "Traffic signs and symbols such as 'Do Not Pass,' 'Freeway Entrance,' 'Detour,' and speed limit signs; no traditional military insignia visible.",
+    "attribute_tire_type": "Four rugged, off-road tires with deep tread; standard size, no visible reinforcement or chains.",
+    "uid": "8c7371655b134cfd9e9062d82fed288c",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.5276836625195246,
+        "armored_car.n.02": 0.534372256538433,
+        "reconnaissance_vehicle.n.01": 0.5357625597629238,
+        "armored_vehicle.n.01": 0.5407100968768902,
+        "tank.n.01": 0.547927847495018,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "armored_car.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8c7371655b134cfd9e9062d82fed288c",
+        "creator_username": "jon.oakes",
+        "creator_display_name": "jon.oakes",
+        "creator_profile_url": "https://sketchfab.com/jon.oakes"
+    },
+    "filename": "std_8c7371655b134cfd9e9062d82fed288c.glb",
+    "length": 2.8560404777526855,
+    "width": 1.6120516061782837
+}

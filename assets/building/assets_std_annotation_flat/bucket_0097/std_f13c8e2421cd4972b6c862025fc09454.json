@@ -1,0 +1,90 @@
+{
+    "description_long": "This rifle features a long, slender barrel with a series of evenly spaced holes along its length, likely for weight reduction or heat dissipation. The central body is robust, with a prominent receiver and a defined trigger guard, suggesting a semi-automatic or automatic action. The stock is solid and slightly contoured, providing stability and comfort for the user. The magazine appears to be integrated or not externally visible, and the rifle is equipped with a basic iron sight system. The overall finish is dark, possibly matte black, with a metallic sheen in some areas. The design is utilitarian, suitable for urban tactical scenarios.",
+    "description": "A long, dark rifle with a perforated barrel, solid stock, and basic iron sights, designed for tactical use.",
+    "description_view_0": "Side profile showing the full length of the rifle, including the perforated barrel and solid stock.",
+    "description_view_1": "Front view highlighting the muzzle and the alignment of the barrel holes, with the sight post visible.",
+    "description_view_2": "Opposite side profile, mirroring the barrel and stock details, with the receiver and trigger guard visible.",
+    "description_view_3": "Rear view focusing on the stock and the back of the receiver, with the barrel extending forward.",
+    "category": "rifle",
+    "height": 0.18,
+    "max_dimension": 1.0,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 3.8,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "aimable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "trigger",
+        "magazine",
+        "sight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "fluted",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "f13c8e2421cd4972b6c862025fc09454",
+    "near_synsets": {
+        "rifle.n.01": 0.478307364414332,
+        "sniper_rifle.n.01": 0.5026916750476665,
+        "dragunov.n.01": 0.5092170023115423,
+        "garand_rifle.n.01": 0.5158903051578811,
+        "light_arm.n.01": 0.5214917857611326
+    },
+    "synset": "garand_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f13c8e2421cd4972b6c862025fc09454",
+        "creator_username": "VicentGJ",
+        "creator_display_name": "VicentGJ",
+        "creator_profile_url": "https://sketchfab.com/VicentGJ"
+    },
+    "filename": "std_f13c8e2421cd4972b6c862025fc09454.glb",
+    "length": 2.7280588150024414,
+    "width": 0.682411789894104
+}

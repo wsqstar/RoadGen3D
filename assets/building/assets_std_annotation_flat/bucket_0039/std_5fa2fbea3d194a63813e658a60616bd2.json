@@ -1,0 +1,102 @@
+{
+    "description_long": "This ship features a broad, flat wooden deck with a dark gray hull and a prominent red lower section, suggesting a reinforced waterline. The vessel is equipped with two large paddle wheels on either side, indicating a classic paddle steamer design. Several superstructure elements, including two smokestacks and multiple deck fixtures, are visible along the centerline. The bow and stern are both rounded, with the bow slightly more pointed, and the ship's sides are adorned with white paddle housings. The deck is sparsely populated with equipment, and there are no visible lifeboats or cranes. The overall design is reminiscent of 19th-century river steamers, with a focus on passenger or cargo transport.",
+    "description": "A classic paddle steamer ship with a flat wooden deck, dual side paddle wheels, and a dark gray hull with a red base. The vessel features two smokestacks and minimal deck equipment.",
+    "description_view_0": "Side view showing the full length of the ship, the wooden deck, and the prominent white paddle wheel housing at midship.",
+    "description_view_1": "Front (bow) view highlighting the rounded bow, symmetrical paddle housings, and the central alignment of the superstructure.",
+    "description_view_2": "Opposite side view mirroring view 0, again showing the paddle wheel housing and the ship's length.",
+    "description_view_3": "Rear (stern) view displaying the rounded stern, the arrangement of deck fixtures, and the twin smokestacks.",
+    "category": "ship",
+    "height": 6.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 350000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "steerable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "paddle wheel",
+        "smokestack",
+        "deck hatch",
+        "wheelhouse"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "red",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a broad, flat bottom and rounded bow and stern. The sides are straight with a pronounced red waterline and large, white paddle wheel housings at midship. No keels or bulbous bows are visible.",
+    "attribute_superstructure_layout": "The superstructure consists of a central deck with two smokestacks and several small fixtures aligned along the centerline. There are no visible bridges, cabins, or towers, and the deck is mostly open.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "paddle wheel",
+        "smokestack",
+        "deck hatch"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "5fa2fbea3d194a63813e658a60616bd2",
+    "near_synsets": {
+        "paddle_steamer.n.01": 0.454913685125987,
+        "sternwheeler.n.01": 0.4873831951970865,
+        "side-wheeler.n.01": 0.5068606037541201,
+        "steamer.n.03": 0.5169955553149629,
+        "steamboat.n.01": 0.5212510829485929,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5fa2fbea3d194a63813e658a60616bd2",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_5fa2fbea3d194a63813e658a60616bd2.glb",
+    "length": 41.07879447937012,
+    "width": 11.132468700408936
+}

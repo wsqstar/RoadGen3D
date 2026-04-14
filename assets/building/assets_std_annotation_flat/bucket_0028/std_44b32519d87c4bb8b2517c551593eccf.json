@@ -1,0 +1,91 @@
+{
+    "description_long": "This is a rectangular, single-story commercial bakery building with a flat roof and light gray exterior walls. The front facade features a double glass door flanked by two sets of rectangular windows, and above the entrance is a blank, pale signboard. The side facades have long horizontal windows, with one side showing a continuous row of smaller panes and the other side displaying two sets of larger windows. The rear of the building is plain, with a single service door and no windows. The structure appears to be constructed primarily from concrete or masonry, with metal and glass elements for the doors and windows. The overall design is utilitarian and modern, with minimal decorative features and a focus on functionality.",
+    "description": "A modern, rectangular bakery building with a flat roof, large windows, and a simple, pale sign above the main entrance. The exterior is light gray with glass and metal accents.",
+    "description_view_0": "The front view shows the main entrance with double glass doors, two sets of windows, and a blank signboard above the door.",
+    "description_view_1": "This side view features a long row of small, rectangular windows near the left edge, with the rest of the wall being solid.",
+    "description_view_2": "The rear view is plain, with a single service door centered and no windows or signage.",
+    "description_view_3": "The opposite side view displays two sets of larger rectangular windows, spaced apart along the wall.",
+    "category": "bakery",
+    "height": 5.0,
+    "max_dimension": 20.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "white",
+        "silver"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_storefront_signage": "A blank, pale rectangular signboard is mounted above the main entrance. There is no visible text, logo, or branding. The sign is simple and unadorned, matching the building's minimalist style.",
+    "attribute_display_window_with_baked_goods": "none",
+    "attribute_awning_with_bakery_branding": "none",
+    "attribute_outdoor_seating_area": "none",
+    "attribute_architectural_style": "The building exhibits a utilitarian, modern commercial style with flat roof, clean lines, and minimal ornamentation. The focus is on functionality, with large windows and a simple facade.",
+    "uid": "44b32519d87c4bb8b2517c551593eccf",
+    "near_synsets": {
+        "bakery.n.01": 0.521229548487977,
+        "patisserie.n.01": 0.5556656850676674,
+        "baker.n.01": 0.56137704008451,
+        "baked_goods.n.01": 0.5650012994783301,
+        "farm_building.n.01": 0.5738921556271259
+    },
+    "synset": "bakery.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/44b32519d87c4bb8b2517c551593eccf",
+        "creator_username": "homedesign3d",
+        "creator_display_name": "Home Design 3D",
+        "creator_profile_url": "https://sketchfab.com/homedesign3d"
+    },
+    "filename": "std_44b32519d87c4bb8b2517c551593eccf.glb",
+    "length": 19.37568759918213,
+    "width": 16.021323204040527
+}

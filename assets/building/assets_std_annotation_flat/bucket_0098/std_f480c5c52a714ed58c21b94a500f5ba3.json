@@ -1,0 +1,94 @@
+{
+    "description_long": "This structure is a tall, lattice-framed tower composed primarily of metal, featuring a truss design with alternating red and silver segments. At the top, it has a prominent crossarm assembly extending horizontally, with multiple insulator stacks and mounting brackets visible. The crossarms are robust and angular, supporting the attachment of high-voltage power lines. The central shaft is reinforced with diagonal and vertical braces, providing stability and strength. The tower's base is wide and tapers slightly as it rises, ensuring a secure foundation. No warning signage or additional electrical equipment such as transformers or circuit breakers are visible, and the structure is designed for the transmission and support of overhead power lines.",
+    "description": "A tall, metal lattice tower with red and silver truss segments and a wide crossarm assembly at the top for supporting power lines.",
+    "description_view_0": "Front view showing the full width of the crossarm assembly and the symmetrical lattice structure with visible insulator stacks.",
+    "description_view_1": "Side view highlighting the depth of the crossarms and the vertical alignment of the tower's truss framework.",
+    "description_view_2": "Rear view mirroring the front, with the crossarm assembly and insulator stacks clearly visible, emphasizing the tower's symmetry.",
+    "description_view_3": "Opposite side view showing the crossarm's extension and the structural bracing along the tower's height.",
+    "category": "transformer tower",
+    "height": 18.0,
+    "max_dimension": 22.0,
+    "materials": [
+        "steel",
+        "ceramic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 9500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "supportable",
+        "connectable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "crossarm",
+        "insulator stack",
+        "mounting bracket"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "silver",
+        "black"
+    ],
+    "colors_composition": [
+        0.45,
+        0.45,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.01,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_insulator_stacks": 6,
+    "attribute_arrangement_of_crossarms": "There is a single horizontal crossarm at the top, extending symmetrically on both sides, with insulator stacks mounted at each end. The crossarm is supported by a central mounting bracket and appears to be reinforced for stability.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [],
+    "attribute_configuration_of_attached_power_lines": "The crossarm supports multiple circuits, likely arranged for three-phase transmission, with insulator stacks spaced evenly at each end for parallel routing of power lines.",
+    "uid": "f480c5c52a714ed58c21b94a500f5ba3",
+    "near_synsets": {
+        "pylon.n.02": 0.49364410791001445,
+        "telephone_pole.n.01": 0.5368352613381701,
+        "cascade_transformer.n.01": 0.5483270305709735,
+        "trestle.n.01": 0.5484143356561759,
+        "supporting_tower.n.01": 0.5500964423757226,
+        "transformer.n.01": -1000.0,
+        "column.n.04": -1000.0,
+        "tower.n.01": -1000.0,
+        "tugboat.n.01": -1000.0
+    },
+    "synset": "pylon.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/f480c5c52a714ed58c21b94a500f5ba3",
+        "creator_username": "adrinuk",
+        "creator_display_name": "adrinuk",
+        "creator_profile_url": "https://sketchfab.com/adrinuk"
+    },
+    "filename": "std_f480c5c52a714ed58c21b94a500f5ba3.glb",
+    "length": 6.305528163909912,
+    "width": 6.000611782073975
+}

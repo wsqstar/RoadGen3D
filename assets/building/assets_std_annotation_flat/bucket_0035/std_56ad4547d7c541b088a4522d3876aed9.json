@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a compact quadcopter drone with a rectangular central body, four extended arms, and four large propellers. The main body is primarily light gray with greenish-gray arms and black propellers, each with white tips for visibility. A prominent camera module is mounted at the front, suggesting capabilities for aerial photography or surveillance. The arms are slender and slightly angled, connecting to the body at reinforced joints, and the landing gear consists of short, fixed legs integrated into the arm structure. The drone's design is streamlined for stability and maneuverability in urban environments, with visible seams and panel lines indicating access points for maintenance. The overall construction appears robust, likely using lightweight composite materials for durability and flight efficiency.",
+    "description": "A compact quadcopter drone with a rectangular body, four black propellers, and a front-mounted camera, designed for urban aerial tasks.",
+    "description_view_0": "Front view showing the camera module, rectangular body, and symmetrical propeller arrangement.",
+    "description_view_1": "Angled side view highlighting the slender arms, propeller blades, and the camera protruding from the front.",
+    "description_view_2": "Rear view displaying the back of the body, arm connections, and the absence of a rear camera.",
+    "description_view_3": "Opposite angled side view, similar to view 1 but from the other side, showing arm symmetry and propeller layout.",
+    "category": "drone",
+    "height": 0.15,
+    "max_dimension": 0.6,
+    "materials": [
+        "plastic",
+        "carbon fiber",
+        "metal",
+        "glass",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 1.8,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 18,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable",
+        "toggleable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "camera",
+        "power button",
+        "battery compartment",
+        "landing gear"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "white",
+        "greenish-gray"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.1,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 7000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.08,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 4,
+    "attribute_rotor_configuration": "quadcopter X",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": true,
+    "attribute_propeller_guard_presence": false,
+    "uid": "56ad4547d7c541b088a4522d3876aed9",
+    "near_synsets": {
+        "drone.n.04": 0.5036359914621261,
+        "single-rotor_helicopter.n.01": 0.5752501978103041,
+        "buzz_bomb.n.01": 0.5788955741670493,
+        "orthopter.n.01": 0.5807771788228511,
+        "aircraft.n.01": 0.58189904819743,
+        "drone.n.01": -1000.0,
+        "dawdler.n.01": -1000.0,
+        "monotone.n.01": -1000.0,
+        "drone.n.05": -1000.0
+    },
+    "synset": "drone.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/56ad4547d7c541b088a4522d3876aed9",
+        "creator_username": "santodmn",
+        "creator_display_name": "santodmn",
+        "creator_profile_url": "https://sketchfab.com/santodmn"
+    },
+    "filename": "std_56ad4547d7c541b088a4522d3876aed9.glb",
+    "length": 0.8043757677078247,
+    "width": 0.8438296318054199
+}

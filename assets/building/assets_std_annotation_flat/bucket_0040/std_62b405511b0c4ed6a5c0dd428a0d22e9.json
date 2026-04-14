@@ -1,0 +1,113 @@
+{
+    "description_long": "This vending machine is a whimsical, pastel-colored candy dispenser with a rectangular base and a transparent cylindrical container on top filled with colorful candy balls. The front features a large, arched 'CANDY' sign in rainbow colors above a spiral yellow chute, which guides the candy to a retrieval slot below. A pink compartment with a golden star-shaped knob is situated beneath the chute, likely serving as the payment or access panel. The top of the machine is adorned with a large, stylized candy piece wrapped in paper with a heart symbol, adding a playful touch. The sides of the machine have pink panels, possibly for maintenance access, and subtle vent-like details. The overall design is inviting and playful, making it suitable for parks, sidewalks, or family-friendly urban spaces.",
+    "description": "A pastel-colored candy vending machine with a transparent candy-filled top, spiral chute, and playful signage, topped with a decorative candy piece.",
+    "description_view_0": "The back view shows a plain purple panel with a blue border and the top candy container visible, but no interactive features.",
+    "description_view_1": "The left side reveals a pink maintenance panel and vent details, with the top candy container and decorative candy visible.",
+    "description_view_2": "The front view displays the 'CANDY' sign, spiral chute, pink compartment with a golden knob, and the main product retrieval area.",
+    "description_view_3": "The right side mirrors the left, with a pink maintenance panel and vent details, and the decorative candy on top.",
+    "category": "vending machine",
+    "height": 1.4,
+    "max_dimension": 0.6,
+    "materials": [
+        "plastic",
+        "glass",
+        "metal",
+        "paper",
+        "air",
+        "candy"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.02,
+        0.05,
+        0.05
+    ],
+    "mass": 38,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "rotatable",
+        "openable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "knob",
+        "retrieval slot",
+        "payment panel",
+        "spiral chute"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "purple",
+        "blue",
+        "pink",
+        "yellow",
+        "white",
+        "red",
+        "green"
+    ],
+    "colors_composition": [
+        0.45,
+        0.15,
+        0.15,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.32,
+    "bounciness": 0.08,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "none",
+    "attribute_payment_interface": "A pink panel with a golden star-shaped knob located on the lower front, likely for coin or token input.",
+    "attribute_product_selection_buttons": "none",
+    "attribute_product_retrieval_slot": "A rectangular slot beneath the spiral chute on the front, integrated into the pink compartment, with a flap or door.",
+    "attribute_branding_or_signage": "A large, arched 'CANDY' sign in rainbow colors above the spiral chute on the front, and a decorative candy piece with a heart symbol on top.",
+    "uid": "62b405511b0c4ed6a5c0dd428a0d22e9",
+    "near_synsets": {
+        "vending_machine.n.01": 0.4897110428574714,
+        "automat.n.01": 0.5238852595698259,
+        "chocolate_egg.n.01": 0.5498708501958438,
+        "candy_egg.n.01": 0.5498783421599667,
+        "chocolate_candy.n.01": 0.5501246557736988,
+        "machine.n.03": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.02": -1000.0,
+        "machine.n.05": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/62b405511b0c4ed6a5c0dd428a0d22e9",
+        "creator_username": "deaterifika",
+        "creator_display_name": "deaterifika",
+        "creator_profile_url": "https://sketchfab.com/deaterifika"
+    },
+    "filename": "std_62b405511b0c4ed6a5c0dd428a0d22e9.glb",
+    "length": 0.561255693435669,
+    "width": 0.5060756206512451
+}

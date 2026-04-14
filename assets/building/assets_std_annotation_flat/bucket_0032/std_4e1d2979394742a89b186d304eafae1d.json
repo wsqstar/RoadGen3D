@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a classic hand grenade with an oval, segmented metal body, painted in a matte black finish. The top features a prominent safety lever and a visible safety pin mechanism, both rendered in a slightly worn, metallic texture. A circular, copper-colored marking or label is present on the front, adding a distinct visual cue. The body is ribbed for grip, and the overall construction suggests a robust, heavy-duty design typical of military ordnance. The rear view shows the lever extending down the back, with a rectangular plate or marking. No visible wires or digital components are present, and the object appears solid and compact.",
+    "description": "A matte black, oval hand grenade with a ribbed metal body, safety lever, and a copper-colored front marking. The design is robust and typical of military explosives.",
+    "description_view_0": "Front view shows the oval, ribbed body with a copper-colored circular marking and the top-mounted safety lever and pin.",
+    "description_view_1": "Side view highlights the grenade's curved profile and the protruding safety lever mechanism.",
+    "description_view_2": "Rear view displays the full length of the safety lever and a rectangular marking on the lever.",
+    "description_view_3": "Opposite side view shows the rounded body and the safety pin assembly from a different angle.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.12,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.3,
+        0.03,
+        0.02
+    ],
+    "mass": 0.4,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 4,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety pin",
+        "safety lever"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "copper",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is likely initiated by pulling the safety pin and releasing the safety lever, which would trigger an internal fuse.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "4e1d2979394742a89b186d304eafae1d",
+    "near_synsets": {
+        "grenade.n.01": 0.4975380343754165,
+        "hand_grenade.n.01": 0.5052367769620022,
+        "bomb.n.01": 0.5255884257768361,
+        "rifle_grenade.n.01": 0.5318545637100138,
+        "general-purpose_bomb.n.01": 0.5442553428089908,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4e1d2979394742a89b186d304eafae1d",
+        "creator_username": "venomousbadger",
+        "creator_display_name": "venomousbadger",
+        "creator_profile_url": "https://sketchfab.com/venomousbadger"
+    },
+    "filename": "std_4e1d2979394742a89b186d304eafae1d.glb",
+    "length": 0.07887749746441841,
+    "width": 0.0767730101943016
+}

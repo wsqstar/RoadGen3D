@@ -1,0 +1,107 @@
+{
+    "description_long": "This object is a large, boxy combat tactical vehicle with a segmented, angular structure and a robust exterior. The vehicle features multiple compartments and hatches, with visible panel lines and reinforced sections along its sides and roof. The surface is predominantly a dull gray, with some areas showing darker or lighter patches, possibly from wear or operational use. There are several protrusions and equipment mounts, but no visible weaponry or turrets. The vehicle appears to have armored plating covering most of its body, with thick, flat surfaces and minimal curvature. No visible wheels or tracks are present, suggesting the lower section is obscured or the vehicle is designed for heavy-duty, possibly stationary, urban operations.",
+    "description": "A large, angular combat tactical vehicle with reinforced, boxy armor and multiple compartments, finished in a dull gray color with visible panel lines and hatches.",
+    "description_view_0": "The side view reveals the vehicle's segmented, rectangular structure with multiple hatches and reinforced panels.",
+    "description_view_1": "The rear or opposite side shows more compartmentalization and some protruding elements, with less visible detail on the surface.",
+    "description_view_2": "This side highlights additional panel lines, a yellow section, and more equipment mounts or access points.",
+    "description_view_3": "The opposite end displays a mostly flat, armored surface with minimal openings and a compact rear section.",
+    "category": "combat tactical  vehicle",
+    "height": 3.2,
+    "max_dimension": 12.0,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.05,
+        0.03,
+        0.07
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 5,
+    "movable": true,
+    "required_force": 90000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "handle",
+        "window",
+        "ladder"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "none visible",
+    "attribute_armor_plating": "Full body coverage with thick, flat, reinforced armor panels; no visible sloping or modular/reactive features.",
+    "attribute_camouflage_pattern": "none visible",
+    "attribute_military_markings": "none visible",
+    "attribute_tire_type": "not applicable",
+    "uid": "a2b3a24a8a0642d0b275cb3dd3c3e194",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.49361495558219304,
+        "tank.n.01": 0.4970602958166031,
+        "reconnaissance_vehicle.n.01": 0.5067517949378315,
+        "assault_gun.n.02": 0.5091987830785402,
+        "armored_car.n.02": 0.5189268527125116,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a2b3a24a8a0642d0b275cb3dd3c3e194",
+        "creator_username": "madjin",
+        "creator_display_name": "jin",
+        "creator_profile_url": "https://sketchfab.com/madjin"
+    },
+    "filename": "std_a2b3a24a8a0642d0b275cb3dd3c3e194.glb",
+    "length": 11.356272220611572,
+    "width": 17.7601261138916
+}

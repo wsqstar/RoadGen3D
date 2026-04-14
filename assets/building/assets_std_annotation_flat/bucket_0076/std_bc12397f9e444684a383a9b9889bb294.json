@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a compact, tracked combat tactical vehicle resembling a World War I-era Renault FT light tank. The vehicle features a fully enclosed armored hull with a small, cylindrical turret mounted centrally on top, equipped with a visible machine gun. Its tracks are wide and robust, running along both sides of the hull, and the front is fitted with a distinctive angled metal plate, likely for obstacle clearing or added protection. The rear of the vehicle is boxy, with a protruding tail section and visible exhaust components. The surface is matte and painted in a dark, solid color, with riveted armor panels and minimal external markings. The overall design is utilitarian, prioritizing protection and mobility in urban or battlefield environments.",
+    "description": "A compact, tracked armored combat vehicle with a cylindrical turret and wide tracks, painted in a dark solid color. Features include a front angled plate, riveted armor, and a visible machine gun.",
+    "description_view_0": "Front view shows the narrow, armored hull, wide tracks, and the angled front plate with the turret centered above.",
+    "description_view_1": "Left side view highlights the full length of the tracks, the cylindrical turret with a machine gun, and the angled front plate.",
+    "description_view_2": "Rear view displays the boxy tail section, rear armor, and the ends of the tracks, with no visible weaponry.",
+    "description_view_3": "Right side view mirrors the left, showing the tracks, turret, and front plate, with exhaust details visible near the rear.",
+    "category": "combat tactical  vehicle",
+    "height": 2.1,
+    "max_dimension": 5.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 6800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "machine gun",
+        "tracks",
+        "exhaust"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible machine gun mount on the front of the turret.",
+    "attribute_armor_plating": "Full body coverage with riveted steel armor plating, moderate thickness, sloped at the front and sides.",
+    "attribute_camouflage_pattern": "None visible; solid dark gray paint scheme.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "bc12397f9e444684a383a9b9889bb294",
+    "near_synsets": {
+        "tank.n.01": 0.47043327575918636,
+        "armored_car.n.02": 0.492059145024265,
+        "military_vehicle.n.01": 0.49360199137319183,
+        "reconnaissance_vehicle.n.01": 0.5103224853714171,
+        "armored_vehicle.n.01": 0.5152918393024688,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bc12397f9e444684a383a9b9889bb294",
+        "creator_username": "JesperLandin",
+        "creator_display_name": "Jesper Landin",
+        "creator_profile_url": "https://sketchfab.com/JesperLandin"
+    },
+    "filename": "std_bc12397f9e444684a383a9b9889bb294.glb",
+    "length": 4.628878593444824,
+    "width": 1.6589030623435974
+}

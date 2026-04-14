@@ -1,0 +1,101 @@
+{
+    "description_long": "This humanoid robot features a weathered, metallic exterior with a humanoid torso, head, and outstretched arms, mounted on a wheeled base. The head is rounded and stylized, with visible surface corrosion and patina, giving it an aged, utilitarian appearance. The arms are thin and jointed, with exposed wiring and jagged, saw-like appendages hanging beneath, suggesting a functional or industrial purpose. The torso is robust, with mechanical details and tubing visible, and the base is wide with two large wheels for mobility. The robot's overall design is utilitarian and rugged, with a patchwork of green, brown, and rusted metal tones. Its form is both humanoid and machine-like, blending anthropomorphic features with industrial elements.",
+    "description": "A weathered, humanoid robot with a corroded metal body, outstretched arms, exposed wiring, and a wheeled base. Its rugged, industrial design features a stylized head and jagged appendages.",
+    "description_view_0": "Front view shows the humanoid head, torso, and outstretched arms with jagged appendages and visible wiring, mounted on a wheeled base.",
+    "description_view_1": "Left side view highlights the thinness of the arms, the profile of the head, and the depth of the wheeled base.",
+    "description_view_2": "Rear view reveals the back of the head and torso, the structure of the arms, and the mechanical details of the base.",
+    "description_view_3": "Right side view mirrors the left, showing the arm's profile, head shape, and the side of the wheeled base.",
+    "category": "humanoid robot",
+    "height": 1.6,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "copper",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheels",
+        "arms",
+        "head",
+        "wiring",
+        "torso panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "gray",
+        "rust",
+        "black"
+    ],
+    "colors_composition": [
+        0.4,
+        0.2,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms fully extended horizontally to the sides, head facing forward, and torso upright on a wheeled base.",
+    "attribute_clothing_style": "Unclothed; exterior consists of integrated metal panels and exposed mechanical components with no decorative coverings.",
+    "attribute_facial_features": "The face is stylized and metallic, with no distinct eyes, mouth, or nose; surface is corroded and lacks expressive or display elements.",
+    "attribute_limb_articulation": "Arms have visible hinge joints at the shoulders and elbows, allowing for basic rotation and extension; no visible hands or fingers; base is equipped with two large wheels for movement.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "efae468b7d3443f48169bbc05954252b",
+    "near_synsets": {
+        "android.n.01": 0.5576330096216323,
+        "cyborg.n.01": 0.559097771939352,
+        "robotics_equipment.n.01": 0.5639025549406727,
+        "automaton.n.02": 0.5825188339397547,
+        "automaton.n.03": 0.5882111775379337
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/efae468b7d3443f48169bbc05954252b",
+        "creator_username": "klopikc",
+        "creator_display_name": "Pavluha",
+        "creator_profile_url": "https://sketchfab.com/klopikc"
+    },
+    "filename": "std_efae468b7d3443f48169bbc05954252b.glb",
+    "length": 0.3355310410261154,
+    "width": 1.9332811832427979
+}

@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a modern front-loading washing machine with a rectangular, boxy form and a circular glass door on the front. The exterior is primarily smooth and metallic, with subtle paneling and a few visible seams. The front face features a control panel above the door, which includes several dials and buttons for operation, as well as a possible detergent drawer on the left side. The sides are plain with recessed panels, and the back shows attached hoses and a molded panel for access. The washing machine stands on four small feet and has a robust, utilitarian appearance suitable for residential or commercial use. The overall finish is clean and uniform, with a light gray coloration.",
+    "description": "A front-loading washing machine with a circular glass door, smooth metallic panels, and a control panel with dials and buttons above the door.",
+    "description_view_0": "Side view showing a plain, recessed panel and a hose attached near the back.",
+    "description_view_1": "Front view displaying the circular glass door, control panel with dials and buttons, and a possible detergent drawer on the upper left.",
+    "description_view_2": "Opposite side view with a similar recessed panel and a hose running along the side.",
+    "description_view_3": "Rear view showing the molded back panel, attached hoses, and no visible controls or door.",
+    "category": "washing machine",
+    "height": 0.85,
+    "max_dimension": 0.85,
+    "materials": [
+        "painted steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 70,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 700,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "rotatable",
+        "pullable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "control panel",
+        "buttons",
+        "dials",
+        "detergent drawer"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_control_panel_layout": "The control panel is located on the upper front face, above the door, and features several rotary dials and push buttons arranged horizontally. There is also a possible detergent drawer on the left side of the panel.",
+    "attribute_door_type": "Front-loading circular door with a glass window and a visible handle on the right side of the door.",
+    "attribute_brand_logo": "none",
+    "attribute_detergent_drawer_location": "The detergent drawer is visible on the upper left side of the front control panel, appearing as a rectangular pull-out compartment.",
+    "attribute_drum_visibility": "partially visible through the glass door on the front",
+    "uid": "82c91049303f4664a56cc0eaffa8d662",
+    "near_synsets": {
+        "washer.n.03": 0.5286668590532801,
+        "clothes_dryer.n.01": 0.5447656688277364,
+        "white_goods.n.01": 0.545678530560653,
+        "dishwasher.n.01": 0.5474002074756688,
+        "laundry.n.01": 0.5491542615656416,
+        "machine.n.01": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.05": -1000.0,
+        "machine.n.02": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.03": -1000.0
+    },
+    "synset": "washer.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/82c91049303f4664a56cc0eaffa8d662",
+        "creator_username": "bulgakov",
+        "creator_display_name": "nikita.bulgakov",
+        "creator_profile_url": "https://sketchfab.com/bulgakov"
+    },
+    "filename": "std_82c91049303f4664a56cc0eaffa8d662.glb",
+    "length": 0.5901453495025635,
+    "width": 0.5797870755195618
+}

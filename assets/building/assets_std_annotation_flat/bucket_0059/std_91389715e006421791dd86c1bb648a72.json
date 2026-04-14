@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a multifunctional wooden chair that can be converted into a small step ladder or shelving unit. The chair features a slatted backrest and a broad, flat seat, both constructed from rustic, weathered wood. When transformed, the seat folds out to reveal three sturdy, tiered steps or shelves, supported by angled legs and crossbars for stability. The wood grain is visible throughout, giving the piece a natural, handcrafted appearance suitable for both decorative and practical use. The asset is accompanied by a potted plant, suggesting its use in a garden or patio setting. The overall design is robust, with visible joints and reinforcements that enhance its durability and utility.",
+    "description": "A rustic wooden chair that transforms into a step ladder or shelving unit, featuring slatted backrest and visible wood grain.",
+    "description_view_0": "Front view showing the chair in both its standard and unfolded ladder forms, with a potted plant placed between them.",
+    "description_view_1": "Angled side view highlighting the three-tiered steps and the structural supports of the unfolded ladder configuration.",
+    "description_view_2": "Rear view displaying the slatted backrests of both the chair and the ladder, as well as the plant positioned centrally.",
+    "description_view_3": "Side view focusing on the seat's wood texture and the depth of the steps in the ladder configuration.",
+    "category": "chair",
+    "height": 1.0,
+    "max_dimension": 1.1,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.03,
+        0.05
+    ],
+    "mass": 10.0,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "sittable",
+        "foldable",
+        "climbable",
+        "supportive"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "seat",
+        "steps",
+        "backrest",
+        "hinge"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.92,
+        0.06,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_backrest_presence": true,
+    "attribute_armrest_presence": false,
+    "attribute_leg_count": 4,
+    "attribute_seat_pattern": "plain",
+    "attribute_placement_location": "either",
+    "uid": "91389715e006421791dd86c1bb648a72",
+    "near_synsets": {
+        "ladder-back.n.01": 0.47739461830669355,
+        "ladder-back.n.02": 0.48717175236125104,
+        "camp_chair.n.01": 0.5226625014007785,
+        "captain's_chair.n.01": 0.5252388831916229,
+        "windsor_chair.n.01": 0.5310363687238757,
+        "president.n.04": -1000.0,
+        "professorship.n.01": -1000.0,
+        "chair.n.05": -1000.0,
+        "chair.n.01": -1000.0,
+        "electric_chair.n.01": -1000.0
+    },
+    "synset": "electric_chair.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/91389715e006421791dd86c1bb648a72",
+        "creator_username": "topfrank2013",
+        "creator_display_name": "Francesco Coldesina",
+        "creator_profile_url": "https://sketchfab.com/topfrank2013"
+    },
+    "filename": "std_91389715e006421791dd86c1bb648a72.glb",
+    "length": 0.8781650364398956,
+    "width": 1.4485867023468018
+}

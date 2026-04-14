@@ -1,0 +1,112 @@
+{
+    "description_long": "This is a heavily modified, armored combat tactical vehicle with a rugged, post-apocalyptic design. The body is primarily blue with significant weathering and snow or frost accumulation, suggesting use in harsh, cold environments. The front features a reinforced metal grille and a prominent hood scoop, while the roof is equipped with a large, mounted rotary machine gun. The sides display thick, bolted armor plating and oversized, off-road tires with deep treads for enhanced traction. The rear of the vehicle has dual exhaust pipes, a metal cargo rack, and visible fuel tanks, all protected by additional armor. The overall appearance is aggressive and utilitarian, built for both offense and defense in urban or hostile settings.",
+    "description": "A blue, armored combat vehicle with heavy weathering, a roof-mounted rotary gun, reinforced grille, and large off-road tires. Its rugged design features thick armor plating and visible rear fuel tanks.",
+    "description_view_0": "Front view shows the reinforced metal grille, hood scoop, and the rotary machine gun mounted on the roof.",
+    "description_view_1": "Left side view highlights the thick armor plating, large off-road tire, and the full length of the roof-mounted weapon.",
+    "description_view_2": "Rear view displays dual exhaust pipes, a metal cargo rack, exposed fuel tanks, and rear armor plating.",
+    "description_view_3": "Right side view mirrors the left, showing the armor, tire, and weapon mount, with additional detail on the rear cargo area.",
+    "category": "combat tactical  vehicle",
+    "height": 2.1,
+    "max_dimension": 4.8,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.05,
+        0.04,
+        0.01,
+        0.03
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 16000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "gun mount",
+        "hood",
+        "cargo rack",
+        "fuel tank cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "white",
+        "gray",
+        "black",
+        "rust brown"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.95,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large rotary machine gun mount on the roof, centrally positioned.",
+    "attribute_armor_plating": "Visible thick armor plating covers the full body, including reinforced front grille, side panels, and rear. The armor appears bolted and weathered, with some sloped sections for deflection.",
+    "attribute_camouflage_pattern": "No camouflage pattern; vehicle is painted blue with heavy white weathering and rust patches.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Four large off-road tires with deep, aggressive tread pattern; appear reinforced for rugged terrain.",
+    "uid": "9b18da6736454ca1aa98ae8b312674fb",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.5066467479252967,
+        "reconnaissance_vehicle.n.01": 0.5083162677227933,
+        "tank.n.01": 0.530722098008987,
+        "armored_car.n.02": 0.5376551142115068,
+        "armored_vehicle.n.01": 0.539264196968596,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "armored_car.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9b18da6736454ca1aa98ae8b312674fb",
+        "creator_username": "ErikArnez",
+        "creator_display_name": "ErikArnez",
+        "creator_profile_url": "https://sketchfab.com/ErikArnez"
+    },
+    "filename": "std_9b18da6736454ca1aa98ae8b312674fb.glb",
+    "length": 4.03002405166626,
+    "width": 1.8127182126045227
+}

@@ -1,0 +1,111 @@
+{
+    "description_long": "This is a large, military-style green ship with a robust, angular hull and a prominent superstructure. The hull features a wide, flat base with reinforced side panels and a central section adorned with a white star insignia and hazard stripes. The superstructure includes a raised bridge with multiple antennae, railings, and what appears to be a radar or communication array. The deck is equipped with various fixtures, including hatches, vents, and possibly weapon mounts, giving it a utilitarian and fortified appearance. The bow is slightly pointed, while the stern is squared off with a ramp-like structure, suggesting amphibious capabilities. The overall design is functional, with visible access points and walkways for crew movement.",
+    "description": "A large, green military-style ship with a reinforced hull, raised superstructure, and multiple deck fixtures including antennae and hazard markings. The vessel features a white star insignia and a ramp-like stern.",
+    "description_view_0": "Side view showing the full length of the ship, white star insignia, hazard stripes, and the central superstructure with antennae.",
+    "description_view_1": "Front view highlighting the pointed bow, dual side hulls, and the raised bridge with multiple antennae and railings.",
+    "description_view_2": "Opposite side view mirroring view 0, with visible superstructure, hazard stripes, and side details.",
+    "description_view_3": "Rear view displaying the squared stern, ramp-like structure, and the symmetrical layout of the hull and deck fixtures.",
+    "category": "ship",
+    "height": 7.0,
+    "max_dimension": 35.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.01,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2500000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable",
+        "closable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "antenna",
+        "ramp",
+        "control panel",
+        "railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "yellow",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is wide and angular with a flat base, reinforced side panels, and a slightly pointed bow. The stern is squared off with a ramp-like structure, and the hull features hazard stripes and a central insignia. The design suggests a displacement or landing craft type hull with robust construction.",
+    "attribute_superstructure_layout": "The superstructure is centrally located and raised, featuring a bridge with multiple antennae, railings, and a possible radar array. There are visible hatches, vents, and walkways, with the superstructure spanning a single main deck.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "antenna",
+        "radar",
+        "hatch",
+        "vent",
+        "railing"
+    ],
+    "attribute_registration_markings": "white star insignia",
+    "uid": "e10d5b0e5cb04fccb879c68d1f535e9e",
+    "near_synsets": {
+        "guard_ship.n.01": 0.49428549278104544,
+        "cargo_ship.n.01": 0.5045693874479259,
+        "troopship.n.01": 0.512065516789293,
+        "surface_ship.n.01": 0.5144938275731928,
+        "capital_ship.n.01": 0.5147282813034434,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e10d5b0e5cb04fccb879c68d1f535e9e",
+        "creator_username": "Nord_Licht",
+        "creator_display_name": "Nord_Licht",
+        "creator_profile_url": "https://sketchfab.com/Nord_Licht"
+    },
+    "filename": "std_e10d5b0e5cb04fccb879c68d1f535e9e.glb",
+    "length": 21.905585289001465,
+    "width": 6.913877964019775
+}

@@ -1,0 +1,104 @@
+{
+    "description_long": "This combat tactical vehicle features a robust, angular metallic body with a streamlined cockpit at the front and large, rectangular modules on either side near the rear, which appear to be solar panels or armored shielding. The vehicle is equipped with visible weapon mounts on both sides, each holding a heavy machine gun or autocannon. The exterior is predominantly gray with a matte finish, accented by a blue and red star insignia on the side. The rear section is boxy and reinforced, suggesting additional armor or propulsion systems. The overall design is utilitarian, with minimal ornamentation and a focus on protection and firepower, suitable for urban combat or patrol scenarios.",
+    "description": "A heavily armored, gray tactical vehicle with side-mounted weapons, large rear modules, and a blue-red star insignia, designed for urban combat.",
+    "description_view_0": "Side view showing the full length of the vehicle, the large rear modules, and the blue-red star insignia.",
+    "description_view_1": "Front view highlighting the angular cockpit, reinforced nose, and the symmetry of the side-mounted weapons.",
+    "description_view_2": "Opposite side view, mirroring view 0, with clear visibility of the weapon mount and rear modules.",
+    "description_view_3": "Rear view displaying the propulsion system and the structure of the rear modules.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "glass",
+        "composite armor",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.08,
+        0.15,
+        0.07,
+        0.05
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 35000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "weapon mount",
+        "cockpit canopy",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Two visible weapon mounts, one on each side of the vehicle, each equipped with a heavy machine gun or autocannon.",
+    "attribute_armor_plating": "Full body coverage with thick, angular armor plating; reinforced at the front and rear, with sloped panels for deflection.",
+    "attribute_camouflage_pattern": "Solid gray color with no visible camouflage pattern.",
+    "attribute_military_markings": "Blue and red star insignia on the side near the cockpit.",
+    "attribute_tire_type": "not applicable",
+    "uid": "337696cea7024fd3901ee5ccae0b04b8",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4808613478978836,
+        "reconnaissance_vehicle.n.01": 0.5013612269563649,
+        "assault_gun.n.02": 0.5137341564120801,
+        "armored_car.n.02": 0.5167863638108626,
+        "tank.n.01": 0.5179543386630061,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/337696cea7024fd3901ee5ccae0b04b8",
+        "creator_username": "Kessler_Protus",
+        "creator_display_name": "Kessler_Protus",
+        "creator_profile_url": "https://sketchfab.com/Kessler_Protus"
+    },
+    "filename": "std_337696cea7024fd3901ee5ccae0b04b8.glb",
+    "length": 5.395994186401367,
+    "width": 2.181572437286377
+}

@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a hand truck or dolly, constructed primarily from metal with a painted orange finish. It features a tall, rectangular frame with two vertical bars and several horizontal supports, providing structural integrity and a handle for gripping. At the base, there is a flat, perforated loading platform designed to slide under objects for lifting and transport. The object is equipped with two large, black rubber wheels with red hubs, mounted on either side of the lower frame for mobility. The overall design is utilitarian, optimized for moving heavy or bulky items across flat surfaces. There are no visible operator controls, seats, or powered components, indicating it is manually operated.",
+    "description": "A sturdy orange hand truck with a tall metal frame, two large wheels, and a flat loading platform for moving heavy items.",
+    "description_view_0": "Side view showing the thin profile, large wheels, and the flat loading platform extending forward.",
+    "description_view_1": "Front view highlighting the wide handle, vertical frame bars, and the perforated loading platform.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the wheels and platform from the other side.",
+    "description_view_3": "Rear view displaying the frame structure, wheel placement, and the back of the loading platform.",
+    "category": "forklift",
+    "height": 1.2,
+    "max_dimension": 1.3,
+    "materials": [
+        "steel",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "loading platform"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_fork_arms": "There are two short, flat, rectangular fork arms forming the loading platform at the base, each with rounded edges and several elongated perforations for weight reduction and grip. The arms are parallel, made of metal, and extend forward from the frame, appearing sturdy and capable of supporting heavy loads.",
+    "attribute_overhead_guard": "No overhead guard is present; the frame extends vertically but does not provide any overhead protection or covering.",
+    "attribute_mast": "The vertical frame acts as a simple, single-stage mast, constructed from two parallel metal bars connected by horizontal supports. There are no visible lift chains, rollers, or hydraulic components.",
+    "attribute_operator_seat": "There is no operator seat; the object is designed to be operated while standing and pushing or pulling from the handle.",
+    "attribute_warning_lights": "No warning lights are visible on any part of the object.",
+    "uid": "af54fd45e6a841d0bbcad181ed5831b1",
+    "near_synsets": {
+        "forklift.n.01": 0.443463859616727,
+        "hand_truck.n.01": 0.4693429069200909,
+        "lifting_device.n.01": 0.5286594934443977,
+        "stacker_crane.n.01": 0.529220937143426,
+        "pallet.n.02": 0.5366571169536336
+    },
+    "synset": "forklift.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/af54fd45e6a841d0bbcad181ed5831b1",
+        "creator_username": "etrewartha",
+        "creator_display_name": "elouisetrewartha",
+        "creator_profile_url": "https://sketchfab.com/etrewartha"
+    },
+    "filename": "std_af54fd45e6a841d0bbcad181ed5831b1.glb",
+    "length": 0.4731985777616501,
+    "width": 0.3733420670032501
+}

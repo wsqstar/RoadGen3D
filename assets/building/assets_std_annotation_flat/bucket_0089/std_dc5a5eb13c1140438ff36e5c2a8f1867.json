@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a stylized chainsaw with a long, rectangular blue body and metallic silver accents. The cutting chain runs along the bottom edge, featuring sharp, evenly spaced teeth. The handle is robust, metallic, and ergonomically shaped, with a guard that curves outward for hand protection. Decorative wing-like elements and a red circular detail are present near the front and rear, giving it a distinctive, almost futuristic or fantasy appearance. The overall construction appears solid and heavy, with a mix of smooth and textured surfaces. No visible brand logo or power source indicator is present, and the design emphasizes both function and visual flair.",
+    "description": "A stylized blue and silver chainsaw with a long blade, metallic handle, and decorative wing-like accents. The chain features sharp teeth and the handle includes a protective guard.",
+    "description_view_0": "Side view showing the full length of the blue body, metallic handle, and the entire cutting chain with wing-like accents and a red circular detail.",
+    "description_view_1": "Front view highlighting the pointed tip, the symmetrical wing-like guard, and the narrow profile of the chainsaw.",
+    "description_view_2": "Opposite side view, mirroring view 0, with the blue body, metallic handle, and visible chain teeth, but with slightly different lighting on the details.",
+    "description_view_3": "Rear view showing the end of the handle, the back of the guard, and the blue body extending away, with the handle's ergonomic grip visible.",
+    "category": "chainsaw",
+    "height": 0.18,
+    "max_dimension": 1.0,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 6.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "cuttable",
+        "switchable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "trigger",
+        "chain",
+        "guard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "silver",
+        "gray",
+        "red"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_brand_logo": "none",
+    "attribute_chain_type": "unknown",
+    "attribute_handle_design": "Single main handle with a horizontal grip and an integrated guard, metallic construction, ergonomic shape, and protective wing-like extensions.",
+    "attribute_safety_guard_presence": true,
+    "attribute_power_source_indicator": "unknown",
+    "uid": "dc5a5eb13c1140438ff36e5c2a8f1867",
+    "near_synsets": {
+        "chain_saw.n.01": 0.48189844071719135,
+        "saw.n.02": 0.5235074265285343,
+        "gangsaw.n.01": 0.5345521975173925,
+        "case_knife.n.01": 0.5597072662728664,
+        "knife_blade.n.01": 0.5624385474234583
+    },
+    "synset": "chain_saw.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dc5a5eb13c1140438ff36e5c2a8f1867",
+        "creator_username": "obamazz",
+        "creator_display_name": "obamazz",
+        "creator_profile_url": "https://sketchfab.com/obamazz"
+    },
+    "filename": "std_dc5a5eb13c1140438ff36e5c2a8f1867.glb",
+    "length": 1.0054142475128174,
+    "width": 0.11228806525468826
+}

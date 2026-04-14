@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a heavily damaged, multi-story apartment building with significant structural destruction visible throughout its facade and interior. The building's concrete frame is exposed, with many walls and floors missing or collapsed, revealing the skeletal remains of rooms and corridors. The exterior features a mix of bare concrete and remnants of brickwork, with some sections showing charred or blackened surfaces, likely from fire or explosions. Window openings are irregular and jagged, with most glass and frames missing, and some balconies or ledges are partially destroyed. The roof and upper floors are particularly devastated, with large holes and debris scattered throughout. The overall appearance suggests the building has been subjected to severe conflict or disaster, leaving it uninhabitable and structurally compromised.",
+    "description": "A multi-story, war-damaged apartment building with exposed concrete, missing walls, and extensive structural destruction. The facade is marked by broken windows, collapsed floors, and remnants of brickwork.",
+    "description_view_0": "A narrow side view showing the depth of destruction, with exposed floors and collapsed interior walls.",
+    "description_view_1": "A broad view of the most damaged facade, revealing large holes, missing walls, and the skeletal structure of the building.",
+    "description_view_2": "The opposite narrow side, with visible concrete support columns and less interior detail compared to other views.",
+    "description_view_3": "A view of the relatively intact rear facade, with more regular window openings and less visible interior destruction.",
+    "category": "apartment building",
+    "height": 22.0,
+    "max_dimension": 28.0,
+    "materials": [
+        "concrete",
+        "brick",
+        "steel",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 950000.0,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 5,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "balcony"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "red-orange",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.01,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 7,
+    "attribute_balcony_presence": true,
+    "attribute_window_arrangement": "Windows are arranged in vertical and horizontal rows, but many are irregularly spaced or missing due to damage. The original pattern suggests a regular grid, now disrupted by destruction.",
+    "attribute_entrance_type": "multiple entrances",
+    "attribute_architectural_style": "Brutalist",
+    "uid": "bcea2092886b4308b09d76518f877722",
+    "near_synsets": {
+        "ruin.n.02": 0.5217093346759889,
+        "apartment_building.n.01": 0.5243812226404926,
+        "bomb_site.n.01": 0.5560042351009697,
+        "rattrap.n.02": 0.5585030835558723,
+        "building.n.04": 0.5627704484697452,
+        "construction.n.01": -1000.0,
+        "building.n.01": -1000.0,
+        "apartment.n.01": -1000.0,
+        "construction.n.07": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bcea2092886b4308b09d76518f877722",
+        "creator_username": "DronWork",
+        "creator_display_name": "DronWork",
+        "creator_profile_url": "https://sketchfab.com/DronWork"
+    },
+    "filename": "std_bcea2092886b4308b09d76518f877722.glb",
+    "length": 8.44280195236206,
+    "width": 18.71153736114502
+}

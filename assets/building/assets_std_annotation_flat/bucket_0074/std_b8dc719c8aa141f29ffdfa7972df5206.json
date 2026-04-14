@@ -1,0 +1,108 @@
+{
+    "description_long": "This forklift features a compact, modern design with a predominantly white and black body, accented by a protective overhead guard and a single operator seat. The front section is equipped with two sturdy fork arms supporting a loaded pallet stacked with beige and brown boxes. The operator compartment is enclosed on the sides, with a visible steering wheel, control levers, and a comfortable seat. The mast is robust and vertically aligned, supporting the lifting mechanism and providing stability for heavy loads. The overhead guard is constructed from black metal bars, offering protection for the operator while maintaining visibility. The wheels are solid and designed for maneuverability in tight urban or warehouse environments.",
+    "description": "A compact, modern forklift with a white and black body, loaded pallet, and protective overhead guard. Features a single operator seat and robust lifting mast.",
+    "description_view_0": "Front view showing the loaded pallet with boxes, fork arms, and the mast directly behind the load.",
+    "description_view_1": "Side view highlighting the operator compartment, seat, steering wheel, and the full length of the fork arms with the pallet.",
+    "description_view_2": "Rear view focusing on the operator seat, control area, and the protective overhead guard structure.",
+    "description_view_3": "Opposite side view displaying the mast, fork arms, and the loaded pallet, as well as the side profile of the operator compartment.",
+    "category": "forklift",
+    "height": 2.1,
+    "max_dimension": 3.0,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "glass",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.07,
+        0.03,
+        0.02,
+        0.03
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 800,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "liftable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "steering wheel",
+        "seat",
+        "fork arms",
+        "control levers",
+        "pedals",
+        "warning lights",
+        "wheels"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "gray",
+        "yellow",
+        "beige",
+        "brown"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.1,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_fork_arms": "Two parallel, rectangular steel fork arms extend forward from the base, each appearing thick and robust, with a flat upper surface for supporting pallets. The arms are positioned symmetrically and are long enough to fully support a standard pallet. No visible attachments or significant wear are present.",
+    "attribute_overhead_guard": "The overhead guard is constructed from black metal bars forming a rectangular protective cage above the operator area. It covers the entire operator compartment, providing overhead protection while allowing visibility and airflow. The structure appears sturdy and is integrated with the main frame.",
+    "attribute_mast": "The mast is a single-stage, vertical steel structure located at the front, supporting the lifting mechanism for the fork arms. It is solid and rectangular, with visible guide rails and a central lifting channel. No external hydraulic components or chains are visible.",
+    "attribute_operator_seat": "The operator seat is contoured and medium-sized, finished in black, with a smooth surface. It features a backrest and is positioned within the operator compartment, but no armrests, headrest, or seatbelt are visible.",
+    "attribute_warning_lights": "Two round, amber-colored warning lights are mounted symmetrically on either side of the overhead guard's front. They are not illuminated in the images and have a simple, circular design.",
+    "uid": "b8dc719c8aa141f29ffdfa7972df5206",
+    "near_synsets": {
+        "forklift.n.01": 0.44596098428226194,
+        "stacker_crane.n.01": 0.5518383887719015,
+        "pallet.n.02": 0.5667312675073081,
+        "lifting_device.n.01": 0.5703617689387586,
+        "crane.n.04": 0.584205157308984
+    },
+    "synset": "forklift.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b8dc719c8aa141f29ffdfa7972df5206",
+        "creator_username": "Paby",
+        "creator_display_name": "Paby",
+        "creator_profile_url": "https://sketchfab.com/Paby"
+    },
+    "filename": "std_b8dc719c8aa141f29ffdfa7972df5206.glb",
+    "length": 2.4883744716644287,
+    "width": 1.0059431195259094
+}

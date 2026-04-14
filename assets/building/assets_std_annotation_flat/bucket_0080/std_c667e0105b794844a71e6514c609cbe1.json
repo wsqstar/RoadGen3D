@@ -1,0 +1,90 @@
+{
+    "description_long": "This traffic barricade is constructed from a series of horizontal and vertical metal bars, forming a rectangular frame with rounded corners at the top. The central section features three vertical bars, while the sides are composed of four evenly spaced horizontal bars, providing both visibility and structural integrity. The base consists of two angled support legs that extend outward, ensuring stability on flat surfaces such as streets or sidewalks. The metal surface appears weathered, with a slightly mottled gray finish, typical of galvanized steel used for outdoor barriers. There are no visible reflective stripes, warning signage, or integrated lights on the structure. The open design allows for clear visibility through the barricade, making it suitable for crowd control or temporary access restriction in urban environments.",
+    "description": "A metal traffic barricade with a rectangular frame, horizontal and vertical bars, and two angled support legs. The surface is gray and weathered, with no visible signage or lights.",
+    "description_view_0": "Front view showing the full rectangular frame, central vertical bars, and horizontal bars on each side.",
+    "description_view_1": "Side view displaying the thin profile and the outward-angled support leg at the base.",
+    "description_view_2": "Rear view, visually identical to the front, showing the same bar arrangement and support structure.",
+    "description_view_3": "Opposite side view, again showing the thin profile and the angled support leg.",
+    "category": "traffic barricade",
+    "height": 1.1,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.08
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "frame",
+        "support legs"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_reflective_striping_pattern": "none",
+    "attribute_warning_signage": [],
+    "attribute_number_of_support_legs": 2,
+    "attribute_attachment_fixtures": [],
+    "attribute_presence_of_lights": false,
+    "uid": "c667e0105b794844a71e6514c609cbe1",
+    "near_synsets": {
+        "crossbar.n.03": 0.5250708220059684,
+        "crossbar.n.01": 0.5362465378447311,
+        "bar.n.03": 0.5472744650321794,
+        "bumper_guard.n.01": 0.5548816528801165,
+        "street_sign.n.01": 0.5549689740850247,
+        "traffic.n.03": -1000.0,
+        "roadblock.n.02": -1000.0,
+        "dealings.n.01": -1000.0,
+        "traffic.n.01": -1000.0,
+        "traffic.n.02": -1000.0,
+        "barricade.n.02": -1000.0
+    },
+    "synset": "roadblock.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c667e0105b794844a71e6514c609cbe1",
+        "creator_username": "grifgont",
+        "creator_display_name": "Mikhail Maksimov",
+        "creator_profile_url": "https://sketchfab.com/grifgont"
+    },
+    "filename": "std_c667e0105b794844a71e6514c609cbe1.glb",
+    "length": 0.49309539794921875,
+    "width": 2.4177727699279785
+}

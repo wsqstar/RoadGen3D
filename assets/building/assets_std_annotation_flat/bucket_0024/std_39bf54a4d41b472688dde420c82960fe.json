@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a classic steam locomotive with a prominent cylindrical boiler, a tall smokestack, and a large coal tender attached at the rear. The locomotive features a series of large red spoked wheels connected by visible drive rods, and the body is primarily black with red undercarriage and wheel details. The front of the train is equipped with a cowcatcher and headlamp, while the sides display various mechanical components and piping typical of steam engines. The tender is boxy and black, designed to carry coal and water, and is directly coupled to the locomotive. There are no visible passenger compartments, and the windows are small and limited to the operator's cab. The overall design is robust, industrial, and historically styled, suitable for rail transport in an urban or industrial setting.",
+    "description": "A black and red steam locomotive with a large cylindrical boiler, spoked wheels, and a coal tender attached at the rear. The design is industrial and historic, with visible mechanical details and minimal windows.",
+    "description_view_0": "Front view showing the headlamp, cowcatcher, and the cylindrical boiler face.",
+    "description_view_1": "Side view displaying the full length of the locomotive and tender, with red spoked wheels and mechanical rods visible.",
+    "description_view_2": "Rear view highlighting the back of the coal tender and the coupling area.",
+    "description_view_3": "Opposite side view showing the same length and wheel arrangement as view 1, with similar mechanical details.",
+    "category": "train",
+    "height": 4.5,
+    "max_dimension": 22.0,
+    "materials": [
+        "steel",
+        "iron",
+        "glass",
+        "rubber",
+        "paint",
+        "coal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.03,
+        0.02,
+        0.03,
+        0.05,
+        0.02
+    ],
+    "mass": 90000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "door",
+        "lever",
+        "headlamp",
+        "coupling"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "steam locomotive",
+    "attribute_number_of_carriages": 2,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end of the operator's cab",
+    "attribute_window_arrangement": "small windows only in the operator's cab",
+    "uid": "39bf54a4d41b472688dde420c82960fe",
+    "near_synsets": {
+        "steam_locomotive.n.01": 0.455955178723434,
+        "train.n.01": 0.4897834787855145,
+        "locomotive.n.01": 0.4942530299247611,
+        "diesel_locomotive.n.01": 0.5015666782382099,
+        "traction_engine.n.01": 0.5016012935862688,
+        "train.n.05": -1000.0,
+        "string.n.04": -1000.0,
+        "gearing.n.01": -1000.0,
+        "train.n.04": -1000.0,
+        "caravan.n.01": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/39bf54a4d41b472688dde420c82960fe",
+        "creator_username": "david.gray",
+        "creator_display_name": "David Gray",
+        "creator_profile_url": "https://sketchfab.com/david.gray"
+    },
+    "filename": "std_39bf54a4d41b472688dde420c82960fe.glb",
+    "length": 22.3180570602417,
+    "width": 4.0068888664245605
+}

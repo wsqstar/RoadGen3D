@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a Soviet-era Russian ambulance van, primarily white with bold red stripes and medical insignia. The vehicle features a blue emergency light and siren mounted on the roof, with prominent red cross symbols on the sides and rear. The side panels display Cyrillic text indicating 'Emergency Medical Service' and the number '03', a common emergency number in Russia. The van has large windows along both sides, a front windshield, and a rear compartment with visible access doors. The wheels are black with silver hubcaps, and the overall design is utilitarian, optimized for rapid medical response and patient transport. The rear compartment is likely equipped for medical equipment and stretcher access.",
+    "description": "A white and red Russian ambulance van with blue emergency lights, red cross symbols, and Cyrillic medical signage, designed for emergency response and patient transport.",
+    "description_view_0": "Front view showing the windshield, blue emergency light, red stripes, and medical insignia on the hood.",
+    "description_view_1": "Left side view displaying the full length of the van, large windows, red cross, Cyrillic text, and the number '03'.",
+    "description_view_2": "Rear view highlighting the rear compartment doors, red cross symbol, and rear emergency markings.",
+    "description_view_3": "Right side view similar to the left, with windows, red cross, Cyrillic text, and the number '03'.",
+    "category": "ambulance",
+    "height": 2.2,
+    "max_dimension": 5.2,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.12,
+        0.08,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "mass": 2600,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "wheel",
+        "emergency light",
+        "siren",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "blue",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.18,
+        0.02,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.38,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_emergency_light_bar": true,
+    "attribute_ambulance_signage": "Cyrillic '\u0421\u043a\u043e\u0440\u0430\u044f \u041c\u0435\u0434\u0438\u0446\u0438\u043d\u0441\u043a\u0430\u044f \u041f\u043e\u043c\u043e\u0449\u044c', red cross, and '03' emergency number",
+    "attribute_medical_cross_symbol": true,
+    "attribute_siren": true,
+    "attribute_rear_compartment_doors": "two hinged doors",
+    "uid": "c4d356968b8046249da720d73206e699",
+    "near_synsets": {
+        "ambulance.n.01": 0.4879102844093168,
+        "funny_wagon.n.01": 0.5562650092247496,
+        "police_van.n.01": 0.5677705587224886,
+        "medical_evacuation.n.01": 0.5801925584889351,
+        "paramedic.n.01": 0.5818830356381428
+    },
+    "synset": "ambulance.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c4d356968b8046249da720d73206e699",
+        "creator_username": "grox777",
+        "creator_display_name": "Yo.Ri",
+        "creator_profile_url": "https://sketchfab.com/grox777"
+    },
+    "filename": "std_c4d356968b8046249da720d73206e699.glb",
+    "length": 4.962075233459473,
+    "width": 1.5392040014266968
+}

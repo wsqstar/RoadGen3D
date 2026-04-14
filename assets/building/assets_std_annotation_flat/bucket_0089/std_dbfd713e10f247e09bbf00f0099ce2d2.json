@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a robust metal gate flanked by two large, rectangular stone pillars. The gate features vertical bars topped with pointed spear-like finials, providing both security and a decorative touch. One section of the gate appears to be a swinging door, while the other is a fixed panel, both anchored between the pillars. The lower portion of the swinging section is reinforced with a solid metal plate, adding strength and preventing passage at ground level. The entire structure is finished in a dark, matte color, giving it a classic and imposing appearance suitable for urban or residential entryways. The design emphasizes both functionality and deterrence, with its sharp finials and solid construction.",
+    "description": "A dark metal gate with pointed finials, set between two large stone pillars, featuring a swinging door and reinforced lower panel.",
+    "description_view_0": "Front angled view showing both the swinging gate section and the fixed panel, with prominent stone pillars and pointed finials.",
+    "description_view_1": "Side view highlighting the thickness of the stone pillar and the alignment of the vertical bars.",
+    "description_view_2": "Rear angled view displaying the back of the gate, the solid lower panel, and the arrangement of the pillars.",
+    "description_view_3": "Opposite side view focusing on the other stone pillar and the spear-tipped bars.",
+    "category": "gate",
+    "height": 2.0,
+    "max_dimension": 3.2,
+    "materials": [
+        "steel",
+        "stone",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "gate door",
+        "hinge",
+        "latch"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "dark gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_gate_type": "swing gate",
+    "attribute_opening_mechanism": "manual swing",
+    "attribute_decorative_elements": [
+        "spikes",
+        "finials"
+    ],
+    "attribute_locking_system": "latch",
+    "attribute_surrounding_structure": "stone pillars",
+    "uid": "dbfd713e10f247e09bbf00f0099ce2d2",
+    "near_synsets": {
+        "portcullis.n.01": 0.4724057413904166,
+        "gate.n.01": 0.4853573971879384,
+        "lock-gate.n.01": 0.4920057723904173,
+        "hinging_post.n.01": 0.4943510249524186,
+        "gateway.n.01": 0.4948630527458923,
+        "gate.n.03": -1000.0,
+        "gate.n.02": -1000.0,
+        "gate.n.04": -1000.0
+    },
+    "synset": "gate.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dbfd713e10f247e09bbf00f0099ce2d2",
+        "creator_username": "zapantap",
+        "creator_display_name": "Prince Zapanta",
+        "creator_profile_url": "https://sketchfab.com/zapantap"
+    },
+    "filename": "std_dbfd713e10f247e09bbf00f0099ce2d2.glb",
+    "length": 0.3129071891307831,
+    "width": 2.797513723373413
+}

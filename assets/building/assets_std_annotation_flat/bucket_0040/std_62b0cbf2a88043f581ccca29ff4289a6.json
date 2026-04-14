@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a stylized, blocky airplane with a light gray fuselage and straight, rectangular wings featuring orange-tipped edges. The propeller is mounted at the nose and consists of four black blades with orange tips. The cockpit is centrally located and appears to be open, with a white seat and a red interior. The tail section is upright with a vertical stabilizer, decorated with red and black markings. The wings display simple insignia, and the underside of the wings shows blue elements that may represent landing gear or structural supports.",
+    "description": "A blocky, light gray airplane with straight orange-tipped wings, a nose-mounted propeller, and a central open cockpit with a red seat.",
+    "description_view_0": "Side view showing the propeller, open cockpit, and upright tail with red and black markings.",
+    "description_view_1": "Rear view highlighting the full wingspan, blue elements under the wings, and the tail's vertical stabilizer.",
+    "description_view_2": "Opposite side view with clear visibility of the cockpit, propeller, and tail details.",
+    "description_view_3": "Front view focusing on the four-bladed propeller, cockpit, and symmetrical wing design with visible insignia.",
+    "category": "airplane",
+    "height": 0.6,
+    "max_dimension": 3.2,
+    "materials": [
+        "plastic",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 6,
+    "movable": true,
+    "required_force": 1765,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "cockpit",
+        "seat",
+        "landing gear"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "orange",
+        "black",
+        "red",
+        "white",
+        "blue"
+    ],
+    "colors_composition": [
+        0.6,
+        0.08,
+        0.1,
+        0.07,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, straight rectangular wings with no visible dihedral or winglets.",
+    "attribute_engine_type": "Single nose-mounted propeller engine (piston type implied by propeller).",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "Fixed landing gear with two main units under the wings and a tailwheel.",
+    "attribute_cockpit_placement": "Mid-fuselage, open single-seat cockpit with a visible seat and no enclosed canopy.",
+    "uid": "62b0cbf2a88043f581ccca29ff4289a6",
+    "near_synsets": {
+        "airplane.n.01": 0.4951659679594815,
+        "aircraft.n.01": 0.5096183309317407,
+        "propeller_plane.n.01": 0.5140913827428991,
+        "monoplane.n.01": 0.5225480527803523,
+        "biplane.n.01": 0.5303878123259713
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/62b0cbf2a88043f581ccca29ff4289a6",
+        "creator_username": "thecommonpeople",
+        "creator_display_name": "thecommonpeople",
+        "creator_profile_url": "https://sketchfab.com/thecommonpeople"
+    },
+    "filename": "std_62b0cbf2a88043f581ccca29ff4289a6.glb",
+    "length": 1.278132438659668,
+    "width": 1.7893856167793274
+}

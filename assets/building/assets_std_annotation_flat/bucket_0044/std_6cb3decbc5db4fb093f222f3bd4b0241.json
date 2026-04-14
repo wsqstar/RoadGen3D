@@ -1,0 +1,105 @@
+{
+    "description_long": "This object consists of a small cylindrical glass vial with a narrow neck and a separate, elongated syringe featuring a plunger and a fine needle. The vial is capped and appears to be designed for storing liquid medicine, while the syringe is equipped with a ring at the top for finger placement and a transparent barrel for measuring dosage. The needle is thin and sharp, suitable for precise injections. The glass vial is clear, allowing visibility of its contents, and the syringe has measurement markings along its barrel. Both components are typically found together in medical settings for the administration of injectable medications. The overall design is utilitarian, prioritizing sterility and ease of use.",
+    "description": "A clear glass vial paired with a transparent syringe featuring a fine needle and measurement markings, designed for injectable medicine.",
+    "description_view_0": "The view shows the syringe and vial aligned vertically, highlighting the needle's sharp tip and the cylindrical shape of the vial.",
+    "description_view_1": "This side view displays the syringe and vial separated, revealing the ring at the top of the syringe and the measurement markings on its barrel.",
+    "description_view_2": "The rear view presents the back of the vial and syringe, emphasizing the symmetry and the capped end of the vial.",
+    "description_view_3": "Another side view similar to view 1, showing the syringe and vial side by side, with clear visibility of the syringe's ring and transparent barrel.",
+    "category": "medicine",
+    "height": 0.15,
+    "max_dimension": 0.18,
+    "materials": [
+        "glass",
+        "plastic",
+        "metal",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 0.03,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "injectable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "plunger",
+        "needle",
+        "cap",
+        "barrel",
+        "ring"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "clear",
+        "white",
+        "silver",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.1,
+    "surface_finish": "smooth",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.3,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "group",
+    "attribute_packaging_type": "vial",
+    "attribute_label_text": "",
+    "attribute_brand_logo": "none",
+    "attribute_dosage_form": "injection",
+    "attribute_tamper-evident_seal": false,
+    "uid": "6cb3decbc5db4fb093f222f3bd4b0241",
+    "near_synsets": {
+        "syringe.n.01": 0.47606522797070905,
+        "phial.n.01": 0.4904856227765461,
+        "injection.n.03": 0.5004604925501609,
+        "pill_bottle.n.01": 0.505407673751389,
+        "autoinjector.n.01": 0.5101500296814746,
+        "medicine.n.02": -1000.0,
+        "music.n.05": -1000.0,
+        "medicine.n.03": -1000.0,
+        "medicine.n.01": -1000.0
+    },
+    "synset": "medicine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6cb3decbc5db4fb093f222f3bd4b0241",
+        "creator_username": "twilightfox",
+        "creator_display_name": "TwilightFox",
+        "creator_profile_url": "https://sketchfab.com/twilightfox"
+    },
+    "filename": "std_6cb3decbc5db4fb093f222f3bd4b0241.glb",
+    "length": 0.03146936558187008,
+    "width": 0.053296638652682304
+}

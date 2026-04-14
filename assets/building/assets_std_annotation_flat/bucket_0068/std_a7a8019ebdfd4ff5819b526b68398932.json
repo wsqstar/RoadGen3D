@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a large, rectangular green dumpster with a slanted, ribbed black plastic lid that covers the entire top. The body is made of metal, showing signs of rust, dirt, and weathering, especially on the sides and rear. The front features a white recycling label with green text and a recycling symbol, indicating its use for waste management. The dumpster sits on four small black wheels, allowing for mobility, and has metal bar handles on the sides for maneuvering. The lid appears to be hinged at the back, allowing it to be lifted from the front. This type of dumpster is commonly found in urban environments for collecting large volumes of waste or recyclables.",
+    "description": "A large green metal dumpster with a slanted black ribbed lid, weathered exterior, side handles, and wheels for mobility.",
+    "description_view_0": "Side view showing the slanted black lid, green metal body with rust patches, and two small wheels at the base.",
+    "description_view_1": "Front view displaying the recycling label, the full width of the ribbed black lid, and the front-facing handles.",
+    "description_view_2": "Opposite side view similar to view 0, highlighting the slanted lid and weathered green metal surface.",
+    "description_view_3": "Rear view showing a plain, rusted green metal surface with no labels, and the back edge of the black lid.",
+    "category": "dumpster",
+    "height": 1.4,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 250,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "handle",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "white",
+        "rust-brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "hinged, slanted, single-section ribbed plastic lid, no visible locking mechanism",
+    "attribute_wheel_presence": true,
+    "attribute_handle_design": "two straight metal bar handles on each side near the top edge",
+    "attribute_warning_labels": [
+        "white rectangular label with green recycling symbol and text on the front"
+    ],
+    "attribute_placement_location": "outdoor commercial area or residential alley",
+    "uid": "a7a8019ebdfd4ff5819b526b68398932",
+    "near_synsets": {
+        "dumpster.n.01": 0.43390249642108897,
+        "garbage.n.03": 0.5171720196120917,
+        "garbage_truck.n.01": 0.5253782790730985,
+        "recycling_bin.n.01": 0.5340871476993329,
+        "scrapheap.n.02": 0.5416157581469087
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a7a8019ebdfd4ff5819b526b68398932",
+        "creator_username": "JohnDoe2311",
+        "creator_display_name": "John Doe",
+        "creator_profile_url": "https://sketchfab.com/JohnDoe2311"
+    },
+    "filename": "std_a7a8019ebdfd4ff5819b526b68398932.glb",
+    "length": 1.3189748525619507,
+    "width": 2.3041436672210693
+}

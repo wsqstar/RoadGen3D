@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a large, cylindrical bomb with a robust metallic body, featuring several parallel tubes or canisters secured along its length. The main body is reinforced with metal bands and has a slightly tapered nose, likely for aerodynamic stability. The rear section is equipped with a prominent fin assembly and a circular stabilizer ring, which aids in flight control and accuracy. Small protruding elements, possibly mounting brackets or arming mechanisms, are visible along the underside. The surface is predominantly a matte, light gray metal with some blue and green markings, and the overall construction suggests a high-explosive ordnance designed for aerial deployment. The object appears solid and heavy, with no visible openings or receptacles.",
+    "description": "A large, cylindrical metallic bomb with multiple canisters, stabilizing fins, and a matte gray finish, designed for aerial deployment.",
+    "description_view_0": "Side view showing the full length of the bomb, parallel canisters, and stabilizing fins at the rear.",
+    "description_view_1": "Rear view highlighting the circular stabilizer ring and fin assembly, with canisters visible along the top.",
+    "description_view_2": "Opposite side view displaying the bomb's cylindrical body, canisters, and mounting brackets.",
+    "description_view_3": "Front view showing the tapered nose and the arrangement of canisters along the body.",
+    "category": "bomb",
+    "height": 0.45,
+    "max_dimension": 1.8,
+    "materials": [
+        "steel",
+        "aluminum",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 6,
+    "movable": true,
+    "required_force": 3136,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "fin assembly",
+        "mounting brackets",
+        "arming mechanism"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "green"
+    ],
+    "colors_composition": [
+        0.92,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The bomb appears to have an arming mechanism and possibly a fuse assembly at the rear, with no visible external buttons or timers, suggesting mechanical or impact-based detonation.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "103a5a8556a944e8b48dd0c18006740c",
+    "near_synsets": {
+        "cluster_bomb.n.01": 0.4783763624148289,
+        "bomb.n.01": 0.5050287830461866,
+        "general-purpose_bomb.n.01": 0.5123415581560692,
+        "bomber.n.01": 0.5168344522190845,
+        "plastic_bomb.n.01": 0.5237039876189263,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/103a5a8556a944e8b48dd0c18006740c",
+        "creator_username": "seirogan",
+        "creator_display_name": "seirogan",
+        "creator_profile_url": "https://sketchfab.com/seirogan"
+    },
+    "filename": "std_103a5a8556a944e8b48dd0c18006740c.glb",
+    "length": 1.2716402411460876,
+    "width": 0.4293997436761856
+}

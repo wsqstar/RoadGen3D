@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a large, modern ocean liner with a streamlined hull painted black with a red bottom and a white superstructure. The ship features multiple decks, including an open upper deck with lifeboats and recreational areas, and a prominent red and black funnel amidships. Rows of windows and portholes line the hull, indicating numerous passenger cabins. The bow is sharply pointed, while the stern is rounded and tiered, with visible deck levels and railings. The vessel is equipped with lifeboats along both sides and has a bridge structure located near the front of the superstructure.",
+    "description": "A modern ocean liner with a black and red hull, white superstructure, multiple decks, and a prominent red and black funnel.",
+    "description_view_0": "Side view showing the full length of the ship, with the black and red hull, white superstructure, and lifeboats along the deck.",
+    "description_view_1": "Front view highlighting the pointed bow, central funnel, and symmetrical arrangement of decks and lifeboats.",
+    "description_view_2": "Opposite side view mirroring view 0, displaying the hull, superstructure, and lifeboats from the other side.",
+    "description_view_3": "Rear view showing the rounded, tiered stern, multiple deck levels, and the back of the funnel.",
+    "category": "ship",
+    "height": 18,
+    "max_dimension": 345,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 90000000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "lifeboat",
+        "bridge",
+        "funnel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "red",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a long, streamlined profile, sharply pointed bow, and a rounded, tiered stern. The hull is painted black with a red bottom and features rows of portholes and windows along its length. No bulbous bow or visible keels are apparent in the images.",
+    "attribute_superstructure_layout": "The superstructure is white and extends along the central portion of the ship, with multiple decks stacked above the hull. There is a prominent bridge near the bow, a large red and black funnel amidships, and open deck areas with lifeboats and railings. The stern features tiered deck levels.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "lifeboat",
+        "funnel",
+        "bridge",
+        "antenna"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "5cb1c83a38a343779fc8d21102cc1b40",
+    "near_synsets": {
+        "liner.n.04": 0.4920261109169042,
+        "cabin_liner.n.01": 0.5137323001423,
+        "cargo_liner.n.01": 0.5235299269012212,
+        "streamliner.n.01": 0.5269214004072863,
+        "ship.n.01": 0.5288732247774038
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5cb1c83a38a343779fc8d21102cc1b40",
+        "creator_username": "martysansy",
+        "creator_display_name": "martysansy",
+        "creator_profile_url": "https://sketchfab.com/martysansy"
+    },
+    "filename": "std_5cb1c83a38a343779fc8d21102cc1b40.glb",
+    "length": 80.77107238769531,
+    "width": 12.452647686004639
+}

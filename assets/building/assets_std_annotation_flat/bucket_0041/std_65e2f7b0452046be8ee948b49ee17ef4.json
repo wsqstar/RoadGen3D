@@ -1,0 +1,88 @@
+{
+    "description_long": "This is a large, rectangular, industrial-style dumpster with a deep green metal body and a black, split, hinged lid. The lid is partially open, revealing a spacious, empty interior designed to hold significant volumes of waste. The exterior is smooth with subtle paneling and reinforced edges, giving it a robust and utilitarian appearance. The lid consists of two flat sections, each with a ribbed texture for added strength, and is attached to the main body with visible hinges. There are no visible handles, wheels, or warning labels on the exterior. This type of dumpster is commonly found in urban environments for waste collection and management.",
+    "description": "A large green metal dumpster with a split, ribbed black lid, designed for urban waste collection. The lid is hinged and partially open, revealing a spacious interior.",
+    "description_view_0": "Side view showing the open, split black lid and the deep green metal body with reinforced edges.",
+    "description_view_1": "Front view highlighting the wide opening, split lid, and the rectangular shape of the dumpster.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the open lid and the solid, smooth side panel.",
+    "description_view_3": "Rear view displaying the closed, ribbed black lid sections and the solid green back panel.",
+    "category": "dumpster",
+    "height": 1.4,
+    "max_dimension": 2.2,
+    "materials": [
+        "painted_steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 250,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "split, flat, hinged lid with two ribbed plastic sections; no visible locking mechanism",
+    "attribute_wheel_presence": false,
+    "attribute_handle_design": "none",
+    "attribute_warning_labels": [],
+    "attribute_placement_location": "outdoor commercial area",
+    "uid": "65e2f7b0452046be8ee948b49ee17ef4",
+    "near_synsets": {
+        "dumpster.n.01": 0.42779541805842963,
+        "garbage.n.03": 0.5048839146538553,
+        "recycling_bin.n.01": 0.5103071355204243,
+        "garbage_truck.n.01": 0.5216288121138702,
+        "wastepaper_basket.n.01": 0.538675686848585
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/65e2f7b0452046be8ee948b49ee17ef4",
+        "creator_username": "Sargone",
+        "creator_display_name": "Sargone",
+        "creator_profile_url": "https://sketchfab.com/Sargone"
+    },
+    "filename": "std_65e2f7b0452046be8ee948b49ee17ef4.glb",
+    "length": 0.6922915577888489,
+    "width": 1.1253654956817627
+}

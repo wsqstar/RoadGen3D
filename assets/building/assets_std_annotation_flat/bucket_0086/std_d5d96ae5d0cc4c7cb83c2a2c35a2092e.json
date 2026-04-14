@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a military-style half-track vehicle with a camouflage paint scheme, featuring a robust front grille, two large front wheels, and a set of continuous tracks at the rear for enhanced off-road mobility. The open-top cabin has two windshields, a simple dashboard, and seating for several passengers in the rear cargo area, which is surrounded by low metal side panels. The vehicle's body is constructed primarily from metal, with visible rivets and utilitarian design elements, including external storage compartments and a rear-mounted fuel canister. The front end is equipped with round headlights and a prominent bumper, while the rear features a license plate and exposed mechanical components. The tracks and wheels are designed for rugged terrain, making this vehicle suitable for both urban and off-road environments. The overall appearance suggests a historical military transport vehicle, likely from the mid-20th century.",
+    "description": "A military-style half-track vehicle with camouflage paint, open-top cabin, and rear cargo area, featuring both wheels and tracks for rugged mobility.",
+    "description_view_0": "Front view shows the grille, round headlights, and the two large front wheels with the split windshield.",
+    "description_view_1": "Left side view highlights the continuous tracks, open cargo area, and the utilitarian side panels.",
+    "description_view_2": "Rear view reveals the open cargo bed, rear-mounted fuel canister, and the license plate.",
+    "description_view_3": "Right side view displays the tracks, open seating area, and the vehicle's utilitarian structure.",
+    "category": "car",
+    "height": 2.2,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 7000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 35000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "steering wheel",
+        "door",
+        "windshield",
+        "headlight",
+        "wheel",
+        "track",
+        "dashboard",
+        "seat",
+        "fuel canister"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_license_plate": "WH 131353",
+    "attribute_number_of_doors": 2,
+    "attribute_headlight_design": "dual round headlights, symmetrically placed on either side of the front grille",
+    "uid": "d5d96ae5d0cc4c7cb83c2a2c35a2092e",
+    "near_synsets": {
+        "half_track.n.01": 0.43744093954781743,
+        "military_vehicle.n.01": 0.44902295538701803,
+        "reconnaissance_vehicle.n.01": 0.45022092077468606,
+        "armored_car.n.02": 0.4847059599243062,
+        "weapons_carrier.n.01": 0.4913398591607167,
+        "car.n.03": -1000.0,
+        "car.n.04": -1000.0,
+        "car.n.01": -1000.0,
+        "car.n.02": -1000.0,
+        "cable_car.n.01": -1000.0
+    },
+    "synset": "cable_car.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d5d96ae5d0cc4c7cb83c2a2c35a2092e",
+        "creator_username": "ezbreneman",
+        "creator_display_name": "ezbreneman",
+        "creator_profile_url": "https://sketchfab.com/ezbreneman"
+    },
+    "filename": "std_d5d96ae5d0cc4c7cb83c2a2c35a2092e.glb",
+    "length": 5.426694869995117,
+    "width": 2.2890148162841797
+}

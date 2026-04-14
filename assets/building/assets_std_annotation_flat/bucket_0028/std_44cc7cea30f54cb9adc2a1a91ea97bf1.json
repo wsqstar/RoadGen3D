@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a fantastical, steampunk-inspired airplane with a metallic bronze fuselage and intricate mechanical detailing. Its most striking feature is a pair of large, translucent wings with visible metallic framework, reminiscent of a dragonfly or bat, attached mid-fuselage and extending outward with a slight downward dihedral. The nose is rounded and features a prominent gear-like structure, while the rear includes a mechanical tail with additional fin-like appendages. The body is adorned with gears, rivets, and pipes, suggesting a complex internal mechanism. The cockpit is situated near the front, enclosed, and appears to be a single-seat design with a small canopy.",
+    "description": "A bronze, steampunk-style airplane with large translucent wings, mechanical details, and a single enclosed cockpit near the front.",
+    "description_view_0": "Side view showing the elongated bronze fuselage, large translucent wings, and mechanical tail details.",
+    "description_view_1": "Front view highlighting the rounded nose, gear-like front structure, and the full wingspan with downward dihedral.",
+    "description_view_2": "Opposite side view revealing the symmetrical wing and tail design, with visible gears and pipes.",
+    "description_view_3": "Rear view displaying the tail fin structure, mechanical tail appendages, and the attachment points of the wings.",
+    "category": "airplane",
+    "height": 1.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 3430,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "wings",
+        "tail fin",
+        "engine compartment",
+        "control levers"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "bronze",
+        "white",
+        "gold"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "glossy",
+    "reflectivity": 0.5,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.1,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing configuration with large, translucent, bat-like wings featuring a slight downward dihedral and visible metallic framework; no winglets or swept geometry.",
+    "attribute_engine_type": "Single visible piston-style engine integrated into the nose section.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and mechanical fin-like appendages.",
+    "attribute_landing_gear_type": "No visible landing gear present in the images.",
+    "attribute_cockpit_placement": "Forward-mounted, single-seat enclosed cockpit with a small canopy integrated into the fuselage.",
+    "uid": "44cc7cea30f54cb9adc2a1a91ea97bf1",
+    "near_synsets": {
+        "aircraft.n.01": 0.5149550840870566,
+        "biplane.n.01": 0.5257443408303926,
+        "airplane.n.01": 0.5425137967712182,
+        "monoplane.n.01": 0.5436275295927393,
+        "airplane_mechanics.n.01": 0.5495171838626182
+    },
+    "synset": "airplane_mechanics.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/44cc7cea30f54cb9adc2a1a91ea97bf1",
+        "creator_username": "FlynnFord",
+        "creator_display_name": "FlynnFord",
+        "creator_profile_url": "https://sketchfab.com/FlynnFord"
+    },
+    "filename": "std_44cc7cea30f54cb9adc2a1a91ea97bf1.glb",
+    "length": 2.916882038116455,
+    "width": 2.65734601020813
+}

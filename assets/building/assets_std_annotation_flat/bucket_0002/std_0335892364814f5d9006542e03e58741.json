@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a medium-sized rectangular cardboard parcel, sealed with a wide strip of dark duct tape running lengthwise across the top. The box features prominent black printed symbols, including a large recycling logo, a barcode, and caution markings, as well as the text 'PARCEL SERVICE' on the side. The cardboard surface shows realistic wear, smudges, and some dirt, suggesting it has been handled and transported. The box is constructed from corrugated cardboard, likely with air inside and possibly containing lightweight goods. The tape appears slightly reflective and textured, contrasting with the matte, fibrous look of the cardboard. The overall appearance is typical of packages used in urban delivery and shipping scenarios.",
+    "description": "A worn, rectangular cardboard parcel sealed with dark tape, featuring recycling and caution symbols, barcodes, and 'PARCEL SERVICE' text.",
+    "description_view_0": "The front view shows the end of the box with a large recycling symbol, barcode, and the tape running down the center.",
+    "description_view_1": "This side view displays the full 'PARCEL SERVICE' text, a large recycling logo, and a caution label, with the tape visible on top.",
+    "description_view_2": "The opposite end view highlights the recycling symbol, tape, and small triangular warning icons near the bottom edge.",
+    "description_view_3": "The rear side view shows the 'PARCEL SERVICE' text, caution label, and barcode, with the tape running along the top.",
+    "category": "parcels",
+    "height": 0.35,
+    "max_dimension": 0.8,
+    "materials": [
+        "corrugated_cardboard",
+        "adhesive_tape",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 2.5,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "tape_seal",
+        "box_flaps"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 4000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "",
+    "attribute_car_model": "",
+    "attribute_building_number": "",
+    "attribute_storefront_signage": "PARCEL SERVICE",
+    "attribute_street_name": "",
+    "uid": "0335892364814f5d9006542e03e58741",
+    "near_synsets": {
+        "parcel_post.n.01": 0.5179441829357906,
+        "mail.n.01": 0.5393847081246337,
+        "package.n.02": 0.5453554910552684,
+        "pack.n.03": 0.5538166770081099,
+        "post.n.11": 0.5539259270826025,
+        "package.n.01": -1000.0,
+        "tract.n.01": -1000.0,
+        "parcel.n.02": -1000.0
+    },
+    "synset": "package.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0335892364814f5d9006542e03e58741",
+        "creator_username": "hopefuldesign",
+        "creator_display_name": "hopefuldesign",
+        "creator_profile_url": "https://sketchfab.com/hopefuldesign"
+    },
+    "filename": "std_0335892364814f5d9006542e03e58741.glb",
+    "length": 0.4927363097667694,
+    "width": 0.8471215069293976
+}

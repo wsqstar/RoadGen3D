@@ -1,0 +1,91 @@
+{
+    "description_long": "This object is a spiked black metal bomb resembling a classic medieval mace, featuring a spherical core with numerous sharp, evenly distributed conical spikes protruding from its surface. The bomb is attached to a long, cylindrical handle, which appears to be made of dark, polished wood or metal, providing leverage for throwing or swinging. The spikes are symmetrically arranged, giving the bomb a menacing, star-like appearance. At the top of the sphere, there is a small loop or ring, likely intended for attachment or carrying. The surface of the bomb is hard and glossy, reflecting light in a way that suggests a metallic composition. No visible wires, buttons, or timer displays are present, and the object lacks any warning labels or hazard symbols.",
+    "description": "A black, spiked metal bomb with a long handle and a small loop at the top, featuring a glossy, hard surface and a menacing, star-like appearance.",
+    "description_view_0": "The bomb is seen at an angle, highlighting the spherical core, sharp spikes, and the full length of the handle.",
+    "description_view_1": "A direct front view shows the symmetrical arrangement of spikes and the small loop at the top, with the handle mostly hidden.",
+    "description_view_2": "The bomb is viewed from the opposite side, again showing the spikes and handle, with the loop less visible.",
+    "description_view_3": "A rear view focuses on the handle's end and the back of the spiked sphere, with the spikes radiating outward.",
+    "category": "bomb",
+    "height": 0.45,
+    "max_dimension": 0.65,
+    "materials": [
+        "steel",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 4.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 45,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "throwable",
+        "grippable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "spiked sphere",
+        "loop"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark brown"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "glossy",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "No visible detonation mechanism; the object appears to be a contact or impact-activated device, suggested by its spiked exterior.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "9448b6c235b5456e9ad261d0259087a9",
+    "near_synsets": {
+        "pipe_bomb.n.01": 0.5013475764048219,
+        "bomb.n.01": 0.5153712340386066,
+        "plastic_bomb.n.01": 0.5335640044359681,
+        "cherry_bomb.n.01": 0.5343346057839982,
+        "briefcase_bomb.n.01": 0.5353764423549328,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9448b6c235b5456e9ad261d0259087a9",
+        "creator_username": "korkigames",
+        "creator_display_name": "korkigames",
+        "creator_profile_url": "https://sketchfab.com/korkigames"
+    },
+    "filename": "std_9448b6c235b5456e9ad261d0259087a9.glb",
+    "length": 1.335506558418274,
+    "width": 0.4477629065513611
+}

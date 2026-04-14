@@ -1,0 +1,101 @@
+{
+    "description_long": "This drone features a robust, angular body with a central fuselage and two extended arms, each ending in a rectangular engine or thruster module. The main body is predominantly gray with bold red accents on the top and rear, and blue highlights on the sides of the thrusters. The front section is characterized by a prominent red grille or sensor array, while the rear has a set of window-like panels and additional red detailing. The arms are slightly arched, giving the drone a wide, stable stance, and the thruster modules are detailed with blue and red elements, suggesting propulsion or lighting features. The overall design is sleek and utilitarian, suitable for urban surveillance, delivery, or patrol tasks. The materials and finish suggest durability and a focus on function over ornamentation.",
+    "description": "A gray, angular drone with red and blue highlights, featuring a central body and two wide, arched arms ending in rectangular thruster modules. Its design is robust and functional, with prominent sensor and propulsion details.",
+    "description_view_0": "Front view shows the red grille or sensor array, central body, and the two arms extending outward with blue-lit thruster ends.",
+    "description_view_1": "Side view highlights the angular profile, red top panel, and the thickness of the arms and thruster modules.",
+    "description_view_2": "Rear view reveals window-like panels, blue rear detail, and red thruster ends, with the arms arching outward.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the same angular body and arm structure with visible red and blue highlights.",
+    "category": "drone",
+    "height": 0.4,
+    "max_dimension": 1.2,
+    "materials": [
+        "plastic",
+        "aluminum",
+        "glass",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 8,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "thruster module",
+        "sensor array",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 0,
+    "attribute_rotor_configuration": "none",
+    "attribute_landing_gear_type": "none",
+    "attribute_camera_presence": false,
+    "attribute_propeller_guard_presence": false,
+    "uid": "44c83955847648b98864d40e93f9796e",
+    "near_synsets": {
+        "drone.n.04": 0.5423472869378082,
+        "aircraft.n.01": 0.5895847981907071,
+        "delta_wing.n.01": 0.5977061749467132,
+        "rotor.n.03": 0.5984639403652119,
+        "orthopter.n.01": 0.599648457357718,
+        "drone.n.05": -1000.0,
+        "drone.n.01": -1000.0,
+        "dawdler.n.01": -1000.0,
+        "monotone.n.01": -1000.0
+    },
+    "synset": "drone.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/44c83955847648b98864d40e93f9796e",
+        "creator_username": "gstarr",
+        "creator_display_name": "Trekkiestarr",
+        "creator_profile_url": "https://sketchfab.com/gstarr"
+    },
+    "filename": "std_44c83955847648b98864d40e93f9796e.glb",
+    "length": 1.1535983681678772,
+    "width": 1.5834400057792664
+}

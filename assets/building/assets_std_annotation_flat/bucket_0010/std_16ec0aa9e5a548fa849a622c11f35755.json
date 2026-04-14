@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a large, rectangular, industrial-style dumpster with a weathered blue metal body and a ribbed, dark brown lid. The lid appears to be split into two sections and is made of heavy-duty plastic or metal, showing signs of wear and rust. The front face features multiple warning labels, graffiti, and a prominent 'NO BABIES!' message, adding to its urban, well-used appearance. The dumpster sits on four black caster wheels, allowing for mobility, and the sides and back are also marked with graffiti and scuff marks. There are no visible handles, but the structure is robust and designed for outdoor waste collection. The overall look suggests it is intended for placement in alleys, behind commercial buildings, or in public service areas.",
+    "description": "A large, blue, weathered metal dumpster with a ribbed, split dark lid, graffiti, warning labels, and caster wheels for mobility.",
+    "description_view_0": "Front view showing the ribbed lid, two yellow warning labels, graffiti, and the 'NO BABIES!' message.",
+    "description_view_1": "Left side view highlighting the plain blue metal side with rust spots and two visible wheels.",
+    "description_view_2": "Rear view displaying a mostly unmarked blue metal surface with rust and minor graffiti, and no labels.",
+    "description_view_3": "Right side view showing blue metal with graffiti and rust, and two visible wheels.",
+    "category": "dumpster",
+    "height": 1.3,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 180,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 10,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "brown",
+        "black",
+        "yellow",
+        "green"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "split, ribbed, flat lid made of plastic or metal, two sections, no visible locking mechanism",
+    "attribute_wheel_presence": true,
+    "attribute_handle_design": "none",
+    "attribute_warning_labels": [
+        "yellow rectangular caution labels with black text on the front",
+        "white rectangular label with black text in the center front"
+    ],
+    "attribute_placement_location": "outdoor commercial area, alley, or public waste collection point",
+    "uid": "16ec0aa9e5a548fa849a622c11f35755",
+    "near_synsets": {
+        "dumpster.n.01": 0.46698855456285526,
+        "garbage_truck.n.01": 0.5385724408926069,
+        "garbage.n.03": 0.5388505890311553,
+        "recycling_bin.n.01": 0.5469493627984541,
+        "scrapheap.n.02": 0.5472844215133454
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/16ec0aa9e5a548fa849a622c11f35755",
+        "creator_username": "zeneric9",
+        "creator_display_name": "Zeneric",
+        "creator_profile_url": "https://sketchfab.com/zeneric9"
+    },
+    "filename": "std_16ec0aa9e5a548fa849a622c11f35755.glb",
+    "length": 0.8271660208702087,
+    "width": 1.5516748428344727
+}

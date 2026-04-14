@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a dark green, twin-engine military airplane with a streamlined fuselage and a classic World War II-era design. The wings are straight and mid-mounted, each featuring a white cross insignia, and the engines are mounted on the wings with visible propellers. The cockpit is positioned at the front of the fuselage and is enclosed with a multi-panel canopy, suggesting space for multiple crew members. The tail section features a single vertical stabilizer and horizontal stabilizers, forming a conventional tail design. The landing gear is visible and consists of two main wheels under the wings and a smaller tail wheel, indicating a taildragger configuration. The airplane's surface is mostly matte with some insignia and markings, and the overall build suggests a metal construction typical of mid-20th-century military aircraft.",
+    "description": "A dark green, twin-propeller military airplane with mid-mounted straight wings, a conventional tail, and visible landing gear. The cockpit is enclosed and positioned at the front, with white cross insignia on the wings and fuselage.",
+    "description_view_0": "Front view showing the twin propellers, main landing gear, and the forward-positioned cockpit canopy.",
+    "description_view_1": "Left-side oblique view highlighting the wing insignia, engine nacelles, and the tail section with its vertical stabilizer.",
+    "description_view_2": "Rear view displaying the full wingspan, tail assembly, and the symmetry of the horizontal and vertical stabilizers.",
+    "description_view_3": "Right-side oblique view showing the cockpit, both engines, and the taildragger landing gear configuration.",
+    "category": "airplane",
+    "height": 3.5,
+    "max_dimension": 16.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "steel",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.05,
+        0.05,
+        0.08,
+        0.02
+    ],
+    "mass": 5400,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 54000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "cockpit canopy",
+        "landing gear",
+        "door",
+        "control surfaces"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "white",
+        "yellow",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing configuration with straight wings and no visible winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "Twin piston engines mounted on the wings, each with a visible propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Taildragger configuration with two main wheels under the wings and a single tail wheel, all fixed and non-retractable.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a multi-panel canopy, likely accommodating multiple crew members.",
+    "uid": "7fde0575493d41df913eff0cfc6ae74a",
+    "near_synsets": {
+        "airplane.n.01": 0.49503837361803255,
+        "aircraft.n.01": 0.5033822068234591,
+        "navigation_light.n.01": 0.5174232920474204,
+        "propeller_plane.n.01": 0.5231462507853953,
+        "propjet.n.01": 0.5267658957836501
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7fde0575493d41df913eff0cfc6ae74a",
+        "creator_username": "pasquill",
+        "creator_display_name": "pasquill",
+        "creator_profile_url": "https://sketchfab.com/pasquill"
+    },
+    "filename": "std_7fde0575493d41df913eff0cfc6ae74a.glb",
+    "length": 6.9128453731536865,
+    "width": 9.249764442443848
+}

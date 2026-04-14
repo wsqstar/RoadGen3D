@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a large, cylindrical metal barrel with a weathered and industrial appearance. The barrel is divided into three horizontal bands: a rusty red top, a yellow middle section, and a dark brown base, all showing signs of wear and corrosion. The top of the barrel is sealed with a fitted metal lid, which has a small circular cap or bung for access. On one side of the yellow band, there is a prominent black hazard symbol featuring a triangle with an 'X' inside, indicating dangerous or toxic contents. The surface is rough and matte, with visible scratches, rust, and grime, suggesting long-term outdoor or industrial use. The overall construction appears robust, likely intended for storing or transporting hazardous materials in urban or industrial environments.",
+    "description": "A large, weathered metal barrel with red, yellow, and brown bands, sealed with a lid and marked with a hazardous material symbol.",
+    "description_view_0": "The barrel's red, yellow, and brown bands are visible, with the lid and some surface rust apparent but no hazard symbol in view.",
+    "description_view_1": "This view shows the hazard symbol (triangle with 'X') on the yellow band, along with the lid and weathered surface.",
+    "description_view_2": "Similar to view 0, the colored bands and lid are visible, but the hazard symbol is not present on this side.",
+    "description_view_3": "The hazard symbol is again visible on the yellow band, with the lid and surface wear clearly shown.",
+    "category": "barrel or bucket",
+    "height": 0.9,
+    "max_dimension": 0.6,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 35,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "bung"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "yellow",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.25,
+        0.45,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "integrated metal reinforcement bands at top and bottom",
+    "attribute_labeling_or_markings": "hazard symbol (triangle with 'X')",
+    "attribute_placement_location": "industrial",
+    "uid": "349fce1b670140ed93864790a77b125e",
+    "near_synsets": {
+        "barrel.n.02": 0.46844147811071934,
+        "barrel.n.03": 0.4875797242196126,
+        "bucket.n.01": 0.4958541315451711,
+        "barrels.n.01": 0.5049667428684489,
+        "barrel.n.04": 0.5080724056577965,
+        "barrel.n.01": -1000.0,
+        "bucket.n.02": -1000.0,
+        "barrel.n.05": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/349fce1b670140ed93864790a77b125e",
+        "creator_username": "challe3d",
+        "creator_display_name": "challe3d",
+        "creator_profile_url": "https://sketchfab.com/challe3d"
+    },
+    "filename": "std_349fce1b670140ed93864790a77b125e.glb",
+    "length": 0.604934811592102,
+    "width": 0.6049349904060364
+}

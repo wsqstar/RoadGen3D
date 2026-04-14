@@ -1,0 +1,87 @@
+{
+    "description_long": "This is a large, rectangular, industrial-style metal container with a weathered red finish and visible signs of wear and chipping. The sides are reinforced with vertical metal ribs, and the front and back feature a grid-like pattern for structural support. One long side displays a prominent white star emblem, while the opposite side has a geometric triangular symbol, both painted onto the surface. The top is flat and ribbed, suggesting it could support weight or be stacked with similar containers. The container appears to be sealed, with no visible handles or access points, and is likely used for storage or transport of goods in urban or industrial environments.",
+    "description": "A large, weathered red metal container with ribbed sides and painted emblems, designed for industrial storage or transport.",
+    "description_view_0": "End view showing a grid-like metal pattern with no visible openings or handles.",
+    "description_view_1": "Long side view featuring a large white star emblem and vertical ribbing.",
+    "description_view_2": "Opposite end view, identical to view 0, with a grid-like metal pattern.",
+    "description_view_3": "Long side view with a geometric triangular symbol and vertical ribbing.",
+    "category": "container",
+    "height": 1.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.03,
+        0.05
+    ],
+    "mass": 950,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "flat fixed top (no visible lid)",
+    "attribute_opening_mechanism": "no opening visible",
+    "attribute_labeling_or_signage": "painted white star emblem on one long side, geometric triangular symbol on the opposite side",
+    "attribute_handles_or_grips": "none",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "8b5a55e3059d41699e4e3aa9c0c1baa4",
+    "near_synsets": {
+        "container.n.01": 0.4386283783188858,
+        "cargo_container.n.01": 0.47770409158575694,
+        "drum.n.04": 0.49155501392053286,
+        "can.n.01": 0.5170090911134184,
+        "barrel.n.02": 0.5193702354008071
+    },
+    "synset": "cargo_container.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8b5a55e3059d41699e4e3aa9c0c1baa4",
+        "creator_username": "Rafael_Oliveira",
+        "creator_display_name": "pbk",
+        "creator_profile_url": "https://sketchfab.com/Rafael_Oliveira"
+    },
+    "filename": "std_8b5a55e3059d41699e4e3aa9c0c1baa4.glb",
+    "length": 1.0625481605529785,
+    "width": 3.295652389526367
+}

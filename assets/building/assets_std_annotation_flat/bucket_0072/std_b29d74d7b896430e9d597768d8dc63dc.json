@@ -1,0 +1,95 @@
+{
+    "description_long": "This shelter features a robust frame constructed from reinforced concrete columns and beams, supporting a pitched gabled roof made of exposed wooden rafters. The structure is elevated on concrete footings, with a partial brickwork enclosure at the base, suggesting a semi-open design. The roof is open, lacking any covering material, which exposes the wooden rafters and the interior space below. The shelter includes a raised platform floor, also made of concrete, and a small annexed section with additional brickwork, possibly for storage or utilities. The open sides and absence of doors or windows make it accessible from multiple directions, while the solid construction materials indicate durability and permanence. This type of shelter is commonly found in parks, public spaces, or as a utility structure in urban environments.",
+    "description": "A semi-open, elevated shelter with a concrete frame, brick base, and exposed wooden gabled roof rafters. The structure is durable, accessible from multiple sides, and features a raised platform floor.",
+    "description_view_0": "View 0 shows the shelter from a side angle, highlighting the open gabled roof, concrete columns, and the annexed brick section on the left.",
+    "description_view_1": "View 1 presents a frontal perspective, emphasizing the open entryway, the arrangement of concrete columns, and the partial brick enclosure at the base.",
+    "description_view_2": "View 2 displays the opposite side, revealing the full length of the brick base and the open roof structure, with the annexed section on the right.",
+    "description_view_3": "View 3 offers a rear view, focusing on the brickwork enclosure, the raised platform, and the open framework of the roof.",
+    "category": "shelter",
+    "height": 4.0,
+    "max_dimension": 8.0,
+    "materials": [
+        "concrete",
+        "wood",
+        "brick",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.2,
+        0.2,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "shelter",
+        "platform",
+        "shade"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "brown",
+        "light gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.25,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gabled roof with exposed wooden rafters",
+    "attribute_entryway_design": "open passage with concrete columns and no doors",
+    "attribute_support_structure": "reinforced concrete columns and beams with brick base",
+    "attribute_signage": "none",
+    "attribute_transparency": "fully opaque",
+    "uid": "b29d74d7b896430e9d597768d8dc63dc",
+    "near_synsets": {
+        "shelter.n.02": 0.4930491921377202,
+        "shelter.n.01": 0.49325161383263444,
+        "shed.n.01": 0.5384029465120963,
+        "gazebo.n.01": 0.5395915748955499,
+        "half-dugout.n.01": 0.5396037028098802,
+        "protection.n.04": -1000.0,
+        "tax_shelter.n.01": -1000.0,
+        "shelter.n.05": -1000.0
+    },
+    "synset": "shelter.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b29d74d7b896430e9d597768d8dc63dc",
+        "creator_username": "korzekwa",
+        "creator_display_name": "Eng\u00ba Korzekwa",
+        "creator_profile_url": "https://sketchfab.com/korzekwa"
+    },
+    "filename": "std_b29d74d7b896430e9d597768d8dc63dc.glb",
+    "length": 5.86838436126709,
+    "width": 4.659578084945679
+}

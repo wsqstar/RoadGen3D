@@ -1,0 +1,106 @@
+{
+    "description_long": "This object is a solar energy infrastructure installation featuring several large photovoltaic panels mounted on a flat, stepped platform. The panels are arranged at varying angles, likely to optimize sunlight capture, and are supported by robust frames. The base platform appears to be constructed from concrete or a similar material, with distinct zones marked in blue and gray, possibly indicating different functional or maintenance areas. A black, box-like structure on one side may house electrical components or serve as an inverter enclosure. The installation is labeled with a '2-3\u00b0 Slope To The Rear,' suggesting engineered drainage or water runoff. The overall design is utilitarian, with exposed structural elements and a focus on maximizing solar energy collection.",
+    "description": "A stepped, flat platform supports multiple tilted solar panels, with a black equipment box and marked zones for function or maintenance. The installation is engineered for optimal sunlight capture and drainage.",
+    "description_view_0": "Front view shows three large solar panels at different angles, a black equipment box on the left, and clear labeling of the slope and zones.",
+    "description_view_1": "Side view highlights the stepped platform, the angular arrangement of the panels, and the black box's position relative to the panels.",
+    "description_view_2": "Rear view reveals the backside of the panels, the full extent of the platform, and the equipment box on the far side.",
+    "description_view_3": "Opposite side view emphasizes the single panel on the right, the stepped structure, and the open platform layout.",
+    "category": "solar energy infrastructure",
+    "height": 2.2,
+    "max_dimension": 8.0,
+    "materials": [
+        "glass",
+        "aluminum",
+        "steel",
+        "concrete",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.25,
+        0.15,
+        0.1,
+        0.4,
+        0.05,
+        0.05
+    ],
+    "mass": 4200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "solar panel",
+        "equipment box"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "blue",
+        "white"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "scene",
+    "attribute_panel_orientation": "Panels are tilted at approximately 20-30 degrees, facing away from the labeled front edge, with a fixed orientation.",
+    "attribute_mounting_structure_type": "roof-mounted on a stepped concrete platform with visible metal frames, likely aluminum or steel.",
+    "attribute_electrical_inverter_presence": true,
+    "attribute_cabling_visibility": "not visible",
+    "attribute_array_configuration": "Panels are arranged in a staggered, multi-row configuration with at least four distinct panels, each at a different angle and position on the platform.",
+    "uid": "013cd6ba771a4c0e8bca1e078d810d9e",
+    "near_synsets": {
+        "solar_thermal_system.n.01": 0.5412928163140077,
+        "solar_array.n.01": 0.5474453888826446,
+        "solar_house.n.01": 0.5699585844862085,
+        "suntrap.n.01": 0.5733275970638565,
+        "solar_energy.n.01": 0.5754841610667795,
+        "energy.n.04": -1000.0,
+        "energy.n.01": -1000.0,
+        "energy.n.06": -1000.0,
+        "infrastructure.n.02": -1000.0,
+        "energy.n.03": -1000.0,
+        "infrastructure.n.01": -1000.0,
+        "energy.n.05": -1000.0,
+        "department_of_energy.n.01": -1000.0,
+        "energy.n.02": -1000.0
+    },
+    "synset": "solar_array.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/013cd6ba771a4c0e8bca1e078d810d9e",
+        "creator_username": "brooklynsolarworks",
+        "creator_display_name": "brooklynsolarworks",
+        "creator_profile_url": "https://sketchfab.com/brooklynsolarworks"
+    },
+    "filename": "std_013cd6ba771a4c0e8bca1e078d810d9e.glb",
+    "length": 10.54849624633789,
+    "width": 7.088815689086914
+}

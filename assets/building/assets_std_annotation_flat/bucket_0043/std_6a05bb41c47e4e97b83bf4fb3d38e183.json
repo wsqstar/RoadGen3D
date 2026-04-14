@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a large, cylindrical metal barrel with a weathered red exterior and a wide, white band encircling its midsection. The surface is marred by patches of rust, grime, and dark stains, giving it a distressed, industrial appearance. On one side, there is a faded hazard symbol with the words 'FLAMMABLE SOLID' and a flame icon, indicating it is used for storing dangerous materials. The barrel has a tightly sealed, slightly domed lid with two small, round bungs for filling or emptying contents. There are no visible handles, but the barrel features two horizontal ridges for structural reinforcement. This type of barrel is commonly found in urban or industrial environments, such as construction sites, warehouses, or alleys.",
+    "description": "A weathered red metal barrel with a white band, rust stains, and a flammable warning label, typically used for hazardous material storage.",
+    "description_view_0": "Front view showing the red barrel with a white band and visible rust, no label present.",
+    "description_view_1": "Side view with the white band and more pronounced rust patches, no visible label.",
+    "description_view_2": "View displaying the flammable solid warning label and flame icon on the white band.",
+    "description_view_3": "Rear view with the white band and rust, no label or markings visible.",
+    "category": "barrel or bucket",
+    "height": 0.9,
+    "max_dimension": 0.6,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.06,
+        0.02
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "bung"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "integrated metal reinforcement rings at top, middle, and bottom",
+    "attribute_labeling_or_markings": "flammable solid warning label with flame icon",
+    "attribute_placement_location": "industrial",
+    "uid": "6a05bb41c47e4e97b83bf4fb3d38e183",
+    "near_synsets": {
+        "barrel.n.02": 0.4763747558665826,
+        "barrel.n.03": 0.4967935008771799,
+        "beer_barrel.n.01": 0.5052470191233253,
+        "barrel.n.04": 0.518171877733499,
+        "barrels.n.01": 0.5206305384722231,
+        "bucket.n.01": -1000.0,
+        "barrel.n.01": -1000.0,
+        "barrel.n.05": -1000.0,
+        "bucket.n.02": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6a05bb41c47e4e97b83bf4fb3d38e183",
+        "creator_username": "bunbunny",
+        "creator_display_name": "bunny",
+        "creator_profile_url": "https://sketchfab.com/bunbunny"
+    },
+    "filename": "std_6a05bb41c47e4e97b83bf4fb3d38e183.glb",
+    "length": 0.6202849745750427,
+    "width": 0.6237013936042786
+}

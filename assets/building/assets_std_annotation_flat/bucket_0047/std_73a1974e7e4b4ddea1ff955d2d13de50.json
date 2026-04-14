@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a stylized vehicle, specifically a pickup truck, entirely covered in a black-and-white checkerboard pattern with small colored dots at the intersections of the squares. The truck features a prominent front grille, angular fenders, and a flatbed at the rear, all uniformly wrapped in the checkerboard motif. The wheels, cab, and bed are all blocky and geometric, with the pattern seamlessly continuing over every surface, including the windows and tires. The checkerboard squares are evenly sized and arranged in a regular grid, giving the entire object a visually striking, almost surreal appearance. The border of the truck, including the edges of the bed and the outline of the cab, is defined by the continuation of the checkerboard pattern without any additional ornamentation or color. There are no visible chess pieces or other decorative elements present on the surface.",
+    "description": "A blocky pickup truck fully wrapped in a black-and-white checkerboard pattern with colored dots, featuring a flatbed and prominent grille. The checkerboard design covers every surface, creating a bold, uniform look.",
+    "description_view_0": "Front view shows the wide grille, angular hood, and checkerboard pattern covering the entire front face.",
+    "description_view_1": "Left side view highlights the flatbed, cab, and wheels, all covered in the checkerboard pattern.",
+    "description_view_2": "Rear view displays the back of the flatbed and taillights, with the checkerboard continuing seamlessly.",
+    "description_view_3": "Right side view mirrors the left, showing the cab, bed, and wheels in the same checkerboard motif.",
+    "category": "chessboard",
+    "height": 1.8,
+    "max_dimension": 4.5,
+    "materials": [
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 5,
+    "movable": true,
+    "required_force": 800,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "door",
+        "flatbed"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "white",
+        "gray",
+        "red",
+        "green",
+        "blue",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.45,
+        0.45,
+        0.05,
+        0.01,
+        0.01,
+        0.01,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_board_pattern": "The playing surface is covered in a regular, evenly spaced checkerboard pattern of black and white squares, each intersection marked with a small colored dot. The squares are perfectly aligned and form a continuous grid over the entire object, with no decorative elements or interruptions.",
+    "attribute_square_grid": "8x8",
+    "attribute_alternating_light_and_dark_squares": true,
+    "attribute_presence_of_chess_pieces": false,
+    "attribute_border_design": "The border is defined by the continuation of the checkerboard pattern, with no additional color, ornamentation, or inscriptions. The edge is straight and unembellished, matching the rest of the object's surface.",
+    "uid": "73a1974e7e4b4ddea1ff955d2d13de50",
+    "near_synsets": {
+        "chess_set.n.01": 0.5020216379260195,
+        "chessboard.n.01": 0.505096396654274,
+        "checkerboard.n.01": 0.5187517216103859,
+        "check.n.10": 0.5377759548752287,
+        "pickup.n.01": 0.5527945679934626
+    },
+    "synset": "chessboard.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/73a1974e7e4b4ddea1ff955d2d13de50",
+        "creator_username": "arthurdecastro",
+        "creator_display_name": "arthurdecastro",
+        "creator_profile_url": "https://sketchfab.com/arthurdecastro"
+    },
+    "filename": "std_73a1974e7e4b4ddea1ff955d2d13de50.glb",
+    "length": 3.307198643684387,
+    "width": 1.6438580751419067
+}

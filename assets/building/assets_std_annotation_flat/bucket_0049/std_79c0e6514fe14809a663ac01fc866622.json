@@ -1,0 +1,120 @@
+{
+    "description_long": "This is a compact basketball court featuring a light wood-patterned playing surface with clearly marked white and blue lines, including a center circle, key, and three-point arcs. Two robust basketball hoops with rectangular glass backboards and metal supports are positioned at either end of the court. The court is bordered by short, white sideline and baseline markings, and a green sign with the text 'Mundo Urbano' is visible on one side, suggesting an urban recreational setting. The goals are supported by sturdy, metallic frames, and the court appears to be designed for indoor or semi-enclosed urban use. The surface is smooth and likely made of hardwood or a synthetic sports flooring. There is no visible fencing or enclosure around the court, and the overall design is modern and functional.",
+    "description": "A modern, compact basketball court with wood-patterned flooring, blue and white markings, and two metal-framed hoops with rectangular glass backboards.",
+    "description_view_0": "Side view showing both basketball hoops, court markings, and the 'Mundo Urbano' sign on the right.",
+    "description_view_1": "End view focused on one hoop and the painted key area, with the green sign visible on the left sideline.",
+    "description_view_2": "Opposite side view showing both hoops and the mirrored 'Mundo Urbano' sign, with clear court markings.",
+    "description_view_3": "End view from the opposite baseline, highlighting the other hoop and the blue-painted key area.",
+    "category": "basketball court",
+    "height": 4.0,
+    "max_dimension": 15.0,
+    "materials": [
+        "wood",
+        "metal",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "playable",
+        "shootable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hoop",
+        "backboard",
+        "court surface"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light brown",
+        "white",
+        "blue",
+        "gray",
+        "green"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_hoop_presence": true,
+    "attribute_backboard_type": "rectangular glass",
+    "attribute_court_markings": [
+        "three-point line",
+        "free throw line",
+        "center circle",
+        "key",
+        "sidelines",
+        "baseline"
+    ],
+    "attribute_fence_enclosure": false,
+    "attribute_architectural_style": "urban outdoor",
+    "uid": "79c0e6514fe14809a663ac01fc866622",
+    "near_synsets": {
+        "basketball_court.n.01": 0.44096674386574275,
+        "basket.n.03": 0.5048203166044282,
+        "volleyball_court.n.01": 0.5109175101415295,
+        "badminton_court.n.01": 0.5229423636803698,
+        "handball_court.n.01": 0.5252938062583346,
+        "court.n.02": -1000.0,
+        "court.n.08": -1000.0,
+        "basketball.n.01": -1000.0,
+        "court.n.09": -1000.0,
+        "court.n.10": -1000.0,
+        "court.n.05": -1000.0,
+        "court.n.04": -1000.0,
+        "basketball.n.02": -1000.0,
+        "court.n.03": -1000.0,
+        "court.n.06": -1000.0,
+        "motor_hotel.n.01": -1000.0,
+        "court.n.01": -1000.0
+    },
+    "synset": "basketball_court.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/79c0e6514fe14809a663ac01fc866622",
+        "creator_username": "mundourbano",
+        "creator_display_name": "Mundo Urbano",
+        "creator_profile_url": "https://sketchfab.com/mundourbano"
+    },
+    "filename": "std_79c0e6514fe14809a663ac01fc866622.glb",
+    "length": 7.0745768547058105,
+    "width": 12.72015380859375
+}

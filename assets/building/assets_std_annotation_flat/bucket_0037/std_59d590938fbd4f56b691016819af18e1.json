@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a heavily armored military tank with a robust, angular hull and a large central turret. The vehicle features a prominent main cannon at the front, flanked by two secondary side cannons mounted on the turret. The tank's exterior is painted in a dark, matte green with visible rivets and reinforced armor plating covering the entire body. Antennas and hatches are visible on the turret, suggesting advanced communication and crew access. Military insignia, including a white star and faded markings, are present on the sides, adding to its authentic combat appearance. The tank is equipped with wide, solid tracks for mobility over rough terrain, and its design emphasizes both firepower and protection.",
+    "description": "A dark green, heavily armored military tank with a large central turret, multiple cannons, and visible military insignia. The vehicle features robust armor plating, antennas, and wide tracks for mobility.",
+    "description_view_0": "Front view showing the main cannon, thick frontal armor, and two side-mounted secondary cannons.",
+    "description_view_1": "Rear-side view highlighting the turret's side cannons, antennas, and visible military star insignia on the hull.",
+    "description_view_2": "Rear view displaying the back of the turret, the two secondary cannons, and the wide tracks.",
+    "description_view_3": "Opposite rear-side view with a clear look at the star insignia, turret details, and the angled armor plating.",
+    "category": "combat tactical  vehicle",
+    "height": 3.2,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 48000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "antenna",
+        "track",
+        "side cannon"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large main cannon at the front of the turret, two secondary cannons mounted on each side of the turret, and possible machine gun mounts near the hatches.",
+    "attribute_armor_plating": "Full body coverage with thick, riveted steel armor plating; sloped and reinforced on the front and turret for increased protection.",
+    "attribute_camouflage_pattern": "Solid dark green paint with some weathering and faded areas; no distinct camouflage pattern.",
+    "attribute_military_markings": "White star emblem on both sides of the hull, faded white markings on the turret and side panels.",
+    "attribute_tire_type": "not applicable",
+    "uid": "59d590938fbd4f56b691016819af18e1",
+    "near_synsets": {
+        "tank.n.01": 0.44969747970422713,
+        "military_vehicle.n.01": 0.4798419994038458,
+        "armored_car.n.02": 0.4981846090783678,
+        "assault_gun.n.02": 0.5077904958304966,
+        "armored_vehicle.n.01": 0.5078046160656807,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/59d590938fbd4f56b691016819af18e1",
+        "creator_username": "arischrys",
+        "creator_display_name": "arischrys",
+        "creator_profile_url": "https://sketchfab.com/arischrys"
+    },
+    "filename": "std_59d590938fbd4f56b691016819af18e1.glb",
+    "length": 3.6356712579727173,
+    "width": 3.360755443572998
+}

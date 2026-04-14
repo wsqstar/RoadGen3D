@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a World War II-era armored combat vehicle, specifically a medium tank with a rotating turret and a long-barreled main cannon. The hull and turret are covered in sloped armor plating, with visible hatches and periscopes on the turret roof. The tank features wide tracks with multiple road wheels on each side, designed for traversing rough terrain. The exterior is painted in a two-tone camouflage pattern, primarily in shades of olive drab and off-white, with prominent white star insignias and tactical numbers. Additional details include a mounted machine gun on the turret, storage boxes, and a signpost near the vehicle. The overall appearance suggests a robust, heavily armored vehicle intended for frontline combat operations.",
+    "description": "A medium tank with sloped armor, a rotating turret with a long cannon, and a two-tone camouflage paint scheme with white star insignias.",
+    "description_view_0": "Rear three-quarter view showing the tank's sloped rear armor, turret details, and a signpost near the tracks.",
+    "description_view_1": "Side-rear view highlighting the tank's track system, road wheels, and rear hull structure.",
+    "description_view_2": "Front-side view displaying the main cannon, sloped frontal armor, and prominent white star and number markings.",
+    "description_view_3": "Rear-side view emphasizing the turret's rear, side armor, and additional markings on the hull.",
+    "category": "combat tactical  vehicle",
+    "height": 2.7,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 7,
+    "movable": true,
+    "required_force": 250000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "machine gun mount",
+        "track",
+        "wheel",
+        "periscope",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive drab",
+        "off-white",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the turret front and one machine gun mount on the turret roof.",
+    "attribute_armor_plating": "Full body coverage with visibly thick, sloped steel armor on the hull and turret; reinforced frontal and side sections.",
+    "attribute_camouflage_pattern": "Two-tone camouflage with olive drab and off-white irregular patches and stripes.",
+    "attribute_military_markings": "White star emblems on the turret and hull sides, large white number '4' on the turret, and additional small insignia on the hull.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "a3763aefecda48fc9b4084dc2d625f5e",
+    "near_synsets": {
+        "tank.n.01": 0.48191319489392387,
+        "military_vehicle.n.01": 0.5050327616872188,
+        "reconnaissance_vehicle.n.01": 0.512922479681032,
+        "armored_car.n.02": 0.5297757563939334,
+        "panzer.n.01": 0.5315459818224922,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a3763aefecda48fc9b4084dc2d625f5e",
+        "creator_username": "kryik1023",
+        "creator_display_name": "Renafox",
+        "creator_profile_url": "https://sketchfab.com/kryik1023"
+    },
+    "filename": "std_a3763aefecda48fc9b4084dc2d625f5e.glb",
+    "length": 5.150314092636108,
+    "width": 5.405354976654053
+}

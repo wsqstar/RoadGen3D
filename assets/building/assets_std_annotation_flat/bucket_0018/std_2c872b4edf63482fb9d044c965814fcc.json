@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a fortified stone prison compound surrounded by high, crenellated perimeter walls. The structure features two large arched entry gates with visible metal bars, providing secure access points. Inside the enclosure, several small, gabled-roof buildings are arranged, likely serving as cell blocks or administrative offices. The ground within the walls is covered with a textured, earth-toned surface, and there are scattered objects such as barrels and crates, suggesting storage or utility areas. The overall design is utilitarian, prioritizing security and containment, with no visible decorative elements. The prison is set on a rectangular plot of land, with the walls forming a strong defensive barrier.",
+    "description": "A fortified stone prison compound with high crenellated walls, barred gates, and several small gabled buildings inside. The design is utilitarian and secure, with earth-toned ground and scattered storage objects.",
+    "description_view_0": "View 0 shows the prison from the side, highlighting the solid stone perimeter walls and the arrangement of small buildings inside.",
+    "description_view_1": "View 1 presents the main arched gate with metal bars and a clear view of the internal layout, including the gabled buildings and storage items.",
+    "description_view_2": "View 2 displays the opposite side of the prison, focusing on the uninterrupted stone wall and a partial view of the interior.",
+    "description_view_3": "View 3 reveals the secondary arched gate and another perspective of the internal buildings, emphasizing the secure enclosure.",
+    "category": "prison",
+    "height": 6.0,
+    "max_dimension": 32.0,
+    "materials": [
+        "stone",
+        "metal",
+        "wood",
+        "air",
+        "earth"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 420000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "gate",
+        "door",
+        "barred window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "scene",
+    "attribute_barbed_wire": false,
+    "attribute_guard_towers": 0,
+    "attribute_high_perimeter_walls": true,
+    "attribute_security_cameras": 0,
+    "attribute_architectural_style": "utilitarian",
+    "uid": "2c872b4edf63482fb9d044c965814fcc",
+    "near_synsets": {
+        "stockade.n.01": 0.4918365869389734,
+        "prison.n.02": 0.5109439105744683,
+        "casern.n.01": 0.5130845386632217,
+        "palisade.n.01": 0.5224772413438928,
+        "fortress.n.01": 0.5273400332750119,
+        "prison.n.01": -1000.0
+    },
+    "synset": "prison.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2c872b4edf63482fb9d044c965814fcc",
+        "creator_username": "Dav96",
+        "creator_display_name": "Dave",
+        "creator_profile_url": "https://sketchfab.com/Dav96"
+    },
+    "filename": "std_2c872b4edf63482fb9d044c965814fcc.glb",
+    "length": 25.000000953674316,
+    "width": 17.724609375
+}

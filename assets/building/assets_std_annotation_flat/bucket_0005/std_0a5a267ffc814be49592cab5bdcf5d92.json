@@ -1,0 +1,105 @@
+{
+    "description_long": "This trolleybus features a classic rectangular body with a rounded front and rear, painted in a combination of red, yellow, and gray. Large windows line both sides, providing ample visibility for passengers, while the roof is equipped with two long pantograph poles for connecting to overhead electric wires. The trolleybus sits on a set of rails embedded in a paved track, surrounded by a green grassy area, suggesting its use in a dedicated transit corridor. The front of the vehicle is characterized by a prominent windshield and headlight arrangement, while the sides display sliding doors for passenger entry and exit. The exterior appears to be constructed primarily of metal, with glass windows and rubber elements for wheels and door seals. The overall design is functional and robust, suitable for urban public transportation.",
+    "description": "A classic red, yellow, and gray trolleybus with large side windows, roof-mounted pantograph poles, and sliding passenger doors, designed for urban electric transit.",
+    "description_view_0": "Front view showing the rounded windshield, headlights, and both pantograph poles extending from the roof.",
+    "description_view_1": "Side view highlighting the length of the trolleybus, large windows, and visible passenger doors along the side.",
+    "description_view_2": "Rear view similar to the front, with the back window and pantograph poles visible, but no headlights.",
+    "description_view_3": "Opposite side view, again showing the length, windows, and doors, mirroring view 1.",
+    "category": "trolleybus",
+    "height": 3.2,
+    "max_dimension": 11.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "pantograph pole",
+        "headlight",
+        "button",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "yellow",
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.35,
+        0.25,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_pantograph_poles": true,
+    "attribute_overhead_wire_connection": true,
+    "attribute_route_number_display": false,
+    "attribute_articulated_body_sections": 1,
+    "attribute_passenger_entry_doors": 2,
+    "uid": "0a5a267ffc814be49592cab5bdcf5d92",
+    "near_synsets": {
+        "trolleybus.n.01": 0.42375803402190093,
+        "trolley_line.n.01": 0.46128610218784033,
+        "current_collector.n.01": 0.5244886526430247,
+        "streetcar.n.01": 0.5303293736209509,
+        "public_transit.n.01": 0.5311301485570731
+    },
+    "synset": "trolleybus.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0a5a267ffc814be49592cab5bdcf5d92",
+        "creator_username": "flovistudios",
+        "creator_display_name": "Flovi Studios",
+        "creator_profile_url": "https://sketchfab.com/flovistudios"
+    },
+    "filename": "std_0a5a267ffc814be49592cab5bdcf5d92.glb",
+    "length": 16.164307594299316,
+    "width": 8.531299591064453
+}

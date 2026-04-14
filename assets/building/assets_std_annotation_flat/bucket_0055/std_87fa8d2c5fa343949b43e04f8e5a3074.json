@@ -1,0 +1,103 @@
+{
+    "description_long": "This kiosk features a robust, angular structure with a predominantly red exterior and a wide, slanted front control panel. The front face is equipped with a large orange display screen, a grid of square buttons, a rotary dial telephone handset, toggle switches, and a prominent red emergency button, all set into a gray panel. The sides are solid and unadorned, with a slight inward curve at the base, while the rear is completely flat and featureless. The top surface has two vent-like grilles, suggesting internal electronics or ventilation. The materials appear to be primarily metal with some plastic components for the controls and display. The overall design is reminiscent of mid-20th-century industrial or control room equipment, with a utilitarian and slightly retro aesthetic.",
+    "description": "A red, angular kiosk with a control panel featuring a display, buttons, switches, and a telephone handset, evoking a retro industrial style.",
+    "description_view_0": "Left side view showing the kiosk's solid red panel and the angled control surface extending outward.",
+    "description_view_1": "Front view displaying the control panel with a screen, buttons, switches, a telephone handset, and an emergency button.",
+    "description_view_2": "Right side view mirroring the left, with the angled control surface and solid red panel visible.",
+    "description_view_3": "Rear view showing a plain, flat red surface with no visible features or openings.",
+    "category": "kiosk",
+    "height": 1.3,
+    "max_dimension": 1.5,
+    "materials": [
+        "painted metal",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "pick_up_handset",
+        "dialable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "toggle switch",
+        "display screen",
+        "telephone handset",
+        "rotary dial",
+        "emergency button"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "gray",
+        "black",
+        "orange",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.7,
+        0.18,
+        0.06,
+        0.04,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "digital display integrated into the front control panel; no visible printed or illuminated signage",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "none",
+    "attribute_roof_design": "flat roof with two rectangular vent grilles, constructed from painted metal",
+    "attribute_architectural_style": "industrial retro with utilitarian influences",
+    "uid": "87fa8d2c5fa343949b43e04f8e5a3074",
+    "near_synsets": {
+        "telephone_booth.n.01": 0.520140151723554,
+        "booth.n.02": 0.5546633293826826,
+        "desk_phone.n.01": 0.5642782065146591,
+        "terminal.n.04": 0.5702452442497887,
+        "desktop.n.01": 0.5737936845826686
+    },
+    "synset": "terminal.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/87fa8d2c5fa343949b43e04f8e5a3074",
+        "creator_username": "ondra.lit",
+        "creator_display_name": "Big guy",
+        "creator_profile_url": "https://sketchfab.com/ondra.lit"
+    },
+    "filename": "std_87fa8d2c5fa343949b43e04f8e5a3074.glb",
+    "length": 0.911072164773941,
+    "width": 1.0487594604492188
+}

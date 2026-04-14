@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a sleek, modern airplane with a streamlined fuselage and sharply swept wings. The wings are mounted low on the body and extend outward with a slight dihedral angle, giving the aircraft a dynamic appearance. Two jet engines are mounted at the rear of the fuselage, positioned on either side of the tail section. The tail features a T-tail configuration, with the horizontal stabilizer mounted atop a single vertical fin. The exterior is primarily white with dark accents on the wings and engine nacelles, and the cockpit is located at the front of the fuselage with a smooth, enclosed canopy. The overall design suggests a business jet or small regional jet, optimized for speed and efficiency.",
+    "description": "A modern, white airplane with low, swept wings, rear-mounted twin jet engines, and a T-tail. The cockpit is forward and smoothly integrated into the fuselage.",
+    "description_view_0": "Side view showing the elongated fuselage, low-mounted swept wing, rear twin jet engines, and prominent T-tail.",
+    "description_view_1": "Top-down view highlighting the full wingspan, engine placement near the tail, and the T-tail's horizontal stabilizer.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the wing, engines, and tail structure.",
+    "description_view_3": "Frontal view displaying the pointed nose, forward cockpit, and the wide, low-mounted wings extending outward.",
+    "category": "airplane",
+    "height": 4.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air",
+        "composite"
+    ],
+    "materials_composition": [
+        0.7,
+        0.08,
+        0.05,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "mass": 9000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 88200,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "closable",
+        "openable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit canopy",
+        "landing gear",
+        "engine",
+        "control surfaces"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.12,
+    "surface_finish": "sleek",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 22.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with sharply swept wings and slight dihedral angle; no visible winglets.",
+    "attribute_engine_type": "Twin jet engines mounted at the rear fuselage on either side of the tail.",
+    "attribute_tail_design": "T-tail configuration with a single vertical stabilizer and high-mounted horizontal stabilizer.",
+    "attribute_landing_gear_type": "Tricycle retractable landing gear; main and nose gear units implied but not visibly extended.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit integrated smoothly into the nose of the fuselage; likely multi-seat with a streamlined canopy.",
+    "uid": "8100fa8c3fb942669f0e85ae7ef9b5bb",
+    "near_synsets": {
+        "airplane.n.01": 0.5072548459089719,
+        "aircraft.n.01": 0.5147730630529965,
+        "twinjet.n.01": 0.5210354212402377,
+        "fuselage.n.01": 0.5308550767385901,
+        "jet.n.01": 0.5340811959267364
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8100fa8c3fb942669f0e85ae7ef9b5bb",
+        "creator_username": "a2e",
+        "creator_display_name": "Marco Fischer",
+        "creator_profile_url": "https://sketchfab.com/a2e"
+    },
+    "filename": "std_8100fa8c3fb942669f0e85ae7ef9b5bb.glb",
+    "length": 21.275671005249023,
+    "width": 20.448322296142578
+}

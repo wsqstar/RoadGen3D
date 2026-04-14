@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a compact assault rifle with a black metal receiver and barrel, complemented by brown wooden or polymer furniture on the handguard and pistol grip. The rifle features a distinctive folding skeleton stock at the rear, designed for portability and ease of storage. The magazine is a detachable box type, angled forward and positioned just ahead of the trigger guard. The front of the rifle is equipped with a short barrel and a simple iron sight, while the rear sight is mounted on top of the receiver. The overall design is utilitarian, with minimal ornamentation and a focus on functionality, making it suitable for urban environments where maneuverability is essential.",
+    "description": "A compact black assault rifle with brown furniture, folding skeleton stock, detachable box magazine, and iron sights.",
+    "description_view_0": "Side view showing the folding skeleton stock, brown handguard, and pistol grip, with the magazine clearly visible.",
+    "description_view_1": "Front view highlighting the barrel, front iron sight, and the narrow profile of the rifle.",
+    "description_view_2": "Opposite side view displaying the folding stock, handguard, and magazine from the other side.",
+    "description_view_3": "Top-down view emphasizing the receiver, handguard, and alignment of the iron sights.",
+    "category": "rifle",
+    "height": 0.22,
+    "max_dimension": 0.75,
+    "materials": [
+        "steel",
+        "polymer",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable",
+        "foldable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "magazine",
+        "trigger",
+        "pistol grip",
+        "handguard",
+        "safety lever",
+        "charging handle",
+        "iron sights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.75,
+        0.25
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.8,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "folding skeletonized",
+    "attribute_barrel_type": "short",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "42cf1c1a43994277a1cc10c268192885",
+    "near_synsets": {
+        "assault_rifle.n.01": 0.4967361843185036,
+        "carbine.n.01": 0.5019492890776499,
+        "light_arm.n.01": 0.5048223492125432,
+        "garand_rifle.n.01": 0.5083652327576971,
+        "twenty-two_rifle.n.01": 0.5163360829738453,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/42cf1c1a43994277a1cc10c268192885",
+        "creator_username": "STAFF3",
+        "creator_display_name": "STAFF3",
+        "creator_profile_url": "https://sketchfab.com/STAFF3"
+    },
+    "filename": "std_42cf1c1a43994277a1cc10c268192885.glb",
+    "length": 0.628788411617279,
+    "width": 0.05718505382537842
+}

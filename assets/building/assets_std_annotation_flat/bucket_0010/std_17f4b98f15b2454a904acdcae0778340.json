@@ -1,0 +1,92 @@
+{
+    "description_long": "This is a large, rectangular steel shipping container, commonly used for transporting goods and materials in urban and industrial environments. The exterior is painted in a muted military green with vertical black stripes running along the length of its corrugated metal sides, providing both structural strength and a distinctive visual pattern. The front and rear faces feature double doors with visible locking mechanisms and reinforced panels, designed for secure access and loading. The container is adorned with a prominent white logo or text reading 'DATOGEYSHET' across its side, adding to its industrial character. Corner castings are present at each edge, allowing for stacking and secure attachment during transport. The overall construction suggests durability, weather resistance, and suitability for outdoor placement in areas such as shipping yards, construction sites, or urban storage lots.",
+    "description": "A large, green steel shipping container with black vertical stripes, double locking doors, and a prominent white logo on its side. It features reinforced corners and a rugged, industrial design.",
+    "description_view_0": "Side view showing the full length of the container with black vertical stripes and the 'DATOGEYSHET' logo prominently displayed.",
+    "description_view_1": "End view displaying the double doors with locking mechanisms and reinforced panels, as well as corner castings.",
+    "description_view_2": "Opposite side view, identical to view 0, with black stripes and the logo visible.",
+    "description_view_3": "Rear end view, identical to view 1, showing the double doors and structural details.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.92,
+        0.07,
+        0.01
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 5000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking mechanism",
+        "corner casting"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.13,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "white printed logo 'DATOGEYSHET' on the side; small technical markings on the doors",
+    "attribute_handles_or_grips": "integrated door handles and locking bars on the doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "17f4b98f15b2454a904acdcae0778340",
+    "near_synsets": {
+        "container.n.01": 0.44868759100889016,
+        "cargo_container.n.01": 0.47487656894494984,
+        "container_ship.n.01": 0.5275726020416859,
+        "box.n.01": 0.5303415462655315,
+        "cargo_door.n.01": 0.5441955503552486
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/17f4b98f15b2454a904acdcae0778340",
+        "creator_username": "noahm1216",
+        "creator_display_name": "noahm1216",
+        "creator_profile_url": "https://sketchfab.com/noahm1216"
+    },
+    "filename": "std_17f4b98f15b2454a904acdcae0778340.glb",
+    "length": 6.30235743522644,
+    "width": 2.353532552719116
+}

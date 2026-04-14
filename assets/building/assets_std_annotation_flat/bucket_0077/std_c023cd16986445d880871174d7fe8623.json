@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a large rectangular cardboard shipping box, commonly used for transporting goods in urban environments. The box is sealed with brown packing tape running along the top and sides, and features printed barcodes and handling symbols on its surfaces. One side displays a bold alphanumeric code '4C.0C01.004', likely for inventory or tracking purposes. The box has visible creases and subtle surface texture, typical of corrugated cardboard. There are upward-pointing arrows and caution symbols indicating the correct orientation for handling. The overall appearance suggests it is new or lightly used, with no visible damage or heavy wear.",
+    "description": "A large, sealed cardboard shipping box with barcodes, handling symbols, and an inventory code printed on its sides.",
+    "description_view_0": "This view shows the end of the box with a barcode, two large taped squares, and upward-pointing arrow symbols.",
+    "description_view_1": "This side displays the alphanumeric code '4C.0C01.004', a barcode in the lower left, and an upward arrow in the lower right.",
+    "description_view_2": "This end features two large taped squares and a small upward arrow with a tiny caution symbol, but no barcodes or codes.",
+    "description_view_3": "This side is similar to view 1, showing the code '4C.0C01.004' and a barcode, but with less visible symbols.",
+    "category": "parcels",
+    "height": 0.5,
+    "max_dimension": 0.8,
+    "materials": [
+        "corrugated_cardboard",
+        "adhesive_tape",
+        "ink",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.01,
+        0.09
+    ],
+    "mass": 2.5,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "flaps",
+        "tape"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "beige",
+        "black"
+    ],
+    "colors_composition": [
+        0.92,
+        0.06,
+        0.02
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 4000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "",
+    "attribute_car_model": "",
+    "attribute_building_number": "",
+    "attribute_storefront_signage": "",
+    "attribute_street_name": "",
+    "uid": "c023cd16986445d880871174d7fe8623",
+    "near_synsets": {
+        "packing_box.n.02": 0.4898278206397755,
+        "bar_code.n.01": 0.517104385649652,
+        "parcel_post.n.01": 0.5217769680873576,
+        "mail.n.01": 0.5392059473872352,
+        "post-office_box.n.01": 0.5426931204086577,
+        "parcel.n.02": -1000.0,
+        "package.n.02": -1000.0,
+        "package.n.01": -1000.0,
+        "tract.n.01": -1000.0
+    },
+    "synset": "packing_box.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c023cd16986445d880871174d7fe8623",
+        "creator_username": "sharpened",
+        "creator_display_name": "sharpened",
+        "creator_profile_url": "https://sketchfab.com/sharpened"
+    },
+    "filename": "std_c023cd16986445d880871174d7fe8623.glb",
+    "length": 0.5023570954799652,
+    "width": 0.66377192735672
+}

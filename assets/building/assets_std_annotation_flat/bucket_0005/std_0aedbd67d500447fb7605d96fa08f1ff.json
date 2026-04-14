@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a green, tracked combat vehicle with a low, angular hull and a rounded turret mounted centrally on top. The turret features a long, slender cannon extending forward, and a small hatch or cupola is visible on the turret roof. The hull is sloped at the front and sides, likely for deflecting projectiles, and the vehicle rides on a set of large, evenly spaced road wheels with continuous tracks. The exterior is smooth and unadorned, with no visible markings or camouflage patterns. The vehicle appears to be constructed primarily from thick metal armor, giving it a robust and imposing presence. Its design suggests it is intended for urban or battlefield environments, providing both offensive and defensive capabilities.",
+    "description": "A green, tracked combat vehicle with a rounded turret and long cannon, featuring sloped armor and large road wheels. The exterior is smooth, solid, and unmarked.",
+    "description_view_0": "Front view shows the sloped glacis plate, two headlight-like features, and the central turret with cannon pointing forward.",
+    "description_view_1": "Left side view highlights the length of the cannon, the rounded turret, and the full set of six large road wheels with continuous tracks.",
+    "description_view_2": "Rear view displays the back of the turret, the engine deck, and the rear armor plate, with the cannon extending away from the viewer.",
+    "description_view_3": "Right side view mirrors the left, showing the turret, cannon, and six large road wheels with tracks.",
+    "category": "combat tactical  vehicle",
+    "height": 2.4,
+    "max_dimension": 6.7,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "tracks",
+        "wheels"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.92,
+        0.08
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible cannon mounted on the turret front; no other weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating on the hull and turret; no modular or reactive panels visible.",
+    "attribute_camouflage_pattern": "Solid green color; no camouflage pattern visible.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "0aedbd67d500447fb7605d96fa08f1ff",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.49686096199506796,
+        "tank.n.01": 0.5001425729659642,
+        "reconnaissance_vehicle.n.01": 0.5082877406159427,
+        "armored_car.n.02": 0.5234481935074258,
+        "assault_gun.n.02": 0.5291093447176693,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0aedbd67d500447fb7605d96fa08f1ff",
+        "creator_username": "B_R_Brody",
+        "creator_display_name": "Blankly Rabbit Brody",
+        "creator_profile_url": "https://sketchfab.com/B_R_Brody"
+    },
+    "filename": "std_0aedbd67d500447fb7605d96fa08f1ff.glb",
+    "length": 7.819705247879028,
+    "width": 2.8670475482940674
+}

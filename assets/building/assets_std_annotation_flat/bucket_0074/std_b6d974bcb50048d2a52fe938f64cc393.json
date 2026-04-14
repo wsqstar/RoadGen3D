@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a classic revolver-style firearm with a long, octagonal barrel and a dark metallic finish. The frame and barrel are constructed from blackened steel, while the grip is made of polished wood, giving it a traditional and robust appearance. The cylinder is prominent and features multiple chambers, typical of a revolver mechanism. The trigger guard is rounded and metallic, encasing a curved trigger. The hammer is exposed and easily accessible for manual cocking. The overall design is reminiscent of 19th-century Colt or Remington revolvers, with a sleek, elongated barrel and ergonomic wooden grip.",
+    "description": "A black, steel revolver with a long octagonal barrel and polished wooden grip, featuring a prominent cylinder and rounded trigger guard.",
+    "description_view_0": "Front view showing the narrow barrel opening and the symmetrical alignment of the barrel and grip.",
+    "description_view_1": "Side view displaying the full length of the octagonal barrel, the wooden grip, the exposed hammer, and the detailed cylinder.",
+    "description_view_2": "Rear view highlighting the back of the grip and the hammer, with the cylinder partially visible.",
+    "description_view_3": "Opposite side view showing the other profile of the barrel, grip, and trigger guard, mirroring view 1.",
+    "category": "shotgun",
+    "height": 0.15,
+    "max_dimension": 0.35,
+    "materials": [
+        "steel",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "cockable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "hammer",
+        "cylinder",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "glossy",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, long octagonal barrel with no visible ribbing or venting",
+    "attribute_stock_type": "full stock (wooden grip extending to the base of the frame)",
+    "attribute_action_mechanism": "revolver-action",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized metallic guard with smooth edges and no finger grooves",
+    "uid": "b6d974bcb50048d2a52fe938f64cc393",
+    "near_synsets": {
+        "revolver.n.01": 0.48618141406182597,
+        "colt.n.02": 0.4876034841290517,
+        "shotgun.n.01": 0.495836963361338,
+        "sawed-off_shotgun.n.01": 0.4962023924446685,
+        "rifle.n.01": 0.5174983311923667
+    },
+    "synset": "sawed-off_shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b6d974bcb50048d2a52fe938f64cc393",
+        "creator_username": "chijikoff.roma",
+        "creator_display_name": "chyzhykov.roman",
+        "creator_profile_url": "https://sketchfab.com/chijikoff.roma"
+    },
+    "filename": "std_b6d974bcb50048d2a52fe938f64cc393.glb",
+    "length": 0.4356842488050461,
+    "width": 0.05063416808843613
+}

@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a pump-action shotgun with a robust, utilitarian design, featuring a dark metal barrel and receiver paired with a wooden stock and fore-end. The barrel is relatively short and thick, with a tubular magazine running parallel beneath it, and a visible ribbed pump grip for manual cycling. The stock is a classic full stock, made of wood, with a smooth, slightly curved profile for shoulder support. The trigger guard is rounded and moderately sized, enclosing the trigger securely. The overall finish is matte, with the metal components appearing slightly glossy in places, while the wood has a subdued sheen. This shotgun is typical of those used in law enforcement or civilian defense scenarios in urban environments.",
+    "description": "A pump-action shotgun with a dark metal barrel, wooden stock, and ribbed pump grip, featuring a classic, utilitarian design.",
+    "description_view_0": "The shotgun is viewed from the muzzle end, showing the circular barrel opening and tubular magazine beneath, with the pump grip partially visible.",
+    "description_view_1": "A side view reveals the full length of the shotgun, highlighting the wooden stock, ribbed pump grip, and the parallel barrel and magazine tube.",
+    "description_view_2": "The shotgun is seen from above, emphasizing the alignment of the barrel and magazine tube, as well as the smooth contour of the wooden stock.",
+    "description_view_3": "An angled rear view displays the stock's curvature, the trigger guard, and the pump grip, with the barrel and magazine tube extending forward.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 1.0,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "pumpable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "pump grip",
+        "trigger",
+        "trigger guard",
+        "barrel",
+        "magazine tube"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel with tubular magazine beneath; no visible ribbing or venting on the barrel",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with a smooth contour and no visible finger grooves or reinforcement",
+    "uid": "20dd417c1cc94b65b21adf89a46b1d70",
+    "near_synsets": {
+        "pump_action.n.01": 0.4696509691851326,
+        "sawed-off_shotgun.n.01": 0.5033813231921803,
+        "shotgun.n.01": 0.5148830499580586,
+        "shotgun_shell.n.01": 0.5356376789886027,
+        "gas_gun.n.01": 0.5382146400101964
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/20dd417c1cc94b65b21adf89a46b1d70",
+        "creator_username": "ThatIndividual",
+        "creator_display_name": "ThatIndividual",
+        "creator_profile_url": "https://sketchfab.com/ThatIndividual"
+    },
+    "filename": "std_20dd417c1cc94b65b21adf89a46b1d70.glb",
+    "length": 0.2113170623779297,
+    "width": 0.18338871002197266
+}

@@ -1,0 +1,111 @@
+{
+    "description_long": "This is a compact, industrial yellow forklift with a weathered, rugged exterior, showing signs of heavy use and exposure to the elements. The body is constructed primarily from metal, with visible bolts, seams, and reinforced panels, and it features a small, enclosed operator cabin with a blue-tinted window. The front of the forklift is equipped with two long, flat metal fork arms designed for lifting pallets, and a vertical mast assembly that supports the lifting mechanism. The wheels are robust and partially covered by fenders, suitable for navigating rough urban or warehouse terrain. A camouflaged tarp covers a wooden pallet load, suggesting the forklift is in active use for transporting materials. Additional details include a cylindrical exhaust or light fixture on the roof and various mechanical components visible around the mast and chassis.",
+    "description": "A weathered yellow industrial forklift with a small cabin, long metal fork arms, and a camouflaged tarp covering a pallet load. The vehicle shows rugged construction and signs of heavy use.",
+    "description_view_0": "Side view showing the full length of the yellow forklift, the fork arms extended forward, and a camouflaged tarp covering a pallet behind it.",
+    "description_view_1": "Rear view highlighting the back of the forklift, the blue-tinted rear window, and the camouflaged tarp and pallet to the right.",
+    "description_view_2": "Opposite side view with the camouflaged tarp and pallet in the foreground, and the forklift's cabin and mast visible behind.",
+    "description_view_3": "Front view showing the fork arms extending outward, the blue-tinted front window, and the camouflaged tarp and pallet to the left.",
+    "category": "forklift",
+    "height": 1.7,
+    "max_dimension": 2.8,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "wood",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.05,
+        0.08,
+        0.05,
+        0.06,
+        0.04,
+        0.02
+    ],
+    "mass": 2200,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "fork arms",
+        "wheels",
+        "door",
+        "window",
+        "mast",
+        "overhead guard",
+        "operator seat",
+        "warning light"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "gray",
+        "blue",
+        "green",
+        "brown"
+    ],
+    "colors_composition": [
+        0.55,
+        0.15,
+        0.08,
+        0.07,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_fork_arms": "Two long, flat, parallel metal fork arms extend from the front, each with a rectangular cross-section and moderate thickness. The arms are slightly worn, with visible scuff marks and a dark, matte finish. They are positioned close together and aligned horizontally, designed for lifting pallets.",
+    "attribute_overhead_guard": "A sturdy, rectangular metal overhead guard is mounted above the operator cabin, constructed from thick steel bars and panels. It provides full coverage over the seat area, offering protection from falling objects. The guard is integrated into the vehicle's frame and shows signs of wear.",
+    "attribute_mast": "The mast is a single-stage, vertical metal structure located at the front, with visible lift rails and support brackets. It is robustly built, with reinforced sides and a simple, utilitarian design. No hydraulic components or chains are clearly visible, but the mast appears functional and solid.",
+    "attribute_operator_seat": "The operator seat is compact and integrated into the cabin, with a simple, contoured shape. It appears to be made of dark material, possibly vinyl or plastic, and lacks visible armrests or headrest. The seat is positioned centrally behind the controls, with no seatbelt or adjustment levers visible.",
+    "attribute_warning_lights": "A single cylindrical warning light is mounted on the roof of the overhead guard, positioned centrally. It is dark in color and not illuminated in the images, with a simple, functional design.",
+    "uid": "471a04043f9d49cfbc621b39f2e7b538",
+    "near_synsets": {
+        "forklift.n.01": 0.46970544497144695,
+        "hayfork.n.01": 0.5538449908752914,
+        "pallet.n.02": 0.5649632431689814,
+        "stacker_crane.n.01": 0.5677813547009593,
+        "hand_truck.n.01": 0.5701202956577869
+    },
+    "synset": "forklift.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/471a04043f9d49cfbc621b39f2e7b538",
+        "creator_username": "cyberkho",
+        "creator_display_name": "cyberkho",
+        "creator_profile_url": "https://sketchfab.com/cyberkho"
+    },
+    "filename": "std_471a04043f9d49cfbc621b39f2e7b538.glb",
+    "length": 4.558814764022827,
+    "width": 3.520666718482971
+}

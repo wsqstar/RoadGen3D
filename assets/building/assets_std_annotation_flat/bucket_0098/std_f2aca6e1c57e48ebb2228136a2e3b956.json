@@ -1,0 +1,102 @@
+{
+    "description_long": "This kiosk is a modern, two-level commercial structure with a prominent angular roofline and extensive use of glass panels on the front and sides. The lower level features large transparent windows and open entryways, allowing visibility into the interior, which is furnished with tables and chairs for customer interaction. The upper level is partially enclosed with a teal parapet, possibly serving as a terrace or display area, and is accessible via an internal or external staircase. The exterior is primarily finished in white and teal, with branding and signage visible above the main entrance and along the upper parapet. Structural supports and truss elements are visible at the corners, adding to the contemporary aesthetic. The overall design is sleek and functional, suitable for urban environments such as plazas, sidewalks, or commercial districts.",
+    "description": "A modern, two-level kiosk with glass walls, teal accents, and visible branding, featuring open entryways and a partially enclosed upper terrace.",
+    "description_view_0": "The rear view shows a solid white wall with the angular roofline and no visible windows or entryways.",
+    "description_view_1": "The side view reveals the glass-walled lower level, teal parapet above, and interior seating arrangements.",
+    "description_view_2": "The front view displays large glass panels, open entryways, visible signage, and the upper terrace area.",
+    "description_view_3": "The opposite side view shows the open entryway, glass panels, and the depth of the structure.",
+    "category": "kiosk",
+    "height": 4.5,
+    "max_dimension": 12.0,
+    "materials": [
+        "glass",
+        "steel",
+        "composite panel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.4,
+        0.25,
+        0.2,
+        0.05,
+        0.1
+    ],
+    "mass": 8500,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "displayable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "doorway",
+        "window",
+        "table",
+        "chair",
+        "signage"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "white",
+        "teal",
+        "gray",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "Printed and logo signage above the main entrance and on the upper parapet, with visible text and branding elements integrated into the structure.",
+    "attribute_window_presence": "Multiple large rectangular windows on the front and both sides.",
+    "attribute_door_configuration": "One large open entryway at the front, no visible doors.",
+    "attribute_roof_design": "Angular, partially flat roof with a teal parapet and integrated lighting or signage; no visible overhangs or skylights.",
+    "attribute_architectural_style": "Modern with minimalist and functional influences, featuring clean lines, glass facades, and bold color accents.",
+    "uid": "f2aca6e1c57e48ebb2228136a2e3b956",
+    "near_synsets": {
+        "booth.n.02": 0.5566717446210908,
+        "booth.n.01": 0.5791081994386882,
+        "shopfront.n.01": 0.5826552926299289,
+        "arcade.n.01": 0.585206661868894,
+        "telephone_booth.n.01": 0.5930558778228698
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f2aca6e1c57e48ebb2228136a2e3b956",
+        "creator_username": "StMorgun",
+        "creator_display_name": "StMorgun",
+        "creator_profile_url": "https://sketchfab.com/StMorgun"
+    },
+    "filename": "std_f2aca6e1c57e48ebb2228136a2e3b956.glb",
+    "length": 4.741384029388428,
+    "width": 14.997661590576172
+}

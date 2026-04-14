@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a medium-sized pedestrian or light vehicle bridge constructed primarily from red brick and stone, featuring three prominent stone arches supporting the span. The bridge deck is paved with gray cobblestones and is bordered on both sides by simple metal railings with vertical balusters, painted in a dark color. The arches are evenly spaced and framed with stone, providing both structural support and a classic aesthetic. The bridge abutments are solid brick, giving the structure a robust and traditional appearance. The overall design is utilitarian with subtle classical influences, suitable for integration into urban parks, riversides, or historic neighborhoods. No lighting fixtures or decorative elements are visible, emphasizing function over ornamentation.",
+    "description": "A red brick and stone arch bridge with three arches, cobblestone deck, and simple metal railings. The design is utilitarian and classical, suitable for urban or park settings.",
+    "description_view_0": "Front view showing the solid brick abutment and the start of the cobblestone deck, with metal railings visible on both sides.",
+    "description_view_1": "Side view revealing the three stone arches, full length of the bridge, and the continuous metal railings along the deck.",
+    "description_view_2": "Rear view mirroring the front, displaying the brick abutment and cobblestone deck with railings.",
+    "description_view_3": "Opposite side view, again showing the three arches and the full span of the bridge with railings.",
+    "category": "bridge",
+    "height": 3.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "brick",
+        "stone",
+        "metal",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.15,
+        0.05
+    ],
+    "mass": 95000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "barrier"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "railing"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "bicycle",
+        "motorcycle",
+        "small_vehicle"
+    ],
+    "colors": [
+        "red",
+        "gray",
+        "dark green",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.01,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_support_type": "arch",
+    "attribute_railing_design": "metal bars with vertical balusters, simple and functional, painted dark",
+    "attribute_arch_presence": true,
+    "attribute_lighting_fixtures": [],
+    "attribute_architectural_style": "classical",
+    "uid": "aee0bf47b51d4be388ff0e26eebea5f5",
+    "near_synsets": {
+        "steel_arch_bridge.n.01": 0.49692882203429395,
+        "trestle_bridge.n.01": 0.5283472987751112,
+        "bridge.n.01": 0.534968941692609,
+        "truss_bridge.n.01": 0.5359527030389583,
+        "bridge.n.03": 0.5367630750927621,
+        "bridge.n.05": -1000.0,
+        "bridge.n.06": -1000.0,
+        "bridge.n.08": -1000.0,
+        "bridge.n.09": -1000.0,
+        "bridge.n.02": -1000.0,
+        "bridge.n.04": -1000.0,
+        "bridge.n.07": -1000.0
+    },
+    "synset": "bridge.n.07",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/aee0bf47b51d4be388ff0e26eebea5f5",
+        "creator_username": "Pilgrimm",
+        "creator_display_name": "Pilgrimm",
+        "creator_profile_url": "https://sketchfab.com/Pilgrimm"
+    },
+    "filename": "std_aee0bf47b51d4be388ff0e26eebea5f5.glb",
+    "length": 17.13846778869629,
+    "width": 4.413888931274414
+}

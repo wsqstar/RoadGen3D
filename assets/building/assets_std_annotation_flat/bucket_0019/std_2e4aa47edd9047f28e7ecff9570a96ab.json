@@ -1,0 +1,116 @@
+{
+    "description_long": "This is a rectangular football field enclosed by a low, gray stone or concrete wall, featuring a lush green artificial turf surface with crisp white field markings. At both ends of the field, there are yellow goalposts with crossbars, and the field is marked with lines for zones, halfway, and try lines, typical of a rugby or American football field. One side of the field is bordered by a large, tiered grandstand with a slanted roof, providing seating for spectators. The opposite side and ends are open, with no additional structures or seating visible. The field is elevated above the surrounding ground, giving it a stadium-like appearance. The overall design is utilitarian and functional, suitable for urban environments where space is at a premium.",
+    "description": "A rectangular, walled football field with artificial turf, white markings, yellow goalposts, and a large grandstand on one side.",
+    "description_view_0": "View 0 shows the field from the side with the grandstand, highlighting the seating area and the goalposts at both ends.",
+    "description_view_1": "View 1 presents the field from the end opposite the grandstand, emphasizing the open side and the full length of the playing surface.",
+    "description_view_2": "View 2 mirrors view 0 but from the opposite side, showing the grandstand from the other end and the field's markings.",
+    "description_view_3": "View 3 displays the field from the side without the grandstand, focusing on the open boundary and the field's rectangular enclosure.",
+    "category": "football field",
+    "height": 8.0,
+    "max_dimension": 110.0,
+    "materials": [
+        "artificial turf",
+        "concrete",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 250000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "playable",
+        "spectatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "goalposts",
+        "grandstand seats"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "green",
+        "white",
+        "gray",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.6,
+        0.1,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 500,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.2,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "scene",
+    "attribute_goal_posts": true,
+    "attribute_center_circle_marking": false,
+    "attribute_penalty_area_markings": false,
+    "attribute_corner_flags": false,
+    "attribute_architectural_style": "urban stadium with grandstand",
+    "uid": "2e4aa47edd9047f28e7ecff9570a96ab",
+    "near_synsets": {
+        "football_field.n.01": 0.4119859496198312,
+        "football_stadium.n.01": 0.46446939863455206,
+        "playing_field.n.02": 0.47232264526748335,
+        "american_football.n.01": 0.48580888583014403,
+        "yard_line.n.01": 0.48883251005247125,
+        "field.n.15": -1000.0,
+        "field.n.12": -1000.0,
+        "field.n.01": -1000.0,
+        "field.n.06": -1000.0,
+        "sphere.n.01": -1000.0,
+        "field.n.14": -1000.0,
+        "field.n.13": -1000.0,
+        "plain.n.01": -1000.0,
+        "discipline.n.01": -1000.0,
+        "field.n.10": -1000.0,
+        "field.n.05": -1000.0,
+        "field.n.11": -1000.0,
+        "football.n.01": -1000.0,
+        "airfield.n.01": -1000.0,
+        "field.n.03": -1000.0,
+        "battlefield.n.01": -1000.0,
+        "field.n.16": -1000.0,
+        "football.n.02": -1000.0
+    },
+    "synset": "football_field.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2e4aa47edd9047f28e7ecff9570a96ab",
+        "creator_username": "Klungland",
+        "creator_display_name": "Klungland",
+        "creator_profile_url": "https://sketchfab.com/Klungland"
+    },
+    "filename": "std_2e4aa47edd9047f28e7ecff9570a96ab.glb",
+    "length": 43.13350868225098,
+    "width": 39.69233703613281
+}

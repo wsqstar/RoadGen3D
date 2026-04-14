@@ -1,0 +1,103 @@
+{
+    "description_long": "This structure is a tall, industrial transformer tower complex, primarily constructed from blue-painted steel lattice frameworks. The central tower is robust and rectangular, featuring multiple stacked segments with visible gridded panels and a large, boxy extension on one side, likely housing electrical equipment or control rooms. At the top, a horizontal crossarm and a crane-like apparatus extend outward, with yellow insulator elements and additional equipment attached. Flanking the main tower are two slimmer lattice towers, each equipped with multiple yellow insulator stacks and smaller crossarms, connected by cables and bracing. The entire assembly is mounted on a large, flat concrete base, providing stability and electrical isolation. The structure is detailed with ladders, platforms, and access points, indicating maintenance functionality and high-voltage operation.",
+    "description": "A tall, blue steel transformer tower complex with a central rectangular tower, flanked by two slimmer lattice towers, all mounted on a concrete base and detailed with insulators and electrical equipment.",
+    "description_view_0": "Front view showing the central tower's broad face, flanked symmetrically by two lattice towers with visible insulator stacks and crossarms.",
+    "description_view_1": "Side view highlighting the depth of the central tower, the large boxy extension, and the detailed lattice structure of the right-side tower.",
+    "description_view_2": "Rear view displaying the back lattice framework of the central tower and the symmetrical arrangement of the two flanking towers.",
+    "description_view_3": "Opposite side view showing the boxy extension on the left and the lattice structure of the left-side tower.",
+    "category": "transformer tower",
+    "height": 38.0,
+    "max_dimension": 45.0,
+    "materials": [
+        "steel",
+        "concrete",
+        "ceramic",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "serviceable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "ladder",
+        "platform",
+        "access door",
+        "insulator stack",
+        "crossarm",
+        "crane arm"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "yellow",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.01,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "group",
+    "attribute_number_of_insulator_stacks": 10,
+    "attribute_arrangement_of_crossarms": "Multiple crossarms are arranged horizontally at different heights on the flanking towers, with a single large crossarm and crane arm at the top of the central tower.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "insulator",
+        "crane arm",
+        "control box"
+    ],
+    "attribute_configuration_of_attached_power_lines": "Power lines are routed in parallel between the crossarms of the flanking towers, likely supporting a three-phase circuit configuration with lines spaced evenly and running horizontally.",
+    "uid": "5558eb73a409467baa7e61ecdcde4bb6",
+    "near_synsets": {
+        "pylon.n.02": 0.5290079315246068,
+        "tower.n.01": 0.5583711140967791,
+        "transformer.n.01": 0.5643205824960302,
+        "clock_tower.n.01": 0.5654335722241148,
+        "substation.n.01": 0.5667722842837873,
+        "column.n.04": -1000.0,
+        "tugboat.n.01": -1000.0
+    },
+    "synset": "pylon.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5558eb73a409467baa7e61ecdcde4bb6",
+        "creator_username": "fruitsugar1",
+        "creator_display_name": "fruitsugar1",
+        "creator_profile_url": "https://sketchfab.com/fruitsugar1"
+    },
+    "filename": "std_5558eb73a409467baa7e61ecdcde4bb6.glb",
+    "length": 40.297977447509766,
+    "width": 40.297977447509766
+}

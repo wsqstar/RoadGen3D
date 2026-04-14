@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a modern, rectangular vending machine with a metallic gray exterior and a transparent front panel displaying a variety of bottled and canned beverages. The front features three well-lit shelves, each stocked with drinks, and a lower compartment for product retrieval. A digital display panel, payment interface, and product selection buttons are clustered on the right side of the front face, making user interaction straightforward. The branding 'KORAIL' and other signage are visible above the display shelves, with additional blue and white graphics on the lower section. The sides and back of the machine are plain, smooth, and metallic, with the back showing a vent and power cord. The overall design is sleek and functional, suitable for placement in public urban environments such as train stations, sidewalks, or parks.",
+    "description": "A sleek, metallic vending machine with a transparent front displaying beverages, digital controls, and prominent branding. The sides and back are plain and metallic, with a vent and power cord at the rear.",
+    "description_view_0": "The left side of the vending machine, plain and metallic gray with no visible features or openings.",
+    "description_view_1": "The front view shows the transparent display of beverages, digital display panel, payment interface, product selection buttons, branding, and product retrieval slot.",
+    "description_view_2": "The right side, similar to the left, is plain and metallic gray with no visible features.",
+    "description_view_3": "The back of the machine, featuring a metallic surface, a vent at the bottom, and a visible power cord.",
+    "category": "vending machine",
+    "height": 1.8,
+    "max_dimension": 1.8,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "electronic components",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 220,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 10,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "display panel",
+        "payment slot",
+        "product retrieval slot",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "blue",
+        "black",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A rectangular digital display panel is located on the upper right section of the front face, above the payment interface, showing information and instructions.",
+    "attribute_payment_interface": "The payment interface is on the right side of the front, featuring a coin slot, bill acceptor, and card reader, each with distinct slots and labels.",
+    "attribute_product_selection_buttons": "Individual product selection buttons are arranged in a row below each shelf, each labeled with a number corresponding to the products above.",
+    "attribute_product_retrieval_slot": "A wide rectangular retrieval slot is located at the bottom center of the front face, with a flap for accessing purchased items.",
+    "attribute_branding_or_signage": "Branding includes the 'KORAIL' logo at the top center of the front, blue and white signage on the lower front, and additional product labels above each shelf.",
+    "uid": "7ce5f0c169a0433583e25b62c624780d",
+    "near_synsets": {
+        "vending_machine.n.01": 0.4795090958532608,
+        "automat.n.01": 0.5300172989168133,
+        "soda_fountain.n.02": 0.5688480738676408,
+        "water_cooler.n.01": 0.5859469501780911,
+        "automat.n.02": 0.586162869429164,
+        "machine.n.04": -1000.0,
+        "machine.n.01": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.02": -1000.0,
+        "machine.n.05": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7ce5f0c169a0433583e25b62c624780d",
+        "creator_username": "bolinas",
+        "creator_display_name": "bolinas",
+        "creator_profile_url": "https://sketchfab.com/bolinas"
+    },
+    "filename": "std_7ce5f0c169a0433583e25b62c624780d.glb",
+    "length": 0.7634695172309875,
+    "width": 0.7699809074401855
+}

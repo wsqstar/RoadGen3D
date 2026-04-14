@@ -1,0 +1,97 @@
+{
+    "description_long": "This warehouse is a large, multi-story industrial building with a grid-like facade composed of repeating rectangular window openings and structural frames. The structure features several parallel rows of shelving or storage racks, visible through the open sides, and is illuminated internally by purple grow lights, suggesting specialized storage or agricultural use. The roof consists of multiple flat, rectangular panels, some of which are slightly elevated, possibly for ventilation or skylight purposes. The main entryway is marked by a set of red steps leading up to a central access point, and the building's overall form is highly rectilinear and modular. The exterior is predominantly gray, with accents of black and red, and the interior shelving is visible through the open grid. The design is functional, emphasizing maximum storage capacity and efficient access.",
+    "description": "A large, multi-story industrial warehouse with a grid-like facade, flat segmented roof, and visible internal shelving illuminated by purple grow lights. The structure is predominantly gray with red entry steps and black accents.",
+    "description_view_0": "View 0 shows the warehouse from above, highlighting the parallel rows of shelving and the segmented flat roof panels, with some panels removed to reveal the interior.",
+    "description_view_1": "View 1 presents the front facade, displaying the grid of windows, the main red entry steps, and the overall boxy, modular structure.",
+    "description_view_2": "View 2 offers a top-down perspective with a clear view into the interior shelving and the purple-lit storage area, as well as the open roof sections.",
+    "description_view_3": "View 3 shows the rear or side of the warehouse, emphasizing the repetitive grid structure and the solid, flat roof panels.",
+    "category": "warehouse",
+    "height": 18.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 120000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "storable",
+        "stackable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "entry steps",
+        "doors",
+        "shelving units"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "red",
+        "purple"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main facade features a repetitive grid of rectangular window openings framed by concrete or steel, with a prominent central entryway accessed by red steps. The design is highly modular and functional, with minimal decorative elements and a focus on maximizing storage and access.",
+    "attribute_loading_dock_presence": true,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is flat and segmented into multiple rectangular panels, some of which are elevated or removed, possibly for ventilation or skylights. The material appears to be concrete or metal, providing a robust and industrial appearance.",
+    "attribute_architectural_style": "modern industrial",
+    "uid": "b608a25e073a4dedbe60554e655ead5d",
+    "near_synsets": {
+        "warehouse.n.01": 0.5350709070246583,
+        "loft.n.01": 0.5504410840184851,
+        "storehouse.n.01": 0.5738522913397951,
+        "artist's_loft.n.01": 0.5783505109277458,
+        "plant.n.01": 0.5792994935142742
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b608a25e073a4dedbe60554e655ead5d",
+        "creator_username": "vrcityphoto",
+        "creator_display_name": "Nikitos & 3130",
+        "creator_profile_url": "https://sketchfab.com/vrcityphoto"
+    },
+    "filename": "std_b608a25e073a4dedbe60554e655ead5d.glb",
+    "length": 16.320167541503906,
+    "width": 25.79083251953125
+}

@@ -1,0 +1,113 @@
+{
+    "description_long": "This is a tracked armored combat vehicle with a low, angular profile and a robust, boxy hull. The exterior is covered in a multi-tone camouflage paint scheme, blending greens, browns, and blacks in irregular patterns. The vehicle features a prominent turret mounted centrally on the roof, equipped with a visible weapon system and various observation and communication devices. The sides are protected by thick, sloped armor plating, and the running gear consists of multiple large road wheels and continuous tracks, providing mobility over rough terrain. Additional equipment, such as storage boxes and external gear, is mounted on the hull and turret. The front and rear are reinforced, with hatches and access points visible for crew entry and maintenance.",
+    "description": "A heavily armored, tracked combat vehicle with a central turret, multi-tone camouflage, and robust sloped armor plating.",
+    "description_view_0": "Front view shows the sloped glacis plate, central turret, and frontal armor details.",
+    "description_view_1": "Left side view highlights the continuous tracks, multiple road wheels, and side armor panels.",
+    "description_view_2": "Rear view displays the back armor, exhaust outlets, and rear access hatches.",
+    "description_view_3": "Right side view mirrors the left, showing tracks, wheels, and side-mounted equipment.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 6.8,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 25000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "track",
+        "wheel",
+        "door",
+        "weapon mount",
+        "periscope",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.45,
+        0.3,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible weapon mount on the central turret roof, likely for a machine gun or autocannon.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating on all sides, including reinforced front and side panels.",
+    "attribute_camouflage_pattern": "Woodland camouflage with irregular patches of green, brown, and black in a disruptive pattern.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "0aefbb1e330f42b2b2410ecc5e8a1128",
+    "near_synsets": {
+        "tank.n.01": 0.46304668064570914,
+        "military_vehicle.n.01": 0.4740116176329427,
+        "armored_vehicle.n.01": 0.4845388052065892,
+        "armored_car.n.02": 0.48946472735689905,
+        "reconnaissance_vehicle.n.01": 0.4916621745090318,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0aefbb1e330f42b2b2410ecc5e8a1128",
+        "creator_username": "pervonharke",
+        "creator_display_name": "pervonharke",
+        "creator_profile_url": "https://sketchfab.com/pervonharke"
+    },
+    "filename": "std_0aefbb1e330f42b2b2410ecc5e8a1128.glb",
+    "length": 4.455550193786621,
+    "width": 4.0015504360198975
+}

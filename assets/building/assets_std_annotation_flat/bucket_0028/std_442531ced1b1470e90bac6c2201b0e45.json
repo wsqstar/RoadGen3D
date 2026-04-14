@@ -1,0 +1,98 @@
+{
+    "description_long": "This humanoid robot features a segmented, modular design with distinct head, torso, arms, and legs, all separated and floating in space. The head is polygonal with a blue-tinted faceplate, suggesting a display or sensor array. The torso is angular and robust, with a central protrusion and a blue accent, possibly indicating a power core or interface. The arms and legs are cylindrical and jointed, with rounded ends that may serve as hands and feet, and the limbs appear to be designed for basic manipulation and locomotion. The robot's overall appearance is utilitarian, with a matte gray finish and blue highlights, giving it a functional, industrial look. The construction suggests a lightweight frame, likely composed of metal and plastic, with visible seams and panel lines.",
+    "description": "A modular, gray humanoid robot with blue highlights, polygonal head, and jointed limbs, designed for urban environments.",
+    "description_view_0": "Front view showing the robot's polygonal head, central torso, and aligned limbs, with blue faceplate and core visible.",
+    "description_view_1": "Side view highlighting the depth of the torso, the profile of the head, and the cylindrical shape of the limbs.",
+    "description_view_2": "Rear view displaying the back of the torso, the blue accent on the head, and the separation between limbs and body.",
+    "description_view_3": "Opposite side view showing the arm and leg profiles, as well as the back of the head and torso.",
+    "category": "humanoid robot",
+    "height": 1.6,
+    "max_dimension": 1.6,
+    "materials": [
+        "aluminum",
+        "plastic",
+        "glass",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head",
+        "arms",
+        "legs",
+        "torso",
+        "faceplate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is in a neutral, upright pose with arms and legs slightly apart and not in contact with the torso, head facing forward.",
+    "attribute_clothing_style": "The robot is unclothed, featuring only integrated metallic and plastic panels with blue accent details.",
+    "attribute_facial_features": "The face consists of a polygonal blue-tinted faceplate with no visible eyes, mouth, or nose, giving it a non-expressive, utilitarian appearance.",
+    "attribute_limb_articulation": "The arms and legs are segmented with visible cylindrical joints, likely allowing hinge or rotary motion at the shoulders, elbows, hips, and knees; limbs appear rigid.",
+    "attribute_presence_of_sensors": "A blue faceplate on the head likely houses visual or optical sensors; no other sensors are visibly apparent.",
+    "uid": "442531ced1b1470e90bac6c2201b0e45",
+    "near_synsets": {
+        "android.n.01": 0.5320791150942481,
+        "cyborg.n.01": 0.5463172040082329,
+        "automaton.n.02": 0.5713674889146223,
+        "robotics_equipment.n.01": 0.5734436091814508,
+        "robotics.n.01": 0.5777661334286645
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/442531ced1b1470e90bac6c2201b0e45",
+        "creator_username": "jonathan.jay",
+        "creator_display_name": "jonathan.jay",
+        "creator_profile_url": "https://sketchfab.com/jonathan.jay"
+    },
+    "filename": "std_442531ced1b1470e90bac6c2201b0e45.glb",
+    "length": 5.574205160140991,
+    "width": 6.992896795272827
+}

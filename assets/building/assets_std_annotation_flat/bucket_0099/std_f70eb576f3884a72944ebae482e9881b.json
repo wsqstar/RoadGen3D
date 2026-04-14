@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a medium-sized ship with a long, narrow hull and a slightly raised bow, typical of working or utility vessels. The hull appears to be constructed from metal, with visible railings and deck equipment distributed along its length. The superstructure is compact and located toward the stern, featuring a bridge with windows and several small cabins or enclosed areas. Deck equipment includes what looks like winches, lifeboats, and possibly cranes, indicating the ship is designed for operational tasks rather than leisure. The ship's exterior is painted in muted tones, with some areas showing signs of wear or utilitarian use. No prominent registration markings or flags are visible on the hull or superstructure.",
+    "description": "A medium-sized, metal-hulled utility ship with a compact superstructure, visible deck equipment, and a long, narrow profile. The vessel is painted in muted colors and appears built for operational tasks.",
+    "description_view_0": "Side view showing the full length of the ship, with the superstructure and deck equipment clearly visible along the hull.",
+    "description_view_1": "Narrow end-on view highlighting the ship's slim profile and the raised bow, with minimal detail visible.",
+    "description_view_2": "Opposite side view displaying the hull's length, superstructure, and additional deck features from the other side.",
+    "description_view_3": "Rear or bow view emphasizing the ship's width and the arrangement of equipment along the deck.",
+    "category": "ship",
+    "height": 7.0,
+    "max_dimension": 45.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 4,
+    "movable": true,
+    "required_force": 1800000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "steerable",
+        "operable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "wheel",
+        "winch",
+        "lifeboat",
+        "crane"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.03,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single, elongated displacement type with a slightly raised bow and a flat stern. The sides are straight with a moderate freeboard, and there are no visible keels or bulbous bows. The hull appears robust and functional, suitable for utility or work purposes.",
+    "attribute_superstructure_layout": "The superstructure is compact and located toward the stern, featuring a bridge with windows and several small cabins or enclosed areas. There is a single main deck with equipment distributed along its length.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "winch",
+        "lifeboat",
+        "crane",
+        "antenna",
+        "anchor"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "f70eb576f3884a72944ebae482e9881b",
+    "near_synsets": {
+        "cargo_ship.n.01": 0.4788516281294527,
+        "small_ship.n.01": 0.4822985799871955,
+        "vessel.n.02": 0.49462199556628744,
+        "ship.n.01": 0.49718103217959453,
+        "surface_ship.n.01": 0.49789247663686653
+    },
+    "synset": "surface_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f70eb576f3884a72944ebae482e9881b",
+        "creator_username": "SethHamer",
+        "creator_display_name": "Seth Hamer",
+        "creator_profile_url": "https://sketchfab.com/SethHamer"
+    },
+    "filename": "std_f70eb576f3884a72944ebae482e9881b.glb",
+    "length": 30.673346519470215,
+    "width": 32.51108932495117
+}

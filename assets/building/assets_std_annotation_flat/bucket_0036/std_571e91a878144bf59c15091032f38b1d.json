@@ -1,0 +1,106 @@
+{
+    "description_long": "This object is a towed artillery cannon, featuring a long, cylindrical barrel mounted on a robust carriage with two large spoked wheels. The main body is protected by an angled armored shield, which covers the breech and part of the barrel, providing some defense for the operators. Two stabilizing trails extend from the rear, equipped with spades for anchoring the gun during firing, and several artillery shells are positioned nearby. The surface is painted in a dark, weathered camouflage pattern with visible wear and chipping, suggesting heavy use. The wheels are solid and rugged, designed for transport over rough terrain, and the overall construction is predominantly metal, indicating significant weight and durability. The cannon is equipped with visible aiming and adjustment mechanisms, and the design is utilitarian, prioritizing function and protection.",
+    "description": "A towed artillery cannon with a long barrel, armored shield, and two large wheels, finished in a dark, weathered camouflage pattern. Rear stabilizing trails and nearby shells emphasize its combat readiness.",
+    "description_view_0": "Side view showing the full length of the barrel, armored shield, large wheel, and both stabilizing trails with shells nearby.",
+    "description_view_1": "Front view highlighting the muzzle, angled armored shield, and the symmetrical positioning of the wheels and trails.",
+    "description_view_2": "Opposite side view displaying the barrel, shield, wheel, and the rear trails, with visible shells and support details.",
+    "description_view_3": "Rear view focusing on the split trails, spades, and the arrangement of artillery shells, with the shield and barrel visible in the background.",
+    "category": "combat tactical  vehicle",
+    "height": 1.3,
+    "max_dimension": 4.2,
+    "materials": [
+        "steel",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3500,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pushable",
+        "pullable",
+        "aimable",
+        "loadable",
+        "fireable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "barrel",
+        "trails",
+        "spades",
+        "shield",
+        "breech",
+        "aiming mechanism"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "group",
+    "attribute_weapon_mounts": "One fixed cannon mount at the front center of the carriage.",
+    "attribute_armor_plating": "Angled steel armor plating covers the front and sides of the breech area, appearing moderately thick and sloped for deflection.",
+    "attribute_camouflage_pattern": "Dark green and black mottled camouflage with weathered, chipped paint.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "Two large solid rubber tires with minimal visible tread, designed for heavy load-bearing.",
+    "uid": "571e91a878144bf59c15091032f38b1d",
+    "near_synsets": {
+        "tank.n.01": 0.49683585594252055,
+        "military_vehicle.n.01": 0.5091747838485425,
+        "tank_shell.n.01": 0.5154191453877027,
+        "cannon.n.02": 0.5161348182331245,
+        "caisson.n.02": 0.5234258484955384,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "caisson.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/571e91a878144bf59c15091032f38b1d",
+        "creator_username": "aus792",
+        "creator_display_name": "aus792",
+        "creator_profile_url": "https://sketchfab.com/aus792"
+    },
+    "filename": "std_571e91a878144bf59c15091032f38b1d.glb",
+    "length": 3.4391528367996216,
+    "width": 2.5166754722595215
+}

@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a rustic wooden barrel with a cylindrical shape, constructed from vertically aligned wooden staves bound together by several dark rope bands. The wood displays a pronounced, weathered grain texture, giving it an aged and sturdy appearance. A handwritten note reading 'DON'T LOOSE IT!' is attached to one side, suggesting the barrel's contents or purpose are important. The top is covered with a wooden lid, and a piece of paper is partially visible on the lid, possibly serving as a label or inventory note. Rope handles are affixed to the sides, providing a means for lifting or carrying. The overall design and materials evoke a utilitarian object commonly found in urban or industrial outdoor settings.",
+    "description": "A weathered wooden barrel with rope bands, a lid, and a handwritten note attached to its side.",
+    "description_view_0": "The barrel's wooden texture and rope bands are prominent, with a partial view of a paper on the lid.",
+    "description_view_1": "This view highlights the handwritten note 'DON'T LOOSE IT!' attached to the side and shows the rope handle clearly.",
+    "description_view_2": "The opposite side features a visible rope handle and the wood's grain is especially pronounced.",
+    "description_view_3": "The back view shows uninterrupted wood staves and rope bands, with no visible labels or handles.",
+    "category": "barrel or bucket",
+    "height": 0.9,
+    "max_dimension": 0.65,
+    "materials": [
+        "wood",
+        "rope",
+        "paper",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "rope handle",
+        "label/note"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "beige",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.4,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "rope side handles",
+    "attribute_banding_or_reinforcement": "rope bands around body",
+    "attribute_labeling_or_markings": "handwritten note 'DON'T LOOSE IT!'",
+    "attribute_placement_location": "outdoor",
+    "uid": "d7f39a56224b49b58a6900af8caf91d7",
+    "near_synsets": {
+        "barrel.n.02": 0.5004805869386941,
+        "beer_barrel.n.01": 0.5073414809896127,
+        "barrels.n.01": 0.5128621705861025,
+        "barrel.n.03": 0.5144586217956247,
+        "bucket.n.01": 0.5246252448241728,
+        "barrel.n.04": -1000.0,
+        "barrel.n.01": -1000.0,
+        "barrel.n.05": -1000.0,
+        "bucket.n.02": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/d7f39a56224b49b58a6900af8caf91d7",
+        "creator_username": "whiztruster",
+        "creator_display_name": "wiz",
+        "creator_profile_url": "https://sketchfab.com/whiztruster"
+    },
+    "filename": "std_d7f39a56224b49b58a6900af8caf91d7.glb",
+    "length": 0.9861084818840027,
+    "width": 0.9842925071716309
+}

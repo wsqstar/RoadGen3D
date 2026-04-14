@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a stylized, compact steam locomotive with a bright red cylindrical boiler and a black smokestack at the front. The body features simple geometric shapes, with three large black wheels on each side and a small golden dome on top of the boiler. The front of the train is capped with a white circular face and a black cowcatcher below. The cab at the rear is boxy and red, with a black roof and no visible windows or doors. The train lacks fine detailing such as rivets, handrails, or visible couplings, giving it a toy-like appearance. There are no visible carriages attached, and the overall design is minimalistic and playful.",
+    "description": "A bright red, stylized steam locomotive with a black smokestack, three large wheels per side, and a simple, toy-like design. The train features a cylindrical boiler, a golden dome, and a boxy cab with no visible windows or doors.",
+    "description_view_0": "Side view showing the red cylindrical boiler, three large black wheels, golden dome, and boxy cab with black roof.",
+    "description_view_1": "Front view highlighting the white circular face, black smokestack, and cowcatcher below, with the cylindrical boiler behind.",
+    "description_view_2": "Opposite side view, mirroring view 0, with the same features visible: red boiler, three wheels, golden dome, and cab.",
+    "description_view_3": "Rear view showing the back of the boxy cab and the black roof, with no visible windows or doors.",
+    "category": "train",
+    "height": 1.8,
+    "max_dimension": 6.0,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "smokestack",
+        "dome",
+        "cowcatcher"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "white",
+        "gold"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "steam locomotive",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "no visible doors",
+    "attribute_window_arrangement": "no visible windows",
+    "uid": "7a9579b880724e93bf7dfc3c9253b75c",
+    "near_synsets": {
+        "steam_locomotive.n.01": 0.46560746945595416,
+        "train_set.n.01": 0.49041310218546236,
+        "train.n.01": 0.49660892493256964,
+        "locomotive.n.01": 0.5104279169819126,
+        "diesel_locomotive.n.01": 0.517125944876342,
+        "string.n.04": -1000.0,
+        "gearing.n.01": -1000.0,
+        "train.n.04": -1000.0,
+        "train.n.05": -1000.0,
+        "caravan.n.01": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7a9579b880724e93bf7dfc3c9253b75c",
+        "creator_username": "RobMeade",
+        "creator_display_name": "Rob Meade",
+        "creator_profile_url": "https://sketchfab.com/RobMeade"
+    },
+    "filename": "std_7a9579b880724e93bf7dfc3c9253b75c.glb",
+    "length": 3.0497889518737793,
+    "width": 1.140594244003296
+}

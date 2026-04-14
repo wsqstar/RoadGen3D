@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a modern pedestrian bridge featuring two symmetrical, angular roof structures made of wood, supported by vertical posts and cable-stayed elements. The bridge deck is elevated above a blue base, suggesting water or a river beneath. The roof sections are slanted outward, creating a dynamic V-shaped profile when viewed from the front or back. Two tall central masts rise above the deck, with cables extending to the roof edges for additional support and visual interest. The bridge appears to have open sides with minimal railing, emphasizing its contemporary design. The overall structure is robust, with a focus on geometric lines and natural materials.",
+    "description": "A modern, angular pedestrian bridge with wooden slanted roofs, cable-stayed supports, and a blue base suggesting water below.",
+    "description_view_0": "Front view showing the V-shaped slanted roofs, central masts, and cable supports, with the bridge deck elevated above a blue base.",
+    "description_view_1": "Side view highlighting the length of the bridge, the symmetry of the roof structures, and the central masts with cables.",
+    "description_view_2": "Rear view mirroring the front, displaying the outward-slanting roofs, central masts, and open deck above the blue base.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the bridge's elongated form, roof symmetry, and cable-stayed supports.",
+    "category": "bridge",
+    "height": 8.0,
+    "max_dimension": 30.0,
+    "materials": [
+        "wood",
+        "steel",
+        "cable",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 35000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "crossable",
+        "sheltering"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "deck",
+        "railing",
+        "roof",
+        "cables"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "blue",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_support_type": "cable-stayed, beam",
+    "attribute_railing_design": "minimalist cable or rod railing with open sides, supported by vertical posts",
+    "attribute_arch_presence": false,
+    "attribute_lighting_fixtures": [],
+    "attribute_architectural_style": "modern",
+    "uid": "7463f6f8bc4d4a57b9c8f39f01e0c108",
+    "near_synsets": {
+        "trestle_bridge.n.01": 0.5080489581198787,
+        "cantilever_bridge.n.01": 0.5097159118966617,
+        "suspension_bridge.n.01": 0.5098151013567995,
+        "truss_bridge.n.01": 0.5150798021887466,
+        "footbridge.n.01": 0.5162905838799816,
+        "bridge.n.02": -1000.0,
+        "bridge.n.07": -1000.0,
+        "bridge.n.04": -1000.0,
+        "bridge.n.08": -1000.0,
+        "bridge.n.05": -1000.0,
+        "bridge.n.09": -1000.0,
+        "bridge.n.06": -1000.0,
+        "bridge.n.03": -1000.0,
+        "bridge.n.01": -1000.0
+    },
+    "synset": "bridge.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7463f6f8bc4d4a57b9c8f39f01e0c108",
+        "creator_username": "Joel_Busch",
+        "creator_display_name": "Joel_Busch",
+        "creator_profile_url": "https://sketchfab.com/Joel_Busch"
+    },
+    "filename": "std_7463f6f8bc4d4a57b9c8f39f01e0c108.glb",
+    "length": 5.628461837768555,
+    "width": 22.57707977294922
+}

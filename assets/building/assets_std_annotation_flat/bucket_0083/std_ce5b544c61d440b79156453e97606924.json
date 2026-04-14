@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a large, rectangular above-ground jacuzzi with a wooden exterior frame and a bright blue water interior. The jacuzzi features a set of metal steps at one end for easy access, and two orange filtration or pump units are visible at the opposite end, indicating a robust water circulation system. The wooden panels are reinforced with vertical supports, giving the structure a sturdy and durable appearance. The water inside is clear and appears to be nearly full, with a smooth, reflective surface. No visible jets or control panels are present on the exterior, and the jacuzzi is uncovered. The overall design is practical and inviting, suitable for installation in urban backyards, parks, or recreational areas.",
+    "description": "A large, rectangular wooden-framed jacuzzi with blue water, metal steps, and visible pump units. The jacuzzi is uncovered and nearly full of water.",
+    "description_view_0": "Front view showing the metal steps leading into the jacuzzi and the wooden paneling.",
+    "description_view_1": "Side view highlighting the length of the jacuzzi and the wooden frame, with a glimpse of the pump unit at the far end.",
+    "description_view_2": "Rear view displaying two orange pump units and the solid wooden structure, with no steps visible.",
+    "description_view_3": "Opposite side view showing the full length of the jacuzzi and the pump unit at the near end.",
+    "category": "jacuzzi",
+    "height": 1.2,
+    "max_dimension": 5.0,
+    "materials": [
+        "wood",
+        "metal",
+        "plastic",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.1,
+        0.1,
+        0.25,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "soakable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "steps",
+        "pump unit"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "blue",
+        "silver",
+        "orange",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.35,
+        0.03,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.35,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_jets": [],
+    "attribute_control_panel": "none visible",
+    "attribute_water_level": "nearly full, water close to the top edge",
+    "attribute_cover": false,
+    "attribute_steps": [
+        {
+            "location": "front",
+            "number_of_steps": 3,
+            "material": "metal"
+        }
+    ],
+    "uid": "ce5b544c61d440b79156453e97606924",
+    "near_synsets": {
+        "hot_tub.n.01": 0.48347175921118807,
+        "bath_water.n.01": 0.5321322922871136,
+        "bathtub.n.01": 0.5373767782068374,
+        "pump_room.n.01": 0.5564325758135924,
+        "bathhouse.n.01": 0.5766076552352024
+    },
+    "synset": "hot_tub.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/ce5b544c61d440b79156453e97606924",
+        "creator_username": "trzyde.com",
+        "creator_display_name": "trzyde.com",
+        "creator_profile_url": "https://sketchfab.com/trzyde.com"
+    },
+    "filename": "std_ce5b544c61d440b79156453e97606924.glb",
+    "length": 6.572248935699463,
+    "width": 4.522575855255127
+}

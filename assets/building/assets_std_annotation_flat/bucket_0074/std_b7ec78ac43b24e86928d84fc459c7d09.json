@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a classic flintlock-style handgun featuring a wooden grip and a long, dark metal barrel. The grip is smoothly contoured and made from polished wood, with a gentle curve that fits comfortably in the hand. The barrel is cylindrical, metallic, and extends forward with a simple, unadorned muzzle. The trigger guard is metallic and rounded, providing protection for the trigger mechanism, while the hammer is prominently visible above the grip, ready to be cocked. The overall design is minimalistic, with no visible engravings or modern embellishments, evoking a historical or antique firearm aesthetic. The finish of the wood and metal is smooth and well-maintained, with a subtle sheen.",
+    "description": "A classic flintlock-style handgun with a polished wooden grip and a long, smooth metal barrel, featuring a simple, antique design.",
+    "description_view_0": "The handgun is viewed from the rear, showing the narrow width of the grip and the alignment of the barrel.",
+    "description_view_1": "A clear side profile reveals the full length of the barrel, the curved wooden grip, the trigger guard, and the hammer mechanism.",
+    "description_view_2": "The front view highlights the circular muzzle opening and the top of the barrel, with the hammer visible above the grip.",
+    "description_view_3": "The opposite side profile displays the same features as view 1, with the wooden grip and metal barrel clearly visible.",
+    "category": "handgun",
+    "height": 0.13,
+    "max_dimension": 0.38,
+    "materials": [
+        "wood",
+        "steel",
+        "brass",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.45,
+        0.05,
+        0.05
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "cockable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "trigger guard",
+        "hammer",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "gold"
+    ],
+    "colors_composition": [
+        0.5,
+        0.45,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_grip_design": "The grip is crafted from polished wood, smoothly contoured to fit the hand with a gentle curve and a rounded end. Its surface is sleek and untextured, lacking checkering or stippling, and there are no visible logos, finger grooves, or decorative embellishments. The wood grain is subtly visible, adding a natural aesthetic to the grip.",
+    "attribute_trigger_guard_style": "The trigger guard is metallic, rounded, and of moderate thickness, forming a smooth oval that fully encircles the trigger. It lacks undercuts, squared-off edges, or integrated accessories, and there is no visible texturing or reinforcement, giving it a classic, utilitarian appearance.",
+    "attribute_barrel_type": "The barrel is long, cylindrical, and smooth, with a traditional round profile and no visible threading, porting, or fluting. The exterior is finished in a dark, matte metal with no compensators or suppressor threads, and there are no visible markings or decorative features.",
+    "attribute_slide_markings": "There are no visible markings, engravings, or inscriptions on the slide or barrel. The surfaces are plain and unadorned, with no manufacturer logos, model names, serial numbers, or decorative patterns present.",
+    "attribute_magazine_base_shape": "There is no visible magazine base or floorplate, as this is a single-shot flintlock-style handgun without a detachable magazine. The grip terminates in a rounded wooden end with no extensions, bevels, flares, finger rests, logos, or texturing.",
+    "uid": "b7ec78ac43b24e86928d84fc459c7d09",
+    "near_synsets": {
+        "flintlock.n.02": 0.4370299510134279,
+        "flintlock.n.01": 0.4385398773369552,
+        "pistol.n.01": 0.4960170939232126,
+        "gunflint.n.01": 0.49761603961393186,
+        "firearm.n.01": 0.5023652389308937
+    },
+    "synset": "flintlock.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b7ec78ac43b24e86928d84fc459c7d09",
+        "creator_username": "kamsz",
+        "creator_display_name": "kamsz",
+        "creator_profile_url": "https://sketchfab.com/kamsz"
+    },
+    "filename": "std_b7ec78ac43b24e86928d84fc459c7d09.glb",
+    "length": 0.33095186948776245,
+    "width": 0.03505374491214752
+}

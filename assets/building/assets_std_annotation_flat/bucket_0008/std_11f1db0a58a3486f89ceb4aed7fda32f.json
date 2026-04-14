@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a compact, tracked combat vehicle with a robust, angular hull and a prominent central turret. The turret is equipped with a large-caliber cannon extending forward, and there are additional mechanical features at the front, possibly for clearing obstacles or debris. The vehicle's body is covered in dark, metallic armor plating, with visible bolts and panel lines suggesting reinforced construction. The tracks are wide and rugged, designed for traversing rough urban terrain, and the sides feature access panels and hatches. The overall appearance is utilitarian and heavily armored, with minimal decorative elements and a focus on functionality. No visible camouflage or military insignia are present, and the paint scheme is a solid, dark color.",
+    "description": "A heavily armored, tracked combat vehicle with a central turret and large forward-facing cannon, finished in a solid dark color. The design is utilitarian, with reinforced plating and rugged tracks for urban operations.",
+    "description_view_0": "Front view shows the wide tracks, reinforced frontal armor, and the main cannon protruding from the turret, with additional mechanical features below the cannon.",
+    "description_view_1": "Left side view highlights the length of the cannon, the turret's profile, and the detailed side armor with visible access panels and rugged track assembly.",
+    "description_view_2": "Rear view reveals the back of the tracks, rear armor plating, and the mechanical structure at the back, with no visible weaponry.",
+    "description_view_3": "Right side view mirrors the left, showing the cannon, turret, and side armor, with clear visibility of the track and access panels.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.82,
+        0.1,
+        0.03,
+        0.03,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "track",
+        "access panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large-caliber cannon mounted centrally on the turret; no other weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, angular steel armor plating; reinforced front and side panels with visible bolts and seams.",
+    "attribute_camouflage_pattern": "None visible; solid dark color paint scheme.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "11f1db0a58a3486f89ceb4aed7fda32f",
+    "near_synsets": {
+        "tank.n.01": 0.4698094126956391,
+        "military_vehicle.n.01": 0.48819264195016665,
+        "armored_car.n.02": 0.49479403136427835,
+        "assault_gun.n.02": 0.5038795146615953,
+        "reconnaissance_vehicle.n.01": 0.5041521310780476,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/11f1db0a58a3486f89ceb4aed7fda32f",
+        "creator_username": "janovich3D",
+        "creator_display_name": "Janovich",
+        "creator_profile_url": "https://sketchfab.com/janovich3D"
+    },
+    "filename": "std_11f1db0a58a3486f89ceb4aed7fda32f.glb",
+    "length": 4.7830376625061035,
+    "width": 2.126221537590027
+}

@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a metallic cartridge-shaped bomb, resembling a large caliber bullet with a cutaway section revealing its internal components. The exterior is primarily brass-colored with a rounded, copper-toned tip and a flat base, which is stamped with text. The cutaway reveals a dense, dark cylindrical core, likely representing explosive material, and a metallic primer at the base. The casing is smooth and reflective, with visible seams and a slight taper toward the tip. The overall construction suggests a compact, high-density device designed for detonation upon impact or via a primer mechanism.",
+    "description": "A metallic, cartridge-shaped bomb with a brass casing, copper tip, and a visible cutaway showing internal explosive components.",
+    "description_view_0": "Front view shows the flat, stamped base of the cartridge with the primer clearly visible and the cutaway section partially exposed.",
+    "description_view_1": "Side cutaway view reveals the internal structure, including the dense explosive core and the primer at the base.",
+    "description_view_2": "Tip view highlights the rounded, copper-colored projectile end and the partial cutaway along the side.",
+    "description_view_3": "Opposite side view displays the intact, smooth brass casing with the bullet tip and base visible, no internal components exposed.",
+    "category": "bomb",
+    "height": 0.04,
+    "max_dimension": 0.04,
+    "materials": [
+        "brass",
+        "copper",
+        "lead",
+        "explosive_compound",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 0.05,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "primer",
+        "projectile tip"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brass",
+        "copper",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.6,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 110000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The object features a primer at the base, suggesting detonation is initiated by impact or pressure applied to the primer.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "817c71ce020343b89b4a3fc32894ccac",
+    "near_synsets": {
+        "pipe_bomb.n.01": 0.4884251431266046,
+        "briefcase_bomb.n.01": 0.49625506907566436,
+        "cartridge.n.01": 0.4963347136770526,
+        "bomb.n.01": 0.49683941996415965,
+        "shell.n.01": 0.5148894920086451,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/817c71ce020343b89b4a3fc32894ccac",
+        "creator_username": "triMakar",
+        "creator_display_name": "triMakar",
+        "creator_profile_url": "https://sketchfab.com/triMakar"
+    },
+    "filename": "std_817c71ce020343b89b4a3fc32894ccac.glb",
+    "length": 0.112222108989954,
+    "width": 0.03999996930360794
+}

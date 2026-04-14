@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a classic hand grenade with a polygonal, faceted green metal body and a prominent safety lever running vertically along its side. The top features a cylindrical fuse assembly with a red-tipped cap and a metallic pull ring attached to a pin, which is used to arm the device. The body is segmented with visible seams and a slightly worn, matte finish, suggesting it is designed for durability and grip. On one side, a faint yellow hazard symbol is visible, indicating its dangerous contents. The metal lever and ring are rendered in a dull gray, contrasting with the green body. The overall construction appears robust, with all components tightly integrated for secure handling and operation.",
+    "description": "A green, faceted hand grenade with a metal safety lever, pull ring, and a red-tipped fuse cap, featuring a faint hazard symbol on its body.",
+    "description_view_0": "Front view showing the metal safety lever running down the center and the polygonal green body.",
+    "description_view_1": "Side view highlighting the pull ring, red-tipped fuse, and a visible yellow hazard symbol on the body.",
+    "description_view_2": "Rear view displaying the green faceted body and the top fuse assembly without the lever or ring in focus.",
+    "description_view_3": "Opposite side view showing the pull ring and lever, with no visible hazard symbol.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.08,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 0.4,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "fuse cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "gray",
+        "red",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [
+        "hazard symbol"
+    ],
+    "attribute_detonation_mechanism": "Detonation is likely initiated by pulling the metal ring to remove the safety pin, releasing the lever and triggering the fuse.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "100f6e1884ae477086ca7f87f43ad6d1",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.47730876339434947,
+        "grenade.n.01": 0.5024922541378791,
+        "bomb.n.01": 0.5308447572213937,
+        "cherry_bomb.n.01": 0.5427647262820232,
+        "pipe_bomb.n.01": 0.5450665657552808,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/100f6e1884ae477086ca7f87f43ad6d1",
+        "creator_username": "mafroz",
+        "creator_display_name": "mafroz",
+        "creator_profile_url": "https://sketchfab.com/mafroz"
+    },
+    "filename": "std_100f6e1884ae477086ca7f87f43ad6d1.glb",
+    "length": 0.06735825911164284,
+    "width": 0.07960417866706848
+}

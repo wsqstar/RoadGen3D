@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a sleek, modern passenger jet airplane with a streamlined fuselage and a pair of low-mounted, swept-back wings. The wings are equipped with small winglets at their tips, enhancing aerodynamic efficiency. Two turbofan engines are mounted at the rear of the fuselage, just below a prominent T-tail configuration, which features a horizontal stabilizer mounted atop the vertical fin. The airplane has a tricycle landing gear arrangement, with the main gear under the wings and a nose gear at the front. The cockpit is located at the very front of the fuselage, featuring a multi-windowed, enclosed design typical of commercial jets.",
+    "description": "A modern passenger jet with low, swept-back wings, rear-mounted engines, and a T-tail. The fuselage is streamlined with a forward, enclosed cockpit and tricycle landing gear.",
+    "description_view_0": "Front view showing the pointed nose, forward cockpit windows, and the symmetrical spread of the low-mounted wings with visible winglets.",
+    "description_view_1": "Side view highlighting the elongated fuselage, rear-mounted twin engines, T-tail, and the tricycle landing gear with the nose gear extended.",
+    "description_view_2": "Rear view displaying the twin rear-mounted engines, the T-tail configuration, and the full span of the wings with winglets.",
+    "description_view_3": "Opposite side view similar to view 1, showing the other profile of the fuselage, engines, and landing gear.",
+    "category": "airplane",
+    "height": 7.5,
+    "max_dimension": 30.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.07,
+        0.06,
+        0.02,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit controls",
+        "landing gear",
+        "engine",
+        "windows"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.12,
+    "surface_finish": "sleek",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 35.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with swept-back wings and small upward winglets at the tips.",
+    "attribute_engine_type": "Twin rear-mounted turbofan engines.",
+    "attribute_tail_design": "T-tail configuration with a single vertical stabilizer and a horizontal stabilizer mounted at the top.",
+    "attribute_landing_gear_type": "Tricycle retractable landing gear with two main gear units and a single nose gear.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with multiple windows, typical of a multi-seat commercial jet.",
+    "uid": "799491250aed42f29d555473a52c14b4",
+    "near_synsets": {
+        "airplane.n.01": 0.49451319444370695,
+        "fuselage.n.01": 0.504305663799744,
+        "jet.n.01": 0.5115369010660562,
+        "aircraft.n.01": 0.5199224912989799,
+        "propjet.n.01": 0.5199681177241372
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/799491250aed42f29d555473a52c14b4",
+        "creator_username": "Propel",
+        "creator_display_name": "Propel",
+        "creator_profile_url": "https://sketchfab.com/Propel"
+    },
+    "filename": "std_799491250aed42f29d555473a52c14b4.glb",
+    "length": 29.26680564880371,
+    "width": 22.939398765563965
+}

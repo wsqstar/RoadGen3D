@@ -1,0 +1,97 @@
+{
+    "description_long": "This mud patch is an irregular, roughly oval-shaped clump of dark, moist earth with a rugged, uneven surface. The texture is highly granular, with visible clumps, crevices, and small protrusions, suggesting a recently disturbed or heavily compacted area. The coloration ranges from medium to dark brown, with some grayish undertones, indicating a mix of soil and possibly some organic material. The edges are jagged and blend slightly into the surrounding area, lacking sharp definition. There are no visible impressions such as footprints or tire marks, and the surface appears matte and non-reflective, with no signs of standing water. Small fragments of debris, such as tiny stones or bits of organic matter, are scattered across the surface.",
+    "description": "A dark, irregular mud patch with a rough, clumpy surface and jagged edges, showing no visible water or impressions. The patch is granular and matte, with scattered small debris.",
+    "description_view_0": "The mud patch appears broad and flat with a highly textured, clumpy surface and irregular, slightly raised edges.",
+    "description_view_1": "This side view emphasizes the patch's thin profile and uneven, jagged perimeter, with visible clumps and depressions.",
+    "description_view_2": "From this angle, the patch's surface roughness and granular texture are prominent, with some small debris visible.",
+    "description_view_3": "The mud patch looks darker and more compact, with a dense, lumpy surface and less visible debris.",
+    "category": "mud patch",
+    "height": 0.07,
+    "max_dimension": 0.45,
+    "materials": [
+        "mud",
+        "organic matter",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 5.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 60,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "dark brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.05,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 0.01,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_location": "urban roadside or construction site",
+    "attribute_boundary_definition": "The boundaries are irregular and blend gradually into the surrounding ground, with no sharp transitions.",
+    "attribute_presence_of_footprints_or_tire_marks": "none visible",
+    "attribute_water_accumulation": "none visible",
+    "attribute_surrounding_debris": "small stones, bits of organic matter",
+    "uid": "0798956ef9964c72a102db5cea7962c7",
+    "near_synsets": {
+        "mud_puddle.n.01": 0.5226281488470895,
+        "mud_stain.n.01": 0.5294778093149337,
+        "mud.n.01": 0.5406117398473163,
+        "mottle.n.01": 0.5654353589848302,
+        "jaggedness.n.01": 0.5678022998782588,
+        "plot.n.02": -1000.0,
+        "while.n.01": -1000.0,
+        "patch.n.03": -1000.0,
+        "patch.n.05": -1000.0,
+        "temporary_hookup.n.01": -1000.0,
+        "mud.n.02": -1000.0,
+        "eyepatch.n.01": -1000.0,
+        "mend.n.01": -1000.0,
+        "bandage.n.01": -1000.0,
+        "spot.n.05": -1000.0
+    },
+    "synset": "mud.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0798956ef9964c72a102db5cea7962c7",
+        "creator_username": "cairn",
+        "creator_display_name": "CAIRN",
+        "creator_profile_url": "https://sketchfab.com/cairn"
+    },
+    "filename": "std_0798956ef9964c72a102db5cea7962c7.glb",
+    "length": 0.1309964954853058,
+    "width": 0.13228321075439453
+}

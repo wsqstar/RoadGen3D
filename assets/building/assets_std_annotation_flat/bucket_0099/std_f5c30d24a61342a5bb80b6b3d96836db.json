@@ -1,0 +1,111 @@
+{
+    "description_long": "This is a two-story train station building with a white facade and blue window shutters, featuring a central upper section that rises above the main roofline. The structure has a tiled gable roof and several arched windows and doors on the ground floor, with the main entrance marked by a large blue double door. The left side of the building includes a small attached garage or covered area, where a white vehicle is parked. Several motorcycles are lined up along the front, indicating a designated parking area. The walls show some signs of weathering and minor damage, adding to the building's character. The overall appearance suggests a historical or colonial architectural influence, with functional elements for public use.",
+    "description": "A two-story white train station with blue shutters, tiled gable roof, and arched doors, featuring a central raised section and adjacent parking area.",
+    "description_view_0": "Front view showing the main facade with blue doors, windows, and parked vehicles.",
+    "description_view_1": "Side view highlighting the building's narrow profile and the attached garage area.",
+    "description_view_2": "Rear or alternate front view with visible blue doors and windows, less vehicle detail.",
+    "description_view_3": "Opposite side view showing the garage, parked car, and the building's side wall.",
+    "category": "train station",
+    "height": 8.5,
+    "max_dimension": 22.0,
+    "materials": [
+        "brick",
+        "plaster",
+        "wood",
+        "ceramic tile",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.1,
+        0.08,
+        0.06,
+        0.03,
+        0.03
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "garage door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.65,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_platform_canopies": "none",
+    "attribute_station_signage": "none",
+    "attribute_ticket_vending_machines": "none",
+    "attribute_railway_tracks": "none",
+    "attribute_architectural_style": "Colonial",
+    "uid": "f5c30d24a61342a5bb80b6b3d96836db",
+    "near_synsets": {
+        "platform.n.06": 0.5259010451380927,
+        "railway_station.n.01": 0.5341923323259524,
+        "subway_station.n.01": 0.5376596436574931,
+        "subway_train.n.01": 0.558351840930079,
+        "terminal.n.01": 0.5664541446090332,
+        "train.n.04": -1000.0,
+        "caravan.n.01": -1000.0,
+        "gearing.n.01": -1000.0,
+        "place.n.10": -1000.0,
+        "post.n.01": -1000.0,
+        "train.n.01": -1000.0,
+        "station.n.05": -1000.0,
+        "station.n.01": -1000.0,
+        "station.n.03": -1000.0,
+        "train.n.05": -1000.0,
+        "string.n.04": -1000.0
+    },
+    "synset": "railway_station.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f5c30d24a61342a5bb80b6b3d96836db",
+        "creator_username": "rollingdrone",
+        "creator_display_name": "Paulo Rodrigo Sim\u00f5es",
+        "creator_profile_url": "https://sketchfab.com/rollingdrone"
+    },
+    "filename": "std_f5c30d24a61342a5bb80b6b3d96836db.glb",
+    "length": 8.953567504882812,
+    "width": 14.348944187164307
+}

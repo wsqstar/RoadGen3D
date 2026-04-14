@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a large, armored all-terrain vehicle resembling a military tank, painted in a light, almost white camouflage scheme. The vehicle features a long, prominent cannon barrel extending from a rounded turret, with various hatches, vents, and equipment mounted on the upper hull. The sides display a series of large, rugged road wheels and continuous tracks, designed for traversing rough and urban terrain. The hull is angular and robust, with additional storage compartments and external fuel tanks visible at the rear. Markings such as the number '214' are stenciled on the side, indicating a military or tactical designation. The vehicle is constructed primarily from heavy metal armor, with reinforced surfaces and minimal exposed soft components.",
+    "description": "A large, white-armored tracked vehicle with a long cannon, multiple road wheels, and military markings, designed for rugged all-terrain use.",
+    "description_view_0": "Front view shows the long cannon barrel, rounded turret, and wide armored hull with visible tracks on either side.",
+    "description_view_1": "Left side view highlights the six large road wheels, continuous track, side hatches, and the '214' marking.",
+    "description_view_2": "Rear view reveals the back armor, exhaust vents, storage compartments, and the ends of the tracks.",
+    "description_view_3": "Right side view mirrors the left, showing the wheels, tracks, and turret profile, with additional details of the rear equipment.",
+    "category": "all-terrain vehicle",
+    "height": 2.4,
+    "max_dimension": 6.7,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 160000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "wheel",
+        "track",
+        "antenna",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 12,
+    "attribute_tire_tread_pattern": "The tracks feature a blocky, all-terrain tread pattern designed for maximum traction on both urban surfaces and rough terrain.",
+    "attribute_suspension_type": "independent",
+    "attribute_presence_of_roll_cage": false,
+    "attribute_handlebar_or_steering_wheel_type": "round steering wheel",
+    "uid": "2fb9d8a5caa247bbb5a5eb2518f3e0b2",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.45403676711871677,
+        "reconnaissance_vehicle.n.01": 0.4819562583209377,
+        "tank.n.01": 0.48281379810889147,
+        "armored_vehicle.n.01": 0.4898431416538772,
+        "assault_gun.n.02": 0.4900713801652081,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2fb9d8a5caa247bbb5a5eb2518f3e0b2",
+        "creator_username": "Hsu.Pei.Ge",
+        "creator_display_name": "Basic Hsu",
+        "creator_profile_url": "https://sketchfab.com/Hsu.Pei.Ge"
+    },
+    "filename": "std_2fb9d8a5caa247bbb5a5eb2518f3e0b2.glb",
+    "length": 6.128441333770752,
+    "width": 2.3841663599014282
+}

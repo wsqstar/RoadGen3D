@@ -1,0 +1,90 @@
+{
+    "description_long": "This object is a stylized, green-painted rifle with a distinctly angular and geometric design, featuring a long, straight barrel and a prominent, flat stock. The rifle has two large, polygonal wheels attached near the center, suggesting it is a wheeled artillery piece or anti-tank rifle rather than a handheld firearm. The front end is equipped with a wide, spade-like muzzle brake or stabilizer, and the rear features a thick, rectangular stock. The body is constructed from what appears to be solid metal, with visible bolts and reinforcements along the frame. The overall appearance is utilitarian, with minimal decorative elements and a focus on robust, functional geometry. The green color is uniform across the entire surface, giving it a military or industrial look.",
+    "description": "A green, wheeled, angular rifle-like artillery piece with a long barrel, polygonal wheels, and a spade-shaped muzzle device, constructed from solid metal.",
+    "description_view_0": "Side view showing the long barrel, polygonal wheels, and the spade-shaped muzzle device at the front.",
+    "description_view_1": "Front view highlighting the wide, spade-shaped muzzle device and the symmetrical arms extending from the barrel.",
+    "description_view_2": "Opposite side view similar to view 0, showing the wheels and the length of the barrel.",
+    "description_view_3": "Rear view displaying the flat, rectangular stock and the two wheels, with the barrel extending away.",
+    "category": "rifle",
+    "height": 0.6,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheels",
+        "barrel",
+        "stock",
+        "muzzle device"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "none",
+    "attribute_sight_type": "none",
+    "attribute_muzzle_device": "muzzle brake",
+    "uid": "4f66e3e703014653818858e4a78a98be",
+    "near_synsets": {
+        "rifle.n.01": 0.4808361992368433,
+        "artillery.n.01": 0.49139284280381507,
+        "gun.n.01": 0.49326165665262356,
+        "rifle_grenade.n.01": 0.49414262844568807,
+        "cannon.n.01": 0.4948199763457381
+    },
+    "synset": "rifle_grenade.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4f66e3e703014653818858e4a78a98be",
+        "creator_username": "Maks48",
+        "creator_display_name": "fizikoldun",
+        "creator_profile_url": "https://sketchfab.com/Maks48"
+    },
+    "filename": "std_4f66e3e703014653818858e4a78a98be.glb",
+    "length": 1.9189960956573486,
+    "width": 0.6583000421524048
+}

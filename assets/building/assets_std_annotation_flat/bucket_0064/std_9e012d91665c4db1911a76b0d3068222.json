@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a heavily armored, four-wheeled combat tactical vehicle with a low, angular profile and a matte, multi-tone camouflage paint scheme. The vehicle features a reinforced hull with visible armor plating covering the entire body, including sloped panels and robust wheel arches. On the roof, there are multiple weapon mounts, including a prominent machine gun mount and additional hardpoints for tactical equipment. The exterior is equipped with military markings, such as insignia and numbers, and the tires are large, rugged, and designed for off-road use. The vehicle's windows are small and reinforced, and there are visible hatches and access points for crew entry and exit. Various antennas and equipment are mounted on the roof, indicating advanced communication or surveillance capabilities.",
+    "description": "A heavily armored, four-wheeled combat tactical vehicle with a matte camouflage finish, roof-mounted weaponry, and military markings. Features reinforced body panels, rugged off-road tires, and multiple roof-mounted tactical components.",
+    "description_view_0": "Front-left view showing the sloped armored hull, roof-mounted weapon, and prominent military insignia on the side.",
+    "description_view_1": "Front view highlighting the angular front armor, small reinforced windshield, and visible weapon mount on the roof.",
+    "description_view_2": "Rear-left view displaying the back armor, rear hatches, and additional tactical equipment on the ground beside the vehicle.",
+    "description_view_3": "Rear view focusing on the robust rear armor, roof-mounted equipment, and the vehicle's overall low profile.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 5.5,
+    "materials": [
+        "armored steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 8500,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "wheel",
+        "weapon mount",
+        "antenna",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.6,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Two visible weapon mounts on the roof: one prominent machine gun mount at the front-center and a secondary mount towards the rear.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating, reinforced wheel arches, and robust doors; no modular or reactive panels visible.",
+    "attribute_camouflage_pattern": "Woodland camouflage pattern with irregular patches of green, black, and brown in a matte finish.",
+    "attribute_military_markings": "White cross insignia on the side doors and a small number marking on the front bumper.",
+    "attribute_tire_type": "Four large, off-road tires with deep tread pattern and reinforced sidewalls.",
+    "uid": "9e012d91665c4db1911a76b0d3068222",
+    "near_synsets": {
+        "reconnaissance_vehicle.n.01": 0.4721381859603333,
+        "military_vehicle.n.01": 0.4865201312119191,
+        "tank.n.01": 0.49709300203069495,
+        "armored_car.n.02": 0.5061379002388525,
+        "armored_vehicle.n.01": 0.5166916927122371,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "armored_car.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9e012d91665c4db1911a76b0d3068222",
+        "creator_username": "Mantis-Vision",
+        "creator_display_name": "Mantis-Vision",
+        "creator_profile_url": "https://sketchfab.com/Mantis-Vision"
+    },
+    "filename": "std_9e012d91665c4db1911a76b0d3068222.glb",
+    "length": 6.689739227294922,
+    "width": 6.772500991821289
+}

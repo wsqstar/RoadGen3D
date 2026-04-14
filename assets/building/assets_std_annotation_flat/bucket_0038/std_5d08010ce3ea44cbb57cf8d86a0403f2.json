@@ -1,0 +1,99 @@
+{
+    "description_long": "This excavator features a robust, angular body painted in a muted yellow, with a large, glass-enclosed operator cab situated on the left side of the upper structure. The cab is fitted with dark-tinted windows, providing visibility and protection for the operator. The undercarriage consists of wide, black rubber tracks designed for stability and traction on rough urban terrain. The excavator's arm is a mono boom type, extending forward and supporting a standard digging bucket with reinforced teeth for efficient earthmoving. The rear of the machine is squared off, housing the engine compartment and counterweight for balance. The overall design is utilitarian, with minimal decorative elements and no visible branding.",
+    "description": "A yellow, tracked excavator with a glass cab on the left side and a mono boom arm ending in a standard digging bucket. The machine is robust, angular, and built for heavy-duty urban construction tasks.",
+    "description_view_0": "Rear three-quarter view showing the squared engine compartment, left-side cab, and the start of the boom arm.",
+    "description_view_1": "Side view highlighting the full length of the mono boom, the glass cab, and the black rubber tracks.",
+    "description_view_2": "Front view focusing on the digging bucket, the articulated boom, and the cab's visibility.",
+    "description_view_3": "Front-left angle showing the cab's position, the bucket teeth, and the undercarriage tracks.",
+    "category": "excavator",
+    "height": 3.2,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.1,
+        0.05,
+        0.02
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 176400,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "track",
+        "boom",
+        "bucket",
+        "control lever",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "blue-gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.25,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_boom_type": "mono boom",
+    "attribute_cab_position": "left side",
+    "attribute_track_or_wheel_type": "rubber tracks",
+    "attribute_bucket_design": "standard digging bucket",
+    "attribute_brand_logo": "none",
+    "uid": "5d08010ce3ea44cbb57cf8d86a0403f2",
+    "near_synsets": {
+        "excavator.n.01": 0.504602244222472,
+        "backhoe.n.01": 0.5096537287058223,
+        "power_shovel.n.01": 0.5136082576035111,
+        "scoop.n.05": 0.5375094291069865,
+        "bulldozer.n.01": 0.5519194877718484
+    },
+    "synset": "excavator.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5d08010ce3ea44cbb57cf8d86a0403f2",
+        "creator_username": "smithmisd",
+        "creator_display_name": "smithmisd",
+        "creator_profile_url": "https://sketchfab.com/smithmisd"
+    },
+    "filename": "std_5d08010ce3ea44cbb57cf8d86a0403f2.glb",
+    "length": 4.16741943359375,
+    "width": 3.07757568359375
+}

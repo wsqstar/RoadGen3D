@@ -1,0 +1,98 @@
+{
+    "description_long": "This stretcher features a robust rectangular frame constructed from dark metal tubing, with four sturdy caster wheels for mobility. The main platform is a flat, perforated or mesh-like surface, likely made of metal, designed to support a patient or cargo. Side rails run along the length of the stretcher, providing safety barriers to prevent items or individuals from falling off. At one end, there is a raised handlebar for maneuvering, while the opposite end is open for easy access. A lower shelf or tray is integrated beneath the main platform, suitable for storing medical equipment or supplies. The overall design is utilitarian and durable, suitable for use in urban healthcare or emergency scenarios.",
+    "description": "A metal stretcher with side rails, caster wheels, and a mesh platform, featuring a lower storage shelf and a maneuvering handlebar. Its design is sturdy and functional for urban healthcare use.",
+    "description_view_0": "Front view showing the full length, side rails, and the lower storage shelf beneath the mesh platform.",
+    "description_view_1": "Side view highlighting the narrow profile, mesh platform, and the alignment of the wheels.",
+    "description_view_2": "Rear view similar to the front, showing the handlebar and the lower shelf, with clear visibility of the side rails.",
+    "description_view_3": "Opposite side view, emphasizing the stretcher's width, mesh surface, and wheel placement.",
+    "category": "stretcher",
+    "height": 0.9,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.8,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 35,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 25,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "side rail",
+        "lower shelf"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "dark brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_wheels": true,
+    "attribute_collapsible_frame": false,
+    "attribute_side_rails": true,
+    "attribute_handles": true,
+    "attribute_mattress_pad": false,
+    "uid": "7924b502c54649c2b536d2f7bf2a5ae6",
+    "near_synsets": {
+        "gurney.n.01": 0.5169905168904098,
+        "stretcher.n.03": 0.5219151317908645,
+        "hospital_bed.n.01": 0.5548747248897173,
+        "stretcher.n.02": 0.559671869046277,
+        "stretcher.n.01": 0.5712140860360246,
+        "capstone.n.02": -1000.0
+    },
+    "synset": "stretcher.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7924b502c54649c2b536d2f7bf2a5ae6",
+        "creator_username": "zramsden",
+        "creator_display_name": "zramsden",
+        "creator_profile_url": "https://sketchfab.com/zramsden"
+    },
+    "filename": "std_7924b502c54649c2b536d2f7bf2a5ae6.glb",
+    "length": 0.6924705505371094,
+    "width": 2.0073509216308594
+}

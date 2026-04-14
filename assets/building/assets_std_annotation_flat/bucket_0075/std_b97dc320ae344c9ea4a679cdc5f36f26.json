@@ -1,0 +1,105 @@
+{
+    "description_long": "This combat tactical vehicle is a large, heavily armored, futuristic ground vehicle with a robust, angular exterior. The body is primarily composed of metallic panels with reinforced edges and a geometric, modular design, featuring multiple weapon mounts and exhaust ports. The front section is broad and fortified, with a central viewport or sensor array and flanking weapon emplacements. Along the sides, there are visible hatches, vents, and additional armaments, while the rear houses large, cylindrical exhausts and more weapon hardpoints. The vehicle's surface is finished in a matte, desert-toned paint scheme with subtle striping and panel lines, giving it a utilitarian, military appearance. There are no visible wheels or tracks, suggesting an advanced propulsion system integrated into the chassis.",
+    "description": "A large, angular, heavily armored combat vehicle with multiple weapon mounts, matte desert paint, and robust metallic construction.",
+    "description_view_0": "The front view shows a wide, reinforced nose with a central viewport or sensor, flanked by weapon mounts and angular armor plating.",
+    "description_view_1": "The left side view reveals multiple weapon hardpoints, hatches, vents, and the vehicle's length, with visible modular armor panels.",
+    "description_view_2": "The rear view displays two large cylindrical exhausts, additional weapon mounts, and the robust, armored back section.",
+    "description_view_3": "The right side view mirrors the left, showing weapon hardpoints, hatches, and the vehicle's full armored profile.",
+    "category": "combat tactical  vehicle",
+    "height": 4.5,
+    "max_dimension": 12.0,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.05,
+        0.02,
+        0.08
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 160000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "weapon mount",
+        "viewport",
+        "exhaust port"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "black",
+        "gray",
+        "gold"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Four visible weapon mounts: two on the front corners, one on each side near the front, and two at the rear near the exhausts. Types appear to be turret or cannon mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, angular armor plating; reinforced front and side panels with modular, sloped sections for deflection.",
+    "attribute_camouflage_pattern": "Matte desert tan with black and gold striping; no complex camouflage pattern, just solid and striped color blocks.",
+    "attribute_military_markings": "The word 'SCAV' is visible on the side in block letters; no other insignia, numbers, or symbols are present.",
+    "attribute_tire_type": "not applicable",
+    "uid": "b97dc320ae344c9ea4a679cdc5f36f26",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.47984194986491957,
+        "assault_gun.n.02": 0.4928621151021182,
+        "tank.n.01": 0.4980225845940664,
+        "armored_car.n.02": 0.5090977034149974,
+        "armored_vehicle.n.01": 0.5094803270688087,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b97dc320ae344c9ea4a679cdc5f36f26",
+        "creator_username": "jezor",
+        "creator_display_name": "jezor",
+        "creator_profile_url": "https://sketchfab.com/jezor"
+    },
+    "filename": "std_b97dc320ae344c9ea4a679cdc5f36f26.glb",
+    "length": 6.970858812332153,
+    "width": 4.9184699058532715
+}

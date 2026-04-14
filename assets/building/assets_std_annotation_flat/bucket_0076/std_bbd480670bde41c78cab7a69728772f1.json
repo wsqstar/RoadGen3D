@@ -1,0 +1,96 @@
+{
+    "description_long": "This hospital complex consists of several interconnected rectangular buildings with flat roofs and a modern, utilitarian design. The facades are primarily light beige with large blue-tinted glass sections, especially prominent on the main entrance and side wings. The structure features multiple levels, with some sections having rooftop terraces or open courtyards, and a mix of solid and glass surfaces. The main entrance is marked by a large glass wall, while the rear and side wings are more uniform and windowed. There are green rooftop areas and brown accent panels, suggesting landscaped or functional outdoor spaces. The overall layout forms a U-shaped or campus-like arrangement, typical of large urban hospitals.",
+    "description": "A large, modern hospital complex with beige facades, blue glass panels, and multiple interconnected rectangular wings, featuring rooftop terraces and a prominent glass entrance.",
+    "description_view_0": "The hospital is seen from the side, showing three main wings with uniform windows and a central section with a rooftop terrace.",
+    "description_view_1": "This view highlights the main glass entrance, green rooftop areas, and the U-shaped layout of the complex.",
+    "description_view_2": "The rear of the hospital is visible, showing the uniform windowed facades and the depth of the building wings.",
+    "description_view_3": "A top-down angle reveals the open courtyard, rooftop terraces, and the overall footprint of the hospital complex.",
+    "category": "hospital",
+    "height": 22,
+    "max_dimension": 70,
+    "materials": [
+        "concrete",
+        "glass",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "mass": 3200000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "roof access"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "blue",
+        "gray",
+        "brown",
+        "green"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 10,
+    "asset_composition_type": "group",
+    "attribute_hospital_signage": false,
+    "attribute_emergency_entrance": false,
+    "attribute_ambulance_bay": false,
+    "attribute_medical_cross_symbol": false,
+    "attribute_architectural_style": "modern utilitarian",
+    "uid": "bbd480670bde41c78cab7a69728772f1",
+    "near_synsets": {
+        "medical_building.n.01": 0.5172289571145466,
+        "hospital.n.01": 0.5340728923131457,
+        "medical_center.n.01": 0.5463741290499768,
+        "hospital.n.02": 0.5526979503350805,
+        "hospital_room.n.01": 0.5534006707746747
+    },
+    "synset": "hospital_room.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bbd480670bde41c78cab7a69728772f1",
+        "creator_username": "divineblood",
+        "creator_display_name": "divineblood",
+        "creator_profile_url": "https://sketchfab.com/divineblood"
+    },
+    "filename": "std_bbd480670bde41c78cab7a69728772f1.glb",
+    "length": 89.1703872680664,
+    "width": 96.740966796875
+}

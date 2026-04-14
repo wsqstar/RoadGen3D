@@ -1,0 +1,83 @@
+{
+    "description_long": "This object is a rectangular sidewalk slab with a textured surface resembling interlocking stone or concrete pavers. The surface pattern consists of irregular, rounded shapes that mimic cobblestone or stamped concrete, providing both visual interest and slip resistance. The slab is relatively thin compared to its length and width, suggesting it is designed to be laid flat as part of a pedestrian walkway. The edges are straight and clean, with no visible curbs or raised borders, indicating a flush installation. The coloration is a uniform light gray, typical of concrete or stone paving materials. There are no visible features such as tactile paving, street furniture, or embedded elements.",
+    "description": "A rectangular, light gray sidewalk slab with a textured, cobblestone-like surface and straight, flush edges.",
+    "description_view_0": "The slab is seen from the long side, showing its full width and the detailed, irregular surface pattern.",
+    "description_view_1": "Viewed from the short end, the thinness of the slab is more apparent, and the surface texture remains visible.",
+    "description_view_2": "Another long-side view, similar to view 0, highlighting the continuous textured pattern across the surface.",
+    "description_view_3": "A second short-end view, again emphasizing the slab's thin profile and consistent surface texture.",
+    "category": "sidewalk",
+    "height": 0.08,
+    "max_dimension": 2.0,
+    "materials": [
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.98,
+        0.02
+    ],
+    "mass": 380,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "traversable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": false,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "flush",
+    "attribute_adjacent_street_type": "residential",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "170c3f26e4b842c1a24c7934ebf67f63",
+    "near_synsets": {
+        "sidewalk.n.01": 0.4834808318108031,
+        "cobble.n.01": 0.505131645466046,
+        "paved_surface.n.01": 0.5152677793597237,
+        "curbside.n.01": 0.5263128438971612,
+        "curb.n.01": 0.5326978426536284
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/170c3f26e4b842c1a24c7934ebf67f63",
+        "creator_username": "zhengzhangxun",
+        "creator_display_name": "Game industry veteran",
+        "creator_profile_url": "https://sketchfab.com/zhengzhangxun"
+    },
+    "filename": "std_170c3f26e4b842c1a24c7934ebf67f63.glb",
+    "length": 1.2588237524032593,
+    "width": 2.1820359230041504
+}

@@ -1,0 +1,98 @@
+{
+    "description_long": "This kiosk features a compact, rectangular structure with a flat, overhanging roof and a single wooden door on one side. The main body is constructed from a tan, stucco-like material, giving it a rustic, traditional appearance. A wooden pergola extends from the main building, supported by thick posts and beams, creating a shaded open area. Adjacent to the pergola is a green fabric awning, stretched between two wooden poles, providing additional shade or shelter. The kiosk includes a small, barred window on one side, and the door is reinforced with visible wooden planks and metal hinges. The overall design is simple yet functional, suitable for use as a street-side vendor or information booth in an urban environment.",
+    "description": "A rustic, tan kiosk with a flat roof, wooden door, pergola extension, and green fabric awning, featuring a small barred window and sturdy construction.",
+    "description_view_0": "Front view showing the flat roof, main kiosk body, and the green fabric awning extending outward.",
+    "description_view_1": "View highlighting the wooden door, pergola beams, and the green awning directly in front of the entrance.",
+    "description_view_2": "Rear view displaying the pergola's wooden beams and the open structure beneath the flat roof.",
+    "description_view_3": "Side view showing the small barred window and the open pergola area adjacent to the main kiosk.",
+    "category": "kiosk",
+    "height": 2.4,
+    "max_dimension": 4.5,
+    "materials": [
+        "stucco",
+        "wood",
+        "fabric",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "shadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "awning",
+        "pergola beams"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "brown",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "none",
+    "attribute_window_presence": "one small barred window on the side, rectangular",
+    "attribute_door_configuration": "one single wooden door on the front side",
+    "attribute_roof_design": "flat roof with slight overhang, made of stucco or similar material, pergola extension with exposed wooden beams",
+    "attribute_architectural_style": "rustic traditional with Mediterranean influences",
+    "uid": "7649a03206864931a3c118ec14d8ac3c",
+    "near_synsets": {
+        "gazebo.n.01": 0.505478615631885,
+        "booth.n.02": 0.5414675606979946,
+        "porch.n.01": 0.5462325810735311,
+        "portico.n.01": 0.5485988285209252,
+        "belvedere.n.02": 0.5564051254035912
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7649a03206864931a3c118ec14d8ac3c",
+        "creator_username": "torricane",
+        "creator_display_name": "tori.cane",
+        "creator_profile_url": "https://sketchfab.com/torricane"
+    },
+    "filename": "std_7649a03206864931a3c118ec14d8ac3c.glb",
+    "length": 5.624980926513672,
+    "width": 6.198644638061523
+}

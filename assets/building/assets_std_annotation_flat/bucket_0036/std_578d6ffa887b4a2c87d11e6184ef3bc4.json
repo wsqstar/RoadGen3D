@@ -1,0 +1,97 @@
+{
+    "description_long": "This rifle features a long, cylindrical barrel with a matte finish, extending from a robust receiver and stock assembly. The stock appears to be fixed and ergonomically shaped, with a dark coloration and subtle texturing for grip. A prominent telescopic scope is mounted on top, suggesting the rifle is designed for precision shooting at long distances. The magazine is not clearly visible, but the overall design is consistent with modern sniper or marksman rifles. The trigger guard and pistol grip are integrated into the lower receiver, providing stability and control. The coloration is primarily a mix of dark brown and black, with metallic highlights on the barrel and scope.",
+    "description": "A long, dark-colored precision rifle with a fixed stock and mounted scope, designed for accurate long-range shooting. The rifle features a sleek barrel and ergonomic grip.",
+    "description_view_0": "Front view showing the narrow barrel end and the alignment of the scope above the receiver.",
+    "description_view_1": "Side view highlighting the full length of the barrel, the mounted scope, and the fixed stock.",
+    "description_view_2": "Rear view displaying the stock's shape and the back of the scope, with the barrel receding into the distance.",
+    "description_view_3": "Opposite side view showing the same features as view 1, with slight differences in lighting and detail visibility.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "polymer",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.05,
+        0.05
+    ],
+    "mass": 6.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "aimable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "scope",
+        "stock",
+        "barrel",
+        "grip",
+        "magazine (implied)"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "scope",
+    "attribute_muzzle_device": "none",
+    "uid": "578d6ffa887b4a2c87d11e6184ef3bc4",
+    "near_synsets": {
+        "sniper_rifle.n.01": 0.4599852950170147,
+        "rifle.n.01": 0.46451720570023636,
+        "dragunov.n.01": 0.49832866973750667,
+        "light_arm.n.01": 0.5101186247008064,
+        "garand_rifle.n.01": 0.5127108384582505
+    },
+    "synset": "garand_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/578d6ffa887b4a2c87d11e6184ef3bc4",
+        "creator_username": "Alexereth",
+        "creator_display_name": "Alexereth",
+        "creator_profile_url": "https://sketchfab.com/Alexereth"
+    },
+    "filename": "std_578d6ffa887b4a2c87d11e6184ef3bc4.glb",
+    "length": 1.088633418083191,
+    "width": 0.11228939890861511
+}

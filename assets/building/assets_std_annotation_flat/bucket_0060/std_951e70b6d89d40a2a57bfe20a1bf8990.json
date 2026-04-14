@@ -1,0 +1,87 @@
+{
+    "description_long": "This object is a rectangular section of sidewalk paved with reddish-brown bricks arranged in a herringbone pattern. The bricks are uniformly sized and tightly fitted, creating a visually appealing and stable walking surface. The surface is flat and even, with visible grout lines between each brick, enhancing traction and drainage. The color is consistent throughout, with a matte finish that reduces glare and provides a classic urban aesthetic. There are no visible curbs, tactile paving, or street furniture present along the edges. The edges of the sidewalk are flush, making it accessible and easy to transition onto from adjacent surfaces.",
+    "description": "A flat, rectangular sidewalk paved with reddish-brown bricks in a herringbone pattern, featuring flush edges and a matte finish.",
+    "description_view_0": "The sidewalk is seen from a slightly elevated front angle, clearly showing the herringbone brick pattern and flush edges.",
+    "description_view_1": "Viewed from a slight rotation, the brick pattern remains prominent, with the surface texture and flush edge still visible.",
+    "description_view_2": "From this angle, the uniformity of the brick layout and the evenness of the surface are emphasized.",
+    "description_view_3": "This view highlights the consistent color and pattern of the bricks, with no visible curbs or additional features.",
+    "category": "sidewalk",
+    "height": 0.08,
+    "max_dimension": 4.0,
+    "materials": [
+        "brick",
+        "mortar",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 600,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "traction"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "red-brown",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 15000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": false,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "flush",
+    "attribute_adjacent_street_type": "residential",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "951e70b6d89d40a2a57bfe20a1bf8990",
+    "near_synsets": {
+        "sidewalk.n.01": 0.4774654701817414,
+        "paved_surface.n.01": 0.49591435107675863,
+        "cobble.n.01": 0.5171783112967613,
+        "paving_stone.n.01": 0.526894071802888,
+        "pavement.n.01": 0.5295189302227655
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/951e70b6d89d40a2a57bfe20a1bf8990",
+        "creator_username": "DolmosStudio",
+        "creator_display_name": "DolmosStudio",
+        "creator_profile_url": "https://sketchfab.com/DolmosStudio"
+    },
+    "filename": "std_951e70b6d89d40a2a57bfe20a1bf8990.glb",
+    "length": 595420.6875,
+    "width": 595420.3125
+}

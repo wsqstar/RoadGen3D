@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a green metal shopping trolley with a wireframe construction, commonly found in supermarkets and urban retail environments. The trolley features a large main basket for carrying goods, with a smaller upper basket near the handle for delicate or smaller items. It is supported by four wheels, allowing for easy maneuverability across flat surfaces. The handle is a single horizontal bar, coated for grip and comfort, and is attached to the rear of the trolley. The lower section includes a flat platform for carrying larger or heavier items that may not fit in the basket. The overall design is utilitarian, with open wire sides and a robust frame for durability.",
+    "description": "A green wireframe shopping trolley with a large basket, a smaller upper basket, four wheels, and a single horizontal handlebar.",
+    "description_view_0": "Front view showing the main basket, smaller upper basket, and the handlebar clearly.",
+    "description_view_1": "Side view highlighting the depth of the main basket, the flat lower platform, and the wheel arrangement.",
+    "description_view_2": "Rear view focusing on the open structure of the basket and the handlebar.",
+    "description_view_3": "Opposite side view, again showing the basket depth, platform, and wheel configuration.",
+    "category": "trolley",
+    "height": 1.05,
+    "max_dimension": 1.15,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 25,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "basket",
+        "upper basket",
+        "wheel",
+        "platform"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "green",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_handle_type": "single bar handle, cylindrical, coated with plastic for grip, ergonomic and robust",
+    "attribute_number_of_wheels": 4,
+    "attribute_wheel_arrangement": "four wheels, all at the corners, likely all swivel for maneuverability",
+    "attribute_basket_or_platform_presence": "basket and platform",
+    "attribute_branding_or_signage": "none",
+    "uid": "fc4cb15fefb44f23bb6b0cd2e8aa1609",
+    "near_synsets": {
+        "shopping_cart.n.01": 0.48888838574637106,
+        "shopping_basket.n.01": 0.49468916731627344,
+        "trolley_line.n.01": 0.5220388048291354,
+        "trolleybus.n.01": 0.531699490987976,
+        "laundry_cart.n.01": 0.5348274744770961,
+        "streetcar.n.01": -1000.0
+    },
+    "synset": "trolleybus.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fc4cb15fefb44f23bb6b0cd2e8aa1609",
+        "creator_username": "Pr2Hack",
+        "creator_display_name": "Pr2Hack",
+        "creator_profile_url": "https://sketchfab.com/Pr2Hack"
+    },
+    "filename": "std_fc4cb15fefb44f23bb6b0cd2e8aa1609.glb",
+    "length": 0.990617036819458,
+    "width": 0.628066748380661
+}

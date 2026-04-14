@@ -1,0 +1,90 @@
+{
+    "description_long": "This object is a polygonal barrel with a distinctly blocky, faceted appearance, reminiscent of stylized or voxel-based urban props. The barrel is primarily a warm orange-brown color, with a prominent yellowish band encircling its midsection, suggesting structural reinforcement or decorative banding. The top of the barrel is flat and slightly inset, indicating the presence of a fitted lid. There are no visible handles or spouts, and the surface is uniformly colored with no visible text, symbols, or markings except for a single black rectangle on one side, possibly representing a slot or label area. The overall form is squat and robust, suitable for use as a storage or containment vessel in urban environments such as streets, alleys, or garages. The material appears to be a hard, matte plastic or painted metal, giving it durability for outdoor or semi-industrial use.",
+    "description": "A blocky, orange-brown barrel with a yellow band around its middle and a flat, inset lid. The surface is matte and unmarked except for a single black rectangle on one side.",
+    "description_view_0": "The barrel is seen from a side angle, showing the orange-brown body and the yellow band wrapping around the middle.",
+    "description_view_1": "This view highlights the flat, slightly raised lid and the uninterrupted yellow band, with no visible markings.",
+    "description_view_2": "The opposite side of the barrel, similar to view 0, with the yellow band and orange-brown body clearly visible.",
+    "description_view_3": "This view shows the side with a distinct black rectangle on the yellow band, possibly a label or slot.",
+    "category": "barrel or bucket",
+    "height": 0.7,
+    "max_dimension": 0.7,
+    "materials": [
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 6,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange-brown",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.18,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "yellow plastic reinforcement ring around midsection",
+    "attribute_labeling_or_markings": "black rectangle on one side",
+    "attribute_placement_location": "outdoor",
+    "uid": "77df12254aa141e5bd3e119c8e2d72c2",
+    "near_synsets": {
+        "barrel.n.03": 0.45733401951648905,
+        "barrel.n.02": 0.45940339785692513,
+        "barrel.n.05": 0.4867962415253419,
+        "barrel.n.04": 0.48785567745065794,
+        "bucket.n.01": 0.4955909310747714,
+        "bucket.n.02": -1000.0,
+        "barrel.n.01": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/77df12254aa141e5bd3e119c8e2d72c2",
+        "creator_username": "kmendoza1",
+        "creator_display_name": "kmendoza1",
+        "creator_profile_url": "https://sketchfab.com/kmendoza1"
+    },
+    "filename": "std_77df12254aa141e5bd3e119c8e2d72c2.glb",
+    "length": 0.6000000238418579,
+    "width": 0.7000001072883606
+}

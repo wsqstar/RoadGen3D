@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a stylized pond set within a rectangular patch of green terrain, surrounded by clusters of conical evergreen trees and a few scattered rocks. The pond itself has an irregular, organic shape with a smooth, dark border separating the water from the grassy land. The water is depicted as a bright blue, giving the impression of clarity and calmness. The surrounding vegetation consists mainly of tall, dark green trees and a uniformly grassy surface, suggesting a park or landscaped urban green space. The terrain is flat, and the arrangement of trees and rocks provides a naturalistic yet orderly appearance. The overall scene is simple, clean, and visually appealing, suitable for use in urban parks or recreational areas.",
+    "description": "A stylized blue pond with an irregular shape, bordered by grass and surrounded by conical evergreen trees and rocks on a flat green terrain.",
+    "description_view_0": "The pond is seen from the side, with the majority of trees clustered on the left and right edges, and the water's irregular shape clearly visible.",
+    "description_view_1": "Viewed from the short end, the pond appears deeper into the scene, with trees and rocks more evenly distributed around the perimeter.",
+    "description_view_2": "This view shows the pond from the opposite side of view 0, with a similar tree arrangement but a clearer view of the right-side trees and rocks.",
+    "description_view_3": "From this angle, the pond is seen from the other short end, with trees appearing closer together and the water's shape extending toward the viewer.",
+    "category": "pond",
+    "height": 0.25,
+    "max_dimension": 6.0,
+    "materials": [
+        "water",
+        "soil",
+        "grass",
+        "tree_wood",
+        "tree_foliage",
+        "rock",
+        "air"
+    ],
+    "materials_composition": [
+        0.3,
+        0.25,
+        0.2,
+        0.1,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 32000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "containable",
+        "viewable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "blue",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.33,
+    "youngs_modulus": 10000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_water_presence": true,
+    "attribute_surrounding_vegetation": [
+        "grass",
+        "trees"
+    ],
+    "attribute_edge_treatment": "The pond edge is defined by a smooth, dark border separating the water from the grassy terrain, with no visible artificial edging.",
+    "attribute_reflections": false,
+    "attribute_wildlife_activity": [],
+    "uid": "add5525f91974aa081d3130e7fa58d43",
+    "near_synsets": {
+        "fishpond.n.01": 0.5026025489721577,
+        "landscape.n.02": 0.5373995111521839,
+        "blue-eyed_grass.n.01": 0.5436451570432898,
+        "mere.n.01": 0.5466143974229049,
+        "lily_pad.n.01": 0.5467090663245134,
+        "pond.n.01": -1000.0
+    },
+    "synset": "pond.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/add5525f91974aa081d3130e7fa58d43",
+        "creator_username": "Peter_Sawyer",
+        "creator_display_name": "Peter_Sawyer",
+        "creator_profile_url": "https://sketchfab.com/Peter_Sawyer"
+    },
+    "filename": "std_add5525f91974aa081d3130e7fa58d43.glb",
+    "length": 0.7399097681045532,
+    "width": 1.2803716659545898
+}

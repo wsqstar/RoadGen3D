@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a multi-compartment waste sorting station designed for public or institutional use, such as at De Haagse Hogeschool. The unit consists of five adjacent rectangular bins, each with a distinct colored rim and labeled opening for different waste types: Restafval (residual waste), PMD (plastic, metal, drink cartons), GFT (organic waste), Papier (paper), and Bekers (cups). Above the bins is a large, clear signage board with color-coded sections and pictorial instructions for each waste stream, making sorting intuitive. The bins are white with black tops and have circular or slot-shaped openings tailored to the waste type, with the cup bin featuring multiple round holes. The structure appears to be made primarily of metal or heavy-duty plastic, with perforations on the bin bodies for ventilation or aesthetic purposes. The overall design is robust, modular, and intended for high-traffic environments, promoting zero waste and recycling initiatives.",
+    "description": "A five-compartment, color-coded waste sorting station with clear signage and specialized openings for different waste types, designed for public use. The unit is sturdy, modular, and visually instructive, supporting recycling and zero waste efforts.",
+    "description_view_0": "Side view showing the aligned bins and colored rims, with the signage board visible from the edge.",
+    "description_view_1": "Front view displaying all five bins, their colored openings, and the detailed signage with waste type illustrations and labels.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the bin alignment and colored tops from the other edge.",
+    "description_view_3": "Rear view of the bins, showing the colored openings and signage, with the cup bin's multiple round holes clearly visible.",
+    "category": "trash bin",
+    "height": 1.6,
+    "max_dimension": 2.0,
+    "materials": [
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "mass": 85,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "opening",
+        "signage panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "red",
+        "orange",
+        "green",
+        "blue",
+        "brown"
+    ],
+    "colors_composition": [
+        0.55,
+        0.15,
+        0.06,
+        0.06,
+        0.06,
+        0.06,
+        0.06
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_lid_type": "flat removable",
+    "attribute_opening_mechanism": "open-top",
+    "attribute_presence_of_wheels": false,
+    "attribute_handle_design": "absent",
+    "attribute_labeling_or_signage": "Color-coded waste type labels and pictorial instructions on a large overhead signage panel",
+    "uid": "d92a7b3d322b41cf92388e5050666db5",
+    "near_synsets": {
+        "recycling_bin.n.01": 0.49931212748936227,
+        "garbage.n.03": 0.5292337143355234,
+        "dumpster.n.01": 0.5397643939855427,
+        "wastepaper_basket.n.01": 0.5436367189245066,
+        "litterbin.n.01": 0.546265055126117,
+        "bin.n.02": -1000.0,
+        "rubbish.n.01": -1000.0,
+        "bank_identification_number.n.01": -1000.0,
+        "bin.n.01": -1000.0,
+        "folderol.n.01": -1000.0,
+        "methamphetamine.n.01": -1000.0,
+        "ashcan.n.01": -1000.0,
+        "trash.n.02": -1000.0
+    },
+    "synset": "recycling_bin.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d92a7b3d322b41cf92388e5050666db5",
+        "creator_username": "timvandiessen",
+        "creator_display_name": "TARS",
+        "creator_profile_url": "https://sketchfab.com/timvandiessen"
+    },
+    "filename": "std_d92a7b3d322b41cf92388e5050666db5.glb",
+    "length": 0.2525679022073746,
+    "width": 1.5541324615478516
+}

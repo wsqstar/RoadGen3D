@@ -1,0 +1,100 @@
+{
+    "description_long": "This humanoid robot features a robust, metallic body with a rounded central torso and a prominent circular element on its chest, possibly functioning as a sensor or light. Its limbs are thick and segmented, with multiple visible joints that suggest a high degree of articulation, and the legs end in broad, flat feet for stability. The arms are similarly jointed and appear strong, with mechanical details and exposed connectors at each joint. The head is dome-shaped, integrated into the torso, and lacks traditional facial features, instead displaying a smooth metallic surface with a central lens or light. The robot's exterior is primarily composed of a matte gray-blue metal with some darker and lighter accents, giving it an industrial, utilitarian appearance. Small details such as bolts, rivets, and panel lines add to its mechanical realism, and the overall design suggests it is built for heavy-duty tasks or urban navigation.",
+    "description": "A sturdy, jointed humanoid robot with a rounded torso, segmented limbs, and a central chest light or sensor. Its metallic gray-blue exterior and robust build suggest industrial or urban utility.",
+    "description_view_0": "Front view shows the robot's circular chest light, symmetrical arms and legs, and dome-shaped head integrated into the torso.",
+    "description_view_1": "Left side view highlights the depth of the torso, the layered arm and leg joints, and the protruding chest element.",
+    "description_view_2": "Rear view reveals the back panel details, mechanical connectors, and the broad, stable feet.",
+    "description_view_3": "Right side view mirrors the left, showing the articulated limbs and the side profile of the head and torso.",
+    "category": "humanoid robot",
+    "height": 2.1,
+    "max_dimension": 2.3,
+    "materials": [
+        "steel",
+        "aluminum",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3136,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "chest light",
+        "arm joints",
+        "leg joints",
+        "head"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue-gray",
+        "white",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both legs slightly bent and arms positioned outward, ready for movement or action. The head is facing forward, and the torso is upright.",
+    "attribute_clothing_style": "No clothing; the robot is covered in integrated metallic panels and mechanical components with no decorative elements.",
+    "attribute_facial_features": "The face consists of a smooth, dome-shaped surface with a central circular lens or light, lacking eyes, mouth, or nose. No expressive or display elements are visible.",
+    "attribute_limb_articulation": "Each arm and leg has multiple visible hinge and rotary joints, allowing for a wide range of motion. The limbs appear highly articulated and robust, with at least three joints per limb.",
+    "attribute_presence_of_sensors": "A large circular sensor or light is present on the chest; possible additional sensors are integrated into the head, but none are explicitly visible elsewhere.",
+    "uid": "7b8983d0798b403bb637c6ec555644f2",
+    "near_synsets": {
+        "android.n.01": 0.5388122081344644,
+        "cyborg.n.01": 0.5440928713852821,
+        "robotics_equipment.n.01": 0.5543996999881734,
+        "automaton.n.02": 0.5725575957468061,
+        "robotics.n.01": 0.579021980975822
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7b8983d0798b403bb637c6ec555644f2",
+        "creator_username": "Flikd_Design",
+        "creator_display_name": "Flikd Design",
+        "creator_profile_url": "https://sketchfab.com/Flikd_Design"
+    },
+    "filename": "std_7b8983d0798b403bb637c6ec555644f2.glb",
+    "length": 2.2363089323043823,
+    "width": 2.1281800270080566
+}

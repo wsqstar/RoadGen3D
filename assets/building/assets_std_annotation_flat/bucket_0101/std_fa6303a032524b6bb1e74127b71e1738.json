@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a large, heavily armored naval gun turret, featuring three long cylindrical barrels protruding from a robust, angular housing. The turret's main body is composed of thick, faceted armor plating with visible bolts and hatches, suggesting reinforced construction for protection against heavy fire. The barrels are arranged in parallel, each encased at the base with a flexible, dark-colored mantlet to allow for elevation and recoil movement. The rear of the turret is boxy and slightly overhangs the rounded base, which appears to be the rotating platform for aiming the guns. Small details such as periscopes, access panels, and mounting points are visible on the upper surfaces, indicating crew access and operational controls. The overall color scheme is a uniform naval gray, typical of military hardware designed for camouflage and durability in harsh environments.",
+    "description": "A large, armored naval gun turret with three long barrels and a rounded rotating base, finished in naval gray. The structure features reinforced plating, mantlets at the barrel bases, and detailed access panels.",
+    "description_view_0": "Front view showing the three parallel barrels and the armored mantlets at their bases.",
+    "description_view_1": "Side view highlighting the length of the barrels, the angular turret housing, and the rounded rotating base.",
+    "description_view_2": "Rear view displaying the boxy back of the turret and the overhanging structure above the rounded base.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the turret's profile and barrel arrangement.",
+    "category": "rifle",
+    "height": 2.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.04,
+        0.01,
+        0.03
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel",
+        "mantlet",
+        "hatch",
+        "periscope",
+        "access panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.01,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "none",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "none",
+    "uid": "fa6303a032524b6bb1e74127b71e1738",
+    "near_synsets": {
+        "naval_gun.n.01": 0.46295640295506296,
+        "naval_weaponry.n.01": 0.48649165841053194,
+        "three-decker.n.03": 0.5139250939657565,
+        "naval_missile.n.01": 0.5208715358813886,
+        "long_tom.n.01": 0.5255392473063012,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fa6303a032524b6bb1e74127b71e1738",
+        "creator_username": "kirikom9000",
+        "creator_display_name": "Kai Xiang",
+        "creator_profile_url": "https://sketchfab.com/kirikom9000"
+    },
+    "filename": "std_fa6303a032524b6bb1e74127b71e1738.glb",
+    "length": 6.541463851928711,
+    "width": 4.048534870147705
+}

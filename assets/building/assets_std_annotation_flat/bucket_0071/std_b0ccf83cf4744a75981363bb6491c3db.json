@@ -1,0 +1,115 @@
+{
+    "description_long": "This shoe store features a rectangular, box-like structure with a prominent dark blue facade displaying the name 'MANAKABANA' in bold red letters. The front wall is partially open, revealing a modern interior with a curved panoramic cityscape mural, several framed shoe images, and a central seating area with a wooden table and white chairs. The interior is well-lit and designed for customer interaction, with mannequins or figures present to simulate a retail environment. The side and rear walls are plain and unadorned, emphasizing the focus on the front display and entrance. The materials appear to be a combination of painted concrete or drywall for the exterior, glass for the mural and possible windows, and wood and plastic for the furniture. The overall design is clean and contemporary, suitable for an urban commercial setting.",
+    "description": "A modern shoe store with a blue facade labeled 'MANAKABANA', open front, cityscape mural, and stylish interior seating.",
+    "description_view_0": "Front view showing the blue facade with 'MANAKABANA' signage and a partial glimpse of the interior.",
+    "description_view_1": "Rear view displaying a plain, solid wall with no windows or signage.",
+    "description_view_2": "Side view revealing the open front, curved mural, and framed shoe images inside.",
+    "description_view_3": "Interior-focused view showing the seating area, cityscape mural, and shoe displays.",
+    "category": "shoe store",
+    "height": 3.0,
+    "max_dimension": 7.0,
+    "materials": [
+        "concrete",
+        "drywall",
+        "glass",
+        "wood",
+        "plastic",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.15,
+        0.1,
+        0.1,
+        0.08,
+        0.02,
+        0.1
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "displayable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "doorway",
+        "seating",
+        "table",
+        "display frames"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "blue",
+        "white",
+        "gray",
+        "brown",
+        "red"
+    ],
+    "colors_composition": [
+        0.35,
+        0.3,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_storefront_signage": "Large red text 'MANAKABANA' centered on a dark blue facade, no logos or additional graphics, simple and bold style.",
+    "attribute_display_windows": "None; the front is open with no glass display windows, providing direct visual access to the interior.",
+    "attribute_shoe_advertisements": "Framed shoe images are visible on the interior side walls, serving as subtle advertisements; no posters or banners on the exterior.",
+    "attribute_store_entrance": "Main entrance is a wide, open passage with no visible doors, located at the center of the front facade; no handles, mats, or awnings are present.",
+    "attribute_architectural_style": "modern",
+    "uid": "b0ccf83cf4744a75981363bb6491c3db",
+    "near_synsets": {
+        "shoe_shop.n.01": 0.5201195796461269,
+        "shoe_industry.n.01": 0.5712816696235105,
+        "clothing_store.n.01": 0.5836349234295826,
+        "running_shoe.n.01": 0.5922877110324896,
+        "shoeshine.n.02": 0.5961762348040525,
+        "shop.n.01": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "store.n.02": -1000.0,
+        "brake_shoe.n.01": -1000.0,
+        "memory.n.04": -1000.0,
+        "horseshoe.n.02": -1000.0,
+        "shoe.n.01": -1000.0,
+        "shoe.n.02": -1000.0
+    },
+    "synset": "shoe_shop.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b0ccf83cf4744a75981363bb6491c3db",
+        "creator_username": "benstrat",
+        "creator_display_name": "benstrat",
+        "creator_profile_url": "https://sketchfab.com/benstrat"
+    },
+    "filename": "std_b0ccf83cf4744a75981363bb6491c3db.glb",
+    "length": 15.39838981628418,
+    "width": 15.498160362243652
+}

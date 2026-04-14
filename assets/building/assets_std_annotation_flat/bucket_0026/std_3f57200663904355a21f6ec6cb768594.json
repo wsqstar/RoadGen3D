@@ -1,0 +1,96 @@
+{
+    "description_long": "This tunnel structure features a cross-shaped layout with four main arms extending from a central hub, each arm composed of segmented, rectangular modules. The exterior is predominantly gray with smooth, flat surfaces and subtle panel lines, suggesting a modern, utilitarian design. Green-tinted window-like elements are visible on the sides of some arms, possibly for ventilation or observation. The entrances at the ends of the arms are rectangular and appear reinforced, with no visible doors or gates, indicating open access. The tunnel is accompanied by several modular components and panels, possibly for assembly or maintenance, laid out nearby. The overall construction suggests a robust, prefabricated system suitable for urban infrastructure such as pedestrian or utility tunnels.",
+    "description": "A cross-shaped, modular tunnel with gray, smooth surfaces and green-tinted side panels, featuring open rectangular entrances and a modern utilitarian design.",
+    "description_view_0": "Front view shows the main cross-section with green-tinted panels and a prominent central hub.",
+    "description_view_1": "Top-down view highlights the cross-shaped layout and the segmented structure of each arm.",
+    "description_view_2": "Side view reveals the length of the tunnel arms and the arrangement of modular panels and components.",
+    "description_view_3": "Rear view emphasizes the open rectangular entrances and the tunnel's symmetrical cross form.",
+    "category": "tunnel",
+    "height": 2.5,
+    "max_dimension": 12.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "mass": 35000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "passage",
+        "shelter"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "window panel",
+        "modular panel"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "bicycle"
+    ],
+    "colors": [
+        "gray",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_entrance_type": "Rectangular open ends, reinforced concrete construction, no visible doors or gates, with smooth edges and modular paneling.",
+    "attribute_lighting_fixtures": [],
+    "attribute_signage": [],
+    "attribute_surrounding_infrastructure": "Modular panels and components are laid out adjacent to the tunnel, suggesting a construction or maintenance area; no roads, tracks, or barriers are directly connected.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "3f57200663904355a21f6ec6cb768594",
+    "near_synsets": {
+        "railroad_tunnel.n.01": 0.5121825627113019,
+        "tunnel.n.01": 0.5192649619105015,
+        "underpass.n.01": 0.5604498452325131,
+        "corridor.n.01": 0.5623046119841121,
+        "culvert.n.01": 0.5639153161796394,
+        "burrow.n.01": -1000.0
+    },
+    "synset": "tunnel.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3f57200663904355a21f6ec6cb768594",
+        "creator_username": "Sidartha_Dipayhana",
+        "creator_display_name": "Sidartha_Dipayhana",
+        "creator_profile_url": "https://sketchfab.com/Sidartha_Dipayhana"
+    },
+    "filename": "std_3f57200663904355a21f6ec6cb768594.glb",
+    "length": 19.531479835510254,
+    "width": 35.781089782714844
+}

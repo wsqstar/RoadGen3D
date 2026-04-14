@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a large, early 20th-century battleship with a long, streamlined hull painted in a light gray color and a wooden deck. The ship features two tall masts, multiple gun turrets along the centerline, and several smaller structures and equipment on the deck. The superstructure is compact, with two prominent towers and a bridge area located amidships. The bow and stern are both rounded, and the hull sits low in the water, suggesting a displacement-type design. Small flags are visible at both the bow and stern, and the ship is detailed with various deck fixtures such as lifeboats and anchors.",
+    "description": "A detailed, early 20th-century battleship with a gray hull, wooden deck, two tall masts, and multiple gun turrets. The ship features a compact superstructure and visible deck equipment.",
+    "description_view_0": "Side view showing the full length of the ship, highlighting the two masts, gun turrets, and the arrangement of deck equipment.",
+    "description_view_1": "Front (bow) view emphasizing the rounded bow, forward gun turret, and the symmetry of the superstructure and masts.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the hull, superstructure, and deck fixtures.",
+    "description_view_3": "Rear (stern) view showing the rounded stern, aft gun turret, and the alignment of the ship's main features.",
+    "category": "ship",
+    "height": 18,
+    "max_dimension": 120,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 16000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "gun turret",
+        "door",
+        "hatch",
+        "lifeboat",
+        "anchor",
+        "mast"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "black",
+        "white",
+        "blue"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 20,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a long, narrow profile, rounded bow and stern, and a low freeboard. No bulbous bow or visible keels are present, and the hull appears smooth and continuous.",
+    "attribute_superstructure_layout": "The superstructure is compact and centrally located, featuring two main towers with bridge and observation platforms, and several smaller deck structures. Gun turrets are symmetrically arranged along the centerline.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "gun turret",
+        "lifeboat",
+        "anchor",
+        "mast"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "4e5d707ebcee4b98997c8f544e36fe13",
+    "near_synsets": {
+        "battleship.n.01": 0.47986865970165365,
+        "sailing_warship.n.01": 0.4941687890808417,
+        "dreadnought.n.01": 0.5072173220362507,
+        "surface_ship.n.01": 0.5092115647557532,
+        "frigate.n.01": 0.5095571176295619,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4e5d707ebcee4b98997c8f544e36fe13",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_4e5d707ebcee4b98997c8f544e36fe13.glb",
+    "length": 54.663761138916016,
+    "width": 12.087806224822998
+}

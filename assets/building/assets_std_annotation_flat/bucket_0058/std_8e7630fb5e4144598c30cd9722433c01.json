@@ -1,0 +1,92 @@
+{
+    "description_long": "This object is a freestanding, rectangular kiosk with a robust, monolithic structure, likely made of metal or concrete. The front face features a large, embedded map display with Japanese text and colorful graphics, suggesting its use as an informational or wayfinding kiosk in a public park or urban area. The kiosk has a slightly tapered body, wider at the top and narrowing toward the base, which sits on a solid plinth for stability. The surface shows signs of weathering and minor stains, indicating outdoor placement and exposure to the elements. The sides and rear are plain, with no visible openings, windows, or interactive hardware. The overall design is utilitarian and modern, prioritizing durability and clear information presentation.",
+    "description": "A sturdy, rectangular informational kiosk with a large map display on the front, made of metal or concrete and designed for outdoor public use.",
+    "description_view_0": "Side view showing the kiosk's narrow profile and solid, unadorned surface.",
+    "description_view_1": "Front view displaying a large, colorful map with Japanese text set into the kiosk's face.",
+    "description_view_2": "Opposite side view, identical to view 0, showing the plain, narrow side of the kiosk.",
+    "description_view_3": "Rear view, visually similar to the front but without the map display, showing a plain, flat surface.",
+    "category": "kiosk",
+    "height": 1.5,
+    "max_dimension": 0.7,
+    "materials": [
+        "metal",
+        "concrete",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "readable",
+        "viewable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "map display"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "multicolor (map)",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "Printed sign integrated into the front structure, featuring a map with Japanese text and symbols.",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "none",
+    "attribute_roof_design": "Flat roof, slightly overhanging the sides, made of the same material as the body.",
+    "attribute_architectural_style": "Modern utilitarian with minimalist influences",
+    "uid": "8e7630fb5e4144598c30cd9722433c01",
+    "near_synsets": {
+        "booth.n.02": 0.5478126980920196,
+        "telephone_booth.n.01": 0.570430807772999,
+        "shopfront.n.01": 0.5714791423206712,
+        "signboard.n.01": 0.5740449382770886,
+        "display.n.02": 0.5762837987850172
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8e7630fb5e4144598c30cd9722433c01",
+        "creator_username": "Xavaltir",
+        "creator_display_name": "Mikail Karaca",
+        "creator_profile_url": "https://sketchfab.com/Xavaltir"
+    },
+    "filename": "std_8e7630fb5e4144598c30cd9722433c01.glb",
+    "length": 0.27130091190338135,
+    "width": 0.7713876068592072
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a modern pump-action shotgun with a robust, tactical design, primarily finished in shades of blue-gray and black. The receiver and barrel are constructed from metal, featuring a vented handguard and a ribbed pump grip for secure handling. The stock is a compact pistol grip style, enhancing maneuverability in close quarters, and the trigger guard is rounded and slightly elongated for finger protection. There are visible shell holders on the side of the receiver, colored in orange and red, and a single red shotgun shell is depicted alongside the weapon. The overall build suggests durability and functionality, suitable for urban law enforcement or tactical scenarios.",
+    "description": "A tactical pump-action shotgun with a blue-gray metal body, ribbed pump grip, pistol grip stock, and visible shell holders.",
+    "description_view_0": "Front view showing the muzzle, ribbed pump grip, and the compact width of the shotgun.",
+    "description_view_1": "Left side view displaying the full length, pistol grip, shell holders, and a red shotgun shell below.",
+    "description_view_2": "Top-down view highlighting the vented handguard, shell holders, and the overall slim profile.",
+    "description_view_3": "Right side view showing the pistol grip, shell holders, and a red shotgun shell, mirroring the left side.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.95,
+    "materials": [
+        "steel",
+        "polymer",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pump grip",
+        "trigger",
+        "trigger guard",
+        "pistol grip",
+        "barrel",
+        "shell holder"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue-gray",
+        "black",
+        "red",
+        "orange",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel with vented ribbing and a medium-length barrel",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "rounded and slightly elongated trigger guard with a smooth contour",
+    "uid": "b323e41817d44325b8b6916586c5bb73",
+    "near_synsets": {
+        "pump_action.n.01": 0.5078499028142529,
+        "gas_gun.n.01": 0.5319789711942347,
+        "sawed-off_shotgun.n.01": 0.5482463870785257,
+        "shotgun.n.01": 0.5515974720581556,
+        "shotgun_shell.n.01": 0.5567106183131976
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b323e41817d44325b8b6916586c5bb73",
+        "creator_username": "FireWarden",
+        "creator_display_name": "FireWarden",
+        "creator_profile_url": "https://sketchfab.com/FireWarden"
+    },
+    "filename": "std_b323e41817d44325b8b6916586c5bb73.glb",
+    "length": 0.6235708892345428,
+    "width": 0.051428528502583504
+}

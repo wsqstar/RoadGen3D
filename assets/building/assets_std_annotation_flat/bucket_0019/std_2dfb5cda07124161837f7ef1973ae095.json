@@ -1,0 +1,90 @@
+{
+    "description_long": "This object is a large, cylindrical bomb with a rounded nose and a slightly tapered body, reminiscent of mid-20th-century aerial ordnance. The nose is painted a distinct yellow, while the main body is a matte gray, suggesting a metallic construction. At the rear, there is a stabilizing fin assembly with four prominent fins arranged symmetrically around a circular ring, designed to ensure aerodynamic stability during descent. The surface appears rough and unpolished, with no visible seams, handles, or access panels. There are no visible warning labels, wires, or external detonation mechanisms. The overall form is robust and utilitarian, built for durability and effectiveness.",
+    "description": "A large, gray, cylindrical bomb with a yellow nose and a finned tail assembly, featuring a rough, matte metallic surface.",
+    "description_view_0": "Viewed from the rear, the circular fin assembly and stabilizing fins are prominent, encircling the tail end.",
+    "description_view_1": "From the side, the elongated cylindrical body and the transition from the yellow nose to the gray body are clearly visible, along with the full length of the tail fins.",
+    "description_view_2": "The front view highlights the rounded yellow nose and the symmetrical placement of the tail fins behind the body.",
+    "description_view_3": "The opposite side view mirrors view 1, showing the bomb's length, cylindrical shape, and the fin assembly at the rear.",
+    "category": "bomb",
+    "height": 0.45,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.3,
+        0.03,
+        0.02
+    ],
+    "mass": 250,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 7,
+    "movable": true,
+    "required_force": 2450,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "fin assembly"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.92,
+        0.08
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "No visible external detonation mechanism; detonation is likely initiated by an internal impact fuse located in the nose.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "2dfb5cda07124161837f7ef1973ae095",
+    "near_synsets": {
+        "plastic_bomb.n.01": 0.5291773500178955,
+        "pipe_bomb.n.01": 0.5294465332969656,
+        "general-purpose_bomb.n.01": 0.5296861113623235,
+        "buzz_bomb.n.01": 0.5299174096400466,
+        "bomb.n.01": 0.5306115897624284,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2dfb5cda07124161837f7ef1973ae095",
+        "creator_username": "krzysztofwmalinowski",
+        "creator_display_name": "BlenderMan_pl",
+        "creator_profile_url": "https://sketchfab.com/krzysztofwmalinowski"
+    },
+    "filename": "std_2dfb5cda07124161837f7ef1973ae095.glb",
+    "length": 1.8252208828926086,
+    "width": 0.44999974966049194
+}

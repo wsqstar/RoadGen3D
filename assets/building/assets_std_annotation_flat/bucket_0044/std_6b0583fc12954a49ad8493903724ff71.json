@@ -1,0 +1,111 @@
+{
+    "description_long": "This is a large, tan-colored tracked combat vehicle resembling a modern self-propelled artillery or tank. It features a prominent, long-barreled main cannon mounted on a rotating turret, with two visible antennas and several hatches and periscopes on the turret roof. The vehicle's hull is angular with sloped armor panels, and the sides are equipped with heavy-duty tracks and road wheels for traversing rough terrain. Storage compartments and exhaust vents are visible at the rear, while the front is reinforced and streamlined for protection. The surface is matte and uniform in color, with no visible camouflage or military insignia.",
+    "description": "A tan, tracked combat vehicle with a long cannon, angular armored hull, and turret-mounted antennas and hatches.",
+    "description_view_0": "Front view showing the reinforced sloped armor, main cannon, and turret details with antennas.",
+    "description_view_1": "Front-side angle highlighting the length of the cannon, track system, and turret features.",
+    "description_view_2": "Rear-side view displaying the storage compartments, exhaust vents, and turret's rear structure.",
+    "description_view_3": "Rear view focusing on the back armor, storage boxes, and the full track assembly.",
+    "category": "combat tactical  vehicle",
+    "height": 3.2,
+    "max_dimension": 9.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.08,
+        0.04,
+        0.02,
+        0.03
+    ],
+    "mass": 48000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1800000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "antenna",
+        "track",
+        "storage compartment",
+        "periscope"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "black",
+        "gray",
+        "green"
+    ],
+    "colors_composition": [
+        0.88,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.32,
+    "surface_finish": "matte",
+    "reflectivity": 0.13,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.03,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large cannon mounted on the turret; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating on the hull and turret; reinforced front and side panels.",
+    "attribute_camouflage_pattern": "Solid tan color; no camouflage pattern visible.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "not applicable",
+    "uid": "6b0583fc12954a49ad8493903724ff71",
+    "near_synsets": {
+        "tank.n.01": 0.4744076110146122,
+        "military_vehicle.n.01": 0.5033871609190328,
+        "assault_gun.n.02": 0.512137566762571,
+        "reconnaissance_vehicle.n.01": 0.5174313376551328,
+        "tank_destroyer.n.01": 0.5186861718436705,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6b0583fc12954a49ad8493903724ff71",
+        "creator_username": "LunarHearts",
+        "creator_display_name": "LunarHearts",
+        "creator_profile_url": "https://sketchfab.com/LunarHearts"
+    },
+    "filename": "std_6b0583fc12954a49ad8493903724ff71.glb",
+    "length": 7.547554016113281,
+    "width": 8.238783359527588
+}

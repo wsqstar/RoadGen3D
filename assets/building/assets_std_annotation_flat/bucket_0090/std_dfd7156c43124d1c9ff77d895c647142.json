@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a heavily armored tracked combat vehicle, resembling a World War II-era German Tiger I tank. The vehicle features a large, centrally mounted turret with a long-barreled main cannon and a coaxial machine gun. The hull is boxy and robust, with thick armor plating covering the front, sides, and rear, and additional storage boxes and spare track links attached to the exterior. The tracks are wide and reinforced, designed for traversing rough terrain, and the suspension system is visible along the lower hull. The vehicle is painted in a dusty tan color, with subtle weathering and grime, and is equipped with various external tools, cables, and a radio antenna. Markings, including a number and insignia, are visible on the turret and hull, indicating military use.",
+    "description": "A tan, heavily armored tracked combat vehicle with a large turret, long cannon, and visible military markings. The exterior shows reinforced armor, storage equipment, and weathered details.",
+    "description_view_0": "Front view shows the thick frontal armor, main cannon, and tracks, with the turret facing forward.",
+    "description_view_1": "Left side view highlights the length of the cannon, side armor, tracks, and external equipment mounted on the hull.",
+    "description_view_2": "Rear view displays the back armor, exhausts, storage boxes, and turret details, including the number marking.",
+    "description_view_3": "Right side view reveals the turret, cannon, side armor, and additional equipment, mirroring the left side.",
+    "category": "combat tactical  vehicle",
+    "height": 3.0,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.01,
+        0.05,
+        0.01
+    ],
+    "mass": 57000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "machine gun",
+        "antenna",
+        "track",
+        "storage box",
+        "exhaust",
+        "tool rack"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large main cannon mounted on the turret front, one coaxial machine gun on the turret, and a possible machine gun mount on the hull front.",
+    "attribute_armor_plating": "Full body armor plating with visibly thick, flat, and slightly sloped panels on the front, sides, and rear; reinforced with spare track links and storage boxes.",
+    "attribute_camouflage_pattern": "Solid tan paint with weathering and grime; no distinct camouflage pattern visible.",
+    "attribute_military_markings": "Black cross insignia on the hull side, red number '133' on the rear of the turret.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "dfd7156c43124d1c9ff77d895c647142",
+    "near_synsets": {
+        "tank.n.01": 0.4542754470407785,
+        "military_vehicle.n.01": 0.48332897260926194,
+        "reconnaissance_vehicle.n.01": 0.5079736997674204,
+        "assault_gun.n.02": 0.5096329634502372,
+        "armored_car.n.02": 0.5118276913625567,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/dfd7156c43124d1c9ff77d895c647142",
+        "creator_username": "HeerBeer",
+        "creator_display_name": "Tinus",
+        "creator_profile_url": "https://sketchfab.com/HeerBeer"
+    },
+    "filename": "std_dfd7156c43124d1c9ff77d895c647142.glb",
+    "length": 6.413113117218018,
+    "width": 2.829946994781494
+}

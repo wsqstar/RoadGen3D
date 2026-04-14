@@ -1,0 +1,99 @@
+{
+    "description_long": "This ship features a low-profile, angular hull with a flat deck and sloped sides, reminiscent of early ironclad warships. The hull is predominantly gray with a red lower section, and the deck is equipped with a small central superstructure and a single, prominent funnel or mast near the stern. The bow and stern are both sharply angled, giving the vessel a streamlined, armored appearance. Two paddle wheels are visible on either side near the stern, suggesting side-wheel propulsion. The deck is sparsely equipped, with minimal railings and a few fixtures, emphasizing a utilitarian, military design. No visible windows or large openings are present, and the overall construction appears robust and metallic.",
+    "description": "A gray, armored ship with a flat deck, angled hull, and side paddle wheels, featuring a central superstructure and a single funnel or mast.",
+    "description_view_0": "Side view showing the full length of the ship, the flat deck, angled hull, and the funnel or mast near the stern.",
+    "description_view_1": "Top-down view highlighting the ship's narrow, angular shape, central superstructure, and the placement of paddle wheels on either side.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the paddle wheel and funnel or mast.",
+    "description_view_3": "Bow view showing the pointed front, angular hull, and the symmetrical placement of paddle wheels.",
+    "category": "ship",
+    "height": 4.5,
+    "max_dimension": 60.0,
+    "materials": [
+        "steel",
+        "iron",
+        "glass",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1800000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "steerable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "paddle wheel",
+        "funnel",
+        "deck hatch",
+        "railings"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is angular and low-profile with sloped sides, a flat deck, and sharply pointed bow and stern. It features a displacement-type structure with no visible keels or bulbous bows, and side paddle wheels are integrated near the stern.",
+    "attribute_superstructure_layout": "The superstructure is minimal, consisting of a small central raised section and a single funnel or mast near the stern. The deck is mostly open with sparse railings and few fixtures.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "paddle wheel",
+        "funnel",
+        "railings"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "80f840a84f684e9ebd93dbc1488612b4",
+    "near_synsets": {
+        "cargo_ship.n.01": 0.4837101920960579,
+        "ship.n.01": 0.49755713715502103,
+        "surface_ship.n.01": 0.49891148502366967,
+        "galley.n.01": 0.5030206443603892,
+        "hull.n.06": 0.5053955549624046
+    },
+    "synset": "surface_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/80f840a84f684e9ebd93dbc1488612b4",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_80f840a84f684e9ebd93dbc1488612b4.glb",
+    "length": 25.551788330078125,
+    "width": 5.883022308349609
+}

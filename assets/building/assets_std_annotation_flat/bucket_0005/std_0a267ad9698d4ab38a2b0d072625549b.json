@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a medium-sized wooden barrel tipped on its side, with a dark brown, textured wood body featuring visible grain patterns and metallic gray bands reinforcing both ends. A pool of translucent green liquid is spilling out from the open end, forming irregular puddles on the ground. The barrel's wood surface is slightly glossy, suggesting a varnished finish, while the metal bands have a smooth, reflective sheen. The open end reveals the interior, which appears hollow and dark, with the green liquid partially filling the base. The opposite end is closed with horizontal wooden planks. The overall construction suggests durability and a utilitarian design, suitable for storing or transporting liquids or materials in an urban environment.",
+    "description": "A wooden barrel with metallic bands, tipped over and spilling green liquid from its open end. The wood is dark brown and textured, with a glossy finish and visible grain.",
+    "description_view_0": "Front view showing the open end of the barrel with green liquid spilling out and pooling in front.",
+    "description_view_1": "Side view displaying the full length of the barrel, wood grain texture, and the green liquid extending from the opening.",
+    "description_view_2": "Rear view showing the closed end of the barrel with horizontal wooden planks and no visible liquid.",
+    "description_view_3": "Opposite side view, similar to view 1, with the green liquid visible and the metallic bands framing the barrel.",
+    "category": "barrel or bucket",
+    "height": 0.7,
+    "max_dimension": 1.2,
+    "materials": [
+        "wood",
+        "metal",
+        "liquid",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.2,
+        0.05
+    ],
+    "mass": 25,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "liftable",
+        "pushable",
+        "pourable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "open end",
+        "metal bands"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "green"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "glossy",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": false,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "metal hoops at both ends",
+    "attribute_labeling_or_markings": "none",
+    "attribute_placement_location": "outdoor",
+    "uid": "0a267ad9698d4ab38a2b0d072625549b",
+    "near_synsets": {
+        "barrel.n.02": 0.4707195504943939,
+        "barrel.n.03": 0.47776856809573787,
+        "bucket.n.01": 0.5065180862531972,
+        "beer_barrel.n.01": 0.5086141044289894,
+        "barrels.n.01": 0.5104885642119111,
+        "barrel.n.01": -1000.0,
+        "barrel.n.04": -1000.0,
+        "barrel.n.05": -1000.0,
+        "bucket.n.02": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0a267ad9698d4ab38a2b0d072625549b",
+        "creator_username": "boltex360",
+        "creator_display_name": "LEX_GFX",
+        "creator_profile_url": "https://sketchfab.com/boltex360"
+    },
+    "filename": "std_0a267ad9698d4ab38a2b0d072625549b.glb",
+    "length": 1.9912253618240356,
+    "width": 1.407273292541504
+}

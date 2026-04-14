@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a compact urban pumping station with a low, rectangular profile and a broad, flat roof structure. The main body is predominantly black, with a central raised section that appears to house the operational components, including a visible metallic or concrete box and a brown vertical pipe or vent. The structure is flanked by two wide, flat extensions on either side, likely serving as protective covers or platforms. The central area features a small, boxy unit and a vertical cylindrical element, possibly for access or ventilation. The overall design is utilitarian, with minimal decorative features and a focus on functional, durable materials. The station is suitable for installation in urban environments such as sidewalks, parks, or roadside utility zones.",
+    "description": "A low, rectangular urban pumping station with a broad black roof, central operational unit, and side extensions. Features a metallic box and a vertical pipe or vent.",
+    "description_view_0": "Front view shows the central operational unit, metallic box, and vertical pipe, flanked by wide black side extensions.",
+    "description_view_1": "Left-side view highlights the depth of the side extension and partially obscures the central unit.",
+    "description_view_2": "Rear view reveals mostly the flat black roof and minimal detail of the central unit.",
+    "description_view_3": "Right-side view mirrors the left, showing the side extension and a partial view of the central operational area.",
+    "category": "pumping station",
+    "height": 1.2,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "concrete",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.1
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "access panel",
+        "control box",
+        "pipe"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_building_signage": "none",
+    "attribute_ventilation_grilles": "none",
+    "attribute_security_fencing": "none",
+    "attribute_access_hatches": "none",
+    "attribute_warning_lights": "none",
+    "uid": "5602e64bd6f4469ebabd14e88f7665f9",
+    "near_synsets": {
+        "pump_house.n.01": 0.5258183282317932,
+        "standpipe.n.01": 0.5711770594963135,
+        "water_tower.n.01": 0.572270509353464,
+        "substation.n.01": 0.5729350670346185,
+        "power_station.n.01": 0.5738773809542144,
+        "station.n.05": -1000.0,
+        "post.n.01": -1000.0,
+        "station.n.01": -1000.0,
+        "place.n.10": -1000.0,
+        "station.n.03": -1000.0
+    },
+    "synset": "pump_house.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5602e64bd6f4469ebabd14e88f7665f9",
+        "creator_username": "archy.me",
+        "creator_display_name": "archy.me",
+        "creator_profile_url": "https://sketchfab.com/archy.me"
+    },
+    "filename": "std_5602e64bd6f4469ebabd14e88f7665f9.glb",
+    "length": 7.218569278717041,
+    "width": 7.128833055496216
+}

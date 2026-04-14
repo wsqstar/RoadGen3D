@@ -1,0 +1,106 @@
+{
+    "description_long": "This hamburger features a soft, plain white bun with a slightly domed top and no visible sesame seeds. The interior reveals two thick beef patties, each layered with melted yellow cheese that drapes over the edges. Crisp, pale green lettuce is placed above the patties, providing a fresh contrast in both color and texture. Beneath the patties, a layer of sliced tomato and a hint of creamy sauce are visible, adding moisture and flavor. The overall structure is tall and stacked, with ingredients slightly unevenly distributed, giving it a hearty, hand-assembled appearance. The surface of the bun is matte and smooth, while the cheese and lettuce add a slight sheen.",
+    "description": "A tall hamburger with a plain white bun, two beef patties, melted cheese, lettuce, tomato, and sauce, stacked in a hearty, hand-assembled style.",
+    "description_view_0": "The hamburger is shown with the lettuce and cheese prominently visible, and the top bun slightly overhanging the layers.",
+    "description_view_1": "This view highlights the lettuce and cheese, with the tomato and sauce peeking out from the bottom edge.",
+    "description_view_2": "The cheese appears more dominant in this view, with the lettuce tucked between the bun and patties.",
+    "description_view_3": "A frontal view showing the stacked patties and cheese, with the lettuce and bun forming a neat top layer.",
+    "category": "hamburger",
+    "height": 0.12,
+    "max_dimension": 0.13,
+    "materials": [
+        "bread",
+        "beef",
+        "cheese",
+        "lettuce",
+        "tomato",
+        "sauce",
+        "air"
+    ],
+    "materials_composition": [
+        0.32,
+        0.28,
+        0.18,
+        0.1,
+        0.06,
+        0.04,
+        0.02
+    ],
+    "mass": 0.28,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 3,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "graspable",
+        "separable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "top bun",
+        "bottom bun",
+        "lettuce",
+        "cheese slice",
+        "beef patty",
+        "tomato slice"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light brown",
+        "yellow",
+        "green",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.38,
+        0.22,
+        0.18,
+        0.1,
+        0.12
+    ],
+    "surface_hardness": "soft",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.08,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_bun_type": "plain white bun",
+    "attribute_patty_visibility": "fully visible",
+    "attribute_topping_arrangement": "Lettuce is layered directly beneath the top bun, followed by melted cheese over two beef patties, with tomato and sauce at the bottom. The toppings are stacked in a slightly uneven, natural arrangement.",
+    "attribute_packaging_presence": false,
+    "attribute_sesame_seed_presence": false,
+    "uid": "7162b8d44d444465a3fef69c2ca939bd",
+    "near_synsets": {
+        "hamburger.n.01": 0.4484405037434116,
+        "cheeseburger.n.01": 0.4802025493581388,
+        "hamburger_bun.n.01": 0.501922296114267,
+        "ground_beef.n.01": 0.5158997536266713,
+        "bacon-lettuce-tomato_sandwich.n.01": 0.5308334743585238
+    },
+    "synset": "hamburger_bun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/7162b8d44d444465a3fef69c2ca939bd",
+        "creator_username": "kraigfujii",
+        "creator_display_name": "kraigfujii",
+        "creator_profile_url": "https://sketchfab.com/kraigfujii"
+    },
+    "filename": "std_7162b8d44d444465a3fef69c2ca939bd.glb",
+    "length": 0.13603627681732178,
+    "width": 0.12691015005111694
+}

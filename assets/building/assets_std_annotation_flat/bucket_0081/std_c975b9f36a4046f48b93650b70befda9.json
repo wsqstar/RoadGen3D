@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a double-car garage structure with a wide, steeply pitched black roof supported by sturdy stone columns at the front corners. The garage features two open bays, each large enough to accommodate a standard vehicle, with visible cars parked inside. The floor is paved with interlocking stone tiles, extending outward to form a small apron in front of the bays. The side and rear views reveal solid walls and a continuous roofline, with no visible windows or doors other than the open bays. The overall design is robust and functional, with a focus on sheltering vehicles and providing easy access. The materials and color palette suggest a blend of modern and rustic architectural influences.",
+    "description": "A double-bay garage with a black pitched roof, stone columns, and open vehicle bays, set on a paved stone floor. The structure is robust and functional, blending modern and rustic elements.",
+    "description_view_0": "Front view showing two open vehicle bays, stone columns, and parked cars under a wide black roof.",
+    "description_view_1": "Rear view displaying the solid back wall and the expanse of the black roof, with no visible openings.",
+    "description_view_2": "Front view similar to view 0, but with a clearer look at the rear of the parked cars and the stone-paved apron.",
+    "description_view_3": "Rear view mirroring view 1, showing the solid wall and roof with no visible doors or windows.",
+    "category": "garage",
+    "height": 3.2,
+    "max_dimension": 7.5,
+    "materials": [
+        "roofing metal",
+        "stone",
+        "wood",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.25,
+        0.15,
+        0.15,
+        0.1
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "parkable",
+        "shelterable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "garage bay opening"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "car"
+    ],
+    "colors": [
+        "black",
+        "gray",
+        "beige"
+    ],
+    "colors_composition": [
+        0.55,
+        0.3,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_garage_door_type": "unknown",
+    "attribute_number_of_garage_doors": 0,
+    "attribute_presence_of_driveway": true,
+    "attribute_door_hardware_style": "none",
+    "attribute_architectural_style": "craftsman",
+    "uid": "c975b9f36a4046f48b93650b70befda9",
+    "near_synsets": {
+        "garage.n.01": 0.5005127046280298,
+        "carport.n.01": 0.52244266719319,
+        "shed.n.01": 0.5602286221322862,
+        "garage.n.02": 0.5678371409345916,
+        "farm_building.n.01": 0.5683536327950287
+    },
+    "synset": "garage.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c975b9f36a4046f48b93650b70befda9",
+        "creator_username": "labarch",
+        "creator_display_name": "labarch",
+        "creator_profile_url": "https://sketchfab.com/labarch"
+    },
+    "filename": "std_c975b9f36a4046f48b93650b70befda9.glb",
+    "length": 6.169534921646118,
+    "width": 8.143782138824463
+}

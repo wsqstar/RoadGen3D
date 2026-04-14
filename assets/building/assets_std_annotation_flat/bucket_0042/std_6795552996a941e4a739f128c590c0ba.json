@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a cylindrical red trash bin with a removable lid and a red plastic liner draped over the rim. The lid is flat and features a yellow label or signage on top, while the liner is semi-transparent and covers the upper portion of the bin, with some excess material hanging loosely. A black external handle is attached near the rim, likely for lifting or maneuvering the bin. On one side, a prominent biohazard symbol is visible on the liner, indicating the bin is intended for hazardous or medical waste. The base of the bin appears solid and slightly wider, providing stability, and there are no visible wheels.",
+    "description": "A red cylindrical trash bin with a flat removable lid, red plastic liner, black handle, and biohazard signage.",
+    "description_view_0": "Front view shows the flat lid with yellow label, red liner draped over the rim, and a black handle on the right.",
+    "description_view_1": "Side view highlights the smooth cylindrical body, the liner's overhang, and the handle now on the left.",
+    "description_view_2": "Rear view reveals the biohazard symbol on the liner and the base's solid construction, with no visible handle.",
+    "description_view_3": "Angled rear view shows the biohazard symbol more clearly and the liner's excess material at the base.",
+    "category": "trash bin",
+    "height": 0.8,
+    "max_dimension": 0.45,
+    "materials": [
+        "plastic",
+        "polyethylene (liner)",
+        "metal (handle)",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 4.5,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 15,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "handle",
+        "liner"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "flat removable lid",
+    "attribute_opening_mechanism": "hand lift",
+    "attribute_presence_of_wheels": false,
+    "attribute_handle_design": "external side-mounted handle",
+    "attribute_labeling_or_signage": "yellow label on lid and biohazard symbol on liner",
+    "uid": "6795552996a941e4a739f128c590c0ba",
+    "near_synsets": {
+        "recycling_bin.n.01": 0.49265232494065747,
+        "bin_liner.n.01": 0.4997561518578251,
+        "bin.n.01": 0.5191405133323324,
+        "dumpster.n.01": 0.5240760261686404,
+        "garbage.n.03": 0.5284020324049242,
+        "trash.n.02": -1000.0,
+        "ashcan.n.01": -1000.0,
+        "bin.n.02": -1000.0,
+        "methamphetamine.n.01": -1000.0,
+        "bank_identification_number.n.01": -1000.0,
+        "folderol.n.01": -1000.0,
+        "rubbish.n.01": -1000.0
+    },
+    "synset": "ashcan.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/6795552996a941e4a739f128c590c0ba",
+        "creator_username": "UofA-CDH",
+        "creator_display_name": "The Center for Digital Humanities UArizona",
+        "creator_profile_url": "https://sketchfab.com/UofA-CDH"
+    },
+    "filename": "std_6795552996a941e4a739f128c590c0ba.glb",
+    "length": 0.564177006483078,
+    "width": 0.5910152196884155
+}

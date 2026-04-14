@@ -1,0 +1,103 @@
+{
+    "description_long": "This bus shelter features a modern, minimalist design with a slightly sloped, flat roof extending over a rectangular frame. The shelter is partially enclosed, with solid side panels and a large back panel, providing protection from the elements while remaining open at the front for easy access. The structure is primarily composed of metal framing and opaque panels, likely made from glass or composite materials, with a bench integrated into the interior for seating. The roof is broad and overhangs the main structure, offering additional coverage. The color palette is dominated by dark gray and black tones, giving it a sleek, urban appearance. The shelter is designed to accommodate waiting passengers and may include space for signage or advertisements on the side or back panels.",
+    "description": "A sleek, modern bus shelter with a sloped flat roof, solid side and back panels, and an integrated bench. The structure is primarily dark gray and black, offering partial enclosure and urban functionality.",
+    "description_view_0": "Front view showing the open entry, integrated bench, and partial enclosure by side and back panels.",
+    "description_view_1": "Side view highlighting the solid side panel and the overhanging roof's profile.",
+    "description_view_2": "Rear view displaying the large back panel and the full width of the shelter's roof.",
+    "description_view_3": "Opposite side view with a clear look at the side panel and the shelter's depth.",
+    "category": "bus shelter",
+    "height": 2.3,
+    "max_dimension": 3.5,
+    "materials": [
+        "metal",
+        "glass",
+        "composite",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "shelterable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench",
+        "advertisement panel"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "sloped flat",
+    "attribute_seating_presence": true,
+    "attribute_advertisement_panel": true,
+    "attribute_shelter_enclosure_level": "partially enclosed",
+    "attribute_signage": [],
+    "uid": "e09604e633c64f9c800ad3cbd178e531",
+    "near_synsets": {
+        "shelter.n.02": 0.5514607857377585,
+        "shelter.n.01": 0.5543077234423515,
+        "bus_stop.n.01": 0.5789840394106827,
+        "sentry_box.n.01": 0.5823619426542048,
+        "shuttle_bus.n.01": 0.584027900708313,
+        "bus_topology.n.01": -1000.0,
+        "protection.n.04": -1000.0,
+        "bus.n.01": -1000.0,
+        "shelter.n.05": -1000.0,
+        "busbar.n.01": -1000.0,
+        "tax_shelter.n.01": -1000.0,
+        "bus.n.04": -1000.0
+    },
+    "synset": "shelter.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e09604e633c64f9c800ad3cbd178e531",
+        "creator_username": "DarkaiLaf",
+        "creator_display_name": "Darkay",
+        "creator_profile_url": "https://sketchfab.com/DarkaiLaf"
+    },
+    "filename": "std_e09604e633c64f9c800ad3cbd178e531.glb",
+    "length": 1.3848609328269958,
+    "width": 3.8435587882995605
+}

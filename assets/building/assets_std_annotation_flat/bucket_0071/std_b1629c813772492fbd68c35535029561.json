@@ -1,0 +1,112 @@
+{
+    "description_long": "This is a weathered, vintage telephone booth with a rectangular structure and a rusted, yellow-painted metal exterior. The booth features large glass window panels on three sides, many of which are broken or missing, and a single hinged door that is partially open. The interior floor appears dirty and corroded, and a classic payphone unit with a visible handset is mounted on the inside wall. The roof and metal frame show significant rust and paint chipping, indicating prolonged exposure to the elements. The booth is large enough for a person to stand inside and is designed for public use in urban environments. There is no visible signage or labeling on the exterior.",
+    "description": "A rusted, yellow metal telephone booth with broken glass panels and a classic payphone inside. The booth is weathered, with a partially open door and no visible signage.",
+    "description_view_0": "Side view showing the open door, broken glass panels, and interior payphone; heavy rust and paint wear are visible.",
+    "description_view_1": "Rear and angled view highlighting the solid back panel, extensive rust, and the open door with broken glass.",
+    "description_view_2": "Top-down view showing the booth's roof, interior layout, and the payphone mounted on the side wall.",
+    "description_view_3": "Angled front view with a clear look at the open door, interior payphone, and broken glass panels.",
+    "category": "telephone booth",
+    "height": 2.2,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.02,
+        0.05,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "pick_up_receiver"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "payphone",
+        "handset",
+        "keypad",
+        "coin slot"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "yellow",
+        "brown",
+        "red",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_enclosure_type": "partially enclosed",
+    "attribute_door_presence": true,
+    "attribute_window_configuration": "three sides with large glass panels, many broken or missing",
+    "attribute_signage_or_labeling": "no visible signage",
+    "attribute_handset_visibility": true,
+    "uid": "b1629c813772492fbd68c35535029561",
+    "near_synsets": {
+        "telephone_booth.n.01": 0.46187036926066233,
+        "pay-phone.n.01": 0.5193600610639165,
+        "tollbooth.n.01": 0.5767538731343208,
+        "telephone_pole.n.01": 0.5804403024961563,
+        "booth.n.02": 0.5913285552267579,
+        "booth.n.03": -1000.0,
+        "booth.n.04": -1000.0,
+        "telephone.n.01": -1000.0,
+        "telephone.n.02": -1000.0,
+        "booth.n.01": -1000.0
+    },
+    "synset": "telephone_booth.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b1629c813772492fbd68c35535029561",
+        "creator_username": "kumabeer",
+        "creator_display_name": "kumabeer",
+        "creator_profile_url": "https://sketchfab.com/kumabeer"
+    },
+    "filename": "std_b1629c813772492fbd68c35535029561.glb",
+    "length": 4.299769639968872,
+    "width": 4.408462762832642
+}

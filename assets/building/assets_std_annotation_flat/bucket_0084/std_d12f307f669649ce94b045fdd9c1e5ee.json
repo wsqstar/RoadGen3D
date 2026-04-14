@@ -1,0 +1,91 @@
+{
+    "description_long": "This structure is a tall, lattice-framed tower constructed primarily from metal, featuring a robust square base and a series of cross-braced segments that rise vertically. Two prominent horizontal crossarms extend outward at different heights, each supporting insulator stacks for the attachment of high-voltage power lines. The upper section of the tower tapers slightly and is topped with two vertical rods, likely serving as lightning protection or additional line supports. The overall design is utilitarian, with open framework allowing for airflow and minimal wind resistance. The surface appears to be a dark, weather-resistant metal, and there are no visible warning signs or mounted transformers, only insulators and line attachments.",
+    "description": "A tall, metal lattice tower with crossarms and insulator stacks for high-voltage power lines, featuring a square base and open framework.",
+    "description_view_0": "Front view showing the square base, vertical lattice structure, and two horizontal crossarms with insulator stacks extending outward.",
+    "description_view_1": "Side view highlighting the depth of the crossarms and the alignment of insulator stacks, with the lattice structure visible in profile.",
+    "description_view_2": "Rear view mirroring the front, displaying the square base, vertical lattice, and crossarms with insulator stacks.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the crossarms' extension and the lattice structure's side profile.",
+    "category": "transformer tower",
+    "height": 18.0,
+    "max_dimension": 18.0,
+    "materials": [
+        "steel",
+        "ceramic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "support_power_lines"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "crossarm",
+        "insulator stack",
+        "mounting base"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "light gray"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.0,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_insulator_stacks": 4,
+    "attribute_arrangement_of_crossarms": "There are two horizontal crossarms positioned at different heights, each extending symmetrically from the central vertical frame and supporting insulator stacks at their ends.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "insulator"
+    ],
+    "attribute_configuration_of_attached_power_lines": "Two sets of power lines are attached to the crossarms, likely supporting a three-phase configuration with parallel routing on each side of the tower.",
+    "uid": "d12f307f669649ce94b045fdd9c1e5ee",
+    "near_synsets": {
+        "pylon.n.02": 0.49697721838273096,
+        "tesla_coil.n.01": 0.5347081580733538,
+        "cascade_transformer.n.01": 0.5428203602022929,
+        "tower.n.01": 0.5469031677921067,
+        "transformer.n.01": 0.5469097919550068,
+        "tugboat.n.01": -1000.0,
+        "column.n.04": -1000.0
+    },
+    "synset": "pylon.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d12f307f669649ce94b045fdd9c1e5ee",
+        "creator_username": "ustoopia",
+        "creator_display_name": "ustoopia",
+        "creator_profile_url": "https://sketchfab.com/ustoopia"
+    },
+    "filename": "std_d12f307f669649ce94b045fdd9c1e5ee.glb",
+    "length": 7.461132049560547,
+    "width": 4.5898027420043945
+}

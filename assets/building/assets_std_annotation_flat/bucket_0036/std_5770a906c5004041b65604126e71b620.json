@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a standard metal shopping cart commonly found in supermarkets and urban retail environments. The cart features a large wire basket with a rectangular shape, reinforced by a grid of horizontal and vertical metal rods, and a child seat area near the handle. The handlebar is coated in red plastic for comfort and grip, matching the red trim along the basket's upper edge. Four black swivel wheels are attached to a sturdy metal frame, allowing for smooth maneuverability. The cart's open design and spacious basket make it ideal for carrying groceries or other items. No visible store branding or logos are present on the cart.",
+    "description": "A metal shopping cart with a red plastic handle, wire basket, and four swivel wheels, designed for carrying groceries in urban retail settings.",
+    "description_view_0": "Front view showing the open wire basket, red trim, and the two front swivel wheels.",
+    "description_view_1": "Side view highlighting the basket's depth, the red handlebar, and the full wheel configuration.",
+    "description_view_2": "Rear view displaying the handlebar, child seat area, and the back of the basket.",
+    "description_view_3": "Opposite side view showing the same features as view 1, with clear visibility of the frame and wheels.",
+    "category": "shopping cart",
+    "height": 1.05,
+    "max_dimension": 1.15,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 10,
+    "movable": true,
+    "required_force": 25,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "basket",
+        "child seat",
+        "wheel"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "silver",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_wire_basket_pattern": "Rectangular grid pattern with medium-density horizontal and vertical steel rods, forming a sturdy mesh with moderate spacing and uniform thickness.",
+    "attribute_handlebar_design": "Straight tubular handlebar coated in red plastic, providing a comfortable and grippy surface with no visible branding or ergonomic shaping.",
+    "attribute_wheel_configuration": "Four medium-sized black swivel wheels, one at each corner of the frame, allowing for multidirectional movement; no visible locking mechanisms.",
+    "attribute_child_seat_presence": "present; foldable wire seat near the handle with a red plastic backrest, designed for small children.",
+    "attribute_store_branding": "none",
+    "uid": "5770a906c5004041b65604126e71b620",
+    "near_synsets": {
+        "shopping_cart.n.01": 0.4124812572824519,
+        "shopping_basket.n.01": 0.46129244803750047,
+        "shopping_bag.n.01": 0.49743842640892566,
+        "cart.n.01": 0.5050687461959948,
+        "serving_cart.n.01": 0.5097037392108394,
+        "handcart.n.01": -1000.0
+    },
+    "synset": "shopping_cart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5770a906c5004041b65604126e71b620",
+        "creator_username": "mehran1500",
+        "creator_display_name": "MehraN",
+        "creator_profile_url": "https://sketchfab.com/mehran1500"
+    },
+    "filename": "std_5770a906c5004041b65604126e71b620.glb",
+    "length": 0.8925452530384064,
+    "width": 0.4313797056674957
+}

@@ -1,0 +1,106 @@
+{
+    "description_long": "This object is a classic single-head parking meter mounted atop a cylindrical metal post. The meter housing is rectangular with a slightly domed top and features a coin slot, a display window, and a label area on the front. The body of the meter is primarily metallic with black and gray finishes, and it is attached to a sturdy, galvanized steel post that is anchored to a circular base. The post is covered with various stickers and labels, some of which display numbers and instructions. The meter head has a visible seam where the top and bottom halves meet, and the front face is equipped with a payment interface and identification markings. The overall design is utilitarian, built to withstand outdoor urban environments and frequent public use.",
+    "description": "A single-head parking meter with a black and gray metal housing mounted on a cylindrical steel post, featuring a coin slot, display window, and identification labels.",
+    "description_view_0": "Front view showing the coin slot, display window, and identification label clearly on the meter head.",
+    "description_view_1": "Side view revealing the meter's profile, the domed top, and the seam between the upper and lower halves.",
+    "description_view_2": "Rear view displaying the back of the meter head, the mounting post, and the circular base, with fewer visible interface elements.",
+    "description_view_3": "Opposite side view similar to view 1, showing the meter's profile and the post's stickers.",
+    "category": "parking meter",
+    "height": 1.5,
+    "max_dimension": 1.5,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 10,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "insertable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "coin slot",
+        "display window",
+        "payment interface",
+        "rotary handle",
+        "label area"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "silver",
+        "white",
+        "red"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_payment_interface": "Coin payment slot and rotary handle on the front face; no visible card or contactless interface.",
+    "attribute_coin_slot": "Present on the front face, rectangular slot above the display window, marked for coin insertion.",
+    "attribute_digital_display": "None; only a mechanical display window is visible.",
+    "attribute_identification_number": "Visible on the front face as a white numeric code printed on a black label.",
+    "attribute_mounting_post": "Cylindrical galvanized steel post, silver in color, with a circular base and stickers; securely connects to the bottom of the meter head.",
+    "uid": "cfaf0f457ca244e59c746ebdd6f3ad6c",
+    "near_synsets": {
+        "parking_meter.n.01": 0.4557439050606902,
+        "parking.n.01": 0.5530023395436316,
+        "parking_ticket.n.01": 0.5592714330435056,
+        "postage_meter.n.01": 0.5646033738082425,
+        "parking_space.n.01": 0.5713190955168844,
+        "meter.n.02": -1000.0,
+        "meter.n.01": -1000.0,
+        "parking.n.02": -1000.0,
+        "meter.n.04": -1000.0,
+        "meter.n.03": -1000.0
+    },
+    "synset": "parking_meter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cfaf0f457ca244e59c746ebdd6f3ad6c",
+        "creator_username": "Raffey",
+        "creator_display_name": "Raphael Escamilla",
+        "creator_profile_url": "https://sketchfab.com/Raffey"
+    },
+    "filename": "std_cfaf0f457ca244e59c746ebdd6f3ad6c.glb",
+    "length": 0.19190526753664017,
+    "width": 0.1975126713514328
+}

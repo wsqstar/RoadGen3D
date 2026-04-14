@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a rectangular, single-story utility building with a pitched, dark metal roof and concrete or cement walls. The front side features several visible mechanical units or pumps, each housed in a separate bay with supporting metal framework and partial coverings. The structure is elevated slightly above the ground on a concrete base, and the roof extends beyond the walls to provide some shelter to the equipment. The rear and side walls are plain, with no visible windows, doors, or external features except for a small circular detail on one end. The overall appearance is utilitarian, designed for durability and function in an urban infrastructure setting.",
+    "description": "A rectangular utility building with a dark metal pitched roof, concrete walls, and visible mechanical equipment bays on the front.",
+    "description_view_0": "Front view showing multiple mechanical units or pumps in open bays beneath a pitched metal roof.",
+    "description_view_1": "Top-down view highlighting the length and ribbed texture of the dark metal roof.",
+    "description_view_2": "Rear view displaying a plain concrete wall with no visible openings or features.",
+    "description_view_3": "End view showing the gable end of the roof and a small circular detail on the concrete wall.",
+    "category": "pumping station",
+    "height": 3.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.03,
+        0.02,
+        0.05
+    ],
+    "mass": 25000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "pump control panel",
+        "service panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "dark gray",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_building_signage": "none",
+    "attribute_ventilation_grilles": "none",
+    "attribute_security_fencing": "none",
+    "attribute_access_hatches": "none",
+    "attribute_warning_lights": "none",
+    "uid": "bcd2ef5167984722a588b7b7a5e17745",
+    "near_synsets": {
+        "pump_house.n.01": 0.5198127903810729,
+        "farm_building.n.01": 0.5638424011250013,
+        "pump_room.n.01": 0.5657121847761171,
+        "water_tower.n.01": 0.569103860253196,
+        "heating_system.n.01": 0.569782706565577,
+        "station.n.05": -1000.0,
+        "post.n.01": -1000.0,
+        "station.n.03": -1000.0,
+        "place.n.10": -1000.0,
+        "station.n.01": -1000.0
+    },
+    "synset": "pump_house.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bcd2ef5167984722a588b7b7a5e17745",
+        "creator_username": "VirtuellDesignAB",
+        "creator_display_name": "Virtuell Design AB",
+        "creator_profile_url": "https://sketchfab.com/VirtuellDesignAB"
+    },
+    "filename": "std_bcd2ef5167984722a588b7b7a5e17745.glb",
+    "length": 3.5531502962112427,
+    "width": 10.756837368011475
+}

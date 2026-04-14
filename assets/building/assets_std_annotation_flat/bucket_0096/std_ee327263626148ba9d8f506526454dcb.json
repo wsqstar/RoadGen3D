@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a classic assault rifle with a combination of wood and metal construction, featuring a prominent wooden stock, handguard, and pistol grip. The receiver and barrel assembly are made of dark metal, with a curved detachable magazine inserted below the receiver. The rifle has a fixed iron sight system, with the front sight post and rear notch both visible. The muzzle end is equipped with a simple slant compensator or flash hider, and the overall design is robust and utilitarian. The wood components have a warm, reddish-brown finish, contrasting with the matte black metal parts.",
+    "description": "A robust assault rifle with a wooden stock and handguard, black metal receiver, and a curved magazine. Features iron sights and a slant muzzle device.",
+    "description_view_0": "Side view showing the full profile, including the wooden stock, handguard, curved magazine, and iron sights.",
+    "description_view_1": "Front-on view highlighting the barrel alignment, front sight post, and narrow profile of the rifle.",
+    "description_view_2": "Opposite side view displaying the wooden components, magazine, and receiver details from the other side.",
+    "description_view_3": "Top-down view showing the length of the rifle, the alignment of the sights, and the width of the stock and handguard.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 0.88,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.3,
+        0.03,
+        0.02
+    ],
+    "mass": 4.3,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 45,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "pistol grip",
+        "trigger",
+        "magazine",
+        "charging handle",
+        "safety lever",
+        "barrel",
+        "sights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.35,
+        0.65
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "flash hider",
+    "uid": "ee327263626148ba9d8f506526454dcb",
+    "near_synsets": {
+        "assault_rifle.n.01": 0.47980856956173573,
+        "garand_rifle.n.01": 0.5032878205706158,
+        "rifle.n.01": 0.5158518268244442,
+        "light_arm.n.01": 0.5247130524617528,
+        "automatic_rifle.n.01": 0.5282700153140354
+    },
+    "synset": "automatic_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ee327263626148ba9d8f506526454dcb",
+        "creator_username": "girayilhan",
+        "creator_display_name": "Giroo",
+        "creator_profile_url": "https://sketchfab.com/girayilhan"
+    },
+    "filename": "std_ee327263626148ba9d8f506526454dcb.glb",
+    "length": 0.6593676209449768,
+    "width": 0.04682091437280178
+}

@@ -1,0 +1,99 @@
+{
+    "description_long": "This humanoid robot features a robust, armored exoskeleton with a predominantly white and black color scheme, giving it a futuristic and tactical appearance. The body is heavily plated, with angular, segmented armor covering the chest, shoulders, arms, and legs, suggesting durability and protection. The helmet is sharply contoured with a pronounced crest and visor, lacking any visible facial features, and the hands are black with articulated fingers. A large sword is mounted diagonally across the back, secured in a sheath, adding to the robot's combat-ready look. The joints at the elbows, knees, and ankles are clearly defined, allowing for a wide range of motion. The overall build is bulky and imposing, resembling a mechanized knight designed for urban patrol or defense.",
+    "description": "A heavily armored, white and black humanoid robot with a sword mounted on its back and articulated limbs, resembling a futuristic combat unit.",
+    "description_view_0": "Side view showing the robot's profile, the sword mounted on its back, and the detailed arm and leg armor.",
+    "description_view_1": "Front view highlighting the angular chest plate, helmet with crest, and symmetrical arm and leg armor.",
+    "description_view_2": "Opposite side view displaying the sword's full length, arm articulation, and layered leg armor.",
+    "description_view_3": "Rear view revealing the back plating, sword sheath attachment, and robust leg structure.",
+    "category": "humanoid robot",
+    "height": 2.0,
+    "max_dimension": 2.3,
+    "materials": [
+        "metal",
+        "polymer",
+        "glass",
+        "synthetic rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.05,
+        0.07,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 1765,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "graspable",
+        "wieldable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hands",
+        "arms",
+        "legs",
+        "head",
+        "sword",
+        "fingers"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.22,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.08,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms slightly bent and extended forward, legs straight and feet flat on the ground, head facing forward.",
+    "attribute_clothing_style": "No separate clothing; the robot is covered in integrated, angular armor plating with a tactical, futuristic design.",
+    "attribute_facial_features": "The face is fully enclosed by a helmet with a sharp crest and a smooth, visor-like front; no visible eyes, mouth, or expressive features.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible joints, including shoulders, elbows, wrists, hips, knees, and ankles, suggesting hinge and rotary articulation; fingers are individually jointed for dexterity.",
+    "attribute_presence_of_sensors": "None visible",
+    "uid": "f8f0fb2ee87744b2a2d93d4f5ac385ec",
+    "near_synsets": {
+        "android.n.01": 0.5329239862991044,
+        "cyborg.n.01": 0.5342475241648171,
+        "man-at-arms.n.01": 0.5480862278562465,
+        "robotics_equipment.n.01": 0.55122855863036,
+        "automaton.n.02": 0.5554512195352378
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f8f0fb2ee87744b2a2d93d4f5ac385ec",
+        "creator_username": "True.Savage",
+        "creator_display_name": "True.Savage",
+        "creator_profile_url": "https://sketchfab.com/True.Savage"
+    },
+    "filename": "std_f8f0fb2ee87744b2a2d93d4f5ac385ec.glb",
+    "length": 0.9051157832145691,
+    "width": 0.98424232006073
+}

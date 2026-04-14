@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a long, narrow wooden canoe with a gently curved hull and pointed ends, reminiscent of a traditional Viking longship. The canoe features a series of evenly spaced oars along both sides, a central mast with a single square sail, and a rudder at the stern. The deck is open, with visible thwarts and seats for rowers, and the gunwales run the length of the vessel, providing structural support. The wood appears to be stained a rich brown, with black accents along the edges and at the bow and stern. The sail is a muted gray, and the oars are slender and uniformly shaped. The overall construction suggests a vessel designed for both rowing and sailing, with ample space for multiple occupants.",
+    "description": "A long, wooden canoe with oars, a central mast and sail, and open seating, styled like a Viking longship. The hull is brown with black accents and features visible thwarts and gunwales.",
+    "description_view_0": "Side view showing the full length of the canoe, the arrangement of oars, the mast and sail, and separated components including the rudder and seats.",
+    "description_view_1": "Front view highlighting the pointed bow, the alignment of oars, and the central mast; the width and symmetry of the hull are visible.",
+    "description_view_2": "Opposite side view similar to view 0, showing the hull, oars, and separated parts, with the stern and bow both visible.",
+    "description_view_3": "Rear view focusing on the stern, rudder, and the arrangement of oars; the mast and sail are seen from behind.",
+    "category": "canoe",
+    "height": 1.5,
+    "max_dimension": 12.0,
+    "materials": [
+        "wood",
+        "fabric",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 350,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "rowable",
+        "steerable",
+        "sailable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "oar",
+        "seat",
+        "thwart",
+        "mast",
+        "sail",
+        "rudder"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_presence_of_seats": true,
+    "attribute_presence_of_thwarts": true,
+    "attribute_presence_of_gunwales": true,
+    "attribute_presence_of_carrying_handles": false,
+    "attribute_presence_of_registration_numbers": false,
+    "uid": "9fe0f55a12224976a3a8e3a286ffb569",
+    "near_synsets": {
+        "canoe.n.01": 0.47200640231431135,
+        "longship.n.01": 0.5091252825921436,
+        "kayak.n.01": 0.5134476856812037,
+        "drekkar.n.01": 0.5140644842712202,
+        "rowing_boat.n.01": 0.51425825884287
+    },
+    "synset": "canoe.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9fe0f55a12224976a3a8e3a286ffb569",
+        "creator_username": "GustavoLacerda",
+        "creator_display_name": "GustavoLacerda",
+        "creator_profile_url": "https://sketchfab.com/GustavoLacerda"
+    },
+    "filename": "std_9fe0f55a12224976a3a8e3a286ffb569.glb",
+    "length": 11.543283939361572,
+    "width": 2.9830750226974487
+}

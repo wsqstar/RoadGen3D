@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a compact, tracked combat vehicle with a boxy, angular hull and a prominent turret mounted on top. The vehicle features a long, cylindrical main cannon extending from the turret, and the hull is covered in riveted armor plates with a greenish, weathered finish. The tracks are wide and robust, supported by multiple road wheels, and the side skirts provide additional protection. The turret and hull both display sloped surfaces, likely designed to deflect incoming projectiles. The vehicle's exterior is marked by visible bolts and seams, giving it a rugged, utilitarian appearance. There are no visible markings or insignia, and the paint scheme is a faded, mottled green with subtle brownish accents.",
+    "description": "A small, tracked combat vehicle with a riveted green hull, sloped armor, and a turret-mounted cannon. The exterior is rugged and weathered, with wide tracks and no visible markings.",
+    "description_view_0": "Side view showing the full length of the cannon, the layered armor plating, and the detailed track system.",
+    "description_view_1": "Front view highlighting the sloped frontal armor, the central cannon barrel, and the wide stance of the tracks.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the turret, cannon, and track assembly.",
+    "description_view_3": "Rear view displaying the back armor, rear hull details, and the track ends, with no visible weaponry.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.02,
+        0.03
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "track",
+        "road wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the turret roof; no other weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with riveted, sloped steel armor plates; moderate thickness with visible seams and bolts.",
+    "attribute_camouflage_pattern": "Faded, mottled green paint with subtle brownish accents; no distinct camouflage pattern.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "9207760b16634b41b9dc99d09698cbf8",
+    "near_synsets": {
+        "tank.n.01": 0.48592318321476946,
+        "military_vehicle.n.01": 0.49074729382432175,
+        "reconnaissance_vehicle.n.01": 0.5055891403031014,
+        "assault_gun.n.02": 0.5214774602840402,
+        "armored_car.n.02": 0.5227892491601399,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9207760b16634b41b9dc99d09698cbf8",
+        "creator_username": "Kai_Douglas",
+        "creator_display_name": "Kai_Douglas",
+        "creator_profile_url": "https://sketchfab.com/Kai_Douglas"
+    },
+    "filename": "std_9207760b16634b41b9dc99d09698cbf8.glb",
+    "length": 3.3021585941314697,
+    "width": 2.070905089378357
+}

@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a large, four-engine military-style airplane with a long, cylindrical fuselage and a straight, high-mounted wing configuration. The wings are broad and feature four propeller engines, two on each side, with visible propeller blades. The tail section is equipped with a twin vertical stabilizer (H-tail) and a horizontal stabilizer connecting them. The exterior is painted in a camouflage pattern with shades of green, brown, and gray, and the cockpit is located at the front of the fuselage with a clear canopy. The landing gear is not visible, suggesting it may be retractable or not modeled in detail. The overall design is reminiscent of World War II-era heavy bombers, built primarily from metal with glass for the cockpit windows.",
+    "description": "A large, four-engine military-style airplane with a camouflage exterior, high-mounted straight wings, and a twin vertical stabilizer tail. The cockpit is forward-mounted with a clear canopy, and the design is reminiscent of a World War II heavy bomber.",
+    "description_view_0": "Front view showing the broad wingspan, four propeller engines, and the forward cockpit canopy.",
+    "description_view_1": "Side view highlighting the cylindrical fuselage, high-mounted wings, and the twin vertical stabilizer tail.",
+    "description_view_2": "Rear view displaying the H-tail configuration with twin vertical stabilizers and the full wingspan.",
+    "description_view_3": "Opposite side view similar to view 1, showing the propeller engines and camouflage pattern along the fuselage.",
+    "category": "airplane",
+    "height": 4.5,
+    "max_dimension": 30.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 320000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "propeller",
+        "cockpit canopy",
+        "door",
+        "control surfaces",
+        "engine nacelle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "gray",
+        "brown",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.45,
+        0.3,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 35.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "High-wing, straight configuration with no visible winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "Four piston engines mounted on the wings, each with a visible propeller.",
+    "attribute_tail_design": "H-tail configuration with twin vertical stabilizers connected by a horizontal stabilizer.",
+    "attribute_landing_gear_type": "Landing gear not visible; likely retractable or not modeled.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a multi-panel canopy at the front of the fuselage.",
+    "uid": "01eda7cee75541999960894331df6851",
+    "near_synsets": {
+        "warplane.n.01": 0.4921870283277181,
+        "aircraft.n.01": 0.4925079951500174,
+        "bomber.n.01": 0.5230596632419221,
+        "airplane.n.01": 0.5248729734249423,
+        "combat_pilot.n.01": 0.525711312908546
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/01eda7cee75541999960894331df6851",
+        "creator_username": "mudroljub",
+        "creator_display_name": "mudroljub",
+        "creator_profile_url": "https://sketchfab.com/mudroljub"
+    },
+    "filename": "std_01eda7cee75541999960894331df6851.glb",
+    "length": 21.807780265808105,
+    "width": 31.96013641357422
+}

@@ -1,0 +1,104 @@
+{
+    "description_long": "This kiosk is a small, open-fronted commercial structure with a prominent sloped metal roof and partial stone and wood walls. The front is open, supported by two vertical posts, allowing easy access for customers or staff. The left and rear walls are constructed from textured stone, while the right side and interior feature a wood panel finish. A printed sign with the text 'BUXOS' is mounted on a post in front of the kiosk, indicating its commercial purpose. The floor appears to be a solid concrete slab, providing a stable base. The overall design is functional and robust, suitable for urban environments such as sidewalks or parks.",
+    "description": "A small, open-fronted kiosk with a sloped metal roof, stone and wood walls, and a printed sign in front. The structure is sturdy and designed for commercial use in urban settings.",
+    "description_view_0": "Front view showing the open entrance, two supporting posts, and the printed sign in front.",
+    "description_view_1": "Angled view highlighting the sloped metal roof, partial stone wall, and open front.",
+    "description_view_2": "Side view displaying the wood-paneled right wall and the signpost in front.",
+    "description_view_3": "Rear view dominated by the textured stone wall, with the roof edge visible.",
+    "category": "kiosk",
+    "height": 2.7,
+    "max_dimension": 4.5,
+    "materials": [
+        "stone",
+        "wood",
+        "metal",
+        "concrete",
+        "air",
+        "plastic"
+    ],
+    "materials_composition": [
+        0.35,
+        0.25,
+        0.15,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "displayable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sign",
+        "support posts",
+        "open entryway"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "brown",
+        "black",
+        "yellow",
+        "white"
+    ],
+    "colors_composition": [
+        0.35,
+        0.3,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "Printed sign mounted on a post in front of the kiosk, displaying the text 'BUXOS' with a logo.",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "Single open entryway at the front, no visible doors.",
+    "attribute_roof_design": "Sloped roof made of dark metal panels, with a simple overhang at the front.",
+    "attribute_architectural_style": "Modern rustic with utilitarian influences, combining stone, wood, and metal elements.",
+    "uid": "9fbb923d623846a0a15f4a9ccdc1b37e",
+    "near_synsets": {
+        "booth.n.02": 0.5229074432923082,
+        "shopfront.n.01": 0.529877363790419,
+        "newsstand.n.01": 0.5543360491631533,
+        "gazebo.n.01": 0.5601663364651744,
+        "sentry_box.n.01": 0.5622945407143167
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9fbb923d623846a0a15f4a9ccdc1b37e",
+        "creator_username": "jeromelemercier",
+        "creator_display_name": "J\u00e9r\u00f4me LEMERCIER",
+        "creator_profile_url": "https://sketchfab.com/jeromelemercier"
+    },
+    "filename": "std_9fbb923d623846a0a15f4a9ccdc1b37e.glb",
+    "length": 3.750017762184143,
+    "width": 3.913607358932495
+}

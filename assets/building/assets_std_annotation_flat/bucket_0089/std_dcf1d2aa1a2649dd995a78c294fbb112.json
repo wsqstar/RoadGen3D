@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a classic submachine gun-style rifle, reminiscent of the Soviet PPSh-41, featuring a long, cylindrical metallic barrel with multiple vent holes along the upper shroud for cooling. The receiver and barrel assembly are finished in a matte silver or gray metal, while the stock is a solid, dark wood, shaped ergonomically for shoulder support. The rifle has a prominent, vertical magazine well beneath the receiver, likely for a detachable box magazine. The trigger guard and trigger are clearly visible, with a simple iron sight system mounted on top of the barrel. The muzzle is plain, with no visible attachments, and the overall design is utilitarian, robust, and functional, suitable for urban or historical settings. The combination of metal and wood materials gives it a distinctive, vintage military appearance.",
+    "description": "A vintage-style submachine gun with a silver metal barrel, dark wooden stock, and a vertical magazine well. Features iron sights and a utilitarian, robust design.",
+    "description_view_0": "Front view showing the circular muzzle, barrel shroud, and the alignment of the iron sights.",
+    "description_view_1": "Side view highlighting the full length of the barrel, the wooden stock, trigger, and magazine well.",
+    "description_view_2": "Rear view displaying the end of the wooden stock and the straight alignment of the barrel.",
+    "description_view_3": "Opposite side view showing the same features as view 1, with the magazine well and trigger visible.",
+    "category": "rifle",
+    "height": 0.22,
+    "max_dimension": 0.85,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.3,
+        0.03,
+        0.02
+    ],
+    "mass": 4.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 45,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "trigger",
+        "magazine well",
+        "iron sights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.55,
+        0.15,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000.0,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "dcf1d2aa1a2649dd995a78c294fbb112",
+    "near_synsets": {
+        "sten_gun.n.01": 0.5004493370178406,
+        "submachine_gun.n.01": 0.5022075957748515,
+        "tommy_gun.n.01": 0.516168690602514,
+        "kalashnikov.n.01": 0.5184547333349047,
+        "garand_rifle.n.01": 0.5195030764620783,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dcf1d2aa1a2649dd995a78c294fbb112",
+        "creator_username": "Aegin",
+        "creator_display_name": "Aegin",
+        "creator_profile_url": "https://sketchfab.com/Aegin"
+    },
+    "filename": "std_dcf1d2aa1a2649dd995a78c294fbb112.glb",
+    "length": 0.8541260063648224,
+    "width": 0.148834228515625
+}

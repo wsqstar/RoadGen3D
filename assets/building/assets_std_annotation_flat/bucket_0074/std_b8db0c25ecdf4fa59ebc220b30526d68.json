@@ -1,0 +1,109 @@
+{
+    "description_long": "This kiosk features a modern, angular design with a prominent pixelated digital motif on the front facade, suggesting a tech or gaming theme. The exterior is clad in light gray brickwork, while the interior is illuminated with neon and LED accents, creating a vibrant, futuristic atmosphere. The front showcases large glass panels with digital displays and signage, and the interior includes arcade machines, a table with seating, and wall-mounted shelving. The upper section is partially enclosed, with visible wiring and equipment, adding to the high-tech aesthetic. The structure sits on a raised platform with a tiled walkway, and the overall layout is open, inviting visitors to enter and interact. Decorative lighting and geometric patterns further enhance the kiosk's contemporary appeal.",
+    "description": "A modern, tech-themed kiosk with a pixelated digital facade, glass panels, neon lighting, and an open, interactive interior featuring arcade machines and seating.",
+    "description_view_0": "Front view with a pixelated digital motif, large glass panels, and visible arcade machines and digital displays.",
+    "description_view_1": "Rear view showing a plain brick wall with minimal features and no visible signage or windows.",
+    "description_view_2": "Side view highlighting the brick exterior, partial enclosure of the upper section, and a glimpse of the interior layout.",
+    "description_view_3": "Open interior view revealing arcade machines, a table with chairs, neon lighting, and wall shelving.",
+    "category": "kiosk",
+    "height": 3.2,
+    "max_dimension": 5.0,
+    "materials": [
+        "brick",
+        "glass",
+        "metal",
+        "plastic",
+        "LED/neon lighting",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.15,
+        0.15,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "pressable",
+        "sittable",
+        "playable",
+        "touchable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "arcade machine controls",
+        "table",
+        "chairs",
+        "digital display",
+        "shelves"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "black",
+        "blue",
+        "purple",
+        "white",
+        "pink"
+    ],
+    "colors_composition": [
+        0.45,
+        0.2,
+        0.12,
+        0.1,
+        0.08,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "Digital display and illuminated sign integrated into the front facade, with pixelated graphics and visible text.",
+    "attribute_window_presence": "One large rectangular window at the front, integrated with digital display panels.",
+    "attribute_door_configuration": "Single open entryway at the front, no visible physical door.",
+    "attribute_roof_design": "Flat roof with partial enclosure, constructed from brick and metal, featuring geometric decorative elements.",
+    "attribute_architectural_style": "Modern with digital and futuristic influences, featuring geometric and pixelated design elements.",
+    "uid": "b8db0c25ecdf4fa59ebc220b30526d68",
+    "near_synsets": {
+        "amusement_arcade.n.01": 0.5420227835796231,
+        "penny_arcade.n.01": 0.5522033344116706,
+        "arcade.n.01": 0.5530043270165276,
+        "booth.n.02": 0.5682968544871239,
+        "cybercafe.n.01": 0.5735285549095901
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/b8db0c25ecdf4fa59ebc220b30526d68",
+        "creator_username": "hollyfable",
+        "creator_display_name": "Holly N.",
+        "creator_profile_url": "https://sketchfab.com/hollyfable"
+    },
+    "filename": "std_b8db0c25ecdf4fa59ebc220b30526d68.glb",
+    "length": 2.312112331390381,
+    "width": 2.40742027759552
+}

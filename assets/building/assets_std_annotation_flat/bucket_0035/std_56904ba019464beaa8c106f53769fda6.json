@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a modern, tactical rifle with a striking red and black color scheme, featuring a robust polymer and metal construction. The rifle is equipped with a collapsible stock for adjustable length, a large detachable box magazine, and a heavy barrel with a muzzle brake attached. On top, there is a mounted scope for precision aiming, and the handguard is fitted with accessory rails and a tactical flashlight or laser module. The grip and foregrip are ergonomically designed for stability and control, while the overall build suggests a weapon intended for urban combat or law enforcement use. The surface finish is mostly smooth with some matte and glossy elements, and the rifle appears to be both durable and functional.",
+    "description": "A modern red and black tactical rifle with a collapsible stock, scope, heavy barrel, and accessory rails, designed for urban combat scenarios.",
+    "description_view_0": "Side view showing the collapsible stock, scope, heavy barrel with muzzle brake, and full-length accessory rails.",
+    "description_view_1": "Front view highlighting the barrel, muzzle brake, and alignment of the scope and accessory rails.",
+    "description_view_2": "Opposite side view displaying the detachable magazine, ergonomic grip, and mounted accessories.",
+    "description_view_3": "Rear view focusing on the adjustable stock, grip, and the alignment of the scope with the barrel.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 0.95,
+    "materials": [
+        "polymer",
+        "steel",
+        "aluminum",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.35,
+        0.1,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 5.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pullable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "magazine",
+        "trigger",
+        "scope",
+        "foregrip",
+        "barrel",
+        "muzzle brake",
+        "safety selector",
+        "charging handle",
+        "accessory rail"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.38,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "collapsible",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "scope",
+    "attribute_muzzle_device": "muzzle brake",
+    "uid": "56904ba019464beaa8c106f53769fda6",
+    "near_synsets": {
+        "assault_rifle.n.01": 0.5130216026092477,
+        "garand_rifle.n.01": 0.5207358462018209,
+        "dragunov.n.01": 0.5219134660965016,
+        "light_arm.n.01": 0.5258411515294664,
+        "rifle.n.01": 0.5319961055345922
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/56904ba019464beaa8c106f53769fda6",
+        "creator_username": "harshit77",
+        "creator_display_name": "Harshit Prajapati",
+        "creator_profile_url": "https://sketchfab.com/harshit77"
+    },
+    "filename": "std_56904ba019464beaa8c106f53769fda6.glb",
+    "length": 0.6379969120025635,
+    "width": 0.08105064183473587
+}

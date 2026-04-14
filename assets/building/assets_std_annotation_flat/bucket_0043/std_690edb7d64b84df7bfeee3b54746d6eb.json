@@ -1,0 +1,96 @@
+{
+    "description_long": "This object consists of a group of six distinct apartment buildings, each with a unique architectural profile and varying heights. The buildings are characterized by rectangular and cylindrical forms, with flat roofs and some featuring rooftop structures such as antennas or mechanical units. The facades display a repetitive pattern of windows, suggesting multiple floors, and some buildings have visible balconies. The color palette is predominantly muted, with shades of gray and beige, and the surfaces appear to be made of concrete or similar materials. The overall design is modern, with clean lines and minimal ornamentation, suitable for a dense urban environment.",
+    "description": "A group of six modern apartment buildings with flat roofs, repetitive window patterns, and muted gray-beige facades.",
+    "description_view_0": "Front view showing all six buildings side by side, highlighting their varying heights and distinct shapes.",
+    "description_view_1": "Side view revealing the narrow profiles of the buildings and the cylindrical form of one structure.",
+    "description_view_2": "Rear view displaying the back facades and the alignment of windows and balconies.",
+    "description_view_3": "Opposite side view emphasizing the depth and staggered arrangement of the buildings.",
+    "category": "apartment building",
+    "height": 0.18,
+    "max_dimension": 0.32,
+    "materials": [
+        "concrete",
+        "glass",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 950000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "balcony",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "beige"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_number_of_floors": 18,
+    "attribute_balcony_presence": true,
+    "attribute_window_arrangement": "Windows are arranged in regular, vertical columns with consistent spacing, creating a symmetrical and orderly appearance across the facades.",
+    "attribute_entrance_type": "multiple entrances",
+    "attribute_architectural_style": "Modernist",
+    "uid": "690edb7d64b84df7bfeee3b54746d6eb",
+    "near_synsets": {
+        "apartment_building.n.01": 0.5012712946227964,
+        "block.n.05": 0.5311400753559563,
+        "suite.n.02": 0.5349075029760219,
+        "railroad_flat.n.01": 0.5387685529673081,
+        "subtopia.n.01": 0.5396945507255706,
+        "building.n.04": -1000.0,
+        "construction.n.07": -1000.0,
+        "building.n.01": -1000.0,
+        "apartment.n.01": -1000.0,
+        "construction.n.01": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/690edb7d64b84df7bfeee3b54746d6eb",
+        "creator_username": "tobiasherbers2",
+        "creator_display_name": "tobiasherbers",
+        "creator_profile_url": "https://sketchfab.com/tobiasherbers2"
+    },
+    "filename": "std_690edb7d64b84df7bfeee3b54746d6eb.glb",
+    "length": 0.04993451200425625,
+    "width": 0.637481689453125
+}

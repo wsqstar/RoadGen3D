@@ -1,0 +1,103 @@
+{
+    "description_long": "This object is a futuristic, tactical shotgun with a predominantly black finish and angular, robust design. The body features a combination of matte and glossy surfaces, with metallic accents in blue and silver near the barrel and chamber area. The grip is textured for enhanced handling, and the trigger guard is squared and reinforced, with visible finger grooves for ergonomic support. There is a prominent cylindrical barrel at the front, and a tactical flashlight or laser module is mounted underneath. The rear of the shotgun has a compact, pistol-style grip with red highlights, and the overall build suggests a semi-automatic action mechanism. The design is modern and aggressive, suitable for urban tactical scenarios.",
+    "description": "A modern, tactical shotgun with a black angular body, metallic accents, and a pistol-style grip, featuring a mounted flashlight and ergonomic details.",
+    "description_view_0": "Front view showing the circular barrel opening, tactical module below, and red muzzle detail.",
+    "description_view_1": "Right side view highlighting the angular body, blue and silver metallic accents, and mounted flashlight.",
+    "description_view_2": "Rear view displaying the compact grip, squared trigger guard, and sight alignment.",
+    "description_view_3": "Left side view mirroring the right, with visible grip texture and tactical module.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.45,
+    "materials": [
+        "polymer",
+        "steel",
+        "aluminum",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "pressable",
+        "pullable",
+        "liftable",
+        "aimable",
+        "triggerable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "grip",
+        "barrel",
+        "tactical module",
+        "trigger guard",
+        "safety switch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "blue",
+        "silver"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.08,
+        0.07
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "sleek",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel with vented upper housing and tactical module below",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "semi-automatic",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "squared, reinforced, with visible finger grooves",
+    "uid": "91b971d344e04cc781c90ff992cf6aaf",
+    "near_synsets": {
+        "sawed-off_shotgun.n.01": 0.5399693800375331,
+        "shotgun.n.01": 0.5422995727162748,
+        "gas_gun.n.01": 0.554993900363896,
+        "light_arm.n.01": 0.5577622529638474,
+        "shotgun_shell.n.01": 0.561335372358277
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/91b971d344e04cc781c90ff992cf6aaf",
+        "creator_username": "bcfbox",
+        "creator_display_name": "Mark Bai",
+        "creator_profile_url": "https://sketchfab.com/bcfbox"
+    },
+    "filename": "std_91b971d344e04cc781c90ff992cf6aaf.glb",
+    "length": 0.2560728192329407,
+    "width": 0.045243702828884125
+}

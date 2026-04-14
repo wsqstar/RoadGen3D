@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a cylindrical bomb with a robust, industrial design, predominantly black with a prominent yellow hazard band around its midsection. The central section features a bold yellow caution label with a skull and crossbones symbol, surrounded by diagonal hazard stripes, indicating a high level of danger. The surface is segmented with visible seams and panel lines, suggesting a reinforced metal casing. The ends are slightly tapered, giving the bomb a streamlined appearance, and the overall finish is matte with subtle highlights. There are no visible buttons, wires, or timer displays on the exterior, emphasizing a sealed and tamper-resistant construction. The warning label is the most visually striking feature, making the object immediately recognizable as hazardous.",
+    "description": "A black cylindrical bomb with a yellow caution label and hazard stripes, featuring a robust, segmented metal casing and a matte finish.",
+    "description_view_0": "The bomb is seen from the side, showing the black cylindrical body with a yellow band at the center but no visible warning label.",
+    "description_view_1": "This view reveals part of the yellow caution symbol and text, with the hazard band partially visible on the right side.",
+    "description_view_2": "The front view displays the full yellow caution label with a skull and crossbones, surrounded by hazard stripes, making the warning highly visible.",
+    "description_view_3": "The opposite side to view 1, showing the yellow band and a partial view of the caution symbol, but less detail than the front.",
+    "category": "bomb",
+    "height": 0.45,
+    "max_dimension": 0.45,
+    "materials": [
+        "steel",
+        "plastic",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.1,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 8.5,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 90,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "casing",
+        "warning label",
+        "central band"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "yellow",
+        "white"
+    ],
+    "colors_composition": [
+        0.75,
+        0.22,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [
+        "CAUTION",
+        "skull and crossbones",
+        "hazard stripes"
+    ],
+    "attribute_detonation_mechanism": "No visible external detonation mechanism; detonation may be internal or remotely triggered, as there are no buttons, wires, or timers visible.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": true,
+    "uid": "cc6b2c31de814dd3909e4792e8a8592d",
+    "near_synsets": {
+        "bomb.n.01": 0.5284561981458357,
+        "pipe_bomb.n.01": 0.5289819528205962,
+        "briefcase_bomb.n.01": 0.5310169140930416,
+        "shell.n.01": 0.5420329660464791,
+        "plastic_bomb.n.01": 0.5441162767057971,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cc6b2c31de814dd3909e4792e8a8592d",
+        "creator_username": "a28",
+        "creator_display_name": "a28",
+        "creator_profile_url": "https://sketchfab.com/a28"
+    },
+    "filename": "std_cc6b2c31de814dd3909e4792e8a8592d.glb",
+    "length": 0.08044425398111343,
+    "width": 0.08044423162937164
+}

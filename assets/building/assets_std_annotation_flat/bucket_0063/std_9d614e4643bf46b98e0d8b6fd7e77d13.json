@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a compact, modern rifle with a predominantly red and black color scheme, featuring a robust polymer and metal construction. The rifle has a short barrel and a detachable box magazine, with a skeletonized stock for reduced weight and improved maneuverability. A red dot sight is mounted on the top rail, enhancing target acquisition in urban environments. The handguard has vented slots for heat dissipation and a textured grip area for secure handling. The trigger guard is large, allowing for use with gloves, and the magazine release is easily accessible. The overall design is tactical and ergonomic, suitable for rapid deployment and close-quarters use.",
+    "description": "A compact, red and black tactical rifle with a skeletonized stock, detachable box magazine, and red dot sight, designed for urban use.",
+    "description_view_0": "Side view showing the full profile, including the skeletonized stock, red dot sight, vented handguard, and detachable magazine.",
+    "description_view_1": "Front-on view highlighting the barrel end, sight alignment, and narrow profile of the rifle.",
+    "description_view_2": "Opposite side view displaying the magazine, stock, and sight, mirroring the main features from the other side.",
+    "description_view_3": "Rear view focusing on the stock and sight, showing the alignment and compactness of the rifle.",
+    "category": "rifle",
+    "height": 0.22,
+    "max_dimension": 0.7,
+    "materials": [
+        "polymer",
+        "steel",
+        "aluminum",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "trigger",
+        "magazine",
+        "sight",
+        "barrel",
+        "handguard",
+        "magazine release"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "skeletonized",
+    "attribute_barrel_type": "short",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "red dot",
+    "attribute_muzzle_device": "none",
+    "uid": "9d614e4643bf46b98e0d8b6fd7e77d13",
+    "near_synsets": {
+        "dragunov.n.01": 0.5166184083023497,
+        "light_arm.n.01": 0.52954872247038,
+        "carbine.n.01": 0.5336387921534246,
+        "garand_rifle.n.01": 0.5354542981928424,
+        "kalashnikov.n.01": 0.5382025123163926,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9d614e4643bf46b98e0d8b6fd7e77d13",
+        "creator_username": "shadocks",
+        "creator_display_name": "Shadocks",
+        "creator_profile_url": "https://sketchfab.com/shadocks"
+    },
+    "filename": "std_9d614e4643bf46b98e0d8b6fd7e77d13.glb",
+    "length": 0.44344665110111237,
+    "width": 0.03470969200134277
+}

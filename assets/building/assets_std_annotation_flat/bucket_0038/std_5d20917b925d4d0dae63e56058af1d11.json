@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a large industrial crane with a prominent lattice boom extending outward from a cylindrical, tower-like fixed base. The boom is constructed from a network of metal trusses, providing both strength and reduced weight, and it supports a suspended platform or pallet via a cable and pulley system. The base features a circular platform with vertical supports, and a stack of counterweights is visible near the lower section. The crane's lifting mechanism is a single hook attached to a cable, which is currently holding a wooden pallet. The structure is predominantly black with metallic highlights, and the overall design suggests it is intended for heavy-duty lifting in urban construction environments. No operator cabin is visible, indicating remote or automated operation.",
+    "description": "A large, black lattice boom crane with a fixed cylindrical base and a suspended pallet, designed for heavy lifting in urban construction. The structure features visible counterweights and a truss-style boom.",
+    "description_view_0": "Side view showing the full length of the lattice boom, the cylindrical base, and the suspended pallet.",
+    "description_view_1": "Front view highlighting the boom's truss structure, the cable and hook mechanism, and the pallet directly beneath the boom.",
+    "description_view_2": "Opposite side view displaying the boom's length, the counterweights, and the fixed base from a different angle.",
+    "description_view_3": "Rear view focusing on the boom's truss framework, the circular base, and the counterweight stack.",
+    "category": "crane",
+    "height": 8.0,
+    "max_dimension": 18.0,
+    "materials": [
+        "steel",
+        "concrete",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 22000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "boom",
+        "cable",
+        "hook",
+        "counterweight stack",
+        "pulley"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 6.0,
+    "asset_composition_type": "single",
+    "attribute_boom_type": "lattice boom",
+    "attribute_counterweight_presence": true,
+    "attribute_operator_cabin_visibility": false,
+    "attribute_hook_or_lifting_mechanism": "single hook",
+    "attribute_support_structure_design": "fixed base",
+    "uid": "5d20917b925d4d0dae63e56058af1d11",
+    "near_synsets": {
+        "crane.n.04": 0.42420893274365284,
+        "derrick.n.02": 0.4992591842225556,
+        "stacker_crane.n.01": 0.533765155113082,
+        "hoist.n.01": 0.552351964065465,
+        "forklift.n.01": 0.55360913276101,
+        "crane.n.05": -1000.0,
+        "grus.n.01": -1000.0,
+        "crane.n.02": -1000.0,
+        "crane.n.01": -1000.0
+    },
+    "synset": "crane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5d20917b925d4d0dae63e56058af1d11",
+        "creator_username": "ribot02",
+        "creator_display_name": "ribot02",
+        "creator_profile_url": "https://sketchfab.com/ribot02"
+    },
+    "filename": "std_5d20917b925d4d0dae63e56058af1d11.glb",
+    "length": 7.693277835845947,
+    "width": 2.294483184814453
+}

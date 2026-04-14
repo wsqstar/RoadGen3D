@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a single passenger train carriage with a streamlined rectangular body, painted primarily in a combination of blue, gray, and black. The sides feature a continuous row of rectangular windows, suggesting a design for passenger visibility and comfort. The lower section of the carriage is marked with a blue stripe and the label 'InterCity,' indicating its use for intercity travel. The roof is solid black and slightly curved, while the undercarriage includes visible wheels and mechanical components. Both ends of the carriage are flat with visible connectors and buffers for coupling with other train cars. The overall appearance is modern and functional, suitable for urban and intercity rail networks.",
+    "description": "A modern InterCity passenger train carriage with a blue and gray body, continuous rectangular windows, and visible undercarriage components.",
+    "description_view_0": "End view showing the flat face of the carriage with connectors and buffers, and the black roof extending backward.",
+    "description_view_1": "Side view displaying the full length of the carriage, continuous rectangular windows, blue stripe, and 'InterCity' label.",
+    "description_view_2": "Opposite end view similar to view 0, showing the flat face, connectors, and black roof.",
+    "description_view_3": "Opposite side view mirroring view 1, with the same window arrangement and blue stripe, but without the visible 'InterCity' label.",
+    "category": "train",
+    "height": 4.2,
+    "max_dimension": 26.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "connector",
+        "buffer",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_train_type": "commuter train",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end",
+    "attribute_window_arrangement": "continuous row of rectangular windows",
+    "uid": "96f87b33e0884fd599ef1a1c83ec5f8c",
+    "near_synsets": {
+        "passenger_train.n.01": 0.46923363164087406,
+        "car_train.n.01": 0.4878266510049898,
+        "train.n.01": 0.4998876738499285,
+        "passenger_car.n.01": 0.5049419390850796,
+        "commuter.n.01": 0.5169364639467751,
+        "string.n.04": -1000.0,
+        "train.n.04": -1000.0,
+        "train.n.05": -1000.0,
+        "gearing.n.01": -1000.0,
+        "caravan.n.01": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/96f87b33e0884fd599ef1a1c83ec5f8c",
+        "creator_username": "timblewee",
+        "creator_display_name": "timblewee",
+        "creator_profile_url": "https://sketchfab.com/timblewee"
+    },
+    "filename": "std_96f87b33e0884fd599ef1a1c83ec5f8c.glb",
+    "length": 23.944055557250977,
+    "width": 2.9717257022857666
+}

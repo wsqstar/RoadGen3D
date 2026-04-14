@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a rectangular, free-standing vending machine with a bright red exterior and a large, illuminated front display showcasing a variety of bottled and canned beverages. The front panel features a transparent window through which the products are visible, arranged in neat rows with clear labeling. Below the display window, there is a prominent product retrieval slot, a payment interface with a card reader and buttons, and a small digital screen for instructions or transaction information. The sides and back of the machine are solid red with no visible openings or features, emphasizing its utilitarian design. The machine stands on four small feet, slightly elevating it above the ground. Branding and signage are present on the front, including a logo and some text, contributing to its recognizable appearance in urban environments.",
+    "description": "A bright red vending machine with a large front display of beverages, payment interface, and product retrieval slot. The sides and back are plain red, while the front features branding and interactive elements.",
+    "description_view_0": "The front view shows the illuminated product display, payment interface, product retrieval slot, and visible branding.",
+    "description_view_1": "The left side is plain red with no openings, windows, or features.",
+    "description_view_2": "The back is a solid red panel, featureless and unadorned.",
+    "description_view_3": "The right side is also plain red, matching the left side with no visible features.",
+    "category": "vending machine",
+    "height": 1.7,
+    "max_dimension": 1.7,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "electronic components",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 220,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "payment slot",
+        "card reader",
+        "product retrieval slot",
+        "display panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "black",
+        "gray",
+        "multicolor (product labels)"
+    ],
+    "colors_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A large, rectangular illuminated display panel occupies the upper front section, showing rows of beverage products and their labels.",
+    "attribute_payment_interface": "A payment interface is located on the right side of the front panel, featuring a card reader, a keypad, and a possible coin slot.",
+    "attribute_product_selection_buttons": "Individual product selection buttons are visible next to each row of products on the front display.",
+    "attribute_product_retrieval_slot": "A wide, rectangular product retrieval slot is located below the display window on the front, with a flap or door.",
+    "attribute_branding_or_signage": "Branding is present on the front, including a logo and the word 'FIRE' in a yellow box, along with other small text and symbols.",
+    "uid": "5d1f694c4d754b1ca7ff30f4bacb6ca1",
+    "near_synsets": {
+        "vending_machine.n.01": 0.4619768786257191,
+        "automat.n.01": 0.5224476847181401,
+        "soda_fountain.n.02": 0.5792569559746198,
+        "fruit_machine.n.01": 0.5858766311436848,
+        "soda_fountain.n.01": 0.5874543468325267,
+        "machine.n.01": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.05": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.02": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5d1f694c4d754b1ca7ff30f4bacb6ca1",
+        "creator_username": "baserun",
+        "creator_display_name": "darwyn",
+        "creator_profile_url": "https://sketchfab.com/baserun"
+    },
+    "filename": "std_5d1f694c4d754b1ca7ff30f4bacb6ca1.glb",
+    "length": 1.6190476417541504,
+    "width": 1.6190468072891235
+}

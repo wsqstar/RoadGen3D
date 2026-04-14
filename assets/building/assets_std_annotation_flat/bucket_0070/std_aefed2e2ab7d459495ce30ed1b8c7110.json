@@ -1,0 +1,113 @@
+{
+    "description_long": "This ship features a robust, industrial design with a dark, reinforced hull and a slightly rounded bow and stern. The deck is equipped with multiple large, cylindrical smokestacks, a domed structure likely serving as a bridge or control room, and various pipes and mechanical fixtures, giving it a steampunk or early industrial appearance. The superstructure is compact, with a single main deck and a raised, rounded cabin toward the stern, topped by a white dome. The ship's deck is lined with railings and dotted with metallic details, including gears, vents, and what appear to be small cannons or turrets. The hull is painted in a combination of black and deep red, with metallic accents and visible rivets along the seams. No visible registration markings or flags are present, and the vessel appears designed for utility or transport rather than luxury.",
+    "description": "A steampunk-inspired industrial ship with a dark, riveted hull, multiple smokestacks, and a domed superstructure. The deck is detailed with pipes, railings, and mechanical fixtures.",
+    "description_view_0": "Side view showing the full length of the ship, highlighting the domed superstructure, three tall smokestacks, and detailed deck equipment.",
+    "description_view_1": "Front view emphasizing the rounded bow, central alignment of the smokestacks, and the compact width of the hull.",
+    "description_view_2": "Opposite side view revealing the same major features as view 0, but with a clearer look at the stern and additional deck details.",
+    "description_view_3": "Rear view focusing on the domed superstructure at the stern, the arrangement of the smokestacks, and the tapering shape of the hull.",
+    "category": "ship",
+    "height": 7.0,
+    "max_dimension": 28.0,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "copper",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.05,
+        0.03,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 1800000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "wheel",
+        "lever",
+        "smokestack",
+        "cannon",
+        "railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "brown",
+        "white",
+        "copper"
+    ],
+    "colors_composition": [
+        0.55,
+        0.18,
+        0.15,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a rounded bow and stern, reinforced with visible rivets and a deep red lower section. The sides are straight with a slight flare, and the hull sits low in the water, suggesting stability and cargo capacity. No keels or bulbous bows are visible, and the hull features a flat deck with railings.",
+    "attribute_superstructure_layout": "The superstructure consists of a single main deck with a raised, rounded cabin at the stern topped by a white dome. Three tall smokestacks are centrally aligned, and the deck is populated with mechanical fixtures, pipes, and small turrets. The layout is compact, with most features concentrated toward the stern and center.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "smokestack",
+        "cannon",
+        "pipe",
+        "railing",
+        "dome",
+        "vent"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "aefed2e2ab7d459495ce30ed1b8c7110",
+    "near_synsets": {
+        "steampunk.n.01": 0.5166356615871891,
+        "steamer.n.03": 0.5244092165111112,
+        "steamboat.n.01": 0.5488018297620036,
+        "deck-house.n.01": 0.5553118659771942,
+        "shipwreck.n.01": 0.555374673224555,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/aefed2e2ab7d459495ce30ed1b8c7110",
+        "creator_username": "krambulini",
+        "creator_display_name": "krambulini",
+        "creator_profile_url": "https://sketchfab.com/krambulini"
+    },
+    "filename": "std_aefed2e2ab7d459495ce30ed1b8c7110.glb",
+    "length": 10.476786136627197,
+    "width": 2.843585729598999
+}

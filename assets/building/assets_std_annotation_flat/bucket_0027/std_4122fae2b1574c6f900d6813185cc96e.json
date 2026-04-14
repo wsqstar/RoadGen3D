@@ -1,0 +1,112 @@
+{
+    "description_long": "This is a large, modern aircraft carrier with a flat, expansive flight deck and a prominent superstructure located on the starboard side. The hull is painted with a red lower section and a gray upper section, featuring black windows or openings along the sides. The flight deck is marked with runway lines and has several aircraft and deck equipment visible, including what appear to be radar domes and antennas. The superstructure includes multiple levels, likely for command and control, and is equipped with various communication and navigation devices. The bow is sharply angled, and the stern is squared off, typical of military carriers. The ship is designed for naval operations and can accommodate both personnel and aircraft.",
+    "description": "A large, modern aircraft carrier with a flat flight deck, red and gray hull, and a detailed superstructure on the starboard side. The deck features runway markings, aircraft, and visible equipment.",
+    "description_view_0": "Front view showing the sharp bow, central runway markings, and the superstructure offset to the right.",
+    "description_view_1": "Starboard side view highlighting the full length of the flight deck, superstructure, and hull details including black window-like openings.",
+    "description_view_2": "Rear view displaying the squared stern, runway lines, and the superstructure's position relative to the deck.",
+    "description_view_3": "Port side view showing the hull's red and gray color scheme, deck equipment, and the superstructure from the opposite side.",
+    "category": "ship",
+    "height": 25,
+    "max_dimension": 300,
+    "materials": [
+        "steel",
+        "aluminum",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.01,
+        0.04
+    ],
+    "mass": 90000000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "landable",
+        "launchable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "deck",
+        "superstructure",
+        "radar",
+        "antenna",
+        "aircraft",
+        "runway",
+        "doors",
+        "windows"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black",
+        "white",
+        "blue"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 50,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a sharp, angled bow and a squared stern. The lower hull is painted red, while the upper hull is gray with black window-like openings. There are no visible keels or bulbous bows, and the hull sides are relatively straight and vertical.",
+    "attribute_superstructure_layout": "The superstructure is located on the starboard side of the flight deck, consisting of multiple stacked levels with bridges, control towers, and various equipment. The design is compact but tall, with several antennas and radar domes mounted on top.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "aircraft",
+        "radar",
+        "antenna",
+        "runway markings"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "4122fae2b1574c6f900d6813185cc96e",
+    "near_synsets": {
+        "aircraft_carrier.n.01": 0.397379068044766,
+        "flight_deck.n.01": 0.4604841775676518,
+        "surface_ship.n.01": 0.5155592441786709,
+        "cargo_ship.n.01": 0.5230340896498636,
+        "three-decker.n.03": 0.5265377975443866,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4122fae2b1574c6f900d6813185cc96e",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_4122fae2b1574c6f900d6813185cc96e.glb",
+    "length": 171.40420532226562,
+    "width": 35.21218490600586
+}

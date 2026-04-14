@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a modern city transit bus with a rectangular, elongated body and a flat roof, primarily painted white with light blue accents on the front and rear panels. The bus features large, rectangular windows along both sides, separated by vertical pillars, providing ample visibility for passengers. There are two wide, black-framed passenger doors on the right side, one near the front and one in the middle, both designed for easy boarding and alighting. The front of the bus displays an electronic route sign above the windshield, reading '101 Haupt Depot.' The rear of the bus is simple, with red tail lights and a blue panel, while the wheels are black with metallic hubs. The overall design suggests a typical low-floor urban bus, optimized for accessibility and efficient passenger flow.",
+    "description": "A modern white and blue city bus with large side windows, two passenger doors, and an electronic route sign on the front.",
+    "description_view_0": "Front view showing the windshield, electronic route sign '101 Haupt Depot', and side mirrors.",
+    "description_view_1": "Right side view displaying the full length, two passenger doors, and a series of large windows.",
+    "description_view_2": "Rear view with blue paneling, red tail lights, and no visible doors or signage.",
+    "description_view_3": "Left side view showing the continuous row of windows and no passenger doors.",
+    "category": "bus",
+    "height": 3.2,
+    "max_dimension": 12.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "drivable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "button",
+        "display panel",
+        "mirror"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "light blue",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.18,
+        0.12,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 2,
+    "attribute_window_arrangement": "Six large, rectangular passenger windows on each side, evenly spaced and separated by vertical pillars, with consistent size and shape throughout.",
+    "attribute_route_number_or_destination_sign": "101 Haupt Depot",
+    "attribute_bus_manufacturer_logo": "",
+    "attribute_passenger_entry_step_height": 0.35,
+    "uid": "ae4eddff111e4a34bf11d16ef5cbd8f1",
+    "near_synsets": {
+        "bus.n.01": 0.507064791060669,
+        "bus_traffic.n.01": 0.5101136841573563,
+        "school_bus.n.01": 0.5143217678100154,
+        "minibus.n.01": 0.5151312356042808,
+        "bus_route.n.01": 0.5226163105261709,
+        "bus_topology.n.01": -1000.0,
+        "bus.n.04": -1000.0,
+        "busbar.n.01": -1000.0
+    },
+    "synset": "busbar.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/ae4eddff111e4a34bf11d16ef5cbd8f1",
+        "creator_username": "1-3D.com",
+        "creator_display_name": "1-3D.com",
+        "creator_profile_url": "https://sketchfab.com/1-3D.com"
+    },
+    "filename": "std_ae4eddff111e4a34bf11d16ef5cbd8f1.glb",
+    "length": 12.919058322906494,
+    "width": 3.211611270904541
+}

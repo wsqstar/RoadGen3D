@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a modern, streamlined train carriage with a metallic blue and gold exterior, featuring a large, angular driver's cab at the front. The body is rectangular with a slightly sloped roof and a prominent gold stripe running horizontally along the sides. Large, rectangular windows are spaced along both sides, allowing visibility into the passenger compartment, which contains seats and interior details. The front cab is equipped with wide, slanted windows for optimal driver visibility and is protected by a gold safety rail. The undercarriage is detailed with visible wheels and mechanical components. The overall design suggests a commuter or light rail train intended for urban passenger transport.",
+    "description": "A sleek, blue and gold urban train carriage with large side windows and a prominent, angular driver's cab at the front. The design is modern, with visible wheels and detailed undercarriage components.",
+    "description_view_0": "Side view showing the long body, gold stripe, and large rectangular windows along the carriage.",
+    "description_view_1": "Front view highlighting the angular driver's cab, wide slanted windows, and protective gold rail.",
+    "description_view_2": "Opposite side view with visible interior seating and window arrangement, similar to view 0 but with different interior details.",
+    "description_view_3": "Rear view showing the flat back of the carriage with minimal detailing and a small access panel.",
+    "category": "train",
+    "height": 3.5,
+    "max_dimension": 15.0,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 25000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 500000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "control panel",
+        "safety rail"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gold",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "commuter train",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end",
+    "attribute_window_arrangement": "spaced rectangular windows along both sides",
+    "uid": "1606d6a74f6e430bb5fb2cc248e1d721",
+    "near_synsets": {
+        "train.n.01": 0.49562555219221144,
+        "car_train.n.01": 0.49857105712486677,
+        "passenger_train.n.01": 0.5098554779209621,
+        "streamliner.n.01": 0.5162845652065241,
+        "subway_train.n.01": 0.516301337883819,
+        "caravan.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "gearing.n.01": -1000.0,
+        "train.n.05": -1000.0,
+        "train.n.04": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1606d6a74f6e430bb5fb2cc248e1d721",
+        "creator_username": "Thomas_Crozelon",
+        "creator_display_name": "Thomas_Crozelon",
+        "creator_profile_url": "https://sketchfab.com/Thomas_Crozelon"
+    },
+    "filename": "std_1606d6a74f6e430bb5fb2cc248e1d721.glb",
+    "length": 10.034962177276611,
+    "width": 3.0320440530776978
+}

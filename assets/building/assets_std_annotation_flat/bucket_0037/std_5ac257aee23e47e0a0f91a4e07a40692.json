@@ -1,0 +1,105 @@
+{
+    "description_long": "This object consists of two large, horizontally-oriented cylindrical storage tanks mounted side by side on a sturdy metal frame. Each tank is painted a muted green and features a circular access hatch on top, as well as yellow warning labels on the ends that read 'MYCKET BRANDFARLIGT', indicating high flammability. The tanks are connected to a set of visible pipes at the base, suggesting they are designed for the storage and transfer of hazardous liquids or gases. On the sides of the tanks, there are red diamond-shaped hazard signs with a flame symbol, further emphasizing the flammable nature of the contents. The tanks are supported by a robust rectangular metal base, which keeps them elevated and stable. The overall construction is industrial and utilitarian, suitable for secure storage in environments where safety and containment are critical.",
+    "description": "A pair of large, green, horizontal cylindrical storage tanks with hazard signage and yellow flammable warning labels, mounted on a metal frame. The tanks feature top hatches and are connected by pipes at the base.",
+    "description_view_0": "Front view showing the yellow 'MYCKET BRANDFARLIGT' warning labels on the ends of both tanks and the supporting metal frame.",
+    "description_view_1": "Side view displaying the red flammable hazard sign and the cylindrical shape of the tanks, with the top hatches visible.",
+    "description_view_2": "Rear view similar to the front, with both tanks' yellow warning labels and the metal frame structure clearly visible.",
+    "description_view_3": "Opposite side view showing the red flammable hazard sign and the cylindrical tanks, with the top hatches and frame visible.",
+    "category": "storage tank",
+    "height": 1.5,
+    "max_dimension": 3.5,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 1800,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "connectable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hatch",
+        "pipe",
+        "label"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "yellow",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.07
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [
+        "pipe"
+    ],
+    "attribute_warning_signage": true,
+    "attribute_architectural_style": "cylindrical horizontal",
+    "uid": "5ac257aee23e47e0a0f91a4e07a40692",
+    "near_synsets": {
+        "tank.n.02": 0.5201024407693932,
+        "tank_farm.n.01": 0.5443182259038594,
+        "gas_tank.n.01": 0.5569638765949207,
+        "gas_holder.n.01": 0.5631738488451417,
+        "tankage.n.03": 0.5678208930255203,
+        "tank.n.03": -1000.0,
+        "tank.n.01": -1000.0,
+        "storage.n.04": -1000.0,
+        "storage.n.03": -1000.0,
+        "repositing.n.01": -1000.0,
+        "storage.n.01": -1000.0,
+        "cooler.n.03": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "memory.n.04": -1000.0,
+        "tank_car.n.01": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5ac257aee23e47e0a0f91a4e07a40692",
+        "creator_username": "luddepubde",
+        "creator_display_name": "LuddePudde",
+        "creator_profile_url": "https://sketchfab.com/luddepubde"
+    },
+    "filename": "std_5ac257aee23e47e0a0f91a4e07a40692.glb",
+    "length": 2.753445625305176,
+    "width": 2.372924327850342
+}

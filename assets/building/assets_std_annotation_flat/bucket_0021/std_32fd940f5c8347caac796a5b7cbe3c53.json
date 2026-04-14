@@ -1,0 +1,95 @@
+{
+    "description_long": "This storage locker is a small, makeshift structure constructed from corrugated metal sheets, giving it a rugged and utilitarian appearance. The roof and walls are composed of overlapping, unevenly cut metal panels, some of which are bent or warped, suggesting prolonged outdoor exposure and possible makeshift repairs. One side features a large, irregular opening where a panel is partially detached, likely serving as an improvised door. The surface of the metal is matte and slightly rough, with visible ridges and seams running vertically and horizontally. There are no visible windows, but a small horizontal slit on one wall may provide minimal ventilation. The overall form is boxy, with a peaked roof and no visible handles or locking mechanisms, indicating a basic, functional design for temporary or low-security storage.",
+    "description": "A rugged, boxy storage locker made from corrugated metal sheets with a peaked roof and a large, irregular opening on one side. The structure appears weathered and utilitarian, suitable for outdoor use.",
+    "description_view_0": "Front view showing the peaked roof, corrugated metal walls, and a large, irregular opening on the right side.",
+    "description_view_1": "Side view highlighting the long, continuous corrugated panels and the partially detached metal sheet forming an entrance.",
+    "description_view_2": "Rear view displaying the intact corrugated metal wall with a small horizontal slit, and the roof's ridged structure.",
+    "description_view_3": "Opposite side view showing a mostly intact wall with a slight overhang of the roof and a bent panel at the edge.",
+    "category": "storage locker",
+    "height": 2.0,
+    "max_dimension": 2.5,
+    "materials": [
+        "corrugated metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.15
+    ],
+    "mass": 180,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door panel"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 1,
+    "attribute_locking_mechanism_type": "no lock visible",
+    "attribute_ventilation_pattern": "horizontal slit",
+    "attribute_handle_design": "no handle visible",
+    "attribute_placement_location": "outdoor",
+    "uid": "32fd940f5c8347caac796a5b7cbe3c53",
+    "near_synsets": {
+        "chest.n.02": 0.5292195733209709,
+        "vault.n.02": 0.5392863322173272,
+        "shed.n.01": 0.543284666577464,
+        "crate.n.01": 0.5437996137649133,
+        "sentry_box.n.01": 0.5450745636409315,
+        "memory.n.04": -1000.0,
+        "repositing.n.01": -1000.0,
+        "storage.n.01": -1000.0,
+        "footlocker.n.01": -1000.0,
+        "storage.n.04": -1000.0,
+        "storage.n.03": -1000.0,
+        "cabinet.n.03": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "locker.n.02": -1000.0
+    },
+    "synset": "shed.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/32fd940f5c8347caac796a5b7cbe3c53",
+        "creator_username": "tosbin",
+        "creator_display_name": "tosbin",
+        "creator_profile_url": "https://sketchfab.com/tosbin"
+    },
+    "filename": "std_32fd940f5c8347caac796a5b7cbe3c53.glb",
+    "length": 3.8260244131088257,
+    "width": 2.7333576679229736
+}

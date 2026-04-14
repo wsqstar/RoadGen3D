@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a streamlined, unmanned aerial vehicle with a cylindrical fuselage and straight, mid-mounted wings. The surface is painted in a military-style olive green with irregular white patches, suggesting camouflage. The nose is pointed, and the tail section features a distinctive H-tail configuration with twin vertical stabilizers connected by a horizontal stabilizer. A prominent engine nacelle is mounted above the rear fuselage, indicating a single jet propulsion system. There are no visible windows, cockpit, or landing gear, emphasizing its utilitarian, possibly expendable design. The overall appearance is reminiscent of early cruise missiles or pilotless drones used in military operations.",
+    "description": "A streamlined, olive green unmanned aircraft with mid-mounted straight wings, H-tail, and a rear-mounted jet engine nacelle. Camouflage patches and lack of cockpit or landing gear suggest a military drone or cruise missile.",
+    "description_view_0": "Side view showing the elongated fuselage, mid-mounted straight wings, and the prominent rear-mounted jet engine nacelle above the fuselage.",
+    "description_view_1": "Front view highlighting the pointed nose, symmetrical straight wings, and the absence of a cockpit or windows.",
+    "description_view_2": "Opposite side view similar to view 0, displaying the H-tail and the engine nacelle, with camouflage patterns visible along the fuselage.",
+    "description_view_3": "Rear view showing the H-tail configuration, twin vertical stabilizers, and the circular jet exhaust at the back of the engine nacelle.",
+    "category": "airplane",
+    "height": 0.7,
+    "max_dimension": 3.5,
+    "materials": [
+        "aluminum",
+        "steel",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 850,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 9000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable",
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "engine nacelle",
+        "wings",
+        "tail fins"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing configuration with straight, unswept wings and no visible winglets or dihedral/anhedral angles.",
+    "attribute_engine_type": "Single rear-mounted jet engine nacelle above the fuselage.",
+    "attribute_tail_design": "H-tail configuration with twin vertical stabilizers connected by a horizontal stabilizer.",
+    "attribute_landing_gear_type": "No visible landing gear.",
+    "attribute_cockpit_placement": "No visible cockpit; unmanned configuration with no windows or canopy.",
+    "uid": "9b3a58f498784ebfb01612d4a35609a0",
+    "near_synsets": {
+        "aircraft.n.01": 0.4833180052841947,
+        "drone.n.04": 0.48554890140948026,
+        "cruise_missile.n.01": 0.5201638285021962,
+        "airplane.n.01": 0.5308980104141054,
+        "nacelle.n.01": 0.5326252371786748
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9b3a58f498784ebfb01612d4a35609a0",
+        "creator_username": "Planetrix23",
+        "creator_display_name": "Peter Primini",
+        "creator_profile_url": "https://sketchfab.com/Planetrix23"
+    },
+    "filename": "std_9b3a58f498784ebfb01612d4a35609a0.glb",
+    "length": 3.7738685607910156,
+    "width": 3.3066080808639526
+}

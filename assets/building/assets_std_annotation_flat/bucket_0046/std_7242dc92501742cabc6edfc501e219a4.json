@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a manual wheelchair with a dark, plaid-patterned fabric seat and backrest, supported by a sturdy metal frame. The wheelchair features two large rear wheels with thin metal spokes and push rims, as well as two smaller front caster wheels for maneuverability. The frame is constructed from tubular metal, with cross-bracing beneath the seat for added stability and strength. The footrests are flat, rectangular, and appear to be fixed in place, with a textured surface for grip. The push handles at the back are straight and capped with rubber grips for comfortable handling. The overall design is utilitarian, suitable for use on sidewalks, in parks, or other urban environments.",
+    "description": "A plaid-fabric manual wheelchair with a tubular metal frame, large spoked rear wheels, fixed footrests, and rubber-capped push handles.",
+    "description_view_0": "Front view showing the plaid fabric seat, footrests, and the symmetrical armrests.",
+    "description_view_1": "Side view highlighting the large spoked rear wheel, small front caster, and the straight push handle.",
+    "description_view_2": "Rear view displaying the full width of the backrest, both rear wheels, and the push handles.",
+    "description_view_3": "Opposite side view showing the same wheel and handle configuration as the other side.",
+    "category": "wheelchair",
+    "height": 1.0,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "fabric",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 16,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 25,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "pushable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "push rim",
+        "footrest"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "dark brown",
+        "gray",
+        "pink"
+    ],
+    "colors_composition": [
+        0.55,
+        0.3,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_wheel_type": "Two large rear spoked wheels with push rims and two small solid front caster wheels; rear wheels are much larger than the front.",
+    "attribute_frame_design": "Folding frame with tubular steel construction and cross-bracing beneath the seat for stability.",
+    "attribute_presence_of_push_rims": true,
+    "attribute_footrest_style": "Fixed, flat rectangular footrests with a textured surface, positioned parallel to the ground.",
+    "attribute_handlebar_configuration": "Standard straight push handles with rubber grips, extending vertically from the backrest.",
+    "uid": "7242dc92501742cabc6edfc501e219a4",
+    "near_synsets": {
+        "wheelchair.n.01": 0.49177415731864893,
+        "motorized_wheelchair.n.01": 0.49753048712188447,
+        "bath_chair.n.01": 0.5154819087688016,
+        "handcart.n.01": 0.5508610865469684,
+        "gurney.n.01": 0.5512575789551603
+    },
+    "synset": "motorized_wheelchair.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7242dc92501742cabc6edfc501e219a4",
+        "creator_username": "3dil15.subert",
+        "creator_display_name": "Paul Subert",
+        "creator_profile_url": "https://sketchfab.com/3dil15.subert"
+    },
+    "filename": "std_7242dc92501742cabc6edfc501e219a4.glb",
+    "length": 0.985468327999115,
+    "width": 0.669158011674881
+}

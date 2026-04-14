@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a large, heavy-duty crew cab truck with a robust and angular design, featuring a metallic silver and gray exterior with weathered and slightly dirty textures. The front end is equipped with a prominent grille, dual headlights, and a reinforced bumper, giving it a rugged, utilitarian appearance. The side profile reveals four doors, large side mirrors, and visible exhaust stacks, as well as a substantial fuel tank and step rails. The rear cargo bed is open and contains several cylindrical tanks or barrels secured with red straps, indicating it may be used for transporting equipment or materials. The wheels are thick and durable, suitable for both urban and industrial environments, and the overall build suggests a vehicle designed for both passenger and cargo transport. The truck's surfaces are mostly hard metal with some plastic and rubber components, and the interior likely features standard automotive materials such as fabric, plastic, and glass.",
+    "description": "A rugged, metallic crew cab truck with a weathered silver-gray finish, open cargo bed, and industrial features like exhaust stacks and heavy-duty wheels.",
+    "description_view_0": "Front view shows the bold grille, dual headlights, reinforced bumper, and wide windshield.",
+    "description_view_1": "Left side view highlights the four-door crew cab, large side mirrors, step rails, and visible fuel tank.",
+    "description_view_2": "Rear view displays the open cargo bed with multiple cylindrical tanks and a tailgate.",
+    "description_view_3": "Right side view mirrors the left, showing the crew cab, step rails, and exhaust stack details.",
+    "category": "truck",
+    "height": 2.5,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 4200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 21000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "handle",
+        "tailgate",
+        "mirror",
+        "step rail"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "silver",
+        "gray",
+        "black",
+        "white",
+        "red"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "crew cab",
+    "attribute_cargo_bed_type": "pickup bed",
+    "attribute_wheelbase": "3.8",
+    "attribute_number_of_axles": 2,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "e23cf20d6f16409cb878a789bd1a8b38",
+    "near_synsets": {
+        "van.n.05": 0.5060271931414041,
+        "truck.n.01": 0.5271140516132056,
+        "pickup.n.01": 0.5296712068143992,
+        "truck_bed.n.01": 0.5431358685136503,
+        "tractor.n.02": 0.5482112439615828,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e23cf20d6f16409cb878a789bd1a8b38",
+        "creator_username": "Primus03",
+        "creator_display_name": "Primus03",
+        "creator_profile_url": "https://sketchfab.com/Primus03"
+    },
+    "filename": "std_e23cf20d6f16409cb878a789bd1a8b38.glb",
+    "length": 5.445549011230469,
+    "width": 2.3392452001571655
+}

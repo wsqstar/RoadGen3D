@@ -1,0 +1,96 @@
+{
+    "description_long": "This garage is integrated into a sloped, landscaped plot, with a rectangular structure partially embedded into the terrain. The main garage volume features a flat roof and a modern, boxy design, with a red facade and a large, prominent garage door facing the driveway. The surrounding area includes a paved driveway leading up to the garage entrance, bordered by retaining walls and grassy embankments. The upper portion of the structure appears to connect to a larger residential building, with a white and green color palette and additional outdoor terraces. The garage door is wide enough to accommodate a standard vehicle, and the overall design emphasizes clean lines and geometric forms. The materials suggest a combination of concrete, painted metal, and glass, with landscaping elements blending the structure into its environment.",
+    "description": "A modern, rectangular garage with a red facade and flat roof, partially embedded in a sloped, landscaped plot and connected to a larger residential building. Features a wide garage door, paved driveway, and clean geometric lines.",
+    "description_view_0": "View 0 shows the garage's red facade, wide garage door, and the sloped driveway leading up to the entrance, with the main building above.",
+    "description_view_1": "View 1 highlights the flat roof and the connection to the larger residential structure, with the garage door less visible.",
+    "description_view_2": "View 2 provides a top-down perspective, showing the garage's integration into the terrain and the relationship between the driveway, retaining walls, and main building.",
+    "description_view_3": "View 3 focuses on the rear and side of the garage, emphasizing the sloped grassy embankment and the modern, boxy architecture.",
+    "category": "garage",
+    "height": 3.2,
+    "max_dimension": 10.0,
+    "materials": [
+        "concrete",
+        "painted metal",
+        "glass",
+        "air",
+        "plaster"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.05,
+        0.15,
+        0.05
+    ],
+    "mass": 32000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "garage door",
+        "door handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "green",
+        "gray"
+    ],
+    "colors_composition": [
+        0.25,
+        0.35,
+        0.25,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "scene",
+    "attribute_garage_door_type": "single panel",
+    "attribute_number_of_garage_doors": 1,
+    "attribute_presence_of_driveway": true,
+    "attribute_door_hardware_style": "minimalist",
+    "attribute_architectural_style": "modern",
+    "uid": "caf55ed9d4b74150ac244c3cbecb303f",
+    "near_synsets": {
+        "garage.n.01": 0.4860971378726481,
+        "carport.n.01": 0.5231060371718675,
+        "garage.n.02": 0.5546152312093929,
+        "villa.n.02": 0.5621408565028606,
+        "french_roof.n.01": 0.5719071335042445
+    },
+    "synset": "garage.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/caf55ed9d4b74150ac244c3cbecb303f",
+        "creator_username": "israelfpereira",
+        "creator_display_name": "israelfpereira",
+        "creator_profile_url": "https://sketchfab.com/israelfpereira"
+    },
+    "filename": "std_caf55ed9d4b74150ac244c3cbecb303f.glb",
+    "length": 6.792245149612427,
+    "width": 7.358636856079102
+}

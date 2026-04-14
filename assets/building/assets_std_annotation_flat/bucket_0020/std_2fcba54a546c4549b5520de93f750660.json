@@ -1,0 +1,112 @@
+{
+    "description_long": "This is a heavily armored main battle tank with a low, angular profile and a large, centrally mounted turret. The tank features a long, prominent main cannon extending from the turret, with additional equipment and storage containers mounted on the sides and rear. The hull and turret are covered in a multi-tone camouflage pattern, blending green, black, and tan colors in irregular shapes. The vehicle rides on wide, robust tracks with multiple road wheels visible along the sides, providing excellent traction and mobility over rough terrain. Visible details include external fuel drums at the rear, antennas, and various hatches and periscopes on the turret. The tank displays military markings, including a white number '161' on the side, and is equipped with several weapon mounts and reinforced armor plating.",
+    "description": "A camouflaged main battle tank with a large turret, long cannon, and robust tracks, featuring external equipment and military markings.",
+    "description_view_0": "Front view shows the tank's sloped armor, main cannon centered, and angular turret with visible hatches and periscopes.",
+    "description_view_1": "Left side view highlights the full length of the cannon, side-mounted equipment, external fuel drum at the rear, and the '161' marking.",
+    "description_view_2": "Rear view displays the back armor, external fuel drum, and the rear profile of the turret and hull.",
+    "description_view_3": "Right side view mirrors the left, showing the tracks, turret details, and the main cannon extending forward.",
+    "category": "combat tactical  vehicle",
+    "height": 2.4,
+    "max_dimension": 9.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 48000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "antenna",
+        "fuel drum",
+        "periscope",
+        "track",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "tan",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large main cannon mounted on the turret, with additional mounts for machine guns and possible secondary armaments on the turret roof.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating on the front, sides, and turret; additional modular or reactive panels visible on the turret and hull.",
+    "attribute_camouflage_pattern": "Woodland-style camouflage with irregular patches of green, black, tan, and gray in a disruptive pattern.",
+    "attribute_military_markings": "White number '161' painted on the side of the hull; small colored insignia near the front left side.",
+    "attribute_tire_type": "not applicable",
+    "uid": "2fcba54a546c4549b5520de93f750660",
+    "near_synsets": {
+        "tank.n.01": 0.4294295318898363,
+        "military_vehicle.n.01": 0.47334651897923097,
+        "assault_gun.n.02": 0.49687169857192753,
+        "armored_car.n.02": 0.5018123164849816,
+        "armored_vehicle.n.01": 0.5097976474065185,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2fcba54a546c4549b5520de93f750660",
+        "creator_username": "mattj6660",
+        "creator_display_name": "mattj6660",
+        "creator_profile_url": "https://sketchfab.com/mattj6660"
+    },
+    "filename": "std_2fcba54a546c4549b5520de93f750660.glb",
+    "length": 5.610424995422363,
+    "width": 2.233541250228882
+}

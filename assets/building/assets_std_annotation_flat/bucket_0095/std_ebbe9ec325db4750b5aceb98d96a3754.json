@@ -1,0 +1,105 @@
+{
+    "description_long": "This internet cafe is a compact, rectangular building with thick, light gray exterior walls and a blue-painted interior. The structure features several wooden-framed windows and a single wooden door, providing natural light and access. Inside, multiple computer stations are arranged along the walls, each equipped with a monitor and keyboard, and the walls are adorned with framed posters or digital art. The flooring appears to be a light, possibly tiled or laminate surface, and the overall layout is efficient, maximizing usable space for patrons. The building's design is simple and functional, with minimal exterior ornamentation and a focus on utility. There are no visible signs, advertisements, or neon lighting on the exterior.",
+    "description": "A small, rectangular internet cafe with gray exterior walls, blue interior, wooden windows and door, and several computer stations inside. The design is simple and functional, with posters on the interior walls.",
+    "description_view_0": "View 0 shows the side and partial front of the cafe, with a window and a glimpse of the computer stations inside.",
+    "description_view_1": "View 1 presents the main facade with a central window, blue interior wall, and visible posters above the computer stations.",
+    "description_view_2": "View 2 displays the rear side with a window and a partial view of the interior, including a wooden door and some computer desks.",
+    "description_view_3": "View 3 highlights the entrance with a wooden door, a window, and several posters on the blue interior wall.",
+    "category": "internet cafe",
+    "height": 3.0,
+    "max_dimension": 7.0,
+    "materials": [
+        "concrete",
+        "wood",
+        "glass",
+        "plastic",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.12,
+        0.08,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "sittable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "computer station",
+        "chair"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "blue",
+        "brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "scene",
+    "attribute_signage": "none",
+    "attribute_window_advertisements": "none",
+    "attribute_computer_station_visibility": "Three computer stations are visible from the interior views, arranged along the blue-painted wall, each with a monitor and keyboard.",
+    "attribute_neon_lighting": "none",
+    "attribute_architectural_style": "minimalist",
+    "uid": "ebbe9ec325db4750b5aceb98d96a3754",
+    "near_synsets": {
+        "cybercafe.n.01": 0.46397426590203433,
+        "cafe.n.01": 0.5540643050389048,
+        "espresso_shop.n.01": 0.5681581925848299,
+        "computer_store.n.01": 0.5693352976557594,
+        "cafe_curtain.n.01": 0.5726852177044898,
+        "internet.n.01": -1000.0
+    },
+    "synset": "cybercafe.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ebbe9ec325db4750b5aceb98d96a3754",
+        "creator_username": "renandesign3d",
+        "creator_display_name": "Renan",
+        "creator_profile_url": "https://sketchfab.com/renandesign3d"
+    },
+    "filename": "std_ebbe9ec325db4750b5aceb98d96a3754.glb",
+    "length": 4.760592937469482,
+    "width": 6.793745517730713
+}

@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a stylized knife or short sword with a broad, straight blade that appears metallic and has a light gray coloration. The blade is wrapped in a zigzag pattern with a brown and green material, possibly simulating leather or cloth, which adds a decorative and functional grip. The handle is a simple cylindrical rod, brown in color, and extends directly from the base of the blade, suggesting a wooden or synthetic construction. The blade's edges are straight and unadorned, with no visible serration or curvature, and the tip is squared off rather than pointed. There is a small rectangular guard at the base of the blade, providing minimal hand protection. The overall design is blocky and geometric, with a low-poly aesthetic and no visible engravings or intricate ornamentation.",
+    "description": "A blocky, straight-bladed knife or short sword with a gray metallic blade, brown and green zigzag wrapping, and a simple brown handle.",
+    "description_view_0": "Front view shows the full width of the straight blade, the zigzag brown and green wrapping, and the rectangular guard.",
+    "description_view_1": "Side view reveals the thin profile of the blade and handle, with the zigzag wrapping protruding slightly.",
+    "description_view_2": "Rear view mirrors the front, showing the blade's flat surface, wrapping, and handle alignment.",
+    "description_view_3": "Opposite side view, again showing the thinness of the blade and the angular wrapping details.",
+    "category": "knife or sword",
+    "height": 0.45,
+    "max_dimension": 0.45,
+    "materials": [
+        "steel",
+        "wood",
+        "cloth",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "mass": 0.7,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 7,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "cuttable",
+        "grippable",
+        "wieldable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "blade",
+        "guard",
+        "wrapping"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "green"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "single",
+    "attribute_blade_type": "straight, single-edged, broad, flat tip",
+    "attribute_handle_design": "straight cylindrical handle, brown, with zigzag cloth or leather wrapping",
+    "attribute_guard_presence": true,
+    "attribute_ornamentation": "none",
+    "attribute_sheath_presence": false,
+    "uid": "25c220762f28438bb4552202721cb4fd",
+    "near_synsets": {
+        "sword.n.01": 0.44290896215223163,
+        "knife.n.02": 0.4479505325397552,
+        "knife_blade.n.01": 0.46195794868885637,
+        "bowie_knife.n.01": 0.4756126012362779,
+        "case_knife.n.01": 0.4768868857877761,
+        "tongue.n.03": -1000.0,
+        "knife.n.01": -1000.0
+    },
+    "synset": "knife.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/25c220762f28438bb4552202721cb4fd",
+        "creator_username": "Gyric",
+        "creator_display_name": "Gyric",
+        "creator_profile_url": "https://sketchfab.com/Gyric"
+    },
+    "filename": "std_25c220762f28438bb4552202721cb4fd.glb",
+    "length": 0.040709152817726135,
+    "width": 0.07805012911558151
+}

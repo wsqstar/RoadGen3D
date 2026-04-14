@@ -1,0 +1,103 @@
+{
+    "description_long": "This object consists of seven cylindrical sticks, resembling dynamite, bundled together with four wide black bands. On the front, a digital timer display is mounted on a green circuit board, with visible electronic components and a countdown reading '1:40'. Several colored wires (red, blue, green, yellow) are attached to the circuit board and run along the surface of the sticks, suggesting a complex wiring system. The ends of the cylinders are visible, showing a starburst pattern typical of dynamite sticks. The overall construction appears to be a makeshift explosive device, with the timer and wiring indicating a timed detonation mechanism. The materials appear to be primarily wood or cardboard for the sticks, plastic for the timer casing, and metal for the electronic components.",
+    "description": "A bundle of seven dynamite-like sticks strapped together with black bands, featuring a digital timer and exposed colored wires on the front.",
+    "description_view_0": "Front view showing the digital timer, circuit board, and colored wires prominently attached to the bundled sticks.",
+    "description_view_1": "Side view displaying the circular ends of the sticks and the wiring running along the side, with the timer partially visible.",
+    "description_view_2": "Rear view showing the plain backs of the sticks and black bands, with no visible timer or wiring details.",
+    "description_view_3": "Opposite side view with the stick ends and some wiring visible, but the timer is not in view.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.32,
+    "materials": [
+        "wood",
+        "plastic",
+        "metal",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 2.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "cuttable",
+        "detonatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "timer display",
+        "wires",
+        "circuit board"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "black",
+        "green",
+        "red",
+        "blue",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.07,
+        0.03,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "group",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The device features a digital timer and multiple colored wires connected to a circuit board, suggesting detonation is triggered by the timer countdown or possibly by manipulating the wiring.",
+    "attribute_wiring_visibility": true,
+    "attribute_timer_display": "digital",
+    "attribute_unusual_placement": true,
+    "uid": "f6dc510a732640fa9cea94791e591de9",
+    "near_synsets": {
+        "briefcase_bomb.n.01": 0.4803399326014738,
+        "time_bomb.n.02": 0.48721809074667116,
+        "bomb.n.01": 0.5065221897561706,
+        "car_bomb.n.01": 0.5180340360145421,
+        "remote-control_bomb.n.01": 0.5243895624222941,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f6dc510a732640fa9cea94791e591de9",
+        "creator_username": "AlexSerb",
+        "creator_display_name": "AlexSerb",
+        "creator_profile_url": "https://sketchfab.com/AlexSerb"
+    },
+    "filename": "std_f6dc510a732640fa9cea94791e591de9.glb",
+    "length": 0.12000000476837158,
+    "width": 0.1991281509399414
+}

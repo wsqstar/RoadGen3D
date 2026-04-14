@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a classic revolver-style firearm with a long, octagonal barrel and a prominent, rounded wooden grip. The frame and barrel are constructed from dark, metallic material, showing signs of wear and subtle texturing. The cylinder is metallic and slightly reflective, with visible chambers for ammunition. The trigger guard is rounded and metallic, enclosing a simple trigger mechanism. The hammer is exposed and sits above the grip, ready to be cocked. The overall design is reminiscent of 19th-century Colt revolvers, with a blend of wood and metal components.",
+    "description": "A vintage revolver-style firearm with a long, dark metal barrel and a rounded wooden grip, featuring a metallic cylinder and exposed hammer.",
+    "description_view_0": "The front view shows the circular muzzle of the barrel and the alignment of the barrel with the cylinder, with the grip and hammer barely visible.",
+    "description_view_1": "The left side view highlights the full length of the barrel, the wooden grip, the metallic cylinder, and the rounded trigger guard.",
+    "description_view_2": "The rear view displays the rounded wooden grip and the back of the hammer, with the barrel extending away from the viewer.",
+    "description_view_3": "The right side view mirrors the left, showing the barrel, cylinder, trigger guard, and grip, with similar details and proportions.",
+    "category": "shotgun",
+    "height": 0.16,
+    "max_dimension": 0.38,
+    "materials": [
+        "steel",
+        "wood",
+        "brass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.08,
+        0.02
+    ],
+    "mass": 1.3,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 13,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "cockable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "hammer",
+        "cylinder",
+        "barrel",
+        "trigger guard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "silver",
+        "gold"
+    ],
+    "colors_composition": [
+        0.55,
+        0.3,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, long octagonal barrel with no visible ribbing or venting",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "revolver-action",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized metallic guard with a smooth contour and no finger grooves",
+    "uid": "f1edbad609de4cc9a1aeffc388449df7",
+    "near_synsets": {
+        "revolver.n.01": 0.4760854537413867,
+        "shotgun.n.01": 0.476356226500562,
+        "colt.n.02": 0.47838702326696564,
+        "gun.n.01": 0.49018885164506487,
+        "sawed-off_shotgun.n.01": 0.49683592376482316
+    },
+    "synset": "sawed-off_shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f1edbad609de4cc9a1aeffc388449df7",
+        "creator_username": "igor.tesV",
+        "creator_display_name": "igor.tesV",
+        "creator_profile_url": "https://sketchfab.com/igor.tesV"
+    },
+    "filename": "std_f1edbad609de4cc9a1aeffc388449df7.glb",
+    "length": 0.28233757615089417,
+    "width": 0.03339285030961037
+}

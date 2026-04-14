@@ -1,0 +1,116 @@
+{
+    "description_long": "This is a large, rectangular metal dumpster with a weathered green body and a flat, split black lid. The exterior shows signs of rust and wear, especially along the edges and corners, indicating prolonged outdoor exposure. The front features several warning labels and stickers, including a yellow caution sign and a 'No Parking' notice, as well as a recycling symbol. The dumpster is mounted on four small black wheels, allowing for mobility, and has sturdy rectangular handles on both sides for maneuvering. The lid appears to be made of heavy-duty plastic or metal and is divided into two sections, likely hinged for easy opening. The overall construction is robust, suitable for containing large volumes of waste in urban environments.",
+    "description": "A large, weathered green metal dumpster with a split black lid, warning labels, and side handles, mounted on four wheels.",
+    "description_view_0": "Front view showing the split black lid, warning labels, recycling symbol, and side handles.",
+    "description_view_1": "Side view highlighting the rusted edges, solid green panel, and two visible wheels.",
+    "description_view_2": "Rear view with a plain green surface, rusted top edge, and both side handles visible.",
+    "description_view_3": "Opposite side view with rust, a faint graffiti mark, and two wheels visible.",
+    "category": "dumpster",
+    "height": 1.3,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 250,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "handle",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "rust brown",
+        "yellow",
+        "white",
+        "red"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "split flat lid, two sections, likely metal or heavy-duty plastic, no visible locking mechanism, likely hinged at the rear",
+    "attribute_wheel_presence": true,
+    "attribute_handle_design": "two rectangular bar handles, metal, located on each side near the top",
+    "attribute_warning_labels": [
+        {
+            "color": "yellow",
+            "shape": "rectangle",
+            "content": "warning/caution"
+        },
+        {
+            "color": "red",
+            "shape": "rectangle",
+            "content": "No Parking"
+        },
+        {
+            "color": "white",
+            "shape": "rectangle",
+            "content": "recycling symbol"
+        }
+    ],
+    "attribute_placement_location": "outdoor commercial area or residential alley",
+    "uid": "7daac324578348899321e9ea3cea25bb",
+    "near_synsets": {
+        "dumpster.n.01": 0.4519275839757474,
+        "garbage.n.03": 0.5280368383856067,
+        "garbage_truck.n.01": 0.5320133174848567,
+        "recycling_bin.n.01": 0.5372235866756295,
+        "scrapheap.n.02": 0.5529778206179246
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7daac324578348899321e9ea3cea25bb",
+        "creator_username": "devac",
+        "creator_display_name": "Deva C:",
+        "creator_profile_url": "https://sketchfab.com/devac"
+    },
+    "filename": "std_7daac324578348899321e9ea3cea25bb.glb",
+    "length": 1.3829998970031738,
+    "width": 2.2728739976882935
+}

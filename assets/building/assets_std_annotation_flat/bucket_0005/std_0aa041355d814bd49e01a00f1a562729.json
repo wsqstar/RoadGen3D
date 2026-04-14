@@ -1,0 +1,106 @@
+{
+    "description_long": "This object is a designated parking area featuring a clearly marked parking space with diagonal yellow and black stripes on a dark surface, bordered by a curb. At the head of the parking space, there is a blue and white parking sign mounted on a pole, indicating that the area is reserved for parking. The ground in front of the parking space transitions to a tiled pedestrian walkway, separated by a row of short red-and-white bollards. The parking space itself is marked with a white outline and a painted symbol, likely indicating accessibility for disabled users. The backdrop includes a plain vertical wall, suggesting placement adjacent to a building or lot boundary. The overall design is utilitarian, with clear visual cues for both drivers and pedestrians.",
+    "description": "A marked parking space with yellow-black stripes, a blue parking sign, and accessibility markings, bordered by bollards and a tiled walkway.",
+    "description_view_0": "Front view showing the parking space, blue parking sign, accessibility symbol, bollards, and tiled walkway.",
+    "description_view_1": "Side view highlighting the length of the parking space, the curb, and the transition to the tiled walkway.",
+    "description_view_2": "Rear view showing only the plain wall and a small portion of the tiled surface, with no visible parking features.",
+    "description_view_3": "Angled rear-side view showing the parking space, accessibility symbol, and the bollards separating the walkway.",
+    "category": "parking",
+    "height": 2.2,
+    "max_dimension": 5.0,
+    "materials": [
+        "asphalt",
+        "concrete",
+        "metal",
+        "plastic",
+        "paint",
+        "ceramic",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.2,
+        0.1,
+        0.05,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "parking sign",
+        "bollards"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "car"
+    ],
+    "colors": [
+        "black",
+        "yellow",
+        "white",
+        "blue",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.45,
+        0.15,
+        0.15,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "scene",
+    "attribute_parking_signage": true,
+    "attribute_marked_parking_lines": true,
+    "attribute_payment_meter_or_kiosk": false,
+    "attribute_reserved_space_indicators": true,
+    "attribute_accessibility_markings": true,
+    "uid": "0aa041355d814bd49e01a00f1a562729",
+    "near_synsets": {
+        "parking.n.01": 0.4631089664620063,
+        "parking_space.n.01": 0.47724931072631055,
+        "parking_ticket.n.01": 0.5299347999590472,
+        "parking_lot.n.01": 0.5320304936288608,
+        "parking.n.02": 0.5358734570536573
+    },
+    "synset": "parking.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0aa041355d814bd49e01a00f1a562729",
+        "creator_username": "social-tech",
+        "creator_display_name": "rirportal",
+        "creator_profile_url": "https://sketchfab.com/social-tech"
+    },
+    "filename": "std_0aa041355d814bd49e01a00f1a562729.glb",
+    "length": 4.6842498779296875,
+    "width": 2.854705810546875
+}

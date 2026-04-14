@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a classic two-masted sailing ship, likely a schooner, with a sleek, elongated wooden hull and a set of four large, triangular sails. The hull is painted in a combination of dark and natural wood tones, with a black stripe running along the waterline. The deck is detailed with wooden planking, visible rigging, and ladders leading up to the masts. The ship features a raised stern and a pointed bow, both of which are streamlined for efficient movement through water. The rigging is extensive, with ropes and lines connecting the masts, sails, and deck fixtures. No modern equipment or visible markings are present, giving the vessel a historical or traditional appearance.",
+    "description": "A traditional two-masted wooden sailing ship with large triangular sails, detailed rigging, and a streamlined hull. The vessel features a natural wood deck and a dark-painted hull stripe.",
+    "description_view_0": "Side view showing the full length of the ship, both masts, all sails, and detailed deck features.",
+    "description_view_1": "Front (bow) view highlighting the pointed bow, narrow hull, and the alignment of the sails and rigging.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the hull, masts, and sails from the other side.",
+    "description_view_3": "Rear (stern) view showing the raised stern, the tapering hull, and the arrangement of the masts from behind.",
+    "category": "ship",
+    "height": 22,
+    "max_dimension": 38,
+    "materials": [
+        "wood",
+        "canvas",
+        "metal",
+        "rope",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.08,
+        0.07,
+        0.02
+    ],
+    "mass": 42000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "steerable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "sails",
+        "rigging",
+        "ladders",
+        "deck hatches"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "gray-green",
+        "white"
+    ],
+    "colors_composition": [
+        0.55,
+        0.15,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 10,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a pointed bow and a slightly raised stern. It features a smooth, elongated profile with a black stripe at the waterline and no visible keels or bulbous bows. The hull appears to be constructed from wood planks, with a streamlined shape for efficient sailing.",
+    "attribute_superstructure_layout": "The superstructure is minimal, consisting of an open wooden deck with no enclosed cabins or bridges visible. There are two tall masts, deck ladders, and rigging, but no prominent towers or upper decks.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "rigging",
+        "ladders"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "56148c53e9664ee683b598fadb457992",
+    "near_synsets": {
+        "brig.n.01": 0.46159306880632645,
+        "sailing_vessel.n.01": 0.4659280499836072,
+        "brigantine.n.01": 0.4693226145833259,
+        "bark.n.03": 0.47783595202829077,
+        "schooner.n.02": 0.48781561222028585,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/56148c53e9664ee683b598fadb457992",
+        "creator_username": "Tobias.De.Maine",
+        "creator_display_name": "Tobias.De.Maine",
+        "creator_profile_url": "https://sketchfab.com/Tobias.De.Maine"
+    },
+    "filename": "std_56148c53e9664ee683b598fadb457992.glb",
+    "length": 25.40266990661621,
+    "width": 9.178489685058594
+}

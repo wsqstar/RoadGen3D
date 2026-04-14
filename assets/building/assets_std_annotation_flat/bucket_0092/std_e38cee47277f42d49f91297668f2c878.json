@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a compact, tactical shotgun with a black metal body and a cylindrical green drum magazine mounted on the left side. It features a ribbed foregrip, a prominent front sight with a circular reticle, and a wireframe folding stock extending from the rear. The pistol grip is textured for secure handling, and the trigger guard is squared and robust. The overall design is utilitarian, with minimal decorative elements, emphasizing function over form. The shotgun's components, such as the magazine, stock, and sights, are clearly defined and visually distinct.",
+    "description": "A compact tactical shotgun with a black metal body, green drum magazine, ribbed foregrip, and wireframe folding stock.",
+    "description_view_0": "Front view showing the circular front sight, the end of the barrel, and the side-mounted drum magazine.",
+    "description_view_1": "Left side view highlighting the ribbed foregrip, green drum magazine, pistol grip, and extended wireframe stock.",
+    "description_view_2": "Rear view displaying the wireframe stock, rear sight alignment, and the back of the drum magazine.",
+    "description_view_3": "Right side view showing the full length of the shotgun, the drum magazine, and the wireframe stock from the opposite side.",
+    "category": "shotgun",
+    "height": 0.22,
+    "max_dimension": 0.75,
+    "materials": [
+        "steel",
+        "polymer",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 4.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 42,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable",
+        "foldable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "pistol grip",
+        "drum magazine",
+        "foregrip",
+        "folding stock",
+        "sights",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "green",
+        "silver"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, no visible ribbing or venting, short barrel length",
+    "attribute_stock_type": "folding stock",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "squared, medium-sized trigger guard with robust, simple geometry and no finger grooves",
+    "uid": "e38cee47277f42d49f91297668f2c878",
+    "near_synsets": {
+        "sawed-off_shotgun.n.01": 0.5182455074533537,
+        "gas_gun.n.01": 0.5385639417312917,
+        "shotgun.n.01": 0.539465684954343,
+        "shotgun_shell.n.01": 0.540646559927389,
+        "submachine_gun.n.01": 0.5534864476974173
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e38cee47277f42d49f91297668f2c878",
+        "creator_username": "emelyarules",
+        "creator_display_name": "emelyarules",
+        "creator_profile_url": "https://sketchfab.com/emelyarules"
+    },
+    "filename": "std_e38cee47277f42d49f91297668f2c878.glb",
+    "length": 0.6565594673156738,
+    "width": 0.16333074867725372
+}

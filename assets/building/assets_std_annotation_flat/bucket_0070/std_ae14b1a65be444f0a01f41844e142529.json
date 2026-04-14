@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a large, mounted anti-aircraft gun system featuring twin long barrels and a robust, circular base. The structure includes two operator seats with backrests, control wheels, and various mechanical linkages for aiming and firing. The gun is constructed primarily from dark green and black metal, with some brown elements on the seats and handles. The barrels are thick and reinforced, suggesting high-caliber ammunition, and the system is equipped with complex sighting and targeting mechanisms. The base is wide and stable, designed to absorb recoil and provide a secure firing platform. The overall design is utilitarian, with exposed gears, levers, and protective shields for the operators.",
+    "description": "A large, twin-barreled, mounted anti-aircraft gun with operator seats, control wheels, and a circular metal base. The structure is robust, with exposed mechanical parts and brown seating.",
+    "description_view_0": "Front view showing the twin barrels, operator seats, and main control mechanisms.",
+    "description_view_1": "Side view highlighting the length of the barrels, side profile of the seats, and mechanical linkages.",
+    "description_view_2": "Rear view displaying the backrests of the seats, control wheels, and the circular base.",
+    "description_view_3": "Opposite side view showing the other side of the barrels, additional mechanical components, and seat details.",
+    "category": "rifle",
+    "height": 1.6,
+    "max_dimension": 2.5,
+    "materials": [
+        "steel",
+        "wood",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.01,
+        0.03
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "barrel",
+        "seat",
+        "control wheel",
+        "trigger",
+        "sight",
+        "lever",
+        "footrest"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "ae14b1a65be444f0a01f41844e142529",
+    "near_synsets": {
+        "bofors_gun.n.01": 0.4786295444625885,
+        "cannon.n.04": 0.5175151377967735,
+        "antiaircraft.n.01": 0.5271521635853069,
+        "assault_gun.n.02": 0.5286082539605825,
+        "automatic_rifle.n.01": 0.5290490709489846,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ae14b1a65be444f0a01f41844e142529",
+        "creator_username": "Daniel_Baku",
+        "creator_display_name": "Daniel_Bakunin",
+        "creator_profile_url": "https://sketchfab.com/Daniel_Baku"
+    },
+    "filename": "std_ae14b1a65be444f0a01f41844e142529.glb",
+    "length": 3.556735396385193,
+    "width": 2.354933977127075
+}

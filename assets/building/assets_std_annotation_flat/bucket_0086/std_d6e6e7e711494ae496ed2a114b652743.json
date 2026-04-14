@@ -1,0 +1,98 @@
+{
+    "description_long": "This warehouse is a large, rectangular industrial building with a predominantly white exterior and a flat roof. The facade features multiple large, grid-like windows and several wide garage doors, suggesting access for vehicles or loading equipment. A prominent concrete apron extends from the front, providing space for loading and unloading, while a curved, stone-textured area at the rear hints at a possible service or delivery zone. The structure includes a mix of materials, with sections of dark brick or stone and lighter concrete, giving it a utilitarian yet modern appearance. The roof is flat with visible skylights or light wells, enhancing interior illumination. The overall design is functional, with minimal decorative elements and a focus on accessibility and durability.",
+    "description": "A large, modern warehouse with a flat roof, grid windows, and a mix of white concrete and dark brick materials, featuring wide garage doors and a spacious loading area.",
+    "description_view_0": "Front view showing the main entrance with wide garage doors, large grid windows, and a concrete loading apron.",
+    "description_view_1": "Rear view highlighting a curved, stone-textured area and the back of the building with fewer windows and a solid wall.",
+    "description_view_2": "Side view displaying the length of the building, flat roof with skylights, and the transition between white and dark materials.",
+    "description_view_3": "Opposite side view showing the solid, windowless wall and the dark brick or stone section adjacent to the main structure.",
+    "category": "warehouse",
+    "height": 8.0,
+    "max_dimension": 38.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "brick",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.1,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 950000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "loadable",
+        "unloadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "garage door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.03,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main facade features a series of large, grid-patterned windows and multiple wide garage doors set in a white concrete wall, with a broad concrete apron in front for vehicle access. The design is clean and functional, with minimal ornamentation and a focus on accessibility.",
+    "attribute_loading_dock_presence": true,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is flat and expansive, with several rectangular skylights or light wells visible, constructed from concrete and possibly steel supports, providing both durability and natural lighting.",
+    "attribute_architectural_style": "modern industrial",
+    "uid": "d6e6e7e711494ae496ed2a114b652743",
+    "near_synsets": {
+        "warehouse.n.01": 0.4974811187369259,
+        "loft.n.01": 0.5020442073917923,
+        "storehouse.n.01": 0.5485602107431702,
+        "shop_floor.n.01": 0.5550412143436506,
+        "cellarage.n.02": 0.5611999173200576
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d6e6e7e711494ae496ed2a114b652743",
+        "creator_username": "zeynep.abes",
+        "creator_display_name": "Zabes",
+        "creator_profile_url": "https://sketchfab.com/zeynep.abes"
+    },
+    "filename": "std_d6e6e7e711494ae496ed2a114b652743.glb",
+    "length": 57.90891456604004,
+    "width": 50.784175872802734
+}

@@ -1,0 +1,103 @@
+{
+    "description_long": "This industrial forklift features a large, flat, black platform with a grid of metallic studs, designed for transporting heavy loads. The operator's station is elevated and accessible via a yellow staircase with safety railings, providing a clear view of the platform. The forklift is equipped with two vertical masts at the platform's edge, likely for lifting and stabilizing cargo. The vehicle's body is robust, with visible wheels and a control console at the operator's station. The color scheme is primarily black and yellow, emphasizing safety and visibility in urban or construction environments. The overall design suggests a heavy-duty, specialized forklift for handling oversized or awkwardly shaped loads.",
+    "description": "A heavy-duty industrial forklift with a large studded platform, yellow safety railings, and an elevated operator station. It features dual vertical masts and a robust black-and-yellow construction.",
+    "description_view_0": "Side view showing the full length of the platform, the yellow staircase, and the elevated operator station with safety railings.",
+    "description_view_1": "Front view highlighting the width of the platform, the dual vertical masts, and the approach to the operator station.",
+    "description_view_2": "Opposite side view displaying the operator station, control console, and the platform's length with visible wheels.",
+    "description_view_3": "Rear view focusing on the platform's surface, the staircase, and the back of the operator station.",
+    "category": "forklift",
+    "height": 2.6,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "plastic",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.82,
+        0.08,
+        0.04,
+        0.02,
+        0.02,
+        0.02
+    ],
+    "mass": 5200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "liftable",
+        "pressable",
+        "steerable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "steering wheel",
+        "control console",
+        "stairs",
+        "platform",
+        "railings",
+        "wheels",
+        "mast",
+        "fork arms"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "yellow",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_fork_arms": "The fork arms are not distinctly visible in these views; the platform itself appears to serve as the primary load-bearing surface, extending the full width and length of the vehicle, with a flat, studded design for stability.",
+    "attribute_overhead_guard": "There is no traditional overhead guard; instead, the operator station is surrounded by yellow safety railings on all sides, providing fall protection but not overhead coverage.",
+    "attribute_mast": "The forklift features two vertical masts positioned at the edge of the platform, constructed from steel with a rectangular cross-section and capped ends. They are relatively short and robust, likely designed for stabilizing loads rather than high lifting.",
+    "attribute_operator_seat": "The operator seat is not clearly visible, but the station includes a control console and a standing or seated area surrounded by yellow railings, with a grated metal floor for secure footing.",
+    "attribute_warning_lights": "No visible warning lights are present on the forklift in any of the provided views.",
+    "uid": "c2c195a42e4d4a4eaa2ee8016210a3da",
+    "near_synsets": {
+        "forklift.n.01": 0.452701420592548,
+        "stacker_crane.n.01": 0.5222086225641218,
+        "lifting_device.n.01": 0.5478348510034308,
+        "hoist.n.01": 0.5576284242563618,
+        "crane.n.04": 0.5692858853326479
+    },
+    "synset": "forklift.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c2c195a42e4d4a4eaa2ee8016210a3da",
+        "creator_username": "zhangxrk1993",
+        "creator_display_name": "zhangxrk1993",
+        "creator_profile_url": "https://sketchfab.com/zhangxrk1993"
+    },
+    "filename": "std_c2c195a42e4d4a4eaa2ee8016210a3da.glb",
+    "length": 6.585157155990601,
+    "width": 2.9437254667282104
+}

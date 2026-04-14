@@ -1,0 +1,92 @@
+{
+    "description_long": "This is a pedestal sink with a rectangular basin and a single cylindrical faucet mounted at the rear edge. The basin has gently rounded corners and a slightly sloped interior leading toward a drain located at the rear. The pedestal base is solid and tapers slightly as it descends to the floor, providing stable support. The faucet is simple and modern, with a short spout and no visible handles, suggesting a push or sensor mechanism. The sink is finished in a smooth, light-colored material, likely ceramic or porcelain, with a subtle sheen. There are no visible overflow holes or additional fixtures attached to the basin.",
+    "description": "A light-colored pedestal sink with a rectangular basin, single rear-mounted faucet, and smooth ceramic finish.",
+    "description_view_0": "Front view showing the full width of the rectangular basin, the pedestal base, and the faucet at the rear.",
+    "description_view_1": "Left side view highlighting the depth of the basin, the sloped interior, and the cylindrical faucet.",
+    "description_view_2": "Rear view showing the back of the basin and the faucet, with the pedestal base directly below.",
+    "description_view_3": "Right side view similar to the left, showing the basin's profile and the faucet's position.",
+    "category": "sink",
+    "height": 0.85,
+    "max_dimension": 0.9,
+    "materials": [
+        "ceramic",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 32,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "washable",
+        "turnable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "faucet",
+        "basin",
+        "drain"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.12,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.03,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_number_of_basins": 1,
+    "attribute_faucet_presence": true,
+    "attribute_drain_location": "rear",
+    "attribute_mounting_type": "pedestal",
+    "attribute_overflow_hole_presence": false,
+    "uid": "09e29dc1e78d436797eeefd55d8633b2",
+    "near_synsets": {
+        "sink.n.01": 0.5109240095741936,
+        "kitchen_sink.n.01": 0.5112881204952138,
+        "bathroom_fixture.n.01": 0.5550346273123871,
+        "basin.n.01": 0.563344779356014,
+        "washbasin.n.01": 0.5703352950178545,
+        "sinkhole.n.01": -1000.0,
+        "sink.n.02": -1000.0,
+        "cesspool.n.01": -1000.0
+    },
+    "synset": "sink.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/09e29dc1e78d436797eeefd55d8633b2",
+        "creator_username": "aterallis",
+        "creator_display_name": "Aterallis",
+        "creator_profile_url": "https://sketchfab.com/aterallis"
+    },
+    "filename": "std_09e29dc1e78d436797eeefd55d8633b2.glb",
+    "length": 0.3808621019124985,
+    "width": 0.483461856842041
+}

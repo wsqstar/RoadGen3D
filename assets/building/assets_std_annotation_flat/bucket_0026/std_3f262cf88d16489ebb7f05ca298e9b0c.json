@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a large, horizontally-oriented cylindrical storage tank constructed from metallic material, likely steel, with a smooth, slightly reflective surface. The tank is supported by two sturdy rectangular metal legs that elevate it above the ground, providing stability. There are two visible pipe attachments: one protruding from the top and another from the side near one end, which are likely used for filling and emptying the tank. The ends of the cylinder are flat and circular, and the overall design is utilitarian, with no visible access ladders or warning signage. The tank's surface is a uniform gray, typical of industrial storage vessels, and it appears robust enough for use in environments requiring secure containment of liquids or gases. This type of tank is commonly found in industrial facilities, refineries, or urban utility areas.",
+    "description": "A large, gray, horizontal cylindrical metal storage tank with two pipe attachments and sturdy support legs, designed for industrial or utility use.",
+    "description_view_0": "Side view showing the full length of the cylindrical tank, both support legs, and two pipe attachments (one on top, one on the side).",
+    "description_view_1": "End view displaying the circular face of the tank, the thickness of the cylinder, and the alignment of the support legs beneath.",
+    "description_view_2": "Opposite side view similar to view 0, showing the cylindrical body, support legs, and the pipe attachments from a mirrored perspective.",
+    "description_view_3": "End view from the opposite side, showing the circular end face and the arrangement of the support legs, with the top pipe attachment visible.",
+    "category": "storage tank",
+    "height": 1.5,
+    "max_dimension": 3.5,
+    "materials": [
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "connectable",
+        "fillable",
+        "drainable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "inlet pipe",
+        "outlet pipe"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [
+        "inlet pipe",
+        "outlet pipe"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_architectural_style": "cylindrical horizontal",
+    "uid": "3f262cf88d16489ebb7f05ca298e9b0c",
+    "near_synsets": {
+        "tank.n.02": 0.44961245751282397,
+        "gas_holder.n.01": 0.5137781151935815,
+        "gas_tank.n.01": 0.514434290320501,
+        "tank_farm.n.01": 0.5148186847314794,
+        "reservoir.n.03": 0.519267649384066,
+        "storehouse.n.01": -1000.0,
+        "storage.n.01": -1000.0,
+        "cooler.n.03": -1000.0,
+        "storage.n.04": -1000.0,
+        "tank.n.03": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "repositing.n.01": -1000.0,
+        "storage.n.03": -1000.0,
+        "memory.n.04": -1000.0,
+        "tank.n.01": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3f262cf88d16489ebb7f05ca298e9b0c",
+        "creator_username": "NaidarInoxArt",
+        "creator_display_name": "Naidar - InoxArt",
+        "creator_profile_url": "https://sketchfab.com/NaidarInoxArt"
+    },
+    "filename": "std_3f262cf88d16489ebb7f05ca298e9b0c.glb",
+    "length": 1.090909719467163,
+    "width": 3.068181037902832
+}

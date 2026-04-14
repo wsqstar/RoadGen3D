@@ -1,0 +1,94 @@
+{
+    "description_long": "This is a heavy-duty industrial barrow, commonly known as a minecart or ore cart, constructed primarily from dark, weathered metal. The body is a deep, rectangular tray with reinforced vertical metal bands and a thick rim, showing signs of rust and wear, suggesting long-term outdoor or industrial use. The cart sits atop a sturdy metal chassis with four solid, spoked wheels, designed for rolling along tracks or flat surfaces. The front and rear ends are slightly curved, with a reinforced lower section that may serve as a coupling or attachment point. The interior is open and spacious, suitable for carrying bulk materials such as rocks, debris, or construction supplies. The overall appearance is utilitarian, robust, and built to withstand harsh environments.",
+    "description": "A rugged, metal minecart-style barrow with a deep, open tray and four spoked wheels, showing heavy rust and industrial wear.",
+    "description_view_0": "Front view showing the curved end of the tray, reinforced rim, and the lower coupling structure.",
+    "description_view_1": "Side view displaying the full length of the tray, vertical reinforcement bands, and all four spoked wheels.",
+    "description_view_2": "Rear view, nearly identical to the front, with the same curved tray end and coupling structure visible.",
+    "description_view_3": "Opposite side view, mirroring view 1, with the tray, reinforcement bands, and wheels clearly visible.",
+    "category": "barrow",
+    "height": 0.8,
+    "max_dimension": 1.4,
+    "materials": [
+        "steel",
+        "iron",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 95,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "tray",
+        "coupling"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "dark gray",
+        "rust brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 2.0,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 4,
+    "attribute_handle_type": "none visible",
+    "attribute_wheel_position": "dual pairs, side-mounted at front and rear under tray",
+    "attribute_tray_depth": 0.6,
+    "attribute_presence_of_support_legs": false,
+    "uid": "bdcb919b0a644634b3ca9d67ffb6e725",
+    "near_synsets": {
+        "barrow.n.03": 0.4836267562430513,
+        "cart.n.01": 0.4850539251045151,
+        "wain.n.03": 0.5251750951603125,
+        "stockcar.n.01": 0.5277488143473775,
+        "oxcart.n.01": 0.5326163598188057,
+        "burial_mound.n.01": -1000.0,
+        "barrow.n.01": -1000.0
+    },
+    "synset": "barrow.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bdcb919b0a644634b3ca9d67ffb6e725",
+        "creator_username": "przemek1996",
+        "creator_display_name": "przemek1996",
+        "creator_profile_url": "https://sketchfab.com/przemek1996"
+    },
+    "filename": "std_bdcb919b0a644634b3ca9d67ffb6e725.glb",
+    "length": 1.3444105386734009,
+    "width": 0.7073891162872314
+}

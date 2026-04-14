@@ -1,0 +1,101 @@
+{
+    "description_long": "This humanoid robot features a robust, metallic body with a domed chest and broad, rounded shoulders accented by red bands. Its arms and legs are thick and cylindrical, with visible mechanical joints and claw-like feet, suggesting strength and stability. The torso is barrel-shaped, with circular details and a central, slightly raised dome on top, possibly housing a sensor or light. The back displays a rectangular panel and mechanical spine-like elements, emphasizing its industrial design. The surface is a weathered bronze color, giving it a vintage, steampunk-inspired appearance. The robot lacks visible facial features, instead presenting a smooth, armored head integrated into the upper torso.",
+    "description": "A sturdy, bronze-colored humanoid robot with broad shoulders, cylindrical limbs, and red accents, featuring a domed chest and mechanical joints.",
+    "description_view_0": "Front view shows the domed chest, broad shoulders with red bands, and claw-like feet; the head is integrated into the torso with a central dome.",
+    "description_view_1": "Side view highlights the cylindrical arms and legs, rounded shoulder, and the thickness of the limbs; minimal surface detail visible.",
+    "description_view_2": "Rear view reveals a rectangular panel on the back, mechanical spine-like elements, and the back of the domed torso; red shoulder bands are visible.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the cylindrical arm and leg, rounded shoulder, and the overall bulk of the robot.",
+    "category": "humanoid robot",
+    "height": 2.1,
+    "max_dimension": 2.4,
+    "materials": [
+        "brass",
+        "steel",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arm",
+        "leg",
+        "shoulder joint",
+        "dome sensor",
+        "claw foot"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "bronze",
+        "red",
+        "black",
+        "gray",
+        "blue"
+    ],
+    "colors_composition": [
+        0.8,
+        0.08,
+        0.05,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 110000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.08,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms hanging down and slightly outward, legs straight and feet planted firmly on the ground, torso upright and head integrated into the chest.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated metallic panels with red decorative bands on the shoulders and a central dome.",
+    "attribute_facial_features": "No visible facial features; the head is a smooth, armored dome integrated into the upper torso with a small central dome possibly functioning as a sensor.",
+    "attribute_limb_articulation": "Arms and legs have visible rotary and hinge joints at the shoulders, elbows, hips, and knees; limbs appear rigid but capable of mechanical movement at the joints; feet have articulated claws.",
+    "attribute_presence_of_sensors": "Single dome-like sensor on top of the torso; none others visible.",
+    "uid": "add3115c5e5a495c9396d3995ebe170c",
+    "near_synsets": {
+        "android.n.01": 0.5343469108122568,
+        "cyborg.n.01": 0.5504862474366241,
+        "robotics_equipment.n.01": 0.5614171896600155,
+        "automaton.n.02": 0.5643321868865119,
+        "machine.n.02": 0.585557892203971
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/add3115c5e5a495c9396d3995ebe170c",
+        "creator_username": "genaralskar",
+        "creator_display_name": "Collin Anderson",
+        "creator_profile_url": "https://sketchfab.com/genaralskar"
+    },
+    "filename": "std_add3115c5e5a495c9396d3995ebe170c.glb",
+    "length": 0.9281432628631592,
+    "width": 2.0897934436798096
+}

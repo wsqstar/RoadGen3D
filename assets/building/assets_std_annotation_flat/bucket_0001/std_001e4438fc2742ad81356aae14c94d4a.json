@@ -1,0 +1,106 @@
+{
+    "description_long": "This bus shelter features a curved, transparent blue roof supported by four sturdy metallic columns. The shelter includes a wooden slat bench with a metal frame, providing seating for waiting passengers. On one side, there is a rectangular metal trash bin, enhancing the utility of the shelter. The back of the shelter is partially enclosed with a solid metallic panel, offering some protection from wind and rain. The overall design is modern and functional, with open sides for easy access. The materials and structure suggest durability and suitability for urban environments.",
+    "description": "A modern bus shelter with a curved transparent roof, wooden bench, metal supports, and a side trash bin.",
+    "description_view_0": "Front view showing the curved blue roof, wooden bench, and trash bin on the left.",
+    "description_view_1": "Angled view highlighting the open side, bench slats, and the trash bin's position.",
+    "description_view_2": "Rear view displaying the solid metallic back panel and partial enclosure.",
+    "description_view_3": "Opposite angled view showing the bench from the other side and the trash bin on the right.",
+    "category": "bus shelter",
+    "height": 2.3,
+    "max_dimension": 3.2,
+    "materials": [
+        "metal",
+        "glass",
+        "wood",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "shelterable",
+        "waste_disposable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench",
+        "trash bin"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "blue",
+        "gray",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.25,
+        0.5,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_roof_type": "curved transparent",
+    "attribute_seating_presence": true,
+    "attribute_advertisement_panel": false,
+    "attribute_shelter_enclosure_level": "partially enclosed",
+    "attribute_signage": [],
+    "uid": "001e4438fc2742ad81356aae14c94d4a",
+    "near_synsets": {
+        "shelter.n.02": 0.5586894298059459,
+        "bus_stop.n.01": 0.5671655324288344,
+        "park_bench.n.01": 0.5700462442172446,
+        "shelter.n.01": 0.5758542415602241,
+        "bus_traffic.n.01": 0.5782763477316512,
+        "busbar.n.01": -1000.0,
+        "protection.n.04": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "tax_shelter.n.01": -1000.0,
+        "shelter.n.05": -1000.0,
+        "bus.n.04": -1000.0,
+        "bus.n.01": -1000.0
+    },
+    "synset": "shelter.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/001e4438fc2742ad81356aae14c94d4a",
+        "creator_username": "raid",
+        "creator_display_name": "Raid",
+        "creator_profile_url": "https://sketchfab.com/raid"
+    },
+    "filename": "std_001e4438fc2742ad81356aae14c94d4a.glb",
+    "length": 1.5301108956336975,
+    "width": 2.6477675437927246
+}

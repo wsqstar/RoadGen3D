@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a tracked military vehicle equipped with a large missile launcher mounted on its chassis. The vehicle features a robust, armored body with visible hatches, panels, and external equipment, suggesting heavy-duty use in tactical operations. The missile launcher is supported by a reinforced frame and hydraulic arms, allowing for elevation and rotation. The tracks are wide and rugged, designed for traversing rough terrain, and the vehicle's exterior is painted in a light gray color with some weathering. No visible camouflage patterns or military insignia are present, and the vehicle lacks traditional wheels, relying entirely on its tracked system. The overall design emphasizes durability, firepower, and mobility in combat scenarios.",
+    "description": "A tracked, armored military vehicle with a large missile launcher mounted on top, painted in light gray and built for tactical operations.",
+    "description_view_0": "Front three-quarter view showing the missile launcher angled upward and the armored front hull with visible hatches.",
+    "description_view_1": "Side view highlighting the full length of the missile launcher, the supporting hydraulic arms, and the detailed track system.",
+    "description_view_2": "Rear three-quarter view displaying the back of the vehicle, the missile launcher support structure, and the rear access panels.",
+    "description_view_3": "Opposite side view showing the missile launcher, track system, and additional side-mounted equipment.",
+    "category": "combat tactical  vehicle",
+    "height": 3.2,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.03,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "missile launcher",
+        "track",
+        "hydraulic arm",
+        "panel",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "dark gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large missile launcher mounted centrally on the roof, supported by hydraulic arms.",
+    "attribute_armor_plating": "Full body armor plating with visible thickness, covering the entire chassis and turret area; panels appear welded and reinforced.",
+    "attribute_camouflage_pattern": "None visible; painted in a solid light gray color.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "97577ecb314c4aad90d29e6a13bed4e3",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4585398010065879,
+        "tank.n.01": 0.47547846222515666,
+        "reconnaissance_vehicle.n.01": 0.48435078199925813,
+        "armored_car.n.02": 0.495779593549503,
+        "weapons_carrier.n.01": 0.49606992240403824,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/97577ecb314c4aad90d29e6a13bed4e3",
+        "creator_username": "amac35",
+        "creator_display_name": "AMAC35",
+        "creator_profile_url": "https://sketchfab.com/amac35"
+    },
+    "filename": "std_97577ecb314c4aad90d29e6a13bed4e3.glb",
+    "length": 7.12877082824707,
+    "width": 4.454838752746582
+}

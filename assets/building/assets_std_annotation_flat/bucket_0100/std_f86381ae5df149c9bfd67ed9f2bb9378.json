@@ -1,0 +1,105 @@
+{
+    "description_long": "This bus shelter features a modern, rectangular design with a flat, dark-colored roof supported by slender metal columns. The shelter includes a partially enclosed structure, with transparent side and back panels that provide weather protection while maintaining visibility. Inside, there are three individual bench seats aligned along the back wall, offering seating for waiting passengers. One side panel incorporates a large advertisement display, visible from the street, adding a commercial element to the shelter. The open front allows easy access for passengers, while the overall structure is robust and designed to withstand urban outdoor conditions. The materials appear to be primarily metal and glass, with some plastic or composite elements for seating and signage.",
+    "description": "A modern bus shelter with a flat roof, transparent side and back panels, three bench seats, and a prominent advertisement display.",
+    "description_view_0": "Front angled view showing the three bench seats, open entry, and the advertisement panel on the right side.",
+    "description_view_1": "Top-down view highlighting the flat roof and the linear arrangement of the shelter's components.",
+    "description_view_2": "Rear view displaying the transparent back panel, seating, and the advertisement panel on the left.",
+    "description_view_3": "Side view emphasizing the shelter's depth, the advertisement panel, and the open front entry.",
+    "category": "bus shelter",
+    "height": 2.3,
+    "max_dimension": 4.0,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.1
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "leanable",
+        "displayable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench",
+        "advertisement panel"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "gray",
+        "transparent",
+        "blue"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "flat metal",
+    "attribute_seating_presence": true,
+    "attribute_advertisement_panel": true,
+    "attribute_shelter_enclosure_level": "partially enclosed",
+    "attribute_signage": [],
+    "uid": "f86381ae5df149c9bfd67ed9f2bb9378",
+    "near_synsets": {
+        "bus_stop.n.01": 0.5594947371495955,
+        "shelter.n.02": 0.5598572411920788,
+        "signboard.n.01": 0.5625646960274623,
+        "bus_traffic.n.01": 0.5657401839098909,
+        "park_bench.n.01": 0.5739914642506814,
+        "bus_topology.n.01": -1000.0,
+        "shelter.n.05": -1000.0,
+        "bus.n.04": -1000.0,
+        "busbar.n.01": -1000.0,
+        "shelter.n.01": -1000.0,
+        "bus.n.01": -1000.0,
+        "tax_shelter.n.01": -1000.0,
+        "protection.n.04": -1000.0
+    },
+    "synset": "shelter.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f86381ae5df149c9bfd67ed9f2bb9378",
+        "creator_username": "iStanley",
+        "creator_display_name": "iStanley",
+        "creator_profile_url": "https://sketchfab.com/iStanley"
+    },
+    "filename": "std_f86381ae5df149c9bfd67ed9f2bb9378.glb",
+    "length": 1.3079279065132141,
+    "width": 20.00619888305664
+}

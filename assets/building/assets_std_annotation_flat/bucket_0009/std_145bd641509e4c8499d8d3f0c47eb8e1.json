@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a cartoonish spherical bomb with a matte black metallic surface, featuring a mischievous yellow face with glowing eyes and a smirking mouth on its front. A thick, brown, fabric-textured fuse protrudes from the top, curving outward, suggesting a classic ignition method. The bomb is accompanied by a black metal lighter with a hinged lid, positioned nearby as if ready to ignite the fuse. The surface of the bomb is slightly worn, with subtle scuffs and a faintly mottled texture, indicating some age or handling. The facial features are stylized and embedded into the surface, giving the bomb a character-like appearance. No visible seams, screws, or access panels are present, and there are no warning labels or hazard symbols on the exterior.",
+    "description": "A black spherical bomb with a mischievous yellow face, a curved brown fuse, and a nearby black lighter, all with a slightly worn metallic finish.",
+    "description_view_0": "The front view shows the bomb's expressive yellow face, the curved fuse, and the lighter positioned to the left.",
+    "description_view_1": "The rear view reveals the smooth, unmarked back of the bomb, with only the fuse's base and the lighter visible.",
+    "description_view_2": "The side view highlights the bomb's spherical shape, the fuse's curve, and the absence of facial features on this side.",
+    "description_view_3": "The top-down view focuses on the fuse's attachment point and the bomb's rounded top, with the lighter seen from above.",
+    "category": "bomb",
+    "height": 0.35,
+    "max_dimension": 0.38,
+    "materials": [
+        "steel",
+        "fabric",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.07,
+        0.03,
+        0.05
+    ],
+    "mass": 6.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 65,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "ignitable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "fuse",
+        "lighter"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "yellow",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The bomb appears to be ignited by lighting the exposed fabric fuse with the included lighter, suggesting a manual detonation method.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "145bd641509e4c8499d8d3f0c47eb8e1",
+    "near_synsets": {
+        "pipe_bomb.n.01": 0.5058843722451162,
+        "cherry_bomb.n.01": 0.5167229686067685,
+        "bomb.n.01": 0.5180650071975875,
+        "plastic_bomb.n.01": 0.5238958406861915,
+        "briefcase_bomb.n.01": 0.5285643972902371,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/145bd641509e4c8499d8d3f0c47eb8e1",
+        "creator_username": "BramRaes",
+        "creator_display_name": "BramRaes",
+        "creator_profile_url": "https://sketchfab.com/BramRaes"
+    },
+    "filename": "std_145bd641509e4c8499d8d3f0c47eb8e1.glb",
+    "length": 0.4389372318983078,
+    "width": 0.4298740029335022
+}

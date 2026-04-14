@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a red, wheeled construction excavator with a long, articulated boom arm extending upward and outward. The main body is robust and rounded, housing the operator's cab and engine compartment, with visible wear and dirt typical of heavy urban use. The undercarriage features four large, rugged tires designed for mobility on rough terrain. The boom arm is metallic and shows signs of use, with no bucket currently attached at the end. The side of the body displays the 'MANITOU' brand logo in white lettering. The overall structure is built for stability and reach, suitable for tasks such as lifting, moving, or positioning materials in urban construction environments.",
+    "description": "A red, wheeled construction excavator with a long, articulated boom arm and visible 'MANITOU' branding, designed for urban construction tasks.",
+    "description_view_0": "Front view showing the narrow profile, large tires, and the boom arm extending directly upward from the center.",
+    "description_view_1": "Left-side view highlighting the full length of the boom arm, the operator cab, and the 'MANITOU' logo.",
+    "description_view_2": "Rear view displaying the back of the main body, the four tires, and the boom arm extending away from the viewer.",
+    "description_view_3": "Right-side view showing the boom arm's articulation, the operator cab, and the overall length of the machine.",
+    "category": "excavator",
+    "height": 4.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 60000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "boom arm",
+        "operator cab",
+        "control panel",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.55,
+        0.3,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_boom_type": "mono boom",
+    "attribute_cab_position": "left side",
+    "attribute_track_or_wheel_type": "wheeled",
+    "attribute_bucket_design": "none",
+    "attribute_brand_logo": "MANITOU",
+    "uid": "b6b9f0089a724c7382c24ef762176184",
+    "near_synsets": {
+        "excavator.n.01": 0.5112885199875707,
+        "power_shovel.n.01": 0.5271808424393515,
+        "backhoe.n.01": 0.528721286790487,
+        "scoop.n.05": 0.5629789884738717,
+        "piling_hammer.n.01": 0.5680595673070229
+    },
+    "synset": "excavator.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b6b9f0089a724c7382c24ef762176184",
+        "creator_username": "leoskateman",
+        "creator_display_name": "L\u00e9onard_Doye Alias Leoskateman",
+        "creator_profile_url": "https://sketchfab.com/leoskateman"
+    },
+    "filename": "std_b6b9f0089a724c7382c24ef762176184.glb",
+    "length": 4.635203838348389,
+    "width": 3.8775877952575684
+}

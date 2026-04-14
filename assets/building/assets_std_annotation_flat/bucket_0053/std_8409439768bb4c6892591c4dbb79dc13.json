@@ -1,0 +1,121 @@
+{
+    "description_long": "This is an indoor basketball court with a teal playing surface and orange key and center circle areas, surrounded by solid gray walls. The court features white painted lines marking the boundaries, free throw lanes, and center circle, with seating provided by tiered red and gray bleachers along one side. The opposite wall displays a large logo and text, while the side walls have advertisements and additional signage. The court is fully enclosed, with no visible windows or doors, and lacks any visible basketball hoops or backboards. The overall design is clean and modern, suitable for school or recreational use.",
+    "description": "A modern indoor basketball court with teal and orange markings, gray walls, and red bleacher seating on one side. The court is fully enclosed and features clear court markings but no visible hoops.",
+    "description_view_0": "Side view showing the red tiered bleachers and the full length of the court with clear markings.",
+    "description_view_1": "Front view highlighting the bleachers, court surface, and wall signage behind the seating area.",
+    "description_view_2": "Opposite side view showing the court, wall logo, and the bleachers from across the court.",
+    "description_view_3": "Rear view focusing on the back of the bleachers and the court layout, with minimal wall detail.",
+    "category": "basketball court",
+    "height": 7.0,
+    "max_dimension": 32.0,
+    "materials": [
+        "concrete",
+        "paint",
+        "plastic",
+        "metal",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.05,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 350000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "playable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bleachers",
+        "court surface"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "teal",
+        "orange",
+        "gray",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.4,
+        0.15,
+        0.25,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_hoop_presence": false,
+    "attribute_backboard_type": "none",
+    "attribute_court_markings": [
+        "three-point line",
+        "free throw line",
+        "center circle",
+        "key",
+        "sidelines",
+        "baseline"
+    ],
+    "attribute_fence_enclosure": false,
+    "attribute_architectural_style": "indoor gymnasium",
+    "uid": "8409439768bb4c6892591c4dbb79dc13",
+    "near_synsets": {
+        "basketball_court.n.01": 0.4676637669358627,
+        "squash_court.n.01": 0.5135539825134623,
+        "tennis_court.n.01": 0.5384848000471216,
+        "badminton_court.n.01": 0.5416760875494637,
+        "volleyball_court.n.01": 0.5434641633543134,
+        "court.n.09": -1000.0,
+        "court.n.08": -1000.0,
+        "court.n.05": -1000.0,
+        "motor_hotel.n.01": -1000.0,
+        "basketball.n.02": -1000.0,
+        "court.n.10": -1000.0,
+        "basketball.n.01": -1000.0,
+        "court.n.04": -1000.0,
+        "court.n.02": -1000.0,
+        "court.n.01": -1000.0,
+        "court.n.06": -1000.0,
+        "court.n.03": -1000.0
+    },
+    "synset": "basketball_court.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8409439768bb4c6892591c4dbb79dc13",
+        "creator_username": "spinosa",
+        "creator_display_name": "DECOMIDI - UEL",
+        "creator_profile_url": "https://sketchfab.com/spinosa"
+    },
+    "filename": "std_8409439768bb4c6892591c4dbb79dc13.glb",
+    "length": 43.66621780395508,
+    "width": 45.89885711669922
+}

@@ -1,0 +1,88 @@
+{
+    "description_long": "This structure is a multi-level concrete shelter with an open framework, featuring several flat and sloped roof sections supported by robust columns. The shelter has a partially enclosed lower level with open sides, allowing for easy access and visibility throughout. The upper levels are accessible via a visible staircase, and the design includes a prominent overhanging roof that provides substantial shade and weather protection. The construction is entirely of concrete, giving it a solid, industrial appearance, and the surfaces are uniformly textured with a light gray finish. The shelter is elevated on concrete footings, which further enhances its durability and stability. There are no visible doors, windows, or decorative elements, emphasizing its utilitarian function.",
+    "description": "A multi-level, open-sided concrete shelter with flat and sloped roofs, supported by sturdy columns and featuring a visible staircase. The structure is utilitarian, with a light gray, textured finish and no decorative elements.",
+    "description_view_0": "The front view highlights the open lower level, the overhanging roof, and the central staircase leading to the upper floor.",
+    "description_view_1": "This side view reveals the depth of the structure, the arrangement of the columns, and the full span of the staircase.",
+    "description_view_2": "The rear view shows the back of the staircase, the open framework, and the layered roof sections.",
+    "description_view_3": "The top-down view emphasizes the layout of the roof sections and the open spaces between the columns.",
+    "category": "shelter",
+    "height": 7.5,
+    "max_dimension": 16.0,
+    "materials": [
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.08
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "shelter",
+        "shade",
+        "protection"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "staircase"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "multi-level flat and sloped concrete slab roof",
+    "attribute_entryway_design": "open passage with wide steps and no doors",
+    "attribute_support_structure": "reinforced concrete columns and beams",
+    "attribute_signage": "none",
+    "attribute_transparency": "fully opaque",
+    "uid": "f888bd04f8a94256b0b185266efa16c8",
+    "near_synsets": {
+        "shelter.n.02": 0.49218479213384503,
+        "shelter.n.01": 0.49450297675504534,
+        "shed.n.01": 0.5315895263463661,
+        "lean-to.n.01": 0.5334076109279655,
+        "shelter.n.05": 0.5384151299960229,
+        "tax_shelter.n.01": -1000.0,
+        "protection.n.04": -1000.0
+    },
+    "synset": "tax_shelter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f888bd04f8a94256b0b185266efa16c8",
+        "creator_username": "edvanio",
+        "creator_display_name": "edvanio",
+        "creator_profile_url": "https://sketchfab.com/edvanio"
+    },
+    "filename": "std_f888bd04f8a94256b0b185266efa16c8.glb",
+    "length": 11.439430713653564,
+    "width": 8.120437145233154
+}

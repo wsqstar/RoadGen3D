@@ -1,0 +1,89 @@
+{
+    "description_long": "This object is a rectangular section of sidewalk constructed from large, roughly rectangular stone pavers arranged in a staggered pattern. The stones are light gray with subtle variations in tone, and there are visible gaps between them filled with moss or dirt, giving the surface a slightly aged and weathered appearance. The edges of the sidewalk are defined by a raised curb, which helps to separate the walking surface from adjacent areas. The surface is flat and even, suitable for pedestrian use, and the stones appear to be tightly fitted together, providing a stable walking platform. There are no visible features such as tactile paving, street furniture, or decorative elements. The overall look is utilitarian and typical of sidewalks found in residential or older urban neighborhoods.",
+    "description": "A rectangular, stone-paved sidewalk section with a raised curb and weathered, light gray stones arranged in a staggered pattern.",
+    "description_view_0": "Front view showing the length of the sidewalk, the staggered stone pattern, and the raised curb edges.",
+    "description_view_1": "Side view highlighting the thickness of the sidewalk and the curb's elevation above the ground.",
+    "description_view_2": "Rear view similar to the front, displaying the stone pattern and curb edges from the opposite end.",
+    "description_view_3": "Opposite side view, again emphasizing the curb height and the evenness of the stone surface.",
+    "category": "sidewalk",
+    "height": 0.15,
+    "max_dimension": 3.0,
+    "materials": [
+        "stone",
+        "mortar",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 1100,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "segmentable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "white",
+        "green"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": true,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "curb",
+    "attribute_adjacent_street_type": "residential",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "901086497201418eaefe86eb1c70a7d8",
+    "near_synsets": {
+        "sidewalk.n.01": 0.4645354663956162,
+        "curb.n.01": 0.4817986514171173,
+        "curbside.n.01": 0.4947576154639031,
+        "paving_stone.n.01": 0.5082187866779734,
+        "curbstone.n.01": 0.5087196716717352
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/901086497201418eaefe86eb1c70a7d8",
+        "creator_username": "Orbe3D",
+        "creator_display_name": "Byron Salgado",
+        "creator_profile_url": "https://sketchfab.com/Orbe3D"
+    },
+    "filename": "std_901086497201418eaefe86eb1c70a7d8.glb",
+    "length": 5.831430435180664,
+    "width": 2.650503635406494
+}

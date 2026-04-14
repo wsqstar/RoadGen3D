@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a large, heavily armored military vehicle designed for urban combat and patrol scenarios. It features a robust, angular body with reinforced doors and windows, and a prominent turret mounted on the roof, likely for a machine gun or similar weapon. The vehicle is equipped with multiple antennas for communication, side steps for crew access, and rugged off-road tires for maneuverability on various terrains. The rear section includes a spare tire and additional storage racks, while the front is fitted with protective grilles and heavy-duty bumpers. The overall design emphasizes protection, mobility, and tactical versatility, making it suitable for high-risk urban environments. Its exterior appears to be constructed primarily from metal, with some plastic and rubber components.",
+    "description": "A heavily armored military vehicle with a roof-mounted turret, reinforced body, and off-road tires, designed for urban combat and patrol.",
+    "description_view_0": "Front view shows the armored grille, heavy-duty bumper, and the central turret on the roof.",
+    "description_view_1": "Left side view highlights the angular armored doors, side steps, and multiple antennas.",
+    "description_view_2": "Rear view displays the spare tire, storage racks, and rear bumper.",
+    "description_view_3": "Right side view mirrors the left, showing armored panels, side steps, and roof turret.",
+    "category": "rifle",
+    "height": 2.6,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.07,
+        0.07,
+        0.03,
+        0.03
+    ],
+    "mass": 7500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 15000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "turret",
+        "wheel",
+        "antenna",
+        "step",
+        "storage rack",
+        "spare tire"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "not visible",
+    "attribute_barrel_type": "not visible",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "not visible",
+    "uid": "f6f6011216834a94aff02d05ccab947b",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4449859616672023,
+        "assault_gun.n.02": 0.46831252840602494,
+        "armored_car.n.02": 0.47077491926754944,
+        "tank.n.01": 0.4781259801265513,
+        "sniper_rifle.n.01": 0.48081096723865824,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f6f6011216834a94aff02d05ccab947b",
+        "creator_username": "Krepost",
+        "creator_display_name": "Krepost",
+        "creator_profile_url": "https://sketchfab.com/Krepost"
+    },
+    "filename": "std_f6f6011216834a94aff02d05ccab947b.glb",
+    "length": 4.186863422393799,
+    "width": 2.5738611221313477
+}

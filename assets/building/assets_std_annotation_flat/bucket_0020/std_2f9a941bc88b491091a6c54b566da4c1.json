@@ -1,0 +1,89 @@
+{
+    "description_long": "This object is a rectangular section of sidewalk composed of irregularly shaped, light gray stone tiles arranged in a mosaic pattern. The stones are closely fitted together, with thin, slightly darker grout lines visible between them, giving the surface a textured and natural appearance. The coloration is predominantly pale gray with subtle variations, and the surface appears hard and durable, suitable for pedestrian use. The edges are straight and clean, with no visible curbs or raised borders, suggesting a flush installation with the surrounding ground. There are no visible features such as tactile paving, street furniture, or decorative elements. The overall look is utilitarian and typical of sidewalks found in residential or mixed-use urban environments.",
+    "description": "A rectangular, light gray stone-tiled sidewalk section with a mosaic pattern and flush edges, featuring a hard, textured surface.",
+    "description_view_0": "The sidewalk is seen from a low, frontal angle, highlighting the rectangular shape and the detailed stone mosaic pattern.",
+    "description_view_1": "A wider, more top-down view reveals the full extent of the rectangular surface and the uniformity of the stone tiling.",
+    "description_view_2": "Similar to view 0, this angle shows the opposite side of the sidewalk, maintaining the same stone pattern and flush edge.",
+    "description_view_3": "A mirrored perspective of view 1, again emphasizing the rectangular layout and consistent stonework.",
+    "category": "sidewalk",
+    "height": 0.08,
+    "max_dimension": 4.0,
+    "materials": [
+        "stone",
+        "cement",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 480,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "segmentable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light gray",
+        "gray",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": false,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "flush",
+    "attribute_adjacent_street_type": "residential",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "2f9a941bc88b491091a6c54b566da4c1",
+    "near_synsets": {
+        "sidewalk.n.01": 0.4924126185974735,
+        "paving_stone.n.01": 0.5141633255544337,
+        "cobble.n.01": 0.5187182625876632,
+        "paved_surface.n.01": 0.5208068004170664,
+        "bluestone.n.01": 0.5264135089283056
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2f9a941bc88b491091a6c54b566da4c1",
+        "creator_username": "meerschaumdigital",
+        "creator_display_name": "Meerschaum Digital",
+        "creator_profile_url": "https://sketchfab.com/meerschaumdigital"
+    },
+    "filename": "std_2f9a941bc88b491091a6c54b566da4c1.glb",
+    "length": 264073.25,
+    "width": 196532.296875
+}

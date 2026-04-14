@@ -1,0 +1,109 @@
+{
+    "description_long": "This bus shelter features a robust arched roof made of corrugated metal with a weathered, reddish-brown finish. The front displays a prominent rectangular sign labeled 'BAPAK STUDIO', while the sides and back are partially enclosed with metal railings and a wooden back panel. Inside, a long bench with a dark surface provides seating for multiple people, supported by sturdy metal legs. The shelter is mounted on a concrete or stone base, ensuring stability and durability in urban environments. The end panels also feature signage with the initials 'Bs' and 'Bapak Studio', adding a touch of branding and identity.",
+    "description": "A sturdy, arched-roof bus shelter with metal railings, a wooden back panel, and a long bench, featuring prominent 'BAPAK STUDIO' signage.",
+    "description_view_0": "Front view showing the main 'BAPAK STUDIO' sign, open entry, and the full bench inside.",
+    "description_view_1": "Side view highlighting the arched roof, end signage with 'Bs Bapak Studio', and partial visibility of the bench and railings.",
+    "description_view_2": "Rear view displaying the wooden back panel, the full length of the arched roof, and the bench from behind.",
+    "description_view_3": "Opposite side view with end signage, metal railings, and a partial view of the bench and shelter interior.",
+    "category": "bus shelter",
+    "height": 2.2,
+    "max_dimension": 3.5,
+    "materials": [
+        "metal",
+        "wood",
+        "concrete",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench",
+        "signage panel",
+        "railings"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "reddish-brown",
+        "gray",
+        "black",
+        "beige"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_roof_type": "arched corrugated metal",
+    "attribute_seating_presence": true,
+    "attribute_advertisement_panel": false,
+    "attribute_shelter_enclosure_level": "partially enclosed",
+    "attribute_signage": [
+        "stop name"
+    ],
+    "uid": "9890f6adb4684e3e9439c5719d89d69f",
+    "near_synsets": {
+        "park_bench.n.01": 0.5629803386681601,
+        "bus_traffic.n.01": 0.5749806661943153,
+        "shelter.n.02": 0.5802254038067578,
+        "bus_stop.n.01": 0.5810847470049889,
+        "porte-cochere.n.02": 0.5888013387112064,
+        "protection.n.04": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "bus.n.04": -1000.0,
+        "bus.n.01": -1000.0,
+        "shelter.n.01": -1000.0,
+        "tax_shelter.n.01": -1000.0,
+        "busbar.n.01": -1000.0,
+        "shelter.n.05": -1000.0
+    },
+    "synset": "shelter.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9890f6adb4684e3e9439c5719d89d69f",
+        "creator_username": "azizi16",
+        "creator_display_name": "Ahmad Azizi",
+        "creator_profile_url": "https://sketchfab.com/azizi16"
+    },
+    "filename": "std_9890f6adb4684e3e9439c5719d89d69f.glb",
+    "length": 1.4488224387168884,
+    "width": 2.631644606590271
+}

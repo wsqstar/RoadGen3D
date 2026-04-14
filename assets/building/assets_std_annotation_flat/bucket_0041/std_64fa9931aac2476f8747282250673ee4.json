@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a large, rectangular metal dumpster with a weathered green exterior, showing signs of rust, scratches, and grime. The dumpster features a split, hinged lid made of corrugated metal, with one half open and the other closed, revealing a spacious interior. Red stains and handprints are visible on the lid and front, suggesting recent contact or spillage. There are several warning labels and stickers on the front, including a black and yellow recycling symbol and a red caution sign. The dumpster sits on four small wheels, allowing for mobility, and has reinforced metal bands along its sides for structural support. The overall appearance is rugged and utilitarian, suitable for heavy-duty waste collection in urban environments.",
+    "description": "A large, weathered green metal dumpster with a split, hinged lid, visible stains, warning labels, and four wheels for mobility.",
+    "description_view_0": "Front view showing the open left lid, red stains and handprints, warning labels, and the spacious interior.",
+    "description_view_1": "Left side view highlighting the partially open lid, side panel details, and visible wheel at the base.",
+    "description_view_2": "Rear view with both lid sections visible, closed right lid, and the plain, weathered back panel.",
+    "description_view_3": "Right side view showing the open left lid, side panel weathering, and another wheel at the base.",
+    "category": "dumpster",
+    "height": 1.3,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 220,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "split, hinged, flat metal lid with two sections; no visible locking mechanism; corrugated surface",
+    "attribute_wheel_presence": true,
+    "attribute_handle_design": "none",
+    "attribute_warning_labels": [
+        {
+            "color": "black and yellow",
+            "shape": "rectangle",
+            "content": "recycling symbol"
+        },
+        {
+            "color": "red and black",
+            "shape": "rectangle",
+            "content": "caution or warning text"
+        }
+    ],
+    "attribute_placement_location": "outdoor commercial area",
+    "uid": "64fa9931aac2476f8747282250673ee4",
+    "near_synsets": {
+        "dumpster.n.01": 0.4644256164923332,
+        "garbage.n.03": 0.5352314688967517,
+        "garbage_truck.n.01": 0.5373383869408281,
+        "recycling_bin.n.01": 0.5390113796806371,
+        "scrapheap.n.02": 0.5487208426926315
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/64fa9931aac2476f8747282250673ee4",
+        "creator_username": "Jt314257",
+        "creator_display_name": "Jt314257",
+        "creator_profile_url": "https://sketchfab.com/Jt314257"
+    },
+    "filename": "std_64fa9931aac2476f8747282250673ee4.glb",
+    "length": 0.7578126788139343,
+    "width": 1.28515625
+}

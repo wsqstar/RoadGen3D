@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a classic steam locomotive with a tender, painted in a deep blue color with black and metallic accents. The locomotive features a cylindrical boiler, a prominent smokestack at the front, and a domed steam dome along the top. The tender, attached at the rear, is filled with coal and marked with the letters 'N.E.D.E.' in gold, indicating a historical or regional railway. The train rides on large spoked wheels, with detailed connecting rods and buffers visible at both ends. The cab is enclosed, with small windows and a roof hatch, and the front is equipped with a headlamp and coupling hooks. The overall design suggests a late 19th or early 20th-century passenger or mixed-use steam engine, suitable for display in a historical or urban context.",
+    "description": "A detailed blue and black steam locomotive with a coal tender, gold lettering, and classic spoked wheels. Features include a smokestack, domed boiler, and intricate mechanical details.",
+    "description_view_0": "Side view showing the full length of the locomotive and tender, with gold 'N.E.D.E.' lettering and visible spoked wheels.",
+    "description_view_1": "Front view highlighting the round smokestack, headlamp, and coupling hooks, with the cylindrical boiler and front buffers prominent.",
+    "description_view_2": "Opposite side view mirroring view 0, showing the same gold lettering, wheels, and mechanical details.",
+    "description_view_3": "Rear view displaying the back of the tender, coal load, and rear buffers, with the cab and roof hatch visible.",
+    "category": "train",
+    "height": 4.2,
+    "max_dimension": 18.0,
+    "materials": [
+        "steel",
+        "iron",
+        "glass",
+        "coal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.03,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 85000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "door",
+        "window",
+        "headlamp",
+        "coupling hook",
+        "hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black",
+        "gold",
+        "red",
+        "silver"
+    ],
+    "colors_composition": [
+        0.55,
+        0.35,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "group",
+    "attribute_train_type": "steam locomotive",
+    "attribute_number_of_carriages": 2,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end of the cab",
+    "attribute_window_arrangement": "small rectangular windows on the cab",
+    "uid": "f3b2b51c624a4938873e84a1a8c114b9",
+    "near_synsets": {
+        "steam_locomotive.n.01": 0.47809363550589057,
+        "train_set.n.01": 0.5092610008660021,
+        "train.n.01": 0.5103794589661943,
+        "diesel_locomotive.n.01": 0.5130620042841185,
+        "tender.n.04": 0.5227279296668504,
+        "train.n.04": -1000.0,
+        "string.n.04": -1000.0,
+        "train.n.05": -1000.0,
+        "caravan.n.01": -1000.0,
+        "gearing.n.01": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f3b2b51c624a4938873e84a1a8c114b9",
+        "creator_username": "Musarium",
+        "creator_display_name": "Musarium",
+        "creator_profile_url": "https://sketchfab.com/Musarium"
+    },
+    "filename": "std_f3b2b51c624a4938873e84a1a8c114b9.glb",
+    "length": 17.559558868408203,
+    "width": 2.6138559579849243
+}

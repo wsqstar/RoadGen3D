@@ -1,0 +1,105 @@
+{
+    "description_long": "This combat tactical vehicle features a robust, angular design with a predominantly brown exterior and multiple reinforced panels. The cockpit is situated at the front, protected by a faceted canopy, and flanked by heavy armor. The vehicle is equipped with several visible weapon mounts, including rotary cannons and missile pods on the sides and front. Its structure includes large, blocky side elements and rear stabilizers, suggesting enhanced stability and protection. The surface is mostly matte with some metallic highlights, and the vehicle appears to be constructed from heavy-duty metal alloys. There are no visible wheels, indicating it may be a hover or tracked vehicle, and the overall build is optimized for urban combat scenarios.",
+    "description": "A heavily armored, angular brown combat vehicle with multiple weapon mounts and a reinforced cockpit, designed for tactical urban operations.",
+    "description_view_0": "Front view shows the central cockpit, forward weapon mounts, and symmetrical side armor panels.",
+    "description_view_1": "Left-front angle reveals the faceted canopy, side-mounted rotary cannons, and rear stabilizers.",
+    "description_view_2": "Direct rear view highlights the rear armor, stabilizers, and the vehicle's wide, blocky stance.",
+    "description_view_3": "Right-front angle displays the cockpit, right-side weapon pods, and additional rear details.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "glass",
+        "composite armor",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.08,
+        0.2,
+        0.02,
+        0.05
+    ],
+    "mass": 8500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 85000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit canopy",
+        "weapon mount",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Six visible weapon mounts: two rotary cannons on each side, two missile pods on the front sides, and two additional mounts on the rear upper section.",
+    "attribute_armor_plating": "Full body coverage with thick, angular armor plating; reinforced panels on the front, sides, and rear; sloped surfaces for deflection.",
+    "attribute_camouflage_pattern": "Solid brown color with no visible camouflage pattern.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "bb873574b1734ab683a1cdc1ba074e82",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4932157961455562,
+        "tank.n.01": 0.5004929669590218,
+        "assault_gun.n.02": 0.5017796701641714,
+        "armored_car.n.02": 0.5126653859581701,
+        "reconnaissance_vehicle.n.01": 0.5149977122558308,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bb873574b1734ab683a1cdc1ba074e82",
+        "creator_username": "Quartofel",
+        "creator_display_name": "Quartofel",
+        "creator_profile_url": "https://sketchfab.com/Quartofel"
+    },
+    "filename": "std_bb873574b1734ab683a1cdc1ba074e82.glb",
+    "length": 5.231385946273804,
+    "width": 3.6283098459243774
+}

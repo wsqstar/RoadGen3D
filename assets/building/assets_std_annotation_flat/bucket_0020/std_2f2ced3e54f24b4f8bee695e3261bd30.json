@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a modern, heavy-duty truck tractor unit, primarily painted in white with a dark gray lower front bumper and chassis. The cab is boxy and elevated, featuring large side mirrors, a sunroof, and a prominent air intake on the roof. The front grille is wide and flanked by rectangular headlights, while the rear section is open, exposing the chassis, fuel tanks, and fifth wheel coupling for trailer attachment. The truck has robust, black wheel arches and dual rear wheels on each side, indicating its capacity for hauling heavy loads. The rear mudflaps are branded, and various mechanical components such as exhaust pipes, suspension, and air tanks are visible. The overall design is utilitarian, optimized for urban and highway freight transport.",
+    "description": "A white, heavy-duty truck tractor unit with a boxy cab, exposed chassis, and dual rear wheels, designed for hauling trailers in urban and highway settings.",
+    "description_view_0": "Front view showing the wide grille, rectangular headlights, large side mirrors, and the elevated cab with a sunroof and roof-mounted air intake.",
+    "description_view_1": "Left side view highlighting the cab door, side window, fuel tank, exposed chassis, and dual rear wheels.",
+    "description_view_2": "Rear view displaying the open chassis, fifth wheel coupling, dual rear wheels, mudflaps, and visible mechanical components.",
+    "description_view_3": "Right side view similar to the left, showing the cab, side window, fuel tank, chassis, and rear wheels, with additional visibility of exhaust and air tanks.",
+    "category": "truck",
+    "height": 3.2,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.07,
+        0.08,
+        0.06,
+        0.02,
+        0.02
+    ],
+    "mass": 7500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 25000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "mirror",
+        "fifth wheel coupling",
+        "fuel tank cap",
+        "headlight",
+        "mudflap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.3,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "day cab",
+    "attribute_cargo_bed_type": "chassis cab",
+    "attribute_wheelbase": 3.8,
+    "attribute_number_of_axles": 2,
+    "attribute_manufacturer_logo": "DAF",
+    "uid": "2f2ced3e54f24b4f8bee695e3261bd30",
+    "near_synsets": {
+        "truck.n.01": 0.411381214588453,
+        "trailer_truck.n.01": 0.42709386128597066,
+        "trailer.n.03": 0.4525684532860558,
+        "tractor.n.02": 0.4547137918442775,
+        "lorry.n.02": 0.48658537755607023,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2f2ced3e54f24b4f8bee695e3261bd30",
+        "creator_username": "Max-5532",
+        "creator_display_name": "Max",
+        "creator_profile_url": "https://sketchfab.com/Max-5532"
+    },
+    "filename": "std_2f2ced3e54f24b4f8bee695e3261bd30.glb",
+    "length": 3.882088303565979,
+    "width": 1.7622535228729248
+}

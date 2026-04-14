@@ -1,0 +1,104 @@
+{
+    "description_long": "This object is a pump-action shotgun with a wooden full stock and a metallic barrel, accompanied by a box of ammunition and several loose shotgun shells. The shotgun features a cylindrical barrel with a visible pump mechanism near the fore-end, and a trigger guard that is rounded and proportionate to the grip. The ammunition box is rectangular and dark-colored, with a belt of shells partially draped out, suggesting a reloading or storage function. The shotgun's stock and fore-end are rendered in a brown wood texture, while the barrel and receiver are metallic gray. The shells are red and yellow, typical of 12-gauge shotgun cartridges, and the overall design is utilitarian, suitable for urban or civilian use.",
+    "description": "A pump-action shotgun with a wooden stock and metallic barrel, shown with a box of shells and loose ammunition. The design is practical and realistic, with visible pump and trigger guard details.",
+    "description_view_0": "Side view showing the full length of the shotgun, wooden stock, metallic barrel, and loose shells in front of a dark ammunition box.",
+    "description_view_1": "Barrel-forward view highlighting the muzzle, pump mechanism, and a belt of shells emerging from the ammunition box.",
+    "description_view_2": "Rear view focusing on the back of the ammunition box, the shotgun's stock, and the shell belt draped out.",
+    "description_view_3": "Angled view from behind the stock, showing the trigger area, loose shells, and both ammunition boxes.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 1.1,
+    "materials": [
+        "wood",
+        "steel",
+        "plastic",
+        "brass",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.4,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 3.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 35,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "loadable",
+        "triggerable",
+        "pumpable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "pump",
+        "trigger",
+        "trigger guard",
+        "ammunition box",
+        "shell belt"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "black",
+        "red",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.35,
+        0.35,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_barrel_configuration": "single-barrel, cylindrical with no visible ribbing or venting",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with smooth edges and no visible reinforcement",
+    "uid": "e963b3d9882c4beb98cd441e59d7d966",
+    "near_synsets": {
+        "pump_action.n.01": 0.45876043846974435,
+        "sawed-off_shotgun.n.01": 0.521735893389471,
+        "shotgun_shell.n.01": 0.5228220227346734,
+        "gas_gun.n.01": 0.5240440630134042,
+        "shotgun.n.01": 0.5287055322174806
+    },
+    "synset": "shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e963b3d9882c4beb98cd441e59d7d966",
+        "creator_username": "margmor",
+        "creator_display_name": "margmor",
+        "creator_profile_url": "https://sketchfab.com/margmor"
+    },
+    "filename": "std_e963b3d9882c4beb98cd441e59d7d966.glb",
+    "length": 0.8471470177173615,
+    "width": 0.8289356231689453
+}

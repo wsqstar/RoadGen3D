@@ -1,0 +1,107 @@
+{
+    "description_long": "A round pizza with a golden-brown thin crust sits inside an open, plain cardboard pizza box. The pizza is topped with a colorful assortment of ingredients, including slices of red bell pepper, green bell pepper, black olives, mushrooms, and melted cheese, with some visible herbs scattered on top. The pizza is pre-sliced into eight even pieces, and the toppings are distributed evenly across the surface. The cardboard box is light brown, unbranded, and features a simple folding design with ventilation holes on the sides and front. The box lid is fully open, revealing the entire pizza and the interior of the box. The overall appearance suggests a freshly delivered pizza ready to be served in an urban setting such as a park bench, sidewalk, or street corner.",
+    "description": "A thin-crust pizza with assorted toppings sits in an open, plain cardboard pizza box, fully visible and ready to serve.",
+    "description_view_0": "Side view showing the open pizza box with the pizza inside, lid fully extended to the left.",
+    "description_view_1": "Front view with the pizza and box facing forward, pizza fully visible and box lid upright behind it.",
+    "description_view_2": "Opposite side view with the open box lid extended to the right, pizza clearly visible inside.",
+    "description_view_3": "Rear view with the pizza and box facing away, pizza surface and box interior visible, lid upright at the back.",
+    "category": "pizza",
+    "height": 0.06,
+    "max_dimension": 0.36,
+    "materials": [
+        "cardboard",
+        "bread",
+        "cheese",
+        "vegetables",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 1.2,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 15,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "box lid",
+        "box base",
+        "pizza slices"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light brown",
+        "red",
+        "green",
+        "yellow",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.55,
+        0.12,
+        0.08,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 300,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_topping_type": [
+        "cheese",
+        "red bell pepper",
+        "green bell pepper",
+        "mushroom",
+        "black olive"
+    ],
+    "attribute_slice_count": 8,
+    "attribute_crust_style": "thin crust",
+    "attribute_packaging_presence": true,
+    "attribute_brand_logo": "None",
+    "uid": "d9cd316a305a42debc41e9803c07d6bc",
+    "near_synsets": {
+        "pizza.n.01": 0.4959623573373926,
+        "sicilian_pizza.n.01": 0.516332045335353,
+        "pepperoni_pizza.n.01": 0.5268628121308008,
+        "cheese_pizza.n.01": 0.5310301482462638,
+        "sausage_pizza.n.01": 0.5470555290216088
+    },
+    "synset": "sausage_pizza.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d9cd316a305a42debc41e9803c07d6bc",
+        "creator_username": "Thrazex",
+        "creator_display_name": "Thraze",
+        "creator_profile_url": "https://sketchfab.com/Thrazex"
+    },
+    "filename": "std_d9cd316a305a42debc41e9803c07d6bc.glb",
+    "length": 0.9977552592754364,
+    "width": 0.5206933617591858
+}

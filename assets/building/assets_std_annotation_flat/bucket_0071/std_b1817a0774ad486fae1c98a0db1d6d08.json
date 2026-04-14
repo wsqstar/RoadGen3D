@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a modern passenger train carriage with a streamlined, aerodynamic front and a long, rectangular body. The exterior is primarily white with a gray roof and a thin red stripe running horizontally along the sides, reminiscent of European high-speed trains like the ICE. Large, rectangular windows are evenly spaced along both sides, allowing ample light into the passenger compartment. The front features a sloped windshield and headlight arrangement, while the rear is flat and windowless. The undercarriage includes visible wheels and suspension components, and the overall design suggests a focus on speed and passenger comfort.",
+    "description": "A sleek, white modern passenger train carriage with a gray roof, red accent stripe, and large rectangular windows along the sides.",
+    "description_view_0": "Side view showing the full length of the train, with evenly spaced windows and a red stripe along the white body.",
+    "description_view_1": "Rear view displaying the flat, windowless end of the train and the gray roof.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the windows, doors, and red stripe.",
+    "description_view_3": "Front view highlighting the aerodynamic nose, windshield, and headlight arrangement.",
+    "category": "train",
+    "height": 3.8,
+    "max_dimension": 26.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air",
+        "fabric"
+    ],
+    "materials_composition": [
+        0.7,
+        0.12,
+        0.08,
+        0.04,
+        0.04,
+        0.02
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "headlight",
+        "wheel",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.18,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_train_type": "high-speed train",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end",
+    "attribute_window_arrangement": "continuous row of rectangular windows",
+    "uid": "b1817a0774ad486fae1c98a0db1d6d08",
+    "near_synsets": {
+        "passenger_train.n.01": 0.4568384665631567,
+        "car_train.n.01": 0.47658583184361536,
+        "streamliner.n.01": 0.4876956418159134,
+        "passenger_car.n.01": 0.4976938493603733,
+        "train.n.01": 0.49926556137360123,
+        "caravan.n.01": -1000.0,
+        "gearing.n.01": -1000.0,
+        "train.n.05": -1000.0,
+        "string.n.04": -1000.0,
+        "train.n.04": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b1817a0774ad486fae1c98a0db1d6d08",
+        "creator_username": "continentialvoxels",
+        "creator_display_name": "voxellation",
+        "creator_profile_url": "https://sketchfab.com/continentialvoxels"
+    },
+    "filename": "std_b1817a0774ad486fae1c98a0db1d6d08.glb",
+    "length": 23.681159019470215,
+    "width": 2.5333364009857178
+}

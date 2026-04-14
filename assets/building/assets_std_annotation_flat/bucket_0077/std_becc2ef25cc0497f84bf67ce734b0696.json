@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a small, open wooden rowboat with a classic design, featuring a pointed bow and a flat stern. The hull is painted in a combination of natural wood and white, with visible wooden planks forming the structure. There are three wooden bench seats running across the width of the boat, providing seating for multiple occupants. Two long wooden oars are mounted on either side, attached to oarlocks for rowing. The interior is open and unobstructed, allowing for easy entry and movement within the boat. The overall appearance is simple and functional, suitable for calm waters such as lakes or rivers.",
+    "description": "A small, open wooden rowboat with three bench seats and two oars, featuring a pointed bow and flat stern. The hull is painted wood and white, with a simple, functional design.",
+    "description_view_0": "Top-down view showing the open interior, three bench seats, and both oars extended outward.",
+    "description_view_1": "Side view highlighting the length of the hull, the flat stern, and the oars resting on the oarlocks.",
+    "description_view_2": "Front view displaying the pointed bow, symmetrical seating arrangement, and both oars visible on either side.",
+    "description_view_3": "Opposite side view similar to view 1, showing the hull's profile and the oars' placement.",
+    "category": "ship",
+    "height": 0.7,
+    "max_dimension": 3.2,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 65,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "rowable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "oar",
+        "oarlock",
+        "bench seat"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a pointed bow and a flat stern, constructed from visible wooden planks. The sides are slightly flared, and the bottom appears flat or gently curved, with no visible keel or bulbous bow.",
+    "attribute_superstructure_layout": "There is no superstructure; the boat is open with three transverse wooden bench seats and no cabins, decks, or towers.",
+    "attribute_presence_of_masts_or_funnels": false,
+    "attribute_visible_deck_equipment": [
+        "oar",
+        "bench seat",
+        "oarlock"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "becc2ef25cc0497f84bf67ce734b0696",
+    "near_synsets": {
+        "rowing_boat.n.01": 0.45197676992902225,
+        "boat.n.01": 0.46408072717763155,
+        "small_boat.n.01": 0.46589561223155795,
+        "dinghy.n.01": 0.4890364029331461,
+        "canoe.n.01": 0.4925183947463346,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/becc2ef25cc0497f84bf67ce734b0696",
+        "creator_username": "Visolid",
+        "creator_display_name": "Visolid",
+        "creator_profile_url": "https://sketchfab.com/Visolid"
+    },
+    "filename": "std_becc2ef25cc0497f84bf67ce734b0696.glb",
+    "length": 1.0520990490913391,
+    "width": 0.6408134996891022
+}

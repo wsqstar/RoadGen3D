@@ -1,0 +1,107 @@
+{
+    "description_long": "This object consists of two military-style combat tactical vehicles, each rendered in a blocky, voxel art style, accompanied by four humanoid figures. The vehicles are painted in a green and brown camouflage pattern, with angular, armored bodies and prominent front grilles. Both vehicles feature four large, rugged tires suitable for off-road use, and one has a visible spare tire mounted on the rear. The windows are small and reinforced, suggesting protection for occupants, and the overall build is boxy and robust, typical of military utility vehicles like the Humvee. No visible weapon mounts or military insignia are present, but the vehicles' design emphasizes durability and tactical mobility. The humanoid figures, likely representing soldiers, are similarly styled and positioned near the vehicles for scale.",
+    "description": "Two blocky, camouflaged military vehicles with rugged tires and armored bodies, accompanied by four humanoid figures. The vehicles are robust, angular, and designed for tactical use.",
+    "description_view_0": "Front view showing the grilles, headlights, and two humanoid figures in front of each vehicle.",
+    "description_view_1": "Top-down angled view highlighting the camouflage pattern, roof details, and the arrangement of the figures beside the vehicles.",
+    "description_view_2": "Rear view displaying the back of the vehicles, including a spare tire on one, and two humanoid figures behind each vehicle.",
+    "description_view_3": "Side view emphasizing the length, tire size, and boxy profile of the vehicles, with figures standing beside them.",
+    "category": "combat tactical  vehicle",
+    "height": 2.0,
+    "max_dimension": 4.8,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.05,
+        0.15,
+        0.05,
+        0.01,
+        0.04
+    ],
+    "mass": 3200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 16000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "tire",
+        "spare tire"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "group",
+    "attribute_weapon_mounts": "none visible",
+    "attribute_armor_plating": "Full body coverage with angular, blocky panels; thickness and reinforcement implied by design but not explicitly detailed.",
+    "attribute_camouflage_pattern": "Woodland camouflage with irregular green and brown patches in a blocky, pixelated style.",
+    "attribute_military_markings": "none visible",
+    "attribute_tire_type": "Four large, off-road tires per vehicle with visible tread pattern; one vehicle has a rear-mounted spare tire.",
+    "uid": "18f93f981de74e1f9b892378403673a7",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.49171325474138633,
+        "tank.n.01": 0.5061117897791981,
+        "reconnaissance_vehicle.n.01": 0.5119121820179741,
+        "armored_car.n.02": 0.535020450778595,
+        "weapons_carrier.n.01": 0.5401192767430569,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/18f93f981de74e1f9b892378403673a7",
+        "creator_username": "alrado08",
+        "creator_display_name": "alrado",
+        "creator_profile_url": "https://sketchfab.com/alrado08"
+    },
+    "filename": "std_18f93f981de74e1f9b892378403673a7.glb",
+    "length": 4.7499988079071045,
+    "width": 8.499995231628418
+}

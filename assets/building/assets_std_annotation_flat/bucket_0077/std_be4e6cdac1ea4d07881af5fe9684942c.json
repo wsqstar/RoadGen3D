@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a military tank with a low-profile, angular hull and a rounded turret mounted centrally on top. The vehicle is painted in a matte olive green color, with visible hatches and a prominent main cannon extending from the turret. The tank features six large road wheels on each side, protected by armored side skirts, and has a sloped front glacis for deflecting projectiles. The rear of the vehicle displays a large white number '343' on a black background, which is also repeated on the turret. The surface appears to be made of thick, hard metal armor, and the overall design is utilitarian, emphasizing protection and firepower. There are no visible secondary weapons or external equipment mounted on the exterior.",
+    "description": "A matte olive green military tank with a rounded turret, long cannon, and six large road wheels per side, featuring bold white '343' markings.",
+    "description_view_0": "Front view showing the sloped glacis, central cannon, and armored hull with minimal surface details.",
+    "description_view_1": "Left side view highlighting the six large road wheels, side skirts, and the turret with '343' marking.",
+    "description_view_2": "Rear view displaying the large '343' marking, rear armor, and the back of the turret.",
+    "description_view_3": "Right side view similar to the left, showing the wheels, side armor, and turret with cannon.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air",
+        "plastic"
+    ],
+    "materials_composition": [
+        0.85,
+        0.07,
+        0.03,
+        0.03,
+        0.02
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "wheels",
+        "tracks"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the turret; no other weapon mounts visible.",
+    "attribute_armor_plating": "Full body armor plating with sloped front glacis, thick side skirts, and reinforced turret; no modular or reactive panels visible.",
+    "attribute_camouflage_pattern": "Solid matte olive green paint; no camouflage pattern visible.",
+    "attribute_military_markings": "White number '343' on black background on rear hull and turret roof.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "be4e6cdac1ea4d07881af5fe9684942c",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.5106353764269068,
+        "tank.n.01": 0.5215401551661671,
+        "armored_car.n.02": 0.5470346968848305,
+        "reconnaissance_vehicle.n.01": 0.5520285013391111,
+        "assault_gun.n.02": 0.558316395975626,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/be4e6cdac1ea4d07881af5fe9684942c",
+        "creator_username": "dark0verseer",
+        "creator_display_name": "dark0verseer",
+        "creator_profile_url": "https://sketchfab.com/dark0verseer"
+    },
+    "filename": "std_be4e6cdac1ea4d07881af5fe9684942c.glb",
+    "length": 7.020276784896851,
+    "width": 3.186573028564453
+}

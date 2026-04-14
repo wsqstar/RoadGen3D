@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a large, rectangular steel shipping container, commonly used for freight and storage in urban and industrial environments. The exterior is painted a muted reddish-brown, with visible weathering and scuff marks, indicating frequent use and exposure to the elements. The front face features two large, vertically-hinged doors secured by multiple silver metal locking bars and latches, along with white stenciled identification markings and codes. The sides are ribbed for structural reinforcement, with one side displaying additional white alphanumeric codes and a small yellow caution label. The rear and top surfaces are plain, with the same ribbed texture and some visible wear. The container is designed to be both stackable and transportable, with reinforced corner fittings for lifting and securing.",
+    "description": "A large, reddish-brown steel shipping container with ribbed sides, locking front doors, and visible industrial markings. It shows signs of wear and is built for secure storage and transport.",
+    "description_view_0": "Front view showing two large, vertically-hinged doors with multiple locking bars, latches, and white stenciled codes.",
+    "description_view_1": "Side view displaying ribbed steel panels, white alphanumeric codes, and a small yellow caution label.",
+    "description_view_2": "Rear view identical to the front, with doors, locking bars, and stenciled markings visible.",
+    "description_view_3": "Opposite side view with ribbed steel panels and no visible markings or labels.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "paint",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.92,
+        0.03,
+        0.04,
+        0.01
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 15000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking bar",
+        "latch",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "reddish-brown",
+        "silver",
+        "white",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.92,
+        0.04,
+        0.03,
+        0.01
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.01,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "white stenciled identification codes and a small yellow caution label on the side",
+    "attribute_handles_or_grips": "vertical metal handles integrated into the locking bars on the front doors",
+    "attribute_placement_location": "outdoor ground, shipping yard, or industrial site",
+    "uid": "52df37ac124a4052beb870f39be4077d",
+    "near_synsets": {
+        "container.n.01": 0.4396968139266564,
+        "cargo_container.n.01": 0.4616302326240627,
+        "box.n.01": 0.5106489326269857,
+        "drum.n.04": 0.5224708578987856,
+        "container_ship.n.01": 0.5271745994194974
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/52df37ac124a4052beb870f39be4077d",
+        "creator_username": "vKrieger",
+        "creator_display_name": "vKrieger",
+        "creator_profile_url": "https://sketchfab.com/vKrieger"
+    },
+    "filename": "std_52df37ac124a4052beb870f39be4077d.glb",
+    "length": 5.837620258331299,
+    "width": 2.377920627593994
+}

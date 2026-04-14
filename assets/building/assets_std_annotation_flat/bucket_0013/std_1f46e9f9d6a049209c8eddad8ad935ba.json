@@ -1,0 +1,104 @@
+{
+    "description_long": "This vehicle is a heavily weathered, armored combat tactical vehicle with a unique, vintage design reminiscent of early armored cars or steam-powered vehicles. The body is constructed from thick, riveted metal panels, showing signs of rust and wear, and features a prominent circular hatch on the roof. The front is equipped with a large, cylindrical protrusion resembling a steam engine smokestack, and the vehicle rides on six large, solid wheels with visible mechanical linkages. Antennas and storage compartments are mounted on the roof and rear, while the sides display various access panels and equipment mounts. The overall appearance suggests a robust, utilitarian build designed for durability and protection in urban or battlefield environments.",
+    "description": "A vintage, armored combat vehicle with a weathered metal body, six large wheels, a roof hatch, and a prominent front smokestack.",
+    "description_view_0": "Front view shows the cylindrical smokestack, headlight, and the armored front plate with visible wear and rust.",
+    "description_view_1": "Left side view highlights the six large wheels, side access panels, roof hatch, and the full length of the smokestack.",
+    "description_view_2": "Rear view reveals the back storage compartment, rear antenna, and the armored rear plate with visible weathering.",
+    "description_view_3": "Right side view displays the wheels, side panels, and the smokestack, mirroring the left but with different equipment placements.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 8500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 17000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "hatch",
+        "door",
+        "antenna",
+        "smokestack"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "black",
+        "rust"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One circular roof mount, likely for a machine gun or similar weapon, located centrally on the roof; no other visible mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, riveted steel armor plating; sloped panels on the sides and front; visible reinforced sections around the hatch and doors.",
+    "attribute_camouflage_pattern": "None visible; exterior is painted in a solid, weathered gray with rust and dirt patches.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Six large solid wheels with metal rims and no visible tread; not typical pneumatic tires.",
+    "uid": "1f46e9f9d6a049209c8eddad8ad935ba",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.49422498262521797,
+        "tank.n.01": 0.5001496820437595,
+        "reconnaissance_vehicle.n.01": 0.5074526011544181,
+        "armored_car.n.02": 0.514714819870097,
+        "humvee.n.01": 0.5275205673581664,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "armored_car.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1f46e9f9d6a049209c8eddad8ad935ba",
+        "creator_username": "ostapblendercg",
+        "creator_display_name": "Bohdan Lvov",
+        "creator_profile_url": "https://sketchfab.com/ostapblendercg"
+    },
+    "filename": "std_1f46e9f9d6a049209c8eddad8ad935ba.glb",
+    "length": 5.415640354156494,
+    "width": 2.923835277557373
+}

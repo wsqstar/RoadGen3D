@@ -1,0 +1,96 @@
+{
+    "description_long": "This object consists of three connected square road segments, each with distinct markings and surface details. The central segment features a white dashed lane divider, while one end segment displays a zebra-style pedestrian crossing with bold white stripes. The opposite end segment is unmarked except for four rectangular gray patches at the corners, which may represent curb or sidewalk extensions. The road surface is textured dark gray, resembling asphalt, and bordered by lighter gray strips that suggest sidewalks or curbs. The overall design is typical of an urban intersection or crosswalk area, with clear demarcations for both vehicles and pedestrians.",
+    "description": "A set of three connected urban road segments, including a dashed lane, a zebra pedestrian crossing, and curb-like borders.",
+    "description_view_0": "Front view showing the three road segments in a row, with the zebra crossing in the middle and dashed lane markings visible.",
+    "description_view_1": "Side view displaying the square shape of each segment and the bold white stripes of the pedestrian crossing.",
+    "description_view_2": "Rear view highlighting the unmarked segment with four gray corner patches and the sequence of the three segments.",
+    "description_view_3": "Opposite side view showing the pedestrian crossing stripes and the arrangement of the segments.",
+    "category": "road",
+    "height": 0.15,
+    "max_dimension": 9.0,
+    "materials": [
+        "asphalt",
+        "concrete",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 14500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "crossable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "car",
+        "bicycle"
+    ],
+    "colors": [
+        "gray",
+        "white",
+        "light gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_lane_markings": "One dashed white lane divider in the central segment; one zebra pedestrian crossing with multiple solid white stripes; no other lane markings.",
+    "attribute_signage": "none",
+    "attribute_curb_presence": true,
+    "attribute_lighting_fixtures": "none",
+    "attribute_pedestrian_crossings": "One zebra pedestrian crossing with solid white stripes located on the middle segment.",
+    "uid": "37c92bd2eb6044bea4e634fe118cfc89",
+    "near_synsets": {
+        "pedestrian_crossing.n.01": 0.4705126063491704,
+        "traffic_lane.n.01": 0.5155324153058679,
+        "street.n.02": 0.5228180079369186,
+        "city_line.n.01": 0.5234069986232885,
+        "white_line.n.01": 0.5254797121215067,
+        "road.n.02": -1000.0,
+        "road.n.01": -1000.0
+    },
+    "synset": "road.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/37c92bd2eb6044bea4e634fe118cfc89",
+        "creator_username": "MattJohno2",
+        "creator_display_name": "Matthew Johnson",
+        "creator_profile_url": "https://sketchfab.com/MattJohno2"
+    },
+    "filename": "std_37c92bd2eb6044bea4e634fe118cfc89.glb",
+    "length": 31.5,
+    "width": 10.500001430511475
+}

@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a large, six-wheeled garbage truck with a robust, industrial design, painted primarily in a bright orange color with two diagonal white stripes running along the length of its tank. The cab is boxy and features a large, dark windshield and side windows, with metallic detailing around the front bumper and wheel arches. The side of the tank is marked with the label 'T-21' in bold white letters on a black background, suggesting a model or fleet number. The truck's body shows signs of wear, such as scratches and scuffs, indicating heavy use in urban environments. The wheels are thick and sturdy, designed for supporting heavy loads, and the undercarriage is reinforced with visible metal components. There are no visible waste container attachment mechanisms, hydraulic lifts, or rear loading hoppers, and the design is streamlined for efficient waste transport rather than direct bin collection.",
+    "description": "A large, orange six-wheeled garbage truck with white stripes, labeled 'T-21', featuring a boxy cab and a cylindrical tank body. The truck shows signs of wear and is built for heavy-duty urban waste transport.",
+    "description_view_0": "Side view showing the 'T-21' label, two white stripes, and the full length of the cylindrical tank and six wheels.",
+    "description_view_1": "Rear view highlighting the flat back of the tank with visible wear and the absence of any loading hopper or attachments.",
+    "description_view_2": "Opposite side view mirroring view 0 but without the 'T-21' label, showing the tank and wheels.",
+    "description_view_3": "Front view displaying the boxy cab, large windshield, headlights, and metallic bumper details.",
+    "category": "garbage truck",
+    "height": 2.8,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.12,
+        0.05,
+        0.03
+    ],
+    "mass": 9500,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "tank hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "white",
+        "black",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.08,
+        0.12,
+        0.06,
+        0.04
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.32,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_waste_container_attachment": "none",
+    "attribute_hydraulic_lift_mechanism": "none",
+    "attribute_rear_loading_hopper": "none",
+    "attribute_warning_signage": "none",
+    "attribute_reflective_safety_markings": "Two diagonal white reflective stripes on both sides of the tank, running from the upper front to the lower rear, providing visibility from the side.",
+    "uid": "aa19f4a12ff34ce9998119352da687cd",
+    "near_synsets": {
+        "garbage_truck.n.01": 0.5001923120209856,
+        "dumpster.n.01": 0.5343183970260208,
+        "laundry_truck.n.01": 0.5549775897698674,
+        "tank_car.n.01": 0.5751994084948693,
+        "truck.n.01": 0.5788563233014185,
+        "garbage.n.01": -1000.0,
+        "hand_truck.n.01": -1000.0,
+        "drivel.n.01": -1000.0,
+        "garbage.n.03": -1000.0
+    },
+    "synset": "garbage_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/aa19f4a12ff34ce9998119352da687cd",
+        "creator_username": "z20148847",
+        "creator_display_name": "AsiaDoge",
+        "creator_profile_url": "https://sketchfab.com/z20148847"
+    },
+    "filename": "std_aa19f4a12ff34ce9998119352da687cd.glb",
+    "length": 6.3951475620269775,
+    "width": 2.064241051673889
+}

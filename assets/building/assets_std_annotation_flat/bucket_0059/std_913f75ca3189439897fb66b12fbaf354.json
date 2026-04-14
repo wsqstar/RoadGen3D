@@ -1,0 +1,105 @@
+{
+    "description_long": "This is an old, heavily rusted sedan with a faded light blue exterior, extensively covered in brown debris and organic matter, suggesting long-term abandonment. The body is corroded, with large holes in the roof, hood, and trunk, and significant rust streaks along the sides. The front grille and bumper are damaged and partially detached, while the headlights are clouded and the front left door is ajar, revealing a deteriorated interior. The windows are either missing or shattered, and the tires are either flat or missing, with the rims exposed and rusted. The car's surface is rough and uneven, with patches of moss or dirt embedded in the crevices. This vehicle appears to be a mid-20th-century American sedan, now in a state of advanced decay.",
+    "description": "A rusted, abandoned light blue sedan covered in brown debris, with severe body corrosion, missing windows, and an open front door.",
+    "description_view_0": "Front view showing a damaged grille, clouded headlights, and heavy debris on the hood and roof.",
+    "description_view_1": "Left side view highlighting the open front door, rusted panels, and extensive debris covering the roof and trunk.",
+    "description_view_2": "Rear view displaying a corroded trunk, missing rear window, and more debris accumulation.",
+    "description_view_3": "Right side view with visible rust holes, a partially open door, and significant surface decay.",
+    "category": "sedan",
+    "height": 1.5,
+    "max_dimension": 4.8,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "organic_matter",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.08,
+        0.05,
+        0.05,
+        0.1,
+        0.02
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 4000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "sittable",
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "steering_wheel",
+        "seat",
+        "trunk",
+        "hood",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light blue",
+        "brown",
+        "rust",
+        "black"
+    ],
+    "colors_composition": [
+        0.45,
+        0.35,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_number_of_doors": 4,
+    "attribute_license_plate": "none",
+    "attribute_wheel_design": "unknown",
+    "uid": "913f75ca3189439897fb66b12fbaf354",
+    "near_synsets": {
+        "car_door.n.01": 0.5365483452411843,
+        "car_window.n.01": 0.5485153014568024,
+        "sedan.n.01": 0.5648865519191612,
+        "bus.n.04": 0.573145164174691,
+        "disrepair.n.01": 0.5767440932968114,
+        "sedan.n.02": -1000.0
+    },
+    "synset": "sedan.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/913f75ca3189439897fb66b12fbaf354",
+        "creator_username": "kryik1023",
+        "creator_display_name": "Renafox",
+        "creator_profile_url": "https://sketchfab.com/kryik1023"
+    },
+    "filename": "std_913f75ca3189439897fb66b12fbaf354.glb",
+    "length": 5.488454818725586,
+    "width": 3.9633909463882446
+}

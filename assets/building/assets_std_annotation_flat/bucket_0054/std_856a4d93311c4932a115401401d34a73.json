@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a heavily armored, tracked combat tactical vehicle with a low, angular profile and reinforced steel plating covering its entire body. The sides feature multiple horizontal panels and riveted sections, with visible track wheels running along the lower edge. The roof is equipped with a diamond-patterned grille and a circular hatch, suggesting access points for crew or equipment. The front is sloped and features a central rectangular port, possibly for observation or weaponry, flanked by two small lights and additional armor. The rear is flat with double doors and additional hatches, indicating possible entry points for personnel or cargo. The vehicle is finished in a dark, matte brown color with metallic accents and some stenciled markings on the sides.",
+    "description": "A low-profile, heavily armored tracked combat vehicle with reinforced steel plating, side panels, and a diamond-patterned roof grille. It features a sloped front with a central port and flat rear double doors.",
+    "description_view_0": "Side view showing the full length of the vehicle, track wheels, horizontal armor panels, and stenciled markings.",
+    "description_view_1": "Front view highlighting the sloped armor, central rectangular port, two small lights, and riveted steel plating.",
+    "description_view_2": "Opposite side view similar to view 0, with visible track wheels, armor panels, and a circular hatch on the roof.",
+    "description_view_3": "Rear view displaying flat double doors, two small hatches, and reinforced rear armor.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "air",
+        "plastic"
+    ],
+    "materials_composition": [
+        0.85,
+        0.03,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 18000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "door",
+        "track",
+        "port",
+        "light"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark brown",
+        "black",
+        "gray",
+        "metallic"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One rectangular port on the front, likely for a weapon mount; no other visible mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, riveted steel plating; sloped armor on the front and reinforced panels on the sides and rear.",
+    "attribute_camouflage_pattern": "Solid dark brown with black and gray metallic accents; no camouflage pattern visible.",
+    "attribute_military_markings": "White stenciled numbers on the side panels; no other visible insignia or symbols.",
+    "attribute_tire_type": "not applicable",
+    "uid": "856a4d93311c4932a115401401d34a73",
+    "near_synsets": {
+        "reconnaissance_vehicle.n.01": 0.5000133734702724,
+        "military_vehicle.n.01": 0.5305472266188415,
+        "armored_vehicle.n.01": 0.5371508498247487,
+        "tank.n.01": 0.5377731587964115,
+        "armored_car.n.02": 0.5391082031022271,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "armored_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/856a4d93311c4932a115401401d34a73",
+        "creator_username": "Geedtopia",
+        "creator_display_name": "Geedtopia",
+        "creator_profile_url": "https://sketchfab.com/Geedtopia"
+    },
+    "filename": "std_856a4d93311c4932a115401401d34a73.glb",
+    "length": 5.0939414501190186,
+    "width": 3.100396752357483
+}

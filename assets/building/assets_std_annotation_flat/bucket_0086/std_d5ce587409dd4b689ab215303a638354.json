@@ -1,0 +1,88 @@
+{
+    "description_long": "This object is a compact, cylindrical structure with a conical upper section and a broad, circular base. The surface appears to be made of metal, painted in a muted grayish-blue color, and shows signs of wear and minor surface imperfections. Around the midsection, there are metallic bands and a prominent ring, possibly for mounting or handling. The top features a small, raised cap-like element, and the overall form is robust and industrial, lacking any visible trigger, barrel, or stock typical of a rifle. The object is solid and heavy-looking, with no visible openings or moving parts. Its utilitarian design suggests it may be a component or mounting base rather than a functional firearm.",
+    "description": "A compact, conical metallic object with a broad base, grayish-blue in color, featuring bands and a ring around its midsection.",
+    "description_view_0": "Front view shows the circular opening and the ring structure most prominently.",
+    "description_view_1": "Side view highlights the conical shape and the metallic band, with the ring partially visible.",
+    "description_view_2": "Rear view displays the solid back of the object, with the conical top and base clearly defined.",
+    "description_view_3": "Another side view, similar to view 1, showing the metallic band and the ring from a slightly different angle.",
+    "category": "rifle",
+    "height": 0.35,
+    "max_dimension": 0.4,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 12.0,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "ring",
+        "metallic band",
+        "top cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "not visible",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "not visible",
+    "uid": "d5ce587409dd4b689ab215303a638354",
+    "near_synsets": {
+        "rifle.n.01": 0.4966645942647722,
+        "garand_rifle.n.01": 0.5025556849334634,
+        "twenty-two_rifle.n.01": 0.5031226771451592,
+        "gun.n.01": 0.5101507793785649,
+        "light_arm.n.01": 0.5119538845541528
+    },
+    "synset": "twenty-two_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d5ce587409dd4b689ab215303a638354",
+        "creator_username": "MikaGeebelen",
+        "creator_display_name": "MikaGeebelen",
+        "creator_profile_url": "https://sketchfab.com/MikaGeebelen"
+    },
+    "filename": "std_d5ce587409dd4b689ab215303a638354.glb",
+    "length": 19.4879390001297,
+    "width": 69.74400615692139
+}

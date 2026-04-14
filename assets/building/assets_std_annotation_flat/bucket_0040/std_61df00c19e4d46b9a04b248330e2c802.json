@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a rectangular, mid-rise apartment building with a flat roof and a minimalist, utilitarian design. The facade features four stories, each with a uniform grid of rectangular windows arranged in horizontal rows, providing a sense of symmetry and repetition. The building sits on a slightly raised platform or base, which extends beyond the footprint of the structure itself. There are no visible balconies or decorative elements, and the exterior appears to be finished in a smooth, light-colored material, likely concrete or stucco. Entrances are minimally indicated, with double doorways visible on the longer sides. The overall appearance suggests a functional, modernist approach typical of urban residential blocks.",
+    "description": "A four-story, rectangular apartment building with a flat roof and rows of evenly spaced windows, finished in a smooth, light exterior. The design is minimalist and functional, with no balconies or decorative features.",
+    "description_view_0": "The longer facade is visible, showing four rows of evenly spaced windows and two double door entrances at the base.",
+    "description_view_1": "A short side of the building is shown, with no windows or doors visible, emphasizing the building's depth.",
+    "description_view_2": "The opposite long facade is visible, mirroring the window arrangement of view 0 but with less pronounced entrance details.",
+    "description_view_3": "The other short side is shown, similar to view 1, with a blank wall and no visible features.",
+    "category": "apartment building",
+    "height": 12.0,
+    "max_dimension": 32.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 480000.0,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.0,
+    "bounciness": 0.01,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 4,
+    "attribute_balcony_presence": false,
+    "attribute_window_arrangement": "Windows are arranged in a symmetrical, grid-like pattern with equal spacing both horizontally and vertically across each floor.",
+    "attribute_entrance_type": "double doors",
+    "attribute_architectural_style": "Modernist",
+    "uid": "61df00c19e4d46b9a04b248330e2c802",
+    "near_synsets": {
+        "apartment_building.n.01": 0.4882942641878942,
+        "railroad_flat.n.01": 0.5171985378978057,
+        "suite.n.02": 0.5236295658581523,
+        "apartment.n.01": 0.5269190010032329,
+        "studio_apartment.n.01": 0.5395994451406055,
+        "building.n.01": -1000.0,
+        "building.n.04": -1000.0,
+        "construction.n.07": -1000.0,
+        "construction.n.01": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/61df00c19e4d46b9a04b248330e2c802",
+        "creator_username": "JonasAnderesen",
+        "creator_display_name": "Cadpeople UK",
+        "creator_profile_url": "https://sketchfab.com/JonasAnderesen"
+    },
+    "filename": "std_61df00c19e4d46b9a04b248330e2c802.glb",
+    "length": 15.172614097595215,
+    "width": 33.6308650970459
+}

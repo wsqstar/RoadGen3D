@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a large, four-engine propeller-driven airplane with a streamlined fuselage and a classic mid-20th-century design. The wings are straight and mounted low on the fuselage, each supporting two engines with visible propellers. The tail features a conventional design with a single vertical stabilizer and horizontal stabilizers extending from either side. The landing gear is visible and appears to be of the tricycle type, with a nose wheel and two main wheels under the wings. The exterior is painted a light beige or gray color with roundel insignias on the wings and tail, and the cockpit is located at the forward end of the fuselage with a blue-tinted canopy. The airplane's surface is smooth and metallic, suggesting a construction primarily of metal alloys.",
+    "description": "A large, four-engine propeller airplane with a streamlined fuselage, low-mounted straight wings, and a conventional tail. It features a forward cockpit, tricycle landing gear, and a smooth metallic exterior with roundel insignias.",
+    "description_view_0": "Side view showing the full length of the fuselage, low-mounted wings with four engines, and the conventional tail design.",
+    "description_view_1": "Top-down view highlighting the straight wingspan, engine placement, and roundel insignias on the wings and tail.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the propellers and landing gear.",
+    "description_view_3": "Frontal view displaying the four propeller engines, forward cockpit, and the symmetry of the wings and tail.",
+    "category": "airplane",
+    "height": 4.5,
+    "max_dimension": 30.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "steel",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.05,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 35000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 500000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit canopy",
+        "landing gear",
+        "propeller",
+        "engine",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "blue",
+        "red",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.03,
+        0.04
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 35.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing, straight wings with no visible winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "Four piston engines mounted on the wings, each with a visible propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Tricycle landing gear with one nose wheel and two main wheels under the wings, partially extended.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a multi-seat configuration and a blue-tinted canopy.",
+    "uid": "57b85586d31f48858f33c4f9132bbf76",
+    "near_synsets": {
+        "airplane.n.01": 0.4509080980528211,
+        "propeller_plane.n.01": 0.452482954746958,
+        "propjet.n.01": 0.4607362305967606,
+        "airplane_propeller.n.01": 0.47540678285070337,
+        "single_prop.n.01": 0.49738884848930465
+    },
+    "synset": "airplane_propeller.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/57b85586d31f48858f33c4f9132bbf76",
+        "creator_username": "helijah",
+        "creator_display_name": "helijah",
+        "creator_profile_url": "https://sketchfab.com/helijah"
+    },
+    "filename": "std_57b85586d31f48858f33c4f9132bbf76.glb",
+    "length": 21.037476539611816,
+    "width": 26.361064910888672
+}

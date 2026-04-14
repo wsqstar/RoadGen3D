@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a large, mounted artillery-style rifle with a robust, industrial design, featuring a long barrel and a heavy-duty base with three stabilizing legs. The main body is composed of a cylindrical receiver and a prominent breech mechanism, with various mechanical components and adjustment levers visible along the sides. The barrel is thick and extends well beyond the main chassis, suggesting it is designed for high-powered, long-range firing. The base includes wide, flat supports with circular pads at the ends, likely for stability on hard surfaces such as pavement or concrete. The overall finish is matte and utilitarian, with a uniform gray coloration and minimal decorative elements. This weapon appears to be intended for stationary use, possibly as an anti-vehicle or anti-material rifle in an urban defense scenario.",
+    "description": "A large, mounted artillery-style rifle with a long barrel and heavy-duty tripod base, finished in matte gray. It features robust mechanical components and is designed for stationary, high-powered firing.",
+    "description_view_0": "Side view showing the full length of the barrel, the cylindrical receiver, and the three-legged base with stabilizing pads.",
+    "description_view_1": "Front view highlighting the muzzle, symmetrical tripod legs, and the central alignment of the barrel.",
+    "description_view_2": "Opposite side view displaying the breech mechanism, adjustment levers, and the extended barrel.",
+    "description_view_3": "Rear view focusing on the breech area, rear mechanical components, and the converging tripod legs.",
+    "category": "rifle",
+    "height": 1.0,
+    "max_dimension": 3.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 250,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pushable",
+        "pullable",
+        "liftable",
+        "aimable",
+        "fireable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel",
+        "breech",
+        "trigger",
+        "adjustment lever",
+        "tripod leg",
+        "stabilizing pad"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "none",
+    "uid": "95b1335520714a78b83f67a1c04a75da",
+    "near_synsets": {
+        "rifle.n.01": 0.4856337117199421,
+        "sniper_rifle.n.01": 0.5013437949485627,
+        "artillery.n.01": 0.5019693976768768,
+        "light_arm.n.01": 0.5021045464446935,
+        "gun_carriage.n.01": 0.5177215051734202
+    },
+    "synset": "sniper_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/95b1335520714a78b83f67a1c04a75da",
+        "creator_username": "bear17",
+        "creator_display_name": "bear17",
+        "creator_profile_url": "https://sketchfab.com/bear17"
+    },
+    "filename": "std_95b1335520714a78b83f67a1c04a75da.glb",
+    "length": 2.9907554388046265,
+    "width": 2.1344571113586426
+}

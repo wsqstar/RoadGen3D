@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a military-style rifle, visually resembling the AK-47 family, featuring a prominent curved detachable magazine and a skeletonized metal stock. The receiver and handguard are robust, with ribbed texturing on the upper handguard for grip and heat dissipation. The barrel is long and slender, ending in a cylindrical muzzle device, likely a flash hider. The rifle includes iron sights, with a front post and a rear notch, both mounted on the top of the barrel and receiver. The pistol grip is angled and textured for ergonomic handling, and the trigger guard is clearly defined. The overall finish is matte black, giving the rifle a utilitarian and tactical appearance.",
+    "description": "A matte black military-style rifle with a curved magazine, skeletonized stock, and iron sights. The design is robust and utilitarian, with a long barrel and prominent handguard.",
+    "description_view_0": "Side view showing the full profile, including the curved magazine, skeletonized stock, and barrel with muzzle device.",
+    "description_view_1": "Front-on view highlighting the barrel's end, muzzle device, and the narrow profile of the handguard and receiver.",
+    "description_view_2": "Opposite side view, mirroring the main features of the first side, with clear visibility of the magazine and stock.",
+    "description_view_3": "Rear-on view focusing on the skeletonized stock and the alignment of the receiver and barrel.",
+    "category": "rifle",
+    "height": 0.22,
+    "max_dimension": 0.88,
+    "materials": [
+        "steel",
+        "polymer",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 3.8,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "pistol grip",
+        "trigger",
+        "magazine",
+        "safety lever",
+        "charging handle",
+        "iron sights",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "skeletonized",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "flash hider",
+    "uid": "adf0192947994cd3b942ad7b45f616c1",
+    "near_synsets": {
+        "rifle.n.01": 0.5099232341882524,
+        "garand_rifle.n.01": 0.511360256686335,
+        "carbine.n.01": 0.5256355941909849,
+        "light_arm.n.01": 0.5310541622680349,
+        "dragunov.n.01": 0.5344244387769601
+    },
+    "synset": "garand_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/adf0192947994cd3b942ad7b45f616c1",
+        "creator_username": "Tuuttipingu",
+        "creator_display_name": "Tuuttipingu",
+        "creator_profile_url": "https://sketchfab.com/Tuuttipingu"
+    },
+    "filename": "std_adf0192947994cd3b942ad7b45f616c1.glb",
+    "length": 0.7385828197002411,
+    "width": 0.046173498034477234
+}

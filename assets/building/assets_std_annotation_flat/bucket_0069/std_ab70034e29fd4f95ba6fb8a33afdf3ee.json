@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a tall, rectangular vending machine with a predominantly yellow exterior. One side features a large mirrored or glass panel with a cityscape reflection, a control panel, and a payment interface, all surrounded by warning signage such as 'DANGER DO NOT ENTER' and 'ENTER'. The opposite sides display bold black text reading 'STOP DRINKING BAD COFFEE' with a red stop sign and a stylized human figure, as well as a row of circular holes at the bottom, possibly for ventilation or design. The rear is plain yellow with a vent and no visible controls or branding. The machine appears robust, likely constructed from metal and glass, and is designed for urban environments. Its overall appearance is modern, with playful and cautionary graphics that draw attention.",
+    "description": "A tall, yellow vending machine with mirrored front, bold warning signage, and playful anti-bad-coffee graphics. Features a control panel, payment interface, and prominent branding.",
+    "description_view_0": "Yellow side with 'STOP DRINKING BAD COFFEE' text, red stop sign, and circular holes at the bottom.",
+    "description_view_1": "Front view with mirrored panel, control and payment interface, 'DANGER DO NOT ENTER' signage, and cityscape reflection.",
+    "description_view_2": "Identical to view 0, showing the 'STOP DRINKING BAD COFFEE' text and circular holes.",
+    "description_view_3": "Plain yellow rear with a vent at the bottom and no visible controls or signage.",
+    "category": "vending machine",
+    "height": 1.8,
+    "max_dimension": 0.8,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "electronic components",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "payment slot",
+        "display panel",
+        "product retrieval slot",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "red",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "smooth",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A rectangular display panel is located on the upper right of the mirrored front, featuring printed instructions and possibly a digital screen.",
+    "attribute_payment_interface": "A payment interface with a keypad, card reader, and possibly a bill acceptor is visible on the right side of the mirrored front panel.",
+    "attribute_product_selection_buttons": "A vertical row of individual buttons is present on the right side of the mirrored front, each labeled for product selection.",
+    "attribute_product_retrieval_slot": "A rectangular retrieval slot is located at the lower right of the mirrored front, beneath the control panel.",
+    "attribute_branding_or_signage": "Large black text 'STOP DRINKING BAD COFFEE' with a red stop sign on the yellow sides, and 'DANGER DO NOT ENTER' signage on the mirrored front.",
+    "uid": "ab70034e29fd4f95ba6fb8a33afdf3ee",
+    "near_synsets": {
+        "vending_machine.n.01": 0.5151690327070532,
+        "automat.n.01": 0.5514336761770898,
+        "super-automatic_espresso_machine.n.01": 0.572040073922794,
+        "coffeepot.n.01": 0.5833318219962549,
+        "coffee_maker.n.01": 0.5838501639677718,
+        "machine.n.03": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.02": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.05": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ab70034e29fd4f95ba6fb8a33afdf3ee",
+        "creator_username": "bolinas",
+        "creator_display_name": "bolinas",
+        "creator_profile_url": "https://sketchfab.com/bolinas"
+    },
+    "filename": "std_ab70034e29fd4f95ba6fb8a33afdf3ee.glb",
+    "length": 0.7872902154922485,
+    "width": 0.82756108045578
+}

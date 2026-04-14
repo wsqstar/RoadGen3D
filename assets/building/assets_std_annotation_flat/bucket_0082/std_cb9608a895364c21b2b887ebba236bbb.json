@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a modern, two-story car store building with a clean, rectangular design and a flat roof. The front facade features large, grid-style glass windows and a wide glass entrance, allowing for ample natural light and visibility into the showroom. Several cars are parked in front of the building on a spacious, paved lot, with a mix of colors and vehicle types. The building's exterior is predominantly white, with minimalistic black accents and clear signage above the entrance. The side and rear walls are mostly solid, with additional windows on the upper floor and visible HVAC units on the roof. The overall appearance is sleek and functional, emphasizing transparency and accessibility for customers.",
+    "description": "A modern, white car store with large glass windows, a flat roof, and multiple cars displayed in front on a paved lot.",
+    "description_view_0": "Front view showing the main glass entrance, large windows, signage, and several cars parked in front.",
+    "description_view_1": "Side view revealing the solid white wall, partial view of the parking lot, and rooftop HVAC units.",
+    "description_view_2": "Rear view with minimal windows, solid white facade, and a single vehicle parked at the back.",
+    "description_view_3": "Opposite side view showing the parking lot, side wall, and rooftop equipment.",
+    "category": "car store",
+    "height": 8.0,
+    "max_dimension": 24.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.1,
+        0.02,
+        0.05
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "signage"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "gray",
+        "blue",
+        "red"
+    ],
+    "colors_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.03,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "scene",
+    "attribute_signage": "Three blue rectangular signs with white text are mounted above the main entrance on the front facade, likely indicating the store name or branding. The signage is non-illuminated and uses a simple, modern design.",
+    "attribute_displayed_cars": "Six cars are visibly displayed in front of the building, including sedans and SUVs in red, blue, black, and white. The cars are arranged in two rows on either side of the entrance.",
+    "attribute_glass_facade": "The building features a prominent glass facade on the front, with large, grid-style windows spanning both floors and a wide glass entrance. The glass is framed and covers a significant portion of the front elevation.",
+    "attribute_showroom_lighting": "Ceiling-mounted linear lighting fixtures are visible inside the showroom, arranged in parallel rows for bright, even illumination.",
+    "attribute_architectural_style": "Modern minimalist, characterized by clean lines, flat roof, large glass windows, and a simple color palette.",
+    "uid": "cb9608a895364c21b2b887ebba236bbb",
+    "near_synsets": {
+        "used-car_lot.n.01": 0.5110754168367798,
+        "car_window.n.01": 0.5288992787976838,
+        "showroom.n.01": 0.5448186611473412,
+        "car_dealer.n.01": 0.5507191303635938,
+        "car_company.n.01": 0.5558956326657887,
+        "car.n.02": -1000.0,
+        "car.n.03": -1000.0,
+        "shop.n.01": -1000.0,
+        "car.n.04": -1000.0,
+        "car.n.01": -1000.0,
+        "cable_car.n.01": -1000.0,
+        "store.n.02": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "memory.n.04": -1000.0
+    },
+    "synset": "showroom.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/cb9608a895364c21b2b887ebba236bbb",
+        "creator_username": "homedesign3d",
+        "creator_display_name": "Home Design 3D",
+        "creator_profile_url": "https://sketchfab.com/homedesign3d"
+    },
+    "filename": "std_cb9608a895364c21b2b887ebba236bbb.glb",
+    "length": 17.407459259033203,
+    "width": 16.468771934509277
+}

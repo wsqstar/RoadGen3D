@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a tracked armored combat tactical vehicle with a boxy, angular hull and a low profile, designed for urban and battlefield environments. The exterior is covered in hard, matte-finished armor plating, with visible hatches and access panels on the top and rear. The vehicle features a prominent roof-mounted weapon station, likely for a machine gun or similar armament, and several periscopes or vision blocks for crew visibility. The tracks are wide and robust, running along the full length of the vehicle, providing excellent mobility over rough terrain. The paint scheme is a solid, dark color with some lighter patches, giving it a utilitarian and somewhat camouflaged appearance. There are no visible military markings or insignia, and the vehicle appears to be fully enclosed, with entry points at the rear and top.",
+    "description": "A tracked, armored combat vehicle with a low, boxy profile, roof-mounted weapon station, and matte dark paint. Features robust tracks, full armor coverage, and multiple hatches.",
+    "description_view_0": "Side view showing the full length of the tracks, angular armor, and the roof-mounted weapon station.",
+    "description_view_1": "Rear view highlighting the large rear hatch, exhaust outlets, and the back of the tracks.",
+    "description_view_2": "Opposite side view with visible track details, side armor, and the roof weapon mount.",
+    "description_view_3": "Front view displaying the sloped front armor, top hatches, and the vehicle's compact width.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 6,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "door",
+        "track",
+        "weapon mount",
+        "periscope",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "light gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible roof-mounted weapon station at the front right of the roof, likely for a machine gun.",
+    "attribute_armor_plating": "Full body coverage with thick, angular steel armor plating; sloped front and side panels; reinforced hatches.",
+    "attribute_camouflage_pattern": "Solid dark gray with some lighter gray patches; no distinct camouflage pattern.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "0b9335fa237e41c9ae1bd68de7203896",
+    "near_synsets": {
+        "reconnaissance_vehicle.n.01": 0.5043430324505324,
+        "tank.n.01": 0.5101355576049464,
+        "military_vehicle.n.01": 0.5168200854188492,
+        "armored_car.n.02": 0.5272915831156665,
+        "armored_vehicle.n.01": 0.5320643452154532,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0b9335fa237e41c9ae1bd68de7203896",
+        "creator_username": "kryik1023",
+        "creator_display_name": "Renafox",
+        "creator_profile_url": "https://sketchfab.com/kryik1023"
+    },
+    "filename": "std_0b9335fa237e41c9ae1bd68de7203896.glb",
+    "length": 4.122478246688843,
+    "width": 2.841482162475586
+}

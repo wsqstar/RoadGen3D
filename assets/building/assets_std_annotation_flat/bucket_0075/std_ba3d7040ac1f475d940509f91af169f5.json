@@ -1,0 +1,110 @@
+{
+    "description_long": "This is an old, weathered sedan with a two-tone paint job, primarily beige and rusted brown, showing significant signs of age and wear. The body features rounded contours typical of mid-20th-century American cars, with a prominent chrome strip running down the center of the hood and trunk. The roof is slightly domed, and the windows are framed with chrome trim, though the glass appears cloudy and aged. The wheels are mismatched and show signs of rust, with hubcaps either missing or heavily corroded. The car's surface is covered in rust patches, faded paint, and visible dents, giving it a neglected, abandoned appearance. The headlights and bumpers are intact but tarnished, and no license plate is visible on either end.",
+    "description": "A heavily rusted, vintage beige sedan with rounded contours, chrome trim, and mismatched, corroded wheels. The car's surface is covered in rust patches and faded paint, giving it an abandoned look.",
+    "description_view_0": "Front view shows a rusted hood with a central chrome strip, cloudy windshield, and tarnished headlights.",
+    "description_view_1": "Left side view highlights the two-tone rust and beige paint, domed roof, and mismatched, rusted wheels.",
+    "description_view_2": "Rear view displays a rusted trunk with a chrome strip, faded paint, and no visible license plate.",
+    "description_view_3": "Right side view reveals similar rust patterns, chrome trim, and corroded wheels as the left side.",
+    "category": "sedan",
+    "height": 1.5,
+    "max_dimension": 4.8,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "chrome",
+        "paint",
+        "air",
+        "plastic",
+        "fabric"
+    ],
+    "materials_composition": [
+        0.7,
+        0.08,
+        0.07,
+        0.05,
+        0.04,
+        0.03,
+        0.02,
+        0.01
+    ],
+    "mass": 1500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 4000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "trunk",
+        "hood",
+        "headlight",
+        "bumper",
+        "side mirror"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "rust brown",
+        "chrome",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_number_of_doors": 4,
+    "attribute_license_plate": "none",
+    "attribute_wheel_design": "Steel wheels with heavy rust, missing or corroded hubcaps, no visible spoke pattern",
+    "uid": "ba3d7040ac1f475d940509f91af169f5",
+    "near_synsets": {
+        "used-car.n.01": 0.5557823873363351,
+        "bus.n.04": 0.5566387601080297,
+        "sedan.n.01": 0.5676778463531538,
+        "boneshaker.n.01": 0.5698571482351273,
+        "rust.n.05": 0.5701086268662157,
+        "sedan.n.02": -1000.0
+    },
+    "synset": "sedan.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ba3d7040ac1f475d940509f91af169f5",
+        "creator_username": "edemaistre",
+        "creator_display_name": "Emm (Scenario)",
+        "creator_profile_url": "https://sketchfab.com/edemaistre"
+    },
+    "filename": "std_ba3d7040ac1f475d940509f91af169f5.glb",
+    "length": 5.0431132316589355,
+    "width": 1.8625771403312683
+}

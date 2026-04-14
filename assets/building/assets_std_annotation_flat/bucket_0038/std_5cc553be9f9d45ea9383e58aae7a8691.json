@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a large, heavy-duty transport truck with a blue and white color scheme, designed for hauling oversized construction equipment. The vehicle consists of a cab with a day cab configuration, a long flatbed trailer, and a massive tracked crane or excavator loaded onto the trailer. The cab features a robust, boxy design with six wheels, while the trailer is equipped with multiple axles to support the heavy load. The crane on the trailer has a lattice boom and visible treads, indicating its use for lifting or construction tasks. The truck's exterior is primarily metal, with some plastic and glass components, and it is built for industrial or construction site use in urban environments.",
+    "description": "A large blue and white transport truck with a flatbed trailer carrying a tracked crane, featuring a robust cab and multiple axles for heavy-duty hauling.",
+    "description_view_0": "Side view showing the full length of the truck, the cab, flatbed trailer, and the crane loaded on top.",
+    "description_view_1": "Rear view highlighting the back of the trailer and the crane's boom extending forward.",
+    "description_view_2": "Opposite side view displaying the truck's length, the crane's treads, and the trailer's multiple axles.",
+    "description_view_3": "Front view focusing on the cab and the front of the crane loaded on the trailer.",
+    "category": "truck",
+    "height": 4.0,
+    "max_dimension": 18.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 45000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "trailer hitch",
+        "crane boom",
+        "crane treads"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "white",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.4,
+        0.35,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "group",
+    "attribute_cab_configuration": "day cab",
+    "attribute_cargo_bed_type": "flatbed",
+    "attribute_wheelbase": "6.5",
+    "attribute_number_of_axles": 6,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "5cc553be9f9d45ea9383e58aae7a8691",
+    "near_synsets": {
+        "truck.n.01": 0.4718323073296573,
+        "trailer_truck.n.01": 0.4737658373415041,
+        "trailer.n.03": 0.47402627457911617,
+        "flatbed.n.02": 0.47610150510219457,
+        "transporter.n.02": 0.48249196811987466,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5cc553be9f9d45ea9383e58aae7a8691",
+        "creator_username": "vanthek3d",
+        "creator_display_name": "Van 't Hek 3D",
+        "creator_profile_url": "https://sketchfab.com/vanthek3d"
+    },
+    "filename": "std_5cc553be9f9d45ea9383e58aae7a8691.glb",
+    "length": 25.040416717529297,
+    "width": 3.2317116260528564
+}

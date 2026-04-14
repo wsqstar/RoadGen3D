@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a large, industrial-style yellow robot arm with a weathered, scratched surface, mounted on a heavy, gear-like circular base. The arm features multiple articulated segments connected by visible pivot joints, and is equipped with a two-finger gripper as its end effector. Prominent black cabling runs along the arm, suggesting electrical actuation and control. The base is robust and designed for stability, likely intended for floor mounting in an industrial or urban environment. A red crate with compartments is positioned nearby, possibly for interaction or manipulation by the robot arm. The overall appearance is rugged and utilitarian, suitable for heavy-duty tasks such as material handling or assembly.",
+    "description": "A large, weathered yellow industrial robot arm with a two-finger gripper, mounted on a heavy circular base and featuring visible black cabling. A red crate sits nearby, highlighting its utilitarian, urban-industrial design.",
+    "description_view_0": "The rear view shows the circular base and the back of the arm, with the red crate positioned directly in front of the base.",
+    "description_view_1": "The left side view highlights the full extension of the arm, the two-finger gripper, and the red crate placed to the left of the base.",
+    "description_view_2": "The direct back view focuses on the vertical alignment of the arm and the robust, gear-like base, with no crate visible.",
+    "description_view_3": "The right side view displays the arm's articulation, the gripper, and the red crate to the right of the base.",
+    "category": "robot arm",
+    "height": 1.5,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "copper",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "rotatable",
+        "actuatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "gripper",
+        "arm segments",
+        "joints",
+        "cabling"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_joint_type": "revolute",
+    "attribute_number_of_segments": 2,
+    "attribute_end_effector_type": "two-finger gripper",
+    "attribute_visible_wiring_or_cabling": true,
+    "attribute_mounting_location": "floor-mounted",
+    "uid": "b4b5931851754747a734f72234c87e38",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5249713093824341,
+        "grab.n.01": 0.5546997242011269,
+        "automaton.n.02": 0.5772070745985973,
+        "robotics.n.01": 0.5815283312059195,
+        "automaton.n.03": 0.5875128038726715,
+        "arm.n.02": -1000.0,
+        "arm.n.01": -1000.0,
+        "sleeve.n.01": -1000.0,
+        "arm.n.04": -1000.0,
+        "weapon.n.01": -1000.0,
+        "branch.n.01": -1000.0
+    },
+    "synset": "grab.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b4b5931851754747a734f72234c87e38",
+        "creator_username": "olofunot",
+        "creator_display_name": "olofunot",
+        "creator_profile_url": "https://sketchfab.com/olofunot"
+    },
+    "filename": "std_b4b5931851754747a734f72234c87e38.glb",
+    "length": 1.049095332622528,
+    "width": 1.574755847454071
+}

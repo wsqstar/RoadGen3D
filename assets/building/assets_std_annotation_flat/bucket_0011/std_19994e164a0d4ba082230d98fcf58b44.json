@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a heavily armored tracked combat vehicle equipped with multiple large-caliber weapon barrels mounted on a central rotating turret. The vehicle features a robust chassis with reinforced side skirts and visible treads, designed for urban maneuverability and protection. The turret is outfitted with advanced targeting optics, antennas for communication, and several red indicator lights, suggesting high-tech operational capabilities. The front of the vehicle is dominated by two large gun barrels and additional smaller armaments, while the rear shows exhaust systems and more armor plating. The exterior is finished in a dark, metallic color with a slightly worn, industrial appearance. No visible military insignia or camouflage patterns are present, emphasizing a utilitarian, tactical design.",
+    "description": "A heavily armored, tracked combat vehicle with multiple large gun barrels, a central turret, and reinforced metallic bodywork. The exterior is dark and industrial, with advanced optics and antennas.",
+    "description_view_0": "Front view shows dual large-caliber barrels, red indicator lights, and reinforced armor on the front chassis.",
+    "description_view_1": "Left side view highlights the full length of the treads, side armor, turret profile, and multiple weapon barrels.",
+    "description_view_2": "Rear view reveals exhaust systems, rear armor plating, and the back of the turret with visible antennas.",
+    "description_view_3": "Right side view mirrors the left, showing treads, side armor, and the arrangement of weapon barrels and turret.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.82,
+        0.03,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "turret",
+        "gun barrel",
+        "antenna",
+        "tread",
+        "hatch",
+        "lights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "red",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Three large-caliber gun barrels and one smaller barrel mounted on a central rotating turret on the roof; additional mounts for optics and antennas.",
+    "attribute_armor_plating": "Full body armor plating with reinforced side skirts, thick frontal armor, and additional plating on the turret and rear; armor appears solid and non-modular.",
+    "attribute_camouflage_pattern": "None visible; exterior is a solid dark metallic color with some wear.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "19994e164a0d4ba082230d98fcf58b44",
+    "near_synsets": {
+        "tank.n.01": 0.4635176356934775,
+        "armored_car.n.02": 0.4797405108342042,
+        "military_vehicle.n.01": 0.48206601356659373,
+        "assault_gun.n.02": 0.4956968001328498,
+        "armored_vehicle.n.01": 0.49609949773245143,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/19994e164a0d4ba082230d98fcf58b44",
+        "creator_username": "kingy",
+        "creator_display_name": "Kingy",
+        "creator_profile_url": "https://sketchfab.com/kingy"
+    },
+    "filename": "std_19994e164a0d4ba082230d98fcf58b44.glb",
+    "length": 3.076726198196411,
+    "width": 1.8790109753608704
+}

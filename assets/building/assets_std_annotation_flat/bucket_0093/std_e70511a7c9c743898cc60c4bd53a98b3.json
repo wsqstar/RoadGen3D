@@ -1,0 +1,107 @@
+{
+    "description_long": "This humanoid robot features a robust, rounded red metallic torso with a prominent central lens or eye, flanked by two broad, angular shoulder plates marked with white decals and text. Its arms are heavily jointed, with multiple segments and large, claw-like hands equipped with articulated pincers, suggesting dexterous manipulation capabilities. The legs are thick and mechanical, ending in wide, stable feet designed for balance and mobility, with visible hydraulic or pneumatic joints at the knees and ankles. The back of the robot displays two blue exhaust-like ports, possibly for cooling or propulsion, and the overall construction is reinforced with metallic tubing and bolts. The surface is glossy and reflective, with visible wear and panel seams, indicating a durable, industrial design. The robot's design is both functional and imposing, suitable for urban environments where strength and versatility are required.",
+    "description": "A red, glossy humanoid robot with a large central lens, articulated arms ending in claw-like hands, and sturdy mechanical legs, designed for urban tasks.",
+    "description_view_0": "Front view showing the central lens, broad shoulders with decals, articulated arms, and claw hands.",
+    "description_view_1": "Side view highlighting the depth of the torso, arm joints, and the layered construction of the legs.",
+    "description_view_2": "Rear view revealing two blue exhaust ports, the back of the shoulder plates, and the robust leg structure.",
+    "description_view_3": "Opposite side view focusing on the arm and leg articulation, and the profile of the head and torso.",
+    "category": "humanoid robot",
+    "height": 1.6,
+    "max_dimension": 1.8,
+    "materials": [
+        "painted steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air",
+        "electronic components"
+    ],
+    "materials_composition": [
+        0.7,
+        0.05,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 210,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 2100,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "graspable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "lens",
+        "claw hands",
+        "shoulder plates",
+        "arm joints",
+        "leg joints",
+        "exhaust ports"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "silver",
+        "blue",
+        "yellow",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms slightly bent and extended forward, legs apart for stability, and torso facing forward.",
+    "attribute_clothing_style": "Unclothed; exterior consists of integrated red metallic panels with white decals and visible bolts.",
+    "attribute_facial_features": "Single large central lens resembling an eye, no visible mouth or nose, and no expressive facial features.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints, with articulated claw hands and segmented mechanical feet, allowing a wide range of motion.",
+    "attribute_presence_of_sensors": "Large central lens on the torso (likely a camera or optical sensor), no other visible sensors.",
+    "uid": "e70511a7c9c743898cc60c4bd53a98b3",
+    "near_synsets": {
+        "android.n.01": 0.5157963581105975,
+        "cyborg.n.01": 0.5383130494611498,
+        "robotics_equipment.n.01": 0.5402645508640386,
+        "automaton.n.02": 0.5430553559017742,
+        "robotics.n.01": 0.5571088731883918
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e70511a7c9c743898cc60c4bd53a98b3",
+        "creator_username": "anthonygouriou",
+        "creator_display_name": "anthonygouriou",
+        "creator_profile_url": "https://sketchfab.com/anthonygouriou"
+    },
+    "filename": "std_e70511a7c9c743898cc60c4bd53a98b3.glb",
+    "length": 0.8537994027137756,
+    "width": 2.1187069416046143
+}

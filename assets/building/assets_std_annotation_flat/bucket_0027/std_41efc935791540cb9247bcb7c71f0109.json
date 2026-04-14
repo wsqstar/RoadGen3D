@@ -1,0 +1,101 @@
+{
+    "description_long": "This humanoid robot features a tall, conical head and torso with a smooth, off-white exterior accented by green panels and recycling symbols, suggesting an environmental or utility function. Its arms are robust and segmented, with one ending in a cylindrical tool and the other in a rounded, claw-like hand, both attached via visible spring-like joints for flexibility. The legs are similarly jointed and end in broad, stable feet, designed for walking on urban surfaces. A red canister is mounted on its back, connected by a black hose, possibly for utility or maintenance tasks. The robot's surface is matte with slight weathering, and it lacks any visible facial features, giving it a utilitarian, non-anthropomorphic appearance. The overall design is functional, with clear articulation points and a sturdy build suitable for outdoor or street environments.",
+    "description": "A tall, conical-headed humanoid robot with green accents, jointed limbs, and a red canister on its back, designed for utility or environmental tasks in urban settings.",
+    "description_view_0": "Front view shows the conical head, green-accented torso, symmetrical arms with different end effectors, and broad feet.",
+    "description_view_1": "Left side view highlights the cylindrical tool arm, spring joints, and the red canister with hose attachment on the back.",
+    "description_view_2": "Rear view displays the recycling symbol, warning label, full view of the red canister, and the back of the legs.",
+    "description_view_3": "Right side view emphasizes the claw-like hand, arm articulation, and the hose connection to the canister.",
+    "category": "humanoid robot",
+    "height": 1.6,
+    "max_dimension": 0.8,
+    "materials": [
+        "painted metal",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.05,
+        0.07,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "pullable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arm",
+        "claw hand",
+        "tool arm",
+        "canister",
+        "hose"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "off-white",
+        "green",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both legs straight, left arm bent forward holding a cylindrical tool, right arm bent with a claw-like hand facing forward, head and torso aligned vertically.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated, painted metal and plastic panels with green accents and recycling symbols.",
+    "attribute_facial_features": "No visible facial features; head is smooth and conical with no eyes, mouth, or display screens.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints, allowing for a wide range of motion; hands and feet are rigid with limited articulation.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "41efc935791540cb9247bcb7c71f0109",
+    "near_synsets": {
+        "android.n.01": 0.5267823931583178,
+        "cyborg.n.01": 0.54806291766812,
+        "robotics_equipment.n.01": 0.5496971350191534,
+        "automaton.n.02": 0.5609374113961842,
+        "robotics.n.01": 0.5650251260991381
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/41efc935791540cb9247bcb7c71f0109",
+        "creator_username": "shanonso",
+        "creator_display_name": "shanonso",
+        "creator_profile_url": "https://sketchfab.com/shanonso"
+    },
+    "filename": "std_41efc935791540cb9247bcb7c71f0109.glb",
+    "length": 0.9081918299198151,
+    "width": 0.9361229836940765
+}

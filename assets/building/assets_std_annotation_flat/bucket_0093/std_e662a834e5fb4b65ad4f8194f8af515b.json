@@ -1,0 +1,103 @@
+{
+    "description_long": "This object consists of several curved and straight segments of railway track, each featuring two parallel metal rails supported by evenly spaced cross-ties or sleepers. The rails are dark in color, likely made of steel, and the sleepers appear to be a lighter shade, suggesting wood or concrete. The segments are arranged in a way that shows a variety of possible track layouts, including wide and tight curves as well as straight sections. There is no visible ballast bed or ground surface beneath the tracks, and the tracks are not embedded in any pavement. The object does not include any railway crossing signage or additional infrastructure. The overall appearance is clean and schematic, suitable for modular assembly in an urban or model railway context.",
+    "description": "A set of curved and straight railway track segments with parallel metal rails and cross-ties, arranged for modular assembly. The tracks are dark with lighter sleepers and lack ballast or signage.",
+    "description_view_0": "Curved and straight railway track segments are visible from an angled perspective, highlighting the arc and spacing of the rails.",
+    "description_view_1": "A direct side view shows the full length and curvature of each track segment, emphasizing their varying radii and straightness.",
+    "description_view_2": "The arrangement of the tracks is seen from the opposite angle, with the rails' parallelism and sleeper spacing clearly visible.",
+    "description_view_3": "A rear view displays the tracks' curvature and alignment, with the straight segment in the background and the largest curve in the foreground.",
+    "category": "railway track",
+    "height": 0.07,
+    "max_dimension": 2.5,
+    "materials": [
+        "steel",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "connectable",
+        "alignable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "rail",
+        "sleeper"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "train",
+        "maintenance_vehicle"
+    ],
+    "colors": [
+        "black",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.01,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_parallel_metal_rails": true,
+    "attribute_wooden_or_concrete_sleepers": "wood",
+    "attribute_ballast_bed": false,
+    "attribute_embedded_in_pavement": false,
+    "attribute_railway_crossing_signage": false,
+    "uid": "e662a834e5fb4b65ad4f8194f8af515b",
+    "near_synsets": {
+        "track.n.09": 0.4633309407672011,
+        "railroad_bed.n.01": 0.47055808403342075,
+        "line.n.14": 0.4880975809371678,
+        "switch.n.04": 0.4912089687410529,
+        "railroad_track.n.01": 0.49693742986784245,
+        "track.n.06": -1000.0,
+        "racetrack.n.01": -1000.0,
+        "track.n.10": -1000.0,
+        "track.n.11": -1000.0,
+        "lead.n.03": -1000.0,
+        "track.n.03": -1000.0,
+        "cut.n.08": -1000.0,
+        "railway.n.01": -1000.0,
+        "track.n.08": -1000.0,
+        "path.n.04": -1000.0,
+        "track.n.07": -1000.0
+    },
+    "synset": "track.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e662a834e5fb4b65ad4f8194f8af515b",
+        "creator_username": "DigitalGoblin",
+        "creator_display_name": "Digital Goblin",
+        "creator_profile_url": "https://sketchfab.com/DigitalGoblin"
+    },
+    "filename": "std_e662a834e5fb4b65ad4f8194f8af515b.glb",
+    "length": 7.7069411277771,
+    "width": 6.844216823577881
+}

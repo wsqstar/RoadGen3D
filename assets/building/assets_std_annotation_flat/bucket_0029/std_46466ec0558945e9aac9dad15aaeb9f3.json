@@ -1,0 +1,89 @@
+{
+    "description_long": "This tunnel is a curved, rectangular conduit with a rough, stone-like exterior surface, reinforced by visible metal plates and bolts along its length. The tunnel's body appears to be constructed from a concrete or stone aggregate, giving it a rugged, utilitarian appearance suitable for urban infrastructure. The open ends reveal a hollow interior, suggesting it is designed for passage or as a conduit for utilities. The surface is uneven and textured, with protruding bolts and patches of rusted metal reinforcement. There are no visible doors, gates, or lighting fixtures at the entrances, and the tunnel lacks any decorative elements. The overall design is functional, prioritizing durability and structural integrity over aesthetics.",
+    "description": "A curved, rectangular tunnel with a rough stone-like exterior, reinforced by metal plates and bolts, and open at both ends. The surface is rugged and utilitarian, suitable for urban infrastructure.",
+    "description_view_0": "The tunnel is seen from the side, highlighting its curved shape, rectangular opening, and rough, stone-textured surface with visible metal reinforcements.",
+    "description_view_1": "This view emphasizes the curvature and the top surface, showing the distribution of bolts and the rugged texture along the tunnel's length.",
+    "description_view_2": "The tunnel is viewed from above, clearly displaying the full curve, the rectangular cross-section, and the placement of metal plates and bolts.",
+    "description_view_3": "The open end of the tunnel is prominent, revealing the hollow interior and the thickness of the stone-like walls, with the curve receding into the background.",
+    "category": "tunnel",
+    "height": 0.7,
+    "max_dimension": 3.0,
+    "materials": [
+        "concrete",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "passage"
+    ],
+    "support_surface": false,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "brown",
+        "rust"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "Rectangular open ends, constructed from reinforced concrete with visible metal plates and bolts, no doors or gates.",
+    "attribute_lighting_fixtures": [],
+    "attribute_signage": [],
+    "attribute_surrounding_infrastructure": "No surrounding infrastructure is visible; the tunnel is isolated in the images.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "46466ec0558945e9aac9dad15aaeb9f3",
+    "near_synsets": {
+        "railroad_tunnel.n.01": 0.4791243420352537,
+        "tunnel.n.01": 0.49132417665497335,
+        "culvert.n.01": 0.5406642809330834,
+        "well.n.04": 0.5529557926763157,
+        "conduit.n.01": 0.554389389695033,
+        "burrow.n.01": -1000.0
+    },
+    "synset": "tunnel.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/46466ec0558945e9aac9dad15aaeb9f3",
+        "creator_username": "Valsev",
+        "creator_display_name": "Valsev",
+        "creator_profile_url": "https://sketchfab.com/Valsev"
+    },
+    "filename": "std_46466ec0558945e9aac9dad15aaeb9f3.glb",
+    "length": 4.691019773483276,
+    "width": 2.9514018297195435
+}

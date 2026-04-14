@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a rectangular vending machine with a metallic and black exterior, featuring a glass front panel that reveals three shelves with spiral dispensers for products. The front includes a keypad for product selection, a digital display, and a payment interface, all located on the right side. Below the shelves, there is a prominent product retrieval slot marked with the word 'PUSH.' The sides and back of the machine are solid black, with no visible openings or features. The machine stands on four short legs, elevating it slightly above the ground. Its overall appearance is robust and utilitarian, suitable for placement in public urban environments.",
+    "description": "A metallic and black vending machine with a glass front, keypad, and product retrieval slot, designed for public urban use.",
+    "description_view_0": "Front view showing the glass display, spiral dispensers, keypad, digital display, payment interface, and product retrieval slot.",
+    "description_view_1": "Left side view showing a solid black, featureless panel.",
+    "description_view_2": "Rear view displaying a plain, solid black back with a metallic base strip.",
+    "description_view_3": "Right side view with a solid black, featureless panel.",
+    "category": "vending machine",
+    "height": 1.8,
+    "max_dimension": 1.8,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 220,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "keypad",
+        "display panel",
+        "payment interface",
+        "product retrieval slot",
+        "push panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A small rectangular digital display panel is located on the upper right front, above the keypad, showing illuminated content.",
+    "attribute_payment_interface": "A payment interface is present on the right front, featuring a keypad and what appears to be a card slot or bill acceptor.",
+    "attribute_product_selection_buttons": "A numeric keypad with individual square buttons is located on the right front, below the display panel.",
+    "attribute_product_retrieval_slot": "A wide rectangular slot labeled 'PUSH' is located at the bottom center of the front panel, with a metallic flap.",
+    "attribute_branding_or_signage": "The word 'PUSH' is visible on the product retrieval slot, but no other branding, logos, or signage are present.",
+    "uid": "a8e5fa12b9644b21899bfd1a3f3ac1c2",
+    "near_synsets": {
+        "vending_machine.n.01": 0.42910942327288026,
+        "automat.n.01": 0.4848270710118521,
+        "slot_machine.n.01": 0.5497191785541415,
+        "automat.n.02": 0.5536065275094588,
+        "coin_box.n.01": 0.5606828905040139,
+        "machine.n.05": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.04": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.02": -1000.0,
+        "machine.n.03": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a8e5fa12b9644b21899bfd1a3f3ac1c2",
+        "creator_username": "anserkon",
+        "creator_display_name": "Anserkon",
+        "creator_profile_url": "https://sketchfab.com/anserkon"
+    },
+    "filename": "std_a8e5fa12b9644b21899bfd1a3f3ac1c2.glb",
+    "length": 0.9468086957931519,
+    "width": 1.0832493305206299
+}

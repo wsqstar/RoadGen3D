@@ -1,0 +1,107 @@
+{
+    "description_long": "This ship features a long, armored hull with a flat deck and two prominent cylindrical turrets positioned amidships. The deck is finished in a wood-like texture, with metallic railings and fixtures along the perimeter. Two large smokestacks rise from the center, flanked by smaller structures and hatches, suggesting an ironclad or early steam-powered warship. The bow is pointed and reinforced, while the stern is squared off and covered, possibly for additional protection or storage. Side paddle wheels are visible, indicating a paddle steamer propulsion system. The vessel is detailed with portholes, gun ports, and various deck equipment, giving it a robust, utilitarian appearance.",
+    "description": "A historic ironclad steamship with paddle wheels, twin turrets, and a reinforced hull, featuring wood and metal textures with visible deck equipment.",
+    "description_view_0": "Side view showing the full length of the ship, paddle wheel housings, turrets, and deck details.",
+    "description_view_1": "Front view highlighting the pointed bow, central smokestack, and symmetrical arrangement of turrets and paddle wheels.",
+    "description_view_2": "Opposite side view displaying the stern cover, paddle wheel, and deck structures similar to view 0.",
+    "description_view_3": "Rear view focusing on the squared stern, covered rear section, and alignment of the turrets and smokestacks.",
+    "category": "ship",
+    "height": 7.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1800000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "hatch",
+        "door",
+        "paddle wheel",
+        "smokestack",
+        "railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "black",
+        "beige",
+        "silver"
+    ],
+    "colors_composition": [
+        0.4,
+        0.3,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a long, low-profile displacement type with a pointed bow and squared stern. It features armored plating, visible gun ports, and side paddle wheel housings. The hull sits low in the water, with a flat deck and reinforced edges.",
+    "attribute_superstructure_layout": "The superstructure includes two cylindrical turrets amidships, two large smokestacks, and several small deckhouses and hatches. Railings run along the deck edges, and the stern is partially covered by a protective structure.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "turret",
+        "paddle wheel",
+        "smokestack",
+        "hatch",
+        "railing"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "7f434bcd52a14bd48d14b46487c02e72",
+    "near_synsets": {
+        "ironclad.n.01": 0.46472562807471424,
+        "paddle_steamer.n.01": 0.5035644195334024,
+        "steamer.n.03": 0.505425338406598,
+        "sternwheeler.n.01": 0.5171949676223135,
+        "steamboat.n.01": 0.5171960551641779,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7f434bcd52a14bd48d14b46487c02e72",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_7f434bcd52a14bd48d14b46487c02e72.glb",
+    "length": 32.22674369812012,
+    "width": 10.254776000976562
+}

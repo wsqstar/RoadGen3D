@@ -1,0 +1,103 @@
+{
+    "description_long": "This mud patch consists of a roughly rectangular section of uneven, compacted earth, interspersed with small stones, gravel, and patches of yellowed leaves. The surface is irregular, with visible ruts and shallow depressions, suggesting recent disturbance or passage of vehicles or pedestrians. The coloration ranges from dark brown to gray, with hints of green moss or grass at the edges, and scattered organic debris embedded throughout. The mud appears dense and slightly moist, with some areas more compacted than others, and the boundaries are irregular, blending into the surrounding terrain. There are no visible pools of standing water, but the texture suggests a damp, cohesive consistency. The overall appearance is typical of a well-trodden urban roadside or alleyway after rainfall, with natural and man-made debris present.",
+    "description": "A dense, irregular mud patch with embedded stones, gravel, and scattered leaves, showing signs of recent disturbance and dampness. The surface is uneven and blends into the surrounding ground, with visible organic debris.",
+    "description_view_0": "This view highlights the uneven surface, with a concentration of yellowed leaves and a clear rut running through the mud patch.",
+    "description_view_1": "From this angle, the patch appears flatter, with more visible gravel and a gradual transition to the surrounding ground.",
+    "description_view_2": "This perspective shows the patch's irregular edges and a mix of compacted mud and embedded debris, with less leaf coverage.",
+    "description_view_3": "Here, the patch's boundary is most visible, with a blend of gray mud, stones, and some green moss or grass at the edge.",
+    "category": "mud patch",
+    "height": 0.05,
+    "max_dimension": 1.2,
+    "materials": [
+        "mud",
+        "gravel",
+        "organic debris",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 90,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportable",
+        "coverable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "gray",
+        "yellow",
+        "green"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 50,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "single",
+    "attribute_location": "urban roadside or alleyway",
+    "attribute_boundary_definition": "The boundaries are irregular and blend gradually into the surrounding ground, with no sharp transitions between mud and adjacent surfaces.",
+    "attribute_presence_of_footprints_or_tire_marks": "none visible",
+    "attribute_water_accumulation": "none visible",
+    "attribute_surrounding_debris": "leaves, small stones, gravel",
+    "uid": "1a1c23e42585480bb29d6e5f6b006710",
+    "near_synsets": {
+        "mud.n.01": 0.5156214254629687,
+        "mud_stain.n.01": 0.5198044740820923,
+        "mud_puddle.n.01": 0.5274544304858666,
+        "bog.n.01": 0.5576682912014063,
+        "mud_flat.n.01": 0.5612962786088359,
+        "patch.n.03": -1000.0,
+        "while.n.01": -1000.0,
+        "spot.n.05": -1000.0,
+        "patch.n.05": -1000.0,
+        "temporary_hookup.n.01": -1000.0,
+        "mend.n.01": -1000.0,
+        "bandage.n.01": -1000.0,
+        "eyepatch.n.01": -1000.0,
+        "mud.n.02": -1000.0,
+        "plot.n.02": -1000.0
+    },
+    "synset": "mud.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1a1c23e42585480bb29d6e5f6b006710",
+        "creator_username": "johngreenstone",
+        "creator_display_name": "Epic_Tree_Store",
+        "creator_profile_url": "https://sketchfab.com/johngreenstone"
+    },
+    "filename": "std_1a1c23e42585480bb29d6e5f6b006710.glb",
+    "length": 0.38777416944503784,
+    "width": 0.40061943233013153
+}

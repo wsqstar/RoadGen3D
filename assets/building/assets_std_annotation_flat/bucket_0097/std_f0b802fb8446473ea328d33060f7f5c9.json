@@ -1,0 +1,84 @@
+{
+    "description_long": "This is a simple, open-top canoe with a streamlined, elongated hull and a pointed bow and stern, designed for use on calm waters. The canoe is constructed from a single material with a uniform brown coloration, giving it a classic wooden appearance. Inside, there are three visible crosswise seats or thwarts, providing support and seating for multiple occupants. The gunwales run along the top edge of the hull, reinforcing the structure and providing a handhold. The surface appears matte and slightly textured, suggesting a natural wood finish rather than a glossy or painted surface. There are no visible carrying handles, registration numbers, or additional accessories attached to the canoe.",
+    "description": "A brown, open-top canoe with three crosswise seats and a classic wooden appearance, featuring a matte, slightly textured surface.",
+    "description_view_0": "Front view showing the pointed bow and two crosswise seats inside the canoe.",
+    "description_view_1": "Side view displaying the elongated hull, three seats, and the continuous gunwales along the top edge.",
+    "description_view_2": "Rear view highlighting the stern and the arrangement of the seats within the canoe.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the full length and interior seating.",
+    "category": "canoe",
+    "height": 0.4,
+    "max_dimension": 3.5,
+    "materials": [
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.15
+    ],
+    "mass": 35,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "seat",
+        "gunwale"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_presence_of_seats": true,
+    "attribute_presence_of_thwarts": true,
+    "attribute_presence_of_gunwales": true,
+    "attribute_presence_of_carrying_handles": false,
+    "attribute_presence_of_registration_numbers": false,
+    "uid": "f0b802fb8446473ea328d33060f7f5c9",
+    "near_synsets": {
+        "canoe.n.01": 0.4629993442586958,
+        "dugout_canoe.n.01": 0.5178254961832462,
+        "kayak.n.01": 0.5204156637911681,
+        "birchbark_canoe.n.01": 0.5208240354089648,
+        "canoeist.n.01": 0.5277420962303314
+    },
+    "synset": "canoeist.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f0b802fb8446473ea328d33060f7f5c9",
+        "creator_username": "stefan.lengyel1",
+        "creator_display_name": "Pixel",
+        "creator_profile_url": "https://sketchfab.com/stefan.lengyel1"
+    },
+    "filename": "std_f0b802fb8446473ea328d33060f7f5c9.glb",
+    "length": 2.4192789793014526,
+    "width": 1.0086878538131714
+}

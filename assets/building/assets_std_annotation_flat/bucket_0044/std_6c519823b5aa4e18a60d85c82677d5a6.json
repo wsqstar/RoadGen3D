@@ -1,0 +1,104 @@
+{
+    "description_long": "This handcart features a robust rectangular platform made of wooden planks, supported by a metal frame and mounted on a dual-axle trailer with four wheels. The sides and rear are enclosed with a tall, black metal mesh cage, providing containment for objects or activities within. The front of the cart has a tow bar for attachment to a vehicle, and the platform is accessible from the open front. Inside the mesh enclosure, two red-and-yellow circular targets are mounted on the back wall, suggesting a recreational or training use, such as axe or dart throwing. The mesh cage is reinforced with a grid pattern, ensuring durability and visibility. The overall construction combines wood, metal, and mesh, giving it a sturdy, utilitarian appearance suitable for urban events or mobile activities.",
+    "description": "A dual-axle handcart with a wooden platform, tall black mesh cage, and two circular targets mounted inside the rear wall. The cart is towable and designed for secure containment or recreational use.",
+    "description_view_0": "Front view showing the open platform, mesh cage, and two circular targets on the back wall.",
+    "description_view_1": "Side view highlighting the length of the wooden platform, mesh enclosure, and dual wheels beneath.",
+    "description_view_2": "Rear view displaying the solid mesh back wall and the full height of the enclosure.",
+    "description_view_3": "Opposite side view similar to view 1, showing the mesh cage, wheels, and tow bar.",
+    "category": "handcart",
+    "height": 2.2,
+    "max_dimension": 3.5,
+    "materials": [
+        "steel",
+        "wood",
+        "rubber",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.1,
+        0.08,
+        0.02
+    ],
+    "mass": 320,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "loadable",
+        "throwable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle/tow bar",
+        "wheel",
+        "mesh cage",
+        "target"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "gray",
+        "brown",
+        "red",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.45,
+        0.3,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 4,
+    "attribute_handle_type": "straight tow bar",
+    "attribute_wheel_position": "side-mounted, dual axle",
+    "attribute_presence_of_side_rails": true,
+    "attribute_load_platform_design": "flat wooden planks",
+    "uid": "6c519823b5aa4e18a60d85c82677d5a6",
+    "near_synsets": {
+        "hand_truck.n.01": 0.4954434975967034,
+        "handcart.n.01": 0.49666799392466826,
+        "laundry_cart.n.01": 0.5286197284711136,
+        "shopping_cart.n.01": 0.5310525228394227,
+        "serving_cart.n.01": 0.5310963135528798
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6c519823b5aa4e18a60d85c82677d5a6",
+        "creator_username": "McCaffeteria",
+        "creator_display_name": "McCaffeteria",
+        "creator_profile_url": "https://sketchfab.com/McCaffeteria"
+    },
+    "filename": "std_6c519823b5aa4e18a60d85c82677d5a6.glb",
+    "length": 3.3459056615829468,
+    "width": 1.5559902787208557
+}

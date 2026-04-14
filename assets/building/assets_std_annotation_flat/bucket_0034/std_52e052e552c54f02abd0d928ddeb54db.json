@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a large, modern ship with a streamlined hull painted primarily in light gray with a red lower section. The vessel features a prominent superstructure located toward the aft, including a bridge, several decks, and a tall mast with antennas and radar equipment. The bow is sharply pointed, and the stern is squared off, suggesting a displacement hull designed for stability and capacity. The deck is mostly clear, with visible railings and some deck fixtures, and the ship appears to have multiple access points and hatches. The overall design is functional and robust, suitable for naval or large-scale transport purposes. No visible lifeboats or cranes are present, but the ship is equipped with communication and navigation equipment.",
+    "description": "A large, modern gray ship with a red lower hull, tall superstructure, and visible mast with antennas and radar. The vessel has a streamlined, functional design with a clear deck and robust build.",
+    "description_view_0": "Side profile showing the full length of the ship, the superstructure, bridge, and mast with antennas are clearly visible.",
+    "description_view_1": "Front view highlighting the pointed bow, narrow width, and the central placement of the mast and bridge.",
+    "description_view_2": "Opposite side profile, similar to view 0, showing the hull, superstructure, and deck layout from the other side.",
+    "description_view_3": "Rear view displaying the squared stern, superstructure, and the arrangement of deck fixtures and access points.",
+    "category": "ship",
+    "height": 18,
+    "max_dimension": 120,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.01,
+        0.05
+    ],
+    "mass": 650000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "steerable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "bridge controls",
+        "antenna",
+        "radar"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "red",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a sharply pointed bow and a squared stern. The hull sides are smooth and vertical, with a red-painted lower section indicating the waterline. No bulbous bow or visible keels are present, and the hull appears robust and stable.",
+    "attribute_superstructure_layout": "The superstructure is located toward the aft and rises several decks above the main deck, featuring a bridge, multiple levels, and a tall mast. The design is compact and functional, with clear separation between the bridge and the rest of the deck.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "antenna",
+        "radar",
+        "railings"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "52e052e552c54f02abd0d928ddeb54db",
+    "near_synsets": {
+        "cargo_ship.n.01": 0.4984447196419302,
+        "surface_ship.n.01": 0.5116653661902177,
+        "windjammer.n.01": 0.5157541975141126,
+        "naval_radar.n.01": 0.5190064967903936,
+        "ship.n.01": 0.5201116911095646
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/52e052e552c54f02abd0d928ddeb54db",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_52e052e552c54f02abd0d928ddeb54db.glb",
+    "length": 65.51900482177734,
+    "width": 7.4470884799957275
+}

@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a medium-sized, cylindrical metal storage tank, commonly used for storing liquefied petroleum gas (LPG) or similar pressurized gases. The tank has a rounded top and bottom, with a protective collar around the valve at the top, which shields the valve from impact and provides a convenient grip for handling. The surface is painted a weathered blue, showing signs of rust and wear, indicating prolonged outdoor use. A metal label or plate with technical information is affixed to one side of the tank. The base is slightly recessed, allowing for stable placement on flat surfaces. The overall construction is robust, designed to safely contain pressurized contents in urban or residential environments.",
+    "description": "A weathered blue cylindrical metal gas storage tank with a protective top collar and visible valve, showing signs of rust and a technical label on one side.",
+    "description_view_0": "Front view showing the rounded top, protective collar, and central valve.",
+    "description_view_1": "Angled side view highlighting the collar's open sections and the tank's cylindrical body.",
+    "description_view_2": "Rear view displaying the technical label and the tank's weathered surface.",
+    "description_view_3": "Opposite angled side view, similar to view 1, with the collar and valve visible.",
+    "category": "storage tank",
+    "height": 0.6,
+    "max_dimension": 0.35,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 13,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 130,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "valve",
+        "protective collar",
+        "label"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "black",
+        "rust"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_location": "urban garage",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [
+        "valve"
+    ],
+    "attribute_warning_signage": true,
+    "attribute_architectural_style": "cylindrical vertical",
+    "uid": "cfaca844db904bb7ae63c1628aa48856",
+    "near_synsets": {
+        "tank.n.02": 0.4855912433407673,
+        "gas_tank.n.01": 0.5150770448300148,
+        "reservoir.n.03": 0.5402706809525449,
+        "tank_farm.n.01": 0.5409037958049406,
+        "gas_holder.n.01": 0.5582141927982702,
+        "cooler.n.03": -1000.0,
+        "tank.n.01": -1000.0,
+        "storage.n.03": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "repositing.n.01": -1000.0,
+        "tank.n.03": -1000.0,
+        "storage.n.04": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "storage.n.01": -1000.0,
+        "memory.n.04": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cfaca844db904bb7ae63c1628aa48856",
+        "creator_username": "initialdm",
+        "creator_display_name": "initialdm",
+        "creator_profile_url": "https://sketchfab.com/initialdm"
+    },
+    "filename": "std_cfaca844db904bb7ae63c1628aa48856.glb",
+    "length": 0.32189464569091797,
+    "width": 0.32189491391181946
+}

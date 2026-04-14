@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a large, cylindrical metal barrel with a weathered, industrial appearance. The exterior is painted a faded grayish-white, showing streaks of rust and signs of age, with horizontal bands suggesting structural reinforcement. The top surface is flat and wooden, with visible planks and metal fasteners, further emphasizing its rugged construction. One side of the barrel features a prominent yellow and black biohazard warning sign, indicating it is used for hazardous or contaminated materials. The surface texture appears rough and matte, with visible grime and corrosion. This barrel is typical of those found in urban or industrial environments, used for storage or containment of dangerous substances.",
+    "description": "A large, weathered metal barrel with a wooden top and a biohazard warning sign, showing rust and industrial wear.",
+    "description_view_0": "The barrel's front is visible, showing rust streaks and the wooden top, but no warning sign.",
+    "description_view_1": "This view highlights the wooden top and the full cylindrical shape, with rust patterns but no visible signage.",
+    "description_view_2": "The side of the barrel is shown, with part of the yellow biohazard sign just coming into view.",
+    "description_view_3": "The biohazard warning sign is fully visible on the side, along with the weathered, rust-streaked surface.",
+    "category": "barrel or bucket",
+    "height": 1.0,
+    "max_dimension": 0.7,
+    "materials": [
+        "metal",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "body"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "yellow",
+        "black",
+        "orange"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "metal hoops",
+    "attribute_labeling_or_markings": "yellow and black biohazard warning sign",
+    "attribute_placement_location": "industrial",
+    "uid": "8a8fec5a2cf24940a210d6ef281d3a99",
+    "near_synsets": {
+        "barrel.n.02": 0.4967184384772565,
+        "barrel.n.03": 0.5078802306350902,
+        "bucket.n.01": 0.5125489922825158,
+        "beer_barrel.n.01": 0.5148621138200667,
+        "barrels.n.01": 0.5216849595603786,
+        "barrel.n.05": -1000.0,
+        "bucket.n.02": -1000.0,
+        "barrel.n.04": -1000.0,
+        "barrel.n.01": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8a8fec5a2cf24940a210d6ef281d3a99",
+        "creator_username": "andrewtootru",
+        "creator_display_name": "andrewtootru",
+        "creator_profile_url": "https://sketchfab.com/andrewtootru"
+    },
+    "filename": "std_8a8fec5a2cf24940a210d6ef281d3a99.glb",
+    "length": 0.7500002384185791,
+    "width": 0.7500001192092896
+}

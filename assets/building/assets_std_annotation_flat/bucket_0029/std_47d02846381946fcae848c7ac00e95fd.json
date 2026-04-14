@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a heavily armored, tracked combat vehicle resembling a World War I-era British Mark tank, featuring a rhomboid shape with continuous tracks running along the entire length of the body. The exterior is constructed from thick, riveted steel plates, with visible hatches, vision slits, and protruding sponsons on each side housing mounted weaponry. The vehicle's surface is weathered, showing signs of wear, rust, and faded paint, with some areas marked by red and white identification stripes. The top of the vehicle is flat with several access hatches and ventilation grilles, while the sides display various bolts, panels, and small details indicative of reinforced armor. The overall design is utilitarian, prioritizing protection and firepower, with no visible wheels or tires, and the tracks are wide and robust for traversing rough terrain. The vehicle's imposing size and distinctive silhouette make it a formidable presence in any urban or battlefield scenario.",
+    "description": "A large, heavily armored tracked combat vehicle with a rhomboid shape, side-mounted weapon sponsons, and weathered steel plating. Its surface features faded paint, red and white markings, and extensive riveted armor.",
+    "description_view_0": "Front view shows the wide, armored tracks, central hull, and the flat, reinforced front plate with hatches and vision slits.",
+    "description_view_1": "Left side view highlights the long, continuous track, side sponson with weapon mount, and red and white identification marking at the rear.",
+    "description_view_2": "Rear view displays the back of the tracks, rear hull plate, and additional hatches, with less visible weaponry.",
+    "description_view_3": "Right side view mirrors the left, showing the opposite sponson, track, and faded paint with some red markings.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.02,
+        0.03,
+        0.1
+    ],
+    "mass": 28000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "door",
+        "track",
+        "weapon mount",
+        "vision slit"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "gray",
+        "red",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Two visible side-mounted sponsons, each with a protruding barrel, likely for machine guns or cannons; no roof or turret mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, riveted steel armor plates; flat and sloped surfaces with reinforced edges and visible bolts; no modular or reactive panels.",
+    "attribute_camouflage_pattern": "Faded olive green base with patches of gray, red, and white; no distinct camouflage pattern, but some areas have solid color identification stripes.",
+    "attribute_military_markings": "Red and white diagonal stripes on the rear sides; some faded numbers and letters on the side panels.",
+    "attribute_tire_type": "not applicable",
+    "uid": "47d02846381946fcae848c7ac00e95fd",
+    "near_synsets": {
+        "reconnaissance_vehicle.n.01": 0.4859711401699489,
+        "military_vehicle.n.01": 0.5086433777338851,
+        "tank.n.01": 0.5087857515882884,
+        "armored_vehicle.n.01": 0.5218252612173753,
+        "armored_car.n.02": 0.5229594724568875,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/47d02846381946fcae848c7ac00e95fd",
+        "creator_username": "samt2510",
+        "creator_display_name": "samt2510",
+        "creator_profile_url": "https://sketchfab.com/samt2510"
+    },
+    "filename": "std_47d02846381946fcae848c7ac00e95fd.glb",
+    "length": 7.851569652557373,
+    "width": 4.876138210296631
+}

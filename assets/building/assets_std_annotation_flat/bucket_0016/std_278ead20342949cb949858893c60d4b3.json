@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a medium-sized ship with a streamlined hull painted in a combination of red and gray, featuring a flat deck and a raised superstructure amidships. The bow is pointed and the stern is squared off, giving the vessel a classic displacement hull profile. Two prominent masts rise from the deck, likely supporting communication or navigation equipment, and there are several small structures and fixtures visible on the deck, including what appear to be hatches and possibly a bridge. The ship's deck is mostly open, with railings along the sides and a few visible access points. The overall design suggests a utilitarian vessel, possibly for patrol, transport, or research purposes. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A medium-sized, red and gray ship with a pointed bow, flat deck, and two tall masts. The vessel features a raised superstructure and several deck fixtures, giving it a functional, utilitarian appearance.",
+    "description_view_0": "Side view showing the full length of the ship, the red and gray hull, two masts, and the raised superstructure amidships.",
+    "description_view_1": "Front (bow) view highlighting the pointed bow, narrow profile, and the alignment of the masts and superstructure.",
+    "description_view_2": "Opposite side view similar to view 0, showing the hull, masts, and superstructure from the other side.",
+    "description_view_3": "Rear (stern) view displaying the squared-off stern, deck layout, and the arrangement of the superstructure and masts.",
+    "category": "ship",
+    "height": 12,
+    "max_dimension": 60,
+    "materials": [
+        "steel",
+        "glass",
+        "wood",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 900000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 3000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "steerable",
+        "dockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "mast",
+        "railing",
+        "bridge"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 10,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a pointed bow and squared stern, featuring a flat deck and moderate freeboard. The hull sides are smooth with a visible color separation between the red lower section and gray upper section. No bulbous bow or keels are visible.",
+    "attribute_superstructure_layout": "The superstructure is centrally located, raised above the main deck, and includes a bridge and several small deckhouses. Two tall masts are positioned fore and aft of the superstructure, and the deck is mostly open with railings and access points.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "mast",
+        "antenna",
+        "hatch",
+        "railing"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "278ead20342949cb949858893c60d4b3",
+    "near_synsets": {
+        "cargo_ship.n.01": 0.4944559332790243,
+        "small_ship.n.01": 0.4979903786058169,
+        "vessel.n.02": 0.5069960582118583,
+        "ship.n.01": 0.5076969735489126,
+        "figurehead.n.02": 0.5093150795242035
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/278ead20342949cb949858893c60d4b3",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_278ead20342949cb949858893c60d4b3.glb",
+    "length": 74.8638801574707,
+    "width": 54.260820388793945
+}

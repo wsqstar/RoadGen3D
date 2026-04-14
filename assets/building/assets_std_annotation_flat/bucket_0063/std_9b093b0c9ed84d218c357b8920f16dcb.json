@@ -1,0 +1,109 @@
+{
+    "description_long": "This structure is a large, urban dam-like object featuring a central vertical wall made of brick and concrete, with a wide, curved surface resembling a skate ramp or spillway. The top of the dam is bordered by red metal safety railings, and there is a prominent staircase and platform on one side, constructed from wood and metal, providing access to the upper level. The main surface is tiled with light-colored panels and decorated with bold, black graffiti art, including stylized words and symbols. The central section of the dam has a large rectangular opening, possibly for water passage or maintenance access. The overall design is robust and utilitarian, with a mix of industrial and urban aesthetic elements.",
+    "description": "A large, brick and concrete dam structure with a curved, tiled surface, red railings, graffiti art, and a side staircase with a wooden platform.",
+    "description_view_0": "Front view showing the brick wall base, central opening, tiled curved surface, red railings, and graffiti on the right.",
+    "description_view_1": "Angled view highlighting the interior curved surface, graffiti art, and the full staircase and platform on the left.",
+    "description_view_2": "Rear view displaying the full width of the dam, the large graffiti on the curved surface, and the wooden staircase structure on the right.",
+    "description_view_3": "Angled view from the opposite side, showing the curved tiled surface, graffiti, and the staircase and platform structure.",
+    "category": "dam",
+    "height": 6.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "concrete",
+        "brick",
+        "metal",
+        "wood",
+        "tile",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.1,
+        0.08,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "slideable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "staircase",
+        "platform",
+        "railing"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light brown",
+        "red",
+        "gray",
+        "black",
+        "beige"
+    ],
+    "colors_composition": [
+        0.45,
+        0.1,
+        0.2,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_spillway_presence": false,
+    "attribute_control_gates": [
+        "none"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_water_outflow": "none",
+    "attribute_perimeter_fencing": true,
+    "uid": "9b093b0c9ed84d218c357b8920f16dcb",
+    "near_synsets": {
+        "dam.n.01": 0.5126510073385446,
+        "weir.n.01": 0.5544239122204766,
+        "milldam.n.01": 0.5624706427339531,
+        "aqueduct.n.01": 0.5635657047351146,
+        "flashboard.n.01": 0.5649383861239857,
+        "dam.n.03": -1000.0,
+        "decameter.n.01": -1000.0
+    },
+    "synset": "dam.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9b093b0c9ed84d218c357b8920f16dcb",
+        "creator_username": "TuckerIngram98",
+        "creator_display_name": "TuckerIngram98",
+        "creator_profile_url": "https://sketchfab.com/TuckerIngram98"
+    },
+    "filename": "std_9b093b0c9ed84d218c357b8920f16dcb.glb",
+    "length": 14.29296064376831,
+    "width": 15.739730834960938
+}

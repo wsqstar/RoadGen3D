@@ -1,0 +1,100 @@
+{
+    "description_long": "This rifle features a robust, tactical design with a combination of wood and metal components, giving it a rugged, battle-worn appearance. The stock and foregrip are made of dark-stained wood, while the main body, barrel, and magazine are constructed from matte-finished metal with visible wear and scratches. The rifle is equipped with a detachable box magazine, a heavy barrel, and a prominent iron sight system. There are several mechanical details, such as exposed bolts, rails, and a mounted accessory on the side, suggesting modularity and customization. The muzzle end appears reinforced, possibly with a flash hider or brake, and the overall build is substantial, indicating a weapon designed for sustained fire. The coloration is primarily dark brown and black, with hints of metallic gray and some red accents on the receiver.",
+    "description": "A rugged, tactical rifle with a wooden stock and foregrip, matte metal body, heavy barrel, and iron sights, showing signs of wear and modular attachments.",
+    "description_view_0": "Side view showing the full length, wooden stock, metal receiver, heavy barrel, and attached magazine.",
+    "description_view_1": "Front view highlighting the muzzle, iron sight, and the width of the foregrip and barrel.",
+    "description_view_2": "Opposite side view displaying the magazine, trigger area, and additional side-mounted accessory.",
+    "description_view_3": "Rear view focusing on the stock, rear sight, and the alignment of the rifle's components.",
+    "category": "rifle",
+    "height": 0.22,
+    "max_dimension": 1.15,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "mass": 8.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 90,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "trigger",
+        "magazine",
+        "barrel",
+        "sight",
+        "foregrip",
+        "safety lever"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "gray",
+        "red"
+    ],
+    "colors_composition": [
+        0.35,
+        0.45,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "heavy",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "flash hider",
+    "uid": "57aef8cdf42046a39f1ad9b428756213",
+    "near_synsets": {
+        "garand_rifle.n.01": 0.5093968474291186,
+        "rifle.n.01": 0.5132710378619679,
+        "twenty-two_rifle.n.01": 0.5239125510975057,
+        "light_arm.n.01": 0.5267338534133041,
+        "mauser.n.02": 0.528180731599443
+    },
+    "synset": "twenty-two_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/57aef8cdf42046a39f1ad9b428756213",
+        "creator_username": "skartemka",
+        "creator_display_name": "skartemka",
+        "creator_profile_url": "https://sketchfab.com/skartemka"
+    },
+    "filename": "std_57aef8cdf42046a39f1ad9b428756213.glb",
+    "length": 0.8214632868766785,
+    "width": 0.1402587890625
+}

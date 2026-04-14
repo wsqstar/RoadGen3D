@@ -1,0 +1,110 @@
+{
+    "description_long": "This object consists of a row of six pole-mounted traffic lights, each with a rectangular signal head and multiple signal lights arranged horizontally. The poles are metallic and mounted on square bases, providing stability for the structure. Each signal head features a cluster of signal lights, likely for vehicle control, and some units have additional components such as visors or backplates for visibility enhancement. The overall design is utilitarian, with a focus on durability and clear signaling in urban environments. The color scheme is predominantly dark, with metallic gray poles and black signal housings. The structure is robust and intended for fixed installation at intersections or roadways.",
+    "description": "A row of six pole-mounted traffic lights with horizontally arranged signal heads and dark, metallic construction.",
+    "description_view_0": "Front view showing all six traffic lights aligned in a row, with clear visibility of the signal heads and pole bases.",
+    "description_view_1": "Side view revealing the depth of the signal heads and the alignment of the poles, with the signal lights visible in profile.",
+    "description_view_2": "Rear view displaying the backs of the signal heads and the supporting poles, with less detail on the lights themselves.",
+    "description_view_3": "Opposite side view similar to view 1, showing the profile of the signal heads and the arrangement of the poles.",
+    "category": "traffic light",
+    "height": 3.5,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.1,
+        0.05,
+        0.02
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "signal lights",
+        "control panel",
+        "mounting pole"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.4,
+        0.6
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_number_of_signal_lights": 18,
+    "attribute_signal_orientation": "horizontal",
+    "attribute_mounting_type": "pole-mounted",
+    "attribute_presence_of_pedestrian_signals": false,
+    "attribute_control_box_visibility": false,
+    "uid": "afa4df9910334f17a3b27a6e0ccebeb0",
+    "near_synsets": {
+        "traffic_light.n.01": 0.49646761120854815,
+        "street_sign.n.01": 0.5396088998268862,
+        "light.n.14": 0.540775233656739,
+        "streetlight.n.01": 0.5411837372997278,
+        "semaphore.n.01": 0.545747011829736,
+        "light.n.08": -1000.0,
+        "inner_light.n.01": -1000.0,
+        "light.n.05": -1000.0,
+        "lighter.n.02": -1000.0,
+        "traffic.n.02": -1000.0,
+        "dealings.n.01": -1000.0,
+        "light.n.03": -1000.0,
+        "light.n.06": -1000.0,
+        "luminosity.n.01": -1000.0,
+        "sparkle.n.01": -1000.0,
+        "light.n.09": -1000.0,
+        "light.n.07": -1000.0,
+        "light.n.01": -1000.0,
+        "light.n.02": -1000.0,
+        "traffic.n.01": -1000.0,
+        "light.n.12": -1000.0,
+        "light.n.10": -1000.0,
+        "traffic.n.03": -1000.0
+    },
+    "synset": "traffic_light.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/afa4df9910334f17a3b27a6e0ccebeb0",
+        "creator_username": "Signalrenders",
+        "creator_display_name": "Signalrenders",
+        "creator_profile_url": "https://sketchfab.com/Signalrenders"
+    },
+    "filename": "std_afa4df9910334f17a3b27a6e0ccebeb0.glb",
+    "length": 1.743015468120575,
+    "width": 15.226799964904785
+}

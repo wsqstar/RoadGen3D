@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a small, classic A-frame tent with a muted olive green color, designed for temporary outdoor shelter. The tent features a simple triangular profile with two sloping sides meeting at a central ridge, supported by a single visible central pole at the entrance. The fabric appears to be a durable, weather-resistant canvas or synthetic material, with reinforced corners anchored by round, dark stakes or weights. A rectangular patch or flap is visible on one side, likely serving as a ventilation window or access panel. The tent is compact, suitable for one or two people, and is intended for quick setup in urban parks, sidewalks, or emergency situations.",
+    "description": "A compact olive green A-frame tent with a central entrance pole, reinforced corners, and a side ventilation flap. Designed for quick shelter in urban environments.",
+    "description_view_0": "Front angled view showing the sloped side, a rectangular patch near the top, and two corner anchors.",
+    "description_view_1": "Direct entrance view revealing the open triangular doorway and the central supporting pole.",
+    "description_view_2": "Rear angled view displaying the plain back panel with a small flap and two corner anchors.",
+    "description_view_3": "Top-down view highlighting the tent's triangular roof and the side ventilation patch.",
+    "category": "tent",
+    "height": 1.2,
+    "max_dimension": 2.0,
+    "materials": [
+        "fabric",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 4.5,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 20,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "foldable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "entrance flap",
+        "support pole",
+        "corner anchors",
+        "ventilation flap"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "olive green",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 500,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "open triangular flap at the front, supported by a central pole; no visible zipper or mesh screen.",
+    "attribute_number_of_poles": 1,
+    "attribute_guy_line_configuration": "No visible guy lines; tent is anchored at four corners with stakes or weights.",
+    "attribute_ventilation_openings": [
+        "rectangular flap on side panel (likely a ventilation window)"
+    ],
+    "attribute_branding_or_logo": "none",
+    "uid": "d09751c700024b7286cbd047dbd234ca",
+    "near_synsets": {
+        "umbrella_tent.n.01": 0.4726996110775471,
+        "pop_tent.n.01": 0.47972311677491625,
+        "mountain_tent.n.01": 0.48313140945872407,
+        "field_tent.n.01": 0.4846009860507976,
+        "sibley_tent.n.01": 0.4850035966450691,
+        "tent.n.02": -1000.0,
+        "tent.n.01": -1000.0
+    },
+    "synset": "tent.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/d09751c700024b7286cbd047dbd234ca",
+        "creator_username": "coded",
+        "creator_display_name": "coded",
+        "creator_profile_url": "https://sketchfab.com/coded"
+    },
+    "filename": "std_d09751c700024b7286cbd047dbd234ca.glb",
+    "length": 1.9080966711044312,
+    "width": 1.6973190307617188
+}

@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a classic hand grenade, featuring a textured, olive-green metal body with a segmented, pineapple-like pattern for grip. The top section is fitted with a metallic safety lever and a prominent pull ring, both rendered in a silvery-gray finish. A red band encircles the neck just below the fuse assembly, indicating a separation between the main body and the detonation mechanism. The surface shows signs of wear, with scratches and scuffs that suggest prior handling or exposure to rough conditions. The safety lever is secured by a pin, which must be removed to arm the device. The overall design is compact and robust, intended for manual deployment in urban environments.",
+    "description": "A compact, olive-green hand grenade with a textured metal body, silver safety lever, and pull ring, showing signs of wear.",
+    "description_view_0": "The grenade is viewed directly from the side, highlighting the vertical safety lever and the symmetrical, ribbed body.",
+    "description_view_1": "This angle shows the safety lever, pull ring, and the red band around the neck, with the lever extending downward.",
+    "description_view_2": "A front-facing view displays the full width of the grenade, the red band, and the lever and ring aligned to the right.",
+    "description_view_3": "The opposite side reveals the coiled pull ring and the lever, with the body\u2019s textured segments clearly visible.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.12,
+    "materials": [
+        "steel",
+        "aluminum",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.2,
+        0.03,
+        0.02
+    ],
+    "mass": 0.4,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "fuse assembly"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "gray",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the safety pin and releasing the lever, which triggers the internal fuse mechanism.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "42489afe87b9424984617427cdc68553",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.49071573348486386,
+        "grenade.n.01": 0.5118961973628471,
+        "rifle_grenade.n.01": 0.5457700165433368,
+        "pipe_bomb.n.01": 0.5463892769196708,
+        "plastic_bomb.n.01": 0.5515418448013201,
+        "turkey.n.05": -1000.0,
+        "bomb.n.01": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/42489afe87b9424984617427cdc68553",
+        "creator_username": "blueturtle",
+        "creator_display_name": "blueturtle",
+        "creator_profile_url": "https://sketchfab.com/blueturtle"
+    },
+    "filename": "std_42489afe87b9424984617427cdc68553.glb",
+    "length": 0.07091604173183441,
+    "width": 0.06051862612366676
+}

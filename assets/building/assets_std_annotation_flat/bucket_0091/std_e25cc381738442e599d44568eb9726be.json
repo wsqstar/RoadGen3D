@@ -1,0 +1,114 @@
+{
+    "description_long": "This is a rural train station platform scene featuring a wooden station building with a pitched roof, a long raised platform adjacent to a set of railway tracks, and a train partially visible entering or exiting a tunnel through a rocky hill. The platform is bordered by a paved area and surrounded by green grass with a small fenced garden or waiting area nearby. The station building has a chimney and a covered porch, while the platform itself is equipped with benches and signage. The railway tracks run parallel to the platform, and the tunnel entrance is reinforced with stonework. The overall setting suggests a small, countryside train stop with functional amenities for passengers.",
+    "description": "A rural train station platform with a wooden station building, adjacent railway tracks, and a tunnel entrance set in a grassy landscape.",
+    "description_view_0": "Front view showing the station building, the full length of the platform, and the train entering the tunnel.",
+    "description_view_1": "Angled view highlighting the station building's porch, the platform, and the train emerging from the tunnel.",
+    "description_view_2": "Rear view with the platform, train, and tunnel entrance visible, and the station building in the background.",
+    "description_view_3": "View from behind the tunnel, showing the back of the station building and the platform extending toward the tracks.",
+    "category": "platform",
+    "height": 3.5,
+    "max_dimension": 30.0,
+    "materials": [
+        "wood",
+        "concrete",
+        "metal",
+        "stone",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.4,
+        0.25,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "waitable",
+        "boardable",
+        "alightable",
+        "sittable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench",
+        "signage",
+        "door",
+        "porch",
+        "stairs"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "gray",
+        "green",
+        "red",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.3,
+        0.25,
+        0.25,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 20000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_architectural_style": "Vernacular",
+    "attribute_manufacturer_or_brand": "Unknown",
+    "attribute_distinctive_signage": "None",
+    "attribute_unique_ornamentation": "None",
+    "attribute_structural_features": "Raised platform, wooden station building with pitched roof and chimney, covered porch, benches, railway tracks, tunnel entrance with stone reinforcement, small fenced garden area.",
+    "uid": "e25cc381738442e599d44568eb9726be",
+    "near_synsets": {
+        "platform.n.06": 0.4349035784664696,
+        "railway_station.n.01": 0.5002200104624036,
+        "yard.n.07": 0.5232445015766837,
+        "railway_junction.n.01": 0.5233051625734322,
+        "subway_station.n.01": 0.5270540596520445,
+        "platform.n.02": -1000.0,
+        "platform.n.03": -1000.0,
+        "platform.n.01": -1000.0,
+        "platform.n.04": -1000.0,
+        "chopine.n.01": -1000.0
+    },
+    "synset": "platform.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e25cc381738442e599d44568eb9726be",
+        "creator_username": "JamesBrattengeier",
+        "creator_display_name": "JamesBrattengeier",
+        "creator_profile_url": "https://sketchfab.com/JamesBrattengeier"
+    },
+    "filename": "std_e25cc381738442e599d44568eb9726be.glb",
+    "length": 16.258474349975586,
+    "width": 17.008127212524414
+}

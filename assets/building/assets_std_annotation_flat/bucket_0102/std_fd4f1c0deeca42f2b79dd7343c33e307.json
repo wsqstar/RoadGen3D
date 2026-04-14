@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a large, cylindrical blue metal barrel with a flat top and bottom, featuring two prominent horizontal reinforcement bands around its circumference. The barrel has a small circular cap or bung on the top surface, from which a viscous, neon yellow-green liquid appears to be leaking and dripping down the side. One side of the barrel displays a prominent yellow warning label with a black radiation symbol and the word 'RADIOACTIVE', indicating hazardous contents. The surface of the barrel is slightly weathered, with visible scuffs and a matte finish, suggesting outdoor or industrial use. The overall construction appears robust, designed to contain dangerous materials securely.",
+    "description": "A large blue metal barrel with reinforcement bands, a radioactive warning label, and neon yellow-green liquid leaking from the top.",
+    "description_view_0": "The blue barrel is seen from the side, showing its cylindrical shape, reinforcement bands, and the top cap with some yellow-green liquid visible.",
+    "description_view_1": "This view highlights the radioactive warning label and the most prominent streaks of leaking neon yellow-green liquid down the side.",
+    "description_view_2": "The barrel is rotated to show the side opposite the label, with only a small part of the warning label and cap visible.",
+    "description_view_3": "The rear view of the barrel, showing a clean blue surface with reinforcement bands and a hint of the yellow-green cap.",
+    "category": "barrel or bucket",
+    "height": 0.9,
+    "max_dimension": 0.6,
+    "materials": [
+        "steel",
+        "plastic",
+        "liquid",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.08,
+        0.02
+    ],
+    "mass": 60,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cap",
+        "body"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "yellow-green",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.07,
+        0.06,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.8,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "metal hoops",
+    "attribute_labeling_or_markings": "radioactive warning label with symbol and text",
+    "attribute_placement_location": "industrial",
+    "uid": "fd4f1c0deeca42f2b79dd7343c33e307",
+    "near_synsets": {
+        "barrel.n.02": 0.5202946704013139,
+        "barrel.n.03": 0.5349983473706272,
+        "beer_barrel.n.01": 0.5423638086243336,
+        "carboy.n.01": 0.5505077372744248,
+        "barrel.n.05": 0.5511230740751798,
+        "barrel.n.01": -1000.0,
+        "bucket.n.01": -1000.0,
+        "barrel.n.04": -1000.0,
+        "bucket.n.02": -1000.0
+    },
+    "synset": "bucket.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fd4f1c0deeca42f2b79dd7343c33e307",
+        "creator_username": "bronzewood",
+        "creator_display_name": "bronzewood",
+        "creator_profile_url": "https://sketchfab.com/bronzewood"
+    },
+    "filename": "std_fd4f1c0deeca42f2b79dd7343c33e307.glb",
+    "length": 0.6073050498962402,
+    "width": 0.6073053479194641
+}

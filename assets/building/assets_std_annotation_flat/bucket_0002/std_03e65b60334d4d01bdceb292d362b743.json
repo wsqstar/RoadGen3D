@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a towed artillery cannon, featuring a long, cylindrical barrel mounted on a robust carriage with two large spoked wheels. The front of the cannon is protected by a thick, rectangular armored shield, which covers the gun crew from incoming fire. Two long, angled stabilizing legs extend from the rear, providing support and balance during firing, and several artillery shells are positioned nearby. The surface is finished in a dark, weathered camouflage pattern, with visible wear and chipping, suggesting heavy use. The wheels are solid and rugged, designed for mobility over rough terrain, while the barrel and shield are constructed from heavy metal. No visible military markings or insignia are present on the exterior.",
+    "description": "A towed artillery cannon with a long barrel, armored shield, and two large wheels, finished in dark, weathered camouflage. Rear stabilizing legs and nearby shells complete its combat-ready appearance.",
+    "description_view_0": "Side view showing the full length of the barrel, armored shield, large wheel, and both stabilizing legs extended.",
+    "description_view_1": "Front view highlighting the armored shield, the circular barrel opening, and the symmetrical placement of the wheels and stabilizing legs.",
+    "description_view_2": "Opposite side view displaying the barrel, shield, wheel, and the rear stabilizing legs, with visible shell storage.",
+    "description_view_3": "Rear view focusing on the two extended stabilizing legs, the back of the shield, and several artillery shells positioned behind the cannon.",
+    "category": "combat tactical  vehicle",
+    "height": 1.4,
+    "max_dimension": 4.2,
+    "materials": [
+        "steel",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3500,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "rotatable",
+        "loadable",
+        "fireable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "barrel",
+        "shield",
+        "stabilizing leg",
+        "shell holder"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One fixed cannon barrel mounted centrally on the carriage, no additional mounts visible.",
+    "attribute_armor_plating": "Thick, rectangular armored shield covering the front of the cannon, with apparent sloped edges and full frontal coverage.",
+    "attribute_camouflage_pattern": "Dark, mottled camouflage pattern with green, black, and gray tones in irregular patches.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "Two large, solid rubber tires with a rugged tread pattern, suitable for off-road towing.",
+    "uid": "03e65b60334d4d01bdceb292d362b743",
+    "near_synsets": {
+        "tank.n.01": 0.4889811595552872,
+        "military_vehicle.n.01": 0.5072041823543201,
+        "cannon.n.02": 0.5097527992592071,
+        "tank_shell.n.01": 0.512355572356723,
+        "caisson.n.02": 0.5184348391790364,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "caisson.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/03e65b60334d4d01bdceb292d362b743",
+        "creator_username": "aus792",
+        "creator_display_name": "aus792",
+        "creator_profile_url": "https://sketchfab.com/aus792"
+    },
+    "filename": "std_03e65b60334d4d01bdceb292d362b743.glb",
+    "length": 3.416343092918396,
+    "width": 2.411622405052185
+}

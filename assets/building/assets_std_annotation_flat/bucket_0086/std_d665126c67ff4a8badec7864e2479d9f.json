@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a small, rectangular brick building with a corrugated, weathered roof, likely constructed for public use as a toilet facility. The exterior walls are made of aged, whitewashed bricks, showing signs of wear, graffiti, and some exposed red brickwork near the top. The front features two large, rusted metal doors, each with a vented panel above, suggesting separate entrances or stalls. On the side, there are two greenish metal doors, one larger and one smaller, along with a small grated vent and a narrow utility door, indicating possible maintenance or service access. The roof is pitched and covered in corrugated sheets, heavily stained and mossy, with no visible skylights or overhangs. The overall appearance is utilitarian and functional, typical of older public service amenities found in urban or industrial areas.",
+    "description": "A weathered, rectangular brick public toilet building with a corrugated, mossy roof and multiple rusted metal doors. The structure shows signs of age, graffiti, and utilitarian design.",
+    "description_view_0": "Front view showing two large, rusted metal doors with vented panels above, set in a whitewashed brick wall.",
+    "description_view_1": "Side view revealing two greenish metal doors, a small grated vent, a narrow utility door, and graffiti on the brickwork.",
+    "description_view_2": "Rear view similar to the front, with the same two large rusted doors and vented panels, but less visible detail.",
+    "description_view_3": "Opposite side view to view 1, again showing the greenish doors, grated vent, and utility door, with more visible graffiti and weathering.",
+    "category": "public toilets",
+    "height": 3.2,
+    "max_dimension": 7.5,
+    "materials": [
+        "brick",
+        "corrugated metal",
+        "steel",
+        "concrete",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.18,
+        0.15,
+        0.08,
+        0.01,
+        0.03
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "vent",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "green",
+        "brown",
+        "red"
+    ],
+    "colors_composition": [
+        0.45,
+        0.3,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_signage": "none",
+    "attribute_door_type": "swinging",
+    "attribute_ventilation_features": "vented panels above main doors, small grated vent on side wall",
+    "attribute_accessibility_features": "none",
+    "attribute_roof_structure": "Pitched corrugated metal roof, heavily weathered, with no visible skylights or overhangs",
+    "uid": "d665126c67ff4a8badec7864e2479d9f",
+    "near_synsets": {
+        "men's_room.n.01": 0.5341790794007624,
+        "public_toilet.n.01": 0.5346280223876394,
+        "latrine.n.01": 0.5452944114928985,
+        "washroom.n.01": 0.5537362934314529,
+        "toilet.n.01": 0.565356218157598,
+        "gutter.n.02": -1000.0,
+        "toilet.n.02": -1000.0,
+        "toilet.n.04": -1000.0
+    },
+    "synset": "public_toilet.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d665126c67ff4a8badec7864e2479d9f",
+        "creator_username": "Tim0",
+        "creator_display_name": "Yury Misiyuk",
+        "creator_profile_url": "https://sketchfab.com/Tim0"
+    },
+    "filename": "std_d665126c67ff4a8badec7864e2479d9f.glb",
+    "length": 8.232300281524658,
+    "width": 5.21575927734375
+}

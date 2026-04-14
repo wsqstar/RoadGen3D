@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a large, industrial refrigerated shipping container, commonly known as a reefer container, branded with the Maersk logo and signature blue star. The container is constructed from corrugated metal panels, with reinforced corners and a robust frame for stacking and transport. One end features heavy-duty double doors with locking mechanisms and visible Maersk branding, while the opposite end houses a refrigeration unit with vents, control panels, and warning labels. The sides are mostly plain, except for the prominent Maersk logo and some minor rust and weathering, indicating outdoor use. The container's surface is predominantly white, with blue and black accents, and shows signs of wear typical for shipping containers. This type of container is designed for secure, temperature-controlled transport and storage of goods in urban ports, industrial areas, or along transport routes.",
+    "description": "A large, white Maersk-branded refrigerated shipping container with a refrigeration unit on one end and double locking doors on the other. The container is made of corrugated metal, features industrial markings, and shows signs of outdoor use.",
+    "description_view_0": "The refrigeration unit end is visible, showing vents, control panels, and technical markings.",
+    "description_view_1": "The long side displays the large Maersk logo and some weathering, with no visible doors or openings.",
+    "description_view_2": "The double-door end is shown, featuring locking bars, handles, and Maersk branding.",
+    "description_view_3": "The opposite long side is visible, also showing the Maersk logo and some rust, similar to view 1.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.01,
+        0.03
+    ],
+    "mass": 3500,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 9,
+    "movable": true,
+    "required_force": 15000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "locking bar",
+        "refrigeration unit control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "black",
+        "gray",
+        "yellow",
+        "rust"
+    ],
+    "colors_composition": [
+        0.85,
+        0.07,
+        0.03,
+        0.03,
+        0.01,
+        0.01
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "large printed Maersk logo and star on both sides, technical markings and serial numbers on doors and refrigeration unit, some warning labels",
+    "attribute_handles_or_grips": "four vertical locking bars with integrated handles on the double doors",
+    "attribute_placement_location": "outdoor ground, shipping yard, industrial site, or transport vehicle",
+    "uid": "3888d8f550654cbcb1dfe72180465d54",
+    "near_synsets": {
+        "container.n.01": 0.4863348439379256,
+        "cargo_container.n.01": 0.49216467258422214,
+        "container_ship.n.01": 0.5409569176177902,
+        "shipping_room.n.01": 0.5532568825862463,
+        "drum.n.04": 0.555961376699959
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3888d8f550654cbcb1dfe72180465d54",
+        "creator_username": "minego90",
+        "creator_display_name": "Aumentados",
+        "creator_profile_url": "https://sketchfab.com/minego90"
+    },
+    "filename": "std_3888d8f550654cbcb1dfe72180465d54.glb",
+    "length": 5.77152419090271,
+    "width": 2.680409073829651
+}

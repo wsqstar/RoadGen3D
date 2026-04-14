@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a large, rectangular blue shipping container constructed from corrugated steel panels, commonly used for freight and storage. The front side features double doors with vertical locking bars, heavy-duty hinges, and several warning and identification labels, including a United Nations emblem. The sides are ribbed for structural strength, with one side prominently displaying the 'United Nations' logo in white. The top is flat and ribbed, suitable for stacking or supporting additional weight. The container shows signs of weathering and minor rust, indicating outdoor use. Its robust build and secure locking mechanism make it ideal for transporting or storing valuable goods in urban or industrial environments.",
+    "description": "A large blue corrugated steel shipping container with double locking doors and United Nations markings, designed for secure storage or transport.",
+    "description_view_0": "Front view showing double doors with locking bars, hinges, and various labels including the United Nations emblem.",
+    "description_view_1": "Side view displaying the ribbed steel surface with no visible openings or markings except for minor text.",
+    "description_view_2": "End view showing a plain ribbed steel panel with no doors or markings.",
+    "description_view_3": "Opposite side view featuring the large 'United Nations' logo and emblem in white on the ribbed blue surface.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.92,
+        0.07,
+        0.01
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 15000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking bar",
+        "hinge",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.92,
+        0.06,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "white United Nations logo and text on one side, warning and identification labels on the front doors",
+    "attribute_handles_or_grips": "four vertical locking bars with integrated handles on the front doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "86c65d515bdd41339e321a6bea424bf9",
+    "near_synsets": {
+        "container.n.01": 0.43936065619491144,
+        "cargo_container.n.01": 0.47382357359129523,
+        "container_ship.n.01": 0.5156165988025558,
+        "box.n.01": 0.5195484265322169,
+        "packing_box.n.02": 0.5211093976450963
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/86c65d515bdd41339e321a6bea424bf9",
+        "creator_username": "denzZ3D",
+        "creator_display_name": "Denis Zapadenko",
+        "creator_profile_url": "https://sketchfab.com/denzZ3D"
+    },
+    "filename": "std_86c65d515bdd41339e321a6bea424bf9.glb",
+    "length": 5.569846153259277,
+    "width": 2.259204864501953
+}

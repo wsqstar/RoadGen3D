@@ -1,0 +1,103 @@
+{
+    "description_long": "This object consists of two heavily damaged, abandoned sedans positioned side by side. Both vehicles are missing their wheels, with the undercarriages exposed and resting on the ground. The exteriors are primarily light gray, with one sedan featuring a darker hood and the other a more uniform color. The interiors are gutted, with visible debris and missing seats, and the windows are either broken or missing entirely. The cars show signs of rust, wear, and overgrowth, suggesting long-term neglect in an outdoor urban environment. The rear and front bumpers are partially detached, and there are no visible license plates.",
+    "description": "Two abandoned, wheel-less sedans with gutted interiors and damaged exteriors, showing signs of rust and neglect.",
+    "description_view_0": "Side view showing both sedans, highlighting missing wheels, broken windows, and exposed interiors.",
+    "description_view_1": "Front angled view revealing the damaged front ends, missing headlights, and a darker hood on the right sedan.",
+    "description_view_2": "Rear angled view displaying the back windows, missing rear wheels, and more visible rust and debris.",
+    "description_view_3": "Direct rear view showing the back of both sedans, missing license plates, and overgrown vegetation beneath.",
+    "category": "sedan",
+    "height": 1.4,
+    "max_dimension": 4.2,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.05,
+        0.02,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 9000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "hood",
+        "trunk",
+        "steering wheel",
+        "seat frame"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "dark gray",
+        "black",
+        "rust brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_number_of_doors": 8,
+    "attribute_license_plate": "none",
+    "attribute_wheel_design": "unknown",
+    "uid": "541d954fe91c44fc9aa2ced4e3d4e3b7",
+    "near_synsets": {
+        "boneshaker.n.01": 0.5552049921612818,
+        "used-car.n.01": 0.5606758671158948,
+        "bus.n.04": 0.5627118053730962,
+        "sedan.n.01": 0.5642086077700875,
+        "disrepair.n.01": 0.5706821702745141,
+        "sedan.n.02": -1000.0
+    },
+    "synset": "sedan.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/541d954fe91c44fc9aa2ced4e3d4e3b7",
+        "creator_username": "kryik1023",
+        "creator_display_name": "Renafox",
+        "creator_profile_url": "https://sketchfab.com/kryik1023"
+    },
+    "filename": "std_541d954fe91c44fc9aa2ced4e3d4e3b7.glb",
+    "length": 4.027873277664185,
+    "width": 3.7759186029434204
+}

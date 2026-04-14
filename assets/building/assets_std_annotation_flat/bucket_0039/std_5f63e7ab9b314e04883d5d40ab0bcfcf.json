@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a realistic yellow tulip flower with a smooth, cup-shaped bloom composed of overlapping petals. The petals are soft and slightly translucent, with gentle gradients of yellow and cream, and subtle veining visible on their surfaces. The flower is supported by a slender, green stem that extends vertically and is accompanied by a single, broad, ovate leaf near its base. The leaf is a vibrant green, with a smooth texture and a central vein running through its length. The overall form is elegant and upright, typical of tulips found in urban parks, gardens, or roadside planters. The flower's structure is simple yet refined, making it a visually appealing element in landscaped environments.",
+    "description": "A yellow tulip flower with overlapping petals, a slender green stem, and a single broad leaf near the base. The bloom is cup-shaped and visually delicate.",
+    "description_view_0": "Front view showing the tulip's cup-shaped bloom and the broad, ovate leaf directly beneath the flower.",
+    "description_view_1": "Side view highlighting the smooth curvature of the petals and the single leaf extending outward from the stem.",
+    "description_view_2": "Rear view displaying the back of the bloom and the full shape of the leaf at the base of the stem.",
+    "description_view_3": "Angled view showing the overlapping petals and the leaf's attachment to the stem.",
+    "category": "flower",
+    "height": 0.35,
+    "max_dimension": 0.35,
+    "materials": [
+        "plant_tissue",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 0.025,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 0.2,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pluckable",
+        "bendable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "petal",
+        "stem",
+        "leaf"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "yellow",
+        "green"
+    ],
+    "colors_composition": [
+        0.6,
+        0.4
+    ],
+    "surface_hardness": "soft",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.38,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.1,
+    "asset_composition_type": "single",
+    "attribute_petal_arrangement": "The petals are arranged in a whorled, overlapping configuration, forming a cup-like structure with radial symmetry typical of tulips. The petals are layered, with some partially covering others, creating a smooth, continuous bloom.",
+    "attribute_number_of_petals": 6,
+    "attribute_stem_presence": true,
+    "attribute_leaf_shape": "ovate",
+    "attribute_flower_location": "terminal",
+    "uid": "5f63e7ab9b314e04883d5d40ab0bcfcf",
+    "near_synsets": {
+        "tulip.n.01": 0.4662405803097648,
+        "lady_tulip.n.01": 0.4858240583711436,
+        "tulip_bed.n.01": 0.49556814945027183,
+        "cottage_tulip.n.01": 0.49819934508955527,
+        "darwin_tulip.n.01": 0.5060896567708408,
+        "flower.n.01": -1000.0,
+        "flower.n.02": -1000.0,
+        "flower.n.03": -1000.0
+    },
+    "synset": "flower.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5f63e7ab9b314e04883d5d40ab0bcfcf",
+        "creator_username": "Ingenuitee",
+        "creator_display_name": "Ingenuitee",
+        "creator_profile_url": "https://sketchfab.com/Ingenuitee"
+    },
+    "filename": "std_5f63e7ab9b314e04883d5d40ab0bcfcf.glb",
+    "length": 0.10080842301249504,
+    "width": 0.09436440095305443
+}

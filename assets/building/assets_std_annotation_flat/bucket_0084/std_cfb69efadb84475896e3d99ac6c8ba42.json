@@ -1,0 +1,103 @@
+{
+    "description_long": "This humanoid robot features a robust, industrial design with a predominantly red, weathered exterior and a broad, barrel-shaped torso. Its upper body is wide and rounded, with two large, spherical shoulder joints connecting to thick, cylindrical arms that end in conical lower segments. The robot stands on two sturdy, mechanical legs with wide, flat feet, each foot having multiple articulated toes for stability. The front of the torso displays two large, circular black elements resembling camera lenses or sensors, and a green, translucent panel at the top center marked with 'WARNING.' The surface is marked by scratches, scuffs, and signs of wear, suggesting heavy use in urban environments. The overall appearance is utilitarian, with visible mechanical joints and reinforced plating, giving it a formidable and functional presence.",
+    "description": "A red, heavily-armored humanoid robot with a broad torso, large spherical shoulders, and thick mechanical limbs, featuring prominent sensors and a green warning panel on its chest.",
+    "description_view_0": "Front view showing the robot's wide torso, two large black sensors, green warning panel, and articulated legs and feet.",
+    "description_view_1": "Side view highlighting the cylindrical arm, spherical shoulder joint, and the depth of the torso, with one leg and foot visible.",
+    "description_view_2": "Rear view displaying the robot's back plating, shoulder joints, and the mechanical structure of the legs and feet.",
+    "description_view_3": "Opposite side view showing the other arm and shoulder, with similar features to view 1 but mirrored.",
+    "category": "humanoid robot",
+    "height": 1.6,
+    "max_dimension": 2.0,
+    "materials": [
+        "painted steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air",
+        "electronics"
+    ],
+    "materials_composition": [
+        0.7,
+        0.05,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "sensor panel",
+        "arms",
+        "legs",
+        "feet",
+        "green warning panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "green",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both legs planted firmly, arms slightly angled outward at the shoulders, and torso facing forward.",
+    "attribute_clothing_style": "Unclothed; exterior consists of integrated red-painted metal panels with some black and green accent components.",
+    "attribute_facial_features": "No traditional facial features; front of torso has two large circular black sensors resembling eyes and a green warning panel, but lacks a mouth or nose.",
+    "attribute_limb_articulation": "Arms and legs each have visible hinge and rotary joints at the shoulders, elbows, hips, and knees, allowing for a moderate range of motion; feet have multiple articulated toes.",
+    "attribute_presence_of_sensors": "Two large circular sensors on the front torso, likely cameras or visual sensors; possible additional sensors integrated into the green warning panel.",
+    "uid": "cfb69efadb84475896e3d99ac6c8ba42",
+    "near_synsets": {
+        "android.n.01": 0.5336030295447952,
+        "cyborg.n.01": 0.5419795457967086,
+        "robotics_equipment.n.01": 0.546268903337935,
+        "automaton.n.02": 0.5704162786039914,
+        "robotics.n.01": 0.5803090320896338
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cfb69efadb84475896e3d99ac6c8ba42",
+        "creator_username": "Pavus_The_Pug",
+        "creator_display_name": "Rhett Wimmer",
+        "creator_profile_url": "https://sketchfab.com/Pavus_The_Pug"
+    },
+    "filename": "std_cfb69efadb84475896e3d99ac6c8ba42.glb",
+    "length": 0.7804973125457764,
+    "width": 1.874991536140442
+}

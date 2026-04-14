@@ -1,0 +1,93 @@
+{
+    "description_long": "This humanoid robot features a sleek, modern design with a predominantly white exterior accented by black and gray elements. Its legs are robust and angular, with defined knee and ankle joints, and the feet are broad and flat, suggesting stability and support for bipedal locomotion. The robot's lower limbs are segmented, with visible articulation points at the knees and ankles, and the feet have a geometric, almost shoe-like appearance. The surface finish is smooth and slightly glossy, giving the robot a polished, high-tech look. There are no visible clothing elements, and the robot's design appears to be fully integrated with no external accessories. No facial features or sensors are visible in these views, and the upper body, arms, and head are not shown.",
+    "description": "A sleek, white humanoid robot with angular, articulated legs and broad, geometric feet, featuring smooth surfaces and black accents.",
+    "description_view_0": "The robot's left leg and foot are most visible, showing the angular design and black sole detail.",
+    "description_view_1": "The right leg and foot are prominent, with the inner side of the foot and ankle joint clearly visible.",
+    "description_view_2": "Both feet are visible from the front, highlighting the symmetry and broad, flat soles.",
+    "description_view_3": "The rear and outer side of the left leg and foot are visible, showing the heel and back of the ankle.",
+    "category": "humanoid robot",
+    "height": 0.45,
+    "max_dimension": 0.45,
+    "materials": [
+        "plastic",
+        "metal",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "mass": 8,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "foot",
+        "ankle joint",
+        "knee joint"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is standing upright with both legs straight and feet flat on the ground, arms and upper body not visible.",
+    "attribute_clothing_style": "No clothing or decorative coverings; the robot has integrated panels with a smooth, high-tech finish.",
+    "attribute_facial_features": "No facial features are visible; the head and upper body are not shown in these views.",
+    "attribute_limb_articulation": "Visible hinge joints at the knees and ankles, allowing for bending and rotation; limbs appear rigid with defined articulation points.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "4950c65060a14df686242f96c44637e8",
+    "near_synsets": {
+        "android.n.01": 0.5207369667343335,
+        "automaton.n.02": 0.553261956939251,
+        "cyborg.n.01": 0.5551387580789521,
+        "robotics_equipment.n.01": 0.5585190796098927,
+        "robotics.n.01": 0.568756793606363
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/4950c65060a14df686242f96c44637e8",
+        "creator_username": "stevencmutter",
+        "creator_display_name": "stevencmutter",
+        "creator_profile_url": "https://sketchfab.com/stevencmutter"
+    },
+    "filename": "std_4950c65060a14df686242f96c44637e8.glb",
+    "length": 0.44132474064826965,
+    "width": 0.5310275051742792
+}

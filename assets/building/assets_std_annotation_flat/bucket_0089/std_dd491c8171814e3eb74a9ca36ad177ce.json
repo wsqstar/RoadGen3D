@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a medium-sized urban bridge constructed primarily from concrete, featuring a gently curved deck and robust sidewalls. The bridge is supported by a series of solid, rectangular piers and has a flat walking surface paved with stone or concrete tiles. Along both sides, there are simple wooden railings supported by evenly spaced vertical posts, providing safety for pedestrians. The bridge's design is utilitarian, with minimal decorative elements, focusing on function and durability. The surface appears slightly textured, likely to provide traction and prevent slipping. The overall color palette is dominated by shades of gray from the concrete and brown from the wooden railings.",
+    "description": "A curved concrete bridge with stone paving and simple wooden railings, designed for urban pedestrian use. The structure is robust and utilitarian, with a textured walking surface and minimal ornamentation.",
+    "description_view_0": "Front view showing the full curved span, stone paving, and both wooden railings.",
+    "description_view_1": "Side view highlighting the thickness of the bridge deck and the solid concrete sidewalls.",
+    "description_view_2": "Rear view mirroring the front, displaying the curve, paving, and railings.",
+    "description_view_3": "Opposite side view, again emphasizing the deck's thickness and sidewall structure.",
+    "category": "bridge",
+    "height": 1.2,
+    "max_dimension": 10.0,
+    "materials": [
+        "concrete",
+        "wood",
+        "stone",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "protective"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "railing"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "bicycle"
+    ],
+    "colors": [
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_support_type": "beam",
+    "attribute_railing_design": "wooden posts with horizontal wooden rails, simple and functional",
+    "attribute_arch_presence": false,
+    "attribute_lighting_fixtures": [],
+    "attribute_architectural_style": "utilitarian",
+    "uid": "dd491c8171814e3eb74a9ca36ad177ce",
+    "near_synsets": {
+        "footbridge.n.01": 0.47859619472502374,
+        "bridge.n.01": 0.5018848274585771,
+        "steel_arch_bridge.n.01": 0.5101315648931314,
+        "trestle_bridge.n.01": 0.5150383559243079,
+        "bridge.n.03": 0.5211696581203826,
+        "bridge.n.09": -1000.0,
+        "bridge.n.05": -1000.0,
+        "bridge.n.02": -1000.0,
+        "bridge.n.07": -1000.0,
+        "bridge.n.06": -1000.0,
+        "bridge.n.04": -1000.0,
+        "bridge.n.08": -1000.0
+    },
+    "synset": "bridge.n.08",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dd491c8171814e3eb74a9ca36ad177ce",
+        "creator_username": "JaradFraser",
+        "creator_display_name": "Jarad Fraser",
+        "creator_profile_url": "https://sketchfab.com/JaradFraser"
+    },
+    "filename": "std_dd491c8171814e3eb74a9ca36ad177ce.glb",
+    "length": 0.46716316044330597,
+    "width": 1.864013671875
+}

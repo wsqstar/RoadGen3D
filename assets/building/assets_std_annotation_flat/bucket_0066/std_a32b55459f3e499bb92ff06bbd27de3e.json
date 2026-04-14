@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a traditional manual grinding wheel mounted on a sturdy wooden frame. The main component is a large, circular stone wheel, which is held horizontally and supported by a robust wooden structure with angled legs for stability. A metal crank handle is attached to one side, allowing the user to rotate the grinding stone by hand. The axle and mounting hardware are made of metal, with visible bolts and brackets securing the wheel in place. The wood frame shows some wear and patina, suggesting frequent use, and the grinding stone has a slightly rough, textured surface. This type of grinder is typically used for sharpening tools or blades in urban workshops, garages, or maintenance areas.",
+    "description": "A manually operated grinding wheel with a large stone disk mounted on a wooden frame and a metal crank handle. The structure is robust, with visible metal hardware and a weathered finish.",
+    "description_view_0": "Front view showing the circular grinding stone centered within the wooden frame, with the crank handle partially visible.",
+    "description_view_1": "Side view highlighting the thickness of the stone wheel, the full length of the metal crank handle, and the supporting wooden legs.",
+    "description_view_2": "Rear view mirroring the front, with the stone wheel and frame visible but the crank handle less prominent.",
+    "description_view_3": "Opposite side view showing the other end of the axle and the wooden frame, with the crank handle on the far side.",
+    "category": "grinder",
+    "height": 0.8,
+    "max_dimension": 1.2,
+    "materials": [
+        "wood",
+        "stone",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "axle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 10000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_power_source": "manual",
+    "attribute_handle_design": "The handle is a single, straight metal crank attached to the axle on one side of the grinder, positioned for easy manual rotation. It appears simple, with no visible ergonomic grip or textured surface.",
+    "attribute_grinding_mechanism_visibility": "fully visible",
+    "attribute_brand_logo": "absent",
+    "attribute_safety_guard_presence": false,
+    "uid": "a32b55459f3e499bb92ff06bbd27de3e",
+    "near_synsets": {
+        "grinder.n.04": 0.44894699613387595,
+        "grindstone.n.01": 0.47727316021426386,
+        "grinding_wheel.n.01": 0.49979591081735236,
+        "meat_grinder.n.01": 0.5013149591766991,
+        "mill.n.04": 0.5189889379452409,
+        "bomber.n.03": -1000.0,
+        "molar.n.01": -1000.0
+    },
+    "synset": "meat_grinder.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a32b55459f3e499bb92ff06bbd27de3e",
+        "creator_username": "ArTavo",
+        "creator_display_name": "tavoxel",
+        "creator_profile_url": "https://sketchfab.com/ArTavo"
+    },
+    "filename": "std_a32b55459f3e499bb92ff06bbd27de3e.glb",
+    "length": 0.6452748775482178,
+    "width": 1.1317927837371826
+}

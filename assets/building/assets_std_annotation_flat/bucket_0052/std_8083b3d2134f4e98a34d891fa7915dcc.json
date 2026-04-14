@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a portable public toilet unit, commonly seen in urban environments such as parks, construction sites, and outdoor events. The structure is primarily rectangular with a slightly domed, light gray roof and a blue body. The front features a door with a handle and a molded panel design, while the rear and sides have vented panels for airflow. The base is wide and flat, providing stability, and the overall surface shows signs of weathering and use. The materials appear to be mostly molded plastic, designed for durability and easy cleaning, with some metal components for the door handle and hinges.",
+    "description": "A blue and gray portable public toilet with a domed roof, vented panels, and a front door with a handle. The structure is sturdy, weathered, and designed for urban outdoor use.",
+    "description_view_0": "The side view shows blue vented panels and a flat base, with no visible door or handle.",
+    "description_view_1": "The front view displays the main entry door with a handle and molded panel details, framed by a blue border.",
+    "description_view_2": "The opposite side view mirrors view 0, showing blue vented panels and a flat base.",
+    "description_view_3": "The rear view features a solid blue panel with no door or handle, framed by a blue border.",
+    "category": "public toilets",
+    "height": 2.2,
+    "max_dimension": 2.2,
+    "materials": [
+        "plastic",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 90,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "vent"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "blue",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_signage": "none",
+    "attribute_door_type": "swinging",
+    "attribute_ventilation_features": "vented panels on the sides and rear",
+    "attribute_accessibility_features": "none",
+    "attribute_roof_structure": "Slightly domed, molded plastic roof with no visible skylights or overhangs",
+    "uid": "8083b3d2134f4e98a34d891fa7915dcc",
+    "near_synsets": {
+        "public_toilet.n.01": 0.48740156484975655,
+        "latrine.n.01": 0.5278220540995487,
+        "men's_room.n.01": 0.5336964101063143,
+        "toilet.n.01": 0.5367827360433417,
+        "toilet.n.02": 0.5444995478477146,
+        "toilet.n.04": -1000.0,
+        "gutter.n.02": -1000.0
+    },
+    "synset": "public_toilet.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8083b3d2134f4e98a34d891fa7915dcc",
+        "creator_username": "berkgedik",
+        "creator_display_name": "Berk Gedik",
+        "creator_profile_url": "https://sketchfab.com/berkgedik"
+    },
+    "filename": "std_8083b3d2134f4e98a34d891fa7915dcc.glb",
+    "length": 1.2954281568527222,
+    "width": 1.2792868614196777
+}

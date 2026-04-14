@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a large, towed anti-aircraft artillery piece with a long barrel and a robust, angular chassis. The vehicle features four large rubber tires for mobility, with two on each side, and a central towing arm at the front. The main gun is mounted centrally, flanked by mechanical sighting and targeting apparatus, and surrounded by various levers, seats, and control wheels for operators. The structure is predominantly metallic, with visible bolts, brackets, and reinforced plates, and the surface shows signs of weathering and use. The gun mount includes stabilizing arms that can be deployed for firing, and the overall design is utilitarian, prioritizing function over comfort. The coloration is a faded, matte gray-blue, with no visible camouflage or military insignia.",
+    "description": "A large, towed anti-aircraft artillery piece with a long barrel, four rubber tires, and a robust, weathered metallic chassis. The vehicle is painted in a faded gray-blue and features operator seats, control wheels, and stabilizing arms.",
+    "description_view_0": "Front view showing the towing arm, two large tires, and the central gun barrel flanked by operator seats and control wheels.",
+    "description_view_1": "Side view highlighting the full length of the gun barrel, all four tires, stabilizing arms, and the detailed mechanical structure of the chassis.",
+    "description_view_2": "Rear view displaying the back of the gun mount, operator positions, and the symmetrical arrangement of the tires and control apparatus.",
+    "description_view_3": "Opposite side view showing the gun barrel, tires, and the mechanical complexity of the mounting and targeting systems.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pushable",
+        "pullable",
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "towing arm",
+        "control wheel",
+        "operator seat",
+        "stabilizing arm",
+        "gun barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray-blue",
+        "black",
+        "rust-brown"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large central cannon mounted on a rotating base, with visible mechanical targeting and stabilization arms.",
+    "attribute_armor_plating": "No dedicated armor plating visible; the structure is composed of thick, exposed metal components with no additional armored panels.",
+    "attribute_camouflage_pattern": "None visible; the vehicle is painted in a solid, faded gray-blue color.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Four large rubber tires with a moderate tread pattern, suitable for mixed terrain; no special reinforcements or chains visible.",
+    "uid": "838269e600b14b17bf3f7d60bf23ef73",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.49325857457757755,
+        "assault_gun.n.02": 0.49965612101431855,
+        "tank.n.01": 0.5101960990817936,
+        "tank_destroyer.n.01": 0.5269087467257996,
+        "reconnaissance_vehicle.n.01": 0.5284263651427091,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/838269e600b14b17bf3f7d60bf23ef73",
+        "creator_username": "artfletch",
+        "creator_display_name": "artfletch",
+        "creator_profile_url": "https://sketchfab.com/artfletch"
+    },
+    "filename": "std_838269e600b14b17bf3f7d60bf23ef73.glb",
+    "length": 5.263152837753296,
+    "width": 2.764245390892029
+}

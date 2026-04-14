@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a pump-action shotgun featuring a long, cylindrical barrel with a tubular magazine running parallel beneath it. The stock and fore-end are made of wood, providing a classic appearance and ergonomic grip. The receiver and barrel are constructed from dark metal, with the receiver housing the trigger mechanism and a visible ejection port. The fore-end is ribbed for improved grip and is designed to be pumped back and forth to chamber rounds. The trigger guard is rounded and encloses the trigger, offering protection and ease of access. The overall design is robust and utilitarian, suitable for use in urban environments such as law enforcement or home defense.",
+    "description": "A pump-action shotgun with a wooden stock and fore-end, dark metal barrel, and a rounded trigger guard. The design is classic and functional, with a ribbed fore-end and tubular magazine.",
+    "description_view_0": "Side view showing the full length of the shotgun, including the wooden stock, ribbed fore-end, tubular magazine, and rounded trigger guard.",
+    "description_view_1": "Front view displaying the circular muzzle of the barrel and the alignment of the tubular magazine beneath it.",
+    "description_view_2": "Opposite side view mirroring view 0, highlighting the same features from the other side.",
+    "description_view_3": "Rear view showing the butt of the wooden stock and the alignment of the barrel and magazine tube.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "pumpable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "fore-end",
+        "barrel",
+        "trigger",
+        "trigger guard",
+        "pump",
+        "magazine tube"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel with a tubular magazine beneath; no visible ribbing or venting on the barrel",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with a smooth contour and no visible finger grooves or reinforcement",
+    "uid": "cf28a90d832e416e905f946bb42915d4",
+    "near_synsets": {
+        "pump_action.n.01": 0.47151159444514695,
+        "sawed-off_shotgun.n.01": 0.5324185962018745,
+        "shotgun.n.01": 0.5366746865528541,
+        "stock.n.03": 0.5556408413542733,
+        "gas_gun.n.01": 0.5615776536223943
+    },
+    "synset": "shotgun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cf28a90d832e416e905f946bb42915d4",
+        "creator_username": "space_potato",
+        "creator_display_name": "space_potato",
+        "creator_profile_url": "https://sketchfab.com/space_potato"
+    },
+    "filename": "std_cf28a90d832e416e905f946bb42915d4.glb",
+    "length": 0.9714132249355316,
+    "width": 0.04026985168457031
+}

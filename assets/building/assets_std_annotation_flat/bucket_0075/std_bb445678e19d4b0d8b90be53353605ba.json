@@ -1,0 +1,92 @@
+{
+    "description_long": "This object is a modern, tactical-style shotgun with a compact, angular design and a matte black finish. It features a prominent, skeletonized stock at the rear, which is integrated into the frame for reduced weight and increased maneuverability. The receiver is boxy and robust, with a top-mounted Picatinny rail for optics or accessories. The barrel is relatively short and lacks visible ribbing or venting, contributing to the weapon's compact profile. The foregrip is vertical and squared, providing a stable grip for the user, while the trigger guard is large and rectangular, allowing for gloved operation. The overall design suggests a focus on urban tactical use, with minimal decorative elements and a utilitarian aesthetic.",
+    "description": "A compact, tactical shotgun with a skeletonized stock, short barrel, and matte black finish, designed for urban use. Features include a top rail, vertical foregrip, and a large rectangular trigger guard.",
+    "description_view_0": "Side view showing the skeletonized stock, boxy receiver, short barrel, and vertical foregrip.",
+    "description_view_1": "Front view highlighting the barrel opening, top rail, and the symmetrical alignment of the stock and foregrip.",
+    "description_view_2": "Opposite side view, mirroring the skeletonized stock and compact receiver, with clear visibility of the foregrip and trigger guard.",
+    "description_view_3": "Rear view displaying the open structure of the stock and the alignment of the receiver and barrel.",
+    "category": "shotgun",
+    "height": 0.25,
+    "max_dimension": 0.8,
+    "materials": [
+        "polymer",
+        "steel",
+        "aluminum",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "foregrip",
+        "trigger",
+        "trigger guard",
+        "barrel",
+        "top rail"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, short with no visible ribbing or venting",
+    "attribute_stock_type": "skeletonized stock",
+    "attribute_action_mechanism": "semi-automatic",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rectangular, large, and elongated with a squared profile",
+    "uid": "bb445678e19d4b0d8b90be53353605ba",
+    "near_synsets": {
+        "sawed-off_shotgun.n.01": 0.5072696630859459,
+        "shotgun.n.01": 0.5238508536016906,
+        "pump_action.n.01": 0.5440031078029072,
+        "stock.n.03": 0.5475897164018895,
+        "shotgun_shell.n.01": 0.5548375448707168
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bb445678e19d4b0d8b90be53353605ba",
+        "creator_username": "TomorrowWe",
+        "creator_display_name": "Tomorrow",
+        "creator_profile_url": "https://sketchfab.com/TomorrowWe"
+    },
+    "filename": "std_bb445678e19d4b0d8b90be53353605ba.glb",
+    "length": 0.48737986385822296,
+    "width": 0.0500335693359375
+}

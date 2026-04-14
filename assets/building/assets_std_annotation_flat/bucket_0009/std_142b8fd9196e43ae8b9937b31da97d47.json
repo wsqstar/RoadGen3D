@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a medium-sized, rounded rectangular parcel box with a fitted lid, featuring a dark blue fabric exterior adorned with large, evenly spaced brown polka dots. The box has visible stitched seams along the edges, giving it a crafted, textile appearance. On one side, there is a metallic rectangular label holder, likely for identification or address labeling. Two sides of the box display a vertical row of metallic rivets or snap fasteners, suggesting a reinforced or possibly openable seam. The lid fits snugly over the top, with the same polka dot pattern continuing seamlessly. The overall construction suggests it is lightweight, portable, and designed for storing or transporting items in an urban environment.",
+    "description": "A dark blue, fabric-covered parcel box with brown polka dots, stitched seams, and a metallic label holder. The box features a fitted lid and reinforced sides with metallic rivets.",
+    "description_view_0": "Front view showing the polka dot pattern and stitched seams, with no visible label or rivets.",
+    "description_view_1": "Side view displaying a vertical row of metallic rivets along the seam, with the polka dot pattern and stitched edges.",
+    "description_view_2": "Rear view featuring the metallic label holder centered on the side, with the polka dot pattern and stitched seams.",
+    "description_view_3": "Opposite side view with another vertical row of metallic rivets, mirroring view 1, and the same polka dot pattern.",
+    "category": "parcels",
+    "height": 0.28,
+    "max_dimension": 0.38,
+    "materials": [
+        "fabric",
+        "cardboard",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.05,
+        0.15
+    ],
+    "mass": 0.7,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 7,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "labelable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "label holder",
+        "rivet seam"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark blue",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 300,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.1,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "",
+    "attribute_car_model": "",
+    "attribute_building_number": "",
+    "attribute_storefront_signage": "",
+    "attribute_street_name": "",
+    "uid": "142b8fd9196e43ae8b9937b31da97d47",
+    "near_synsets": {
+        "box.n.01": 0.5386383841684785,
+        "package.n.02": 0.5404760229619415,
+        "packing_box.n.02": 0.5411546292871904,
+        "packaging.n.03": 0.5498389532255337,
+        "parcel_post.n.01": 0.5541511570220797,
+        "package.n.01": -1000.0,
+        "parcel.n.02": -1000.0,
+        "tract.n.01": -1000.0
+    },
+    "synset": "box.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/142b8fd9196e43ae8b9937b31da97d47",
+        "creator_username": "Raffey",
+        "creator_display_name": "Raphael Escamilla",
+        "creator_profile_url": "https://sketchfab.com/Raffey"
+    },
+    "filename": "std_142b8fd9196e43ae8b9937b31da97d47.glb",
+    "length": 0.4246387183666229,
+    "width": 0.424584299325943
+}

@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a heavily armored, tracked combat vehicle with a low, angular profile and a dark green exterior. The vehicle features two prominent continuous tracks running along each side, providing robust mobility over rough terrain. Its body is covered in riveted armor plating, with visible bolts and reinforced panels, especially on the front and sides. There are two forward-facing gun barrels protruding from the front, suggesting offensive capability, and several smaller ports and hatches along the sides. The top of the vehicle is flat and angular, with no visible turret, and the rear is similarly armored with additional access panels. The overall design is utilitarian, prioritizing protection and firepower.",
+    "description": "A dark green, heavily armored tracked combat vehicle with dual forward-facing gun barrels and riveted plating. Its angular, low-profile body is built for protection and mobility.",
+    "description_view_0": "Side view showing the full length of the tracks, riveted armor plating, and side-mounted hatches and ports.",
+    "description_view_1": "Front view highlighting the two forward-facing gun barrels, sloped armor, and the wide stance of the tracks.",
+    "description_view_2": "Opposite side view similar to view 0, with visible side details and access panels.",
+    "description_view_3": "Rear view displaying the back armor, two rectangular exhausts or ports, and the ends of the tracks.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "gun barrel",
+        "track",
+        "port"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Two forward-facing gun barrels mounted on the front hull; no visible turret or additional mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, riveted steel armor plating; sloped and reinforced on the front and sides, with visible bolts and panels.",
+    "attribute_camouflage_pattern": "Solid dark green paint with no visible camouflage pattern.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "not applicable",
+    "uid": "8cebfb25f34549e5a5bd7e85939885df",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.49648567222284534,
+        "tank.n.01": 0.5036367592974965,
+        "armored_car.n.02": 0.5086028220782906,
+        "reconnaissance_vehicle.n.01": 0.5179645747111243,
+        "assault_gun.n.02": 0.5201220862814713,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8cebfb25f34549e5a5bd7e85939885df",
+        "creator_username": "Rysky",
+        "creator_display_name": "Jorma Rysky (Joona Ven\u00e4l\u00e4inen)",
+        "creator_profile_url": "https://sketchfab.com/Rysky"
+    },
+    "filename": "std_8cebfb25f34549e5a5bd7e85939885df.glb",
+    "length": 7.709226608276367,
+    "width": 4.858433485031128
+}

@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a heavy-duty, rectangular safe box constructed primarily from thick, dark metal with a slightly mottled, matte finish. The front face features a prominent circular combination dial lock above a robust, three-spoke rotating handle, both made of metal. The door is reinforced and fitted with visible external hinges on the right side, suggesting a rightward opening mechanism. The rest of the surfaces are solid, unadorned metal panels with no visible openings, labels, or decorative elements. The safe's design is utilitarian, prioritizing security and durability, and it appears capable of withstanding significant force. Its size and construction indicate it is intended for secure storage of valuables in urban environments such as offices, garages, or back rooms.",
+    "description": "A large, heavy metal safe box with a combination dial and a three-spoke handle on the front, finished in a dark, mottled metal. The design is robust and utilitarian, with visible right-side hinges and no external markings.",
+    "description_view_0": "Front view showing the combination dial, three-spoke handle, and reinforced door with right-side hinges.",
+    "description_view_1": "Left side view displaying a solid, unadorned metal panel with the handle and hinges barely visible at the edge.",
+    "description_view_2": "Rear view showing a plain, featureless metal surface with no visible openings or hardware.",
+    "description_view_3": "Right side view with a solid metal panel and the door's hinges slightly visible along the edge.",
+    "category": "safe box",
+    "height": 1.0,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "iron",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 350,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3430,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "rotatable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "combination dial",
+        "rotating handle",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.0,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lock_mechanism_type": "combination dial",
+    "attribute_handle_design": "three-spoke rotating metal handle centered below the dial on the front door",
+    "attribute_door_hinge_placement": "right side external hinges",
+    "attribute_brand_or_manufacturer_label": "none",
+    "attribute_ventilation_slots_or_openings": "none",
+    "uid": "24e05336dc3740a1af9946b088049d19",
+    "near_synsets": {
+        "safe.n.01": 0.48368558592329164,
+        "safe-deposit.n.01": 0.509550270021912,
+        "strongbox.n.01": 0.5363963766691032,
+        "combination_lock.n.01": 0.5631641190148217,
+        "chest.n.02": 0.573430285930835,
+        "box.n.10": -1000.0,
+        "corner.n.08": -1000.0,
+        "box.n.02": -1000.0,
+        "box.n.03": -1000.0,
+        "box.n.06": -1000.0,
+        "box.n.08": -1000.0,
+        "box.n.05": -1000.0,
+        "box.n.09": -1000.0,
+        "box.n.01": -1000.0,
+        "box.n.07": -1000.0
+    },
+    "synset": "safe.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/24e05336dc3740a1af9946b088049d19",
+        "creator_username": "GrillPork",
+        "creator_display_name": "GrillPork",
+        "creator_profile_url": "https://sketchfab.com/GrillPork"
+    },
+    "filename": "std_24e05336dc3740a1af9946b088049d19.glb",
+    "length": 1.0122230648994446,
+    "width": 0.7559403777122498
+}

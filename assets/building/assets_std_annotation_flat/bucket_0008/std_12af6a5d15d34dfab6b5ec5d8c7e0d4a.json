@@ -1,0 +1,102 @@
+{
+    "description_long": "This vehicle is a heavily modified car outfitted for extreme terrain, featuring large, tank-like continuous tracks in place of traditional wheels. The body is sleek and aerodynamic, resembling a sports coupe, but is equipped with reinforced armor plating and a roof-mounted turret. The front and sides are armed with visible weaponry, including dual cannons and a rotating gun mount. The suspension system is robust, with bright red coil springs visible above the tracks, suggesting high shock absorption for rough environments. The windows are tinted, and the overall color scheme is matte black, giving it a stealthy, tactical appearance. The design merges elements of a snowmobile, tank, and armored car, making it suitable for urban or off-road combat scenarios.",
+    "description": "A matte black, armored sports car with tank-like tracks, heavy weaponry, and a reinforced, tactical design. It features a roof turret, visible red suspension, and a sleek, aerodynamic body.",
+    "description_view_0": "Front view shows the wide, armored nose, dual front cannons, and the imposing width of the continuous tracks.",
+    "description_view_1": "Left side view highlights the full length of the tracks, the red suspension springs, the roof turret, and the car's coupe profile.",
+    "description_view_2": "Rear view reveals the taillights, rear armor, and the open rear window, with the tracks extending outward.",
+    "description_view_3": "Right side view mirrors the left, showing the tracks, suspension, and weaponry, with clear visibility of the car's door and side window.",
+    "category": "snowmobile",
+    "height": 1.6,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.65,
+        0.08,
+        0.15,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 2200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "turret",
+        "cannon",
+        "track",
+        "window",
+        "suspension",
+        "handlebar",
+        "seat"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_handlebar_design": "No traditional handlebar is visible; instead, the vehicle appears to use a standard car steering wheel, partially visible through the windshield.",
+    "attribute_ski_configuration": "No skis are present; the vehicle uses two large, continuous tracks on each side for movement.",
+    "attribute_track_presence": "Yes, two wide, continuous tracks are present on each side, with a rugged tread pattern and visible red suspension mounts.",
+    "attribute_seat_style": "The seat appears to be a single, contoured bucket seat, likely padded and designed for one or two riders, visible through the open rear window.",
+    "attribute_windshield_shape": "The windshield is wide, low, and gently curved, following the aerodynamic lines of the car body, with a smooth edge profile and no visible frame.",
+    "uid": "12af6a5d15d34dfab6b5ec5d8c7e0d4a",
+    "near_synsets": {
+        "snowmobile.n.01": 0.4640357982222161,
+        "sno-cat.n.01": 0.5311540946361517,
+        "reconnaissance_vehicle.n.01": 0.5421901033818844,
+        "military_vehicle.n.01": 0.5472540616600542,
+        "armored_car.n.02": 0.560310005630915
+    },
+    "synset": "snowmobile.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/12af6a5d15d34dfab6b5ec5d8c7e0d4a",
+        "creator_username": "Denys.Cherkasov",
+        "creator_display_name": "Denys Cherkasov",
+        "creator_profile_url": "https://sketchfab.com/Denys.Cherkasov"
+    },
+    "filename": "std_12af6a5d15d34dfab6b5ec5d8c7e0d4a.glb",
+    "length": 3.048187017440796,
+    "width": 2.1114041805267334
+}

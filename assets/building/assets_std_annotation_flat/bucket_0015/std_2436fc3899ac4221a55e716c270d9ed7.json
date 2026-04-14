@@ -1,0 +1,108 @@
+{
+    "description_long": "This gas station features an L-shaped layout with a wide concrete canopy supported by several white columns, providing shelter for vehicles. The canopy has a flat roof with a red trim along the edges, and the fueling area is paved with a dark, textured surface. A prominent signpost with the 'Total' logo and branding stands at the front, clearly marking the station's identity. The fueling area includes a set of modern, rectangular fuel pumps positioned under the canopy, each with visible hoses and nozzles. The structure appears to be constructed primarily from concrete and metal, with a utilitarian design focused on functionality. There is no visible convenience store entrance or additional amenities attached to the main structure.",
+    "description": "An L-shaped gas station with a flat, red-trimmed canopy, modern fuel pumps, and a prominent 'Total' signpost at the front.",
+    "description_view_0": "Front view showing the L-shaped canopy, the main fueling area, and the 'Total' signpost prominently displayed.",
+    "description_view_1": "Side view highlighting the length of the canopy, the supporting columns, and the signpost from a different angle.",
+    "description_view_2": "Rear angled view revealing the underside of the canopy, the arrangement of fuel pumps, and the open fueling area.",
+    "description_view_3": "Top-down oblique view focusing on the flat roof, the red trim, and the overall layout of the station.",
+    "category": "gas station",
+    "height": 4.0,
+    "max_dimension": 18.0,
+    "materials": [
+        "concrete",
+        "metal",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.02,
+        0.08
+    ],
+    "mass": 65000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "fueling",
+        "signage_display"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "fuel pump",
+        "hose",
+        "nozzle",
+        "signpost"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "group",
+    "attribute_fuel_pumps": "Two modern, rectangular fuel pumps are visible under the canopy, each with attached hoses and nozzles. The pumps are white with dark bases and appear to have digital displays, but no branding or detailed labels are visible.",
+    "attribute_canopy_structure": "A large, L-shaped flat canopy covers the fueling area, supported by five white columns. The canopy has a red trim along the edges and is constructed from concrete and metal, with no visible lighting or signage attached to the canopy itself.",
+    "attribute_station_signage": "A tall signpost at the front displays the 'Total' logo and branding, with a white background and colored logo at the top. The sign is rectangular, mounted on a single pole, and includes additional blank panels below the logo for potential information.",
+    "attribute_price_display_board": "None visible.",
+    "attribute_convenience_store_entrance": "None visible.",
+    "uid": "2436fc3899ac4221a55e716c270d9ed7",
+    "near_synsets": {
+        "service_station.n.01": 0.5107747296918863,
+        "gasoline_station.n.01": 0.5190929415855734,
+        "gas_pump.n.01": 0.5292862437383763,
+        "gas_line.n.01": 0.5550661794152761,
+        "gas_tank.n.01": 0.5561343666735068,
+        "station.n.05": -1000.0,
+        "natural_gas.n.01": -1000.0,
+        "flatulence.n.01": -1000.0,
+        "post.n.01": -1000.0,
+        "place.n.10": -1000.0,
+        "accelerator.n.01": -1000.0,
+        "gasoline.n.01": -1000.0,
+        "station.n.01": -1000.0,
+        "gas.n.01": -1000.0,
+        "gas.n.02": -1000.0,
+        "station.n.03": -1000.0
+    },
+    "synset": "gasoline_station.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2436fc3899ac4221a55e716c270d9ed7",
+        "creator_username": "Karim.Fares",
+        "creator_display_name": "Karim.Fares",
+        "creator_profile_url": "https://sketchfab.com/Karim.Fares"
+    },
+    "filename": "std_2436fc3899ac4221a55e716c270d9ed7.glb",
+    "length": 9.869256019592285,
+    "width": 12.923402786254883
+}

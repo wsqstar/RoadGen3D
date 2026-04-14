@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a two-story cafe building with a flat roof and a prominent sign reading 'Coffee' on top. The facade features large rectangular windows on both floors, and a central door with a small golden handle. On one side, there is a striped yellow and gray awning extending over an outdoor seating area, which includes a hexagonal table and several chairs. The structure is primarily a muted brown color, with light blue window panes and a dark trim. The overall design is simple and modern, with clean lines and minimal ornamentation.",
+    "description": "A modern two-story cafe with large windows, a 'Coffee' sign, striped awning, and outdoor seating area.",
+    "description_view_0": "Side view showing the plain brown wall and the edge of the 'Coffee' sign on the roof.",
+    "description_view_1": "Front view displaying the 'Coffee' sign, large windows, central door, striped awning, and outdoor seating.",
+    "description_view_2": "Top-down view highlighting the awning's stripes and the arrangement of the outdoor table and chairs.",
+    "description_view_3": "Rear side view showing the back wall, the reverse of the 'Coffee' sign, and the awning extending from the side.",
+    "category": "cafe",
+    "height": 6.0,
+    "max_dimension": 8.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "plastic",
+        "wood",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.08,
+        0.05,
+        0.05,
+        0.02,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "sittable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "windows",
+        "chairs",
+        "table"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "yellow",
+        "white",
+        "blue",
+        "black",
+        "orange"
+    ],
+    "colors_composition": [
+        0.55,
+        0.15,
+        0.08,
+        0.07,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_signage": true,
+    "attribute_outdoor_seating": true,
+    "attribute_awning": true,
+    "attribute_storefront_display": false,
+    "attribute_architectural_style": "modern",
+    "uid": "ba14165407184f29be30dc6c05dfe892",
+    "near_synsets": {
+        "cafe.n.01": 0.5017700926997839,
+        "espresso_shop.n.01": 0.505058400434771,
+        "coffee_stall.n.01": 0.5304452814892436,
+        "cybercafe.n.01": 0.5491125054508201,
+        "cafe_curtain.n.01": 0.5544448214976454
+    },
+    "synset": "cafe_curtain.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ba14165407184f29be30dc6c05dfe892",
+        "creator_username": "RitiWox",
+        "creator_display_name": "RitiWox",
+        "creator_profile_url": "https://sketchfab.com/RitiWox"
+    },
+    "filename": "std_ba14165407184f29be30dc6c05dfe892.glb",
+    "length": 2.8975331783294678,
+    "width": 6.103362083435059
+}

@@ -1,0 +1,97 @@
+{
+    "description_long": "This object appears to be a set of interconnected rectangular parcels or packages, possibly representing a group of large delivery boxes or storage containers. The surfaces are mostly flat and feature muted, light colors, with some areas showing darker or brownish patches, suggesting labels, tape, or wear. The structure is hollow in places, with visible interior spaces and open tops, indicating that these parcels may be partially open or damaged. The edges are somewhat irregular, and the overall form is blocky, with clear separations between the main compartments. The material looks like cardboard or a similar lightweight, rigid substance, with some signs of surface roughness and possible water damage. The object is large enough that a person could potentially step into or over the open sections.",
+    "description": "A group of large, interconnected rectangular parcels with open tops and visible interior spaces, mostly light-colored with some darker patches.",
+    "description_view_0": "This view shows the open tops of the parcels, revealing the hollow interiors and the separation between compartments.",
+    "description_view_1": "From this angle, the side walls and some interior details are visible, with a focus on the depth and structure of the parcels.",
+    "description_view_2": "This perspective highlights the open sections and the flat surfaces, with more detail on the internal layout and possible labels.",
+    "description_view_3": "The rear and side of the parcels are visible, showing the blocky form and some darker areas along the edges.",
+    "category": "parcels",
+    "height": 1.0,
+    "max_dimension": 3.0,
+    "materials": [
+        "cardboard",
+        "tape",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.05,
+        0.25
+    ],
+    "mass": 30,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 4,
+    "movable": true,
+    "required_force": 100,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "flap"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "white",
+        "gray",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_architectural_style": "",
+    "attribute_car_model": "",
+    "attribute_building_number": "",
+    "attribute_storefront_signage": "",
+    "attribute_street_name": "",
+    "uid": "7e96c7c7aaef419187b999c934791ad0",
+    "near_synsets": {
+        "parcellation.n.01": 0.5019822655578199,
+        "parcel.n.02": 0.5311446800786551,
+        "package.n.01": 0.5420506263039186,
+        "package.n.02": 0.5448454259636724,
+        "packing_box.n.02": 0.5535954855153401,
+        "tract.n.01": -1000.0
+    },
+    "synset": "package.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7e96c7c7aaef419187b999c934791ad0",
+        "creator_username": "panomedia",
+        "creator_display_name": "Panomedia",
+        "creator_profile_url": "https://sketchfab.com/panomedia"
+    },
+    "filename": "std_7e96c7c7aaef419187b999c934791ad0.glb",
+    "length": 1.8370574116706848,
+    "width": 2.173461437225342
+}

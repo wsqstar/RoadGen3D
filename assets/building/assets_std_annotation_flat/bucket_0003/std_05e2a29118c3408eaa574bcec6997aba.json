@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a classic M67 fragmentation hand grenade, featuring a spherical olive-drab green metal body with a matte, slightly textured finish. The upper section is fitted with a robust, metallic safety lever and a prominent pull ring, both rendered in a silvery steel color. Yellow stenciled text is visible on the body, providing identification and instructions, including the model and explosive type. The safety lever is tightly secured to the top, covering the fuse assembly, and the pull ring is looped through a pin that prevents accidental detonation. The grenade's compact, rounded form is designed for easy gripping and throwing. Its utilitarian construction and military markings make it instantly recognizable as a standard-issue explosive device.",
+    "description": "A spherical, olive-drab M67 hand grenade with a steel safety lever, pull ring, and yellow stenciled markings.",
+    "description_view_0": "Front view showing the yellow stenciled text 'FRAG, DELAY, M67' and the top-mounted safety lever.",
+    "description_view_1": "Side view highlighting the full profile of the safety lever and the circular pull ring attached to the pin.",
+    "description_view_2": "Top-down view emphasizing the width of the safety lever and the partial visibility of the yellow text.",
+    "description_view_3": "Angled view displaying the full grenade body, extensive yellow stenciling, and the lever-pull ring assembly.",
+    "category": "bomb",
+    "height": 0.1,
+    "max_dimension": 0.11,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.3,
+        0.03,
+        0.02
+    ],
+    "mass": 0.4,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 4,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable",
+        "throwable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "safety pin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "silver",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the safety pin and releasing the safety lever, which activates the internal fuse and triggers the explosive after a short delay.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "05e2a29118c3408eaa574bcec6997aba",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.515220656080081,
+        "grenade.n.01": 0.5330659677008209,
+        "rifle_grenade.n.01": 0.5497740864452696,
+        "bombie.n.01": 0.5647041507701411,
+        "bomb.n.01": 0.564905677298122,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/05e2a29118c3408eaa574bcec6997aba",
+        "creator_username": "vextin",
+        "creator_display_name": "Vextin",
+        "creator_profile_url": "https://sketchfab.com/vextin"
+    },
+    "filename": "std_05e2a29118c3408eaa574bcec6997aba.glb",
+    "length": 0.07725156843662262,
+    "width": 0.07254321128129959
+}

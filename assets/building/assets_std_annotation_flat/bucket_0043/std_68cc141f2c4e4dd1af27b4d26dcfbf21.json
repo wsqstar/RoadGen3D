@@ -1,0 +1,105 @@
+{
+    "description_long": "This object is a solar energy infrastructure installation featuring a rectangular array of photovoltaic panels mounted on a flat, rigid base. The panels are dark, likely monocrystalline or polycrystalline silicon, and are framed with metallic borders, possibly aluminum, for structural support. The array is divided into two main sections, separated by a central gap or housing, which may contain electrical components or serve as a maintenance access point. The base appears to be metallic or composite, providing stability and possibly housing wiring or inverters beneath the panels. Subtle red and gray color accents are visible on the side, suggesting branding or safety markings. The overall design is compact and modular, suitable for placement on flat urban surfaces such as rooftops, parking structures, or dedicated solar farms.",
+    "description": "A compact, rectangular solar panel array with metallic framing and a central housing, featuring dark photovoltaic surfaces and subtle red-gray accents.",
+    "description_view_0": "Front view shows the low-profile, rectangular shape with two main panel sections and a central housing.",
+    "description_view_1": "Side view highlights the thinness of the array and reveals red-gray accents on the side frame.",
+    "description_view_2": "Rear view displays the back of the panels and the central housing, with less visible detail on the panel surfaces.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the metallic frame and colored side accents.",
+    "category": "solar energy infrastructure",
+    "height": 0.25,
+    "max_dimension": 2.5,
+    "materials": [
+        "aluminum",
+        "glass",
+        "silicon",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 55,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "panel surface",
+        "central housing",
+        "frame edge"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "red",
+        "silver"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_panel_orientation": "flat, parallel to the base surface, orientation appears fixed",
+    "attribute_mounting_structure_type": "ground-mounted, supported by a rigid metallic (likely aluminum) frame",
+    "attribute_electrical_inverter_presence": false,
+    "attribute_cabling_visibility": "not visible",
+    "attribute_array_configuration": "single row of 2 large rectangular panels separated by a central housing",
+    "uid": "68cc141f2c4e4dd1af27b4d26dcfbf21",
+    "near_synsets": {
+        "solar_array.n.01": 0.4798313614788524,
+        "solar_house.n.01": 0.5231691949903642,
+        "solar_thermal_system.n.01": 0.5466358285387917,
+        "solar_cell.n.01": 0.548428344096643,
+        "solar_energy.n.01": 0.5586690319088351,
+        "energy.n.01": -1000.0,
+        "energy.n.05": -1000.0,
+        "department_of_energy.n.01": -1000.0,
+        "energy.n.02": -1000.0,
+        "infrastructure.n.01": -1000.0,
+        "energy.n.06": -1000.0,
+        "energy.n.04": -1000.0,
+        "infrastructure.n.02": -1000.0,
+        "energy.n.03": -1000.0
+    },
+    "synset": "solar_array.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/68cc141f2c4e4dd1af27b4d26dcfbf21",
+        "creator_username": "brooklynsolarworks",
+        "creator_display_name": "brooklynsolarworks",
+        "creator_profile_url": "https://sketchfab.com/brooklynsolarworks"
+    },
+    "filename": "std_68cc141f2c4e4dd1af27b4d26dcfbf21.glb",
+    "length": 0.2269921526312828,
+    "width": 1.1730684041976929
+}

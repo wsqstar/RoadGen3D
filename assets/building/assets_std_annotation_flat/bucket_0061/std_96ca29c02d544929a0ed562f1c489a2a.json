@@ -1,0 +1,92 @@
+{
+    "description_long": "This is a large, industrial shipping container constructed primarily from corrugated steel panels, painted in a vivid red color. The front face features double doors with visible locking mechanisms, hinges, and white stenciled text including serial numbers and codes. One long side displays a prominent white logo and the words 'SANSHARD CORPORATION', while the opposite side is plain with only the corrugated texture visible. The top is flat and ribbed, designed for stacking or supporting additional weight, and the rear face is solid with no openings. The container is robust, weather-resistant, and designed for secure storage or transport of goods in urban or industrial environments.",
+    "description": "A large red corrugated steel shipping container with double front doors, white stenciled markings, and a corporate logo on one side.",
+    "description_view_0": "Front view showing double doors with locking bars, hinges, and white stenciled codes.",
+    "description_view_1": "Side view displaying the 'SANSHARD CORPORATION' logo and corrugated steel texture.",
+    "description_view_2": "Rear view with a plain, solid corrugated steel panel and no visible openings.",
+    "description_view_3": "Opposite side view, plain corrugated steel with no markings or logos.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.03,
+        0.05
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking bar",
+        "hinge"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.92,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "white stenciled codes on front doors, large white logo and text on one side",
+    "attribute_handles_or_grips": "integrated locking bars and door handles on front doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "96ca29c02d544929a0ed562f1c489a2a",
+    "near_synsets": {
+        "container.n.01": 0.46106644596653107,
+        "cargo_container.n.01": 0.47070697762957725,
+        "box.n.01": 0.522857579340202,
+        "container_ship.n.01": 0.532098225769148,
+        "packing_box.n.02": 0.5346591608873644
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/96ca29c02d544929a0ed562f1c489a2a",
+        "creator_username": "Alienscard",
+        "creator_display_name": "Nikolay",
+        "creator_profile_url": "https://sketchfab.com/Alienscard"
+    },
+    "filename": "std_96ca29c02d544929a0ed562f1c489a2a.glb",
+    "length": 5.945971488952637,
+    "width": 2.41154146194458
+}

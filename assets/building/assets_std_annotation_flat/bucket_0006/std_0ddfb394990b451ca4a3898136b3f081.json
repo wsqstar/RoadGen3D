@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a mid-rise apartment building with a rectangular footprint, constructed primarily from reddish-brown brick. The facade features five vertical rows of large, dark-framed windows, with four rows of balconies on one side, each balcony enclosed by metal railings. The building has a flat, concrete roof and a symmetrical window arrangement, giving it a utilitarian and modern appearance. The ground floor includes two main entrances, each with a recessed doorway. The side and rear elevations are simpler, with only windows and no balconies. The overall design is functional, typical of urban residential blocks built for efficiency and density.",
+    "description": "A rectangular, brick apartment building with multiple balconies, large windows, and a flat roof, designed for urban residential use.",
+    "description_view_0": "Front view showing the main facade with five rows of windows, four rows of balconies, and two ground-level entrances.",
+    "description_view_1": "Side view displaying a plain brick wall with vertically aligned windows and no balconies.",
+    "description_view_2": "Rear cutaway view revealing the interior floor structure and the alignment of balconies on one side.",
+    "description_view_3": "Angled side view highlighting the balconies and window arrangement along the building's side.",
+    "category": "apartment building",
+    "height": 15.0,
+    "max_dimension": 20.0,
+    "materials": [
+        "brick",
+        "concrete",
+        "glass",
+        "metal",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "balcony railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.0,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 5,
+    "attribute_balcony_presence": true,
+    "attribute_window_arrangement": "The windows are arranged in a symmetrical grid pattern, with evenly spaced vertical and horizontal alignment across all visible facades.",
+    "attribute_entrance_type": "multiple entrances",
+    "attribute_architectural_style": "Contemporary",
+    "uid": "0ddfb394990b451ca4a3898136b3f081",
+    "near_synsets": {
+        "apartment_building.n.01": 0.436343896952446,
+        "block.n.05": 0.4967617489319035,
+        "suite.n.02": 0.5007785207864934,
+        "apartment.n.01": 0.5025512171921652,
+        "condominium.n.02": 0.5053286229113302,
+        "construction.n.07": -1000.0,
+        "construction.n.01": -1000.0,
+        "building.n.04": -1000.0,
+        "building.n.01": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0ddfb394990b451ca4a3898136b3f081",
+        "creator_username": "s_v_bond",
+        "creator_display_name": "s_v_bond",
+        "creator_profile_url": "https://sketchfab.com/s_v_bond"
+    },
+    "filename": "std_0ddfb394990b451ca4a3898136b3f081.glb",
+    "length": 13.170529842376709,
+    "width": 16.90211772918701
+}

@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a heavily armored combat tactical vehicle with a low, angular profile and a robust exterior. The body appears to be constructed from thick, metallic panels with a matte, gray finish, featuring several cutouts and openings that may serve as vision ports or weapon placements. The surface is marked by a pattern of lighter stripes, possibly for visual disruption or identification. The vehicle's structure is wide and flat, with reinforced sections along the sides and front, suggesting protection against ballistic threats. There are no visible wheels or tracks, indicating that the undercarriage is either missing or obscured. The overall design emphasizes durability and protection, with minimal external ornamentation.",
+    "description": "A low-profile, angular combat tactical vehicle with thick, gray armor plating and a striped matte finish. The body features multiple cutouts and reinforced sections, emphasizing protection and utility.",
+    "description_view_0": "Front-left view showing the angular front armor, multiple cutouts, and a robust, reinforced structure.",
+    "description_view_1": "Side view highlighting the vehicle's elongated, flat body and the absence of visible wheels or tracks.",
+    "description_view_2": "Rear view displaying the wide, armored back and the continuation of the striped pattern across the surface.",
+    "description_view_3": "Top-down view revealing the full extent of the armor plating, cutouts, and the overall flat, broad design.",
+    "category": "combat tactical  vehicle",
+    "height": 1.5,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 3,
+    "movable": true,
+    "required_force": 35000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "window",
+        "vision port"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "None visible.",
+    "attribute_armor_plating": "Full body coverage with thick, angular armor plating; no visible modular or reactive panels, but reinforced sections are apparent.",
+    "attribute_camouflage_pattern": "Matte gray base with lighter, parallel stripe patterns across the surface.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "1b73e38d57c1461e9790752d193a4417",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.5234223677560497,
+        "armored_vehicle.n.01": 0.5380975866771937,
+        "reconnaissance_vehicle.n.01": 0.5384489219867281,
+        "armored_car.n.02": 0.5410791502939137,
+        "assault_gun.n.02": 0.5462898159592501,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "armored_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1b73e38d57c1461e9790752d193a4417",
+        "creator_username": "bright",
+        "creator_display_name": "bright",
+        "creator_profile_url": "https://sketchfab.com/bright"
+    },
+    "filename": "std_1b73e38d57c1461e9790752d193a4417.glb",
+    "length": 8.409980773925781,
+    "width": 4.168340444564819
+}

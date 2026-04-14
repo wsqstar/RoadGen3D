@@ -1,0 +1,93 @@
+{
+    "description_long": "This warehouse is a single-story, rectangular structure with a flat, slightly varied roofline made of gray material, likely concrete or asphalt. The exterior walls are plain and utilitarian, featuring a mix of large, unadorned surfaces and a few windows and doors, mostly concentrated on one side. The building is bordered by tall, solid boundary walls on three sides, suggesting a secure or enclosed lot. There is a visible ramp or driveway leading up to one side, possibly for vehicle access or loading. The facade is simple, with minimal decorative elements, focusing on function over form. The overall appearance is industrial and practical, suitable for storage or light industrial use in an urban environment.",
+    "description": "A flat-roofed, gray warehouse with plain walls, minimal windows, and a secure, enclosed lot. The structure is utilitarian and industrial, with a ramp for vehicle access.",
+    "description_view_0": "The side view shows a long, plain wall with minimal features and a section of the roof, bordered by a tall boundary wall.",
+    "description_view_1": "This view highlights the main facade with several windows, a door, and a ramp or driveway leading up to the building.",
+    "description_view_2": "The rear view reveals a mostly featureless wall, a small window, and the continuation of the boundary walls.",
+    "description_view_3": "This side view displays a row of small windows and a long, uninterrupted wall, emphasizing the building's length.",
+    "category": "warehouse",
+    "height": 5.5,
+    "max_dimension": 32.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "asphalt",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.08,
+        0.07,
+        0.05,
+        0.1
+    ],
+    "mass": 420000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "ramp"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main facade is composed of plain gray concrete with a series of rectangular windows and a single entry door, all set within a long, unadorned wall. The design is functional, with a ramp providing access and no visible decorative elements.",
+    "attribute_loading_dock_presence": true,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is flat with subtle height variations and appears to be constructed from gray concrete or asphalt, with no visible skylights or rooftop equipment.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "27e1502309624a64b6ae5700813f68e2",
+    "near_synsets": {
+        "warehouse.n.01": 0.5226064704196122,
+        "loft.n.01": 0.5274217368051067,
+        "storehouse.n.01": 0.5556469006113992,
+        "shop_floor.n.01": 0.5568254335648528,
+        "farm_building.n.01": 0.5600707037064078
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/27e1502309624a64b6ae5700813f68e2",
+        "creator_username": "dolphinstudios",
+        "creator_display_name": "3D Design Shop",
+        "creator_profile_url": "https://sketchfab.com/dolphinstudios"
+    },
+    "filename": "std_27e1502309624a64b6ae5700813f68e2.glb",
+    "length": 21.968253135681152,
+    "width": 30.08502769470215
+}

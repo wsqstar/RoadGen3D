@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a modern, tactical-style rifle with a matte black finish and a robust, angular design. The rifle features a collapsible stock, a prominent pistol grip, and a detachable curved magazine, typical of assault rifles. The upper receiver is equipped with a Picatinny rail system for mounting optics or accessories, and the handguard has additional rails for tactical attachments. The barrel is fitted with a large muzzle device, likely a suppressor, giving the weapon a distinctive, elongated profile. Iron sights are mounted on the top rail, and the overall construction appears to be a mix of metal and polymer components. The rifle's design suggests it is intended for urban or close-quarters use, with ergonomic features for rapid handling.",
+    "description": "A matte black tactical rifle with a collapsible stock, curved magazine, and a large suppressor on the barrel. It features a Picatinny rail system and iron sights for versatile urban use.",
+    "description_view_0": "Front view showing the suppressor and narrow profile of the barrel, with the stock and magazine barely visible.",
+    "description_view_1": "Side view displaying the full length of the rifle, including the collapsible stock, curved magazine, pistol grip, and rail system.",
+    "description_view_2": "Rear view highlighting the buttstock and the alignment of the receiver, with the barrel and muzzle device extending away.",
+    "description_view_3": "Opposite side view showing the same features as view 1, but from the other side, including the magazine and handguard details.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 0.9,
+    "materials": [
+        "steel",
+        "polymer",
+        "aluminum",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "mass": 3.8,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "pistol grip",
+        "magazine",
+        "trigger",
+        "safety selector",
+        "charging handle",
+        "rail",
+        "sight",
+        "muzzle device"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "collapsible",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "suppressor",
+    "uid": "3a735e998521443587b292cf52c3ac4e",
+    "near_synsets": {
+        "dragunov.n.01": 0.5432289934000589,
+        "carbine.n.01": 0.5483690084654134,
+        "assault_rifle.n.01": 0.5578824305783414,
+        "light_arm.n.01": 0.5637651429923833,
+        "sniper_rifle.n.01": 0.5643238562345336,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3a735e998521443587b292cf52c3ac4e",
+        "creator_username": "Drus",
+        "creator_display_name": "Drus",
+        "creator_profile_url": "https://sketchfab.com/Drus"
+    },
+    "filename": "std_3a735e998521443587b292cf52c3ac4e.glb",
+    "length": 0.7779923677444458,
+    "width": 0.06905524432659149
+}

@@ -1,0 +1,112 @@
+{
+    "description_long": "This object is a mobile robotic arm mounted on a six-wheeled platform with a camouflage paint scheme, suggesting use in tactical or military urban environments. The base is robust and features large, rugged wheels for traversing uneven terrain, with two prominent tracks on either side for additional stability. The arm itself is articulated with multiple joints, allowing for a wide range of motion, and terminates in a two-finger gripper designed for manipulating objects. Visible wiring and hydraulic or pneumatic lines run along the arm, indicating powered actuation and control. The platform includes a small control panel or emergency stop button on the rear left side, and the overall construction appears to be primarily metal with some plastic and rubber components. The design is utilitarian, built for durability and functionality in field operations.",
+    "description": "A rugged, camouflaged mobile robot arm with a six-wheeled base and a two-finger gripper, designed for tactical manipulation tasks in urban environments.",
+    "description_view_0": "Front view showing the wide, tracked base and the arm extending directly forward, with the gripper visible at the top.",
+    "description_view_1": "Side view highlighting the six wheels, the full length of the articulated arm, and the gripper in a raised position.",
+    "description_view_2": "Rear view displaying the control panel or emergency stop button and the back of the tracked base.",
+    "description_view_3": "Opposite side view showing the arm's articulation and the gripper, as well as the camouflaged body and wheel arrangement.",
+    "category": "robot arm",
+    "height": 1.2,
+    "max_dimension": 1.5,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.2,
+        0.1,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "graspable",
+        "rotatable",
+        "pushable",
+        "pullable",
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "gripper",
+        "arm segments",
+        "wheels",
+        "control panel",
+        "emergency stop button"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "camouflage green",
+        "black",
+        "gray",
+        "red",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.07,
+        0.02,
+        0.01
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_joint_type": "revolute, prismatic",
+    "attribute_number_of_segments": 3,
+    "attribute_end_effector_type": "two-finger gripper",
+    "attribute_visible_wiring_or_cabling": true,
+    "attribute_mounting_location": "mobile base",
+    "uid": "e9eed86b0951453dbc33a6a6611ed61c",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5300823594377989,
+        "grab.n.01": 0.5573181247005048,
+        "automaton.n.02": 0.5604198794210038,
+        "android.n.01": 0.5718120757638933,
+        "light_arm.n.01": 0.573449467286708,
+        "arm.n.02": -1000.0,
+        "branch.n.01": -1000.0,
+        "arm.n.01": -1000.0,
+        "weapon.n.01": -1000.0,
+        "sleeve.n.01": -1000.0,
+        "arm.n.04": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e9eed86b0951453dbc33a6a6611ed61c",
+        "creator_username": "gargtarun",
+        "creator_display_name": "Tarun Garg",
+        "creator_profile_url": "https://sketchfab.com/gargtarun"
+    },
+    "filename": "std_e9eed86b0951453dbc33a6a6611ed61c.glb",
+    "length": 1.364293098449707,
+    "width": 0.6111283600330353
+}

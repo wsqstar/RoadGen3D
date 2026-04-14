@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a modern beverage vending machine with a rectangular, upright form and a metallic exterior. The front face features a large, illuminated glass display window showcasing multiple rows of assorted drinks, including cans and bottles, with clear product visibility. Below the display, there is a prominent green Chilsung Cider logo and a StoryWay logo, both adding vibrant branding to the machine. The right side of the front panel contains a payment interface with coin and bill slots, a card reader, and a keypad for product selection, as well as a digital display for transaction information. The product retrieval slot is located at the bottom of the front face, covered by a horizontal flap. The sides and back of the machine are plain, metallic, and unadorned, with the back featuring a vent for cooling and power access.",
+    "description": "A metallic beverage vending machine with a glass display window, prominent branding, and a payment interface on the front. The sides and back are plain, with a vent at the rear.",
+    "description_view_0": "The left side of the vending machine, showing a plain, metallic surface with no visible features or branding.",
+    "description_view_1": "The front view displays the illuminated product window, branding, payment interface, selection buttons, and the product retrieval slot.",
+    "description_view_2": "The right side of the vending machine, similar to the left, is plain and metallic with no distinguishing features.",
+    "description_view_3": "The rear view shows a plain metallic surface with a large vent at the bottom and a small access panel, with no branding or display.",
+    "category": "vending machine",
+    "height": 1.8,
+    "max_dimension": 1.8,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "electronics",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 220,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "display panel",
+        "coin slot",
+        "bill acceptor",
+        "card reader",
+        "product retrieval slot",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "green",
+        "orange"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A rectangular, illuminated display panel is located on the upper front, showing the available drinks and their arrangement. There is also a small digital screen on the right side for transaction information.",
+    "attribute_payment_interface": "The payment interface includes a coin slot, bill acceptor, and card reader, all located on the right side of the front panel, with clear labeling and a compact arrangement.",
+    "attribute_product_selection_buttons": "Individual rectangular buttons are arranged vertically next to the product display, each corresponding to a specific drink, with clear labeling for easy selection.",
+    "attribute_product_retrieval_slot": "A wide, horizontal slot with a flap is located at the bottom of the front panel for retrieving purchased products.",
+    "attribute_branding_or_signage": "Large Chilsung Cider and StoryWay logos are prominently displayed on the lower front, with green and orange colors and clear text. Additional branding is visible above the display window.",
+    "uid": "72ce292e1bd945aea580d223c75a870e",
+    "near_synsets": {
+        "vending_machine.n.01": 0.4734156053785066,
+        "automat.n.01": 0.5460237188365524,
+        "soda_fountain.n.02": 0.5711297677729724,
+        "water_cooler.n.01": 0.5950889225206126,
+        "soda_fountain.n.01": 0.5986326754641547,
+        "machine.n.02": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.01": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.05": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/72ce292e1bd945aea580d223c75a870e",
+        "creator_username": "bolinas",
+        "creator_display_name": "bolinas",
+        "creator_profile_url": "https://sketchfab.com/bolinas"
+    },
+    "filename": "std_72ce292e1bd945aea580d223c75a870e.glb",
+    "length": 0.5003354549407959,
+    "width": 0.9336651563644409
+}

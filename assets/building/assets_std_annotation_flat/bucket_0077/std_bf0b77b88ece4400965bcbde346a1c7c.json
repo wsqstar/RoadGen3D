@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a classic Coca-Cola vending machine with a rectangular, upright form and a predominantly red front panel featuring a large image of a glass Coca-Cola bottle and the iconic white Coca-Cola script. The front face includes a vertical display and control panel on the right, with several colored buttons for product selection, a payment interface, and a product retrieval slot below the branding. The sides and back of the machine are solid black, with no visible features or openings. The machine is constructed from metal panels, likely steel, with a glossy painted finish and some plastic components for the interface and buttons. The overall design is robust and utilitarian, suitable for placement in public urban environments such as sidewalks, parks, or building lobbies. The branding is highly visible, making the machine easily recognizable from a distance.",
+    "description": "A red Coca-Cola vending machine with a large branded front, product selection buttons, payment interface, and retrieval slot. The sides and back are plain black, and the machine has a sturdy, glossy metal exterior.",
+    "description_view_0": "Front view showing the Coca-Cola branding, product selection buttons, payment interface, and product retrieval slot.",
+    "description_view_1": "Left side view, entirely black with no visible features or openings.",
+    "description_view_2": "Rear view, solid black with no visible features or branding.",
+    "description_view_3": "Right side view, also solid black and featureless.",
+    "category": "vending machine",
+    "height": 1.7,
+    "max_dimension": 0.9,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "payment slot",
+        "product retrieval slot",
+        "display panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "white",
+        "silver"
+    ],
+    "colors_composition": [
+        0.45,
+        0.45,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A vertical rectangular display panel is located on the upper right of the front face, featuring several colored illuminated areas and printed instructions.",
+    "attribute_payment_interface": "A payment interface is present on the right side of the front panel, including a coin slot and bill acceptor, both vertically aligned.",
+    "attribute_product_selection_buttons": "There are several individual rectangular product selection buttons arranged vertically on the right side of the front panel, each with colored labels.",
+    "attribute_product_retrieval_slot": "A wide, horizontal rectangular slot is located near the bottom center of the front panel, likely with a flap for retrieving purchased products.",
+    "attribute_branding_or_signage": "Large Coca-Cola branding dominates the front panel, with a red background, a glass bottle image, and white script text reading 'Enjoy Coca-Cola'.",
+    "uid": "bf0b77b88ece4400965bcbde346a1c7c",
+    "near_synsets": {
+        "vending_machine.n.01": 0.4797753783703387,
+        "automat.n.01": 0.5352159334645696,
+        "coca_cola.n.01": 0.5489276008396928,
+        "soda_fountain.n.02": 0.5783097162862137,
+        "coin_box.n.01": 0.5849892321975952,
+        "machine.n.01": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.02": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.05": -1000.0,
+        "car.n.01": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bf0b77b88ece4400965bcbde346a1c7c",
+        "creator_username": "DoobiDooba",
+        "creator_display_name": "DoobiDooba",
+        "creator_profile_url": "https://sketchfab.com/DoobiDooba"
+    },
+    "filename": "std_bf0b77b88ece4400965bcbde346a1c7c.glb",
+    "length": 0.6445594429969788,
+    "width": 0.8895832300186157
+}

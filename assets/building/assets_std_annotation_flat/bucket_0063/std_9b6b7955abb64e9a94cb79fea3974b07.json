@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a modern armored combat vehicle with a low-profile, angular hull and a prominent, elongated main cannon mounted on a central turret. The vehicle features a flat, sloped front glacis for deflecting projectiles, and the sides are protected by thick, continuous armor panels. Six large road wheels are visible on each side, indicating a tracked propulsion system, though the tracks themselves are not clearly visible. The rear of the vehicle is squared off with two large exhaust vents, suggesting a powerful engine compartment. The exterior is finished in a matte olive drab color, with no visible camouflage patterns or military insignia. The overall design emphasizes protection, firepower, and mobility, suitable for urban or battlefield deployment.",
+    "description": "A low-profile, angular armored combat vehicle with a central turret and long cannon, finished in matte olive drab. It features thick armor panels, six large road wheels per side, and prominent rear exhaust vents.",
+    "description_view_0": "Front view shows the sloped glacis, central turret, and the main cannon pointing forward.",
+    "description_view_1": "Left side view highlights the six large road wheels, angular hull, and the length of the main cannon.",
+    "description_view_2": "Rear view displays the squared-off back, two large exhaust vents, and the rear armor plating.",
+    "description_view_3": "Right side view mirrors the left, showing the road wheels, hull shape, and cannon from the opposite side.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "road wheels",
+        "exhaust vents"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive drab",
+        "black"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted centrally on the turret; no other weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating on the front, sides, and rear; no modular or reactive panels visible.",
+    "attribute_camouflage_pattern": "Solid matte olive drab color; no camouflage pattern visible.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "9b6b7955abb64e9a94cb79fea3974b07",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.5145432332054911,
+        "tank.n.01": 0.5201366536759032,
+        "armored_car.n.02": 0.5203787171502003,
+        "reconnaissance_vehicle.n.01": 0.5243880264518697,
+        "assault_gun.n.02": 0.5282462992866209,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9b6b7955abb64e9a94cb79fea3974b07",
+        "creator_username": "Pablo88",
+        "creator_display_name": "Pablo88",
+        "creator_profile_url": "https://sketchfab.com/Pablo88"
+    },
+    "filename": "std_9b6b7955abb64e9a94cb79fea3974b07.glb",
+    "length": 10.777946472167969,
+    "width": 4.601029634475708
+}

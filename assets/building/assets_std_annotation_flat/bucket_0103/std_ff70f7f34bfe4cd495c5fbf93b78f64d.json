@@ -1,0 +1,93 @@
+{
+    "description_long": "This warehouse is a large, rectangular industrial building with high brick walls and a flat roof supported by a visible steel truss framework. The structure features a spacious, open interior with multiple rows of steel beams and yellow overhead cranes, suggesting heavy-duty storage or manufacturing use. The brick exterior is unadorned, with no visible windows or doors, emphasizing functionality over aesthetics. Inside, there are several storage units or machinery pieces arranged along the back wall, and the floor appears to be concrete. The roof is flat and open, with steel trusses running the length of the building, providing structural support. The overall design is utilitarian, prioritizing durability and efficient use of space for industrial operations.",
+    "description": "A large, rectangular brick warehouse with a flat roof, exposed steel trusses, and yellow overhead cranes, designed for industrial storage or manufacturing.",
+    "description_view_0": "Front view showing the open interior, steel trusses, yellow cranes, and storage units along the back wall.",
+    "description_view_1": "Side perspective highlighting the brick wall, partial view of the steel framework, and a glimpse of the interior layout.",
+    "description_view_2": "Rear view displaying the solid brick wall and the flat roof structure with visible steel trusses.",
+    "description_view_3": "Opposite side perspective with a clear view of the brick wall, steel trusses, and partial interior.",
+    "category": "warehouse",
+    "height": 10.0,
+    "max_dimension": 30.0,
+    "materials": [
+        "brick",
+        "steel",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "mass": 450000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "storable",
+        "crane_operable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "overhead crane",
+        "storage units"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red-brown",
+        "gray",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main exterior facade is constructed from red-brown brick with a uniform, industrial pattern and lacks windows or decorative elements. The facade is defined by its solid, utilitarian appearance and the visible steel truss framework at the roofline.",
+    "attribute_loading_dock_presence": false,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is flat and supported by a network of exposed steel trusses, with no visible skylights or rooftop equipment. The structure is designed for strength and spans the entire width of the building.",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "ff70f7f34bfe4cd495c5fbf93b78f64d",
+    "near_synsets": {
+        "warehouse.n.01": 0.4837789840555635,
+        "loft.n.01": 0.49696578620153514,
+        "storehouse.n.01": 0.5379469007834679,
+        "plant.n.01": 0.5514954349204991,
+        "factory.n.01": 0.5520660851380922
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ff70f7f34bfe4cd495c5fbf93b78f64d",
+        "creator_username": "betaarch",
+        "creator_display_name": "benhur ta\u015fk\u0131n",
+        "creator_profile_url": "https://sketchfab.com/betaarch"
+    },
+    "filename": "std_ff70f7f34bfe4cd495c5fbf93b78f64d.glb",
+    "length": 26.88407802581787,
+    "width": 19.143131256103516
+}

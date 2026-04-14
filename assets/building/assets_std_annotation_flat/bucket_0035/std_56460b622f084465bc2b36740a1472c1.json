@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a military-style, single-propeller airplane with a camouflage green and gray paint scheme, featuring roundel insignias and the number '275' prominently displayed on the fuselage and wings. The aircraft has a streamlined fuselage, a bubble canopy cockpit, and a single engine mounted at the nose with a three-bladed propeller. The wings are straight and low-mounted, with visible ailerons and no winglets, and the tail section includes a single vertical stabilizer and horizontal stabilizers. The landing gear is partially extended, with two main wheels under the wings and a smaller tail wheel. The surface appears metallic with matte and slightly weathered paint, typical of mid-20th-century fighter aircraft. The overall design suggests a robust, maneuverable airplane suitable for both ground and air operations in urban or rural environments.",
+    "description": "A green and gray camouflaged, single-propeller military airplane with roundel insignias, a bubble canopy, and low-mounted straight wings.",
+    "description_view_0": "Front-left view showing the exposed engine detail, three-bladed propeller, and bubble canopy cockpit.",
+    "description_view_1": "Rear-left view highlighting the tail section, single vertical stabilizer, and partially extended landing gear.",
+    "description_view_2": "Left side view displaying the full wingspan, roundel insignias, and the number '275' on the fuselage.",
+    "description_view_3": "Front-right view focusing on the propeller, cockpit, and the right wing's insignia.",
+    "category": "airplane",
+    "height": 3.5,
+    "max_dimension": 10.5,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "paint",
+        "air",
+        "steel"
+    ],
+    "materials_composition": [
+        0.7,
+        0.08,
+        0.07,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "cockpit canopy",
+        "landing gear",
+        "wheels",
+        "engine cowling",
+        "control surfaces"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "gray",
+        "yellow",
+        "white",
+        "black",
+        "blue"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.05,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 12.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with straight wings, no winglets, and slight dihedral angle.",
+    "attribute_engine_type": "Single nose-mounted piston engine with a three-bladed propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Taildragger configuration with two main wheels and a single tail wheel, partially extended.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed single-seat cockpit with a bubble canopy.",
+    "uid": "56460b622f084465bc2b36740a1472c1",
+    "near_synsets": {
+        "aircraft.n.01": 0.48596818480411347,
+        "airplane.n.01": 0.5077940931196133,
+        "warplane.n.01": 0.5194623548127957,
+        "combat_pilot.n.01": 0.5240841187498795,
+        "propeller_plane.n.01": 0.5258767072654498
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/56460b622f084465bc2b36740a1472c1",
+        "creator_username": "manilov.ap",
+        "creator_display_name": "manilov.ap",
+        "creator_profile_url": "https://sketchfab.com/manilov.ap"
+    },
+    "filename": "std_56460b622f084465bc2b36740a1472c1.glb",
+    "length": 14.342828750610352,
+    "width": 13.902460098266602
+}

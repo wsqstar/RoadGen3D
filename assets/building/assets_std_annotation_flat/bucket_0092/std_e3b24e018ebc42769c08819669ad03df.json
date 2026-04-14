@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a long, multi-carriage commuter train with a streamlined, rectangular profile and a metallic exterior. The train features a series of evenly spaced rectangular windows along its length, providing visibility into the passenger compartments. The exterior is primarily silver-gray with some subtle color accents near the ends, and the surface appears to be made of metal panels. There are multiple doors distributed along the sides, likely for efficient passenger boarding and disembarking. The train sits on a set of tracks and is designed for urban or suburban rail transit. The overall design suggests functionality and durability, suitable for high-capacity public transportation.",
+    "description": "A long, silver-gray commuter train with multiple carriages, evenly spaced windows, and side doors for passenger access.",
+    "description_view_0": "The train is seen from the front, showing a narrow, tapered end with a small area of color detail and the head of the train.",
+    "description_view_1": "A full side view reveals the entire length of the train, with multiple carriages, evenly spaced windows, and several doors along the side.",
+    "description_view_2": "The rear view mirrors the front, showing the opposite tapered end with similar color accents and structural details.",
+    "description_view_3": "Another full side view, identical to view 1, displaying the train's length, window arrangement, and door placement.",
+    "category": "train",
+    "height": 3.8,
+    "max_dimension": 80.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.07,
+        0.03,
+        0.03
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "coupler"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "silver",
+        "yellow",
+        "brown"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "group",
+    "attribute_train_type": "commuter train",
+    "attribute_number_of_carriages": 4,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "evenly spaced along both sides",
+    "attribute_window_arrangement": "continuous row of rectangular windows",
+    "uid": "e3b24e018ebc42769c08819669ad03df",
+    "near_synsets": {
+        "passenger_train.n.01": 0.45005612267363443,
+        "commuter.n.01": 0.4589762459345069,
+        "car_train.n.01": 0.4645893950062843,
+        "train.n.01": 0.47809445038454895,
+        "subway_train.n.01": 0.4786741991048101,
+        "train.n.04": -1000.0,
+        "caravan.n.01": -1000.0,
+        "train.n.05": -1000.0,
+        "string.n.04": -1000.0,
+        "gearing.n.01": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e3b24e018ebc42769c08819669ad03df",
+        "creator_username": "salphytheunemployed",
+        "creator_display_name": "PolyDucky",
+        "creator_profile_url": "https://sketchfab.com/salphytheunemployed"
+    },
+    "filename": "std_e3b24e018ebc42769c08819669ad03df.glb",
+    "length": 60.441253662109375,
+    "width": 2.195634126663208
+}

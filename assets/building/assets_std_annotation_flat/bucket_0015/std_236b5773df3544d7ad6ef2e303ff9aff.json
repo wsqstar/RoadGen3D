@@ -1,0 +1,113 @@
+{
+    "description_long": "This object is a rectangular outdoor tennis court with a green playing surface and clearly marked white lines for singles and doubles play. The court is bordered by a hard, flat surface, likely concrete or asphalt, and is accompanied by a low, modern building structure on one side, which may serve as a clubhouse or equipment storage area. The building features windows and doors, and there is an adjacent paved area that could function as a walkway or seating zone. The tennis net is visible, supported by two posts, and stretches across the center of the court. There are no visible fences or enclosures surrounding the court, and no lighting fixtures are present. The overall design is utilitarian, with a focus on function and minimal decorative elements.",
+    "description": "A modern outdoor tennis court with a green surface, white line markings, and an adjacent low building structure. The court features a central net and a paved area, with no visible fencing or lighting.",
+    "description_view_0": "The tennis court is seen from an elevated angle, showing the green playing area, white lines, central net, and the adjacent building with windows and a paved area.",
+    "description_view_1": "This side view highlights the length of the court and the low profile of the building, with the net and court markings less visible.",
+    "description_view_2": "From this angle, the building's side and the court's width are more apparent, with the net and markings partially visible.",
+    "description_view_3": "The court is viewed from the opposite end, clearly showing the full length of the playing surface, the net, and the building structure in the background.",
+    "category": "tennis court",
+    "height": 4.0,
+    "max_dimension": 38.0,
+    "materials": [
+        "concrete",
+        "asphalt",
+        "paint",
+        "metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.04,
+        0.03,
+        0.01,
+        0.02
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "playable",
+        "dividable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "net",
+        "doors",
+        "windows"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "green",
+        "gray",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "scene",
+    "attribute_net_type": "Standard braided nylon tennis net, black, supported by two metal posts with visible tensioning mechanisms.",
+    "attribute_court_line_markings": "All standard tennis court lines are present, white in color, approximately 5 cm wide, and clearly visible.",
+    "attribute_surrounding_fence": "none",
+    "attribute_lighting_fixtures": "none",
+    "attribute_architectural_style": "utilitarian",
+    "uid": "236b5773df3544d7ad6ef2e303ff9aff",
+    "near_synsets": {
+        "tennis_court.n.01": 0.4317293108709524,
+        "badminton_court.n.01": 0.5184364088653416,
+        "volleyball_court.n.01": 0.520587371347725,
+        "tennis.n.01": 0.5222731641452161,
+        "forecourt.n.01": 0.538153249032462,
+        "court.n.05": -1000.0,
+        "motor_hotel.n.01": -1000.0,
+        "court.n.08": -1000.0,
+        "court.n.10": -1000.0,
+        "court.n.02": -1000.0,
+        "court.n.01": -1000.0,
+        "court.n.06": -1000.0,
+        "court.n.04": -1000.0,
+        "court.n.09": -1000.0,
+        "court.n.03": -1000.0
+    },
+    "synset": "tennis_court.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/236b5773df3544d7ad6ef2e303ff9aff",
+        "creator_username": "rigraf",
+        "creator_display_name": "rigraf",
+        "creator_profile_url": "https://sketchfab.com/rigraf"
+    },
+    "filename": "std_236b5773df3544d7ad6ef2e303ff9aff.glb",
+    "length": 36.20033264160156,
+    "width": 31.209245681762695
+}

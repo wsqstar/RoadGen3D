@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a long, cylindrical rifle with a robust metal barrel and a wooden stock and grip. The main body is matte black or dark green, with a circular ring at the muzzle end and a rectangular opening at the breech. The wooden components are a reddish-brown color, providing ergonomic support for the user. The rifle features simple iron sights mounted along the top of the barrel, and the trigger assembly is visible beneath the main tube. The overall design is reminiscent of a World War II-era anti-tank weapon, such as a bazooka or recoilless rifle, with a utilitarian and rugged appearance.",
+    "description": "A long, cylindrical rifle with a dark metal barrel, wooden stock and grip, and simple iron sights. The design is robust and utilitarian, with a circular muzzle ring and rectangular breech.",
+    "description_view_0": "Front view showing the circular muzzle ring and the narrow profile of the barrel.",
+    "description_view_1": "Side view displaying the full length of the barrel, wooden stock, grip, and iron sights.",
+    "description_view_2": "Rear view highlighting the rectangular breech and the alignment of the barrel.",
+    "description_view_3": "Opposite side view showing the same features as view 1, with clear visibility of the wooden stock and grip.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 1.4,
+    "materials": [
+        "steel",
+        "wood",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 7.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "aimable",
+        "triggerable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "trigger",
+        "grip",
+        "sight",
+        "breech"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "green"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "none",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "14b11a06cb354a18863c6e240352ce27",
+    "near_synsets": {
+        "rifle.n.01": 0.4493348895323625,
+        "garand_rifle.n.01": 0.49850526629643266,
+        "musket.n.01": 0.5089189201027974,
+        "gun_muzzle.n.01": 0.5163205253108255,
+        "light_arm.n.01": 0.5171835686229301
+    },
+    "synset": "garand_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/14b11a06cb354a18863c6e240352ce27",
+        "creator_username": "wingcutangel",
+        "creator_display_name": "wingcutangel",
+        "creator_profile_url": "https://sketchfab.com/wingcutangel"
+    },
+    "filename": "std_14b11a06cb354a18863c6e240352ce27.glb",
+    "length": 1.550689697265625,
+    "width": 0.11709866672754288
+}

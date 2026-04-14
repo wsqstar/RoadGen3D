@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a kitchen knife placed on a rectangular, speckled granite countertop within a box-like enclosure. The knife features a straight, metallic blade and a red handle, which stands out against the neutral tones of the countertop. The countertop itself is supported by a solid base and is surrounded on three sides by tall, smooth, gray walls, creating a contained space. The granite surface has a polished finish with a mix of black, white, and gray speckles, giving it a realistic stone appearance. The knife is positioned near the center of the countertop, with its blade and handle clearly visible. The overall scene suggests a kitchen or food preparation area, with the knife as the primary functional object.",
+    "description": "A kitchen knife with a red handle rests on a speckled granite countertop inside a gray-walled enclosure. The scene evokes a modern kitchen workspace.",
+    "description_view_0": "The front view shows the plain gray wall of the enclosure, with no visible details of the knife or countertop.",
+    "description_view_1": "This view displays another gray wall, similar to view 0, still obscuring the interior details.",
+    "description_view_2": "The countertop and the knife become visible, with the red-handled knife lying on the speckled granite surface inside the enclosure.",
+    "description_view_3": "A top-down angle reveals the full countertop, the knife's position, and the surrounding gray walls, highlighting the workspace layout.",
+    "category": "knife or sword",
+    "height": 1.0,
+    "max_dimension": 1.2,
+    "materials": [
+        "granite",
+        "steel",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "mass": 120.0,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 7,
+    "movable": true,
+    "required_force": 200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "cuttable",
+        "grippable",
+        "placeable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "blade",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.54,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_blade_type": "straight, single-edged",
+    "attribute_handle_design": "straight, red plastic, smooth surface",
+    "attribute_guard_presence": false,
+    "attribute_ornamentation": "none",
+    "attribute_sheath_presence": false,
+    "uid": "22dcdefd02a64280bd88bd34cba28c84",
+    "near_synsets": {
+        "table_knife.n.01": 0.5132776006353503,
+        "case_knife.n.01": 0.5184009003098797,
+        "kitchenware.n.01": 0.5218114157240534,
+        "knife.n.02": 0.5225204879785919,
+        "kitchen_table.n.01": 0.526971521530439,
+        "sword.n.01": -1000.0,
+        "tongue.n.03": -1000.0,
+        "knife.n.01": -1000.0
+    },
+    "synset": "knife.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/22dcdefd02a64280bd88bd34cba28c84",
+        "creator_username": "rosewildes",
+        "creator_display_name": "Rose",
+        "creator_profile_url": "https://sketchfab.com/rosewildes"
+    },
+    "filename": "std_22dcdefd02a64280bd88bd34cba28c84.glb",
+    "length": 1.0063807368278503,
+    "width": 1.0246509313583374
+}

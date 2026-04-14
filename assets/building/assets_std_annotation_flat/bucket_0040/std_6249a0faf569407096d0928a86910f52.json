@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a compact quadcopter drone with a lightweight carbon fiber frame and four extended arms, each supporting a single propeller. The central body houses a visible battery pack, electronic speed controllers, and a mounted camera at the front, suggesting it is designed for aerial photography or FPV (first-person view) racing. The arms are reinforced with red standoffs and the wiring is neatly routed along the frame, indicating a high-performance build. The landing gear consists of short, fixed legs at the end of each arm, providing ground clearance for the propellers and body. The drone features a visible antenna for remote control or video transmission. The overall design is sleek, with exposed mechanical and electronic components, emphasizing functionality and minimal weight.",
+    "description": "A lightweight quadcopter drone with a carbon fiber frame, four propellers, a front-mounted camera, and visible electronics, designed for high-performance aerial use.",
+    "description_view_0": "Side view showing the slim carbon fiber frame, four propellers, and the central battery pack with visible wiring.",
+    "description_view_1": "Angled view from the rear, highlighting the battery pack, rear arms, and the symmetrical layout of the propellers.",
+    "description_view_2": "Opposite side view, mirroring view 0, with clear visibility of the frame, propellers, and electronic components.",
+    "description_view_3": "Front view displaying the mounted camera, antenna, and the forward-facing arms and propellers.",
+    "category": "drone",
+    "height": 0.12,
+    "max_dimension": 0.35,
+    "materials": [
+        "carbon fiber",
+        "plastic",
+        "metal",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 1.2,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 9,
+    "movable": true,
+    "required_force": 15,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "battery pack",
+        "camera",
+        "antenna",
+        "landing gear",
+        "wiring connectors"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "gray",
+        "white",
+        "blue"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 4,
+    "attribute_rotor_configuration": "quadcopter X",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": true,
+    "attribute_propeller_guard_presence": false,
+    "uid": "6249a0faf569407096d0928a86910f52",
+    "near_synsets": {
+        "drone.n.04": 0.5121270994751748,
+        "orthopter.n.01": 0.5603235584607639,
+        "aircraft.n.01": 0.572624800630537,
+        "propeller_plane.n.01": 0.5900766381487951,
+        "kite.n.03": 0.5934869323259607,
+        "monotone.n.01": -1000.0,
+        "drone.n.01": -1000.0,
+        "dawdler.n.01": -1000.0,
+        "drone.n.05": -1000.0
+    },
+    "synset": "drone.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6249a0faf569407096d0928a86910f52",
+        "creator_username": "dennis.robinson.dev",
+        "creator_display_name": "dennis.robinson.dev",
+        "creator_profile_url": "https://sketchfab.com/dennis.robinson.dev"
+    },
+    "filename": "std_6249a0faf569407096d0928a86910f52.glb",
+    "length": 0.33203426003456116,
+    "width": 0.27082324028015137
+}

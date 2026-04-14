@@ -1,0 +1,93 @@
+{
+    "description_long": "This rifle object appears heavily corroded and encrusted, as if it has been exposed to extreme weather or fire. The surface is irregular, with rough, lumpy textures and a mottled coloration of dark browns, blacks, and some reddish-orange patches, suggesting rust or burnt residue. The main body is blocky and thick, with a prominent barrel extending forward and several protrusions and nodules along the sides and bottom. The base is wide and fused to a circular platform, possibly for display or stabilization, and the overall silhouette is distorted, lacking the clean lines of a functional firearm. No clear stock, magazine, or sighting system is visible, and the details are obscured by the heavy surface damage. The object gives the impression of a rifle that has been rendered nonfunctional by severe environmental effects.",
+    "description": "A heavily corroded, encrusted rifle with a rough, lumpy surface and dark, burnt coloration, fused to a circular base. The details are obscured by damage, giving it a distorted, weathered appearance.",
+    "description_view_0": "The left side shows the thick, corroded barrel and main body, with rough protrusions and a wide, fused base.",
+    "description_view_1": "The front view highlights the encrusted muzzle and irregular, blocky structure, with nodules obscuring the barrel opening.",
+    "description_view_2": "The right side displays the elongated barrel and more surface texture, with the base and lower protrusions visible.",
+    "description_view_3": "The rear view reveals the back of the rifle, with heavy corrosion and no visible stock or grip, emphasizing the fused base.",
+    "category": "rifle",
+    "height": 0.18,
+    "max_dimension": 0.38,
+    "materials": [
+        "corroded metal",
+        "oxidized residue",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 5.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 3,
+    "movable": true,
+    "required_force": 54,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel",
+        "trigger area (implied)",
+        "base"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark brown",
+        "black",
+        "reddish-orange",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.92,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "not visible",
+    "uid": "c5e734545d6e4a93b141ea201c1d3219",
+    "near_synsets": {
+        "rifle.n.01": 0.5452733484565626,
+        "rifle_butt.n.01": 0.5526066721327134,
+        "jacket.n.05": 0.5617579903334252,
+        "rust.n.05": 0.5628567293176904,
+        "rifle_grenade.n.01": 0.5647466090532526
+    },
+    "synset": "rifle_grenade.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c5e734545d6e4a93b141ea201c1d3219",
+        "creator_username": "blueyerobotics",
+        "creator_display_name": "Blueye Robotics",
+        "creator_profile_url": "https://sketchfab.com/blueyerobotics"
+    },
+    "filename": "std_c5e734545d6e4a93b141ea201c1d3219.glb",
+    "length": 0.22281476110219955,
+    "width": 0.20507093518972397
+}

@@ -1,0 +1,93 @@
+{
+    "description_long": "This ship is a highly detailed, angular vessel with a distinctive wedge-shaped hull and a raised, tiered superstructure. The exterior is composed of interlocking panels, giving it a modular, armored appearance reminiscent of science fiction warships. The bow is sharply pointed, while the stern features multiple large, circular exhaust ports or thrusters. The superstructure rises in stepped layers, culminating in a command tower with small protruding elements that resemble sensor arrays or turrets. The surface is predominantly gray, with subtle variations in tone and occasional blue highlights at the rear. The overall design suggests a heavily fortified, futuristic capital ship built for command and control.",
+    "description": "A large, wedge-shaped, gray sci-fi ship with a tiered superstructure and prominent rear thrusters.",
+    "description_view_0": "Front view showing the sharp, triangular bow and the stepped, armored superstructure rising toward the command tower.",
+    "description_view_1": "Side view highlighting the ship's elongated, flat hull and the layered superstructure with visible surface detailing.",
+    "description_view_2": "Rear view displaying multiple large, blue-glowing thrusters and the back of the command tower.",
+    "description_view_3": "Opposite side view, similar to view 1, with clear visibility of the hull's length and the superstructure's profile.",
+    "category": "ship",
+    "height": 0.35,
+    "max_dimension": 1.1,
+    "materials": [
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.08
+    ],
+    "mass": 2.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "turret",
+        "thruster",
+        "command tower"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a monolithic, wedge-shaped structure with a flat bottom and sharply pointed bow, tapering to a wide stern. The surface is faceted with angular panels, and the stern features multiple large, circular thruster ports. No keels or bulbous bows are visible; the hull is designed for a sleek, imposing profile.",
+    "attribute_superstructure_layout": "The superstructure is arranged in stepped, tiered layers rising from the hull's centerline, culminating in a prominent command tower at the rear. The tower is flanked by smaller protrusions, possibly sensor or weapon emplacements, and the overall layout is symmetrical and compact.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "turret",
+        "antenna",
+        "thruster"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "a35abc120ab444659b076173fc0eeff0",
+    "near_synsets": {
+        "starship.n.01": 0.5072611405374317,
+        "capital_ship.n.01": 0.5209832911578538,
+        "surface_ship.n.01": 0.525592476759825,
+        "three-decker.n.02": 0.5291668584932389,
+        "windjammer.n.01": 0.5325976670003041,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a35abc120ab444659b076173fc0eeff0",
+        "creator_username": "arezius",
+        "creator_display_name": "arezius",
+        "creator_profile_url": "https://sketchfab.com/arezius"
+    },
+    "filename": "std_a35abc120ab444659b076173fc0eeff0.glb",
+    "length": 0.8801210522651672,
+    "width": 0.5367390215396881
+}

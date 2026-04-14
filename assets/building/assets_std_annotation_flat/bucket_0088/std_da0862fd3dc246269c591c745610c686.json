@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a medium-sized urban gate composed of three main panels: a central swinging section and two side wings. The upper portions of all panels feature a geometric openwork pattern made from black metal bars, creating a visually striking, modern look. The lower sections of the side panels are clad in a dark brown material, likely wood or composite, providing both privacy and contrast. A metallic latch is visible on the central panel, suggesting a manual locking mechanism. The gate is designed to be both functional and decorative, suitable for use in driveways, courtyards, or as an access control point in urban environments. The overall construction appears robust, with a combination of metal and wood for durability and style.",
+    "description": "A modern, three-panel urban gate with geometric black metal bars and dark brown lower panels, featuring a central swinging section and a visible latch.",
+    "description_view_0": "Side profile of the gate, showing its thinness and the alignment of the panels.",
+    "description_view_1": "Front view displaying the geometric metalwork, brown lower panels, and the central latch mechanism.",
+    "description_view_2": "Opposite side profile, again highlighting the gate's slim structure and panel arrangement.",
+    "description_view_3": "Rear or alternate front view, similar to view 1, showing the decorative metalwork and brown panels.",
+    "category": "gate",
+    "height": 1.8,
+    "max_dimension": 2.2,
+    "materials": [
+        "steel",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 40,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable",
+        "lockable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "latch",
+        "gate panel",
+        "hinge"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "brown",
+        "gold"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_gate_type": "swing gate",
+    "attribute_opening_mechanism": "manual swing",
+    "attribute_decorative_elements": [
+        "geometric patterns"
+    ],
+    "attribute_locking_system": "latch",
+    "attribute_surrounding_structure": "metal posts",
+    "uid": "da0862fd3dc246269c591c745610c686",
+    "near_synsets": {
+        "lock-gate.n.01": 0.4940870344542263,
+        "gate.n.01": 0.5065601161515805,
+        "gateway.n.01": 0.5254125161147106,
+        "portcullis.n.01": 0.5263773942778281,
+        "hinging_post.n.01": 0.5337814399978046,
+        "gate.n.02": -1000.0,
+        "gate.n.04": -1000.0,
+        "gate.n.03": -1000.0
+    },
+    "synset": "gate.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/da0862fd3dc246269c591c745610c686",
+        "creator_username": "abdillaamy",
+        "creator_display_name": "abdillaamy",
+        "creator_profile_url": "https://sketchfab.com/abdillaamy"
+    },
+    "filename": "std_da0862fd3dc246269c591c745610c686.glb",
+    "length": 0.08170795440673828,
+    "width": 1.5667983889579773
+}

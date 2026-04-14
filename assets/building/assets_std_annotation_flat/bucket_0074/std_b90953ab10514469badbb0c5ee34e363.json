@@ -1,0 +1,107 @@
+{
+    "description_long": "This is an octagonal above-ground jacuzzi with a wooden exterior frame and a blue inner lining, designed for outdoor use. The jacuzzi features a set of metal handrails and a wooden ladder at the front for easy entry and exit. Around the perimeter, the wooden panels are reinforced with dark brackets at each corner, giving it a sturdy and decorative appearance. An orange filtration or pump unit is attached to the side, connected by visible hoses, indicating a functional water circulation system. The water inside appears clean and nearly fills the tub, with the surface reflecting the blue of the lining. The jacuzzi is placed on a concrete or stone base, providing stability and separation from the ground.",
+    "description": "An octagonal wooden above-ground jacuzzi with a blue interior, metal handrails, a wooden ladder, and an attached orange filtration unit. The water is nearly full, and the jacuzzi sits on a concrete base.",
+    "description_view_0": "Front view showing the wooden ladder and metal handrails leading into the jacuzzi, with the water surface clearly visible.",
+    "description_view_1": "Side view highlighting the orange filtration unit and a partially open wooden access panel, with the handrails visible at the back.",
+    "description_view_2": "Rear view focusing on the filtration unit and its connection to the jacuzzi, with the handrails at the far side.",
+    "description_view_3": "Angled view showing both the filtration unit and the wooden ladder, as well as the open access panel on the side.",
+    "category": "jacuzzi",
+    "height": 1.2,
+    "max_dimension": 2.8,
+    "materials": [
+        "wood",
+        "metal",
+        "plastic",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.1,
+        0.1,
+        0.25,
+        0.05
+    ],
+    "mass": 350,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "sittable",
+        "turnable_valve",
+        "liftable_lid"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "ladder",
+        "handrail",
+        "filtration unit",
+        "access panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "blue",
+        "silver",
+        "orange",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_jets": [],
+    "attribute_control_panel": "none visible",
+    "attribute_water_level": "nearly full, water level close to the top edge",
+    "attribute_cover": false,
+    "attribute_steps": [
+        {
+            "location": "front",
+            "number_of_steps": 3,
+            "material": "wood"
+        }
+    ],
+    "uid": "b90953ab10514469badbb0c5ee34e363",
+    "near_synsets": {
+        "hot_tub.n.01": 0.5388184676693603,
+        "bath_water.n.01": 0.5769072263370268,
+        "bathtub.n.01": 0.5879973927072167,
+        "lido_deck.n.01": 0.5886894276564701,
+        "pump_room.n.01": 0.5887333581019942
+    },
+    "synset": "hot_tub.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/b90953ab10514469badbb0c5ee34e363",
+        "creator_username": "trzyde.com",
+        "creator_display_name": "trzyde.com",
+        "creator_profile_url": "https://sketchfab.com/trzyde.com"
+    },
+    "filename": "std_b90953ab10514469badbb0c5ee34e363.glb",
+    "length": 3.8829933404922485,
+    "width": 3.88690984249115
+}

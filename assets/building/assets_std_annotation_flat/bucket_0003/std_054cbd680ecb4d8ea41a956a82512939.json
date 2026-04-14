@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a compact, antique-style shotgun with a wide, flared muzzle and a short barrel, reminiscent of a blunderbuss. The barrel is metallic, dark gray in color, and features a brass band near the muzzle and another brass fitting at the breech. The stock is made of polished wood with a rich brown hue, smoothly contoured for ergonomic handling. The action mechanism is break-action, with a prominent brass lever and a rounded, metallic trigger guard. The overall design is robust and decorative, with a blend of metallic and wooden elements that evoke a historical or steampunk aesthetic.",
+    "description": "A compact, antique-style shotgun with a flared metallic barrel, brass fittings, and a polished wooden stock.",
+    "description_view_0": "Front view showing the wide, flared muzzle and the circular opening of the barrel.",
+    "description_view_1": "Side view highlighting the short, conical barrel, brass lever, and wooden stock.",
+    "description_view_2": "Rear view displaying the wooden stock and the back of the action mechanism.",
+    "description_view_3": "Opposite side view showing the break-action lever and the curvature of the stock.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.55,
+    "materials": [
+        "steel",
+        "brass",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.2,
+        0.05
+    ],
+    "mass": 2.8,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 35,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "trigger",
+        "trigger guard",
+        "lever"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brass",
+        "brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.25
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "smooth",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, flared muzzle, no visible ribbing or venting",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "break-action",
+    "attribute_presence_of_a_pump_or_lever": "lever",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with a smooth, continuous curve and no finger grooves",
+    "uid": "054cbd680ecb4d8ea41a956a82512939",
+    "near_synsets": {
+        "sawed-off_shotgun.n.01": 0.47555666357053317,
+        "shotgun.n.01": 0.5003610729128631,
+        "shotgun_shell.n.01": 0.5101743946443991,
+        "bird_shot.n.01": 0.520695808272371,
+        "gas_gun.n.01": 0.526736233517271
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/054cbd680ecb4d8ea41a956a82512939",
+        "creator_username": "andreeab",
+        "creator_display_name": "andreeab",
+        "creator_profile_url": "https://sketchfab.com/andreeab"
+    },
+    "filename": "std_054cbd680ecb4d8ea41a956a82512939.glb",
+    "length": 0.3265533745288849,
+    "width": 0.12884044647216797
+}

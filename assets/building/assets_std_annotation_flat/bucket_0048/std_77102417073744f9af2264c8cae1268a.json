@@ -1,0 +1,111 @@
+{
+    "description_long": "This object is a rooftop solar energy installation featuring several large photovoltaic panels mounted on a flat, rectangular base that resembles a building roof. The panels are arranged in both flat and tilted positions, with some elevated at an angle to maximize sunlight exposure. The base surface is marked with various colored zones and text, indicating different sections or installation guidelines, such as slope direction and panel placement. The structure includes a raised black parapet around the perimeter, and a small vertical structure at one end, possibly representing a vent or utility housing. The solar panels are supported by visible mounting frames, likely made of metal, and the overall design suggests a commercial or multi-unit residential rooftop application. The installation appears robust, with ample space between panels for maintenance and airflow.",
+    "description": "A rooftop solar energy system with multiple large photovoltaic panels, some flat and some tilted, mounted on a rectangular base with marked zones and a surrounding parapet. The setup includes metal mounting frames and a small utility structure at one end.",
+    "description_view_0": "Side view showing two large solar panels, one flat and one tilted, on a rectangular base with a black parapet.",
+    "description_view_1": "Angled view highlighting the sloped arrangement of the panels, visible colored zones, and text indicating a 2-3\u00b0 slope to the rear.",
+    "description_view_2": "Opposite side view with a clearer look at the flat panel arrangement and the small vertical utility structure at the far end.",
+    "description_view_3": "End view showing the alignment of the panels, the parapet, and the utility structure, with the tilted panel most prominent.",
+    "category": "solar energy infrastructure",
+    "height": 0.7,
+    "max_dimension": 7.0,
+    "materials": [
+        "glass",
+        "aluminum",
+        "steel",
+        "plastic",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.25,
+        0.15,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "solar panel",
+        "mounting frame",
+        "utility box"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray",
+        "white",
+        "yellow",
+        "orange",
+        "red"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_panel_orientation": "Panels are both flat and tilted at approximately 30 degrees, with tilt direction toward the rear; orientation appears fixed.",
+    "attribute_mounting_structure_type": "roof-mounted with visible metal (likely aluminum) frames and a flat base simulating a building roof.",
+    "attribute_electrical_inverter_presence": false,
+    "attribute_cabling_visibility": "not visible",
+    "attribute_array_configuration": "Multiple panels arranged in a staggered, partially overlapping cluster with at least four distinct panels, some flat and some tilted.",
+    "uid": "77102417073744f9af2264c8cae1268a",
+    "near_synsets": {
+        "solar_array.n.01": 0.5012006435621222,
+        "solar_thermal_system.n.01": 0.5183742501657731,
+        "solar_house.n.01": 0.5266491632981755,
+        "solar_energy.n.01": 0.5457626800631311,
+        "solar_cell.n.01": 0.5486064195710887,
+        "infrastructure.n.01": -1000.0,
+        "energy.n.02": -1000.0,
+        "department_of_energy.n.01": -1000.0,
+        "infrastructure.n.02": -1000.0,
+        "energy.n.05": -1000.0,
+        "energy.n.01": -1000.0,
+        "energy.n.06": -1000.0,
+        "energy.n.04": -1000.0,
+        "energy.n.03": -1000.0
+    },
+    "synset": "solar_array.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/77102417073744f9af2264c8cae1268a",
+        "creator_username": "brooklynsolarworks",
+        "creator_display_name": "brooklynsolarworks",
+        "creator_profile_url": "https://sketchfab.com/brooklynsolarworks"
+    },
+    "filename": "std_77102417073744f9af2264c8cae1268a.glb",
+    "length": 4.15097713470459,
+    "width": 2.315510630607605
+}

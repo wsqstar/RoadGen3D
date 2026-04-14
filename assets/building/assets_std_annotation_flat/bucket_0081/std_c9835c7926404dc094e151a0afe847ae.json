@@ -1,0 +1,94 @@
+{
+    "description_long": "This rifle features a modern tactical design with a prominent thumbhole stock and an integrated scope mounted on the top rail. The body is primarily matte black, with a streamlined receiver and a detachable box magazine. The barrel is long and slender, ending in a cylindrical suppressor, and the handguard is vented for heat dissipation. The trigger guard is large, and the grip is ergonomically shaped for stability. The overall construction suggests a focus on precision and modularity, suitable for urban tactical scenarios.",
+    "description": "A modern black rifle with a thumbhole stock, integrated scope, long barrel with suppressor, and detachable magazine.",
+    "description_view_0": "Side view showing the thumbhole stock, scope, long barrel with suppressor, and detachable magazine.",
+    "description_view_1": "Front-on view highlighting the narrow barrel profile and the alignment of the scope above the receiver.",
+    "description_view_2": "Opposite side view displaying the thumbhole stock, scope, and magazine, with the suppressor visible at the barrel's end.",
+    "description_view_3": "Rear view focusing on the stock's shape and the alignment of the scope and barrel.",
+    "category": "rifle",
+    "height": 0.22,
+    "max_dimension": 1.05,
+    "materials": [
+        "steel",
+        "polymer",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.25,
+        0.05,
+        0.05
+    ],
+    "mass": 4.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 45,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "trigger",
+        "magazine",
+        "scope",
+        "barrel",
+        "suppressor",
+        "safety selector"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "thumbhole",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "scope",
+    "attribute_muzzle_device": "suppressor",
+    "uid": "c9835c7926404dc094e151a0afe847ae",
+    "near_synsets": {
+        "rifle.n.01": 0.514741256247161,
+        "dragunov.n.01": 0.5198481631340202,
+        "light_arm.n.01": 0.5346973354432855,
+        "garand_rifle.n.01": 0.5364384718159638,
+        "twenty-two_rifle.n.01": 0.5411142143269733
+    },
+    "synset": "twenty-two_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/c9835c7926404dc094e151a0afe847ae",
+        "creator_username": "n3600",
+        "creator_display_name": "n3600",
+        "creator_profile_url": "https://sketchfab.com/n3600"
+    },
+    "filename": "std_c9835c7926404dc094e151a0afe847ae.glb",
+    "length": 0.8282470703125,
+    "width": 0.04776763916015625
+}

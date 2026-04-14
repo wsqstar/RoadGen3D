@@ -1,0 +1,100 @@
+{
+    "description_long": "This object consists of two industrial-style barrels, one painted red and the other green, each with a cylindrical shape and reinforced by three black metal hoops around their circumference. The red barrel features a flammable warning symbol and the word 'FLAMMABLE' printed near its base, while the green barrel displays a biohazard symbol and the word 'POISONOUS' or 'TOXIC'. Both barrels have slightly domed, sealed tops with a small central bung or cap, indicating they are designed to securely contain hazardous materials. The surfaces of the barrels are slightly textured, with visible paint drips and wear, suggesting outdoor or industrial use. The barrels are likely made of metal, with a hollow interior for storing liquids or chemicals, and are robust enough to be stacked or transported. Their vivid colors and clear hazard markings make them easily identifiable in urban or industrial environments.",
+    "description": "A pair of industrial metal barrels, one red with flammable markings and one green with toxic/biohazard symbols, reinforced with black hoops and sealed tops.",
+    "description_view_0": "Front view showing the tops of both barrels, with the red barrel in front and the green barrel behind.",
+    "description_view_1": "Side view displaying the hazard symbols: flammable on the red barrel and biohazard on the green barrel, with both barrels' warning text visible.",
+    "description_view_2": "Rear view showing the tops of both barrels, with the green barrel in front and the red barrel behind, no hazard symbols visible.",
+    "description_view_3": "Side view similar to view 1, with hazard symbols and warning text visible, but the green barrel is now on the left and the red on the right.",
+    "category": "barrel or bucket",
+    "height": 0.9,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 36,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bung cap",
+        "barrel body"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "green",
+        "black",
+        "gray",
+        "white",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.35,
+        0.35,
+        0.15,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "black metal hoops around circumference",
+    "attribute_labeling_or_markings": "flammable and biohazard symbols, 'FLAMMABLE', 'POISONOUS', 'TOXIC' text",
+    "attribute_placement_location": "industrial",
+    "uid": "310dba77872d434184e6f82bf916db24",
+    "near_synsets": {
+        "barrel.n.02": 0.5023967866960719,
+        "barrel.n.03": 0.5147499818528329,
+        "barrels.n.01": 0.5222551644690351,
+        "barrel.n.05": 0.5300736068512755,
+        "bucket.n.01": 0.5301974265046078,
+        "barrel.n.04": -1000.0,
+        "barrel.n.01": -1000.0,
+        "bucket.n.02": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/310dba77872d434184e6f82bf916db24",
+        "creator_username": "RickvanderLinden",
+        "creator_display_name": "R.Linden",
+        "creator_profile_url": "https://sketchfab.com/RickvanderLinden"
+    },
+    "filename": "std_310dba77872d434184e6f82bf916db24.glb",
+    "length": 0.5328986048698425,
+    "width": 1.7028417587280273
+}

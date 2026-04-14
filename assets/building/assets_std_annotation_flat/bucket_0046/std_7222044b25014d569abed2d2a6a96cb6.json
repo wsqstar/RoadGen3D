@@ -1,0 +1,97 @@
+{
+    "description_long": "This sidewalk section is composed of six distinct rectangular tiles, each featuring a different surface texture and color, suggesting a variety of paving materials commonly found in urban environments. The upper left tile appears to be a weathered, rust-brown stone, while the upper right is a light tan, possibly concrete or sandstone. The lower left tile is made of greenish-gray cobblestones, and the lower right is a tightly packed, light beige brickwork. The central tiles include a gray, rough-textured stone and a smoother, pale gray slab. The overall surface is flat and segmented, with visible seams between each tile, indicating modular construction. The textures range from rough and uneven to relatively smooth, providing both visual and tactile variety typical of sidewalks in mixed-use urban areas.",
+    "description": "A flat, segmented sidewalk composed of six distinct tiles, each with unique stone or brick textures and colors. The surface features a mix of rough and smooth finishes, typical of urban paving.",
+    "description_view_0": "From this view, the six tiles are clearly visible, with their varied textures and colors arranged in a 2x3 grid.",
+    "description_view_1": "This low-angle side view emphasizes the flatness and thinness of the sidewalk, with the tile textures still discernible but less prominent.",
+    "description_view_2": "Seen from the opposite end, the arrangement of the tiles is mirrored, highlighting the differences in surface patterns and colors.",
+    "description_view_3": "This side view shows the length of the sidewalk, with the tile seams and surface variations running horizontally across the image.",
+    "category": "sidewalk",
+    "height": 0.05,
+    "max_dimension": 2.0,
+    "materials": [
+        "concrete",
+        "stone",
+        "brick",
+        "mortar",
+        "air"
+    ],
+    "materials_composition": [
+        0.4,
+        0.3,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "mass": 480,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "segmentable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "tan",
+        "gray",
+        "greenish-gray",
+        "beige"
+    ],
+    "colors_composition": [
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_curb_presence": false,
+    "attribute_tactile_paving": false,
+    "attribute_edge_type": "flush",
+    "attribute_adjacent_street_type": "residential",
+    "attribute_presence_of_street_furniture": false,
+    "uid": "7222044b25014d569abed2d2a6a96cb6",
+    "near_synsets": {
+        "sidewalk.n.01": 0.4989809596847546,
+        "paving_stone.n.01": 0.5164870091089905,
+        "paved_surface.n.01": 0.5171778452504112,
+        "cobble.n.01": 0.5316978314925329,
+        "pavement.n.01": 0.5358411687655853
+    },
+    "synset": "sidewalk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/7222044b25014d569abed2d2a6a96cb6",
+        "creator_username": "Matt_LeMoine",
+        "creator_display_name": "Matt LeMoine",
+        "creator_profile_url": "https://sketchfab.com/Matt_LeMoine"
+    },
+    "filename": "std_7222044b25014d569abed2d2a6a96cb6.glb",
+    "length": 29.997584342956543,
+    "width": 19.998388290405273
+}

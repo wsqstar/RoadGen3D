@@ -1,0 +1,116 @@
+{
+    "description_long": "This is a traditional Viking longship with a narrow, elongated wooden hull and a single large square sail featuring red and white vertical stripes and a central blue emblem. The bow and stern are both ornately carved, with the bow ending in a dragon or serpent head, a hallmark of Norse craftsmanship. The deck is lined with wooden shields along the sides, and numerous oars extend from both port and starboard, indicating the ship is both sail- and oar-powered. The mast is centrally placed and supported by rigging, with a red pennant flying at the top. The ship's open deck allows for crew movement and storage, and the overall construction is robust, designed for both speed and stability on water. The vessel's finish is predominantly natural wood, accented by painted shields and sail.",
+    "description": "A detailed Viking longship with a dragon-headed prow, striped sail, wooden shields, and rows of oars along its sides.",
+    "description_view_0": "Front view showing the dragon-headed prow, the full width of the striped sail, and the symmetrical arrangement of oars.",
+    "description_view_1": "Side view highlighting the elongated hull, shield-lined rail, and the full length of the oars and mast.",
+    "description_view_2": "Rear view displaying the stern's ornate carving, the sail's emblem, and the arrangement of oars from the back.",
+    "description_view_3": "Opposite side view showing the hull's curvature, shield placement, and the mast with its rigging and pennant.",
+    "category": "ship",
+    "height": 8.0,
+    "max_dimension": 25.0,
+    "materials": [
+        "wood",
+        "cloth",
+        "metal",
+        "rope",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 6000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "rowable",
+        "sailable",
+        "steerable",
+        "climbable",
+        "storable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "oar",
+        "sail",
+        "mast",
+        "shields",
+        "rigging",
+        "rudder"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "red",
+        "white",
+        "blue",
+        "black",
+        "gold"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a long, narrow displacement type with a shallow draft, pointed bow and stern, and a pronounced upward curve at both ends. The bow features a carved dragon or serpent head, while the stern is similarly ornate. The hull sides are lined with round shields and multiple oar ports, and there is no visible keel or bulbous bow.",
+    "attribute_superstructure_layout": "The ship has an open deck with no enclosed cabins or superstructure, a single central mast, and shield racks along both sides. There are no bridges or towers, and the deck is clear for crew movement.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "oar",
+        "shield",
+        "mast",
+        "sail",
+        "rigging",
+        "rudder"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "d32f48fd2be64f948ee4d80a6da70ae8",
+    "near_synsets": {
+        "drekkar.n.01": 0.4439926051493085,
+        "longship.n.01": 0.45755397616986565,
+        "sea_king.n.01": 0.518744261255691,
+        "viking.n.01": 0.5196837427150076,
+        "rowing_boat.n.01": 0.5424784578231304,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d32f48fd2be64f948ee4d80a6da70ae8",
+        "creator_username": "kleingeo",
+        "creator_display_name": "Georg Klein",
+        "creator_profile_url": "https://sketchfab.com/kleingeo"
+    },
+    "filename": "std_d32f48fd2be64f948ee4d80a6da70ae8.glb",
+    "length": 10.965728759765625,
+    "width": 7.348111152648926
+}

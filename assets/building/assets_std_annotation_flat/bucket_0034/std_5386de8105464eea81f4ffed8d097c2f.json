@@ -1,0 +1,91 @@
+{
+    "description_long": "This is a large, rectangular metal container, commonly known as a shipping or storage container, painted in a uniform light beige or off-white color. The container features corrugated steel walls for structural strength and durability, with a flat, ribbed roof and reinforced corners. One side has a solid double-door entry with visible locking mechanisms, while the opposite side is plain and unadorned. Another side is equipped with a single door flanked by two barred windows, suggesting it may be used for secure storage or as a temporary office or shelter. The container sits on small corner supports, elevating it slightly above the ground. There are no visible labels, handles, or decorative elements, emphasizing its utilitarian and secure design.",
+    "description": "A large, beige metal shipping container with corrugated walls, double doors on one end, and a side door with barred windows, designed for secure storage or temporary shelter.",
+    "description_view_0": "End view showing the double-door entry with visible locking bars and reinforced corners.",
+    "description_view_1": "Side view displaying a plain, corrugated metal wall with no openings or features.",
+    "description_view_2": "Opposite end view, showing a solid, featureless wall with corrugated texture.",
+    "description_view_3": "Side view featuring a single door in the center, flanked by two barred windows, indicating a secure access point.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "air",
+        "glass"
+    ],
+    "materials_composition": [
+        0.92,
+        0.07,
+        0.01
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 9,
+    "movable": true,
+    "required_force": 15000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window bars",
+        "lock",
+        "door handle"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "beige"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "no lid",
+    "attribute_opening_mechanism": "unlatch and swing open doors",
+    "attribute_labeling_or_signage": "none",
+    "attribute_handles_or_grips": "none",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "5386de8105464eea81f4ffed8d097c2f",
+    "near_synsets": {
+        "container.n.01": 0.41731821200723684,
+        "cargo_container.n.01": 0.4525519224488687,
+        "box.n.01": 0.49496283364149213,
+        "container_ship.n.01": 0.5079059689279627,
+        "case.n.05": 0.5160481370669724
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5386de8105464eea81f4ffed8d097c2f",
+        "creator_username": "agasandro",
+        "creator_display_name": "agasandro",
+        "creator_profile_url": "https://sketchfab.com/agasandro"
+    },
+    "filename": "std_5386de8105464eea81f4ffed8d097c2f.glb",
+    "length": 2.6962450742721558,
+    "width": 6.115119457244873
+}

@@ -1,0 +1,90 @@
+{
+    "description_long": "This object is a small, square sandbox set into a flat, open surface, likely representing a section of a playground. The sandbox is constructed with low, wooden walls forming a shallow enclosure, and the interior appears to be filled with sand. The wood is light in color, giving a natural and inviting appearance suitable for children. The sandbox is flush with the surrounding ground, making it easily accessible from all sides. There are no visible safety barriers, shade structures, or additional play features attached. The minimalist design suggests it is intended for simple, open-ended play such as digging or building with sand.",
+    "description": "A small, square, wooden sandbox set into a flat surface, filled with sand and open on all sides.",
+    "description_view_0": "The sandbox is seen from a distance, showing its square shape and low profile within the flat surface.",
+    "description_view_1": "This view highlights the open side of the sandbox, revealing the shallow depth and wooden walls.",
+    "description_view_2": "The sandbox is visible from the opposite side, again showing the square form and sand-filled interior.",
+    "description_view_3": "A side angle reveals the sandbox's low wooden walls and the open, accessible design.",
+    "category": "playground",
+    "height": 0.3,
+    "max_dimension": 1.2,
+    "materials": [
+        "wood",
+        "sand",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "mass": 120,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "diggable",
+        "buildable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sandbox walls",
+        "sand"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light brown",
+        "beige",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_playground_equipment_type": "sandbox",
+    "attribute_presence_of_safety_barriers": false,
+    "attribute_number_of_play_structures": 1,
+    "attribute_presence_of_shade_structures": false,
+    "attribute_architectural_style": "minimalist",
+    "uid": "45d2e984c18b4fa2b16e9bae8eb004b6",
+    "near_synsets": {
+        "sandbox.n.02": 0.44635378307545004,
+        "playground.n.02": 0.4633250862987142,
+        "sand_toy.n.01": 0.5045002586569421,
+        "sandlot.n.01": 0.5129460158880329,
+        "sandpit.n.01": 0.5179823679064578,
+        "resort_area.n.01": -1000.0
+    },
+    "synset": "playground.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/45d2e984c18b4fa2b16e9bae8eb004b6",
+        "creator_username": "ibordner",
+        "creator_display_name": "ibordner",
+        "creator_profile_url": "https://sketchfab.com/ibordner"
+    },
+    "filename": "std_45d2e984c18b4fa2b16e9bae8eb004b6.glb",
+    "length": 5.657114505767822,
+    "width": 6.173377513885498
+}

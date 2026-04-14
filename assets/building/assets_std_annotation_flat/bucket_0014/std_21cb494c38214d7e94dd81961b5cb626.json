@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a modern sniper rifle with a long, cylindrical barrel and an attached suppressor at the muzzle end. The body features a prominent scope mounted on top, suggesting precision targeting capabilities. The stock is robust and ergonomically shaped, likely designed for stability and comfort during extended use. A detachable box magazine is visible beneath the receiver, indicating quick reload functionality. The rifle also includes a pistol grip and a bipod for steady aiming, both of which are common in tactical and urban sniper scenarios. The overall finish is matte gray, giving it a utilitarian and low-reflectivity appearance suitable for urban environments.",
+    "description": "A modern sniper rifle with a long barrel, suppressor, scope, and detachable magazine, finished in matte gray.",
+    "description_view_0": "Side view showing the full length of the rifle, including the suppressor, scope, and stock.",
+    "description_view_1": "Front-angled view highlighting the suppressor, scope, and the bipod beneath the rifle.",
+    "description_view_2": "Top-down view displaying the alignment of the barrel, scope, and the overall slim profile.",
+    "description_view_3": "Rear-angled view focusing on the stock, pistol grip, and the magazine area.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 1.3,
+    "materials": [
+        "steel",
+        "polymer",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "mass": 6.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "grippable",
+        "aimable",
+        "triggerable",
+        "reloadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "magazine",
+        "bolt",
+        "scope",
+        "safety",
+        "bipod",
+        "stock",
+        "pistol grip"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "scope",
+    "attribute_muzzle_device": "suppressor",
+    "uid": "21cb494c38214d7e94dd81961b5cb626",
+    "near_synsets": {
+        "dragunov.n.01": 0.4649353124171305,
+        "sniper_rifle.n.01": 0.4772410821252364,
+        "rifle.n.01": 0.5125762168437066,
+        "garand_rifle.n.01": 0.5269197492978765,
+        "twenty-two_rifle.n.01": 0.5295811940483409
+    },
+    "synset": "twenty-two_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/21cb494c38214d7e94dd81961b5cb626",
+        "creator_username": "IProZenoN",
+        "creator_display_name": "IProZenoN",
+        "creator_profile_url": "https://sketchfab.com/IProZenoN"
+    },
+    "filename": "std_21cb494c38214d7e94dd81961b5cb626.glb",
+    "length": 0.2578125,
+    "width": 0.30224609375
+}

@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a large, military-style truck with a camouflage paint scheme, featuring a robust, angular cab and a long, reinforced chassis. The vehicle has six large wheels, three on each side, providing stability and off-road capability. The rear compartment is equipped with a boxy structure, likely for cargo or specialized equipment, and a set of cylindrical tubes that resemble a rocket launcher or missile pod. The cab has a sloped windshield, protective grilles, and side mirrors, with visible details such as door handles and a spare tire mounted behind the cab. The truck's exterior is primarily painted in green, brown, and black camouflage patterns, with some metallic and rubber components visible. The overall design suggests a heavy-duty, tactical vehicle suitable for rugged urban or battlefield environments.",
+    "description": "A large, camouflaged military truck with six wheels, a reinforced cab, and a rear compartment featuring a boxy structure and cylindrical launcher tubes. The vehicle is robust, angular, and painted in green, brown, and black camouflage.",
+    "description_view_0": "Front view shows the sloped windshield, protective grille, and the cylindrical launcher tubes mounted behind the cab.",
+    "description_view_1": "Left side view highlights the three large wheels, spare tire, and the full length of the boxy rear compartment.",
+    "description_view_2": "Rear view displays the back of the launcher tubes, the rear bumper, and the boxy structure of the cargo area.",
+    "description_view_3": "Right side view mirrors the left, showing the wheels, spare tire, and the camouflaged boxy rear compartment.",
+    "category": "truck",
+    "height": 3.2,
+    "max_dimension": 8.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "launcher tubes",
+        "side mirror",
+        "spare tire",
+        "bumper",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "box",
+    "attribute_wheelbase": 4.5,
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "0a358a81e71140d7b0446c2fb25291cc",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4668487800841992,
+        "weapons_carrier.n.01": 0.4902756026425012,
+        "reconnaissance_vehicle.n.01": 0.49631671632114704,
+        "tank.n.01": 0.5038197086023191,
+        "armored_car.n.02": 0.5177511603981013,
+        "truck.n.01": -1000.0,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0a358a81e71140d7b0446c2fb25291cc",
+        "creator_username": "lm9241221",
+        "creator_display_name": "lm9241221",
+        "creator_profile_url": "https://sketchfab.com/lm9241221"
+    },
+    "filename": "std_0a358a81e71140d7b0446c2fb25291cc.glb",
+    "length": 10.276031970977783,
+    "width": 10.276030540466309
+}

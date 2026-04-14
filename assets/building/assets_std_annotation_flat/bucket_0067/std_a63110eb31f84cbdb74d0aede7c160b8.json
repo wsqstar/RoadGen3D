@@ -1,0 +1,96 @@
+{
+    "description_long": "This mud patch is an irregular, shallow expanse of earth with a rough, granular surface texture and a slightly uneven profile. The surface is predominantly dry, with a central area featuring a cluster of larger, compacted clods or stones, suggesting a spot where the ground has been disturbed or compressed. The coloration is a muted, dusty brown, typical of urban mud patches that have dried out after rainfall. The edges of the patch are irregular and blend gradually into the surrounding ground, lacking any sharp or well-defined boundaries. There are no visible signs of water accumulation, puddles, or significant dampness, and the surface appears firm enough to support light foot traffic. Scattered small stones are present, but there is no visible organic debris or trash.",
+    "description": "A dry, irregular mud patch with a rough, granular surface and a central cluster of compacted clods or stones. The patch is brown and blends gradually into the surrounding ground.",
+    "description_view_0": "From this angle, the mud patch's uneven surface and central cluster of stones are clearly visible, with the rough texture most prominent.",
+    "description_view_1": "This view highlights the flatter, more expansive side of the patch, with the central clod cluster appearing slightly sunken.",
+    "description_view_2": "The central cluster of stones is more pronounced, and the patch's irregular, granular surface is evident.",
+    "description_view_3": "The mud patch appears flatter from this side, with the surface texture and scattered stones visible but less pronounced.",
+    "category": "mud patch",
+    "height": 0.05,
+    "max_dimension": 1.2,
+    "materials": [
+        "soil",
+        "stone",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 90,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.05,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 50,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.0,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "single",
+    "attribute_location": "urban roadside or sidewalk edge",
+    "attribute_boundary_definition": "The boundaries are irregular and blend gradually into the surrounding ground, with no sharp transitions.",
+    "attribute_presence_of_footprints_or_tire_marks": "none visible",
+    "attribute_water_accumulation": "none visible",
+    "attribute_surrounding_debris": "none visible",
+    "uid": "a63110eb31f84cbdb74d0aede7c160b8",
+    "near_synsets": {
+        "mud.n.01": 0.5152122743411353,
+        "mud_puddle.n.01": 0.5229750710971806,
+        "mud_stain.n.01": 0.5289542841959047,
+        "puddle.n.01": 0.556741457323581,
+        "pudding_stone.n.01": 0.5590440515576298,
+        "spot.n.05": -1000.0,
+        "while.n.01": -1000.0,
+        "plot.n.02": -1000.0,
+        "patch.n.03": -1000.0,
+        "mend.n.01": -1000.0,
+        "bandage.n.01": -1000.0,
+        "eyepatch.n.01": -1000.0,
+        "patch.n.05": -1000.0,
+        "temporary_hookup.n.01": -1000.0,
+        "mud.n.02": -1000.0
+    },
+    "synset": "spot.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/a63110eb31f84cbdb74d0aede7c160b8",
+        "creator_username": "rmahon1",
+        "creator_display_name": "Robert Mahon",
+        "creator_profile_url": "https://sketchfab.com/rmahon1"
+    },
+    "filename": "std_a63110eb31f84cbdb74d0aede7c160b8.glb",
+    "length": 1.452276349067688,
+    "width": 1.3287991285324097
+}

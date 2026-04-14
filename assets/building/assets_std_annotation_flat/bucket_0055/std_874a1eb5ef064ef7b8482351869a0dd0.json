@@ -1,0 +1,109 @@
+{
+    "description_long": "This bus shelter features a modern, open design with a series of colorful, rectangular roof panels in red, yellow, blue, and gray, supported by a sturdy frame. The shelter is set on a rectangular concrete base and includes a partially enclosed area on one end, likely for seating or protection from the elements. The structure is adjacent to a landscaped area with greenery, providing a pleasant waiting environment. The roof panels are arranged in parallel, creating alternating bands of shade and light. The shelter appears to accommodate multiple people and offers partial protection from rain and sun. The overall aesthetic is contemporary, with clean lines and a playful use of color.",
+    "description": "A modern bus shelter with colorful, rectangular roof panels and a partially enclosed seating area, set on a concrete base next to greenery. The design is open and visually striking, offering partial weather protection.",
+    "description_view_0": "Front view showing the colorful roof panels, partially enclosed seating area on the left, and adjacent greenery.",
+    "description_view_1": "Side view highlighting the sequence of colored roof panels and the open structure, with the greenery running parallel.",
+    "description_view_2": "Rear view displaying the full length of the shelter, the arrangement of roof panels, and the greenery behind.",
+    "description_view_3": "Opposite side view focusing on the back of the enclosed area and the alignment of the roof panels, with greenery to the left.",
+    "category": "bus shelter",
+    "height": 2.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "metal",
+        "concrete",
+        "polycarbonate",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "leanable",
+        "shelterable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench",
+        "roof panel",
+        "side panel"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "red",
+        "yellow",
+        "blue",
+        "gray",
+        "green"
+    ],
+    "colors_composition": [
+        0.18,
+        0.18,
+        0.18,
+        0.36,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_roof_type": "flat segmented polycarbonate and metal roof",
+    "attribute_seating_presence": true,
+    "attribute_advertisement_panel": false,
+    "attribute_shelter_enclosure_level": "partially enclosed",
+    "attribute_signage": [],
+    "uid": "874a1eb5ef064ef7b8482351869a0dd0",
+    "near_synsets": {
+        "shelter.n.02": 0.5298851394800334,
+        "shelter.n.01": 0.559393016932024,
+        "bus_stop.n.01": 0.5741719530908783,
+        "porte-cochere.n.02": 0.5754869077446537,
+        "gazebo.n.01": 0.5777119863784603,
+        "protection.n.04": -1000.0,
+        "bus.n.04": -1000.0,
+        "tax_shelter.n.01": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "shelter.n.05": -1000.0,
+        "bus.n.01": -1000.0,
+        "busbar.n.01": -1000.0
+    },
+    "synset": "shelter.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/874a1eb5ef064ef7b8482351869a0dd0",
+        "creator_username": "redmargoth",
+        "creator_display_name": "redmargoth",
+        "creator_profile_url": "https://sketchfab.com/redmargoth"
+    },
+    "filename": "std_874a1eb5ef064ef7b8482351869a0dd0.glb",
+    "length": 5.709809303283691,
+    "width": 10.435181140899658
+}

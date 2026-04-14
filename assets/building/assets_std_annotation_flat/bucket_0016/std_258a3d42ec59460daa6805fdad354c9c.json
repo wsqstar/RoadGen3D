@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a compact, orange excavator with a robust, boxy body and a single articulated boom arm ending in a standard digging bucket. The vehicle features four large, rugged wheels with deep treads, suitable for traversing rough urban construction sites. The operator cab is positioned on the left side of the upper structure, partially enclosed, and provides visibility for maneuvering and digging. The boom is a mono boom design, allowing for straightforward lifting and digging operations. The exterior is primarily metal, with some plastic or rubber elements on the wheels and possible glass for the cab window. The excavator is designed for urban construction tasks such as digging, loading, and material handling.",
+    "description": "A compact orange wheeled excavator with a mono boom and standard digging bucket, featuring a left-side operator cab and rugged tires for urban construction.",
+    "description_view_0": "Front view showing the wide bucket, mono boom, and the robust, treaded wheels.",
+    "description_view_1": "Left side view highlighting the operator cab, articulated boom, and the full length of the digging arm.",
+    "description_view_2": "Rear view displaying the back of the cab, the upper structure, and the bucket facing forward.",
+    "description_view_3": "Right side view showing the boom's articulation and the bucket's profile, with the cab less visible.",
+    "category": "excavator",
+    "height": 2.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.05,
+        0.05,
+        0.03
+    ],
+    "mass": 4200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "boom",
+        "bucket",
+        "cab door",
+        "control lever"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "black",
+        "gray",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_boom_type": "mono boom",
+    "attribute_cab_position": "left side",
+    "attribute_track_or_wheel_type": "wheeled",
+    "attribute_bucket_design": "standard digging bucket",
+    "attribute_brand_logo": "none",
+    "uid": "258a3d42ec59460daa6805fdad354c9c",
+    "near_synsets": {
+        "backhoe.n.01": 0.5054246771194373,
+        "excavator.n.01": 0.5118167354706192,
+        "power_shovel.n.01": 0.514212919007767,
+        "scoop.n.05": 0.5375613176875346,
+        "angledozer.n.01": 0.5542855136946948
+    },
+    "synset": "excavator.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/258a3d42ec59460daa6805fdad354c9c",
+        "creator_username": "rakorian",
+        "creator_display_name": "Aleksey Basinskiy",
+        "creator_profile_url": "https://sketchfab.com/rakorian"
+    },
+    "filename": "std_258a3d42ec59460daa6805fdad354c9c.glb",
+    "length": 3.2366843223571777,
+    "width": 1.5467089414596558
+}

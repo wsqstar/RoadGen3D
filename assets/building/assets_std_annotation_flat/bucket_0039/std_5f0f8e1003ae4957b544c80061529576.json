@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a cylindrical hand grenade, specifically labeled as a 'GRENADE HAND OFFENSIVE MK3A2 IOP 27-22 TNT.' The body is matte black with a slightly textured surface, featuring a prominent seam around its midsection. At the top, there is a green metallic safety lever and a pull ring, both attached to a safety pin mechanism. The yellow stenciled text on the side provides identification and usage information. The overall design is utilitarian, with no decorative elements, and the object appears robust and functional. The grenade is compact and designed for manual deployment in urban environments.",
+    "description": "A matte black cylindrical hand grenade with a green safety lever, pull ring, and yellow stenciled identification text.",
+    "description_view_0": "The grenade is seen at an angle, showing the top safety lever, pull ring, and a partial view of the yellow text.",
+    "description_view_1": "The front view displays the full yellow stenciled text, the green safety lever, and the pull ring clearly.",
+    "description_view_2": "The side view highlights the length of the safety lever and the cylindrical body, with minimal text visible.",
+    "description_view_3": "The rear view shows the back of the safety lever and the uninterrupted black cylindrical surface.",
+    "category": "bomb",
+    "height": 0.15,
+    "max_dimension": 0.15,
+    "materials": [
+        "steel",
+        "TNT",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.3,
+        0.03,
+        0.02
+    ],
+    "mass": 0.45,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 5,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "safety pin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "green",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the safety pin and releasing the safety lever, which likely triggers an internal fuse.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "5f0f8e1003ae4957b544c80061529576",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.49526598129895294,
+        "grenade.n.01": 0.5193495397426371,
+        "bomb.n.01": 0.5510016565312974,
+        "rifle_grenade.n.01": 0.5517601470405555,
+        "pipe_bomb.n.01": 0.5586904639022774,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5f0f8e1003ae4957b544c80061529576",
+        "creator_username": "jollyr0ger",
+        "creator_display_name": "jollyr0ger",
+        "creator_profile_url": "https://sketchfab.com/jollyr0ger"
+    },
+    "filename": "std_5f0f8e1003ae4957b544c80061529576.glb",
+    "length": 0.06202663108706474,
+    "width": 0.06224488839507103
+}

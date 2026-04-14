@@ -1,0 +1,96 @@
+{
+    "description_long": "This object consists of a cluster of six cylindrical canisters arranged in a hexagonal pattern, all held together by a metal frame. The canisters are matte olive green, with faint stenciled markings visible on their sides, suggesting military or industrial use. A single, sturdy handle extends from the base of the cluster, wrapped in a textured material for grip. The overall construction appears robust, with metal bands securing the canisters in place. The object has a utilitarian, rugged appearance, with no decorative elements. Its design suggests it is intended for manual deployment or placement.",
+    "description": "A cluster of six olive green cylindrical canisters secured by a metal frame, with a single wrapped handle for carrying.",
+    "description_view_0": "Top-down view showing the hexagonal arrangement of six canisters and the central handle extending downward.",
+    "description_view_1": "Side view highlighting the cylindrical shape of the canisters and the length of the handle.",
+    "description_view_2": "Another side view, showing the canisters' stenciled markings and the handle's attachment point.",
+    "description_view_3": "Angled view displaying both the canister cluster and the handle, emphasizing the object's compact, grouped structure.",
+    "category": "bomb",
+    "height": 0.45,
+    "max_dimension": 0.25,
+    "materials": [
+        "steel",
+        "plastic",
+        "explosive_compound",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.1,
+        0.3,
+        0.05,
+        0.05
+    ],
+    "mass": 6.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 65,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "canister",
+        "detonation cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The object appears to have a detonation cap or fuse at the top of the canister cluster, likely activated by manual or timed means.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "efe38bafaaad481380c801dc508af801",
+    "near_synsets": {
+        "cluster_bomb.n.01": 0.4982531037848032,
+        "briefcase_bomb.n.01": 0.5141651141994279,
+        "pipe_bomb.n.01": 0.5159665530357249,
+        "bomblet.n.01": 0.5524293620025631,
+        "bomb.n.01": 0.5530678747305806,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/efe38bafaaad481380c801dc508af801",
+        "creator_username": "JonParrish",
+        "creator_display_name": "JonParrish",
+        "creator_profile_url": "https://sketchfab.com/JonParrish"
+    },
+    "filename": "std_efe38bafaaad481380c801dc508af801.glb",
+    "length": 0.5843992233276367,
+    "width": 0.9112488627433777
+}

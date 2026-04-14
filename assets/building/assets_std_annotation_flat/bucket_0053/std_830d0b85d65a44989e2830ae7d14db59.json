@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a rustic wooden handcart with a rectangular cargo bed, reinforced by black metal bands and supported by four large spoked wooden wheels. The cart's sides are constructed from thick, weathered wooden planks, forming a deep receptacle for carrying goods. The front features a pair of extended wooden shafts for manual pulling or animal harnessing, while the rear and sides are enclosed by vertical slats for added containment. The wheels are robust, with visible metal hubs and rims, designed to handle rough urban or rural terrain. The wood shows signs of age and use, with a rough, matte finish and natural grain patterns. The overall construction is sturdy, utilitarian, and evocative of historical or rural urban settings.",
+    "description": "A weathered wooden handcart with four large spoked wheels, deep plank sides, and metal reinforcements, designed for carrying goods. The cart features a rustic, utilitarian look with a rough, matte finish.",
+    "description_view_0": "Side view showing the full length of the handcart, all four spoked wheels, and the deep wooden plank sides with metal bands.",
+    "description_view_1": "Front angled view highlighting the open cargo bed, extended pulling shafts, and the interior wooden floor.",
+    "description_view_2": "Opposite side view displaying the same plank construction and wheel arrangement, with the shafts partially visible.",
+    "description_view_3": "Rear angled view focusing on the closed back panel and the depth of the cargo area, with the wheels and shafts visible.",
+    "category": "handcart",
+    "height": 1.1,
+    "max_dimension": 2.2,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 65,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle/shafts",
+        "wheel",
+        "side rails"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 4,
+    "attribute_handle_type": "dual wooden shafts",
+    "attribute_wheel_position": "all corners",
+    "attribute_presence_of_side_rails": true,
+    "attribute_load_platform_design": "flat solid wooden planks",
+    "uid": "830d0b85d65a44989e2830ae7d14db59",
+    "near_synsets": {
+        "handcart.n.01": 0.4549143942640399,
+        "shopping_cart.n.01": 0.4855074213595795,
+        "cart.n.01": 0.4877141645929929,
+        "hand_truck.n.01": 0.4896469197886441,
+        "serving_cart.n.01": 0.49537932637555
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/830d0b85d65a44989e2830ae7d14db59",
+        "creator_username": "shcherbart",
+        "creator_display_name": "shcherbart",
+        "creator_profile_url": "https://sketchfab.com/shcherbart"
+    },
+    "filename": "std_830d0b85d65a44989e2830ae7d14db59.glb",
+    "length": 2.31058132648468,
+    "width": 1.662712812423706
+}

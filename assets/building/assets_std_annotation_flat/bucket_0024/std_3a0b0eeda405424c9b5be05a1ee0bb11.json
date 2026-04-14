@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a large, classic ocean liner with a long, streamlined hull painted in gray and orange, featuring a pointed bow and a rounded stern. The ship has four prominent yellow and black funnels evenly spaced along the superstructure, which is mostly white with brown and tan deck details. The decks are multi-leveled, with visible lifeboats and deck equipment along the sides, and the upper deck is detailed with various structures and railings. The bow and stern both have tall masts, and the ship's deck is lined with small fixtures and lifeboats, suggesting a passenger vessel. The hull sits low in the water, typical of displacement-type ships designed for stability and long voyages. No visible registration markings or names are present on the hull or superstructure.",
+    "description": "A large, classic ocean liner with four yellow funnels, gray and orange hull, and detailed multi-level decks with lifeboats and masts. The ship features a pointed bow, rounded stern, and prominent superstructure.",
+    "description_view_0": "Side view showing the full length of the ship, four yellow funnels, gray and orange hull, and deck details.",
+    "description_view_1": "Front (bow) view highlighting the pointed bow, symmetrical deck layout, and arrangement of superstructure elements.",
+    "description_view_2": "Opposite side view similar to view 0, showing the hull, funnels, and deck equipment from the other side.",
+    "description_view_3": "Rear (stern) view displaying the rounded stern, lifeboats, and the arrangement of the superstructure from the back.",
+    "category": "ship",
+    "height": 25,
+    "max_dimension": 270,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 46000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 9000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "lifeboat",
+        "funnel",
+        "mast",
+        "deck railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "orange",
+        "white",
+        "yellow",
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.45,
+        0.18,
+        0.15,
+        0.1,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a classic displacement type with a long, streamlined profile, a sharply pointed bow, and a rounded stern. The hull sits low in the water and features a smooth, continuous surface with no visible keels or bulbous bows. The color scheme includes a gray lower hull and an orange band along the waterline.",
+    "attribute_superstructure_layout": "The superstructure consists of multiple decks with a central white section, four evenly spaced yellow funnels, and various deck structures including lifeboats and railings. The upper deck is detailed with cabins and open spaces, and tall masts are present at both the bow and stern.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "lifeboat",
+        "mast",
+        "anchor",
+        "deck railing"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "3a0b0eeda405424c9b5be05a1ee0bb11",
+    "near_synsets": {
+        "liner.n.04": 0.489787685108892,
+        "cargo_ship.n.01": 0.5189867002135157,
+        "cabin_liner.n.01": 0.5217595101867262,
+        "schooner.n.02": 0.5276881247863593,
+        "ship.n.01": 0.532280219258685
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3a0b0eeda405424c9b5be05a1ee0bb11",
+        "creator_username": "21.nicholas.e.hindre",
+        "creator_display_name": "21.nicholas.e.hindre",
+        "creator_profile_url": "https://sketchfab.com/21.nicholas.e.hindre"
+    },
+    "filename": "std_3a0b0eeda405424c9b5be05a1ee0bb11.glb",
+    "length": 93.40185928344727,
+    "width": 11.616119384765625
+}

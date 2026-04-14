@@ -1,0 +1,100 @@
+{
+    "description_long": "This humanoid robot features a robust, armored body with a predominantly dark gray exterior, accented by a striking, organic-looking brown structure that envelops its right arm and partially extends to its torso and leg. The robot's head is angular with two glowing teal eye-like elements, giving it a vigilant, sentient appearance. Its left arm and both legs are constructed from the same dark, metallic material as the torso, while the right arm appears to be composed of a twisted, root-like material, suggesting a hybrid of synthetic and organic design. The robot's build is athletic and humanoid, with defined musculature and jointed limbs, allowing for a wide range of motion. Subtle teal highlights are visible on the chest and right arm, possibly indicating embedded technology or power sources. The overall design suggests a fusion of advanced robotics and natural elements, making it visually distinct and imposing in an urban environment.",
+    "description": "A humanoid robot with a dark armored body, glowing teal eyes, and a twisted, organic brown right arm, blending synthetic and natural aesthetics.",
+    "description_view_0": "Front view shows the robot's angular head, glowing teal eyes, armored torso, and the prominent brown, root-like right arm.",
+    "description_view_1": "Left side view highlights the full length of the organic brown right arm and its integration into the torso and leg.",
+    "description_view_2": "Rear view reveals the back armor plating and the brown structure wrapping around the right side, with both legs and the left arm fully visible.",
+    "description_view_3": "Right side view emphasizes the armored left side and the profile of the head, with the brown structure mostly hidden.",
+    "category": "humanoid robot",
+    "height": 1.85,
+    "max_dimension": 1.95,
+    "materials": [
+        "metal",
+        "composite polymer",
+        "synthetic wood/organic material",
+        "glass/plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 110,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1078,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "right arm",
+        "left arm",
+        "head",
+        "torso",
+        "legs"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "brown",
+        "teal",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.55,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.12,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both legs straight, left arm relaxed at the side, and right arm slightly bent and extended forward. Head is facing forward, torso is upright.",
+    "attribute_clothing_style": "No visible clothing; exterior consists of integrated armored panels and a root-like organic covering on the right arm and part of the torso.",
+    "attribute_facial_features": "The face is angular with two prominent glowing teal eye elements, no visible mouth or nose, and a helmet-like structure covering the head.",
+    "attribute_limb_articulation": "Visible articulation at the shoulders, elbows, wrists, hips, knees, and ankles; joints appear to be a mix of hinge and ball types, allowing for flexible movement.",
+    "attribute_presence_of_sensors": "Visible sensors include two teal eye-like elements on the head, likely functioning as cameras or visual sensors; no other sensors are visible.",
+    "uid": "9e30b5ab60fa4fdb9c0c4fd967ce899e",
+    "near_synsets": {
+        "android.n.01": 0.533794415919762,
+        "cyborg.n.01": 0.5358134051470513,
+        "automaton.n.02": 0.5675382567192028,
+        "robotics_equipment.n.01": 0.5705950060259494,
+        "robotics.n.01": 0.5873376961142127
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9e30b5ab60fa4fdb9c0c4fd967ce899e",
+        "creator_username": "sebastianwittig",
+        "creator_display_name": "Sebastian Wittig",
+        "creator_profile_url": "https://sketchfab.com/sebastianwittig"
+    },
+    "filename": "std_9e30b5ab60fa4fdb9c0c4fd967ce899e.glb",
+    "length": 0.42898282408714294,
+    "width": 0.7757782340049744
+}

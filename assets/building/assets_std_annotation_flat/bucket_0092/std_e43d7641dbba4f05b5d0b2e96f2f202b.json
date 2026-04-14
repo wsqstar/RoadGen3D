@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a compact, tracked combat tactical vehicle with a robust, angular body and a prominent turret mounted on top. The vehicle features a short, thick cannon barrel at the front, flanked by two cylindrical exhausts or vents at the rear. Its exterior is covered in a mottled brown and tan camouflage pattern, with visible metallic sheen and weathering effects. The sides display a large '88' marking in red, and a black 'X' symbol on the turret. The tracks are wide and rugged, designed for traversing rough urban terrain, and the vehicle's body is clad in thick, angular armor plating. The overall design suggests a focus on durability and firepower in close-quarters environments.",
+    "description": "A compact, tracked combat vehicle with a short cannon, heavy armor, and brown camouflage, featuring red '88' and black 'X' markings.",
+    "description_view_0": "Side view showing the turret with a black 'X', red '88' marking, and detailed tracks.",
+    "description_view_1": "Rear view highlighting two cylindrical exhausts/vents and the vehicle's armored back.",
+    "description_view_2": "Opposite side view with the same turret and markings, showing the tracks and armor details.",
+    "description_view_3": "Front view emphasizing the short cannon barrel, sloped armor, and rugged tracks.",
+    "category": "combat tactical  vehicle",
+    "height": 1.6,
+    "max_dimension": 2.8,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 16000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "tracks",
+        "exhaust vents"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "tan",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the turret; no additional weapon mounts visible.",
+    "attribute_armor_plating": "Full body coverage with thick, angular armor plating; turret and hull appear reinforced with sloped surfaces for deflection.",
+    "attribute_camouflage_pattern": "Mottled brown and tan camouflage with irregular patches and weathering effects.",
+    "attribute_military_markings": "Red '88' marking on both sides of the hull; black 'X' symbol on both sides of the turret.",
+    "attribute_tire_type": "not applicable",
+    "uid": "e43d7641dbba4f05b5d0b2e96f2f202b",
+    "near_synsets": {
+        "tank.n.01": 0.5053179310122133,
+        "reconnaissance_vehicle.n.01": 0.5111380220252177,
+        "military_vehicle.n.01": 0.516044053009151,
+        "weapons_carrier.n.01": 0.5284598265348425,
+        "armored_car.n.02": 0.5338407884877414,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e43d7641dbba4f05b5d0b2e96f2f202b",
+        "creator_username": "Abel.A.M",
+        "creator_display_name": "Abel.A.M",
+        "creator_profile_url": "https://sketchfab.com/Abel.A.M"
+    },
+    "filename": "std_e43d7641dbba4f05b5d0b2e96f2f202b.glb",
+    "length": 2.106580972671509,
+    "width": 1.6262121200561523
+}

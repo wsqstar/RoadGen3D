@@ -1,0 +1,102 @@
+{
+    "description_long": "This combat tactical vehicle is a large, armored transport with a boxy, angular body and a matte, camouflaged exterior. The vehicle features a high ground clearance and robust, reinforced wheel wells, suggesting off-road capability. Its windows are small and reinforced, likely bullet-resistant, and the body panels appear thick and sloped for deflection. There is a circular hatch on the roof, possibly for observation or mounting equipment, and the sides have multiple access panels or doors. The front is heavily armored with a sloped hood and grill, and the overall design prioritizes protection and utility. The paint scheme is a mix of dark green and brown, with no visible insignia or markings.",
+    "description": "A large, armored tactical vehicle with a camouflaged, angular body, reinforced windows, and high ground clearance. Features include a roof hatch, multiple side doors, and robust wheels.",
+    "description_view_0": "Front view shows the sloped, armored grill, two reinforced windows, and the angular front bumper.",
+    "description_view_1": "Left side view highlights the long, boxy body, four side windows, and the circular roof hatch near the front.",
+    "description_view_2": "Rear view displays the back armor, rear windows, and the overall width of the vehicle.",
+    "description_view_3": "Right side view mirrors the left, showing the same window and door arrangement and the vehicle's length.",
+    "category": "combat tactical  vehicle",
+    "height": 2.7,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 8500,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 17000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "hatch",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One circular roof hatch suitable for a weapon mount; no visible weapons or additional mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, sloped armor plating; reinforced front, sides, and rear; no modular or reactive panels visible.",
+    "attribute_camouflage_pattern": "Matte camouflage pattern with irregular patches of dark green and brown.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "Four large, off-road tires with deep tread pattern; appear reinforced for heavy loads.",
+    "uid": "347851ef97484fdfa7648d7a7cce7417",
+    "near_synsets": {
+        "tank.n.01": 0.4876625293053516,
+        "military_vehicle.n.01": 0.4891171650957964,
+        "reconnaissance_vehicle.n.01": 0.48913660561889255,
+        "assault_gun.n.02": 0.5108320647445888,
+        "armored_car.n.02": 0.5141372605848447,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "armored_car.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/347851ef97484fdfa7648d7a7cce7417",
+        "creator_username": "desertfox2",
+        "creator_display_name": "Martin",
+        "creator_profile_url": "https://sketchfab.com/desertfox2"
+    },
+    "filename": "std_347851ef97484fdfa7648d7a7cce7417.glb",
+    "length": 5.9176554679870605,
+    "width": 2.128420829772949
+}

@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a wall-mounted or ceiling-mounted curtain hanger system, featuring a metallic rod bent at a right angle to support a pleated, opaque curtain. The curtain is suspended from the rod using evenly spaced grommets or rings, allowing it to slide smoothly along the length of the rod. The rod itself is made of a shiny, metallic material, likely stainless steel or aluminum, and is designed to be sturdy enough to support the weight of the curtain. The curtain is made from a thick, light gray fabric that provides privacy and separation, commonly used in public or semi-public urban spaces such as clinics, changing rooms, or public showers. The overall design is utilitarian and functional, with a focus on durability and ease of use. The system is intended for installation in environments where temporary visual barriers are needed.",
+    "description": "A metallic rod supports a pleated, light gray curtain, designed for privacy in urban settings. The system is sturdy, functional, and allows the curtain to slide smoothly along the rod.",
+    "description_view_0": "The hanger is seen from the side, showing the thickness of the curtain and the straight alignment of the rod.",
+    "description_view_1": "A full side view reveals the entire length of the curtain and rod, highlighting the pleated fabric and the rod's right-angle bend.",
+    "description_view_2": "The opposite side view shows the curtain's edge and the rod's extension, with minimal detail of the curtain's surface.",
+    "description_view_3": "A frontal view displays the curtain fully extended along the rod, emphasizing the pleats and the uniformity of the grommets.",
+    "category": "hanger",
+    "height": 2.0,
+    "max_dimension": 2.5,
+    "materials": [
+        "fabric",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "mass": 6.0,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 20,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "closable",
+        "openable",
+        "pullable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "curtain",
+        "rod",
+        "grommets/rings"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 7000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_location_relative_to_buildings": "isolated",
+    "attribute_presence_of_signage": "none",
+    "attribute_entryway_type": "not visible",
+    "attribute_roof_structure": "not visible",
+    "attribute_door_size": "not visible",
+    "uid": "233b2736b19b4d51a1be26c217ec3a95",
+    "near_synsets": {
+        "cafe_curtain.n.01": 0.524653462508827,
+        "curtain.n.01": 0.5326609751077218,
+        "hanger.n.02": 0.5351660976046322,
+        "picture_rail.n.01": 0.5491346689145522,
+        "drapery.n.02": 0.5498853694599674,
+        "hanger.n.01": -1000.0
+    },
+    "synset": "hanger.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/233b2736b19b4d51a1be26c217ec3a95",
+        "creator_username": "ThreeDeeCreation",
+        "creator_display_name": "ThreeDeeCreation",
+        "creator_profile_url": "https://sketchfab.com/ThreeDeeCreation"
+    },
+    "filename": "std_233b2736b19b4d51a1be26c217ec3a95.glb",
+    "length": 1.835748314857483,
+    "width": 2.3662703037261963
+}

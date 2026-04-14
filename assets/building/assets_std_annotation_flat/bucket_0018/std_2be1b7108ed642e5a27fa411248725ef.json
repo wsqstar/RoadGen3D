@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a modern electric locomotive with a streamlined, angular body painted primarily in gray with bold red accents along the sides and front. The locomotive features a series of rooftop equipment, including cooling units and pantographs for overhead electric power collection. The front of the train is characterized by a sloped windshield, prominent headlights, and a central coupling mechanism. The sides display minimal surface detailing, with subtle panel lines and a few access hatches, but no visible passenger windows or doors. The undercarriage is equipped with large, robust wheels and suspension components, suitable for heavy rail use. The overall design suggests a utilitarian, high-power engine intended for pulling long trains in urban or intercity environments.",
+    "description": "A modern electric locomotive with a gray and red color scheme, rooftop pantographs, and a streamlined, angular body. It features a sloped front windshield, robust wheels, and minimal side detailing.",
+    "description_view_0": "Side view showing the full length of the locomotive, rooftop equipment, and red accent lines along the gray body.",
+    "description_view_1": "Front view highlighting the sloped windshield, headlights, and central coupling, with visible pantograph on the roof.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the length, rooftop details, and red accents.",
+    "description_view_3": "Rear view with a clear look at the roof equipment and the back end of the locomotive, including the pantograph.",
+    "category": "train",
+    "height": 4.2,
+    "max_dimension": 20.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 85000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "pantograph",
+        "headlight",
+        "coupling",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "electric locomotive",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": true,
+    "attribute_door_placement": "no visible doors",
+    "attribute_window_arrangement": "no visible windows",
+    "uid": "2be1b7108ed642e5a27fa411248725ef",
+    "near_synsets": {
+        "electric_locomotive.n.01": 0.4834383347517566,
+        "steam_locomotive.n.01": 0.5128478634751642,
+        "third_rail.n.01": 0.5146679761090417,
+        "train.n.01": 0.5160648469580336,
+        "diesel-electric_locomotive.n.01": 0.5174891141142053,
+        "train.n.05": -1000.0,
+        "train.n.04": -1000.0,
+        "caravan.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "gearing.n.01": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2be1b7108ed642e5a27fa411248725ef",
+        "creator_username": "Exsp",
+        "creator_display_name": "Exsp",
+        "creator_profile_url": "https://sketchfab.com/Exsp"
+    },
+    "filename": "std_2be1b7108ed642e5a27fa411248725ef.glb",
+    "length": 16.93000316619873,
+    "width": 2.676319718360901
+}

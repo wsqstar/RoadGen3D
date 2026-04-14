@@ -1,0 +1,103 @@
+{
+    "description_long": "This hamburger features a glossy, golden-brown bun with a slightly domed top and a soft, pillowy appearance. Crisp, leafy green lettuce is generously layered beneath the top bun, with visible folds and ruffles extending outward. A slice of melted yellow cheese drapes over a thick, juicy beef patty, with the cheese edges slightly oozing down the sides. Bright red tomato slices and a hint of ketchup or sauce peek out from under the lettuce, adding vibrant color contrast. The bottom bun is slightly darker and appears firm, supporting the stacked ingredients above. The overall presentation is appetizing, with each ingredient clearly defined and visually appealing.",
+    "description": "A glossy, golden-brown hamburger bun encases crisp lettuce, melted cheese, a thick beef patty, and visible tomato slices, creating a vibrant and appetizing appearance.",
+    "description_view_0": "The hamburger is shown with a clear view of the lettuce, cheese, and patty, with tomato and sauce peeking out from under the lettuce.",
+    "description_view_1": "This angle highlights the smooth, rounded top bun and a more centered view of the lettuce and cheese, with less tomato visible.",
+    "description_view_2": "The cheese and patty are prominent, with lettuce and a hint of tomato visible, and the bun appears slightly more domed.",
+    "description_view_3": "A frontal view with the lettuce and tomato most visible, and the cheese and patty peeking out from beneath the toppings.",
+    "category": "hamburger",
+    "height": 0.1,
+    "max_dimension": 0.12,
+    "materials": [
+        "bread",
+        "lettuce",
+        "beef",
+        "cheese",
+        "tomato",
+        "sauce",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.15,
+        0.25,
+        0.1,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 0.22,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 9,
+    "movable": true,
+    "required_force": 2,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "top bun",
+        "lettuce",
+        "cheese slice",
+        "patty",
+        "tomato slice",
+        "bottom bun"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "green",
+        "yellow",
+        "red"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.15
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "glossy",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_bun_type": "brioche bun",
+    "attribute_patty_visibility": "fully visible",
+    "attribute_topping_arrangement": "Lettuce is layered directly beneath the top bun, followed by tomato slices and melted cheese draped over the beef patty. The toppings are evenly distributed, with lettuce and tomato extending outward for visual appeal.",
+    "attribute_packaging_presence": false,
+    "attribute_sesame_seed_presence": false,
+    "uid": "b58ed4e4f6a447c083f4b9f444e81477",
+    "near_synsets": {
+        "hamburger.n.01": 0.46417275648514966,
+        "hamburger_bun.n.01": 0.4879529779485151,
+        "cheeseburger.n.01": 0.5057620340849706,
+        "bacon-lettuce-tomato_sandwich.n.01": 0.5258683409419506,
+        "ground_beef.n.01": 0.5425407203936757
+    },
+    "synset": "hamburger_bun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b58ed4e4f6a447c083f4b9f444e81477",
+        "creator_username": "ocutavhia",
+        "creator_display_name": "ocutavhia",
+        "creator_profile_url": "https://sketchfab.com/ocutavhia"
+    },
+    "filename": "std_b58ed4e4f6a447c083f4b9f444e81477.glb",
+    "length": 0.12179668992757797,
+    "width": 0.1275622397661209
+}

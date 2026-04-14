@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a compact pump-action shotgun with a short barrel and a wooden fore-end and grip. The receiver and barrel are finished in matte black, while the fore-end and grip are a dark, polished wood, giving it a classic yet utilitarian appearance. The fore-end features ribbed texturing for improved grip, and the trigger guard is rounded and proportionally sized to the trigger area. The barrel is single and unvented, with no visible ribbing or venting along its length. The overall design is robust and functional, suitable for close-quarters use in urban environments. The shotgun lacks a full stock, instead featuring a pistol grip for easier maneuverability.",
+    "description": "A short, pump-action shotgun with a matte black barrel and receiver, paired with dark wooden grip and fore-end. It features a ribbed pump and a rounded trigger guard.",
+    "description_view_0": "The shotgun is viewed from the muzzle end, showing the circular barrel opening and the narrow profile of the fore-end and grip.",
+    "description_view_1": "Side view displaying the full length of the shotgun, highlighting the ribbed wooden fore-end, matte black receiver, and pistol grip.",
+    "description_view_2": "Rear view showing the end of the wooden grip and the alignment of the barrel, with minimal detail visible.",
+    "description_view_3": "Opposite side view, mirroring view 1, with clear visibility of the pump, receiver, and grip contours.",
+    "category": "shotgun",
+    "height": 0.15,
+    "max_dimension": 0.7,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.05,
+        0.05
+    ],
+    "mass": 3.0,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "pumpable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pump",
+        "trigger",
+        "trigger guard",
+        "barrel",
+        "grip"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, unvented, short length",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "rounded, medium-sized, enclosing the trigger with no visible finger grooves or reinforcement",
+    "uid": "0b60a90d7f5a4b24ad0656c864083983",
+    "near_synsets": {
+        "sawed-off_shotgun.n.01": 0.489402375752869,
+        "pump_action.n.01": 0.4910851573549691,
+        "shotgun.n.01": 0.5145423670849609,
+        "shotgun_shell.n.01": 0.5485688180198266,
+        "gas_gun.n.01": 0.556799489590948
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0b60a90d7f5a4b24ad0656c864083983",
+        "creator_username": "I.sln",
+        "creator_display_name": "Ilia_S",
+        "creator_profile_url": "https://sketchfab.com/I.sln"
+    },
+    "filename": "std_0b60a90d7f5a4b24ad0656c864083983.glb",
+    "length": 0.7951099574565887,
+    "width": 0.051961686462163925
+}

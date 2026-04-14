@@ -1,0 +1,97 @@
+{
+    "description_long": "This object is a classic hand grenade, specifically resembling the Mk 2 fragmentation grenade, commonly known as the 'pineapple' grenade due to its segmented, textured cast-iron body. The main body is dark olive green with a yellow band near the top, indicating its military use and possibly its explosive content. The upper section features a metal safety lever (spoon) and a prominent pull ring attached to a safety pin, both rendered in a dark metallic finish. The surface of the grenade is rough and segmented, designed to enhance grip and fragment upon detonation. The overall form is compact and ovoid, with a robust, utilitarian appearance. No visible digital or analog timer is present, and there are no exposed wires or unusual attachments.",
+    "description": "A classic, olive green, segmented hand grenade with a yellow band, metal safety lever, and pull ring. Its rough, textured body and compact form evoke a military fragmentation device.",
+    "description_view_0": "The grenade is shown from a three-quarter angle, highlighting the safety lever, pull ring, and the yellow band near the top.",
+    "description_view_1": "A direct side view, showing the narrow profile of the grenade and the alignment of the safety lever and pin.",
+    "description_view_2": "Another three-quarter view from the opposite side, again showing the safety lever, pull ring, and yellow band, but with slightly different lighting.",
+    "description_view_3": "A rear view, focusing on the back of the grenade and the segmented body, with the safety lever and ring partially visible.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.07,
+    "materials": [
+        "steel",
+        "iron",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.05,
+        0.05
+    ],
+    "mass": 0.6,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 6,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "safety pin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "yellow",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the safety pin and releasing the safety lever, which triggers a timed fuse inside the grenade.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "fc6408a7f7cd485397061ef0b72531b0",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.49310332013305486,
+        "grenade.n.01": 0.5184287772391193,
+        "rifle_grenade.n.01": 0.5479266196555146,
+        "fragmentation_bomb.n.01": 0.5520609796138884,
+        "bomb.n.01": 0.5558328935844572,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fc6408a7f7cd485397061ef0b72531b0",
+        "creator_username": "nila_3d",
+        "creator_display_name": "Nila",
+        "creator_profile_url": "https://sketchfab.com/nila_3d"
+    },
+    "filename": "std_fc6408a7f7cd485397061ef0b72531b0.glb",
+    "length": 0.059018369764089584,
+    "width": 0.07054436206817627
+}

@@ -1,0 +1,106 @@
+{
+    "description_long": "This object is a vertical stack of six chairs, each with a distinct design and color, arranged in a single tall column. The chairs range from classic wooden types with curved backs and armrests to more modern, metallic, and plastic variants, including a green chair with a red seat and a black chair with a yellow accent. The stack includes both armchairs and armless chairs, with visible differences in leg shapes and backrest styles. The materials appear to include wood, metal, and plastic, with some chairs featuring glossy or matte finishes. The arrangement is visually striking, with the chairs perfectly aligned and balanced atop one another. This stack would be an eye-catching installation in an urban park, plaza, or public art setting.",
+    "description": "A vertical stack of six visually distinct chairs, featuring a mix of wood, metal, and plastic designs in various colors and styles.",
+    "description_view_0": "Side view showing the full height of the stacked chairs, highlighting their different seat and backrest profiles.",
+    "description_view_1": "Front view displaying the chair backs and armrests, with clear visibility of the color and design differences.",
+    "description_view_2": "Opposite side view emphasizing the alignment and leg structures of the stacked chairs.",
+    "description_view_3": "Rear view showing the backrests and the arrangement of the chairs from behind, with armrest details visible.",
+    "category": "chair",
+    "height": 2.1,
+    "max_dimension": 2.1,
+    "materials": [
+        "wood",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.25,
+        0.05
+    ],
+    "mass": 32,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "sittable",
+        "stackable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "seat",
+        "backrest",
+        "armrest",
+        "legs"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "white",
+        "black",
+        "green",
+        "red",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.25,
+        0.2,
+        0.15,
+        0.2,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 8000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.08,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_backrest_presence": true,
+    "attribute_armrest_presence": true,
+    "attribute_leg_count": 24,
+    "attribute_seat_pattern": "plain",
+    "attribute_placement_location": "either",
+    "uid": "f00484af68ad425ea0f2f52c87aae689",
+    "near_synsets": {
+        "windsor_chair.n.01": 0.5227385513246584,
+        "camp_chair.n.01": 0.5310532510624115,
+        "platform_rocker.n.01": 0.5379600407194319,
+        "deck_chair.n.01": 0.5391076890565629,
+        "eames_chair.n.01": 0.5446359760793277,
+        "professorship.n.01": -1000.0,
+        "president.n.04": -1000.0,
+        "chair.n.05": -1000.0,
+        "chair.n.01": -1000.0,
+        "electric_chair.n.01": -1000.0
+    },
+    "synset": "electric_chair.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f00484af68ad425ea0f2f52c87aae689",
+        "creator_username": "desit",
+        "creator_display_name": "Desit",
+        "creator_profile_url": "https://sketchfab.com/desit"
+    },
+    "filename": "std_f00484af68ad425ea0f2f52c87aae689.glb",
+    "length": 1.7246437072753906,
+    "width": 10.459821224212646
+}

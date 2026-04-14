@@ -1,0 +1,109 @@
+{
+    "description_long": "This object consists of a group of cars and truck cabs arranged in rows, each with distinct body shapes and colors. The cars are compact and sedan-like, with smooth, streamlined bodies, visible windows, and clear separation between the hood, roof, and trunk. The truck cabs are larger, boxier, and feature prominent front grilles, side mirrors, and visible wheel arches. The vehicles display a variety of colors, including black, white, blue, red, gray, and yellow, with some having contrasting roofs or trim. The surfaces appear hard and glossy, suggesting metal and glass construction, with rubber tires visible on all vehicles. No manufacturer logos or license plates are visible, and the models are generic representations of urban vehicles.",
+    "description": "A group of compact cars and truck cabs in various colors, featuring smooth, glossy surfaces and detailed body shapes. The vehicles are arranged in rows, showing both sedans and larger truck fronts.",
+    "description_view_0": "Top-down view showing the roofs and hoods of all cars and truck cabs, highlighting their color variety and compact arrangement.",
+    "description_view_1": "Side view displaying the profiles of the truck cabs and cars, emphasizing the height difference and the distinct cab-over-engine design of the trucks.",
+    "description_view_2": "Rear view showing the backs of the vehicles, including taillights and rear bumpers, with the truck cabs' rear chassis visible.",
+    "description_view_3": "Opposite side view with cars and truck cabs in profile, highlighting the side windows, doors, and the undercarriage of the trucks.",
+    "category": "car",
+    "height": 1.8,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.12,
+        0.08,
+        0.08,
+        0.02
+    ],
+    "mass": 2200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 9000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "mirror",
+        "headlight",
+        "trunk",
+        "hood"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "white",
+        "blue",
+        "red",
+        "gray",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.3,
+        0.18,
+        0.18,
+        0.14,
+        0.14,
+        0.06
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.12,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_car_manufacturer": "unknown",
+    "attribute_car_model": "unknown",
+    "attribute_license_plate": "none",
+    "attribute_number_of_doors": 4,
+    "attribute_headlight_design": "dual rectangular headlights on each vehicle, integrated into the front fascia",
+    "uid": "36b9cd0d2e19467cbe76d0fbd4182e53",
+    "near_synsets": {
+        "compact.n.03": 0.5244664852792523,
+        "car.n.01": 0.5340026769165086,
+        "car_company.n.01": 0.5382342642508527,
+        "subcompact.n.01": 0.5418229368187751,
+        "coupe.n.01": 0.5448042605639005,
+        "car.n.03": -1000.0,
+        "car.n.04": -1000.0,
+        "car.n.02": -1000.0,
+        "cable_car.n.01": -1000.0
+    },
+    "synset": "cable_car.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/36b9cd0d2e19467cbe76d0fbd4182e53",
+        "creator_username": "vladek27",
+        "creator_display_name": "Vladek",
+        "creator_profile_url": "https://sketchfab.com/vladek27"
+    },
+    "filename": "std_36b9cd0d2e19467cbe76d0fbd4182e53.glb",
+    "length": 13.50722360610962,
+    "width": 4.434276819229126
+}

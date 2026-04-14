@@ -1,0 +1,113 @@
+{
+    "description_long": "This is a medium-sized urban road bridge spanning over a body of water, featuring a dual-arched support structure beneath the deck. The bridge deck is surfaced in dark gray with a central white dashed line, indicating a two-way vehicular lane. On both sides, there are metal railings with regularly spaced vertical posts and horizontal bars, providing safety for pedestrians. The bridge is equipped with modern, angular street lamps mounted on both sides, enhancing nighttime visibility. The water below is rendered in a bright blue, contrasting with the dark structure of the bridge. The overall design is utilitarian with subtle decorative elements in the arch and railing details.",
+    "description": "A dual-arched urban road bridge with metal railings, modern street lamps, and a dark gray deck spanning over blue water.",
+    "description_view_0": "Front view showing the dual arches beneath the bridge and the full width of the deck with railings and lamps.",
+    "description_view_1": "Side view highlighting the length of the bridge, the road surface with a dashed center line, and the arrangement of street lamps.",
+    "description_view_2": "Rear view mirroring the front, displaying the arches, railings, and water below.",
+    "description_view_3": "Opposite side view showing the bridge's length, road markings, and lamp placement from the other end.",
+    "category": "bridge",
+    "height": 6.0,
+    "max_dimension": 20.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "glass",
+        "asphalt",
+        "air",
+        "water"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.05,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "railing",
+        "lamp post"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "car",
+        "bicycle"
+    ],
+    "colors": [
+        "gray",
+        "white",
+        "blue",
+        "black",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.5,
+        0.1,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_support_type": "arch, beam",
+    "attribute_railing_design": "metal bars with vertical balusters and horizontal rails",
+    "attribute_arch_presence": true,
+    "attribute_lighting_fixtures": [
+        "lamp posts"
+    ],
+    "attribute_architectural_style": "utilitarian",
+    "uid": "72e055e97dbf4d58ba40aa7d6812fbc0",
+    "near_synsets": {
+        "steel_arch_bridge.n.01": 0.49280913539697085,
+        "viaduct.n.01": 0.5182105654614722,
+        "bridge.n.01": 0.5260164179119903,
+        "trestle_bridge.n.01": 0.5264743658425209,
+        "covered_bridge.n.01": 0.5266889547645438,
+        "bridge.n.05": -1000.0,
+        "bridge.n.02": -1000.0,
+        "bridge.n.04": -1000.0,
+        "bridge.n.07": -1000.0,
+        "bridge.n.08": -1000.0,
+        "bridge.n.06": -1000.0,
+        "bridge.n.09": -1000.0,
+        "bridge.n.03": -1000.0
+    },
+    "synset": "bridge.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/72e055e97dbf4d58ba40aa7d6812fbc0",
+        "creator_username": "carlosmodelingcorner",
+        "creator_display_name": "carlosmodelingcorner",
+        "creator_profile_url": "https://sketchfab.com/carlosmodelingcorner"
+    },
+    "filename": "std_72e055e97dbf4d58ba40aa7d6812fbc0.glb",
+    "length": 11.874996662139893,
+    "width": 11.874993324279785
+}

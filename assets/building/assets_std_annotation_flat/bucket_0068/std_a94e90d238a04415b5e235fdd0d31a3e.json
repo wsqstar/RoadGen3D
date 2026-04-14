@@ -1,0 +1,98 @@
+{
+    "description_long": "This cowshed features a simple, open-sided wooden frame structure with a prominent gable roof covered in a muted, light brown material. The roof is supported by four sturdy wooden posts, each anchored to a concrete or stone base for stability. The sides are partially enclosed with horizontal wooden beams, providing some containment while allowing for ventilation and visibility. The interior is spacious and unobstructed, suitable for sheltering livestock or storing agricultural equipment. The overall design is utilitarian, prioritizing function and durability over decorative elements. The structure is typical of rural or peri-urban environments but could also be found in urban parks or community gardens as a shelter or pavilion.",
+    "description": "A simple, open-sided wooden cowshed with a gable roof and partial wooden side enclosures, supported by four posts on concrete bases.",
+    "description_view_0": "The cowshed is seen from a corner angle, highlighting the gable roof and the open front with visible support beams and posts.",
+    "description_view_1": "A direct side view shows the full expanse of the roof and the alignment of the posts, with minimal side enclosure visible.",
+    "description_view_2": "The opposite corner view reveals the rear horizontal beams and the open structure beneath the roof, emphasizing the partial enclosure.",
+    "description_view_3": "A direct rear view displays the horizontal wooden beams forming the partial back wall, with the roof and posts clearly outlined.",
+    "category": "cowshed",
+    "height": 3.2,
+    "max_dimension": 5.5,
+    "materials": [
+        "wood",
+        "concrete",
+        "roofing_felt",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.15
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shelter_providing",
+        "animal_housing",
+        "storage"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "support_post",
+        "horizontal_beam",
+        "roof"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "livestock"
+    ],
+    "colors": [
+        "brown",
+        "beige",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gable",
+    "attribute_door_style": "no door present; open-sided structure",
+    "attribute_window_presence": "no windows",
+    "attribute_ventilation_features": "open sides and partial back wall for natural ventilation",
+    "attribute_architectural_style": "traditional rural",
+    "uid": "a94e90d238a04415b5e235fdd0d31a3e",
+    "near_synsets": {
+        "cowbarn.n.01": 0.4372063380467599,
+        "stockyard.n.01": 0.4980057786241546,
+        "shed.n.01": 0.5011014086093977,
+        "cow_pasture.n.01": 0.5032372870058885,
+        "farm_building.n.01": 0.5039459296521882
+    },
+    "synset": "cowbarn.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a94e90d238a04415b5e235fdd0d31a3e",
+        "creator_username": "stefan.lengyel1",
+        "creator_display_name": "Pixel",
+        "creator_profile_url": "https://sketchfab.com/stefan.lengyel1"
+    },
+    "filename": "std_a94e90d238a04415b5e235fdd0d31a3e.glb",
+    "length": 3.1381843090057373,
+    "width": 3.524989604949951
+}

@@ -1,0 +1,96 @@
+{
+    "description_long": "This drone features a compact, circular central body with a slightly domed top, highlighted by a prominent red disc at its center. Four equally spaced, flat, metallic arms extend outward from the body, each with a broad, rectangular shape and a slightly beveled edge, suggesting rotor placement. The main body is predominantly dark, with red illuminated accents encircling the midsection, giving it a high-tech, futuristic appearance. The surface appears to be constructed from a combination of metal and composite materials, with a matte, slightly worn finish. The design is streamlined and symmetrical, optimized for stability and efficient flight in urban environments. No visible camera or propeller guards are present, and the landing gear consists of the flat, extended arms.",
+    "description": "A compact, circular drone with four flat metallic arms, red illuminated accents, and a dark, matte finish.",
+    "description_view_0": "The drone's circular body and four broad arms are clearly visible, with the central red disc and illuminated red accents standing out.",
+    "description_view_1": "Similar to view 0, showing the symmetrical arrangement of the arms and the red highlights around the body.",
+    "description_view_2": "The drone's flat arms and central dome are visible, with the red lighting accentuating the midsection.",
+    "description_view_3": "This view again emphasizes the symmetry and the prominent red disc at the center, with all four arms equally spaced.",
+    "category": "drone",
+    "height": 0.12,
+    "max_dimension": 0.55,
+    "materials": [
+        "metal",
+        "composite",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "mass": 2.2,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 22,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "central button/disc"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.12,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 4,
+    "attribute_rotor_configuration": "quadcopter X",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": false,
+    "attribute_propeller_guard_presence": false,
+    "uid": "53fd6607deac463ab4ec21d8364ec365",
+    "near_synsets": {
+        "drone.n.04": 0.5513732242672506,
+        "buzz_bomb.n.01": 0.5817366228209392,
+        "d4.n.01": 0.5905993532886832,
+        "sidewinder.n.02": 0.5923819849739383,
+        "remote-control_bomb.n.01": 0.5926510974985688,
+        "drone.n.01": -1000.0,
+        "dawdler.n.01": -1000.0,
+        "drone.n.05": -1000.0,
+        "monotone.n.01": -1000.0
+    },
+    "synset": "drone.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/53fd6607deac463ab4ec21d8364ec365",
+        "creator_username": "shane.cosgrave",
+        "creator_display_name": "shane.cosgrave",
+        "creator_profile_url": "https://sketchfab.com/shane.cosgrave"
+    },
+    "filename": "std_53fd6607deac463ab4ec21d8364ec365.glb",
+    "length": 1.0753096342086792,
+    "width": 1.0753093957901
+}

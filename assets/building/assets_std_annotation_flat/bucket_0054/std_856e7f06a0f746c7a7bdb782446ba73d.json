@@ -1,0 +1,109 @@
+{
+    "description_long": "This delivery robot features a robust, metallic body with a central turret-like head mounted on a sturdy, articulated arm. The head is octagonal with a prominent circular element on the front, possibly a sensor or camera, and a small antenna protruding from the top. The robot moves on two large, treaded tracks that provide stability and traction, suitable for navigating urban environments. The body is primarily composed of brushed metal with dark, textured treads and some red accents around the joints and head. The design suggests durability and functionality, with visible mechanical joints and a compact, utilitarian form. There are no visible access panels or display screens, emphasizing a focus on autonomous operation and ruggedness.",
+    "description": "A compact, metallic delivery robot with a turret-like head, large treaded tracks, and articulated arm joints, designed for urban navigation.",
+    "description_view_0": "Front view shows the octagonal head with a central circular sensor, two large treaded tracks, and the main body structure.",
+    "description_view_1": "Side view reveals the articulated arm connecting the head to the body, the depth of the tracks, and the protruding antenna.",
+    "description_view_2": "Rear view highlights the back of the head, the rear of the tracks, and the robust mounting of the arm.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the arm's mechanical joint and the side profile of the tracks and head.",
+    "category": "delivery robot",
+    "height": 1.0,
+    "max_dimension": 1.2,
+    "materials": [
+        "steel",
+        "rubber",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "tracks",
+        "antenna",
+        "sensor head",
+        "arm joint"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_brand_logo": "none",
+    "attribute_sensor_array": [
+        {
+            "type": "camera or optical sensor",
+            "shape": "circular",
+            "location": "front center of head"
+        }
+    ],
+    "attribute_wheel_configuration": "Two large treaded tracks, one on each side, providing drive and stability.",
+    "attribute_compartment_access_panel": "none",
+    "attribute_display_screen": "none",
+    "uid": "856e7f06a0f746c7a7bdb782446ba73d",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5486272110848393,
+        "automaton.n.02": 0.561778754381404,
+        "tracked_vehicle.n.01": 0.5661336270270054,
+        "telerobotics.n.01": 0.5748791697291662,
+        "automaton.n.03": 0.5767078896163175,
+        "rescue.n.01": -1000.0,
+        "delivery.n.04": -1000.0,
+        "delivery.n.02": -1000.0,
+        "manner_of_speaking.n.01": -1000.0,
+        "delivery.n.07": -1000.0,
+        "delivery.n.01": -1000.0,
+        "pitch.n.02": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/856e7f06a0f746c7a7bdb782446ba73d",
+        "creator_username": "paavngill",
+        "creator_display_name": "paavngill",
+        "creator_profile_url": "https://sketchfab.com/paavngill"
+    },
+    "filename": "std_856e7f06a0f746c7a7bdb782446ba73d.glb",
+    "length": 0.765963077545166,
+    "width": 0.9101628065109253
+}

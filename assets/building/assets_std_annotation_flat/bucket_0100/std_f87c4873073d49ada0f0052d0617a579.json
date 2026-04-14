@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a streamlined, modern locomotive with a predominantly gray body accented by a bold red stripe running diagonally along its side. The train features a sleek, aerodynamic front with a large windshield and small, rounded headlights, suggesting a design optimized for speed and efficiency. The sides display several rectangular windows and ventilation grilles, as well as access panels and a small circular logo near the front. The roof is equipped with metallic fixtures, possibly for electrical or signaling equipment, and the undercarriage reveals visible wheels and suspension components. The rear of the train is flat with a large black panel, likely for maintenance access, and safety railings are present along the roof edges. The overall appearance is that of a single locomotive unit, likely used for passenger or light freight service in urban or intercity environments.",
+    "description": "A streamlined gray and red locomotive with a sleek front, rectangular windows, and visible roof fixtures, designed for urban or intercity rail service.",
+    "description_view_0": "Side view showing the full length of the locomotive, red diagonal stripe, multiple windows, and ventilation grilles.",
+    "description_view_1": "Front view highlighting the aerodynamic nose, large windshield, headlights, and roof details.",
+    "description_view_2": "Opposite side view mirroring view 0, with similar window and grille arrangement and visible undercarriage.",
+    "description_view_3": "Rear view displaying a flat back with a large black maintenance panel and roof safety railings.",
+    "category": "train",
+    "height": 4.2,
+    "max_dimension": 20.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 85000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "headlight",
+        "vent",
+        "roof fixture"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black",
+        "white",
+        "blue",
+        "gold"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.07,
+        0.04,
+        0.03,
+        0.01
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_train_type": "locomotive",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end",
+    "attribute_window_arrangement": "spaced rectangular windows",
+    "uid": "f87c4873073d49ada0f0052d0617a579",
+    "near_synsets": {
+        "train.n.01": 0.4301648614298006,
+        "streamliner.n.01": 0.4653115073105655,
+        "steam_locomotive.n.01": 0.48474792923112253,
+        "car_train.n.01": 0.48562729323134124,
+        "subway_train.n.01": 0.48713048373950674,
+        "caravan.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "train.n.05": -1000.0,
+        "gearing.n.01": -1000.0,
+        "train.n.04": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f87c4873073d49ada0f0052d0617a579",
+        "creator_username": "Matt_LeMoine",
+        "creator_display_name": "Matt LeMoine",
+        "creator_profile_url": "https://sketchfab.com/Matt_LeMoine"
+    },
+    "filename": "std_f87c4873073d49ada0f0052d0617a579.glb",
+    "length": 15.247720718383789,
+    "width": 3.258122682571411
+}

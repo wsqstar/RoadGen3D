@@ -1,0 +1,111 @@
+{
+    "description_long": "This object is a set of four standard traffic lights, each featuring three circular signal lenses arranged vertically within a robust, rectangular black housing. The housings are made of a hard, matte-finished material, likely metal or heavy-duty plastic, with visible mounting brackets and hardware along the sides. Each light unit displays the classic red, yellow, and green lenses, with the colored lenses slightly recessed and protected by hoods to shield from sunlight and weather. The rear and side views reveal the depth and boxy structure of the housings, as well as the cylindrical protrusions for each signal lens. The overall design is utilitarian, built to withstand outdoor urban environments and provide clear, visible signals to road users. No pedestrian signals or control boxes are visible, and the lights appear intended for vehicle traffic regulation.",
+    "description": "A set of four vertically stacked, black traffic lights with red, yellow, and green signal lenses in robust housings. The design is utilitarian and weather-resistant, suitable for urban roadways.",
+    "description_view_0": "Front view showing four traffic lights with visible red, yellow, and green lenses in each housing.",
+    "description_view_1": "Side view highlighting the cylindrical protrusions of the signal lenses and the depth of the housings.",
+    "description_view_2": "Rear view displaying the solid, boxy backs of the housings with no visible lenses or control boxes.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the cylindrical lens protrusions and housing depth.",
+    "category": "traffic light",
+    "height": 1.2,
+    "max_dimension": 1.2,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "mass": 32,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "signal lens",
+        "mounting bracket"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "yellow",
+        "green"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_number_of_signal_lights": 12,
+    "attribute_signal_orientation": "vertical",
+    "attribute_mounting_type": "pole-mounted",
+    "attribute_presence_of_pedestrian_signals": false,
+    "attribute_control_box_visibility": false,
+    "uid": "5968c31b92614587a1af89a39ce539e1",
+    "near_synsets": {
+        "traffic_light.n.01": 0.4867718617367874,
+        "stoplight.n.01": 0.539047958097095,
+        "light.n.14": 0.5493582154483061,
+        "red_light.n.01": 0.5494366587682552,
+        "streetlight.n.01": 0.5509679808795348,
+        "light.n.01": -1000.0,
+        "light.n.05": -1000.0,
+        "light.n.08": -1000.0,
+        "luminosity.n.01": -1000.0,
+        "light.n.10": -1000.0,
+        "light.n.03": -1000.0,
+        "light.n.12": -1000.0,
+        "traffic.n.02": -1000.0,
+        "light.n.06": -1000.0,
+        "light.n.07": -1000.0,
+        "inner_light.n.01": -1000.0,
+        "traffic.n.01": -1000.0,
+        "traffic.n.03": -1000.0,
+        "light.n.02": -1000.0,
+        "dealings.n.01": -1000.0,
+        "light.n.09": -1000.0,
+        "lighter.n.02": -1000.0,
+        "sparkle.n.01": -1000.0
+    },
+    "synset": "traffic_light.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5968c31b92614587a1af89a39ce539e1",
+        "creator_username": "Signalrenders",
+        "creator_display_name": "Signalrenders",
+        "creator_profile_url": "https://sketchfab.com/Signalrenders"
+    },
+    "filename": "std_5968c31b92614587a1af89a39ce539e1.glb",
+    "length": 0.2227112054824829,
+    "width": 1.2108365297317505
+}

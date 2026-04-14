@@ -1,0 +1,102 @@
+{
+    "description_long": "This object is a large, concrete half-pipe structure resembling a skate ramp, with high vertical walls and a smooth, curved interior surface. The exterior faces are decorated with colorful graffiti art, including a stylized portrait and a vibrant cartoon character. Metal railings run along the top edges of the structure, providing safety barriers on both sides. The surface of the ramp is dark and appears to be made of concrete or a similar hard material, showing realistic wear and texture. The structure is robust and heavy, with no visible openings or water management features typical of functional dams. The overall design suggests it is intended as a recreational or urban feature rather than a traditional water-retaining dam.",
+    "description": "A large, concrete half-pipe structure with metal railings and graffiti art on its exterior walls. The surface is smooth and curved, resembling a skate ramp.",
+    "description_view_0": "Front view shows a white wall with a large graffiti portrait and metal railings above the curved ramp.",
+    "description_view_1": "Side view reveals the full length of the half-pipe, the continuous curve of the ramp, and a smaller graffiti piece on the right wall.",
+    "description_view_2": "Rear view displays another white wall with a colorful cartoon graffiti and the same metal railings above.",
+    "description_view_3": "Opposite side view shows the full ramp structure without any visible graffiti, emphasizing the concrete surface and railings.",
+    "category": "dam",
+    "height": 3.5,
+    "max_dimension": 12.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 90000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "slideable",
+        "climbable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "railings"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "black",
+        "red",
+        "blue",
+        "yellow",
+        "pink"
+    ],
+    "colors_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_spillway_presence": false,
+    "attribute_control_gates": [
+        "none"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_water_outflow": "none",
+    "attribute_perimeter_fencing": true,
+    "uid": "263f11a173cb44cc95894cd37bef4ad8",
+    "near_synsets": {
+        "dam.n.01": 0.5518860788532575,
+        "skateboarding.n.01": 0.5667307598704356,
+        "rink.n.01": 0.5669304723825029,
+        "skateboarder.n.01": 0.5886289470066574,
+        "water_chute.n.01": 0.5914712614966143,
+        "decameter.n.01": -1000.0,
+        "dam.n.03": -1000.0
+    },
+    "synset": "dam.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/263f11a173cb44cc95894cd37bef4ad8",
+        "creator_username": "NightDrawn",
+        "creator_display_name": "NightDrawn",
+        "creator_profile_url": "https://sketchfab.com/NightDrawn"
+    },
+    "filename": "std_263f11a173cb44cc95894cd37bef4ad8.glb",
+    "length": 11.51575517654419,
+    "width": 5.943977117538452
+}

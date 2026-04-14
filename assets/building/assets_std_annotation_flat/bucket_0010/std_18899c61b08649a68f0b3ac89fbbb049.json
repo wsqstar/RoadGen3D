@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a green military tank resembling the classic M4 Sherman, featuring a large cylindrical turret with a long barrel main cannon and a prominent antenna. The hull is robust and angular, with visible armor plating and a set of continuous metal tracks for all-terrain mobility. On the sides, there are white military insignia, including a star within a circle and a serial number, as well as a triangular marking. The rear of the tank has stowed equipment, including logs and a storage box, while the front is equipped with additional armor and what appear to be prongs or a hedgerow cutter. The tank's surface is matte and hard, with a utilitarian design focused on durability and combat effectiveness. The vehicle is clearly designed for urban and battlefield environments, offering both protection and offensive capability.",
+    "description": "A green armored military tank with a large turret, long barrel, and visible white insignia, equipped with tracks and stowed gear. The vehicle features robust armor, a matte finish, and combat-oriented details.",
+    "description_view_0": "Side view showing the main turret, long barrel, white star insignia, serial number, and logs stowed on the rear side.",
+    "description_view_1": "Rear view highlighting the storage box, logs, and the back of the turret with the antenna visible.",
+    "description_view_2": "Opposite side view with the turret, barrel, star insignia, and logs, but without the serial number visible.",
+    "description_view_3": "Front view displaying the main cannon, prongs/hedgerow cutter, and the number '22' on the right front hull.",
+    "category": "combat tactical  vehicle",
+    "height": 2.7,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "antenna",
+        "tracks",
+        "storage box",
+        "logs"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "white",
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.04,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the turret front; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body armor plating with sloped surfaces, especially on the turret and front hull; appears thick and robust.",
+    "attribute_camouflage_pattern": "Solid green paint scheme with no visible camouflage pattern.",
+    "attribute_military_markings": "White star emblem and serial number 'T212728' on the side, white triangle on the side, and number '22' on the front hull.",
+    "attribute_tire_type": "not applicable",
+    "uid": "18899c61b08649a68f0b3ac89fbbb049",
+    "near_synsets": {
+        "tank.n.01": 0.4520489310402198,
+        "military_vehicle.n.01": 0.4780842007338841,
+        "armored_car.n.02": 0.4975264068964183,
+        "assault_gun.n.02": 0.5046928182234567,
+        "armored_vehicle.n.01": 0.5090184315481622,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/18899c61b08649a68f0b3ac89fbbb049",
+        "creator_username": "Luis.P",
+        "creator_display_name": "Luifa3",
+        "creator_profile_url": "https://sketchfab.com/Luis.P"
+    },
+    "filename": "std_18899c61b08649a68f0b3ac89fbbb049.glb",
+    "length": 3.4133169651031494,
+    "width": 1.6320905685424805
+}

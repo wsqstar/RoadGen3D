@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a modern ambulance vehicle with a boxy rear compartment and a cab-over-engine design, painted primarily white with bold red accents and medical cross symbols. The rear compartment features two large, hinged doors with windows, red and white reflective striping, and multiple emergency lights. The sides display large red diagonal stripes and medical crosses, as well as several access panels and emergency lighting units. The roof is marked with a prominent red cross symbol for aerial visibility, and the vehicle is equipped with side mirrors, wheels, and a front grille. The windows are tinted black, and the overall build suggests a reinforced metal body suitable for urban emergency response. The design is functional, with clear visual cues for medical and emergency use.",
+    "description": "A white and red ambulance with medical cross symbols, emergency lights, and a boxy rear compartment, designed for urban emergency response.",
+    "description_view_0": "Rear view showing two large hinged doors with windows, red and white reflective striping, and emergency lights.",
+    "description_view_1": "Left side view highlighting the large red diagonal stripe, medical cross, side access panels, and emergency lights.",
+    "description_view_2": "Front view displaying the cab, windshield, front grille, and roof-mounted red cross symbol.",
+    "description_view_3": "Right side view similar to the left, with red diagonal stripe, medical cross, and visible side door.",
+    "category": "ambulance",
+    "height": 2.6,
+    "max_dimension": 6.0,
+    "materials": [
+        "painted steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "wheel",
+        "button",
+        "mirror"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "red",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_emergency_light_bar": true,
+    "attribute_ambulance_signage": "Red cross symbols and red striping; no visible 'AMBULANCE' text or phone numbers.",
+    "attribute_medical_cross_symbol": true,
+    "attribute_siren": true,
+    "attribute_rear_compartment_doors": "two hinged doors",
+    "uid": "fcc1aed5629849e6bc6d01bd1ca3c7e6",
+    "near_synsets": {
+        "ambulance.n.01": 0.47326481428548883,
+        "funny_wagon.n.01": 0.5410622405255622,
+        "paramedic.n.01": 0.5597302517583196,
+        "rescue_equipment.n.01": 0.5706395268914336,
+        "fire_engine.n.01": 0.5711660421025008
+    },
+    "synset": "ambulance.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fcc1aed5629849e6bc6d01bd1ca3c7e6",
+        "creator_username": "aduong278",
+        "creator_display_name": "Andrew Duong",
+        "creator_profile_url": "https://sketchfab.com/aduong278"
+    },
+    "filename": "std_fcc1aed5629849e6bc6d01bd1ca3c7e6.glb",
+    "length": 6.489404201507568,
+    "width": 2.7077133655548096
+}

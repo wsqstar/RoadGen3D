@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a large, rectangular blue metal container, commonly known as a shipping or storage container. The exterior features corrugated steel walls for structural strength, with one side displaying a set of eight louvered ventilation panels, likely for airflow or cooling. One end of the container has a single, solid door with a handle and lock, while the opposite end is fully enclosed with reinforced steel panels and locking bars. The top surface is flat and ribbed, typical of intermodal containers, providing durability and stackability. The interior, visible through the open louvered side, appears hollow and spacious, suitable for storing goods or equipment.",
+    "description": "A large blue metal shipping container with a solid door on one end and multiple louvered ventilation panels on one side. The structure is robust, with corrugated steel walls and a spacious, open interior.",
+    "description_view_0": "This view shows the end of the container with a single solid door, featuring a handle and lock, set into the blue corrugated steel wall.",
+    "description_view_1": "This side view highlights eight rectangular louvered ventilation panels arranged in two rows, set into the blue steel wall.",
+    "description_view_2": "This view displays the fully enclosed end of the container, with reinforced steel panels and locking bars, but no visible entry point.",
+    "description_view_3": "This side view reveals the open louvered panel sections, exposing the dark, hollow interior of the container.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "air",
+        "plastic"
+    ],
+    "materials_composition": [
+        0.92,
+        0.07,
+        0.01
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "ventilation panel",
+        "lock"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "blue",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.13,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "none",
+    "attribute_opening_mechanism": "swing door with handle and lock",
+    "attribute_labeling_or_signage": "none",
+    "attribute_handles_or_grips": "single door handle on one end",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "7e6a1c61b9274e439b4b198ef67728a3",
+    "near_synsets": {
+        "container.n.01": 0.45617512454887543,
+        "cargo_container.n.01": 0.48570542884380724,
+        "box.n.01": 0.5233220084258862,
+        "container_ship.n.01": 0.540142083744568,
+        "cargo_door.n.01": 0.5430605390889442
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7e6a1c61b9274e439b4b198ef67728a3",
+        "creator_username": "eroliy",
+        "creator_display_name": "eroliy",
+        "creator_profile_url": "https://sketchfab.com/eroliy"
+    },
+    "filename": "std_7e6a1c61b9274e439b4b198ef67728a3.glb",
+    "length": 6.1348960399627686,
+    "width": 2.6958963871002197
+}

@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a cylindrical, vertical storage tank with a matte black exterior, featuring visible wear and scratches along its edges. Prominently displayed on the front is a yellow biohazard warning symbol, with streaks of bright green liquid seeping from the top and pooling at the base, suggesting hazardous or toxic contents. The tank has two horizontal reinforcing bands and a flat, circular lid with a green cap or bung on top, likely for filling or emptying the contents. The green cap is slightly raised and appears to be made of plastic or painted metal. The overall construction suggests a heavy-duty metal drum, commonly used for storing industrial chemicals or waste. The tank's design and warning signage indicate it is intended for secure containment of dangerous substances.",
+    "description": "A black, cylindrical metal storage tank with a biohazard warning symbol and green toxic liquid stains, featuring a green cap on top.",
+    "description_view_0": "Front view showing the biohazard symbol and green liquid stains running down the tank.",
+    "description_view_1": "Side view with the green cap visible on the lid and minor green stains at the base, no warning symbol visible.",
+    "description_view_2": "Rear view showing a mostly plain black surface with the green cap centered on the lid.",
+    "description_view_3": "Angled side view with the green cap partially visible and the edge of the warning symbol just coming into view.",
+    "category": "storage tank",
+    "height": 0.9,
+    "max_dimension": 0.6,
+    "materials": [
+        "steel",
+        "plastic",
+        "paint",
+        "air",
+        "liquid (chemical/biological waste)"
+    ],
+    "materials_composition": [
+        0.7,
+        0.05,
+        0.05,
+        0.1,
+        0.1
+    ],
+    "mass": 35,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pourable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cap",
+        "lid"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "green",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [],
+    "attribute_warning_signage": true,
+    "attribute_architectural_style": "cylindrical vertical",
+    "uid": "bbc0952c13d042c69658e1e15a9e29a2",
+    "near_synsets": {
+        "tank.n.02": 0.5156912011110906,
+        "reservoir.n.03": 0.5487998825213787,
+        "tank_farm.n.01": 0.5572944594101613,
+        "gas_tank.n.01": 0.5618551207292711,
+        "septic_tank.n.01": 0.5677257559372908,
+        "tank_car.n.01": -1000.0,
+        "tank.n.03": -1000.0,
+        "cooler.n.03": -1000.0,
+        "storage.n.04": -1000.0,
+        "repositing.n.01": -1000.0,
+        "tank.n.01": -1000.0,
+        "storage.n.03": -1000.0,
+        "storage.n.01": -1000.0,
+        "memory.n.04": -1000.0,
+        "storehouse.n.01": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bbc0952c13d042c69658e1e15a9e29a2",
+        "creator_username": "FALL3N",
+        "creator_display_name": "FALL3N",
+        "creator_profile_url": "https://sketchfab.com/FALL3N"
+    },
+    "filename": "std_bbc0952c13d042c69658e1e15a9e29a2.glb",
+    "length": 0.5811980068683624,
+    "width": 0.5811974704265594
+}

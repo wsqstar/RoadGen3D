@@ -1,0 +1,111 @@
+{
+    "description_long": "This object is a classic American-style hot dog nestled in a soft, lightly textured bun, served in a red-and-white checkered paper tray. The sausage is plump and smooth, topped with a generous zigzag of bright yellow mustard and vivid red ketchup. The bun appears fluffy and slightly glossy, with subtle dimples indicating a fresh, pillowy texture. The condiments are neatly applied, adding a vibrant contrast to the warm beige of the bun and the reddish-brown of the sausage. The paper tray is crisply folded, providing a clean and practical base for holding the hot dog. No grill marks are visible on the sausage or bun, and the overall presentation is appetizing and ready for immediate consumption.",
+    "description": "A plump hot dog with mustard and ketchup in a soft bun, served in a red-and-white checkered paper tray. The condiments are neatly applied, and the bun looks fresh and fluffy.",
+    "description_view_0": "Top-down view showing the hot dog centered in the bun with condiments clearly visible and the checkered tray fanned out around it.",
+    "description_view_1": "Side view highlighting the length of the hot dog and bun, with the checkered paper tray wrapping around the base.",
+    "description_view_2": "Another top-down view, similar to view 0, with the condiments and bun symmetry clearly visible.",
+    "description_view_3": "Side view from the opposite side, again showing the full length of the hot dog and the checkered tray's edge.",
+    "category": "hot dog",
+    "height": 0.08,
+    "max_dimension": 0.18,
+    "materials": [
+        "bread",
+        "sausage",
+        "mustard",
+        "ketchup",
+        "paper",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.05,
+        0.05,
+        0.18,
+        0.02
+    ],
+    "mass": 0.18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "graspable",
+        "edible"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "bun",
+        "sausage",
+        "condiments",
+        "paper tray"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "red",
+        "yellow",
+        "white"
+    ],
+    "colors_composition": [
+        0.55,
+        0.18,
+        0.07,
+        0.2
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "group",
+    "attribute_bun_presence": true,
+    "attribute_sausage_visibility": 0.6,
+    "attribute_condiment_application": [
+        "mustard",
+        "ketchup"
+    ],
+    "attribute_grill_marks": false,
+    "attribute_packaging_type": "paper tray",
+    "uid": "f6049d197e3a42abaf446cedffbff778",
+    "near_synsets": {
+        "hotdog.n.02": 0.4625469452712866,
+        "reuben.n.02": 0.5261730477117502,
+        "chili_dog.n.01": 0.5266848140293803,
+        "frankfurter_bun.n.01": 0.5325857274427297,
+        "hamburger.n.01": 0.5432892638503586,
+        "pawl.n.01": -1000.0,
+        "frump.n.01": -1000.0,
+        "dog.n.01": -1000.0,
+        "hotdog.n.01": -1000.0,
+        "dog.n.03": -1000.0,
+        "cad.n.01": -1000.0,
+        "andiron.n.01": -1000.0,
+        "frank.n.01": -1000.0
+    },
+    "synset": "hotdog.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f6049d197e3a42abaf446cedffbff778",
+        "creator_username": "dakimchi",
+        "creator_display_name": "Leon Da Kimchi",
+        "creator_profile_url": "https://sketchfab.com/dakimchi"
+    },
+    "filename": "std_f6049d197e3a42abaf446cedffbff778.glb",
+    "length": 0.2068619653582573,
+    "width": 0.1407250314950943
+}

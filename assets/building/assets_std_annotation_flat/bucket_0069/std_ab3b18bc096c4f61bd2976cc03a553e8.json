@@ -1,0 +1,103 @@
+{
+    "description_long": "This object represents a low, elongated house with a flat, angular roof and a footprint that follows an irregular polygonal shape. The exterior is covered in a texture resembling aerial satellite imagery, showing a mix of green vegetation, brown earth, and a grayish strip that could represent a road or driveway. The structure appears to be a single-story building, blending into a natural landscape, with no visible windows, doors, or architectural ornamentation. The roof is flat and slightly sloped, with the overall form suggesting a modern, utilitarian design. The house is likely constructed from concrete or masonry, given its solid, monolithic appearance. The muted, earth-toned colors help the building integrate with its surroundings, making it suitable for a suburban or rural edge context.",
+    "description": "A low, flat-roofed house with an irregular polygonal shape and earth-toned exterior, blending into a natural landscape. The structure is single-story and lacks visible windows or doors.",
+    "description_view_0": "This view shows the house's elongated shape with a visible gray strip, possibly a driveway, running along one edge.",
+    "description_view_1": "From this angle, the house's flat roof and irregular outline are prominent, with more brown earth tones visible.",
+    "description_view_2": "This perspective highlights the green vegetation texture on the roof and sides, with the gray strip receding into the background.",
+    "description_view_3": "The house appears more angular from this view, with the gray strip running parallel to the longer edge and more green visible.",
+    "category": "house",
+    "height": 3.5,
+    "max_dimension": 28.0,
+    "materials": [
+        "concrete",
+        "masonry",
+        "glass",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 95000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 3,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Modern",
+    "attribute_number_of_stories": 1,
+    "attribute_roof_type": "flat",
+    "attribute_window_arrangement": "no visible windows",
+    "attribute_entryway_design": "Entryway not visible; likely a simple, flush door with minimal ornamentation",
+    "uid": "ab3b18bc096c4f61bd2976cc03a553e8",
+    "near_synsets": {
+        "ranch_house.n.01": 0.48213914990440465,
+        "bungalow.n.01": 0.5070191172633565,
+        "house.n.12": 0.5076936906952343,
+        "farmhouse.n.01": 0.5126231654236413,
+        "house.n.01": 0.5208926567784175,
+        "firm.n.01": -1000.0,
+        "house.n.06": -1000.0,
+        "theater.n.01": -1000.0,
+        "sign_of_the_zodiac.n.01": -1000.0,
+        "house.n.05": -1000.0,
+        "house.n.07": -1000.0,
+        "house.n.03": -1000.0,
+        "family.n.01": -1000.0,
+        "house.n.04": -1000.0,
+        "house.n.09": -1000.0
+    },
+    "synset": "house.n.09",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ab3b18bc096c4f61bd2976cc03a553e8",
+        "creator_username": "GD3Design",
+        "creator_display_name": "GD3Design",
+        "creator_profile_url": "https://sketchfab.com/GD3Design"
+    },
+    "filename": "std_ab3b18bc096c4f61bd2976cc03a553e8.glb",
+    "length": 73.6123046875,
+    "width": 81.63525390625
+}

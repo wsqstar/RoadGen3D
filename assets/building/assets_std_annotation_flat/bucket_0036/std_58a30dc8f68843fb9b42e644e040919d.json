@@ -1,0 +1,120 @@
+{
+    "description_long": "This is a rectangular outdoor tennis court featuring a blue playing surface with white line markings for singles and doubles play. The court is surrounded by a low, transparent fence with red posts, providing a clear boundary while maintaining visibility. At one end, there is a large, modern scoreboard structure with digital displays and a central opening, flanked by two pole-mounted lighting fixtures on each side. The net is suspended between two sturdy posts and appears to be made of braided material. The overall design is functional and contemporary, with a focus on utility and clear sightlines for both players and spectators. The court is elevated on a platform, suggesting it is part of a larger sports complex or urban recreational area.",
+    "description": "A modern blue tennis court with white markings, transparent fencing, a large digital scoreboard, and pole-mounted lighting fixtures. The court is elevated and designed for both singles and doubles play.",
+    "description_view_0": "Side view showing the blue court, white net, transparent fencing, and the scoreboard structure at the far end.",
+    "description_view_1": "Frontal view highlighting the large digital scoreboard, central opening, and the full width of the court with lighting fixtures visible.",
+    "description_view_2": "Opposite side view similar to view 0, emphasizing the net, fencing, and the scoreboard's side profile.",
+    "description_view_3": "Rear view focusing on the back of the scoreboard structure, with the court and fencing less visible.",
+    "category": "tennis court",
+    "height": 7.0,
+    "max_dimension": 36.0,
+    "materials": [
+        "concrete",
+        "synthetic surface",
+        "metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "playable",
+        "score_viewable",
+        "net_adjustable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "net",
+        "scoreboard",
+        "lighting fixtures",
+        "fence gate"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "blue",
+        "white",
+        "gray",
+        "red",
+        "black",
+        "green",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.5,
+        0.15,
+        0.15,
+        0.07,
+        0.05,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.1,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "scene",
+    "attribute_net_type": "Braided nylon net, white, supported by two metal posts with visible tensioning mechanisms.",
+    "attribute_court_line_markings": "All standard tennis lines present, white, approximately 5 cm wide, clearly visible and complete.",
+    "attribute_surrounding_fence": "Transparent mesh or glass fence with red posts, approximately 2.5 meters high, covering the full perimeter.",
+    "attribute_lighting_fixtures": "Four pole-mounted lighting fixtures, two on each side of the scoreboard end, modern design.",
+    "attribute_architectural_style": "Modern utilitarian with clean lines, functional structures, and minimal decorative elements.",
+    "uid": "58a30dc8f68843fb9b42e644e040919d",
+    "near_synsets": {
+        "tennis_court.n.01": 0.4515286290989475,
+        "badminton_court.n.01": 0.5120344250228367,
+        "volleyball_court.n.01": 0.5252559535958762,
+        "doubles.n.02": 0.5336185911173639,
+        "deck_tennis.n.01": 0.537150188251182,
+        "court.n.06": -1000.0,
+        "court.n.05": -1000.0,
+        "motor_hotel.n.01": -1000.0,
+        "court.n.08": -1000.0,
+        "tennis.n.01": -1000.0,
+        "court.n.01": -1000.0,
+        "court.n.04": -1000.0,
+        "court.n.09": -1000.0,
+        "court.n.10": -1000.0,
+        "court.n.02": -1000.0,
+        "court.n.03": -1000.0
+    },
+    "synset": "tennis_court.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/58a30dc8f68843fb9b42e644e040919d",
+        "creator_username": "muammar.yacoob",
+        "creator_display_name": "Spark",
+        "creator_profile_url": "https://sketchfab.com/muammar.yacoob"
+    },
+    "filename": "std_58a30dc8f68843fb9b42e644e040919d.glb",
+    "length": 11.33558702468872,
+    "width": 16.242156982421875
+}

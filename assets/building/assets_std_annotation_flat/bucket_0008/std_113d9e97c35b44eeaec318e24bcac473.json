@@ -1,0 +1,96 @@
+{
+    "description_long": "This shelter features a flat, rectangular black roof supported by a sturdy wooden frame. The front side includes a sliding wooden door with horizontal slats and a handle, providing access to a partially enclosed space beneath the roof. The structure is elevated slightly above the ground, with a solid black floor platform and an open section for storage or temporary refuge. The rear and one side are fully enclosed with horizontal wooden paneling, while the opposite side is open, allowing easy entry. The overall design is modern and functional, suitable for use as a small urban shelter, bus stop, or park structure.",
+    "description": "A modern wooden shelter with a flat black roof, sliding door, and partially enclosed sides, ideal for urban or park settings.",
+    "description_view_0": "Front view showing the sliding wooden door, open entry space, and supporting beams beneath the flat black roof.",
+    "description_view_1": "Side view highlighting the depth of the shelter, the open entry, and the supporting wooden frame.",
+    "description_view_2": "Rear view displaying the fully enclosed wooden panel wall and the open section beneath the roof.",
+    "description_view_3": "Opposite side view showing the solid wooden panel wall and the structure's rectangular profile.",
+    "category": "shelter",
+    "height": 2.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "wood",
+        "metal",
+        "composite panel",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.1
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "shelterable",
+        "storable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sliding door",
+        "handle"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "light brown"
+    ],
+    "colors_composition": [
+        0.4,
+        0.6
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "flat black composite panel roof",
+    "attribute_entryway_design": "sliding wooden door with horizontal slats and open side entry",
+    "attribute_support_structure": "wooden beams and posts with metal fasteners",
+    "attribute_signage": "none",
+    "attribute_transparency": "fully opaque",
+    "uid": "113d9e97c35b44eeaec318e24bcac473",
+    "near_synsets": {
+        "shelter.n.02": 0.4659249058189398,
+        "shelter.n.01": 0.47429545000552187,
+        "shelter.n.05": 0.49689517057475013,
+        "kennel.n.01": 0.5181966432767877,
+        "birdhouse.n.01": 0.5212120031973095,
+        "protection.n.04": -1000.0,
+        "tax_shelter.n.01": -1000.0
+    },
+    "synset": "tax_shelter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/113d9e97c35b44eeaec318e24bcac473",
+        "creator_username": "k3v1nc0",
+        "creator_display_name": "k3v1nc0",
+        "creator_profile_url": "https://sketchfab.com/k3v1nc0"
+    },
+    "filename": "std_113d9e97c35b44eeaec318e24bcac473.glb",
+    "length": 3.0521411895751953,
+    "width": 5.653290271759033
+}

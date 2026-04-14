@@ -1,0 +1,141 @@
+{
+    "description_long": "This grave yard object consists of a rectangular tiled base supporting two black headstones, a wooden cross, and a rectangular plaque. The headstones are polished black stone, one featuring an engraved portrait and Cyrillic inscriptions, while the other has a carved epitaph and a decorative motif. The wooden cross stands between the headstones, contrasting with the dark stone. Two rectangular grave frames are set into the tiled base, marking burial plots. The plaque at the side is likely for additional inscriptions or dedications. The overall design is somber and formal, with a focus on symmetry and memorialization.",
+    "description": "A formal grave yard set with two black stone headstones, a wooden cross, a side plaque, and two grave frames on a tiled base.",
+    "description_view_0": "Side view showing the thickness of the headstones, the wooden cross, and the depth of the grave frames.",
+    "description_view_1": "Frontal view displaying the engraved headstones, the wooden cross, the side plaque, and the full layout of the grave frames.",
+    "description_view_2": "Opposite side view highlighting the profile of the headstones, cross, and the arrangement of the grave frames.",
+    "description_view_3": "Rear view showing the backs of the headstones, the cross, and the reverse of the side plaque.",
+    "category": "grave yard",
+    "height": 1.4,
+    "max_dimension": 2.2,
+    "materials": [
+        "granite",
+        "wood",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.15,
+        0.05
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "memorializable",
+        "inscribable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "plaque",
+        "headstone",
+        "cross"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.54,
+    "youngs_modulus": 50000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_tombstone_inscriptions": [
+        "\u041f\u0430\u043c\u044f\u0442\u0438, \u043b\u044e\u0431\u0432\u0438, \u0441\u043a\u043e\u0440\u0431\u0438...",
+        "\u041b\u0410\u0420\u0418\u0421\u0410",
+        "1957-2012"
+    ],
+    "attribute_crosses": [
+        {
+            "style": "Latin",
+            "height": 1.3,
+            "primary_material": "wood"
+        }
+    ],
+    "attribute_grave_markers": [
+        {
+            "type": "headstone",
+            "material": "granite",
+            "dimensions": [
+                1.2,
+                0.5,
+                0.1
+            ]
+        },
+        {
+            "type": "headstone",
+            "material": "granite",
+            "dimensions": [
+                1.0,
+                0.5,
+                0.1
+            ]
+        },
+        {
+            "type": "plaque",
+            "material": "granite",
+            "dimensions": [
+                0.5,
+                0.8,
+                0.1
+            ]
+        }
+    ],
+    "attribute_mausoleums": [],
+    "attribute_cemetery_gates": [],
+    "uid": "e72c3b765ed24e3682395788531bb758",
+    "near_synsets": {
+        "grave.n.02": 0.4821541782496063,
+        "gravestone.n.01": 0.48341781992805355,
+        "cemetery.n.01": 0.5186511747467509,
+        "cairn.n.01": 0.5369709183638612,
+        "grave.n.01": 0.5376602677849555,
+        "yard.n.01": -1000.0,
+        "yard.n.03": -1000.0,
+        "yard.n.08": -1000.0,
+        "cubic_yard.n.01": -1000.0,
+        "yard.n.02": -1000.0,
+        "yard.n.06": -1000.0,
+        "thousand.n.01": -1000.0,
+        "yard.n.07": -1000.0,
+        "yard.n.09": -1000.0
+    },
+    "synset": "cemetery.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e72c3b765ed24e3682395788531bb758",
+        "creator_username": "craz1kus",
+        "creator_display_name": "craz1kus",
+        "creator_profile_url": "https://sketchfab.com/craz1kus"
+    },
+    "filename": "std_e72c3b765ed24e3682395788531bb758.glb",
+    "length": 1.9137375354766846,
+    "width": 2.1529550552368164
+}

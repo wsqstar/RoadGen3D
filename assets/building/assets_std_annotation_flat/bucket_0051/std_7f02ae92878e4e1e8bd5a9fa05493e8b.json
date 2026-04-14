@@ -1,0 +1,108 @@
+{
+    "description_long": "This object is an industrial robot arm mounted on a rectangular metal frame with four caster wheels for mobility. The arm features multiple articulated segments with visible joints, allowing for a wide range of motion, and is colored primarily in light gray with blue accent rings at the joints. The frame is constructed from sturdy metal beams and includes a transparent or open section along the top, likely for access or visibility. The robot arm is positioned to operate within the bounds of the frame, suggesting it is designed for tasks such as assembly, inspection, or manipulation of objects within a defined workspace. The base of the arm is securely attached to the frame, and the end effector appears to be a simple tool mount or placeholder, with no visible gripper or specialized tool attached. The overall design is functional and industrial, suitable for use in urban environments such as workshops, garages, or automated service areas.",
+    "description": "A light gray industrial robot arm with blue joint accents, mounted on a sturdy metal frame with caster wheels and an open workspace. The arm is articulated and designed for manipulation tasks within the frame.",
+    "description_view_0": "Front view showing the full length of the robot arm and the open workspace within the metal frame.",
+    "description_view_1": "Side view highlighting the narrow profile of the frame and the arm's articulation along its length.",
+    "description_view_2": "Rear view displaying the back of the frame, the arm's mounting base, and the open structure.",
+    "description_view_3": "Top-down view revealing the arm's position relative to the frame and the open workspace area.",
+    "category": "robot arm",
+    "height": 1.2,
+    "max_dimension": 2.0,
+    "materials": [
+        "aluminum",
+        "steel",
+        "plastic",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.2,
+        0.15,
+        0.05,
+        0.01,
+        0.04
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "robot arm segments",
+        "joints",
+        "end effector",
+        "frame",
+        "caster wheels"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "black",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_joint_type": "revolute",
+    "attribute_number_of_segments": 3,
+    "attribute_end_effector_type": "tool mount",
+    "attribute_visible_wiring_or_cabling": false,
+    "attribute_mounting_location": "frame-mounted",
+    "uid": "7f02ae92878e4e1e8bd5a9fa05493e8b",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5308548900017052,
+        "automaton.n.02": 0.5724449635266662,
+        "automaton.n.03": 0.5772265107717859,
+        "tone_arm.n.01": 0.5832722813145559,
+        "light_arm.n.01": 0.5898536676808668,
+        "weapon.n.01": -1000.0,
+        "arm.n.01": -1000.0,
+        "arm.n.02": -1000.0,
+        "arm.n.04": -1000.0,
+        "sleeve.n.01": -1000.0,
+        "branch.n.01": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7f02ae92878e4e1e8bd5a9fa05493e8b",
+        "creator_username": "Oliver_Festo",
+        "creator_display_name": "Oliver_Festo",
+        "creator_profile_url": "https://sketchfab.com/Oliver_Festo"
+    },
+    "filename": "std_7f02ae92878e4e1e8bd5a9fa05493e8b.glb",
+    "length": 0.7759937047958374,
+    "width": 1.66224205493927
+}

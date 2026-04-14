@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a large, rectangular warehouse complex surrounded by a tall security fence and set within a paved lot. The main building features a dark, gabled roof and long rows of windows along its sides, with multiple entry points and a prominent loading area at the front. Adjacent to the main structure are smaller utility buildings and a guardhouse, each with their own distinct entrances and window arrangements. The grounds include a wide driveway for vehicle access, green landscaped strips, and clearly marked pathways. The exterior is primarily composed of dark metal panels, concrete, and glass, giving it a modern industrial appearance. The overall layout is functional, with clear zones for storage, access, and security.",
+    "description": "A modern, dark-roofed warehouse complex with security fencing, paved lot, and multiple utility buildings. Features include large windows, loading areas, and landscaped green strips.",
+    "description_view_0": "Front view showing the main entrance, loading dock, and a smaller building with a row of windows and doors.",
+    "description_view_1": "Side view highlighting the long row of windows on the main warehouse and a utility building with double doors.",
+    "description_view_2": "Rear view displaying the back entrance of the warehouse, additional fencing, and a small outbuilding.",
+    "description_view_3": "Opposite side view showing the main warehouse's side windows, a guardhouse, and the security gate.",
+    "category": "warehouse",
+    "height": 8.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "metal",
+        "concrete",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.1
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "gate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "light gray",
+        "green",
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "scene",
+    "attribute_facade_design": "The main facade features a series of large, rectangular windows set in dark metal panels, with a prominent loading dock and multiple entry doors. The design is functional, with minimal ornamentation and a focus on accessibility and security.",
+    "attribute_loading_dock_presence": true,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is gabled and covered in dark metal panels, with no visible skylights or rooftop equipment. Its simple, sloped form aids in water drainage and durability.",
+    "attribute_architectural_style": "modern industrial",
+    "uid": "863caae7c9874404baee0aee6eae2bd5",
+    "near_synsets": {
+        "warehouse.n.01": 0.5411983435160028,
+        "loft.n.01": 0.5687105403449967,
+        "farm_building.n.01": 0.5718817990912711,
+        "building_complex.n.01": 0.5768268515097738,
+        "facility.n.01": 0.5798316487592137
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/863caae7c9874404baee0aee6eae2bd5",
+        "creator_username": "mciorf.ru",
+        "creator_display_name": "mciorf.ru",
+        "creator_profile_url": "https://sketchfab.com/mciorf.ru"
+    },
+    "filename": "std_863caae7c9874404baee0aee6eae2bd5.glb",
+    "length": 58.96652412414551,
+    "width": 49.79903221130371
+}

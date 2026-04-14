@@ -1,0 +1,110 @@
+{
+    "description_long": "This bus shelter features a long, arched metal roof with a weathered, reddish-brown finish, providing ample coverage for waiting passengers. The structure is supported by four vertical posts and includes a blue bench that runs the length of the shelter, offering seating for multiple people. The shelter sits on a rectangular concrete base, which shows signs of moss and wear, indicating outdoor exposure. One side of the shelter displays a large sign reading 'MAJLIS MEDWUF BERSEKUTU,' likely indicating the stop name or local authority. The back of the shelter is partially enclosed with a solid panel, while the sides remain open for easy access. Metal railings at the front and sides add structural support and help guide passengers safely.",
+    "description": "A weathered, arched-roof bus shelter with a blue bench, partial back enclosure, and a prominent sign on one side. The structure is supported by metal posts and railings, sitting on a mossy concrete base.",
+    "description_view_0": "End view showing the arched roof, blue bench, and partial side enclosure with visible railings.",
+    "description_view_1": "Front view highlighting the full length of the bench, the large sign, and open access with railings.",
+    "description_view_2": "Opposite end view with the arched roof and blue bench visible, similar to view 0 but from the other side.",
+    "description_view_3": "Rear view showing the solid back panel, arched roof, and the full length of the blue bench.",
+    "category": "bus shelter",
+    "height": 2.3,
+    "max_dimension": 4.0,
+    "materials": [
+        "metal",
+        "wood",
+        "concrete",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.15,
+        0.25,
+        0.05,
+        0.1
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench",
+        "signage panel",
+        "railings"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "blue",
+        "gray",
+        "green",
+        "white"
+    ],
+    "colors_composition": [
+        0.55,
+        0.15,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "arched metal",
+    "attribute_seating_presence": true,
+    "attribute_advertisement_panel": false,
+    "attribute_shelter_enclosure_level": "partially enclosed",
+    "attribute_signage": [
+        "stop name"
+    ],
+    "uid": "3694c8b1922d41249dbfcb9ac456638e",
+    "near_synsets": {
+        "shelter.n.02": 0.5266547103288707,
+        "park_bench.n.01": 0.5535420990424894,
+        "shelter.n.01": 0.5641020427343956,
+        "bus_stop.n.01": 0.5659297529969902,
+        "sentry_box.n.01": 0.571085665718554,
+        "busbar.n.01": -1000.0,
+        "bus.n.01": -1000.0,
+        "shelter.n.05": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "protection.n.04": -1000.0,
+        "tax_shelter.n.01": -1000.0,
+        "bus.n.04": -1000.0
+    },
+    "synset": "shelter.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3694c8b1922d41249dbfcb9ac456638e",
+        "creator_username": "azizi16",
+        "creator_display_name": "Ahmad Azizi",
+        "creator_profile_url": "https://sketchfab.com/azizi16"
+    },
+    "filename": "std_3694c8b1922d41249dbfcb9ac456638e.glb",
+    "length": 1.7372414469718933,
+    "width": 3.5007041692733765
+}

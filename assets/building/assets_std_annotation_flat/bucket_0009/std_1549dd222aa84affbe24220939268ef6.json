@@ -1,0 +1,100 @@
+{
+    "description_long": "This humanoid robot features a large, metallic, rectangular head with two prominent, circular blue eyes that resemble camera lenses, and a thin blue line running along the lower edge of the head. Two thin, zigzag antennae with spherical tips extend from the top corners of the head, giving it a playful, futuristic appearance. The robot's body is compact and boxy, with articulated arms and legs that are segmented and end in simple, claw-like hands and broad, flat feet. The arms and legs are connected to the torso with visible joints, suggesting a moderate range of motion. The overall color scheme is metallic gray with blue accents, and the surface appears smooth and slightly reflective. The back of the robot features a circular detail on the torso and a single central antenna extending from the head.",
+    "description": "A metallic humanoid robot with a large rectangular head, blue camera-like eyes, zigzag antennae, and articulated limbs, finished in gray with blue highlights.",
+    "description_view_0": "Front view shows the robot's expressive blue eyes, zigzag antennae, and articulated arms and legs.",
+    "description_view_1": "Left side view highlights the depth of the head, the single central antenna, and the profile of the limbs.",
+    "description_view_2": "Rear view reveals a smooth back, a circular detail on the torso, and the central antenna extending from the head.",
+    "description_view_3": "Right side view mirrors the left, showing the head's depth, central antenna, and limb articulation.",
+    "category": "humanoid robot",
+    "height": 1.1,
+    "max_dimension": 0.7,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 38,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "eyes",
+        "antennae",
+        "arms",
+        "hands",
+        "legs",
+        "feet",
+        "torso"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms extended outward to the sides, legs straight and feet flat on the ground, head facing forward.",
+    "attribute_clothing_style": "No visible clothing; the robot is covered in integrated metallic and plastic panels with blue accent lines.",
+    "attribute_facial_features": "The face consists of two large, circular blue eyes resembling camera lenses, a thin blue line suggesting a mouth, and no visible nose or expressive features.",
+    "attribute_limb_articulation": "Arms and legs are segmented with visible hinge joints at the shoulders, elbows, hips, and knees; hands are simple claws, and feet are broad and flat, suggesting moderate articulation.",
+    "attribute_presence_of_sensors": "Visible sensors include two large camera-like eyes on the front of the head; no other sensors are apparent.",
+    "uid": "1549dd222aa84affbe24220939268ef6",
+    "near_synsets": {
+        "android.n.01": 0.5315790951719397,
+        "cyborg.n.01": 0.5475479964773612,
+        "robotics_equipment.n.01": 0.5534460361452412,
+        "automaton.n.02": 0.5603794425148207,
+        "automaton.n.03": 0.58427042594186
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1549dd222aa84affbe24220939268ef6",
+        "creator_username": "jepamplonaqu",
+        "creator_display_name": "Jenny",
+        "creator_profile_url": "https://sketchfab.com/jepamplonaqu"
+    },
+    "filename": "std_1549dd222aa84affbe24220939268ef6.glb",
+    "length": 0.4027252197265625,
+    "width": 0.8509888648986816
+}

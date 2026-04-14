@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a compact, circular bomb with a rugged, industrial appearance. Its body is predominantly yellow with extensive black scuffing and weathering, suggesting heavy use or exposure to harsh environments. The bomb is reinforced by a series of evenly spaced, dark metallic ribs that wrap around its circumference, providing structural integrity and possibly shrapnel functionality. The top and bottom surfaces are flat and dark gray, with the top slightly raised and featuring subtle markings or wear. The overall form is squat and robust, with a segmented design that hints at internal compartments or mechanisms. The lack of visible buttons, wires, or displays suggests a concealed or pressure-based detonation mechanism.",
+    "description": "A rugged, circular yellow and black bomb with metallic ribs and a weathered, industrial finish. The top and bottom are flat and dark gray, with no visible external triggers.",
+    "description_view_0": "Front view shows the bomb's circular shape, yellow weathered body, and prominent metallic ribs encircling it.",
+    "description_view_1": "This angle highlights the segmented structure and the scuffed, industrial finish of the yellow casing.",
+    "description_view_2": "The side view emphasizes the symmetry of the metallic ribs and the worn, darkened areas on the bomb's surface.",
+    "description_view_3": "This view shows more of the dark gray top and the consistent ribbed reinforcement around the bomb.",
+    "category": "bomb",
+    "height": 0.25,
+    "max_dimension": 0.45,
+    "materials": [
+        "steel",
+        "explosive_compound",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.08,
+        0.02
+    ],
+    "mass": 12,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "top_plate",
+        "metallic_ribs"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The bomb appears to use a concealed or pressure-based detonation mechanism, as there are no visible buttons, wires, or timers on the exterior.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "a5eaddff969d454bbb7b53f960406ef1",
+    "near_synsets": {
+        "bomb.n.01": 0.5298101244937958,
+        "pipe_bomb.n.01": 0.5365347187341623,
+        "plastic_bomb.n.01": 0.5485945795288437,
+        "dirty_bomb.n.01": 0.5516431722077723,
+        "bombie.n.01": 0.5527159597604115,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a5eaddff969d454bbb7b53f960406ef1",
+        "creator_username": "kythulu",
+        "creator_display_name": "kythulu",
+        "creator_profile_url": "https://sketchfab.com/kythulu"
+    },
+    "filename": "std_a5eaddff969d454bbb7b53f960406ef1.glb",
+    "length": 0.4717787206172943,
+    "width": 0.4717785716056824
+}

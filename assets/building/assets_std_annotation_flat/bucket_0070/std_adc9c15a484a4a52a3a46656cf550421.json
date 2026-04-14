@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a robust, cubic parcel container with a dark metallic exterior and reinforced edges, likely designed for secure transport or storage in urban environments. The main body is predominantly black with a subtle purple tint on the corners and edges, giving it a high-tech, industrial appearance. The front and back faces feature geometric markings in white, with the front displaying two chevrons and the word 'WARNING', while the back has a diamond-shaped symbol. The top of the container is flat and solid, with visible seams suggesting a lid or access panel, and the sides are reinforced with additional paneling for durability. The surface finish is matte with slight wear, indicating frequent handling or exposure to the elements. The overall design suggests it is both protective and stackable, suitable for use in logistics, delivery, or secure storage scenarios.",
+    "description": "A sturdy, black and purple cubic parcel container with reinforced edges, geometric warning symbols, and a matte industrial finish.",
+    "description_view_0": "Front view shows two white chevrons and the word 'WARNING' on a recessed panel, with reinforced purple-tinted corners.",
+    "description_view_1": "Back view features a white diamond symbol on a flat panel, with visible seams and reinforced edges.",
+    "description_view_2": "Opposite front view, identical to view 0, showing chevrons and 'WARNING' text.",
+    "description_view_3": "Opposite back view, identical to view 1, with the white diamond symbol and reinforced structure.",
+    "category": "parcels",
+    "height": 0.5,
+    "max_dimension": 0.5,
+    "materials": [
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "mass": 8.0,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "purple",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "",
+    "attribute_car_model": "",
+    "attribute_building_number": "",
+    "attribute_storefront_signage": "WARNING",
+    "attribute_street_name": "",
+    "uid": "adc9c15a484a4a52a3a46656cf550421",
+    "near_synsets": {
+        "container.n.01": 0.541864712251203,
+        "package.n.02": 0.5485787873106741,
+        "cargo_container.n.01": 0.5503842443619298,
+        "packing_box.n.02": 0.5522398604886221,
+        "box.n.01": 0.5569071443602236,
+        "package.n.01": -1000.0,
+        "parcel.n.02": -1000.0,
+        "tract.n.01": -1000.0
+    },
+    "synset": "package.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/adc9c15a484a4a52a3a46656cf550421",
+        "creator_username": "jursh1412",
+        "creator_display_name": "jursh1412",
+        "creator_profile_url": "https://sketchfab.com/jursh1412"
+    },
+    "filename": "std_adc9c15a484a4a52a3a46656cf550421.glb",
+    "length": 0.4606735408306122,
+    "width": 0.46037691831588745
+}

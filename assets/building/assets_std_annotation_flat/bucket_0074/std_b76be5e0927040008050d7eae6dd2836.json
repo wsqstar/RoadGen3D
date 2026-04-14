@@ -1,0 +1,104 @@
+{
+    "description_long": "This object is a medical syringe, featuring a transparent cylindrical barrel with red measurement markings along its length. The barrel is capped with a fine, metallic needle at the top, and a pinkish hub connects the needle to the barrel. At the bottom, a flat, circular plunger base is visible, designed for thumb pressure, and two side flanges provide grip for the fingers. The plunger itself is visible inside the barrel, indicating the ability to draw or expel liquid. The overall construction is sleek and utilitarian, typical of single-use syringes found in healthcare settings.",
+    "description": "A transparent medical syringe with red measurement markings, a fine metallic needle, and a pink hub, featuring a plunger and grip flanges.",
+    "description_view_0": "Front view showing the red measurement markings, needle, and plunger base clearly.",
+    "description_view_1": "Angled view with partial visibility of the measurement markings and the pink hub.",
+    "description_view_2": "Side view with the barrel and needle visible, but measurement markings are not seen.",
+    "description_view_3": "Opposite side view, showing the plain barrel and needle, with minimal markings visible.",
+    "category": "medicine",
+    "height": 0.13,
+    "max_dimension": 0.13,
+    "materials": [
+        "plastic",
+        "metal",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 0.008,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0.1,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pullable",
+        "injectable",
+        "fillable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "plunger",
+        "needle",
+        "barrel",
+        "hub",
+        "flanges"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "transparent",
+        "white",
+        "red",
+        "pink",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.08,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.49,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.3,
+    "bounciness": 0.02,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_packaging_type": "syringe",
+    "attribute_label_text": "5 10 15 20 25 30",
+    "attribute_brand_logo": "none",
+    "attribute_dosage_form": "injection",
+    "attribute_tamper-evident_seal": false,
+    "uid": "b76be5e0927040008050d7eae6dd2836",
+    "near_synsets": {
+        "syringe.n.01": 0.48027040159314144,
+        "autoinjector.n.01": 0.5192179334914864,
+        "hypodermic_syringe.n.01": 0.5219756799744169,
+        "syringeful.n.01": 0.5372263369949871,
+        "hypodermic_needle.n.01": 0.5403869792149126,
+        "medicine.n.01": -1000.0,
+        "medicine.n.02": -1000.0,
+        "medicine.n.03": -1000.0,
+        "music.n.05": -1000.0
+    },
+    "synset": "medicine.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b76be5e0927040008050d7eae6dd2836",
+        "creator_username": "gtvorets",
+        "creator_display_name": "Birbman",
+        "creator_profile_url": "https://sketchfab.com/gtvorets"
+    },
+    "filename": "std_b76be5e0927040008050d7eae6dd2836.glb",
+    "length": 0.011789190582931042,
+    "width": 0.0204238872975111
+}

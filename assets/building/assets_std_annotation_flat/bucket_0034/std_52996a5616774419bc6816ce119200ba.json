@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a rectangular, red metal vending machine with a weathered and slightly dirty exterior, featuring black smudges and graffiti on its surfaces. The front face has two large, slanted transparent windows displaying rows of colorful round products, likely gumballs or small toys, behind a protective grid. Below each window are two black dispensing chutes, and the area between them is covered in graffiti tags. The sides of the machine are plain red with more graffiti and a sticker on one side, while the back is solid red with visible wear and no openings. The machine appears robust and heavy, designed for outdoor urban environments, and shows signs of prolonged public use.",
+    "description": "A weathered red metal vending machine with graffiti, transparent product windows, and dual dispensing chutes on the front.",
+    "description_view_0": "The front view shows two slanted transparent windows filled with colorful products, two black dispensing chutes, and graffiti on the lower panel.",
+    "description_view_1": "The left side is plain red with a sticker and visible black smudges, showing no functional components.",
+    "description_view_2": "The back is solid red with weathering and no visible openings or features.",
+    "description_view_3": "The right side is red with graffiti text and black smudges, lacking any interactive elements.",
+    "category": "vending machine",
+    "height": 1.0,
+    "max_dimension": 1.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pullable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "dispensing chute",
+        "product window",
+        "coin slot"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "black",
+        "gray",
+        "white",
+        "multicolor"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.02,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.5,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "none",
+    "attribute_payment_interface": "A coin slot is visible on the front panel below the product windows, with no visible bill acceptor or card reader.",
+    "attribute_product_selection_buttons": "none",
+    "attribute_product_retrieval_slot": "Two black dispensing chutes are located at the bottom of the front panel, rectangular in shape and sized for small items.",
+    "attribute_branding_or_signage": "Graffiti and handwritten tags are present on the front and right side, but there is no official branding, logo, or signage.",
+    "uid": "52996a5616774419bc6816ce119200ba",
+    "near_synsets": {
+        "vending_machine.n.01": 0.47157638265944174,
+        "automat.n.01": 0.5138277408138565,
+        "automat.n.02": 0.5737978875351779,
+        "soda_fountain.n.02": 0.574051114056019,
+        "fruit_machine.n.01": 0.5807299058516177,
+        "machine.n.03": -1000.0,
+        "machine.n.05": -1000.0,
+        "machine.n.02": -1000.0,
+        "machine.n.01": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.04": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/52996a5616774419bc6816ce119200ba",
+        "creator_username": "dermische",
+        "creator_display_name": "DerMische",
+        "creator_profile_url": "https://sketchfab.com/dermische"
+    },
+    "filename": "std_52996a5616774419bc6816ce119200ba.glb",
+    "length": 0.32888881862163544,
+    "width": 0.7002390623092651
+}

@@ -1,0 +1,92 @@
+{
+    "description_long": "This radiator features a tall, rectangular form with a series of evenly spaced vertical blue metal tubes mounted on a flat, light-colored back panel. The tubes are connected at the top and bottom by horizontal manifolds, creating a grid-like structure that maximizes surface area for heat dissipation. The radiator is designed to be wall-mounted, with the tubes projecting outward from the panel, leaving a visible gap between the tubes and the wall. At the bottom center, a small valve or connector is visible, likely for water or heating fluid input and output. The overall design is sleek and modern, with a minimalist aesthetic and a focus on efficient heat transfer. The back panel is solid and unadorned, providing a clean backdrop for the blue tubular elements.",
+    "description": "A tall, wall-mounted radiator with vertical blue metal tubes on a flat light panel, featuring a modern, minimalist design and a visible bottom valve.",
+    "description_view_0": "Front view showing the full array of vertical blue tubes and the bottom valve against the flat panel.",
+    "description_view_1": "Side view revealing the depth of the radiator and the gap between the tubes and the back panel.",
+    "description_view_2": "Rear view displaying only the plain, solid back panel with no visible tubes or valves.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the radiator's depth and tube arrangement.",
+    "category": "radiator",
+    "height": 1.8,
+    "max_dimension": 1.8,
+    "materials": [
+        "steel",
+        "paint",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.02,
+        0.08
+    ],
+    "mass": 28,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "heatable",
+        "adjustable",
+        "connectable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "valve",
+        "pipe connector"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "blue",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.03,
+    "recommended_clearance": 0.3,
+    "asset_composition_type": "single",
+    "attribute_mounting_location": "wall-mounted",
+    "attribute_pipe_connections": "single bottom center connection, horizontally oriented",
+    "attribute_fin_arrangement": "vertical columns",
+    "attribute_valve_type": "manual",
+    "attribute_grille_pattern": "none visible",
+    "uid": "0d1bf6252ed64072926302726b820bd6",
+    "near_synsets": {
+        "radiator.n.02": 0.5137536249752662,
+        "radiator.n.01": 0.5138385419442064,
+        "radiator.n.03": 0.5145434214638144,
+        "panel_heating.n.01": 0.5309835141475173,
+        "radiant_heating.n.01": 0.5496435656934291
+    },
+    "synset": "radiator.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0d1bf6252ed64072926302726b820bd6",
+        "creator_username": "termagroup",
+        "creator_display_name": "termagroup",
+        "creator_profile_url": "https://sketchfab.com/termagroup"
+    },
+    "filename": "std_0d1bf6252ed64072926302726b820bd6.glb",
+    "length": 0.14149407297372818,
+    "width": 0.7190937995910645
+}

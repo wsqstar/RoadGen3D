@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a small, weathered wooden boat with a monohull design, featuring a flat open deck and a small covered cabin area near the bow. The hull displays a distressed, dark finish with patches of blue-green paint, suggesting prolonged exposure to water and the elements. The cabin structure is simple, with a flat roof and open sides, providing minimal shelter for a single operator or passenger. The stern area is open and unobstructed, likely intended for cargo or additional seating. A rope is attached to the bow, indicating it can be moored or towed. The overall construction appears utilitarian, suitable for calm urban waterways or as a display piece in a park or urban setting.",
+    "description": "A small, weathered wooden boat with a distressed dark hull, blue-green paint patches, and a simple covered cabin near the bow.",
+    "description_view_0": "Front view showing the bow, rope attachment, and the small covered cabin structure.",
+    "description_view_1": "Side view highlighting the boat's length, open deck, and the profile of the cabin near the bow.",
+    "description_view_2": "Rear view displaying the open stern, flat deck, and the back of the cabin structure.",
+    "description_view_3": "Opposite side view showing the hull's weathered texture, open deck, and cabin profile.",
+    "category": "boat",
+    "height": 1.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "wood",
+        "metal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 320,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 800,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cabin",
+        "rope",
+        "deck"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "dark brown",
+        "blue-green",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_hull_type": "monohull",
+    "attribute_propulsion_type": "unknown",
+    "attribute_registration_number": "none",
+    "attribute_presence_of_trailer": false,
+    "attribute_visible_boat_name": "none",
+    "uid": "24a92fce6f284fc5adfe05d5e84de2f4",
+    "near_synsets": {
+        "boat.n.01": 0.46476415543057564,
+        "small_boat.n.01": 0.4660514780821669,
+        "rowing_boat.n.01": 0.49184684115194854,
+        "boathouse.n.01": 0.4972725686157815,
+        "cockleshell.n.01": 0.5026184022492275,
+        "gravy_boat.n.01": -1000.0
+    },
+    "synset": "gravy_boat.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/24a92fce6f284fc5adfe05d5e84de2f4",
+        "creator_username": "alex3dt",
+        "creator_display_name": "alextex3d",
+        "creator_profile_url": "https://sketchfab.com/alex3dt"
+    },
+    "filename": "std_24a92fce6f284fc5adfe05d5e84de2f4.glb",
+    "length": 3.857172131538391,
+    "width": 1.2577260732650757
+}

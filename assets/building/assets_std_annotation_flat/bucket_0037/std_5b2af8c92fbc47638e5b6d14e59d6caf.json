@@ -1,0 +1,142 @@
+{
+    "description_long": "This is a rectangular, walled graveyard featuring rows of evenly spaced headstones set in a grassy area. The perimeter is defined by a low, white stone wall with two small entrance structures at either end and a central, larger memorial or monument structure. The headstones are arranged in parallel lines, suggesting a formal, organized cemetery layout. The central monument appears to be a focal point, possibly serving as a war memorial or commemorative structure, and is flanked by the headstones. The grass is well-maintained, and the overall appearance is orderly and respectful. The white stone and green grass create a stark, solemn contrast typical of formal cemeteries.",
+    "description": "A rectangular, walled graveyard with rows of headstones, a central monument, and two small entrance structures, all set on well-kept grass.",
+    "description_view_0": "Front view showing the full width of the graveyard, the central monument, and the orderly rows of headstones.",
+    "description_view_1": "Side view highlighting the depth of the graveyard, the grassy surface, and the alignment of the headstones.",
+    "description_view_2": "Rear view displaying the back of the central monument and the parallel arrangement of headstones within the walled boundary.",
+    "description_view_3": "Opposite side view showing the other entrance structure, the length of the graveyard, and the rows of headstones.",
+    "category": "grave yard",
+    "height": 3.5,
+    "max_dimension": 40.0,
+    "materials": [
+        "stone",
+        "concrete",
+        "grass",
+        "soil",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "memorializing",
+        "visiting",
+        "placing_flowers"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "gate",
+        "headstone",
+        "monument"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "white",
+        "gray",
+        "green",
+        "brown"
+    ],
+    "colors_composition": [
+        0.45,
+        0.2,
+        0.3,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_tombstone_inscriptions": [],
+    "attribute_crosses": [],
+    "attribute_grave_markers": [
+        {
+            "type": "headstone",
+            "material": "stone",
+            "dimensions": [
+                1.0,
+                0.5,
+                0.2
+            ]
+        }
+    ],
+    "attribute_mausoleums": [
+        {
+            "architectural_style": "classical",
+            "primary_materials": "stone",
+            "dimensions": [
+                3.5,
+                4.0,
+                2.0
+            ],
+            "notable_features": [
+                "central monument structure"
+            ]
+        }
+    ],
+    "attribute_cemetery_gates": [
+        {
+            "type": "stone archway",
+            "primary_materials": "stone",
+            "dimensions": [
+                2.5,
+                2.0
+            ],
+            "decorative_elements": []
+        }
+    ],
+    "uid": "5b2af8c92fbc47638e5b6d14e59d6caf",
+    "near_synsets": {
+        "grave.n.02": 0.46161299176426684,
+        "cemetery.n.01": 0.47970428047640123,
+        "gravestone.n.01": 0.4833084426573631,
+        "repository.n.03": 0.5211956548191733,
+        "grounds.n.03": 0.5226043636512743,
+        "thousand.n.01": -1000.0,
+        "yard.n.06": -1000.0,
+        "yard.n.01": -1000.0,
+        "yard.n.07": -1000.0,
+        "cubic_yard.n.01": -1000.0,
+        "yard.n.03": -1000.0,
+        "yard.n.08": -1000.0,
+        "yard.n.02": -1000.0,
+        "yard.n.09": -1000.0
+    },
+    "synset": "cemetery.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/5b2af8c92fbc47638e5b6d14e59d6caf",
+        "creator_username": "archeomatique",
+        "creator_display_name": "Arch\u00e9omatique",
+        "creator_profile_url": "https://sketchfab.com/archeomatique"
+    },
+    "filename": "std_5b2af8c92fbc47638e5b6d14e59d6caf.glb",
+    "length": 5.606019020080566,
+    "width": 22.111820220947266
+}

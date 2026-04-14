@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a Bandai Capsule Station vending machine, commonly found in urban environments such as shopping streets and arcades. The machine is primarily constructed from smooth, glossy plastic and metal, with a rectangular body and a rounded, transparent capsule dispensing chamber at the front. The front face features a prominent display panel with colorful graphics and product information, a large circular turning knob for dispensing capsules, and a coin slot and retrieval compartment below. The sides and back are plain, with minimal detailing, emphasizing the functional design. The machine stands at about chest height for an adult and is designed to be approachable and user-friendly. Its overall appearance is clean, modern, and visually appealing, with branding and signage clearly visible on the front.",
+    "description": "A Bandai Capsule Station vending machine with a glossy plastic and metal body, featuring a rounded capsule chamber, display panel, and interactive payment and retrieval interfaces on the front.",
+    "description_view_0": "The rear view shows a plain, smooth surface with no visible interactive features or branding.",
+    "description_view_1": "The left side view reveals the rounded capsule chamber protruding from the otherwise rectangular body, with no visible controls or signage.",
+    "description_view_2": "The front view displays the main interactive area, including the display panel, branding, coin slot, large turning knob, and product retrieval slot.",
+    "description_view_3": "The right side view mirrors the left, showing the rounded capsule chamber and smooth, featureless side panel.",
+    "category": "vending machine",
+    "height": 1.5,
+    "max_dimension": 1.5,
+    "materials": [
+        "plastic",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 60,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 10,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "rotatable",
+        "insertable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "coin slot",
+        "turning knob",
+        "product retrieval slot",
+        "display panel",
+        "product selection area"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "blue",
+        "yellow",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.12,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A rectangular display panel is located at the top front of the machine, featuring colorful printed graphics and product information, with a clear, glossy surface.",
+    "attribute_payment_interface": "A coin slot is present on the front, below the display panel and above the retrieval slot, with a circular metallic rim.",
+    "attribute_product_selection_buttons": "None.",
+    "attribute_product_retrieval_slot": "A circular product retrieval slot is located at the lower front, beneath the turning knob, with a recessed opening for capsule collection.",
+    "attribute_branding_or_signage": "The front features a Bandai logo in red and white at the top left, and 'Capsule Station' branding in blue and white above the display panel, with additional colorful graphics on the display panel.",
+    "uid": "4cb0fd802fda43578cfc96776e4e3795",
+    "near_synsets": {
+        "vending_machine.n.01": 0.5243571369461828,
+        "automat.n.01": 0.5775135238300768,
+        "capsule.n.01": 0.5854522260555396,
+        "coin_box.n.01": 0.5936573870046309,
+        "pachinko.n.01": 0.6065933769733921,
+        "machine.n.01": -1000.0,
+        "machine.n.04": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.05": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.02": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4cb0fd802fda43578cfc96776e4e3795",
+        "creator_username": "mrongs",
+        "creator_display_name": "mrongs",
+        "creator_profile_url": "https://sketchfab.com/mrongs"
+    },
+    "filename": "std_4cb0fd802fda43578cfc96776e4e3795.glb",
+    "length": 1.0483741164207458,
+    "width": 0.5696834325790405
+}

@@ -1,0 +1,90 @@
+{
+    "description_long": "This lantern features a tall, rectangular body with a prominent black frame and large blue glass panels on all four sides. The panels are divided into four sections by black crossbars, with a diamond-shaped detail at the center, giving it a modern yet classic appearance. The top of the lantern is flat and black, with a subtle geometric pattern that may serve as ventilation or decorative detail. At the base, a thin blue accent line runs along the perimeter, adding a touch of color contrast. One side (view 1) includes a small rectangular control panel or access hatch near the bottom, suggesting an electric or LED light source. The overall design is sleek and functional, suitable for urban environments such as sidewalks, parks, or building entrances.",
+    "description": "A tall, rectangular lantern with blue glass panels framed in black, featuring a diamond crossbar design and a subtle control panel at the base. The style is modern and functional, ideal for urban settings.",
+    "description_view_0": "Front view shows the blue glass panel with black crossbars and a diamond center, framed by a black border.",
+    "description_view_1": "This side displays the same blue panel design but includes a small rectangular control panel or hatch at the bottom.",
+    "description_view_2": "Similar to the front, this view shows the blue glass panel with crossbars and diamond center, without any control panel.",
+    "description_view_3": "This side mirrors the other plain panel views, with the blue glass and black crossbars, maintaining symmetry.",
+    "category": "lantern",
+    "height": 1.1,
+    "max_dimension": 0.6,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.1
+    ],
+    "mass": 22,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "illuminable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "control panel",
+        "glass panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "blue"
+    ],
+    "colors_composition": [
+        0.6,
+        0.4
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "smooth",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_mounting_type": "post-mounted",
+    "attribute_light_source_type": "LED",
+    "attribute_decorative_elements": [],
+    "attribute_number_of_bulbs": 1,
+    "attribute_glass_enclosure_style": "clear panels",
+    "uid": "2260aba04bb843fe8201688e4fb97518",
+    "near_synsets": {
+        "lantern.n.01": 0.49593462211514194,
+        "dark_lantern.n.01": 0.5208621099569034,
+        "table_lamp.n.01": 0.5437600119742789,
+        "lamp.n.02": 0.5485418671598112,
+        "panel_light.n.01": 0.5504653597580065
+    },
+    "synset": "dark_lantern.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2260aba04bb843fe8201688e4fb97518",
+        "creator_username": "jsabbott",
+        "creator_display_name": "Jen S Abbott",
+        "creator_profile_url": "https://sketchfab.com/jsabbott"
+    },
+    "filename": "std_2260aba04bb843fe8201688e4fb97518.glb",
+    "length": 0.7830463945865631,
+    "width": 0.783046305179596
+}

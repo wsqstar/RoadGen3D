@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a compact, black shotgun with a cylindrical main body and a short, thick barrel extending from the front. The design features a vertical pistol-style grip beneath the main body, and a separate, boxy magazine and a single visible shell are positioned adjacent to the main assembly. The shotgun lacks a traditional stock, giving it a minimalistic and tactical appearance. The trigger and a rounded trigger guard are clearly visible beneath the main body. The overall finish is matte black, with no visible ribbing or venting on the barrel, and the magazine appears detachable.",
+    "description": "A compact, matte black shotgun with a cylindrical body, pistol grip, and detachable box magazine, lacking a traditional stock.",
+    "description_view_0": "Side view showing the cylindrical barrel, pistol grip, trigger guard, and separated box magazine with a single shell.",
+    "description_view_1": "Front view highlighting the circular barrel opening, the width of the magazine, and the alignment of the grip beneath the body.",
+    "description_view_2": "Opposite side view mirroring view 0, with the magazine and shell now on the left, and the trigger and grip visible.",
+    "description_view_3": "Rear view showing the back of the cylindrical body, the magazine's thickness, and the grip's alignment.",
+    "category": "shotgun",
+    "height": 0.22,
+    "max_dimension": 0.45,
+    "materials": [
+        "steel",
+        "polymer",
+        "air",
+        "brass"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 6,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "loadable",
+        "triggerable",
+        "reloadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "grip",
+        "magazine",
+        "barrel",
+        "trigger guard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gold"
+    ],
+    "colors_composition": [
+        0.97,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "group",
+    "attribute_barrel_configuration": "single-barrel, no visible ribbing or venting, short barrel length",
+    "attribute_stock_type": "no stock",
+    "attribute_action_mechanism": "semi-automatic",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with smooth edges and no finger grooves",
+    "uid": "d1038e633e48480abd178cc940d18c07",
+    "near_synsets": {
+        "sawed-off_shotgun.n.01": 0.47220168901321835,
+        "shotgun.n.01": 0.5080567076911885,
+        "shotgun_shell.n.01": 0.5248548064402762,
+        "pump_action.n.01": 0.5251441943846029,
+        "submachine_gun.n.01": 0.5291038643230095
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d1038e633e48480abd178cc940d18c07",
+        "creator_username": "GoogleOffical",
+        "creator_display_name": "Google",
+        "creator_profile_url": "https://sketchfab.com/GoogleOffical"
+    },
+    "filename": "std_d1038e633e48480abd178cc940d18c07.glb",
+    "length": 0.6239502727985382,
+    "width": 0.10715648531913757
+}

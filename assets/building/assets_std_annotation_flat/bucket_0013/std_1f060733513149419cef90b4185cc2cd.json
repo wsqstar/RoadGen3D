@@ -1,0 +1,110 @@
+{
+    "description_long": "This structure is a large, urban dam with a concrete and wood construction, featuring a broad, curved retaining wall and a flat upper walkway bordered by metal railings. The dam's exterior is adorned with graffiti art and weathering stains, giving it a gritty, urban appearance. One side of the dam includes a prominent staircase leading to the top platform, which is protected by safety railings. The base of the dam is clad in corrugated metal panels, and there is a large rectangular opening or passageway through the lower section. The top platform has a cutout section, possibly for maintenance or observation, and the overall design suggests a modern, utilitarian approach. The structure is robust and imposing, with clear signs of human activity and urban integration.",
+    "description": "A large, urban dam with concrete, wood, and metal construction, featuring graffiti, a staircase, and a fenced walkway. The structure has a weathered, gritty appearance and a passageway at its base.",
+    "description_view_0": "Side view showing the main concrete wall, graffiti, and the staircase leading to the upper platform with metal railings.",
+    "description_view_1": "Angled view highlighting the curved retaining wall, the open top platform, and the full width of the dam's structure.",
+    "description_view_2": "Opposite side view displaying the corrugated metal base, a large graffiti mural, and the rectangular passageway through the dam.",
+    "description_view_3": "Rear angled view focusing on the wooden staircase, the upper platform, and the overall depth of the dam's structure.",
+    "category": "dam",
+    "height": 7.5,
+    "max_dimension": 22.0,
+    "materials": [
+        "concrete",
+        "wood",
+        "metal",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.04,
+        0.01
+    ],
+    "mass": 350000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "viewable",
+        "graffitiable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "staircase",
+        "walkway",
+        "platform"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "beige",
+        "gray",
+        "brown",
+        "black",
+        "green",
+        "purple",
+        "red"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_spillway_presence": false,
+    "attribute_control_gates": [
+        "none"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_water_outflow": "none",
+    "attribute_perimeter_fencing": true,
+    "uid": "1f060733513149419cef90b4185cc2cd",
+    "near_synsets": {
+        "dam.n.01": 0.5078967872489015,
+        "weir.n.01": 0.5593132089756445,
+        "milldam.n.01": 0.5679496111586659,
+        "concrete_jungle.n.01": 0.5724709472607968,
+        "aqueduct.n.01": 0.5765964876392163,
+        "decameter.n.01": -1000.0,
+        "dam.n.03": -1000.0
+    },
+    "synset": "dam.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1f060733513149419cef90b4185cc2cd",
+        "creator_username": "timRAGE90",
+        "creator_display_name": "timRAGE90",
+        "creator_profile_url": "https://sketchfab.com/timRAGE90"
+    },
+    "filename": "std_1f060733513149419cef90b4185cc2cd.glb",
+    "length": 17.474220275878906,
+    "width": 18.715839385986328
+}

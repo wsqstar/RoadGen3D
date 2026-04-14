@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a long, rectangular freight train car with a weathered, industrial appearance. The exterior is primarily a muted blue-green color with visible signs of rust, grime, and wear, suggesting heavy use. The sides are marked with the text 'F.E. TRANS' in large, white, slightly faded letters. The car is fully enclosed, with no visible windows and only subtle panel lines and structural reinforcements along its length. The undercarriage features black metal wheels and suspension components, typical of freight rolling stock. Both ends of the car are flat and feature coupling mechanisms for connecting to other train cars.",
+    "description": "A weathered, blue-green enclosed freight train car marked 'F.E. TRANS', with no visible windows and black metal wheels.",
+    "description_view_0": "End view showing the flat, closed face of the train car with coupling hardware and no visible doors or windows.",
+    "description_view_1": "Side view displaying the full length of the car, the 'F.E. TRANS' lettering, and the absence of windows or doors.",
+    "description_view_2": "Opposite end view, similar to view 0, showing the flat, closed end and coupling hardware.",
+    "description_view_3": "Opposite side view, again showing the 'F.E. TRANS' lettering, weathered surface, and no visible windows or doors.",
+    "category": "train",
+    "height": 4.2,
+    "max_dimension": 18.0,
+    "materials": [
+        "steel",
+        "paint",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.01,
+        0.05
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "connectable",
+        "lockable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "coupler",
+        "wheel",
+        "door (implied)",
+        "ladder (implied)"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue-green",
+        "black",
+        "white",
+        "rust-brown"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_train_type": "freight train",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "no visible doors",
+    "attribute_window_arrangement": "no visible windows",
+    "uid": "0460c57e9e2e45eb8c36d9df13d39118",
+    "near_synsets": {
+        "freight_car.n.01": 0.5066305882956754,
+        "coal_car.n.01": 0.5167115428421882,
+        "freight_train.n.01": 0.5225340734270529,
+        "boxcar.n.01": 0.5260877105874949,
+        "car_train.n.01": 0.5312535856593648,
+        "train.n.05": -1000.0,
+        "gearing.n.01": -1000.0,
+        "train.n.04": -1000.0,
+        "train.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "caravan.n.01": -1000.0
+    },
+    "synset": "train.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0460c57e9e2e45eb8c36d9df13d39118",
+        "creator_username": "andruha1801",
+        "creator_display_name": "andruha1801",
+        "creator_profile_url": "https://sketchfab.com/andruha1801"
+    },
+    "filename": "std_0460c57e9e2e45eb8c36d9df13d39118.glb",
+    "length": 19.62413787841797,
+    "width": 3.186206817626953
+}

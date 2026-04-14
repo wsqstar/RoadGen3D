@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a medium-sized, orange helicopter with a boxy fuselage and a prominent main rotor mounted on top. The helicopter features a set of three rectangular cockpit windows on each side, framed in black, and a pair of long, red-orange landing skids with crossbars for stability. The tail section is elongated, ending in a small tail rotor with four blades, and is marked with white stripes for visibility. The main rotor consists of two long, dark blades extending symmetrically from the rotor hub. The overall design suggests a utilitarian aircraft, likely used for transport or utility purposes in urban environments.",
+    "description": "A boxy, orange helicopter with black-framed cockpit windows, long landing skids, and two main rotor blades. The tail features a four-blade rotor and white stripes.",
+    "description_view_0": "Front view showing the rectangular cockpit windows, the main rotor hub, and the symmetrical landing skids.",
+    "description_view_1": "Left side view highlighting the three cockpit windows, the full length of the landing skids, and the tail rotor.",
+    "description_view_2": "Rear view displaying the tail boom, tail rotor, and the back of the cockpit windows.",
+    "description_view_3": "Right side view similar to the left, showing the cockpit windows, landing skids, and tail rotor from the opposite side.",
+    "category": "helicopter",
+    "height": 2.8,
+    "max_dimension": 10.5,
+    "materials": [
+        "aluminum",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 17640,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit window",
+        "main rotor",
+        "tail rotor",
+        "landing skids",
+        "control stick",
+        "instrument panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "black",
+        "white",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.08,
+    "recommended_clearance": 12.0,
+    "asset_composition_type": "single",
+    "attribute_rotor_blades": "Two long, straight main rotor blades made of dark composite or metal, each extending symmetrically from the central hub, with no visible markings.",
+    "attribute_tail_rotor": "Present, with four short blades arranged in a cross pattern, mounted vertically at the end of the tail boom, colored red with white tips.",
+    "attribute_landing_skids": "Pair of tubular, red-orange landing skids with crossbars for support, made of metal, extending the length of the fuselage.",
+    "attribute_cockpit_windows": "Three rectangular cockpit windows on each side, large and black-framed, with a slight tint and no visible markings.",
+    "attribute_registration_number": "not visible",
+    "uid": "421cb6e21ac94abd826c5b28a5b39ee9",
+    "near_synsets": {
+        "helicopter.n.01": 0.4980843591334639,
+        "single-rotor_helicopter.n.01": 0.5185604843870761,
+        "rotor_blade.n.01": 0.5204649692199039,
+        "main_rotor.n.01": 0.5257569691757766,
+        "landing_skid.n.01": 0.5292657406591833
+    },
+    "synset": "single-rotor_helicopter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/421cb6e21ac94abd826c5b28a5b39ee9",
+        "creator_username": "radher",
+        "creator_display_name": "!RadHer",
+        "creator_profile_url": "https://sketchfab.com/radher"
+    },
+    "filename": "std_421cb6e21ac94abd826c5b28a5b39ee9.glb",
+    "length": 7.750190734863281,
+    "width": 6.38018798828125
+}

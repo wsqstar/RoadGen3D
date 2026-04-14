@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a compact, tracked combat tactical vehicle with a robust, angular hull and a prominent turret mounted centrally on top. The vehicle features a long, straight cannon extending from the turret, with additional smaller details such as hatches, periscopes, and what appears to be a secondary sensor or weapon mount. The tracks are wide and reinforced, with multiple road wheels visible along the sides, providing stability and traction for urban maneuvering. The hull and turret are covered in flat, sloped armor panels, suggesting a focus on deflecting incoming projectiles. The exterior is finished in a solid dark green color, with no visible camouflage patterns or military markings. The overall design emphasizes protection, firepower, and mobility in confined environments.",
+    "description": "A compact, dark green tracked combat vehicle with a central turret and long cannon, featuring sloped armor and robust tracks for urban operations.",
+    "description_view_0": "Front view shows the wide, sloped glacis plate, reinforced tracks, and the main cannon protruding from the turret.",
+    "description_view_1": "Left side view highlights the full length of the tracks, multiple road wheels, and the angular turret with its cannon.",
+    "description_view_2": "Rear view displays the flat back panel, rear armor, and the turret's rear profile, with no visible exhaust or markings.",
+    "description_view_3": "Right side view mirrors the left, showing the track system, turret, and cannon, with additional detail on the side armor.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "composite armor",
+        "rubber",
+        "glass",
+        "air",
+        "plastic"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.04,
+        0.04,
+        0.02
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 176400,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "track",
+        "periscope",
+        "side panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the central turret; possible secondary mount on turret roof.",
+    "attribute_armor_plating": "Full body coverage with sloped, thick armor panels on the hull and turret; no visible modular or reactive panels.",
+    "attribute_camouflage_pattern": "None visible; solid dark green paint scheme.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "49ce99980a9c431993903792bd41ef28",
+    "near_synsets": {
+        "tank.n.01": 0.4940477126969554,
+        "military_vehicle.n.01": 0.5009134026834393,
+        "reconnaissance_vehicle.n.01": 0.5151793212158875,
+        "armored_car.n.02": 0.5215047561771382,
+        "assault_gun.n.02": 0.5267889044554613,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/49ce99980a9c431993903792bd41ef28",
+        "creator_username": "djhaski",
+        "creator_display_name": "DJHaski",
+        "creator_profile_url": "https://sketchfab.com/djhaski"
+    },
+    "filename": "std_49ce99980a9c431993903792bd41ef28.glb",
+    "length": 5.811206817626953,
+    "width": 5.455272197723389
+}

@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a heavily armored, tracked combat vehicle featuring a large, forward-mounted artillery cannon as its primary weapon. The vehicle's hull is robust and angular, with thick armor plating covering the front, sides, and turret area, providing significant protection. A prominent gun shield is mounted around the cannon, and various mechanical components, such as targeting optics and support struts, are visible near the weapon. The rear section includes a grated platform, likely for crew access or storage, and the vehicle is supported by wide, rugged tracks suitable for traversing rough terrain. The exterior is finished in a weathered, camouflage paint scheme with muted green and brown tones, and the surface appears matte and slightly rough. No visible military insignia or markings are present, and the vehicle lacks traditional tires, relying instead on its continuous track system.",
+    "description": "A heavily armored, tracked combat vehicle with a large artillery cannon, gun shield, and rugged exterior in a weathered camouflage finish.",
+    "description_view_0": "Side view showing the long artillery cannon, gun shield, and grated rear platform with visible tracks.",
+    "description_view_1": "Front view highlighting the thick frontal armor, large cannon barrel, and protective gun shield.",
+    "description_view_2": "Opposite side view with similar features as view 0, showing the cannon, shield, and rear platform from the other side.",
+    "description_view_3": "Rear view displaying the grated platform, rear armor, and the back of the cannon assembly.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.02,
+        0.03,
+        0.1
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cannon",
+        "hatch",
+        "track",
+        "gun shield",
+        "platform",
+        "optics"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large artillery cannon mounted centrally at the front with a protective gun shield; no other weapon mounts visible.",
+    "attribute_armor_plating": "Thick, angular armor plating covers the front, sides, and turret area; the plating appears solid and robust, with a sloped design for deflection.",
+    "attribute_camouflage_pattern": "Weathered camouflage pattern in olive green and brown with irregular, blended shapes; matte finish.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "771263faa4854135817eed7a15892618",
+    "near_synsets": {
+        "tank.n.01": 0.44667946735558056,
+        "military_vehicle.n.01": 0.4568233612716123,
+        "armored_car.n.02": 0.46991910442431917,
+        "reconnaissance_vehicle.n.01": 0.48030765079258303,
+        "armored_vehicle.n.01": 0.4810232741832057,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/771263faa4854135817eed7a15892618",
+        "creator_username": "Diplokoba",
+        "creator_display_name": "Miguel Angel Merino",
+        "creator_profile_url": "https://sketchfab.com/Diplokoba"
+    },
+    "filename": "std_771263faa4854135817eed7a15892618.glb",
+    "length": 5.393683433532715,
+    "width": 2.3203256130218506
+}

@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a small, wooden pedestrian bridge with a gentle arch and a simple, functional design. The bridge features a flat walking surface made of wooden planks, supported by sturdy rectangular posts at each end. The sides are bordered by low, angular wooden railings that provide safety without obstructing the view. The bridge's structure is open underneath, with no visible decorative elements or additional supports. Its light brown color and straightforward construction suggest it is intended for parks, gardens, or small urban green spaces. The overall appearance is utilitarian, prioritizing function and ease of use.",
+    "description": "A small, arched wooden pedestrian bridge with simple angular railings and a light brown finish. Designed for parks or urban green spaces, it features a flat plank walkway and sturdy posts.",
+    "description_view_0": "Front view showing the full width of the bridge, the angular railings, and the open space beneath the walkway.",
+    "description_view_1": "Side view highlighting the gentle arch of the bridge and the thickness of the wooden planks and posts.",
+    "description_view_2": "Rear view, visually identical to the front, displaying the same railing and open understructure.",
+    "description_view_3": "Opposite side view, mirroring the gentle arch and structural details seen in view 1.",
+    "category": "bridge",
+    "height": 1.0,
+    "max_dimension": 3.0,
+    "materials": [
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportable",
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "railing",
+        "deck"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light brown"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_support_type": "beam",
+    "attribute_railing_design": "wooden angular rails with horizontal top and bottom members, open between posts",
+    "attribute_arch_presence": false,
+    "attribute_lighting_fixtures": [],
+    "attribute_architectural_style": "utilitarian",
+    "uid": "ecbaa6a08539470e88451bef5264b1e3",
+    "near_synsets": {
+        "footbridge.n.01": 0.4743354774599972,
+        "bridge.n.01": 0.5202022797446695,
+        "trestle_bridge.n.01": 0.5335990391977401,
+        "steel_arch_bridge.n.01": 0.5387341948464422,
+        "bridge.n.03": 0.5413370208526896,
+        "bridge.n.02": -1000.0,
+        "bridge.n.07": -1000.0,
+        "bridge.n.05": -1000.0,
+        "bridge.n.06": -1000.0,
+        "bridge.n.08": -1000.0,
+        "bridge.n.09": -1000.0,
+        "bridge.n.04": -1000.0
+    },
+    "synset": "bridge.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ecbaa6a08539470e88451bef5264b1e3",
+        "creator_username": "stefan.lengyel1",
+        "creator_display_name": "Pixel",
+        "creator_profile_url": "https://sketchfab.com/stefan.lengyel1"
+    },
+    "filename": "std_ecbaa6a08539470e88451bef5264b1e3.glb",
+    "length": 0.7975576221942902,
+    "width": 3.1334595680236816
+}

@@ -1,0 +1,110 @@
+{
+    "description_long": "This object consists of a row of three vending machines set against a tiled wall with a metallic floor base. The vending machines vary in color and design, with the leftmost one being orange and wooden, the middle one gray and compact, and the rightmost one white with a transparent product display. Each machine features a display panel, payment interface, and product retrieval slot on its front face. The tiled wall behind the machines is purple and brown, providing a distinct urban backdrop. The machines are detailed with visible buttons, signage, and product windows, suggesting functionality for dispensing snacks or drinks. The overall setup is typical for a city sidewalk or public transit area.",
+    "description": "A set of three vending machines with distinct colors and features, set against a purple-brown tiled wall and metallic floor, each equipped with display panels, payment slots, and product retrieval areas.",
+    "description_view_0": "Front view showing all three vending machines, their display panels, payment interfaces, and product retrieval slots, with the tiled wall and metallic floor clearly visible.",
+    "description_view_1": "Side view showing the depth of the vending machines and the thinness of the tiled wall, with minimal detail visible on the machines themselves.",
+    "description_view_2": "Top-down view highlighting the rectangular layout of the tiled wall and the arrangement of the vending machines along its base.",
+    "description_view_3": "Opposite side view showing the depth of the vending machines and the metallic floor, with the orange wooden machine most prominent.",
+    "category": "vending machine",
+    "height": 1.8,
+    "max_dimension": 3.0,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "display panel",
+        "payment slot",
+        "retrieval slot",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "gray",
+        "white",
+        "brown",
+        "purple",
+        "silver"
+    ],
+    "colors_composition": [
+        0.18,
+        0.18,
+        0.18,
+        0.18,
+        0.18,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_display_panel": "Each vending machine has a rectangular display panel on its upper front, with the rightmost machine featuring a large transparent product window and the others having smaller illuminated or printed panels.",
+    "attribute_payment_interface": "Visible payment interfaces include coin slots and bill acceptors located on the front of each machine, with the middle machine also showing a card reader.",
+    "attribute_product_selection_buttons": "Each machine has a set of individual product selection buttons arranged vertically or in a keypad format on the front, labeled with numbers or product images.",
+    "attribute_product_retrieval_slot": "Product retrieval slots are located at the lower front of each machine, rectangular in shape, with some featuring a flap or small door.",
+    "attribute_branding_or_signage": "Branding and signage are present above the display panels, including logos, product images, and text in various colors, most prominently on the leftmost and rightmost machines.",
+    "uid": "88617330ea664234bcac473f05621787",
+    "near_synsets": {
+        "vending_machine.n.01": 0.4638369010758509,
+        "automat.n.01": 0.5220104446024327,
+        "fruit_machine.n.01": 0.5729310999605443,
+        "amusement_arcade.n.01": 0.5749552801335404,
+        "coin_box.n.01": 0.5762591900887305,
+        "machine.n.04": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.05": -1000.0,
+        "machine.n.02": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.03": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/88617330ea664234bcac473f05621787",
+        "creator_username": "HydrangeaChainsaw",
+        "creator_display_name": "Hydrangea",
+        "creator_profile_url": "https://sketchfab.com/HydrangeaChainsaw"
+    },
+    "filename": "std_88617330ea664234bcac473f05621787.glb",
+    "length": 0.9224246144294739,
+    "width": 4.093925476074219
+}

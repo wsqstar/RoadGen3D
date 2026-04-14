@@ -1,0 +1,114 @@
+{
+    "description_long": "This storage tank features a tall, vertically oriented cylindrical body with rounded ends, primarily finished in a smooth white coating. The tank is mounted on a robust metallic base, which appears to provide stability and support. Several metallic pipes and valves are attached to the lower section, including a long horizontal pipe extending outward and multiple control levers, suggesting functionality for fluid input and output. The top and bottom of the tank are capped with darker, likely metallic, end pieces. The overall design is utilitarian, with visible fittings and connectors indicating its use for storing and dispensing liquids or gases. The tank's clean, industrial appearance and attached hardware make it suitable for urban or light industrial environments.",
+    "description": "A tall, white cylindrical storage tank with metallic base, pipes, and control valves, designed for fluid storage and dispensing.",
+    "description_view_0": "Front view showing the main cylindrical tank, metallic base, and a long horizontal pipe extending to the right.",
+    "description_view_1": "Side view highlighting the control levers and a shorter pipe attachment, with the tank's cylindrical form clearly visible.",
+    "description_view_2": "Rear view displaying the tank's back, with visible pipework and a prominent base, and the long pipe extending leftward.",
+    "description_view_3": "Opposite side view showing the main outlet pipe and a red-handled valve, with the tank's cylindrical body and base.",
+    "category": "storage tank",
+    "height": 1.6,
+    "max_dimension": 1.8,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 85,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "valve",
+        "pipe",
+        "lever",
+        "cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "black",
+        "red",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_location": "urban rooftop",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [
+        "outlet pipe",
+        "inlet pipe",
+        "valve",
+        "lever"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_architectural_style": "cylindrical vertical",
+    "uid": "20d4386b22d44ade878e5551c55d8565",
+    "near_synsets": {
+        "tank.n.02": 0.44263944646008635,
+        "reservoir.n.03": 0.485836454418344,
+        "water_tower.n.01": 0.4976963042272841,
+        "tank_farm.n.01": 0.5003124460595681,
+        "gas_tank.n.01": 0.5112004026800533,
+        "repositing.n.01": -1000.0,
+        "storage.n.03": -1000.0,
+        "storage.n.01": -1000.0,
+        "tank.n.03": -1000.0,
+        "storage.n.04": -1000.0,
+        "tank.n.01": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "cooler.n.03": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "memory.n.04": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/20d4386b22d44ade878e5551c55d8565",
+        "creator_username": "quack",
+        "creator_display_name": "Cl\u00e9ment Pasquier",
+        "creator_profile_url": "https://sketchfab.com/quack"
+    },
+    "filename": "std_20d4386b22d44ade878e5551c55d8565.glb",
+    "length": 0.61451455950737,
+    "width": 1.4343743324279785
+}

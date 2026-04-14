@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a large, rectangular laboratory workbench with a dark, solid surface and two integrated sinks, each equipped with a faucet. The desk is supported by sturdy, block-like legs and is surrounded by six matching stools with blue, circular seats and metal frames. The workbench surface is spacious, designed to accommodate multiple users simultaneously, and the sinks suggest it is intended for tasks involving water or chemical handling. The overall construction appears robust, suitable for heavy-duty use in environments where durability and stability are essential. The stools are evenly spaced along the longer sides of the desk, providing ample seating for group activities or collaborative work. The color palette is dominated by dark gray and blue, giving the setup a modern, institutional appearance.",
+    "description": "A large, sturdy laboratory workbench with two integrated sinks and six blue-seated stools, designed for group work and heavy-duty use.",
+    "description_view_0": "Front view showing three blue stools and the dual sinks on the workbench surface.",
+    "description_view_1": "Side view displaying all six stools arranged along the length of the workbench and both sinks visible.",
+    "description_view_2": "Rear view with three stools and a clear view of the workbench's solid support legs and sinks.",
+    "description_view_3": "Opposite side view showing all six stools and the full length of the workbench with both sinks.",
+    "category": "desk",
+    "height": 0.95,
+    "max_dimension": 2.4,
+    "materials": [
+        "metal",
+        "plastic",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.15,
+        0.05
+    ],
+    "mass": 110,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "sittable",
+        "supportive",
+        "turnable_faucet",
+        "washable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "stool",
+        "faucet",
+        "sink"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "group",
+    "attribute_location": "laboratory",
+    "attribute_orientation": "The user-facing side is the long edge with three stools, directly facing the sinks and faucets, indicating the primary working area.",
+    "attribute_condition": "new",
+    "attribute_presence_of_attached_objects": [
+        "sink",
+        "faucet"
+    ],
+    "attribute_usage_context": "laboratory workbench for experiments, demonstrations, or collaborative scientific activities",
+    "uid": "aab44519d56c401681c26861503ebf02",
+    "near_synsets": {
+        "lab_bench.n.01": 0.5029808319343648,
+        "desk.n.01": 0.5035755581755479,
+        "office_furniture.n.01": 0.5302092489910499,
+        "workroom.n.01": 0.5316142817566966,
+        "woodworking_bench.n.01": 0.5415820982801357
+    },
+    "synset": "desk.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/aab44519d56c401681c26861503ebf02",
+        "creator_username": "JcVisualPro",
+        "creator_display_name": "J.C\u00e9sar Navarrete",
+        "creator_profile_url": "https://sketchfab.com/JcVisualPro"
+    },
+    "filename": "std_aab44519d56c401681c26861503ebf02.glb",
+    "length": 2.130131244659424,
+    "width": 2.3001937866210938
+}

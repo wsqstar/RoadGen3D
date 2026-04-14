@@ -1,0 +1,105 @@
+{
+    "description_long": "This structure is a large, rectangular dam-like object constructed primarily from light-colored wood, featuring a deep central basin with curved sides reminiscent of a skateboarding half-pipe. The upper perimeter is lined with metal railings for safety, and there is a prominent staircase on one end leading to a raised platform. The exterior walls are decorated with graffiti art, including arrows and cartoonish designs, adding an urban aesthetic. The interior surface of the basin shows signs of wear and use, with visible scuff marks and discoloration. The structure is elevated on sturdy supports, and there is a large rectangular opening in one wall, possibly for access or water flow.",
+    "description": "A large, wooden dam-like structure with a deep central basin, metal railings, a staircase, and graffiti art on the exterior walls.",
+    "description_view_0": "The side view highlights the staircase, upper platform, and a large rectangular opening in the wall.",
+    "description_view_1": "This end view shows the deep curved basin, graffiti art, and the word 'Chill' painted on the exterior.",
+    "description_view_2": "The opposite side view displays large black arrow graffiti and the staircase structure, with the rectangular opening visible.",
+    "description_view_3": "The other end view reveals more graffiti art, the curved basin, and the staircase leading to the upper platform.",
+    "category": "dam",
+    "height": 5.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "wood",
+        "metal",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.13,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "slideable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "staircase",
+        "platform",
+        "railings"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light brown",
+        "gray",
+        "black",
+        "white",
+        "blue",
+        "green"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.07,
+        0.04,
+        0.02,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_spillway_presence": false,
+    "attribute_control_gates": [
+        "none"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_water_outflow": "none",
+    "attribute_perimeter_fencing": true,
+    "uid": "67f95833e0f345e48d5d850a641abee0",
+    "near_synsets": {
+        "dam.n.01": 0.49679912269760484,
+        "milldam.n.01": 0.5504710800648037,
+        "water_tower.n.01": 0.5543288849370945,
+        "weir.n.01": 0.5543604909152903,
+        "flashboard.n.01": 0.5555695324362151,
+        "dam.n.03": -1000.0,
+        "decameter.n.01": -1000.0
+    },
+    "synset": "dam.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/67f95833e0f345e48d5d850a641abee0",
+        "creator_username": "RaineM",
+        "creator_display_name": "RaineM",
+        "creator_profile_url": "https://sketchfab.com/RaineM"
+    },
+    "filename": "std_67f95833e0f345e48d5d850a641abee0.glb",
+    "length": 13.733698844909668,
+    "width": 12.621909141540527
+}

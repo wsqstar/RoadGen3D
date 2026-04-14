@@ -1,0 +1,114 @@
+{
+    "description_long": "This is a heavily rusted and dilapidated school bus with a corroded metal exterior, missing windows, and several open or broken doors. The roof is dented and features two rectangular openings, possibly former emergency exits or ventilation hatches. The bus's paint is faded, with remnants of blue and yellow hues beneath layers of rust and grime. The interior is visible through the large, empty window frames, revealing a hollow shell with no seats or fittings. The front and rear ends are both damaged, with the front showing a partially collapsed bumper and missing headlights. The overall appearance suggests long-term abandonment and exposure to harsh weather conditions.",
+    "description": "A rusted, abandoned school bus with missing windows, open doors, and a corroded, dented exterior. The bus is hollow inside and shows extensive weathering and decay.",
+    "description_view_0": "Side view showing the full length of the bus, with large open window frames, rusted metal, and several doors ajar or missing.",
+    "description_view_1": "Rear-angled view highlighting the back of the bus, visible roof damage, and the open rear door with exposed interior.",
+    "description_view_2": "Opposite side view with more open doors, visible interior, and extensive rust and paint wear along the body.",
+    "description_view_3": "Front-angled view showing the damaged front end, missing headlights, and the collapsed bumper, with roof openings visible.",
+    "category": "school bus",
+    "height": 3.2,
+    "max_dimension": 11.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 6500,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "sittable",
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "steering wheel",
+        "seat frame",
+        "roof hatch"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "rust brown",
+        "faded yellow",
+        "blue",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.55,
+        0.2,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_school_bus_signage": "No visible school bus-specific signage, text, or decals are present on the exterior due to extensive rust and paint wear.",
+    "attribute_stop_sign_arm": "none",
+    "attribute_front_grille_design": "The front grille is largely obscured by rust and damage, but appears rectangular with a mesh or slatted pattern, heavily corroded, and lacking any visible emblems or distinctive features.",
+    "attribute_window_arrangement": "Windows are large, rectangular, and evenly spaced along both sides, with approximately five per side; most are missing glass, and some window frames are bent or damaged. There is a separate driver window at the front.",
+    "attribute_emergency_exit_door": "Present at the rear; the door is open, full height, with no visible window or signage due to damage and rust.",
+    "uid": "fdf39ca893a64368af45f82a6b6d68a4",
+    "near_synsets": {
+        "school_bus.n.01": 0.5248511428291698,
+        "bus.n.04": 0.5657364223501847,
+        "hulk.n.02": 0.5917683727399337,
+        "bus_traffic.n.01": 0.5967138196409475,
+        "bus.n.01": 0.5982963324969559,
+        "school.n.03": -1000.0,
+        "school.n.04": -1000.0,
+        "school.n.02": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "school.n.06": -1000.0,
+        "school.n.05": -1000.0,
+        "school.n.07": -1000.0,
+        "busbar.n.01": -1000.0,
+        "school.n.01": -1000.0
+    },
+    "synset": "school_bus.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fdf39ca893a64368af45f82a6b6d68a4",
+        "creator_username": "dadndan0091",
+        "creator_display_name": "o0ozexo0o",
+        "creator_profile_url": "https://sketchfab.com/dadndan0091"
+    },
+    "filename": "std_fdf39ca893a64368af45f82a6b6d68a4.glb",
+    "length": 12.376262664794922,
+    "width": 3.6775728464126587
+}

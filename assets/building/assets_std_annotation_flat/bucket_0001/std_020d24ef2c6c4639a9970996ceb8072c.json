@@ -1,0 +1,125 @@
+{
+    "description_long": "This is a rectangular basketball court set within a low-walled sports building, featuring a teal playing surface with orange key areas and center circle. The court is surrounded on three sides by gray walls, with one long side open to a set of tiered, red seating bleachers for spectators. The markings on the court are clearly defined, including the three-point lines, free throw lanes, and center circle, all outlined in white. The walls display signage and a logo, suggesting an institutional or school setting. There are no visible basketball hoops or backboards, and the court is not enclosed by a fence. The overall design is functional and modern, suitable for indoor recreational or school use.",
+    "description": "A modern indoor basketball court with teal and orange markings, surrounded by gray walls and red bleacher seating on one side. The court features clear sports lines and institutional signage, but lacks visible hoops or backboards.",
+    "description_view_0": "Front view showing the full court, gray walls, and the red bleacher seating on the left side.",
+    "description_view_1": "Side view highlighting the tiered red bleachers and the length of the court.",
+    "description_view_2": "Rear view focusing on the bleacher seating and the court layout from behind the seating area.",
+    "description_view_3": "Opposite side view showing the court, bleachers on the right, and a wall with a large logo.",
+    "category": "basketball court",
+    "height": 5.0,
+    "max_dimension": 32.0,
+    "materials": [
+        "concrete",
+        "paint",
+        "plastic",
+        "metal",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.05,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "playable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bleachers",
+        "court surface"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "teal",
+        "orange",
+        "red",
+        "white",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.1,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_hoop_presence": false,
+    "attribute_backboard_type": "none",
+    "attribute_court_markings": [
+        "three-point line",
+        "free throw line",
+        "center circle",
+        "key",
+        "sidelines",
+        "baseline"
+    ],
+    "attribute_fence_enclosure": false,
+    "attribute_architectural_style": "indoor gymnasium",
+    "uid": "020d24ef2c6c4639a9970996ceb8072c",
+    "near_synsets": {
+        "basketball_court.n.01": 0.4647279013651748,
+        "squash_court.n.01": 0.5192703570391043,
+        "tennis_court.n.01": 0.5378814071582225,
+        "volleyball_court.n.01": 0.5424207668160339,
+        "handball_court.n.01": 0.5426248870065663,
+        "motor_hotel.n.01": -1000.0,
+        "court.n.03": -1000.0,
+        "court.n.06": -1000.0,
+        "basketball.n.01": -1000.0,
+        "court.n.02": -1000.0,
+        "court.n.04": -1000.0,
+        "court.n.08": -1000.0,
+        "basketball.n.02": -1000.0,
+        "court.n.09": -1000.0,
+        "court.n.01": -1000.0,
+        "court.n.10": -1000.0,
+        "court.n.05": -1000.0
+    },
+    "synset": "basketball_court.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/020d24ef2c6c4639a9970996ceb8072c",
+        "creator_username": "spinosa",
+        "creator_display_name": "DECOMIDI - UEL",
+        "creator_profile_url": "https://sketchfab.com/spinosa"
+    },
+    "filename": "std_020d24ef2c6c4639a9970996ceb8072c.glb",
+    "length": 31.190144538879395,
+    "width": 32.78487014770508
+}

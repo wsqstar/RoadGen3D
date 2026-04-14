@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a large, rectangular, industrial shipping container with a dark green exterior, commonly used for transporting goods. The container features corrugated steel walls and a ribbed roof for structural strength. Both shorter ends have reinforced double doors with visible locking mechanisms, while the longer sides are solid panels with minimal markings. There are small ventilation slits and a yellow caution label on one end, and white stenciled identification numbers on the opposite side. The surface appears matte and slightly weathered, typical of containers found in shipping yards or urban storage areas. Its robust construction suggests it is designed to withstand heavy loads and harsh outdoor environments.",
+    "description": "A large, dark green industrial shipping container with corrugated steel walls, double doors, and visible caution and ID markings.",
+    "description_view_0": "End view showing double doors with ventilation slits and a yellow caution label.",
+    "description_view_1": "Side view displaying a long, solid corrugated panel with no visible markings.",
+    "description_view_2": "Opposite end view with double doors, but without the yellow caution label.",
+    "description_view_3": "Side view with white stenciled identification numbers near the top right corner.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.92,
+        0.07,
+        0.01
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking mechanism"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "yellow",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.96,
+        0.01,
+        0.02,
+        0.01
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 2.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "yellow caution label on one end, white stenciled ID numbers on side",
+    "attribute_handles_or_grips": "integrated door handles and locking bars on both ends",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "246b8bbf724b40e5b6005391323fd462",
+    "near_synsets": {
+        "container.n.01": 0.46126076006554173,
+        "cargo_container.n.01": 0.46550044334204604,
+        "container_ship.n.01": 0.5242692908309539,
+        "box.n.01": 0.5292170303345354,
+        "cargo_door.n.01": 0.5394398254560155
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/246b8bbf724b40e5b6005391323fd462",
+        "creator_username": "erlendbro",
+        "creator_display_name": "erlendbro",
+        "creator_profile_url": "https://sketchfab.com/erlendbro"
+    },
+    "filename": "std_246b8bbf724b40e5b6005391323fd462.glb",
+    "length": 7.6818461418151855,
+    "width": 2.5187766551971436
+}

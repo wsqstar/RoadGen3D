@@ -1,0 +1,97 @@
+{
+    "description_long": "This rifle features a robust, tactical design with a multi-barrel rotary system reminiscent of a minigun or Gatling-style firearm. The main body is constructed from dark, matte-finished metal, with visible mechanical components such as a cylindrical housing, a prominent barrel cluster, and a side-mounted box likely serving as the magazine or ammunition feed. The top of the rifle includes a simple iron sight, while the rear section is compact and lacks a traditional shoulder stock, suggesting a design optimized for mounting or vehicle use. The front end is equipped with a muzzle brake, and the overall build is heavy-duty, with reinforced elements and exposed mechanical linkages. The rifle's color palette is predominantly black with subtle metallic highlights and a few red accent details on the sight and controls.",
+    "description": "A heavy, multi-barrel rotary rifle with a matte black finish, exposed mechanical parts, and a compact, stockless rear. Features a muzzle brake and iron sight.",
+    "description_view_0": "Front view shows the circular arrangement of the barrels and the iron sight above, emphasizing the rotary mechanism.",
+    "description_view_1": "Side view reveals the full length of the rifle, the multi-barrel cluster, side-mounted box, and the compact rear section.",
+    "description_view_2": "Rear view highlights the back of the rotary system and the absence of a traditional stock, with the sight visible on top.",
+    "description_view_3": "Opposite side view mirrors view 1, showing the barrel cluster, side box, and mechanical details.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 0.85,
+    "materials": [
+        "steel",
+        "polymer",
+        "aluminum",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "aimable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrel cluster",
+        "trigger",
+        "magazine box",
+        "iron sight",
+        "muzzle brake",
+        "charging handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray",
+        "red"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "rotary",
+    "attribute_magazine_type": "box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "muzzle brake",
+    "uid": "9166a5e2eb4347979ddc5150e239aa95",
+    "near_synsets": {
+        "rifle.n.01": 0.5220556290851035,
+        "garand_rifle.n.01": 0.5226817588865532,
+        "carbine.n.01": 0.5268854305811644,
+        "mauser.n.02": 0.5274455861976137,
+        "browning_automatic_rifle.n.01": 0.5322845391422721
+    },
+    "synset": "browning_automatic_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9166a5e2eb4347979ddc5150e239aa95",
+        "creator_username": "FinBass",
+        "creator_display_name": "FinBass",
+        "creator_profile_url": "https://sketchfab.com/FinBass"
+    },
+    "filename": "std_9166a5e2eb4347979ddc5150e239aa95.glb",
+    "length": 0.943789005279541,
+    "width": 0.23542404919862747
+}

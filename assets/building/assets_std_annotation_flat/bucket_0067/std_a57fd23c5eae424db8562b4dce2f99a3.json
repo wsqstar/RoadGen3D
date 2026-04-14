@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a three-story office building with a flat roof, painted in a muted pink color with light gray trim. The front facade features six large rectangular windows arranged symmetrically in two rows, with a single door and a wide garage door at street level. The rooftop is equipped with utility structures, including HVAC units, a vent, a satellite dish, and a small rooftop access enclosure. One side of the building has a full-height metal fire escape ladder, while the other side is plain and windowless. The building's exterior is simple and modern, with clean lines and minimal ornamentation. The overall structure suggests a utilitarian design typical of urban commercial office buildings.",
+    "description": "A three-story pink office building with large windows, a flat roof with utility structures, and a street-level garage and door.",
+    "description_view_0": "Front view showing six windows, a single door, a wide garage door, and rooftop utilities.",
+    "description_view_1": "Side view with a plain, windowless pink wall and visible rooftop edge.",
+    "description_view_2": "Rear view with a blank pink wall, visible rooftop structures, and no windows or doors.",
+    "description_view_3": "Side view with two windows and a full-height metal fire escape ladder.",
+    "category": "office building",
+    "height": 10.5,
+    "max_dimension": 14.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "garage door",
+        "windows",
+        "fire escape ladder",
+        "rooftop access door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "pink",
+        "gray",
+        "white",
+        "blue"
+    ],
+    "colors_composition": [
+        0.7,
+        0.18,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 3,
+    "attribute_window_pattern": "Symmetrical grid of large rectangular windows, two rows of three on the front facade, evenly spaced.",
+    "attribute_building_entrance_type": "single door",
+    "attribute_signage_presence": false,
+    "attribute_architectural_style": "Modernist",
+    "uid": "a57fd23c5eae424db8562b4dce2f99a3",
+    "near_synsets": {
+        "office_building.n.01": 0.5063813535230299,
+        "skyscraper.n.01": 0.5487880783627541,
+        "high-rise.n.01": 0.5505468305997985,
+        "city_hall.n.01": 0.5582784880325481,
+        "government_building.n.01": 0.5613546753712229,
+        "function.n.03": -1000.0,
+        "building.n.01": -1000.0,
+        "construction.n.07": -1000.0,
+        "construction.n.01": -1000.0,
+        "office.n.05": -1000.0,
+        "office.n.06": -1000.0,
+        "position.n.06": -1000.0,
+        "building.n.04": -1000.0,
+        "office.n.04": -1000.0,
+        "agency.n.01": -1000.0,
+        "office.n.01": -1000.0
+    },
+    "synset": "office_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a57fd23c5eae424db8562b4dce2f99a3",
+        "creator_username": "vonnemak",
+        "creator_display_name": "vonnemak",
+        "creator_profile_url": "https://sketchfab.com/vonnemak"
+    },
+    "filename": "std_a57fd23c5eae424db8562b4dce2f99a3.glb",
+    "length": 5.61850643157959,
+    "width": 9.635168075561523
+}

@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a single red and gray passenger train carriage with a streamlined rectangular body and a flat, dark roof. The sides feature a continuous row of large, rectangular windows, each bordered by thin frames, allowing ample light into the interior. There are two sets of double doors on each side, positioned near the ends of the carriage, with metallic panels beneath them. The undercarriage is equipped with visible black bogies and wheel assemblies, providing structural support and mobility. The ends of the carriage are solid, with a small window and a coupling mechanism for connecting to other train cars. The overall design suggests a modern commuter or regional train, suitable for urban and suburban rail networks.",
+    "description": "A red and gray passenger train carriage with large rectangular windows and double doors near each end, designed for urban or regional rail use.",
+    "description_view_0": "Side view showing the full length of the carriage, with a row of windows and two sets of double doors.",
+    "description_view_1": "End view displaying the flat front with a small window and coupling mechanism.",
+    "description_view_2": "Opposite side view, similar to view 0, showing windows and doors along the carriage.",
+    "description_view_3": "Rear end view, mirroring view 1, with a flat surface and coupling details.",
+    "category": "train",
+    "height": 3.8,
+    "max_dimension": 26.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.07,
+        0.03,
+        0.03
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "coupling"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.04,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "commuter train",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at each end",
+    "attribute_window_arrangement": "continuous row of rectangular windows",
+    "uid": "db7987b1c47d461ea285c235ecc53d16",
+    "near_synsets": {
+        "passenger_train.n.01": 0.4350255659081814,
+        "car_train.n.01": 0.4428308459214624,
+        "train.n.01": 0.45252849225869557,
+        "passenger_car.n.01": 0.4536485657571262,
+        "commuter.n.01": 0.4860579646865901,
+        "caravan.n.01": -1000.0,
+        "train.n.05": -1000.0,
+        "train.n.04": -1000.0,
+        "gearing.n.01": -1000.0,
+        "string.n.04": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/db7987b1c47d461ea285c235ecc53d16",
+        "creator_username": "accessviolation",
+        "creator_display_name": "accessviolation",
+        "creator_profile_url": "https://sketchfab.com/accessviolation"
+    },
+    "filename": "std_db7987b1c47d461ea285c235ecc53d16.glb",
+    "length": 24.55830955505371,
+    "width": 2.74624764919281
+}

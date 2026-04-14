@@ -1,0 +1,107 @@
+{
+    "description_long": "This object consists of a visually appealing assortment of sushi pieces and condiments. There are several types of sushi, including two pieces of nigiri with salmon and shrimp, a gunkan-maki topped with bright orange fish roe, and two maki rolls with visible cucumber and other fillings. Accompanying the sushi is a large, distinctive Sriracha hot sauce bottle with a green cap and detailed label, as well as a small, fish-shaped soy sauce container. The sushi pieces are rendered with realistic textures, showing the glossy sheen of the fish, the matte finish of the rice, and the nori wrapping. The Sriracha bottle features both front and back label details, and the soy sauce container is semi-transparent with a red cap. The overall arrangement suggests a ready-to-eat sushi meal, commonly found in urban takeout or casual dining settings.",
+    "description": "A colorful sushi assortment with nigiri, maki, gunkan, a Sriracha bottle, and a fish-shaped soy sauce container, all arranged as a ready-to-eat meal.",
+    "description_view_0": "Front view showing all sushi pieces, the Sriracha bottle's front label, and the fish-shaped soy sauce container.",
+    "description_view_1": "Rear view highlighting the Sriracha bottle's nutrition label, the back of the nigiri, and the maki rolls.",
+    "description_view_2": "Side view with the Sriracha bottle's side label, sushi pieces grouped together, and the soy sauce container partially visible.",
+    "description_view_3": "Angled view focusing on the sushi arrangement, the Sriracha bottle's front, and the fish-shaped soy sauce container.",
+    "category": "sushi",
+    "height": 0.23,
+    "max_dimension": 0.32,
+    "materials": [
+        "rice",
+        "fish",
+        "seaweed",
+        "plastic",
+        "glass",
+        "air",
+        "sauce"
+    ],
+    "materials_composition": [
+        0.35,
+        0.18,
+        0.07,
+        0.25,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 0.65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 7,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable",
+        "openable",
+        "pourable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "Sriracha bottle cap",
+        "soy sauce container cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "white",
+        "black",
+        "green",
+        "red",
+        "brown"
+    ],
+    "colors_composition": [
+        0.28,
+        0.22,
+        0.18,
+        0.12,
+        0.12,
+        0.08
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.08,
+    "recommended_clearance": 0.4,
+    "asset_composition_type": "group",
+    "attribute_type_of_sushi": "nigiri, maki, gunkan",
+    "attribute_presence_of_chopsticks": false,
+    "attribute_packaging_style": "no packaging",
+    "attribute_placement_location": "table",
+    "attribute_garnish_or_topping": [
+        "roe"
+    ],
+    "uid": "60d0c343b2f34c1cbf5d827f3b829f00",
+    "near_synsets": {
+        "sushi.n.01": 0.4756219936939808,
+        "sushi_bar.n.01": 0.49074790946184205,
+        "sashimi.n.01": 0.5243556370055804,
+        "sukiyaki.n.01": 0.5432144916875669,
+        "teriyaki.n.01": 0.5437319628798728
+    },
+    "synset": "sushi_bar.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/60d0c343b2f34c1cbf5d827f3b829f00",
+        "creator_username": "tactical-destruction",
+        "creator_display_name": "ima_ethan",
+        "creator_profile_url": "https://sketchfab.com/tactical-destruction"
+    },
+    "filename": "std_60d0c343b2f34c1cbf5d827f3b829f00.glb",
+    "length": 0.2504439204931259,
+    "width": 0.27513447403907776
+}

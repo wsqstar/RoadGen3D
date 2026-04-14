@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a tracked combat tactical vehicle with a low, angular profile and a flat, sloped front hull. The vehicle features a prominent, short-barreled main gun mounted centrally on the upper hull, with various hatches, periscopes, and equipment boxes distributed across the top. The sides are equipped with large, continuous track systems supported by multiple road wheels, and there are red cylindrical elements mounted on the rear fenders. The rear section includes a mesh-like engine deck and additional stowage or exhaust components. The exterior is painted in a uniform tan color, with some contrasting red and gray details. The overall design suggests a focus on armored protection and urban maneuverability.",
+    "description": "A tan, tracked combat vehicle with a short-barreled gun, angular armor, and red rear fender elements. It features multiple hatches, a mesh engine deck, and robust tracks for urban operations.",
+    "description_view_0": "Front view shows the sloped armor, central gun, and symmetrical tracks with visible hatches and equipment on the upper hull.",
+    "description_view_1": "Left side view highlights the full track system, side-mounted equipment, and the short-barreled gun protruding from the hull.",
+    "description_view_2": "Rear view reveals the mesh engine deck, red cylindrical elements on the fenders, and rear stowage or exhaust components.",
+    "description_view_3": "Right side view mirrors the left, showing the track system, side details, and the main gun from a different angle.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 22000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "gun barrel",
+        "track",
+        "wheel",
+        "antenna",
+        "engine cover"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "red",
+        "gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main gun mount located centrally on the upper hull; no additional weapon mounts visible.",
+    "attribute_armor_plating": "Full body armor plating with sloped front and side panels; appears thick and continuous with no visible modular or reactive elements.",
+    "attribute_camouflage_pattern": "Solid tan color with no visible camouflage pattern.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "f40987b367f04d579a04dd7b47d5f58e",
+    "near_synsets": {
+        "tank.n.01": 0.5148024461948107,
+        "reconnaissance_vehicle.n.01": 0.5229491346715935,
+        "military_vehicle.n.01": 0.5257865537782951,
+        "assault_gun.n.02": 0.5324497966137471,
+        "weapons_carrier.n.01": 0.545703393612504,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f40987b367f04d579a04dd7b47d5f58e",
+        "creator_username": "Kalasnokov",
+        "creator_display_name": "Kalasnokov",
+        "creator_profile_url": "https://sketchfab.com/Kalasnokov"
+    },
+    "filename": "std_f40987b367f04d579a04dd7b47d5f58e.glb",
+    "length": 4.217867851257324,
+    "width": 1.9762661457061768
+}

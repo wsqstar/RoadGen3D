@@ -1,0 +1,106 @@
+{
+    "description_long": "This humanoid robot features a robust, industrial design with a metallic body and an orange chest plate that appears worn and scratched, suggesting heavy use. Its limbs are asymmetrical, with the left arm and leg constructed from a silvery metal, while the right arm and leg are darker and less detailed, possibly indicating modular or replacement parts. The head is helmet-like, with red glowing eyes and a mask-like faceplate, giving it a menacing, utilitarian appearance. Exposed mechanical joints, pistons, and wiring are visible, especially on the arms and legs, highlighting its mechanical complexity. The back is protected by a large orange panel, and the hands are articulated with visible finger joints. The overall build is bulky and solid, designed for durability and strength in urban environments.",
+    "description": "A rugged humanoid robot with a metallic body, orange chest plate, and asymmetrical limbs, featuring exposed joints and a helmet-like head with red eyes.",
+    "description_view_0": "Front view shows the orange chest plate, helmeted head with red eyes, and asymmetrical metallic limbs, with detailed mechanical joints and articulated hands.",
+    "description_view_1": "Left side view highlights the exposed mechanical joints, wiring, and the bulkiness of the left arm and leg, with the head's side profile and mask details visible.",
+    "description_view_2": "Rear view displays the large orange back panel, symmetrical shoulder armor, and the robust construction of the legs and arms from behind.",
+    "description_view_3": "Right side view reveals the darker, less detailed right arm and leg, visible pistons, and the side profile of the helmeted head.",
+    "category": "humanoid robot",
+    "height": 1.85,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "rubber",
+        "glass",
+        "copper",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.1,
+        0.07,
+        0.05,
+        0.03,
+        0.05
+    ],
+    "mass": 140,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1370,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hand",
+        "arm",
+        "head",
+        "chest panel",
+        "fingers"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "orange",
+        "black",
+        "red",
+        "silver"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.08,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is standing upright with both legs straight and slightly apart. The left arm is bent at the elbow, with the hand slightly forward, while the right arm hangs down and slightly forward. The head is facing straight ahead, and the torso is upright.",
+    "attribute_clothing_style": "The robot is not clothed but features an integrated orange chest and back panel that resembles a protective vest, with metallic and plastic coverings on the limbs and joints.",
+    "attribute_facial_features": "The face is helmet-like with a mask covering the lower half, two glowing red eyes, and no visible mouth or nose. The facial area is angular and mechanical, lacking expressive features.",
+    "attribute_limb_articulation": "The robot has articulated shoulders, elbows, wrists, hips, knees, and ankles, with visible hinge and rotary joints. The hands have articulated fingers, suggesting dexterous manipulation. The limbs appear rigid but highly jointed.",
+    "attribute_presence_of_sensors": "Visible sensors include two red glowing eyes on the head, likely functioning as cameras or optical sensors. No other sensors are clearly visible.",
+    "uid": "61c355d7cc214407a70cc6c910275c14",
+    "near_synsets": {
+        "android.n.01": 0.5385549458107939,
+        "robotics_equipment.n.01": 0.5484805333925594,
+        "cyborg.n.01": 0.5496619380972497,
+        "automaton.n.02": 0.5810812804885092,
+        "helmet.n.01": 0.5833078706461697
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/61c355d7cc214407a70cc6c910275c14",
+        "creator_username": "ros_art",
+        "creator_display_name": "ros_art",
+        "creator_profile_url": "https://sketchfab.com/ros_art"
+    },
+    "filename": "std_61c355d7cc214407a70cc6c910275c14.glb",
+    "length": 0.6135969758033752,
+    "width": 0.9164416790008545
+}

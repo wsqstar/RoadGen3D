@@ -1,0 +1,111 @@
+{
+    "description_long": "This is a black and white police car modeled after a classic American sedan, featuring a robust, boxy body with four doors and a prominent front grille. The roof is white and displays a large black number '507', which is also visible from the rear. The sides of the car have white doors with a gold and blue police badge insignia and the words 'Highway Patrol' in black. The rear of the vehicle is marked with 'HIGHWAY PATROL' in yellow and a visible license plate. The car is equipped with black wheels, side mirrors, and several thin antennas on the roof and trunk, suggesting communication equipment. The windows are tinted, and the car has a push bumper on the front, typical of law enforcement vehicles.",
+    "description": "A black and white American-style police car with '507' on the roof, police insignia on the doors, and 'Highway Patrol' markings. It features a push bumper, antennas, and tinted windows.",
+    "description_view_0": "Front view showing the push bumper, black grille, and the number '507' on the white roof.",
+    "description_view_1": "Left side view highlighting the white door with police badge, black wheels, and multiple antennas.",
+    "description_view_2": "Rear view displaying '507' on the roof, 'HIGHWAY PATROL' in yellow, and a license plate.",
+    "description_view_3": "Right side view similar to the left, with white door, police badge, and visible antennas.",
+    "category": "police car",
+    "height": 1.5,
+    "max_dimension": 5.2,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.12,
+        0.1,
+        0.08,
+        0.03,
+        0.02
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 4500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "trunk",
+        "hood",
+        "side mirror",
+        "antenna",
+        "push bumper"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "white",
+        "yellow",
+        "blue"
+    ],
+    "colors_composition": [
+        0.65,
+        0.3,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_police_markings": "Large black number '507' on the white roof, 'HIGHWAY PATROL' in yellow on the rear, and 'Highway Patrol' in black on the side doors. The side doors also feature a gold and blue police badge insignia. The markings are bold and clearly visible, with the numbers and text in a sans-serif font.",
+    "attribute_emergency_lights": "None visible; there is no roof-mounted light bar or other emergency lights apparent in the images.",
+    "attribute_siren": "Not visible",
+    "attribute_police_insignia": "Gold and blue police badge insignia on the front doors, featuring a star and shield design.",
+    "attribute_license_plate": "A license plate is visible on the rear, located at the center of the bumper. It appears to be white with dark text, but the exact text is not legible.",
+    "uid": "d7446786bc7548e48872bd58de629873",
+    "near_synsets": {
+        "panda_car.n.01": 0.5275299163994311,
+        "cruiser.n.01": 0.5692509230210376,
+        "police_van.n.01": 0.5765497460001067,
+        "traffic_cop.n.01": 0.5871875800311361,
+        "inspector.n.01": 0.6029459412045222,
+        "car.n.02": -1000.0,
+        "police.n.01": -1000.0,
+        "car.n.04": -1000.0,
+        "cable_car.n.01": -1000.0,
+        "car.n.03": -1000.0,
+        "car.n.01": -1000.0
+    },
+    "synset": "cruiser.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d7446786bc7548e48872bd58de629873",
+        "creator_username": "hruschak30",
+        "creator_display_name": "hruschak30",
+        "creator_profile_url": "https://sketchfab.com/hruschak30"
+    },
+    "filename": "std_d7446786bc7548e48872bd58de629873.glb",
+    "length": 5.065369129180908,
+    "width": 1.8712106943130493
+}

@@ -1,0 +1,92 @@
+{
+    "description_long": "This kiosk features a central cylindrical core constructed from weathered, rust-stained metal, with four robust metal rods radiating outward to support rectangular concrete signboards. Each signboard is marked with the word 'FAMILIA' and displays faded imagery, suggesting a commercial or informational function. The kiosk's base includes a small, box-like counter or service area, likely intended for transactions or information distribution. The overall structure is utilitarian, with exposed metalwork and concrete surfaces showing signs of age and outdoor exposure. There are no visible windows or doors, and the kiosk is open on all sides, allowing for easy access. The design is industrial and functional, prioritizing durability and visibility in an urban environment.",
+    "description": "A weathered, industrial-style kiosk with a central metal cylinder, four radiating rods supporting concrete signboards labeled 'FAMILIA', and a small service counter.",
+    "description_view_0": "Front view showing the central cylinder, all four signboards with 'FAMILIA' text, and the service counter prominently in the foreground.",
+    "description_view_1": "Side view highlighting the depth of the signboards and the radiating rods, with the service counter visible to the left.",
+    "description_view_2": "Rear view focusing on the cylindrical core and the backs of the signboards, with the service counter less visible.",
+    "description_view_3": "Opposite side view showing the rods' attachment to the cylinder and the signboards' alignment, with the service counter to the right.",
+    "category": "kiosk",
+    "height": 1.8,
+    "max_dimension": 4.5,
+    "materials": [
+        "concrete",
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.05,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "readable",
+        "leanable",
+        "displayable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "signboard",
+        "counter"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "rust red",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "Printed sign integrated into concrete panels, placed at the ends of each rod, displaying the word 'FAMILIA' and faded imagery.",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "none",
+    "attribute_roof_design": "Flat, circular metal top with no overhangs or decorative elements, matching the industrial style.",
+    "attribute_architectural_style": "Industrial utilitarian with exposed metal and concrete elements.",
+    "uid": "d8f7e48d4c1f4d70ae2864ec21812605",
+    "near_synsets": {
+        "farmhouse.n.01": 0.5757451817872593,
+        "booth.n.02": 0.5762595100154169,
+        "telephone_booth.n.01": 0.5793455093254474,
+        "barber's_pole.n.01": 0.5924849834816304,
+        "soda_fountain.n.01": 0.5934905685423219
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d8f7e48d4c1f4d70ae2864ec21812605",
+        "creator_username": "gb.prof.69",
+        "creator_display_name": "gb.prof.69",
+        "creator_profile_url": "https://sketchfab.com/gb.prof.69"
+    },
+    "filename": "std_d8f7e48d4c1f4d70ae2864ec21812605.glb",
+    "length": 3.9138665199279785,
+    "width": 5.47938346862793
+}

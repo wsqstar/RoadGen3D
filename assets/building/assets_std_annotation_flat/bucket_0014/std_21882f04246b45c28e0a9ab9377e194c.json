@@ -1,0 +1,102 @@
+{
+    "description_long": "This humanoid robot features a boxy, metallic body with a rectangular head mounted on a flexible, ribbed neck. Its face is dominated by a single large circular lens, likely functioning as a camera or sensor, and the head is slightly angled forward. The torso is angular and robust, with mechanical arms attached at the shoulders, each ending in a two-pronged claw-like gripper. The robot moves on wide, tank-like treads that provide stability and traction, and its back displays two cylindrical components that may serve as power cells or actuators. The overall design is utilitarian, with visible bolts, seams, and a muted gray-blue color palette, suggesting durability for urban environments.",
+    "description": "A robust, boxy humanoid robot with a single-lens head, articulated arms ending in claw grippers, and tank-like treads for mobility. Its metallic body is accented by visible bolts and cylindrical components on the back.",
+    "description_view_0": "Side view showing the ribbed neck, single-lens head, articulated arm with claw, and tank treads.",
+    "description_view_1": "Front view highlighting the central lens, symmetrical arms, chest panel, and wide treads.",
+    "description_view_2": "Opposite side view with similar features to view 0, showing the other arm and side details.",
+    "description_view_3": "Rear view displaying two cylindrical components on the back and the back of the treads.",
+    "category": "humanoid robot",
+    "height": 1.4,
+    "max_dimension": 1.4,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "rubber",
+        "air",
+        "copper"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 110,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "graspable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "claw gripper",
+        "camera lens",
+        "arm joint",
+        "tread",
+        "cylindrical module"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with torso erect, head facing forward, both arms slightly bent at the elbows and extended downward, treads flat on the ground.",
+    "attribute_clothing_style": "Unclothed; exterior consists of integrated metallic and plastic panels with no decorative coverings.",
+    "attribute_facial_features": "Face consists of a single large circular lens in the center, with no mouth, nose, or expressive features; the head is angular and mechanical.",
+    "attribute_limb_articulation": "Arms have at least two visible hinge joints (shoulder and elbow) and end in two-pronged claw grippers; treads serve as legs with no visible knee or ankle joints.",
+    "attribute_presence_of_sensors": "One large camera or optical sensor in the center of the head; possible additional sensors on the torso and arms.",
+    "uid": "21882f04246b45c28e0a9ab9377e194c",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5488734610590393,
+        "android.n.01": 0.5628101607517388,
+        "cyborg.n.01": 0.567645397450918,
+        "automaton.n.02": 0.5720454758606335,
+        "grab.n.01": 0.5832098797888806
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/21882f04246b45c28e0a9ab9377e194c",
+        "creator_username": "PusztaiAndras",
+        "creator_display_name": "PAndras",
+        "creator_profile_url": "https://sketchfab.com/PusztaiAndras"
+    },
+    "filename": "std_21882f04246b45c28e0a9ab9377e194c.glb",
+    "length": 0.792068600654602,
+    "width": 0.6215232610702515
+}

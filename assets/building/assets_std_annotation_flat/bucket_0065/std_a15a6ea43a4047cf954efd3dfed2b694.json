@@ -1,0 +1,104 @@
+{
+    "description_long": "This ferry terminal features a long, rectangular structure with a prominent pitched roof, primarily colored in gray and orange. The building is elevated on a platform, with open sides and visible support columns, suggesting sheltered waiting areas for passengers. The central section appears to have a slightly raised roof, possibly indicating a main entrance or ticketing area. The terminal includes detailed architectural elements such as railings, benches, and possibly small kiosks or booths along the platform. The ends of the structure are closed, while the sides are open, allowing for easy access and movement of passengers. The overall design is functional and modern, suitable for urban waterfronts and busy ferry routes.",
+    "description": "A long, modern ferry terminal with a pitched gray roof, orange structural supports, and open sides for passenger access and waiting.",
+    "description_view_0": "Side view showing the full length of the terminal, open sides, and orange support columns beneath the gray roof.",
+    "description_view_1": "End view displaying the narrow profile of the terminal, with the pitched roof and closed end wall visible.",
+    "description_view_2": "Opposite side view, similar to view 0, highlighting the open platform and structural details along the length.",
+    "description_view_3": "Reverse end view showing the terminal's entrance area and the arrangement of interior features at the end.",
+    "category": "ferry terminal",
+    "height": 6.0,
+    "max_dimension": 45.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "glass",
+        "wood",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench",
+        "door",
+        "ticket kiosk",
+        "railing"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "orange",
+        "brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_ferry_dock_signage": false,
+    "attribute_passenger_waiting_area": true,
+    "attribute_ticket_booth_or_kiosk": true,
+    "attribute_boarding_ramps_or_gangways": false,
+    "attribute_water_access_with_mooring_structures": false,
+    "uid": "a15a6ea43a4047cf954efd3dfed2b694",
+    "near_synsets": {
+        "ferry.n.02": 0.5419867697479295,
+        "car-ferry.n.01": 0.5450645887506684,
+        "terminal.n.01": 0.5452911429917505,
+        "gate.n.04": 0.5460358935234315,
+        "ferry.n.01": 0.5492287307128891,
+        "terminal.n.02": -1000.0,
+        "end.n.01": -1000.0,
+        "terminal.n.04": -1000.0
+    },
+    "synset": "terminal.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a15a6ea43a4047cf954efd3dfed2b694",
+        "creator_username": "anaksetan",
+        "creator_display_name": "Pandu Agung Prabowo",
+        "creator_profile_url": "https://sketchfab.com/anaksetan"
+    },
+    "filename": "std_a15a6ea43a4047cf954efd3dfed2b694.glb",
+    "length": 36.46911430358887,
+    "width": 5.684557676315308
+}

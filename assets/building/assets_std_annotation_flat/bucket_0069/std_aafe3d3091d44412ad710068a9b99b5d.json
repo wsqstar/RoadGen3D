@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a modern military-style helicopter with a streamlined, angular fuselage painted in matte black. It features a prominent main rotor with four long, straight blades, each tipped with yellow markings, and a tail rotor mounted on the vertical stabilizer. The cockpit is located at the front, with multiple angular windows providing visibility for the crew, and the side doors and landing gear are visible along the lower fuselage. The helicopter is equipped with robust landing skids and external equipment mounts, suggesting utility or combat roles. The tail section is elongated, ending in a vertical fin with a horizontal stabilizer and a small tail rotor. No visible registration numbers or civilian markings are present, emphasizing its tactical or military use.",
+    "description": "A matte black, military-style helicopter with four-blade main and tail rotors, angular cockpit windows, and robust landing skids. The design is streamlined and functional, with yellow-tipped rotor blades and no visible registration markings.",
+    "description_view_0": "Top-down view showing the full span of the main rotor blades and the narrow profile of the fuselage.",
+    "description_view_1": "Left side view highlighting the cockpit windows, side door, landing skids, and the tail rotor assembly.",
+    "description_view_2": "Front view displaying the angular cockpit windows, nose profile, and symmetrical rotor blade arrangement.",
+    "description_view_3": "Right side view similar to the left, showing the opposite side of the fuselage, cockpit, and tail rotor.",
+    "category": "helicopter",
+    "height": 4.2,
+    "max_dimension": 15.5,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.18,
+        0.1,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "mass": 5400,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 7,
+    "movable": true,
+    "required_force": 52920,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit window",
+        "rotor blade",
+        "tail rotor",
+        "landing skid",
+        "control stick",
+        "button",
+        "lever"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "yellow",
+        "gray"
+    ],
+    "colors_composition": [
+        0.9,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 18.0,
+    "asset_composition_type": "single",
+    "attribute_rotor_blades": "Four long, straight main rotor blades made of composite material, each with a black base color and yellow tips. The blades are evenly spaced and appear rigid, with no visible damage or warping.",
+    "attribute_tail_rotor": "A small tail rotor with four blades, mounted vertically on the left side of the tail fin. The blades are black with yellow tips, matching the main rotor, and are protected by the tail structure.",
+    "attribute_landing_skids": "Two robust, tubular landing skids made of metal, painted black, with crossbars for structural support. The skids are simple in design and extend the length of the lower fuselage.",
+    "attribute_cockpit_windows": "Multiple angular cockpit windows at the front, including a large central pane and two side panes, all framed in black. The windows are slightly tinted and provide wide visibility for the crew.",
+    "attribute_registration_number": "not visible",
+    "uid": "aafe3d3091d44412ad710068a9b99b5d",
+    "near_synsets": {
+        "helicopter.n.01": 0.5069661041490752,
+        "single-rotor_helicopter.n.01": 0.513278234986351,
+        "main_rotor.n.01": 0.5169137819878249,
+        "rotor_blade.n.01": 0.5290786121789237,
+        "tail_rotor.n.01": 0.5317146154121374
+    },
+    "synset": "single-rotor_helicopter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/aafe3d3091d44412ad710068a9b99b5d",
+        "creator_username": "SCPGames",
+        "creator_display_name": "SCP Games",
+        "creator_profile_url": "https://sketchfab.com/SCPGames"
+    },
+    "filename": "std_aafe3d3091d44412ad710068a9b99b5d.glb",
+    "length": 15.305985927581787,
+    "width": 12.376809120178223
+}

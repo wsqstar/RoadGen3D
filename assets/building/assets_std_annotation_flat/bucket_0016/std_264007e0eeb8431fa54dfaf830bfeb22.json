@@ -1,0 +1,100 @@
+{
+    "description_long": "This humanoid robot features a sleek, futuristic design with a predominantly metallic silver body accented by teal blue panels on the head, shoulders, forearms, and lower legs. Its head is rounded with a black faceplate displaying expressive digital eyes and a mouth, flanked by two pointed antenna-like structures. The torso is broad at the shoulders and narrows at the waist, with a prominent black chest panel that may serve as a display or sensor area. The arms and legs are segmented, suggesting multiple articulation points for a wide range of motion, and the hands are detailed with individual fingers. The overall build is athletic and balanced, with proportions similar to a human adult. The surface finish is glossy and smooth, reflecting light and emphasizing the robot's modern aesthetic.",
+    "description": "A sleek, silver and teal humanoid robot with a glossy finish, expressive digital face, and articulated limbs.",
+    "description_view_0": "Front view shows the robot's expressive face, chest panel, and outstretched arms, highlighting its humanoid proportions and teal accents.",
+    "description_view_1": "Left side view reveals the robot's profile, rounded head, and the thickness of its limbs, with visible joint articulation.",
+    "description_view_2": "Rear view displays the smooth, metallic back, teal shoulder and leg panels, and the symmetrical design of the body.",
+    "description_view_3": "Right side view mirrors the left, showing the robot's profile, limb articulation, and the side of the head with antenna details.",
+    "category": "humanoid robot",
+    "height": 1.7,
+    "max_dimension": 2.0,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "electronic components",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.1,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "liftable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "face display",
+        "chest panel",
+        "arms",
+        "hands",
+        "fingers",
+        "legs",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "silver",
+        "teal blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.08,
+    "surface_finish": "glossy",
+    "reflectivity": 0.6,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.2,
+    "recommended_clearance": 0.8,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms extended horizontally to the sides, legs straight and parallel, head facing forward, and torso upright.",
+    "attribute_clothing_style": "No clothing; the robot is covered in integrated metallic and plastic panels with teal and silver coloration.",
+    "attribute_facial_features": "The face consists of a black digital display with stylized, expressive eyes and a mouth, lacking a nose or other traditional facial features. The head is adorned with two pointed antennae.",
+    "attribute_limb_articulation": "Arms and legs are segmented with visible joints at the shoulders, elbows, wrists, hips, knees, and ankles, suggesting ball or rotary joints for a wide range of motion. Hands have articulated fingers.",
+    "attribute_presence_of_sensors": "Visible sensors include digital eyes on the face display and possible sensor panel on the chest; antennae may also serve as communication or sensory devices.",
+    "uid": "264007e0eeb8431fa54dfaf830bfeb22",
+    "near_synsets": {
+        "android.n.01": 0.5427053132300417,
+        "cyborg.n.01": 0.5668949017343592,
+        "automaton.n.02": 0.5733290420457139,
+        "robotics_equipment.n.01": 0.5733514996772888,
+        "robotics.n.01": 0.5882373697428188
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/264007e0eeb8431fa54dfaf830bfeb22",
+        "creator_username": "sabrouille",
+        "creator_display_name": "Sarah Brouillet",
+        "creator_profile_url": "https://sketchfab.com/sabrouille"
+    },
+    "filename": "std_264007e0eeb8431fa54dfaf830bfeb22.glb",
+    "length": 0.3297245353460312,
+    "width": 1.9166311025619507
+}

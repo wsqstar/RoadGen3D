@@ -1,0 +1,90 @@
+{
+    "description_long": "This is a large, industrial shipping container with a rectangular, boxy form and reinforced metal ribbing along its sides. The exterior is painted a weathered orange, showing signs of rust, dirt, and wear, suggesting long-term outdoor use. Prominent black warning markings and signage, including a large 'CAUTION' label and biohazard symbols, are visible on the top and both end doors, indicating restricted or hazardous contents. The container features double doors on both ends, each secured with heavy-duty vertical locking bars and hinges. The sides are solid, with no windows or openings, and the top is flat, suitable for stacking or supporting additional weight. This type of container is commonly found in shipping yards, industrial zones, or urban construction sites.",
+    "description": "A large, weathered orange metal shipping container with black caution and biohazard markings, double locking doors on both ends, and reinforced ribbed sides.",
+    "description_view_0": "End view showing double doors with black biohazard and 'CAUTION' signage, vertical locking bars, and reinforced corners.",
+    "description_view_1": "Side view displaying ribbed metal panels, weathered orange paint, and a large 'CAUTION' label on the top surface.",
+    "description_view_2": "Opposite end view, nearly identical to view 0, with double doors, biohazard signage, and locking bars.",
+    "description_view_3": "Opposite side view with ribbed panels, weathering, and additional warning symbols and text, plus the top 'CAUTION' label.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.92,
+        0.07,
+        0.01
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking bar",
+        "hinge"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "black"
+    ],
+    "colors_composition": [
+        0.92,
+        0.08
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors on both ends",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "black 'CAUTION' and biohazard markings on top and both ends, warning symbols and text on sides",
+    "attribute_handles_or_grips": "vertical locking bars on both end doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "3cd049acb0a14ae98284a0b5585f0990",
+    "near_synsets": {
+        "cargo_container.n.01": 0.47037555226651306,
+        "container.n.01": 0.4781142892688946,
+        "bin.n.01": 0.5100175685626368,
+        "box.n.01": 0.5253291635010147,
+        "dumpster.n.01": 0.5357344981365084
+    },
+    "synset": "container.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3cd049acb0a14ae98284a0b5585f0990",
+        "creator_username": "utkarshraut75",
+        "creator_display_name": "utkarshraut75",
+        "creator_profile_url": "https://sketchfab.com/utkarshraut75"
+    },
+    "filename": "std_3cd049acb0a14ae98284a0b5585f0990.glb",
+    "length": 6.546290397644043,
+    "width": 2.741697072982788
+}

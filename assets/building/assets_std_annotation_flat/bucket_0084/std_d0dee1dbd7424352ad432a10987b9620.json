@@ -1,0 +1,107 @@
+{
+    "description_long": "This ship features a striking steampunk-inspired design with a wooden hull reinforced by metallic elements and adorned with intricate details. The bow is pointed and decorated with a stylized golden motif, while the stern houses three large jet-like propulsion units, suggesting a hybrid of traditional sailing and advanced technology. The deck is equipped with multiple masts and angular, semi-transparent sails that resemble honeycomb-patterned fabric, giving the vessel a futuristic yet classic appearance. Along the sides, several portholes and cannon ports are visible, hinting at both passenger and combat capabilities. The superstructure is compact, with a raised central section and minimal upper decks, emphasizing the ship's streamlined silhouette. The overall color palette is dominated by warm wood tones, metallic grays, and white sails, creating a visually cohesive and dynamic vessel.",
+    "description": "A steampunk-style ship with a wooden hull, metallic reinforcements, jet propulsion at the stern, and angular, semi-transparent sails. The vessel features intricate detailing, portholes, and a compact superstructure.",
+    "description_view_0": "Top-down view showing the symmetrical hull, central superstructure, and the full arrangement of angular sails and side fins.",
+    "description_view_1": "Side view highlighting the pointed bow, honeycomb-patterned sails, portholes, and the jet propulsion units at the stern.",
+    "description_view_2": "Rear view displaying the three large jet engines, rounded stern, and the arrangement of the rear sails and fins.",
+    "description_view_3": "Opposite side view mirroring view 1, with clear visibility of the hull's detailing, sails, and propulsion system.",
+    "category": "ship",
+    "height": 6.0,
+    "max_dimension": 22.0,
+    "materials": [
+        "wood",
+        "metal",
+        "fabric",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "steerable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "door",
+        "cannon",
+        "sail",
+        "hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "white",
+        "gold",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000.0,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a single displacement type with a pointed bow and rounded stern, reinforced with metallic bands and featuring side fins. The hull is adorned with decorative motifs and has multiple portholes and cannon ports along its length.",
+    "attribute_superstructure_layout": "The superstructure is compact and centrally located, with a single raised deck and minimal upper structures. There are no visible bridges or cabins, but the central section is slightly elevated and integrated with the hull.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "sail",
+        "cannon",
+        "jet engine",
+        "hatch"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "d0dee1dbd7424352ad432a10987b9620",
+    "near_synsets": {
+        "steampunk.n.01": 0.5163404470133195,
+        "steamer.n.03": 0.5214519460780537,
+        "vessel.n.02": 0.5370447645749735,
+        "craft.n.02": 0.5377106949824665,
+        "steamboat.n.01": 0.5386767001877205,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d0dee1dbd7424352ad432a10987b9620",
+        "creator_username": "caplanmaor",
+        "creator_display_name": "caplanmaor",
+        "creator_profile_url": "https://sketchfab.com/caplanmaor"
+    },
+    "filename": "std_d0dee1dbd7424352ad432a10987b9620.glb",
+    "length": 4.582985877990723,
+    "width": 7.615707874298096
+}

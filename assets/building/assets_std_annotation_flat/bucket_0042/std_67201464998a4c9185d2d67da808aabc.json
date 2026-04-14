@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a modern city bus with a rectangular, elongated body and a flat roof, designed for urban passenger transport. The bus features large, evenly spaced rectangular windows along both sides, providing ample visibility and natural light for passengers. The front of the bus is equipped with a wide windshield, two prominent headlights, and side mirrors, while the rear has a similar window and taillight arrangement. The exterior is primarily a light gray color, with subtle detailing around the windows and doors. The bus sits on four visible wheels, two on each side, and the entry doors are located on the right side, typical for right-hand traffic systems. The overall design is utilitarian, focusing on maximizing passenger capacity and ease of entry and exit.",
+    "description": "A modern, elongated city bus with large side windows, a flat roof, and a light gray exterior, designed for urban passenger transport.",
+    "description_view_0": "Front view showing the wide windshield, headlights, and the bus's rectangular front profile.",
+    "description_view_1": "Right side view displaying the full row of large rectangular windows and two passenger entry doors.",
+    "description_view_2": "Rear view highlighting the back window and taillights, with a simple, flat rear design.",
+    "description_view_3": "Left side view showing a continuous row of windows without visible doors.",
+    "category": "bus",
+    "height": 3.2,
+    "max_dimension": 12.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "mirror",
+        "headlight",
+        "taillight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 2,
+    "attribute_window_arrangement": "Seven large, evenly spaced rectangular windows along each side, separated by vertical pillars, with consistent size and shape throughout.",
+    "attribute_route_number_or_destination_sign": "",
+    "attribute_bus_manufacturer_logo": "",
+    "attribute_passenger_entry_step_height": 0.35,
+    "uid": "67201464998a4c9185d2d67da808aabc",
+    "near_synsets": {
+        "bus.n.01": 0.4671761378390815,
+        "school_bus.n.01": 0.5016237827324983,
+        "minibus.n.01": 0.5173797562182185,
+        "bus_company.n.01": 0.5264643760513327,
+        "public_transit.n.01": 0.5292106131272529,
+        "busbar.n.01": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "bus.n.04": -1000.0
+    },
+    "synset": "bus.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/67201464998a4c9185d2d67da808aabc",
+        "creator_username": "VIS-All",
+        "creator_display_name": "VIS-All-3D",
+        "creator_profile_url": "https://sketchfab.com/VIS-All"
+    },
+    "filename": "std_67201464998a4c9185d2d67da808aabc.glb",
+    "length": 19.114978790283203,
+    "width": 8.375988006591797
+}

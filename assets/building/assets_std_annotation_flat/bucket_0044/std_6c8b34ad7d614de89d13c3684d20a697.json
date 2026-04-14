@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a small pedestrian bridge with a gently arched deck and prominent red railings. The bridge features a wooden or composite walking surface, bordered by two sets of parallel red railings with vertical and horizontal slats, creating a visually striking and traditional appearance. The railings are slightly curved to match the arch of the bridge, and the structure appears to be designed for foot traffic, likely in a park or garden setting. The bridge's construction suggests a blend of wood and painted metal or wood for the railings, with the deck providing a smooth, walkable surface. The overall design is reminiscent of traditional Japanese or East Asian garden bridges, emphasizing both function and aesthetic appeal. There are no visible lighting fixtures or decorative elements beyond the railings themselves.",
+    "description": "A small, arched pedestrian bridge with red railings and a tan walking surface, evoking a traditional Japanese garden style.",
+    "description_view_0": "Top-down view showing the full arch of the bridge and the parallel red railings with geometric slats.",
+    "description_view_1": "Frontal view highlighting the entryway, the gentle arch of the deck, and the symmetry of the red railings.",
+    "description_view_2": "Opposite top-down view, mirroring view 0, with clear visibility of the railing design and deck curvature.",
+    "description_view_3": "Rear frontal view, similar to view 1, showing the exit side of the bridge and the consistent railing structure.",
+    "category": "bridge",
+    "height": 1.2,
+    "max_dimension": 5.0,
+    "materials": [
+        "wood",
+        "painted wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 450,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "crossable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "railing",
+        "deck"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "red",
+        "tan"
+    ],
+    "colors_composition": [
+        0.6,
+        0.4
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_support_type": "arch",
+    "attribute_railing_design": "painted wood railings with horizontal and vertical slats, gently curved to match the bridge arch",
+    "attribute_arch_presence": true,
+    "attribute_lighting_fixtures": [],
+    "attribute_architectural_style": "Japanese",
+    "uid": "6c8b34ad7d614de89d13c3684d20a697",
+    "near_synsets": {
+        "footbridge.n.01": 0.5083016386535489,
+        "trestle_bridge.n.01": 0.5324350124022208,
+        "bridge.n.03": 0.5416805623018257,
+        "steel_arch_bridge.n.01": 0.5434859714212286,
+        "bridge.n.01": 0.5471855557196378,
+        "bridge.n.07": -1000.0,
+        "bridge.n.04": -1000.0,
+        "bridge.n.08": -1000.0,
+        "bridge.n.09": -1000.0,
+        "bridge.n.02": -1000.0,
+        "bridge.n.05": -1000.0,
+        "bridge.n.06": -1000.0
+    },
+    "synset": "bridge.n.06",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6c8b34ad7d614de89d13c3684d20a697",
+        "creator_username": "proxy_doug",
+        "creator_display_name": "proxy_doug",
+        "creator_profile_url": "https://sketchfab.com/proxy_doug"
+    },
+    "filename": "std_6c8b34ad7d614de89d13c3684d20a697.glb",
+    "length": 4.923784971237183,
+    "width": 2.0110037326812744
+}

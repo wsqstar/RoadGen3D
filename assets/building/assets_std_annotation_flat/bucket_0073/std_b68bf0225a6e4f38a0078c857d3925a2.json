@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a small, modern cafe building with a rectangular footprint and a flat roof. The facade features large windows framed in beige, a central entrance with a glass door, and a prominent black awning above the door. Above the awning, block letters spell out 'COFFE', and a large, stylized coffee cup sits atop the roof as a decorative element. A green 'OPEN' sign is displayed above the entrance, and a small sandwich board stands on the sidewalk in front. The building's color palette includes beige, black, gray, and cream, giving it a clean and inviting appearance.",
+    "description": "A modern cafe building with a flat roof, large windows, a black awning, and a giant coffee cup on top. The facade features 'COFFE' signage and a welcoming entrance.",
+    "description_view_0": "Front view showing the entrance, large windows, black awning, 'COFFE' sign, 'OPEN' sign, and sandwich board.",
+    "description_view_1": "Side view highlighting the depth of the building, the coffee cup on the roof, and the sandwich board near the entrance.",
+    "description_view_2": "Rear view displaying a plain beige wall, the coffee cup on the roof, and no windows or signage.",
+    "description_view_3": "Opposite side view showing the building's side wall and the coffee cup, with no signage or sandwich board visible.",
+    "category": "cafe",
+    "height": 5.0,
+    "max_dimension": 10.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "plastic",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 25000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "readable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "signage",
+        "sandwich board"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "black",
+        "gray",
+        "cream",
+        "brown",
+        "green"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_signage": true,
+    "attribute_outdoor_seating": false,
+    "attribute_awning": true,
+    "attribute_storefront_display": true,
+    "attribute_architectural_style": "modern",
+    "uid": "b68bf0225a6e4f38a0078c857d3925a2",
+    "near_synsets": {
+        "espresso_shop.n.01": 0.5130738125245646,
+        "cafe.n.01": 0.5143503131467487,
+        "caff.n.01": 0.5532639019460501,
+        "coffee_stall.n.01": 0.5534620009540181,
+        "coffee_cup.n.01": 0.5548637342548437
+    },
+    "synset": "cafe.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b68bf0225a6e4f38a0078c857d3925a2",
+        "creator_username": "gits3d",
+        "creator_display_name": "giga",
+        "creator_profile_url": "https://sketchfab.com/gits3d"
+    },
+    "filename": "std_b68bf0225a6e4f38a0078c857d3925a2.glb",
+    "length": 4.940209865570068,
+    "width": 7.762344121932983
+}

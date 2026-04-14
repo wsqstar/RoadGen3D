@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a compact, tracked combat vehicle with a boxy, riveted hull and a prominent turret mounted centrally on top. The turret features a long, cylindrical cannon extending forward, and the entire vehicle is covered in a greenish, weathered metal with visible rivets and panel seams. The tracks are wide and robust, with large, spoked wheels visible on both sides, suggesting strong off-road capability. The front and sides of the hull are sloped, likely for deflecting projectiles, and the vehicle's surface shows signs of wear and utilitarian construction. There are no visible windows or hatches, emphasizing its armored nature. The overall design is reminiscent of early to mid-20th-century light tanks, built for urban or close-quarters combat.",
+    "description": "A small, green, riveted tracked combat vehicle with a central turret and long cannon, featuring wide tracks and sloped armored panels.",
+    "description_view_0": "Front view shows the sloped, riveted armor, wide tracks, and the turret base without the cannon visible.",
+    "description_view_1": "Left side view highlights the long cannon, turret, and the detailed track and wheel assembly.",
+    "description_view_2": "Direct front view with the cannon pointed forward, showing the symmetry of the tracks and armor.",
+    "description_view_3": "Right side view similar to the left, displaying the cannon, turret, and track system from the opposite side.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 6,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "track",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible cannon mounted on the central turret.",
+    "attribute_armor_plating": "Full body coverage with visibly thick, riveted steel plates; sloped armor on the front and sides.",
+    "attribute_camouflage_pattern": "Solid, weathered green paint with no distinct camouflage pattern.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "9b525246579d4f29afb3536ed4efd7ed",
+    "near_synsets": {
+        "tank.n.01": 0.4811180630895147,
+        "military_vehicle.n.01": 0.484243186771287,
+        "reconnaissance_vehicle.n.01": 0.4990449677771134,
+        "assault_gun.n.02": 0.5146841649223839,
+        "weapons_carrier.n.01": 0.5217275669899787,
+        "fomite.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9b525246579d4f29afb3536ed4efd7ed",
+        "creator_username": "ryanjonesgamesdesgin",
+        "creator_display_name": "ryanjonesgamesdesgin",
+        "creator_profile_url": "https://sketchfab.com/ryanjonesgamesdesgin"
+    },
+    "filename": "std_9b525246579d4f29afb3536ed4efd7ed.glb",
+    "length": 3.871377944946289,
+    "width": 2.05281400680542
+}

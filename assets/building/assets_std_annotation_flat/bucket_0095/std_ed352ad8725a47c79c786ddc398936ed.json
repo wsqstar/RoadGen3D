@@ -1,0 +1,97 @@
+{
+    "description_long": "This is a metal playground slide structure with a triangular profile, featuring a sloped slide on one side and a staircase with handrails on the opposite side. The slide is supported by three large cylindrical tunnels arranged horizontally beneath the main platform, which can be used for crawling or climbing. The entire structure is painted in a weathered green color, with visible signs of wear and some rust, indicating outdoor use. The handrails run along the staircase and the top platform, providing safety for children climbing up. The slide surface appears smooth and slightly reflective, while the supporting cylinders have a rougher, matte finish. The design is utilitarian and robust, suitable for public parks or urban playgrounds.",
+    "description": "A weathered green metal playground slide with a staircase, handrails, and three large cylindrical crawl tunnels beneath the platform. The structure is robust and designed for climbing, sliding, and crawling.",
+    "description_view_0": "A top-down view of the slide, showing the narrow, smooth sliding surface and the raised edges for safety.",
+    "description_view_1": "A side view displaying the full triangular profile, the staircase with handrails, the slide, and the three supporting crawl tunnels.",
+    "description_view_2": "A rear view focusing on the staircase, with visible steps and handrails leading up to the platform.",
+    "description_view_3": "The opposite side view, mirroring view 1, showing the slide, staircase, and crawl tunnels from the other direction.",
+    "category": "playground",
+    "height": 2.2,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "slidable",
+        "crawlable",
+        "grippable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "slide",
+        "stairs",
+        "handrail",
+        "crawl tunnel"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "green",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_playground_equipment_type": "slide with crawl tunnels",
+    "attribute_presence_of_safety_barriers": true,
+    "attribute_number_of_play_structures": 1,
+    "attribute_presence_of_shade_structures": false,
+    "attribute_architectural_style": "industrial",
+    "uid": "ed352ad8725a47c79c786ddc398936ed",
+    "near_synsets": {
+        "jungle_gym.n.01": 0.51897042648886,
+        "playground.n.02": 0.525779947254917,
+        "slide.n.04": 0.5276336354551001,
+        "climbing_frame.n.01": 0.5433011847635125,
+        "water_chute.n.01": 0.578120025653363,
+        "resort_area.n.01": -1000.0
+    },
+    "synset": "playground.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ed352ad8725a47c79c786ddc398936ed",
+        "creator_username": "shtran",
+        "creator_display_name": "shtran",
+        "creator_profile_url": "https://sketchfab.com/shtran"
+    },
+    "filename": "std_ed352ad8725a47c79c786ddc398936ed.glb",
+    "length": 0.7046346664428711,
+    "width": 5.324986219406128
+}

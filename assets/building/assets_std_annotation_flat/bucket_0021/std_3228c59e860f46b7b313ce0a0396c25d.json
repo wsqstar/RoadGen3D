@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a modern train composed of two connected carriages, each with a streamlined, angular design. The exterior is primarily gray with red and green accent lines running along the lower edges, giving it a contemporary urban appearance. The train features a flat roof and a series of evenly spaced rectangular windows along both sides, suggesting it is designed for passenger transport. The front carriage has a slightly tapered nose, indicating the direction of travel and enhancing aerodynamic efficiency. No overhead wires or pantographs are visible, implying it may be battery or third-rail powered. The doors are not distinctly visible, but the window arrangement and proportions suggest typical entry points along the sides.",
+    "description": "A sleek, two-car modern urban train with a gray body, red and green accents, and a row of rectangular windows along each side.",
+    "description_view_0": "Front view showing the tapered nose of the lead carriage and the streamlined design.",
+    "description_view_1": "Side view displaying both carriages, the continuous row of windows, and colored accent lines.",
+    "description_view_2": "Rear view highlighting the flat back of the train and the connection between the two carriages.",
+    "description_view_3": "Opposite side view, mirroring the window and accent pattern seen in view 1.",
+    "category": "train",
+    "height": 3.8,
+    "max_dimension": 38.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.07,
+        0.03,
+        0.03
+    ],
+    "mass": 110000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "coupler",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.82,
+        0.08,
+        0.06,
+        0.04
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.04,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "group",
+    "attribute_train_type": "commuter train",
+    "attribute_number_of_carriages": 2,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "no visible doors",
+    "attribute_window_arrangement": "continuous row of rectangular windows",
+    "uid": "3228c59e860f46b7b313ce0a0396c25d",
+    "near_synsets": {
+        "car_train.n.01": 0.4906185634820182,
+        "subway_train.n.01": 0.4949751651275997,
+        "train.n.01": 0.49913740526040806,
+        "streamliner.n.01": 0.5103945829851138,
+        "passenger_train.n.01": 0.5141785428982644,
+        "string.n.04": -1000.0,
+        "train.n.04": -1000.0,
+        "caravan.n.01": -1000.0,
+        "gearing.n.01": -1000.0,
+        "train.n.05": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/3228c59e860f46b7b313ce0a0396c25d",
+        "creator_username": "stevenb",
+        "creator_display_name": "Steven B",
+        "creator_profile_url": "https://sketchfab.com/stevenb"
+    },
+    "filename": "std_3228c59e860f46b7b313ce0a0396c25d.glb",
+    "length": 43.35843276977539,
+    "width": 3.790437936782837
+}

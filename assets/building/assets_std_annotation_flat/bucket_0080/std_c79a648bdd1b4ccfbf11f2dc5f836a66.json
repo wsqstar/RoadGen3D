@@ -1,0 +1,105 @@
+{
+    "description_long": "This humanoid robot features a robust, armored exterior with a predominantly gray and blue color scheme accented by muted red and yellow highlights. Its design is reminiscent of a mechanized exosuit, with broad, angular shoulders, a compact torso, and heavily plated limbs. The head is helmet-like, with a narrow visor and angular facial features, suggesting advanced optics or sensor arrays. Large, shield-like structures are mounted on its back, possibly for protection or propulsion, and the legs are thick and reinforced, ending in wide, stable feet. The arms are articulated and appear capable of a wide range of motion, with visible joint mechanisms at the elbows and shoulders. Markings and alphanumeric codes are stenciled across the body, adding to its utilitarian, military-inspired appearance.",
+    "description": "A heavily armored, blue-gray humanoid robot with angular plating, a helmeted head, and large shield-like structures on its back. Its design is robust and utilitarian, with reinforced limbs and visible mechanical joints.",
+    "description_view_0": "Front view shows the robot's broad chest, helmeted head with a narrow visor, and symmetrical, angular shoulder armor.",
+    "description_view_1": "Left side view highlights the depth of the back-mounted shield and the layered armor on the arms and legs.",
+    "description_view_2": "Rear view reveals the full extent of the shield structure, back plating, and reinforced leg armor.",
+    "description_view_3": "Right side view mirrors the left, showing the shield's profile and the articulated arm and leg joints.",
+    "category": "humanoid robot",
+    "height": 2.2,
+    "max_dimension": 2.5,
+    "materials": [
+        "steel",
+        "composite polymer",
+        "glass",
+        "rubber",
+        "air",
+        "copper"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.05,
+        0.08,
+        0.02
+    ],
+    "mass": 480,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 4700,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "pushable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arm",
+        "hand",
+        "leg",
+        "head",
+        "back shield",
+        "shoulder joint"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "white",
+        "red",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.45,
+        0.25,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms slightly bent at the elbows and legs straight, head facing forward, and back-mounted shield aligned vertically.",
+    "attribute_clothing_style": "No clothing; exterior consists of integrated armored panels and mechanical coverings with stenciled markings.",
+    "attribute_facial_features": "Helmet-like head with a narrow, angular visor; no visible mouth or nose; facial area is rigid and expressionless.",
+    "attribute_limb_articulation": "Arms and legs have visible hinge and rotary joints at shoulders, elbows, hips, and knees; limbs appear rigid but capable of mechanical articulation.",
+    "attribute_presence_of_sensors": "Possible optical sensor or camera in the visor area; no other sensors visibly apparent.",
+    "uid": "c79a648bdd1b4ccfbf11f2dc5f836a66",
+    "near_synsets": {
+        "android.n.01": 0.5338811937255006,
+        "cyborg.n.01": 0.5392669083669757,
+        "robotics_equipment.n.01": 0.5510693114300311,
+        "automaton.n.02": 0.5616538291354722,
+        "helmet.n.01": 0.572591143229599
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c79a648bdd1b4ccfbf11f2dc5f836a66",
+        "creator_username": "cosmos28",
+        "creator_display_name": "cosmos28",
+        "creator_profile_url": "https://sketchfab.com/cosmos28"
+    },
+    "filename": "std_c79a648bdd1b4ccfbf11f2dc5f836a66.glb",
+    "length": 1.0474128127098083,
+    "width": 1.3217906951904297
+}

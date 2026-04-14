@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a dark green, tracked combat tactical vehicle resembling a World War II-era light tank, featuring a prominent cylindrical turret with a long-barreled cannon mounted at the front. The hull is angular with sloped armor plating, and the vehicle rides on four large road wheels per side, connected by continuous metal tracks. Two thin radio antennas extend vertically from the turret, and a cylindrical storage container is attached to the rear. The vehicle's surface is matte, with visible bolts and panel lines, and the markings 'W.D. N. T9277' are stenciled in white on the side and front. The front features a reinforced glacis plate, while the rear has a large exhaust or storage compartment. The overall design is utilitarian, with minimal external ornamentation and a focus on armored protection and firepower.",
+    "description": "A dark green, tracked armored vehicle with a cylindrical turret, long cannon, and visible military markings. It features sloped armor, four large road wheels per side, and a rear-mounted cylindrical storage container.",
+    "description_view_0": "Front view shows the reinforced glacis plate, central cannon, and two vertical antennas on the turret.",
+    "description_view_1": "Left side view highlights the long cannon, sloped armor, four large road wheels, and white stenciled markings.",
+    "description_view_2": "Rear view displays the cylindrical storage container, exhaust compartment, and the back of the turret.",
+    "description_view_3": "Right side view mirrors the left, showing the turret, cannon, tracks, and additional panel details.",
+    "category": "combat tactical  vehicle",
+    "height": 2.3,
+    "max_dimension": 5.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 8000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "antenna",
+        "track",
+        "wheel",
+        "storage container",
+        "viewports"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the front of the turret; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body coverage with visibly thick, sloped steel armor plating on the hull and turret; reinforced glacis plate at the front.",
+    "attribute_camouflage_pattern": "Solid dark green paint scheme; no visible camouflage pattern.",
+    "attribute_military_markings": "White stenciled text 'W.D. N. T9277' on the side and front of the hull.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "11005cddf2b54145ac29967f01b21a65",
+    "near_synsets": {
+        "tank.n.01": 0.4802323649997955,
+        "military_vehicle.n.01": 0.4894769425992575,
+        "armored_car.n.02": 0.5037998155559039,
+        "reconnaissance_vehicle.n.01": 0.51132865242592,
+        "weapons_carrier.n.01": 0.523560924120116,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fight.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/11005cddf2b54145ac29967f01b21a65",
+        "creator_username": "Commissar_Hal",
+        "creator_display_name": "Commissar_Hal",
+        "creator_profile_url": "https://sketchfab.com/Commissar_Hal"
+    },
+    "filename": "std_11005cddf2b54145ac29967f01b21a65.glb",
+    "length": 2.960190534591675,
+    "width": 1.6557905077934265
+}

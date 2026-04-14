@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a cylindrical stone gatehouse with thick, gray masonry walls and a crenellated parapet at the top, reminiscent of medieval fortifications. The structure features a prominent arched wooden door at its base, reinforced with metal studs, serving as the main entryway. Small, narrow windows are set into the stone walls at regular intervals, providing limited visibility and defense. The upper section is defined by evenly spaced battlements, offering both protection and vantage points for guards. The base of the gatehouse is surrounded by patches of grass, suggesting it is set in a natural or semi-urban environment. The overall appearance is robust and defensive, designed to control access and provide security.",
+    "description": "A cylindrical stone gatehouse with a crenellated top, arched wooden door, and narrow windows, evoking medieval architecture. Its thick masonry and battlements emphasize security and defense.",
+    "description_view_0": "Front view showing the arched wooden door with metal studs and two narrow windows flanking the entry.",
+    "description_view_1": "Side view revealing the cylindrical stone structure and one of the narrow windows, with the door partially visible.",
+    "description_view_2": "Rear view displaying the solid stone wall with no visible entry, only the upper battlements and some greenery at the base.",
+    "description_view_3": "Opposite side view with a narrow window and a partial glimpse of the door, highlighting the round shape and battlements.",
+    "category": "gatehouse",
+    "height": 8.0,
+    "max_dimension": 6.0,
+    "materials": [
+        "stone",
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "defensible",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "windows"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "brown",
+        "green"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.0,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_architectural_style": "Medieval",
+    "attribute_roof_type": "crenellated parapet",
+    "attribute_entryway_design": "arched stone doorway with reinforced wooden door",
+    "attribute_window_placement": "narrow slit windows spaced around the cylindrical wall",
+    "attribute_security_features": [
+        "thick stone walls",
+        "crenellations",
+        "reinforced door",
+        "narrow windows"
+    ],
+    "uid": "a19522bb246b45778e8777e21ca02133",
+    "near_synsets": {
+        "gatehouse.n.01": 0.4690745915263676,
+        "portcullis.n.01": 0.488300511707412,
+        "battlement.n.01": 0.5097084267372122,
+        "machicolation.n.01": 0.5190119203912248,
+        "blockhouse.n.01": 0.5218210028483283
+    },
+    "synset": "gatehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a19522bb246b45778e8777e21ca02133",
+        "creator_username": "kitchz",
+        "creator_display_name": "zak",
+        "creator_profile_url": "https://sketchfab.com/kitchz"
+    },
+    "filename": "std_a19522bb246b45778e8777e21ca02133.glb",
+    "length": 6.065986633300781,
+    "width": 6.058199405670166
+}

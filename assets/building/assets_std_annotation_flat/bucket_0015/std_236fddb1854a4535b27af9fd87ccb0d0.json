@@ -1,0 +1,108 @@
+{
+    "description_long": "This storage tank is a large, vertically-oriented cylindrical vessel with a rounded top and flat base, constructed from what appears to be metal with a weathered blue finish. It is positioned adjacent to a rustic wooden building with a black gabled roof and a prominent brick chimney, suggesting an industrial or utilitarian function. The tank features a visible pipe system at its base, including a curved outlet pipe connected to a smaller, spherical vessel and several cylindrical containers, likely for fluid transfer or processing. The surface of the tank shows signs of rust and wear, indicating prolonged outdoor exposure. No access ladder is visible, and there are no warning signs or labels on the tank. The overall setup suggests the tank is used for storage or processing of liquids, possibly in a small industrial or workshop setting.",
+    "description": "A tall, weathered blue cylindrical storage tank with a rounded top, attached pipes, and adjacent to a rustic wooden building with a brick chimney.",
+    "description_view_0": "The front view shows the full height of the blue cylindrical tank, its rounded top, and the attached pipework leading to a smaller vessel and containers beside a wooden building with an open door.",
+    "description_view_1": "This side view highlights the tank's proximity to the building's brick chimney and shows the tank's cylindrical shape and weathered surface, with less visibility of the pipework.",
+    "description_view_2": "The rear view displays the length of the wooden building, the tank partially obscured behind the roof, and the absence of visible pipework or entry points on the tank.",
+    "description_view_3": "This angled view reveals the tank's connection to the building, the attached pipework, and the small containers, as well as a window with a metal awning on the building.",
+    "category": "storage tank",
+    "height": 2.5,
+    "max_dimension": 2.5,
+    "materials": [
+        "steel",
+        "air",
+        "copper",
+        "wood"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 350,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "connectable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pipe",
+        "valve",
+        "outlet"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [
+        "outlet pipe",
+        "valve"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_architectural_style": "cylindrical vertical",
+    "uid": "236fddb1854a4535b27af9fd87ccb0d0",
+    "near_synsets": {
+        "tank.n.02": 0.507757814206191,
+        "tank_farm.n.01": 0.5100277276225491,
+        "reservoir.n.03": 0.5227966142684336,
+        "water_tower.n.01": 0.5249403820391902,
+        "gas_tank.n.01": 0.5453504441374055,
+        "storehouse.n.01": -1000.0,
+        "storage.n.03": -1000.0,
+        "repositing.n.01": -1000.0,
+        "tank.n.03": -1000.0,
+        "storage.n.04": -1000.0,
+        "memory.n.04": -1000.0,
+        "storage.n.01": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "tank.n.01": -1000.0,
+        "cooler.n.03": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/236fddb1854a4535b27af9fd87ccb0d0",
+        "creator_username": "TTK15",
+        "creator_display_name": "TTK15",
+        "creator_profile_url": "https://sketchfab.com/TTK15"
+    },
+    "filename": "std_236fddb1854a4535b27af9fd87ccb0d0.glb",
+    "length": 3.9955791234970093,
+    "width": 4.0598907470703125
+}

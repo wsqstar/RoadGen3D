@@ -1,0 +1,98 @@
+{
+    "description_long": "This humanoid robot features a skeletal, mechanical frame with articulated limbs and a segmented torso, giving it a distinctly industrial appearance. The robot's arms and legs are constructed from jointed rods and mechanical linkages, suggesting a high degree of flexibility and movement. Its head is rounded and appears to be attached to the torso with a visible neck joint, while the torso itself is composed of several interconnected segments. There is a prominent, spherical component in the chest area, possibly serving as a core or power source. The overall structure is open and skeletal, with visible gaps between components, and the robot's hands and feet are blocky and mechanical. The design is utilitarian, with no visible coverings or decorative elements, emphasizing function over form.",
+    "description": "A skeletal humanoid robot with articulated limbs, a segmented torso, and a prominent spherical core in the chest. The design is open, mechanical, and utilitarian.",
+    "description_view_0": "The robot is seen from a three-quarter front angle, highlighting the spherical chest core, segmented torso, and jointed limbs.",
+    "description_view_1": "A side view reveals the rounded head, the mechanical structure of the arms and legs, and the open, skeletal frame.",
+    "description_view_2": "The rear three-quarter view shows the back of the torso, the articulation of the legs, and the mechanical feet.",
+    "description_view_3": "The opposite side view displays the head profile, arm articulation, and the blocky structure of the hands and feet.",
+    "category": "humanoid robot",
+    "height": 1.7,
+    "max_dimension": 1.7,
+    "materials": [
+        "metal",
+        "plastic",
+        "air",
+        "glass"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 65,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 3,
+    "movable": true,
+    "required_force": 250,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arm",
+        "leg",
+        "hand",
+        "foot",
+        "head",
+        "torso",
+        "core"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is in a dynamic, partially crouched pose with one arm raised and the other lowered, legs bent at the knees, and the head facing forward. The torso is slightly twisted, suggesting readiness for movement.",
+    "attribute_clothing_style": "The robot is unclothed, with only integrated mechanical panels and exposed structural components visible.",
+    "attribute_facial_features": "The face is minimally detailed, with no clear eyes, mouth, or nose; the head is rounded and mechanical, lacking expressive features.",
+    "attribute_limb_articulation": "The robot has multiple visible hinge and rotary joints at the shoulders, elbows, wrists, hips, knees, and ankles, allowing for a wide range of motion. The limbs appear highly articulated and flexible.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "37ef99854073450398a6139c2922f147",
+    "near_synsets": {
+        "android.n.01": 0.5382453021605849,
+        "cyborg.n.01": 0.5484869600933605,
+        "robotics_equipment.n.01": 0.560325320297594,
+        "automaton.n.02": 0.5717230920093214,
+        "robotics.n.01": 0.5738609380709258
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/37ef99854073450398a6139c2922f147",
+        "creator_username": "tan.cha",
+        "creator_display_name": "tajakabaja",
+        "creator_profile_url": "https://sketchfab.com/tan.cha"
+    },
+    "filename": "std_37ef99854073450398a6139c2922f147.glb",
+    "length": 1.6533508896827698,
+    "width": 2.4003233909606934
+}

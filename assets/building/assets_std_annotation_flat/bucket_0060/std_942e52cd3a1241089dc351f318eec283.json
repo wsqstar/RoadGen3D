@@ -1,0 +1,99 @@
+{
+    "description_long": "This humanoid robot features a robust, armored exterior with a matte black finish, giving it a tactical and imposing appearance. The head is helmet-like with angular contours and glowing red eyes, suggesting advanced visual sensors. Its broad, squared shoulders and segmented limbs are designed for strength and mobility, with visible joint mechanisms at the elbows, knees, and wrists. The torso is reinforced and includes a central panel with subtle detailing, possibly for access or display. The hands are articulated with individual fingers, and the legs are proportioned for bipedal locomotion, ending in sturdy, blocky feet. Overall, the robot's design emphasizes durability, functionality, and a menacing urban presence.",
+    "description": "A matte black, armored humanoid robot with glowing red eyes, broad shoulders, and articulated limbs, designed for strength and urban deployment.",
+    "description_view_0": "Front view shows the robot's helmeted head with red eyes, broad chest, and symmetrical arm and leg positioning.",
+    "description_view_1": "Left side view highlights the robot's profile, showing the thickness of the limbs, joint details, and the angular helmet shape.",
+    "description_view_2": "Rear view reveals the back armor plating, the structure of the legs, and the back of the helmet.",
+    "description_view_3": "Right side view mirrors the left, displaying limb articulation and the side profile of the head and torso.",
+    "category": "humanoid robot",
+    "height": 1.85,
+    "max_dimension": 0.85,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "synthetic rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.05,
+        0.07,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hand",
+        "finger",
+        "arm joint",
+        "leg joint",
+        "head",
+        "torso panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.12,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms slightly angled outward and legs straight; head facing forward; hands relaxed at sides.",
+    "attribute_clothing_style": "No separate clothing; exterior consists of integrated armored panels and coverings, all in matte black.",
+    "attribute_facial_features": "Helmet-like head with no mouth or nose; two prominent glowing red eyes; no other facial features or expressive elements.",
+    "attribute_limb_articulation": "Visible hinge and rotary joints at shoulders, elbows, wrists, hips, knees, and ankles; articulated fingers; limbs appear rigid but highly jointed.",
+    "attribute_presence_of_sensors": "Visible optical sensors (red eyes) on the head; no other sensors visible.",
+    "uid": "942e52cd3a1241089dc351f318eec283",
+    "near_synsets": {
+        "android.n.01": 0.5270254161239192,
+        "robotics_equipment.n.01": 0.5562318349657476,
+        "automaton.n.02": 0.5572092162543892,
+        "cyborg.n.01": 0.558265057312196,
+        "automaton.n.03": 0.5883536318558693
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/942e52cd3a1241089dc351f318eec283",
+        "creator_username": "SpiritedSpy",
+        "creator_display_name": "SpiritedSpy",
+        "creator_profile_url": "https://sketchfab.com/SpiritedSpy"
+    },
+    "filename": "std_942e52cd3a1241089dc351f318eec283.glb",
+    "length": 0.3891516923904419,
+    "width": 1.4922476410865784
+}

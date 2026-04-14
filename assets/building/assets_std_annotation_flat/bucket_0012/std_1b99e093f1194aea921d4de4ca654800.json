@@ -1,0 +1,113 @@
+{
+    "description_long": "This playground features a central hexagonal pavilion with a red-tiled roof, surrounded by various play structures on a grassy surface. To one side, there is a swing set with two standard swings and a circular nest swing. Adjacent to the pavilion is a multi-level play structure with a yellow slide, climbing ladders, and a small blue-roofed playhouse. A metal climbing frame and a set of steps provide additional climbing opportunities. The area is equipped with a streetlamp for illumination and is designed to accommodate multiple children at once. The layout is open, allowing easy movement between the different play elements, and the pavilion offers shaded seating for supervision or rest.",
+    "description": "A spacious playground with a central pavilion, swings, slides, climbing frames, and a multi-level play structure on a grassy base. The area is open and includes both play and shaded rest zones.",
+    "description_view_0": "Front view showing the pavilion, swing set, nest swing, climbing frame, and a glimpse of the playhouse and slide in the background.",
+    "description_view_1": "Side view highlighting the slide, climbing frame, pavilion, and the rear of the swing set, with the playhouse visible behind the slide.",
+    "description_view_2": "Rear view displaying the pavilion entrance, playhouse, slide, and the full swing set with all swings visible.",
+    "description_view_3": "Opposite side view focusing on the nest swing, pavilion, and the side of the play structure with the slide and playhouse.",
+    "category": "playground",
+    "height": 4.0,
+    "max_dimension": 16.0,
+    "materials": [
+        "metal",
+        "plastic",
+        "wood",
+        "concrete",
+        "roof_tile",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.25,
+        0.15,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "slideable",
+        "sittable",
+        "swingable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "swing",
+        "slide",
+        "climbing frame",
+        "steps",
+        "pavilion benches",
+        "playhouse door"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "red",
+        "yellow",
+        "blue",
+        "green",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.35,
+        0.2,
+        0.15,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 20000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_playground_equipment_type": "multi-play structure",
+    "attribute_presence_of_safety_barriers": true,
+    "attribute_number_of_play_structures": 5,
+    "attribute_presence_of_shade_structures": true,
+    "attribute_architectural_style": "traditional",
+    "uid": "1b99e093f1194aea921d4de4ca654800",
+    "near_synsets": {
+        "playground.n.02": 0.465880955079451,
+        "jungle_gym.n.01": 0.5406399098907169,
+        "park.n.02": 0.5504320144185707,
+        "village_green.n.01": 0.5600861304025578,
+        "pavilion.n.01": 0.5621753194722356,
+        "resort_area.n.01": -1000.0
+    },
+    "synset": "playground.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1b99e093f1194aea921d4de4ca654800",
+        "creator_username": "jacky15621419",
+        "creator_display_name": "Solarliu",
+        "creator_profile_url": "https://sketchfab.com/jacky15621419"
+    },
+    "filename": "std_1b99e093f1194aea921d4de4ca654800.glb",
+    "length": 17.202868461608887,
+    "width": 17.202880859375
+}

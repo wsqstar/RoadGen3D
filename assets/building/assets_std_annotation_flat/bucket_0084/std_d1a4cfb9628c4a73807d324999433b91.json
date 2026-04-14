@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a military combat tactical vehicle resembling a Humvee, featuring a robust, boxy body with reinforced doors and windows. The exterior is covered in a dark, weathered camouflage paint scheme, blending shades of green, brown, and black. On the roof, there is a visible weapon mount equipped with a machine gun, surrounded by protective armor plating. The vehicle has four large, rugged off-road tires with deep treads, designed for traversing rough urban and off-road environments. The windows are small and likely bullet-resistant, and the vehicle's body is covered with thick, angular armor panels for enhanced protection. No visible military insignia or unit markings are present on the exterior.",
+    "description": "A heavily armored, camouflaged military tactical vehicle with a roof-mounted machine gun and four rugged off-road tires. Its boxy, reinforced body is designed for urban and combat scenarios.",
+    "description_view_0": "Front view showing the armored grille, reinforced windshield, and the roof-mounted weapon system.",
+    "description_view_1": "Left side view highlighting the four large off-road tires, side doors, and the roof weapon mount.",
+    "description_view_2": "Rear view displaying the back armor plating and the compact, boxy structure of the vehicle.",
+    "description_view_3": "Right side view similar to the left, showing the side doors, tires, and the roof-mounted weapon.",
+    "category": "combat tactical  vehicle",
+    "height": 2.0,
+    "max_dimension": 5.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.1,
+        0.05,
+        0.01,
+        0.04
+    ],
+    "mass": 4200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 25000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "weapon mount",
+        "handle",
+        "mirror"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible weapon mount on the roof, equipped with a machine gun.",
+    "attribute_armor_plating": "Full body coverage with thick, angular armor plating, including reinforced doors and roof panels.",
+    "attribute_camouflage_pattern": "Dark woodland camouflage pattern with irregular patches of green, brown, and black.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "Four large off-road tires with deep, aggressive tread pattern; appear reinforced for rugged terrain.",
+    "uid": "d1a4cfb9628c4a73807d324999433b91",
+    "near_synsets": {
+        "reconnaissance_vehicle.n.01": 0.47043468763598617,
+        "military_vehicle.n.01": 0.4710964167360863,
+        "tank.n.01": 0.48303431640280303,
+        "armored_car.n.02": 0.4913589505882666,
+        "assault_gun.n.02": 0.5061561947909264,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "armored_car.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d1a4cfb9628c4a73807d324999433b91",
+        "creator_username": "andruha1801",
+        "creator_display_name": "andruha1801",
+        "creator_profile_url": "https://sketchfab.com/andruha1801"
+    },
+    "filename": "std_d1a4cfb9628c4a73807d324999433b91.glb",
+    "length": 10.41564130783081,
+    "width": 10.219657897949219
+}

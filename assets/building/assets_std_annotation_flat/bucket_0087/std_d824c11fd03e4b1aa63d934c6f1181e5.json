@@ -1,0 +1,91 @@
+{
+    "description_long": "This is a large, dome-shaped tent with a smooth, rounded exterior and a single arched entrance at the front. The tent appears to be constructed from a light-colored, fabric-like material stretched over a framework, giving it a seamless, monolithic look. The entrance is a simple, open archway without any visible door or flap, allowing easy access to the interior. The structure sits on a flat, dark base, which may represent a groundsheet or platform. There are no visible windows, vents, or external features such as guy lines or branding. The overall design suggests a temporary shelter suitable for group gatherings or events in urban parks or open spaces.",
+    "description": "A large, dome-shaped tent with a smooth, light exterior and a single open archway entrance, set on a flat base. The tent is featureless aside from its entrance, with no visible windows, vents, or branding.",
+    "description_view_0": "Front view showing the arched entrance and a human figure for scale, highlighting the tent's large size and smooth dome shape.",
+    "description_view_1": "Angled view from the left, showing the entrance from the side and the continuous, seamless surface of the tent.",
+    "description_view_2": "Rear view with no visible entrance or features, emphasizing the uninterrupted dome surface.",
+    "description_view_3": "Front view from the opposite side, again showing the entrance and a human figure, with the rest of the tent's surface remaining smooth and unadorned.",
+    "category": "tent",
+    "height": 2.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "fabric",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.2
+    ],
+    "mass": 80,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 200,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "shelter",
+        "cover"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "entrance"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light gray",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 500,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "arched open doorway at the front, no visible flap or door, simple and unobstructed",
+    "attribute_number_of_poles": 6,
+    "attribute_guy_line_configuration": "none visible; no guy lines or external attachments apparent",
+    "attribute_ventilation_openings": [],
+    "attribute_branding_or_logo": "none",
+    "uid": "d824c11fd03e4b1aa63d934c6f1181e5",
+    "near_synsets": {
+        "sibley_tent.n.01": 0.4892576148372275,
+        "pavilion.n.01": 0.4987765287180383,
+        "field_tent.n.01": 0.5080818002730544,
+        "bell_tent.n.01": 0.5123569080435646,
+        "umbrella_tent.n.01": 0.5163872505588015,
+        "tent.n.01": -1000.0,
+        "tent.n.02": -1000.0
+    },
+    "synset": "tent.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d824c11fd03e4b1aa63d934c6f1181e5",
+        "creator_username": "inventa3d",
+        "creator_display_name": "inventa3d",
+        "creator_profile_url": "https://sketchfab.com/inventa3d"
+    },
+    "filename": "std_d824c11fd03e4b1aa63d934c6f1181e5.glb",
+    "length": 5.207071542739868,
+    "width": 5.129838466644287
+}

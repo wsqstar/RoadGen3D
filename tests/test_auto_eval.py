@@ -172,7 +172,7 @@ def _run_single_version_real_llm(
     """
     import time
     import httpx
-    from roadgen3d.llm.llm_client import LLMResponseError
+    from roadgen3d.eval_engine_ext.road_metrics.evaluators.llm_client import LLMResponseError
 
     real_service = DesignAssistantService()
 

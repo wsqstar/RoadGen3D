@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a large, modern semi-truck tractor unit with a high-roof sleeper cab, designed for long-haul transportation. The cab features aerodynamic contours, side mirrors extending from both doors, and multiple windows including a small upper window on each side. The front grille is prominent and rectangular, flanked by angular headlights and a robust bumper. The rear section consists of a chassis cab with dual rear axles and a fifth-wheel coupling for attaching a trailer, with black wheel arches and a flat rear deck. The truck is primarily finished in a muted gray color with black accents on the wheels, bumper, and rear chassis. The overall design suggests durability and efficiency for urban and highway freight operations.",
+    "description": "A large, gray semi-truck tractor with a high-roof sleeper cab, dual rear axles, and aerodynamic features. It has a prominent grille, side mirrors, and a flat rear chassis for trailer attachment.",
+    "description_view_0": "Front view shows the wide grille, angular headlights, and side mirrors extending outward.",
+    "description_view_1": "Left side view highlights the high-roof sleeper cab, side windows, and dual rear axles.",
+    "description_view_2": "Rear view displays the flat chassis cab, fifth-wheel coupling, and black wheel arches.",
+    "description_view_3": "Right side view mirrors the left, showing the cab's height, windows, and rear wheel configuration.",
+    "category": "truck",
+    "height": 3.8,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.1,
+        0.05,
+        0.02
+    ],
+    "mass": 8500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "mirror",
+        "window",
+        "grille",
+        "headlight",
+        "fifth-wheel coupling"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "sleeper cab",
+    "attribute_cargo_bed_type": "chassis cab",
+    "attribute_wheelbase": 4.2,
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "d09c31ba28994f1d953362fceb3df226",
+    "near_synsets": {
+        "trailer_truck.n.01": 0.4708379919714342,
+        "tractor.n.02": 0.4964952400903279,
+        "trailer.n.03": 0.4981802352841534,
+        "truck.n.01": 0.5059799265246933,
+        "tandem_trailer.n.01": 0.533164032949462,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d09c31ba28994f1d953362fceb3df226",
+        "creator_username": "4sakthi4",
+        "creator_display_name": "4sakthi4",
+        "creator_profile_url": "https://sketchfab.com/4sakthi4"
+    },
+    "filename": "std_d09c31ba28994f1d953362fceb3df226.glb",
+    "length": 7.970362901687622,
+    "width": 3.477697968482971
+}

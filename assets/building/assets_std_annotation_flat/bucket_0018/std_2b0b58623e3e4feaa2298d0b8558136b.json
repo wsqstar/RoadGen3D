@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a small, rustic outdoor public toilet constructed primarily from dark wooden planks. The structure features a simple rectangular form with vertical slats on all sides and a slightly slanted roof made of matching wood. The front has a single swinging door, reinforced with diagonal bracing and metal hinges, and a small cut-out near the top for ventilation or light. The door is partially open, revealing a dark, unadorned interior. The base is also made of wood, slightly raised above the ground, and the overall build appears sturdy but basic, suitable for parks or rural urban edges. There are no visible windows, signage, or accessibility features, and the only ventilation is a small cut-out in the door.",
+    "description": "A small, rustic wooden public toilet with a slanted roof and a single swinging door, partially open to reveal a dark interior. The structure is simple, sturdy, and lacks visible signage or accessibility features.",
+    "description_view_0": "Side view showing the door partially open, revealing the interior and the door's diagonal bracing.",
+    "description_view_1": "Rear view displaying the solid wooden slat construction and the slanted roof, with no openings or features.",
+    "description_view_2": "Opposite side view with the door open, showing the thickness of the wood and the dark interior.",
+    "description_view_3": "Front view highlighting the swinging door with a small cut-out, metal hinges, and the entryway.",
+    "category": "public toilets",
+    "height": 2.0,
+    "max_dimension": 2.2,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.1
+    ],
+    "mass": 180,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "hinges"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "dark brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_signage": "none",
+    "attribute_door_type": "swinging",
+    "attribute_ventilation_features": "small cut-out in the door",
+    "attribute_accessibility_features": "none",
+    "attribute_roof_structure": "Slanted wooden roof with no visible overhangs or skylights.",
+    "uid": "2b0b58623e3e4feaa2298d0b8558136b",
+    "near_synsets": {
+        "public_toilet.n.01": 0.4883450208838342,
+        "latrine.n.01": 0.5181163234166775,
+        "men's_room.n.01": 0.5195213701643109,
+        "washroom.n.01": 0.5272642852023892,
+        "toilet.n.01": 0.5337579630746958,
+        "toilet.n.04": -1000.0,
+        "gutter.n.02": -1000.0,
+        "toilet.n.02": -1000.0
+    },
+    "synset": "public_toilet.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2b0b58623e3e4feaa2298d0b8558136b",
+        "creator_username": "vet.doc",
+        "creator_display_name": "Yulia_vet.doc",
+        "creator_profile_url": "https://sketchfab.com/vet.doc"
+    },
+    "filename": "std_2b0b58623e3e4feaa2298d0b8558136b.glb",
+    "length": 1.8569213151931763,
+    "width": 1.2454168796539307
+}

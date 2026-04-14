@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a classic hand grenade, featuring a robust, segmented green body designed for grip and durability. The upper section is fitted with a matte black safety lever and a prominent metal pull ring, which is attached to the safety pin mechanism. The body is oval-shaped with deep grooves running horizontally and vertically, giving it a rugged, utilitarian appearance. The lever is contoured to fit snugly against the grenade's body, and the ring is large enough to be easily grasped. The surface finish is slightly glossy, reflecting light subtly, and the overall construction suggests a solid, metallic build. No visible warning labels or digital components are present, emphasizing its mechanical detonation mechanism.",
+    "description": "A green, segmented hand grenade with a black safety lever and metal pull ring, featuring a rugged, glossy surface and solid metallic construction.",
+    "description_view_0": "The grenade is viewed directly from the top of the safety lever, showing the lever's width and the rounded, segmented body beneath.",
+    "description_view_1": "This side view highlights the full profile of the grenade, clearly displaying the black safety lever, the metal pull ring, and the detailed green body.",
+    "description_view_2": "A front view showing the broad, rounded face of the grenade and the top-mounted safety mechanism, with the lever and pin visible.",
+    "description_view_3": "An angled view emphasizing the curvature of the body and the lever's attachment, with the grooves and contours of the grenade clearly visible.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.12,
+    "materials": [
+        "steel",
+        "plastic",
+        "air",
+        "explosive_compound"
+    ],
+    "materials_composition": [
+        0.6,
+        0.1,
+        0.05,
+        0.25
+    ],
+    "mass": 0.4,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "safety pin"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "glossy",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the metal ring to remove the safety pin, allowing the lever to release and trigger the internal fuse mechanism.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "da5dbd057f3f406e84b15336b25133e0",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.47643275718248973,
+        "grenade.n.01": 0.5046468524316486,
+        "rifle_grenade.n.01": 0.5412762576105825,
+        "bomb.n.01": 0.5439759431187196,
+        "pipe_bomb.n.01": 0.5596896616442851,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/da5dbd057f3f406e84b15336b25133e0",
+        "creator_username": "lrenow5",
+        "creator_display_name": "lrenow5",
+        "creator_profile_url": "https://sketchfab.com/lrenow5"
+    },
+    "filename": "std_da5dbd057f3f406e84b15336b25133e0.glb",
+    "length": 0.07613667100667953,
+    "width": 0.06520183384418488
+}

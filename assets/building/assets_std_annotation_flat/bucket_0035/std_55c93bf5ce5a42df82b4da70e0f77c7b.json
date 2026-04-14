@@ -1,0 +1,91 @@
+{
+    "description_long": "This is a rustic wooden handcart designed for transporting goods, featuring a rectangular open bed with raised side panels and a flat wooden base. The cart is supported by four large spoked wooden wheels, two on each side, which are attached to the frame with visible axles. The front of the cart has a long, straight wooden handle for pulling or pushing, extending outward for easy maneuverability. The load area is currently filled with several cylindrical wooden barrels, each bound with dark metal hoops, suggesting the cart is used for carrying heavy or bulky items. The wood shows a natural, slightly weathered texture, and the metal components have a matte, aged finish. The overall construction is robust, suitable for use on cobblestone streets or in urban markets.",
+    "description": "A sturdy wooden handcart with four large spoked wheels, raised side panels, and a long handle, loaded with several wooden barrels bound by metal hoops.",
+    "description_view_0": "The handcart is seen from above and slightly behind, highlighting the barrels stacked in the open bed and the rear wheels.",
+    "description_view_1": "A side perspective shows all four wheels, the full length of the handle, and the arrangement of barrels within the cart.",
+    "description_view_2": "Viewed from the front, the long handle is prominent, and the barrels are clearly visible inside the cart's bed.",
+    "description_view_3": "A rear-side angle displays the side panels, the spoked wheels, and the barrels, with the handle extending away from view.",
+    "category": "handcart",
+    "height": 1.0,
+    "max_dimension": 2.2,
+    "materials": [
+        "wood",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.1
+    ],
+    "mass": 120,
+    "receptacle": true,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "side panel",
+        "load platform"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_number_of_wheels": 4,
+    "attribute_handle_type": "long straight bar",
+    "attribute_wheel_position": "all corners",
+    "attribute_presence_of_side_rails": true,
+    "attribute_load_platform_design": "flat solid surface",
+    "uid": "55c93bf5ce5a42df82b4da70e0f77c7b",
+    "near_synsets": {
+        "handcart.n.01": 0.4491052377666525,
+        "hand_truck.n.01": 0.4570194014178316,
+        "cart.n.01": 0.4608392477798808,
+        "shopping_cart.n.01": 0.469477094216341,
+        "serving_cart.n.01": 0.4797645806645846
+    },
+    "synset": "handcart.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/55c93bf5ce5a42df82b4da70e0f77c7b",
+        "creator_username": "tornear",
+        "creator_display_name": "tornear",
+        "creator_profile_url": "https://sketchfab.com/tornear"
+    },
+    "filename": "std_55c93bf5ce5a42df82b4da70e0f77c7b.glb",
+    "length": 2.3183594942092896,
+    "width": 1.54296875
+}

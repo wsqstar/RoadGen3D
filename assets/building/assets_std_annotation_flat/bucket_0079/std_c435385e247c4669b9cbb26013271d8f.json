@@ -1,0 +1,107 @@
+{
+    "description_long": "This object is a classic British police telephone box, most notably resembling the TARDIS from Doctor Who. It features a tall, rectangular structure with a flat base and a slightly tapered roof topped by a small cylindrical lamp. The exterior is painted a deep blue with wood grain texture, and the front displays a prominent sign reading 'POLICE PUBLIC CALL BOX' above a set of double doors. The doors have multiple small, square-paned windows, and one door includes a small white instruction panel. The booth is fully enclosed with windows on all sides, and the roof has a stepped design with a central light fixture. The overall appearance is robust and iconic, suitable for placement on urban sidewalks or near public spaces.",
+    "description": "A deep blue, fully enclosed British police telephone box with paneled windows, double doors, and a prominent 'POLICE PUBLIC CALL BOX' sign.",
+    "description_view_0": "Front view showing double doors, window panes, and the 'POLICE PUBLIC CALL BOX' sign clearly visible.",
+    "description_view_1": "Similar to the front, with slight rotation; the sign and windows remain prominent, but the side depth is more apparent.",
+    "description_view_2": "Another frontal angle, showing the sign, windows, and the stepped roof with the lamp; minimal side detail visible.",
+    "description_view_3": "Front view with the instruction panel on the left door clearly visible, along with the sign and window arrangement.",
+    "category": "telephone booth",
+    "height": 2.6,
+    "max_dimension": 1.2,
+    "materials": [
+        "wood",
+        "glass",
+        "metal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "mass": 420,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "sign",
+        "instruction panel",
+        "lamp"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "blue",
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.07,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_enclosure_type": "fully enclosed",
+    "attribute_door_presence": true,
+    "attribute_window_configuration": "six small square-paned windows on each door, additional windows on side panels",
+    "attribute_signage_or_labeling": "White 'POLICE PUBLIC CALL BOX' sign on black background above doors; small white instruction panel on left door",
+    "attribute_handset_visibility": false,
+    "uid": "c435385e247c4669b9cbb26013271d8f",
+    "near_synsets": {
+        "telephone_booth.n.01": 0.4702433337477118,
+        "pillar_box.n.01": 0.5576151997432675,
+        "pay-phone.n.01": 0.5641218410695863,
+        "signal_box.n.01": 0.566371997077558,
+        "postbox.n.01": 0.5703672691668196,
+        "telephone.n.02": -1000.0,
+        "booth.n.01": -1000.0,
+        "booth.n.02": -1000.0,
+        "telephone.n.01": -1000.0,
+        "booth.n.04": -1000.0,
+        "booth.n.03": -1000.0
+    },
+    "synset": "telephone_booth.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c435385e247c4669b9cbb26013271d8f",
+        "creator_username": "nando59",
+        "creator_display_name": "nando59",
+        "creator_profile_url": "https://sketchfab.com/nando59"
+    },
+    "filename": "std_c435385e247c4669b9cbb26013271d8f.glb",
+    "length": 1.4671716690063477,
+    "width": 1.4671714901924133
+}

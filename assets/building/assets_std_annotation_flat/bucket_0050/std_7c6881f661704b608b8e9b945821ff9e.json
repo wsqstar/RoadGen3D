@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a large, industrial transformer tower set within a rectangular concrete enclosure. The tower itself is a tall, lattice structure painted in alternating red and white sections, typical for high-visibility infrastructure. At the base, there is a small utility building with a corrugated metal roof, adjacent to a dense green bush, and surrounded by a paved area. The enclosure is bordered by a low concrete wall, and there are several utility poles and electrical components distributed around the site. The tower is equipped with crossarms and insulator stacks, supporting high-voltage power lines. The overall scene is utilitarian, with a focus on electrical transmission and safety.",
+    "description": "A tall red-and-white lattice transformer tower stands in a concrete enclosure with a utility building, bush, and electrical equipment. The structure is designed for high-voltage power transmission in an urban setting.",
+    "description_view_0": "The tower is seen from an angle highlighting the lattice structure, the base enclosure, and a prominent green bush near the utility building.",
+    "description_view_1": "This view emphasizes the utility building and bush, with the tower rising centrally and the enclosure wall clearly visible.",
+    "description_view_2": "The utility building and bush are in the foreground, with the tower extending upward and the enclosure's depth more apparent.",
+    "description_view_3": "The view shows the utility building, bush, and tower from the opposite side, with more of the enclosure's interior visible.",
+    "category": "transformer tower",
+    "height": 35.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "steel",
+        "concrete",
+        "glass",
+        "ceramic",
+        "plastic",
+        "vegetation",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.08,
+        0.07,
+        0.03,
+        0.07,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "switchable",
+        "inspectable",
+        "maintainable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "switch",
+        "insulator stack",
+        "crossarm"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "gray",
+        "green"
+    ],
+    "colors_composition": [
+        0.25,
+        0.25,
+        0.35,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.02,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "scene",
+    "attribute_number_of_insulator_stacks": 4,
+    "attribute_arrangement_of_crossarms": "There are two main crossarms arranged horizontally at different heights, each supporting insulator stacks. The crossarms are parallel and spaced vertically along the tower.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "insulator stack",
+        "crossarm",
+        "utility box"
+    ],
+    "attribute_configuration_of_attached_power_lines": "Multiple circuits are attached, likely in a three-phase parallel arrangement, with power lines routed horizontally from the crossarms and extending outward from the enclosure.",
+    "uid": "7c6881f661704b608b8e9b945821ff9e",
+    "near_synsets": {
+        "pylon.n.02": 0.5356693175972816,
+        "substation.n.01": 0.5494464079344156,
+        "tower.n.01": 0.5595468861129466,
+        "power_system.n.01": 0.563899313019515,
+        "transformer.n.01": 0.5669949910581118,
+        "column.n.04": -1000.0,
+        "tugboat.n.01": -1000.0
+    },
+    "synset": "pylon.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7c6881f661704b608b8e9b945821ff9e",
+        "creator_username": "marcosdefortaleza",
+        "creator_display_name": "marcosdefortaleza",
+        "creator_profile_url": "https://sketchfab.com/marcosdefortaleza"
+    },
+    "filename": "std_7c6881f661704b608b8e9b945821ff9e.glb",
+    "length": 22.4193115234375,
+    "width": 21.53460693359375
+}

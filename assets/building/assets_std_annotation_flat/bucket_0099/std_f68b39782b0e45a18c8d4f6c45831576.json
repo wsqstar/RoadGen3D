@@ -1,0 +1,121 @@
+{
+    "description_long": "This street food stall setup features a row of small, individual stalls with red and white striped awnings, arranged along a central pathway. The stalls are flanked by lush green trees, providing shade and a welcoming atmosphere. Each stall has a counter area facing the pathway, with some stalls displaying signage above the awnings. The ground is a flat brown surface, likely representing packed earth or pavement, and there are stone lanterns or posts marking the entrance to the central walkway. The overall layout is reminiscent of a festive outdoor market, with a focus on accessibility and visibility for customers. The use of bright colors and modular stall design suggests a lively, temporary installation suitable for events or street fairs.",
+    "description": "A festive row of red and white striped street food stalls lines a central walkway, shaded by green trees and marked by stone posts, evoking a lively outdoor market atmosphere.",
+    "description_view_0": "From this angle, the stalls and their striped awnings are visible behind a row of trees, with the central walkway partially obscured.",
+    "description_view_1": "This view looks directly down the central walkway, showing the alignment of stalls on both sides and the stone posts at the entrance.",
+    "description_view_2": "The stalls and trees are seen from the opposite side, with signage visible on some stalls and the layout of the market more apparent.",
+    "description_view_3": "A straight-on view of the central walkway, flanked by stalls and trees, with the stone posts clearly marking the entrance.",
+    "category": "street food stall",
+    "height": 3.0,
+    "max_dimension": 12.0,
+    "materials": [
+        "wood",
+        "fabric",
+        "metal",
+        "plastic",
+        "stone",
+        "air"
+    ],
+    "materials_composition": [
+        0.4,
+        0.2,
+        0.15,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "mass": 2500,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "serving",
+        "displaying",
+        "shading"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "counter",
+        "awning",
+        "signage"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "red",
+        "white",
+        "green",
+        "brown",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.25,
+        0.25,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 10000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_signage": "Some stalls have rectangular signs with bold text above the awnings, primarily in white and red, placed centrally for visibility.",
+    "attribute_cooking_equipment": [],
+    "attribute_serving_counter": "Each stall features a rectangular serving counter facing the central walkway, constructed from wood or similar material, with a flat surface for transactions and food service.",
+    "attribute_food_display": "Food is likely displayed on the counters in an open-air arrangement, easily accessible to customers, but no protective cases or covers are visible.",
+    "attribute_architectural_style": "colorful street kiosk",
+    "uid": "f68b39782b0e45a18c8d4f6c45831576",
+    "near_synsets": {
+        "food_court.n.01": 0.551236557820013,
+        "arcade.n.01": 0.5559358852077589,
+        "coffee_stall.n.01": 0.5652575256293971,
+        "open-air_market.n.01": 0.5779191439480352,
+        "barber's_pole.n.01": 0.5810773384756929,
+        "food.n.01": -1000.0,
+        "booth.n.02": -1000.0,
+        "street.n.05": -1000.0,
+        "stall.n.01": -1000.0,
+        "stall.n.04": -1000.0,
+        "carrel.n.02": -1000.0,
+        "food.n.03": -1000.0,
+        "stall.n.07": -1000.0,
+        "food.n.02": -1000.0,
+        "stall.n.05": -1000.0,
+        "street.n.04": -1000.0,
+        "street.n.02": -1000.0,
+        "stall.n.03": -1000.0,
+        "street.n.03": -1000.0,
+        "street.n.01": -1000.0
+    },
+    "synset": "stall.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f68b39782b0e45a18c8d4f6c45831576",
+        "creator_username": "seirogan",
+        "creator_display_name": "seirogan",
+        "creator_profile_url": "https://sketchfab.com/seirogan"
+    },
+    "filename": "std_f68b39782b0e45a18c8d4f6c45831576.glb",
+    "length": 22.549964904785156,
+    "width": 22.49985980987549
+}

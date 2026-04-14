@@ -1,0 +1,104 @@
+{
+    "description_long": "This structure is a large, wooden dam-like object with a broad, curved central section resembling a half-pipe, flanked by tall, vertical walls. The surface is marked with dark streaks and stains, suggesting weathering or water flow, and features colorful graffiti art on the inner faces. A prominent staircase with railings leads up to a raised platform on one end, providing access to the top of the structure. The entire perimeter is enclosed by metal safety railings, enhancing security for anyone on top. There is a large rectangular opening at the base, possibly for water passage or maintenance access. The overall appearance is utilitarian, with a blend of functional and decorative elements.",
+    "description": "A large, weathered wooden dam structure with a curved central channel, perimeter railings, graffiti art, and a staircase leading to a raised platform.",
+    "description_view_0": "Side view showing the full length of the dam, the staircase, and the large rectangular opening at the base.",
+    "description_view_1": "End-on view highlighting the deep, curved channel and graffiti on the inner wall, with railings visible along the top edges.",
+    "description_view_2": "Opposite side view displaying the tall, flat wall, perimeter railings, and the staircase structure on the right.",
+    "description_view_3": "View from the opposite end of the channel, showing the staircase, curved interior, and graffiti on the left wall.",
+    "category": "dam",
+    "height": 7.5,
+    "max_dimension": 22.0,
+    "materials": [
+        "wood",
+        "metal",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "slideable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "staircase",
+        "platform",
+        "railings"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "light brown",
+        "white",
+        "gray",
+        "purple",
+        "red",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_spillway_presence": false,
+    "attribute_control_gates": [
+        "none"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_water_outflow": "none",
+    "attribute_perimeter_fencing": true,
+    "uid": "387b90cd4e224c3bb633678c598c378a",
+    "near_synsets": {
+        "dam.n.01": 0.49041968098602445,
+        "weir.n.01": 0.5234724520967622,
+        "milldam.n.01": 0.5450759945087117,
+        "flashboard.n.01": 0.5482523060033655,
+        "aqueduct.n.01": 0.5604689766629107,
+        "dam.n.03": -1000.0,
+        "decameter.n.01": -1000.0
+    },
+    "synset": "dam.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/387b90cd4e224c3bb633678c598c378a",
+        "creator_username": "therealhaylo",
+        "creator_display_name": "therealhaylo",
+        "creator_profile_url": "https://sketchfab.com/therealhaylo"
+    },
+    "filename": "std_387b90cd4e224c3bb633678c598c378a.glb",
+    "length": 16.810818672180176,
+    "width": 18.697068214416504
+}

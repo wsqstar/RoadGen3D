@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a large, modern semi-truck tractor unit with a streamlined, aerodynamic cab and a high roof sleeper compartment. The truck features a prominent front grille, side mirrors extending from both sides, and dual rear axles for heavy-duty hauling. The chassis at the rear is exposed, designed for attaching a trailer, and includes visible mud flaps and wheel wells. The cab is painted in a light color, with black trim and detailing, and the windows are tinted dark. The truck has multiple visible lights, including headlights, taillights, and side marker lights, as well as metallic steps and fuel tanks along the sides. The overall design is robust and functional, suitable for long-haul transportation in urban and highway environments.",
+    "description": "A modern, aerodynamic semi-truck tractor with a high sleeper cab, dual rear axles, and exposed chassis for trailer attachment. The truck is light-colored with black trim and robust detailing.",
+    "description_view_0": "Rear view showing the exposed chassis, dual rear axles, mud flaps, and taillights.",
+    "description_view_1": "Left side view highlighting the high sleeper cab, side steps, fuel tank, and wheel arrangement.",
+    "description_view_2": "Front view displaying the large grille, windshield, side mirrors, and aerodynamic cab roof.",
+    "description_view_3": "Right side view similar to the left, showing the cab, steps, and rear chassis structure.",
+    "category": "truck",
+    "height": 4.0,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.08,
+        0.1,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 8500,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "handle",
+        "step",
+        "mirror",
+        "headlight",
+        "taillight",
+        "fuel cap"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "sleeper cab",
+    "attribute_cargo_bed_type": "chassis cab",
+    "attribute_wheelbase": 4.2,
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "Volvo",
+    "uid": "1009b47fc43a4d8fa246e71699b94e24",
+    "near_synsets": {
+        "trailer_truck.n.01": 0.49855271888224917,
+        "truck.n.01": 0.5241194302582238,
+        "tractor.n.02": 0.5256868770557873,
+        "trailer.n.03": 0.5313785616940438,
+        "tandem_trailer.n.01": 0.5361272651350912,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1009b47fc43a4d8fa246e71699b94e24",
+        "creator_username": "staks.ru",
+        "creator_display_name": "Staks",
+        "creator_profile_url": "https://sketchfab.com/staks.ru"
+    },
+    "filename": "std_1009b47fc43a4d8fa246e71699b94e24.glb",
+    "length": 8.021555423736572,
+    "width": 3.0725462436676025
+}

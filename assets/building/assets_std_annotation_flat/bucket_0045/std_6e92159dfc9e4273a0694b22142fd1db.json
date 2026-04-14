@@ -1,0 +1,108 @@
+{
+    "description_long": "This kiosk features a modern, open booth design with a combination of bold blue and orange structural elements. The main structure forms an L-shape, with a large blue wall at the back and side, and an orange vertical support on one end. A white canopy with the text 'Online Expo' in black letters extends over a central seating area, which includes a dark brown table and four white chairs. The front of the kiosk has a reception counter with the 'e-Man' logo, and the back wall displays additional branding and contact information. The flooring appears to be a light wood or laminate, providing a clean and inviting base. The overall look is sleek and professional, suitable for trade shows or urban promotional events.",
+    "description": "A modern, open-sided kiosk with blue and orange walls, a white canopy labeled 'Online Expo', a reception counter, and a central seating area with a table and chairs.",
+    "description_view_0": "Front view showing the reception counter with 'e-Man' branding, seating area, and prominent blue and orange walls.",
+    "description_view_1": "Angled view highlighting the open canopy with 'Online Expo' signage and the arrangement of the table and chairs inside.",
+    "description_view_2": "Rear view dominated by the solid blue wall, with minimal visible features except the structure's mass.",
+    "description_view_3": "Top-down view showing the open layout, canopy, and seating arrangement beneath the roof.",
+    "category": "kiosk",
+    "height": 2.5,
+    "max_dimension": 5.0,
+    "materials": [
+        "wood",
+        "painted MDF",
+        "plastic",
+        "metal",
+        "glass",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.1,
+        0.05,
+        0.05,
+        0.02,
+        0.08
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "workable",
+        "displayable",
+        "presentable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "counter",
+        "table",
+        "chairs",
+        "signage"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "blue",
+        "orange",
+        "white",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.45,
+        0.18,
+        0.18,
+        0.12,
+        0.07
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 3000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_signage_type": "Printed and logo signage; 'Online Expo' in large black letters above the entrance canopy, 'e-Man' logo and contact info on the front counter and back wall.",
+    "attribute_window_presence": "none",
+    "attribute_door_configuration": "Single open archway at the front, no physical doors.",
+    "attribute_roof_design": "Flat white canopy roof with overhang, supported by blue and orange structural elements, no skylights or decorative features.",
+    "attribute_architectural_style": "Modern minimalist with bold color blocking and open-plan layout.",
+    "uid": "6e92159dfc9e4273a0694b22142fd1db",
+    "near_synsets": {
+        "booth.n.02": 0.5258687610367679,
+        "booth.n.04": 0.5433645545936291,
+        "booth.n.01": 0.5534033907786581,
+        "reception_desk.n.01": 0.5556642570329627,
+        "telephone_booth.n.01": 0.5677990150172104
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6e92159dfc9e4273a0694b22142fd1db",
+        "creator_username": "exzi",
+        "creator_display_name": "e-Man",
+        "creator_profile_url": "https://sketchfab.com/exzi"
+    },
+    "filename": "std_6e92159dfc9e4273a0694b22142fd1db.glb",
+    "length": 5.024141311645508,
+    "width": 6.105713844299316
+}

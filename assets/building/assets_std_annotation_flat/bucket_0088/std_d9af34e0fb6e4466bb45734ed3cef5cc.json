@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a historical artillery cannon mounted on a wooden wheeled carriage. The cannon features a long, cylindrical metal barrel with decorative rings and a slightly flared muzzle, suggesting it is cast from iron or bronze. The carriage is constructed from heavy wooden beams, reinforced with metal brackets and bolts, and is equipped with four solid wooden wheels for limited mobility. Metal rings and fastenings are visible along the barrel and carriage, likely used for securing and maneuvering the cannon. The surface of the cannon and carriage shows signs of weathering and rust, giving it an aged, battle-worn appearance. This type of cannon would have been used in historical urban fortifications or during sieges.",
+    "description": "A weathered, historical artillery cannon with a long metal barrel mounted on a reinforced wooden wheeled carriage, showing signs of age and use.",
+    "description_view_0": "Front view showing the flared muzzle of the cannon barrel and the symmetrical arrangement of the carriage wheels.",
+    "description_view_1": "Side view highlighting the full length of the cannon barrel, the wooden carriage, and the metal fastenings.",
+    "description_view_2": "Rear view displaying the breech of the cannon and the back structure of the carriage.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the length of the barrel and carriage details.",
+    "category": "combat tactical  vehicle",
+    "height": 1.2,
+    "max_dimension": 3.5,
+    "materials": [
+        "iron",
+        "wood",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.3,
+        0.05,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 3500,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "barrel",
+        "wheels",
+        "trunnions",
+        "carriage",
+        "lifting rings"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "brown",
+        "rust red"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 120000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.0,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One fixed large-caliber cannon barrel mounted centrally on the carriage.",
+    "attribute_armor_plating": "None visible; the carriage and barrel are exposed with no additional armor plating.",
+    "attribute_camouflage_pattern": "None visible; the surface is a solid, weathered dark color with rust and wear.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "d9af34e0fb6e4466bb45734ed3cef5cc",
+    "near_synsets": {
+        "cannon.n.02": 0.4957233604313713,
+        "cannon.n.01": 0.4957342534030539,
+        "caisson.n.02": 0.5113226097675229,
+        "military_vehicle.n.01": 0.5142757968605921,
+        "tank_shell.n.01": 0.5178196435854244,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "cannon.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d9af34e0fb6e4466bb45734ed3cef5cc",
+        "creator_username": "dominiclincourt",
+        "creator_display_name": "Dominic Lincourt",
+        "creator_profile_url": "https://sketchfab.com/dominiclincourt"
+    },
+    "filename": "std_d9af34e0fb6e4466bb45734ed3cef5cc.glb",
+    "length": 3.324378252029419,
+    "width": 1.2873934507369995
+}

@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is an old-fashioned, large iron cannon mounted on a wooden carriage with four solid wheels. The cannon barrel is long, cylindrical, and heavily rusted, with a flared muzzle and decorative rings near the breech. The carriage is constructed from thick, weathered wooden planks, reinforced with metal brackets and bolts, and features two pairs of robust wooden wheels, also showing signs of age and corrosion. The entire assembly has a rugged, utilitarian appearance, with visible patina and rust on the metal surfaces and mossy green discoloration on the wood. The cannon is fixed to the carriage with large iron trunnions and mounting brackets, allowing for limited vertical adjustment. This type of artillery piece would have been used historically for defensive or offensive purposes in urban fortifications or on battlefields.",
+    "description": "A large, rusted iron cannon mounted on a weathered wooden carriage with four solid wheels, showing heavy patina and age. The assembly is robust, with visible metal reinforcements and mossy discoloration.",
+    "description_view_0": "Front view showing the flared muzzle of the cannon and the symmetrical arrangement of the four wheels.",
+    "description_view_1": "Side view highlighting the full length of the cannon barrel, the wooden carriage, and the mounting hardware.",
+    "description_view_2": "Rear view displaying the breech of the cannon and the back of the wooden carriage.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the length of the barrel and carriage details from the other side.",
+    "category": "combat tactical  vehicle",
+    "height": 1.1,
+    "max_dimension": 3.2,
+    "materials": [
+        "iron",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.3,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "rotatable",
+        "aimable",
+        "loadable",
+        "fireable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cannon barrel",
+        "wheels",
+        "trunnions",
+        "carriage"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "rusty brown",
+        "dark green",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 120000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One fixed large cannon barrel mounted centrally on the wooden carriage.",
+    "attribute_armor_plating": "None visible; the structure consists of exposed iron and wood with no additional armor plating.",
+    "attribute_camouflage_pattern": "None visible; surfaces are rusted and weathered with natural discoloration.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "e2de81e9d86a4163ad2f5c9d4a2e2bea",
+    "near_synsets": {
+        "cannon.n.02": 0.5098450290733342,
+        "cannon.n.01": 0.5234904866662211,
+        "caisson.n.02": 0.533776834489291,
+        "military_vehicle.n.01": 0.5364347240612343,
+        "tank.n.01": 0.5382610085591816,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0
+    },
+    "synset": "cannon.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e2de81e9d86a4163ad2f5c9d4a2e2bea",
+        "creator_username": "justindesigner",
+        "creator_display_name": "justindesigner",
+        "creator_profile_url": "https://sketchfab.com/justindesigner"
+    },
+    "filename": "std_e2de81e9d86a4163ad2f5c9d4a2e2bea.glb",
+    "length": 3.043487071990967,
+    "width": 1.1808505058288574
+}

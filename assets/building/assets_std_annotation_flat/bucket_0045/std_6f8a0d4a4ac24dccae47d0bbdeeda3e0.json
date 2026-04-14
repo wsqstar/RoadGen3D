@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a classic steam locomotive train, characterized by a long cylindrical boiler, a prominent smokestack at the front, and a cab at the rear for the operator. The body is painted a deep green with metallic and black accents, and it sits atop a set of large steel wheels connected by visible drive rods. The train is positioned on a section of railway track, which is mounted on a grassy terrain base. The front features a buffer beam with red highlights and coupling mechanisms, while the sides display intricate piping and mechanical details typical of steam engines. There are no visible passenger or cargo carriages attached, and the windows and doors are minimal, focused around the cab area.",
+    "description": "A detailed green steam locomotive with a cylindrical boiler, large steel wheels, and mechanical drive rods, set on a railway track with grassy terrain.",
+    "description_view_0": "Front view showing the smokestack, buffer beam with red highlights, and the train's face-on profile.",
+    "description_view_1": "Side view revealing the full length of the locomotive, large wheels, drive rods, and the cab at the rear.",
+    "description_view_2": "Rear view displaying the back of the cab and the end of the locomotive, with the track extending behind.",
+    "description_view_3": "Opposite side view showing similar mechanical details, wheels, and the cab structure.",
+    "category": "train",
+    "height": 4.2,
+    "max_dimension": 15.0,
+    "materials": [
+        "steel",
+        "glass",
+        "paint",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.03,
+        0.05,
+        0.02,
+        0.05
+    ],
+    "mass": 70000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "door",
+        "lever",
+        "coupling",
+        "buffer",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "red",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "steam locomotive",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at the rear cab only",
+    "attribute_window_arrangement": "few small windows at the cab",
+    "uid": "6f8a0d4a4ac24dccae47d0bbdeeda3e0",
+    "near_synsets": {
+        "steam_locomotive.n.01": 0.41809161952239093,
+        "train.n.01": 0.4666703562990263,
+        "train_set.n.01": 0.47134416396315115,
+        "locomotive.n.01": 0.4736101486203953,
+        "diesel_locomotive.n.01": 0.4776881711775314,
+        "train.n.05": -1000.0,
+        "gearing.n.01": -1000.0,
+        "train.n.04": -1000.0,
+        "caravan.n.01": -1000.0,
+        "string.n.04": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6f8a0d4a4ac24dccae47d0bbdeeda3e0",
+        "creator_username": "Kenti.Sanchez",
+        "creator_display_name": "Kenti Sanchez",
+        "creator_profile_url": "https://sketchfab.com/Kenti.Sanchez"
+    },
+    "filename": "std_6f8a0d4a4ac24dccae47d0bbdeeda3e0.glb",
+    "length": 17.04956817626953,
+    "width": 19.891157150268555
+}

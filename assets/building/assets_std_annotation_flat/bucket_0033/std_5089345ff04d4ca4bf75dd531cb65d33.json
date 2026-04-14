@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a heavily rusted, armored combat tactical vehicle, likely a military personnel carrier or armored car, with a low, wide profile and a distinctly rounded central hull. The exterior is covered in corroded, reddish-brown metal, with visible damage and missing panels, suggesting it has been abandoned or destroyed. Several vertical rods and remnants of fixtures protrude from the top and sides, possibly former mounts for equipment or antennas. The front features a sloped, armored plate and a partially open hatch, while the rear is more enclosed with additional structural elements. The vehicle sits on a set of continuous tracks, indicating it is designed for off-road mobility rather than urban streets. There are no visible weapons, but the structure suggests it was built for protection and tactical deployment.",
+    "description": "A rusted, armored tracked combat vehicle with a rounded hull, damaged panels, and protruding fixtures, showing signs of heavy wear and abandonment.",
+    "description_view_0": "Front view shows the sloped armored plate, open hatch, and prominent rust damage on the upper hull.",
+    "description_view_1": "Angled side view highlights the rounded central hull, extensive corrosion, and remnants of fixtures on the roof.",
+    "description_view_2": "Rear view reveals the enclosed back, additional structural elements, and the continuous tracks extending beneath.",
+    "description_view_3": "Opposite side view displays the curved armor, missing panels, and more rusted, protruding rods.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "iron",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "door",
+        "track",
+        "handle",
+        "antenna mount"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "rust brown",
+        "dark brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "None visible.",
+    "attribute_armor_plating": "Full body coverage with thick, rusted steel armor; sloped front plate and reinforced central hull; visible damage and missing panels.",
+    "attribute_camouflage_pattern": "None visible; surface is a uniform rusted brown with no discernible camouflage pattern.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "5089345ff04d4ca4bf75dd531cb65d33",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4995598987774239,
+        "tank.n.01": 0.5059689973223574,
+        "reconnaissance_vehicle.n.01": 0.5188951606098785,
+        "boneshaker.n.01": 0.5276204248255387,
+        "assault_gun.n.02": 0.5306914564081318,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5089345ff04d4ca4bf75dd531cb65d33",
+        "creator_username": "kryik1023",
+        "creator_display_name": "Renafox",
+        "creator_profile_url": "https://sketchfab.com/kryik1023"
+    },
+    "filename": "std_5089345ff04d4ca4bf75dd531cb65d33.glb",
+    "length": 5.136795997619629,
+    "width": 4.211258888244629
+}

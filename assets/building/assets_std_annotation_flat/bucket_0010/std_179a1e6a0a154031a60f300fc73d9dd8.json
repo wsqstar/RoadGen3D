@@ -1,0 +1,89 @@
+{
+    "description_long": "This object is a long, narrow, and slightly curved segment of road, likely representing a section of a primary road or major street in an urban environment. The surface appears to be paved, with a dark, asphalt-like texture and subtle linear grooves running along its length, suggesting it is designed for vehicular traffic. The road segment is relatively thin in width compared to its length, and there are no visible lane markings, curbs, or additional features such as sidewalks or barriers. The edges are clean and straight, with a gentle curvature that could indicate a bend or turn in the road. The coloration is predominantly dark gray, typical of asphalt, and the surface finish appears matte with a slight roughness. There are no visible signs, lighting fixtures, or pedestrian crossings present on this segment.",
+    "description": "A long, narrow, and slightly curved dark gray road segment with a matte, asphalt-like surface and no visible markings or features.",
+    "description_view_0": "Curved road segment viewed from an angle, showing the full arc and surface texture.",
+    "description_view_1": "Side profile of the road, emphasizing its thinness and length.",
+    "description_view_2": "Top-down view highlighting the curvature and linear surface grooves.",
+    "description_view_3": "Opposite side profile, again showing the length and slight curve.",
+    "category": "road",
+    "height": 0.05,
+    "max_dimension": 6.0,
+    "materials": [
+        "asphalt",
+        "aggregate",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 450,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "supportive"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "car",
+        "bicycle"
+    ],
+    "colors": [
+        "dark gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 10000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lane_markings": "none",
+    "attribute_signage": "none",
+    "attribute_curb_presence": false,
+    "attribute_lighting_fixtures": "none",
+    "attribute_pedestrian_crossings": "none",
+    "uid": "179a1e6a0a154031a60f300fc73d9dd8",
+    "near_synsets": {
+        "road_surface.n.01": 0.507581409359741,
+        "lane.n.01": 0.5151433657934551,
+        "road.n.01": 0.5292799129608685,
+        "road_map.n.02": 0.5348557228535458,
+        "blind_curve.n.01": 0.5422652973779759,
+        "road.n.02": -1000.0
+    },
+    "synset": "road.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/179a1e6a0a154031a60f300fc73d9dd8",
+        "creator_username": "jimbogies",
+        "creator_display_name": "jimbogies",
+        "creator_profile_url": "https://sketchfab.com/jimbogies"
+    },
+    "filename": "std_179a1e6a0a154031a60f300fc73d9dd8.glb",
+    "length": 1.3595445156097412,
+    "width": 0.43370118737220764
+}

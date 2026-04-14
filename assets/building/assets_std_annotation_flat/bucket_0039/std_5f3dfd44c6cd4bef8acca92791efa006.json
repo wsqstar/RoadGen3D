@@ -1,0 +1,105 @@
+{
+    "description_long": "This combat tactical vehicle is a futuristic, heavily-armored aircraft with a robust, angular body and a dark green, weathered exterior. The front features a pointed, glass canopy cockpit with red-tinted panels, flanked by two forward-projecting prongs. The sides display large, rectangular engine housings and reinforced panels, while the rear is equipped with three prominent thrusters for propulsion. The top view reveals a wide, flat body with two antenna-like structures and a distinct, geometric patterning on the armor. The vehicle's design suggests advanced mobility and protection, with visible hardpoints for weaponry and a utilitarian, military aesthetic.",
+    "description": "A futuristic, heavily-armored green combat aircraft with a pointed cockpit, large thrusters, and visible weapon mounts. Its angular body and reinforced panels give it a robust, military appearance.",
+    "description_view_0": "Front view shows the pointed cockpit, forward prongs, and three large rear thrusters.",
+    "description_view_1": "Left side view highlights the elongated body, glass canopy, engine housings, and rear thruster.",
+    "description_view_2": "Top view reveals the wide, angular body, antenna structures, and geometric armor pattern.",
+    "description_view_3": "Right side view mirrors the left, showing the cockpit, engine housings, and thruster details.",
+    "category": "combat tactical  vehicle",
+    "height": 3.5,
+    "max_dimension": 12.0,
+    "materials": [
+        "metal",
+        "glass",
+        "composite",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.04,
+        0.01
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "cockpit canopy",
+        "thrusters",
+        "weapon mounts",
+        "antenna"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 6.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Two visible weapon mounts located on the forward prongs beneath the cockpit, likely for cannons or energy weapons.",
+    "attribute_armor_plating": "Full body coverage with thick, angular armor plating; panels are sloped and reinforced, especially around the cockpit and engine housings.",
+    "attribute_camouflage_pattern": "Dark green with subtle, irregular lighter green and gray patches in a digital camouflage style.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "5f3dfd44c6cd4bef8acca92791efa006",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.5213820972495329,
+        "aircraft.n.01": 0.5400937609307496,
+        "tank.n.01": 0.5403473563953733,
+        "assault_gun.n.02": 0.5505043574457652,
+        "reconnaissance_vehicle.n.01": 0.5556944960633967,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "aircraft.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5f3dfd44c6cd4bef8acca92791efa006",
+        "creator_username": "zsoca-san",
+        "creator_display_name": "zsoca-san",
+        "creator_profile_url": "https://sketchfab.com/zsoca-san"
+    },
+    "filename": "std_5f3dfd44c6cd4bef8acca92791efa006.glb",
+    "length": 8.032211780548096,
+    "width": 4.419389724731445
+}

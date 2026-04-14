@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a classic hand grenade, featuring a dark green, segmented, oval-shaped metal body with a matte finish. The top section is fitted with a metallic safety lever and a visible pull ring, both of which are attached to a cylindrical fuse assembly. The body is ribbed for grip and has a slightly weathered appearance, with some areas showing a faint yellowish ring near the top. The safety lever is long and curves down the side of the grenade, while the pull ring is looped and metallic, designed for easy removal. The overall construction suggests a robust, utilitarian design intended for manual deployment in urban environments.",
+    "description": "A dark green, ribbed hand grenade with a metallic safety lever and pull ring, featuring a weathered, utilitarian appearance.",
+    "description_view_0": "The grenade is viewed directly from the side, showing the full length of the safety lever pressed against the body.",
+    "description_view_1": "This angled view highlights the pull ring and the top fuse assembly, with the safety lever partially visible.",
+    "description_view_2": "The grenade is seen from the opposite side, displaying the ribbed body and the top fuse with the lever aligned centrally.",
+    "description_view_3": "This view shows the pull ring more prominently, with the safety lever curving down the side and the fuse assembly clearly visible.",
+    "category": "bomb",
+    "height": 0.12,
+    "max_dimension": 0.12,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "explosive_compound",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.1,
+        0.05,
+        0.2,
+        0.05
+    ],
+    "mass": 0.4,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "safety lever",
+        "pull ring",
+        "fuse assembly"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "black",
+        "gray",
+        "yellow",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is initiated by pulling the safety ring, which releases the safety lever and activates the internal fuse mechanism.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "1b3d98b2cde443e0b4fadf4b6eeb5dee",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.4799141322511737,
+        "grenade.n.01": 0.5057761934182338,
+        "rifle_grenade.n.01": 0.5245684138694895,
+        "bomb.n.01": 0.5400280343169194,
+        "pipe_bomb.n.01": 0.5516256429257889,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1b3d98b2cde443e0b4fadf4b6eeb5dee",
+        "creator_username": "zxcquangzxc",
+        "creator_display_name": "ID",
+        "creator_profile_url": "https://sketchfab.com/zxcquangzxc"
+    },
+    "filename": "std_1b3d98b2cde443e0b4fadf4b6eeb5dee.glb",
+    "length": 0.0552865918725729,
+    "width": 0.06430457159876823
+}

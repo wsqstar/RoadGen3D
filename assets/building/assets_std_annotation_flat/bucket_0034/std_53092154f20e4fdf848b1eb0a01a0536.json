@@ -1,0 +1,100 @@
+{
+    "description_long": "This shotgun features a robust, tactical design with a long cylindrical barrel and an extended magazine that appears to hold a high capacity of shells, visible through the open top. The receiver and barrel are finished in matte black, while the magazine is metallic with visible brass-colored shells. The grip is ergonomically shaped and appears to be made of a dark brown or black polymer. The stock is a minimalist, skeletal design, likely for weight reduction and maneuverability. The overall construction suggests a modern, semi-automatic shotgun intended for rapid fire and urban tactical use.",
+    "description": "A modern, tactical shotgun with a long black barrel, extended visible magazine, and a minimalist skeletal stock. The grip is ergonomic and the magazine displays brass-colored shells.",
+    "description_view_0": "Side view showing the full length of the barrel, the extended magazine with visible shells, and the ergonomic grip.",
+    "description_view_1": "Top-down view highlighting the open magazine with rows of brass-colored shells and the width of the receiver.",
+    "description_view_2": "Opposite side view displaying the barrel, magazine, and skeletal stock, with the grip and trigger area visible.",
+    "description_view_3": "Front view focusing on the barrel's muzzle and the open magazine, with the grip and stock partially visible.",
+    "category": "shotgun",
+    "height": 0.25,
+    "max_dimension": 1.0,
+    "materials": [
+        "steel",
+        "polymer",
+        "wood",
+        "brass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 4.5,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 45,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "magazine",
+        "grip",
+        "stock",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "brass",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, long cylindrical barrel with no visible ribbing or venting",
+    "attribute_stock_type": "skeleton stock",
+    "attribute_action_mechanism": "semi-automatic",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized trigger guard with no visible finger grooves or reinforcement",
+    "uid": "53092154f20e4fdf848b1eb0a01a0536",
+    "near_synsets": {
+        "sawed-off_shotgun.n.01": 0.5187984737010853,
+        "shotgun.n.01": 0.5286352342842261,
+        "gas_gun.n.01": 0.5406472908261066,
+        "pump_action.n.01": 0.5420209475972785,
+        "shotgun_shell.n.01": 0.5514321825385157
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/53092154f20e4fdf848b1eb0a01a0536",
+        "creator_username": "Raven_Bathory",
+        "creator_display_name": "Raven_Bathory",
+        "creator_profile_url": "https://sketchfab.com/Raven_Bathory"
+    },
+    "filename": "std_53092154f20e4fdf848b1eb0a01a0536.glb",
+    "length": 1.362442970275879,
+    "width": 0.6858473122119904
+}

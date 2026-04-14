@@ -1,0 +1,99 @@
+{
+    "description_long": "This object is a large, multi-barreled rotary machine gun, commonly known as a minigun or Gatling-style weapon. It features six parallel barrels arranged in a cylindrical cluster, with a robust central housing that likely contains the firing mechanism and motor. The rear section includes a prominent pistol grip and a secondary handle for stabilization, as well as a visible trigger assembly. Attached to the underside is a cylindrical component, likely a power supply or ammunition feed, and various cables and mounting brackets are visible along the body. The overall construction is metallic, with a dark, matte finish and some glossy highlights on the barrels and housing. The design is utilitarian and rugged, suitable for heavy-duty use in urban defense or vehicle mounting scenarios.",
+    "description": "A large, six-barreled rotary machine gun with a robust metal body, pistol grip, and attached power or ammo unit. The weapon has a dark, matte metallic finish and a rugged, industrial appearance.",
+    "description_view_0": "Side view showing the full length of the six barrels, central housing, pistol grip, and attached cylindrical unit beneath.",
+    "description_view_1": "Front view highlighting the circular arrangement of the six barrels and the central axis of the weapon.",
+    "description_view_2": "Opposite side view, mirroring view 0, with clear visibility of the barrels, housing, and grip.",
+    "description_view_3": "Rear view focusing on the pistol grip, trigger assembly, and the back ends of the barrels.",
+    "category": "rifle",
+    "height": 0.35,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "rotatable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pistol grip",
+        "secondary handle",
+        "trigger",
+        "barrels",
+        "ammunition feed",
+        "power unit"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "pistol grip",
+    "attribute_barrel_type": "rotary multi-barrel",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "none",
+    "uid": "bab847b284aa4bf4b0646e45fee42f86",
+    "near_synsets": {
+        "rifle.n.01": 0.4727567970171344,
+        "gatling_gun.n.01": 0.47435136091332586,
+        "machine_gun.n.01": 0.48154150386970057,
+        "gun.n.01": 0.48270250467596215,
+        "automatic_rifle.n.01": 0.48321720749867614
+    },
+    "synset": "automatic_rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bab847b284aa4bf4b0646e45fee42f86",
+        "creator_username": "David06",
+        "creator_display_name": "David06",
+        "creator_profile_url": "https://sketchfab.com/David06"
+    },
+    "filename": "std_bab847b284aa4bf4b0646e45fee42f86.glb",
+    "length": 0.9641507863998413,
+    "width": 0.2317149043083191
+}

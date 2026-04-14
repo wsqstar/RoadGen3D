@@ -1,0 +1,104 @@
+{
+    "description_long": "This helicopter features a compact, futuristic design with a rounded, transparent cockpit that offers wide visibility for the pilot. The main body is constructed from a rust-orange metal with visible panel lines, vents, and mechanical details, giving it an industrial, utilitarian appearance. The front is dominated by a large, eight-bladed rotor with alternating green and light green stripes, suggesting a high-lift configuration. The cockpit is enclosed by a large, bubble-shaped window with minimal framing, and the side panels include ventilation grilles and the number '03' stenciled in yellow. The landing gear consists of two sturdy, dark metal skids with a simple, functional shape. No tail rotor is visible, indicating a possible coaxial or ducted fan configuration, or a design that omits a traditional tail rotor.",
+    "description": "A compact, rust-orange helicopter with a large striped main rotor, bubble cockpit, and sturdy landing skids. The design is futuristic and industrial, with prominent mechanical details and a transparent canopy.",
+    "description_view_0": "Front view showing the large, striped eight-blade rotor and the rounded cockpit canopy behind it.",
+    "description_view_1": "Left side view highlighting the bubble cockpit, side vents, '03' marking, and the full length of the landing skids.",
+    "description_view_2": "Rear view displaying the back of the cockpit, the rotor hub, and the rear structure of the helicopter.",
+    "description_view_3": "Right side view similar to the left, with visible cockpit, side details, and landing skids, but mirrored.",
+    "category": "helicopter",
+    "height": 1.8,
+    "max_dimension": 3.2,
+    "materials": [
+        "metal",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.1,
+        0.02,
+        0.05
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 9500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotor blades",
+        "cockpit door",
+        "control panel",
+        "landing skids"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "rust-orange",
+        "green",
+        "light green",
+        "gray",
+        "black",
+        "transparent"
+    ],
+    "colors_composition": [
+        0.55,
+        0.15,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.08,
+    "recommended_clearance": 4.5,
+    "asset_composition_type": "single",
+    "attribute_rotor_blades": "Eight main rotor blades, wide and flat, made of composite or metal, each with alternating green and light green stripes. The blades are long, extending well beyond the body, and have a slightly tapered shape.",
+    "attribute_tail_rotor": "Not visible; no traditional tail rotor is present, suggesting an alternative anti-torque system or design.",
+    "attribute_landing_skids": "Two parallel, dark metal landing skids with a rectangular profile, attached to the underside of the helicopter by simple supports. The skids are robust and functional, suitable for urban landings.",
+    "attribute_cockpit_windows": "One large, bubble-shaped cockpit window wrapping around the front and sides, made of clear glass or acrylic with minimal framing. The window provides excellent visibility and covers most of the cockpit area.",
+    "attribute_registration_number": "03",
+    "uid": "1dfb3ce37e2a4d51a18052f02cf6976c",
+    "near_synsets": {
+        "helicopter.n.01": 0.5254025694788966,
+        "single-rotor_helicopter.n.01": 0.5300296235881526,
+        "main_rotor.n.01": 0.5334578515003748,
+        "cargo_helicopter.n.01": 0.5384359925404762,
+        "skyhook.n.01": 0.5386569832472098
+    },
+    "synset": "cargo_helicopter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1dfb3ce37e2a4d51a18052f02cf6976c",
+        "creator_username": "kalombo",
+        "creator_display_name": "kalombo",
+        "creator_profile_url": "https://sketchfab.com/kalombo"
+    },
+    "filename": "std_1dfb3ce37e2a4d51a18052f02cf6976c.glb",
+    "length": 1.3111026287078857,
+    "width": 1.5388100743293762
+}

@@ -1,0 +1,93 @@
+{
+    "description_long": "This kiosk is a small, standalone wooden structure with a prominent hipped roof made of reddish panels, providing ample overhang on all sides. The front features a single wooden door with a window and a pair of rectangular, shuttered windows that can be opened outward, suggesting a service or sales function. The lower portion of the walls is clad in vertical wooden planks, while the upper section uses darker horizontal logs, giving a rustic yet sturdy appearance. The roof is constructed from what appears to be metal or painted sheet material, with a central ridge and visible seams. There are no visible signs or branding on the exterior, and the structure is elevated slightly above the ground. The overall design is simple and functional, suitable for use in parks, markets, or urban public spaces.",
+    "description": "A small, rustic wooden kiosk with a reddish hipped roof, front door, and shuttered windows. The structure combines vertical and horizontal wood paneling for a sturdy, traditional look.",
+    "description_view_0": "Top-down view showing the large reddish hipped roof with a central ridge and overhangs.",
+    "description_view_1": "Front view displaying the wooden door, two openable shuttered windows, and the mix of vertical and horizontal wood paneling.",
+    "description_view_2": "Rear top-down view highlighting the roof's symmetry and the absence of windows or doors on the back.",
+    "description_view_3": "Rear view showing the solid wooden back wall with no openings and the overhanging roof.",
+    "category": "kiosk",
+    "height": 2.4,
+    "max_dimension": 3.2,
+    "materials": [
+        "wood",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "shutter",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.55,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "none",
+    "attribute_window_presence": "Two rectangular windows on the front, both with outward-opening shutters.",
+    "attribute_door_configuration": "One single wooden door located at the front.",
+    "attribute_roof_design": "Hipped roof with a central ridge, constructed from reddish metal or sheet panels, with wide overhangs.",
+    "attribute_architectural_style": "Rustic, traditional wooden kiosk",
+    "uid": "84e924631e5744f892d854567163a125",
+    "near_synsets": {
+        "booth.n.02": 0.5351755110968863,
+        "shopfront.n.01": 0.5499014269960043,
+        "gazebo.n.01": 0.5501969554729187,
+        "cabin.n.02": 0.5560530623116421,
+        "booth.n.04": 0.5603508085699156
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/84e924631e5744f892d854567163a125",
+        "creator_username": "pablochaves",
+        "creator_display_name": "Pablo Chaves Pedrero",
+        "creator_profile_url": "https://sketchfab.com/pablochaves"
+    },
+    "filename": "std_84e924631e5744f892d854567163a125.glb",
+    "length": 3.4542163610458374,
+    "width": 3.078579068183899
+}

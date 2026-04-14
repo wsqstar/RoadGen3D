@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a large, four-engine military-style airplane with a robust, olive-green fuselage and broad, straight wings. The wings are mounted at a mid-level on the fuselage and feature four prominent engine nacelles, two on each side, with visible propeller hubs. The tail section is conventional, with a single vertical stabilizer and horizontal stabilizers extending from either side. The cockpit is positioned at the front of the fuselage, featuring a multi-windowed canopy typical of bomber or transport aircraft. The surface appears matte with some subtle panel lines and markings, and the landing gear is not visible, suggesting it may be retracted or not modeled.",
+    "description": "A large, olive-green, four-engine military-style airplane with a mid-mounted straight wing and a conventional tail. The cockpit is forward-mounted with multiple windows, and the surface is matte with visible panel lines.",
+    "description_view_0": "Front view showing the broad wingspan, four engine nacelles, and the rounded nose with cockpit windows.",
+    "description_view_1": "Left side view highlighting the length of the fuselage, the mid-mounted wings, and the tail's conventional design.",
+    "description_view_2": "Top-down view displaying the full wingspan, engine placement, and the overall planform of the airplane.",
+    "description_view_3": "Right side view similar to the left, showing the engine arrangement and the tail structure.",
+    "category": "airplane",
+    "height": 5.5,
+    "max_dimension": 30.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.8,
+        0.05,
+        0.03,
+        0.1,
+        0.02
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 320000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "cockpit controls",
+        "propeller",
+        "engine nacelle",
+        "window",
+        "hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 35.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing configuration with straight wings, no visible winglets, and no pronounced dihedral or anhedral angles.",
+    "attribute_engine_type": "Four piston engines mounted in nacelles on the wings.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Landing gear not visible; likely retractable based on typical design, but not confirmed in images.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with multiple windows, likely multi-seat.",
+    "uid": "f41848d4f88740e0a3a7560b9e4c2f96",
+    "near_synsets": {
+        "aircraft.n.01": 0.5025305837228511,
+        "airplane.n.01": 0.5201814960340373,
+        "multiengine_airplane.n.01": 0.5245340841563996,
+        "warplane.n.01": 0.5259237836854721,
+        "monoplane.n.01": 0.5342052995481283
+    },
+    "synset": "multiengine_airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f41848d4f88740e0a3a7560b9e4c2f96",
+        "creator_username": "mudroljub",
+        "creator_display_name": "mudroljub",
+        "creator_profile_url": "https://sketchfab.com/mudroljub"
+    },
+    "filename": "std_f41848d4f88740e0a3a7560b9e4c2f96.glb",
+    "length": 18.21445941925049,
+    "width": 23.3868408203125
+}

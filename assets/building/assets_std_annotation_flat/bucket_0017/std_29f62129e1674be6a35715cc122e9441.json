@@ -1,0 +1,106 @@
+{
+    "description_long": "This ship features a broad, rounded hull with a pronounced red lower section and a beige upper deck. The deck is equipped with two large yellow funnels, a central mast, and several black gun turrets, indicating a warship or battleship design. The superstructure is minimal, with most of the deck space open except for a few raised platforms and a prominent crane at the stern. The bow is pointed and streamlined, while the stern is slightly squared off, both rising above the waterline. Visible deck equipment includes a crane, gun turrets, and various small fixtures such as railings and hatches. The ship's exterior is primarily metal, with painted surfaces and some wooden or composite deck elements.",
+    "description": "A large, broad-hulled warship with a red lower hull, beige deck, yellow funnels, central mast, and visible gun turrets and crane.",
+    "description_view_0": "Side view showing the full length of the ship, two yellow funnels, central mast, and a large crane at the stern.",
+    "description_view_1": "Front view highlighting the pointed bow, central mast, and symmetrical arrangement of gun turrets and funnels.",
+    "description_view_2": "Opposite side view mirroring view 0, with clear visibility of the hull shape, funnels, mast, and stern crane.",
+    "description_view_3": "Rear view showing the squared stern, crane, and the alignment of the ship's superstructure and deck equipment.",
+    "category": "ship",
+    "height": 12,
+    "max_dimension": 110,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.02,
+        0.03,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "crane",
+        "gun turret",
+        "hatch",
+        "door",
+        "mast"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "beige",
+        "yellow",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.25,
+        0.35,
+        0.15,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 20,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a broad, rounded displacement type with a pronounced red lower section, a pointed bow, and a slightly squared stern. There are no visible keels or bulbous bows, and the hull sits high above the waterline with a smooth, continuous profile.",
+    "attribute_superstructure_layout": "The superstructure is minimal, with two large yellow funnels positioned amidships, a central mast, and a mostly open deck. There are a few raised platforms and a crane at the stern, but no large bridges or enclosed cabins are visible.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "crane",
+        "gun turret",
+        "hatch",
+        "railings"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "29f62129e1674be6a35715cc122e9441",
+    "near_synsets": {
+        "battleship.n.01": 0.4753462963444014,
+        "surface_ship.n.01": 0.4773387771309302,
+        "capital_ship.n.01": 0.48090026257932716,
+        "three-decker.n.03": 0.4825377519212754,
+        "cargo_ship.n.01": 0.48508911867486204,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/29f62129e1674be6a35715cc122e9441",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_29f62129e1674be6a35715cc122e9441.glb",
+    "length": 31.986196517944336,
+    "width": 7.088745594024658
+}

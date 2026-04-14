@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a robust metal security gate composed of vertical and horizontal bars forming a grid pattern, typical of urban access control points. The gate features a smaller integrated access door with a rectangular panel, likely for a lock or identification system, and a mail slot or inspection hatch. The structure is supported by two thick vertical posts on either side, providing stability and anchoring. The bars are evenly spaced, offering visibility while preventing unauthorized passage. The metallic surface has a matte, slightly rough finish, with a uniform gray coloration. The design is utilitarian, with no decorative elements, emphasizing function and security.",
+    "description": "A sturdy metal security gate with a grid of vertical and horizontal bars, featuring an integrated access door and a rectangular lock panel. The design is utilitarian and gray, built for secure access control.",
+    "description_view_0": "Frontal view showing the full grid structure, integrated access door, and rectangular lock panel.",
+    "description_view_1": "Side profile view, revealing the thinness of the gate and the depth of the supporting posts.",
+    "description_view_2": "Rear view, similar to the front, displaying the grid bars and access door from the opposite side.",
+    "description_view_3": "Opposite side profile, again highlighting the gate's slim profile and post depth.",
+    "category": "gate",
+    "height": 2.1,
+    "max_dimension": 3.0,
+    "materials": [
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.08
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 60,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "lock panel",
+        "mail slot"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_gate_type": "security swing gate",
+    "attribute_opening_mechanism": "manual swing",
+    "attribute_decorative_elements": [],
+    "attribute_locking_system": "lock panel",
+    "attribute_surrounding_structure": "metal posts",
+    "uid": "0b9b492fc53643479d9869a665516a5a",
+    "near_synsets": {
+        "gate.n.01": 0.49669189539359365,
+        "lock-gate.n.01": 0.5015795050633974,
+        "portcullis.n.01": 0.5207037980995695,
+        "gateway.n.01": 0.5346083696426751,
+        "sliding_bolt.n.01": 0.5362820268425418,
+        "gate.n.03": -1000.0,
+        "gate.n.04": -1000.0,
+        "gate.n.02": -1000.0
+    },
+    "synset": "gate.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0b9b492fc53643479d9869a665516a5a",
+        "creator_username": "susannevermeulen",
+        "creator_display_name": "susanne vermeulen",
+        "creator_profile_url": "https://sketchfab.com/susannevermeulen"
+    },
+    "filename": "std_0b9b492fc53643479d9869a665516a5a.glb",
+    "length": 0.086669921875,
+    "width": 2.857431411743164
+}

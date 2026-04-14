@@ -1,0 +1,114 @@
+{
+    "description_long": "This train station is an L-shaped brick building with a gabled roof covered in reddish-brown tiles and several red chimneys. The structure features multiple doors and windows along its facades, with a prominent entrance ramp leading up to one wing. The walls are primarily constructed from red and brown brick, and the roof is punctuated by regularly spaced chimneys. The building appears to be a single-story structure with a utilitarian design, likely serving as a small-town or rural station. There are no visible platform canopies, signage, or railway tracks in the immediate vicinity. The overall appearance suggests a traditional, functional architectural style with minimal decorative elements.",
+    "description": "A traditional L-shaped brick train station with a tiled gabled roof, red chimneys, and multiple doors and windows. The building features a prominent entrance ramp and a utilitarian, functional design.",
+    "description_view_0": "Front view showing the main entrance ramp, two doors, and the intersection of the L-shaped wings with visible chimneys.",
+    "description_view_1": "Side view highlighting the long facade with multiple doors and chimneys, and the gabled end of one wing.",
+    "description_view_2": "Rear view displaying the length of the building, a side entrance, and the ramp extending from the shorter wing.",
+    "description_view_3": "Opposite side view showing the ramp leading to a large doorway and a series of windows and doors along the longer wing.",
+    "category": "train station",
+    "height": 6.5,
+    "max_dimension": 38.0,
+    "materials": [
+        "brick",
+        "roof tile",
+        "wood",
+        "glass",
+        "metal",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.18,
+        0.1,
+        0.05,
+        0.05,
+        0.02,
+        0.05
+    ],
+    "mass": 420000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "ramp"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "red",
+        "brown",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.45,
+        0.35,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.65,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.02,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_platform_canopies": "none",
+    "attribute_station_signage": "none",
+    "attribute_ticket_vending_machines": "none",
+    "attribute_railway_tracks": "none",
+    "attribute_architectural_style": "Traditional utilitarian",
+    "uid": "e1e7edfae6a647d29913271a03b89622",
+    "near_synsets": {
+        "platform.n.06": 0.536569916676847,
+        "railway_station.n.01": 0.5634637405610623,
+        "subway_station.n.01": 0.5704156954074269,
+        "railway_junction.n.01": 0.5807745186067775,
+        "signal_box.n.01": 0.5830819579259318,
+        "train.n.04": -1000.0,
+        "train.n.01": -1000.0,
+        "place.n.10": -1000.0,
+        "station.n.03": -1000.0,
+        "train.n.05": -1000.0,
+        "post.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "station.n.05": -1000.0,
+        "station.n.01": -1000.0,
+        "gearing.n.01": -1000.0,
+        "caravan.n.01": -1000.0
+    },
+    "synset": "railway_station.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e1e7edfae6a647d29913271a03b89622",
+        "creator_username": "Painkiller92",
+        "creator_display_name": "Painkiller92",
+        "creator_profile_url": "https://sketchfab.com/Painkiller92"
+    },
+    "filename": "std_e1e7edfae6a647d29913271a03b89622.glb",
+    "length": 24.9141206741333,
+    "width": 28.363113403320312
+}

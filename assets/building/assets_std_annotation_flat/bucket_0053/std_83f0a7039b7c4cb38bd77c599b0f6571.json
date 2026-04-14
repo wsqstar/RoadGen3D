@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a grand piano with a highly stylized and surreal design, featuring a glossy black exterior and a striking red interior. The lid is dramatically open, resembling a gaping mouth lined with large, sharp, white triangular teeth, giving the piano a monstrous appearance. The keyboard is standard, with alternating white and black keys, and is positioned at the front of the instrument. The interior is entirely red, enhancing the visual contrast with the black exterior and white teeth. The piano's body is smooth and sleek, with a classic curved shape typical of grand pianos. No visible pedals or brand markings are present, and the piano lacks a music stand.",
+    "description": "A glossy black grand piano with a red interior and a lid that opens to reveal large, white, tooth-like shapes, giving it a monstrous appearance.",
+    "description_view_0": "Top-down view showing the classic grand piano shape with a closed, smooth black lid.",
+    "description_view_1": "Front view revealing the open lid with large, white teeth and a vivid red interior, as well as the full keyboard.",
+    "description_view_2": "Side view highlighting the dramatic open lid, the red interior, and the jagged white teeth lining the opening.",
+    "description_view_3": "Rear angled view emphasizing the depth of the red interior and the arrangement of the white teeth inside the open lid.",
+    "category": "piano",
+    "height": 1.4,
+    "max_dimension": 2.1,
+    "materials": [
+        "wood",
+        "plastic",
+        "metal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "keyboard",
+        "teeth"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.5,
+    "index_of_refraction": 1.55,
+    "youngs_modulus": 10000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_keyboard_layout": "Standard grand piano keyboard with alternating white and black keys, no visible missing or non-standard keys.",
+    "attribute_number_of_pedals": 0,
+    "attribute_brand_or_logo": "None",
+    "attribute_lid_position": "fully open",
+    "attribute_presence_of_music_stand": false,
+    "uid": "83f0a7039b7c4cb38bd77c599b0f6571",
+    "near_synsets": {
+        "concert_grand.n.01": 0.5049022897520097,
+        "grand_piano.n.01": 0.5104651454788959,
+        "baby_grand.n.01": 0.5174427292491608,
+        "piano.n.01": 0.519474815715561,
+        "piano_keyboard.n.01": 0.5223546476286823,
+        "piano.n.02": -1000.0
+    },
+    "synset": "piano.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/83f0a7039b7c4cb38bd77c599b0f6571",
+        "creator_username": "pestypig",
+        "creator_display_name": "pestypig",
+        "creator_profile_url": "https://sketchfab.com/pestypig"
+    },
+    "filename": "std_83f0a7039b7c4cb38bd77c599b0f6571.glb",
+    "length": 1.7986571192741394,
+    "width": 1.2769721746444702
+}

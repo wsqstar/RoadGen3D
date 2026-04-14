@@ -1,0 +1,99 @@
+{
+    "description_long": "This is a compact, tracked combat vehicle with a distinctive cylindrical turret mounted centrally on its hull. The vehicle features continuous track systems on both sides, providing enhanced mobility over rough terrain. Its front is equipped with a sloped glacis plate and a protruding gun barrel, suggesting offensive capability. The rear section tapers and includes a structural framework, possibly for additional equipment or support. The exterior appears to be constructed from thick, riveted armor plating, with visible hatches and access points. The overall design is utilitarian, prioritizing protection and maneuverability in urban or battlefield environments.",
+    "description": "A small, tracked armored combat vehicle with a central turret, sloped armor, and a protruding gun barrel, built for tactical operations.",
+    "description_view_0": "Side view showing the full length of the tracks, the cylindrical turret, and the forward-mounted gun barrel.",
+    "description_view_1": "Front view highlighting the sloped glacis plate, the central turret, and the narrow profile of the vehicle.",
+    "description_view_2": "Opposite side view revealing the track system, turret, and rear framework structure.",
+    "description_view_3": "Rear view displaying the tapering hull, rear framework, and the back of the turret.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 4.8,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.03,
+        0.07,
+        0.05
+    ],
+    "mass": 7000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 35000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "hatch",
+        "gun barrel",
+        "tracks",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One visible gun mount on the front of the turret.",
+    "attribute_armor_plating": "Full body coverage with thick, riveted armor plating; sloped at the front for deflection.",
+    "attribute_camouflage_pattern": "none visible",
+    "attribute_military_markings": "none visible",
+    "attribute_tire_type": "not applicable",
+    "uid": "5fdc7c63fe894af984ba7761b8a06435",
+    "near_synsets": {
+        "tank.n.01": 0.462180124560157,
+        "military_vehicle.n.01": 0.47866161392891243,
+        "assault_gun.n.02": 0.4960235809905998,
+        "armored_car.n.02": 0.49626844262684844,
+        "reconnaissance_vehicle.n.01": 0.5035076415946588,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5fdc7c63fe894af984ba7761b8a06435",
+        "creator_username": "sean240242",
+        "creator_display_name": "sean240242",
+        "creator_profile_url": "https://sketchfab.com/sean240242"
+    },
+    "filename": "std_5fdc7c63fe894af984ba7761b8a06435.glb",
+    "length": 5.121638536453247,
+    "width": 1.7082501649856567
+}

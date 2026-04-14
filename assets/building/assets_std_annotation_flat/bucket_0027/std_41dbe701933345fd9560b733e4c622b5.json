@@ -1,0 +1,108 @@
+{
+    "description_long": "This object is a large solar panel array designed for urban power generation, featuring a grid of blue photovoltaic cells encased in a rectangular metallic frame. The array is supported by multiple sturdy vertical posts, likely made of steel or concrete, which are anchored to the ground with substantial bases. The surface of the panels is smooth and glossy, optimized for maximum sunlight absorption and minimal dust accumulation. The structure is elevated above ground level, allowing for airflow beneath and possibly maintenance access. The array appears modular, with individual panels arranged in a precise, evenly spaced grid pattern. No visible electrical inverters or cabling are present on the exterior, suggesting these components may be integrated beneath the panels or within the support structure.",
+    "description": "A large, elevated solar panel array with a blue grid pattern, supported by multiple robust posts and a metallic frame. The panels are arranged in a precise grid and have a smooth, glossy surface.",
+    "description_view_0": "Front view showing the flat, rectangular face of the solar panel array and a single central support post.",
+    "description_view_1": "Angled view revealing the full grid of panels, multiple support posts, and the substantial bases anchoring the structure.",
+    "description_view_2": "Rear view similar to the front, highlighting the panel surface and another central support post.",
+    "description_view_3": "Angled rear view displaying the grid arrangement, multiple posts, and the underside of the array.",
+    "category": "solar energy infrastructure",
+    "height": 3.0,
+    "max_dimension": 8.0,
+    "materials": [
+        "tempered glass",
+        "aluminum",
+        "silicon",
+        "steel",
+        "concrete",
+        "copper",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.18,
+        0.12,
+        0.1,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "power_generation",
+        "shading"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "panel surface",
+        "support posts"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "white",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_panel_orientation": "flat, horizontal, fixed orientation",
+    "attribute_mounting_structure_type": "ground-mounted, supported by multiple steel or concrete posts",
+    "attribute_electrical_inverter_presence": false,
+    "attribute_cabling_visibility": "not visible",
+    "attribute_array_configuration": "3x4 grid of solar panels arranged in a rectangular array",
+    "uid": "41dbe701933345fd9560b733e4c622b5",
+    "near_synsets": {
+        "solar_array.n.01": 0.4818404151152089,
+        "solar_house.n.01": 0.529654539554206,
+        "solar_thermal_system.n.01": 0.5510050264853616,
+        "solar_energy.n.01": 0.552718049227921,
+        "solar_cell.n.01": 0.5631955620262078,
+        "energy.n.02": -1000.0,
+        "infrastructure.n.02": -1000.0,
+        "energy.n.04": -1000.0,
+        "infrastructure.n.01": -1000.0,
+        "energy.n.01": -1000.0,
+        "energy.n.06": -1000.0,
+        "department_of_energy.n.01": -1000.0,
+        "energy.n.03": -1000.0,
+        "energy.n.05": -1000.0
+    },
+    "synset": "solar_array.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/41dbe701933345fd9560b733e4c622b5",
+        "creator_username": "one80solar",
+        "creator_display_name": "One80 Solar",
+        "creator_profile_url": "https://sketchfab.com/one80solar"
+    },
+    "filename": "std_41dbe701933345fd9560b733e4c622b5.glb",
+    "length": 4.768589496612549,
+    "width": 4.4449567794799805
+}

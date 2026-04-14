@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a rectangular, metal storage locker with a corrugated exterior and a flat, weathered roof. The locker features a combination of blue and yellow painted panels, with visible signs of rust, dirt, and wear, indicating prolonged outdoor use. One side has a barred window for ventilation and security, while two sides have doors: one with a wooden panel and another with a metal bar lock and the number '194' painted on it. The front door is wooden with a chevron pattern and a metal handle, while the other door is metal with a simple bar handle and locking mechanism. The structure sits on a slightly raised base, likely to prevent direct contact with the ground. The overall appearance suggests it is used for secure storage in urban or industrial environments.",
+    "description": "A weathered, rectangular metal storage locker with blue and yellow panels, barred window, and two distinct doors, showing signs of outdoor use.",
+    "description_view_0": "Corrugated metal side with a large, weathered metal panel and no visible openings.",
+    "description_view_1": "Yellow-painted end with a wooden chevron-patterned door, metal handle, and a small wall-mounted box.",
+    "description_view_2": "Blue-painted side with a barred window and a small latch, showing signs of rust and wear.",
+    "description_view_3": "Yellow-painted end with a metal door, bar handle, locking bar, and the number '194' painted in blue.",
+    "category": "storage locker",
+    "height": 2.2,
+    "max_dimension": 3.5,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.02,
+        0.03,
+        0.1
+    ],
+    "mass": 650,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "pullable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "lock",
+        "window bars"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "blue",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.4,
+        0.35,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 2,
+    "attribute_locking_mechanism_type": "bar lock",
+    "attribute_ventilation_pattern": "barred window",
+    "attribute_handle_design": "bar handle",
+    "attribute_placement_location": "outdoor",
+    "uid": "5be3342732c54d009e566bcd48797892",
+    "near_synsets": {
+        "sentry_box.n.01": 0.5609654169563608,
+        "toolshed.n.01": 0.5679484101179046,
+        "cabinet.n.03": 0.5696410720990421,
+        "coat_closet.n.01": 0.572851633177559,
+        "cargo_door.n.01": 0.5755675241816215,
+        "footlocker.n.01": -1000.0,
+        "storage.n.04": -1000.0,
+        "locker.n.02": -1000.0,
+        "memory.n.04": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "repositing.n.01": -1000.0,
+        "storage.n.03": -1000.0,
+        "storage.n.01": -1000.0
+    },
+    "synset": "cabinet.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5be3342732c54d009e566bcd48797892",
+        "creator_username": "dandis",
+        "creator_display_name": "dandis",
+        "creator_profile_url": "https://sketchfab.com/dandis"
+    },
+    "filename": "std_5be3342732c54d009e566bcd48797892.glb",
+    "length": 3.595201849937439,
+    "width": 2.053353786468506
+}

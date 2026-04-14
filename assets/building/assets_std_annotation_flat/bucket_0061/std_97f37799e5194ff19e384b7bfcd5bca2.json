@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a single-story bungalow with a dark gable roof and a light-colored exterior, situated on a rectangular grassy plot. The main house features a covered front porch with wooden railings and steps leading to a curved walkway. Adjacent to the house is a detached garage with a matching roof and a driveway connecting it to the main entrance. The bungalow has multiple chimneys, a small rear deck, and a pergola structure on one side. Windows are distributed asymmetrically, with larger openings on the front and rear facades. The overall design is simple and functional, with a blend of modern and traditional elements.",
+    "description": "A single-story bungalow with a dark gable roof, covered porch, detached garage, and asymmetrical window arrangement on a grassy lot.",
+    "description_view_0": "Front view showing the main entrance, covered porch, steps, and the detached garage to the left.",
+    "description_view_1": "Side view highlighting the length of the house, the rear deck, and the garage positioned behind the house.",
+    "description_view_2": "Rear view displaying the back deck, pergola, and the curved walkway leading to the porch.",
+    "description_view_3": "Opposite side view with a clear look at the garage in the foreground and the house's side elevation.",
+    "category": "bungalow",
+    "height": 6.5,
+    "max_dimension": 22.0,
+    "materials": [
+        "concrete",
+        "wood",
+        "glass",
+        "asphalt_shingles",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.1,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 95000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "garage door",
+        "porch railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "black",
+        "brown",
+        "green"
+    ],
+    "colors_composition": [
+        0.4,
+        0.25,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "scene",
+    "attribute_architectural_style": "Modern Ranch",
+    "attribute_roof_type": "gable",
+    "attribute_number_of_stories": 1,
+    "attribute_porch_presence": true,
+    "attribute_window_arrangement": "asymmetrical with grouped front and rear windows",
+    "uid": "97f37799e5194ff19e384b7bfcd5bca2",
+    "near_synsets": {
+        "bungalow.n.01": 0.43234198351713254,
+        "villa.n.02": 0.4876942862815025,
+        "ranch_house.n.01": 0.5152571586118986,
+        "semi-detached_house.n.01": 0.5279074241064149,
+        "detached_house.n.01": 0.53400175155443
+    },
+    "synset": "bungalow.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/97f37799e5194ff19e384b7bfcd5bca2",
+        "creator_username": "arturstoppa",
+        "creator_display_name": "Artur Stoppa",
+        "creator_profile_url": "https://sketchfab.com/arturstoppa"
+    },
+    "filename": "std_97f37799e5194ff19e384b7bfcd5bca2.glb",
+    "length": 27.3422794342041,
+    "width": 30.69933319091797
+}

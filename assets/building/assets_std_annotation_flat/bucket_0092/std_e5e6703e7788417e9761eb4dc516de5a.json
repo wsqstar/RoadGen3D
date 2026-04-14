@@ -1,0 +1,105 @@
+{
+    "description_long": "This industrial robot arm features a robust, yellow-painted metal construction with multiple articulated joints, allowing for a wide range of motion. The arm is mounted on a heavy, black rectangular base, which provides stability and houses the main drive mechanisms. Prominent gear housings, visible cabling, and red actuator covers are distributed along the arm, indicating powered joints and electrical connectivity. The arm terminates in a cylindrical end effector, likely designed for welding or precision tool mounting, with a visible cable extending from the tip. The overall design is utilitarian, with exposed mechanical components and reinforced segments for durability in demanding environments. This type of robot arm is commonly found in urban industrial settings such as automotive workshops, manufacturing plants, or maintenance garages.",
+    "description": "A heavy-duty yellow industrial robot arm with multiple articulated joints, visible cabling, and a cylindrical end effector, mounted on a sturdy black base.",
+    "description_view_0": "Front view shows the cylindrical end effector, central joint, and the main arm extending backward, with visible cabling and actuator covers.",
+    "description_view_1": "Side view highlights the full extension of the arm, the gear housings, and the length of the main segment, with the end effector pointing left.",
+    "description_view_2": "Rear view reveals the back of the base, the gear mechanisms, and the cabling running along the arm, with actuator covers prominently visible.",
+    "description_view_3": "Opposite side view displays the arm's articulation, the main drive housing, and the end effector pointing right, with clear visibility of the cabling and joints.",
+    "category": "robot arm",
+    "height": 1.6,
+    "max_dimension": 2.2,
+    "materials": [
+        "painted steel",
+        "plastic",
+        "rubber",
+        "copper",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 350,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "graspable",
+        "actuatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "joints",
+        "end effector",
+        "base controls",
+        "cabling"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_joint_type": "revolute",
+    "attribute_number_of_segments": 3,
+    "attribute_end_effector_type": "welding torch",
+    "attribute_visible_wiring_or_cabling": true,
+    "attribute_mounting_location": "floor-mounted",
+    "uid": "e5e6703e7788417e9761eb4dc516de5a",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5075285068576181,
+        "automaton.n.02": 0.5720118686634814,
+        "tone_arm.n.01": 0.5838823087152907,
+        "light_arm.n.01": 0.5839073144051476,
+        "automaton.n.03": 0.5871038139591425,
+        "arm.n.01": -1000.0,
+        "sleeve.n.01": -1000.0,
+        "arm.n.02": -1000.0,
+        "weapon.n.01": -1000.0,
+        "arm.n.04": -1000.0,
+        "branch.n.01": -1000.0
+    },
+    "synset": "robotics_equipment.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e5e6703e7788417e9761eb4dc516de5a",
+        "creator_username": "jacuo777",
+        "creator_display_name": "jacuo777",
+        "creator_profile_url": "https://sketchfab.com/jacuo777"
+    },
+    "filename": "std_e5e6703e7788417e9761eb4dc516de5a.glb",
+    "length": 2.0109938383102417,
+    "width": 0.9810356199741364
+}

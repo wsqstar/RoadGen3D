@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a compact, mobile construction crane with a long, green telescopic boom extending from a robust base. The boom is segmented, allowing it to extend and retract, and ends in a single hook for lifting heavy loads. The base is equipped with two stabilizing outriggers on either side, each with yellow safety markings, providing balance during operation. The main body appears to house the crane's mechanical and hydraulic systems, but no operator cabin is visible. The crane's structure is primarily metallic, with some plastic or rubber components at the joints and feet. Its design suggests it is intended for urban construction or utility work, where maneuverability and stability are essential.",
+    "description": "A compact green telescopic crane with a long segmented boom, stabilizing outriggers, and a single lifting hook. The design is robust and functional, suitable for urban construction tasks.",
+    "description_view_0": "Side view showing the full length of the extended telescopic boom and the single hook at the end.",
+    "description_view_1": "Front view highlighting the symmetrical outriggers and the narrow profile of the boom.",
+    "description_view_2": "Opposite side view, again showing the boom's length and hook, with the base and stabilizers visible.",
+    "description_view_3": "Rear view focusing on the back of the base and the alignment of the outriggers.",
+    "category": "crane",
+    "height": 4.5,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 16000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "rotatable",
+        "extendable",
+        "retractable",
+        "hookable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "boom",
+        "hook",
+        "outriggers",
+        "joints",
+        "hydraulic pistons"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "yellow",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_boom_type": "telescopic boom",
+    "attribute_counterweight_presence": false,
+    "attribute_operator_cabin_visibility": false,
+    "attribute_hook_or_lifting_mechanism": "single hook",
+    "attribute_support_structure_design": "outriggers",
+    "uid": "207ddf1b5812453ca9a765c244bfb7d2",
+    "near_synsets": {
+        "crane.n.04": 0.47378499049279665,
+        "derrick.n.02": 0.5063259493772512,
+        "stacker_crane.n.01": 0.5341446264700688,
+        "skyhook.n.01": 0.5564902969619582,
+        "aerial_ladder.n.01": 0.5595088523104567,
+        "crane.n.05": -1000.0,
+        "grus.n.01": -1000.0,
+        "crane.n.02": -1000.0,
+        "crane.n.01": -1000.0
+    },
+    "synset": "crane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/207ddf1b5812453ca9a765c244bfb7d2",
+        "creator_username": "rakshigames",
+        "creator_display_name": "rakshigames",
+        "creator_profile_url": "https://sketchfab.com/rakshigames"
+    },
+    "filename": "std_207ddf1b5812453ca9a765c244bfb7d2.glb",
+    "length": 2.9360604286193848,
+    "width": 2.3243305683135986
+}

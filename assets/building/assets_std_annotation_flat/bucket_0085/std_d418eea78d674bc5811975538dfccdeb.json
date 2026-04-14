@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a heavy, automated turret-style rifle mounted on a sturdy tripod base, designed for stationary deployment in urban environments. The main body is a rectangular, olive-green housing with angular edges, featuring a small antenna and colored indicator buttons on top, suggesting remote or automated operation. Extending from the front are three parallel, metallic barrels, indicating a multi-barrel rotary or Gatling-style firing mechanism. The tripod legs are robust and splayed for stability, with reinforced joints and wide feet to prevent tipping. The rear of the housing is solid, with no visible stock or grip, emphasizing its fixed emplacement rather than handheld use. The overall design is utilitarian, with minimal decorative elements, focusing on function and durability.",
+    "description": "A heavy, tripod-mounted, multi-barrel automated rifle with an olive-green housing and metallic barrels, designed for stationary use. Features include a control antenna, indicator buttons, and a robust, stable tripod base.",
+    "description_view_0": "Side view showing the rectangular housing, three metallic barrels, tripod legs, and control buttons on top.",
+    "description_view_1": "Front view highlighting the three parallel barrels and the symmetrical tripod leg arrangement.",
+    "description_view_2": "Opposite side view with clear visibility of the antenna and the full length of the barrels.",
+    "description_view_3": "Rear view showing the solid back of the housing, antenna, and the tripod's central support.",
+    "category": "rifle",
+    "height": 1.1,
+    "max_dimension": 1.3,
+    "materials": [
+        "steel",
+        "aluminum",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 38,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pressable",
+        "toggleable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "barrels",
+        "tripod legs",
+        "antenna",
+        "indicator buttons"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive green",
+        "black",
+        "gray",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.13,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "none",
+    "attribute_barrel_type": "rotary",
+    "attribute_magazine_type": "not visible",
+    "attribute_sight_type": "not visible",
+    "attribute_muzzle_device": "none",
+    "uid": "d418eea78d674bc5811975538dfccdeb",
+    "near_synsets": {
+        "automatic_rifle.n.01": 0.5127699114923437,
+        "light_arm.n.01": 0.5189889008311341,
+        "browning_automatic_rifle.n.01": 0.5222213630488661,
+        "carbine.n.01": 0.5325097695496807,
+        "rifle.n.01": 0.5355696253866147
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d418eea78d674bc5811975538dfccdeb",
+        "creator_username": "anthmurphy",
+        "creator_display_name": "anthwolf",
+        "creator_profile_url": "https://sketchfab.com/anthmurphy"
+    },
+    "filename": "std_d418eea78d674bc5811975538dfccdeb.glb",
+    "length": 0.9814426302909851,
+    "width": 0.5736347734928131
+}

@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a military-style helicopter with a camouflage paint scheme, featuring a long, slender fuselage and a prominent tail boom. The helicopter has a rounded nose with multiple cockpit windows, providing wide visibility for the crew. Its main rotor is mounted on top of the fuselage, and a tail rotor is visible at the end of the tail boom for stability and control. The landing gear consists of two main wheels and a smaller tail wheel, rather than traditional skids. The surface is mostly matte with a mix of tan, brown, and green colors, typical of desert camouflage. No visible registration numbers or markings are present on the exterior.",
+    "description": "A camouflage-painted military helicopter with a rounded nose, multiple cockpit windows, and wheeled landing gear. It features a long tail boom, main and tail rotors, and a matte finish.",
+    "description_view_0": "Side view showing the full length of the helicopter, camouflage pattern, main and tail rotors, and wheeled landing gear.",
+    "description_view_1": "Rear view highlighting the tail boom, tail rotor, and the narrow profile of the fuselage.",
+    "description_view_2": "Opposite side view displaying the same features as view 0, with clear visibility of the landing gear and camouflage.",
+    "description_view_3": "Front view showing the rounded nose, multiple cockpit windows, and the main wheels.",
+    "category": "helicopter",
+    "height": 4.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "mass": 11000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 108000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit window",
+        "main rotor",
+        "tail rotor",
+        "wheel",
+        "landing gear",
+        "control panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "brown",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_rotor_blades": "Five main rotor blades, long and narrow, likely made of composite or metal, colored dark with no visible markings.",
+    "attribute_tail_rotor": "Tail rotor present at the end of the tail boom, appears to have three blades in a vertical orientation, colored dark.",
+    "attribute_landing_skids": "No skids; the helicopter uses a tricycle-style wheeled landing gear with two main wheels and a smaller tail wheel, all black with visible struts.",
+    "attribute_cockpit_windows": "Five cockpit windows, rounded and arranged in a wraparound configuration at the front, clear with dark framing.",
+    "attribute_registration_number": "not visible",
+    "uid": "4e4913deb4e14210a84e9f92fa2c8ed9",
+    "near_synsets": {
+        "helicopter.n.01": 0.5169648437222268,
+        "landing_skid.n.01": 0.5371894111050904,
+        "main_rotor.n.01": 0.5373256833978383,
+        "cargo_helicopter.n.01": 0.5378238051917071,
+        "single-rotor_helicopter.n.01": 0.5381573457805842
+    },
+    "synset": "single-rotor_helicopter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4e4913deb4e14210a84e9f92fa2c8ed9",
+        "creator_username": "Laserdesign",
+        "creator_display_name": "Laser Design",
+        "creator_profile_url": "https://sketchfab.com/Laserdesign"
+    },
+    "filename": "std_4e4913deb4e14210a84e9f92fa2c8ed9.glb",
+    "length": 13.442026138305664,
+    "width": 3.4484801292419434
+}

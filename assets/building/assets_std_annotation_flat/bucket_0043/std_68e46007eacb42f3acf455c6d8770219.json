@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a large, round, medieval-style tent with a two-tiered conical roof, primarily covered in a reddish-brown fabric with subtle vertical striping. The tent features a central peak topped with a small finial and a flag, and is encircled by a series of guy lines anchored to the ground for stability. Around the lower perimeter, a decorative band of circular elements, possibly lights or ornamental studs, adds visual interest. There is a prominent entrance at the front, formed by parted fabric flaps, and a small annex or vestibule protrudes from one side. The tent's structure is supported by internal and external poles, with the fabric stretched taut between them. The overall design suggests a festive or ceremonial use, suitable for parks, fairs, or public gatherings in urban environments.",
+    "description": "A large, round, reddish-brown medieval-style tent with a two-tiered conical roof, decorative perimeter band, and a prominent fabric entrance flanked by guy lines.",
+    "description_view_0": "The tent is seen from an angle showing the main entrance partially obscured and a small side annex visible on the right.",
+    "description_view_1": "A direct side view with the flag visible at the peak, showing the full circular shape and all guy lines evenly spaced around the perimeter.",
+    "description_view_2": "Similar to view 0 but from the opposite angle, with the side annex now on the left and the entrance less visible.",
+    "description_view_3": "A frontal view highlighting the main entrance with parted fabric flaps and the flag at the peak, with guy lines radiating outward.",
+    "category": "tent",
+    "height": 5.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "fabric",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 180,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 600,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "tieable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "entrance flaps",
+        "guy lines",
+        "flag",
+        "side annex"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "red-brown",
+        "green",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 500,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_entrance_type": "Fabric flap entrance at the front, parted in the middle, no visible zipper or mesh, wide enough for easy access.",
+    "attribute_number_of_poles": 10,
+    "attribute_guy_line_configuration": "Twelve guy lines evenly spaced around the tent's perimeter, attached at the base of the lower roof and staked to the ground.",
+    "attribute_ventilation_openings": [],
+    "attribute_branding_or_logo": "none",
+    "uid": "68e46007eacb42f3acf455c6d8770219",
+    "near_synsets": {
+        "field_tent.n.01": 0.48276827619320173,
+        "bell_tent.n.01": 0.48847387093593175,
+        "tent.n.02": 0.4901263468784726,
+        "sibley_tent.n.01": 0.491358324216043,
+        "wall_tent.n.01": 0.4963617070668146,
+        "tent.n.01": -1000.0
+    },
+    "synset": "tent.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/68e46007eacb42f3acf455c6d8770219",
+        "creator_username": "el._.capitan",
+        "creator_display_name": "el._.capitan",
+        "creator_profile_url": "https://sketchfab.com/el._.capitan"
+    },
+    "filename": "std_68e46007eacb42f3acf455c6d8770219.glb",
+    "length": 9.210265636444092,
+    "width": 10.121682167053223
+}

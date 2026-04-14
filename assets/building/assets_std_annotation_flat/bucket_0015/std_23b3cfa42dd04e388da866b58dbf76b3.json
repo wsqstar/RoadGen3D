@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a large, modern aircraft carrier with a flat, expansive flight deck running the full length of the vessel. The hull is broad and sits low in the water, painted with a dark red lower section and a gray upper section. The superstructure, or island, is offset to one side and features multiple levels, including a bridge and several antennae or radar masts. The flight deck is marked with runway lines and a prominent landing area at the stern, with safety barriers visible at the rear. The ship is equipped with various deck fixtures, such as radar domes, antennae, and possibly lifeboats or small cranes. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A large, modern aircraft carrier with a flat flight deck, offset superstructure, and multiple deck fixtures. The hull is broad and painted gray with a red lower section.",
+    "description_view_0": "Front view showing the pointed bow, central runway, and the offset superstructure on the left side.",
+    "description_view_1": "Side view highlighting the length of the hull, the flat flight deck, and the multi-level superstructure amidships.",
+    "description_view_2": "Rear view displaying the wide stern, landing area with safety barriers, and the full width of the flight deck.",
+    "description_view_3": "Opposite side view showing the hull's profile, the superstructure, and deck equipment along the starboard side.",
+    "category": "ship",
+    "height": 30,
+    "max_dimension": 330,
+    "materials": [
+        "steel",
+        "aluminum",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.01,
+        0.03
+    ],
+    "mass": 90000000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "landable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bridge",
+        "radar",
+        "antenna",
+        "deck",
+        "island",
+        "runway",
+        "barrier"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.01,
+    "recommended_clearance": 50,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a broad, flat bottom and a sharply pointed bow. The stern is wide and squared off to accommodate the flight deck, and the hull sits low in the water with a visible red anti-fouling section below the waterline. No bulbous bow or catamaran features are visible.",
+    "attribute_superstructure_layout": "The superstructure is offset to one side of the flight deck and consists of multiple stacked levels, including a bridge, control tower, and several antennae or radar masts. The rest of the deck is open and flat for aircraft operations.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "radar",
+        "antenna",
+        "barrier",
+        "island",
+        "runway markings"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "23b3cfa42dd04e388da866b58dbf76b3",
+    "near_synsets": {
+        "aircraft_carrier.n.01": 0.4005615548905079,
+        "flight_deck.n.01": 0.4874981536565123,
+        "surface_ship.n.01": 0.5045473759765324,
+        "cargo_ship.n.01": 0.5056361484576771,
+        "ship.n.01": 0.5163666202942352
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/23b3cfa42dd04e388da866b58dbf76b3",
+        "creator_username": "xNotDumb",
+        "creator_display_name": "xNotDumb",
+        "creator_profile_url": "https://sketchfab.com/xNotDumb"
+    },
+    "filename": "std_23b3cfa42dd04e388da866b58dbf76b3.glb",
+    "length": 152.45890045166016,
+    "width": 33.225128173828125
+}

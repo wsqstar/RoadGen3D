@@ -1,0 +1,96 @@
+{
+    "description_long": "This object is a pedestrian crosswalk signal pole commonly found at urban intersections. It features a vertical black pole with two attached signal boxes, one displaying a red hand symbol and the other a white walking figure, indicating when it is safe for pedestrians to cross. The signal boxes are mounted perpendicular to each other, allowing visibility from multiple directions. The pole is robust and likely constructed from metal for durability and weather resistance, with the signal boxes made from a combination of metal and plastic. The illuminated symbols are protected by transparent covers, ensuring visibility in various lighting conditions. This type of crosswalk signal is essential for pedestrian safety and traffic regulation in city environments.",
+    "description": "A black metal pedestrian crosswalk signal pole with two illuminated signal boxes showing walk and don't walk symbols, designed for urban intersections.",
+    "description_view_0": "Side view showing the red hand symbol on the signal box and the pole's slim profile.",
+    "description_view_1": "Rear view displaying both signal boxes extending from the pole, with no illuminated symbols visible.",
+    "description_view_2": "Opposite side view with only the back of one signal box visible, no illuminated symbols.",
+    "description_view_3": "Front view showing the white walking figure on the signal box, with both signal boxes visible.",
+    "category": "pedestrian crosswalk",
+    "height": 2.5,
+    "max_dimension": 2.5,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "mass": 45,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "signal button",
+        "signal box"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "orange",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_zebra_pattern": false,
+    "attribute_road_markings": [],
+    "attribute_pedestrian_signage": [
+        "pedestrian crossing sign"
+    ],
+    "attribute_curb_ramps": false,
+    "attribute_traffic_signals": [
+        "pedestrian signal"
+    ],
+    "uid": "fe2b9a2b8bf34006a4a238bc5c071b25",
+    "near_synsets": {
+        "pedestrian_crossing.n.01": 0.500585723343314,
+        "stop_sign.n.01": 0.5256187953987075,
+        "pelican_crossing.n.01": 0.5353247858823247,
+        "traffic_light.n.01": 0.5382451029243182,
+        "school_crossing.n.01": 0.5436579965134345,
+        "crossing.n.05": -1000.0
+    },
+    "synset": "traffic_light.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fe2b9a2b8bf34006a4a238bc5c071b25",
+        "creator_username": "kipsville",
+        "creator_display_name": "kipsville",
+        "creator_profile_url": "https://sketchfab.com/kipsville"
+    },
+    "filename": "std_fe2b9a2b8bf34006a4a238bc5c071b25.glb",
+    "length": 0.8740456998348236,
+    "width": 0.9832959473133087
+}

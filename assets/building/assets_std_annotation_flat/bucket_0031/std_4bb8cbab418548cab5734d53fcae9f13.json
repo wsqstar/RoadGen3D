@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a freight train car designed for transporting large, heavy materials, specifically loaded with long cylindrical logs. The car features a rectangular, open-top structure with vertical and horizontal metal bars forming a cage-like frame along the sides, providing containment and support for the cargo. The logs are stacked neatly in two rows, filling the car's interior, and the car sits on a pair of bogies with visible wheels and axles. The exterior is painted in a muted greenish-blue color, with the metal frame and logs giving a rugged, industrial appearance. The car is mounted on standard gauge railway tracks, and there are no visible doors or windows on the sides or ends. The overall construction suggests durability and strength, suitable for heavy-duty urban or industrial rail transport.",
+    "description": "A rectangular, open-top freight train car loaded with stacked logs and enclosed by a sturdy metal frame, painted in greenish-blue. The car sits on railway tracks and is designed for transporting heavy materials.",
+    "description_view_0": "End view showing the solid, closed end of the car with no visible doors or windows, and the stacked logs inside.",
+    "description_view_1": "Side view displaying the full length of the car, the metal cage structure, and the neatly stacked logs filling the interior.",
+    "description_view_2": "Opposite end view, similar to view 0, showing the closed end and the logs inside.",
+    "description_view_3": "Opposite side view, mirroring view 1, with the metal frame and stacked logs clearly visible.",
+    "category": "train",
+    "height": 3.5,
+    "max_dimension": 14.0,
+    "materials": [
+        "steel",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.3,
+        0.05
+    ],
+    "mass": 22000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "loadable",
+        "unloadable",
+        "coupleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "coupler",
+        "side frame"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "gray",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.45,
+        0.3,
+        0.2,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "freight train",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "no visible doors",
+    "attribute_window_arrangement": "no visible windows",
+    "uid": "4bb8cbab418548cab5734d53fcae9f13",
+    "near_synsets": {
+        "freight_car.n.01": 0.47073461200246197,
+        "freight_train.n.01": 0.4893656164370959,
+        "train.n.01": 0.49675018838576174,
+        "coal_car.n.01": 0.5008996245113754,
+        "boxcar.n.01": 0.5046904741267143,
+        "train.n.04": -1000.0,
+        "gearing.n.01": -1000.0,
+        "train.n.05": -1000.0,
+        "caravan.n.01": -1000.0,
+        "string.n.04": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4bb8cbab418548cab5734d53fcae9f13",
+        "creator_username": "shevchukmaks",
+        "creator_display_name": "shevchukmaks",
+        "creator_profile_url": "https://sketchfab.com/shevchukmaks"
+    },
+    "filename": "std_4bb8cbab418548cab5734d53fcae9f13.glb",
+    "length": 12.971757411956787,
+    "width": 1.931135892868042
+}

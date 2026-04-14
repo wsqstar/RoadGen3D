@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a large, armored military tank with a robust, angular hull and a prominent rotating turret mounted centrally on top. The tank features a long, cylindrical main cannon extending from the turret, with additional hatches and periscopes visible on the turret's surface. The vehicle is supported by wide, heavy-duty tracks on both sides, each composed of multiple interlinked wheels and reinforced treads for traversing rough terrain. The exterior is finished in a matte olive drab color, typical of military camouflage, and the surface shows subtle weathering and panel lines. The rear of the tank displays cylindrical fuel drums and exhaust ports, while the front is characterized by sloped armor and a reinforced glacis plate. The overall design emphasizes durability, protection, and off-road mobility, making it suitable for both urban and rugged environments.",
+    "description": "A large, olive drab military tank with a rotating turret, long cannon, and heavy-duty tracks for all-terrain mobility. Its armored exterior and robust design are built for durability and protection.",
+    "description_view_0": "Front view showing the sloped armor, reinforced glacis plate, and the end of the tracks.",
+    "description_view_1": "Side view highlighting the full length of the cannon, the turret, and the detailed track and wheel assembly.",
+    "description_view_2": "Rear view displaying cylindrical fuel drums, exhaust ports, and the back of the tracks.",
+    "description_view_3": "Opposite side view with the cannon, turret, and track system visible, mirroring the other side.",
+    "category": "all-terrain vehicle",
+    "height": 3.0,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air",
+        "plastic"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 54000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 250000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "track",
+        "wheel",
+        "periscope",
+        "fuel drum",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive drab",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_wheels": 12,
+    "attribute_tire_tread_pattern": "The tracks feature a blocky, all-terrain tread pattern designed for maximum traction on both soft and hard surfaces, with prominent raised sections for grip.",
+    "attribute_suspension_type": "torsion bar",
+    "attribute_presence_of_roll_cage": false,
+    "attribute_handlebar_or_steering_wheel_type": "round steering wheel",
+    "uid": "05dfe308dccb4c35a416f284e86ec61e",
+    "near_synsets": {
+        "tank.n.01": 0.456098644960565,
+        "military_vehicle.n.01": 0.4746695171785693,
+        "armored_vehicle.n.01": 0.49811958186366667,
+        "assault_gun.n.02": 0.5034934614710473,
+        "reconnaissance_vehicle.n.01": 0.5053537894537316,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/05dfe308dccb4c35a416f284e86ec61e",
+        "creator_username": "naqiu7169",
+        "creator_display_name": "Wan_Muhammad_Naqiuddin",
+        "creator_profile_url": "https://sketchfab.com/naqiu7169"
+    },
+    "filename": "std_05dfe308dccb4c35a416f284e86ec61e.glb",
+    "length": 9.491661071777344,
+    "width": 4.245489597320557
+}

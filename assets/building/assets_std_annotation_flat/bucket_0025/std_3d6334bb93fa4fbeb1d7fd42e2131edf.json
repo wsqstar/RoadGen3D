@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a robust, arched stone gate flanked by two thick rectangular pillars, each topped with a lantern-style light fixture. The central arch is constructed from weathered stone blocks, showing patches of moss and discoloration, suggesting age and exposure to the elements. The gate itself consists of two dark, solid metal doors that swing open from the center, set beneath the arch. The stonework is substantial, with the pillars and arch forming a continuous, sturdy barrier. The lanterns are mounted on short posts, adding both decorative and functional lighting to the structure. The overall appearance is reminiscent of an entrance to a historic estate, park, or cemetery, blending utilitarian access control with classic architectural styling.",
+    "description": "A weathered stone arch gate with two metal doors, flanked by thick pillars topped with lanterns. The structure is aged, mossy, and exudes a historic, sturdy presence.",
+    "description_view_0": "Front view showing the full arch, both lantern-topped pillars, and the closed double metal doors.",
+    "description_view_1": "Side view showing the depth of one pillar and the lantern, with the arch's thickness visible.",
+    "description_view_2": "Rear view mirroring the front, with the arch, pillars, and doors visible but less detail on the lanterns.",
+    "description_view_3": "Opposite side view, similar to view 1, showing the other pillar and lantern from the side.",
+    "category": "gate",
+    "height": 2.2,
+    "max_dimension": 5.0,
+    "materials": [
+        "stone",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.18,
+        0.02,
+        0.05
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "gate doors",
+        "lanterns"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "gray",
+        "black",
+        "yellow",
+        "green"
+    ],
+    "colors_composition": [
+        0.55,
+        0.25,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_gate_type": "arched swing gate",
+    "attribute_opening_mechanism": "manual swing",
+    "attribute_decorative_elements": [
+        "arched stonework",
+        "lanterns",
+        "moss patches"
+    ],
+    "attribute_locking_system": "no visible lock",
+    "attribute_surrounding_structure": "stone pillars and arch",
+    "uid": "3d6334bb93fa4fbeb1d7fd42e2131edf",
+    "near_synsets": {
+        "portcullis.n.01": 0.5294847947632219,
+        "gatehouse.n.01": 0.5450766702851663,
+        "gateway.n.01": 0.5468252353074542,
+        "portiere.n.01": 0.5494649843655117,
+        "gate.n.01": 0.5504405335746466,
+        "gate.n.03": -1000.0,
+        "gate.n.02": -1000.0,
+        "gate.n.04": -1000.0
+    },
+    "synset": "gate.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3d6334bb93fa4fbeb1d7fd42e2131edf",
+        "creator_username": "williamzc3.ucf",
+        "creator_display_name": "williamzc3.ucf",
+        "creator_profile_url": "https://sketchfab.com/williamzc3.ucf"
+    },
+    "filename": "std_3d6334bb93fa4fbeb1d7fd42e2131edf.glb",
+    "length": 0.5313734412193298,
+    "width": 4.780958652496338
+}

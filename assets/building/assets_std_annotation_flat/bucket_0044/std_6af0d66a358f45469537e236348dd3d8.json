@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a manual wheelchair with a robust, black metal frame and two large rear wheels featuring spoked construction. The seat and backrest are made of dark brown, slightly worn fabric or leather, providing a utilitarian yet comfortable appearance. The wheelchair has two smaller front caster wheels for maneuverability and a pair of textured, horizontal push handles at the back for an attendant to grip. The footrests are metal, rectangular, and extend forward, appearing fixed in place. The overall design is practical, with visible cross-bracing beneath the seat for added structural support. The wheelchair's surfaces show signs of wear, suggesting frequent use in urban environments.",
+    "description": "A sturdy manual wheelchair with a black metal frame, large spoked rear wheels, brown seat and backrest, and fixed metal footrests.",
+    "description_view_0": "Side view showing the large spoked rear wheel, fixed footrests, and the brown seat and backrest.",
+    "description_view_1": "Front view highlighting the dual footrests, the width of the seat, and the alignment of the handles.",
+    "description_view_2": "Opposite side view displaying the second large rear wheel, footrests, and the frame's cross-bracing.",
+    "description_view_3": "Rear view showing the two push handles, the backrest, and the rear wheels' alignment.",
+    "category": "wheelchair",
+    "height": 1.0,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "synthetic fabric",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.12,
+        0.05,
+        0.03
+    ],
+    "mass": 17,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 25,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "pushable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "wheel",
+        "footrest",
+        "seat",
+        "backrest"
+    ],
+    "traversability": "push_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "black",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_wheel_type": "Spoked rear wheels (2 large), solid front caster wheels (2 small); rear wheels are much larger and have visible spokes.",
+    "attribute_frame_design": "Rigid frame with visible cross-bracing and tubular steel construction; non-folding design.",
+    "attribute_presence_of_push_rims": false,
+    "attribute_footrest_style": "Fixed metal footrests, rectangular in shape, extending forward in a parallel configuration.",
+    "attribute_handlebar_configuration": "Standard push handles, horizontally oriented with textured grips, positioned at the top rear of the frame.",
+    "uid": "6af0d66a358f45469537e236348dd3d8",
+    "near_synsets": {
+        "wheelchair.n.01": 0.4842337146591136,
+        "motorized_wheelchair.n.01": 0.49416678702211875,
+        "bath_chair.n.01": 0.543906001905087,
+        "gurney.n.01": 0.5598722059424539,
+        "four-wheeler.n.01": 0.5662784401111579
+    },
+    "synset": "motorized_wheelchair.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/6af0d66a358f45469537e236348dd3d8",
+        "creator_username": "neverfollow81",
+        "creator_display_name": "neverfollow81",
+        "creator_profile_url": "https://sketchfab.com/neverfollow81"
+    },
+    "filename": "std_6af0d66a358f45469537e236348dd3d8.glb",
+    "length": 1.0758355855941772,
+    "width": 0.6840448081493378
+}

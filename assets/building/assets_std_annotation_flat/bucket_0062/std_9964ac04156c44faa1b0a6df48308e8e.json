@@ -1,0 +1,105 @@
+{
+    "description_long": "This object is a large, towed artillery piece with a robust, industrial design, featuring a long central barrel mounted on a sturdy frame. The vehicle is equipped with four large wheels, two on each side, which are reinforced and appear suitable for heavy loads. The main gun is supported by a complex assembly of mechanical components, including stabilizing arms, aiming mechanisms, and protective shields. The exterior is finished in a matte, desert tan color, with visible bolts, rivets, and structural reinforcements. There are several exposed gears, levers, and handwheels for manual operation, as well as a seat and sighting apparatus for the operator. The overall construction suggests a focus on durability and battlefield functionality, with minimal comfort features.",
+    "description": "A heavy, tan-colored towed artillery piece with a long barrel, four reinforced wheels, and complex mechanical assemblies for aiming and stabilization.",
+    "description_view_0": "Front view showing the twin wheels, central barrel, and the intricate assembly of gears and stabilizers.",
+    "description_view_1": "Side view highlighting the full length of the barrel, the four large wheels, and the detailed mechanical framework.",
+    "description_view_2": "Rear view displaying the operator's seat, sighting apparatus, and the symmetrical wheel arrangement.",
+    "description_view_3": "Opposite side view, similar to view 1, with clear visibility of the barrel, wheels, and mechanical components.",
+    "category": "combat tactical  vehicle",
+    "height": 1.7,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 3200,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 16000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pushable",
+        "pullable",
+        "aimable",
+        "fireable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "wheel",
+        "barrel",
+        "handwheel",
+        "lever",
+        "sight",
+        "seat",
+        "stabilizer arm"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One large central cannon mounted on the main frame; no additional weapon mounts visible.",
+    "attribute_armor_plating": "Partial armor plating around the gun shield and operator's area; appears moderately thick and reinforced with visible bolts.",
+    "attribute_camouflage_pattern": "Solid desert tan color; no visible camouflage pattern.",
+    "attribute_military_markings": "White numbers visible on the barrel; no other markings or insignia apparent.",
+    "attribute_tire_type": "Four large, solid rubber tires with minimal tread; appear reinforced for heavy loads.",
+    "uid": "9964ac04156c44faa1b0a6df48308e8e",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.49096998994387553,
+        "tank.n.01": 0.4922657264146033,
+        "artillery.n.01": 0.5067026327116874,
+        "weapons_carrier.n.01": 0.5120957943016388,
+        "assault_gun.n.02": 0.5195956660671505,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "artillery.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9964ac04156c44faa1b0a6df48308e8e",
+        "creator_username": "shamanoff",
+        "creator_display_name": "shamanoff",
+        "creator_profile_url": "https://sketchfab.com/shamanoff"
+    },
+    "filename": "std_9964ac04156c44faa1b0a6df48308e8e.glb",
+    "length": 4.561706781387329,
+    "width": 2.0114898681640625
+}

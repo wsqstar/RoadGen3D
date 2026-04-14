@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a large, modern commercial jet airplane with a streamlined fuselage and a pair of long, swept-back wings. The aircraft features four underwing engines, two on each side, and a conventional tail with a single vertical stabilizer and horizontal stabilizers. The nose is rounded and the cockpit windows are positioned at the front of the fuselage, indicating a forward-mounted, enclosed cockpit. The landing gear is not visible, suggesting it may be retracted. The exterior is primarily a metallic gray with minimal markings, except for the number '741' on the tail fin. The overall design is typical of wide-body passenger jets used for long-haul flights.",
+    "description": "A large, metallic gray commercial jet airplane with four underwing engines, swept-back wings, and a conventional tail. The cockpit is forward-mounted and the tail fin is marked with '741'.",
+    "description_view_0": "Side view showing the full fuselage, swept-back wings, four engines, and the '741' marking on the tail.",
+    "description_view_1": "Rear oblique view highlighting the tail assembly, wing sweep, and engine placement under the wings.",
+    "description_view_2": "Opposite side view displaying the fuselage, wing structure, and engine configuration from the left.",
+    "description_view_3": "Front oblique view emphasizing the nose, cockpit windows, and the full span of the wings with all four engines visible.",
+    "category": "airplane",
+    "height": 7.0,
+    "max_dimension": 68.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 180000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1800000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "closable",
+        "openable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "engine",
+        "cockpit",
+        "landing gear"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 80.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with long, swept-back wings and slight upward winglets at the tips.",
+    "attribute_engine_type": "Four underwing turbofan engines, two on each wing.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Landing gear not visible; likely retractable tricycle configuration based on typical design.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with multiple windows at the front of the fuselage.",
+    "uid": "954ac745876f461bbee1932adb632593",
+    "near_synsets": {
+        "airplane.n.01": 0.5059642041940206,
+        "aircraft.n.01": 0.5075788033924348,
+        "jet.n.01": 0.5210429880990248,
+        "plane_seat.n.01": 0.5291781387382289,
+        "aircraft_engine.n.01": 0.5366218212159561
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/954ac745876f461bbee1932adb632593",
+        "creator_username": "Andriux98",
+        "creator_display_name": "Andriux98",
+        "creator_profile_url": "https://sketchfab.com/Andriux98"
+    },
+    "filename": "std_954ac745876f461bbee1932adb632593.glb",
+    "length": 27.199158668518066,
+    "width": 26.893914222717285
+}

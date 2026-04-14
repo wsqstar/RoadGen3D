@@ -1,0 +1,95 @@
+{
+    "description_long": "This object is a long, double-edged sword with a straight, tapered blade made of metallic material, likely steel, giving it a silvery-gray appearance. The blade is symmetrical and gradually narrows to a sharp point, suitable for thrusting and slashing. The hilt features a simple, straight crossguard in a dark color, providing hand protection and balance. The handle is cylindrical and metallic, ending in a rounded pommel with a gold or brass finish, which adds a touch of contrast and may serve as a counterweight. The overall design is utilitarian with minimal ornamentation, suggesting functionality over decoration. The sword's proportions and construction indicate it is designed for one-handed or possibly hand-and-a-half use, typical of medieval European swords.",
+    "description": "A long, straight, double-edged sword with a metallic blade, dark crossguard, and a gold-tipped cylindrical handle. The design is simple and functional, with minimal decoration.",
+    "description_view_0": "Side view showing the full length of the straight, tapered blade and the cylindrical handle with a gold pommel.",
+    "description_view_1": "Blade-on view highlighting the flat, double-edged geometry and the width of the crossguard.",
+    "description_view_2": "Opposite side view, mirroring the full length of the blade and handle, with the gold pommel visible.",
+    "description_view_3": "Handle-on view showing the circular cross-section of the handle and the symmetrical crossguard.",
+    "category": "knife or sword",
+    "height": 0.05,
+    "max_dimension": 1.0,
+    "materials": [
+        "steel",
+        "brass",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 1.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 20,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "graspable",
+        "cuttable",
+        "thrustable",
+        "swingable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "blade",
+        "handle",
+        "crossguard",
+        "pommel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "gold"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "smooth",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.3,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_blade_type": "straight, double-edged, tapered",
+    "attribute_handle_design": "straight cylindrical metallic handle with a rounded gold pommel",
+    "attribute_guard_presence": true,
+    "attribute_ornamentation": "none",
+    "attribute_sheath_presence": false,
+    "uid": "9c0b0bb35ac34147bd13c159ee834072",
+    "near_synsets": {
+        "sword.n.01": 0.393928318673089,
+        "knife.n.02": 0.4642902151254539,
+        "case_knife.n.01": 0.47388174807259786,
+        "fencing_sword.n.01": 0.4766007649434903,
+        "broadsword.n.01": 0.477302802370591,
+        "knife.n.01": -1000.0,
+        "tongue.n.03": -1000.0
+    },
+    "synset": "knife.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9c0b0bb35ac34147bd13c159ee834072",
+        "creator_username": "Guicos",
+        "creator_display_name": "Guicos",
+        "creator_profile_url": "https://sketchfab.com/Guicos"
+    },
+    "filename": "std_9c0b0bb35ac34147bd13c159ee834072.glb",
+    "length": 0.2796783447265625,
+    "width": 1.4207992553710938
+}

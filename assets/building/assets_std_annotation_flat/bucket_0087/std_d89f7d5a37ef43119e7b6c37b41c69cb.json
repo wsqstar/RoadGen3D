@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a classic steam locomotive with a connected coal tender, featuring a robust black metal body and brass or gold accents. The locomotive has a prominent smokestack, a bell, and a headlamp at the front, with a cowcatcher mounted below. The cab is enclosed with visible windows and a roof, while the tender is boxy and marked with the word 'Central' in gold lettering. The wheels are large and spoked, typical of 19th-century steam engines, and the undercarriage is detailed with connecting rods and axles. The overall appearance is weathered, suggesting heavy use and historical significance. This train would be a striking feature in an urban park, museum, or as a decorative element in a themed neighborhood.",
+    "description": "A vintage black steam locomotive with a coal tender, brass accents, and detailed wheels, evoking a classic 19th-century design.",
+    "description_view_0": "Side view showing the full length of the locomotive and tender, with visible gold lettering and detailed wheels.",
+    "description_view_1": "Front view highlighting the smokestack, headlamp, cowcatcher, and the symmetrical arrangement of the wheels.",
+    "description_view_2": "Opposite side view, similar to view 0, with clear visibility of the cab, tender, and mechanical details.",
+    "description_view_3": "Rear view focusing on the back of the tender and the roof of the cab, with less detail of the locomotive's front.",
+    "category": "train",
+    "height": 3.8,
+    "max_dimension": 13.0,
+    "materials": [
+        "steel",
+        "iron",
+        "glass",
+        "wood",
+        "brass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.05,
+        0.05,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 65000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "lever",
+        "headlamp",
+        "bell",
+        "smokestack"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brass",
+        "brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "group",
+    "attribute_train_type": "steam locomotive",
+    "attribute_number_of_carriages": 2,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors at the cab sides",
+    "attribute_window_arrangement": "spaced rectangular windows on the cab",
+    "uid": "d89f7d5a37ef43119e7b6c37b41c69cb",
+    "near_synsets": {
+        "steam_locomotive.n.01": 0.4672719238658222,
+        "train.n.01": 0.49801968203616764,
+        "train_set.n.01": 0.5007080440491676,
+        "tender.n.04": 0.500949880719805,
+        "traction_engine.n.01": 0.511831624404732,
+        "gearing.n.01": -1000.0,
+        "caravan.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "train.n.05": -1000.0,
+        "train.n.04": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d89f7d5a37ef43119e7b6c37b41c69cb",
+        "creator_username": "yanix",
+        "creator_display_name": "yanix",
+        "creator_profile_url": "https://sketchfab.com/yanix"
+    },
+    "filename": "std_d89f7d5a37ef43119e7b6c37b41c69cb.glb",
+    "length": 13.511940002441406,
+    "width": 2.5475353002548218
+}

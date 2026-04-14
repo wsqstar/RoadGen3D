@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a large, articulated semi-truck with a prominent red cab and a long, rectangular gray cargo trailer. The cab features a classic design with a tall, vertical front grille, side exhaust stacks, and a pair of side mirrors. The truck has six wheels on the trailer and four on the cab, indicating a heavy-duty configuration suitable for transporting large loads. The cargo compartment is a box type, fully enclosed and extending the length of the trailer. The cab is separated from the trailer, with visible coupling hardware connecting the two sections. The overall appearance suggests a vehicle designed for long-haul freight transport in urban and highway environments.",
+    "description": "A large red and gray semi-truck with a box cargo trailer and a classic cab design, built for heavy-duty freight transport.",
+    "description_view_0": "Rear view showing the flat, closed doors of the gray cargo trailer and the rear wheels.",
+    "description_view_1": "Side view highlighting the full length of the truck, the red cab, and the six-wheeled gray box trailer.",
+    "description_view_2": "Front view displaying the red cab's grille, windshield, and side mirrors, with the trailer extending behind.",
+    "description_view_3": "Opposite side view mirroring view 1, showing the cab and trailer profile from the other side.",
+    "category": "truck",
+    "height": 3.8,
+    "max_dimension": 13.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "mirror",
+        "exhaust stack",
+        "trailer hitch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.65,
+        0.25,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "day cab",
+    "attribute_cargo_bed_type": "box",
+    "attribute_wheelbase": 6.0,
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "64d88784946d4172b9e8acd3b4154f8b",
+    "near_synsets": {
+        "trailer_truck.n.01": 0.45540989190143544,
+        "trailer.n.03": 0.4762942425892307,
+        "truck.n.01": 0.4812532673709967,
+        "cargo_container.n.01": 0.49184572873608323,
+        "van.n.05": 0.4934108237933745,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/64d88784946d4172b9e8acd3b4154f8b",
+        "creator_username": "vonchickenbootz",
+        "creator_display_name": "Z Axis Tech",
+        "creator_profile_url": "https://sketchfab.com/vonchickenbootz"
+    },
+    "filename": "std_64d88784946d4172b9e8acd3b4154f8b.glb",
+    "length": 11.901524543762207,
+    "width": 3.0285303592681885
+}

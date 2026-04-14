@@ -1,0 +1,98 @@
+{
+    "description_long": "This object appears to be a small airplane with a compact fuselage and a set of wings extending from either side. The surface is predominantly white with some colored markings or decals along the sides, possibly indicating airline branding or identification. The structure includes a cockpit area at the front, with windows visible, and a tail section at the rear. The wings are straight and seem to be mounted at a mid-level position relative to the fuselage. There are landing gear components visible beneath the main body, suggesting it is designed for ground operations. The overall form is streamlined, with hard, metallic surfaces and some plastic or composite elements.",
+    "description": "A small, streamlined airplane with a white body, colored markings, mid-mounted straight wings, and visible landing gear.",
+    "description_view_0": "Front and side of the airplane with cockpit windows, colored markings, and part of the wing visible.",
+    "description_view_1": "Side view showing the full length of the fuselage, wing structure, and more of the colored markings.",
+    "description_view_2": "Rear and side view highlighting the tail section and the back of the wings.",
+    "description_view_3": "Angled view from the rear, showing the tail, landing gear, and part of the cockpit area.",
+    "category": "airplane",
+    "height": 1.8,
+    "max_dimension": 6.0,
+    "materials": [
+        "aluminum",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 2,
+    "movable": true,
+    "required_force": 2500,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit window",
+        "landing gear",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "blue",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Mid-wing configuration with straight wings and no visible winglets or pronounced dihedral/anhedral angles.",
+    "attribute_engine_type": "No visible engines present in the images.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and horizontal stabilizers.",
+    "attribute_landing_gear_type": "Tricycle landing gear with two main units and a single nose gear, fixed type.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with visible windows, likely single-seat.",
+    "uid": "6b29a00e368a4c16a8cbb004d07a0830",
+    "near_synsets": {
+        "airplane.n.01": 0.4637872889848237,
+        "aircraft.n.01": 0.46501055346579795,
+        "aircraft_landing.n.01": 0.4917611547153251,
+        "monoplane.n.01": 0.4940225076547407,
+        "landing_gear.n.01": 0.5124089098015914
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/6b29a00e368a4c16a8cbb004d07a0830",
+        "creator_username": "yskmnd",
+        "creator_display_name": "yskmnd",
+        "creator_profile_url": "https://sketchfab.com/yskmnd"
+    },
+    "filename": "std_6b29a00e368a4c16a8cbb004d07a0830.glb",
+    "length": 3.353731393814087,
+    "width": 2.6647154092788696
+}

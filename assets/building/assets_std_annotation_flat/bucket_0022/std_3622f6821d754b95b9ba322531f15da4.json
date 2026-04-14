@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a modern naval warship with a sleek, angular hull and a prominent superstructure featuring advanced radar and communication arrays. The hull is painted in a combination of gray and red, with a sharp bow and a flat, extended stern that appears to accommodate a helicopter landing pad. The superstructure is compact and rises steeply from the deck, housing multiple sensor domes, antennas, and what appears to be a main bridge with windows. The deck is equipped with various fixtures, including a large circular landing zone, hatches, and possible weapon mounts. The ship's design suggests a focus on stealth and operational efficiency, with minimal external clutter and a streamlined profile. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A modern gray and red naval warship with a sleek hull, angular superstructure, and a helicopter landing pad at the stern. The deck features advanced radar, antennas, and minimal external clutter.",
+    "description_view_0": "Side profile showing the full length of the ship, highlighting the angular superstructure, sharp bow, and helicopter pad at the stern.",
+    "description_view_1": "Top-down view revealing the layout of the deck, including the circular helicopter landing pad, superstructure, and various deck fixtures.",
+    "description_view_2": "Opposite side profile, mirroring view 0, with clear visibility of the superstructure and stern features.",
+    "description_view_3": "Front view emphasizing the sharp bow, narrow hull, and the forward section of the superstructure.",
+    "category": "ship",
+    "height": 25,
+    "max_dimension": 140,
+    "materials": [
+        "steel",
+        "aluminum",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.04,
+        0.01,
+        0.05
+    ],
+    "mass": 6000000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 9,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "radar",
+        "antenna",
+        "bridge window",
+        "deck equipment"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a sharp, raked bow and a flat, broad stern. The sides are smooth and angular, with a slight flare at the bow and a low freeboard at the stern. There is no visible bulbous bow or catamaran structure, and the hull appears optimized for stealth and hydrodynamic efficiency.",
+    "attribute_superstructure_layout": "The superstructure is compact and angular, rising steeply from the deck near the bow and extending midship. It features a main bridge, several sensor domes, and multiple antennas, with a clear separation between the bridge and the helicopter landing pad at the stern.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "radar",
+        "antenna",
+        "helicopter landing pad",
+        "hatch"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "3622f6821d754b95b9ba322531f15da4",
+    "near_synsets": {
+        "surface_ship.n.01": 0.510990119299844,
+        "naval_radar.n.01": 0.5112679827171862,
+        "three-decker.n.03": 0.5178697329991382,
+        "guard_ship.n.01": 0.5293411854586205,
+        "naval_weaponry.n.01": 0.5306745376938827,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3622f6821d754b95b9ba322531f15da4",
+        "creator_username": "photos_floues",
+        "creator_display_name": "photos_floues",
+        "creator_profile_url": "https://sketchfab.com/photos_floues"
+    },
+    "filename": "std_3622f6821d754b95b9ba322531f15da4.glb",
+    "length": 56.99402618408203,
+    "width": 8.212954998016357
+}

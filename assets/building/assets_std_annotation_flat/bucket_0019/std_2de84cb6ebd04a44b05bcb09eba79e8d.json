@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a classic military-style rifle with a wooden fixed stock and a long, blued steel barrel. The receiver and barrel assembly are constructed from metal, featuring a perforated heat shield along the top of the barrel for cooling. The rifle is equipped with a detachable box magazine, which is shown removed and placed beside the rifle, along with a single visible cartridge. The sighting system consists of traditional iron sights, with a front post and a rear notch. A green fabric sling is attached to the rifle, allowing for easier carrying. The overall finish combines the natural brown of the wood with the dark metallic sheen of the barrel and receiver.",
+    "description": "A military-style rifle with a wooden stock, metal barrel, iron sights, and a detachable box magazine, accompanied by a green sling.",
+    "description_view_0": "Side view showing the full wooden stock, metal barrel, attached sling, and the magazine and cartridge placed beside the rifle.",
+    "description_view_1": "Top-down view highlighting the length of the barrel, the iron sights, and the magazine and cartridge separated from the rifle.",
+    "description_view_2": "Opposite side view displaying the wooden stock, metal receiver, and the magazine and cartridge above the rifle.",
+    "description_view_3": "Front view focusing on the muzzle, heat shield, and the alignment of the magazine and cartridge to the right.",
+    "category": "rifle",
+    "height": 0.18,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.25,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 4.2,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 45,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "loadable",
+        "aimable",
+        "reloadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "barrel",
+        "trigger",
+        "magazine",
+        "sling",
+        "sight",
+        "bolt",
+        "safety"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "green",
+        "silver"
+    ],
+    "colors_composition": [
+        0.4,
+        0.45,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "2de84cb6ebd04a44b05bcb09eba79e8d",
+    "near_synsets": {
+        "garand_rifle.n.01": 0.47286289372876816,
+        "rifle.n.01": 0.4909711164284219,
+        "light_arm.n.01": 0.4936848415165511,
+        "assault_rifle.n.01": 0.5054193924199366,
+        "rifleman.n.02": 0.5093621728964901
+    },
+    "synset": "rifleman.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/2de84cb6ebd04a44b05bcb09eba79e8d",
+        "creator_username": "vincent074",
+        "creator_display_name": "Vincent074",
+        "creator_profile_url": "https://sketchfab.com/vincent074"
+    },
+    "filename": "std_2de84cb6ebd04a44b05bcb09eba79e8d.glb",
+    "length": 0.4739897549152374,
+    "width": 0.40693309903144836
+}

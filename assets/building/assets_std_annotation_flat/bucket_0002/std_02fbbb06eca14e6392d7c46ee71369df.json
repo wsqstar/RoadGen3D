@@ -1,0 +1,92 @@
+{
+    "description_long": "This is a large, rectangular warehouse building with a flat concrete roof and a simple, utilitarian design. The exterior walls are primarily gray, accented by vertical and horizontal blue structural elements at the corners and between window sections. The front facade features a wide central entryway, likely for vehicle or large cargo access, flanked by several small rectangular windows. The side extension on one end of the building appears to be an auxiliary space, possibly for offices or storage, and includes its own entry door and windows. The windows are uniformly distributed and small, suggesting a focus on security and insulation rather than natural light. The overall structure is robust and industrial, suitable for storage or logistics operations in an urban environment.",
+    "description": "A large, flat-roofed gray warehouse with blue structural accents, small rectangular windows, and a wide central entryway. The design is utilitarian and industrial, with a side extension for auxiliary use.",
+    "description_view_0": "The main facade features a wide central entryway, several small windows, and a side extension with its own door.",
+    "description_view_1": "The side view shows the building's depth, blue vertical supports, and two small windows on the extension.",
+    "description_view_2": "The rear facade mirrors the front but lacks a large entryway, featuring only small windows and blue accents.",
+    "description_view_3": "The opposite side view displays a row of evenly spaced small windows and blue vertical supports.",
+    "category": "warehouse",
+    "height": 7.0,
+    "max_dimension": 40.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 420000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "windows"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.0,
+    "bounciness": 0.02,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_facade_design": "The main facade is constructed from gray concrete panels with blue vertical and horizontal accents, featuring a wide central entryway and a series of small, evenly spaced rectangular windows. The design is minimalistic, with functional elements prioritized over decorative features.",
+    "attribute_loading_dock_presence": true,
+    "attribute_signage_type": [],
+    "attribute_roof_structure": "The roof is flat and expansive, constructed from concrete with no visible skylights, HVAC units, or other rooftop structures. Its clean, unadorned surface emphasizes the building's utilitarian function.",
+    "attribute_architectural_style": "modern industrial",
+    "uid": "02fbbb06eca14e6392d7c46ee71369df",
+    "near_synsets": {
+        "warehouse.n.01": 0.5330761183283614,
+        "loft.n.01": 0.5335312734019119,
+        "artist's_loft.n.01": 0.5612102633800596,
+        "storehouse.n.01": 0.5630334130232266,
+        "storage_space.n.01": 0.5675429997519099
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/02fbbb06eca14e6392d7c46ee71369df",
+        "creator_username": "krahazik",
+        "creator_display_name": "krahazik",
+        "creator_profile_url": "https://sketchfab.com/krahazik"
+    },
+    "filename": "std_02fbbb06eca14e6392d7c46ee71369df.glb",
+    "length": 21.11666202545166,
+    "width": 35.99164962768555
+}

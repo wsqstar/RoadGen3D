@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a medium-sized, boxy cargo truck with a bright blue cab and a large, rectangular gray cargo compartment. The cab features a classic design with a prominent front grille, two side mirrors, and a windshield divided by a central pillar. The truck has three axles, supporting six wheels, and the cargo area is fully enclosed, likely for transporting goods securely. The side of the cargo box is accented with a blue horizontal stripe, matching the cab color. The rear of the truck is equipped with double doors for loading and unloading cargo. The overall build suggests a utilitarian vehicle designed for urban deliveries or logistics.",
+    "description": "A blue-cab, gray-box cargo truck with six wheels and a large enclosed rear compartment, designed for urban goods transport.",
+    "description_view_0": "Front view shows the blue cab, prominent grille, windshield, and side mirrors.",
+    "description_view_1": "Left side view highlights the full length of the truck, blue cab, gray cargo box with blue stripe, and three axles.",
+    "description_view_2": "Rear view displays the double doors of the gray cargo compartment and the boxy structure.",
+    "description_view_3": "Right side view mirrors the left, showing the blue cab, gray cargo box, and wheel arrangement.",
+    "category": "truck",
+    "height": 3.2,
+    "max_dimension": 7.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.1,
+        0.05,
+        0.02
+    ],
+    "mass": 6500,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "mirror",
+        "handle",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.25,
+        0.65,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "box",
+    "attribute_wheelbase": 4.2,
+    "attribute_number_of_axles": 3,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "e382d1986ccc4ac69b734263302a7a35",
+    "near_synsets": {
+        "van.n.05": 0.45864154949450936,
+        "cargo_container.n.01": 0.4935312096659778,
+        "delivery_truck.n.01": 0.5005864582323254,
+        "car_carrier.n.02": 0.5061755654241111,
+        "truck.n.01": 0.5063359787885438,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e382d1986ccc4ac69b734263302a7a35",
+        "creator_username": "Skuperdya",
+        "creator_display_name": "Skuperdya",
+        "creator_profile_url": "https://sketchfab.com/Skuperdya"
+    },
+    "filename": "std_e382d1986ccc4ac69b734263302a7a35.glb",
+    "length": 6.974793434143066,
+    "width": 2.3831787109375
+}

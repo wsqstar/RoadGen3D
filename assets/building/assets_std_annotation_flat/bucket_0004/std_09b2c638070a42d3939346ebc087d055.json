@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a retro-styled red and white vending machine labeled 'HYPO-COLA' with a prominent illuminated sign on top. The front features a large, colorful display with a cartoon nurse mascot, three circular product windows, and a rectangular product retrieval slot marked 'OPEN.' The sides are decorated with diagonal white stripes, a small mascot logo, and geometric accents, while the back is solid black with a vented panel and a yellow caution label. The machine appears to be constructed primarily from metal, with plastic and glass components for the display and product windows. The overall design is boxy and robust, with clear branding and user interaction points. The machine is likely intended for dispensing beverages in urban public spaces.",
+    "description": "A red and white 'HYPO-COLA' vending machine with a cartoon mascot, product windows, and a prominent illuminated sign, designed for urban environments.",
+    "description_view_0": "Front view showing the 'HYPO-COLA' branding, cartoon mascot, three product windows, product retrieval slot, and illuminated sign.",
+    "description_view_1": "Left side view with diagonal white stripes, a small mascot logo, and minimal detailing.",
+    "description_view_2": "Rear view featuring a solid black vented panel and a yellow caution label, with the illuminated sign visible from behind.",
+    "description_view_3": "Right side view with diagonal white stripes, a small mascot logo, and hexagonal accents.",
+    "category": "vending machine",
+    "height": 1.8,
+    "max_dimension": 0.9,
+    "materials": [
+        "painted steel",
+        "plastic",
+        "glass",
+        "electronic components",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "pressable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "display panel",
+        "product retrieval slot",
+        "payment interface"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "black",
+        "yellow",
+        "orange",
+        "green"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.02,
+        0.02,
+        0.01
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "glossy",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A large, rectangular display panel on the upper front, featuring a cartoon mascot, product images, and radiating red and white stripes.",
+    "attribute_payment_interface": "A small, square payment area on the lower right front, likely for card or contactless payment, with a black outline and yellow accent.",
+    "attribute_product_selection_buttons": "Three circular, colored buttons arranged vertically on the right side of the display panel, each corresponding to a product.",
+    "attribute_product_retrieval_slot": "A rectangular slot labeled 'OPEN' located at the lower front, with a visible outline and a flap for retrieving products.",
+    "attribute_branding_or_signage": "Prominent 'HYPO-COLA' branding in red and white on the front and top, with a large illuminated sign, cartoon mascot logos on the front and sides, and additional product imagery.",
+    "uid": "09b2c638070a42d3939346ebc087d055",
+    "near_synsets": {
+        "vending_machine.n.01": 0.5211365336507836,
+        "coca_cola.n.01": 0.5394223577716553,
+        "automat.n.01": 0.5453629014967114,
+        "soda_fountain.n.02": 0.5616465642130514,
+        "pop_bottle.n.01": 0.572753041407631,
+        "machine.n.05": -1000.0,
+        "machine.n.04": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.02": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/09b2c638070a42d3939346ebc087d055",
+        "creator_username": "bauerband",
+        "creator_display_name": "bauerband",
+        "creator_profile_url": "https://sketchfab.com/bauerband"
+    },
+    "filename": "std_09b2c638070a42d3939346ebc087d055.glb",
+    "length": 0.8484260737895966,
+    "width": 0.8700262904167175
+}

@@ -1,0 +1,105 @@
+{
+    "description_long": "This humanoid robot features a rugged, industrial design with a metallic, weathered head and torso, accented by a prominent white visor-like strip across the face. Its arms and legs are constructed from a mix of metallic and brown, rust-colored segments, with visible joints and mechanical details suggesting robust articulation. The robot's hands are shaped with articulated fingers, and its feet are clad in red, boot-like coverings that add a pop of color. A blue, backpack-like module is attached to its back, possibly for power or storage, with visible wiring connecting it to the main body. The overall build is humanoid, with broad shoulders, a defined chest, and a slightly hunched posture, giving it a utilitarian, street-ready appearance. The surface textures range from matte and rough on the metallic parts to slightly smoother on the colored coverings.",
+    "description": "A rugged humanoid robot with a weathered metallic head, articulated limbs, red boots, and a blue backpack module, featuring a utilitarian, industrial look.",
+    "description_view_0": "Front view shows the robot's face with a white visor, broad chest, articulated arms, and red boots.",
+    "description_view_1": "Left side view highlights the blue backpack, arm articulation, and the layered construction of the limbs.",
+    "description_view_2": "Rear view emphasizes the blue backpack module, visible wiring, and the back of the legs and boots.",
+    "description_view_3": "Right side view displays the arm and leg articulation, the backpack's side profile, and the mechanical joints.",
+    "category": "humanoid robot",
+    "height": 1.6,
+    "max_dimension": 0.8,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hand",
+        "arm",
+        "leg",
+        "backpack",
+        "head"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "red",
+        "blue",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.45,
+        0.2,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.15,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "The robot is in a dynamic, forward-leaning pose with one leg bent and the other extended behind, arms bent at the elbows and slightly forward, head facing ahead, and torso slightly hunched.",
+    "attribute_clothing_style": "The robot is unclothed but features integrated panels and coverings, including red boot-like foot coverings and a blue backpack module, with some brown and gray armor-like segments.",
+    "attribute_facial_features": "The face is a metallic, helmet-like structure with a single white visor strip, lacking traditional eyes, mouth, or nose, and no expressive elements or display screens are visible.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints at the shoulders, elbows, hips, and knees, with articulated fingers and rigid, mechanical construction allowing for a wide range of motion.",
+    "attribute_presence_of_sensors": "A single white visor strip on the face may serve as a visual sensor; no other sensors are visibly apparent.",
+    "uid": "hoklERFk4jtsqRJmn1ZRT65kFiz",
+    "near_synsets": {
+        "android.n.01": 0.5459640111309175,
+        "robotics_equipment.n.01": 0.5489406748656641,
+        "cyborg.n.01": 0.5634334572906983,
+        "robotics.n.01": 0.5857450575584103,
+        "boot.n.04": 0.5891267756197777,
+        "automaton.n.02": -1000.0
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/hoklERFk4jtsqRJmn1ZRT65kFiz",
+        "creator_username": "Androide",
+        "creator_display_name": "Andr\u00e9 Merchant",
+        "creator_profile_url": "https://sketchfab.com/Androide"
+    },
+    "filename": "std_hoklERFk4jtsqRJmn1ZRT65kFiz.glb",
+    "length": 1.3915204405784607,
+    "width": 1.3491427302360535
+}

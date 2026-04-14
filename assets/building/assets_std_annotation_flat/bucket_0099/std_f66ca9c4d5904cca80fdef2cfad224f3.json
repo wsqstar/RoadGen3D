@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a mid-rise brick apartment building with three visible floors, featuring a classic urban design. The facade is primarily composed of red brick with gray stone accents at the corners and a dark section on one side, giving it a visually segmented appearance. Rows of symmetrically aligned windows with arched tops on the upper floor and rectangular shapes on the lower floors are present, all framed in gray. A prominent metal fire escape zigzags down the front, providing emergency egress and adding to the building's urban character. The ground level is clad in a darker stone or concrete, and a blue awning marks the main entrance. The flat roof is bordered by a simple parapet, and the overall structure is robust and utilitarian, typical of older city neighborhoods.",
+    "description": "A three-story brick apartment building with symmetrical windows, a metal fire escape, and a blue awning over the main entrance. The facade features red brick, gray stone accents, and a flat roof.",
+    "description_view_0": "The front view shows the fire escape running down the center, symmetrical windows, and the blue awning marking the entrance.",
+    "description_view_1": "The left side view highlights the building's depth, the fire escape's side profile, and the absence of windows on the black section.",
+    "description_view_2": "The rear view displays a plain brick wall with evenly spaced windows and no fire escape or awning.",
+    "description_view_3": "The right side view shows the building's length, the black section with no windows, and the blue awning extending from the side.",
+    "category": "apartment building",
+    "height": 12.0,
+    "max_dimension": 18.0,
+    "materials": [
+        "brick",
+        "concrete",
+        "steel",
+        "glass",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.1,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "fire escape",
+        "awning"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "gray",
+        "black",
+        "blue",
+        "white"
+    ],
+    "colors_composition": [
+        0.6,
+        0.15,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 25000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.0,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 3,
+    "attribute_balcony_presence": false,
+    "attribute_window_arrangement": "The windows are symmetrically arranged in evenly spaced vertical and horizontal rows, with each floor featuring a consistent pattern and alignment.",
+    "attribute_entrance_type": "single door",
+    "attribute_architectural_style": "Victorian",
+    "uid": "f66ca9c4d5904cca80fdef2cfad224f3",
+    "near_synsets": {
+        "apartment_building.n.01": 0.5254319518342163,
+        "elevation.n.07": 0.5565153821057105,
+        "building.n.04": 0.5579694571389174,
+        "facade.n.01": 0.5612812308976523,
+        "block.n.05": 0.5644324862021469,
+        "construction.n.01": -1000.0,
+        "construction.n.07": -1000.0,
+        "building.n.01": -1000.0,
+        "apartment.n.01": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f66ca9c4d5904cca80fdef2cfad224f3",
+        "creator_username": "Thattcher",
+        "creator_display_name": "Thattcher",
+        "creator_profile_url": "https://sketchfab.com/Thattcher"
+    },
+    "filename": "std_f66ca9c4d5904cca80fdef2cfad224f3.glb",
+    "length": 12.4110107421875,
+    "width": 13.341315269470215
+}

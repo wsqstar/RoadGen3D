@@ -1,0 +1,109 @@
+{
+    "description_long": "This ship features a rounded, bulbous hull with multiple portholes along its sides and a prominent bow. The deck is equipped with wooden crates, railings, and a central superstructure that rises to a lookout tower with a conical roof. The superstructure has several square windows and a ladder leading up to the upper deck. At the stern, there are large exhaust funnels and a propeller, while the bow is reinforced with a wooden structure. The ship is adorned with life rings along the sides and has a tall mast extending from the deck. The overall appearance suggests a utilitarian vessel, possibly for cargo or patrol, with a mix of metal and wood construction.",
+    "description": "A rounded-hull ship with a central superstructure, lookout tower, wooden crates, and prominent deck equipment including life rings, funnels, and a tall mast.",
+    "description_view_0": "Front view showing the reinforced bow, central superstructure, lookout tower, and large exhaust funnels at the rear.",
+    "description_view_1": "Side view highlighting the rounded hull, multiple portholes, wooden crates on deck, and the ladder leading to the upper deck.",
+    "description_view_2": "Rear view displaying the stern with life rings, square windows, and the tall mast extending upward.",
+    "description_view_3": "Opposite side view showing the propeller, additional portholes, and the arrangement of deck equipment and superstructure.",
+    "category": "ship",
+    "height": 12.0,
+    "max_dimension": 28.0,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.05,
+        0.03,
+        0.05
+    ],
+    "mass": 95000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "ladder",
+        "hatch",
+        "wheel",
+        "life ring",
+        "crates"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "green",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is rounded and bulbous with a displacement profile, featuring a pronounced bow and a curved stern. Multiple circular portholes line the sides, and the bow is reinforced with a wooden structure. No keels or bulbous bows are visible, and the hull appears to be a single continuous form.",
+    "attribute_superstructure_layout": "The superstructure is centrally located with a main deckhouse featuring square windows and a ladder to an upper deck. Above is a lookout tower with a conical roof, and the deck is bordered by railings. The stern area includes large exhaust funnels and a propeller.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "crates",
+        "life ring",
+        "ladder",
+        "funnels",
+        "propeller",
+        "mast",
+        "railings"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "5a0842ab97e743cb812e7c112994d65a",
+    "near_synsets": {
+        "deck-house.n.01": 0.49265392529781277,
+        "cargo_ship.n.01": 0.49578808062726437,
+        "hull.n.06": 0.4989222566701367,
+        "forecastle.n.01": 0.5043438098278676,
+        "square-rigger.n.01": 0.5053688704293651,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5a0842ab97e743cb812e7c112994d65a",
+        "creator_username": "louisayang",
+        "creator_display_name": "louisayang",
+        "creator_profile_url": "https://sketchfab.com/louisayang"
+    },
+    "filename": "std_5a0842ab97e743cb812e7c112994d65a.glb",
+    "length": 11.586330890655518,
+    "width": 5.334877014160156
+}

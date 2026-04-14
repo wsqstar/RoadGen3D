@@ -1,0 +1,107 @@
+{
+    "description_long": "This object is a street stop sign mounted on a tall, slender metallic pole. The sign features a classic red octagonal face with the word 'STOP' in bold white uppercase letters, making it highly visible to approaching traffic. Above the stop sign, there are two blue street name plates: one reads 'Cardinal Oaks Ct' and the other 'Cindy Ct', indicating the intersection of two streets. The pole is metallic gray and extends well above the stop sign to support the street name plates. The sign's surfaces are smooth and likely reflective, as is standard for traffic signage to enhance nighttime visibility. The overall construction appears robust and weather-resistant, suitable for outdoor urban environments.",
+    "description": "A red octagonal stop sign with white 'STOP' text, mounted on a tall metal pole with blue street name plates for 'Cardinal Oaks Ct' and 'Cindy Ct' above it.",
+    "description_view_0": "The back of the stop sign is visible, showing the gray octagonal rear and the blue 'Cardinal Oaks Ct' street name plate above.",
+    "description_view_1": "A side view showing the thin profile of the pole and the 'Cindy Ct' street name plate, with minimal visibility of the stop sign itself.",
+    "description_view_2": "The front view displays the red octagonal stop sign with white 'STOP' text and the 'Cardinal Oaks Ct' street name plate above.",
+    "description_view_3": "Another side view, similar to view 1, showing the 'Cindy Ct' street name plate and the pole's slender profile.",
+    "category": "stop sign",
+    "height": 2.5,
+    "max_dimension": 2.5,
+    "materials": [
+        "steel",
+        "aluminum",
+        "reflective plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 12,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 150,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "sign face",
+        "pole",
+        "street name plates"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "white",
+        "blue",
+        "gray"
+    ],
+    "colors_composition": [
+        0.3,
+        0.1,
+        0.2,
+        0.4
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.2,
+    "surface_finish": "smooth",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "group",
+    "attribute_octagonal_border": true,
+    "attribute_white_uppercase_stop_text": true,
+    "attribute_red_reflective_surface": true,
+    "attribute_mounted_on_pole": true,
+    "attribute_street_intersection_location": true,
+    "uid": "bd42cd71b26f41d180a7dfcc9e256d5f",
+    "near_synsets": {
+        "stop_sign.n.01": 0.49450340003261184,
+        "street_sign.n.01": 0.5085440950061054,
+        "red_light.n.02": 0.5636006727617942,
+        "stoplight.n.01": 0.5723936185825439,
+        "address.n.05": 0.5794906988185333,
+        "signal.n.01": -1000.0,
+        "sign.n.06": -1000.0,
+        "augury.n.01": -1000.0,
+        "sign.n.11": -1000.0,
+        "sign.n.10": -1000.0,
+        "signboard.n.01": -1000.0,
+        "polarity.n.02": -1000.0,
+        "sign.n.09": -1000.0,
+        "sign_of_the_zodiac.n.01": -1000.0,
+        "sign.n.02": -1000.0,
+        "sign.n.01": -1000.0
+    },
+    "synset": "stop_sign.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bd42cd71b26f41d180a7dfcc9e256d5f",
+        "creator_username": "kmay_ucf",
+        "creator_display_name": "kmay_ucf",
+        "creator_profile_url": "https://sketchfab.com/kmay_ucf"
+    },
+    "filename": "std_bd42cd71b26f41d180a7dfcc9e256d5f.glb",
+    "length": 0.7572559118270874,
+    "width": 1.1762447357177734
+}

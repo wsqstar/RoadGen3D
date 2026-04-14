@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a compact, industrial-style locomotive painted primarily in black with yellow and red hazard striping on the front and rear. The body features a boxy cabin with ventilation grilles and a small operator compartment, likely for a single driver. The locomotive sits on a short section of railway track, with visible wheels and undercarriage details. The sides display white text, including a serial number and company name, adding to its utilitarian appearance. There are various pipes, handrails, and mechanical components visible along the sides, suggesting a diesel or electric shunting engine. The overall design is robust, functional, and intended for heavy-duty urban or industrial rail operations.",
+    "description": "A compact black locomotive with yellow and red hazard striping, boxy cabin, and industrial details, designed for shunting or short-haul rail tasks.",
+    "description_view_0": "Front view showing the yellow and black hazard stripes, central headlight, and coupling mechanism.",
+    "description_view_1": "Side view displaying the boxy cabin, ventilation grilles, white text, and visible handrails and pipes.",
+    "description_view_2": "Rear view with hazard striping, red lights, and a clear view of the back coupling and track.",
+    "description_view_3": "Opposite side view similar to view 1, with visible cabin, grilles, and mechanical details.",
+    "category": "train",
+    "height": 2.8,
+    "max_dimension": 7.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.03,
+        0.02,
+        0.02
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "headlight",
+        "control panel",
+        "handrail",
+        "coupling"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "yellow",
+        "red",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.12,
+        0.08,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_train_type": "shunting locomotive",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "single door on one side of the cabin",
+    "attribute_window_arrangement": "small windows on the cabin sides",
+    "uid": "b45009cc955c4f23b7a039b8bbe09ab1",
+    "near_synsets": {
+        "train.n.01": 0.4781907956059777,
+        "train_set.n.01": 0.4979109976256249,
+        "car_train.n.01": 0.5120901123823092,
+        "rail.n.02": 0.51526752038936,
+        "steam_locomotive.n.01": 0.5188646866398076,
+        "gearing.n.01": -1000.0,
+        "caravan.n.01": -1000.0,
+        "train.n.05": -1000.0,
+        "string.n.04": -1000.0,
+        "train.n.04": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b45009cc955c4f23b7a039b8bbe09ab1",
+        "creator_username": "TonyWony",
+        "creator_display_name": "TonyWony",
+        "creator_profile_url": "https://sketchfab.com/TonyWony"
+    },
+    "filename": "std_b45009cc955c4f23b7a039b8bbe09ab1.glb",
+    "length": 12.505188465118408,
+    "width": 1.8224306106567383
+}

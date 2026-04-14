@@ -1,0 +1,104 @@
+{
+    "description_long": "This object is a rectangular basketball court with a flat playing surface, bordered by clearly defined lines. The court features a muted color palette, with a greenish-blue main area and red accents along the perimeter, suggesting painted markings for gameplay. The surface appears to be made of concrete or asphalt, typical for outdoor urban courts, and is likely designed for durability and heavy use. No basketball hoops or backboards are visible, and the court is not enclosed by any fencing or barriers. The markings on the court are faint but suggest the presence of standard basketball lines such as sidelines and baselines. The overall design is utilitarian, fitting for a public recreational space in an urban environment.",
+    "description": "A rectangular, greenish-blue basketball court with red perimeter markings and a flat, hard surface, typical of outdoor urban recreational areas.",
+    "description_view_0": "A distant, centered view showing the full rectangular court with greenish-blue surface and red border.",
+    "description_view_1": "A side-angled view with the court visible in the center, surrounded by white space and some dark, angular shapes at the edges.",
+    "description_view_2": "Another side-angled view, similar to view 1, with the court in the center and more pronounced dark shapes in the foreground.",
+    "description_view_3": "A direct, centered view of the court's opposite side, showing the same rectangular shape and color scheme as view 0.",
+    "category": "basketball court",
+    "height": 0.1,
+    "max_dimension": 28.0,
+    "materials": [
+        "concrete",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.04,
+        0.01
+    ],
+    "mass": 65000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 3,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "playable",
+        "markable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "greenish-blue",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.0,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_hoop_presence": false,
+    "attribute_backboard_type": "none",
+    "attribute_court_markings": [
+        "sidelines",
+        "baseline"
+    ],
+    "attribute_fence_enclosure": false,
+    "attribute_architectural_style": "urban outdoor",
+    "uid": "f18dbcd0ae004c09802e1987417455d4",
+    "near_synsets": {
+        "basketball_court.n.01": 0.4136720380698491,
+        "volleyball_court.n.01": 0.4911364317510813,
+        "tennis_court.n.01": 0.49926380336024356,
+        "badminton_court.n.01": 0.5043998224369393,
+        "playing_field.n.02": 0.5092701759618529,
+        "court.n.01": -1000.0,
+        "court.n.02": -1000.0,
+        "court.n.03": -1000.0,
+        "court.n.04": -1000.0,
+        "motor_hotel.n.01": -1000.0,
+        "court.n.06": -1000.0,
+        "court.n.08": -1000.0,
+        "court.n.05": -1000.0,
+        "court.n.09": -1000.0,
+        "basketball.n.01": -1000.0,
+        "court.n.10": -1000.0,
+        "basketball.n.02": -1000.0
+    },
+    "synset": "basketball_court.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f18dbcd0ae004c09802e1987417455d4",
+        "creator_username": "spinosa",
+        "creator_display_name": "DECOMIDI - UEL",
+        "creator_profile_url": "https://sketchfab.com/spinosa"
+    },
+    "filename": "std_f18dbcd0ae004c09802e1987417455d4.glb",
+    "length": 11.752439260482788,
+    "width": 27.02322292327881
+}

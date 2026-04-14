@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a large, classic ocean liner with a long, streamlined hull painted in a combination of white, gray, and orange. The ship features four prominent yellow and black funnels evenly spaced along the superstructure, which is set above a multi-deck white upper structure. The bow is sharply pointed, and the stern is rounded, both rising above the waterline, giving the vessel a majestic and balanced profile. The deck is detailed with visible lifeboats, railings, and other fixtures, while the hull sits low and wide, suggesting a displacement-type design for stability and capacity. The ship's overall design is reminiscent of early 20th-century transatlantic liners, with a focus on both functionality and elegance.",
+    "description": "A large, classic ocean liner with four yellow funnels, a white multi-deck superstructure, and a streamlined hull in white, gray, and orange. The ship features detailed deck fixtures and a pointed bow.",
+    "description_view_0": "Side view showing the full length of the ship, four yellow funnels, and the layered white superstructure above the orange and gray hull.",
+    "description_view_1": "Front (bow) view highlighting the pointed bow, the alignment of the funnels, and the narrow width of the ship.",
+    "description_view_2": "Opposite side view mirroring view 0, displaying the same hull and superstructure details from the other side.",
+    "description_view_3": "Rear (stern) view showing the rounded stern, the arrangement of the superstructure, and the alignment of the funnels from the back.",
+    "category": "ship",
+    "height": 25,
+    "max_dimension": 270,
+    "materials": [
+        "steel",
+        "glass",
+        "wood",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.03,
+        0.03
+    ],
+    "mass": 46000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 12000000.0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "steerable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "lifeboat",
+        "funnel",
+        "deck railing",
+        "bridge"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "orange",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.45,
+        0.2,
+        0.15,
+        0.12,
+        0.08
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000.0,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 40,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a classic displacement type with a long, streamlined profile, sharply pointed bow, and rounded stern. The hull sits low in the water, with a wide beam and no visible keels or bulbous bows. The color scheme includes a gray lower hull, orange base, and white upper section.",
+    "attribute_superstructure_layout": "The superstructure consists of multiple decks stacked above the hull, with four large funnels evenly spaced along the centerline. The bridge and upper decks are set forward, with lifeboats and railings visible along the sides.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "lifeboat",
+        "deck railing"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "fa41e6b093b84010a462ef190210d90b",
+    "near_synsets": {
+        "liner.n.04": 0.5011246250907876,
+        "cabin_liner.n.01": 0.5302498276257626,
+        "cargo_ship.n.01": 0.533999450703663,
+        "schooner.n.02": 0.5396602443703347,
+        "windjammer.n.01": 0.5397099859236965,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fa41e6b093b84010a462ef190210d90b",
+        "creator_username": "farhad.Guli",
+        "creator_display_name": "farhad.Guli",
+        "creator_profile_url": "https://sketchfab.com/farhad.Guli"
+    },
+    "filename": "std_fa41e6b093b84010a462ef190210d90b.glb",
+    "length": 93.40185928344727,
+    "width": 11.616119384765625
+}

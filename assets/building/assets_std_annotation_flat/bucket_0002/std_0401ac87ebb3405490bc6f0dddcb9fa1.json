@@ -1,0 +1,103 @@
+{
+    "description_long": "This object consists of three main cylindrical containers and a small black device, all grouped together. The largest container is metallic with a blue cap and two side handles, featuring a yellow warning label. Next to it is a slightly smaller, red-capped metallic canister with a handle, and a black rectangular box with crisscrossed straps. A small black cylindrical component, possibly a detonator or trigger, is also present. The surfaces are metallic and slightly reflective, with visible seams and industrial design elements. The overall appearance suggests a makeshift or improvised explosive device, with components that could be used for storage, transport, and detonation.",
+    "description": "A group of metallic cylindrical and box-shaped containers with colored caps and a small black device, resembling an improvised bomb with industrial features.",
+    "description_view_0": "The front view shows the large metallic container with a blue cap and yellow label, the red-capped canister, the black strapped box, and the small black device spaced apart.",
+    "description_view_1": "This view highlights the blue-capped container and red-capped canister side by side, with the small black device more visible and the black box partially obscured.",
+    "description_view_2": "The blue-capped container is central, with the red-capped canister behind it and the black box and small device to the right, showing the relative size and arrangement.",
+    "description_view_3": "The blue-capped container faces forward, with the red-capped canister behind it, the black box directly in front, and the small black device further away.",
+    "category": "bomb",
+    "height": 0.55,
+    "max_dimension": 0.7,
+    "materials": [
+        "metal",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handle",
+        "cap",
+        "strap",
+        "button"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "silver",
+        "black",
+        "blue",
+        "red",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.07,
+        0.08,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "group",
+    "attribute_warning_labels": [
+        "yellow warning label"
+    ],
+    "attribute_detonation_mechanism": "A small black device, possibly a detonator, is present and may be activated by pressing or pulling. The presence of caps and handles suggests manual triggering or timed detonation.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "0401ac87ebb3405490bc6f0dddcb9fa1",
+    "near_synsets": {
+        "pipe_bomb.n.01": 0.45497803665800673,
+        "bomb.n.01": 0.47361054348621334,
+        "briefcase_bomb.n.01": 0.48818194102094914,
+        "plastic_bomb.n.01": 0.4908738216437648,
+        "cluster_bomb.n.01": 0.49598464315039326,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0401ac87ebb3405490bc6f0dddcb9fa1",
+        "creator_username": "ekagrudesign",
+        "creator_display_name": "ekagrudesign",
+        "creator_profile_url": "https://sketchfab.com/ekagrudesign"
+    },
+    "filename": "std_0401ac87ebb3405490bc6f0dddcb9fa1.glb",
+    "length": 0.5675050616264343,
+    "width": 1.390960693359375
+}

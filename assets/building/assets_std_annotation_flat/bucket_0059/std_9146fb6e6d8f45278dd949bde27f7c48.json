@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a long, straight section of a primary road, featuring a paved surface with visible lane markings running along its length. The road is bordered by grassy or vegetated strips on both sides, suggesting it is set in a semi-urban or suburban environment. The surface appears to be made of asphalt or concrete, with a central dashed white line dividing the two lanes for opposing traffic. There are no visible curbs, sidewalks, or barriers along the edges, and the road is relatively narrow, likely accommodating two-way traffic. No signage, lighting fixtures, or pedestrian crossings are present. The overall appearance is utilitarian, designed for vehicular passage rather than pedestrian use.",
+    "description": "A straight, paved primary road with a central dashed white line, bordered by grassy strips and lacking curbs or signage.",
+    "description_view_0": "Shows the road at an angle, highlighting the central dashed line and grassy borders.",
+    "description_view_1": "Side view emphasizing the road's length and narrow width, with lane markings faintly visible.",
+    "description_view_2": "Opposite angled view similar to view 0, showing the dashed line and vegetated edges.",
+    "description_view_3": "Side view from the opposite direction, again emphasizing the road's length and straightness.",
+    "category": "road",
+    "height": 0.15,
+    "max_dimension": 30.0,
+    "materials": [
+        "asphalt",
+        "concrete",
+        "paint",
+        "soil",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.01,
+        0.13,
+        0.01
+    ],
+    "mass": 63000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "drivable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "car",
+        "bicycle"
+    ],
+    "colors": [
+        "gray",
+        "white",
+        "green"
+    ],
+    "colors_composition": [
+        0.7,
+        0.05,
+        0.25
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_lane_markings": "One central dashed white line dividing two lanes; no other markings visible.",
+    "attribute_signage": "none",
+    "attribute_curb_presence": false,
+    "attribute_lighting_fixtures": "none",
+    "attribute_pedestrian_crossings": "none",
+    "uid": "9146fb6e6d8f45278dd949bde27f7c48",
+    "near_synsets": {
+        "white_line.n.01": 0.4781623906922402,
+        "road.n.01": 0.506615316043081,
+        "traffic_lane.n.01": 0.5095867311757273,
+        "road_surface.n.01": 0.5129173524262692,
+        "straightaway.n.01": 0.5288559572795364,
+        "road.n.02": -1000.0
+    },
+    "synset": "road.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9146fb6e6d8f45278dd949bde27f7c48",
+        "creator_username": "solspec",
+        "creator_display_name": "SolSpec",
+        "creator_profile_url": "https://sketchfab.com/solspec"
+    },
+    "filename": "std_9146fb6e6d8f45278dd949bde27f7c48.glb",
+    "length": 8.924452781677246,
+    "width": 3.630571126937866
+}

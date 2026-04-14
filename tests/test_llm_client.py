@@ -12,7 +12,7 @@ if str(ROOT) not in sys.path:
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from roadgen3d.llm.llm_client import LLMClient, LLMSettings, extract_json_payload
+from roadgen3d.eval_engine_ext.road_metrics.evaluators.llm_client import LLMClient, LLMSettings, extract_json_payload
 
 
 def test_extract_json_payload_accepts_wrapped_text():

@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a large, industrial-grade horizontal storage tank encased in a robust rectangular steel frame, designed for secure transport and storage of hazardous liquids. The tank is cylindrical and painted in a military green color, with prominent orange safety markings and multiple warning labels indicating flammability and electrical hazards. The frame features reinforced corners and cross-bracing for structural integrity, and the tank itself is labeled with a capacity of 22,000 liters and a pressure rating of 4 bar. The exterior surface is matte and hard, with visible weld seams and stenciled text providing technical specifications. No access ladders or visible valves are attached, but the tank is clearly intended for use in environments where safety and containment are critical. The overall design is utilitarian, prioritizing durability and safety for industrial or urban infrastructure settings.",
+    "description": "A large, green horizontal storage tank encased in a reinforced steel frame with hazard labels and technical markings, designed for secure containment of flammable liquids.",
+    "description_view_0": "Front view shows the end of the cylindrical tank with multiple hazard and warning signs, as well as the 'CX 550' label on the frame.",
+    "description_view_1": "Side view reveals the full length of the tank, technical specifications such as '22T6', '4 Bar', and the open steel frame structure.",
+    "description_view_2": "Rear view displays additional hazard symbols and the 'CX 550' label, mirroring the front but with fewer warning signs.",
+    "description_view_3": "Opposite side view highlights the tank's capacity ('22 000 L'), 'Highly Flammable' warning, and the robust frame construction.",
+    "category": "storage tank",
+    "height": 2.2,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.03,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 34300,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressurizable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "frame",
+        "warning label"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "orange",
+        "black",
+        "white",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.85,
+        0.05,
+        0.04,
+        0.04,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": false,
+    "attribute_valve_or_pipe_attachments": [],
+    "attribute_warning_signage": true,
+    "attribute_architectural_style": "cylindrical horizontal",
+    "uid": "311e92f06c174f7fbc4e8480aa45e86d",
+    "near_synsets": {
+        "tank.n.02": 0.4640516561667384,
+        "tank_farm.n.01": 0.5074184708128714,
+        "reservoir.n.03": 0.5191954525296296,
+        "gas_tank.n.01": 0.5220681539130622,
+        "gas_holder.n.01": 0.5232068177400486,
+        "storage.n.03": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "memory.n.04": -1000.0,
+        "repositing.n.01": -1000.0,
+        "cooler.n.03": -1000.0,
+        "tank.n.01": -1000.0,
+        "storage.n.04": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "tank.n.03": -1000.0,
+        "storage.n.01": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/311e92f06c174f7fbc4e8480aa45e86d",
+        "creator_username": "xephoney",
+        "creator_display_name": "xephoney",
+        "creator_profile_url": "https://sketchfab.com/xephoney"
+    },
+    "filename": "std_311e92f06c174f7fbc4e8480aa45e86d.glb",
+    "length": 4.137136220932007,
+    "width": 2.1034626960754395
+}

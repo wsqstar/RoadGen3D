@@ -1,0 +1,111 @@
+{
+    "description_long": "This object is a large, industrial pumping station complex set into a cross-section of earth, featuring a prominent cooling tower, several auxiliary buildings, and a network of pipes and power lines. The main structure is a gray hyperboloid cooling tower, surrounded by smaller white and gray utility buildings and a road leading to the facility. High-voltage transmission lines supported by lattice towers run parallel to the site, indicating the station's role in energy or water management. On one side, blue and orange pipes connect to a large blue reservoir and an underlying orange geological layer, suggesting groundwater extraction or geothermal activity. The terrain is grassy and undulating, with the facility embedded in a multi-layered earth section. The overall construction is robust, with concrete, metal, and glass as primary materials, and the site is designed for heavy-duty, industrial-scale operations.",
+    "description": "A large industrial pumping station complex with a cooling tower, auxiliary buildings, power lines, and visible underground reservoirs and pipes.",
+    "description_view_0": "Front view showing the cooling tower, main building, and road leading into the facility, with the blue reservoir and orange geological layer partially visible on the left.",
+    "description_view_1": "Side view highlighting the length of the facility, the cooling tower, auxiliary buildings, and the full stretch of power lines across grassy terrain.",
+    "description_view_2": "Rear view focusing on the back of the cooling tower, the road, and the connection to the blue reservoir and orange geological layer on the right.",
+    "description_view_3": "Opposite side view displaying the blue reservoir, orange geological layer, and the piping system connecting to the cooling tower and main facility.",
+    "category": "pumping station",
+    "height": 25.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "glass",
+        "plastic",
+        "earth",
+        "water",
+        "air"
+    ],
+    "materials_composition": [
+        0.35,
+        0.25,
+        0.05,
+        0.05,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "mass": 1200000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "pressable",
+        "toggleable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "valve",
+        "control panel",
+        "pipe connection"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "white",
+        "green",
+        "blue",
+        "orange",
+        "black"
+    ],
+    "colors_composition": [
+        0.35,
+        0.15,
+        0.2,
+        0.1,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "scene",
+    "attribute_building_signage": "none",
+    "attribute_ventilation_grilles": "none",
+    "attribute_security_fencing": "none",
+    "attribute_access_hatches": "none",
+    "attribute_warning_lights": "none",
+    "uid": "66f8d5f650134395bdea335d78d989c3",
+    "near_synsets": {
+        "water_tower.n.01": 0.5029836350287186,
+        "pump_house.n.01": 0.5094566866289021,
+        "power_station.n.01": 0.5127455646184603,
+        "cooling_tower.n.01": 0.5509582236850722,
+        "substation.n.01": 0.5608887251048957,
+        "place.n.10": -1000.0,
+        "station.n.03": -1000.0,
+        "post.n.01": -1000.0,
+        "station.n.01": -1000.0,
+        "station.n.05": -1000.0
+    },
+    "synset": "pump_house.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/66f8d5f650134395bdea335d78d989c3",
+        "creator_username": "davidanthony",
+        "creator_display_name": "David Anthony",
+        "creator_profile_url": "https://sketchfab.com/davidanthony"
+    },
+    "filename": "std_66f8d5f650134395bdea335d78d989c3.glb",
+    "length": 45.40132141113281,
+    "width": 33.672935485839844
+}

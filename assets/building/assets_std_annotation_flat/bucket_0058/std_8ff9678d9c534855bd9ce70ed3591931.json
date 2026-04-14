@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a small, colorful ticket kiosk designed for a circus or amusement park setting. The structure features bold red and yellow vertical stripes on its walls, with a large, illuminated marquee sign reading 'TICKETS' in playful, circus-style lettering above the front window. The front side has a wide service window with a circus tent graphic below it, while the sides display additional signage and decorative elements. The kiosk has a flat, deep red roof that slightly overhangs the walls, and a single door at the rear for staff entry. The materials appear to be primarily painted wood or metal panels, with glass for the window and plastic or metal for the signage bulbs. The overall design is festive and eye-catching, intended to attract visitors in a busy urban or park environment.",
+    "description": "A vibrant circus-themed ticket kiosk with bold stripes, a large 'TICKETS' marquee, and a service window. The structure is compact, colorful, and designed to stand out in public spaces.",
+    "description_view_0": "Front view showing the large 'TICKETS' sign, service window, and circus tent graphic below the window.",
+    "description_view_1": "Left side view displaying striped paneling and a side sign reading 'CIRCUS PARK', with the edge of the front window visible.",
+    "description_view_2": "Rear view with no windows, just striped paneling and a subtle access panel or door.",
+    "description_view_3": "Right side view showing a single door with a handle and a side sign reading 'CARNIVAL ENTRANCE'.",
+    "category": "kiosk",
+    "height": 2.4,
+    "max_dimension": 1.6,
+    "materials": [
+        "wood",
+        "metal",
+        "glass",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.05,
+        0.1,
+        0.05,
+        0.1
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "window",
+        "door",
+        "handle",
+        "signage"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "yellow",
+        "white",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.45,
+        0.35,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "Illuminated printed sign above entrance with 'TICKETS' text, printed banners on front and side panels with circus graphics and text.",
+    "attribute_window_presence": "One large rectangular window on the front.",
+    "attribute_door_configuration": "One single hinged door at the rear (right side in view 3).",
+    "attribute_roof_design": "Flat roof with slight overhang, solid deep red color, no visible skylights or awnings.",
+    "attribute_architectural_style": "Circus-themed, playful and festive with bold colors and decorative marquee lights.",
+    "uid": "8ff9678d9c534855bd9ce70ed3591931",
+    "near_synsets": {
+        "ticket_window.n.01": 0.5343567172005896,
+        "box_office.n.02": 0.5507631766861911,
+        "ticket_book.n.01": 0.5560981648230441,
+        "circus.n.05": 0.5646161399797205,
+        "ticket_line.n.01": 0.5679531680885307,
+        "booth.n.02": -1000.0
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8ff9678d9c534855bd9ce70ed3591931",
+        "creator_username": "gemmaballesteros",
+        "creator_display_name": "gemmaballesteros",
+        "creator_profile_url": "https://sketchfab.com/gemmaballesteros"
+    },
+    "filename": "std_8ff9678d9c534855bd9ce70ed3591931.glb",
+    "length": 1.0258354544639587,
+    "width": 1.397879421710968
+}

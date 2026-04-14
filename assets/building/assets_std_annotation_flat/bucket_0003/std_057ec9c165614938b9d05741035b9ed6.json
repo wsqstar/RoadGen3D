@@ -1,0 +1,107 @@
+{
+    "description_long": "This is a modern city bus with a rectangular, boxy shape and a flat roof, painted primarily in cream and blue with black window frames. The bus features large, rectangular side windows arranged in a row, with a blue stripe running along the lower body and a cream upper section. The front displays a digital route sign above the windshield, and there are visible accessibility symbols indicating wheelchair access. The bus has two main passenger doors on the right side, with the front door located just behind the windshield and the rear door positioned toward the middle. The wheels are black with simple hubcaps, and the roof has raised sections likely for air conditioning or ventilation units. Japanese text and signage are visible on the sides and front, suggesting it operates in Japan.",
+    "description": "A cream and blue city bus with large side windows, digital route signage, and accessibility features, designed for urban passenger transport. The bus has two main entry doors and Japanese text on its exterior.",
+    "description_view_0": "Side view showing the right side of the bus with two passenger doors, large rectangular windows, and blue and cream color scheme.",
+    "description_view_1": "Rear view showing the back of the bus with a digital sign, taillights, and the cream roof with rooftop units visible.",
+    "description_view_2": "Side view of the left side, displaying a continuous row of large windows and no visible passenger doors.",
+    "description_view_3": "Front view showing the windshield, digital route sign, headlights, and accessibility signage.",
+    "category": "bus",
+    "height": 3.0,
+    "max_dimension": 11.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.07,
+        0.07,
+        0.03,
+        0.03
+    ],
+    "mass": 11000,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "drivable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "wheel",
+        "button",
+        "display panel",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "cream",
+        "blue",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_doors": 2,
+    "attribute_window_arrangement": "Seven large, rectangular windows evenly spaced along each side, separated by vertical pillars, with a smaller window at the rear and a driver window at the front.",
+    "attribute_route_number_or_destination_sign": "207",
+    "attribute_bus_manufacturer_logo": "A small circular logo with Japanese text is visible on the right side near the front door, but the specific manufacturer name is not clearly readable.",
+    "attribute_passenger_entry_step_height": 0.35,
+    "uid": "057ec9c165614938b9d05741035b9ed6",
+    "near_synsets": {
+        "bus.n.01": 0.5259825945363442,
+        "bus_route.n.01": 0.538560122255266,
+        "bus_traffic.n.01": 0.5467316377425421,
+        "school_bus.n.01": 0.5554755351538635,
+        "bus_company.n.01": 0.5632360553275183,
+        "bus.n.04": -1000.0,
+        "busbar.n.01": -1000.0,
+        "bus_topology.n.01": -1000.0
+    },
+    "synset": "bus_topology.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/057ec9c165614938b9d05741035b9ed6",
+        "creator_username": "VRC-IW",
+        "creator_display_name": "VRC-IW",
+        "creator_profile_url": "https://sketchfab.com/VRC-IW"
+    },
+    "filename": "std_057ec9c165614938b9d05741035b9ed6.glb",
+    "length": 10.491944313049316,
+    "width": 2.79988956451416
+}

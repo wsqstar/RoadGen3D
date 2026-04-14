@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a classic steam locomotive with a deep maroon body and black undercarriage, featuring a prominent cylindrical boiler and a large smokestack at the front. The locomotive has six large spoked driving wheels and a smaller set of wheels at the front, all in black with metallic rims. The cab is enclosed and painted maroon, with a visible number plate on the side and a slightly arched roof. The front of the train displays a headlamp and a cowcatcher, while the rear is squared off, indicating this is the engine unit without attached passenger or freight cars. Metallic handrails and piping run along the sides, and the overall design is reminiscent of early 20th-century British or European steam engines. There are no visible doors or windows on the sides, and the surface finish is mostly matte with some glossy highlights on metallic parts.",
+    "description": "A maroon and black classic steam locomotive with large spoked wheels, a cylindrical boiler, and a prominent smokestack. The engine features metallic details, an enclosed cab, and a matte finish.",
+    "description_view_0": "Side view showing the full length of the maroon locomotive, six large wheels, and the number plate on the cab.",
+    "description_view_1": "Front view highlighting the circular smokestack, headlamp, and cowcatcher, with the train's width and symmetry visible.",
+    "description_view_2": "Opposite side view similar to view 0, showing the wheels, boiler, and cab, but with different lighting and no visible number plate.",
+    "description_view_3": "Rear view focusing on the back of the cab and the roof, with the train's length receding into the distance.",
+    "category": "train",
+    "height": 4.2,
+    "max_dimension": 14.0,
+    "materials": [
+        "steel",
+        "iron",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 70000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1200000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "door",
+        "headlamp",
+        "smokestack",
+        "handrail",
+        "control lever"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "maroon",
+        "black",
+        "silver",
+        "gold"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "steam locomotive",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "no visible doors",
+    "attribute_window_arrangement": "no visible windows",
+    "uid": "f34ae727b8ea44da838004c8fa56b088",
+    "near_synsets": {
+        "steam_locomotive.n.01": 0.45959494384219934,
+        "locomotive.n.01": 0.4963310092282425,
+        "traction_engine.n.01": 0.5056192644597035,
+        "diesel_locomotive.n.01": 0.5091225341958566,
+        "train.n.01": 0.5098063575784562,
+        "caravan.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "train.n.05": -1000.0,
+        "train.n.04": -1000.0,
+        "gearing.n.01": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f34ae727b8ea44da838004c8fa56b088",
+        "creator_username": "guildwhoops",
+        "creator_display_name": "guildwhoops",
+        "creator_profile_url": "https://sketchfab.com/guildwhoops"
+    },
+    "filename": "std_f34ae727b8ea44da838004c8fa56b088.glb",
+    "length": 12.262885570526123,
+    "width": 2.785696029663086
+}

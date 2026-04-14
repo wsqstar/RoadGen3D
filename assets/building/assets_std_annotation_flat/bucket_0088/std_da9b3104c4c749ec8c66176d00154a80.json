@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a military-style tandem rotor helicopter, painted in a green camouflage pattern with darker and lighter green patches. The fuselage is elongated and features two large, horizontally-aligned rotors mounted on top, one at the front and one at the rear, each with three long black blades tipped in orange. The helicopter has a rounded nose with a large, multi-pane cockpit window, and several circular and rectangular windows along the sides of the body. The landing gear consists of two sets of small wheels beneath the fuselage. The overall design suggests a robust, utilitarian aircraft suitable for troop or cargo transport in urban or rugged environments.",
+    "description": "A green, tandem rotor military helicopter with large cockpit windows, side windows, and wheeled landing gear. It features two sets of three-bladed rotors and a camouflaged exterior.",
+    "description_view_0": "Side view showing the full length of the helicopter, both rotors, side windows, and landing wheels.",
+    "description_view_1": "Front view highlighting the rounded nose, large cockpit window, and the alignment of the two main rotors.",
+    "description_view_2": "Opposite side view displaying the open side door, circular windows, and both rotors.",
+    "description_view_3": "Rear view showing the tail section, rear rotor, and the symmetry of the rotor blades.",
+    "category": "helicopter",
+    "height": 5.5,
+    "max_dimension": 16.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "mass": 11000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 107800,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit window",
+        "rotor blade",
+        "landing gear",
+        "side window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "orange",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_rotor_blades": "There are two main rotors, each with three long, straight blades. The blades are black with orange tips, appear to be made of composite material, and are mounted horizontally on top of the fuselage.",
+    "attribute_tail_rotor": "Not present; this helicopter uses a tandem rotor configuration instead of a tail rotor.",
+    "attribute_landing_skids": "This helicopter uses wheeled landing gear instead of skids. The wheels are small, black, and attached to short struts beneath the fuselage.",
+    "attribute_cockpit_windows": "The cockpit features a large, multi-pane window wrapping around the front, with several rectangular and trapezoidal glass panels framed in dark material.",
+    "attribute_registration_number": "not visible",
+    "uid": "da9b3104c4c749ec8c66176d00154a80",
+    "near_synsets": {
+        "helicopter.n.01": 0.5035754310085854,
+        "single-rotor_helicopter.n.01": 0.5171205784776535,
+        "main_rotor.n.01": 0.5223969524143641,
+        "cargo_helicopter.n.01": 0.5371564219438487,
+        "tail_rotor.n.01": 0.5416308552001127
+    },
+    "synset": "cargo_helicopter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/da9b3104c4c749ec8c66176d00154a80",
+        "creator_username": "immanuelorukele",
+        "creator_display_name": "immanuelorukele",
+        "creator_profile_url": "https://sketchfab.com/immanuelorukele"
+    },
+    "filename": "std_da9b3104c4c749ec8c66176d00154a80.glb",
+    "length": 15.427900314331055,
+    "width": 7.723264455795288
+}

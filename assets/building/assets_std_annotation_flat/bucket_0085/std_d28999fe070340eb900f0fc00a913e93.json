@@ -1,0 +1,107 @@
+{
+    "description_long": "This ferry terminal is situated on a small, irregularly shaped island surrounded by dark water, featuring a main dock structure extending into the water and a cluster of buildings at the center. The terminal includes a long, narrow pier or gangway that projects outward, likely serving as the primary boarding area for ferries. Several small structures, possibly waiting areas or operational buildings, are visible near the center, with one prominent red-roofed building standing out. The dock area is equipped with mooring posts and appears to have designated zones for passenger movement and ferry docking. The surrounding water and the island's rocky terrain are clearly delineated, emphasizing the terminal's function as a transportation hub. The overall construction suggests a mix of concrete, metal, and possibly wood, with utilitarian design elements typical of ferry terminals.",
+    "description": "A compact ferry terminal on a small island with a central dock, boarding gangway, and several operational buildings, surrounded by water and mooring structures.",
+    "description_view_0": "From this view, the terminal's main dock and central buildings are visible, with the red-roofed structure and mooring posts standing out.",
+    "description_view_1": "This angle highlights the long boarding gangway extending from the island, as well as the layout of the dock and water access points.",
+    "description_view_2": "The view shows the terminal's side profile, emphasizing the pier's length and the arrangement of the central buildings.",
+    "description_view_3": "From this perspective, the gangway and dock are prominent, with the island's shape and water boundaries clearly visible.",
+    "category": "ferry terminal",
+    "height": 8.0,
+    "max_dimension": 60.0,
+    "materials": [
+        "concrete",
+        "metal",
+        "wood",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "boardable",
+        "dockable",
+        "waitable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "gangway",
+        "ticket booth",
+        "waiting area",
+        "mooring post"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "gray",
+        "dark green",
+        "red",
+        "white",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "scene",
+    "attribute_ferry_dock_signage": true,
+    "attribute_passenger_waiting_area": true,
+    "attribute_ticket_booth_or_kiosk": true,
+    "attribute_boarding_ramps_or_gangways": true,
+    "attribute_water_access_with_mooring_structures": true,
+    "uid": "d28999fe070340eb900f0fc00a913e93",
+    "near_synsets": {
+        "dock.n.05": 0.4663635528898362,
+        "dockside.n.01": 0.5153620447039082,
+        "ferry.n.02": 0.5180720824845214,
+        "landing.n.02": 0.5215483072223772,
+        "ferry.n.01": 0.5237948886330379,
+        "terminal.n.04": -1000.0,
+        "terminal.n.02": -1000.0,
+        "terminal.n.01": -1000.0,
+        "end.n.01": -1000.0
+    },
+    "synset": "terminal.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d28999fe070340eb900f0fc00a913e93",
+        "creator_username": "kmyerskpm",
+        "creator_display_name": "KPM Design Group",
+        "creator_profile_url": "https://sketchfab.com/kmyerskpm"
+    },
+    "filename": "std_d28999fe070340eb900f0fc00a913e93.glb",
+    "length": 118.79948425292969,
+    "width": 132.39137268066406
+}

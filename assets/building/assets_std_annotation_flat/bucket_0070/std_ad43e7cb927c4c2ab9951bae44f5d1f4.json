@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a large, rectangular, enclosed railcar with a weathered blue exterior and a slightly arched roof. The sides feature horizontal paneling and vertical support beams, with ladders affixed at each end for roof access. The car is mounted on two sets of black metal wheels, each attached to a bogie for rail movement. There are no visible windows, and the doors are integrated into the side panels, blending with the horizontal lines. The overall appearance suggests a utilitarian design, likely for transporting goods or cargo in an urban rail network.",
+    "description": "A weathered blue, enclosed railcar with horizontal paneling, ladders at each end, and mounted on black metal wheels. The design is utilitarian, with no visible windows and side-integrated doors.",
+    "description_view_0": "Front view showing the flat, ribbed end of the railcar with no visible doors or windows, and the undercarriage with two wheels.",
+    "description_view_1": "Side view displaying the full length of the car, horizontal paneling, vertical supports, and ladders at both ends.",
+    "description_view_2": "Rear view similar to the front, with a ribbed surface and visible undercarriage wheels.",
+    "description_view_3": "Opposite side view, mirroring the features of view 1 with horizontal paneling and end ladders.",
+    "category": "train",
+    "height": 4.2,
+    "max_dimension": 13.0,
+    "materials": [
+        "steel",
+        "iron",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 32000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "climbable",
+        "loadable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "ladder",
+        "wheel",
+        "roof"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_train_type": "freight train",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "doors integrated into side panels",
+    "attribute_window_arrangement": "no visible windows",
+    "uid": "ad43e7cb927c4c2ab9951bae44f5d1f4",
+    "near_synsets": {
+        "boxcar.n.01": 0.50470840870097,
+        "club_car.n.01": 0.5152505126996658,
+        "train.n.01": 0.5173032472582584,
+        "car_train.n.01": 0.5227234857984047,
+        "coal_car.n.01": 0.5241233358146552,
+        "string.n.04": -1000.0,
+        "train.n.05": -1000.0,
+        "train.n.04": -1000.0,
+        "caravan.n.01": -1000.0,
+        "gearing.n.01": -1000.0
+    },
+    "synset": "train.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/ad43e7cb927c4c2ab9951bae44f5d1f4",
+        "creator_username": "alanaguidry05",
+        "creator_display_name": "Alana G",
+        "creator_profile_url": "https://sketchfab.com/alanaguidry05"
+    },
+    "filename": "std_ad43e7cb927c4c2ab9951bae44f5d1f4.glb",
+    "length": 7.468842267990112,
+    "width": 3.3809823989868164
+}

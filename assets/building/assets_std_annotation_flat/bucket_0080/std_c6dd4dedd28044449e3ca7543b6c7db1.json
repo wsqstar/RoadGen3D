@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a compact, modern construction crane mounted on a robust four-wheeled chassis, painted primarily in a dark teal color with gray and metallic accents. The crane features a prominent articulated knuckle boom arm, which is segmented and jointed for flexible movement and reach. At the end of the boom, there is a specialized grapple mechanism designed for grabbing or manipulating objects, rather than a traditional hook. The body of the vehicle is angular and armored, with visible mechanical joints and hydraulic components, suggesting durability and strength for urban construction tasks. The rear section appears to house machinery and possibly a counterweight, while the front is dominated by the boom's mounting and pivot system. No operator cabin is distinctly visible, indicating remote or automated operation.",
+    "description": "A compact, four-wheeled construction crane with a jointed knuckle boom and a grapple attachment, finished in dark teal and gray. The design is robust and angular, suited for urban construction tasks.",
+    "description_view_0": "Side view showing the full length of the articulated boom and the grapple attachment, with the four-wheeled chassis clearly visible.",
+    "description_view_1": "Front-angled view highlighting the boom's articulation and the grapple mechanism, as well as the robust front chassis.",
+    "description_view_2": "Opposite side view displaying the boom's reach and the rear machinery housing, with the wheels and body contours visible.",
+    "description_view_3": "Rear-angled view focusing on the back of the chassis and the boom extending forward, with the machinery housing and wheel arrangement prominent.",
+    "category": "crane",
+    "height": 2.2,
+    "max_dimension": 5.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.12,
+        0.05,
+        0.05,
+        0.03
+    ],
+    "mass": 4200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 22000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "liftable",
+        "graspable",
+        "extendable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "wheel",
+        "boom",
+        "grapple",
+        "joint",
+        "hydraulic arm"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark teal",
+        "gray",
+        "black",
+        "metallic silver"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.07,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_boom_type": "knuckle boom",
+    "attribute_counterweight_presence": true,
+    "attribute_operator_cabin_visibility": false,
+    "attribute_hook_or_lifting_mechanism": "grapple",
+    "attribute_support_structure_design": "wheeled chassis",
+    "uid": "c6dd4dedd28044449e3ca7543b6c7db1",
+    "near_synsets": {
+        "crane.n.04": 0.4859055898212339,
+        "derrick.n.02": 0.5147876142371716,
+        "transporter.n.02": 0.5525873880677239,
+        "stacker_crane.n.01": 0.559861147951895,
+        "forklift.n.01": 0.5683741472648671,
+        "crane.n.01": -1000.0,
+        "crane.n.05": -1000.0,
+        "crane.n.02": -1000.0,
+        "grus.n.01": -1000.0
+    },
+    "synset": "crane.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c6dd4dedd28044449e3ca7543b6c7db1",
+        "creator_username": "markanlb",
+        "creator_display_name": "markanlb",
+        "creator_profile_url": "https://sketchfab.com/markanlb"
+    },
+    "filename": "std_c6dd4dedd28044449e3ca7543b6c7db1.glb",
+    "length": 5.153823375701904,
+    "width": 3.880134105682373
+}

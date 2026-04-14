@@ -1,0 +1,89 @@
+{
+    "description_long": "This is a classic stone fountain with a two-tiered design, featuring a central column that supports a small upper basin and a larger lower basin. The fountain is mounted on a broad, octagonal stone platform, which is itself set within a square base of stone tiles. The stonework is light gray and appears weathered, with subtle textural variations and some moss or staining visible on the surfaces. The basins have simple, rounded rims and the central column is cylindrical, tapering slightly as it rises. The overall style is utilitarian with minimal ornamentation, making it suitable for public parks, plazas, or urban courtyards.",
+    "description": "A two-tiered, light gray stone fountain with a cylindrical central column and octagonal base, set on a square stone-tiled platform. The design is simple and classic, with weathered surfaces and minimal decoration.",
+    "description_view_0": "Front view showing the full octagonal base, both basins, and the central column clearly, with the stone platform visible.",
+    "description_view_1": "Side view highlighting the depth of the octagonal base and the layered structure of the fountain's tiers.",
+    "description_view_2": "Rear view with a clear look at the stone platform and the back of the fountain's column and basins.",
+    "description_view_3": "Angled view emphasizing the octagonal base's geometry and the fountain's overall symmetry.",
+    "category": "fountain",
+    "height": 1.2,
+    "max_dimension": 2.0,
+    "materials": [
+        "stone",
+        "mortar",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.05,
+        0.03
+    ],
+    "mass": 1200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "hold_water",
+        "collect_water"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "upper basin",
+        "lower basin",
+        "central column"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.54,
+    "youngs_modulus": 30000.0,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.0,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_water_feature_presence": false,
+    "attribute_ornamentation_details": "The fountain features minimal ornamentation, with smooth, rounded rims on the basins and a plain cylindrical column. There are no visible engravings, motifs, or sculptural embellishments.",
+    "attribute_basin_structure": "The fountain has two circular basins, one smaller and elevated above a larger lower basin, both with simple, rounded rims. The basins are supported by a central column and rest on an octagonal stone platform.",
+    "attribute_surrounding_landscaping": "No visible surrounding landscaping.",
+    "attribute_jet_or_spray_pattern": "No visible water jets or spray patterns are present in the current state of the fountain.",
+    "uid": "848195c7b833426dbcbce16f131bc6a5",
+    "near_synsets": {
+        "fountain.n.01": 0.5400401178038172,
+        "fountain.n.04": 0.5435639142204212,
+        "fountain.n.03": 0.556917090344378,
+        "cornerstone.n.03": 0.5731514778960712,
+        "minaret.n.01": 0.580740593691856,
+        "spring.n.03": -1000.0
+    },
+    "synset": "fountain.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/848195c7b833426dbcbce16f131bc6a5",
+        "creator_username": "artfletch",
+        "creator_display_name": "artfletch",
+        "creator_profile_url": "https://sketchfab.com/artfletch"
+    },
+    "filename": "std_848195c7b833426dbcbce16f131bc6a5.glb",
+    "length": 1.4253721237182617,
+    "width": 1.4355722665786743
+}

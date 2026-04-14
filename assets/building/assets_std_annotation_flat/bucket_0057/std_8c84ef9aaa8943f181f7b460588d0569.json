@@ -1,0 +1,105 @@
+{
+    "description_long": "This drone features a robust, armored central body with a matte dark gray finish, giving it a futuristic and utilitarian appearance. Four large, circular rotor housings are symmetrically arranged around the main chassis, each with a geometric, open-frame design that suggests durability and efficient airflow. The underside is equipped with multiple articulated, claw-like landing legs, providing stability and a mechanical, insect-like aesthetic. The front of the drone is marked by a cluster of red sensor lights and what appear to be camera lenses, indicating advanced navigation and surveillance capabilities. The rear section is more streamlined, with visible exhaust or propulsion ports. The overall design is both functional and intimidating, suitable for urban monitoring or tactical operations.",
+    "description": "A dark gray, armored drone with four circular rotors, claw-like landing legs, and a cluster of red sensors and cameras on the front. Its design is robust and futuristic, ideal for urban surveillance or tactical use.",
+    "description_view_0": "Front view showing the armored body, four circular rotors, red sensor lights, and multiple claw-like landing legs.",
+    "description_view_1": "Side view highlighting the thickness of the main body, the open-frame rotor design, and the articulated landing legs.",
+    "description_view_2": "Rear view displaying the streamlined back, visible propulsion ports, and the symmetrical rotor arrangement.",
+    "description_view_3": "Opposite side view emphasizing the rotor structure and the mechanical details of the landing legs.",
+    "category": "drone",
+    "height": 0.6,
+    "max_dimension": 1.2,
+    "materials": [
+        "composite plastic",
+        "aluminum",
+        "glass",
+        "rubber",
+        "air",
+        "electronics"
+    ],
+    "materials_composition": [
+        0.5,
+        0.2,
+        0.05,
+        0.05,
+        0.1,
+        0.1
+    ],
+    "mass": 8,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 80,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "flyable",
+        "liftable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotors",
+        "landing legs",
+        "camera module",
+        "sensor lights"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "red",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 4,
+    "attribute_rotor_configuration": "quadcopter X",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": true,
+    "attribute_propeller_guard_presence": false,
+    "uid": "8c84ef9aaa8943f181f7b460588d0569",
+    "near_synsets": {
+        "drone.n.04": 0.5344454887024096,
+        "cargo_helicopter.n.01": 0.5840272775433193,
+        "aircraft.n.01": 0.5842100689652447,
+        "single-rotor_helicopter.n.01": 0.5852263013063861,
+        "buzz_bomb.n.01": 0.586592612210982,
+        "drone.n.01": -1000.0,
+        "dawdler.n.01": -1000.0,
+        "drone.n.05": -1000.0,
+        "monotone.n.01": -1000.0
+    },
+    "synset": "drone.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8c84ef9aaa8943f181f7b460588d0569",
+        "creator_username": "Pyrocube",
+        "creator_display_name": "Pyrocube",
+        "creator_profile_url": "https://sketchfab.com/Pyrocube"
+    },
+    "filename": "std_8c84ef9aaa8943f181f7b460588d0569.glb",
+    "length": 1.040246307849884,
+    "width": 1.7811912298202515
+}

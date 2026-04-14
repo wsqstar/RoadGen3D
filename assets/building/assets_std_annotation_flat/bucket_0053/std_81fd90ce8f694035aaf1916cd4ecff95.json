@@ -1,0 +1,101 @@
+{
+    "description_long": "This is a mid-rise apartment building with a weathered, distressed exterior, featuring five visible floors and a flat roof with a central rooftop structure. The facade is marked by heavy black and white discoloration, likely from age or environmental exposure, and includes a series of protruding balconies on one side. The windows are arranged in a regular vertical pattern, with some floors having metal railings or grates. The rear and side walls are mostly plain, with the back wall showing some barred windows and a ground-level entrance with green doors. The building sits on a paved lot, with the ground surface showing signs of wear and cracking. The overall appearance suggests a utilitarian, possibly Soviet-era or Brutalist architectural influence.",
+    "description": "A five-story, weathered apartment building with a flat roof, distressed black-and-white facade, and protruding balconies on one side. The structure features regular window arrangements, metal railings, and sits on a cracked paved lot.",
+    "description_view_0": "Front view shows the main facade with heavy black-and-white weathering, multiple balconies, and a central vertical column of windows.",
+    "description_view_1": "Rear view reveals a mostly white, cracked wall with barred windows, a rooftop structure, and a ground-level entrance with green doors.",
+    "description_view_2": "Side view displays a plain, white, heavily weathered wall with no windows or balconies, emphasizing the building's utilitarian design.",
+    "description_view_3": "Opposite side view shows a gray, featureless wall with visible brick texture and no windows or balconies.",
+    "category": "apartment building",
+    "height": 18.0,
+    "max_dimension": 22.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "brick",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.1,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "balcony railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "black",
+        "gray",
+        "green"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.13,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_floors": 5,
+    "attribute_balcony_presence": true,
+    "attribute_window_arrangement": "Windows are vertically aligned in regular columns, with each floor having a consistent pattern; some windows are paired with balconies or metal railings, while others are barred or plain.",
+    "attribute_entrance_type": "double doors",
+    "attribute_architectural_style": "Brutalist",
+    "uid": "81fd90ce8f694035aaf1916cd4ecff95",
+    "near_synsets": {
+        "apartment_building.n.01": 0.5007718036316944,
+        "rattrap.n.02": 0.5435514547722968,
+        "block.n.05": 0.5482999819720046,
+        "walk-up_apartment.n.01": 0.5508890516407189,
+        "tenement.n.01": 0.5514456636907621,
+        "construction.n.07": -1000.0,
+        "construction.n.01": -1000.0,
+        "apartment.n.01": -1000.0,
+        "building.n.01": -1000.0,
+        "building.n.04": -1000.0
+    },
+    "synset": "apartment_building.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/81fd90ce8f694035aaf1916cd4ecff95",
+        "creator_username": "JcVisualPro",
+        "creator_display_name": "J.C\u00e9sar Navarrete",
+        "creator_profile_url": "https://sketchfab.com/JcVisualPro"
+    },
+    "filename": "std_81fd90ce8f694035aaf1916cd4ecff95.glb",
+    "length": 18.515281677246094,
+    "width": 18.515277862548828
+}

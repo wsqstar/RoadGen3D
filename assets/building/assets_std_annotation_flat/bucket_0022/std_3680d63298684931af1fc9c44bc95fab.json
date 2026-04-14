@@ -1,0 +1,91 @@
+{
+    "description_long": "This object is a compact, submachine gun-style firearm with a boxy, utilitarian design and a matte black finish. It features a prominent cylindrical suppressor attached to the end of the barrel, extending its length significantly. The receiver is rectangular with minimal external ornamentation, and a vertical magazine protrudes from the grip area. The trigger and trigger guard are clearly visible, and the weapon has a simple iron sight system on top. The overall construction appears to be primarily metal, with some polymer components likely used for the grip and magazine.",
+    "description": "A compact, matte black submachine gun with a large suppressor, boxy receiver, and vertical magazine.",
+    "description_view_0": "Side view showing the full length of the firearm, including the suppressor, magazine, and trigger assembly.",
+    "description_view_1": "Front view highlighting the circular opening of the suppressor and the alignment of the barrel.",
+    "description_view_2": "Opposite side view displaying the suppressor, receiver, and magazine from the other profile.",
+    "description_view_3": "Rear view showing the back of the receiver and the end of the magazine.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 0.45,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 2.8,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "magazine",
+        "suppressor",
+        "sight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "pistol grip",
+    "attribute_barrel_type": "integrally suppressed",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "suppressor",
+    "uid": "3680d63298684931af1fc9c44bc95fab",
+    "near_synsets": {
+        "submachine_gun.n.01": 0.49384409045868083,
+        "kalashnikov.n.01": 0.5055943890737252,
+        "carbine.n.01": 0.5191700480121954,
+        "tommy_gun.n.01": 0.5194542879201304,
+        "mauser.n.02": 0.5257590112203506,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/3680d63298684931af1fc9c44bc95fab",
+        "creator_username": "fellipeandrade201",
+        "creator_display_name": "AWS_3D",
+        "creator_profile_url": "https://sketchfab.com/fellipeandrade201"
+    },
+    "filename": "std_3680d63298684931af1fc9c44bc95fab.glb",
+    "length": 0.4253857135772705,
+    "width": 0.04758349619805813
+}

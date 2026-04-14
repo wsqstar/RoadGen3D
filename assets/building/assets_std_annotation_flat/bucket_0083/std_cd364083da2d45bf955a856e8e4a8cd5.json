@@ -1,0 +1,104 @@
+{
+    "description_long": "This vending machine features a tall, rectangular structure with a dark brown, wood-like exterior and a prominent, black, pyramid-shaped roof. The front face is recessed and painted blue, housing a display area with several shelves containing various bottles and packages. A red panel with white text is situated below the shelves, likely serving as branding or instructions. The sides and back are solid brown panels with a wood grain texture, lacking any visible openings or interactive elements. The overall design is robust and weather-resistant, suitable for outdoor urban environments. The machine's front is the only interactive side, with all functional components concentrated there.",
+    "description": "A tall, wood-paneled vending machine with a black pyramid roof and a blue recessed front displaying shelves of products and a red branding panel.",
+    "description_view_0": "Front view showing the blue recessed display area with shelves of products, a red branding panel, and the main interactive features.",
+    "description_view_1": "Side view displaying a solid brown wood-textured panel and the overhanging black roof, with no visible interactive elements.",
+    "description_view_2": "Rear view showing a plain brown wood-textured panel and the black roof, with no openings or features.",
+    "description_view_3": "Opposite side view, similar to view 1, with a solid brown wood-textured panel and the black roof.",
+    "category": "vending machine",
+    "height": 2.2,
+    "max_dimension": 2.2,
+    "materials": [
+        "wood",
+        "metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "mass": 180,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "button",
+        "display panel",
+        "product retrieval slot"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "blue",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.2,
+        0.15,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A rectangular display panel is located at the upper center of the recessed blue front, showing product images and possibly instructions.",
+    "attribute_payment_interface": "none",
+    "attribute_product_selection_buttons": "none",
+    "attribute_product_retrieval_slot": "A rectangular slot is located below the product shelves, above the red panel, likely for retrieving purchased items.",
+    "attribute_branding_or_signage": "A red rectangular panel with white text or logo is located at the lower center of the front face, serving as branding or signage.",
+    "uid": "cd364083da2d45bf955a856e8e4a8cd5",
+    "near_synsets": {
+        "vending_machine.n.01": 0.4616349759131949,
+        "automat.n.01": 0.5087348485266584,
+        "automat.n.02": 0.5678954643068408,
+        "coin_box.n.01": 0.5747315329587281,
+        "soda_fountain.n.02": 0.5821770567440395,
+        "machine.n.05": -1000.0,
+        "machine.n.02": -1000.0,
+        "machine.n.03": -1000.0,
+        "machine.n.01": -1000.0,
+        "car.n.01": -1000.0,
+        "machine.n.04": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cd364083da2d45bf955a856e8e4a8cd5",
+        "creator_username": "jankloke",
+        "creator_display_name": "jankloke",
+        "creator_profile_url": "https://sketchfab.com/jankloke"
+    },
+    "filename": "std_cd364083da2d45bf955a856e8e4a8cd5.glb",
+    "length": 0.8809222280979156,
+    "width": 0.8809217810630798
+}

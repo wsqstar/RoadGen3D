@@ -1,0 +1,90 @@
+{
+    "description_long": "This is a large, rectangular steel shipping container, commonly seen in urban environments for storage or freight purposes. The exterior is painted a dark green color, with visible patches of rust and weathering, indicating prolonged outdoor use. The sides and top are ribbed for structural reinforcement, while one end features a set of double doors secured with multiple vertical locking bars and metal latches. The opposite end is solid, lacking any openings or features. The container is robust and industrial, designed to withstand harsh conditions and heavy handling, and is typically used for transporting goods or as temporary storage in construction sites, docks, or urban lots.",
+    "description": "A large, weathered green steel shipping container with ribbed sides and secure double doors on one end, showing signs of rust and outdoor use.",
+    "description_view_0": "The long ribbed side of the green container is visible, showing weathering and rust patches but no openings or doors.",
+    "description_view_1": "The short, solid end of the container is shown, with ribbed metal and some rust, but no doors or handles.",
+    "description_view_2": "Another long ribbed side, nearly identical to view 0, with visible rust and no openings.",
+    "description_view_3": "The end with double doors is visible, featuring vertical locking bars and latches, as well as rust and weathering.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.92,
+        0.07,
+        0.01
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 8000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking bar",
+        "latch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark green",
+        "rust brown"
+    ],
+    "colors_composition": [
+        0.92,
+        0.08
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and pull open",
+    "attribute_labeling_or_signage": "none",
+    "attribute_handles_or_grips": "vertical locking bars with integrated handles on door end",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "814b51900440490d9c7982697a41178f",
+    "near_synsets": {
+        "container.n.01": 0.47417388231792784,
+        "cargo_container.n.01": 0.47557023266201387,
+        "cargo_door.n.01": 0.5288054413481321,
+        "crate.n.01": 0.5296899376040005,
+        "dumpster.n.01": 0.5365950642597104
+    },
+    "synset": "cargo_container.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/814b51900440490d9c7982697a41178f",
+        "creator_username": "killer456",
+        "creator_display_name": "killer456",
+        "creator_profile_url": "https://sketchfab.com/killer456"
+    },
+    "filename": "std_814b51900440490d9c7982697a41178f.glb",
+    "length": 8.475344181060791,
+    "width": 4.6882102489471436
+}

@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a pump-action shotgun featuring a long, cylindrical metal barrel and a wooden fore-end grip. The stock is made of wood with a smooth, slightly curved design for shoulder support, and the receiver is metallic, connecting the barrel and stock. The fore-end grip, also wooden, is ribbed for better handling and is positioned beneath the barrel, indicating a pump-action mechanism. The trigger guard is rounded and metallic, encasing a single trigger. The overall finish combines matte metal with polished wood, giving it a classic, utilitarian appearance suitable for urban or rural environments.",
+    "description": "A pump-action shotgun with a long metal barrel, ribbed wooden fore-end, and a full wooden stock. The design is classic, with a mix of matte metal and polished wood surfaces.",
+    "description_view_0": "Side view showing the full length of the shotgun, including the wooden stock, ribbed fore-end, and metallic barrel.",
+    "description_view_1": "Front view displaying the circular barrel opening and the alignment of the fore-end grip beneath the barrel.",
+    "description_view_2": "Opposite side view highlighting the wooden stock and fore-end, with the metallic barrel and receiver visible.",
+    "description_view_3": "Rear view showing the end of the wooden stock and the linear alignment of the barrel and fore-end.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 1.1,
+    "materials": [
+        "steel",
+        "wood",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.35,
+        0.03,
+        0.02
+    ],
+    "mass": 3.2,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 32,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "pumpable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "fore-end grip",
+        "barrel",
+        "trigger",
+        "trigger guard",
+        "receiver",
+        "pump"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.4,
+        0.5,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel, no visible ribbing or venting, standard barrel length",
+    "attribute_stock_type": "full stock",
+    "attribute_action_mechanism": "pump-action",
+    "attribute_presence_of_a_pump_or_lever": "pump",
+    "attribute_trigger_guard_design": "rounded, medium-sized metallic guard with smooth edges and no visible finger grooves",
+    "uid": "68367ee3b1b24fe3a66cce42879128bb",
+    "near_synsets": {
+        "pump_action.n.01": 0.476824780329446,
+        "sawed-off_shotgun.n.01": 0.5185980967261877,
+        "shotgun.n.01": 0.5318897353977328,
+        "gas_gun.n.01": 0.5570430688427622,
+        "shotgun_shell.n.01": 0.5572736760565656
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/68367ee3b1b24fe3a66cce42879128bb",
+        "creator_username": "sh4m4n",
+        "creator_display_name": "sh4m4n",
+        "creator_profile_url": "https://sketchfab.com/sh4m4n"
+    },
+    "filename": "std_68367ee3b1b24fe3a66cce42879128bb.glb",
+    "length": 0.913523256778717,
+    "width": 0.042768366634845734
+}

@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a modern assault rifle, visually resembling the iconic AK-47 design, with a robust, matte black finish. It features a fixed stock, a prominent pistol grip, and a long, straight barrel with a front sight post and a slanted muzzle device. The receiver is boxy and angular, with a visible charging handle and a top-mounted rear sight. A detachable, curved box magazine is shown separated from the rifle, indicating its removable nature. The overall construction appears to be primarily metal with some polymer components, giving it a sturdy and utilitarian appearance suitable for urban environments.",
+    "description": "A matte black assault rifle with a fixed stock, curved detachable magazine, and iron sights, resembling an AK-47.",
+    "description_view_0": "Side view showing the full profile of the rifle, including the fixed stock, pistol grip, barrel, and detached curved magazine below.",
+    "description_view_1": "Front-on view highlighting the narrow width of the rifle, the barrel's end, and the alignment of the iron sights.",
+    "description_view_2": "Opposite side view displaying the rifle's full length, fixed stock, and the detached magazine positioned below and to the right.",
+    "description_view_3": "Rear-on view showing the back of the stock, the slim profile of the receiver, and the magazine's curvature.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 0.88,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "mass": 4.3,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 45,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "stock",
+        "pistol grip",
+        "trigger",
+        "magazine",
+        "charging handle",
+        "safety lever",
+        "iron sights",
+        "barrel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "detachable box",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "slant compensator",
+    "uid": "c57b0a289af147c68c4b06d9ef960469",
+    "near_synsets": {
+        "assault_rifle.n.01": 0.4734617159116619,
+        "kalashnikov.n.01": 0.498939479942578,
+        "garand_rifle.n.01": 0.49913260854471286,
+        "automatic_rifle.n.01": 0.5146697689882626,
+        "carbine.n.01": 0.5220358554969793,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c57b0a289af147c68c4b06d9ef960469",
+        "creator_username": "davidfalke",
+        "creator_display_name": "DavidFalke",
+        "creator_profile_url": "https://sketchfab.com/davidfalke"
+    },
+    "filename": "std_c57b0a289af147c68c4b06d9ef960469.glb",
+    "length": 85.66644287109375,
+    "width": 110.02692890167236
+}

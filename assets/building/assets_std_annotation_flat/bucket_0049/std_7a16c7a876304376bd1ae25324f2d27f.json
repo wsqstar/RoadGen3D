@@ -1,0 +1,109 @@
+{
+    "description_long": "This object is a hexagonal pizza with a golden-brown crust, topped with visible slices of pepperoni, melted cheese, and green herbs, giving it a vibrant and appetizing appearance. The pizza sits inside a square, hinged pizza box with a wood-textured interior and a plain white exterior. The box lid is open, revealing the pizza and the detailed texture of the box's inside surface. The exterior of the box features a printed design with the text 'CAT-ARINA' and a stylized image of a person, along with some alphanumeric codes and a red label. The pizza itself appears thick and hearty, with a well-defined edge and a generous layer of toppings. The overall presentation suggests a specialty or branded pizza product, likely intended for takeout or delivery in an urban setting.",
+    "description": "A hexagonal pizza with pepperoni, cheese, and herbs sits inside an open, white pizza box featuring a printed design and wood-textured interior.",
+    "description_view_0": "Side view showing the open pizza box with the hexagonal pizza inside, highlighting the wood-textured interior and the pizza's toppings.",
+    "description_view_1": "Top-down view of the box lid, displaying the 'CAT-ARINA' branding, a person\u2019s image, and alphanumeric codes.",
+    "description_view_2": "Mirrored side view similar to view 0, showing the open box and pizza from the opposite angle.",
+    "description_view_3": "Front view looking directly at the open box and pizza, clearly displaying the pizza's toppings and the full interior of the box.",
+    "category": "pizza",
+    "height": 0.12,
+    "max_dimension": 0.38,
+    "materials": [
+        "cardboard",
+        "paper",
+        "cheese",
+        "bread",
+        "meat",
+        "herbs",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.05,
+        0.15,
+        0.15,
+        0.07,
+        0.02,
+        0.01
+    ],
+    "mass": 1.2,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 15,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "box lid",
+        "box base",
+        "pizza"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "brown",
+        "red",
+        "green",
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.35,
+        0.25,
+        0.15,
+        0.08,
+        0.12,
+        0.05
+    ],
+    "surface_hardness": "semi-soft",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.45,
+    "youngs_modulus": 500,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_topping_type": [
+        "pepperoni",
+        "cheese",
+        "herbs"
+    ],
+    "attribute_slice_count": 6,
+    "attribute_crust_style": "thick crust",
+    "attribute_packaging_presence": true,
+    "attribute_brand_logo": "CAT-ARINA",
+    "uid": "7a16c7a876304376bd1ae25324f2d27f",
+    "near_synsets": {
+        "pepperoni_pizza.n.01": 0.47536584383276154,
+        "cheese_pizza.n.01": 0.5128913597805705,
+        "pizza.n.01": 0.5232970537233753,
+        "sausage_pizza.n.01": 0.5257856101660641,
+        "sicilian_pizza.n.01": 0.5381662188564103
+    },
+    "synset": "sicilian_pizza.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/7a16c7a876304376bd1ae25324f2d27f",
+        "creator_username": "moustachecat",
+        "creator_display_name": "Moustache_Cat",
+        "creator_profile_url": "https://sketchfab.com/moustachecat"
+    },
+    "filename": "std_7a16c7a876304376bd1ae25324f2d27f.glb",
+    "length": 0.15866391360759735,
+    "width": 0.11346006393432617
+}

@@ -1,0 +1,103 @@
+{
+    "description_long": "This warehouse is a sprawling, multi-level industrial structure with a patchwork of metal and concrete panels, exposed steel frameworks, and a variety of colored doors and windows. The exterior features numerous loading bays, staircases, and catwalks, suggesting active logistics and storage operations. The facade is punctuated by red and blue panels, gridded window arrangements, and several rooftop elements such as trusses and ventilation units. The building is set on a broad, flat base, with adjacent open areas possibly used for storage or vehicle access. The overall design is utilitarian, with a focus on function over form, and the presence of signage and safety warnings is evident. The roofline is varied, with both flat and slightly sloped sections, and includes visible steel trusses and industrial fixtures.",
+    "description": "A large, multi-level industrial warehouse with metal and concrete panels, exposed steel frameworks, and colorful doors and windows. The structure features loading bays, staircases, catwalks, and a varied roofline with trusses and ventilation units.",
+    "description_view_0": "Front view showing the main facade with multiple loading bays, colorful panels, and a prominent steel truss roof structure.",
+    "description_view_1": "Side view highlighting the depth of the building, visible staircases, and a mix of window and door arrangements.",
+    "description_view_2": "Rear view displaying the extended length of the warehouse, additional loading areas, and more industrial fixtures on the roof.",
+    "description_view_3": "Opposite side view with clear visibility of catwalks, staircases, and the layered structure of the building.",
+    "category": "warehouse",
+    "height": 8.0,
+    "max_dimension": 32.0,
+    "materials": [
+        "steel",
+        "concrete",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "staircase",
+        "catwalk",
+        "loading bay"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "blue",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.15,
+        0.15,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "scene",
+    "attribute_facade_design": "The main facade features a mix of corrugated metal and concrete panels, interspersed with gridded windows and multiple large loading doors. Red and blue accent panels, external staircases, and catwalks add visual interest and functionality, while safety signage is prominently displayed.",
+    "attribute_loading_dock_presence": true,
+    "attribute_signage_type": [
+        "safety warnings",
+        "directional signs"
+    ],
+    "attribute_roof_structure": "The roof is primarily flat with sections of exposed steel trusses, some slightly sloped areas, and visible industrial fixtures such as ventilation units and skylights.",
+    "attribute_architectural_style": "modern industrial",
+    "uid": "77da87c27b784fa1951f187642b4d3fd",
+    "near_synsets": {
+        "loft.n.01": 0.5251836464684295,
+        "warehouse.n.01": 0.5363986758339361,
+        "shop_floor.n.01": 0.5715575664134835,
+        "storehouse.n.01": 0.5750380426519517,
+        "artist's_loft.n.01": 0.5818125766209317
+    },
+    "synset": "warehouse.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/77da87c27b784fa1951f187642b4d3fd",
+        "creator_username": "Plevako",
+        "creator_display_name": "Plevako",
+        "creator_profile_url": "https://sketchfab.com/Plevako"
+    },
+    "filename": "std_77da87c27b784fa1951f187642b4d3fd.glb",
+    "length": 34.8662166595459,
+    "width": 27.711064338684082
+}

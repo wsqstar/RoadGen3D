@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a classic cartoon-style spherical bomb with a matte dark blue body and a short, thick fuse protruding from the top. The fuse is cylindrical, slightly curved, and appears to be wrapped in a brownish material, emerging from a flat, olive-green collar or cap that seals the top of the bomb. The main body is smooth and featureless, with a uniform color and no visible seams or markings. The proportions suggest a compact, handheld device, likely designed to be thrown or placed. The overall design is simple and iconic, evoking imagery from animated or stylized urban environments. There are no visible buttons, timers, or warning labels on the exterior.",
+    "description": "A spherical, matte dark blue bomb with a thick, curved brown fuse and an olive-green cap on top. The design is simple, smooth, and iconic, with no visible markings or labels.",
+    "description_view_0": "Front view shows the bomb's round body, olive-green cap, and the fuse extending straight upward.",
+    "description_view_1": "This view highlights the fuse's curve, bending to the left, and the smooth, uninterrupted surface of the bomb.",
+    "description_view_2": "The bomb is seen with the fuse mostly upright, showing the symmetry of the cap and the even curvature of the body.",
+    "description_view_3": "The fuse is curved to the right, and the bomb's spherical shape and cap are clearly visible.",
+    "category": "bomb",
+    "height": 0.25,
+    "max_dimension": 0.25,
+    "materials": [
+        "metal",
+        "fabric",
+        "gunpowder",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.15,
+        0.05
+    ],
+    "mass": 2.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 25,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "throwable",
+        "ignitable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "fuse"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark blue",
+        "olive green",
+        "brown"
+    ],
+    "colors_composition": [
+        0.8,
+        0.1,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The bomb appears to be ignited by lighting the exposed fuse at the top, which would burn down to the main body to trigger detonation.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "54c34961caef411bb6b4f9d19463c006",
+    "near_synsets": {
+        "plastic_bomb.n.01": 0.553061993671932,
+        "big_blue.n.01": 0.5545329700775612,
+        "briefcase_bomb.n.01": 0.5579189300390658,
+        "bomb.n.01": 0.5621937234988756,
+        "pipe_bomb.n.01": 0.5652719170215088,
+        "bomb_calorimeter.n.01": -1000.0,
+        "turkey.n.05": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/54c34961caef411bb6b4f9d19463c006",
+        "creator_username": "calfian",
+        "creator_display_name": "calfian",
+        "creator_profile_url": "https://sketchfab.com/calfian"
+    },
+    "filename": "std_54c34961caef411bb6b4f9d19463c006.glb",
+    "length": 0.16487453132867813,
+    "width": 0.16487443447113037
+}

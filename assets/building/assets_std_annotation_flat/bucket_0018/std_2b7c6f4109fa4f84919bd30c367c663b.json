@@ -1,0 +1,95 @@
+{
+    "description_long": "This humanoid robot features a sleek, metallic body with a predominantly gold finish accented by black joints and underlays. Its form is highly anthropomorphic, with a well-defined torso, articulated arms, and legs, and a rounded, featureless head. The robot's limbs are segmented at the shoulders, elbows, wrists, hips, knees, and ankles, suggesting a wide range of motion. The hands are detailed with individual fingers, and the feet are broad and stable, designed for balance. The chest area is slightly pronounced, and the overall build is athletic, resembling a futuristic android. The surface is glossy and reflective, giving the robot a high-tech, premium appearance.",
+    "description": "A gold and black humanoid robot with a glossy, metallic finish, articulated limbs, and a featureless, rounded head. Its athletic build and detailed joints suggest advanced mobility.",
+    "description_view_0": "Front view shows the robot's symmetrical build, gold chest plate, black underarms, and detailed hands with individual fingers.",
+    "description_view_1": "Left side view highlights the robot's rounded head, arm articulation, and the layered structure of the torso and legs.",
+    "description_view_2": "Rear view reveals the back plating, gold and black color contrast, and the robust structure of the legs and arms.",
+    "description_view_3": "Right side view mirrors the left, showing the same articulation and the smooth, continuous surface of the head and limbs.",
+    "category": "humanoid robot",
+    "height": 1.8,
+    "max_dimension": 1.8,
+    "materials": [
+        "metal",
+        "plastic",
+        "synthetic rubber",
+        "air",
+        "electronics"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 95,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "hand",
+        "arm",
+        "leg",
+        "head",
+        "torso"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gold",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.3
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.08,
+    "surface_finish": "glossy",
+    "reflectivity": 0.7,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.2,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with arms slightly bent at the elbows and hands relaxed at the sides, legs straight and feet flat on the ground, head facing forward.",
+    "attribute_clothing_style": "No clothing; the robot is covered in integrated metallic and synthetic panels with a decorative, high-tech finish.",
+    "attribute_facial_features": "The face is completely featureless, with a smooth, rounded surface and no visible eyes, mouth, or nose.",
+    "attribute_limb_articulation": "Arms and legs have visible articulation at the shoulders, elbows, wrists, hips, knees, and ankles, likely using hinge or ball joints; hands have articulated fingers, suggesting fine motor control.",
+    "attribute_presence_of_sensors": "None visible",
+    "uid": "2b7c6f4109fa4f84919bd30c367c663b",
+    "near_synsets": {
+        "android.n.01": 0.5371237927908117,
+        "automaton.n.02": 0.5571459161076788,
+        "cyborg.n.01": 0.562543190562438,
+        "robotics_equipment.n.01": 0.566254204665674,
+        "automaton.n.03": 0.5898059271540441
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2b7c6f4109fa4f84919bd30c367c663b",
+        "creator_username": "dwalsh",
+        "creator_display_name": "dwalsh",
+        "creator_profile_url": "https://sketchfab.com/dwalsh"
+    },
+    "filename": "std_2b7c6f4109fa4f84919bd30c367c663b.glb",
+    "length": 0.3620646446943283,
+    "width": 1.3677603006362915
+}

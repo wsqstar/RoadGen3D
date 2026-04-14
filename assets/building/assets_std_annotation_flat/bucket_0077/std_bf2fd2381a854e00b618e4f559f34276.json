@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a large cargo ship with a flat, elongated deck designed for transporting goods. The hull is painted a deep red below the waterline and a grayish color above, with a prominent bow and a squared-off stern. The superstructure is located at the rear, featuring multiple decks, bridge windows, and various equipment such as antennas and funnels. The deck is mostly open and flat, likely for container or bulk cargo, with some visible fixtures and safety railings. The ship's design suggests it is built for stability and heavy loads, with a robust steel construction. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A large, flat-decked cargo ship with a red and gray hull, rear superstructure, and visible deck equipment. Designed for transporting goods with a robust, industrial appearance.",
+    "description_view_0": "Front view showing the pointed bow, open deck, and rear superstructure with bridge and equipment.",
+    "description_view_1": "Side view highlighting the ship's long, flat deck, red hull bottom, and the superstructure at the stern.",
+    "description_view_2": "Rear view focusing on the superstructure, bridge, and the open expanse of the deck stretching forward.",
+    "description_view_3": "Opposite side view mirroring view 1, showing the length of the deck and the stern superstructure.",
+    "category": "ship",
+    "height": 25,
+    "max_dimension": 220,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.03,
+        0.02,
+        0.01,
+        0.02
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 12000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "steerable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "bridge controls",
+        "antenna",
+        "funnel",
+        "deck equipment"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "red",
+        "white",
+        "green",
+        "yellow"
+    ],
+    "colors_composition": [
+        0.55,
+        0.3,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a pointed bow and a squared stern, featuring a deep red color below the waterline and a flat, elongated structure suitable for heavy cargo. No bulbous bow or visible keels are present, and the hull sides are straight and vertical.",
+    "attribute_superstructure_layout": "The superstructure is located at the stern, rising several decks above the main deck, with bridge windows, antennas, and funnels. The design is compact and functional, with most of the ship's length dedicated to open cargo space.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "antenna",
+        "funnel",
+        "deck railing"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "bf2fd2381a854e00b618e4f559f34276",
+    "near_synsets": {
+        "cargo_ship.n.01": 0.41045631535176025,
+        "container_ship.n.01": 0.45675263673553196,
+        "ship.n.01": 0.46200382296515474,
+        "car_carrier.n.02": 0.4775607113115135,
+        "bottom.n.07": 0.4877629626938735
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bf2fd2381a854e00b618e4f559f34276",
+        "creator_username": "davidbroutian",
+        "creator_display_name": "Brout",
+        "creator_profile_url": "https://sketchfab.com/davidbroutian"
+    },
+    "filename": "std_bf2fd2381a854e00b618e4f559f34276.glb",
+    "length": 109.06123733520508,
+    "width": 20.271262168884277
+}

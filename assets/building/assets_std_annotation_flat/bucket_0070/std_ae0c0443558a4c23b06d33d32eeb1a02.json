@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a compact, cylindrical hand grenade with a matte black finish and a robust, industrial design. The top features a prominent safety lever, a circular pull ring, and a rotary dial with numbered markings, suggesting a timed detonation mechanism. The body is inscribed with the words 'HEX EXPLOSIVE GRENADE' and other technical markings, indicating its function and possibly its model. The lower section of the cylinder has a slightly faceted, gear-like base, likely for stability when placed upright. The overall construction appears to be primarily metal, with some plastic or polymer components in the safety and trigger assembly. The grenade is designed for manual deployment and is sized for easy handling and throwing.",
+    "description": "A matte black, cylindrical hand grenade with a safety lever, pull ring, and rotary timer dial, marked 'HEX EXPLOSIVE GRENADE'. The design is robust and industrial, with a faceted base and technical inscriptions.",
+    "description_view_0": "Front view shows the cylindrical body with a visible safety lever and the pull ring partially obscured, as well as technical markings around the upper section.",
+    "description_view_1": "This angled view highlights the rotary dial with numbered markings, the pull ring, and the 'HEX EXPLOSIVE GRENADE' inscription clearly visible on the body.",
+    "description_view_2": "Rear view displays the back of the safety lever and the faceted base, with minimal visible markings or features.",
+    "description_view_3": "Side view reveals the rotary dial, the pull ring, and additional technical markings, including a logo and measurement indicators.",
+    "category": "bomb",
+    "height": 0.15,
+    "max_dimension": 0.07,
+    "materials": [
+        "steel",
+        "plastic",
+        "explosive_compound",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.18,
+        0.02
+    ],
+    "mass": 0.6,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 9,
+    "movable": true,
+    "required_force": 6,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "pressable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "pull ring",
+        "safety lever",
+        "rotary dial"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "Detonation is likely initiated by pulling the safety ring and releasing the lever, with a rotary dial timer providing a delay before activation.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "analog",
+    "attribute_unusual_placement": false,
+    "uid": "ae0c0443558a4c23b06d33d32eeb1a02",
+    "near_synsets": {
+        "hand_grenade.n.01": 0.5176802722345459,
+        "grenade.n.01": 0.533003422488949,
+        "bomb.n.01": 0.5600147168356883,
+        "mine.n.02": 0.5652192572734068,
+        "briefcase_bomb.n.01": 0.5689443637678265,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/ae0c0443558a4c23b06d33d32eeb1a02",
+        "creator_username": "___konstantsin___",
+        "creator_display_name": "___konstantsin___",
+        "creator_profile_url": "https://sketchfab.com/___konstantsin___"
+    },
+    "filename": "std_ae0c0443558a4c23b06d33d32eeb1a02.glb",
+    "length": 0.06363094598054886,
+    "width": 0.07495765760540962
+}

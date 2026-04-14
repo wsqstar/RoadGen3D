@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a classic black taxi cab, reminiscent of the iconic London taxi, with a boxy, utilitarian shape and rounded edges. The exterior is predominantly black with a slightly worn, glossy finish, and subtle orange trim outlining the lower body and around the windows. The vehicle features four doors, blacked-out windows, and a prominent 'TAXI' sign mounted on the roof, indicating its function as a public transport vehicle. The wheels are simple and dark, blending into the overall color scheme, while the front grille and headlights are clearly defined, giving the vehicle a recognizable face. A license plate is visible on both the front and rear, and the rear window is large, providing good visibility. The overall design suggests a robust, functional vehicle built for urban environments and frequent passenger use.",
+    "description": "A classic black taxi cab with a boxy shape, glossy finish, and a roof-mounted 'TAXI' sign. It features four doors, blacked-out windows, and visible license plates.",
+    "description_view_0": "Rear view showing the large back window, rear license plate, and subtle orange trim along the bumper.",
+    "description_view_1": "Left side view highlighting the four-door layout, blacked-out windows, and the vehicle's boxy silhouette.",
+    "description_view_2": "Front view displaying the prominent 'TAXI' sign, front grille, headlights, and front license plate.",
+    "description_view_3": "Right side view similar to the left, showing the four-door configuration and the overall length of the vehicle.",
+    "category": "taxi",
+    "height": 1.8,
+    "max_dimension": 4.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 1700,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 6,
+    "movable": true,
+    "required_force": 4000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "handle",
+        "taxi sign",
+        "license plate"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "orange",
+        "gray"
+    ],
+    "colors_composition": [
+        0.88,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.2,
+    "asset_composition_type": "single",
+    "attribute_taxi_sign": true,
+    "attribute_roof_light": true,
+    "attribute_license_plate": true,
+    "attribute_company_branding": false,
+    "attribute_fare_meter_display": false,
+    "uid": "a31187a1168b400594e2a4f21b6cb418",
+    "near_synsets": {
+        "minicab.n.01": 0.535759217268962,
+        "gypsy_cab.n.01": 0.5379369160863166,
+        "cab.n.03": 0.5408913600150529,
+        "medallion.n.03": 0.544579936542307,
+        "taximeter.n.01": 0.5545730995308278
+    },
+    "synset": "taximeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a31187a1168b400594e2a4f21b6cb418",
+        "creator_username": "sousinho",
+        "creator_display_name": "Sousinho",
+        "creator_profile_url": "https://sketchfab.com/sousinho"
+    },
+    "filename": "std_a31187a1168b400594e2a4f21b6cb418.glb",
+    "length": 4.456482648849487,
+    "width": 1.8255712985992432
+}

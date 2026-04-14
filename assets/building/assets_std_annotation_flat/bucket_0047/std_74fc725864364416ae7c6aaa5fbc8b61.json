@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a large, modern aircraft carrier with a flat, expansive flight deck and a prominent island superstructure located to starboard. The hull is broad and low in the water, with a sharply pointed bow and a squared-off stern. The flight deck features visible runway markings and is populated with several aircraft, as well as deck equipment such as radar arrays and antennas. The superstructure includes multiple decks, a bridge, and communication masts, all clustered toward the rear half of the ship. The hull sides display hangar openings and sponsons, and the overall color scheme is a mix of dark gray, light gray, and some brown along the waterline. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A large, modern aircraft carrier with a flat flight deck, island superstructure, and visible aircraft and deck equipment. The hull is broad and gray, with a pointed bow and squared stern.",
+    "description_view_0": "Narrow bow view showing the pointed front and the width of the flight deck.",
+    "description_view_1": "Side profile highlighting the full length of the hull, the island superstructure, and aircraft on the deck.",
+    "description_view_2": "Top-down view displaying the entire flight deck, runway markings, and aircraft arrangement.",
+    "description_view_3": "Opposite side profile showing the hull, superstructure, and additional deck details.",
+    "category": "ship",
+    "height": 30,
+    "max_dimension": 330,
+    "materials": [
+        "steel",
+        "aluminum",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.01,
+        0.03
+    ],
+    "mass": 95000000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "radar",
+        "antenna",
+        "aircraft",
+        "bridge"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "light gray",
+        "brown",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.08,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.02,
+    "recommended_clearance": 50,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a broad, flat bottom and vertical sides, a sharply pointed bow, and a squared-off stern. There are sponsons along the sides and hangar openings visible, with no bulbous bow or visible keels.",
+    "attribute_superstructure_layout": "The superstructure consists of a single, large island located to starboard, with multiple decks, a bridge, and several communication masts and radar arrays. The rest of the deck is flat and open for aircraft operations.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "aircraft",
+        "radar",
+        "antenna"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "74fc725864364416ae7c6aaa5fbc8b61",
+    "near_synsets": {
+        "aircraft_carrier.n.01": 0.40035265723420344,
+        "flight_deck.n.01": 0.4947516250278843,
+        "cargo_ship.n.01": 0.5165694577037883,
+        "surface_ship.n.01": 0.5166576623166891,
+        "ship.n.01": 0.5279197005765746
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/74fc725864364416ae7c6aaa5fbc8b61",
+        "creator_username": "shangus930",
+        "creator_display_name": "shangus930",
+        "creator_profile_url": "https://sketchfab.com/shangus930"
+    },
+    "filename": "std_74fc725864364416ae7c6aaa5fbc8b61.glb",
+    "length": 134.53095245361328,
+    "width": 29.518003463745117
+}

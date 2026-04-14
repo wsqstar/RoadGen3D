@@ -1,0 +1,109 @@
+{
+    "description_long": "This is a large, gray military-style ship with a streamlined hull and a complex superstructure featuring multiple decks and towers. The hull is elongated and sits low in the water, with a pointed bow and a squared-off stern. The superstructure includes several raised platforms, a prominent bridge, and multiple masts or antennae, as well as what appear to be funnels for exhaust. The deck is equipped with various fixtures, including radar domes, lifeboats, and possibly weapon emplacements, indicating a vessel designed for naval operations. The ship's exterior is primarily metallic, with a matte finish and some darker accents along the waterline. No visible registration markings or flags are present on the hull or superstructure.",
+    "description": "A large, gray military ship with a streamlined hull, complex superstructure, and multiple masts and deck fixtures. The vessel features a pointed bow, squared stern, and is equipped for naval operations.",
+    "description_view_0": "Top-down view showing the full length of the ship, the layout of the superstructure, and deck equipment.",
+    "description_view_1": "Side profile highlighting the ship's elongated hull, superstructure height, and arrangement of masts and funnels.",
+    "description_view_2": "Bottom-up view similar to view 0, emphasizing the bow and stern shapes and deck layout.",
+    "description_view_3": "Opposite side profile to view 1, showing the hull's waterline, superstructure, and deck fixtures from the other side.",
+    "category": "ship",
+    "height": 18,
+    "max_dimension": 180,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "air",
+        "plastic"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.03,
+        0.05,
+        0.02
+    ],
+    "mass": 12000000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "ladder",
+        "radar",
+        "antenna",
+        "lifeboat",
+        "bridge controls"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "red"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.2,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a displacement type with a long, narrow profile, a sharply pointed bow, and a squared stern. The waterline is visible with a darker accent, and the hull appears reinforced and robust, suitable for ocean-going conditions. No bulbous bow or catamaran features are visible.",
+    "attribute_superstructure_layout": "The superstructure is multi-tiered with several raised decks, a central bridge, and multiple towers or masts. There are distinct platforms for radar and communication equipment, as well as lifeboats and other fixtures along the sides.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "radar",
+        "antenna",
+        "lifeboat",
+        "hatch",
+        "bridge",
+        "possible weapon emplacements"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "b3ac63dc06d34a12bd9d934beef761f7",
+    "near_synsets": {
+        "cargo_ship.n.01": 0.4707620515154453,
+        "transport_ship.n.01": 0.4867029851934521,
+        "navy.n.01": 0.4875239573031425,
+        "troopship.n.01": 0.48850500841755573,
+        "capital_ship.n.01": 0.4921621742253823,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b3ac63dc06d34a12bd9d934beef761f7",
+        "creator_username": "lxyun_2",
+        "creator_display_name": "\u5168\u6597\u7115",
+        "creator_profile_url": "https://sketchfab.com/lxyun_2"
+    },
+    "filename": "std_b3ac63dc06d34a12bd9d934beef761f7.glb",
+    "length": 58.59638023376465,
+    "width": 7.273629188537598
+}

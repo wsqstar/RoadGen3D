@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a semi-automatic handgun with a sleek, modern design, featuring a predominantly black finish with metallic highlights along the slide. The grip is ergonomically contoured and textured for secure handling, with visible horizontal grooves for improved traction. The trigger guard is rounded and robust, providing ample space for finger placement and added safety. The slide is smooth with minimal markings, and the barrel is of standard length, flush with the slide, and lacks external threading or compensators. The magazine base is flat and slightly beveled, seamlessly integrated with the grip. Overall, the handgun exhibits a utilitarian yet refined appearance, suitable for urban law enforcement or civilian use.",
+    "description": "A modern, semi-automatic handgun with a black textured grip, metallic slide, and minimal external markings. The design is sleek and functional, with a flat magazine base and ergonomic features.",
+    "description_view_0": "Side view showing the full profile, including the textured grip, trigger, and metallic slide.",
+    "description_view_1": "Front view highlighting the barrel opening, front sight, and the width of the slide.",
+    "description_view_2": "Opposite side view displaying the grip texture, trigger guard, and slide contours.",
+    "description_view_3": "Top-down view revealing the slide's width, rear sight, and the alignment of the barrel.",
+    "category": "handgun",
+    "height": 0.14,
+    "max_dimension": 0.22,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 0.95,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 10,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "slideable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "slide",
+        "magazine release",
+        "safety",
+        "magazine base"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_grip_design": "The grip is contoured with a slight palm swell and features horizontal grooves running along its length for enhanced traction. It appears to be made of a matte black polymer, providing a non-slip surface. The lower portion of the grip is slightly flared for better control, and there are no visible logos, finger grooves, or decorative embellishments, emphasizing a utilitarian design.",
+    "attribute_trigger_guard_style": "The trigger guard is rounded and moderately thick, offering robust protection for the trigger. It is generously sized to accommodate gloved fingers and lacks any undercuts or squared-off edges. The surface is smooth with no visible texturing or reinforcement, maintaining a simple and functional appearance.",
+    "attribute_barrel_type": "The barrel is of standard length, flush with the end of the slide, and has a smooth, unthreaded profile. There are no visible compensators, ports, or external features, and the finish matches the metallic sheen of the slide. No markings or special treatments are apparent on the barrel exterior.",
+    "attribute_slide_markings": "The slide features minimal markings, with a faint inscription visible on the left side near the rear, possibly indicating a model or manufacturer. The markings are subtle, engraved in a small, unobtrusive font, and there are no prominent logos, serial numbers, or decorative patterns visible.",
+    "attribute_magazine_base_shape": "The magazine base is flat and slightly beveled, seamlessly integrated with the grip's lower edge. It lacks any finger rests, logos, or texturing, presenting a clean and unobtrusive profile that aligns with the overall minimalist design of the handgun.",
+    "uid": "3c98dd9f58d94b149f2658ddcb754c21",
+    "near_synsets": {
+        "semiautomatic_pistol.n.01": 0.4997942088551557,
+        "pistol.n.01": 0.5008075379181743,
+        "firearm.n.01": 0.5270594902480487,
+        "submachine_gun.n.01": 0.5295454257583813,
+        "holster.n.01": 0.5309342409586665
+    },
+    "synset": "semiautomatic_pistol.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/3c98dd9f58d94b149f2658ddcb754c21",
+        "creator_username": "mati-nowacki",
+        "creator_display_name": "emens",
+        "creator_profile_url": "https://sketchfab.com/mati-nowacki"
+    },
+    "filename": "std_3c98dd9f58d94b149f2658ddcb754c21.glb",
+    "length": 0.20459915697574615,
+    "width": 0.026146888732910156
+}

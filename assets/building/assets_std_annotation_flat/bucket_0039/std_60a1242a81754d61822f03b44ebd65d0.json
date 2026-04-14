@@ -1,0 +1,105 @@
+{
+    "description_long": "This delivery robot features a robust, hexagonal red body with metallic gray structural reinforcements along its edges and base. The main chassis is elevated on three angular, articulated legs, each equipped with slender, rod-like extensions that suggest stability and possible movement across urban terrain. A prominent sensor or camera is embedded in a geometric housing on one face, likely serving as the robot's primary navigation or vision system. The top of the robot is flat with a central, vertical antenna or probe extending upward, possibly for communication or telemetry. The surface finish is slightly worn, giving the robot an industrial, utilitarian appearance suitable for outdoor environments. No visible wheels or traditional locomotion mechanisms are present, indicating the legs are the primary means of movement.",
+    "description": "A red, hexagonal delivery robot with metallic gray articulated legs and a central sensor, designed for urban navigation and package transport.",
+    "description_view_0": "Side view showing the red hexagonal body, two angular legs, and a protruding rod-like extension; the sensor is not visible.",
+    "description_view_1": "Angled front view highlighting the three articulated legs, the flat top with a central antenna, and the reinforced body structure.",
+    "description_view_2": "Opposite side view similar to view 0, with the antenna visible and the sensor still not in view.",
+    "description_view_3": "Direct front view displaying the central sensor/camera, symmetrical leg arrangement, and the main access face of the robot.",
+    "category": "delivery robot",
+    "height": 1.1,
+    "max_dimension": 1.4,
+    "materials": [
+        "metal",
+        "plastic",
+        "glass",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.18,
+        0.07,
+        0.05,
+        0.05
+    ],
+    "mass": 55,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 7,
+    "movable": true,
+    "required_force": 180,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pressable",
+        "openable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "sensor/camera",
+        "antenna",
+        "legs",
+        "access panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.65,
+        0.3,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_brand_logo": "none",
+    "attribute_sensor_array": [
+        "single camera or optical sensor in a hexagonal housing on the front face"
+    ],
+    "attribute_wheel_configuration": "none",
+    "attribute_compartment_access_panel": "A geometric panel on the front face, below the sensor, likely serves as the access point for the cargo compartment; no visible handles or hinges.",
+    "attribute_display_screen": "none",
+    "uid": "60a1242a81754d61822f03b44ebd65d0",
+    "near_synsets": {
+        "robotics_equipment.n.01": 0.5614196209945759,
+        "automaton.n.02": 0.59477954899522,
+        "robotics.n.01": 0.5963011715978036,
+        "android.n.01": 0.598644552195122,
+        "telerobotics.n.01": 0.6039160532760532,
+        "rescue.n.01": -1000.0,
+        "manner_of_speaking.n.01": -1000.0,
+        "delivery.n.07": -1000.0,
+        "delivery.n.04": -1000.0,
+        "pitch.n.02": -1000.0,
+        "delivery.n.01": -1000.0,
+        "delivery.n.02": -1000.0
+    },
+    "synset": "automaton.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/60a1242a81754d61822f03b44ebd65d0",
+        "creator_username": "spartan308",
+        "creator_display_name": "spartan308",
+        "creator_profile_url": "https://sketchfab.com/spartan308"
+    },
+    "filename": "std_60a1242a81754d61822f03b44ebd65d0.glb",
+    "length": 0.9779402613639832,
+    "width": 1.0493133664131165
+}

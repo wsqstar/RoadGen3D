@@ -1,0 +1,103 @@
+{
+    "description_long": "This object is a large commercial jet airliner with a streamlined fuselage and a pair of swept-back wings mounted low on the body. The aircraft features four turbofan engines, two mounted on each side of the rear fuselage, and a distinctive T-tail configuration with a horizontal stabilizer mounted atop the vertical fin. The fuselage is cylindrical with a row of passenger windows along each side, and the cockpit is positioned at the very front with multiple windows for visibility. The landing gear is of the tricycle type, with a single nose wheel and two main gear units under the wings. The exterior surface appears to be primarily metallic, finished in a light color with some darker accents around the engines and tail. The overall design suggests a focus on passenger transport, with ample space for boarding and seating inside.",
+    "description": "A large, swept-wing commercial jet airliner with four rear-mounted turbofan engines, a T-tail, and a streamlined fuselage lined with passenger windows.",
+    "description_view_0": "Rear view showing the four turbofan engines clustered at the back and the prominent T-tail configuration.",
+    "description_view_1": "Left side profile highlighting the full length of the fuselage, the row of passenger windows, and the low-mounted swept wings.",
+    "description_view_2": "Front view displaying the cockpit windows, nose landing gear, and the symmetrical sweep of the wings.",
+    "description_view_3": "Right side profile similar to the left, showing the passenger windows, wing, and tail structure.",
+    "category": "airplane",
+    "height": 8.5,
+    "max_dimension": 35.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "plastic",
+        "air",
+        "steel",
+        "composite"
+    ],
+    "materials_composition": [
+        0.65,
+        0.05,
+        0.05,
+        0.05,
+        0.15,
+        0.03,
+        0.02
+    ],
+    "mass": 40000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": true,
+    "required_force": 800000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "closable",
+        "openable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "landing gear",
+        "engine",
+        "cockpit controls",
+        "cargo hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "white",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 20.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "Low-wing configuration with swept-back wings and slight dihedral angle; no visible winglets.",
+    "attribute_engine_type": "Four rear-mounted turbofan engines, two on each side of the fuselage.",
+    "attribute_tail_design": "T-tail configuration with a single vertical stabilizer and a horizontal stabilizer mounted at the top.",
+    "attribute_landing_gear_type": "Tricycle retractable landing gear with one nose gear and two main gear units.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with multiple windows at the front of the fuselage.",
+    "uid": "5ee8461b95964142ab3a8305be0e674f",
+    "near_synsets": {
+        "airplane.n.01": 0.46631643390606003,
+        "fanjet.n.01": 0.466583754622993,
+        "jet.n.01": 0.4785758834724679,
+        "propjet.n.01": 0.4824834422540889,
+        "twinjet.n.01": 0.4855260869234985
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5ee8461b95964142ab3a8305be0e674f",
+        "creator_username": "luizopiloto",
+        "creator_display_name": "Luiz o Piloto",
+        "creator_profile_url": "https://sketchfab.com/luizopiloto"
+    },
+    "filename": "std_5ee8461b95964142ab3a8305be0e674f.glb",
+    "length": 28.06737518310547,
+    "width": 23.078693389892578
+}

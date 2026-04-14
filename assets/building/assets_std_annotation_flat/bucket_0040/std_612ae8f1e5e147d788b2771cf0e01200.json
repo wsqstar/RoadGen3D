@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a small wooden train station platform with a gabled roof covered in reddish-brown shingles. The structure features a covered waiting area supported by wooden posts, a main enclosed room with windows and doors, and an open deck area with steps leading up to the platform. Adjacent to the platform is a short section of railway track, along with a couple of simple wooden signposts. The platform is elevated above the ground and constructed primarily from light-colored wood planks, giving it a rustic, old-fashioned appearance. The overall design suggests a rural or small-town setting, with minimal ornamentation and a focus on functional, sturdy construction.",
+    "description": "A rustic wooden train station platform with a gabled roof, open deck, and adjacent railway track. The structure features a covered waiting area, steps, and simple signposts.",
+    "description_view_0": "Front angled view showing the gabled roof, main entrance, steps, and adjacent railway track with signposts.",
+    "description_view_1": "Side view highlighting the length of the platform, the covered waiting area, and the railway track ending at the platform.",
+    "description_view_2": "Rear angled view showing the back of the platform, the roof structure, and the full length of the railway track.",
+    "description_view_3": "Opposite side view displaying the windows, doors, and the full stretch of the railway track parallel to the platform.",
+    "category": "platform",
+    "height": 3.5,
+    "max_dimension": 12.0,
+    "materials": [
+        "wood",
+        "roof_shingles",
+        "metal",
+        "glass",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 3500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "waitable",
+        "standable",
+        "boardable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "steps",
+        "signpost"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light brown",
+        "reddish brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_architectural_style": "Vernacular",
+    "attribute_manufacturer_or_brand": "Unknown",
+    "attribute_distinctive_signage": "None",
+    "attribute_unique_ornamentation": "None",
+    "attribute_structural_features": "Gabled roof, wooden posts, open deck, steps, windows, doors, adjacent railway track, signposts",
+    "uid": "612ae8f1e5e147d788b2771cf0e01200",
+    "near_synsets": {
+        "platform.n.06": 0.4359089928547533,
+        "platform.n.01": 0.5224514081768259,
+        "railway_station.n.01": 0.5304126934946195,
+        "stairhead.n.01": 0.5383517247976838,
+        "footplate.n.01": 0.5456365289171632,
+        "platform.n.02": -1000.0,
+        "chopine.n.01": -1000.0,
+        "platform.n.03": -1000.0,
+        "platform.n.04": -1000.0
+    },
+    "synset": "platform.n.04",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/612ae8f1e5e147d788b2771cf0e01200",
+        "creator_username": "dddzzz",
+        "creator_display_name": "dddzzz",
+        "creator_profile_url": "https://sketchfab.com/dddzzz"
+    },
+    "filename": "std_612ae8f1e5e147d788b2771cf0e01200.glb",
+    "length": 11.198381900787354,
+    "width": 7.340221643447876
+}

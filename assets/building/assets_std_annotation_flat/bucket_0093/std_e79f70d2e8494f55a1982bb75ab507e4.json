@@ -1,0 +1,101 @@
+{
+    "description_long": "This bus shelter features a sturdy metal frame with vertical slats forming the side and back panels, providing partial enclosure and protection from the elements. The roof is arched and constructed from corrugated metal, showing signs of weathering and a greenish patina. The shelter is open at the front, allowing easy access for waiting passengers, and the interior includes a bench for seating. The structure is utilitarian, with no decorative elements, and is designed for durability in urban environments. The back panel appears to have space for posters or advertisements, though no digital displays are visible. The overall appearance suggests a robust, weather-resistant shelter suitable for public transportation stops.",
+    "description": "A robust, arched-roof metal bus shelter with vertical slat panels and a weathered green finish, partially enclosed with an open front and seating inside.",
+    "description_view_0": "Side view showing the vertical slat panel and the arched metal roof, with the open front partially visible.",
+    "description_view_1": "Front view displaying the wide open entry, interior bench, and partial side and back enclosure.",
+    "description_view_2": "Opposite side view mirroring view 0, highlighting the vertical slat panel and arched roof curvature.",
+    "description_view_3": "Rear view showing the fully enclosed back panel with vertical slats and the full span of the arched roof.",
+    "category": "bus shelter",
+    "height": 2.3,
+    "max_dimension": 3.2,
+    "materials": [
+        "metal",
+        "wood",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 420,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench",
+        "advertisement panel"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "green",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "arched metal",
+    "attribute_seating_presence": true,
+    "attribute_advertisement_panel": true,
+    "attribute_shelter_enclosure_level": "partially enclosed",
+    "attribute_signage": [],
+    "uid": "e79f70d2e8494f55a1982bb75ab507e4",
+    "near_synsets": {
+        "shelter.n.02": 0.5219291365598959,
+        "shelter.n.01": 0.5603364195158678,
+        "sentry_box.n.01": 0.561343271231416,
+        "porte-cochere.n.02": 0.5615105584226795,
+        "gazebo.n.01": 0.5716742198442574,
+        "shelter.n.05": -1000.0,
+        "bus.n.01": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "protection.n.04": -1000.0,
+        "tax_shelter.n.01": -1000.0,
+        "bus.n.04": -1000.0,
+        "busbar.n.01": -1000.0
+    },
+    "synset": "shelter.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e79f70d2e8494f55a1982bb75ab507e4",
+        "creator_username": "milionna",
+        "creator_display_name": "Milionna",
+        "creator_profile_url": "https://sketchfab.com/milionna"
+    },
+    "filename": "std_e79f70d2e8494f55a1982bb75ab507e4.glb",
+    "length": 1.4826824069023132,
+    "width": 3.064021587371826
+}

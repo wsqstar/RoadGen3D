@@ -1,0 +1,105 @@
+{
+    "description_long": "This object is a stylized fast food meal set on a rectangular wooden tray, featuring a burger in an open cardboard box, a container of golden French fries, and a disposable cup with a straw. The burger box and fry container are both made of brown paperboard with orange accents and a circular 'B' logo, suggesting branding. The burger is topped with sesame seeds and includes visible layers of lettuce, cheese, and patty. The drink cup is white with orange speckles and a matching orange lid, also bearing the 'B' logo, and is accompanied by a striped straw. The wooden tray has a natural grain pattern and serves as the base for the meal items. The overall presentation is clean, organized, and visually appealing, evoking a typical fast food restaurant meal.",
+    "description": "A fast food meal consisting of a burger in a branded box, fries in a paper container, and a drink cup with a straw, all arranged on a wooden tray.",
+    "description_view_0": "Front view showing the burger in an open box, fries, and drink cup clearly displayed on a wooden tray.",
+    "description_view_1": "Side view with the fries in the foreground, partially obscuring the burger and drink cup behind.",
+    "description_view_2": "Rear view showing the closed side of the burger box, with the fries and drink cup on either side atop the tray.",
+    "description_view_3": "Opposite side view with the drink cup in the foreground, the burger box partially open, and fries visible in the background.",
+    "category": "fast food restaurant",
+    "height": 0.18,
+    "max_dimension": 0.45,
+    "materials": [
+        "paperboard",
+        "plastic",
+        "wood",
+        "air",
+        "food (simulated)"
+    ],
+    "materials_composition": [
+        0.45,
+        0.15,
+        0.25,
+        0.05,
+        0.1
+    ],
+    "mass": 0.7,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 7,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "liftable",
+        "supportive"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "burger box lid",
+        "fry container",
+        "drink cup lid",
+        "straw"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "orange",
+        "white",
+        "yellow",
+        "green"
+    ],
+    "colors_composition": [
+        0.4,
+        0.2,
+        0.15,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.48,
+    "youngs_modulus": 3500,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "group",
+    "attribute_signage": "No exterior building signage is visible; only product packaging features a circular 'B' logo.",
+    "attribute_logo": "A circular 'B' logo is visible on the burger box, fry container, and drink cup, all in orange color and centrally placed on each item.",
+    "attribute_drive-thru_window": "none",
+    "attribute_outdoor_seating": "none",
+    "attribute_architectural_style": "Not applicable; the object represents a meal set rather than a building, but the packaging design is contemporary fast food style with clean lines, simple branding, and a modern color palette.",
+    "uid": "50665c944e4e4979b9df5582b393a2b2",
+    "near_synsets": {
+        "fast_food.n.01": 0.4515777198969208,
+        "restaurant_chain.n.01": 0.530385934667093,
+        "hamburger.n.01": 0.5363108848385302,
+        "drive-thru.n.01": 0.5384083408094023,
+        "greasy_spoon.n.01": 0.5488093182984571,
+        "food.n.01": -1000.0,
+        "restaurant.n.01": -1000.0,
+        "food.n.03": -1000.0,
+        "food.n.02": -1000.0
+    },
+    "synset": "fast_food.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/50665c944e4e4979b9df5582b393a2b2",
+        "creator_username": "ahxun",
+        "creator_display_name": "Ah Xun",
+        "creator_profile_url": "https://sketchfab.com/ahxun"
+    },
+    "filename": "std_50665c944e4e4979b9df5582b393a2b2.glb",
+    "length": 0.6161137521266937,
+    "width": 0.6687907576560974
+}

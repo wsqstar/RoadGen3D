@@ -1,0 +1,101 @@
+{
+    "description_long": "This kiosk features a series of interconnected arched roofs supported by slender columns, creating a shaded, open-air structure. The roof is composed of repeating barrel vaults with decorative green trim along the arches, giving it a distinctive and elegant appearance. The front facade includes three small enclosed booths, each with a large rectangular window and a recessed entryway, set on a patterned tiled platform. The structure is primarily constructed from light-colored stone or concrete, with green accent bands and glass windows. The open sides and rear allow for easy access and visibility, making it suitable for public spaces such as parks or plazas. The overall design blends classical architectural elements with a modern, functional layout.",
+    "description": "A light stone kiosk with arched, green-trimmed barrel vault roofs, three front booths with large windows, and open sides for public access.",
+    "description_view_0": "Front view showing three enclosed booths with large windows and recessed entryways beneath the arched roof structure.",
+    "description_view_1": "Side view highlighting the depth of the repeating barrel vaults and the open, column-supported structure.",
+    "description_view_2": "Rear view displaying the open back of the kiosk, with the arched roofs and columns visible but no enclosed booths.",
+    "description_view_3": "Opposite side view similar to view 1, showing the open structure and tiled platform, with the booths less visible.",
+    "category": "kiosk",
+    "height": 3.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "stone",
+        "concrete",
+        "glass",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.3,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "serviceable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "window",
+        "entryway"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "beige",
+        "green",
+        "gray",
+        "white",
+        "blue"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_signage_type": "none",
+    "attribute_window_presence": "Three rectangular windows on the front booths",
+    "attribute_door_configuration": "Three open archway entryways on the front",
+    "attribute_roof_design": "Series of barrel vaults with green trim, made of stone or concrete, with decorative overhangs",
+    "attribute_architectural_style": "Classical with modern functional influences, featuring arched vaults and decorative trim",
+    "uid": "dca511b4e8af44d8b9918340c573f6dc",
+    "near_synsets": {
+        "booth.n.02": 0.5315646775110622,
+        "arcade.n.01": 0.5436407464851182,
+        "vault.n.03": 0.5574006859829279,
+        "booth.n.01": 0.5577290509035449,
+        "booth.n.04": 0.5651660526960322
+    },
+    "synset": "booth.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dca511b4e8af44d8b9918340c573f6dc",
+        "creator_username": "hroloumi",
+        "creator_display_name": "Hamidreza Oloumi",
+        "creator_profile_url": "https://sketchfab.com/hroloumi"
+    },
+    "filename": "std_dca511b4e8af44d8b9918340c573f6dc.glb",
+    "length": 4.506519317626953,
+    "width": 9.415620803833008
+}

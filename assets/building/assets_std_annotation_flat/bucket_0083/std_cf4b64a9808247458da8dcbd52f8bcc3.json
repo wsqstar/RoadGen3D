@@ -1,0 +1,85 @@
+{
+    "description_long": "This object is a cylindrical barrel or bucket with a smooth, metallic exterior and a vertically ribbed or pleated surface on two opposing sides. The ribbed sections feature three evenly spaced vertical slots, likely for structural reinforcement or ventilation. The other two sides are plain and unadorned, with a consistent metallic finish. The top is open, revealing a hollow interior, and there are no visible handles or lids. The overall appearance suggests it is made primarily of metal, possibly steel or aluminum, and is designed for durability in urban or industrial environments. Its size and construction indicate it could be used for waste collection, storage, or as a receptacle for materials.",
+    "description": "A cylindrical metallic barrel or bucket with ribbed vertical sections and open top, featuring three vertical slots on two sides. The surface alternates between ribbed and smooth metallic panels.",
+    "description_view_0": "Front view shows the ribbed metallic surface with three vertical slots running down the center.",
+    "description_view_1": "Side view displays a smooth, unadorned metallic surface with no visible slots or ribbing.",
+    "description_view_2": "Rear view mirrors the front, showing the ribbed surface and three vertical slots.",
+    "description_view_3": "Opposite side view reveals another smooth, plain metallic surface.",
+    "category": "barrel or bucket",
+    "height": 0.7,
+    "max_dimension": 0.7,
+    "materials": [
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.95,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 90,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "containable",
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": false,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "vertical ribbed metal reinforcement",
+    "attribute_labeling_or_markings": "none",
+    "attribute_placement_location": "outdoor",
+    "uid": "cf4b64a9808247458da8dcbd52f8bcc3",
+    "near_synsets": {
+        "barrel.n.03": 0.4336745723512194,
+        "barrel.n.02": 0.43939201630394126,
+        "bucket.n.01": 0.467769470452514,
+        "barrel.n.05": 0.49358018043359697,
+        "barrel.n.01": 0.5044207233448437,
+        "barrel.n.04": -1000.0,
+        "bucket.n.02": -1000.0
+    },
+    "synset": "bucket.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/cf4b64a9808247458da8dcbd52f8bcc3",
+        "creator_username": "evgeniyatemereva",
+        "creator_display_name": "Evgeniya Temereva",
+        "creator_profile_url": "https://sketchfab.com/evgeniyatemereva"
+    },
+    "filename": "std_cf4b64a9808247458da8dcbd52f8bcc3.glb",
+    "length": 0.6749100387096405,
+    "width": 0.6756754517555237
+}

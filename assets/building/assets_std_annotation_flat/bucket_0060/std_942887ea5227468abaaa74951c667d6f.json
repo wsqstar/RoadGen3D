@@ -1,0 +1,103 @@
+{
+    "description_long": "This object is a detailed model of a tracked combat tactical vehicle, resembling a World War II-era tank. It features a prominent turret with a long barrel cannon mounted on top, and the hull is rectangular with sloped armor on the front and sides. The vehicle is equipped with continuous tracks on both sides, each supported by multiple road wheels, providing mobility over rough terrain. The surface is painted in a desert camouflage pattern, blending tan and brown hues with subtle weathering effects. The vehicle sits on a textured base that simulates a sandy or dirt environment, enhancing its realistic appearance. No visible military markings or insignia are present on the exterior.",
+    "description": "A tan, tracked combat vehicle with a turret-mounted cannon and desert camouflage, detailed with sloped armor and realistic weathering. The model sits on a textured sandy base.",
+    "description_view_0": "Front view showing the sloped frontal armor, turret, and cannon barrel extending forward.",
+    "description_view_1": "Left side view highlighting the continuous tracks, multiple road wheels, and the side profile of the turret.",
+    "description_view_2": "Rear view displaying the back of the hull and turret, with the tracks partially visible.",
+    "description_view_3": "Right side view showing the tracks, wheels, and the turret with the cannon facing left.",
+    "category": "combat tactical  vehicle",
+    "height": 1.9,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 32000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 5,
+    "movable": true,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "cannon",
+        "hatch",
+        "tracks",
+        "wheels"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "tan",
+        "brown",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the turret; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body armor plating with sloped sections on the front and sides; thickness appears substantial, typical of armored vehicles.",
+    "attribute_camouflage_pattern": "Desert camouflage with tan and brown irregular patches and weathering effects.",
+    "attribute_military_markings": "none visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "942887ea5227468abaaa74951c667d6f",
+    "near_synsets": {
+        "tank.n.01": 0.5345602057892012,
+        "military_vehicle.n.01": 0.540675003692631,
+        "reconnaissance_vehicle.n.01": 0.5536854220098882,
+        "weapons_carrier.n.01": 0.563807162416278,
+        "assault_gun.n.02": 0.5685975065659487,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "combat.n.01": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/942887ea5227468abaaa74951c667d6f",
+        "creator_username": "nterrenato",
+        "creator_display_name": "nterrenato",
+        "creator_profile_url": "https://sketchfab.com/nterrenato"
+    },
+    "filename": "std_942887ea5227468abaaa74951c667d6f.glb",
+    "length": 4.945539712905884,
+    "width": 2.9859771728515625
+}

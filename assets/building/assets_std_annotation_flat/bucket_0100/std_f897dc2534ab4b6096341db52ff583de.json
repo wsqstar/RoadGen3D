@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a compact, single-shot handgun with a robust metallic frame and a dark wooden grip. The frame and barrel are constructed from a matte-finished metal, showing some wear and subtle surface texture, while the grip panels are smooth, dark brown wood, contoured for ergonomic handling. The handgun is displayed with its barrel open, revealing the break-action mechanism, and is accompanied by four metallic cartridges. The trigger guard is rounded and substantial, providing ample space for finger placement. The overall design is utilitarian, with minimal external markings or embellishments, emphasizing function over form. The visible components include the barrel, frame, trigger, trigger guard, grip, and ammunition, all rendered with realistic proportions and material finishes.",
+    "description": "A compact, break-action handgun with a matte metal frame, dark wooden grip, and four metallic cartridges. The design is utilitarian, with a smooth, contoured grip and minimal external markings.",
+    "description_view_0": "Side view showing the full profile of the handgun, the break-action mechanism open, and the wooden grip's smooth contour.",
+    "description_view_1": "Front-on view highlighting the barrel's opening, the thickness of the frame, and the alignment of the cartridges.",
+    "description_view_2": "Opposite side view displaying the break-action hinge, the open barrel, and the arrangement of the cartridges beside the grip.",
+    "description_view_3": "Top-down view emphasizing the barrel's bore, the grip's width, and the spatial relationship between the handgun and cartridges.",
+    "category": "handgun",
+    "height": 0.13,
+    "max_dimension": 0.22,
+    "materials": [
+        "steel",
+        "wood",
+        "brass",
+        "lead",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "mass": 0.85,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 10,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "openable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "grip",
+        "trigger",
+        "barrel",
+        "trigger guard",
+        "break-action hinge"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "brown",
+        "brass",
+        "silver"
+    ],
+    "colors_composition": [
+        0.65,
+        0.25,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_grip_design": "The grip is made of dark brown wood, smoothly contoured to fit the hand comfortably, with a slightly rounded profile and no visible checkering or stippling. Its surface is polished but not glossy, providing a subtle sheen. The grip panels are attached with visible fasteners and lack any logos, finger grooves, or decorative embellishments, emphasizing a simple, utilitarian design.",
+    "attribute_trigger_guard_style": "The trigger guard is rounded and robust, with a consistent thickness and a smooth, untextured finish. It is generously sized, allowing ample space for finger placement, and lacks any undercuts, squared-off edges, or integrated accessories. The design is straightforward, prioritizing function and safety.",
+    "attribute_barrel_type": "The barrel is short and cylindrical with a plain, unthreaded muzzle and a matte metallic finish. It is a break-action type, as evidenced by the hinge mechanism, and does not feature any compensators, porting, or external fluting. The exterior is smooth, with no visible markings or decorative elements.",
+    "attribute_slide_markings": "There are no visible markings, engravings, or inscriptions on the slide or barrel. The surfaces are plain, with no manufacturer logos, model names, serial numbers, or caliber designations apparent in the images.",
+    "attribute_magazine_base_shape": "The handgun does not feature a detachable magazine; instead, it is a break-action single-shot design. There is no visible magazine base or floorplate, and thus no distinctive shape, contour, or design features related to a magazine are present.",
+    "uid": "f897dc2534ab4b6096341db52ff583de",
+    "near_synsets": {
+        "pistol.n.01": 0.5222672720581506,
+        "action.n.11": 0.5273799239776412,
+        "firearm.n.01": 0.5292507127611036,
+        "twenty-two_pistol.n.01": 0.5324792372173434,
+        "colt.n.02": 0.5324810413022127
+    },
+    "synset": "pistol.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f897dc2534ab4b6096341db52ff583de",
+        "creator_username": "shedmon",
+        "creator_display_name": "Shedmon",
+        "creator_profile_url": "https://sketchfab.com/shedmon"
+    },
+    "filename": "std_f897dc2534ab4b6096341db52ff583de.glb",
+    "length": 0.22733696550130844,
+    "width": 0.1672825738787651
+}

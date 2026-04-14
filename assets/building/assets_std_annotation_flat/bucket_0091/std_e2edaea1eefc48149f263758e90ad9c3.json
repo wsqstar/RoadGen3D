@@ -1,0 +1,105 @@
+{
+    "description_long": "This pumping station is a large, rectangular industrial facility elevated on a series of sturdy support columns. The structure features a flat, segmented roof with several raised sections and visible rooftop equipment, including cylindrical tanks and box-like units. The exterior walls are composed of solid panels interspersed with large window sections and open framework, allowing for partial visibility of the interior piping and machinery. Multiple access points and platforms are present around the perimeter, with attached utility boxes and conduits extending outward. The base is open, revealing structural beams and additional mechanical components, while the surrounding area includes small utility enclosures and pipes. The overall color scheme is dominated by shades of gray, with accents of blue and green on select equipment and fixtures.",
+    "description": "A large, elevated industrial pumping station with a flat, segmented roof, visible rooftop equipment, and open framework revealing interior machinery. The structure is primarily gray with blue and green accents and is supported by multiple columns.",
+    "description_view_0": "Front view showing the main entrance area, rooftop equipment, and partial visibility of interior machinery through the open framework.",
+    "description_view_1": "Side view highlighting the elongated structure, multiple support columns, and extensive window and panel sections along the facade.",
+    "description_view_2": "Rear view displaying additional rooftop units, utility enclosures, and the open base with visible structural beams and piping.",
+    "description_view_3": "Angled view revealing the segmented roof, side platforms, and a clear look at the support columns and attached utility boxes.",
+    "category": "pumping station",
+    "height": 7.0,
+    "max_dimension": 28.0,
+    "materials": [
+        "reinforced concrete",
+        "steel",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.25,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 320000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "access panel",
+        "control panel",
+        "valve",
+        "hatch"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "green",
+        "black"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_building_signage": "none",
+    "attribute_ventilation_grilles": "Three rectangular ventilation grilles visible on the roof, each approximately 1 meter wide.",
+    "attribute_security_fencing": "none",
+    "attribute_access_hatches": "One square access hatch visible on the roof, metallic, located near the center.",
+    "attribute_warning_lights": "none",
+    "uid": "e2edaea1eefc48149f263758e90ad9c3",
+    "near_synsets": {
+        "pump_house.n.01": 0.5320331517500448,
+        "pump_room.n.01": 0.5745756634467956,
+        "water_tower.n.01": 0.5777900198040473,
+        "power_station.n.01": 0.5778727319361519,
+        "platform.n.06": 0.5802441947742717,
+        "station.n.01": -1000.0,
+        "post.n.01": -1000.0,
+        "station.n.03": -1000.0,
+        "station.n.05": -1000.0,
+        "place.n.10": -1000.0
+    },
+    "synset": "pump_house.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e2edaea1eefc48149f263758e90ad9c3",
+        "creator_username": "Bedin.Engenharia",
+        "creator_display_name": "Bedin Engenharia",
+        "creator_profile_url": "https://sketchfab.com/Bedin.Engenharia"
+    },
+    "filename": "std_e2edaea1eefc48149f263758e90ad9c3.glb",
+    "length": 28.55569839477539,
+    "width": 8.49105453491211
+}

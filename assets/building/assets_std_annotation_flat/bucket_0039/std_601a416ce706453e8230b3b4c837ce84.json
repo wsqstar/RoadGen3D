@@ -1,0 +1,103 @@
+{
+    "description_long": "This object consists of a group of six orange utility trucks, each with distinct body types commonly seen in urban environments. The trucks include two garbage trucks with rear compactors, two dump trucks with open cargo beds, one flatbed truck with a mechanical arm, and one smaller dump truck. The vehicles feature robust metal bodies, black wheels, and visible cab sections with windows and side mirrors. The garbage trucks have large rear compartments for waste collection, while the dump trucks have high-walled beds for transporting loose materials. The flatbed truck is equipped with a mechanical lifting arm, likely for handling containers or heavy loads. All trucks are painted in a bright orange color, typical for municipal or construction vehicles, and display realistic detailing such as headlights, grilles, and access steps.",
+    "description": "A group of six orange utility trucks, including garbage trucks, dump trucks, and a flatbed with a mechanical arm, all featuring detailed urban service vehicle designs.",
+    "description_view_0": "Front view showing the cabs, grilles, and headlights of all six trucks lined up in two rows.",
+    "description_view_1": "Side view highlighting the different truck bodies: garbage compactors, dump beds, and the flatbed with a mechanical arm.",
+    "description_view_2": "Rear view displaying the back ends of the garbage trucks and the open cargo beds of the dump trucks.",
+    "description_view_3": "Opposite side view showing the truck profiles and the mechanical arm on the flatbed truck.",
+    "category": "truck",
+    "height": 3.2,
+    "max_dimension": 8.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.1,
+        0.05,
+        0.02
+    ],
+    "mass": 54000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "cargo bed",
+        "mechanical arm",
+        "mirror",
+        "headlight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "orange",
+        "black",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "group",
+    "attribute_cab_configuration": "single cab",
+    "attribute_cargo_bed_type": "dump bed",
+    "attribute_wheelbase": "4.2",
+    "attribute_number_of_axles": 2,
+    "attribute_manufacturer_logo": "unknown",
+    "uid": "601a416ce706453e8230b3b4c837ce84",
+    "near_synsets": {
+        "garbage_truck.n.01": 0.4986791003840692,
+        "truck.n.01": 0.510997265393515,
+        "laundry_truck.n.01": 0.527693219281593,
+        "dumpster.n.01": 0.5306333961353327,
+        "dump_truck.n.01": 0.5344808617556629,
+        "hand_truck.n.01": -1000.0
+    },
+    "synset": "hand_truck.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/601a416ce706453e8230b3b4c837ce84",
+        "creator_username": "ondrasaur",
+        "creator_display_name": "ondrasaur",
+        "creator_profile_url": "https://sketchfab.com/ondrasaur"
+    },
+    "filename": "std_601a416ce706453e8230b3b4c837ce84.glb",
+    "length": 20.271666526794434,
+    "width": 14.539567947387695
+}

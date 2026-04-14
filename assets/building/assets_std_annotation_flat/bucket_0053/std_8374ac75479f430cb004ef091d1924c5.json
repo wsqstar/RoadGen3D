@@ -1,0 +1,108 @@
+{
+    "description_long": "This is a large, heavily armored ship with a broad, rounded hull and a flat deck, reminiscent of early 20th-century battleships. The hull is painted with a dark lower section and a reddish-brown deck, surrounded by a thin white railing. The superstructure is centrally located and features a tall, cylindrical tower with observation platforms and various smaller structures, likely for navigation and command. Several large, rectangular turrets are mounted on the deck, each housing what appear to be heavy artillery guns. The bow and stern are both rounded, with the bow slightly more pointed, and the stern featuring a visible rudder and propeller assembly. The ship is detailed with hatches, ladders, and other fixtures, suggesting a complex and functional design intended for naval operations.",
+    "description": "A large, armored battleship with a rounded hull, central superstructure, and multiple gun turrets on a reddish-brown deck. The ship features a tall tower, white railings, and detailed deck equipment.",
+    "description_view_0": "Top-down view showing the full outline of the ship, the arrangement of turrets, and the central superstructure.",
+    "description_view_1": "Side profile highlighting the hull's curvature, the height of the superstructure, and the placement of turrets along the deck.",
+    "description_view_2": "Top-down view from the opposite end, revealing the stern's rounded shape and the symmetrical layout of the deck equipment.",
+    "description_view_3": "Side profile from the opposite side, mirroring view 1 but showing the other side of the superstructure and hull.",
+    "category": "ship",
+    "height": 18,
+    "max_dimension": 120,
+    "materials": [
+        "steel",
+        "wood",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 18000000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 50000000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "turret",
+        "hatch",
+        "door",
+        "ladder",
+        "railing",
+        "tower"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "white",
+        "red",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.02,
+    "recommended_clearance": 30,
+    "asset_composition_type": "single",
+    "attribute_hull_design": "The hull is a broad, rounded displacement type with a slightly pointed bow and a rounded stern. It features a continuous deck with a low freeboard and a visible rudder and propeller at the stern. The hull sides are smooth, with no visible keels or bulbous bows.",
+    "attribute_superstructure_layout": "The superstructure is centrally located and consists of a tall cylindrical tower with observation platforms, surrounded by several smaller deck structures and turrets. The layout is symmetrical, with the main tower rising above the deck and additional fixtures distributed along the centerline.",
+    "attribute_presence_of_masts_or_funnels": true,
+    "attribute_visible_deck_equipment": [
+        "turret",
+        "hatch",
+        "ladder",
+        "railing",
+        "tower"
+    ],
+    "attribute_registration_markings": "none",
+    "uid": "8374ac75479f430cb004ef091d1924c5",
+    "near_synsets": {
+        "battleship.n.01": 0.4366714782230893,
+        "capital_ship.n.01": 0.4807833235159784,
+        "surface_ship.n.01": 0.4868609811769938,
+        "dreadnought.n.01": 0.4932722746031027,
+        "three-decker.n.03": 0.49832048703476556,
+        "ship.n.01": -1000.0
+    },
+    "synset": "ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/8374ac75479f430cb004ef091d1924c5",
+        "creator_username": "martyn169",
+        "creator_display_name": "martyn169",
+        "creator_profile_url": "https://sketchfab.com/martyn169"
+    },
+    "filename": "std_8374ac75479f430cb004ef091d1924c5.glb",
+    "length": 12.05679702758789,
+    "width": 49.07694435119629
+}

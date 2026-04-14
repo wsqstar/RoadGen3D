@@ -1,0 +1,93 @@
+{
+    "description_long": "This humanoid robot features a robust, metallic frame with angular armor plating covering its torso, shoulders, and limbs. Its head is rounded and helmet-like, lacking any visible facial features, and is seamlessly integrated with the upper torso. The arms are long and mechanical, ending in claw-like appendages, while the legs are thick and jointed, designed for stability and mobility. The robot's overall appearance is industrial and utilitarian, with exposed joints and mechanical linkages visible at the elbows, knees, and hips. The surface is predominantly dark, with a matte metallic sheen, suggesting durability and resistance to wear. The design is functional, with no decorative elements or clothing, emphasizing its purpose as a utilitarian urban machine.",
+    "description": "A dark, armored humanoid robot with a rounded head, claw-like hands, and jointed mechanical limbs, built for durability and utility.",
+    "description_view_0": "Front view showing the broad chest plate, rounded head, and both claw-like hands positioned forward.",
+    "description_view_1": "Side view highlighting the depth of the torso, the angular back plating, and the mechanical structure of the legs.",
+    "description_view_2": "Alternate front view with a clearer look at the asymmetrical arm positions and the flat, wide feet.",
+    "description_view_3": "Opposite side view displaying the arm and leg articulation, as well as the layered armor on the back and limbs.",
+    "category": "humanoid robot",
+    "height": 1.9,
+    "max_dimension": 1.9,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1176,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "arms",
+        "hands",
+        "legs",
+        "head",
+        "torso"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "dark gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.2
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with both arms slightly bent and positioned forward, legs apart for balance, and head facing straight ahead.",
+    "attribute_clothing_style": "Unclothed; only integrated metallic panels and armor plating are present, with no decorative or fabric elements.",
+    "attribute_facial_features": "The face is featureless, with a smooth, rounded helmet-like head and no visible eyes, mouth, or nose.",
+    "attribute_limb_articulation": "Arms and legs have visible hinge and rotary joints at the shoulders, elbows, hips, and knees, allowing for a wide range of motion; hands are claw-like with limited articulation.",
+    "attribute_presence_of_sensors": "none visible",
+    "uid": "fa00af9f266b479faf4bf2528cfb192e",
+    "near_synsets": {
+        "android.n.01": 0.5126395580512518,
+        "cyborg.n.01": 0.5274941501370026,
+        "robotics_equipment.n.01": 0.5329667605991292,
+        "automaton.n.02": 0.5346384957581463,
+        "robotics.n.01": 0.5582146776279073
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/fa00af9f266b479faf4bf2528cfb192e",
+        "creator_username": "shiijiee",
+        "creator_display_name": "shiijiee",
+        "creator_profile_url": "https://sketchfab.com/shiijiee"
+    },
+    "filename": "std_fa00af9f266b479faf4bf2528cfb192e.glb",
+    "length": 1.551398515701294,
+    "width": 1.8354665637016296
+}

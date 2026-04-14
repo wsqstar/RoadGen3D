@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a large, concrete dam structure with a broad, curved face and a high vertical wall on one end, featuring metal railings along the top edges for safety. The dam has a rectangular opening in the center of one side, possibly for maintenance or inspection access, and a platform with stairs supported by tall columns on one end. The surface is weathered, showing signs of use and exposure, with graffiti and painted markings adding urban character. The interior of the dam is a deep, smooth basin, designed to hold or channel water, with the curved shape aiding in water flow management. The structure is robust and imposing, with no visible water present, and is surrounded by safety barriers to prevent unauthorized access.",
+    "description": "A large, weathered concrete dam with a curved basin, high safety railings, graffiti, and a tall stair-supported platform on one end.",
+    "description_view_0": "Front view showing the high vertical wall, central rectangular opening, and metal railings along the top.",
+    "description_view_1": "Interior basin view highlighting the deep, curved surface and the tall stair-supported platform on the right.",
+    "description_view_2": "Rear view displaying the graffiti, the platform with supporting columns, and the rectangular opening.",
+    "description_view_3": "Opposite basin view focusing on the curved interior and the 'DUCK GAME' graffiti on the right wall.",
+    "category": "dam",
+    "height": 8.0,
+    "max_dimension": 24.0,
+    "materials": [
+        "concrete",
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 320000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "climbable",
+        "slideable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "stairs",
+        "platform",
+        "railings"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "gray",
+        "black",
+        "pink",
+        "yellow",
+        "green"
+    ],
+    "colors_composition": [
+        0.85,
+        0.08,
+        0.03,
+        0.02,
+        0.01,
+        0.01
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 5.0,
+    "asset_composition_type": "single",
+    "attribute_spillway_presence": false,
+    "attribute_control_gates": [
+        "none"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_water_outflow": "none",
+    "attribute_perimeter_fencing": true,
+    "uid": "b43c37953fbe4c059d467274530a0131",
+    "near_synsets": {
+        "dam.n.01": 0.5153096190741328,
+        "weir.n.01": 0.5440138168000794,
+        "water_tower.n.01": 0.5526014910182927,
+        "flashboard.n.01": 0.5578038092103192,
+        "stairhead.n.01": 0.5651321660239568,
+        "dam.n.03": -1000.0,
+        "decameter.n.01": -1000.0
+    },
+    "synset": "dam.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b43c37953fbe4c059d467274530a0131",
+        "creator_username": "MrLever",
+        "creator_display_name": "MrLever",
+        "creator_profile_url": "https://sketchfab.com/MrLever"
+    },
+    "filename": "std_b43c37953fbe4c059d467274530a0131.glb",
+    "length": 18.01370143890381,
+    "width": 19.787145614624023
+}

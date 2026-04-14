@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a military-style helicopter with a camouflage paint scheme, featuring a robust fuselage and a prominent main rotor with multiple long blades. The helicopter is equipped with external weapon mounts and sensors, suggesting a combat or tactical role. Its tail section is elongated, ending in a tail rotor with a protective fin, and the landing gear consists of sturdy skids. The cockpit is located at the front, with multiple angular windows providing visibility for the crew. The surface appears to be made of metal with matte and slightly weathered finishes, and the overall build is solid and functional. No visible registration numbers or civilian markings are present.",
+    "description": "A camouflaged military helicopter with a large main rotor, tail rotor, weapon mounts, and angular cockpit windows.",
+    "description_view_0": "Front view showing the cockpit windows, main rotor hub, and weapon mounts on either side.",
+    "description_view_1": "Side view highlighting the elongated fuselage, main and tail rotors, and landing skids.",
+    "description_view_2": "Rear view displaying the tail boom, tail rotor, and the symmetry of the landing skids.",
+    "description_view_3": "Opposite side view showing the full length of the helicopter, rotor blades, and external equipment.",
+    "category": "helicopter",
+    "height": 4.5,
+    "max_dimension": 18.0,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "rubber",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.6,
+        0.15,
+        0.1,
+        0.05,
+        0.08,
+        0.02
+    ],
+    "mass": 8000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 78400,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "pressable",
+        "rotatable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "cockpit window",
+        "main rotor",
+        "tail rotor",
+        "landing skid",
+        "weapon mount",
+        "sensor pod"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.25,
+        0.15,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 22.0,
+    "asset_composition_type": "single",
+    "attribute_rotor_blades": "Five long, straight main rotor blades made of composite material, colored gray with no visible markings, each blade approximately 7-8 meters in length.",
+    "attribute_tail_rotor": "Tail rotor with four blades, mounted vertically on the tail fin, colored gray with no visible markings or protective shroud.",
+    "attribute_landing_skids": "Two parallel metal landing skids, painted dark gray or black, with crossbars for structural support and no visible footpads.",
+    "attribute_cockpit_windows": "Four angular cockpit windows at the front, arranged in a wraparound configuration, tinted and framed with dark material, providing wide visibility.",
+    "attribute_registration_number": "not visible",
+    "uid": "bf078294bce74db3ac5a6cbabfdc8001",
+    "near_synsets": {
+        "cargo_helicopter.n.01": 0.5111845239275848,
+        "helicopter.n.01": 0.5138799473274889,
+        "main_rotor.n.01": 0.5166990488029369,
+        "single-rotor_helicopter.n.01": 0.5259124634143635,
+        "skyhook.n.01": 0.5308987529773822
+    },
+    "synset": "single-rotor_helicopter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/bf078294bce74db3ac5a6cbabfdc8001",
+        "creator_username": "maddex88",
+        "creator_display_name": "maddex88",
+        "creator_profile_url": "https://sketchfab.com/maddex88"
+    },
+    "filename": "std_bf078294bce74db3ac5a6cbabfdc8001.glb",
+    "length": 19.286617279052734,
+    "width": 16.02211570739746
+}

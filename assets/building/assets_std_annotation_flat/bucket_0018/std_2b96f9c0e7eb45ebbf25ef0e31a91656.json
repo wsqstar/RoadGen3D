@@ -1,0 +1,103 @@
+{
+    "description_long": "This humanoid robot features a robust, armored torso with a dark metallic finish and subtle green and red highlights. Its upper body is equipped with two large, rounded shoulder units, each supporting articulated arms\u2014one arm is distinctly multi-tentacled, resembling an octopus, while the other is more mechanical and claw-like. The legs are digitigrade, ending in wide, stable feet, and the back is reinforced with rib-like structures and circular components that may serve as power or balance modules. The head is compact and integrated into the torso, with a central green-lit element suggesting a primary sensor or camera. The overall design blends organic and mechanical aesthetics, giving the robot a formidable and agile appearance suitable for urban environments. The surface is mostly matte with some glossy accents, and the construction appears to be primarily metal with synthetic overlays.",
+    "description": "A dark, armored humanoid robot with a tentacled arm, mechanical claw, and digitigrade legs, featuring green and red highlights and a blend of organic and mechanical design.",
+    "description_view_0": "Front view shows the robot's tentacled left arm, mechanical right arm, compact head, and broad armored torso with green-lit central sensor.",
+    "description_view_1": "Left side view highlights the ribbed back structure, circular shoulder module, and the full extension of the tentacled arm.",
+    "description_view_2": "Rear view reveals the segmented spine-like back, symmetrical shoulder units, and the robust, armored legs.",
+    "description_view_3": "Right side view displays the mechanical claw arm, ribbed back, and the tentacled arm partially visible from the opposite side.",
+    "category": "humanoid robot",
+    "height": 2.2,
+    "max_dimension": 2.5,
+    "materials": [
+        "metal",
+        "synthetic polymer",
+        "glass",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "mass": 320,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 3200,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "pushable",
+        "pullable",
+        "rotatable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "tentacled arm",
+        "mechanical claw",
+        "shoulder modules",
+        "central sensor",
+        "leg joints"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark gray",
+        "black",
+        "green",
+        "red",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.07,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with legs slightly bent, left arm extended forward in a tentacled gesture, right arm bent at the elbow with a mechanical claw, torso facing forward, and head integrated into the chest.",
+    "attribute_clothing_style": "Unclothed; exterior consists of integrated armored panels and synthetic overlays with decorative colored highlights.",
+    "attribute_facial_features": "No traditional facial features; head is compact and integrated into the torso with a central green-lit sensor, lacking eyes, mouth, or nose.",
+    "attribute_limb_articulation": "Arms have multiple articulation points including rotary and hinge joints; left arm is highly flexible with tentacle-like appendages, right arm is mechanical with a claw; legs are digitigrade with visible knee and ankle joints, allowing for agile movement.",
+    "attribute_presence_of_sensors": "Central green-lit sensor on the head/torso, possible additional sensors embedded in the tentacled arm and shoulder modules.",
+    "uid": "2b96f9c0e7eb45ebbf25ef0e31a91656",
+    "near_synsets": {
+        "android.n.01": 0.5439724357670365,
+        "cyborg.n.01": 0.556177137002222,
+        "tentacle.n.01": 0.5651418992808982,
+        "automaton.n.02": 0.57248863833751,
+        "robotics_equipment.n.01": 0.5733608037971836
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/2b96f9c0e7eb45ebbf25ef0e31a91656",
+        "creator_username": "sergeykuchmin",
+        "creator_display_name": "sergeykuchmin",
+        "creator_profile_url": "https://sketchfab.com/sergeykuchmin"
+    },
+    "filename": "std_2b96f9c0e7eb45ebbf25ef0e31a91656.glb",
+    "length": 2.168476104736328,
+    "width": 1.8151674270629883
+}

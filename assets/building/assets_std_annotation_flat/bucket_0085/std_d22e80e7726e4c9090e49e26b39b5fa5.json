@@ -1,0 +1,115 @@
+{
+    "description_long": "This object is a stylized grave monument featuring a central tombstone with a cross at the top, flanked by two smaller stone posts connected by decorative metal chains. The main tombstone is rectangular with a peaked top and a recessed area on the front, which displays an inscription in a script resembling Arabic. The two side posts are squat and pyramid-shaped, anchoring the chains that drape between them and the central monument. The entire structure is rendered in a dark, weathered blue stone with patches of rust and wear, suggesting age and exposure to the elements. The metal chains are angular and geometric, adding a modern touch to the otherwise traditional grave marker. The monument is designed to be a prominent feature in a graveyard or cemetery setting.",
+    "description": "A weathered blue stone grave monument with a cross, flanked by two chained side posts and an inscribed front panel.",
+    "description_view_0": "Front view showing the cross-topped tombstone, inscribed panel, and both chained side posts.",
+    "description_view_1": "Side view highlighting the depth of the central monument and the angular chain extending to one side post.",
+    "description_view_2": "Rear view displaying the plain back of the tombstone and both side posts with chains.",
+    "description_view_3": "Angled side view focusing on the chain and one of the side posts, with the cross visible in profile.",
+    "category": "grave yard",
+    "height": 1.2,
+    "max_dimension": 2.2,
+    "materials": [
+        "stone",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "leanable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "chains"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark blue",
+        "rust brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.8,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.1,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.0,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_tombstone_inscriptions": [
+        "\u0646\u0627\u0628"
+    ],
+    "attribute_crosses": [
+        {
+            "number": 1,
+            "type": "Latin",
+            "material": "stone",
+            "height": 0.3
+        }
+    ],
+    "attribute_grave_markers": [
+        {
+            "type": "headstone",
+            "material": "stone",
+            "dimensions": [
+                1.2,
+                0.7,
+                0.3
+            ]
+        }
+    ],
+    "attribute_mausoleums": [],
+    "attribute_cemetery_gates": [],
+    "uid": "d22e80e7726e4c9090e49e26b39b5fa5",
+    "near_synsets": {
+        "gravestone.n.01": 0.5145781507831759,
+        "grave.n.02": 0.5371251654524943,
+        "cairn.n.01": 0.5470957655040135,
+        "grave.n.01": 0.5507927797833517,
+        "epitaph.n.01": 0.5577822110079919,
+        "cubic_yard.n.01": -1000.0,
+        "yard.n.07": -1000.0,
+        "yard.n.03": -1000.0,
+        "yard.n.02": -1000.0,
+        "yard.n.09": -1000.0,
+        "yard.n.01": -1000.0,
+        "yard.n.08": -1000.0,
+        "yard.n.06": -1000.0,
+        "thousand.n.01": -1000.0
+    },
+    "synset": "gravestone.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d22e80e7726e4c9090e49e26b39b5fa5",
+        "creator_username": "akbarjan.a",
+        "creator_display_name": "Ekbercg",
+        "creator_profile_url": "https://sketchfab.com/akbarjan.a"
+    },
+    "filename": "std_d22e80e7726e4c9090e49e26b39b5fa5.glb",
+    "length": 0.9051811099052429,
+    "width": 2.0232977867126465
+}

@@ -1,0 +1,101 @@
+{
+    "description_long": "This combat tactical vehicle features a low-profile, angular armored body with a flat roof and sloped front, designed for urban operations. The exterior is equipped with large, rugged wheels that are partially covered by angular fenders, suggesting off-road capability and protection from debris. The vehicle has a hatch and a small turret or periscope on the roof, likely for observation or mounting light weaponry. The sides display reinforced panels and a visible access door, indicating crew entry points. The front is characterized by two prominent cylindrical elements, possibly lights or part of the vehicle's defensive systems. The overall design emphasizes protection, mobility, and adaptability for urban combat scenarios.",
+    "description": "A low-profile, angular armored combat vehicle with large rugged wheels, reinforced panels, and a roof hatch with a small turret or periscope.",
+    "description_view_0": "Front view showing the sloped armored front, two cylindrical elements, and the roof hatch with turret detail.",
+    "description_view_1": "Side view highlighting the large rugged wheels, angular fenders, and a visible access door on the side.",
+    "description_view_2": "Rear view displaying the back armor, rear hatch, and the continuation of the angular design.",
+    "description_view_3": "Opposite side view with similar wheel and fender arrangement, and clear view of the side access door.",
+    "category": "combat tactical  vehicle",
+    "height": 2.2,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.12,
+        0.03,
+        0.05
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "hatch",
+        "wheel",
+        "turret",
+        "periscope"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000000000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One small turret or periscope mount on the roof; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body coverage with angular, sloped armor plating; appears thick and reinforced, especially at the front and sides.",
+    "attribute_camouflage_pattern": "none visible",
+    "attribute_military_markings": "none visible",
+    "attribute_tire_type": "Large, rugged off-road tires with deep tread; four visible tires, no special reinforcements apparent.",
+    "uid": "e5b2a5b981fb4cf3a7657729614250c7",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4983265061381853,
+        "reconnaissance_vehicle.n.01": 0.49993812131158916,
+        "tank.n.01": 0.5154230364970862,
+        "armored_car.n.02": 0.5157763334492182,
+        "assault_gun.n.02": 0.5165479522446442,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "armored_car.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/e5b2a5b981fb4cf3a7657729614250c7",
+        "creator_username": "boardreklam",
+        "creator_display_name": "Boardreklam",
+        "creator_profile_url": "https://sketchfab.com/boardreklam"
+    },
+    "filename": "std_e5b2a5b981fb4cf3a7657729614250c7.glb",
+    "length": 6.048412799835205,
+    "width": 3.85181200504303
+}

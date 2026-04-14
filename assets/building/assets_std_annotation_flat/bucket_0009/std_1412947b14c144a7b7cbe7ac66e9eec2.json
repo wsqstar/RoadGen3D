@@ -1,0 +1,107 @@
+{
+    "description_long": "This transformer tower is a tall, metallic structure composed of multiple horizontal crossarms arranged in tiers, supporting a complex array of electrical insulators and high-voltage equipment. The frame is constructed from robust steel beams, with several cylindrical insulator stacks mounted symmetrically on both sides. At the lower section, three large transformer units are suspended, flanked by additional electrical apparatus such as circuit breakers and lightning arresters. Numerous power lines are attached to the crossarms, routed in parallel and spaced evenly to maintain electrical clearance. The overall design is utilitarian, with exposed hardware and visible connection points for high-voltage transmission, typical of urban or suburban electrical infrastructure.",
+    "description": "A tall, steel-framed transformer tower with multiple crossarms, insulator stacks, and mounted electrical equipment supporting high-voltage power lines.",
+    "description_view_0": "Front view showing the symmetrical arrangement of insulator stacks, three large transformers at the base, and the full width of the crossarms.",
+    "description_view_1": "Slightly rotated view revealing more detail of the side-mounted equipment and the depth of the crossarms.",
+    "description_view_2": "Further rotated view highlighting the cylindrical insulator stacks and the spatial separation of the electrical components.",
+    "description_view_3": "Rear view focusing on the back structure of the frame, with visible insulator stacks and the rear mounting of electrical equipment.",
+    "category": "transformer tower",
+    "height": 10.0,
+    "max_dimension": 12.0,
+    "materials": [
+        "steel",
+        "ceramic",
+        "copper",
+        "aluminum",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.1,
+        0.08,
+        0.07,
+        0.03,
+        0.02
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "connectable",
+        "mountable",
+        "insulate"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "insulator stack",
+        "transformer unit",
+        "circuit breaker",
+        "lightning arrester",
+        "crossarm",
+        "power line connector"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "silver",
+        "black"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.3,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.01,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_insulator_stacks": 8,
+    "attribute_arrangement_of_crossarms": "There are three main horizontal crossarms arranged in a stacked, tiered configuration, each supporting electrical equipment and power lines. The crossarms are parallel and evenly spaced vertically.",
+    "attribute_presence_of_warning_signage": false,
+    "attribute_type_of_electrical_equipment_mounted": [
+        "transformer",
+        "circuit breaker",
+        "lightning arrester"
+    ],
+    "attribute_configuration_of_attached_power_lines": "Multiple circuits are attached in a three-phase parallel arrangement, with power lines routed horizontally and spaced evenly across the crossarms.",
+    "uid": "1412947b14c144a7b7cbe7ac66e9eec2",
+    "near_synsets": {
+        "pylon.n.02": 0.47701719919620816,
+        "transformer.n.01": 0.5322132472372472,
+        "cascade_transformer.n.01": 0.5338865314255254,
+        "substation.n.01": 0.5374853849326827,
+        "telephone_pole.n.01": 0.5413262327064418,
+        "column.n.04": -1000.0,
+        "tugboat.n.01": -1000.0,
+        "tower.n.01": -1000.0
+    },
+    "synset": "pylon.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1412947b14c144a7b7cbe7ac66e9eec2",
+        "creator_username": "Lee.Anderson",
+        "creator_display_name": "Lee.Anderson",
+        "creator_profile_url": "https://sketchfab.com/Lee.Anderson"
+    },
+    "filename": "std_1412947b14c144a7b7cbe7ac66e9eec2.glb",
+    "length": 26.444666862487793,
+    "width": 22.709014892578125
+}

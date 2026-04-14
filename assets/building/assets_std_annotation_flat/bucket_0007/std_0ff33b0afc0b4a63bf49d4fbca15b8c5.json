@@ -1,0 +1,98 @@
+{
+    "description_long": "This object is a large, mechanical crossbow featuring a robust wooden frame and a prominent, elongated metal bolt loaded at the front. The arms of the crossbow are wide and angular, constructed from a brown material that resembles wood, and are reinforced with metallic components. A taut string is attached to the ends of the arms, ready to launch the heavy, conical-tipped projectile. The central body houses a winding mechanism and a sturdy support base, suggesting it is designed for stationary use rather than handheld operation. The metallic bolt is oversized, with a pointed tip and a cylindrical shaft, indicating it is intended for high-impact, long-range firing. The overall construction is utilitarian, with exposed mechanical parts and a focus on durability and power.",
+    "description": "A large, stationary crossbow with a wooden frame, metal reinforcements, and a heavy, pointed metal bolt loaded at the front. The design is robust and mechanical, featuring a winding mechanism and a wide support base.",
+    "description_view_0": "Side view showing the crossbow's wooden frame, winding mechanism, and the full length of the loaded metal bolt.",
+    "description_view_1": "Front view highlighting the wide arms, taut string, and the pointed tip of the metal bolt aimed forward.",
+    "description_view_2": "Opposite side view displaying the frame, winding mechanism, and the rear support base.",
+    "description_view_3": "Top-down view revealing the crossbow's symmetrical arms, central body, and the alignment of the bolt with the firing mechanism.",
+    "category": "rifle",
+    "height": 0.8,
+    "max_dimension": 1.5,
+    "materials": [
+        "wood",
+        "steel",
+        "string",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "mass": 18,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 7,
+    "movable": true,
+    "required_force": 120,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pullable",
+        "rotatable",
+        "liftable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "winding mechanism",
+        "trigger",
+        "string",
+        "bolt",
+        "arms",
+        "support base"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.3,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "fixed",
+    "attribute_barrel_type": "long",
+    "attribute_magazine_type": "none",
+    "attribute_sight_type": "none",
+    "attribute_muzzle_device": "none",
+    "uid": "0ff33b0afc0b4a63bf49d4fbca15b8c5",
+    "near_synsets": {
+        "crossbow.n.01": 0.4422128193853283,
+        "bow.n.06": 0.5016245253828275,
+        "longbow.n.01": 0.5097143083889395,
+        "arbalest.n.01": 0.5125173421584366,
+        "bow_and_arrow.n.01": 0.5197136508409286,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0ff33b0afc0b4a63bf49d4fbca15b8c5",
+        "creator_username": "jhuliofacundo",
+        "creator_display_name": "Jh\u00falio Facundo",
+        "creator_profile_url": "https://sketchfab.com/jhuliofacundo"
+    },
+    "filename": "std_0ff33b0afc0b4a63bf49d4fbca15b8c5.glb",
+    "length": 1.2147789001464844,
+    "width": 0.9761199951171875
+}

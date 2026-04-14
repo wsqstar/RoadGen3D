@@ -1,0 +1,103 @@
+{
+    "description_long": "This combat tactical vehicle features a boxy, armored body with a flat front and angular surfaces, designed for durability and protection. It is equipped with two large cylindrical launchers mounted on the roof, likely for missile or rocket deployment, and a central angular turret base. The vehicle has six robust, hexagonal wheels, suggesting enhanced off-road capability and stability. The windows are small and reinforced, providing limited but secure visibility for occupants. The exterior is finished in a solid brown color, with minimal surface detailing and no visible insignia or camouflage patterns. The overall design emphasizes function and protection, suitable for urban or tactical operations.",
+    "description": "Armored combat vehicle with two large roof-mounted launchers, six hexagonal wheels, and a solid brown exterior.",
+    "description_view_0": "Front view shows the flat armored face, two cylindrical launchers on the roof, and a large central windshield.",
+    "description_view_1": "Left side view highlights the angled launcher assembly, two side doors, and three hexagonal wheels.",
+    "description_view_2": "Rear view displays the back panel, the twin launchers from behind, and a small rear window.",
+    "description_view_3": "Right side view mirrors the left, showing the launcher, a single side door, and three wheels.",
+    "category": "combat tactical  vehicle",
+    "height": 2.8,
+    "max_dimension": 6.5,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.05,
+        0.12,
+        0.03,
+        0.05
+    ],
+    "mass": 9500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 30000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable",
+        "rotatable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "launcher",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "Two large cylindrical launcher mounts on the roof, positioned side by side at the rear half of the vehicle.",
+    "attribute_armor_plating": "Full body armor plating with flat, angular panels covering all sides, including reinforced doors and small, protected windows. No visible reactive or modular panels.",
+    "attribute_camouflage_pattern": "None visible; exterior is a solid brown color.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Six hexagonal wheels with visible off-road tread pattern; appear reinforced for tactical use.",
+    "uid": "72e307058c33432880028d875f1ebe58",
+    "near_synsets": {
+        "military_vehicle.n.01": 0.4964187141706037,
+        "reconnaissance_vehicle.n.01": 0.49943719794816355,
+        "tank.n.01": 0.5125132711236903,
+        "armored_car.n.02": 0.5135513666919793,
+        "weapons_carrier.n.01": 0.5180118735419866,
+        "vehicle.n.02": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.01": -1000.0
+    },
+    "synset": "military_vehicle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/72e307058c33432880028d875f1ebe58",
+        "creator_username": "rustic.orcullo13",
+        "creator_display_name": "rustic.orcullo13",
+        "creator_profile_url": "https://sketchfab.com/rustic.orcullo13"
+    },
+    "filename": "std_72e307058c33432880028d875f1ebe58.glb",
+    "length": 2.9915353059768677,
+    "width": 1.6697596311569214
+}

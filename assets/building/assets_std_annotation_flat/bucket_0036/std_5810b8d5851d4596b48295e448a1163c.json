@@ -1,0 +1,110 @@
+{
+    "description_long": "This object consists of two large, horizontally-oriented cylindrical storage tanks, each supported by sturdy rectangular bases. Above the tanks is a blue and yellow metal platform with safety railings, accessible by a vertical yellow ladder. Red and blue pipes run across the top, connecting the tanks and providing visible inlet and outlet points, with some pipes extending downward. The tanks have a textured, metallic gray surface, while the platform and railings are painted in contrasting colors for visibility and safety. The overall structure is industrial in appearance, designed for secure storage and easy maintenance access.",
+    "description": "A pair of large horizontal cylindrical storage tanks with a blue and yellow metal platform, safety railings, and red piping connections.",
+    "description_view_0": "Front view showing both tanks, the central access ladder, and the full platform with visible piping and railings.",
+    "description_view_1": "Side view highlighting the cylindrical shape of the tanks, the platform above, and the arrangement of pipes and railings.",
+    "description_view_2": "Rear view similar to the front, with the access ladder and central piping visible, but from the opposite side.",
+    "description_view_3": "Opposite side view showing the tanks' ends, the platform, and the piping layout from a different angle.",
+    "category": "storage tank",
+    "height": 4.5,
+    "max_dimension": 10.0,
+    "materials": [
+        "steel",
+        "paint",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 18000,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "ladder",
+        "valve",
+        "pipe",
+        "platform railing"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "blue",
+        "yellow",
+        "red"
+    ],
+    "colors_composition": [
+        0.7,
+        0.12,
+        0.1,
+        0.08
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_location": "industrial facility",
+    "attribute_access_ladder_presence": true,
+    "attribute_valve_or_pipe_attachments": [
+        "inlet pipe",
+        "outlet pipe"
+    ],
+    "attribute_warning_signage": false,
+    "attribute_architectural_style": "cylindrical horizontal",
+    "uid": "5810b8d5851d4596b48295e448a1163c",
+    "near_synsets": {
+        "tank.n.02": 0.5069091249986459,
+        "tank_farm.n.01": 0.5208609544075009,
+        "water_tower.n.01": 0.5339975770371042,
+        "reservoir.n.03": 0.5402194501729544,
+        "gas_tank.n.01": 0.5585119140524316,
+        "tank.n.03": -1000.0,
+        "storage.n.01": -1000.0,
+        "storage.n.03": -1000.0,
+        "memory.n.04": -1000.0,
+        "tank.n.01": -1000.0,
+        "tank_car.n.01": -1000.0,
+        "cooler.n.03": -1000.0,
+        "storehouse.n.01": -1000.0,
+        "repositing.n.01": -1000.0,
+        "storage.n.04": -1000.0
+    },
+    "synset": "tank.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5810b8d5851d4596b48295e448a1163c",
+        "creator_username": "peters1",
+        "creator_display_name": "peters1",
+        "creator_profile_url": "https://sketchfab.com/peters1"
+    },
+    "filename": "std_5810b8d5851d4596b48295e448a1163c.glb",
+    "length": 12.582374572753906,
+    "width": 14.017801761627197
+}

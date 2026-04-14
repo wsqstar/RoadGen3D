@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a modern passenger train carriage painted primarily in black with orange and white accents, featuring the 'Grand Central' logo on its side. The carriage has a streamlined rectangular shape with a flat roof and smooth sides. Large rectangular windows are spaced along both sides, providing visibility and light for passengers inside. The undercarriage includes visible wheels and suspension components, while the ends of the carriage have couplers and connectors for attachment to other train cars. There are no visible doors on the sides, suggesting entry may be at the ends or not depicted in this model. The overall design is sleek and functional, typical of urban or intercity rail transport.",
+    "description": "A sleek black passenger train carriage with orange accents, large rectangular windows, and the 'Grand Central' logo. The design is modern and streamlined, with visible undercarriage details.",
+    "description_view_0": "Front view showing the narrow end of the carriage with a flat face, connectors, and no visible windows or doors.",
+    "description_view_1": "Side view displaying the full length of the carriage, the 'Grand Central' logo, large rectangular windows, and undercarriage details.",
+    "description_view_2": "Rear view similar to the front, showing the flat end of the carriage with connectors and no windows or doors.",
+    "description_view_3": "Opposite side view mirroring view 1, with the same window arrangement and logo visible.",
+    "category": "train",
+    "height": 3.8,
+    "max_dimension": 23.0,
+    "materials": [
+        "steel",
+        "glass",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 42000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "pressable",
+        "drivable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "door",
+        "window",
+        "coupler",
+        "wheel",
+        "button"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "orange",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.22,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "single",
+    "attribute_train_type": "commuter train",
+    "attribute_number_of_carriages": 1,
+    "attribute_presence_of_overhead_wires": false,
+    "attribute_door_placement": "no visible doors",
+    "attribute_window_arrangement": "spaced rectangular windows",
+    "uid": "2567c40dd5b148ff806fc2bfd979dff3",
+    "near_synsets": {
+        "passenger_train.n.01": 0.5204848425769326,
+        "car_train.n.01": 0.5230951045212482,
+        "pullman.n.01": 0.5429266282160992,
+        "streamliner.n.01": 0.5429805530737651,
+        "train.n.01": 0.5440427781202362,
+        "train.n.04": -1000.0,
+        "gearing.n.01": -1000.0,
+        "string.n.04": -1000.0,
+        "caravan.n.01": -1000.0,
+        "train.n.05": -1000.0
+    },
+    "synset": "train.n.05",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2567c40dd5b148ff806fc2bfd979dff3",
+        "creator_username": "timblewee",
+        "creator_display_name": "timblewee",
+        "creator_profile_url": "https://sketchfab.com/timblewee"
+    },
+    "filename": "std_2567c40dd5b148ff806fc2bfd979dff3.glb",
+    "length": 21.47439956665039,
+    "width": 2.6929208040237427
+}

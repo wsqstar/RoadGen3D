@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a large, olive-drab military tank with a boxy hull and a prominent cylindrical turret mounted on top. The vehicle features wide, rugged tracks on both sides for traversing rough terrain, and a main cannon protrudes from the front of the turret. The hull is covered in flat, angular armor plating, with visible hatches, periscopes, and storage compartments. Markings such as white triangles and the number '227' are painted on the sides and rear, indicating military identification. The tank's surface appears matte and slightly weathered, with utilitarian details like tow hooks and exhausts. The overall design suggests a heavily armored, tracked combat vehicle intended for tactical operations.",
+    "description": "A large, olive-drab military tank with a cylindrical turret, wide tracks, and visible military markings. The vehicle is heavily armored and equipped with a main cannon.",
+    "description_view_0": "Front view showing the flat armored glacis, the cylindrical turret, and the main cannon facing forward.",
+    "description_view_1": "Left side view highlighting the full length of the tracks, the side of the turret, and visible markings including a white triangle and '227'.",
+    "description_view_2": "Rear view displaying the back armor, engine deck, rear markings, and the rear of the tracks.",
+    "description_view_3": "Right side view showing the tracks, turret, and additional side details, including another white triangle marking.",
+    "category": "combat tactical  vehicle",
+    "height": 2.5,
+    "max_dimension": 6.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.08,
+        0.02,
+        0.03,
+        0.02
+    ],
+    "mass": 28000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hatch",
+        "turret",
+        "cannon",
+        "track",
+        "periscope",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "olive drab",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.92,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_weapon_mounts": "One main cannon mounted on the front of the turret; no other visible weapon mounts.",
+    "attribute_armor_plating": "Full body coverage with thick, flat steel armor plating; turret and hull are both heavily armored with no visible modular or reactive panels.",
+    "attribute_camouflage_pattern": "Solid olive drab paint scheme; no visible camouflage pattern.",
+    "attribute_military_markings": "White triangle insignias on both sides of the turret and hull; white number '227' on the left side and rear; 'ME 2000' on the rear left.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "5d6f3575c4c1414a9cf7de86423f28fb",
+    "near_synsets": {
+        "tank.n.01": 0.4458607383347774,
+        "military_vehicle.n.01": 0.4739389785565325,
+        "armored_car.n.02": 0.50807294536485,
+        "assault_gun.n.02": 0.5166902658050451,
+        "armored_vehicle.n.01": 0.5208095224088184,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "fight.n.02": -1000.0
+    },
+    "synset": "tank.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5d6f3575c4c1414a9cf7de86423f28fb",
+        "creator_username": "jpo1703",
+        "creator_display_name": "jpo1703",
+        "creator_profile_url": "https://sketchfab.com/jpo1703"
+    },
+    "filename": "std_5d6f3575c4c1414a9cf7de86423f28fb.glb",
+    "length": 4.745245456695557,
+    "width": 2.5795483589172363
+}

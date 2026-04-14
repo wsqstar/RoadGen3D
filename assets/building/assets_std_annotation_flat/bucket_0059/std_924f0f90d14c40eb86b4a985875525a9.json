@@ -1,0 +1,89 @@
+{
+    "description_long": "This object is a brass trumpet with a classic, elongated cylindrical body and a flared bell at one end. The trumpet features three piston valves positioned centrally along the top, each with a round, silver-colored button for actuation. The bell is wide and polygonal at the rim, transitioning smoothly from the main tube, and the leadpipe curves gently from the mouthpiece to the first valve. The mouthpiece is silver and detachable, located at the narrow end opposite the bell. The instrument's tubing is arranged in a series of smooth, rounded bends, with a prominent U-shaped tuning slide near the mouthpiece and valves.",
+    "description": "A brass trumpet with a wide flared bell, three piston valves, and a silver mouthpiece, featuring smoothly curved tubing and a U-shaped tuning slide.",
+    "description_view_0": "Side view showing the full length of the trumpet, the three piston valves, and the flared bell.",
+    "description_view_1": "Front view looking directly into the wide, polygonal bell opening, with the valves and mouthpiece aligned behind.",
+    "description_view_2": "Opposite side view displaying the trumpet's length, valve arrangement, and the mouthpiece at the far end.",
+    "description_view_3": "Rear view focused on the mouthpiece and the alignment of the valves, with the bell receding into the background.",
+    "category": "trumpet",
+    "height": 0.15,
+    "max_dimension": 0.6,
+    "materials": [
+        "brass",
+        "silver",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 1.1,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 15,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "liftable",
+        "blowable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "valve",
+        "mouthpiece",
+        "tuning slide"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gold",
+        "silver"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.08,
+    "surface_finish": "glossy",
+    "reflectivity": 0.7,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 100000,
+    "friction_coefficient": 0.3,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.8,
+    "asset_composition_type": "single",
+    "attribute_bell_flare": "The bell is wide with a gradual, polygonal flare, creating a prominent opening at the end.",
+    "attribute_valve_configuration": "Three piston valves are arranged in a straight line along the top center of the trumpet.",
+    "attribute_mouthpiece_presence": true,
+    "attribute_leadpipe_curvature": "The leadpipe is gently curved, smoothly connecting the mouthpiece to the first valve.",
+    "attribute_tuning_slide_location": "The main tuning slide is U-shaped and located just after the leadpipe, before the first valve.",
+    "uid": "924f0f90d14c40eb86b4a985875525a9",
+    "near_synsets": {
+        "trombone.n.01": 0.4277865036644788,
+        "cornet.n.01": 0.4358778235826792,
+        "french_horn.n.01": 0.4560674929951935,
+        "brass.n.02": 0.45711086308856097,
+        "flugelhorn.n.01": 0.47592367700087246
+    },
+    "synset": "cornet.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/924f0f90d14c40eb86b4a985875525a9",
+        "creator_username": "graunder",
+        "creator_display_name": "Graunder",
+        "creator_profile_url": "https://sketchfab.com/graunder"
+    },
+    "filename": "std_924f0f90d14c40eb86b4a985875525a9.glb",
+    "length": 0.47906433045864105,
+    "width": 0.10420062020421028
+}

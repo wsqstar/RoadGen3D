@@ -1,0 +1,106 @@
+{
+    "description_long": "This object is a segment of railway track consisting of two parallel steel rails mounted on a series of evenly spaced sleepers, which appear to be made of concrete. The rails are set atop a bed of coarse, grayish-brown ballast, simulating crushed stone that provides stability and drainage. The ballast bed is slightly raised and extends beyond the width of the rails, giving the track a realistic embedded appearance. The rails are metallic and reflective, while the sleepers are rectangular and lighter in color, contrasting with the darker ballast. There are no visible signs, signals, or additional railway infrastructure present. The overall construction suggests durability and is typical of urban or suburban railway lines.",
+    "description": "A realistic railway track segment with parallel steel rails on concrete sleepers, set in a coarse gravel ballast bed. The rails and sleepers are clearly defined, with a textured, stony base.",
+    "description_view_0": "View 0 shows the railway track from a slightly elevated angle, highlighting the parallel rails and the textured ballast bed.",
+    "description_view_1": "View 1 presents the track from the end, emphasizing the width of the ballast and the alignment of the sleepers.",
+    "description_view_2": "View 2 offers a similar perspective to View 0 but from the opposite side, again showing the rails and ballast in detail.",
+    "description_view_3": "View 3 displays the track from the other end, focusing on the arrangement of the sleepers and the spread of the ballast.",
+    "category": "railway track",
+    "height": 0.18,
+    "max_dimension": 3.0,
+    "materials": [
+        "steel",
+        "concrete",
+        "stone",
+        "air"
+    ],
+    "materials_composition": [
+        0.25,
+        0.25,
+        0.45,
+        0.05
+    ],
+    "mass": 650,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "supportive",
+        "guiding"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "rails",
+        "sleepers"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone"
+    ],
+    "colors": [
+        "gray",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.5,
+        0.4,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.01,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_parallel_metal_rails": true,
+    "attribute_wooden_or_concrete_sleepers": "concrete",
+    "attribute_ballast_bed": true,
+    "attribute_embedded_in_pavement": false,
+    "attribute_railway_crossing_signage": false,
+    "uid": "6ceea2697c0e44fca57e3b1d3600782d",
+    "near_synsets": {
+        "railroad_bed.n.01": 0.47183234201786983,
+        "track.n.09": 0.5070120655783606,
+        "railroad_track.n.01": 0.5215261449829395,
+        "line.n.14": 0.5246148436691618,
+        "ballast.n.02": 0.5272029883380958,
+        "racetrack.n.01": -1000.0,
+        "track.n.03": -1000.0,
+        "path.n.04": -1000.0,
+        "track.n.08": -1000.0,
+        "railway.n.01": -1000.0,
+        "track.n.10": -1000.0,
+        "track.n.11": -1000.0,
+        "lead.n.03": -1000.0,
+        "track.n.07": -1000.0,
+        "cut.n.08": -1000.0,
+        "track.n.06": -1000.0
+    },
+    "synset": "track.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-sa",
+        "uri": "https://api.sketchfab.com/v3/models/6ceea2697c0e44fca57e3b1d3600782d",
+        "creator_username": "hyrule.revali",
+        "creator_display_name": "hyrule.revali",
+        "creator_profile_url": "https://sketchfab.com/hyrule.revali"
+    },
+    "filename": "std_6ceea2697c0e44fca57e3b1d3600782d.glb",
+    "length": 3.150126576423645,
+    "width": 3.14998459815979
+}

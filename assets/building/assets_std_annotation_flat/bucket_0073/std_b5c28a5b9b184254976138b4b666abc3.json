@@ -1,0 +1,103 @@
+{
+    "description_long": "This object is an old-fashioned, large iron cannon mounted on a wooden wheeled carriage, positioned within a stone fortification. The cannon is long and cylindrical, with a slightly flared muzzle and visible rust and weathering on its surface, indicating age and exposure to the elements. The carriage is constructed from heavy wooden beams, reinforced with metal bands, and sits atop four solid wooden wheels. Surrounding the cannon are several stacks of spherical iron cannonballs, placed on the stone-paved ground. The entire setup is enclosed by thick, blocky stone walls, forming a defensive emplacement typical of historical urban fortifications. Moss and dirt are visible in the crevices of the stonework, adding to the sense of age and realism.",
+    "description": "A weathered iron cannon on a wooden wheeled carriage, set within a stone fortification and surrounded by cannonballs. The scene is detailed with mossy stones and signs of age.",
+    "description_view_0": "Side view showing the full length of the cannon, wooden carriage, and a pile of cannonballs on the left.",
+    "description_view_1": "Front view looking directly into the cannon's muzzle, with the stone walls and carriage symmetrically flanking the barrel.",
+    "description_view_2": "Opposite side view highlighting the carriage wheels, cannon length, and additional cannonballs on the right.",
+    "description_view_3": "Rear view showing the back of the carriage, the cannon's breech, and a clear view of the stone-paved emplacement.",
+    "category": "combat tactical  vehicle",
+    "height": 1.2,
+    "max_dimension": 4.0,
+    "materials": [
+        "iron",
+        "wood",
+        "stone",
+        "air",
+        "moss"
+    ],
+    "materials_composition": [
+        0.45,
+        0.25,
+        0.25,
+        0.04,
+        0.01
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3500,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "rotatable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "cannon barrel",
+        "carriage wheels",
+        "cannonballs"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "dark brown",
+        "gray",
+        "black",
+        "green"
+    ],
+    "colors_composition": [
+        0.45,
+        0.35,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.85,
+    "surface_finish": "rough",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 120000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_weapon_mounts": "One large fixed cannon mounted centrally on a wooden carriage within the stone emplacement.",
+    "attribute_armor_plating": "None visible; the cannon and carriage are exposed, with no additional armor plating.",
+    "attribute_camouflage_pattern": "None visible; surfaces are natural iron, wood, and stone with weathering and moss.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "Not applicable.",
+    "uid": "b5c28a5b9b184254976138b4b666abc3",
+    "near_synsets": {
+        "cannon.n.02": 0.5143141433213951,
+        "cannon.n.01": 0.5271902499922955,
+        "caisson.n.02": 0.5351738534789249,
+        "military_vehicle.n.01": 0.5480960765000554,
+        "tank_shell.n.01": 0.5494153989156494,
+        "vehicle.n.01": -1000.0,
+        "vehicle.n.03": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "vehicle.n.02": -1000.0
+    },
+    "synset": "cannon.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b5c28a5b9b184254976138b4b666abc3",
+        "creator_username": "pmweintraub",
+        "creator_display_name": "pmweintraub",
+        "creator_profile_url": "https://sketchfab.com/pmweintraub"
+    },
+    "filename": "std_b5c28a5b9b184254976138b4b666abc3.glb",
+    "length": 4.183751344680786,
+    "width": 3.4635391235351562
+}

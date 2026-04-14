@@ -1,0 +1,95 @@
+{
+    "description_long": "This is a large, rectangular steel shipping container with a weathered, rust-streaked red exterior. The surface is corrugated for structural strength, and the paint is faded and chipped, revealing signs of prolonged outdoor exposure. One end features double doors secured with vertical locking bars, heavy-duty hinges, and multiple warning and identification labels. The other sides are solid panels with no visible openings or windows. The container is typically used for storage or transport of goods and is commonly seen in industrial, shipping, or urban environments. Its robust construction and size make it suitable for secure, temporary, or permanent placement outdoors.",
+    "description": "A large, weathered red steel shipping container with corrugated sides and secure double doors on one end, showing signs of rust and outdoor use.",
+    "description_view_0": "Side view showing the long, corrugated red panel with visible rust and no openings.",
+    "description_view_1": "End view displaying the double doors with locking bars, hinges, and several labels and signs.",
+    "description_view_2": "Opposite side view, nearly identical to view 0, with a long, solid corrugated panel and weathered surface.",
+    "description_view_3": "End view similar to view 1, showing the double doors with locking mechanisms and signage.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "air",
+        "paint"
+    ],
+    "materials_composition": [
+        0.92,
+        0.07,
+        0.01
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 15000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "locking bar",
+        "hinge",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "brown",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.15,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.8,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.02,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "multiple labels and warning signs on the door end, including identification numbers and safety warnings",
+    "attribute_handles_or_grips": "four vertical locking bars with integrated handles on the doors",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "27a114c8a5a7476fb28c54a0177ee6c7",
+    "near_synsets": {
+        "container.n.01": 0.4693090801256712,
+        "cargo_container.n.01": 0.47509384330497645,
+        "crate.n.01": 0.5248825809392108,
+        "box.n.01": 0.5347287675321178,
+        "cargo_door.n.01": 0.5352941061246527
+    },
+    "synset": "cargo_container.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/27a114c8a5a7476fb28c54a0177ee6c7",
+        "creator_username": "yxungsauce2",
+        "creator_display_name": "yxungsauce2",
+        "creator_profile_url": "https://sketchfab.com/yxungsauce2"
+    },
+    "filename": "std_27a114c8a5a7476fb28c54a0177ee6c7.glb",
+    "length": 6.504496097564697,
+    "width": 2.6629767417907715
+}

@@ -1,0 +1,96 @@
+{
+    "description_long": "This is a small, rectangular cabin with a gable roof covered in grayish shingles and a prominent central chimney. The front facade features a wooden sliding door and a large, open section that could serve as a porch or sheltered entryway, with vertical wooden slats and a partial wall. The side walls are solid and painted a reddish-brown, with one side displaying a set of three horizontal windows grouped together near the roofline. The rear of the cabin is plain, with no visible windows or doors, and the structure sits low to the ground. The materials appear to be primarily wood for the walls and roof, with some metal or concrete elements for the chimney and possible window frames.",
+    "description": "A small, rectangular wooden cabin with a gray gable roof, central chimney, and a front sliding door with an open porch area. One side features grouped horizontal windows, while the other sides are mostly solid and plain.",
+    "description_view_0": "Front view showing the sliding door, open porch area, and central chimney on the gable roof.",
+    "description_view_1": "Side view with reddish-brown wall and three horizontal windows grouped near the roofline.",
+    "description_view_2": "Rear view with a plain wall, no visible windows or doors, and the gable roof with chimney.",
+    "description_view_3": "Opposite side view with a solid reddish-brown wall and no windows.",
+    "category": "cabin",
+    "height": 3.2,
+    "max_dimension": 7.0,
+    "materials": [
+        "wood",
+        "glass",
+        "metal",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.05,
+        0.02,
+        0.1
+    ],
+    "mass": 6500,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "sliding door",
+        "windows"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "brown",
+        "red",
+        "white"
+    ],
+    "colors_composition": [
+        0.35,
+        0.3,
+        0.3,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gable roof with gray shingles and a central chimney",
+    "attribute_window_arrangement": "One side features three small, rectangular horizontal windows grouped together near the roofline; no windows are visible on the front, rear, or opposite side.",
+    "attribute_door_placement": "Single sliding door located on the front facade, slightly offset to the left within the open porch area.",
+    "attribute_porch_presence": true,
+    "attribute_architectural_style": "modern minimalist",
+    "uid": "88293f9d989b45ed99f6acc532c16204",
+    "near_synsets": {
+        "cabin.n.02": 0.42417345526532885,
+        "log_cabin.n.01": 0.4558673109578056,
+        "cabin.n.01": 0.5126406471036276,
+        "chalet.n.01": 0.5162949625725607,
+        "gazebo.n.01": 0.5242203342537833,
+        "cabin.n.03": -1000.0
+    },
+    "synset": "cabin.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/88293f9d989b45ed99f6acc532c16204",
+        "creator_username": "amman.filippo",
+        "creator_display_name": "amman.filippo",
+        "creator_profile_url": "https://sketchfab.com/amman.filippo"
+    },
+    "filename": "std_88293f9d989b45ed99f6acc532c16204.glb",
+    "length": 1.7330259680747986,
+    "width": 2.204422950744629
+}

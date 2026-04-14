@@ -1,0 +1,95 @@
+{
+    "description_long": "This structure is a rustic cowshed with a weathered, corrugated metal gable roof in a faded greenish-blue color. The walls are constructed from vertically arranged, aged wooden planks, some of which are spaced apart, creating slatted gaps for ventilation. The shed is open at both gable ends, allowing easy access for livestock and air circulation. The floor appears to be made of rough wooden boards, consistent with the utilitarian design. There are no visible windows, but the slatted wall construction and open ends provide natural light and airflow. The overall appearance is functional and robust, suitable for agricultural or semi-urban fringe environments.",
+    "description": "A weathered wooden cowshed with a green corrugated gable roof, open ends, and slatted plank walls for ventilation.",
+    "description_view_0": "Front gable end with a wide open entrance and visible interior framing, showing the open, accessible design.",
+    "description_view_1": "Side view displaying the full length of the corrugated roof and the slatted wooden plank walls with gaps for ventilation.",
+    "description_view_2": "Rear gable end, nearly identical to the front, with a wide open entrance and exposed framing.",
+    "description_view_3": "Opposite side view, showing more irregular slats and gaps in the wooden wall, emphasizing the shed's rustic ventilation.",
+    "category": "cowshed",
+    "height": 3.2,
+    "max_dimension": 7.5,
+    "materials": [
+        "wood",
+        "corrugated metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.2,
+        0.15
+    ],
+    "mass": 3200,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "supportable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "doorway",
+        "slatted wall sections"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot",
+        "drone",
+        "livestock"
+    ],
+    "colors": [
+        "green",
+        "gray",
+        "brown"
+    ],
+    "colors_composition": [
+        0.35,
+        0.5,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "rough",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.55,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gable",
+    "attribute_door_style": "open gable ends, no physical doors present",
+    "attribute_window_presence": "no windows; slatted wall gaps provide light and ventilation",
+    "attribute_ventilation_features": "open gable ends, slatted wall gaps",
+    "attribute_architectural_style": "traditional rural",
+    "uid": "1253ccf6bc034584957b67fcd00621a1",
+    "near_synsets": {
+        "cowbarn.n.01": 0.42770409092644457,
+        "cow_pasture.n.01": 0.4948163041857605,
+        "farm_building.n.01": 0.4996489551732402,
+        "woodshed.n.01": 0.5006664212271011,
+        "stockyard.n.01": 0.5024259415198922
+    },
+    "synset": "cowbarn.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1253ccf6bc034584957b67fcd00621a1",
+        "creator_username": "williansmora9",
+        "creator_display_name": "williansmora9",
+        "creator_profile_url": "https://sketchfab.com/williansmora9"
+    },
+    "filename": "std_1253ccf6bc034584957b67fcd00621a1.glb",
+    "length": 5.264843463897705,
+    "width": 5.010982275009155
+}

@@ -1,0 +1,110 @@
+{
+    "description_long": "This is a charming two-story pizzeria with a yellow stucco exterior and a terracotta-tiled roof, evoking a Mediterranean or classic Italian style. The front features a green-and-white striped awning above the main entrance, with a balcony adorned with potted plants and a small table. The side of the building displays a prominent sign reading 'PIZZERIA de' FIGLIOLE' and an outdoor seating area with round tables and chairs shaded by umbrellas. A blue three-wheeled vehicle is parked beside the building, and several potted plants and crates are scattered around the perimeter, adding to the lively street-side ambiance. The rear of the building has laundry hanging from a window and a staircase leading to the upper floor, suggesting residential or staff quarters above. A tall chimney rises from the roof, indicating the presence of a traditional pizza oven inside.",
+    "description": "A vibrant yellow, two-story pizzeria with a terracotta roof, striped awnings, outdoor seating, and classic Italian architectural details. The building features a prominent sign, balcony, chimney, and lively street-side decor.",
+    "description_view_0": "Front view shows the main entrance, balcony with plants, striped awning, and some crates and a chair near the door.",
+    "description_view_1": "Rear view reveals laundry hanging from a window, a staircase to the upper floor, and more potted plants and crates.",
+    "description_view_2": "Side view highlights the pizzeria sign, outdoor tables and chairs, striped awning, and the blue vehicle parked nearby.",
+    "description_view_3": "Opposite side view shows the staircase, additional potted plants, the blue vehicle, and a window with green shutters.",
+    "category": "pizzeria",
+    "height": 7.5,
+    "max_dimension": 12.0,
+    "materials": [
+        "stucco",
+        "terracotta",
+        "wood",
+        "glass",
+        "metal",
+        "fabric",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.1,
+        0.05,
+        0.05,
+        0.04,
+        0.01,
+        0.05
+    ],
+    "mass": 65000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "sittable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "balcony railing",
+        "outdoor tables",
+        "chairs",
+        "stairs"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "terracotta",
+        "green",
+        "white",
+        "blue",
+        "brown"
+    ],
+    "colors_composition": [
+        0.45,
+        0.2,
+        0.12,
+        0.1,
+        0.08,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 2500,
+    "friction_coefficient": 0.85,
+    "bounciness": 0.02,
+    "recommended_clearance": 2.5,
+    "asset_composition_type": "scene",
+    "attribute_signage": true,
+    "attribute_outdoor_seating": true,
+    "attribute_pizza_oven_chimney": true,
+    "attribute_menu_display": false,
+    "attribute_architectural_style": "classic Italian",
+    "uid": "c980c0426254491687366500e2aa1f1d",
+    "near_synsets": {
+        "pizzeria.n.01": 0.5198065535991664,
+        "pizza.n.01": 0.5831276495299481,
+        "sicilian_pizza.n.01": 0.5879143782292494,
+        "restaurant.n.01": 0.591825276787912,
+        "elevation.n.07": 0.5941276687145092
+    },
+    "synset": "pizzeria.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c980c0426254491687366500e2aa1f1d",
+        "creator_username": "kris_kovac",
+        "creator_display_name": "Kris Kovac",
+        "creator_profile_url": "https://sketchfab.com/kris_kovac"
+    },
+    "filename": "std_c980c0426254491687366500e2aa1f1d.glb",
+    "length": 7.556290149688721,
+    "width": 9.246716022491455
+}

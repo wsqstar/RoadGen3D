@@ -1,0 +1,98 @@
+{
+    "description_long": "This object consists of two sleek, modern airplane-like vehicles with streamlined, aerodynamic fuselages and pointed noses. The upper vehicle features prominent mid-mounted straight wings with small vertical stabilizers and a visible engine exhaust emitting a jet-like flame, suggesting high-speed propulsion. The lower vehicle is more compact, with a smooth, wingless body and a rounded rear exhaust, lacking visible control surfaces. Both vehicles are primarily light gray with subtle yellow and black detailing, and their surfaces appear metallic and smooth. The upper vehicle has additional geometric paneling and intake details along its body, while the lower one is simpler and more monolithic. These vehicles resemble advanced unmanned aerial vehicles or futuristic drones, designed for rapid movement and agility.",
+    "description": "A pair of sleek, gray, futuristic airplane-like vehicles, one with mid-mounted wings and jet exhaust, the other compact and wingless, both with smooth metallic surfaces and aerodynamic shapes.",
+    "description_view_0": "Front view showing pointed noses, the upper vehicle's mid-mounted wings, and the compact, wingless design of the lower vehicle.",
+    "description_view_1": "Side view highlighting the upper vehicle's straight wings, engine exhaust with visible flame, and the lower vehicle's smooth, streamlined body.",
+    "description_view_2": "Rear view displaying the engine exhausts, with the upper vehicle's jet flame and the lower vehicle's rounded nozzle, as well as the tail stabilizers on the upper vehicle.",
+    "description_view_3": "Opposite side view showing the same features as view 1, with clear visibility of the upper vehicle's wing and the lower vehicle's continuous, unbroken surface.",
+    "category": "airplane",
+    "height": 0.35,
+    "max_dimension": 1.2,
+    "materials": [
+        "aluminum",
+        "composite",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.1,
+        0.05,
+        0.05
+    ],
+    "mass": 120,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 1176,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "engine exhaust",
+        "wing",
+        "stabilizer",
+        "cockpit canopy"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "yellow",
+        "white"
+    ],
+    "colors_composition": [
+        0.85,
+        0.08,
+        0.05,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.35,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_wingspan_configuration": "Mid-wing configuration with straight wings and small vertical stabilizers; no winglets or dihedral/anhedral angles visible.",
+    "attribute_engine_type": "Single rear-mounted jet engine on each vehicle, with visible exhaust on the upper vehicle.",
+    "attribute_tail_design": "Conventional tail with twin vertical stabilizers on the upper vehicle; no visible tail surfaces on the lower vehicle.",
+    "attribute_landing_gear_type": "No visible landing gear present on either vehicle.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit on the upper vehicle; no visible cockpit on the lower vehicle.",
+    "uid": "dcc71b2bf0eb4ce78d0815abe14b39ae",
+    "near_synsets": {
+        "aircraft.n.01": 0.476042628306001,
+        "airplane.n.01": 0.49185419476345077,
+        "monoplane.n.01": 0.5230666911641133,
+        "jet.n.01": 0.5276772899566095,
+        "wing.n.02": 0.5335685688607611
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dcc71b2bf0eb4ce78d0815abe14b39ae",
+        "creator_username": "pocolov",
+        "creator_display_name": "pocolov",
+        "creator_profile_url": "https://sketchfab.com/pocolov"
+    },
+    "filename": "std_dcc71b2bf0eb4ce78d0815abe14b39ae.glb",
+    "length": 2.83544921875,
+    "width": 2.072509765625
+}

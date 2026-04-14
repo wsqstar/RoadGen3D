@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a classic yellow taxi with a boxy, vintage design reminiscent of mid-20th-century American sedans. The body is painted a bright yellow with black and white checkered patterns along the sides, and there are visible decals and markings typical of urban taxis. The vehicle features four doors, chrome bumpers, and prominent tailfins at the rear, with red taillights and a detailed front grille. The wheels are black with silver hubcaps, and the windows are dark, suggesting a tinted or reflective finish. The roof is flat and smooth, with no visible roof light or taxi sign mounted on top. The overall appearance is slightly stylized, with exaggerated proportions and cartoonish details.",
+    "description": "A bright yellow, vintage-style taxi with checkered side patterns, chrome details, and pronounced tailfins. The car has a boxy shape, black wheels, and urban taxi decals.",
+    "description_view_0": "Side view showing the yellow body, checkered pattern, and black wheels; decals and door outlines are visible.",
+    "description_view_1": "Rear three-quarter view highlighting the pronounced tailfins, red taillights, and chrome bumper details.",
+    "description_view_2": "Opposite side view with similar features to view 0, showing the checkered pattern and side decals.",
+    "description_view_3": "Front three-quarter view displaying the grille, headlights, and the flat hood; no roof light or taxi sign is visible.",
+    "category": "taxi",
+    "height": 1.5,
+    "max_dimension": 5.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "fabric",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.12,
+        0.08,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 1600,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 6,
+    "movable": true,
+    "required_force": 4000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "wheel",
+        "window",
+        "trunk",
+        "hood"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "white",
+        "red",
+        "chrome/silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "glossy",
+    "reflectivity": 0.45,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.1,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_taxi_sign": false,
+    "attribute_roof_light": false,
+    "attribute_license_plate": false,
+    "attribute_company_branding": true,
+    "attribute_fare_meter_display": false,
+    "uid": "1897068e1e1943c18c34e028e18209f3",
+    "near_synsets": {
+        "minicab.n.01": 0.5303269204088168,
+        "medallion.n.03": 0.5486357955352871,
+        "gypsy_cab.n.01": 0.5502497660782717,
+        "cab.n.03": 0.5673283377464001,
+        "taximeter.n.01": 0.5676936975855581
+    },
+    "synset": "taximeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/1897068e1e1943c18c34e028e18209f3",
+        "creator_username": "Rysky",
+        "creator_display_name": "Jorma Rysky (Joona Ven\u00e4l\u00e4inen)",
+        "creator_profile_url": "https://sketchfab.com/Rysky"
+    },
+    "filename": "std_1897068e1e1943c18c34e028e18209f3.glb",
+    "length": 4.381759166717529,
+    "width": 11.659619331359863
+}

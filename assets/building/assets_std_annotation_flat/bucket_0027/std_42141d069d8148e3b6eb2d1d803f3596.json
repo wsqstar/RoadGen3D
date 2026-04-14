@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a large, industrial mobile crane with a long, telescopic boom extending horizontally from a robust, wheeled chassis. The chassis is painted in a bright yellow color, typical of construction vehicles, and features two large wheels on each side for mobility. The crane's superstructure includes visible hydraulic components and stabilizing outriggers for balance during lifting operations. At the end of the boom, a single hook is attached, designed for hoisting heavy loads. The crane also appears to have a counterweight at the rear to offset the weight of lifted objects. No operator cabin is distinctly visible in the provided views.",
+    "description": "A yellow mobile crane with a long telescopic boom, wheeled chassis, and a single hook for lifting heavy loads.",
+    "description_view_0": "Top-down view showing the full length of the extended telescopic boom and the compact arrangement of the chassis and wheels.",
+    "description_view_1": "Side view highlighting the height of the boom, the two large wheels, and the stabilizing outriggers.",
+    "description_view_2": "Bottom-up view focusing on the underside of the chassis, wheels, and the extended boom's length.",
+    "description_view_3": "Opposite side view showing the boom's extension, the rear counterweight, and the arrangement of the wheels and outriggers.",
+    "category": "crane",
+    "height": 3.5,
+    "max_dimension": 14.0,
+    "materials": [
+        "steel",
+        "rubber",
+        "glass",
+        "plastic",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.07,
+        0.02,
+        0.03,
+        0.02,
+        0.01
+    ],
+    "mass": 18000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 176400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "drivable",
+        "liftable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "boom",
+        "hook",
+        "wheels",
+        "outriggers",
+        "counterweight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.6,
+        0.35,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.8,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "single",
+    "attribute_boom_type": "telescopic boom",
+    "attribute_counterweight_presence": true,
+    "attribute_operator_cabin_visibility": false,
+    "attribute_hook_or_lifting_mechanism": "single hook",
+    "attribute_support_structure_design": "wheeled chassis",
+    "uid": "42141d069d8148e3b6eb2d1d803f3596",
+    "near_synsets": {
+        "crane.n.04": 0.4258784944037574,
+        "derrick.n.02": 0.4743566590316765,
+        "transporter.n.02": 0.5063071120682053,
+        "forklift.n.01": 0.5185707408939612,
+        "skyhook.n.01": 0.5210526882992179,
+        "crane.n.05": -1000.0,
+        "grus.n.01": -1000.0,
+        "crane.n.02": -1000.0,
+        "crane.n.01": -1000.0
+    },
+    "synset": "crane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/42141d069d8148e3b6eb2d1d803f3596",
+        "creator_username": "Aptronix",
+        "creator_display_name": "Aptronics",
+        "creator_profile_url": "https://sketchfab.com/Aptronix"
+    },
+    "filename": "std_42141d069d8148e3b6eb2d1d803f3596.glb",
+    "length": 6.57254695892334,
+    "width": 6.0999672412872314
+}

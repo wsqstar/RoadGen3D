@@ -1,0 +1,92 @@
+{
+    "description_long": "This object is a modern, floor-mounted toilet with a rounded bowl and an attached rectangular cistern at the back. The toilet features a smooth, continuous ceramic surface with a visible seat and lid, both of which are raised in the images. The cistern is compact and sits directly above the bowl, with a flush button or lever area visible on the top. The base of the toilet is broad and stable, designed to be securely fixed to the floor. The overall design is utilitarian and typical for public or residential restrooms, with no visible accessibility modifications. The color is a uniform light gray, giving it a clean and neutral appearance.",
+    "description": "A modern, floor-mounted toilet with a rounded bowl, attached rectangular cistern, and raised seat and lid. The surface is smooth and light gray, typical for public or residential restrooms.",
+    "description_view_0": "Side view showing the full profile of the toilet, including the bowl, seat, lid, and cistern.",
+    "description_view_1": "Rear view highlighting the back of the cistern and the mounting base, with no bowl details visible.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the bowl, seat, lid, and cistern from the other side.",
+    "description_view_3": "Front view looking directly into the bowl, with the seat and lid both raised and the cistern visible behind.",
+    "category": "toilets",
+    "height": 0.8,
+    "max_dimension": 0.8,
+    "materials": [
+        "ceramic",
+        "plastic",
+        "metal",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.01,
+        0.04
+    ],
+    "mass": 35,
+    "receptacle": true,
+    "frontView": 3,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "sittable",
+        "openable",
+        "closable",
+        "flushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "seat",
+        "lid",
+        "flush button/lever"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light gray"
+    ],
+    "colors_composition": [
+        1.0
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.08,
+    "surface_finish": "smooth",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_installation_type": "floor-mounted",
+    "attribute_flush_mechanism_visibility": true,
+    "attribute_seat_presence": true,
+    "attribute_cistern_design": "exposed cistern",
+    "attribute_accessibility_features": [],
+    "uid": "adb3b931f3ef4941830eea9705657a3d",
+    "near_synsets": {
+        "toilet_bowl.n.01": 0.48098918538414714,
+        "toilet.n.02": 0.4869675067998063,
+        "toilet.n.01": 0.4943242603315436,
+        "public_toilet.n.01": 0.5007233713101967,
+        "flush_toilet.n.01": 0.5135811579028904,
+        "gutter.n.02": -1000.0,
+        "toilet.n.04": -1000.0
+    },
+    "synset": "flush_toilet.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/adb3b931f3ef4941830eea9705657a3d",
+        "creator_username": "Urpo",
+        "creator_display_name": "Urpo",
+        "creator_profile_url": "https://sketchfab.com/Urpo"
+    },
+    "filename": "std_adb3b931f3ef4941830eea9705657a3d.glb",
+    "length": 0.5764272809028625,
+    "width": 0.3242985010147095
+}

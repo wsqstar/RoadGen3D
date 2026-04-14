@@ -1,0 +1,109 @@
+{
+    "description_long": "This bus shelter features a rustic wooden structure with a gabled roof covered in brown shingles, providing ample protection from the elements. The shelter is open at the front, allowing easy access, and has a solid back wall with a small window for visibility. Inside, a bench is visible for seating, and several decorative lanterns hang from the ceiling, adding a traditional touch. Adjacent to the shelter, there is a red mailbox mounted on a post and a tall utility pole with multiple insulators and wires, suggesting an urban roadside setting. The shelter's exterior is primarily wood, with some metal elements on the roof and pole. The overall design is functional yet aesthetically pleasing, blending traditional and urban elements.",
+    "description": "A rustic wooden bus shelter with a gabled shingle roof, open front, bench seating, and adjacent mailbox and utility pole.",
+    "description_view_0": "Front view showing the shingled roof, closed back wall, and adjacent red mailbox and utility pole.",
+    "description_view_1": "Side view highlighting the gabled roof, small window on the back wall, and the full height of the utility pole.",
+    "description_view_2": "Open front view revealing the interior bench, hanging lanterns, and the arrangement of the mailbox and utility pole.",
+    "description_view_3": "Rear view showing the back window, mailbox post, and the side of the utility pole.",
+    "category": "bus shelter",
+    "height": 2.5,
+    "max_dimension": 4.5,
+    "materials": [
+        "wood",
+        "asphalt shingle",
+        "metal",
+        "glass",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.55,
+        0.15,
+        0.15,
+        0.05,
+        0.02,
+        0.08
+    ],
+    "mass": 950,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "sittable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "bench",
+        "mailbox",
+        "window"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "brown",
+        "gray",
+        "red",
+        "black",
+        "green"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.07,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "group",
+    "attribute_roof_type": "gabled shingle",
+    "attribute_seating_presence": true,
+    "attribute_advertisement_panel": false,
+    "attribute_shelter_enclosure_level": "partially enclosed",
+    "attribute_signage": [],
+    "uid": "5eb07fc3b28f474dbf15b1bbac814c82",
+    "near_synsets": {
+        "shelter.n.02": 0.5387611695117472,
+        "bus_stop.n.01": 0.559663738842685,
+        "shelter.n.01": 0.5620166136749946,
+        "birdhouse.n.01": 0.5636328508898355,
+        "school_bus.n.01": 0.5653126682552488,
+        "protection.n.04": -1000.0,
+        "bus_topology.n.01": -1000.0,
+        "bus.n.04": -1000.0,
+        "tax_shelter.n.01": -1000.0,
+        "shelter.n.05": -1000.0,
+        "bus.n.01": -1000.0,
+        "busbar.n.01": -1000.0
+    },
+    "synset": "shelter.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/5eb07fc3b28f474dbf15b1bbac814c82",
+        "creator_username": "Xavaltir",
+        "creator_display_name": "Mikail Karaca",
+        "creator_profile_url": "https://sketchfab.com/Xavaltir"
+    },
+    "filename": "std_5eb07fc3b28f474dbf15b1bbac814c82.glb",
+    "length": 1.4278005361557007,
+    "width": 2.276174783706665
+}

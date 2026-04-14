@@ -1,0 +1,106 @@
+{
+    "description_long": "This is a rectangular, upright vending machine designed for dispensing cold drinks. The front panel features a large, vibrant blue graphic with water droplets and the bold text 'COLD drinks' in white, giving it a refreshing and inviting appearance. On the right side of the front panel, there is a vertical column containing a display panel, payment interface, and a set of product selection buttons, each labeled with different drink options. Below these controls, a rectangular product retrieval slot is visible for collecting purchased beverages. The sides and back of the machine are solid black, with the back featuring a small ventilation grille near the bottom. The overall construction appears robust, with a hard, glossy exterior likely made of metal and plastic.",
+    "description": "A tall, rectangular vending machine with a blue 'COLD drinks' graphic, black sides, and a control panel with buttons and a retrieval slot on the front.",
+    "description_view_0": "Front view showing the blue 'COLD drinks' graphic, control panel with display, payment interface, selection buttons, and product retrieval slot.",
+    "description_view_1": "Left-side view showing the blue graphic wrapping around the side, with no visible controls or slots.",
+    "description_view_2": "Rear view showing a plain black surface with a small ventilation grille at the bottom left.",
+    "description_view_3": "Right-side view with the blue 'COLD drinks' graphic, no visible controls or slots.",
+    "category": "vending machine",
+    "height": 1.8,
+    "max_dimension": 1.8,
+    "materials": [
+        "steel",
+        "plastic",
+        "glass",
+        "electronic components",
+        "air"
+    ],
+    "materials_composition": [
+        0.6,
+        0.2,
+        0.05,
+        0.05,
+        0.1
+    ],
+    "mass": 220,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 900,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "openable",
+        "closable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "display panel",
+        "payment interface",
+        "selection buttons",
+        "retrieval slot",
+        "door"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "blue",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "glossy",
+    "reflectivity": 0.35,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_display_panel": "A small rectangular display panel is located on the upper right section of the front, above the selection buttons, showing digital or printed information.",
+    "attribute_payment_interface": "A payment interface is present below the display panel, featuring slots for coins and bills, and possibly a card reader.",
+    "attribute_product_selection_buttons": "Six rectangular, vertically arranged buttons are present on the right side of the front panel, each labeled with a different drink option.",
+    "attribute_product_retrieval_slot": "A wide, horizontal rectangular slot is located near the bottom center of the front panel, used for retrieving purchased drinks.",
+    "attribute_branding_or_signage": "Large 'COLD drinks' text in white is prominently displayed on the blue front panel, with water droplet graphics for visual branding.",
+    "uid": "4756c2d305b54bb89bad080a63562e42",
+    "near_synsets": {
+        "vending_machine.n.01": 0.45360752726504405,
+        "automat.n.01": 0.4942644963514237,
+        "ice_machine.n.01": 0.5440607307154485,
+        "soda_fountain.n.02": 0.5466853431843598,
+        "soda_fountain.n.01": 0.5484408451520307,
+        "machine.n.03": -1000.0,
+        "machine.n.05": -1000.0,
+        "machine.n.04": -1000.0,
+        "machine.n.01": -1000.0,
+        "machine.n.02": -1000.0,
+        "car.n.01": -1000.0
+    },
+    "synset": "vending_machine.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4756c2d305b54bb89bad080a63562e42",
+        "creator_username": "jcarpenter48",
+        "creator_display_name": "JCarpenter_48",
+        "creator_profile_url": "https://sketchfab.com/jcarpenter48"
+    },
+    "filename": "std_4756c2d305b54bb89bad080a63562e42.glb",
+    "length": 1.205463469028473,
+    "width": 1.1812695264816284
+}

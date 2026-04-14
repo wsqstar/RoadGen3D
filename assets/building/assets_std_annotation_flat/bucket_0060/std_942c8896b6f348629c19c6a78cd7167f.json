@@ -1,0 +1,100 @@
+{
+    "description_long": "This object is a compact quadcopter drone with a streamlined, angular body featuring a prominent red central chassis and dark gray arms and propellers. The drone has four extended arms, each supporting a single rotor at the end, arranged symmetrically for stable flight. The body appears to be constructed from lightweight composite materials, likely plastic or carbon fiber, with a slightly textured, matte finish. The front of the drone is slightly tapered, possibly housing sensors or a camera, while the rear is broader and more squared off. The landing gear consists of short, fixed legs integrated into the arm structure, providing ground clearance for takeoff and landing. No visible propeller guards or external payloads are attached, and the design suggests a focus on portability and urban aerial maneuverability.",
+    "description": "A compact quadcopter drone with a red central body and dark gray arms, featuring four rotors and integrated fixed landing legs. The design is sleek and angular, optimized for urban aerial use.",
+    "description_view_0": "Front view shows the tapered nose, red central body, and all four rotors extended outward, with the landing legs visible beneath.",
+    "description_view_1": "Side view highlights the low profile, angular body, and the integration of the landing legs into the arm structure.",
+    "description_view_2": "Rear view displays the broader, squared-off back of the drone and the symmetrical rotor arrangement.",
+    "description_view_3": "Opposite side view again emphasizes the streamlined body and the fixed landing legs, mirroring the other side.",
+    "category": "drone",
+    "height": 0.08,
+    "max_dimension": 0.35,
+    "materials": [
+        "plastic",
+        "carbon fiber",
+        "metal",
+        "air",
+        "electronic components"
+    ],
+    "materials_composition": [
+        0.5,
+        0.25,
+        0.1,
+        0.1,
+        0.05
+    ],
+    "mass": 0.7,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 6,
+    "movable": true,
+    "required_force": 7,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pressable",
+        "toggleable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "rotor",
+        "arm",
+        "landing leg",
+        "body panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "red",
+        "dark gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.35,
+        0.6,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 7000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.6,
+    "asset_composition_type": "single",
+    "attribute_number_of_rotors": 4,
+    "attribute_rotor_configuration": "quadcopter X",
+    "attribute_landing_gear_type": "fixed legs",
+    "attribute_camera_presence": false,
+    "attribute_propeller_guard_presence": false,
+    "uid": "942c8896b6f348629c19c6a78cd7167f",
+    "near_synsets": {
+        "drone.n.04": 0.5351944929425321,
+        "single-rotor_helicopter.n.01": 0.5758806505355255,
+        "rotor.n.03": 0.5888183026096464,
+        "orthopter.n.01": 0.5920567475416545,
+        "main_rotor.n.01": 0.5956622555219171,
+        "drone.n.05": -1000.0,
+        "drone.n.01": -1000.0,
+        "dawdler.n.01": -1000.0,
+        "monotone.n.01": -1000.0
+    },
+    "synset": "drone.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/942c8896b6f348629c19c6a78cd7167f",
+        "creator_username": "GMOpotato",
+        "creator_display_name": "GMOpotato",
+        "creator_profile_url": "https://sketchfab.com/GMOpotato"
+    },
+    "filename": "std_942c8896b6f348629c19c6a78cd7167f.glb",
+    "length": 0.220012828707695,
+    "width": 0.35986101627349854
+}

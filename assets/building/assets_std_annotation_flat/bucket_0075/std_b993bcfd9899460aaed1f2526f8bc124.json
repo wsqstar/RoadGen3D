@@ -1,0 +1,101 @@
+{
+    "description_long": "This object is a shoulder-fired rocket-propelled grenade launcher, visually resembling the RPG-7, a widely recognized anti-armor weapon. The launcher features a long cylindrical tube with a wooden handguard and grip, a metallic receiver section, and a prominent olive-green conical warhead attached at the front. The rear end is flared, designed to vent exhaust gases safely away from the operator. The launcher includes a trigger mechanism and a secondary vertical grip for stability during firing. The overall construction combines metal and wood, with the warhead made of metal and possibly composite materials. The surface finish is mostly matte, with some parts showing a slight sheen due to metal components.",
+    "description": "A shoulder-fired rocket-propelled grenade launcher with a wooden grip, metallic tube, and an olive-green conical warhead. The design is robust, with a flared rear and prominent front warhead.",
+    "description_view_0": "Side view showing the full length of the launcher, wooden grip, metallic tube, and attached olive-green warhead.",
+    "description_view_1": "Front view highlighting the conical warhead and the circular opening of the launcher tube.",
+    "description_view_2": "Opposite side view, similar to view 0, showing the launcher profile and details of the grip and trigger.",
+    "description_view_3": "Rear view displaying the flared exhaust end and the alignment of the tube and warhead.",
+    "category": "rifle",
+    "height": 0.25,
+    "max_dimension": 0.95,
+    "materials": [
+        "steel",
+        "wood",
+        "composite",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.1,
+        0.1
+    ],
+    "mass": 7.0,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 70,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "aimable",
+        "triggerable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "grip",
+        "shoulder rest",
+        "warhead",
+        "sight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "olive green",
+        "gray",
+        "silver"
+    ],
+    "colors_composition": [
+        0.45,
+        0.15,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000.0,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_stock_type": "shoulder rest",
+    "attribute_barrel_type": "standard",
+    "attribute_magazine_type": "none",
+    "attribute_sight_type": "iron sights",
+    "attribute_muzzle_device": "none",
+    "uid": "b993bcfd9899460aaed1f2526f8bc124",
+    "near_synsets": {
+        "rifle_grenade.n.01": 0.4700792025853115,
+        "launcher.n.01": 0.5107778427459969,
+        "hand_grenade.n.01": 0.5120170263160655,
+        "light_arm.n.01": 0.5197153081130113,
+        "gas_gun.n.01": 0.5236859251432807,
+        "rifle.n.01": -1000.0
+    },
+    "synset": "rifle.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b993bcfd9899460aaed1f2526f8bc124",
+        "creator_username": "thebradqq",
+        "creator_display_name": "thebradqq",
+        "creator_profile_url": "https://sketchfab.com/thebradqq"
+    },
+    "filename": "std_b993bcfd9899460aaed1f2526f8bc124.glb",
+    "length": 0.23676666617393494,
+    "width": 0.048759110271930695
+}

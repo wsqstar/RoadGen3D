@@ -1,0 +1,107 @@
+{
+    "description_long": "This object consists of three adjacent rectangular grave plots, each with a raised stone base and an upright headstone at one end. The headstones are tall, flat slabs with a prominent black Latin cross engraved or inlaid on the front face. The stone surfaces have a weathered, gray texture, suggesting concrete or granite construction. The bases are slightly elevated above ground level, with clean, angular edges and a uniform, block-like appearance. There are no visible inscriptions or decorative elements aside from the crosses. The overall arrangement is orderly and somber, typical of a modern urban cemetery.",
+    "description": "A set of three gray stone graves with upright headstones, each featuring a black Latin cross, arranged side by side in a neat row.",
+    "description_view_0": "Front view showing three grave plots with upright headstones, each displaying a black Latin cross.",
+    "description_view_1": "Side view revealing the thickness of the headstones and the layered, rectangular bases of the graves.",
+    "description_view_2": "Rear view showing the plain backs of the headstones and the uniform, blocky bases.",
+    "description_view_3": "Opposite side view, similar to view 1, highlighting the depth and structure of the grave bases.",
+    "category": "grave yard",
+    "height": 1.2,
+    "max_dimension": 2.2,
+    "materials": [
+        "stone",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [],
+    "support_surface": true,
+    "interactive_parts": [],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.08,
+    "index_of_refraction": 1.54,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.01,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "group",
+    "attribute_tombstone_inscriptions": [],
+    "attribute_crosses": [
+        {
+            "count": 3,
+            "type": "Latin",
+            "height_m": 0.8,
+            "material": "stone"
+        }
+    ],
+    "attribute_grave_markers": [
+        {
+            "type": "headstone",
+            "material": "stone",
+            "dimensions_m": [
+                1.2,
+                0.6,
+                0.1
+            ]
+        }
+    ],
+    "attribute_mausoleums": [],
+    "attribute_cemetery_gates": [],
+    "uid": "63be1c34e3c34efeb086c2bd25191497",
+    "near_synsets": {
+        "grave.n.02": 0.4857271734905582,
+        "gravestone.n.01": 0.49969065716907907,
+        "cemetery.n.01": 0.51518494148535,
+        "cairn.n.01": 0.5295979323634419,
+        "grave.n.01": 0.5297892743037087,
+        "yard.n.02": -1000.0,
+        "yard.n.06": -1000.0,
+        "yard.n.01": -1000.0,
+        "yard.n.09": -1000.0,
+        "cubic_yard.n.01": -1000.0,
+        "yard.n.03": -1000.0,
+        "yard.n.08": -1000.0,
+        "thousand.n.01": -1000.0,
+        "yard.n.07": -1000.0
+    },
+    "synset": "gravestone.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/63be1c34e3c34efeb086c2bd25191497",
+        "creator_username": "FHU-KAMYCZEK",
+        "creator_display_name": "FHU-KAMYCZEK",
+        "creator_profile_url": "https://sketchfab.com/FHU-KAMYCZEK"
+    },
+    "filename": "std_63be1c34e3c34efeb086c2bd25191497.glb",
+    "length": 1.8399940133094788,
+    "width": 4.856934547424316
+}

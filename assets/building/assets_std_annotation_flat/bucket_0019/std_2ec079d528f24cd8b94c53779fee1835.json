@@ -1,0 +1,96 @@
+{
+    "description_long": "This hospital building features a rectangular, multi-story structure with a flat roof, prominently displaying a large red medical cross on a sign at the front. The main building is connected to a secondary wing by a covered walkway, and the roof includes a clearly marked helipad for emergency air transport. The facade is composed of evenly spaced windows, giving the building a modern and functional appearance. The exterior is finished in a light beige or off-white color, with minimal decorative elements, emphasizing utility. The overall design suggests a focus on accessibility and emergency response, with clear signage and open access points.",
+    "description": "A modern, multi-story hospital with a flat roof, helipad, and a prominent red medical cross sign at the front. The building is light beige with large windows and a connected secondary wing.",
+    "description_view_0": "Front view showing the main entrance, large red cross sign, and the connecting walkway to the secondary wing.",
+    "description_view_1": "Side view highlighting the helipad on the roof and the secondary wing's open roof structure.",
+    "description_view_2": "Rear view displaying the full length of the main building, helipad, and rooftop structures.",
+    "description_view_3": "Angled view showing the walkway connection, helipad, and both building wings.",
+    "category": "hospital",
+    "height": 12.0,
+    "max_dimension": 32.0,
+    "materials": [
+        "concrete",
+        "glass",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.08,
+        0.02,
+        0.05
+    ],
+    "mass": 950000.0,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "landable",
+        "signage_readable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "helipad",
+        "signage"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "beige",
+        "white",
+        "red",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 30000,
+    "friction_coefficient": 0.9,
+    "bounciness": 0.02,
+    "recommended_clearance": 8.0,
+    "asset_composition_type": "single",
+    "attribute_hospital_signage": true,
+    "attribute_emergency_entrance": false,
+    "attribute_ambulance_bay": false,
+    "attribute_medical_cross_symbol": true,
+    "attribute_architectural_style": "modern utilitarian",
+    "uid": "2ec079d528f24cd8b94c53779fee1835",
+    "near_synsets": {
+        "medical_building.n.01": 0.5037492231603482,
+        "medical_center.n.01": 0.5453621761223918,
+        "hospital.n.01": 0.5528619822742235,
+        "hospital.n.02": 0.5529075313102347,
+        "hospital_room.n.01": 0.5633288077278235
+    },
+    "synset": "hospital_room.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/2ec079d528f24cd8b94c53779fee1835",
+        "creator_username": "JoaoLucasAP",
+        "creator_display_name": "JoaoLucasAP",
+        "creator_profile_url": "https://sketchfab.com/JoaoLucasAP"
+    },
+    "filename": "std_2ec079d528f24cd8b94c53779fee1835.glb",
+    "length": 20.68270969390869,
+    "width": 22.584296226501465
+}

@@ -1,0 +1,93 @@
+{
+    "description_long": "This is a cylindrical, floor-standing radiator with a robust, industrial appearance, featuring a metallic body with a slightly weathered blue-gray finish. The top is capped with a rounded lid, and a prominent vertical exhaust pipe extends upward before bending horizontally, suggesting venting or heat dispersal. The front side has a dark, rectangular access panel or door, likely for maintenance or fuel input, with a set of small vent slots at the bottom. The body is largely smooth, with subtle seams and a few protruding elements, including a handle or latch on the access panel. The pipework is thick and painted a lighter color, contrasting with the main body, and is securely attached at the top and side. The overall design is utilitarian, suitable for use in garages, workshops, or outdoor urban environments.",
+    "description": "A cylindrical, industrial-style floor radiator with a blue-gray metallic body, a front access panel, and a prominent exhaust pipe extending from the top. The design is robust and utilitarian, with visible vent slots and pipe connections.",
+    "description_view_0": "Front view showing the access panel with vent slots and the vertical exhaust pipe rising from the top.",
+    "description_view_1": "Side view highlighting the cylindrical body and the horizontal extension of the exhaust pipe.",
+    "description_view_2": "Rear view displaying the back of the radiator and the full diameter of the exhaust pipe opening.",
+    "description_view_3": "Side view from the opposite direction, emphasizing the pipe's connection to the top and the smooth, metallic surface.",
+    "category": "radiator",
+    "height": 1.2,
+    "max_dimension": 1.5,
+    "materials": [
+        "steel",
+        "iron",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.15,
+        0.05,
+        0.1
+    ],
+    "mass": 55,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 7,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "turnable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "access panel",
+        "handle",
+        "pipe connection"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "blue-gray",
+        "black",
+        "white"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_mounting_location": "floor-standing",
+    "attribute_pipe_connections": "one top center vertical entry, one side horizontal exit",
+    "attribute_fin_arrangement": "solid cylindrical body with no visible external fins",
+    "attribute_valve_type": "none visible",
+    "attribute_grille_pattern": "vent slots at the bottom of the front access panel",
+    "uid": "c715e7333f8a456ea27c67adf36b81d1",
+    "near_synsets": {
+        "radiator.n.02": 0.5354001571438644,
+        "radiator.n.03": 0.5377239313516986,
+        "radiator.n.01": 0.5408165834805344,
+        "grille.n.02": 0.5569664271059483,
+        "panel_heating.n.01": 0.5688373686059743
+    },
+    "synset": "radiator.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/c715e7333f8a456ea27c67adf36b81d1",
+        "creator_username": "Yousof_hz",
+        "creator_display_name": "Yousof Hajizeinali",
+        "creator_profile_url": "https://sketchfab.com/Yousof_hz"
+    },
+    "filename": "std_c715e7333f8a456ea27c67adf36b81d1.glb",
+    "length": 1.1985180974006653,
+    "width": 0.39817383885383606
+}

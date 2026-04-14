@@ -1,0 +1,120 @@
+{
+    "description_long": "This is a rectangular basketball court with a light wooden floor, marked with standard red and black basketball lines including the key, three-point arc, and center circle. The court surface shows some wear and discoloration, suggesting frequent use. At one end, there is a basketball hoop mounted on a rectangular backboard, which appears to be made of glass or transparent material, supported by a metal frame. The hoop is positioned above the court, with no visible net enclosure or fencing around the perimeter. The markings are clear and typical of a regulation half-court, with visible sidelines, baselines, and free throw areas. The overall design suggests an indoor gymnasium or a well-maintained urban recreational facility.",
+    "description": "A worn wooden basketball court with red and black markings and a single glass backboard hoop at one end, typical of an indoor gym or urban rec center.",
+    "description_view_0": "View from above and behind the hoop, showing the full court layout and the glass backboard with hoop.",
+    "description_view_1": "Side view highlighting the court's length and the hoop's profile, with court markings visible along the floor.",
+    "description_view_2": "Direct front view of the hoop and backboard, with the court extending behind and clear visibility of the key and three-point arc.",
+    "description_view_3": "Opposite side view showing the court's length and the back of the hoop structure, with court markings and some floor wear visible.",
+    "category": "basketball court",
+    "height": 3.5,
+    "max_dimension": 28.0,
+    "materials": [
+        "wood",
+        "glass",
+        "metal",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 12000,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 4,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "playable",
+        "shootable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "hoop",
+        "backboard",
+        "court surface"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "light brown",
+        "red",
+        "black",
+        "white",
+        "gray"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "scene",
+    "attribute_hoop_presence": true,
+    "attribute_backboard_type": "rectangular glass",
+    "attribute_court_markings": [
+        "three-point line",
+        "free throw line",
+        "center circle",
+        "key",
+        "sidelines",
+        "baseline"
+    ],
+    "attribute_fence_enclosure": false,
+    "attribute_architectural_style": "indoor gymnasium",
+    "uid": "d2cb0b43f00c47718ff66d6fddb301fd",
+    "near_synsets": {
+        "basketball_court.n.01": 0.4214218676560064,
+        "basket.n.03": 0.49679552070985666,
+        "volleyball_court.n.01": 0.49962116750771857,
+        "handball_court.n.01": 0.5022350091478829,
+        "home_court.n.01": 0.5032983845933128,
+        "court.n.01": -1000.0,
+        "court.n.04": -1000.0,
+        "court.n.03": -1000.0,
+        "court.n.10": -1000.0,
+        "motor_hotel.n.01": -1000.0,
+        "court.n.05": -1000.0,
+        "basketball.n.02": -1000.0,
+        "court.n.09": -1000.0,
+        "court.n.02": -1000.0,
+        "court.n.06": -1000.0,
+        "basketball.n.01": -1000.0,
+        "court.n.08": -1000.0
+    },
+    "synset": "basketball_court.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc-sa",
+        "uri": "https://api.sketchfab.com/v3/models/d2cb0b43f00c47718ff66d6fddb301fd",
+        "creator_username": "jduyckaerts",
+        "creator_display_name": "jduyckaerts",
+        "creator_profile_url": "https://sketchfab.com/jduyckaerts"
+    },
+    "filename": "std_d2cb0b43f00c47718ff66d6fddb301fd.glb",
+    "length": 6.509949684143066,
+    "width": 4.395637512207031
+}

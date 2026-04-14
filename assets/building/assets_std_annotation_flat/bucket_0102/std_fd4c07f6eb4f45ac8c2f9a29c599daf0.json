@@ -1,0 +1,111 @@
+{
+    "description_long": "This is a large, rectangular metal dumpster with a weathered, mottled green and brown exterior, showing signs of rust and urban wear. The top is fitted with a split, ribbed black plastic lid that can be opened for depositing waste. The front features two warning labels and a prominent Waste Management (WM) logo, indicating its use for commercial or municipal waste collection. The dumpster sits on four small caster wheels, allowing it to be moved short distances. The sides and rear are plain, with reinforced metal bands for structural support. Its robust construction and size suggest it is designed for outdoor use in high-traffic urban environments.",
+    "description": "A large, weathered green metal dumpster with a split black plastic lid, warning labels, and wheels for mobility. Designed for outdoor waste collection in urban settings.",
+    "description_view_0": "Side view showing the sloped, ribbed black lid and the mottled green-brown metal body with visible rust.",
+    "description_view_1": "Front view displaying the split lid, two warning labels, a WM logo, and the four caster wheels beneath.",
+    "description_view_2": "Opposite side view, similar to view 0, highlighting the sloped lid and plain metal side.",
+    "description_view_3": "Rear view showing a plain, reinforced metal back with no labels or logos visible.",
+    "category": "dumpster",
+    "height": 1.4,
+    "max_dimension": 2.1,
+    "materials": [
+        "steel",
+        "plastic",
+        "rubber",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 250,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "handle",
+        "wheel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "black",
+        "yellow",
+        "white",
+        "red"
+    ],
+    "colors_composition": [
+        0.65,
+        0.15,
+        0.15,
+        0.02,
+        0.02,
+        0.01
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "split, ribbed, hinged plastic lid with two sections; no visible locking mechanism",
+    "attribute_wheel_presence": true,
+    "attribute_handle_design": "two metal bar handles on the front, horizontally mounted below the lid",
+    "attribute_warning_labels": [
+        {
+            "color": "red",
+            "shape": "rectangle",
+            "content": "BLOCK DUMPSTER"
+        },
+        {
+            "color": "yellow/green/white",
+            "shape": "rectangle",
+            "content": "WM logo"
+        }
+    ],
+    "attribute_placement_location": "outdoor commercial area or residential alley",
+    "uid": "fd4c07f6eb4f45ac8c2f9a29c599daf0",
+    "near_synsets": {
+        "dumpster.n.01": 0.4331055896411719,
+        "garbage.n.03": 0.5055175739734722,
+        "garbage_truck.n.01": 0.5112156660926671,
+        "recycling_bin.n.01": 0.519127923299781,
+        "dump.n.02": 0.5319100215509995
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/fd4c07f6eb4f45ac8c2f9a29c599daf0",
+        "creator_username": "Batuhan13",
+        "creator_display_name": "Batuhan13",
+        "creator_profile_url": "https://sketchfab.com/Batuhan13"
+    },
+    "filename": "std_fd4c07f6eb4f45ac8c2f9a29c599daf0.glb",
+    "length": 1.1732075214385986,
+    "width": 1.6203598976135254
+}

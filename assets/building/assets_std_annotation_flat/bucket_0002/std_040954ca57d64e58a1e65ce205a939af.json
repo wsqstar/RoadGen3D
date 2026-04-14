@@ -1,0 +1,102 @@
+{
+    "description_long": "This is a large industrial-style platform ladder constructed primarily from metal, featuring a long inclined stairway with evenly spaced steps leading up to a flat platform at the top. The ladder is equipped with robust handrails on both sides of the stairs and around the platform, providing enhanced safety for users. The base of the structure is supported by a sturdy metal frame, with visible cross-bracing for stability and small wheels at the rear for mobility. The steps are wide and appear to have a non-slip surface, suitable for heavy-duty or industrial use. The platform at the top is enclosed by guardrails, and there is an additional side extension, possibly for tool storage or access control. The overall design suggests it is intended for safe access to elevated workspaces in urban or industrial environments.",
+    "description": "A large, industrial metal platform ladder with handrails, a wide stairway, and a secure top platform. It features wheels for mobility and robust safety features for elevated access.",
+    "description_view_0": "Side view showing the full length of the inclined stairway, handrails, and the elevated platform with guardrails.",
+    "description_view_1": "End view highlighting the narrow profile, the platform's enclosure, and the side extension feature.",
+    "description_view_2": "Opposite side view mirroring view 0, showing the stairway, handrails, and supporting frame structure.",
+    "description_view_3": "Frontal view up the stairs, emphasizing the width of the steps, the handrails, and the secure platform at the top.",
+    "category": "ladder",
+    "height": 2.2,
+    "max_dimension": 3.5,
+    "materials": [
+        "steel",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.92,
+        0.04,
+        0.02,
+        0.02
+    ],
+    "mass": 110,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 9,
+    "movable": true,
+    "required_force": 180,
+    "walkable": true,
+    "enterable": false,
+    "affordances": [
+        "climbable",
+        "grippable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "handrail",
+        "steps",
+        "platform",
+        "wheel",
+        "side extension"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person"
+    ],
+    "colors": [
+        "gray",
+        "black"
+    ],
+    "colors_composition": [
+        0.95,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.1,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_number_of_rungs": 9,
+    "attribute_rung_spacing": 0.22,
+    "attribute_side_rail_profile": "rectangular steel tubing",
+    "attribute_mounting_position": "freestanding",
+    "attribute_presence_of_safety_features": [
+        "handrails",
+        "guardrails",
+        "non-slip steps",
+        "wheels with brakes"
+    ],
+    "uid": "040954ca57d64e58a1e65ce205a939af",
+    "near_synsets": {
+        "step_ladder.n.01": 0.514642030836428,
+        "ladder.n.01": 0.518324381166391,
+        "extension_ladder.n.01": 0.52660168195268,
+        "aerial_ladder.n.01": 0.5290132332288661,
+        "stairhead.n.01": 0.5309497738896485,
+        "ladder.n.02": -1000.0,
+        "run.n.13": -1000.0
+    },
+    "synset": "ladder.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/040954ca57d64e58a1e65ce205a939af",
+        "creator_username": "osvaldocesar",
+        "creator_display_name": "osvaldocesar",
+        "creator_profile_url": "https://sketchfab.com/osvaldocesar"
+    },
+    "filename": "std_040954ca57d64e58a1e65ce205a939af.glb",
+    "length": 2.7697336673736572,
+    "width": 0.7084945142269135
+}

@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a large, rectangular green metal dumpster with a split black plastic lid, one half of which is open, revealing a spacious interior. The exterior is weathered, showing patches of rust and grime, and features yellow caution labels and warning stripes on the front. The lid is ribbed for structural strength and is attached with visible hinges, allowing it to be opened and closed. The dumpster sits on small wheels, making it mobile for repositioning in urban environments. The sides are reinforced with horizontal bars, and the overall construction appears robust and industrial. This type of dumpster is commonly found in alleys, behind commercial buildings, or in parking lots for waste collection.",
+    "description": "A large, green, weathered metal dumpster with a split black plastic lid, yellow caution labels, and wheels for mobility. The lid is partially open, revealing a spacious interior.",
+    "description_view_0": "Front view showing the split black lid, one half open, yellow caution labels, and the main access opening.",
+    "description_view_1": "Side view highlighting the open lid section, side reinforcement bars, and visible wheel beneath.",
+    "description_view_2": "Rear view with both lid sections closed, showing a plain, weathered metal surface and rear reinforcement bar.",
+    "description_view_3": "Opposite side view with the open lid section, side reinforcement, and wheel visible.",
+    "category": "dumpster",
+    "height": 1.3,
+    "max_dimension": 2.0,
+    "materials": [
+        "steel",
+        "plastic",
+        "air",
+        "rubber"
+    ],
+    "materials_composition": [
+        0.75,
+        0.15,
+        0.08,
+        0.02
+    ],
+    "mass": 180,
+    "receptacle": true,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 350,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "hinge",
+        "wheel",
+        "handle"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "black",
+        "yellow",
+        "rust-brown"
+    ],
+    "colors_composition": [
+        0.7,
+        0.2,
+        0.05,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "split, hinged, flat plastic lid with two sections; ribbed for strength; no visible locking mechanism",
+    "attribute_wheel_presence": true,
+    "attribute_handle_design": "two horizontal bar handles, one on each side, made of metal, located near the top edge",
+    "attribute_warning_labels": [
+        {
+            "color": "yellow",
+            "shape": "rectangle",
+            "content": "caution stripes and warning text"
+        }
+    ],
+    "attribute_placement_location": "outdoor commercial area or residential alley",
+    "uid": "aa6990763bd145ec954a0c41e9beb3f0",
+    "near_synsets": {
+        "dumpster.n.01": 0.4458404258864824,
+        "garbage.n.03": 0.5215905906016043,
+        "recycling_bin.n.01": 0.5291242336009093,
+        "garbage_truck.n.01": 0.5407101125938101,
+        "wastepaper_basket.n.01": 0.548829326466161
+    },
+    "synset": "dumpster.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/aa6990763bd145ec954a0c41e9beb3f0",
+        "creator_username": "FinleySearle",
+        "creator_display_name": "Finley Searle",
+        "creator_profile_url": "https://sketchfab.com/FinleySearle"
+    },
+    "filename": "std_aa6990763bd145ec954a0c41e9beb3f0.glb",
+    "length": 0.717570573091507,
+    "width": 1.1436997652053833
+}

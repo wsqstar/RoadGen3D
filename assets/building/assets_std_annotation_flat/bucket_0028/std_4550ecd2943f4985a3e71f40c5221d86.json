@@ -1,0 +1,92 @@
+{
+    "description_long": "This object is a modern, tactical shotgun with a robust, angular body and a matte black finish. The barrel is relatively short and features a prominent muzzle brake or flash suppressor at the tip, with multiple vent holes visible. The main body is boxy, with a large cylindrical drum magazine beneath, suggesting a high-capacity, rapid-fire design. The trigger guard is squared and substantial, providing ample space for gloved fingers, and the grip is integrated into the lower receiver. There is no visible traditional stock, giving the weapon a compact, close-quarters profile. The overall construction appears to be primarily metal with some polymer components for durability and weight reduction.",
+    "description": "A compact, tactical shotgun with a short barrel, large drum magazine, and squared trigger guard, finished in matte black. The design is robust and modern, lacking a traditional stock.",
+    "description_view_0": "Front view showing the circular muzzle brake with vent holes and the cylindrical drum magazine beneath the barrel.",
+    "description_view_1": "Side view highlighting the boxy receiver, large drum magazine, squared trigger guard, and integrated grip.",
+    "description_view_2": "Rear view displaying the back of the drum magazine and the compact, stockless design.",
+    "description_view_3": "Opposite side view mirroring view 1, with clear visibility of the magazine, grip, and barrel details.",
+    "category": "shotgun",
+    "height": 0.25,
+    "max_dimension": 0.8,
+    "materials": [
+        "steel",
+        "polymer",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "mass": 4.5,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 45,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "reloadable",
+        "aimable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "trigger",
+        "grip",
+        "drum magazine",
+        "barrel",
+        "trigger guard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.9,
+        0.1
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "single-barrel with a vented muzzle brake",
+    "attribute_stock_type": "no stock",
+    "attribute_action_mechanism": "semi-automatic",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "Squared, elongated trigger guard with a robust, boxy profile and ample space for finger access",
+    "uid": "4550ecd2943f4985a3e71f40c5221d86",
+    "near_synsets": {
+        "sawed-off_shotgun.n.01": 0.4983180115937797,
+        "shotgun.n.01": 0.5188389052917906,
+        "pump_action.n.01": 0.5370923411047657,
+        "shotgun_shell.n.01": 0.5462598204355017,
+        "gas_gun.n.01": 0.5468791376322187
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/4550ecd2943f4985a3e71f40c5221d86",
+        "creator_username": "tomura",
+        "creator_display_name": "tomura",
+        "creator_profile_url": "https://sketchfab.com/tomura"
+    },
+    "filename": "std_4550ecd2943f4985a3e71f40c5221d86.glb",
+    "length": 0.9456177353858948,
+    "width": 0.19445470720529556
+}

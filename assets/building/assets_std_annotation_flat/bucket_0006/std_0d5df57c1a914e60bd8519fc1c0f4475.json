@@ -1,0 +1,105 @@
+{
+    "description_long": "This is a small, single-propeller airplane with a camouflage paint scheme and roundel insignias on its wings and tail, reminiscent of military aircraft. The fuselage is slender and features a glass canopy cockpit positioned near the front, with a single propeller mounted on the nose. The wings are straight and mounted high on the fuselage, with visible struts for support, and the tail section includes a conventional vertical stabilizer and horizontal stabilizers. The landing gear consists of two main wheels and a small tail wheel, indicating a taildragger configuration. The airplane's surface is mostly matte, with painted markings in red, white, and blue, and the propeller and nose cone are painted red. The overall design suggests a lightweight, maneuverable aircraft suitable for short takeoffs and landings.",
+    "description": "A small, camouflage-painted single-propeller airplane with high-mounted straight wings, a glass canopy cockpit, and taildragger landing gear. Features roundel insignias and a red nose cone.",
+    "description_view_0": "Side view showing the camouflage pattern, high-mounted wings with roundels, glass canopy cockpit, and red nose cone with propeller.",
+    "description_view_1": "Front view highlighting the propeller, symmetrical wing placement, and roundels on both wings.",
+    "description_view_2": "Opposite side view displaying the tail section, landing gear, and wing struts, with clear visibility of the roundel insignias.",
+    "description_view_3": "Head-on view emphasizing the propeller, cockpit canopy, and the full span of the high-mounted wings.",
+    "category": "airplane",
+    "height": 2.8,
+    "max_dimension": 8.5,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.05,
+        0.02,
+        0.1
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 18000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "rotatable",
+        "pressable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "propeller",
+        "cockpit canopy",
+        "landing gear",
+        "wheels",
+        "control surfaces"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "beige",
+        "white",
+        "red",
+        "blue",
+        "black"
+    ],
+    "colors_composition": [
+        0.45,
+        0.2,
+        0.15,
+        0.08,
+        0.05,
+        0.04,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.25,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.05,
+    "recommended_clearance": 10.0,
+    "asset_composition_type": "single",
+    "attribute_wingspan_configuration": "High-wing, straight wings with visible struts and no winglets; no dihedral or anhedral angle apparent.",
+    "attribute_engine_type": "Single nose-mounted piston engine with a two-blade propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Taildragger configuration with two main fixed wheels and a single tail wheel.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed single-seat cockpit with a clear canopy.",
+    "uid": "0d5df57c1a914e60bd8519fc1c0f4475",
+    "near_synsets": {
+        "aircraft.n.01": 0.5017474294613113,
+        "airplane.n.01": 0.5094505085057419,
+        "single_prop.n.01": 0.5144877813488944,
+        "monoplane.n.01": 0.5162414692818685,
+        "wings.n.02": 0.524784713380865
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/0d5df57c1a914e60bd8519fc1c0f4475",
+        "creator_username": "helijah",
+        "creator_display_name": "helijah",
+        "creator_profile_url": "https://sketchfab.com/helijah"
+    },
+    "filename": "std_0d5df57c1a914e60bd8519fc1c0f4475.glb",
+    "length": 6.051449298858643,
+    "width": 8.630042552947998
+}

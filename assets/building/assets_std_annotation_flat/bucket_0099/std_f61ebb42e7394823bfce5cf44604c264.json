@@ -1,0 +1,103 @@
+{
+    "description_long": "This is a large, rectangular, industrial shipping container with a weathered olive-green exterior and visible corrugated metal paneling. The container features a pair of heavy-duty hinged doors on one end, one of which is open, revealing a wooden floor inside. Prominent signage on the side reads 'Sketchfab INTERNATIONAL CARGO' along with a blue and white logo, and there are additional caution stripes and markings near the door edges. The container's surface shows signs of rust, wear, and dirt, indicating extensive outdoor use. The structure is reinforced with metal corner fittings and appears robust enough for stacking or transport. Its size and construction suggest it is designed for secure storage or shipping of goods in urban or industrial environments.",
+    "description": "A large, olive-green metal shipping container with heavy-duty doors, visible signage, and a weathered, industrial appearance.",
+    "description_view_0": "Side view showing the 'Sketchfab INTERNATIONAL CARGO' logo and the closed side panels.",
+    "description_view_1": "End view with the container doors, one open to reveal the wooden interior floor and caution stripes.",
+    "description_view_2": "Opposite side view, also displaying the logo and closed side panels, with the open door visible at the far end.",
+    "description_view_3": "Rear view showing the solid back panel with a blue logo and no visible openings.",
+    "category": "container",
+    "height": 2.6,
+    "max_dimension": 6.1,
+    "materials": [
+        "steel",
+        "wood",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.03,
+        0.02
+    ],
+    "mass": 2200,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 4000,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable",
+        "lockable",
+        "stackable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "handle",
+        "lock"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "olive green",
+        "black",
+        "yellow",
+        "blue",
+        "white",
+        "brown"
+    ],
+    "colors_composition": [
+        0.75,
+        0.1,
+        0.03,
+        0.03,
+        0.03,
+        0.06
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.7,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_lid_type": "double hinged doors",
+    "attribute_opening_mechanism": "unlatch and swing open",
+    "attribute_labeling_or_signage": "printed logo and text on both long sides, caution stripes on door edges, blue logo on rear",
+    "attribute_handles_or_grips": "two vertical handles on each door at the front end",
+    "attribute_placement_location": "outdoor ground",
+    "uid": "f61ebb42e7394823bfce5cf44604c264",
+    "near_synsets": {
+        "container.n.01": 0.4502352072195933,
+        "cargo_container.n.01": 0.4566784489247035,
+        "cargo_door.n.01": 0.5258360445198254,
+        "container_ship.n.01": 0.5298162354539806,
+        "box.n.01": 0.5300602042793197
+    },
+    "synset": "container_ship.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f61ebb42e7394823bfce5cf44604c264",
+        "creator_username": "HPrendering",
+        "creator_display_name": "Vinny Passmore",
+        "creator_profile_url": "https://sketchfab.com/HPrendering"
+    },
+    "filename": "std_f61ebb42e7394823bfce5cf44604c264.glb",
+    "length": 8.5826416015625,
+    "width": 2.5722004175186157
+}

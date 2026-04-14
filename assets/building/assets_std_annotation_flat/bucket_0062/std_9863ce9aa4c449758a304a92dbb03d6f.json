@@ -1,0 +1,105 @@
+{
+    "description_long": "This tram features a classic, vintage design with a rectangular body painted in a faded green color, accented by a brown roof and undercarriage. The roof is topped with a prominent diamond-shaped pantograph for overhead electric power collection. Large, evenly spaced rectangular windows line both sides, allowing ample light into the passenger compartment. Entry platforms with metal railings and steps are present at both ends, and the tram sits on a pair of visible bogies with metal wheels. The exterior shows signs of weathering and use, giving it a slightly rustic, utilitarian appearance. The tram is designed for urban passenger transport and appears robust, with metal and glass construction dominating its structure.",
+    "description": "A vintage green tram with a brown roof, diamond pantograph, and large rectangular windows along both sides. Entry platforms and steps are present at each end, and the exterior shows signs of age and use.",
+    "description_view_0": "Side view showing the full length of the tram, with six large windows, faded green body, brown roof, and the diamond pantograph clearly visible on top.",
+    "description_view_1": "End view highlighting the entry platform, steps, and a single round headlight; the pantograph and roof details are visible from above.",
+    "description_view_2": "Opposite side view, nearly identical to view 0, showing the same window arrangement and pantograph, but with minor differences in weathering and details.",
+    "description_view_3": "Rear end view showing the entry platform, steps, and rear details; the pantograph and roof equipment are visible from above.",
+    "category": "tram",
+    "height": 3.2,
+    "max_dimension": 10.5,
+    "materials": [
+        "steel",
+        "glass",
+        "wood",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.05,
+        0.02,
+        0.05
+    ],
+    "mass": 14000,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 35000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "sittable",
+        "openable",
+        "closable",
+        "pressable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window",
+        "pantograph",
+        "step",
+        "handrail",
+        "headlight"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "green",
+        "brown",
+        "black",
+        "gray"
+    ],
+    "colors_composition": [
+        0.55,
+        0.3,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.03,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "single",
+    "attribute_pantograph_type": "diamond",
+    "attribute_door_configuration": "two doors, one at each end, both sides, manual swing type",
+    "attribute_window_arrangement": "Six large, evenly spaced rectangular windows per side, separated by narrow vertical frames, forming a continuous band along the length of the tram.",
+    "attribute_route_number_display": "none",
+    "attribute_front_signage": "none",
+    "uid": "9863ce9aa4c449758a304a92dbb03d6f",
+    "near_synsets": {
+        "tramline.n.01": 0.5746518182412068,
+        "trolley_line.n.01": 0.5768907198614106,
+        "boxcar.n.01": 0.5790092712201131,
+        "streetcar.n.01": 0.5797517405371672,
+        "tramway.n.01": 0.5814016299501451,
+        "tramcar.n.01": -1000.0
+    },
+    "synset": "tramcar.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/9863ce9aa4c449758a304a92dbb03d6f",
+        "creator_username": "longtail",
+        "creator_display_name": "Lyskilde",
+        "creator_profile_url": "https://sketchfab.com/longtail"
+    },
+    "filename": "std_9863ce9aa4c449758a304a92dbb03d6f.glb",
+    "length": 4.795012474060059,
+    "width": 1.2738859057426453
+}

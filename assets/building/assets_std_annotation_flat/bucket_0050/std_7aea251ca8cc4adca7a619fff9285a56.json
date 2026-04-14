@@ -1,0 +1,91 @@
+{
+    "description_long": "This is a large, cylindrical yellow barrel with a weathered and slightly dirty surface, suggesting prolonged outdoor exposure. The barrel features prominent black hazard markings, including a biohazard symbol and caution text, indicating it is used for storing or transporting dangerous or contaminated materials. The top and bottom rims are reinforced with visible bands, and the lid is tightly sealed, with no visible handles for easy lifting. The surface is matte with patches of grime and scuff marks, giving it a rugged, industrial appearance. The barrel is constructed primarily from metal, likely steel, and is designed to be robust and durable. Its size and markings suggest it is commonly found in industrial, urban, or hazardous waste management settings.",
+    "description": "A large, weathered yellow metal barrel with black hazard markings and reinforced rims, used for storing dangerous materials. The surface is matte and dirty, with a tightly sealed lid and no visible handles.",
+    "description_view_0": "The barrel is shown with its yellow surface and black hazard stripes on the rim, but no visible symbols or text.",
+    "description_view_1": "This view displays the prominent black biohazard symbol on the side, making the hazardous nature of the barrel clear.",
+    "description_view_2": "The barrel's plain yellow side is visible, with no markings or symbols, only the weathered surface and rim bands.",
+    "description_view_3": "This view reveals a caution label with text and a warning triangle, along with the black hazard stripes on the rim.",
+    "category": "barrel or bucket",
+    "height": 0.9,
+    "max_dimension": 0.6,
+    "materials": [
+        "steel",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "mass": 25,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 300,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "yellow",
+        "black"
+    ],
+    "colors_composition": [
+        0.85,
+        0.15
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 0.5,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "metal reinforcement bands at top and bottom",
+    "attribute_labeling_or_markings": "biohazard symbol, caution label, black hazard stripes",
+    "attribute_placement_location": "industrial",
+    "uid": "7aea251ca8cc4adca7a619fff9285a56",
+    "near_synsets": {
+        "barrel.n.02": 0.471257189117571,
+        "barrel.n.03": 0.48621343384962284,
+        "bucket.n.01": 0.5058493475135795,
+        "barrel.n.04": 0.5069606394593574,
+        "barrels.n.01": 0.5111413402344813,
+        "bucket.n.02": -1000.0,
+        "barrel.n.05": -1000.0,
+        "barrel.n.01": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/7aea251ca8cc4adca7a619fff9285a56",
+        "creator_username": "karollinemac",
+        "creator_display_name": "karollinemac",
+        "creator_profile_url": "https://sketchfab.com/karollinemac"
+    },
+    "filename": "std_7aea251ca8cc4adca7a619fff9285a56.glb",
+    "length": 0.8875739276409149,
+    "width": 0.8875740170478821
+}

@@ -1,0 +1,94 @@
+{
+    "description_long": "This is a small wooden cabin with a gable roof covered in reddish-brown shingles, giving it a rustic and cozy appearance. The exterior walls are constructed from light-colored horizontal wooden planks, and the structure is elevated slightly above the ground on concrete footings. The front facade features a double-door entrance, one side of which is open, and a small window with a grid pattern next to the door. A wooden porch extends from the front, providing a small entry platform. The cabin's simple, functional design is typical of garden sheds or small residential outbuildings, with minimal ornamentation and a focus on practicality.",
+    "description": "A small, rustic wooden cabin with a gable shingle roof, double front doors, a window, and a front porch platform.",
+    "description_view_0": "Top-down view showing the brown shingle gable roof and the open double doors on the side.",
+    "description_view_1": "Frontal view highlighting the double doors, front porch, and a window to the right of the entrance.",
+    "description_view_2": "Side view displaying the length of the cabin, the open doors, and the edge of the porch.",
+    "description_view_3": "Rear view showing the plain wooden back wall and the gable roof without any openings.",
+    "category": "cabin",
+    "height": 2.5,
+    "max_dimension": 4.5,
+    "materials": [
+        "wood",
+        "asphalt_shingles",
+        "glass",
+        "concrete",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.02,
+        0.08,
+        0.05
+    ],
+    "mass": 1800,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "window"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light brown",
+        "reddish brown",
+        "gray"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.5,
+    "asset_composition_type": "single",
+    "attribute_roof_type": "gable roof with moderate pitch, covered in reddish-brown asphalt shingles",
+    "attribute_window_arrangement": "one small rectangular window with a grid pattern, positioned to the right of the front doors, asymmetrically placed",
+    "attribute_door_placement": "double doors located on the front facade, slightly offset to the left, opening onto the porch",
+    "attribute_porch_presence": true,
+    "attribute_architectural_style": "rustic",
+    "uid": "dcfd9074df8e4c3fa996ab365112100d",
+    "near_synsets": {
+        "cabin.n.02": 0.4237163457524049,
+        "log_cabin.n.01": 0.456157368862413,
+        "gazebo.n.01": 0.5106626057843897,
+        "cabin.n.01": 0.5138902006614348,
+        "front_porch.n.01": 0.5168839552326508,
+        "cabin.n.03": -1000.0
+    },
+    "synset": "cabin.n.03",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/dcfd9074df8e4c3fa996ab365112100d",
+        "creator_username": "anim3d.ru",
+        "creator_display_name": "anim3d.ru",
+        "creator_profile_url": "https://sketchfab.com/anim3d.ru"
+    },
+    "filename": "std_dcfd9074df8e4c3fa996ab365112100d.glb",
+    "length": 7.298546314239502,
+    "width": 6.772585868835449
+}

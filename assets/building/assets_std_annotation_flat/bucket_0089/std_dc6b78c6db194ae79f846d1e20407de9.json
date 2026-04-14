@@ -1,0 +1,94 @@
+{
+    "description_long": "This object is a multi-barreled shotgun with a robust, industrial appearance. It features four parallel barrels arranged horizontally, each made of dark, matte-finished metal, giving the weapon a heavy and formidable look. The receiver is cylindrical and metallic, seamlessly connecting the barrels to a wooden grip and handle, which is ergonomically shaped and stained a deep brown. The trigger and hammer mechanism are exposed, with the trigger guard being rounded and metallic, providing protection for the trigger. The overall design suggests a custom or fantasy-inspired firearm, with no visible stock and a compact, powerful form factor. The materials and construction indicate durability and a focus on function over ornamentation.",
+    "description": "A heavy, four-barreled shotgun with a dark metal finish and a wooden pistol grip, featuring a rounded trigger guard and exposed hammer mechanism.",
+    "description_view_0": "Side view showing all four barrels, the cylindrical receiver, and the full wooden grip.",
+    "description_view_1": "Rear view highlighting the wooden grip, rounded trigger guard, and the alignment of the barrels.",
+    "description_view_2": "Opposite side view displaying the barrels, receiver, and the ergonomic wooden handle.",
+    "description_view_3": "Front view focusing on the four open barrel muzzles and the compact, clustered arrangement.",
+    "category": "shotgun",
+    "height": 0.18,
+    "max_dimension": 0.65,
+    "materials": [
+        "steel",
+        "wood",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.2,
+        0.05
+    ],
+    "mass": 5.5,
+    "receptacle": false,
+    "frontView": 3,
+    "quality": 8,
+    "movable": true,
+    "required_force": 54,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "grippable",
+        "triggerable",
+        "aimable",
+        "loadable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "handle",
+        "trigger",
+        "barrels",
+        "hammer",
+        "trigger guard"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "silver"
+    ],
+    "colors_composition": [
+        0.7,
+        0.25,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.35,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.45,
+    "bounciness": 0.03,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_barrel_configuration": "quad-barrel, horizontally aligned, no visible ribbing or venting",
+    "attribute_stock_type": "pistol grip",
+    "attribute_action_mechanism": "break-action",
+    "attribute_presence_of_a_pump_or_lever": "none",
+    "attribute_trigger_guard_design": "rounded, medium-sized, metallic, with no visible finger grooves or reinforcement",
+    "uid": "dc6b78c6db194ae79f846d1e20407de9",
+    "near_synsets": {
+        "shotgun.n.01": 0.46702272802400796,
+        "sawed-off_shotgun.n.01": 0.48151829072231633,
+        "shotgun_shell.n.01": 0.507836534014916,
+        "gun.n.01": 0.5103498180035916,
+        "machine_gun.n.01": 0.521083889887536
+    },
+    "synset": "shotgun_shell.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by-nc",
+        "uri": "https://api.sketchfab.com/v3/models/dc6b78c6db194ae79f846d1e20407de9",
+        "creator_username": "sythropo",
+        "creator_display_name": "sythropo",
+        "creator_profile_url": "https://sketchfab.com/sythropo"
+    },
+    "filename": "std_dc6b78c6db194ae79f846d1e20407de9.glb",
+    "length": 0.4872436672449112,
+    "width": 0.09243020415306091
+}

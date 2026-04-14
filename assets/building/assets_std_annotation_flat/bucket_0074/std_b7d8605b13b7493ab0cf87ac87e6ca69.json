@@ -1,0 +1,128 @@
+{
+    "description_long": "This object consists of two adjacent full-sized basketball courts, each with distinct color schemes and branding: one for the Los Angeles Lakers in gold and purple, and one for the Charlotte Hornets in teal and blue. Both courts feature detailed wood-patterned flooring with painted lines, team logos at center court, and sponsor logos near the baselines. Each court is equipped with two basketball hoops mounted on stanchions with rectangular glass backboards, and the seating areas are visible along the sidelines. The courts are surrounded by low barriers or benches, but there is no visible fencing or enclosure. The surface is smooth and glossy, typical of professional indoor basketball courts, and the markings include all standard basketball lines and zones.",
+    "description": "Two adjacent, full-sized professional basketball courts with detailed markings, team branding, and glass backboards, featuring wood-patterned floors and sideline seating.",
+    "description_view_0": "Front view showing both courts side by side, with the Hornets court on the left and the Lakers court on the right, highlighting the team logos and seating along the sidelines.",
+    "description_view_1": "Angled view from the baseline, emphasizing the painted key areas, three-point lines, and the sponsor logos near the baselines.",
+    "description_view_2": "Rear view showing the opposite baselines, with clear visibility of the court markings, team names, and the arrangement of the basketball hoops.",
+    "description_view_3": "Angled view from the opposite end, focusing on the center court logos, sideline seating, and the overall symmetry of the two courts.",
+    "category": "basketball court",
+    "height": 3.5,
+    "max_dimension": 56.0,
+    "materials": [
+        "wood",
+        "paint",
+        "glass",
+        "metal",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.1,
+        0.05,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 120000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "playable",
+        "standable",
+        "shootable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "basketball hoop",
+        "backboard",
+        "seating",
+        "court surface"
+    ],
+    "traversability": "pass_through",
+    "traversable_by": [
+        "person",
+        "wheeled_robot"
+    ],
+    "colors": [
+        "wood brown",
+        "purple",
+        "gold",
+        "teal",
+        "blue",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.6,
+        0.1,
+        0.08,
+        0.08,
+        0.06,
+        0.05,
+        0.03
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.15,
+    "surface_finish": "glossy",
+    "reflectivity": 0.25,
+    "index_of_refraction": 1.55,
+    "youngs_modulus": 12000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "group",
+    "attribute_hoop_presence": true,
+    "attribute_backboard_type": "rectangular glass",
+    "attribute_court_markings": [
+        "three-point line",
+        "free throw line",
+        "center circle",
+        "key",
+        "sidelines",
+        "baseline"
+    ],
+    "attribute_fence_enclosure": false,
+    "attribute_architectural_style": "indoor gymnasium",
+    "uid": "b7d8605b13b7493ab0cf87ac87e6ca69",
+    "near_synsets": {
+        "basketball_court.n.01": 0.4540594157996938,
+        "volleyball_court.n.01": 0.525126815243084,
+        "basketball_equipment.n.01": 0.5337506405037735,
+        "badminton_court.n.01": 0.5371379405961088,
+        "tennis_court.n.01": 0.5373219575009981,
+        "court.n.02": -1000.0,
+        "court.n.09": -1000.0,
+        "court.n.01": -1000.0,
+        "court.n.03": -1000.0,
+        "court.n.05": -1000.0,
+        "court.n.04": -1000.0,
+        "basketball.n.01": -1000.0,
+        "court.n.10": -1000.0,
+        "basketball.n.02": -1000.0,
+        "motor_hotel.n.01": -1000.0,
+        "court.n.06": -1000.0,
+        "court.n.08": -1000.0
+    },
+    "synset": "basketball_court.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/b7d8605b13b7493ab0cf87ac87e6ca69",
+        "creator_username": "nermin",
+        "creator_display_name": "nermin",
+        "creator_profile_url": "https://sketchfab.com/nermin"
+    },
+    "filename": "std_b7d8605b13b7493ab0cf87ac87e6ca69.glb",
+    "length": 31.185550689697266,
+    "width": 26.953862190246582
+}

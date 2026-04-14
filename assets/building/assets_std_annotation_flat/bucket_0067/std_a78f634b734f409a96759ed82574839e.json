@@ -1,0 +1,104 @@
+{
+    "description_long": "This humanoid robot features a sleek, light blue and gray exoskeleton with articulated limbs and a distinctly mechanical appearance. Its head is rounded with two prominent circular eye-like sensors, a vertical grill-like mouth area, and small antennae or protrusions on either side. The torso is segmented, with a central chest panel and visible mechanical joints at the shoulders, elbows, hips, and knees, allowing for a wide range of motion. The arms and legs are proportioned similarly to a human's, with hands that appear to have articulated fingers and feet designed for stable standing. The robot's surface is mostly smooth with some matte and metallic finishes, and the joints and connectors are darker, suggesting reinforced or flexible materials. Overall, the design is utilitarian yet modern, suitable for urban environments where interaction with humans and navigation of complex spaces are required.",
+    "description": "A sleek, light blue and gray humanoid robot with articulated limbs, a rounded head with sensor eyes, and a segmented, mechanical body. Its design is modern and functional, with smooth surfaces and visible joint mechanisms.",
+    "description_view_0": "Front view showing the robot's face with circular sensors, chest panel, and both arms bent at the elbows, one hand forming a gesture.",
+    "description_view_1": "Left side view highlighting the profile of the head, the arm extended forward in a thumbs-up gesture, and the segmented torso and leg joints.",
+    "description_view_2": "Rear view displaying the back of the head, spine-like neck structure, and the mechanical details of the back and legs.",
+    "description_view_3": "Right side view showing the side of the head, the arm bent at the hip, and the detailed articulation of the limbs.",
+    "category": "humanoid robot",
+    "height": 1.8,
+    "max_dimension": 1.8,
+    "materials": [
+        "painted metal",
+        "plastic",
+        "synthetic rubber",
+        "glass",
+        "air",
+        "electronics"
+    ],
+    "materials_composition": [
+        0.65,
+        0.15,
+        0.08,
+        0.05,
+        0.04,
+        0.03
+    ],
+    "mass": 85,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 9,
+    "movable": true,
+    "required_force": 400,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pressable",
+        "rotatable",
+        "pushable",
+        "liftable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "head",
+        "arms",
+        "hands",
+        "fingers",
+        "legs",
+        "feet",
+        "chest panel"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light blue",
+        "gray",
+        "black",
+        "silver"
+    ],
+    "colors_composition": [
+        0.6,
+        0.25,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "smooth",
+    "reflectivity": 0.32,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.4,
+    "bounciness": 0.12,
+    "recommended_clearance": 0.7,
+    "asset_composition_type": "single",
+    "attribute_pose": "Standing upright with one arm bent at the elbow and hand gesturing forward, the other arm resting on the hip; legs are straight and slightly apart, head facing forward.",
+    "attribute_clothing_style": "No visible clothing; the robot is covered in integrated panels and mechanical components with a painted finish.",
+    "attribute_facial_features": "The face has two large, circular eye-like sensors, a vertical grill resembling a mouth, and no visible nose; the head is rounded with small antennae or protrusions on the sides.",
+    "attribute_limb_articulation": "Arms and legs have multiple visible hinge and rotary joints at the shoulders, elbows, wrists, hips, knees, and ankles; hands have articulated fingers, suggesting a high degree of flexibility.",
+    "attribute_presence_of_sensors": "Visible sensors include two circular camera-like eyes on the face and possible microphones or additional sensors on the sides of the head.",
+    "uid": "a78f634b734f409a96759ed82574839e",
+    "near_synsets": {
+        "cyborg.n.01": 0.5407447432198625,
+        "android.n.01": 0.542335370135408,
+        "robotics_equipment.n.01": 0.5582094170224264,
+        "automaton.n.02": 0.5615633584660513,
+        "robotics.n.01": 0.5694674936980418
+    },
+    "synset": "android.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/a78f634b734f409a96759ed82574839e",
+        "creator_username": "Lagst",
+        "creator_display_name": "Lagst",
+        "creator_profile_url": "https://sketchfab.com/Lagst"
+    },
+    "filename": "std_a78f634b734f409a96759ed82574839e.glb",
+    "length": 0.7606889605522156,
+    "width": 0.789238840341568
+}

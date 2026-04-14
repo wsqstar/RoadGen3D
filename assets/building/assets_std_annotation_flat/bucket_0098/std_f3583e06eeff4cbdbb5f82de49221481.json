@@ -1,0 +1,100 @@
+{
+    "description_long": "This is a weathered, propeller-driven military airplane resting in a muddy, makeshift revetment surrounded by earthen berms. The fuselage is painted in a faded light blue and gray camouflage pattern, with visible roundels and identification numbers on the tail and wings. The wings are straight and mid-mounted, with the left wingtip partially buried in the mud, and the right wing showing signs of wear and damage. The cockpit is located at the forward section of the fuselage and appears to be enclosed, with a canopy that is slightly clouded or dirty. The tail section features a conventional vertical stabilizer and horizontal stabilizers, with the rudder and elevators clearly visible. The landing gear is extended and fixed, with the main wheels partially sunk into the muddy ground, suggesting the aircraft is no longer operational.",
+    "description": "A weathered, propeller-driven military airplane sits in a muddy revetment, featuring faded blue-gray camouflage, mid-mounted straight wings, and a conventional tail. The cockpit is forward and enclosed, with fixed landing gear partially embedded in the ground.",
+    "description_view_0": "Rear view showing the tail section, vertical stabilizer, and both horizontal stabilizers, with the airplane's left wingtip partially buried in mud.",
+    "description_view_1": "Left rear quarter view highlighting the left wing's damage and the muddy revetment, with the tail and part of the fuselage visible.",
+    "description_view_2": "Front view displaying the propeller, nose, cockpit canopy, and both wings, with the airplane's main landing gear visible in the mud.",
+    "description_view_3": "Right rear quarter view showing the right wing, tail, and the airplane's position within the earthen revetment.",
+    "category": "airplane",
+    "height": 2.8,
+    "max_dimension": 11.0,
+    "materials": [
+        "aluminum",
+        "glass",
+        "rubber",
+        "paint",
+        "air"
+    ],
+    "materials_composition": [
+        0.75,
+        0.08,
+        0.07,
+        0.08,
+        0.02
+    ],
+    "mass": 4200,
+    "receptacle": false,
+    "frontView": 2,
+    "quality": 7,
+    "movable": false,
+    "required_force": 0,
+    "walkable": true,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "openable",
+        "closable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "propeller",
+        "cockpit canopy",
+        "landing gear",
+        "doors",
+        "control surfaces"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "light blue",
+        "gray",
+        "white",
+        "black"
+    ],
+    "colors_composition": [
+        0.5,
+        0.3,
+        0.15,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.45,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 70000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 4.0,
+    "asset_composition_type": "scene",
+    "attribute_wingspan_configuration": "Mid-wing configuration with straight wings, no visible winglets, and a slight dihedral angle.",
+    "attribute_engine_type": "Single nose-mounted piston engine with a propeller.",
+    "attribute_tail_design": "Conventional tail with a single vertical stabilizer and two horizontal stabilizers.",
+    "attribute_landing_gear_type": "Fixed taildragger landing gear with two main wheels and a tail wheel.",
+    "attribute_cockpit_placement": "Forward-mounted, enclosed cockpit with a single canopy, likely single or tandem seat.",
+    "uid": "f3583e06eeff4cbdbb5f82de49221481",
+    "near_synsets": {
+        "aircraft.n.01": 0.5185073869508099,
+        "airplane.n.01": 0.5327556831292156,
+        "propeller_plane.n.01": 0.5331609737251022,
+        "combat_pilot.n.01": 0.5346796653697907,
+        "warplane.n.01": 0.5381201301860336
+    },
+    "synset": "airplane.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f3583e06eeff4cbdbb5f82de49221481",
+        "creator_username": "tla",
+        "creator_display_name": "TLA",
+        "creator_profile_url": "https://sketchfab.com/tla"
+    },
+    "filename": "std_f3583e06eeff4cbdbb5f82de49221481.glb",
+    "length": 14.392816066741943,
+    "width": 15.703765869140625
+}

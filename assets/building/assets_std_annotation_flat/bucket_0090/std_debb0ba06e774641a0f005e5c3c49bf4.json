@@ -1,0 +1,98 @@
+{
+    "description_long": "This is a large, cylindrical metal barrel with a dark, almost black finish and a slightly glossy surface. The barrel features prominent horizontal ridges for structural reinforcement and has a tightly sealed lid on top. Bright green, glowing cracks or liquid stains are visible on the sides and top, suggesting the presence of hazardous or radioactive material inside. Two sides of the barrel display a red triangular warning label with a skull and crossbones, indicating toxic or dangerous contents. The top of the barrel has two small capped openings, likely for filling or emptying the contents. The overall appearance suggests it is used for storing or transporting hazardous waste in industrial or urban environments.",
+    "description": "A large, dark metal barrel with glowing green cracks and red toxic warning labels, sealed with a lid and reinforced by horizontal ridges.",
+    "description_view_0": "The barrel is seen with glowing green cracks on the side and top, and the lid's capped openings are visible.",
+    "description_view_1": "This view highlights the red triangular toxic warning label and some green cracks on the side.",
+    "description_view_2": "The side of the barrel is dominated by bright green glowing cracks, with the lid's capped openings also visible.",
+    "description_view_3": "Another red toxic warning label is visible, along with faint green cracks on the side.",
+    "category": "barrel or bucket",
+    "height": 0.9,
+    "max_dimension": 0.6,
+    "materials": [
+        "steel",
+        "paint",
+        "hazardous liquid",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.08,
+        0.02
+    ],
+    "mass": 45,
+    "receptacle": true,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 450,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "openable",
+        "closable",
+        "pushable",
+        "pullable",
+        "liftable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "lid",
+        "cap",
+        "body"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "green",
+        "red"
+    ],
+    "colors_composition": [
+        0.85,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.3,
+    "surface_finish": "glossy",
+    "reflectivity": 0.4,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 1.0,
+    "asset_composition_type": "single",
+    "attribute_lid_presence": true,
+    "attribute_handle_type": "no handle",
+    "attribute_banding_or_reinforcement": "metal hoops",
+    "attribute_labeling_or_markings": "red triangular toxic warning label with skull and crossbones, glowing green cracks",
+    "attribute_placement_location": "industrial",
+    "uid": "debb0ba06e774641a0f005e5c3c49bf4",
+    "near_synsets": {
+        "barrel.n.02": 0.469621764010479,
+        "barrel.n.03": 0.4785334309933756,
+        "beer_barrel.n.01": 0.5076546195895559,
+        "bucket.n.01": 0.5148129648103017,
+        "barrel.n.04": 0.5219468404484563,
+        "barrel.n.05": -1000.0,
+        "barrel.n.01": -1000.0,
+        "bucket.n.02": -1000.0
+    },
+    "synset": "barrel.n.02",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/debb0ba06e774641a0f005e5c3c49bf4",
+        "creator_username": "Majronator",
+        "creator_display_name": "Jakub",
+        "creator_profile_url": "https://sketchfab.com/Majronator"
+    },
+    "filename": "std_debb0ba06e774641a0f005e5c3c49bf4.glb",
+    "length": 0.5605896413326263,
+    "width": 0.5663541555404663
+}

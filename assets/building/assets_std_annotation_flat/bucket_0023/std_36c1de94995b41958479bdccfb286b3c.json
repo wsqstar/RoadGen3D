@@ -1,0 +1,105 @@
+{
+    "description_long": "This object is a historical-style cannon mounted on a wooden carriage, reminiscent of artillery used in the 18th and 19th centuries. The cannon barrel is long, cylindrical, and made of dark metal with several reinforcing bands and a fuse at the rear. The carriage is constructed from brown wood with metal reinforcements and features two side rails and a base platform. Cannonballs are stored in a compartment at the rear of the carriage, visible from the front. The overall design is robust, with the cannon resting securely in a cradle that allows for limited elevation adjustment. The object is detailed with metallic and wooden textures, giving it a realistic and functional appearance.",
+    "description": "A historical cannon with a long metal barrel mounted on a reinforced wooden carriage, complete with visible cannonballs and metallic accents.",
+    "description_view_0": "Side view showing the full length of the cannon barrel, wooden carriage, and metal reinforcements.",
+    "description_view_1": "Front view highlighting the cannon's muzzle, the storage of cannonballs, and the symmetry of the carriage.",
+    "description_view_2": "Opposite side view similar to view 0, showing the barrel, carriage, and fuse detail.",
+    "description_view_3": "Rear view focusing on the back of the barrel, the fuse, and the arrangement of cannonballs within the carriage.",
+    "category": "combat tactical  vehicle",
+    "height": 1.0,
+    "max_dimension": 2.5,
+    "materials": [
+        "iron",
+        "wood",
+        "steel",
+        "air"
+    ],
+    "materials_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "mass": 1200,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 3000,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "pushable",
+        "pullable",
+        "rotatable",
+        "loadable",
+        "fireable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "barrel",
+        "fuse",
+        "carriage",
+        "cannonball storage",
+        "side rails"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "brown",
+        "gray",
+        "white"
+    ],
+    "colors_composition": [
+        0.5,
+        0.35,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.6,
+    "surface_finish": "matte",
+    "reflectivity": 0.15,
+    "index_of_refraction": 1.5,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 0.6,
+    "bounciness": 0.05,
+    "recommended_clearance": 2.0,
+    "asset_composition_type": "group",
+    "attribute_weapon_mounts": "One fixed cannon barrel mounted centrally on a wooden carriage.",
+    "attribute_armor_plating": "None visible.",
+    "attribute_camouflage_pattern": "None visible; surfaces are solid black, brown, and gray.",
+    "attribute_military_markings": "None visible.",
+    "attribute_tire_type": "not applicable.",
+    "uid": "36c1de94995b41958479bdccfb286b3c",
+    "near_synsets": {
+        "cannon.n.02": 0.46747434981155594,
+        "cannon.n.01": 0.4831508027903141,
+        "tank_shell.n.01": 0.5026237888514465,
+        "tank.n.01": 0.5059658288808531,
+        "caisson.n.02": 0.5093941029803477,
+        "vehicle.n.03": -1000.0,
+        "vehicle.n.02": -1000.0,
+        "vehicle.n.01": -1000.0,
+        "fight.n.02": -1000.0,
+        "combat.n.01": -1000.0,
+        "fomite.n.01": -1000.0
+    },
+    "synset": "cannon.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/36c1de94995b41958479bdccfb286b3c",
+        "creator_username": "Lymite",
+        "creator_display_name": "M.Umeyr",
+        "creator_profile_url": "https://sketchfab.com/Lymite"
+    },
+    "filename": "std_36c1de94995b41958479bdccfb286b3c.glb",
+    "length": 2.564958691596985,
+    "width": 1.3689965605735779
+}

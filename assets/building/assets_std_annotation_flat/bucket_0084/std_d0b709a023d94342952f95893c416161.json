@@ -1,0 +1,104 @@
+{
+    "description_long": "This is a large, industrial bulldozer with a robust steel body and a heavy-duty tracked undercarriage, designed for earthmoving and excavation tasks. The front features a wide, curved bucket with reinforced teeth, suitable for scooping and lifting large volumes of soil or debris. The arm and hydraulic system are visibly articulated, allowing for a wide range of motion and precise control of the bucket. The cabin is enclosed with metal framing and windows, providing protection and visibility for the operator, and is accessible via a side platform with railings. The engine compartment is mounted behind the cabin, with visible exhaust stacks and ventilation grilles for cooling. The overall appearance is rugged, with a weathered metallic finish and functional design elements typical of construction vehicles used in urban development.",
+    "description": "A heavy-duty, tracked bulldozer with a large front bucket, articulated arm, and an enclosed operator cabin, finished in weathered metal tones. Designed for robust earthmoving and excavation in urban construction environments.",
+    "description_view_0": "Front view shows the wide, reinforced bucket and the articulated arm, with the cabin and engine compartment visible behind.",
+    "description_view_1": "Left side view highlights the full length of the tracks, the articulated arm, and the bucket filled with material, as well as the side access platform and cabin.",
+    "description_view_2": "Rear view displays the engine compartment, exhaust stack, and the back of the cabin, with the tracks extending outward.",
+    "description_view_3": "Right side view reveals the opposite side of the tracks, the hydraulic arm, and the bucket, along with additional cabin and engine details.",
+    "category": "bulldozer",
+    "height": 3.5,
+    "max_dimension": 8.0,
+    "materials": [
+        "steel",
+        "glass",
+        "rubber",
+        "plastic",
+        "air"
+    ],
+    "materials_composition": [
+        0.85,
+        0.05,
+        0.05,
+        0.03,
+        0.02
+    ],
+    "mass": 35000,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 120000,
+    "walkable": false,
+    "enterable": true,
+    "affordances": [
+        "drivable",
+        "pressable",
+        "rotatable",
+        "pushable"
+    ],
+    "support_surface": true,
+    "interactive_parts": [
+        "door",
+        "control lever",
+        "steering wheel",
+        "track",
+        "bucket",
+        "hydraulic arm",
+        "exhaust stack",
+        "steps",
+        "handrail"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "gray",
+        "black",
+        "silver",
+        "rust"
+    ],
+    "colors_composition": [
+        0.65,
+        0.2,
+        0.1,
+        0.05
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.7,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 1.52,
+    "youngs_modulus": 210000,
+    "friction_coefficient": 1.1,
+    "bounciness": 0.02,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_blade_type": "bucket (not a traditional bulldozer blade); this is a large, curved excavator-style bucket with reinforced teeth for digging and scooping.",
+    "attribute_track_type": "standard track; the tracks are of moderate width and feature a rugged tread pattern suitable for urban construction surfaces.",
+    "attribute_cabin_design": "The cabin is enclosed with metal framing and glass windows, providing protection and visibility for the operator. It features a side access platform with railings and likely includes ergonomic controls for operator comfort.",
+    "attribute_exhaust_placement": "Single vertical exhaust stack located on the right rear side of the engine compartment.",
+    "attribute_manufacturer_logo": "None visible",
+    "uid": "d0b709a023d94342952f95893c416161",
+    "near_synsets": {
+        "bulldozer.n.01": 0.44397276574673994,
+        "backhoe.n.01": 0.4972554905859873,
+        "angledozer.n.01": 0.5066841463638931,
+        "caterpillar.n.02": 0.5238231261404745,
+        "power_shovel.n.01": 0.5271434503709991
+    },
+    "synset": "bulldozer.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d0b709a023d94342952f95893c416161",
+        "creator_username": "KadenCampbell",
+        "creator_display_name": "Kaden Campbell",
+        "creator_profile_url": "https://sketchfab.com/KadenCampbell"
+    },
+    "filename": "std_d0b709a023d94342952f95893c416161.glb",
+    "length": 9.182242393493652,
+    "width": 3.4138559103012085
+}

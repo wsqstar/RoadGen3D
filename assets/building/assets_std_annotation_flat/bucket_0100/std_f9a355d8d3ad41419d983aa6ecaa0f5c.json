@@ -1,0 +1,93 @@
+{
+    "description_long": "This object is a classic cartoon-style spherical bomb, featuring a matte black, smooth metal shell with a slightly reflective surface. The bomb is nearly perfectly round, with a short cylindrical neck at the top where a thick, tan-colored fuse is inserted. The fuse is slightly curved and appears to be made of a fibrous material, possibly cotton or hemp, with a burnt tip indicating it is ready to be lit. The body of the bomb is seamless, with no visible seams, buttons, or markings, giving it a simple yet menacing appearance. The surface of the bomb reflects light in a soft, diffused manner, suggesting a hard but not glossy finish. This type of bomb is often depicted in urban environments as a dangerous, explosive device.",
+    "description": "A matte black, spherical bomb with a thick, tan fuse protruding from the top. The surface is smooth and slightly reflective, with no visible markings or labels.",
+    "description_view_0": "The bomb is seen from a slight angle, showing the round body and the fuse curving forward from the top.",
+    "description_view_1": "A direct front view highlights the symmetry of the bomb and the fuse pointing straight up and slightly forward.",
+    "description_view_2": "The bomb is viewed from the opposite side, with the fuse curving away, revealing the smooth, unmarked surface.",
+    "description_view_3": "A rear view shows the fuse extending directly upward, with the spherical body dominating the view.",
+    "category": "bomb",
+    "height": 0.28,
+    "max_dimension": 0.28,
+    "materials": [
+        "steel",
+        "gunpowder",
+        "cotton",
+        "air"
+    ],
+    "materials_composition": [
+        0.7,
+        0.25,
+        0.03,
+        0.02
+    ],
+    "mass": 2.5,
+    "receptacle": false,
+    "frontView": 1,
+    "quality": 8,
+    "movable": true,
+    "required_force": 30,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable",
+        "ignitable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "fuse"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "black",
+        "tan",
+        "gray"
+    ],
+    "colors_composition": [
+        0.92,
+        0.06,
+        0.02
+    ],
+    "surface_hardness": "hard",
+    "surface_roughness": 0.18,
+    "surface_finish": "matte",
+    "reflectivity": 0.18,
+    "index_of_refraction": 2.5,
+    "youngs_modulus": 200000,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.05,
+    "recommended_clearance": 3.0,
+    "asset_composition_type": "single",
+    "attribute_warning_labels": [],
+    "attribute_detonation_mechanism": "The bomb is ignited by lighting the exposed fuse at the top, which burns down to the interior charge to trigger detonation.",
+    "attribute_wiring_visibility": false,
+    "attribute_timer_display": "none",
+    "attribute_unusual_placement": false,
+    "uid": "f9a355d8d3ad41419d983aa6ecaa0f5c",
+    "near_synsets": {
+        "bomb.n.01": 0.5450811650510567,
+        "plastic_bomb.n.01": 0.5476159137168167,
+        "briefcase_bomb.n.01": 0.5523528900220704,
+        "smoke_bomb.n.01": 0.555652544351985,
+        "pipe_bomb.n.01": 0.5587764953701168,
+        "turkey.n.05": -1000.0,
+        "bomb_calorimeter.n.01": -1000.0
+    },
+    "synset": "bomb_calorimeter.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/f9a355d8d3ad41419d983aa6ecaa0f5c",
+        "creator_username": "Zambur",
+        "creator_display_name": "Zambur",
+        "creator_profile_url": "https://sketchfab.com/Zambur"
+    },
+    "filename": "std_f9a355d8d3ad41419d983aa6ecaa0f5c.glb",
+    "length": 0.18394987285137177,
+    "width": 0.18406197428703308
+}

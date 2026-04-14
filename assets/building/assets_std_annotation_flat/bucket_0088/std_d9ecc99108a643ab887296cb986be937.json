@@ -1,0 +1,104 @@
+{
+    "description_long": "This hamburger features a rounded, golden-brown sesame seed bun with a scattering of white sesame seeds on top. The interior reveals multiple layers, including crisp green lettuce, slices of yellow cheese, and a thick brown patty, with a hint of red tomato visible in some views. The bun appears soft and slightly domed, with the bottom bun flatter and supporting the stacked ingredients. The cheese is neatly layered above and below the patty, and the lettuce is unevenly distributed, peeking out from the sides. The overall appearance is appetizing and classic, resembling a typical fast-food hamburger. No packaging or additional garnishes are present.",
+    "description": "A classic hamburger with a sesame seed bun, layered lettuce, cheese, and a thick patty, with visible tomato slices and no packaging.",
+    "description_view_0": "Front view showing the sesame seed bun, layered lettuce, cheese, and a hint of tomato beneath the top bun.",
+    "description_view_1": "Side view with a clear display of the lettuce and cheese layers, and the patty mostly hidden by the toppings.",
+    "description_view_2": "Angled view highlighting the tomato slice and the stacked arrangement of cheese, lettuce, and patty.",
+    "description_view_3": "Rear view with the lettuce and cheese layers visible, but the tomato less prominent.",
+    "category": "hamburger",
+    "height": 0.09,
+    "max_dimension": 0.13,
+    "materials": [
+        "bread",
+        "lettuce",
+        "cheese",
+        "beef patty",
+        "tomato",
+        "air"
+    ],
+    "materials_composition": [
+        0.45,
+        0.15,
+        0.15,
+        0.2,
+        0.04,
+        0.01
+    ],
+    "mass": 0.22,
+    "receptacle": false,
+    "frontView": 0,
+    "quality": 8,
+    "movable": true,
+    "required_force": 2,
+    "walkable": false,
+    "enterable": false,
+    "affordances": [
+        "liftable",
+        "pushable"
+    ],
+    "support_surface": false,
+    "interactive_parts": [
+        "top bun",
+        "bottom bun",
+        "lettuce",
+        "cheese slice",
+        "patty",
+        "tomato slice"
+    ],
+    "traversability": "obstacle",
+    "traversable_by": [],
+    "colors": [
+        "brown",
+        "white",
+        "green",
+        "yellow",
+        "red"
+    ],
+    "colors_composition": [
+        0.5,
+        0.08,
+        0.18,
+        0.18,
+        0.06
+    ],
+    "surface_hardness": "soft",
+    "surface_roughness": 0.4,
+    "surface_finish": "matte",
+    "reflectivity": 0.12,
+    "index_of_refraction": 1.35,
+    "youngs_modulus": 5,
+    "friction_coefficient": 0.5,
+    "bounciness": 0.1,
+    "recommended_clearance": 0.2,
+    "asset_composition_type": "single",
+    "attribute_bun_type": "sesame seed bun",
+    "attribute_patty_visibility": "partially visible",
+    "attribute_topping_arrangement": "Lettuce and cheese are layered above and below the patty, with tomato slices visible in the middle and toppings unevenly distributed around the edges.",
+    "attribute_packaging_presence": false,
+    "attribute_sesame_seed_presence": true,
+    "uid": "d9ecc99108a643ab887296cb986be937",
+    "near_synsets": {
+        "hamburger.n.01": 0.4921090273973976,
+        "cheeseburger.n.01": 0.5240283942950078,
+        "hamburger_bun.n.01": 0.5240613334296662,
+        "bacon-lettuce-tomato_sandwich.n.01": 0.5311629077476636,
+        "reuben.n.02": 0.549951580384137,
+        "ground_beef.n.01": -1000.0
+    },
+    "synset": "hamburger_bun.n.01",
+    "wn_version": "oewn:2022",
+    "annotation_info": {
+        "vision_llm": "gpt-4.1-2025-04-14",
+        "text_llm": "gpt-4.1-2025-04-14"
+    },
+    "license_info": {
+        "license": "by",
+        "uri": "https://api.sketchfab.com/v3/models/d9ecc99108a643ab887296cb986be937",
+        "creator_username": "mashood.javaid",
+        "creator_display_name": "mashood.javaid",
+        "creator_profile_url": "https://sketchfab.com/mashood.javaid"
+    },
+    "filename": "std_d9ecc99108a643ab887296cb986be937.glb",
+    "length": 0.169033944606781,
+    "width": 0.1709597110748291
+}
